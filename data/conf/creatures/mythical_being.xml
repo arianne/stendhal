@@ -26,6 +26,13 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="mermaid_song-01"/>
+        <sound value="mermaid_song-02"/>
+        <sound value="mermaid_song-03"/>
+        <sound value="mermaid_song-04"/>
+        <sound value="mermaid_song-05"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,30"/>
@@ -61,6 +68,11 @@
       <says>
         <noise state="idle follow fight" value="Leave this place."/>
         <noise state="idle follow fight" value="I will place a curse on you."/>
+        <sound value="mermaid_song-01"/>
+        <sound value="mermaid_song-02"/>
+        <sound value="mermaid_song-03"/>
+        <sound value="mermaid_song-04"/>
+        <sound value="mermaid_song-05"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -98,6 +110,11 @@
       <says>
         <noise state="idle follow fight" value="Leave our home."/>
         <noise state="idle follow fight" value="I am here to destroy all humans."/>
+        <sound value="mermaid_song-01"/>
+        <sound value="mermaid_song-02"/>
+        <sound value="mermaid_song-03"/>
+        <sound value="mermaid_song-04"/>
+        <sound value="mermaid_song-05"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -135,6 +152,11 @@
       <says>
         <noise state="idle follow fight" value="Leave this place."/>
         <noise state="idle follow fight" value="I will take you out."/>
+        <sound value="mermaid_song-01"/>
+        <sound value="mermaid_song-02"/>
+        <sound value="mermaid_song-03"/>
+        <sound value="mermaid_song-04"/>
+        <sound value="mermaid_song-05"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -172,6 +194,11 @@
       <says>
         <noise state="idle follow fight" value="You are DOOMED."/>
         <noise state="idle follow fight" value="Do not challenge me."/>
+        <sound value="mermaid_song-01"/>
+        <sound value="mermaid_song-02"/>
+        <sound value="mermaid_song-03"/>
+        <sound value="mermaid_song-04"/>
+        <sound value="mermaid_song-05"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
