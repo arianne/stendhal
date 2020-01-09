@@ -275,7 +275,7 @@ single_white_pink.*    bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Sten
 tiled/tileset/furniture/carpet/
 
 black_grey.png     ???; ???; ??? (committed by kymara: cdd51b6)
-black_red.png      ???; ???; ??? (committed by laguz: a49436e)
+black_red.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 blue.png           ???; ???; ??? (committed by Astrid Sawatzky: 2bbf9db)
 border.png         Juan?; ???; ??? (committed by kymara: 216fd50)
 border2.png        Juan?; ???; ??? (committed by kymara: c8c3eac)
@@ -292,7 +292,7 @@ nain_rug.png       ???; ???; ??? (committed by Astrid Sawatzky: 3d01bfb)
 orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pink_rug.png       bleutailfly; OGA BY 3.0; Stendhal
 plain_colours.png  ???; ???; ??? (committed by kymara: e425abd)
-purple.png         ???; ???; ??? (committed by kymara: c2e5ec6)
+purple.png         Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 red_purple.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rug_border.png     Kimmo Rundelin (kiheru) Katie Russell (kymara); CC BY-SA 3.0; Stendhal
