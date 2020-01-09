@@ -1067,7 +1067,7 @@ various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/flower/
 
-bulbs.png               (placeholder) (committed by kymara: 5a9d956)
+bulbs.png               bleutailfly; OGA BY 3.0; Stendhal
 daisy_blue.png          ???; ???; ??? (committed by kymara: 43e9d95, from Mirage tilesets?)
 daisy_red.png           ???; ???; ??? (committed by kiheru: 0fc721a, from Mirage tilesets?)
 daisy_white.png         ???; ???; ??? (from Mirage tilesets?)
