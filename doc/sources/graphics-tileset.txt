@@ -892,11 +892,9 @@ tiled/tileset/item/statue/
 
 archway-wide-red.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 archway.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-big_blue_crystal.png     tigertoes; ???; ??? will probably replace
 bird.png                 ???; ???; ??? (committed by kiheru: 234f74d)
 blackened_column.png     ???; ???; ??? (committed by kiheru: e075fa1)
 blobcreature.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-blue_crystal.png         tigertoes; ???; ??? will probably replace
 broken_green_column.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broken_lion.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddha.png               Tomas Sobek; CC0; http://openclipart.org/detail/79567/golden-buddha-by-tomas-sobek

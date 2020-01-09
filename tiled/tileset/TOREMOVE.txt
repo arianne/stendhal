@@ -18,6 +18,10 @@ furniture/carpet/
 ground/indoor/
 - stonefloor.png
 
+item/statue/
+- big_blue_crystal.png
+- blue_crystal.png
+
 object/
 - mine_rails.png
 
