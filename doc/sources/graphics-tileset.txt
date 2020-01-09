@@ -491,7 +491,7 @@ table_wooden_brown.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_stump_table.png       ???; ???; ??? (committed by kymara: 38ce77c)
 vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
 white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
-white_counter_top.png      (placeholder) (committed by kymara: d878ac9)
+white_counter_top.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
 wooden.png                 bleutailfly; OGA BY 3.0; Stendhal
 wooden_pale.png            bleutailfly; OGA BY 3.0; Stendhal
 wooden_rectangular.*       bleutailfly; OGA BY 3.0; Stendhal
