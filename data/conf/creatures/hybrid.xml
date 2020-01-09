@@ -253,6 +253,11 @@
       <says>
         <sound value="scream-fem-2" />
         <sound value="rattlesnake-1" />
+        <sound value="naga_hiss-01" />
+        <sound value="naga_hiss-02" />
+        <sound value="naga_hiss-03" />
+        <sound value="naga_hiss-04" />
+        <sound value="naga_hiss-05" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -287,6 +292,11 @@
       <says>
         <sound value="scream-fem-2" />
         <sound value="rattlesnake-1" />
+        <sound value="naga_hiss-01" />
+        <sound value="naga_hiss-02" />
+        <sound value="naga_hiss-03" />
+        <sound value="naga_hiss-04" />
+        <sound value="naga_hiss-05" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -323,6 +333,11 @@
       <says>
         <sound value="scream-fem-2" />
         <sound value="rattlesnake-1" />
+        <sound value="naga_hiss-01" />
+        <sound value="naga_hiss-02" />
+        <sound value="naga_hiss-03" />
+        <sound value="naga_hiss-04" />
+        <sound value="naga_hiss-05" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>

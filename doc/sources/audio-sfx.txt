@@ -86,6 +86,7 @@ grunt-large-2.*           SmallQuadruped; CC0; http://www.freesound.org/people/S
 gui-window-fold.*         Nicole Marie T; CC BY 4.0; https://opengameart.org/node/92701
 guitar-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16326
 hiccup-01.*               ceoux; CC0; https://freesound.org/people/ceoux/sounds/338196/
+naga_hiss-0[1-5].*        columbia23; CC BY 3.0; https://freesound.org/people/columbia23/sounds/395396/
 ho-ho-ho-1.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110641/
 ho-ho-ho-2.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110642/
 horse-snort-01.*          Andune; CC BY 3.0; https://freesound.org/people/Andune/sounds/61605/
