@@ -15,7 +15,6 @@ Changelog
   - tiny scarab, scarab, & red scarab
   - turtle
 - new NPCs
-  - Ambrogita (Ados Market)
   - Brosoklelo (Semos Mountains)
   - Jameson (Apothecary Lab)
   - Vlamyklela (Kirdney City)
