@@ -131,8 +131,8 @@ public class Outfit {
 				layers = new String[] {strcode};
 			}
 
-		    for (int idx = 0; idx < layers.length; idx++) {
-		    	final String layer = layers[idx];
+			for (int idx = 0; idx < layers.length; idx++) {
+				final String layer = layers[idx];
 				if (layer.contains("=")) {
 					final String[] key = layer.split("=");
 					if (Outfits.LAYER_NAMES.contains(key[0])) {
@@ -144,8 +144,13 @@ public class Outfit {
 			try {
 				final int code = Integer.parseInt(strcode);
 
+				// store old indexes so we can retrieve correct mappings for new outfit parts
+				final int old_body = code % 100;
+				final int old_head = (int) (code / Math.pow(100, 2) % 100);
+				final int old_hair =  (int) (code / Math.pow(100, 3) % 100);
+
 				// compatibility for special outfits from old outfit system
-				int body = code % 100;
+				int body = old_body;
 				if (body >= 78) { // old special bodies started at index 78
 					body += 900;
 				}
@@ -153,11 +158,11 @@ public class Outfit {
 				if (dress >= 72) { // old special dresses started at index 72
 					dress += 900;
 				}
-				int head = (int) (code / Math.pow(100, 2) % 100);
+				int head = old_head;
 				if (head >= 78) { // old special heads started at index 78
 					head += 900;
 				}
-				int hair = (int) (code / Math.pow(100, 3) % 100);
+				int hair = old_hair;
 				if (hair == 99) { // jester hat
 					hair = 999;
 				}
@@ -165,7 +170,7 @@ public class Outfit {
 				// mapping old bodies to new system
 				final Map<Integer, List<Integer>> bodies_map = old_outfit_mapping.get("body");
 				for (final Integer idx: bodies_map.keySet()) {
-					if (bodies_map.get(idx).contains(body)) {
+					if (bodies_map.get(idx).contains(old_body)) {
 						body = idx;
 						break;
 					}
@@ -173,7 +178,7 @@ public class Outfit {
 				// mapping old heads to new system
 				final Map<Integer, List<Integer>> heads_map = old_outfit_mapping.get("head");
 				for (final Integer idx: heads_map.keySet()) {
-					if (heads_map.get(idx).contains(head)) {
+					if (heads_map.get(idx).contains(old_head)) {
 						head = idx;
 						break;
 					}
@@ -182,23 +187,23 @@ public class Outfit {
 				int eyes = 0;
 				final Map<Integer, List<Integer>> eyes_map = old_outfit_mapping.get("eyes");
 				for (final Integer idx: eyes_map.keySet()) {
-					if (eyes_map.get(idx).contains(head)) {
+					if (eyes_map.get(idx).contains(old_head)) {
 						eyes = idx;
 						break;
 					}
 				}
 				// mapping mouth from old heads
 				int mouth = 0;
-				if (head == 15) {
+				if (old_head == 15) {
 					mouth = 1;
-				} else if (head == 18) {
+				} else if (old_head == 18) {
 					mouth = 2;
 				}
 				// mapping mask/glasses from old heads
 				int mask = 0;
 				final Map<Integer, List<Integer>> mask_map = old_outfit_mapping.get("mask");
 				for (final Integer idx: mask_map.keySet()) {
-					if (mask_map.get(idx).contains(head)) {
+					if (mask_map.get(idx).contains(old_head)) {
 						mask = idx;
 						break;
 					}
@@ -207,7 +212,7 @@ public class Outfit {
 				int hat = 0;
 				final Map<Integer, List<Integer>> hat_map = old_outfit_mapping.get("hat");
 				for (final Integer idx: hat_map.keySet()) {
-					if (hat_map.get(idx).contains(hair)) {
+					if (hat_map.get(idx).contains(old_hair)) {
 						hat = idx;
 						break;
 					}
@@ -542,7 +547,7 @@ public class Outfit {
 			&& (mouth == null || (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0))
 			&& (detail == null || detail == 0)
 			&& (hair == null || (hair < Outfits.HAIR_OUTFITS) && (hair >= 0))
-		    && (head == null || (head < Outfits.HEAD_OUTFITS) && (head >= 0))
+			&& (head == null || (head < Outfits.HEAD_OUTFITS) && (head >= 0))
 			&& (dress == null || (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0))
 			&& (body == null || (body < Outfits.BODY_OUTFITS) && (body >= 0));
 	}
