@@ -1098,7 +1098,7 @@ plant_potted_2.png    Megajack64?; ???; ??? (committed by bleutailfly: 7a73b14)
 pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
 pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
 pot_plant_sprout.png  ???; ???; ??? (committed by kymara: 76e7ad6)
-potted_plants1.png    ???; ???; ??? (committed by bleutailfly: a0bd93e)
+potted_plants1.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/lilly-plant, https://freesvg.org/vector-image-of-plant-in-two-pots
 potted_plants_2.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/vector-image-of-simple-plant-in-a-terracotta-pot, https://freesvg.org/sunflower-vector-graphics
 skull_pot.png         Megajack64; ???; ??? (committed by bluetailfly: a151ae8)
 small_flowerpots.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
