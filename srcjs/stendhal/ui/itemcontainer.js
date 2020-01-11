@@ -99,7 +99,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 	}
 
 	function isRightClick(e) {
-		if (+new Date() - timestampMouseDown > 300) {
+		if (+new Date() - stendhal.ui.timestampMouseDown > 300) {
 			return true;
 		}
 		if (e.which) {
@@ -110,7 +110,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 	}
 
 	function onMouseDown(e) {
-		timestampMouseDown = +new Date();
+		stendhal.ui.timestampMouseDown = +new Date();
 	}
 
 	function onMouseUp(e) {
