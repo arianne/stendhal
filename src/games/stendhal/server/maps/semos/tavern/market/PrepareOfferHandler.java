@@ -122,7 +122,10 @@ public class PrepareOfferHandler {
 					// The item name might not be what was used for looking it up (plurals)
 					itemName = item.getName();
 
-					if ((number > 1) && !(item instanceof StackableItem)) {
+					if (itemName.equals("money")) {
+						npc.say("Oh, offering money for money? That sounds rather fishy. I am sorry, I cannot do that");
+						return;
+					} else if ((number > 1) && !(item instanceof StackableItem)) {
 						npc.say("Sorry, you can only put those for sale as individual items.");
 						return;
 					} else if (item.isBound()) {
