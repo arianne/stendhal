@@ -208,7 +208,6 @@ stendhal.ui.gamewindow = {
 		var entity;
 		var startX;
 		var startY;
-		var timestampMouseDown;
 
 		function _onMouseDown(e) {
 			if (stendhal.ui.globalpopup) {
@@ -221,7 +220,7 @@ stendhal.ui.gamewindow = {
 			var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
 			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
 			entity = stendhal.zone.entityAt(x, y);
-			timestampMouseDown = +new Date();
+			stendhal.ui.timestampMouseDown = +new Date();
 
 			if (e.type !== "dblclick") {
 				e.target.addEventListener("mousemove", onDrag);
@@ -232,7 +231,7 @@ stendhal.ui.gamewindow = {
 		}
 
 		function isRightClick(e) {
-			if (+new Date() - timestampMouseDown > 300) {
+			if (+new Date() - stendhal.ui.timestampMouseDown > 300) {
 				return true;
 			}
 			if (e.which) {
