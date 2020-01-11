@@ -550,7 +550,7 @@ slate_tiles.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spikes.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square_patch.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square_paving.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-stonecircle.png              ???; ???; ??? (committed by tigertoes: ce3b522)
+stonecircle.*                MELLE, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/90099
 stone_floors.*               Kimmo Rundelin (kiheru), Rachel J Morris (Moosader), Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 tall_grass.png               Saphy.Len Pabin; GPL 2.0; https://opengameart.org/node/5575
 
