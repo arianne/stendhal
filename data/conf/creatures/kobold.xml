@@ -19,15 +19,13 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
+      <item value="leather legs" quantity="[1,1]" probability="10.0"/>
       <item value="leather armor" quantity="[1,1]" probability="10.0"/>
       <item value="leather cuirass" quantity="[1,1]" probability="2.0"/>
-      <item value="leather legs" quantity="[1,1]" probability="10.0"/>
-      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
-      <item value="knife" quantity="[1,1]" probability="0.5"/>
       <item value="small axe" quantity="[1,1]" probability="1.3"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="buckler" quantity="[1,1]" probability="0.5"/>
-      <item value="mild koboldish torcibud" quantity="[1,1]" probability="0.1"/>
-      <item value="slim bottle" quantity="[1,1]" probability="1.0"/>
+      <item value="knife" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -62,15 +60,13 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,11]" probability="90.0"/>
-      <item value="studded armor" quantity="[1,1]" probability="6.0"/>
       <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="6.0"/>
       <item value="studded legs" quantity="[1,1]" probability="8.0"/>
+      <item value="hand axe" quantity="[1,1]" probability="1.4"/>
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="leather helmet" quantity="[1,1]" probability="1.0"/>
-      <item value="wooden shield" quantity="[1,1]" probability="1.0"/>
-      <item value="hand axe" quantity="[1,1]" probability="1.0"/>
-      <item value="mild koboldish torcibud" quantity="[1,1]" probability="0.2"/>
-      <item value="slim bottle" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="1.3"/>
     </drops>
     <equips>
     </equips>
@@ -109,8 +105,6 @@
       <item value="wooden arrow" quantity="[3,12]" probability="6.0"/>
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="wooden bow" quantity="[1,1]" probability="0.5"/>
-      <item value="mild koboldish torcibud" quantity="[1,1]" probability="0.1"/>
-      <item value="slim bottle" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden arrow" quantity="10000" />
@@ -148,16 +142,14 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[3,13]" probability="90.0"/>
-      <item value="leather armor" quantity="[1,1]" probability="10.0"/>
       <item value="wooden shield" quantity="[1,1]" probability="10.0"/>
-      <item value="plate shield" quantity="[1,1]" probability="10.0"/>
-      <item value="flail" quantity="[1,1]" probability="5.0"/>
-      <item value="axe" quantity="[1,1]" probability="5.0"/>
-      <item value="studded boots" quantity="[1,1]" probability="1.5"/>
+      <item value="plate shield" quantity="[1,1]" probability="50.0"/>
+      <item value="flail" quantity="[1,1]" probability="10.0"/>
+      <item value="leather armor" quantity="[1,1]" probability="10.0"/>
+      <item value="axe" quantity="[1,1]" probability="2.0"/>
+      <item value="studded boots" quantity="[1,1]" probability="0.5"/>
       <item value="leather helmet" quantity="[1,1]" probability="1.5"/>
       <item value="short sword" quantity="[1,1]" probability="1.0"/>
-      <item value="strong koboldish torcibud" quantity="[1,1]" probability="0.3"/>
-      <item value="eared bottle" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -192,16 +184,14 @@
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="8.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="7.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="1.0"/>
       <item value="scale armor" quantity="[1,1]" probability="0.05"/>
       <item value="iron scale armor" quantity="[1,1]" probability="0.0050"/>
-      <item value="plate shield" quantity="[1,1]" probability="10.0"/>
       <item value="battle axe" quantity="[1,1]" probability="1.5"/>
       <item value="chain boots" quantity="[1,1]" probability="1.5"/>
-      <item value="chain helmet" quantity="[1,1]" probability="3.0"/>
       <item value="minor potion" quantity="[1,2]" probability="1.5"/>
-      <item value="strong koboldish torcibud" quantity="[1,1]" probability="0.5"/>
-      <item value="eared bottle" quantity="[1,1]" probability="20.0"/>
+      <item value="chain helmet" quantity="[1,1]" probability="3.0"/>
+      <item value="plate shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -238,7 +228,6 @@
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.0"/>
       <item value="ugmash" quantity="[1,1]" probability="1.00"/>
-      <item value="vsop koboldish torcibud" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
