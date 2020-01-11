@@ -161,7 +161,7 @@
     </portal>
 
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.semos.mountain.BefuddledSorcerorNPC" />
+    <!--<configurator class-name="games.stendhal.server.maps.semos.mountain.BefuddledSorcerorNPC" />-->
 
   </zone>
 
