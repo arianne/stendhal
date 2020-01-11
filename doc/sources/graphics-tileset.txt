@@ -1158,7 +1158,7 @@ spruce_xmas3.png         bleutailfly; OGA BY 3.0; Stendhal
 spruce_xmas4.png         bleutailfly; OGA BY 3.0; Stendhal
 spruce_xmas5.png         bleutailfly; OGA BY 3.0; Stendhal
 spruce_xmas6.png         bleutailfly; OGA BY 3.0; Stendhal
-taller_trees.png         ???; ???; ??? (committed by kymara: b14f23d)
+taller_trees.*           rubberduck, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/94897, https://www.blendswap.com/blend/14674
 tree_blue.png            ???; ???; ??? (committed by Miguel: 12d51cd)
 tree_darkgreen.png       ???; ???; ??? (committed by Miguel: 12d51cd)
 tree_fluffy.png          Megajack64; ???; ??? (committed by kymara: 39bbe76)
