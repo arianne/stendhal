@@ -396,6 +396,12 @@ mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
 sclaria.png        ???; ???; ??? (committed by danter: 83339fc)
 
+data/sprites/items/holiday/
+
+mint.png       ???; ???; ???
+ornament.png   ???; ???; ???
+ornaments.png  ???; ???; ???
+
 data/sprites/items/jewellery/
 
 blackpearl.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
