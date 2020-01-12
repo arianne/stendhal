@@ -116,7 +116,7 @@ public class Cat extends Pet {
 		return Arrays.asList(
 				//"meat",
 				//"ham",
-				"tripe",
+				//"tripe",
 				"milk",
 				"chicken",
 				"trout",
