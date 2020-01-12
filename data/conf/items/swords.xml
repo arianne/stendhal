@@ -132,15 +132,15 @@
 
   <item name="chaos sword">
     <type class="sword" subclass="chaos_sword" tileid="-1"/>
-    <description>You see a chaos sword, a mighty weapon that allows you to hurt your foes and to heal you at the same time.</description>
+    <description>You see a chaos sword. Wielding it allows to hurt your foes and to heal you at the same time.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="32"/>
-      <rate value="8"/>
+      <rate value="9"/>
       <lifesteal value="0.3"/>
       <min_level value="50"/>
     </attributes>
-    <weight value="8.0"/>
+    <weight value="10.0"/>
     <value value="182044"/>
     <equipable>
       <slot name="ground"/>
