@@ -203,7 +203,6 @@ hair_044.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 hair_045.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_046.png               Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
 hair_047.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
-hair_048.png               bleutailfly; OGA BY 3.0; Stendhal
 hair_999.png (jester hat)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/outfit/hat/
