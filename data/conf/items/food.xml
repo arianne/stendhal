@@ -30,6 +30,7 @@
 	</item>
 
     <!-- purple apple is a special kind of apple -->
+<!-- portfolio quest disabled
 	<item name="purple apple">
 		<type class="food" subclass="apple_special/apple_purple" tileid="-1" />
 		<description>You see a purple apple. It is loaded with memories</description>
@@ -52,8 +53,10 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
+-->
 
     <!-- mauve apple is a special kind of apple -->
+<!-- portfolio quest disabled
 	<item name="mauve apple">
 		<type class="food" subclass="apple_special/apple_mauve" tileid="-1" />
 		<description>You see a mauve apple. It is loaded with memories</description>
@@ -76,8 +79,10 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
+-->
 
     <!-- black apple is a special kind of apple -->
+<!--
 	<item name="black apple">
 		<type class="food" subclass="apple_special/apple_black" tileid="-1" />
 		<description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
@@ -100,6 +105,7 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
+-->
 
 	<item name="lemon">
 		<type class="food" subclass="lemon" tileid="-1" />
