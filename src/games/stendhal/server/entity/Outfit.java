@@ -88,6 +88,7 @@ public class Outfit {
 		put("hat", new HashMap<Integer, List<Integer>> () {{
 			put(1, Arrays.asList(33, 34)); // baseball cap
 			put(2, Arrays.asList(39)); // reverse baseball cap
+			put(995, Arrays.asList(99)); // jester hat
 			put(999, IntStream.rangeClosed(50, 96).boxed().collect(Collectors.toList())); // santa hat
 		}});
 	}};
