@@ -84,6 +84,13 @@ public class Outfit {
 			put(4, Arrays.asList(21)); // eyepatch
 			put(6, Arrays.asList(79, 86, 99)); // sunglasses
 		}});
+		put("hair", new HashMap<Integer, List<Integer>> () {{
+			put(23, Arrays.asList(3, 15)); // shoulder length curly
+			put(26, Arrays.asList(13)); // long ponytail
+			put(7, Arrays.asList(33, 34)); // short
+			put(20, Arrays.asList(38)); // shoulder length
+			put(0, Arrays.asList(39, 99)); // bald
+		}});
 		// hat is set from old hair
 		put("hat", new HashMap<Integer, List<Integer>> () {{
 			put(1, Arrays.asList(33, 34)); // baseball cap
@@ -164,9 +171,6 @@ public class Outfit {
 					head += 900;
 				}
 				int hair = old_hair;
-				if (hair == 99) { // jester hat
-					hair = 999;
-				}
 
 				// mapping old bodies to new system
 				final Map<Integer, List<Integer>> bodies_map = old_outfit_mapping.get("body");
@@ -206,6 +210,14 @@ public class Outfit {
 				for (final Integer idx: mask_map.keySet()) {
 					if (mask_map.get(idx).contains(old_head)) {
 						mask = idx;
+						break;
+					}
+				}
+				// re-map some old hairs so they are as close to old outfit as possible
+				final Map<Integer, List<Integer>> hair_map = old_outfit_mapping.get("hair");
+				for (final Integer idx: hair_map.keySet()) {
+					if (hair_map.get(idx).contains(old_hair)) {
+						hair = idx;
 						break;
 					}
 				}
