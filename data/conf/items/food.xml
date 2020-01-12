@@ -1628,6 +1628,7 @@
 	</item>
 
 	<!-- northpole goodies -->
+<!--
 	<item name="candycane">
 		<type class="food" subclass="candycane" tileid="-1"/>
 		<description>You see a delicious candy cane.</description>
@@ -1788,6 +1789,7 @@
 			<slot name="trade"/>
 		</equipable>
 	</item>
+-->
    <!-- end of northpole goodies -->
 
 	<item name="fairy cake">
