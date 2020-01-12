@@ -59,6 +59,17 @@ public class Outfit {
 			put(1, Arrays.asList(6, 7, 8, 9, 10, 11)); // female bodies 1
 			put(2, Arrays.asList(13)); // female bodies 2
 		}});
+		put("dress", new HashMap<Integer, List<Integer>>() {{
+			put(5, Arrays.asList(2)); // denim
+			put(11, Arrays.asList(38, 50)); // soldier uniform
+			put(22, Arrays.asList(18, 23)); // robe
+			put(23, Arrays.asList(62)); // soldier uniform/armor
+			put(27, Arrays.asList(29)); // sleeveless dress
+			put(29, Arrays.asList(46)); // robe
+			put(50, Arrays.asList(43)); // soldier uniform with cape
+			put(52, Arrays.asList(24)); // denim wings
+			put(64, Arrays.asList(3)); // casual shirt & pants
+		}});
 		put("head", new HashMap<Integer, List<Integer>>() {{
 			put(0, Arrays.asList(5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)); // small chin, small ears
 			put(1, Arrays.asList(0, 1, 2, 3, 4)); // small chin, large ears
@@ -185,6 +196,14 @@ public class Outfit {
 				for (final Integer idx: heads_map.keySet()) {
 					if (heads_map.get(idx).contains(old_head)) {
 						head = idx;
+						break;
+					}
+				}
+				// re-map some old dresses so they are as close to old outfit as possible
+				final Map<Integer, List<Integer>> dress_map = old_outfit_mapping.get("dress");
+				for (final Integer idx: dress_map.keySet()) {
+					if (dress_map.get(idx).contains(dress)) {
+						dress = idx;
 						break;
 					}
 				}
