@@ -384,6 +384,7 @@
     </equipable>
   </item>
 
+<!-- Atlantis not ready
   <item name="royal cloak">
     <type class="cloak" subclass="royal_cloak" tileid="-1"/>
     <description>You see a royal cloak.  It will protect you against mighty foes.</description>
@@ -406,6 +407,7 @@
       <slot name="cloak"/>
     </equipable>
   </item>
+-->
 
   <item name="shadow cloak">
     <type class="cloak" subclass="shadow_cloak" tileid="-1"/>

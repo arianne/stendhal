@@ -231,6 +231,7 @@
     </equipable>
   </item>
 
+<!-- Atlantis not ready
   <item name="royal legs">
     <type class="legs" subclass="royal_legs" tileid="-1"/>
     <description>You see a pair of royal legs.</description>
@@ -253,6 +254,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
+-->
 
   <item name="shadow legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>

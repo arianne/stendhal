@@ -441,6 +441,7 @@
     </equipable>
   </item>
 
+<!-- Atlantis not ready
   <item name="royal armor">
     <type class="armor" subclass="royal_armor" tileid="-1"/>
     <description>You see a suit of royal armor. This armor is fit for a king.</description>
@@ -463,6 +464,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
+-->
 
   <item name="scale armor">
     <type class="armor" subclass="scale_armor" tileid="-1"/>

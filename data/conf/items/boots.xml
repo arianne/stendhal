@@ -230,6 +230,7 @@
     </equipable>
   </item>
 
+<!-- Atlantis not ready
   <item name="royal boots">
     <type class="boots" subclass="royal_boots" tileid="-1"/>
     <description>You see a pair of royal boots.  They have magical properties</description>
@@ -252,6 +253,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
+-->
 
    <item name="shadow boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>

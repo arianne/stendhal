@@ -400,6 +400,7 @@ Possibly add to weekly item quest. -->
     </equipable>
   </item>
 
+<!-- Atlantis not ready
   <item name="royal helmet">
     <type class="helmet" subclass="royal_helmet" tileid="-1"/>
     <description>You see a royal helmet.</description>
@@ -422,5 +423,6 @@ Possibly add to weekly item quest. -->
       <slot name="trade"/>
     </equipable>
   </item>
+-->
 
 </items>
