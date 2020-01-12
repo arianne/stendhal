@@ -527,6 +527,9 @@ stendhal.slashActionRepository = {
 			array[i] = array[i].trim();
 		}
 		array = array.filter(Boolean);
+		if (array.length == 0) {
+			return false;
+		}
 
 		var name = array[0];
 		if (name[0] != "/") {
