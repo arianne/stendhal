@@ -224,7 +224,9 @@ stendhal.ui.gamewindow = {
 
 			if (e.type !== "dblclick") {
 				e.target.addEventListener("mousemove", onDrag);
+				e.target.addEventListener("touchmove", onDrag);
 				e.target.addEventListener("mouseup", onMouseUp);
+				e.target.addEventListener("touchend", onMouseUp);
 			} else if (entity == stendhal.zone.ground) {
 				entity.onclick(e.offsetX, e.offsetY, true);
 			}
@@ -250,6 +252,7 @@ stendhal.ui.gamewindow = {
 				entity.onclick(e.offsetX, e.offsetY);
 			}
 			cleanUp(e);
+			e.preventDefault();
 		}
 
 		function onDrag(e) {
@@ -264,7 +267,9 @@ stendhal.ui.gamewindow = {
 		function cleanUp(e) {
 			entity = null;
 			e.target.removeEventListener("mouseup", onMouseUp);
+			e.target.removeEventListener("touchend", onMouseUp);
 			e.target.removeEventListener("mousemove", onDrag);
+			e.target.removeEventListener("touchmove", onDrag);
 		}
 
 		return _onMouseDown;
