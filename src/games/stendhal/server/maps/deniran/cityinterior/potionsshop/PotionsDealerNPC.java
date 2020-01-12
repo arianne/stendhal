@@ -60,9 +60,11 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 			put("mandragora", 1500);
 			put("kokuda", 5000);
 			put("toadstool", 60);
+			put("poison", 40);
 			put("greater poison", 60);
 			put("mega poison", 500);
-			put("deadly poison", 2000);
+			put("deadly poison", 1000);
+			put("disease poison", 2000);
 			put("sedative", 200);
 			put("venom gland", 2000);
 		}};
