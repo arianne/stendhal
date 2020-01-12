@@ -192,7 +192,7 @@ hair_033.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silve
 hair_034.png (mohawk)      Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_035.png               Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_036.png (mohawk)      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-hair_037.*   (cloak hood)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_037.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_038.png               Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
 hair_039.png               bleutailfly; OGA BY 3.0; Stendhal
 hair_040.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -202,7 +202,6 @@ hair_043.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDel
 hair_044.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 hair_045.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_046.png               Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
-hair_047.png               Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_999.png (jester hat)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/outfit/hat/
@@ -219,6 +218,7 @@ hat_009.png (beret)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://o
 hat_010.*   (robin's hat)      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_011.*   (fedora/panama)    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_012.png (boggin)           bleutailfly; OGA BY 3.0; Stendhal
+hat_013.*   (robe hood)        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_992.png (superstendhal)    bleutailfly; OGA BY 3.0; Stendhal
 hat_993.png (blue bear suit)   bleutailfly; OGA BY 3.0; Stendhal
 hat_994.png (brown bear suit)  bleutailfly; OGA BY 3.0; Stendhal

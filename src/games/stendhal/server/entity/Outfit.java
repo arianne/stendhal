@@ -100,12 +100,13 @@ public class Outfit {
 			put(26, Arrays.asList(13)); // long ponytail
 			put(7, Arrays.asList(33, 34)); // short
 			put(20, Arrays.asList(38)); // shoulder length
-			put(0, Arrays.asList(39, 99)); // bald
+			put(0, Arrays.asList(37, 39, 99)); // bald
 		}});
 		// hat is set from old hair
 		put("hat", new HashMap<Integer, List<Integer>> () {{
 			put(1, Arrays.asList(33, 34)); // baseball cap
 			put(2, Arrays.asList(39)); // reverse baseball cap
+			put(13, Arrays.asList(37)); // robe hood
 			put(995, Arrays.asList(99)); // jester hat
 			put(999, IntStream.rangeClosed(50, 96).boxed().collect(Collectors.toList())); // santa hat
 		}});
