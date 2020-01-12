@@ -34,7 +34,7 @@ public class Outfits {
 	public static final int CLOTHES_OUTFITS = 65;
 
 	/** number of player selectable hair styles */
-	public static final int HAIR_OUTFITS = 48;
+	public static final int HAIR_OUTFITS = 47;
 
 	/** number of player selectable body shapes */
 	public static final int BODY_OUTFITS = 3;
@@ -46,10 +46,10 @@ public class Outfits {
 	public static final int MOUTH_OUTFITS = 5;
 
 	public static final int MASK_OUTFITS = 9;
-	public static final int HAT_OUTFITS = 13;
+	public static final int HAT_OUTFITS = 14;
 
 	// hair should not be drawn with hat indexes in this list
-	public static final List<Integer> HATS_NO_HAIR = Arrays.asList(3, 4);
+	public static final List<Integer> HATS_NO_HAIR = Arrays.asList(3, 4, 13);
 
 	// layers used for building outfits
 	public static final List<String> LAYER_NAMES = Arrays.asList(
