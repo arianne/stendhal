@@ -729,7 +729,7 @@ public class MealForGroongo extends AbstractQuest {
                                 player.getQuest(QUEST_SLOT, 4))) +
                         " for dessert.";
                 decentMeal.setInfoString("Decent Meal for Groongo");
-                //decentMeal.setBoundTo("Groongo Rahnnt");
+                decentMeal.setBoundTo(player.getName());
                 decentMeal.setDescription(
                     "You see a dome-covered decent meal which consists of " +
                     decentMealDescription);
