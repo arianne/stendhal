@@ -95,7 +95,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
-		assertEquals(Integer.valueOf(64), ou.getLayer("dress")); // old dress 3 is now mapped to 64
+		assertEquals(Integer.valueOf(5), ou.getLayer("dress")); // old dress 3 is now mapped to 5
 		assertEquals(Integer.valueOf(0), ou.getLayer("body"));
 
 		// extended layers
@@ -109,7 +109,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
-		assertEquals(Integer.valueOf(64), ou.getLayer("dress")); // old dress 3 is now mapped to 64
+		assertEquals(Integer.valueOf(5), ou.getLayer("dress")); // old dress 3 is now mapped to 5
 		assertEquals(Integer.valueOf(0), ou.getLayer("body"));
 
 		// extended layers
