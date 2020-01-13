@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -80,7 +81,9 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 				}
 		};
 
-		npc.setEntityClass("woman_016_npc");
+		npc.setOutfit("body=1,head=0,eyes=21,dress=971,hair=47");
+		npc.setOutfitColor("skin", SkinColor.LIGHT);
+		npc.setOutfitColor("dress", 0xac319c);
 		npc.setPosition(47, 90);
 		npc.initHP(100);
 		npc.setDescription("You see Alice Farmer. She is on holidays in Ados.");
