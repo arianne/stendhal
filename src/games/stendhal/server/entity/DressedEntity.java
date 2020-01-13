@@ -231,6 +231,30 @@ public abstract class DressedEntity extends RPEntity {
 		setOutfit(new Outfit(layers), temporary);
 	}
 
+	/**
+	 * Sets the entity's outfit using a string code. E.g.:
+	 * 		body=1,hair=5,dress=13
+	 *
+	 * @param strcode
+	 */
+	public void setOutfit(final String strcode) {
+		setOutfit(new Outfit(strcode), false);
+	}
+
+	/**
+	 * Sets the entity's outfit using a string code. E.g.:
+	 * 		body=1,hair=5,dress=13
+	 *
+	 * @param strcode
+	 * 		String code representing outfit.
+	 * @param temporary
+	 * 		If true, the original outfit will be stored so that it can be
+	 * 		restored later.
+	 */
+	public void setOutfit(final String strcode, final boolean temporary) {
+		setOutfit(new Outfit(strcode), temporary);
+	}
+
 	// Hack to preserve detail layer
 	public void setOutfitWithDetail(final Outfit outfit, final boolean temporary) {
 		// preserve detail layer
