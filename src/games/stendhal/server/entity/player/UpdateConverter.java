@@ -379,9 +379,11 @@ public abstract class UpdateConverter {
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "keyring") != null) {
 				object.put("features", "keyring", "");
 			}
+			/*
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "portfolio") != null) {
 				object.put("features", "portfolio", "");
 			}
+			*/
 
 	    	// money pouch
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "pouch") != null) {
