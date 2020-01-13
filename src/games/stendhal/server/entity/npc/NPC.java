@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -129,8 +130,17 @@ public abstract class NPC extends DressedEntity {
 	 *
 	 * @param sounds sound name list
 	 */
-	public void setSounds(List<String> sounds) {
+	public void setSounds(final List<String> sounds) {
 		this.sounds = sounds;
+	}
+
+	/**
+	 * Set the possible sound events.
+	 *
+	 * @param sounds sound name list
+	 */
+	public void setSounds(final String[] sounds) {
+		this.sounds = Arrays.asList(sounds);
 	}
 
 	/**

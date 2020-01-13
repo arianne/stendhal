@@ -157,7 +157,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/* Initialize quests */
 			SingletonRepository.getStendhalQuestSystem().init();
 
-			new ScriptRunner();
+			new ScriptRunner().init();
 
 			final Configuration config = Configuration.getConfiguration();
 			try {
