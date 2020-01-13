@@ -29,7 +29,6 @@ Changelog
   - turtle shell ring (gives +1 defense)
   - vial (ingredient for Antivenom Ring quest)
 - new quests
-  - Ad Memoria In Portfolio
   - Antivenom Ring
   - Meal for Groongo
 - special outfits
