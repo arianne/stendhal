@@ -68,6 +68,7 @@ public class TeacherNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see a witch flying on a broomstick. She appears to be instructing some pupils.");
 		npc.setEntityClass("witch3npc");
+		npc.setShadowStyle("floating");
 		npc.setPosition(29, 19);
 		npc.initHP(100);
 		npc.setSounds(Arrays.asList("witch-cackle-1"));
