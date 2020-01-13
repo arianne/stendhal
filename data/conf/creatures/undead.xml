@@ -8,22 +8,16 @@
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
     <attributes>
-      <atk value="120"/>
-      <def value="120"/>
-      <hp value="360"/>
+      <atk value="320"/>
+      <def value="110"/>
+      <hp value="110"/>
       <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
-    <level value="46"/>
-    <experience value="1800"/>
-
-    <!-- terra day 86400 seconds -->
-    <!-- luna  day 28 terra days-->
-    <!-- average respawn time once every 1 luna day -->
-    <respawn value="2368800"/>
+    <level value="45"/>
+    <experience value="1250"/>
     <!-- average respawn time once every 5 luna days -->
-    <!-- <respawn value="12096000"/> -->
-
+    <respawn value="12096000"/>
     <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="75.0"/>
@@ -44,7 +38,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="lifesteal" params="0.05"/>
-      <!--<profile name="rare"/>-->
+      <profile name="rare"/>
     </ai>
   </creature>
 
