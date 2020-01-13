@@ -7,7 +7,7 @@ stendhal.ui = stendhal.ui || {};
 
 stendhal.ui.outfitCount = {
 	"hat": 14,
-	"hair": 47,
+	"hair": 48,
 	"mask": 9,
 	"eyes": 26,
 	"mouth": 5,
