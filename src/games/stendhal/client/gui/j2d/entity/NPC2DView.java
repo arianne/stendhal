@@ -72,8 +72,10 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 			final int code = npc.getOutfit();
 			final String strcode = npc.getExtOutfit();
 
+			final OutfitColor color = OutfitColor.get(npc.getRPObject());
+
 			if (strcode != null) {
-				sprite = OutfitStore.get().getAdjustedOutfit(strcode, OutfitColor.PLAIN, info.getZoneColor(), info.getColorMethod());
+				sprite = OutfitStore.get().getAdjustedOutfit(strcode, color, info.getZoneColor(), info.getColorMethod());
 			} else if (code != RPEntity.OUTFIT_UNSET) {
 				final int body = code % 100;
 				final int dress = code / 100 % 100;
@@ -88,7 +90,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 				sb.append(",hair=" + hair);
 				sb.append(",detail=" + detail);
 
-				sprite = OutfitStore.get().getAdjustedOutfit(sb.toString(), OutfitColor.PLAIN, info.getZoneColor(),
+				sprite = OutfitStore.get().getAdjustedOutfit(sb.toString(), color, info.getZoneColor(),
 						info.getColorMethod());
 			} else {
 				// This NPC's outfit is read from a single file.
