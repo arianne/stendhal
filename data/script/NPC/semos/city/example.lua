@@ -10,7 +10,7 @@ if game:setZone("0_semos_city") then
 	local npc = npcHelper:createSpeakerNPC("Lua")
 	npc:setEntityClass("littlegirlnpc")
 	npc:setPosition(10, 55)
-	npc:setSpeed(0.1)
+	npc:setBaseSpeed(0.1)
 	nodes = {
 		{10, 55},
 		{11, 55},
