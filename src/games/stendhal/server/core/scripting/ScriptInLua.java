@@ -45,6 +45,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		put("ConversationStates", "games.stendhal.server.entity.npc.ConversationStates");
 		put("ConversationPhrases", "games.stendhal.server.entity.npc.ConversationPhrases");
 		put("CollisionAction", "games.stendhal.server.entity.CollisionAction");
+		put("SkinColor", "games.stendhal.common.constants.SkinColor");
 	}};
 
 
