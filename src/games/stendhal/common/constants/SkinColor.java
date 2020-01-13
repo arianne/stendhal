@@ -46,6 +46,9 @@ public enum SkinColor {
 	private static final float SAT_MAX = 0.70f;
 	private final int color;
 
+	public static final int DARK = 0x321c14;
+	public static final int LIGHT = 0xffdab0;
+
 	/**
 	 * Constructor that sets the value of SkinColor.
 	 *
