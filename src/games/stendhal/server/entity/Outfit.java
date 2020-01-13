@@ -80,13 +80,13 @@ public class Outfit {
 			put(0, Arrays.asList(5, 6, 10)); // plain 1 (dark blue)
 			put(1, Arrays.asList(0, 1, 2, 3, 4, 7, 14, 21)); // plain 2 (red)
 			put(2, Arrays.asList(19)); // plain 3 (brown)
-			put(6, Arrays.asList(13, 18)); // plain 1 (blue)
 			put(13, Arrays.asList(15)); // blinking
 			put(14, Arrays.asList(16)); // thick eyebrows
 			put(15, Arrays.asList(20)); // scar
 			put(18, Arrays.asList(8)); // small 1
 			put(19, Arrays.asList(9, 11)); // plain 1 (green)
 			put(20, Arrays.asList(17)); // plain 1 (pink)
+			put(21, Arrays.asList(13, 18)); // bright blue
 			put(23, Arrays.asList(12)); // small 2
 		}});
 		// mask is set from old heads
