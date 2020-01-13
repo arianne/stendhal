@@ -13,6 +13,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
@@ -32,8 +33,13 @@ class WhereAction implements SlashAction {
 	 * @return <code>true</code> if command was handled.
 	 */
 	@Override
-	public boolean execute(final String[] params, final String remainder) {
+	public boolean execute(final String[] params, String remainder) {
 		final RPAction where = new RPAction();
+
+		// use executing character if name parameter not supplied
+		if (remainder.length() == 0) {
+			remainder = StendhalClient.get().getCharacter();
+		}
 
 		where.put("type", "where");
 		where.put("target", StringHelper.unquote(remainder));

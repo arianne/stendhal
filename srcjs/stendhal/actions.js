@@ -545,6 +545,11 @@ stendhal.slashActionRepository = {
 			action = stendhal.slashActionRepository[name];
 		}
 
+		// use executing character if name parameter not supplied
+		if (name == "where" && array.length == 0) {
+			array[0] = marauroa.me["_name"];
+		}
+
 		if (action.getMinParams <= array.length) {
 			var remainder = "";
 			for (var i = action.getMaxParams; i < array.length; i++) {
