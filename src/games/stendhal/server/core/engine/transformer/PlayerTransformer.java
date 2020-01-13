@@ -41,7 +41,6 @@ import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.BankSlot;
 import games.stendhal.server.entity.slot.Banks;
 import games.stendhal.server.entity.slot.PlayerKeyringSlot;
-import games.stendhal.server.entity.slot.PlayerPortfolioSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.entity.slot.PlayerTradeSlot;
 import games.stendhal.server.entity.spell.Spell;
@@ -152,7 +151,8 @@ public class PlayerTransformer implements Transformer {
 
 		// load items
 		final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "back", "belt", "keyring", "portfolio", "trade" };
+				//"legs", "feet", "finger", "cloak", "back", "belt", "keyring", "portfolio", "trade" };
+				"legs", "feet", "finger", "cloak", "back", "belt", "keyring", "trade" };
 
 		try {
 			for (final String slotName : slotsItems) {
@@ -163,8 +163,10 @@ public class PlayerTransformer implements Transformer {
 				final PlayerSlot newSlot;
 				if (slotName.equals("keyring")) {
 					newSlot = new PlayerKeyringSlot(slotName);
+				/*
 				} else if (slotName.equals("portfolio")) {
 					newSlot = new PlayerPortfolioSlot(slotName);
+				*/
 				} else if (slotName.equals("trade")) {
 					newSlot = new PlayerTradeSlot(slotName);
 				} else {
