@@ -659,8 +659,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			 */
 
 			// custom shadows are created from images with "-shadow" suffix
-			String custom_shadow = null;
-			if (!(entity instanceof Player)) {
+			String custom_shadow = entity.getShadowStyle();
+			if (custom_shadow == null && !(entity instanceof Player)) {
 				final String clazz = entity.getEntityClass();
 				final String subclazz = entity.getEntitySubclass();
 
