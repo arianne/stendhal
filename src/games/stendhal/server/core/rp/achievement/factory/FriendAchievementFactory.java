@@ -63,9 +63,10 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 						// Jef, Kirdneh
 						new QuestCompletedCondition("find_jefs_mom"),
 						// Hughie, Ados farmhouse
-						new AndCondition(new QuestActiveCondition("fishsoup_for_hughie"), new QuestNotInStateCondition("fishsoup_for_hughie", "start"),
+						new AndCondition(new QuestActiveCondition("fishsoup_for_hughie"), new QuestNotInStateCondition("fishsoup_for_hughie", "start")),
 						// Finn Farmer, George
-						new QuestCompletedCondition("coded_message")))));
+						new QuestCompletedCondition("coded_message")
+				)));
 
 		// quests about finding people
 		achievements.add(createAchievement("friend.quests.find", "Private Detective", "Find all lost and hidden people",
