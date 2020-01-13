@@ -63,7 +63,7 @@ public class Outfit {
 			put(5, Arrays.asList(3)); // casual shirt & pants
 			put(6, Arrays.asList(2, 5)); // denim
 			put(11, Arrays.asList(38, 50)); // soldier uniform
-			put(22, Arrays.asList(18, 23)); // robe
+			put(22, Arrays.asList(18, 23, 35)); // robe
 			put(23, Arrays.asList(62)); // soldier uniform/armor
 			put(27, Arrays.asList(29)); // sleeveless dress
 			put(29, Arrays.asList(46)); // robe

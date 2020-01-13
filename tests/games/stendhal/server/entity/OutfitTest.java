@@ -486,6 +486,9 @@ public class OutfitTest {
 		// sleeveless dress
 		ou = new Outfit("2900");
 		assertEquals(Integer.valueOf(27), ou.getLayer("dress"));
+		// robe
+		ou = new Outfit("3500");
+		assertEquals(Integer.valueOf(22), ou.getLayer("dress"));
 		// soldier uniform /w cape
 		ou = new Outfit("4300");
 		assertEquals(Integer.valueOf(50), ou.getLayer("dress"));
