@@ -25,6 +25,7 @@
       <slot name="back"/>
     </equipable>
   </item>
+-->
 
   <item name="keyring">
     <type class="container" subclass="keyring" tileid="-1"/>
@@ -39,16 +40,15 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
--->
 <!-- <slot name="content"/>  -->
 <!-- <slot name="bag"/> -->
 <!-- <slot name="trade"/> -->
-<!--
       <slot name="ground"/>
       <slot name="belt"/>
     </equipable>
   </item>
 
+<!-- currently unobtainable
   <item name="portfolio">
     <type class="container" subclass="portfolio" tileid="-1"/>
     <description>You see a portfolio. It can hold some of your scrolls!</description>
