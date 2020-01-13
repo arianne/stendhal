@@ -321,7 +321,7 @@
 
   <creature name="grobble monster">
     <type class="hybrid" subclass="grobble_monster" tileid="hybrid.png:12"/>
-    <description></description>
+    <description>You see a grobble monster. You might find this under your bed, inside your closet, or within your darkest nightmares.</description>
     <attributes>
       <atk value="609"/>
       <def value="73"/>
