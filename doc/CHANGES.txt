@@ -8,45 +8,24 @@ Changelog
 - new enemies
   - amethyst mermaid, emerald mermaid, ruby mermaid, & sapphire mermaid
   - cannibal warrior
-  - northpole george, northpole russell, northpole thomas, northpole andy, northpole arthur, northpole mark,
-    northpole penny, northpole mark, northpole dorothy, & northpole eloise
   - legendary ice elemental
-  - poison shroom
-  - tiny scarab, scarab, & red scarab
   - turtle
 - new NPCs
-  - Brosoklelo (Semos Mountains)
   - Jameson (Apothecary Lab)
-  - Vlamyklela (Kirdney City)
   - Wanda (Denrian Potions Shop)
   - Zoey (Ados Pet Sanctuary)
 - new food items:
-  - candycane
   - corn
-  - greenmint
-  - gumdrops
   - habanero pepper
-  - lemondrop
-  - lollipop
-  - mauve apple
-  - peppermint
+  - lemon
+  - olive oil
   - pinto beans
-  - purple apple
-  - taffy
-  - tripe
-- new def. equipment:
-  - royal armor
-  - royal boots
-  - royal cloak
-  - royal helmet
-  - royal legs
-  - royal shield
-- new weapons:
-  - royal sword
+  - potato
+  - vinegar
 - other new items
   - antivenom ring (resists poison effect)
   - cobra venom (ingredient for Antivenom Ring quest)
-  - portfolio (enables slots exclusive to scrolls)
+  - decent meal (item for Meal for Groongo quest)
   - turtle shell ring (gives +1 defense)
   - vial (ingredient for Antivenom Ring quest)
 - new quests
@@ -56,12 +35,12 @@ Changelog
 - special outfits
   - jester hat rented from Liliana is now full jester outfit
   - Magic Boutique outfit lenders no longer rent out glasses
-- market
+- commerce
   - McPegleg now buys blue legs
+  - D J Smith now buys ugmash & magic cloak
+  - Alexander now buys all blue equipment
 - new enemy drops
-  - eared bottle: leader kobold & veteran kobold
-  - slim bottle: kobold, archer kobold, & soldier kobold
-  - banan: monkey
+  - banana: monkey
   - carrot: cannibal woman & elder cannibal
   - lemon: monkey
   - olive oil: kalavan wisewoman
@@ -69,18 +48,12 @@ Changelog
   - potato:
       boar, cannibal woman, elder cannibal, kalavan housewife,
       kavalavan peasant, & kalavan wisewoman
-  - tripe: cave troll, ogre, elder ogre, ogre soldier, & superogre
   - vinegar: kalavan wisewoman
-  - poison: apprentice assassin, ninja, & shadows assassin
-  - greater poison: assassin & master assassin
-  - deadly poison: disciple assassin
-  - potion: assassin, master assassin, ninja, & shadows assassin
   - sedative: imperial priest & imperial high priest
+  - turtle shell ring: gashadokuro
   - ugmash:
       amazoness giant, cave troll, elder giant, giant, giant kobold,
       & master giant
-- ghost hound stat changes
-- ghost hound no longer rare
 
 *graphics*
 - new corpses for cobras
@@ -120,6 +93,10 @@ Changelog
 
 *classic client*
 - option to draw shadows under certain entities
+
+*web client*
+- added support for more slash commands
+- fixed teleclickmode
 
 *fixes*
 - quests
