@@ -13,6 +13,7 @@ package games.stendhal.server.entity;
 
 import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 
+import java.awt.Color;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -264,6 +265,53 @@ public abstract class DressedEntity extends RPEntity {
 			outfit.setLayer("detail", oldDetailCode);
 		}
 		setOutfit(outfit, temporary);
+	}
+
+	/**
+	 * Set color for single outfit layer.
+	 *
+	 * @param part
+	 * 		Layer to be colored.
+	 * @param color
+	 * 		<code>Integer</code> value color to use.
+	 */
+	public void setOutfitColor(final String part, final int color) {
+		put("outfit_colors", part, color);
+	}
+
+	/**
+	 * Set color for single outfit layer.
+	 *
+	 * @param part
+	 * 		Layer to be colored.
+	 * @param color
+	 * 		<code>Color</code> value color to use.
+	 */
+	public void setOutfitColor(final String part, final Color color) {
+		setOutfitColor(part, color.getRGB());
+	}
+
+	/**
+	 * Set colors for the entire outfit.
+	 *
+	 * @param parts
+	 * 		<code>Map</code> of layers & colors (<code>Integer</code>).
+	 */
+	public void setOutfitColors(final Map<String, Integer> parts) {
+		remove("outfit_colors"); // clear old colors
+		for (final String key: parts.keySet()) {
+			put("outfit_colors", key, parts.get(key));
+		}
+	}
+
+	/**
+	 * Unset color of a single layer.
+	 *
+	 * @param part
+	 * 		Layer to be unset.
+	 */
+	public void unsetOutfitColor(final String part) {
+		remove("outfit_colors", part);
 	}
 
 	@Override
