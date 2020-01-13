@@ -60,7 +60,8 @@ public class Outfit {
 			put(2, Arrays.asList(13)); // female bodies 2
 		}});
 		put("dress", new HashMap<Integer, List<Integer>>() {{
-			put(5, Arrays.asList(2)); // denim
+			put(5, Arrays.asList(3)); // casual shirt & pants
+			put(6, Arrays.asList(2, 5)); // denim
 			put(11, Arrays.asList(38, 50)); // soldier uniform
 			put(22, Arrays.asList(18, 23)); // robe
 			put(23, Arrays.asList(62)); // soldier uniform/armor
@@ -68,7 +69,6 @@ public class Outfit {
 			put(29, Arrays.asList(46)); // robe
 			put(50, Arrays.asList(43)); // soldier uniform with cape
 			put(52, Arrays.asList(24)); // denim wings
-			put(64, Arrays.asList(3)); // casual shirt & pants
 		}});
 		put("head", new HashMap<Integer, List<Integer>>() {{
 			put(0, Arrays.asList(5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)); // small chin, small ears
