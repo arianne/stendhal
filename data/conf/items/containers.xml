@@ -2,6 +2,7 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
+<!-- currently unobtainable
   <item name="backpack">
     <type class="container" subclass="backpack" tileid="-1"/>
     <description>You see a backpack.</description>
@@ -15,9 +16,11 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+-->
 <!--  <slot name="content"/>  -->
 <!--  <slot name="bag"/> -->
 <!--  <slot name="trade"/> -->
+<!--
       <slot name="ground"/>
       <slot name="back"/>
     </equipable>
@@ -36,9 +39,11 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+-->
 <!-- <slot name="content"/>  -->
 <!-- <slot name="bag"/> -->
 <!-- <slot name="trade"/> -->
+<!--
       <slot name="ground"/>
       <slot name="belt"/>
     </equipable>
@@ -61,6 +66,7 @@
       <slot name="bag"/>
     </equipable>
   </item>
+-->
 
   <item name="empty sack">
     <type class="container" subclass="empty_sack" tileid="-1"/>
