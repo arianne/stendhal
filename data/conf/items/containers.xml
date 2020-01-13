@@ -33,9 +33,11 @@
     <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="keyring"/>
+<!--
       <undroppableondeath value="1"/>
       <autobind value="1"/>
       <slot_size value="9"/>
+-->
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
