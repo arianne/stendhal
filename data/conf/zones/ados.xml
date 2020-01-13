@@ -149,7 +149,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.DistilleryCustomerNPC" />
-    
+
     <!-- The troll should be somewhere isolated and not at a busy market place
     <configurator class-name="games.stendhal.server.maps.ados.market.GrocerySellerNPC" />
     -->

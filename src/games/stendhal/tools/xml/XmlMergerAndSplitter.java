@@ -24,14 +24,14 @@ import org.xml.sax.SAXException;
 
 public class XmlMergerAndSplitter {
 	TreeMap<String, Element> elements = new TreeMap<>();
-	
+
 	private void readFiles(String dirname) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
 		File dir = new File(dirname);
 		for (File file : dir.listFiles()) {
-			Document doc = dBuilder.parse(file);	
+			Document doc = dBuilder.parse(file);
 			Element root = doc.getDocumentElement();
 			NodeList nodes = root.getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
@@ -48,7 +48,7 @@ public class XmlMergerAndSplitter {
 		Document resultDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 		Element root = resultDocument.createElement("root");
 		resultDocument.appendChild(root);
-		
+
 		for (Map.Entry<String, Element> entry : elements.entrySet()) {
 			resultDocument.adoptNode(entry.getValue());
 			root.appendChild(entry.getValue());
@@ -66,10 +66,9 @@ public class XmlMergerAndSplitter {
 		StreamResult result = new StreamResult(writer);
 		transformer.transform(source, result);
 		writer.close();
-		
 	}
-	
-	
+
+
 	private void writeFiles(String folder) throws IOException, TransformerException, ParserConfigurationException {
 		for (Map.Entry<String, Element> entry : elements.entrySet()) {
 			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
@@ -80,7 +79,6 @@ public class XmlMergerAndSplitter {
 			root.appendChild(entry.getValue());
 			writeFile(document, folder + "/" + entry.getKey());
 		}
-		
 	}
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, TransformerException {
@@ -99,7 +97,5 @@ public class XmlMergerAndSplitter {
 		xmlMerger = new XmlMergerAndSplitter();
 		xmlMerger.readFiles("oldstendhal/data/conf/items");
 		xmlMerger.writeFiles("/tmp/olditems");
-
 	}
-
 }
