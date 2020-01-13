@@ -336,4 +336,167 @@ public class OutfitTest {
 		result = orig.removeOutfit(new Outfit("12345678"));
 		assertEquals(0, result.getCode());
 	}
+
+	/**
+	 * Tests for mapping done from old outfit code to new extended outfit layers
+	 */
+	@Test
+	public void testMapOldOutfit() {
+		// male body
+		Outfit ou = new Outfit("14");
+		assertEquals(Integer.valueOf(0), ou.getLayer("body"));
+		// female body 1
+		ou = new Outfit("11");
+		assertEquals(Integer.valueOf(1), ou.getLayer("body"));
+		// female body 2
+		ou = new Outfit("13");
+		assertEquals(Integer.valueOf(2), ou.getLayer("body"));
+
+		// head w/ large ears
+		ou = new Outfit("0");
+		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		ou = new Outfit("10000");
+		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		ou = new Outfit("20000");
+		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		ou = new Outfit("30000");
+		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		ou = new Outfit("40000");
+		assertEquals(Integer.valueOf(1), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		// head w/ small ears
+		ou = new Outfit("50000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("eyes"));
+		ou = new Outfit("60000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("eyes"));
+		ou = new Outfit("70000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		// small eyes & long chin
+		ou = new Outfit("80000");
+		assertEquals(Integer.valueOf(2), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(18), ou.getLayer("eyes"));
+		// glasses
+		ou = new Outfit("90000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("mask"));
+		// blue eyes
+		ou = new Outfit("100000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("eyes"));
+		// green eyes
+		ou = new Outfit("110000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(19), ou.getLayer("eyes"));
+		// more small eyes
+		ou = new Outfit("120000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(23), ou.getLayer("eyes"));
+		// bright blue eyes
+		ou = new Outfit("130000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(21), ou.getLayer("eyes"));
+		// red eyes
+		ou = new Outfit("140000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		// blinking eyes
+		ou = new Outfit("150000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("mouth"));
+		assertEquals(Integer.valueOf(13), ou.getLayer("eyes"));
+		// green eyebrows
+		ou = new Outfit("160000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(14), ou.getLayer("eyes"));
+		// pink eyes
+		ou = new Outfit("170000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(20), ou.getLayer("eyes"));
+		// bright blue eyes with lips
+		ou = new Outfit("180000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(2), ou.getLayer("mouth"));
+		assertEquals(Integer.valueOf(21), ou.getLayer("eyes"));
+		// thick eyebrows
+		ou = new Outfit("190000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(2), ou.getLayer("eyes"));
+		// scarred eye
+		ou = new Outfit("200000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(15), ou.getLayer("eyes"));
+		// eyepatch
+		ou = new Outfit("210000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("head"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("eyes"));
+		assertEquals(Integer.valueOf(4), ou.getLayer("mask"));
+
+		// shoulder length curly hair
+		ou = new Outfit("3000000");
+		assertEquals(Integer.valueOf(23), ou.getLayer("hair"));
+		// long ponytail
+		ou = new Outfit("13000000");
+		assertEquals(Integer.valueOf(26), ou.getLayer("hair"));
+		// shoulder length curly hair
+		ou = new Outfit("15000000");
+		assertEquals(Integer.valueOf(23), ou.getLayer("hair"));
+		// short hair w/ baseball cap
+		ou = new Outfit("33000000");
+		assertEquals(Integer.valueOf(7), ou.getLayer("hair"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("hat"));
+		ou = new Outfit("34000000");
+		assertEquals(Integer.valueOf(7), ou.getLayer("hair"));
+		assertEquals(Integer.valueOf(1), ou.getLayer("hat"));
+		// hood
+		ou = new Outfit("37000000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("hair"));
+		assertEquals(Integer.valueOf(13), ou.getLayer("hat"));
+		// shoulder length hair
+		ou = new Outfit("38000000");
+		assertEquals(Integer.valueOf(20), ou.getLayer("hair"));
+		// backward baseball cap
+		ou = new Outfit("39000000");
+		assertEquals(Integer.valueOf(0), ou.getLayer("hair"));
+		assertEquals(Integer.valueOf(2), ou.getLayer("hat"));
+
+		// casual jacket
+		ou = new Outfit("200");
+		assertEquals(Integer.valueOf(6), ou.getLayer("dress"));
+		// casual clothes
+		ou = new Outfit("300");
+		assertEquals(Integer.valueOf(5), ou.getLayer("dress"));
+		// denim jacket
+		ou = new Outfit("500");
+		assertEquals(Integer.valueOf(6), ou.getLayer("dress"));
+		// robe
+		ou = new Outfit("1800");
+		assertEquals(Integer.valueOf(22), ou.getLayer("dress"));
+		ou = new Outfit("2300");
+		assertEquals(Integer.valueOf(22), ou.getLayer("dress"));
+		// leather jacket
+		ou = new Outfit("2400");
+		assertEquals(Integer.valueOf(52), ou.getLayer("dress"));
+		// sleeveless dress
+		ou = new Outfit("2900");
+		assertEquals(Integer.valueOf(27), ou.getLayer("dress"));
+		// soldier uniform /w cape
+		ou = new Outfit("4300");
+		assertEquals(Integer.valueOf(50), ou.getLayer("dress"));
+		// other robe
+		ou = new Outfit("4600");
+		assertEquals(Integer.valueOf(29), ou.getLayer("dress"));
+		// soldier uniform
+		ou = new Outfit("5000");
+		assertEquals(Integer.valueOf(11), ou.getLayer("dress"));
+		// uniform/armor w/ cape
+		ou = new Outfit("6200");
+		assertEquals(Integer.valueOf(23), ou.getLayer("dress"));
+	}
 }
