@@ -11,7 +11,7 @@ if game:setZone("0_semos_city") then
 	npc:setEntityClass("littlegirlnpc")
 	npc:setPosition(10, 55)
 	npc:setBaseSpeed(0.1)
-	nodes = {
+	local nodes = {
 		{10, 55},
 		{11, 55},
 		{11, 56},
