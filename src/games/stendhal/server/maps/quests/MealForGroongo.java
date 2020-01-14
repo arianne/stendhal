@@ -51,6 +51,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerOwnsItemIncludingBankCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -1748,6 +1749,54 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.IDLE,
             null,
             new MultipleActions(normalEndQuestActions)
+        );
+
+        // player has lost meal
+        npc_chef.add(ConversationStates.ATTENDING,
+        	Arrays.asList("meal", "dessert"),
+        	new AndCondition(
+        		new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
+        		new NotCondition(new PlayerOwnsItemIncludingBankCondition("decent meal"))
+        	),
+        	ConversationStates.QUESTION_2,
+        	"You lost the meal!? I can make another, but I will need you to fetch the ingredients again. Are you up for it?",
+        	null
+        );
+
+        // player wants another
+        npc_chef.add(ConversationStates.QUESTION_2,
+        	ConversationPhrases.YES_MESSAGES,
+        	new AndCondition(
+            		new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
+            		new NotCondition(new PlayerOwnsItemIncludingBankCondition("decent meal"))
+            	),
+        	ConversationStates.QUESTION_1,
+        	null,
+        	new MultipleActions(
+        		new SetQuestAction(QUEST_SLOT, 0, "fetch_maindish"),
+        		new checkIngredientsForMainDishAction()
+        	)
+        );
+
+        // player wants another meal but found decent meal
+        npc_chef.add(ConversationStates.QUESTION_2,
+        	ConversationPhrases.YES_MESSAGES,
+        	new AndCondition(
+            		new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
+            		new PlayerOwnsItemIncludingBankCondition("decent meal")
+            	),
+        	ConversationStates.IDLE,
+        	"It appears you have found the decent meal!",
+        	null
+        );
+
+        // player does not want another meal
+        npc_chef.add(ConversationStates.QUESTION_2,
+        	ConversationPhrases.NO_MESSAGES,
+       		new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
+       		ConversationStates.IDLE,
+       		"Oh? You remembered where you left the meal?",
+       		null
         );
     }
 }
