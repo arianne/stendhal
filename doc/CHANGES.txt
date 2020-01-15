@@ -94,8 +94,21 @@ Changelog
 - option to draw shadows under certain entities
 
 *web client*
-- added support for more slash commands
+- basic travel/progress log
+- single click looting from corpse windows
+- right click on items in inventory window
+- support instantianted zones (vault, maze, adventure island) by reading map information from server
+- automatically open and close corpse inventory based on content
+- mouse curson icons depending on possible interactions
+- play sound effects for fighting and creatures
+- added mute toggle
 - fixed teleclickmode
+- draw black background on small zones
+- improved readability of item amount
+- improved handling of mobile keyboard
+- improved direction changes with arrow keys
+- added support for more slash commands
+- fixed randomly missing outfit layers
 
 *fixes*
 - quests
