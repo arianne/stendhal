@@ -65,6 +65,13 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
 
 		final StringBuilder sb = new StringBuilder();
+
+		// FIXME: make these methods of npcHelper
+		sb.append("newCondition = function(classname, ...)"
+				+ " return luajava.newInstance(\"games.stendhal.server.entity.npc.condition.\" .. classname, ...) end\n");
+		sb.append("newAction = function(classname, ...)"
+				+ " return luajava.newInstance(\"games.stendhal.server.entity.npc.action.\" .. classname, ...) end\n");
+
 		for (final String key: bind_classes.keySet()) {
 			sb.append(key + " = luajava.bindClass(\"" + bind_classes.get(key) + "\")\n");
 		}

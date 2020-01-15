@@ -59,6 +59,24 @@ if game:setZone("0_semos_city") then
 	npc:addGoodbye();
 	npc:setCollisionAction(CollisionAction.STOP)
 
+	-- Some custom replies using conditions & actions
+	npc:add(
+		ConversationStates.ATTENDING,
+		"Lua",
+		newCondition("PlayerNextToCondition"),
+		ConversationStates.ATTENDING,
+		"Um, could you back up please? I can smell your breath.",
+		newAction("NPCEmoteAction", "coughs", false)
+	)
+	npc:add(
+		ConversationStates.ATTENDING,
+		"Lua",
+		newCondition("NotCondition", newCondition("PlayerNextToCondition")),
+		ConversationStates.ATTENDING,
+		"That's my name, don't wear it out!",
+		newAction("NPCEmoteAction", "giggles", false)
+	)
+
 	-- Add the NPC to the world
 	game:add(npc)
 end

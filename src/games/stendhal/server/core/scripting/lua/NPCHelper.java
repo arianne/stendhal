@@ -105,4 +105,97 @@ public class NPCHelper {
 			}
 		}
 	}
+
+	// FIXME:
+	/**
+	 * Creates an instance of a ChatAction from the class name string.
+	 *
+	 * @param className
+	 * 		Class basename.
+	 * @param params
+	 * 		Parameters that should be passed to the constructor.
+	 * @return
+	 * 		New <code>ChatAction</code> instance or <code>null</code>.
+	 */
+	/*
+	public ChatAction newAction(String className, final Object... params) {
+		className = "games.stendhal.server.entity.npc.action." + className;
+
+		try {
+			if (params.length == 0) {
+				try {
+					final Constructor<?> constructor = Class.forName(className).getConstructor();
+
+					return (ChatAction) constructor.newInstance();
+				} catch (InvocationTargetException e2) {
+				}
+			} else {
+				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
+
+				for (final Constructor<?> con: constructors) {
+					try {
+						return (ChatAction) con.newInstance(new Object[] { params });
+					} catch (InvocationTargetException e2) {
+					}
+				}
+			}
+		} catch (ClassNotFoundException e1) {
+			logger.error(e1, e1);
+		} catch (InstantiationException e1) {
+			logger.error(e1, e1);
+		} catch (IllegalAccessException e1) {
+			logger.error(e1, e1);
+		} catch (IllegalArgumentException e1) {
+			logger.error(e1, e1);
+		} catch (NoSuchMethodException e1) {
+			logger.error(e1, e1);
+		} catch (SecurityException e1) {
+			logger.error(e1, e1);
+		}
+
+		return null;
+	}
+	*/
+
+	/* overloaded methods don't get called
+	public ChatAction newAction(final String className) {
+		return newAction(className, new Object[] {});
+	}
+	*/
+
+	/**
+	 * Creates an instance of a ChatCondition from the class name string.
+	 *
+	 * @param className
+	 * 		Class basename.
+	 * @param params
+	 * 		Parameters that should be passed to the constructor.
+	 * @return
+	 * 		New <code>ChatCondition</code> instance or <code>null</code>.
+	 */
+	/*
+	public ChatCondition newCondition(String className, final Object... params) {
+		className = "games.stendhal.server.entity.npc.condition." + className;
+
+		try {
+			final Constructor<?>[] constructors = Class.forName(className).getConstructors();
+			for (final Constructor<?> con: constructors) {
+				try {
+					return (ChatCondition) con.newInstance(new Object[] { params });
+				} catch (InvocationTargetException e2) {
+				}
+			}
+		} catch (ClassNotFoundException e1) {
+			logger.error(e1, e1);
+		} catch (InstantiationException e1) {
+			logger.error(e1, e1);
+		} catch (IllegalAccessException e1) {
+			logger.error(e1, e1);
+		} catch (IllegalArgumentException e1) {
+			logger.error(e1, e1);
+		}
+
+		return null;
+	}
+	*/
 }
