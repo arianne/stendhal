@@ -523,10 +523,7 @@
 
 		<copy todir="${build_client_sound_data}/data/sounds">
 			<fileset dir="data/sounds">
-				<exclude name="**/*.xz" />
-                <exclude name="**/*.gz" />
-                <exclude name="**/*.bz2" />
-				<!-- <include name="**.*"/> -->
+				<include name="**.ogg"/>
 			</fileset>
 		</copy>
 
