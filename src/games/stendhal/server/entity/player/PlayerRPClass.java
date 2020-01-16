@@ -129,6 +129,9 @@ public class PlayerRPClass {
 
 		player.addRPSlot("trade", 4);
 
+		// special slot to carry money
+		player.addRPSlot("pouch", 1, Definition.PRIVATE);
+
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 

@@ -12,8 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -30,6 +34,8 @@ import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.SpriteStore;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
@@ -56,6 +62,10 @@ Inspectable {
 	private User player;
 
 	private JComponent specialSlots;
+
+	private static final List<FeatureChangeListener> featureChangeListeners = new ArrayList<>();
+
+	private static final String PROP_POUCH = "pouch.visible";
 
 	/**
 	 * Create a new character window.
@@ -153,8 +163,37 @@ Inspectable {
 		specialSlots.setVisible(false);
 		content.add(specialSlots);
 
-		panel = createItemPanel(itemClass, store, "back", "data/gui/slot-portfolio.png");
-		specialSlots.add(panel);
+		final MoneyPouch pouch = new MoneyPouch("pouch", store.getSprite("data/gui/slot-pouch.png"));
+		slotPanels.put("pouch", pouch);
+		pouch.setAcceptedTypes(itemClass);
+		specialSlots.add(pouch);
+		featureChangeListeners.add(pouch);
+
+		// initial visible state of the money pouch
+		// FIXME: is there a way to detect if the player has a feature
+		//        instead of relying a config property?
+		pouch.setVisible(WtWindowManager.getInstance().getProperty(PROP_POUCH, "false") == "true");
+
+		pouch.addComponentListener(new ComponentListener() {
+			final WtWindowManager wm = WtWindowManager.getInstance();
+
+			@Override
+			public void componentResized(ComponentEvent e) {}
+			@Override
+			public void componentMoved(ComponentEvent e) {}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				wm.setProperty(PROP_POUCH, "true");
+			}
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				wm.setProperty(PROP_POUCH, "false");
+			}
+
+		});
+
 		panel = createItemPanel(itemClass, store, "belt", "data/gui/slot-key.png");
 		specialSlots.add(panel);
 
@@ -288,5 +327,15 @@ Inspectable {
 		for (ItemPanel panel : slotPanels.values()) {
 			panel.setInspector(inspector);
 		}
+	}
+
+	/**
+	 * Retrieves all the listeners for this panel.
+	 *
+	 * @return
+	 * 		<code>List<FeatureChangeListener></code>
+	 */
+	public List<FeatureChangeListener> getFeatureChangeListeners() {
+		return featureChangeListeners;
 	}
 }

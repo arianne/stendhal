@@ -257,7 +257,7 @@ public abstract class UpdateConverter {
     	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
     			"legs", "feet", "finger", "cloak", "bank", "bank_ados", "bank_deniran",
     			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-    			"keyring", /*"portfolio", */ "trade" };
+    			"keyring", /*"portfolio", */ "trade", "pouch" };
 
     	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
     			"!visited", "skills", "!tutorial"};
@@ -382,6 +382,12 @@ public abstract class UpdateConverter {
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "portfolio") != null) {
 				object.put("features", "portfolio", "");
 			}
+
+	    	// money pouch
+			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "pouch") != null) {
+				object.put("features", "pouch");
+			}
+
 			object.removeSlot("!features");
 		}
 		if (KeyedSlotUtil.getKeyedSlot(object, "!quests", "learn_karma") != null) {

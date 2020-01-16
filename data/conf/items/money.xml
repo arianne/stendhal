@@ -17,6 +17,7 @@
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+      <slot name="pouch"/>
     </equipable>
   </item>
 </items>

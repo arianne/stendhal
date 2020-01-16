@@ -30,6 +30,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
@@ -152,7 +153,8 @@ public class PlayerTransformer implements Transformer {
 
 		// load items
 		final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "back", "belt", "keyring", "portfolio", "trade" };
+				"legs", "feet", "finger", "cloak", "back", "belt", "keyring",
+				"portfolio", "trade", "pouch" };
 
 		try {
 			for (final String slotName : slotsItems) {
@@ -167,6 +169,22 @@ public class PlayerTransformer implements Transformer {
 					newSlot = new PlayerPortfolioSlot(slotName);
 				} else if (slotName.equals("trade")) {
 					newSlot = new PlayerTradeSlot(slotName);
+				} else if (slotName.equals("pouch")) {
+					newSlot = new PlayerSlot(slotName) {
+						@Override
+						public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
+							if (entity instanceof Player) {
+								return ((Player) entity).getFeature("pouch") != null;
+							}
+
+							return false;
+						}
+
+						@Override
+						public boolean isReachableForThrowingThingsIntoBy(final Entity entity) {
+							return isReachableForTakingThingsOutOfBy(entity);
+						}
+					};
 				} else {
 					newSlot = new PlayerSlot(slotName);
 				}

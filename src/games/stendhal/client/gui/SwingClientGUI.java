@@ -23,6 +23,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyListener;
@@ -72,6 +73,7 @@ import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
 import games.stendhal.client.gui.wt.core.SettingChangeListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
@@ -253,6 +255,13 @@ class SwingClientGUI implements J2DClientGUI {
 		spells.setAcceptedTypes(EntityMap.getClass("spell", null, null));
 		containerPanel.addRepaintable(spells);
 		userContext.addFeatureChangeListener(spells);
+
+		for (final FeatureChangeListener listener: character.getFeatureChangeListeners()) {
+			userContext.addFeatureChangeListener(listener);
+		}
+		for (final ComponentListener listener: character.getComponentListeners()) {
+			containerPanel.addComponentListener(listener);
+		}
 
 		return containerPanel;
 	}
