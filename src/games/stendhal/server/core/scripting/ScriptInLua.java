@@ -25,6 +25,8 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.server.core.scripting.lua.NPCHelper;
+import games.stendhal.server.entity.mapstuff.sign.Reader;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -93,5 +95,23 @@ public class ScriptInLua extends ScriptingSandbox {
 		chunk.call();
 
 		return true;
+	}
+
+	/**
+	 * Creates a new Sign entity.
+	 *
+	 * @return
+	 * 		Sign object.
+	 */
+	public Sign createSign() {
+		return createSign(true);
+	}
+
+	public Sign createSign(final boolean visible) {
+		if (visible) {
+			return new Sign();
+		}
+
+		return new Reader();
 	}
 }

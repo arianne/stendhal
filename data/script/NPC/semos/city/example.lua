@@ -11,6 +11,8 @@ if game:setZone("0_semos_city") then
 	npc:setEntityClass("littlegirlnpc")
 	npc:setPosition(10, 55)
 	npc:setBaseSpeed(0.1)
+	npc:setCollisionAction(CollisionAction.STOP)
+
 	local nodes = {
 		{10, 55},
 		{11, 55},
@@ -23,11 +25,17 @@ if game:setZone("0_semos_city") then
 
 	-- Dialogue
 	npc:addJob("Actually, I am jobless.")
-	npc:add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, nil, ConversationStates.ATTENDING, "I am sad, because I do not have a job.", nil)
 	npc:addGoodbye();
-	npc:setCollisionAction(CollisionAction.STOP)
 
 	-- Some custom replies using conditions & actions
+	npc:add(
+		ConversationStates.IDLE,
+		ConversationPhrases.GREETING_MESSAGES,
+		nil,
+		ConversationStates.ATTENDING,
+		"I am sad, because I do not have a job.",
+		nil
+	)
 	npc:add(
 		ConversationStates.ATTENDING,
 		"Lua",
@@ -45,9 +53,16 @@ if game:setZone("0_semos_city") then
 		newAction("NPCEmoteAction", "giggles", false)
 	)
 
-	-- Add the NPC to the world
+	-- Set up a sign for Lua
+	local sign = game:createSign()
+	sign:setEntityClass("signpost")
+	sign:setPosition(12, 55)
+	sign:setText("Meet Lua!")
+
+	-- Add the entities to the world
 	game:add(npc)
+	game:add(sign)
 end
 
 logger:info("LuaNPC loaded!")
-]]
+--]]
