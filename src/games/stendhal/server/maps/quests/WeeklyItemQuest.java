@@ -186,6 +186,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("mithril nugget", 1);
 		addMed("silk gland", 7);
 
+		// ring (medium difficulty)
+		addMed("medicinal ring", 1);
+
 		// special (medium difficulty)
 		addMed("mythical egg", 1);
 
