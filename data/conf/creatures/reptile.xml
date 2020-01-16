@@ -90,6 +90,7 @@
     <respawn value="3900"/>
     <corpse name="snake_2x2" harmless="snake_2x2-safe" width="2" height="2" />
     <drops>
+      <item value="insulated ring" quantity="1" probability="0.08"/>
     </drops>
     <equips>
     </equips>
