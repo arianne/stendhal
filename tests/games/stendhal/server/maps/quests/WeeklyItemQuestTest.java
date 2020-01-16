@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -55,6 +56,9 @@ public class WeeklyItemQuestTest {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new CuratorNPC().configureZone(zone, null);
+
+		// add Daily Item quest to world so items can be checked against it
+		StendhalQuestSystem.get().loadQuest(new DailyItemQuest());
 
 		final AbstractQuest quest = new WeeklyItemQuest();
 		quest.addToWorld();
