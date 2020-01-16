@@ -286,6 +286,18 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("gold pan",1);
 	}
 
+	/**
+	 * For other quests to check if an item is already utilized in this one.
+	 *
+	 * @param item
+	 * 		<code>String</code> name of the item.
+	 * @return
+	 * 		<code>true</code> if the item is found in the list, <code>false</code>
+	 */
+	public static boolean utilizes(final String item) {
+		return items.containsKey(item);
+	}
+
 	private ChatAction startQuestAction() {
 		// common place to get the start quest actions as we can both starts it and abort and start again
 

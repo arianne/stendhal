@@ -254,14 +254,29 @@ public class WeeklyItemQuest extends AbstractQuest {
 	}
 
 	private static void addEasy(final String item, final int quant) {
+		if (DailyItemQuest.utilizes(item)) {
+			logger.warn("Not adding item already utilized in DailyItemQuest: " + item);
+			return;
+		}
+
 		items_easy.put(item, quant);
 	}
 
 	private static void addMed(final String item, final int quant) {
+		if (DailyItemQuest.utilizes(item)) {
+			logger.warn("Not adding item already utilized in DailyItemQuest: " + item);
+			return;
+		}
+
 		items_med.put(item, quant);
 	}
 
 	private static void addHard(final String item, final int quant) {
+		if (DailyItemQuest.utilizes(item)) {
+			logger.warn("Not adding item already utilized in DailyItemQuest: " + item);
+			return;
+		}
+
 		items_hard.put(item, quant);
 	}
 
