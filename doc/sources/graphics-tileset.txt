@@ -1101,7 +1101,7 @@ red_blue_clusters.png   Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-stone_edge_beds.png     ???; ???; ??? (committed by kymara: 1677b4e, from Mirage tilesets?)
+stone_edge_beds.png     bleutailfly, Josh Maines (Tap); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/76904
 vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/plant/indoor/
