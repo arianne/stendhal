@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.deniran.cityoutside;
+package games.stendhal.server.maps.deniran.cityinterior.tannery;
 
 import java.util.Map;
 

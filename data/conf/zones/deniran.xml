@@ -958,7 +958,7 @@
 		</portal>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.TannerNPC"/>
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tannery.TannerNPC"/>
 
 	</zone>
 
