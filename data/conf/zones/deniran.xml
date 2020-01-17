@@ -309,6 +309,13 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<!-- portals -->
+		<portal x="78" y="65" ref="tannery_entrance">
+			<destination zone="int_deniran_tannery" ref="entrance" />
+			<attribute name="move.continuous" />
+			<!--<attribute name="resistance">0</attribute>-->
+		</portal>
+
 	</zone>
 
 
@@ -939,6 +946,19 @@
 		<portal x="14" y="9" ref="upstairs">
 			<destination zone="int_deniran_inn" ref="downstairs" />
 		</portal>
+
+	</zone>
+
+	<zone name="int_deniran_tannery" file="interiors/deniran/tannery.tmx">
+
+		<portal x="17" y="18" ref="entrance">
+			<destination zone="0_deniran_city_s_e2" ref="tannery_entrance" />
+			<attribute name="move.continuous" />
+			<!--<attribute name="resistance">0</attribute>-->
+		</portal>
+
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.TannerNPC"/>
 
 	</zone>
 
