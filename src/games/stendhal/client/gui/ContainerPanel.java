@@ -69,7 +69,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		}
 		setViewportView(panel);
 		setBorder(null);
-		String orderProp = WtWindowManager.getInstance().getProperty(WINDOW_ORDER_PROPERTY, "character;bag;keyring;portfolio");
+		String orderProp = WtWindowManager.getInstance().getProperty(WINDOW_ORDER_PROPERTY, "character;bag;keyring"); /*;portfolio");*/
 		windowOrder = new ArrayList<String>(Arrays.asList(orderProp.split(";")));
 		getVerticalScrollBar().setUnitIncrement(16);
 	}
