@@ -480,6 +480,7 @@ marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
 olive_oil.png            omero; CC BY-SA 3.0; Stendhal
+pelt.png                 Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
 pinto_beans.png          omero; CC BY-SA 3.0; Stendhal
 potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
