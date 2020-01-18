@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -34,7 +32,6 @@ import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.SpriteStore;
 import marauroa.common.game.RPObject;
@@ -65,7 +62,7 @@ Inspectable {
 
 	private static final List<FeatureChangeListener> featureChangeListeners = new ArrayList<>();
 
-	private static final String PROP_POUCH = "pouch.visible";
+	private static MoneyPouch pouch;
 
 	/**
 	 * Create a new character window.
@@ -86,10 +83,13 @@ Inspectable {
 	public void setPlayer(final User userEntity) {
 		player = userEntity;
 		userEntity.addContentChangeListener(this);
+
+		final RPObject obj = userEntity.getRPObject();
+
 		// Compatibility. Show additional slots only if the user has those.
 		// This can be removed after a couple of releases (and specialSlots
 		// field moved to createLayout()).
-		if (userEntity.getRPObject().hasSlot("belt")) {
+		if (obj.hasSlot("belt")) {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
@@ -97,6 +97,14 @@ Inspectable {
 				}
 			});
 		}
+
+		final boolean hasPouch = obj.hasSlot("pouch");
+		if (hasPouch && !pouch.isVisible()) {
+			pouch.setVisible(true);
+		} else if (!hasPouch) {
+			pouch.setVisible(false);
+		}
+
 		refreshContents();
 	}
 
@@ -163,36 +171,11 @@ Inspectable {
 		specialSlots.setVisible(false);
 		content.add(specialSlots);
 
-		final MoneyPouch pouch = new MoneyPouch("pouch", store.getSprite("data/gui/slot-pouch.png"));
+		pouch = new MoneyPouch("pouch", SpriteStore.get().getSprite("data/gui/slot-pouch.png"));
 		slotPanels.put("pouch", pouch);
 		pouch.setAcceptedTypes(itemClass);
 		specialSlots.add(pouch);
 		featureChangeListeners.add(pouch);
-
-		// initial visible state of the money pouch
-		// FIXME: is there a way to detect if the player has a feature
-		//        instead of relying a config property?
-		pouch.setVisible(WtWindowManager.getInstance().getProperty(PROP_POUCH, "false") == "true");
-
-		pouch.addComponentListener(new ComponentListener() {
-			final WtWindowManager wm = WtWindowManager.getInstance();
-
-			@Override
-			public void componentResized(ComponentEvent e) {}
-			@Override
-			public void componentMoved(ComponentEvent e) {}
-
-			@Override
-			public void componentShown(ComponentEvent e) {
-				wm.setProperty(PROP_POUCH, "true");
-			}
-
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				wm.setProperty(PROP_POUCH, "false");
-			}
-
-		});
 
 		panel = createItemPanel(itemClass, store, "belt", "data/gui/slot-key.png");
 		specialSlots.add(panel);
