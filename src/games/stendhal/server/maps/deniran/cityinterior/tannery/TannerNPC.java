@@ -153,7 +153,7 @@ public class TannerNPC implements ZoneConfigurator {
 		// player wants money pouch
 		tanner.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				null,
+				new QuestNotInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.IDLE,
 				"Okay. I will need a pelt and my fee is " + Integer.toString(serviceFee) + " money."
 				+ " Please come back when you have that.",
@@ -162,7 +162,7 @@ public class TannerNPC implements ZoneConfigurator {
 		// player does not want money pouch
 		tanner.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
-				null,
+				new QuestNotInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.IDLE,
 				"Oh? I think it would be encouraged.",
 				null);
@@ -186,6 +186,13 @@ public class TannerNPC implements ZoneConfigurator {
 						dayCondition,
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						hasItemsCondition),
+				ConversationStates.QUESTION_1,
+				"Ah, you find the items to make the pouch. Would you like me to begin?",
+				null);
+
+		tanner.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.IDLE,
 				// XXX: update after testing
 				//"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(TAN_TIME, "hour") + ".",
@@ -194,6 +201,13 @@ public class TannerNPC implements ZoneConfigurator {
 						new DropItemAction("pelt"),
 						new DropItemAction("money", serviceFee),
 						new SetQuestToTimeStampAction(QUEST_SLOT)));
+
+		tanner.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.NO_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.IDLE,
+				"Really? Okay then. See me again if you change your mind.",
+				null);
 
 		// player returns before money pouch is finished
 		tanner.add(ConversationStates.IDLE,

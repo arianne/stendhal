@@ -268,6 +268,16 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(serviceFee, player.getNumberOfEquipped("money"));
 
 		en.step(player, "hi");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals("Ah, you find the items to make the pouch. Would you like me to begin?", getReply(tanner));
+
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Really? Okay then. See me again if you change your mind.", getReply(tanner));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		en.step(player, "yes");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		// XXX: update after testing
 		/*
