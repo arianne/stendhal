@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import java.awt.Container;
+
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.Sprite;
 
@@ -34,6 +36,19 @@ public class MoneyPouch extends ItemPanel implements FeatureChangeListener {
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("pouch")) {
 			setVisible(true);
+		}
+	}
+
+	/**
+	 * Make sure the parent container is visible.
+	 */
+	@Override
+	public void setVisible(final boolean visible) {
+		super.setVisible(visible);
+
+		final Container parent = getParent();
+		if (visible && !parent.isVisible()) {
+			parent.setVisible(true);
 		}
 	}
 }
