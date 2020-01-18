@@ -17,37 +17,51 @@ import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.Sprite;
 
 /**
- * Slot for carrying money.
+ * An <code>ItemPanel</code> that is enabled/disabled with a feature change event.
  */
-public class MoneyPouch extends ItemPanel implements FeatureChangeListener {
+public class FeatureEnabledItemPanel extends ItemPanel implements FeatureChangeListener {
 
-	MoneyPouch(final String slotName, final Sprite placeholder) {
+	final String feature;
+
+	FeatureEnabledItemPanel(final String slotName, final Sprite placeholder) {
 		super(slotName, placeholder);
+
+		feature = slotName;
+
+		// invisible by default
+		//setVisible(false);
+	}
+
+	FeatureEnabledItemPanel(final String slotName, final Sprite placeholder, final String featureName) {
+		super(slotName, placeholder);
+
+		feature = featureName;
+
+		// invisible by default
+		//setVisible(false);
 	}
 
 	@Override
 	public void featureDisabled(final String name) {
-		if (name.equals("pouch")) {
+		if (name.equals(feature)) {
 			setVisible(false);
 		}
 	}
 
 	@Override
 	public void featureEnabled(final String name, final String value) {
-		if (name.equals("pouch")) {
+		if (name.equals(feature)) {
 			setVisible(true);
 		}
 	}
 
-	/**
-	 * Make sure the parent container is visible.
-	 */
 	@Override
 	public void setVisible(final boolean visible) {
 		super.setVisible(visible);
 
 		final Container parent = getParent();
 		if (visible && !parent.isVisible()) {
+			// make sure the parent container is visible.
 			parent.setVisible(true);
 		}
 	}

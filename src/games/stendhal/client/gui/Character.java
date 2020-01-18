@@ -62,7 +62,7 @@ Inspectable {
 
 	private static final List<FeatureChangeListener> featureChangeListeners = new ArrayList<>();
 
-	private static MoneyPouch pouch;
+	private static FeatureEnabledItemPanel pouch;
 
 	/**
 	 * Create a new character window.
@@ -98,10 +98,10 @@ Inspectable {
 			});
 		}
 
-		final boolean hasPouch = obj.hasSlot("pouch");
-		if (hasPouch && !pouch.isVisible()) {
+		boolean hasSlot = obj.hasSlot("pouch");
+		if (hasSlot && !pouch.isVisible()) {
 			pouch.setVisible(true);
-		} else if (!hasPouch) {
+		} else if (!hasSlot) {
 			pouch.setVisible(false);
 		}
 
@@ -171,7 +171,7 @@ Inspectable {
 		specialSlots.setVisible(false);
 		content.add(specialSlots);
 
-		pouch = new MoneyPouch("pouch", SpriteStore.get().getSprite("data/gui/slot-pouch.png"));
+		pouch = new FeatureEnabledItemPanel("pouch", SpriteStore.get().getSprite("data/gui/slot-pouch.png"));
 		slotPanels.put("pouch", pouch);
 		pouch.setAcceptedTypes(itemClass);
 		specialSlots.add(pouch);
