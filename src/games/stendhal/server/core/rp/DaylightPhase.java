@@ -41,6 +41,9 @@ public enum DaylightPhase {
 	private Integer color;
 	private String greetingName;
 
+	// this should only be set for testing purposes
+	private static DaylightPhase testing_phase;
+
 	private DaylightPhase(int color, String greetingName) {
 		this.color = Integer.valueOf(color);
 		this.greetingName = greetingName;
@@ -57,6 +60,10 @@ public enum DaylightPhase {
 	 * @return DaylightPhase
 	 */
 	public static DaylightPhase current() {
+		if (testing_phase != null) {
+			return testing_phase;
+		}
+
 		Calendar cal = Calendar.getInstance();
 
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -99,4 +106,20 @@ public enum DaylightPhase {
 		return greetingName;
 	}
 
+	/**
+	 * WARNING: this should only be used for testing purposes.
+	 *
+	 * @param phase
+	 * 		<code>DaylightPhase</code> to set for testing.
+	 */
+	public static void setTestingPhase(final DaylightPhase phase) {
+		testing_phase = phase;
+	}
+
+	/**
+	 * Disables testing phase.
+	 */
+	public static void unsetTestingPhase() {
+		testing_phase = null;
+	}
 }
