@@ -28,5 +28,13 @@ stendhal.ui.html = {
 		} else {
 			return e.keyCode;
 		}
+	},
+
+	niceName: function(s) {
+		if (!s) {
+			return "";
+		}
+		let temp = s.replace(/_/g, " ").trim();
+		return temp.charAt(0).toUpperCase() + temp.slice(1);
 	}
 };

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,6 +13,7 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
+
 
 /**
  * General entity
@@ -67,7 +68,28 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		return false;
 	},
 
+	/**
+ 	 * Map descriptive command names to the real commands
+	 */
+	actionAliasToAction: function(actionAlias) {
+		var actionAliases = {
+			"look_closely" : "use",
+			"read" : "look"
+		};
+
+		var actionCommand = "look";
+		if (typeof(actionAlias) === "string") {
+			if (actionAliases.hasOwnProperty(actionAlias)) {
+				actionCommand = actionAliases[actionAlias];
+			} else {
+				actionCommand = actionAlias;
+			}
+		}
+		return actionCommand;
+	},
+
 	buildActions: function(list) {
+		// menu is an alias for "Use" command
 		if (this["menu"]) {
 			var pos = this["menu"].indexOf("|");
 			list.push({
@@ -75,10 +97,19 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 				type: this["menu"].substring(pos + 1).toLowerCase()
 			});
 		}
-		list.push({
-			title: "Look",
-			type: "look"
-		});
+
+		// action replaces "Look" command (e. g. "look closely" on signs)
+		if (this["action"]) {
+			list.push({
+				title: stendhal.ui.html.niceName(this["action"]),
+				type: this.actionAliasToAction(this["action"])
+			});
+		} else {
+			list.push({
+				title: "Look",
+				type: "look"
+			});
+		}
 	},
 
 	/**
@@ -176,24 +207,8 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 * default action description, interpret it as an action command.
 	 */
 	getDefaultAction: function() {
-		// Map descriptive command names to the real commands
-		var actionAliases = {
-			"look_closely" : "use",
-			"read" : "look",
-			"zone": marauroa.currentZoneName
-		};
-
-		var actionCommand = "look";
-		var act = this["action"];
-		if (typeof(act) === "string") {
-			if (actionAliases.hasOwnProperty(act)) {
-				actionCommand = actionAliases[act];
-			} else {
-				actionCommand = act;
-			}
-		}
 		return {
-			"type": actionCommand,
+			"type": this.actionAliasToAction(this["action"]),
 			"target": "#" + this["id"],
 			"zone": marauroa.currentZoneName
 		};
