@@ -21,13 +21,53 @@ marauroa.rpobjectFactory["portal"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	minimapStyle: "rgb(0,0,0)",
 	zIndex: 5000,
 
-	// TODO: handle interaction
+	buildActions: function(list) {
+		marauroa.rpobjectFactory["portal"].proto.buildActions.apply(this, arguments);
+
+		if (this["_rpclass"] == "house_portal") {
+			list.push({
+				title: "Use",
+				type: "use"
+			});
+			list.push({
+				title: "Kock",
+				type: "knock"
+			});
+
+		} else {
+
+			// remove default action "look" unless it is a house portal
+			list.splice(list.indexOf({title: "Look", type: "look"}), 1);
+
+			list.push({
+				title: "Use",
+				type: "use"
+			});
+		}
+	},
+
+	isVisibleToAction: function(filter) {
+		return true;
+	},
+	
+
+	/**
+	 * Create the default action for this entity. If the entity specifies a
+	 * default action description, interpret it as an action command.
+	 */
+	getDefaultAction: function() {
+		return {
+			"type": "moveto",
+			"x": "" + this["x"],
+			"y": "" + this["y"],
+			"zone": marauroa.currentZoneName
+		};
+	},
 
 	getCursor: function(x, y) {
-		if (this.isVisibleToAction()) {
-			return "url(/data/sprites/cursor/activity.png) 1 3, auto";
-		}
 		return "url(/data/sprites/cursor/portal.png) 1 3, auto";
 	}
 
 });
+
+marauroa.rpobjectFactory["house_portal"] = marauroa.rpobjectFactory["portal"];

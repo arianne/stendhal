@@ -21,6 +21,7 @@ Changelog
 
 *webclient*
 - added support for rented signs and blackboards
+- added support for blocks and house doors
 
 *scripting*
 - added Lua support
