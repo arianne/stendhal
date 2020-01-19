@@ -2,6 +2,12 @@ Changelog
 ---------
 ---------
 
+1.33
+
+*webclient*
+- added support for rented signs and blackboards
+
+
 
 1.32
 *world*
