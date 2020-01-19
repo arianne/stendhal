@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -52,10 +52,7 @@ register("portal",           Portal2DView,   Portal);
 register("purple_dragon",    Pet2DView,      Pet);
 register("rented_sign",      Sign2DView,     Sign);
 register("sheep",            Sheep2DView,    Sheep);
-register("shop_sign",        ShopSign2DView, Sign);
-register("sign",             Sign2DView,     Sign);
 register("spell",            Spell2DView,    Spell);
-register("tradecentersign",  TradeCenterSign2DView,  Sign);
 register("useable_entity",   UseableEntity2DView,    StatefulEntity);
 register("wall",             Wall2DView,             Wall);
 register("weather_entity",     *,                    InvisibleEntity);
