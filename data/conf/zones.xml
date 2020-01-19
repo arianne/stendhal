@@ -12,5 +12,7 @@
 	<group uri="zones/nalwor.xml"/>
 	<group uri="zones/orril.xml"/>
 	<group uri="zones/semos.xml"/>
+	<group uri="zones/sikhw.xml"/>
+
 	<group uri="zones/misc.xml"/>
 </groups>
