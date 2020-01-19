@@ -3,9 +3,27 @@ Changelog
 ---------
 
 1.33
+*world*
+- new NPCs
+  - Skinner Rawhide
+- new maps
+  - Deniran Tannery
+- new items:
+  - pelt (ingredient to make money pouch)
+- new enemy drops
+  - insulated ring (cobra: 0.08)
+- players can enable a new pouch slot to carry money
+- quest changes
+  - items for Kirdneh Museum quest categorized for player level
+    - "easy": any level
+    - "medium": for players level 51+
+    - "hard": for players level 151+
 
 *webclient*
 - added support for rented signs and blackboards
+
+*scripting*
+- added Lua support
 
 
 
