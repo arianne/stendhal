@@ -184,7 +184,7 @@
     </attributes>
     <level value="100"/>
     <experience value="3500"/>
-    <respawn value="2880"/>
+    <respawn value="144000"/> <!-- 144000 turns = 12 hours -->
     <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
