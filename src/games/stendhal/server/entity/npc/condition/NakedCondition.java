@@ -16,7 +16,6 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -28,8 +27,7 @@ public class NakedCondition implements ChatCondition {
 
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		final Outfit outfit = player.getOutfit();
-		return outfit.isNaked();
+		return player.isNaked();
 	}
 
 	@Override

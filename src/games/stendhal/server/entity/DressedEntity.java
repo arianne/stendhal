@@ -305,6 +305,13 @@ public abstract class DressedEntity extends RPEntity {
 	}
 
 	/**
+	 * Checks if the entity is not wearing clothes.
+	 */
+	public boolean isNaked() {
+		return getOutfit().isNaked();
+	}
+
+	/**
 	 * Unset color of a single layer.
 	 *
 	 * @param part

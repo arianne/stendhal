@@ -164,7 +164,7 @@ public class TutorialNotifier {
 		} else if (age >= 15) {
 			// players less likely to get this event now that they do not start naked
 			// but keep it anyway as it's a cute feature to notice that players are naked
-			if (player.getOutfit().isNaked()) {
+			if (player.isNaked()) {
 				process(player, TutorialEventType.TIMED_NAKED);
 			}
 		} else if (age >= 5) {
