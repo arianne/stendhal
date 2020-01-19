@@ -591,7 +591,7 @@ public class Outfit {
 	 * @return true if naked, false if dressed
 	 */
 	public boolean isNaked() {
-		Integer dress = layers.get("dress");
+		final Integer dress = layers.get("dress");
 
 		if (isCompatibleWithClothes()) {
 			return (dress == null) || dress.equals(0);
@@ -632,8 +632,7 @@ public class Outfit {
 	 * @return true if the outfit is compatible with clothes, false otherwise
 	 */
 	public boolean isCompatibleWithClothes() {
-		final Integer body = layers.get("body");
-		return body == null || !(body > 80 && body < 99);
+		return Outfits.isDressCompatibleBody(layers.get("body"));
 	}
 
 	@Override
