@@ -163,12 +163,18 @@ stendhal.ui.buddyList = {
 	},
 
 	onMouseUp: function(event) {
-		stendhal.ui.buddyList.current = event.target;
-		if (event.target.tagName === "IMG") {
+
+		// get the <li> element. Ignore the click, if it was on the <ul> outside any <li>s.
+		stendhal.ui.buddyList.current = null;
+		if (event.target.tagName === "LI") {
+			stendhal.ui.buddyList.current = event.target;
+		} else if (event.target.tagName === "IMG") {
 			stendhal.ui.buddyList.current = event.target.parentElement;
 		}
 
-		new stendhal.ui.Menu(stendhal.ui.buddyList,
-			Math.max(10, event.pageX - 50), event.pageY - 5);
+		if (stendhal.ui.buddyList.current) {
+			new stendhal.ui.Menu(stendhal.ui.buddyList,
+				Math.max(10, event.pageX - 50), event.pageY - 5);
+		}
 	}
 };
