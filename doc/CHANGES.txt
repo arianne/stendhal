@@ -19,6 +19,9 @@ Changelog
     - "medium": for players level 51+
     - "hard": for players level 151+
 
+*grapics*
+- made dark dagger image more distinct from night dagger
+
 *webclient*
 - added support for rented signs and blackboards
 - added support for blocks and house doors
