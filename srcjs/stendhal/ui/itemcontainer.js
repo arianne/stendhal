@@ -22,7 +22,7 @@ stendhal.ui = stendhal.ui || {};
  *
  * @constructor
  */
-stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPickup) {
+stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPickup, defaultImage) {
 	this.update = function() {
 		render();
 	};
@@ -42,7 +42,11 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 		}
 		for (var i = cnt; i < size; i++) {
 			var e = document.getElementById(slot + suffix + i);
-			e.style.backgroundImage = "none";
+			if (defaultImage) {
+				e.style.backgroundImage = "url(data/gui/" + defaultImage + ")";
+			} else {
+				e.style.backgroundImage = "none";
+			}
 			e.textContent = "";
 			e.dataItem = null;
 		}
@@ -153,6 +157,8 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 stendhal.ui.equip = {
 	slotNames: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet", "bag", "keyring", "portfolio"],
 	slotSizes: [   1,       1,      1,       1,        1,       1,       1,     1,      12,       8,         9   ],
+	slotImages: ["slot-helmet.png", "slot-shield.png", "slot-weapon.png", "slot-ring.png", "slot-armor.png", "slot-cloak.png",
+		"slot-legs.png", "slot-boots.png", null, "slot-key.png", "slot-portfolio.png"],
 	counter: 0,
 
 	init: function() {
@@ -160,7 +166,7 @@ stendhal.ui.equip = {
 		for (var i in this.slotNames) {
 			stendhal.ui.equip.inventory.push(
 				new stendhal.ui.ItemContainerWindow(
-					this.slotNames[i], this.slotSizes[i], null, "", false));
+					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
 		}
 	},
 
@@ -184,7 +190,7 @@ stendhal.ui.equip = {
 		html += "</div>";
 
 		var popup = new stendhal.ui.Popup(title, html, 160, 370);
-		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix, quickPickup);
+		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix, quickPickup, null);
 		stendhal.ui.equip.inventory.push(itemContainer);
 		itemContainer.update();
 		popup.onClose = function() {
