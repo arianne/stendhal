@@ -12,6 +12,9 @@
  ***************************************************************************/
 package utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.game.RPEvent;
@@ -36,10 +39,13 @@ public abstract class SpeakerNPCTestHelper {
 
 	/**
 	 * Query the events for public visible text messages.
+	 *
 	 * @param npc
-	 * @return message text
+	 * 		The entity who's events should be checked.
+	 * @return
+	 * 		Most recent text message.
 	 */
-	public static String getReply(SpeakerNPC npc) {
+	public static String getReply(final SpeakerNPC npc) {
 		String reply = null;
 
 		for (RPEvent event : npc.events()) {
@@ -51,5 +57,27 @@ public abstract class SpeakerNPCTestHelper {
 		npc.clearEvents();
 
 		return reply;
+	}
+
+	/**
+	 * Query the events for public visible text messages.
+	 *
+	 * @param npc
+	 * 		The entity who's events should be checked.
+	 * @return
+	 * 		List of text messages.
+	 */
+	public static List<String> getReplies(final SpeakerNPC npc) {
+		final List<String> replies = new ArrayList<>();
+
+		for (final RPEvent event : npc.events()) {
+			if (event.getName().equals(Events.PUBLIC_TEXT)) {
+				replies.add(event.get("text"));
+			}
+		}
+
+		npc.clearEvents();
+
+		return replies;
 	}
 }
