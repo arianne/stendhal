@@ -51,6 +51,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private final Map<String, ScriptingSandbox> scripts;
 
 	private final String scriptDir = "data/script/";
+	private final String modDir = "mods/";
 
 	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
@@ -108,7 +109,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	@Override
 	public synchronized boolean perform(final String name) {
-		return perform(name, "load", null, null);
+		return perform(name, false);
+	}
+
+	public synchronized boolean perform(final String name, final boolean ismod) {
+		return perform(name, "load", null, null, ismod);
 	}
 
 	// need that function to filter scripts names
@@ -139,8 +144,15 @@ public class ScriptRunner extends StendhalServerExtension implements
 	}
 
 	private synchronized boolean perform(final String name, final String mode,
-			final Player player, final List<String> args) {
+			final Player player, final List<String> args, final boolean ismod) {
 		boolean ret = false;
+
+		final String rootDir;
+		if (ismod) {
+			rootDir = modDir;
+		} else {
+			rootDir = scriptDir;
+		}
 
 		// block exploit
 		if (name.indexOf("..") >= 0) {
@@ -176,10 +188,10 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// if we want to execute we'll also load it if needed
 			if (script == null) {
 				if (trimmedName.endsWith(".groovy")) {
-					script = new ScriptInGroovy(scriptDir + trimmedName);
+					script = new ScriptInGroovy(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".lua")) {
-					script = new ScriptInLua(scriptDir + trimmedName);
+					script = new ScriptInLua(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".class")) {
 					script = new ScriptInJava(trimmedName);
@@ -202,6 +214,10 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return (ret);
 	}
 
+	private synchronized boolean perform(final String name, final String mode,
+			final Player player, final List<String> args) {
+		return perform(name, mode, player, args, false);
+	}
 
 	/**
 	 * Fetch classes of available scripts.
@@ -481,5 +497,58 @@ public class ScriptRunner extends StendhalServerExtension implements
 	 */
 	private void initLua() {
 		ScriptInLua.init();
+		initLuaMods();
+	}
+
+	/**
+	 * Retrieves Lua module initialization scripts from "mods/" directory.
+	 *
+	 * Note: These modules are separate from the regular "data/script" scripts & must
+	 *       be named "init.lua".
+	 *
+	 * @return
+	 * 		List of loadable Lua scripts.
+	 */
+	private List<String> getLuaMods() {
+		final List<String> modlist = new ArrayList<String>();
+
+		final URL url = getClass().getClassLoader().getResource("mods/");
+		if (url != null) {
+			final String modroot = url.getFile();
+
+			// regular files in root mod directory are ignored
+			for (final File dir: new File(modroot).listFiles(File::isDirectory)) {
+				try {
+					final Stream<Path> paths = Files.walk(Paths.get(dir.toString())).filter(Files::isRegularFile);
+					for (String filepath: paths.map(s -> s.toString()).collect(Collectors.toList())) {
+						// trim absolute path prefix
+						filepath = filepath.substring(modroot.length() - 1);
+
+						if (new File(filepath).getName().equals("init.lua")) {
+							modlist.add(filepath);
+						}
+					}
+				} catch (final IOException e1) {
+					logger.error("Error while recursing mods");
+					e1.printStackTrace();
+					return null;
+				}
+			}
+		}
+
+		return modlist;
+	}
+
+	/**
+	 * Initializes Lua init scripts in mods directory.
+	 */
+	private void initLuaMods() {
+		for (final String modpath: getLuaMods()) {
+			try {
+				perform(modpath, true);
+			} catch (final Exception e) {
+				logger.error("Error while loading mod " + modpath + ":", e);
+			}
+		}
 	}
 }
