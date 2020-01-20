@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +38,14 @@ public class ScriptInLua extends ScriptingSandbox {
 
 	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
 
-	private Globals globals;
+	private static ScriptInLua instance;
+	private static Globals globals;
+	private static LuaValue game;
 
 	private final String luaScript;
 
-	private LuaValue game;
-
 	// classes to be bound to Lua objects
-	final Map<String, String> bind_classes = new HashMap<String, String>() {{
+	private static final Map<String, String> bind_classes = new HashMap<String, String>() {{
 		put("ConversationStates", "games.stendhal.server.entity.npc.ConversationStates");
 		put("ConversationPhrases", "games.stendhal.server.entity.npc.ConversationPhrases");
 		put("CollisionAction", "games.stendhal.server.entity.CollisionAction");
@@ -51,17 +53,61 @@ public class ScriptInLua extends ScriptingSandbox {
 	}};
 
 
-	public ScriptInLua(String filename) {
+	public ScriptInLua() {
+		super(null);
+
+		luaScript = null;
+	}
+
+	public ScriptInLua(final String filename) {
 		super(filename);
 
-		globals = JsePlatform.standardGlobals();
 		luaScript = filename;
+	}
+
+	public static ScriptInLua getInstance() {
+		if (instance == null) {
+			instance = new ScriptInLua();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Initial load of the script.
+	 *
+	 * @param player
+	 * 			The admin who loads script or <code>null</code> on server start.
+	 * @param args
+	 * 			The arguments the admin specified or <code>null</code> on server start.
+	 */
+	@Override
+	public boolean load(Player player, List<String> args) {
+		LuaValue chunk = globals.loadfile(luaScript);
+		chunk.call();
+
+		return true;
+	}
+
+	/**
+	 * Loads lua master script.
+	 */
+	public static void init() {
+		globals = JsePlatform.standardGlobals();
 
 		globals.load(new JseBaseLib());
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		game = CoerceJavaToLua.coerce(this);
+		// load master script
+		final String master = new File(ScriptRunner.class.getPackage().getName().replace(".", "/") + "/lua/init.lua").getPath();
+		final URL url = ScriptInLua.class.getClassLoader().getResource(master);
+
+		if (url != null) {
+			globals.loadfile(master).call();
+		}
+
+		game = CoerceJavaToLua.coerce(getInstance());
 		globals.set("game", game);
 		globals.set("logger", CoerceJavaToLua.coerce(logger));
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
@@ -79,22 +125,6 @@ public class ScriptInLua extends ScriptingSandbox {
 		}
 
 		globals.load(sb.toString()).call();
-	}
-
-	/**
-	 * Initial load of the script.
-	 *
-	 * @param player
-	 * 			The admin who loads script or <code>null</code> on server start.
-	 * @param args
-	 * 			The arguments the admin specified or <code>null</code> on server start.
-	 */
-	@Override
-	public boolean load(Player player, List<String> args) {
-		LuaValue chunk = globals.loadfile(luaScript);
-		chunk.call();
-
-		return true;
 	}
 
 	/**

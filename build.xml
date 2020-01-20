@@ -247,6 +247,13 @@
 			</classpath>
 		</javac>
 
+		<!-- built-in Lua scripts -->
+		<copy todir="${build_server}/games/stendhal/server/core/scripting/lua">
+			<fileset dir="${src}/games/stendhal/server/core/scripting/lua">
+				<include name="**/*.lua"/>
+			</fileset>
+		</copy>
+
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
