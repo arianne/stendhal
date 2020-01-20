@@ -13,9 +13,7 @@ package games.stendhal.server.core.scripting;
 
 import java.io.File;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
@@ -43,14 +41,6 @@ public class ScriptInLua extends ScriptingSandbox {
 	private static LuaValue game;
 
 	private final String luaScript;
-
-	// classes to be bound to Lua objects
-	private static final Map<String, String> bind_classes = new HashMap<String, String>() {{
-		put("ConversationStates", "games.stendhal.server.entity.npc.ConversationStates");
-		put("ConversationPhrases", "games.stendhal.server.entity.npc.ConversationPhrases");
-		put("CollisionAction", "games.stendhal.server.entity.CollisionAction");
-		put("SkinColor", "games.stendhal.common.constants.SkinColor");
-	}};
 
 
 	public ScriptInLua() {
@@ -99,32 +89,18 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		// load master script
+		game = CoerceJavaToLua.coerce(getInstance());
+		globals.set("game", game);
+		globals.set("logger", CoerceJavaToLua.coerce(logger));
+		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
+
+		// load built-in master script
 		final String master = new File(ScriptRunner.class.getPackage().getName().replace(".", "/") + "/lua/init.lua").getPath();
 		final URL url = ScriptInLua.class.getClassLoader().getResource(master);
 
 		if (url != null) {
 			globals.loadfile(master).call();
 		}
-
-		game = CoerceJavaToLua.coerce(getInstance());
-		globals.set("game", game);
-		globals.set("logger", CoerceJavaToLua.coerce(logger));
-		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
-
-		final StringBuilder sb = new StringBuilder();
-
-		// FIXME: make these methods of npcHelper
-		sb.append("newCondition = function(classname, ...)"
-				+ " return luajava.newInstance(\"games.stendhal.server.entity.npc.condition.\" .. classname, ...) end\n");
-		sb.append("newAction = function(classname, ...)"
-				+ " return luajava.newInstance(\"games.stendhal.server.entity.npc.action.\" .. classname, ...) end\n");
-
-		for (final String key: bind_classes.keySet()) {
-			sb.append(key + " = luajava.bindClass(\"" + bind_classes.get(key) + "\")\n");
-		}
-
-		globals.load(sb.toString()).call();
 	}
 
 	/**
