@@ -40,7 +40,7 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 		setupZone("0_semos_city");
 		// initialize Lua globals
 		ScriptInLua.init();
-		new ScriptRunner().perform("NPC/semos/city/example.lua");
+		new ScriptRunner().perform("npc/example/girl.lua", true);
 	}
 
 	@Override

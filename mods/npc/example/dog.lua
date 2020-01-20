@@ -12,7 +12,11 @@
  ***************************************************************************
 ]]
 
---[[ Disabled
+
+-- Example SilentNPC
+
+logger:info("Loading Lua SilentNPC...")
+
 -- Set zone to Semos City
 if game:setZone("0_semos_city") then
 
@@ -30,5 +34,8 @@ if game:setZone("0_semos_city") then
 
 	-- Add the NPC to the world
 	game:add(dog)
+
+	logger:info("Lua SilentNPC loaded!")
+else
+	logger:warn("Failed to load Lua SilentNPC")
 end
-]]

@@ -1,7 +1,21 @@
--- Example NPC
+--[[
+ ***************************************************************************
+ *                      Copyright (C) 2019 - Arianne                       *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************
+]]
 
---[[ Disabled
-logger:info("Loading LuaNPC...")
+
+-- Example SpeakerNPC
+
+logger:info("Loading Lua SpeakerNPC...")
 
 -- Set zone to Semos City
 if game:setZone("0_semos_city") then
@@ -62,7 +76,8 @@ if game:setZone("0_semos_city") then
 	-- Add the entities to the world
 	game:add(npc)
 	game:add(sign)
-end
 
-logger:info("LuaNPC loaded!")
---]]
+	logger:info("Lua SpeakerNPC loaded!")
+else
+	logger:warn("Failed to load Lua SpeakerNPC")
+end
