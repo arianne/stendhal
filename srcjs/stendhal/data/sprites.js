@@ -16,6 +16,9 @@ stendhal.data = stendhal.data || {};
 
 stendhal.data.sprites = {
 	get: function(filename) {
+		if (!filename) {
+			return {};
+		}
 		if (typeof(this[filename]) != "undefined") {
 			this[filename].counter++;
 			return this[filename];
