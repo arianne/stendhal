@@ -22,9 +22,15 @@ Steps to reproduce the behavior:
 
 ## 🌍  Environment
 
-[ ] Java client
-[ ] Web client
+- Java client
+- Web client
+
 Location in game: ...
+
+
+## 🛠️ Suggested fixes
+
+Ideas on how to fix the problem: ...
 
 
 ## 🔭 Additional information
