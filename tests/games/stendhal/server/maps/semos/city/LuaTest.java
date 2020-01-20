@@ -21,6 +21,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.scripting.ScriptInLua;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -37,6 +38,8 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		setupZone("0_semos_city");
+		// initialize Lua globals
+		ScriptInLua.init();
 		new ScriptRunner().perform("NPC/semos/city/example.lua");
 	}
 
