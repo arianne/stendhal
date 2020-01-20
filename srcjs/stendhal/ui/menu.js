@@ -121,8 +121,9 @@ stendhal.ui.menu = {
 		this.popup.popupdiv.addEventListener("click", function(e) {
 			var cmd = e.target.id.substring(11);
 			that.popup.close();
-			console.log(cmd);
-			stendhal.slashActionRepository.execute("/" + cmd);
+			if (cmd) {
+				stendhal.slashActionRepository.execute("/" + cmd);
+			}
 		});
 
 		this.close = function() {
