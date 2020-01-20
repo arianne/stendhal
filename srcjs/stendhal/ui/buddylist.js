@@ -44,7 +44,13 @@ stendhal.ui.buddyList = {
 
 		var html = "";
 		for (var i = 0; i < buddies.length; i++) {
-			html += "<li class=" + buddies[i].status + ">" + stendhal.ui.html.esc(buddies[i].name) + "</li>";
+			html += "<li class=" + buddies[i].status + "><img src=\"";
+			if (buddies[i].status == "online") {
+				html += "data/gui/buddy_online.png";
+			} else {
+				html += "data/gui/buddy_offline.png";
+			}
+			html += "\"> " + stendhal.ui.html.esc(buddies[i].name) + "</li>";
 		}
 
 		if (stendhal.ui.buddyList.lastHtml !== html) {
@@ -157,8 +163,12 @@ stendhal.ui.buddyList = {
 	},
 
 	onMouseUp: function(event) {
-		console.log(event);
 		stendhal.ui.buddyList.current = event.target;
-		new stendhal.ui.Menu(stendhal.ui.buddyList, event.pageX - 50, event.pageY - 5);
+		if (event.target.tagName === "IMG") {
+			stendhal.ui.buddyList.current = event.target.parentElement;
+		}
+
+		new stendhal.ui.Menu(stendhal.ui.buddyList,
+			Math.max(10, event.pageX - 50), event.pageY - 5);
 	}
 };
