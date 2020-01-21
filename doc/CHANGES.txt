@@ -19,7 +19,6 @@ Changelog
     - "medium": for players level 51+
     - "hard": for players level 151+
 - new achievements:
-  - Country Recluse: visit all interior zones in Deniran region (easy score)
   - Westerner: visit all outside zones in Deniran region (easy score)
   - Spelunker: visit all underground zones in Deniran region (hard score)
   - Cheese Wiz: loot 2,000 cheese (easy score)

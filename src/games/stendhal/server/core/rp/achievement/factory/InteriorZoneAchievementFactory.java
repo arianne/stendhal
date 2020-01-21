@@ -38,7 +38,7 @@ public class InteriorZoneAchievementFactory extends AbstractAchievementFactory {
 									Achievement.MEDIUM_BASE_SCORE, true,
 									new PlayerVisitedZonesInRegionCondition("magic city", Boolean.FALSE, Boolean.FALSE)));
 		list.add(createAchievement("zone.interior.deniran", "Country Recluse", "Visit all interior zones in the Deniran region",
-									Achievement.EASY_BASE_SCORE, true,
+									Achievement.EASY_BASE_SCORE, false,
 									new PlayerVisitedZonesInRegionCondition("deniran", false, false)));
 		return list;
 	}
