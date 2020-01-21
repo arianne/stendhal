@@ -73,6 +73,10 @@
 		</not>
 	</condition>
 
+	<condition property="os.windows" value="true" else="false">
+		<os family="windows" />
+	</condition>
+
 	<tstamp>
 		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 	</tstamp>
@@ -96,6 +100,10 @@
 		<replaceregexp file="runserver.sh"
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
+			byline="true"/>
+		<replaceregexp file="buildtools/inno_setup/setup.iss"
+			match="#define MyAppVersion.*"
+			replace="#define MyAppVersion &quot;${version}&quot;"
 			byline="true"/>
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
@@ -671,6 +679,7 @@
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
 			<zipfileset dir="buildtools/launch4j" includes="stendhal-starter.exe" filemode="755"/>
 		</zip>
+		<antcall target="win_installer" if:true="${os.windows}" />
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -748,6 +757,23 @@
 		</tar>
 
 		<delete dir="${buildroot}/stendhal-${version}-src"/>
+	</target>
+
+	<target name="win_installer" description="creates a Windows installer executable using Inno Setup">
+		<property environment="env" />
+		<condition property="inno" value="true" else="false">
+			<and>
+				<equals arg1="${os.windows}" arg2="true" />
+				<or>
+					<available file="iscc" filepath="${env.PATH}" />
+					<available file="iscc.exe" filepath="${env.PATH}" />
+				</or>
+			</and>
+		</condition>
+		<exec executable="iscc" if:true="${inno}">
+			<arg value="buildtools/inno_setup/setup.iss" />
+		</exec>
+		<echo unless:true="${inno}" message="WARNING: Inno Setup compiler not found, cannot create Windows installer executable" />
 	</target>
 
 	<target name="compile_stendhaltools" description="compiles the Stendhal build tools">
