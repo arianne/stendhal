@@ -25,6 +25,7 @@ Changelog
   - Ham Hocks: loot 2,500 ham (easy score)
   - Goldshower: loot 10,000 money (easy score)
   - Green Thumb: harvest 20 of each type of growable flower (easy score)
+  - David vs. Goliath: kill 20 of each type of giant solo (medium score)
 
 *grapics*
 - made dark dagger image more distinct from night dagger

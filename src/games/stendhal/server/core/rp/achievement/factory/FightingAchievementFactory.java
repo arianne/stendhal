@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.constants.KillType;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.KilledRareCreatureCondition;
@@ -60,6 +61,17 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				new KilledSoloAllCreaturesCondition()));
 		fightingAchievements.add(createAchievement("fight.special.allshared", "Team Player", "Kill all creatures in a team", Achievement.HARD_BASE_SCORE, true,
 				new KilledSharedAllCreaturesCondition()));
+
+		fightingAchievements.add(createAchievement(
+				"fight.giant.solo", "David vs. Goliath", "Kill 20 of each type of giant solo",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(
+						20, KillType.SOLO,
+						"giant", "elder giant", "amazoness giant", "master giant", "black giant",
+						"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
+						"Dhohr Nuggetcutter", "Lord Durin", "angel", "archangel", "dark angel",
+						"dark archangel", "fallen angel")));
+
 		return fightingAchievements;
 	}
 
