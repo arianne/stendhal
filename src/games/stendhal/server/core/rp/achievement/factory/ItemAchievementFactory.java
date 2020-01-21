@@ -39,6 +39,10 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(100, "money")));
 
+		itemAchievements.add(createAchievement("item.money.10000", "Goldshower", "Loot 10,000 money",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerLootedNumberOfItemsCondition(10000, "money")));
+
 		itemAchievements.add(createAchievement("item.money.1000000", "You don't need it anymore", "Loot 1000000 money from creatures",
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1000000, "money")));

@@ -23,6 +23,7 @@ Changelog
   - Spelunker: visit all underground zones in Deniran region (hard score)
   - Cheese Wiz: loot 2,000 cheese (easy score)
   - Ham Hocks: loot 2,500 ham (easy score)
+  - Goldshower: loot 10,000 money (easy score)
 
 *grapics*
 - made dark dagger image more distinct from night dagger
