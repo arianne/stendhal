@@ -31,6 +31,15 @@ import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreatur
  */
 public class FightingAchievementFactory extends AbstractAchievementFactory {
 
+	// enemies required for David vs. Goliath achievement
+	public static final String[] ENEMIES_DAVID_GOLIATH = {
+			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
+			"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
+			"Dhohr Nuggetcutter", "Lord Durin", "angel", "archangel", "dark angel",
+			"dark archangel", "fallen angel"
+	};
+
+
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
@@ -66,11 +75,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				"fight.giant.solo", "David vs. Goliath", "Kill 20 of each type of giant solo",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(
-						20, KillType.SOLO,
-						"giant", "elder giant", "amazoness giant", "master giant", "black giant",
-						"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
-						"Dhohr Nuggetcutter", "Lord Durin", "angel", "archangel", "dark angel",
-						"dark archangel", "fallen angel")));
+						20, KillType.SOLO, ENEMIES_DAVID_GOLIATH)));
 
 		return fightingAchievements;
 	}
