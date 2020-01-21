@@ -44,6 +44,9 @@ public class OutsideZoneAchievementFactory extends AbstractAchievementFactory {
 		list.add(createAchievement("zone.outside.kikareukin", "Sky Tower", "Visit all outside zones in the Kikareukin region",
 									Achievement.HARD_BASE_SCORE, true,
 									new PlayerVisitedZonesInRegionCondition("kikareukin", Boolean.TRUE, Boolean.TRUE)));
+		list.add(createAchievement("zone.outside.deniran", "Westerner", "Visit all outside zones in the Deniran region",
+									Achievement.EASY_BASE_SCORE, true,
+									new PlayerVisitedZonesInRegionCondition("deniran", true, true)));
 
 		//All interior zone achievements
 

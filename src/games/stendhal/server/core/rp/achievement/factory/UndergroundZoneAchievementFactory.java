@@ -37,6 +37,9 @@ public class UndergroundZoneAchievementFactory extends AbstractAchievementFactor
 		list.add(createAchievement("zone.underground.ados", "Deep Dweller", "Visit all underground zones in the Ados region",
 									Achievement.MEDIUM_BASE_SCORE, true,
 									new PlayerVisitedZonesInRegionCondition("ados", Boolean.TRUE, Boolean.FALSE)));
+		list.add(createAchievement("zone.underground.deniran", "Spelunker", "Visit all underground zones in the Deniran region",
+									Achievement.HARD_BASE_SCORE, true,
+									new PlayerVisitedZonesInRegionCondition("deniran", true, false)));
 		return list;
 	}
 
