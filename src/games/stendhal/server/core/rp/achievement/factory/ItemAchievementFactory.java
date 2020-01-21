@@ -97,6 +97,10 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(2000, "cheese")));
 
+		itemAchievements.add(createAchievement("item.ham.2500", "Ham Hocks", "Loot 2,500 ham",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerLootedNumberOfItemsCondition(2500, "ham")));
+
 		return itemAchievements;
 	}
 
