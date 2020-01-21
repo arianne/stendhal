@@ -93,6 +93,10 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				new PlayerLootedNumberOfItemsCondition(1, "black dragon cloak", "blue dragon cloak", "bone dragon cloak",
 						"green dragon cloak", "red dragon cloak")));
 
+		itemAchievements.add(createAchievement("item.cheese.2000", "Cheese Wiz", "Loot 2,000 cheese",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerLootedNumberOfItemsCondition(2000, "cheese")));
+
 		return itemAchievements;
 	}
 
