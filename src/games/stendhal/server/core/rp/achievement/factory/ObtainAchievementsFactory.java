@@ -43,10 +43,15 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 				new PlayerHasHarvestedNumberOfItemsCondition(15, "char", "clownfish", "cod", "mackerel", "perch",
 						"red lionfish", "roach", "surgeonfish", "trout")));
 
-		//ultimate collector quest achievement
+		// ultimate collector quest achievement
 		achievements.add(createAchievement("quest.special.collector", "Ultimate Collector", "Finish ultimate collector quest",
 				Achievement.HARD_BASE_SCORE, true,
 				new QuestCompletedCondition("ultimate_collector")));
+
+		// flower harvest
+		achievements.add(createAchievement("obtain.harvest.flower", "Green Thumb", "Harvest 20 of each type of growable flower",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasHarvestedNumberOfItemsCondition(20, "daisies", "lilia", "pansy", "zantedeschia")));
 
 		return achievements;
 	}
