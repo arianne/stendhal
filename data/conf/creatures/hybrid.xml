@@ -369,7 +369,6 @@
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2" />
         <sound value="rattlesnake-1" />
         <sound value="lamia_hiss-01" />
         <sound value="lamia_hiss-02" />
