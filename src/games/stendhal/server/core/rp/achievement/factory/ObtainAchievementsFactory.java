@@ -61,6 +61,11 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerHasHarvestedNumberOfItemsCondition(20, "daisies", "lilia", "pansy", "zantedeschia")));
 
+		// herb harvest
+		achievements.add(createAchievement("obtain.harvest.herb", "Herbal Practitioner", "Harvest 20 of each type of herb found growing in Faiumoni",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasHarvestedNumberOfItemsCondition(20, "arandula", "kekik", "mandragora", "sclaria")));
+
 		// loot or harvest apples
 		// XXX: it appears that looting action will not trigger check for Category.OBTAIN
 		//      inactive until fixed
