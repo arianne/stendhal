@@ -17,12 +17,18 @@ import java.util.List;
 
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.core.rp.achievement.condition.BoughtNumberOfCondition;
 
 
 /**
  * Factory for buying & selling items.
  */
 public class CommerceAchievementFactory extends AbstractAchievementFactory {
+
+	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
+	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
+	public static final int COUNT_HAPPY_HOUR = 100;
+
 
 	@Override
 	protected Category getCategory() {
@@ -32,6 +38,11 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	@Override
 	public Collection<Achievement> createAchievements() {
 		final List<Achievement> achievements = new LinkedList<Achievement>();
+
+		achievements.add(createAchievement(
+				ID_HAPPY_HOUR, "It's Happy Hour Somewhere", "Purchase 100 bottles of beer & 100 glasses of wine",
+				Achievement.EASY_BASE_SCORE, true,
+				new BoughtNumberOfCondition(COUNT_HAPPY_HOUR, ITEMS_HAPPY_HOUR)));
 
 		return achievements;
 	}

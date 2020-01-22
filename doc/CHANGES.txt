@@ -28,7 +28,8 @@ Changelog
   - David vs. Goliath: kill 20 of each type of giant solo (medium score)
   - Heavenly Wrath: kill 100 of each type of angel (hard score)
   - Silver Bullet: kill 500 werewolves (medium score)
-  - Herbal Practitioner: Harvest 20 of each type of herb found growing in Faiumoni
+  - Herbal Practitioner: harvest 20 of each type of herb found growing in Faiumoni
+  - It's Happy Hour Somewhere: purchase 100 bottles of beer & 100 glasses of wine
 
 *grapics*
 - made dark dagger image more distinct from night dagger
