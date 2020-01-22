@@ -31,13 +31,21 @@ import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreatur
  */
 public class FightingAchievementFactory extends AbstractAchievementFactory {
 
-	// enemies required for David vs. Goliath achievement
-	public static final String[] ENEMIES_DAVID_GOLIATH = {
+	// enemies required for David vs. Goliath
+	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
 			"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
-			"Dhohr Nuggetcutter", "Lord Durin", "angel", "archangel", "dark angel",
-			"dark archangel", "fallen angel"
+			"Dhohr Nuggetcutter", "Lord Durin"
 	};
+	public static final String ID_GIANTS = "fight.solo.giant";
+	public static final int COUNT_GIANTS = 20;
+
+	// enemies required for Heavenly Wrath
+	public static final String[] ENEMIES_ANGELS = {
+			"angel", "archangel", "dark angel", "dark archangel", "fallen angel"
+	};
+	public static final String ID_ANGELS = "fight.general.angels";
+	public static final int COUNT_ANGELS = 100;
 
 
 	@Override
@@ -72,10 +80,16 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				new KilledSharedAllCreaturesCondition()));
 
 		fightingAchievements.add(createAchievement(
-				"fight.giant.solo", "David vs. Goliath", "Kill 20 of each type of giant solo",
+				ID_GIANTS, "David vs. Goliath", "Kill 20 of each type of giant solo",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(
-						20, KillType.SOLO, ENEMIES_DAVID_GOLIATH)));
+						COUNT_GIANTS, KillType.SOLO, ENEMIES_GIANTS)));
+
+		fightingAchievements.add(createAchievement(
+				ID_ANGELS, "Heavenly Wrath", "Kill 100 of each type of angel",
+				Achievement.HARD_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(
+						COUNT_ANGELS, ENEMIES_ANGELS)));
 
 		return fightingAchievements;
 	}
