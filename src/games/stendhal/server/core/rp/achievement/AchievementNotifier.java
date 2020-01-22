@@ -214,12 +214,14 @@ public final class AchievementNotifier {
 	}
 
 	/**
-	 * check all achievements for a player that belong to the obtain category
+	 * Check all achievements for a player that belong to the obtain &
+	 * commerce categories.
 	 *
 	 * @param player
 	 */
 	public void onObtain(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
+		getAndCheckAchievementsInCategory(player, Category.COMMERCE);
 	}
 
 	/**

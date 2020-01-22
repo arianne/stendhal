@@ -73,6 +73,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new UndergroundZoneAchievementFactory());
 		list.add(new KirdnehItemAchievementFactory());
 		list.add(new MithrilbourghEnemyArmyAchievementFactory());
+		list.add(new CommerceAchievementFactory());
 		return list;
 	}
 }

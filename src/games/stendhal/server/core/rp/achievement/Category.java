@@ -36,6 +36,8 @@ public enum Category {
 	ITEM,
 	/** getting items */
 	OBTAIN,
+	/** buying/selling items */
+	COMMERCE,
 	/** helping others and being friendly */
 	FRIEND,
 	/** producing items */
