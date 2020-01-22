@@ -27,6 +27,7 @@ Changelog
   - Green Thumb: harvest 20 of each type of growable flower (easy score)
   - David vs. Goliath: kill 20 of each type of giant solo (medium score)
   - Heavenly Wrath: kill 100 of each type of angel (hard score)
+  - Silver Bullet: kill 500 werewolves (medium score)
 
 *grapics*
 - made dark dagger image more distinct from night dagger

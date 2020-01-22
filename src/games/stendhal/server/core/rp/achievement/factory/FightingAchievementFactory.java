@@ -47,6 +47,9 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_ANGELS = "fight.general.angels";
 	public static final int COUNT_ANGELS = 100;
 
+	public static final String ID_WEREWOLF = "fight.general.werewolf";
+	public static final int COUNT_WEREWOLF = 500;
+
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -82,14 +85,17 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 		fightingAchievements.add(createAchievement(
 				ID_GIANTS, "David vs. Goliath", "Kill 20 of each type of giant solo",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(
-						COUNT_GIANTS, KillType.SOLO, ENEMIES_GIANTS)));
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_GIANTS, KillType.SOLO, ENEMIES_GIANTS)));
 
 		fightingAchievements.add(createAchievement(
 				ID_ANGELS, "Heavenly Wrath", "Kill 100 of each type of angel",
 				Achievement.HARD_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(
-						COUNT_ANGELS, ENEMIES_ANGELS)));
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_ANGELS, ENEMIES_ANGELS)));
+
+		fightingAchievements.add(createAchievement(
+				ID_WEREWOLF, "Silver Bullet", "Kill 500 werewolves",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_WEREWOLF, "werewolf")));
 
 		return fightingAchievements;
 	}
