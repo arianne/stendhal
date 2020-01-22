@@ -2423,6 +2423,30 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Gets the amount of an item bought by player.
+	 *
+	 * @param item
+	 * 		Item name.
+	 * @return
+	 * 		Number bought of the item.
+	 */
+	public int getQuantityOfBoughtItems(final String item) {
+		return itemCounter.getQuantityOfBoughtItems(item);
+	}
+
+	/**
+	 * Gets the amount of an item sold by player.
+	 *
+	 * @param item
+	 * 		Item name.
+	 * @return
+	 * 		Number sold of the item.
+	 */
+	public int getQuantityOfSoldItems(final String item) {
+		return itemCounter.getQuantityOfSoldItems(item);
+	}
+
+	/**
 	 * Increases the count of loots for the given item
 	 *
 	 * @param item

@@ -116,10 +116,24 @@ public class PlayerLootedItemsHandler {
 	 * @param item
 	 * @return the harvested quantity
 	 */
-	public int getQuantityOfBoughtItems(String item) {
-		if(bought.containsKey(item)) {
+	public int getQuantityOfBoughtItems(final String item) {
+		if (bought.containsKey(item)) {
 			return bought.get(item);
 		}
+
+		return 0;
+	}
+
+	/**
+	 *
+	 * @param item
+	 * @return
+	 */
+	public int getQuantityOfSoldItems(final String item) {
+		if (sold.containsKey(item)) {
+			return sold.get(item);
+		}
+
 		return 0;
 	}
 
