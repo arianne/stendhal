@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.weaponsshop;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,9 @@ import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 public class WeaponDealerNPC implements ZoneConfigurator  {
 
@@ -41,7 +43,7 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 			public void createDialog() {
 				addGreeting("Hello, and welcome to the deniran weapon shop.");
 				addJob("I am the local weapons dealer.");
-				addOffer("Check out the blackboard for my prices.");
+				addOffer("Check out the blackboards for my prices.");
 				addGoodbye();
 			}
 
@@ -54,17 +56,28 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 			}
 		};
 
-		final Map<String, Integer> pricesBuy = new HashMap<String, Integer>() {{
+		// buys
+		final Map<String, Integer> pricesBuy = new LinkedHashMap<String, Integer>() {{
 			put("ugmash", 1200);
 			put("magic cloak", 12000);
 		}};
-
 		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy), false);
 
-		// add shop to the general shop list
+		// sells
+		final Map<String, Integer> pricesSell = new LinkedHashMap<String, Integer>() {{
+			put("shuriken", 77);
+			put("fire shuriken", 99);
+			put("wooden spear", 110);
+		}};
+		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell), false);
+
+		// add shops to the general shop list
 		final ShopList shops = ShopList.get();
 		for (final String key: pricesBuy.keySet()) {
 			shops.add("deniranequipbuy", key, pricesBuy.get(key));
+		}
+		for (final String key: pricesSell.keySet()) {
+			shops.add("deniranequipsell", key, pricesSell.get(key));
 		}
 
 		npc.setPosition(11, 5);
@@ -75,10 +88,14 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 
 	private void buildSigns(final StendhalRPZone zone) {
 		final ShopSign buys = new ShopSign("deniranequipbuy", "D J Smith's Shop (buying)", "You can buy these things from D J Smith.", false);
-
 		buys.setEntityClass("blackboard");
 		buys.setPosition(20, 4);
 
+		final ShopSign sells = new ShopSign("deniranequipsell", "D J Smith's Shop (selling)", "You can buy these things from D J Smith.", false);
+		sells.setEntityClass("blackboard");
+		sells.setPosition(21, 4);
+
 		zone.add(buys);
+		zone.add(sells);
 	}
 }
