@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
@@ -31,15 +32,16 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
+		buildSigns(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("D J Smith") {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello, and welcome to the deniran weapon shop.");
 				addJob("I am the local weapons dealer.");
-				//addOffer("I need nothing at this time, but come back later I'm sure I'll need something.");
+				addOffer("Check out the blackboard for my prices.");
 				addGoodbye();
 			}
 
@@ -57,7 +59,7 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 			put("magic cloak", 12000);
 		}};
 
-		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy));
+		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy), false);
 
 		// add shop to the general shop list
 		final ShopList shops = ShopList.get();
@@ -69,5 +71,14 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 		npc.setEntityClass("wellroundedguynpc");
 		npc.setDescription("You see D J Smith, the weapon dealer.");
 		zone.add(npc);
+	}
+
+	private void buildSigns(final StendhalRPZone zone) {
+		final ShopSign buys = new ShopSign("deniranequipbuy", "D J Smith's Shop (buying)", "You can buy these things from D J Smith.", false);
+
+		buys.setEntityClass("blackboard");
+		buys.setPosition(20, 4);
+
+		zone.add(buys);
 	}
 }
