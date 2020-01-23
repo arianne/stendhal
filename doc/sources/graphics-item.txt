@@ -224,7 +224,7 @@ koboldish_torcibud_mild.png    omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_strong.png  omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_vsop.png    omero; CC BY-SA 3.0; Stendhal
 love_potion.png                Groundhug McHampster (h4mt4r0), Katie Russell (kymara); GPL 2.0+; Stendhal
-mana.png                       Groundhug McHampster (h4mt4r0), Red Queen; GPL 2.0+; Stendhal
+mana.png                       Groundhug McHampster (h4mt4r0), RedQueen; GPL 2.0+; Stendhal
 mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 milk.png                       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
@@ -258,7 +258,7 @@ applepie.png             omero; CC BY-SA 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
 baguette.png             Katie Russell (kymara); GPL 2.0; Stendhal
-banana.png               OCAL; CC0; https://freesvg.org/edible-yellow-fruit-clip-art
+banana.png               RedQueen; OGA BY 3.0; Stendhal
 broccoli.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png               omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png      Daniel Herding (mort); GPL 2.0; Stendhal
@@ -287,7 +287,7 @@ egg.png                  dStulle; CC0; http://openclipart.org/detail/6695, https
 fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
-grapes.png               Jean-Victor Balin, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+grapes.png               RedQueen; OGA BY 3.0; Stendhal
 grilled_steak.png        Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 ham.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 ham_smoked.png           David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
@@ -301,7 +301,7 @@ meat.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/
 meat_smoked.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 olive.png                tigertoes; CC BY-SA 3.0; Stendhal
 onion.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-pear.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
+pear.png                 RedQueen; OGA BY 3.0; Stendhal
 perch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 piesmall.png             Katie Russell (kymara); GPL 2.0; Stendhal
 pineapple.png            nicubunu; CC0; https://openclipart.org/detail/12995
@@ -326,7 +326,7 @@ trout_smoked.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png        Katie Russell (kymara); GPL 2.0; Stendhal
 unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
-watermelon.png           thekingphoenix; CC0; https://opengameart.org/node/77345
+watermelon.png           RedQueen; OGA BY 3.0; Stendhal
 
 data/sprites/items/food/apple_special/
 
@@ -346,7 +346,7 @@ courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155)
 egg_grower.png              dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
-grapes_grower.png           Jean-Victor Balin, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+grapes_grower.png           RedQueen; OGA BY 3.0; Stendhal
 kekik_grower.png            ???; ???; ??? (based on kekik.png, committed by kiheru: c058ed6)
 leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
@@ -360,7 +360,7 @@ sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tomato_grower.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-watermelon_grower.png       Red Queen?, thekingphoenix; ???; https://opengameart.org/node/77345 (leaves' author unverified, committed by Red Queen: a243290)
+watermelon_grower.png       RedQueen; OGA BY 3.0; Stendhal
 wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
 zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 

@@ -34,6 +34,7 @@ Changelog
 *grapics*
 - made dark dagger image more distinct from night dagger
 - changed beer image to fit description better
+- restored old banana, grapes, pear, & watermelon images
 
 *webclient*
 - added support for rented signs and blackboards
