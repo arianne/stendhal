@@ -32,7 +32,7 @@ import marauroa.common.game.RPSlot;
  * be show.
  */
 public final class StatsPanelController {
-	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
+	private static final String[] MONEY_SLOTS = { "pouch", "bag", "lhand", "rhand" };
 	/**
 	 * A string used as a white space at the status labels. This is a
 	 * combination of carriage return and no-break space, so that a possible
