@@ -10,6 +10,8 @@ Changelog
   - Deniran Tannery
 - new items:
   - pelt (ingredient to make money pouch)
+- new enemies:
+  - tiny scarab
 - new enemy drops
   - insulated ring (cobra: 0.08)
 - players can enable a new pouch slot to carry money
