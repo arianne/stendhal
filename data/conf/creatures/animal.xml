@@ -869,6 +869,39 @@
     </ai>
   </creature>
 
+<!-- disabled
+  <creature name="polar bear">
+    <type class="animal" subclass="polar_bear" tileid="animal.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="ROOOOAAAAR!"/>
+        <sound value="bear-01"/>
+        <sound value="bear-02"/>
+        <sound value="bear-03"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+-->
+
   <!-- END: mammal -->
 
   <!-- START: mythical -->
@@ -902,6 +935,80 @@
     </ai>
   </creature>
 
+<!-- disabled
+  <creature name="white unicorn">
+    <type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:10"/>
+    <description></description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="250"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="black unicorn">
+    <type class="mythical_being" subclass="unicorn_black" tileid="mythical_being.png:9"/>
+    <description></description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="275"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="golden unicorn">
+    <type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="300"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+-->
+
   <creature name="centaur">
     <type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
     <description> You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.</description>
@@ -933,6 +1040,16 @@
     </ai>
   </creature>
 
+  <!-- new centaur: fire, ice, etc -->
+
+<!-- disabled
+  <creature name="fire centaur">
+  </creature>
+
+  <creature name="ice centaur">
+  </creature>
+-->
+
   <creature name="pegasus">
     <type class="mythical_being" subclass="pegasus" tileid="mythical_being.png:2"/>
     <description>You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.</description>
@@ -963,6 +1080,105 @@
     </ai>
   </creature>
 
+  <!-- new pegusus: ebony, ivory, bronze, baby, etc. -->
+
+<!-- disabled
+  <creature name="ebony pegasus">
+  </creature>
+
+  <creature name="ivory pegasus">
+  </creature>
+
+  <creature name="bronze pegasus">
+  </creature>
+-->
+
   <!-- END: mythical -->
+
+<!-- disabled
+  <creature name="wooly mammoth">
+    <type class="animal" subclass="wooly mammoth" tileid="animal.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="190"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+    <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="giant bat">
+    <type class="animal" subclass="bat_giant" tileid="animal.png:5"/>
+    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+   	<corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="bat-1" />
+        <sound value="bat-2" />
+        <sound value="bat-3" />
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="giant killer bat">
+    <type class="animal" subclass="bat_giant_red" tileid="animal.png:6"/>
+    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+    <attributes>
+      <atk value="1"/>
+      <def value="1"/>
+      <hp value="1"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="1"/>
+    <respawn value="1000"/>
+   	<corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="bat-1" />
+        <sound value="bat-2" />
+        <sound value="bat-3" />
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+-->
 
 </creatures>

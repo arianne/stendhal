@@ -146,4 +146,13 @@
 
   <!-- END: militant -->
 
+  <!-- START: giant -->
+
+<!-- disabled
+  <creature name="giant gnome">
+  </creature>
+-->
+
+  <!-- END: giant -->
+
 </creatures>
