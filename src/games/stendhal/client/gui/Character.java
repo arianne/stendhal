@@ -84,7 +84,7 @@ Inspectable {
 		player = userEntity;
 		userEntity.addContentChangeListener(this);
 
-		final RPObject obj = userEntity.getRPObject();
+		//final RPObject obj = userEntity.getRPObject();
 
 		// Compatibility. Show additional slots only if the user has those.
 		// This can be removed after a couple of releases (and specialSlots
@@ -99,13 +99,6 @@ Inspectable {
 			});
 		}
 		*/
-
-		boolean hasSlot = obj.hasSlot("pouch");
-		if (hasSlot && !pouch.isVisible()) {
-			pouch.setVisible(true);
-		} else if (!hasSlot) {
-			pouch.setVisible(false);
-		}
 
 		refreshContents();
 	}

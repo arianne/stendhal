@@ -13,6 +13,7 @@ package games.stendhal.client.gui;
 
 import java.awt.Container;
 
+import games.stendhal.client.UserContext;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.Sprite;
 
@@ -28,8 +29,8 @@ public class FeatureEnabledItemPanel extends ItemPanel implements FeatureChangeL
 
 		feature = slotName;
 
-		// invisible by default
-		//setVisible(false);
+		// only visible if the player has the feature
+		setVisible(UserContext.get().hasFeature(feature));
 	}
 
 	FeatureEnabledItemPanel(final String slotName, final Sprite placeholder, final String featureName) {
@@ -37,8 +38,8 @@ public class FeatureEnabledItemPanel extends ItemPanel implements FeatureChangeL
 
 		feature = featureName;
 
-		// invisible by default
-		//setVisible(false);
+		// only visible if the player has the feature
+		setVisible(UserContext.get().hasFeature(feature));
 	}
 
 	@Override
