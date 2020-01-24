@@ -738,6 +738,36 @@
     </ai>
   </creature>
 
+  <creature name="bull elephant">
+    <type class="animal" subclass="elephant_bull" tileid="animal.png:12"/>
+    <description>You see an elephant, a huge animal with lots of ham and meat. Are you sure that you want to attack it?</description>
+    <attributes>
+      <atk value="327"/>
+      <def value="100"/>
+      <hp value="2250"/>
+      <speed value="0.6"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="86"/>
+    <experience value="7175"/>
+    <respawn value="3400"/> <!-- 17 minutes -->
+    <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2" />
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
+        <sound value="elephant-1" />
+        <sound value="elephant-2" />
+      </says>
+      <profile name="offensive"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="tiger">
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
     <description>You see a tiger, which likes deer and human meat.</description>
