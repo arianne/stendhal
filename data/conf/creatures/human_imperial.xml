@@ -52,6 +52,7 @@
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="pauldroned leather cuirass" quantity="[1,1]" probability="20.0"/>
       <item value="plate shield" quantity="[1,1]" probability="30.0"/>
+      <item value="imperial ring" quantity="[1,1]" probability="0.017"/>
     </drops>
     <equips>
     </equips>
@@ -281,6 +282,7 @@
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="power arrow" quantity="[3,10]" probability="5.0"/>
       <item value="crossbow" quantity="[1,1]" probability="1.75"/>
+      <item value="imperial ring" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>

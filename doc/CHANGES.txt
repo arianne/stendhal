@@ -15,6 +15,9 @@ Changelog
   - tiny scarab
   - water scarab
 - new enemy drops
+  - imperial ring
+    - imperial veteran (0.017)
+    - imperial elite archer (0.05)
   - insulated ring (cobra: 0.08)
 - players can enable a new pouch slot to carry money
 - quest changes
