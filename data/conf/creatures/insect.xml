@@ -106,4 +106,26 @@
   </creature>
 -->
 
+  <creature name="water scarab">
+    <type class="insect" subclass="scarab_blue" tileid="insect.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="358"/>
+      <def value="59"/>
+      <hp value="1450"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="94"/>
+    <experience value="9110"/>
+    <respawn value="3900"/> <!-- 19.5 minutes -->
+    <corpse name="carapace" harmless="carapace"/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
