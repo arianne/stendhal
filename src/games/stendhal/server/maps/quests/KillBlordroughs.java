@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -336,6 +337,14 @@ import games.stendhal.server.util.TimeUtil;
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new GreetingMatchesNameCondition(npc.getName()),
+				ConversationStates.ATTENDING,
+				null,
+				new QuestAction());
+
+		// compatibility so players can say "done"
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.FINISH_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				null,
 				new QuestAction());
