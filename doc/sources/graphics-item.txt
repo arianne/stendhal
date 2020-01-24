@@ -566,6 +566,7 @@ aquamarine-ring.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 emerald-ring.png          Kimmo Rundelin (kiheru), Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
 gold-ring.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+imperial_ring.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/88263
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 silver-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
