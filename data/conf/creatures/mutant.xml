@@ -178,6 +178,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="strategy" params=",outfit_changer(hand_to_hand;poison_shroom_small;poison_shroom),"/>
+      <profile name="poisonous" params="3,deadly poison"/>
     </ai>
   </creature>
 
