@@ -170,7 +170,7 @@ Inspectable {
 		specialSlots = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, PADDING);
 		specialSlots.setAlignmentX(CENTER_ALIGNMENT);
 		// Compatibility. See the note at setPlayer().
-		specialSlots.setVisible(false);
+		//specialSlots.setVisible(false);
 		content.add(specialSlots);
 
 		pouch = new FeatureEnabledItemPanel("pouch", SpriteStore.get().getSprite("data/gui/slot-pouch.png"));
@@ -255,6 +255,7 @@ Inspectable {
 			return;
 		}
 
+		/*
 		String slotName = added.getName();
 		if (("belt".equals(slotName) || "back".equals(slotName)) && !player.getRPObject().hasSlot(slotName)) {
 			// One of the new slots was added to the player. Set them visible.
@@ -265,6 +266,7 @@ Inspectable {
 				}
 			});
 		}
+		*/
 
 		for (RPObject obj : added) {
 			ID id = obj.getID();
