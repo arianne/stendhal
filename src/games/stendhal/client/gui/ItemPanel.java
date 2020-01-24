@@ -468,6 +468,9 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			action.put(EquipActionConsts.TARGET_OBJECT, User.get().getID().getObjectID());
 			action.put(EquipActionConsts.TARGET_SLOT, "bag");
 
+			// useful for changing default target in equip action
+			action.put(EquipActionConsts.CLICKED, "");
+
 			StendhalClient.get().send(action);
 		}
 	}

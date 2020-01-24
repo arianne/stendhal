@@ -38,4 +38,6 @@ public interface EquipActionConsts {
 	double MAXDISTANCE = 0.25;
 	int MAX_CONTAINED_DEPTH = 25;
 
+	String CLICKED = "clicked";
+
 }

@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -49,6 +50,28 @@ public class EquipAction extends EquipmentAction {
 				return;
 			}
 
+		}
+
+		// try to move money to pouch by default
+		if (action.has(EquipActionConsts.CLICKED) && !action.get(EquipActionConsts.TARGET_SLOT).equals("pouch")
+				&& source.getEntityName().equals("money")) {
+			// check if money can be moved to pouch
+			// XXX: this check should be changed if we switch to containers
+			if (player.getFeature("pouch") != null && player.hasSlot("pouch")) {
+				final boolean moneyInBag = player.isEquippedItemInSlot("bag", "money");
+				final boolean moneyInPouch = player.isEquippedItemInSlot("pouch", "money");
+				// stack on pouch
+				if (moneyInPouch || (!moneyInPouch && !moneyInBag)) {
+					action.put(EquipActionConsts.TARGET_SLOT, "pouch");
+					if (action.has(Actions.TARGET_PATH)) {
+						// XXX: AntumDeluge: how to set the correct target path?
+						//action.put(Actions.TARGET_PATH, "pouch");
+
+						// XXX: AntumDeluge: just remove target path until I know how to set it correctly
+						action.remove(Actions.TARGET_PATH);
+					}
+				}
+			}
 		}
 
 		logger.debug("Checking destination");
