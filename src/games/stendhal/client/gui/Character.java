@@ -89,6 +89,7 @@ Inspectable {
 		// Compatibility. Show additional slots only if the user has those.
 		// This can be removed after a couple of releases (and specialSlots
 		// field moved to createLayout()).
+		/*
 		if (obj.hasSlot("belt")) {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
@@ -97,6 +98,7 @@ Inspectable {
 				}
 			});
 		}
+		*/
 
 		boolean hasSlot = obj.hasSlot("pouch");
 		if (hasSlot && !pouch.isVisible()) {
@@ -177,8 +179,10 @@ Inspectable {
 		specialSlots.add(pouch);
 		featureChangeListeners.add(pouch);
 
+		/*
 		panel = createItemPanel(itemClass, store, "belt", "data/gui/slot-key.png");
 		specialSlots.add(panel);
+		*/
 
 		setContent(content);
 	}
