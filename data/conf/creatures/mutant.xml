@@ -160,30 +160,26 @@
     </ai>
   </creature>
 
-<!-- disabled
   <creature name="poison shroom">
     <type class="mutant" subclass="poison_shroom_small" tileid="mutant.png:6"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
-      <speed value="1.0"/>
+      <atk value="234"/>
+      <def value="116"/>
+      <hp value="146"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
-    <level value="1"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
+    <level value="47"/>
+    <experience value="1460"/>
+    <respawn value="1800"/> <!-- 9 minutes -->
     <corpse name="humanoid"/>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
       <profile name="strategy" params=",outfit_changer(hand_to_hand;poison_shroom_small;poison_shroom),"/>
     </ai>
   </creature>
--->
 
   <creature name="werewolf">
     <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
