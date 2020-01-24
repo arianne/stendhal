@@ -138,7 +138,6 @@
     <equips>
     </equips>
     <ai>
-      <profile name="non offensive"/>
       <profile name="animal"/>
       <profile name="coward"/>
       <profile name="patrolling"/>
@@ -167,7 +166,6 @@
     <equips>
     </equips>
     <ai>
-      <profile name="non offensive"/>
       <profile name="animal"/>
       <profile name="coward"/>
       <profile name="patrolling"/>
@@ -477,7 +475,6 @@
         <sound value="horse-snort-01"/>
       </says>
       <profile name="animal"/>
-      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -607,7 +604,6 @@
         <sound value="horse-snort-01"/>
       </says>
       <profile name="animal"/>
-      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -736,7 +732,6 @@
         <sound value="elephant-1" />
         <sound value="elephant-2" />
       </says>
-      <profile name="non offensive"/>
       <profile name="animal"/>
       <profile name="coward"/>
       <profile name="patrolling"/>
@@ -871,7 +866,6 @@
     <equips/>
     <ai>
       <profile name="brave"/>
-      <profile name="non offensive"/>
       <profile name="animal"/>
       <profile name="patrolling"/>
       <profile name="rare"/>
@@ -904,7 +898,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
-      <profile name="non offensive"/>
       <profile name="patrolling"/>
       <profile name="rare"/>
     </ai>
@@ -934,7 +927,6 @@
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
-      <profile name="non offensive"/>
       <profile name="heal" params="10,50"/>
       <profile name="rare"/>
       <profile name="patrolling"/>

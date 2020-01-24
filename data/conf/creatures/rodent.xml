@@ -28,7 +28,6 @@
         <sound value="mouse-2"/>
       </says>
       <profile name="animal"/>
-      <profile name="non offensive"/>
       <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
