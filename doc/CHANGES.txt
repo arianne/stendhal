@@ -12,6 +12,7 @@ Changelog
   - pelt (ingredient to make money pouch)
   - imperial ring (+1 ATK)
 - new enemies:
+  - poison shroom
   - tiny scarab
   - water scarab
 - new enemy drops
