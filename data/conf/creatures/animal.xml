@@ -1075,7 +1075,7 @@
 
 <!-- disabled
   <creature name="white unicorn">
-    <type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:10"/>
+    <type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:8"/>
     <description></description>
     <attributes>
       <atk value="1"/>
@@ -1123,7 +1123,7 @@
   </creature>
 
   <creature name="golden unicorn">
-    <type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:8"/>
+    <type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:10"/>
     <description></description>
     <attributes>
       <atk value="1"/>
