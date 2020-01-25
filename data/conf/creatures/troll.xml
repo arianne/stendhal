@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
+
 
   <!-- START: cyclops -->
 
   <creature name="cyclops">
-    <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
+    <type class="giant" subclass="cyclops" tileid="troll.png:3"/>
     <description>You see a cyclops. It just has one eye.</description>
     <attributes>
       <atk value="125"/>
@@ -45,6 +47,7 @@
   </creature>
 
   <!-- END: cyclops -->
+
 
   <!-- START: troll -->
 
@@ -159,5 +162,6 @@
   </creature>
 
   <!-- END: troll -->
+
 
 </creatures>
