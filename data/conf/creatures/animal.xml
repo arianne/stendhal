@@ -1009,20 +1009,19 @@
     </ai>
   </creature>
 
-<!-- disabled
   <creature name="polar bear">
     <type class="animal" subclass="polar_bear" tileid="animal.png:3"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
-      <speed value="0.4"/>
+      <atk value="225"/>
+      <def value="51"/>
+      <hp value="185"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="1"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
+    <level value="22"/>
+    <experience value="325"/>
+    <respawn value="1220"/> <!-- 6.1 minutes -->
     <corpse name="animal"/>
     <drops>
     </drops>
@@ -1030,7 +1029,6 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="ROOOOAAAAR!"/>
         <sound value="bear-01"/>
         <sound value="bear-02"/>
         <sound value="bear-03"/>
@@ -1040,7 +1038,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
--->
 
   <!-- END: ursidae -->
 
