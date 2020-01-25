@@ -173,7 +173,7 @@
   <!-- START: ice -->
 
   <creature name="legendary ice elemental">
-    <type class="elemental_legendary" subclass="elemental_legendary_ice" tileid="elemental_legendary.png:0"/>
+    <type class="elemental_legendary" subclass="elemental_legendary_ice" tileid="elemental.png:8"/>
     <description>You see a Legendary Elemental of Ice... </description>
     <attributes>
       <atk value="800"/>
