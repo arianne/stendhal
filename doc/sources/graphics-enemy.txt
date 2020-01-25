@@ -33,7 +33,7 @@ fallen_angel.png    Svetlana Kushnariova (Cabbit), johnny_automatic, Jordan Irwi
 data/sprites/monsters/animal/
 
 babybear.*            Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/159
-bat.png               bagzie; OGA BY 3.0; https://opengameart.org/node/26447
+bat*.png              bagzie; OGA BY 3.0; https://opengameart.org/node/26447
 bear.png              ScratchIO, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/100779
 black_bear.png        ScratchIO, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/100779
 boar.png              Daniel Eddeland (daneeklu), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83210, https://opengameart.org/node/11629

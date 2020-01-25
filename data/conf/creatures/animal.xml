@@ -244,21 +244,20 @@
     </ai>
   </creature>
 
-<!--
   <creature name="giant bat">
     <type class="animal" subclass="bat_giant" tileid="animal.png:5"/>
-    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+    <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
+      <atk value="700"/>
+      <def value="150"/>
+      <hp value="1475"/>
+      <speed value="0.8"/>
+      <size value="2,2"/>
     </attributes>
-    <level value="1"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
-   	<corpse name="animal"/>
+    <level value="150"/>
+    <experience value="33501"/>
+    <respawn value="12000"/> <!-- 60 minutes -->
+   	<corpse name="winged_2x2" width="2" height="2"/>
     <drops>
     </drops>
     <equips>
@@ -277,18 +276,18 @@
 
   <creature name="giant killer bat">
     <type class="animal" subclass="bat_giant_red" tileid="animal.png:6"/>
-    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+    <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
+      <atk value="752"/>
+      <def value="161"/>
+      <hp value="1825"/>
+      <speed value="0.8"/>
+      <size value="2,2"/>
     </attributes>
-    <level value="1"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
-   	<corpse name="animal"/>
+    <level value="154"/>
+    <experience value="37090"/>
+    <respawn value="12000"/> <!-- 60 minutes -->
+   	<corpse name="winged_2x2" width="2" height="2"/>
     <drops>
     </drops>
     <equips>
@@ -304,7 +303,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
--->
 
   <!-- END: bat -->
 
