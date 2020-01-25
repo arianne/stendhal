@@ -1,0 +1,3 @@
+The following placeholder images can be deleted on or after 1.33 release:
+
+- woman_016_npc.png
