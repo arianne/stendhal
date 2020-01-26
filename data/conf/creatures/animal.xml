@@ -1216,18 +1216,101 @@
     </ai>
   </creature>
 
-  <!-- new pegusus: ebony, ivory, bronze, baby, etc. -->
-
-<!-- disabled
-  <creature name="ebony pegasus">
-  </creature>
-
-  <creature name="ivory pegasus">
+  <creature name="baby pegasus">
+    <type class="mythical_being" subclass="pegasus_baby" tileid="mythical_being.png:11"/>
+    <description></description>
+    <attributes>
+      <atk value="427"/>
+      <def value="128"/>
+      <hp value="1000"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="126"/>
+    <experience value="20756"/>
+    <respawn value="7400"/> <!-- 37 minutes -->
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
   </creature>
 
   <creature name="bronze pegasus">
+    <type class="mythical_being" subclass="pegasus_bronze" tileid="mythical_being.png:12"/>
+    <description></description>
+    <attributes>
+      <atk value="870"/>
+      <def value="201"/>
+      <hp value="4800"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="280"/>
+    <experience value="151000"/>
+    <respawn value="50000"/> <!-- 250 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
   </creature>
--->
+
+  <creature name="ivory pegasus">
+    <type class="mythical_being" subclass="pegasus_ivory" tileid="mythical_being.png:13"/>
+    <description></description>
+    <attributes>
+      <atk value="895"/>
+      <def value="225"/>
+      <hp value="5000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="285"/>
+    <experience value="158000"/>
+    <respawn value="52000"/> <!-- 260 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="ebony pegasus">
+    <type class="mythical_being" subclass="pegasus_ebony" tileid="mythical_being.png:14"/>
+    <description></description>
+    <attributes>
+      <atk value="1001"/>
+      <def value="259"/>
+      <hp value="5200"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="290"/>
+    <experience value="162000"/>
+    <respawn value="54000"/> <!-- 270 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
 
   <!-- END: mythical -->
 
