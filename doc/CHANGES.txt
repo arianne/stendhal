@@ -19,6 +19,13 @@ Changelog
   - tiny scarab
   - water scarab
   - water demon
+  - white unicorn
+  - black unicorn
+  - golden unicorn
+  - baby pegasus
+  - bronze pegasus
+  - ivory pegasus
+  - ebony pegasus
 - new enemy drops
   - imperial ring
     - imperial veteran (0.017)
