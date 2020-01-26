@@ -1073,27 +1073,26 @@
     </ai>
   </creature>
 
-<!-- disabled
   <creature name="white unicorn">
     <type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:8"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
+      <atk value="801"/>
+      <def value="206"/>
+      <hp value="2500"/>
       <speed value="1.0"/>
-      <size value="1,1"/>
+      <size value="3,2"/>
     </attributes>
     <level value="250"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
-    <corpse name="animal"/>
+    <experience value="125000"/>
+    <respawn value="36000"/> <!-- 180 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
     <drops>
     </drops>
     <equips/>
     <ai>
       <profile name="brave"/>
-      <profile name="animal"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1102,22 +1101,22 @@
     <type class="mythical_being" subclass="unicorn_black" tileid="mythical_being.png:9"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
+      <atk value="821"/>
+      <def value="221"/>
+      <hp value="2750"/>
       <speed value="1.0"/>
-      <size value="1,1"/>
+      <size value="3,2"/>
     </attributes>
     <level value="275"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
-    <corpse name="animal"/>
+    <experience value="150000"/>
+    <respawn value="40000"/> <!-- 200 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
     <drops>
     </drops>
     <equips/>
     <ai>
       <profile name="brave"/>
-      <profile name="animal"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1126,26 +1125,25 @@
     <type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:10"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
+      <atk value="865"/>
+      <def value="263"/>
+      <hp value="3000"/>
       <speed value="1.0"/>
-      <size value="1,1"/>
+      <size value="3,2"/>
     </attributes>
     <level value="300"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
-    <corpse name="animal"/>
+    <experience value="175000"/>
+    <respawn value="44000"/> <!-- 220 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
     <drops>
     </drops>
     <equips/>
     <ai>
       <profile name="brave"/>
-      <profile name="animal"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
--->
 
   <creature name="centaur">
     <type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
