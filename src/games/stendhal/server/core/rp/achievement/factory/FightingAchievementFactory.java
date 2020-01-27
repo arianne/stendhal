@@ -16,14 +16,18 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.constants.KillType;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.KilledRareCreatureCondition;
 import games.stendhal.server.core.rp.achievement.condition.KilledSharedAllCreaturesCondition;
 import games.stendhal.server.core.rp.achievement.condition.KilledSoloAllCreaturesCondition;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
+import games.stendhal.server.entity.player.Player;
 /**
  * Factory for fighting achievements
  *
@@ -49,6 +53,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 
 	public static final String ID_WEREWOLF = "fight.general.werewolf";
 	public static final int COUNT_WEREWOLF = 500;
+
+	// enemies required for Serenade the Siren
+	public static final String[] ENEMIES_MERMAIDS = {
+			"amethyst mermaid", "emerald mermaid", "ruby mermaid", "sapphire mermaid"
+	};
+	public static final String ID_MERMAIDS = "fight.general.mermaids";
+	public static final int COUNT_MERMAIDS = 10000;
 
 
 	@Override
@@ -96,6 +107,22 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				ID_WEREWOLF, "Silver Bullet", "Kill 500 werewolves",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_WEREWOLF, "werewolf")));
+
+		fightingAchievements.add(createAchievement(
+				ID_MERMAIDS, "Serenade the Siren", "Kill 10,000 gem mermaids",
+				Achievement.HARD_BASE_SCORE, true,
+				new ChatCondition() {
+					@Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+						int kills = 0;
+
+						for (final String mermaid: ENEMIES_MERMAIDS) {
+							kills += player.getSoloKill(mermaid) + player.getSharedKill(mermaid);
+						}
+
+						return kills >= COUNT_MERMAIDS;
+					}
+				}));
 
 		return fightingAchievements;
 	}

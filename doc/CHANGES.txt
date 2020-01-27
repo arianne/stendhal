@@ -49,6 +49,7 @@ Changelog
   - Silver Bullet: kill 500 werewolves (medium score)
   - Herbal Practitioner: harvest 20 of each type of herb found growing in Faiumoni
   - It's Happy Hour Somewhere: purchase 100 bottles of beer & 100 glasses of wine
+  - Serenade the Siren: kill 10,000 gem mermaids
 
 *grapics*
 - made dark dagger image more distinct from night dagger
