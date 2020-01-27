@@ -7,6 +7,8 @@ ConversationStates = luajava.bindClass("games.stendhal.server.entity.npc.Convers
 ConversationPhrases = luajava.bindClass("games.stendhal.server.entity.npc.ConversationPhrases")
 CollisionAction = luajava.bindClass("games.stendhal.server.entity.CollisionAction")
 SkinColor = luajava.bindClass("games.stendhal.common.constants.SkinColor")
+Direction = luajava.bindClass("games.stendhal.common.Direction")
+DaylightPhase = luajava.bindClass("games.stendhal.server.core.rp.DaylightPhase")
 
 
 --- Helper function for creating ChatCondition instances.
