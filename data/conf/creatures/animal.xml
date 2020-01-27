@@ -1112,6 +1112,7 @@
     <respawn value="40000"/> <!-- 200 minutes -->
     <corpse name="animal_2x2" width="3" height="2"/>
     <drops>
+      <item value="turtle shell ring" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips/>
     <ai>
