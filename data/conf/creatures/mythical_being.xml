@@ -485,16 +485,89 @@
     </ai>
   </creature>
 
-  <!-- new centaur: fire, ice, etc -->
-
-<!-- disabled
-  <creature name="fire centaur">
+  <creature name="solar centaur">
+    <type class="mythical_being" subclass="centaur_solar" tileid="mythical_being.png:15"/>
+    <description></description>
+    <attributes>
+      <atk value="893"/>
+      <def value="124"/>
+      <hp value="3100"/>
+      <speed value="0.9"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="201"/>
+    <experience value="53001"/>
+    <respawn value="14000"/> <!-- 70 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="fire" value="1.2"/>
+      <susceptibility type="ice" value="0.8"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="archer"/>
+    </ai>
   </creature>
 
-  <creature name="ice centaur">
+  <creature name="glacier centaur">
+    <type class="mythical_being" subclass="centaur_glacier" tileid="mythical_being.png:16"/>
+    <description></description>
+    <attributes>
+      <atk value="899"/>
+      <def value="131"/>
+      <hp value="3400"/>
+      <speed value="0.9"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="206"/>
+    <experience value="55500"/>
+    <respawn value="15000"/> <!-- 75 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <abilities>
+      <damage type="ice"/>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.8"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="archer"/>
+    </ai>
   </creature>
--->
+
+  <creature name="centaur king">
+    <type class="mythical_being" subclass="centaur_king" tileid="mythical_being.png:17"/>
+    <description></description>
+    <attributes>
+      <atk value="920"/>
+      <def value="150"/>
+      <hp value="4000"/>
+      <speed value="0.9"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="219"/>
+    <experience value="64000"/>
+    <respawn value="16000"/> <!-- 80 minutes -->
+    <corpse name="animal_2x2" width="3" height="2"/>
+    <drops>
+    </drops>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="archer"/>
+    </ai>
+  </creature>
 
   <!-- END: centaur -->
+
 
 </creatures>

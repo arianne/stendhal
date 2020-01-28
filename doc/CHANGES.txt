@@ -26,6 +26,9 @@ Changelog
   - bronze pegasus
   - ivory pegasus
   - ebony pegasus
+  - solar centaur
+  - glacier centaur
+  - centaur king
 - new enemy drops
   - imperial ring
     - imperial veteran (0.017)

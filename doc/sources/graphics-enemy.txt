@@ -388,7 +388,7 @@ balrog.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 data/sprites/monsters/mythical_being/
 
 amethyst_mermaid.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-centaur.png           bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79289
+centaur*.png          bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79289
 emerald_mermaid.png   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 mermaid.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 pegasus*.png          bluecarrot16, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/77472
