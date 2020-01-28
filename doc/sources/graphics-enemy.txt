@@ -211,7 +211,8 @@ master_giant.*            Svetlana Kushnariova (Cabbit), LokiF, David E. Gervais
 data/sprites/monsters/gnome/
 
 cavalryman.*     Daniel Eddeland (daneeklu), isaiah658, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/11629, https://opengameart.org/node/78045
-gnome*.png       isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
+gnome.png        isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
+gnome*_giant.*   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 infantryman.png  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 woman_gnome.png  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 
