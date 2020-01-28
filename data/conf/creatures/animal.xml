@@ -860,12 +860,12 @@
       <def value="200"/>
       <hp value="4300"/>
       <speed value="0.8"/>
-      <size value="3,2"/>
+      <size value="5,3"/>
     </attributes>
     <level value="191"/>
     <experience value="51000"/>
     <respawn value="17600"/> <!-- 88 minutes -->
-    <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2" harmless="bag_2x2" width="5" height="3"/>
     <drops>
     </drops>
     <ai>
