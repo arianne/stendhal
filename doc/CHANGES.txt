@@ -29,6 +29,7 @@ Changelog
   - solar centaur
   - glacier centaur
   - centaur king
+  - woolly mammoth
 - new enemy drops
   - imperial ring
     - imperial veteran (0.017)

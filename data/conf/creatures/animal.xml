@@ -852,31 +852,32 @@
     </ai>
   </creature>
 
-<!-- disabled
-  <creature name="wooly mammoth">
-    <type class="animal" subclass="wooly mammoth" tileid="animal.png:7"/>
+  <creature name="woolly mammoth">
+    <type class="animal" subclass="elephant_bull" tileid="animal.png:7"/>
     <description></description>
     <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <hp value="1"/>
-      <speed value="1.0"/>
+      <atk value="690"/>
+      <def value="200"/>
+      <hp value="4300"/>
+      <speed value="0.8"/>
       <size value="3,2"/>
     </attributes>
-    <level value="190"/>
-    <experience value="1"/>
-    <respawn value="1000"/>
+    <level value="191"/>
+    <experience value="51000"/>
+    <respawn value="17600"/> <!-- 88 minutes -->
     <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2"/>
     <drops>
     </drops>
-    <equips/>
     <ai>
+      <says>
+        <sound value="elephant-1" />
+        <sound value="elephant-2" />
+      </says>
       <profile name="brave"/>
-      <profile name="animal"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
--->
 
   <!-- END: pachyderm -->
 
