@@ -853,7 +853,7 @@
   </creature>
 
   <creature name="woolly mammoth">
-    <type class="animal" subclass="elephant_bull" tileid="animal.png:7"/>
+    <type class="animal" subclass="woolly_mammoth" tileid="animal.png:7"/>
     <description></description>
     <attributes>
       <atk value="690"/>
