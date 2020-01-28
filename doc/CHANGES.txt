@@ -30,6 +30,8 @@ Changelog
   - glacier centaur
   - centaur king
   - woolly mammoth
+  - giant gnome
+  - giant gnomess
 - new enemy drops
   - imperial ring
     - imperial veteran (0.017)

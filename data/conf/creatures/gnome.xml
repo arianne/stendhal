@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
-  <!-- START: gnome -->
+
+  <!-- START: regular -->
 
   <creature name="gnome">
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
@@ -72,7 +74,8 @@
     </ai>
   </creature>
 
-  <!-- END: gnome -->
+  <!-- END: regular -->
+
 
   <!-- START: militant -->
 
@@ -146,13 +149,56 @@
 
   <!-- END: militant -->
 
+
   <!-- START: giant -->
 
-<!-- disabled
   <creature name="giant gnome">
+    <type class="gnome" subclass="gnome_giant" tileid="gnome.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="322"/>
+      <def value="79"/>
+      <hp value="720"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="74"/>
+    <experience value="4750"/>
+    <respawn value="2420"/> <!-- 12.1 minutes -->
+    <corpse name="humanoid"/>
+    <drops>
+    </drops>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
   </creature>
--->
+
+  <creature name="giant gnomess">
+    <type class="gnome" subclass="gnomess_giant" tileid="gnome.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="332"/>
+      <def value="83"/>
+      <hp value="760"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="76"/>
+    <experience value="5200"/>
+    <respawn value="2520"/> <!-- 12.6 minutes -->
+    <corpse name="humanoid"/>
+    <drops>
+    </drops>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
 
   <!-- END: giant -->
+
 
 </creatures>
