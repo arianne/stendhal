@@ -74,6 +74,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new KirdnehItemAchievementFactory());
 		list.add(new MithrilbourghEnemyArmyAchievementFactory());
 		list.add(new CommerceAchievementFactory());
+		list.add(new KillBlordroughsAchievementFactory());
 		return list;
 	}
 }

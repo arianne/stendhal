@@ -49,5 +49,7 @@ public enum Category {
 	/** kirdneh item quest */
 	QUEST_KIRDNEH_ITEM,
 	/** mithrilbourgh kill enemy army quest */
-	QUEST_MITHRILBOURGH_ENEMY_ARMY;
+	QUEST_MITHRILBOURGH_ENEMY_ARMY,
+	/** kill blordroughs quest */
+	QUEST_KILL_BLORDROUGHS;
 }

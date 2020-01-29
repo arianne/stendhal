@@ -62,7 +62,9 @@ import games.stendhal.server.util.TimeUtil;
  * REPETITIONS: <ul><li> once a week.</ul>
  */
 
- public class KillBlordroughs extends AbstractQuest {
+public class KillBlordroughs extends AbstractQuest {
+
+	private static KillBlordroughs instance;
 
 	private static final String QUEST_NPC = "Mrotho";
 	private static final String QUEST_SLOT = "kill_blordroughs";
@@ -81,6 +83,21 @@ import games.stendhal.server.util.TimeUtil;
 			"blordrough captain",
 			"blordrough general"
 			);
+
+
+	/**
+	 * Get the static instance.
+	 *
+	 * @return
+	 * 		KillBlordroughs
+	 */
+	public static KillBlordroughs getInstance() {
+		if (instance == null) {
+			instance = new KillBlordroughs();
+		}
+
+		return instance;
+	}
 
 	/**
 	 * function returns list of blordrough creatures.
@@ -273,7 +290,7 @@ import games.stendhal.server.util.TimeUtil;
 	 * @return
 	 * 		Number of times player has completed quest.
 	 */
-	private int getCompletedCount(final Player player) {
+	public int getCompletedCount(final Player player) {
 		int completedCount = 0;
 
 		if (player.getQuest(QUEST_SLOT) != null) {
