@@ -42,7 +42,7 @@
 
 
 	<zone name="0_sikhw_desert_s2_w2" level="0" x="499104" y="500768"
-		file="Level 0/sikhw/desert_se.tmx">
+		file="Level 0/sikhw/desert_s2_w2.tmx">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
