@@ -373,7 +373,7 @@ chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumD
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
 enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-golden_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_helmet.png           Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338, https://freesvg.org/knight-helmet-vector-image
 golden_horned_barbute.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 horned_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
