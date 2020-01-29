@@ -64,6 +64,7 @@ Changelog
 - restored old banana, grapes, pear, & watermelon images
 - new item images:
   - golden helmet
+  - viking helmet
 
 *webclient*
 - added support for rented signs and blackboards
