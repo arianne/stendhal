@@ -184,6 +184,8 @@ public class KillBlordroughsTest {
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
+
+		assertEquals(1, getCompletedCount());
 	}
 
 	@Test
@@ -211,5 +213,21 @@ public class KillBlordroughsTest {
 		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
+
+		assertEquals(1, getCompletedCount());
+	}
+
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 */
+	private int getCompletedCount() {
+		int completed = 0;
+		final String[] slots = player.getQuest("kill_blordroughs").split(";");
+		if (slots.length > 2) {
+			completed = Integer.parseInt(slots[slots.length - 1]);
+		}
+
+		return completed;
 	}
 }

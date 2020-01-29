@@ -238,9 +238,12 @@ import games.stendhal.server.util.TimeUtil;
 				shared = Integer.parseInt(temp);
 			}
 
-			sb.append(";"+solo);
-			sb.append(";"+shared);
+			sb.append(";" + solo);
+			sb.append(";" + shared);
 		}
+
+		sb.append(";" + getCompletedCount(player));
+
 		//player.sendPrivateText(sb.toString());
 		player.setQuest(QUEST_SLOT, sb.toString());
 	}
@@ -255,10 +258,36 @@ import games.stendhal.server.util.TimeUtil;
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 			.getItem("money");
 		money.setQuantity(50000);
-		player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
+
+		player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis() + ";" + Integer.toString(getCompletedCount(player) + 1));
 		player.equipOrPutOnGround(money);
 		player.addKarma(karmabonus);
 		player.addXP(500000);
+	}
+
+	/**
+	 * Checks how many times the player has completed the quest.
+	 *
+	 * @param player
+	 * 		Player to check.
+	 * @return
+	 * 		Number of times player has completed quest.
+	 */
+	private int getCompletedCount(final Player player) {
+		int completedCount = 0;
+
+		if (player.getQuest(QUEST_SLOT) != null) {
+			final String[] slots = player.getQuest(QUEST_SLOT).split(";");
+
+			// completion count was not previously tracked, so check if quest has been completed at least once
+			if (slots.length <= 2 && slots[0].equals("done")) {
+				completedCount = 1;
+			} else if (slots.length > 2) {
+				completedCount = Integer.parseInt(slots[slots.length - 1]);
+			}
+		}
+
+		return completedCount;
 	}
 
 	/**
@@ -365,6 +394,8 @@ import games.stendhal.server.util.TimeUtil;
 
 	@Override
 	public List<String> getHistory(final Player player) {
+		final int completedCount = getCompletedCount(player);
+
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
@@ -372,11 +403,15 @@ import games.stendhal.server.util.TimeUtil;
 		res.add("I have met Mrotho in Ados barracks.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.contains("done")) {
-			res.add("I killed blordroughs and get reward from "+QUEST_NPC);
-			return res;
+			res.add("I killed blordroughs and get reward from " + QUEST_NPC);
 		} else {
-			res.add("I killed "+Integer.toString(getKilledCreaturesNumber(player))+" blordroughs (need "+Integer.toString(killsnumber)+ ").");
+			res.add("I killed " + Integer.toString(getKilledCreaturesNumber(player)) + " blordroughs (need " + Integer.toString(killsnumber) + ").");
 		}
+
+		if (completedCount > 0) {
+			res.add("I have slain " + Integer.toString(completedCount) + " blordrough armies.");
+		}
+
         return res;
 	}
 
