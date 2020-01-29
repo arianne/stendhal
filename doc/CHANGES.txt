@@ -65,6 +65,7 @@ Changelog
 - new item images:
   - golden helmet
   - viking helmet
+  - aventail
 
 *webclient*
 - added support for rented signs and blackboards

@@ -366,7 +366,7 @@ zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
 
-aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+aventail.*                  Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
 black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
