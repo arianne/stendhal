@@ -743,6 +743,305 @@
 	</zone>
 
 
+<!--  Level -5 -->
+
+        <zone name="-5_deniran_lost_caves_n2_w" level="-5" x="499104" y="499744"
+		file="Level -5/deniran/lost_caves_n2_w.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_nw" level="-5" x="499104" y="499872"
+		file="Level -5/deniran/lost_caves_nw.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_w" level="-5" x="499104" y="500000"
+		file="Level -5/deniran/caves_w.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_sw" level="-5" x="499104" y="500128"
+		file="Level -5/deniran/caves_sw.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_n2" level="-5" x="499232" y="499744"
+		file="Level -5/deniran/lost_caves_n2.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_n" level="-5" x="499232" y="499872"
+		file="Level -5/deniran/lost_caves_n.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves" level="-5" x="499232" y="500000"
+		file="Level -5/deniran/caves.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_s" level="-5" x="499232" y="500128"
+		file="Level -5/deniran/caves_s.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_n2_e" level="-5" x="499360" y="499744"
+		file="Level -5/deniran/lost_caves_n2_e.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_ne" level="-5" x="499360" y="499872"
+		file="Level -5/deniran/lost_caves_ne.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_e" level="-5" x="499360" y="500000"
+		file="Level -5/deniran/caves_e.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_se" level="-5" x="499360" y="500128"
+		file="Level -5/deniran/caves_se.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_n2_e2" level="-5" x="499488" y="499744"
+		file="Level -5/deniran/lost_caves_n2_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_n_e2" level="-5" x="499488" y="499872"
+		file="Level -5/deniran/lost_caves_n_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_e2" level="-5" x="499488" y="500000"
+		file="Level -5/deniran/caves_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_caves_s_e2" level="-5" x="499488" y="500128"
+		file="Level -5/deniran/caves_s_e2.tmx">
+
+	</zone>
+
+
+<!--  Level -6 -->
+
+        <zone name="-6_deniran_lost_caves_n2_w" level="-6" x="499104" y="499744"
+		file="Level -6/deniran/lost_caves_n2_w.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_lost_caves_nw" level="-6" x="499104" y="499872"
+		file="Level -6/deniran/lost_caves_nw.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_w" level="-6" x="499104" y="500000"
+		file="Level -6/deniran/caves_w.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_sw" level="-6" x="499104" y="500128"
+		file="Level -6/deniran/caves_sw.tmx">
+
+	</zone>
+
+
+
+	<zone name="-6_deniran_lost_caves_n2" level="-6" x="499232" y="499744"
+		file="Level -6/deniran/lost_caves_n2.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_lost_caves_n" level="-6" x="499232" y="499872"
+		file="Level -6/deniran/lost_caves_n.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves" level="-6" x="499232" y="500000"
+		file="Level -6/deniran/caves.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_s" level="-6" x="499232" y="500128"
+		file="Level -6/deniran/caves_s.tmx">
+
+	</zone>
+
+
+
+	<zone name="-6_deniran_lost_caves_n2_e" level="-6" x="499360" y="499744"
+		file="Level -6/deniran/lost_caves_n2_e.tmx">
+
+	</zone>
+
+
+	<zone name="-5_deniran_lost_caves_ne" level="-5" x="499360" y="499872"
+		file="Level -5/deniran/lost_caves_ne.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_e" level="-6" x="499360" y="500000"
+		file="Level -6/deniran/caves_e.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_se" level="-6" x="499360" y="500128"
+		file="Level -6/deniran/caves_se.tmx">
+
+	</zone>
+
+
+
+	<zone name="-6_deniran_lost_caves_n2_e2" level="-6" x="499488" y="499744"
+		file="Level -6/deniran/lost_caves_n2_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_lost_caves_n_e2" level="-6" x="499488" y="499872"
+		file="Level -6/deniran/lost_caves_n_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_e2" level="-6" x="499488" y="500000"
+		file="Level -6/deniran/caves_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-6_deniran_caves_s_e2" level="-6" x="499488" y="500128"
+		file="Level -6/deniran/caves_s_e2.tmx">
+
+	</zone>
+
+
+<!--  Level -7 -->
+
+
+        <zone name="-7_deniran_atlantis_n2_w" level="-7" x="499104" y="499744"
+		file="Level -7/deniran/atlantis_n2_w.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_n2" level="-7" x="499104" y="499872"
+		file="Level -7/deniran/atlantis_n2.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_n_e2" level="-7" x="499104" y="500000"
+		file="Level -7/deniran/atlantis_n_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_mtn_n2_e2" level="-7" x="499104" y="500000"
+		file="Level -7/deniran/atlantis_mtn_n2_e2.tmx">
+	</zone>
+
+
+
+	<zone name="-7_deniran_atlantis_nw" level="-7" x="499232" y="499744"
+		file="Level -7/deniran/atlantis_nw.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_n" level="-7" x="499232" y="499872"
+		file="Level -7/deniran/atlantis_n.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_ne" level="-7" x="499232" y="500000"
+		file="Level -7/deniran/atlantis_ne.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_mtn_ne" level="-7" x="499232" y="500128"
+		file="Level -7/deniran/atlantis_mtn_ne.tmx">
+
+	</zone>
+
+
+
+	<zone name="-7_deniran_atlantis_w" level="-7" x="499360" y="499744"
+		file="Level -7/deniran/atlantis_w.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis" level="-7" x="499360" y="499872"
+		file="Level -7/deniran/atlantis.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_e" level="-7" x="499360" y="500000"
+		file="Level -7/deniran/atlantis_e.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_e" level="-7" x="499360" y="500128"
+		file="Level -7/deniran/atlantis_e.tmx">
+
+	</zone>
+
+
+
+	<zone name="-7_deniran_atlantis_sw" level="-7" x="499488" y="499744"
+		file="Level -7/deniran/atlantis_sw.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_s" level="-7" x="499488" y="499872"
+		file="Level -7/deniran/atlantis_s.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_se" level="-7" x="499488" y="500000"
+		file="Level -7/deniran/atlantis_se.tmx">
+
+	</zone>
+
+
+	<zone name="-7_deniran_atlantis_mtn_se" level="-7" x="499488" y="500128"
+		file="Level -7/deniran/atlantis_mtn_se.tmx">
+
+	</zone>
+
 
 	<!-- interiors -->
 
