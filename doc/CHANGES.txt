@@ -71,8 +71,8 @@ Changelog
   - trophy helmet
 
 *webclient*
-- added support for rented signs and blackboards
-- added support for blocks and house doors
+- added support for additional entities: rented signs, blackboards, blocks, house doors, doors
+- added online/offline icons on buddy list
 
 *scripting*
 - added Lua support
