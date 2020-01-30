@@ -13,52 +13,6 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 
-/*
-register("area",         InvisibleEntity2DView, InvisibleEntity);
-register("baby_dragon",  Pet2DView,             Pet);
-register("blackboard",   Sign2DView,            Sign);
-register("block",        LookableEntity2DView,  Block);
-register("cat",          Pet2DView,             Pet);
-register("chest",        Chest2DView,           Chest);
-register("corpse",       Corpse2DView,          Corpse);
-register("creature",     Creature2DView,        Creature);
-register("door",         Door2DView,            Door);
-register("entity",                              Entity);
-register("fire",         UseableEntity2DView,   Fire);
-register("game_board",   GameBoard2DView,       GameBoard);
-register("house_portal", HousePortal2DView,     HousePortal);
-
-register("item", "box", null, Box2DView,        Box);
-			boxes.xml:    <type class="box" subclass="present" tileid="-1"/>
-			boxes.xml:    <type class="box" subclass="basket" tileid="-1"/>
-			boxes.xml:    <type class="box" subclass="stocking" tileid="-1"/>
-
-register("item", "ring", null, UseableRing,     Ring2DView);
-register("item", "ring", "emerald-ring",              Ring
-register("item", "ring", "wedding", *,  UseableRing2DView);
-			rings.xml:    <type class="ring" subclass="medicinal_ring" tileid="-1"/>
-			rings.xml:    <type class="ring" subclass="antivenom_ring" tileid="-1"/>
-			rings.xml:    <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-			rings.xml:    <type class="ring" subclass="wedding" tileid="-1"/>
-			rings.xml:    <type class="ring" subclass="engagement_ring" tileid="-1"/>
-			rings.xml:    <type class="ring" subclass="emerald-ring" tileid="-1"/>
-
-register("looped_sound_source",              LoopedSoundSource);
-
-register("pet",              Pet2DView,      Pet);
-register("plant_grower",     PlantGrower2DView,     PlantGrower);
-register("player",           Player2DView,   Player);
-register("portal",           Portal2DView,   Portal);
-register("purple_dragon",    Pet2DView,      Pet);
-register("rented_sign",      Sign2DView,     Sign);
-register("sheep",            Sheep2DView,    Sheep);
-register("spell",            Spell2DView,    Spell);
-register("useable_entity",   UseableEntity2DView,    StatefulEntity);
-register("wall",             Wall2DView,             Wall);
-register("weather_entity",     *,                    InvisibleEntity);
-
- */
-
 /**
  * Unknown entity
  */
@@ -69,7 +23,9 @@ marauroa.rpobjectFactory["unknown"] = marauroa.util.fromProto(marauroa.rpobjectF
 		marauroa.rpobjectFactory["unknown"].proto.init.apply(this, arguments);
 		var that = this;
 		setTimeout(function() {
-			console.log("Unknown entity", that["_rpclass"], "at", marauroa.currentZoneName, that["x"], that["y"], "is", that);
+			if (that["_rpclass"]) {
+				console.log("Unknown entity", that["_rpclass"], "at", marauroa.currentZoneName, that["x"], that["y"], "is", that);
+			}
 		}, 1);
 	},
 
