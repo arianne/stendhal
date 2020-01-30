@@ -46,9 +46,9 @@ stendhal.ui.buddyList = {
 		for (var i = 0; i < buddies.length; i++) {
 			html += "<li class=" + buddies[i].status + "><img src=\"";
 			if (buddies[i].status == "online") {
-				html += "data/gui/buddy_online.png";
+				html += "/data/gui/buddy_online.png";
 			} else {
-				html += "data/gui/buddy_offline.png";
+				html += "/data/gui/buddy_offline.png";
 			}
 			html += "\"> " + stendhal.ui.html.esc(buddies[i].name) + "</li>";
 		}
