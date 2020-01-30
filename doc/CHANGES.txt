@@ -66,6 +66,7 @@ Changelog
   - golden helmet
   - viking helmet
   - aventail
+  - scroll eraser
 
 *webclient*
 - added support for rented signs and blackboards

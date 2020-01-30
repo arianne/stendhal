@@ -697,6 +697,6 @@ magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/84600
-scrolleraser.png      ???; ???; ??? (committed by kymara: e660779)
+scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/116893
 sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)
