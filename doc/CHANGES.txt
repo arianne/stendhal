@@ -67,6 +67,7 @@ Changelog
   - viking helmet
   - aventail
   - scroll eraser
+  - studded boots
 
 *webclient*
 - added support for rented signs and blackboards

@@ -108,7 +108,7 @@ red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            Daniel Cook; CC BY 3.0; https://lostgarden.home.blog/2006/07/08/more-free-game-graphics/
-studded_boots.png          Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347; re-color of chain_boots
+studded_boots.*            ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/108295
 xeno_boots.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 data/sprites/items/box/
