@@ -68,6 +68,7 @@ Changelog
   - aventail
   - scroll eraser
   - studded boots
+  - trophy helmet
 
 *webclient*
 - added support for rented signs and blackboards
