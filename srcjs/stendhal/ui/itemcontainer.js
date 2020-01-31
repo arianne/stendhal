@@ -155,10 +155,10 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 
 
 stendhal.ui.equip = {
-	slotNames: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet", "bag", "keyring", "portfolio"],
-	slotSizes: [   1,       1,      1,       1,        1,       1,       1,     1,      12,       8,         9   ],
+	slotNames: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet", "pouch", "bag", "keyring", "portfolio"],
+	slotSizes: [   1,       1,      1,       1,        1,       1,       1,     1,       1,      12,       8,         9     ],
 	slotImages: ["slot-helmet.png", "slot-shield.png", "slot-weapon.png", "slot-ring.png", "slot-armor.png", "slot-cloak.png",
-		"slot-legs.png", "slot-boots.png", null, "slot-key.png", "slot-portfolio.png"],
+		"slot-legs.png", "slot-boots.png", "slot-pouch.png", null, "slot-key.png", "slot-portfolio.png"],
 	counter: 0,
 
 	init: function() {
