@@ -200,4 +200,32 @@ stendhal.ui.equip = {
 	}
 };
 
+stendhal.ui.showSlot = function(id, show) {
+	var slot = document.getElementById(id);
+	var prevState = slot.style.display;
+
+	if (show === true) {
+		slot.style.display = "block";
+	} else {
+		slot.style.display = "none";
+	}
+
+	return prevState != slot.style.display;
+};
+
+stendhal.ui.showPouch = function(show) {
+	if (stendhal.ui.showSlot("pouch0", show)) {
+		// resize the inventory window
+		var equip = document.getElementById("equipment");
+		if (show) {
+			equip.style.height = "200px";
+		} else {
+			equip.style.height = "160px";
+		}
+	}
+}
+
 stendhal.ui.equip.init();
+
+// hide money pouch by default
+//stendhal.ui.showPouch(false);
