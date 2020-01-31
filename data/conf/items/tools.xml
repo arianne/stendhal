@@ -186,4 +186,22 @@
     </equipable>
   </item> -->
 
+  <item name="leather needle">
+    <type class="tool" subclass="leather_needle" tileid="-1"/>
+    <description>You see a heavy leather needle for working thick hide.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
