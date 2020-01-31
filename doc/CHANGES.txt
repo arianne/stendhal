@@ -37,6 +37,11 @@ Changelog
     - imperial veteran (0.017)
     - imperial elite archer (0.05)
   - insulated ring (cobra: 0.08)
+  - pelt
+    - deer (1.0)
+    - beaver (1.0)
+    - bear (2.0)
+    - black bear (4.0)
 - players can enable a new pouch slot to carry money
 - quest changes
   - items for Kirdneh Museum quest categorized for player level
