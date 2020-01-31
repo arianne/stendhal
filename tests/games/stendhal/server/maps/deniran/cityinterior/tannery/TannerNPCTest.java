@@ -18,6 +18,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,6 +44,7 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 	private static String FEATURE_SLOT;
 	private static int requiredMoneyLoot;
 	private static int serviceFee;
+	private static Map<String, Integer> requiredItems;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -65,6 +68,7 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		FEATURE_SLOT = configurator.getFeatureSlot();
 		requiredMoneyLoot = configurator.getRequiredMoneyLoot();
 		serviceFee = configurator.getServiceFee();
+		requiredItems = configurator.getRequiredItems();
 	}
 
 	private String getCurrentTimestamp() {
@@ -218,58 +222,63 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(
-				"Okay. I will need a pelt and my fee is " + Integer.toString(configurator.getServiceFee()) + " money."
-				+ " Please come back when you have that.",
+				configurator.sayRequiredItems("Okay. I will need [items]. Also, my fee is " + Integer.toString(configurator.getServiceFee())
+				+ " money. Please come back when you have that.", false),
 				getReply(tanner));
 		assertEquals("start", player.getQuest(QUEST_SLOT));
 
-		final String noItemsReply = configurator.sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in.");
+		final String noItemsReply = configurator.sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in.", true);
 
 		// player has none of the required items
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
 
-		// player has pelt only
-		PlayerTestHelper.equipWithItem(player, "pelt");
-
-		assertTrue(player.isEquipped("pelt"));
-		assertFalse(player.isEquipped("money", serviceFee));
-
-		en.step(player, "hi");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals(noItemsReply, getReply(tanner));
-
 		// player has money only
-		player.drop("pelt");
 		PlayerTestHelper.equipWithMoney(player, serviceFee);
 
-		assertFalse(player.isEquipped("pelt"));
+		for (final String itemName: requiredItems.keySet()) {
+			assertFalse(player.isEquipped(itemName));
+		}
 		assertTrue(player.isEquipped("money", serviceFee));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
 
-		// player has pelt & money but not enough
-		PlayerTestHelper.equipWithItem(player, "pelt");
-		player.drop("money");
+		// player has items only
+		player.drop("money", serviceFee);
+		for (final String itemName: requiredItems.keySet()) {
+			final int quant = requiredItems.get(itemName);
+			if (quant == 1) {
+				PlayerTestHelper.equipWithItem(player, itemName);
+			} else if (quant > 1) {
+				PlayerTestHelper.equipWithStackableItem(player, itemName, quant);
+			}
 
-		assertTrue(player.isEquipped("pelt"));
+			assertTrue(player.isEquipped(itemName, quant));
+		}
+		assertFalse(player.isEquipped("money", serviceFee));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(noItemsReply, getReply(tanner));
+
+		// player has items & money but not enough
+		PlayerTestHelper.equipWithMoney(player, serviceFee - 1);
 		assertEquals(serviceFee - 1, player.getNumberOfEquipped("money"));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
 
-		// player has pelt & enough money
+		// player has items & enough money
 		PlayerTestHelper.equipWithItem(player, "money");
-
 		assertEquals(serviceFee, player.getNumberOfEquipped("money"));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
-		assertEquals("Ah, you find the items to make the pouch. Would you like me to begin?", getReply(tanner));
+		assertEquals("Ah, you found the items to make the pouch. Would you like me to begin?", getReply(tanner));
 
 		en.step(player, "no");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());

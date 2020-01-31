@@ -11,21 +11,24 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.tannery;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.DaylightPhase;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
@@ -34,7 +37,6 @@ import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.DaylightCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -44,6 +46,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.player.Player;
 
 public class TannerNPC implements ZoneConfigurator {
 
@@ -62,10 +65,10 @@ public class TannerNPC implements ZoneConfigurator {
 	// XXX: disable when testing done
 	private static final int TAN_TIME = 2; // 2 minute for testing
 	// required items to make pouch
-	//private static final String requiredItems = "pelt=1,money=" + Integer.toString(serviceFee);
-	private static final Map<String, Integer> requiredItems = new HashMap<String, Integer>() {{
+	private static final Map<String, Integer> requiredItems = new LinkedHashMap<String, Integer>() {{
+		put("leather needle", 1);
+		put("leather thread", 2);
 		put("pelt", 1);
-		put("money", serviceFee);
 	}};
 
 
@@ -105,9 +108,22 @@ public class TannerNPC implements ZoneConfigurator {
 		final ChatCondition nightCondition = new DaylightCondition(DaylightPhase.NIGHT);
 		final ChatCondition dayCondition = new NotCondition(nightCondition);
 		// required items to begin tanning
-		final ChatCondition hasItemsCondition = new AndCondition(
-				new PlayerHasItemWithHimCondition("pelt"),
-				new PlayerHasItemWithHimCondition("money", serviceFee));
+		final ChatCondition hasItemsCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				for (final String itemName: requiredItems.keySet()) {
+					if (!player.isEquipped(itemName, requiredItems.get(itemName))) {
+						return false;
+					}
+				}
+
+				if (!player.isEquipped("money", serviceFee)) {
+					return false;
+				}
+
+				return true;
+			}
+		};
 		// player can start quest if they have looted 1,000,000 money & they have not already started or finished the quest
 		final ChatCondition canStartQuestCondition = new AndCondition(
 				new QuestNotStartedCondition(QUEST_SLOT),
@@ -117,6 +133,17 @@ public class TannerNPC implements ZoneConfigurator {
 		final ChatCondition isTanningCondition = new AndCondition(
 				new QuestActiveCondition(QUEST_SLOT),
 				new QuestNotInStateCondition(QUEST_SLOT, "start"));
+		// action to give items & start
+		final ChatAction startAction = new ChatAction() {
+			@Override
+			public void fire(Player player, Sentence sentence, EventRaiser npc) {
+				for (final String itemName: requiredItems.keySet()) {
+					player.drop(itemName, requiredItems.get(itemName));
+				}
+
+				player.drop("money", serviceFee);
+			}
+		};
 
 
 		// cannot talk to tanner at night
@@ -155,8 +182,8 @@ public class TannerNPC implements ZoneConfigurator {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.IDLE,
-				"Okay. I will need a pelt and my fee is " + Integer.toString(serviceFee) + " money."
-				+ " Please come back when you have that.",
+				sayRequiredItems("Okay. I will need [items]. Also, my fee is " + Integer.toString(serviceFee) + " money."
+				+ " Please come back when you have that.", false),
 				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player does not want money pouch
@@ -176,7 +203,7 @@ public class TannerNPC implements ZoneConfigurator {
 						new NotCondition(hasItemsCondition)),
 				ConversationStates.IDLE,
 				//"Bring me a pelt and " + Integer.toString(serviceFee) + " money and I will make a pouch to carry your money in.",
-				sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in."),
+				sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in.", true),
 				null);
 
 		// player returns with items
@@ -187,7 +214,7 @@ public class TannerNPC implements ZoneConfigurator {
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						hasItemsCondition),
 				ConversationStates.QUESTION_1,
-				"Ah, you find the items to make the pouch. Would you like me to begin?",
+				"Ah, you found the items to make the pouch. Would you like me to begin?",
 				null);
 
 		tanner.add(ConversationStates.QUESTION_1,
@@ -198,8 +225,7 @@ public class TannerNPC implements ZoneConfigurator {
 				//"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(TAN_TIME, "hour") + ".",
 				"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(TAN_TIME, "minute") + ".",
 				new MultipleActions(
-						new DropItemAction("pelt"),
-						new DropItemAction("money", serviceFee),
+						startAction,
 						new SetQuestToTimeStampAction(QUEST_SLOT)));
 
 		tanner.add(ConversationStates.QUESTION_1,
@@ -244,18 +270,23 @@ public class TannerNPC implements ZoneConfigurator {
 				null);
 	}
 
-	public String sayRequiredItems(final String msg) {
+	public String sayRequiredItems(final String msg, final boolean includeFee) {
 		final StringBuilder sb = new StringBuilder();
 
+		final Map<String, Integer> tempList = new LinkedHashMap<String, Integer>(requiredItems);
+		if (includeFee) {
+			tempList.put("money", serviceFee);
+		}
+
 		int idx = 0;
-		for (final String key: requiredItems.keySet()) {
-			if (idx == requiredItems.size() - 1) {
+		for (final String key: tempList.keySet()) {
+			if (idx == tempList.size() - 1) {
 				sb.append("and ");
 			}
 
-			sb.append(Integer.toString(requiredItems.get(key)) + " " + key);
+			sb.append(Integer.toString(tempList.get(key)) + " " + key);
 
-			if (idx < requiredItems.size() - 1) {
+			if (idx < tempList.size() - 1) {
 				sb.append(", ");
 			}
 
