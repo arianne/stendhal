@@ -282,6 +282,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("sword",1);
 
 		// tool
+		items.put("leather needle",1);
 		items.put("pick",1);
 		items.put("gold pan",1);
 	}
