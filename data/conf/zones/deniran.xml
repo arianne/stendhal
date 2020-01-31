@@ -945,7 +945,7 @@
 <!--  Level -7 -->
 
 
-        <zone name="-7_deniran_atlantis_n2_w" level="-7" x="499104" y="499744"
+    <zone name="-7_deniran_atlantis_n2_w" level="-7" x="499104" y="499744"
 		file="Level -7/deniran/atlantis_n2_w.tmx">
 
 	</zone>
@@ -963,7 +963,7 @@
 	</zone>
 
 
-	<zone name="-7_deniran_atlantis_sw" level="-7" x="499104" y="500000"
+	<zone name="-7_deniran_atlantis_sw" level="-7" x="499104" y="500128"
 		file="Level -7/deniran/atlantis_sw.tmx">
 	</zone>
 
