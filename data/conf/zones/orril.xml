@@ -997,6 +997,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
         <parameter name="class">skulldoor_n</parameter>
         <parameter name="key">lich gold key</parameter>
       </implementation>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="54" y="57" ref="locked_inside_left">
