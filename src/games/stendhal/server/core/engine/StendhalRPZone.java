@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -161,12 +163,24 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private final int DOWN_FE = 13;
 	private final int DOWN_FS = 14;
 	private final int DOWN_FW = 15;
+	private final int UP_FN_CM = 16;
+	private final int UP_FE_CM = 17;
+	private final int UP_FS_CM = 18;
+	private final int UP_FW_CM = 19;
+	private final int DOWN_FN_CM = 20;
+	private final int DOWN_FE_CM = 21;
+	private final int DOWN_FS_CM = 22;
+	private final int DOWN_FW_CM = 23;
 	private final List<Integer> stairsUp = new ArrayList<Integer>() {{
 		add(2);
 		add(UP_FN);
 		add(UP_FE);
 		add(UP_FS);
 		add(UP_FW);
+		add(UP_FN_CM);
+		add(UP_FE_CM);
+		add(UP_FS_CM);
+		add(UP_FW_CM);
 	}};
 	private final List<Integer> stairsDown = new ArrayList<Integer>() {{
 		add(3);
@@ -174,6 +188,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		add(DOWN_FE);
 		add(DOWN_FS);
 		add(DOWN_FW);
+		add(DOWN_FN_CM);
+		add(DOWN_FE_CM);
+		add(DOWN_FS_CM);
+		add(DOWN_FW_CM);
 	}};
 
 	public StendhalRPZone(final String name) {
@@ -692,6 +710,26 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case UP_FW:
 			case DOWN_FW:
 				portal.setFaceDirection(Direction.LEFT);
+				break;
+			case UP_FN_CM:
+			case DOWN_FN_CM:
+				portal.setFaceDirection(Direction.UP);
+				portal.put(MOVE_CONTINUOUS, "");
+				break;
+			case UP_FE_CM:
+			case DOWN_FE_CM:
+				portal.setFaceDirection(Direction.RIGHT);
+				portal.put(MOVE_CONTINUOUS, "");
+				break;
+			case UP_FS_CM:
+			case DOWN_FS_CM:
+				portal.setFaceDirection(Direction.DOWN);
+				portal.put(MOVE_CONTINUOUS, "");
+				break;
+			case UP_FW_CM:
+			case DOWN_FW_CM:
+				portal.setFaceDirection(Direction.LEFT);
+				portal.put(MOVE_CONTINUOUS, "");
 				break;
 			default:
 				break;

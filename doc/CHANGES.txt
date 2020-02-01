@@ -92,6 +92,9 @@ Changelog
 *scripting*
 - added Lua support
 
+*fixes*
+- support for stairs portals in Tiled with continuous movement
+
 
 
 1.32
