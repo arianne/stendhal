@@ -192,10 +192,12 @@ Walk on, and you will be returned to the land of the living...
         <parameter name="class">skulldoor_s</parameter>
         <parameter name="key">golden key</parameter>
       </implementation>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="50" y="12" ref="locked_inside">
       <destination zone="int_pathfinding" ref="locked_outside" />
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>

@@ -1256,6 +1256,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
         <parameter name="class">skulldoor_w</parameter>
         <parameter name="key">minotaur key</parameter>
       </implementation>
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>
