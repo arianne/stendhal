@@ -220,6 +220,7 @@
 
     <portal x="8" y="1" ref="4">
       <destination zone="-1_orril_castle" ref="1" />
+      <attribute name="face">south</attribute>
     </portal>
   </zone>
 
@@ -925,6 +926,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
         <parameter name="class">skulldoor_s</parameter>
         <parameter name="key">dungeon silver key</parameter>
       </implementation>
+      <attribute name="face">south</attribute>
     </portal>
 
   </zone>
@@ -942,10 +944,12 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
 
     <portal x="19" y="22" ref="0">
       <destination zone="int_orril_castle_0" ref="4" />
+      <attribute name="face">south</attribute>
     </portal>
 
     <portal x="20" y="22" ref="1">
       <destination zone="int_orril_castle_0" ref="4" />
+      <attribute name="face">south</attribute>
     </portal>
   </zone>
 
@@ -983,6 +987,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
 
     <portal x="70" y="38" ref="0">
       <destination zone="-1_orril_castle_w" ref="0" />
+      <attribute name="face">south</attribute>
     </portal>
 
     <portal x="54" y="53" ref="locked_outside">
