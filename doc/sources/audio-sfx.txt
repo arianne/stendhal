@@ -100,7 +100,7 @@ kitten-meow-2.*           videog; CC0; http://freesound.org/people/videog/sounds
 kitten-meow-3.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
 kitten-mew-1.*            Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81250
 kitten-purr-1.*           Belhene; CC0; http://freesound.org/people/Belhene/sounds/157837/
-kobold-groan-[01-03].*    shadeslayer99; CC0; https://freesound.org/people/shadeslayer99/sounds/161194/
+kobold_bark-[01-04].*     apolloaiello; CC0; https://freesound.org/people/apolloaiello/sounds/276267/
 kobold-snort-01.*         Bob H; CC BY 3.0; https://www.youtube.com/watch?v=gmFFv-rXLeU
 lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 lamia_hiss-[01-02].*      poots; CC BY 3.0; https://freesound.org/people/poots/sounds/71031/

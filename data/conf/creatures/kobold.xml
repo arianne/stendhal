@@ -33,9 +33,10 @@
       <says>
         <noise state="idle follow fight" value="Grrrr! Wooof!"/>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -74,9 +75,10 @@
       <says>
         <noise state="idle follow fight" value="Woorf wer warf!"/>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -114,9 +116,10 @@
       <says>
         <noise state="idle follow fight" value="Wssss! Warf wit!"/>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -156,9 +159,10 @@
     <ai>
       <says>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -198,9 +202,10 @@
     <ai>
       <says>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -235,9 +240,10 @@
       <says>
         <noise state="idle follow fight" value="Hug?"/>
         <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
+        <sound value="kobold_bark-01"/>
+        <sound value="kobold_bark-02"/>
+        <sound value="kobold_bark-03"/>
+        <sound value="kobold_bark-04"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>

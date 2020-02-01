@@ -45,6 +45,8 @@ Changelog
       - beaver (1.0)
       - bear (2.0)
       - black bear (4.0)
+  - sounds
+    - replaced kobold moan sounds with bark
 - players can enable a new pouch slot to carry money
 - quest changes
   - items for Kirdneh Museum quest categorized for player level
