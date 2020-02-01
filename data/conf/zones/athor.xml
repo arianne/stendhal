@@ -1250,7 +1250,6 @@ You get your stake back when there is a draw. If you win, you get the double of 
       <destination zone="0_athor_island" ref="pool" />
     </portal>
 
-    <!-- FIXME: LockedDoor doesn't require "move.continuous" attribute -->
     <portal x="124" y="118" ref="labyrinth_locked_door">
       <destination zone="-1_athor_island_e" ref="labyrinth2" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -46,6 +48,8 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		door.addAttribute("class", Type.STRING);
 		door.addAttribute("locked", Type.STRING, Definition.HIDDEN);
 		door.addAttribute("open", Type.FLAG);
+		door.addAttribute(ATTR_FACE, Type.STRING);
+		door.addAttribute(MOVE_CONTINUOUS, Type.FLAG, Definition.VOLATILE);
 	}
 
 	/**
@@ -155,6 +159,9 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	public void onUsedBackwards(final RPEntity user, final boolean hadPath) {
 		keepOpen();
 		notifyWorldAboutChanges();
+
+		// call super method to handle facing direction & continuous movement
+		super.onUsedBackwards(user, hadPath);
 	}
 
 	@Override

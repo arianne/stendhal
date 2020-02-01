@@ -918,7 +918,6 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
       </implementation>
     </entity>
 
-    <!-- FIXME: continuous movement causes glitches with LockedDoor entities -->
     <portal x="69" y="37" ref="0">
       <destination zone="-2_orril_lich_palace" ref="0" />
       <implementation
@@ -986,7 +985,6 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
       <destination zone="-1_orril_castle_w" ref="0" />
     </portal>
 
-    <!-- FIXME: continuous movement potentially causes issues with server.entity.mapstuff.portal.Door entities -->
     <portal x="54" y="53" ref="locked_outside">
       <destination zone="-2_orril_lich_palace" ref="locked_inside_left" />
       <implementation
