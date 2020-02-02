@@ -333,6 +333,9 @@
     <respawn value="23000"/> <!-- 115 minutes -->
     <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2" width="2" height="2"/>
     <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="greater antidote" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
     </equips>

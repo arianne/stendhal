@@ -261,6 +261,8 @@
     <respawn value="12000"/> <!-- 60 minutes -->
    	<corpse name="winged_2x2" width="2" height="2"/>
     <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -291,6 +293,10 @@
     <respawn value="12000"/> <!-- 60 minutes -->
    	<corpse name="winged_2x2" width="2" height="2"/>
     <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="claymore" quantity="[1,1]" probability="0.1"/>
+      <item value="royal cloak" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -839,6 +845,9 @@
     <respawn value="3400"/> <!-- 17 minutes -->
     <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2" />
     <drops>
+      <item value="money" quantity="[1,100]" probability="100.0"/>
+      <item value="meat" quantity="[1,10]" probability="100.0"/>
+      <item value="ham" quantity="[2,8]" probability="70.0"/>
     </drops>
     <equips>
     </equips>
@@ -869,6 +878,8 @@
     <respawn value="17600"/> <!-- 88 minutes -->
     <corpse name="animal_2x2" harmless="bag_2x2" width="5" height="3"/>
     <drops>
+      <item value="money" quantity="[10,250]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
     </drops>
     <ai>
       <says>
