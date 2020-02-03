@@ -42,6 +42,40 @@
     </ai>
   </creature>
 
+  <creature name="neo kraken">
+	<type class="huge_animal" subclass="kraken_neo" tileid="huge_animal.png:0"/>
+	<description></description>
+	<attributes>
+	  <atk value="992"/>
+	  <def value="122"/>
+	  <hp value="3000"/>
+	  <speed value="1"/>
+	  <size value="3,2"/>
+	</attributes>
+	<level value="180"/>
+	<experience value="57400"/>
+    <respawn value="18600"/> <!-- 93 minutes -->
+    <corpse name="animal_2x2" harmless="bag_2x2" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[50,100]" probability="33.0"/>
+      <item value="mega potion" quantity="[1,2]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="1.5"/>
+    </abilities>
+    <ai>
+      <profile name="poisonous" params="15,deadly poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="shark">
     <type class="giant_animal" subclass="shark" tileid="giant_animal.png:2"/>
     <description>A shark! Best move cautiously.</description>

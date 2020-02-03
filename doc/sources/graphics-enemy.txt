@@ -234,7 +234,7 @@ data/sprites/monsters/huge_animal/
 black_death.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chaos_*_dragonrider.*     Kimmo Rundelin (kiheru), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/77901
 golden_death.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-kraken.png                Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
+kraken*.png               Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
 thing*                    IndigoFenix, olonu; CC BY 3.0/4.0; https://opengameart.org/node/84760
 
 data/sprites/monsters/human/
