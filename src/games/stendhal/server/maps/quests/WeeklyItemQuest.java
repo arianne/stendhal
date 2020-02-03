@@ -208,6 +208,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("ice sword", 1);
 		addMed("night dagger", 1);
 
+		// tool (medium difficulty)
+		addMed("scroll eraser", 1);
+
 
 		// levels 151+
 
