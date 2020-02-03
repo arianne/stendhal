@@ -863,6 +863,37 @@
     </ai>
   </creature>
 
+  <creature name="musth elephant">
+    <type class="animal" subclass="elephant_musth" tileid="animal.png:16"/>
+    <description>You see a musth elephant. It is highly aggressive and unpredictable.</description>
+    <attributes>
+      <atk value="218"/>
+      <def value="219"/>
+      <hp value="2250"/>
+      <speed value="0.8"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="86"/>
+    <experience value="7175"/>
+    <respawn value="3400"/> <!-- 17 minutes -->
+    <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2" />
+    <drops>
+      <item value="ham" quantity="[4,10]" probability="75.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
+        <sound value="elephant-1" />
+        <sound value="elephant-2" />
+      </says>
+      <profile name="offensive"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="woolly mammoth">
     <type class="animal" subclass="woolly_mammoth" tileid="animal.png:7"/>
     <description></description>

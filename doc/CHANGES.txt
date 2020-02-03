@@ -13,6 +13,7 @@ Changelog
   - imperial ring (+1 ATK)
 - new enemies:
   - bull elephant
+  - musth elephant
   - giant bat
   - giant killer bat
   - poison shroom
