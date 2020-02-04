@@ -9,6 +9,7 @@ ambiance-restaurant-1.ogg    stephan; public domain; http://soundbible.com/1664-
 bongos.*                     MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
 christmastree.*              Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
 come_to_rest.ogg             Storyteller; GPL
+dark_quest.ogg               Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
 deep_forest.ogg              Storyteller; GPL
 dungeon_entrance.ogg         Storyteller; GPL
 eerie_curious.ogg            Leerie; CC BY 3.0; https://opengameart.org/node/43367

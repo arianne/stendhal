@@ -78,6 +78,7 @@ Changelog
   - Imperialist Lackey: finish Kill Blordroughs quest 5 times (medium score)
 - new music
   - -1_semos_yeti_cave
+  - levels -2 & -3 of Semos Catacombs
 
 *grapics*
 - made dark dagger image more distinct from night dagger

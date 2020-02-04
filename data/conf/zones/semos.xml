@@ -4287,8 +4287,16 @@ Southwest: Or'ril Castle and Fado City
       <parameter name="color">#806283</parameter>
       <parameter name="blend_method">bleach</parameter>
     </attributes>
-    <portal x="9" y="6" ref="dragon_portal_1">
 
+    <!-- Music -->
+    <entity x="1" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">dark_quest</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+
+    <portal x="9" y="6" ref="dragon_portal_1">
       <destination zone="-2_semos_catacombs" ref="dragon_portal_2" />
       <attribute name="hidden" />
     </portal>
@@ -4496,10 +4504,13 @@ Southwest: Or'ril Castle and Fado City
       <destination zone="-2_semos_catacombs" ref="downstairs" />
     </portal>
 
+    <!-- Music -->
     <entity x="1" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-        <parameter name="sound">the_forsaken_mine</parameter>
+        <!--<parameter name="sound">the_forsaken_mine</parameter>-->
+        <parameter name="sound">dark_quest</parameter>
+        <parameter name="volume">80</parameter>
       </implementation>
     </entity>
 
