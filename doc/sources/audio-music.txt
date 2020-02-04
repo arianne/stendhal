@@ -30,4 +30,5 @@ the_old_tavern.ogg           Storyteller; GPL
 town-01.ogg                  Alex McCulloch (Pro Sensory); CC0; https://opengameart.org/node/77586
 town-02.ogg                  LarsG; CC BY 3.0+; https://opengameart.org/node/75534
 town-03.ogg                  Geomancer; CC0; https://opengameart.org/node/98225
+up_in_the_sky.ogg            Memoraphile @ You're Perfect Studio; OGA BY 3.0; https://opengameart.org/node/87006
 warriors_fight.ogg           Storyteller; GPL

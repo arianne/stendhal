@@ -79,6 +79,7 @@ Changelog
 - new music
   - -1_semos_yeti_cave
   - levels -2 & -3 of Semos Catacombs
+  - Kikareukin Caves
 
 *grapics*
 - made dark dagger image more distinct from night dagger
