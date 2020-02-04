@@ -20,6 +20,7 @@ market_day.ogg               RandomMind; CC0; https://opengameart.org/node/93955
 medieval_harp.ogg            Storyteller; GPL
 mystical_aura.ogg            Storyteller; GPL
 new_hope.ogg                 Storyteller; GPL
+night_town.ogg               Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
 ohhowjoyfully.*              Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
 sacred_moments.ogg           Storyteller; GPL
 sewers.ogg                   Norien; GPL
