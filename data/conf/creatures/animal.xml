@@ -879,7 +879,6 @@
     <respawn value="1680"/> <!-- 8.4 minutes -->
     <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2" />
     <drops>
-      <item value="money" quantity="[1,100]" probability="100.0"/>
       <item value="meat" quantity="[1,10]" probability="100.0"/>
       <item value="ham" quantity="[2,8]" probability="70.0"/>
     </drops>
@@ -943,7 +942,6 @@
     <respawn value="17600"/> <!-- 88 minutes -->
     <corpse name="animal_2x2" harmless="bag_2x2" width="5" height="3"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
     </drops>
     <ai>
