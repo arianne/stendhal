@@ -12,6 +12,7 @@ come_to_rest.ogg             Storyteller; GPL
 deep_forest.ogg              Storyteller; GPL
 dungeon_entrance.ogg         Storyteller; GPL
 eerie_curious.ogg            Leerie; CC BY 3.0; https://opengameart.org/node/43367
+ice_cave.*                   Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
 kings_feast.ogg              RandomMind; CC0; https://opengameart.org/node/88287
 lost_in_the_fog.ogg          Storyteller; GPL
 market_day.ogg               RandomMind; CC0; https://opengameart.org/node/93955
