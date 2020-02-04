@@ -200,6 +200,9 @@
       <susceptibility type="fire" value="2.0"/>
     </abilities>
     <ai>
+      <says>
+        <noise state="idle follow fight" value="I will freeze you to the bone."/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
