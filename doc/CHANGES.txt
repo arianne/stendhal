@@ -82,6 +82,7 @@ Changelog
   - Kikareukin Caves
   - Deniran City
   - Deniran Forest
+  - Deniran Caves
 
 *grapics*
 - made dark dagger image more distinct from night dagger

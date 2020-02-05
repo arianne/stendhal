@@ -57,3 +57,38 @@ for _, z in pairs(zones) do
 		logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
 	end
 end
+
+
+-- caves
+
+local zones = {
+	"deniran_lost_caves_n2_w",
+	"deniran_lost_caves_nw",
+	"deniran_caves_w",
+	"deniran_caves_sw",
+	"deniran_lost_caves_n2",
+	"deniran_lost_caves_n",
+	"deniran_caves",
+	"deniran_caves_s",
+	"deniran_lost_caves_n2_e",
+	"deniran_lost_caves_ne",
+	"deniran_caves_e",
+	"deniran_caves_se",
+	"deniran_lost_caves_n2_e2",
+	"deniran_lost_caves_n_e2",
+	"deniran_caves_e2",
+	"deniran_caves_s_e2",
+}
+
+for _, z in pairs(zones) do
+	-- music intentionally not set on level -4 because of singing mermaids
+	for _, level in pairs({"-1", "-2", "-3", "-5", "-6"}) do
+		local zone = level .. "_" .. z
+
+		if game:setZone(zone) then
+			setZoneMusic("casket", 85)
+		else
+			logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
+		end
+	end
+end

@@ -7,6 +7,7 @@ ambiance-church-1.ogg        Natalie; public domain; http://soundbible.com/253-C
 ambiance-demon-1.ogg         Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
 ambiance-restaurant-1.ogg    stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
 bongos.*                     MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
+casket.ogg                   Tozan; CC0; https://opengameart.org/node/68090
 christmastree.*              Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
 come_to_rest.ogg             Storyteller; GPL
 dark_quest.ogg               Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
