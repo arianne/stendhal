@@ -20,3 +20,19 @@ end
 newAction = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.action." .. classname, ...)
 end
+
+--- Sets the background music for the zone.
+--
+-- @param filename
+-- 		File basename excluding ".ogg" extensions.
+-- @param volume
+-- 		Volume level (default: 100)
+setZoneMusic = function(filename, volume)
+	-- default volume
+	if volume == nil then
+		volume = 100
+	end
+
+	local musicSource = luajava.newInstance("games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource", filename, 10000, volume)
+	game:add(musicSource)
+end
