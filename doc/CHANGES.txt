@@ -60,8 +60,9 @@ Changelog
     - leather needle
     - pelt (5)
   - items added to Kirdneh Museum quest
-    - medicinal ring
-    - scroll eraser
+    - medicinal ring (medium)
+    - scroll eraser (medium)
+    - ugmash (easy)
 - new achievements:
   - Westerner: visit all outside zones in Deniran region (easy score)
   - Spelunker: visit all underground zones in Deniran region (hard score)

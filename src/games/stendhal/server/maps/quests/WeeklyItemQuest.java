@@ -121,6 +121,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 		// club (easy difficulty)
 		addEasy("skull staff", 1);
+		addEasy("ugmash", 1);
 
 		// drink (easy difficulty)
 		addEasy("fish soup", 3);
