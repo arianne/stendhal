@@ -83,6 +83,7 @@ Changelog
   - Deniran City
   - Deniran Forest
   - Deniran Caves
+  - Atlantis
 
 *grapics*
 - made dark dagger image more distinct from night dagger

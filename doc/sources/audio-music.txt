@@ -1,37 +1,38 @@
 
 data/music/
 
-a_weird_place.ogg            Storyteller; GPL
-adventurers_wish.ogg         Storyteller; GPL
-ambiance-church-1.ogg        Natalie; public domain; http://soundbible.com/253-Church-Bells-Ringing.html
-ambiance-demon-1.ogg         Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
-ambiance-restaurant-1.ogg    stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
-bongos.*                     MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
-casket.ogg                   Tozan; CC0; https://opengameart.org/node/68090
-christmastree.*              Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
-come_to_rest.ogg             Storyteller; GPL
-dark_quest.ogg               Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
-deep_forest.ogg              Storyteller; GPL
-dungeon_entrance.ogg         Storyteller; GPL
-eerie_curious.ogg            Leerie; CC BY 3.0; https://opengameart.org/node/43367
-ice_cave.*                   Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
-kings_feast.ogg              RandomMind; CC0; https://opengameart.org/node/88287
-lost_in_the_fog.ogg          Storyteller; GPL
-market_day.ogg               RandomMind; CC0; https://opengameart.org/node/93955
-medieval_harp.ogg            Storyteller; GPL
-mystical_aura.ogg            Storyteller; GPL
-new_hope.ogg                 Storyteller; GPL
-night_town.ogg               Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
-ohhowjoyfully.*              Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
-sacred_moments.ogg           Storyteller; GPL
-sewers.ogg                   Norien; GPL
-snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
-spooky_forest.ogg            Bendzer; CC BY 4.0; https://opengameart.org/node/94146
-the_forsaken_mine.ogg        Storyteller; GPL
-the_magical_tower.ogg        Storyteller; GPL
-the_old_tavern.ogg           Storyteller; GPL
-town-01.ogg                  Alex McCulloch (Pro Sensory); CC0; https://opengameart.org/node/77586
-town-02.ogg                  LarsG; CC BY 3.0+; https://opengameart.org/node/75534
-town-03.ogg                  Geomancer; CC0; https://opengameart.org/node/98225
-up_in_the_sky.ogg            Memoraphile @ You're Perfect Studio; OGA BY 3.0; https://opengameart.org/node/87006
-warriors_fight.ogg           Storyteller; GPL
+a_weird_place.ogg               Storyteller; GPL
+adventurers_wish.ogg            Storyteller; GPL
+ambiance-church-1.ogg           Natalie; public domain; http://soundbible.com/253-Church-Bells-Ringing.html
+ambiance-demon-1.ogg            Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
+ambiance-restaurant-1.ogg       stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
+bongos.*                        MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
+casket.ogg                      Tozan; CC0; https://opengameart.org/node/68090
+christmastree.*                 Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+come_to_rest.ogg                Storyteller; GPL
+dark_quest.ogg                  Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
+deep_forest.ogg                 Storyteller; GPL
+dungeon_entrance.ogg            Storyteller; GPL
+eerie_curious.ogg               Leerie; CC BY 3.0; https://opengameart.org/node/43367
+ice_cave.*                      Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
+kings_feast.ogg                 RandomMind; CC0; https://opengameart.org/node/88287
+lost_in_the_fog.ogg             Storyteller; GPL
+market_day.ogg                  RandomMind; CC0; https://opengameart.org/node/93955
+medieval_harp.ogg               Storyteller; GPL
+mystical_aura.ogg               Storyteller; GPL
+new_hope.ogg                    Storyteller; GPL
+night_town.ogg                  Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
+ohhowjoyfully.*                 Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
+sacred_moments.ogg              Storyteller; GPL
+settlement_of_the_frontier.ogg  Tad Miller; CC BY 4.0; https://opengameart.org/node/109342
+sewers.ogg                      Norien; GPL
+snowflakelittlewhiteskirt.*     Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
+spooky_forest.ogg               Bendzer; CC BY 4.0; https://opengameart.org/node/94146
+the_forsaken_mine.ogg           Storyteller; GPL
+the_magical_tower.ogg           Storyteller; GPL
+the_old_tavern.ogg              Storyteller; GPL
+town-01.ogg                     Alex McCulloch (Pro Sensory); CC0; https://opengameart.org/node/77586
+town-02.ogg                     LarsG; CC BY 3.0+; https://opengameart.org/node/75534
+town-03.ogg                     Geomancer; CC0; https://opengameart.org/node/98225
+up_in_the_sky.ogg               Memoraphile @ You're Perfect Studio; OGA BY 3.0; https://opengameart.org/node/87006
+warriors_fight.ogg              Storyteller; GPL
