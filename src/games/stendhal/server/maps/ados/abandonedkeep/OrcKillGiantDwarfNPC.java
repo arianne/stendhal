@@ -67,7 +67,7 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!");
 				addJob("I wait for able bodied warriors to defeat the remaining dwarves in our area.");
-				addReply("dwarves", "When we got here, we had to run the dwarves from this area. There are only a few left. Will you help us with this #task?");
+				addReply("dwarf", "When we got here, we had to run the dwarves from this area. There are only a few left. Will you help us with this #task?");
 				addHelp("When we got here, we had to run the dwarves from this area. There are only a few left. Will you help us with this #task?");
 				addGoodbye("I wish you well on your journeys.");
 			}
