@@ -27,6 +27,9 @@
  <tileset firstgid="195" name="animal" tilewidth="32" tileheight="32" tilecount="32" columns="8">
   <image source="../../tileset/logic/creature/animal.png" width="256" height="128"/>
  </tileset>
+ <tileset firstgid="227" name="huge_animal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+  <image source="../../tileset/logic/creature/huge_animal.png" width="256" height="64"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2dbW7bMBBEeYTeJRdma/ueQdEGUBxLoszdndnl/HhAUBnRcN+I9YfcfrTWPi7wK5gr2YQ/cr8uuvbXJNq7/HMh/+uCcj/r//cA6NlmoKp7daCm/yPXffPzvakH1dyf+dd+wO191r2F/5U7kNn7kf9bkP+I9VVx7rWeEb892D1zH1b0b3ntM86A3b/neqL/3meehfz/42Hs3Hp28u/r3+t5fqa5sPiPWFPUa7zMM6rsv8rsKqxB/rlnJv9rzy57/pX8e8wwc3Y0CP/Ws8yWlwmkf6u5ZsnJCNq9xWzZ87GDds/s32K+/T9oz1U7wHwN95bDf+YOsLjO7p+hAxaZ0TOsQEb/6JlVhd2/qNMH9NoEtgfoNQlsDzzy6T75PD3wdv/8nSlUB/obj38G7dujA57uGfaBKw6fH3sE2jub/8jvTVz1fxvw9ux3BLT72Q54u2fYC0acvXL7l8fBsbPfKf+cHdg7dn/hdRT5/0nU9yctu/EuaP/vdsDT/8jzgd7wHTjyOgLaezb/THvAmdsz0M5nOmB97lG3DN4t/KNdz3bA49xMbj16MPI6kgGU/20H0DOY8T/yWgCd2aIH6HxM7Hl+BTqrVQfQ2dh45foV6JwWXUBnYebZ9xZ0NiGEEEIIIYRYhd70emxLxvdbLbx/gc6F8s3yGWq0/0db1z/r5+iR/regM7F4f7Ta/vsO6Fws/ivvAX0HdC4G9/3kODq7tf8s919E+V9hL+g7RJ0feS+Nlf/sXejNzv2798oz3VO3ag8YnXv3YMZxH3gM2k0191EdeLTj/6Nk9X0A5d2jA3v+95x+3b+6qn+0d+sOaO/P69+iA3r+l9e9RQfkPrd7b/+j37WOcPBng/zz7AGWsx31H9kBtFvWDnjM9Yr/iB6gnaI6cNYJr3lecX9vfh1Ae0R1YGRf8Jzp1WvfYx9A+2PrQOQ8R/33F3822wO0s6o98PBvvQ+gPVXtgFXWPddd7mk7YJ1z6/nW8l/7kXkq+D/aBzK5R+Vidz+aMftzPmQ2ZvfRHUX4Z8jHPMvK/plyss5Q/nN1gDETo3/2vCxZKvrPlDvL+dnnGLEeZOaM86q4DkT+rNdL1Fpm8rz7nkbkOir5t1zPbI7Z97U8vUSB8G8xu6vn6+379w0t39dGO8zo/93ZWVzjZ59rojq9kvcortzHkPXzDbm/5r+379f7Y+dxFf2jfTD4X3EPQHvI2IGZc6J9y738y/1xB7bHe7P/N4nQ7uX/J0d+j45l7AB61gLXAa9s6Flmhs39bCb0PDPC4t0qD3qeGWFxb5kFPdPMIGfO0kORq3vqQA08/FfoQqW1IP1nm13FNTH4Z59bxTWx+meaW9V1odfPOrOq68o0j+h5odfD3AX0PDxnhc6foQvoGXjNDJ0zSx/QaxbYjqDXI3B9QGcXuB6g8wpcD9AZBaYH6ExCCCGEEEIIIYQQIp5PLLPquQAAAQA=
@@ -54,7 +57,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3dwQ3AIAgAQOd3snarLuCjJkSgvZuAFwiBOAYAAJGu7AAAXrizAwAACOZ9AwAAAMCXmHcBwJr9PIBz9CUAAABUpm8FAIDaZnYAAAAAAAD8irszOrIDRQXyJ8Ae9RsAAACATOZTQGdyGAAAAAAAAAAAAABQjT1nAAAAAABOM5vux58OALHUwjxqGgAAAAAAAAAAAACRHicvkIkAAAEA
+   H4sIAAAAAAAAA+3dyw2AMAgA0M7vZDqHi3j10IMmjXx8bwJOUAikYwAAsNIeHQDAA0d0AABwc0YHQAveNwAAAAB0Yt4FAHP28wC+oy8BAAAgM30rAADktkUHAAAAAADAr7g7oyI7UGQgfwK8o34DAABADf5DoyvzKaAyOQy8UwEAAAAAAAAAAACysecMAAAAdOWuFSAvs+l6/OkAsJZaGEdNAwAAAAAAAAAAAGClC/GoQoQAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.4">

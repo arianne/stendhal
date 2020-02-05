@@ -48,6 +48,12 @@
  <tileset firstgid="279" name="dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
+ <tileset firstgid="286" name="huge_animal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+  <image source="../../tileset/logic/creature/huge_animal.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="302" name="huge_animal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+  <image source="../../tileset/logic/creature/huge_animal.png" width="256" height="64"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2aO5IbQQxDlTvZ+x/Rp3DiwOWSNP0hCYBEgGhVNQAe1Bpp5+f1ev1YlmVZlmVZlmVZlmVZFol+LQjt0cKx9x566pS9t6CvKPbegJ6i2Zu/ljL4ewM6Mv9+ecw/Lz/arwJ71p4mZTX/mpysmRl66Z6POTtLP52zMedn6qd7PrbsjN10zsaQW6GfjpkiM2d3lp31919lbwDNNIN/9vuniv2/is6DZvkt803GrE1V9vaOf+RZgGD6Lsenv3/KmpWNqbOTXhj1LcOKqjmp8FfZwC3/d1mz36dMn4vKG4hi/39WtnMa3SPan/mfacev2gay2Hfgf+pbaQNZ7NX5337PVOEfsYHbDtH5b9mrb2CHcXf+p+yjNoDaSMZWzf97tyuvm8CfZQO37L/lyPh8NX8d/rcbqNhC9LWU+Eewr9gAuqdO/COZR/F/eh2aqTL/LN4nWRTuCSt7ZvOTzX9VKvyZOkMwX8lykpX5c4DxPYPk/i3PaV7Ge0HmcxPNPSMzE390F934r+RmOQPQPaD9IbKz/B7A8D5g8FidfxL/6Rs44V+1A/Ofyx/dAbPfiuzmz+u3Ijf6DGDpgdVzRW7UBth6YPbOwD9yA6xdqOTIyJvNH91FBn+2fLd5M9ijO6jiz5b31H9X9lX8GfJX52TKztRLlmeWfErsER1lemVlz86/qisFj4y5u+yA2Rtz7i47YPRk/nV9s/kx/7reGTyYv/lHaPe3IDQ/hu4ZPERzX90Aml9F9089dGafmZ1Fq92Y/2z+0WchmvvOBiJzs2mnk6ceFdmv7MD81/83qsp+4gZ2uzjpU4X7zQbQHJn5K2rKveBJF2g26A1M5z9lB9353/bAvoObzJ9y716PWVH8GXeQce7dXpNJp+yfNsHMfLeDjO++DNrp9Ck/egPZXexmQrOt5o/eQGUXHTawm2WVK2IDqE5U+Z/mWfmsN39u/reZnjaAuB9k6YZ9A5G5Vr8Lqp0B0T2hmWfv2/xn81/dQ8W1GbtCM6/m/24Llddk7Wsae6RYOzN/rS0we2PKoSTG3syfbwOMnsy/pmtGT+af3zmbH/Ov7ZzJi/nPk/nPlvnPlvnPlvnPlvnPVRZ7b+BMas+vmn8O/0/Ptqnx9wb2uVc+z1TB3xu4567Of2cLU3YzkT3qHGE7oxieYUazZBUL/8zroztWEYp/9v7QvaqpegNmzyl1/uj+ukhxA+jOukmJP7qrrspib/5aYuaP7maCfPZbZj9bbPzRfUwUC390D1OF5I/ObuH4o3Nbe/zf7cDc9RV172b+mjL72TL72TL/2erI/w9yRJhpAAABAA==
@@ -75,7 +81,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3bwQ3AIAgAQDtH99+yJh3BxKJIc/f1w0eEgK0BAAAAAAAAAAAAAADs07MDAAAACPQMzvVAkM89rGWUVwFYQ/4FAAAAAAA4k70HAAC7LQAAAFCN+QYAQF3mMgAAAAAA8J3dCQB28N4AAJWoXQAAgD/yDwc4gVwEAEAm9SgAQCx7VkCU+8qOAACACvShAAAAAAAAAMCsFxP03i4AAAEA
+   H4sIAAAAAAAAA+3bMQrAIAwAQPuOQv//yBa6uoggYhp7t7q4GE1MSgEAAAAAAAAAAAAAAFjnid4AAADARHdnXQ4E8ZzDXHpxlb7riN4BkJH4CwAAQCZqYAAA/Im+BwAAvS0AAACQjf8NAIC8/MsAAKuZFQMAAGBHeicAWMF9AwBk4u0CAADsyBwO8AViEQAAkbxH28zPAgAj9FkBs5xyEgAqalVAizwUAAAAAAAAABj1ArYHE8oAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.42">
