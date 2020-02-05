@@ -103,7 +103,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 								return;
 							}
-							raiser.say("Would you like to help again clearing this Keep of our enemies, those #dwarves?");
+							raiser.say("Would you like to help again clearing this Keep of our enemies, those dwarves?");
 						} else {
 							raiser.say("Thank you for your help in our time of need. Now we feel much safer.");
 							raiser.setCurrentState(ConversationStates.ATTENDING);
