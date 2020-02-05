@@ -43,7 +43,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 		for (var i = cnt; i < size; i++) {
 			var e = document.getElementById(slot + suffix + i);
 			if (defaultImage) {
-				e.style.backgroundImage = "url(data/gui/" + defaultImage + ")";
+				e.style.backgroundImage = "url(/data/gui/" + defaultImage + ")";
 			} else {
 				e.style.backgroundImage = "none";
 			}
