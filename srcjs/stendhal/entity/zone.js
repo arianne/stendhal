@@ -27,7 +27,7 @@ stendhal.zone = {
 		for (var i in stendhal.zone.entities) {
 			var obj = stendhal.zone.entities[i];
 			if (obj.isVisibleToAction(filter) && (obj["_x"] <= x) && (obj["_y"] <= y)
-				&& (obj["_x"] + obj["width"] >= x) && (obj["_y"] + obj["height"] >= y)) {
+				&& (obj["_x"] + (obj["width"] || 1) >= x) && (obj["_y"] + (obj["height"] || 1) >= y)) {
 
 				res = obj;
 			}
