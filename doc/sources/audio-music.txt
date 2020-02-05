@@ -25,6 +25,7 @@ ohhowjoyfully.*              Markus Keunecke; public domain; based on score repu
 sacred_moments.ogg           Storyteller; GPL
 sewers.ogg                   Norien; GPL
 snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
+spooky_forest.ogg            Bendzer; CC BY 4.0; https://opengameart.org/node/94146
 the_forsaken_mine.ogg        Storyteller; GPL
 the_magical_tower.ogg        Storyteller; GPL
 the_old_tavern.ogg           Storyteller; GPL

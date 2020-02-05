@@ -13,6 +13,8 @@
 ]]
 
 
+-- city
+
 local zones = {
 	"0_deniran_city",
 	"0_deniran_city_s",
@@ -28,9 +30,30 @@ local zones = {
 
 for _, z in pairs(zones) do
 	if game:setZone(z) then
-		local musicSource = luajava.newInstance("games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource", "night_town", 10000, 85)
-		game:add(musicSource)
+		setZoneMusic("night_town", 85)
 	else
-		logger:error("Could not set zone " .. z .. "to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
+	end
+end
+
+
+-- forest
+
+local zones = {
+	"0_deniran_forest_n2_w",
+	"0_deniran_forest_nw",
+	"0_deniran_forest_n2",
+	"0_deniran_forest_n",
+	"0_deniran_forest_n2_e",
+	"0_deniran_forest_ne",
+	"0_deniran_forest_n2_e2",
+	"0_deniran_forest_n_e2",
+}
+
+for _, z in pairs(zones) do
+	if game:setZone(z) then
+		setZoneMusic("spooky_forest", 85)
+	else
+		logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
 	end
 end

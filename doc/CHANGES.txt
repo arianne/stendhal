@@ -81,6 +81,7 @@ Changelog
   - levels -2 & -3 of Semos Catacombs
   - Kikareukin Caves
   - Deniran City
+  - Deniran Forest
 
 *grapics*
 - made dark dagger image more distinct from night dagger
