@@ -319,7 +319,7 @@ class MakingFabric {
 		npc.addReply("silk", "That is from the silk glands of giant spiders.");
 		npc.addReply("mithril nuggets", "You can find them for yourself.");
 		npc.addReply("Whiggins", "Find the wizard Whiggins inside his house in the magic city.");
-		npc.addReply("scientists", "I hear of experiments deep in Kalavan Castle. The scientists are a crazy bunch, but look for the lead researcher, Vincento Price, he may be sane enough to help you.");
+		npc.addReply("scientist", "I hear of experiments deep in Kalavan Castle. The scientists are a crazy bunch, but look for the lead researcher, Vincento Price, he may be sane enough to help you.");
 
 
 		// player says yes they brought the items needed
