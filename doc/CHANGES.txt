@@ -86,6 +86,7 @@ Changelog
   - Deniran Forest
   - Deniran Caves
   - Atlantis
+  - Semos Village, Plains, & Road
 
 *grapics*
 - made dark dagger image more distinct from night dagger
