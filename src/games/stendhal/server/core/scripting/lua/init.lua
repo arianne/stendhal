@@ -40,12 +40,25 @@ end
 -- 		File basename excluding ".ogg" extensions.
 -- @param volume
 -- 		Volume level (default: 100)
-setZoneMusic = function(filename, volume)
+setZoneMusic = function(filename, volume, x, y, radius)
 	-- default volume
 	if volume == nil then
 		volume = 100
 	end
 
-	local musicSource = luajava.newInstance("games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource", filename, 10000, volume)
+	if x == nil then
+		x = 1
+	end
+	if y == nil then
+		y = 1
+	end
+
+	-- default radius
+	if radius == nil then
+		radius = 10000
+	end
+
+	local musicSource = luajava.newInstance("games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource", filename, radius, volume)
+	musicSource:setPosition(x, y)
 	game:add(musicSource)
 end
