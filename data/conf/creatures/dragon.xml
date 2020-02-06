@@ -367,6 +367,37 @@
     </ai>
   </creature>
 
+  <creature name="rysin dragon">
+    <type class="dragon" subclass="rysin_dragon" tileid="dragon.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="1350"/>
+      <def value="153"/>
+      <hp value="5610"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="295"/>
+    <experience value="250290"/>
+    <respawn value="40000"/> <!-- 200 minutes -->
+    <corpse name="dragon_3x3" harmless="bag_2x2" width="3" height="3"/>
+    <drops>
+    </drops>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
+    <ai>
+      <says>
+        <sound value="roar-large-1" />
+        <sound value="wings-flap-large-1" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="strategy" params="archer,attack weakest,dual attack"/>
+    </ai>
+  </creature>
+
   <!-- STOP: flying -->
 
 </creatures>

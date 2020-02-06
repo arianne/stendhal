@@ -35,6 +35,7 @@ Changelog
   - giant gnome
   - giant gnomess
   - neo kraken
+  - rysin dragon
 - enemy changes
   - dimensions
     - changed ent, old ent, & entwife to 2x1 to match sprites better
