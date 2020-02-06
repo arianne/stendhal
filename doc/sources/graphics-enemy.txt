@@ -100,6 +100,7 @@ bone_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flying_golden_dragon.png  ZaPaper; CC BY 3.0; https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 green_dragon.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_dragon.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rysin_dragon.png          ZaPaper, bleutailfly; CC BY 3.0; Stendhal, https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 twin_head_dragon.png      ZaPaper, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 
 data/sprites/monsters/dwarf/
