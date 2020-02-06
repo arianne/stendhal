@@ -32,7 +32,7 @@ for _, z in pairs(zones) do
 	if game:setZone(z) then
 		setZoneMusic("night_town", 85)
 	else
-		logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. z .. " to create BackGroundMusicSource")
 	end
 end
 
@@ -54,7 +54,7 @@ for _, z in pairs(zones) do
 	if game:setZone(z) then
 		setZoneMusic("spooky_forest", 85)
 	else
-		logger:warn("Could not set zone " .. z .. "to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. z .. " to create BackGroundMusicSource")
 	end
 end
 
@@ -88,7 +88,7 @@ for _, z in pairs(zones) do
 		if game:setZone(zone) then
 			setZoneMusic("casket", 85)
 		else
-			logger:warn("Could not set zone " .. zone .. "to create BackGroundMusicSource")
+			logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
 		end
 	end
 end

@@ -36,6 +36,6 @@ for _, z in pairs(zones) do
 	if game:setZone(zone) then
 		setZoneMusic("settlement_of_the_frontier", 85)
 	else
-		logger:warn("Could not set zone " .. zone .. "to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
 	end
 end
