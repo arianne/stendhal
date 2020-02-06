@@ -133,14 +133,6 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
-    <!-- Music -->
-    <entity x="1" y="1">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-        <parameter name="sound">market_day</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.market.FoodSellerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.WeaponryTraderNPC" />
