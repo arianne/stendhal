@@ -12,10 +12,10 @@
  <tileset firstgid="72" name="blue_green" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/ground/indoor/blue_green.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="76" name="dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
-  <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
+ <tileset firstgid="76" name="dragon" tilewidth="32" tileheight="32" tilecount="8" columns="8">
+  <image source="../../tileset/logic/creature/dragon.png" width="256" height="32"/>
  </tileset>
- <tileset firstgid="83" name="animal" tilewidth="32" tileheight="32" tilecount="32" columns="8">
+ <tileset firstgid="84" name="animal" tilewidth="32" tileheight="32" tilecount="32" columns="8">
   <image source="../../tileset/logic/creature/animal.png" width="256" height="128"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -45,7 +45,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3cwQnAIBBFQSsMxFPsv5HUoKJfYaaCd/Cyy2IpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+z3pAAAAACDmSwfAhJYOAADYrKYD4FBmW1byvoBb2JUBPd50AAAAAAAAAAAwxF0jAAAAAAAAAAAAAECGfx8BAAA4wQ+gtUYdAAABAA==
+   H4sIAAAAAAAAA+3cwQ2AIBBFQSokEU/afyG2IDHw12SmgnfgspsNrQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOzX0wEAAABAzJUOgA/udAAAwGYjHQBFmW1ZyfsC/sKuDJhxpAMAAAAAAIBXznQAAFCOu0YAAAAAAAAAAAAAgAz/PgIAAFDBA0GEvK4AAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.4">
