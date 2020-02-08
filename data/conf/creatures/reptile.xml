@@ -92,6 +92,7 @@
     <drops>
       <item value="poison" quantity="[2,5]" probability="20.0"/>
       <item value="insulated ring" quantity="[1,1]" probability="0.08"/>
+      <item value="magic plate boots" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
