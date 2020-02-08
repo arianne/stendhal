@@ -10,8 +10,10 @@ Changelog
   - Deniran Tannery
 - new items:
   - pelt (ingredient to make money pouch)
+  - leather thread (ingredient to make money pouch)
+  - leather needle (ingredient to make money pouch)
   - imperial ring (+1 ATK)
-  - magic plate legs (def=12; min level=45)
+  - magic plate legs
 - new enemies:
   - bull elephant
   - musth elephant
