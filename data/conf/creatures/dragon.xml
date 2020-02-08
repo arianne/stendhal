@@ -382,6 +382,7 @@
     <respawn value="40000"/> <!-- 200 minutes -->
     <corpse name="dragon_3x3" harmless="bag_2x2" width="3" height="3"/>
     <drops>
+      <item value="magic plate boots" quantity="[1,1]" probability="1.0"/>
     </drops>
     <abilities>
       <damage rangedType="fire"/>
