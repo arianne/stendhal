@@ -28,6 +28,7 @@ import games.stendhal.server.core.scripting.lua.NPCHelper;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
 /**
  * Manages scripts written in Lua.
@@ -93,6 +94,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("game", game);
 		globals.set("logger", CoerceJavaToLua.coerce(logger));
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
+		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
 
 		// load built-in master script
 		final String master = new File(ScriptRunner.class.getPackage().getName().replace(".", "/") + "/lua/init.lua").getPath();
