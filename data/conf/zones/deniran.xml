@@ -793,8 +793,8 @@
 	</zone>
 
 
-	<zone name="-5_deniran_lost_caves_n_e2" level="-5" x="499360" y="499744"
-		file="Level -5/deniran/lost_caves_n_e2.tmx">
+	<zone name="-5_deniran_lost_caves_n2_e" level="-5" x="499360" y="499744"
+		file="Level -5/deniran/lost_caves_n2_e.tmx">
 
 	</zone>
 
@@ -823,8 +823,8 @@
 	</zone>
 
 
-	<zone name="-5_deniran_lost_caves_n2_e" level="-5" x="499488" y="499872"
-		file="Level -5/deniran/lost_caves_n2_e.tmx">
+	<zone name="-5_deniran_lost_caves_n_e2" level="-5" x="499488" y="499872"
+		file="Level -5/deniran/lost_caves_n_e2.tmx">
 
 	</zone>
 
@@ -843,7 +843,7 @@
 
 <!--  Level -6 -->
 
-        <zone name="-6_deniran_lost_caves_n2_w" level="-6" x="499104" y="499744"
+    <zone name="-6_deniran_lost_caves_n2_w" level="-6" x="499104" y="499744"
 		file="Level -6/deniran/lost_caves_n2_w.tmx">
 
 	</zone>
@@ -893,8 +893,8 @@
 
 
 
-	<zone name="-6_deniran_lost_caves_n_e2" level="-6" x="499360" y="499744"
-		file="Level -6/deniran/lost_caves_n_e2.tmx">
+	<zone name="-6_deniran_lost_caves_n2_e" level="-6" x="499360" y="499744"
+		file="Level -6/deniran/lost_caves_n2_e.tmx">
 
 	</zone>
 
@@ -924,8 +924,8 @@
 	</zone>
 
 
-	<zone name="-6_deniran_lost_caves_n2_e" level="-6" x="499488" y="499872"
-		file="Level -6/deniran/lost_caves_n2_e.tmx">
+	<zone name="-6_deniran_lost_caves_n_e2" level="-6" x="499488" y="499872"
+		file="Level -6/deniran/lost_caves_n_e2.tmx">
 
 	</zone>
 
@@ -994,8 +994,8 @@
 
 
 
-	<zone name="-7_deniran_atlantis_n_e2" level="-7" x="499360" y="499744"
-		file="Level -7/deniran/atlantis_n_e2.tmx">
+	<zone name="-7_deniran_atlantis_n2_e" level="-7" x="499360" y="499744"
+		file="Level -7/deniran/atlantis_n2_e.tmx">
 
 	</zone>
 
@@ -1025,19 +1025,19 @@
 	</zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_ne" level="-7" x="499488" y="499872"
-		file="Level -7/deniran/atlantis_mtn_ne.tmx">
+	<zone name="-7_deniran_atlantis_mtn_n_e2" level="-7" x="499488" y="499872"
+		file="Level -7/deniran/atlantis_mtn_n_e2.tmx">
 
 	</zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_e" level="-7" x="499488" y="500000"
+	<zone name="-7_deniran_atlantis_mtn_e2" level="-7" x="499488" y="500000"
 		file="Level -7/deniran/atlantis_mtn_e.tmx">
 
 	</zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_se" level="-7" x="499488" y="500128"
+	<zone name="-7_deniran_atlantis_mtn_s_e2" level="-7" x="499488" y="500128"
 		file="Level -7/deniran/atlantis_mtn_se.tmx">
 
 	</zone>
