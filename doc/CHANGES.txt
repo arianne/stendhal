@@ -50,16 +50,19 @@ Changelog
 - enemy changes
   - dimensions
     - changed ent, old ent, & entwife to 2x1 to match sprites better
-  - new enemy drops
+  - new item drops
     - imperial ring
-      - imperial veteran (0.017)
-      - imperial elite archer (0.05)
-    - insulated ring (cobra: 0.08)
+      - imperial veteran (@ 0.017)
+      - imperial elite archer (@ 0.05)
+    - insulated ring (cobra: @ 0.08)
+    - magic plate boots (cobra: @ 0.01)
+    - magic plate legs (king cobra: @ 0.25)
     - pelt
-      - deer (1.0)
-      - beaver (1.0)
-      - bear (2.0)
-      - black bear (4.0)
+      - deer (@ 1.0)
+      - beaver (@ 1.0)
+      - bear (@ 2.0)
+      - black bear (@ 4.0)
+    - poison (cobra: 2-5 @ 20.0)
   - sounds
     - replaced kobold moan sounds with bark
 - players can enable a new pouch slot to carry money
