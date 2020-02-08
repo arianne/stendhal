@@ -36,5 +36,19 @@ stendhal.ui.html = {
 		}
 		let temp = s.replace(/_/g, " ").trim();
 		return temp.charAt(0).toUpperCase() + temp.slice(1);
+	},
+
+	extractPosition: function(event) {
+		if (event.changedTouches) {
+			var pos = {
+				pageX: Math.round(event.changedTouches[0].pageX),
+				pageY: Math.round(event.changedTouches[0].pageY),
+				target: event.changedTouches[0].target
+			}
+			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;     
+			pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
+			return pos;
+		}
+		return event;
 	}
 };

@@ -118,11 +118,12 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 	}
 
 	function onMouseUp(e) {
-		if (e.target.dataItem) {
+		let event = stendhal.ui.html.extractPosition(e);
+		if (event.target.dataItem) {
 			if (quickPickup) {
 				marauroa.clientFramework.sendAction({
 					type: "equip",
-					"source_path": e.target.dataItem.getIdPath(),
+					"source_path": eevent.target.dataItem.getIdPath(),
 					"target_path": "[" + marauroa.me["id"] + "\tbag]",
 					"zone": marauroa.currentZoneName
 				});
@@ -130,11 +131,11 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			}
 
 			if (isRightClick(e)) {
-				new stendhal.ui.Menu(e.target.dataItem, e.pageX - 50, e.pageY - 5);
+				new stendhal.ui.Menu(event.target.dataItem, event.pageX - 50, event.pageY - 5);
 			} else {
 				marauroa.clientFramework.sendAction({
 					type: "use",
-					"target_path": e.target.dataItem.getIdPath(),
+					"target_path": event.target.dataItem.getIdPath(),
 					"zone": marauroa.currentZoneName
 				});
 			}
@@ -149,6 +150,8 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 		e.addEventListener("drop", onDrop);
 		e.addEventListener("mousedown", onMouseDown);
 		e.addEventListener("mouseup", onMouseUp);
+		e.addEventListener("touchstart", onMouseDown);
+		e.addEventListener("touchend", onMouseUp);
 		e.addEventListener("contextmenu", onContextMenu);
 	}
 };
