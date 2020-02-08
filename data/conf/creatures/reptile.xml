@@ -124,6 +124,7 @@
     <corpse name="snake_3x2" harmless="snake_3x2-safe" width="3" height="2"/>
     <drops>
       <item value="disease poison" quantity="[1,1]" probability="5.0"/>
+      <item value="magic plate legs" quantity="[1,1]" probability="0.25"/>
     </drops>
     <equips>
     </equips>
