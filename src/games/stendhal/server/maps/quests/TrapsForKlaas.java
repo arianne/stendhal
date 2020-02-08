@@ -18,8 +18,10 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -82,6 +84,7 @@ public class TrapsForKlaas extends AbstractQuest {
     private static final int WAIT_TIME = 60 * 24;
 
 	private static final String QUEST_SLOT = "traps_for_klaas";
+	private static final String info_string = "note to apothecary";
 
 
 	@Override
@@ -170,6 +173,30 @@ public class TrapsForKlaas extends AbstractQuest {
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Klaas");
 
+		final ChatCondition giveNoteRewardCondition = new ChatCondition() {
+			private final String avrQuestSlot = "antivenom_ring";
+
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				if (!new QuestRegisteredCondition(avrQuestSlot).fire(player, sentence, npc)) {
+					return false;
+				}
+
+				// note has already been given to Jameson & Antivenom Ring quest has already been started or completed
+				if (player.getQuest(avrQuestSlot) != null) {
+					return false;
+				}
+
+				// player already has a note
+				// FIXME: PlayerOwnsItemIncludingBankCondition currently doesn't support infostring items
+				if (player.isEquippedWithInfostring("note", info_string)) {
+					return false;
+				}
+
+				return true;
+			}
+		};
+
 		// Reward
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("rodent trap", 20));
@@ -184,7 +211,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item note = SingletonRepository.getEntityManager().getItem("note");
-				note.setInfoString("note to apothecary");
+				note.setInfoString(info_string);
 				note.setDescription("You see a note written to an apothecary. It is a recommendation from Klaas.");
 				note.setBoundTo(player.getName());
 				player.equipOrPutOnGround(note);
@@ -224,7 +251,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-						new NotCondition(new QuestRegisteredCondition("antivenom_ring")),
+						new NotCondition(giveNoteRewardCondition),
 						new PlayerHasItemWithHimCondition("rodent trap", 20)),
 				ConversationStates.ATTENDING,
 				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.",
@@ -234,9 +261,8 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-						new QuestRegisteredCondition("antivenom_ring"),
-						new PlayerHasItemWithHimCondition("rodent trap", 20),
-						new QuestNotStartedCondition("antivenom_ring")),
+						giveNoteRewardCondition,
+						new PlayerHasItemWithHimCondition("rodent trap", 20)),
 				ConversationStates.ATTENDING,
 				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				new MultipleActions(
@@ -257,19 +283,20 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestRegisteredCondition("antivenom_ring"),
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", "note to apothecary")),
+						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", info_string)),
 						new PlayerCanEquipItemCondition("note"),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),
 				ConversationStates.ATTENDING,
-				"You lost the note? Well, I guess I can write you up another, but be careful this time.",
+				"You lost the note? Well, I guess I can write you up another, but be careful this time."
+				+ " Remember to ask around about an #apothecary.",
 				equipNoteAction);
 
 		// player lost note, but doesn't have room in inventory
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", "note to apothecary")),
+						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", info_string)),
 						new NotCondition(new PlayerCanEquipItemCondition("note")),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),

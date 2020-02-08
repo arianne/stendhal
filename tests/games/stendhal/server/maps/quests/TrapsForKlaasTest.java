@@ -275,7 +275,30 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("You lost the note? Well, I guess I can write you up another, but be careful this time.", getReply(klaas));
+		assertEquals(
+				"You lost the note? Well, I guess I can write you up another, but be careful this time."
+				+ " Remember to ask around about an #apothecary.",
+				getReply(klaas));
 		assertTrue(player.isEquippedWithInfostring("note", "note to apothecary"));
+
+		en.step(player, "bye");
+
+		// Antivenom Ring quest is done
+		player.dropWithInfostring("note", "note to apothecary");
+		player.setQuest(avrQuestName, "done");
+		player.setQuest(questName, "start");
+
+		PlayerTestHelper.equipWithStackableItem(player, "rodent trap", 20);
+		assertTrue(player.isEquipped("rodent trap", 20));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
+		assertEquals("Did you bring any traps?", getReply(klaas));
+		en.step(player, "yes");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.", getReply(klaas));
+		assertFalse(player.isEquippedWithInfostring("note", "note to apothecary"));
+
+		en.step(player, "bye");
 	}
 }
