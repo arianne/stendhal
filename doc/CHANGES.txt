@@ -110,6 +110,8 @@ Changelog
 *fixes*
 - support for stairs portals in Tiled with continuous movement
 - fixed Door & LockedDoor entities not handling continuous movement
+- fixed cannot complete Traps for Klaas quest when Antivenom Ring quest activated
+- fixed cannot enter apothecary lab if Traps for Klaas quest restarted
 
 
 
