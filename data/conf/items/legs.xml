@@ -173,6 +173,29 @@
     </equipable>
   </item>
 
+  <item name="magic plate legs">
+    <type class="legs" subclass="magic_plate_legs" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="12"/>
+      <min_level value="45"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <susceptibility type="fire" value="0.99"/>
+    <susceptibility type="ice" value="0.99"/>
+    <susceptibility type="dark" value="0.99"/>
+    <susceptibility type="light" value="0.99"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="legs"/>
+    </equipable>
+  </item>
+
   <item name="mainio legs">
     <type class="legs" subclass="mainio_legs" tileid="-1"/>
     <description>You see a pair of odd looking mainio legs. They are somewhat startling but they give you a good protection.</description>

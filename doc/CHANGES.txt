@@ -11,6 +11,7 @@ Changelog
 - new items:
   - pelt (ingredient to make money pouch)
   - imperial ring (+1 ATK)
+  - magic plate legs (def=12; min level=45)
 - new enemies:
   - bull elephant
   - musth elephant
