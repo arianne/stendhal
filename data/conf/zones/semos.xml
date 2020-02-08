@@ -217,9 +217,12 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.VialOnTable" />
 
     <!-- Portals -->
+    <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.LabExitPortal"/>
+    <!--
     <portal x="33" y="13" ref="lab_exit">
       <destination zone="int_apothecary_cabin" ref="lab_entrance" />
     </portal>
+    -->
 
     <!-- Clock -->
     <entity x="13" y="1">
