@@ -1032,13 +1032,13 @@
 
 
 	<zone name="-7_deniran_atlantis_mtn_e2" level="-7" x="499488" y="500000"
-		file="Level -7/deniran/atlantis_mtn_e.tmx">
+		file="Level -7/deniran/atlantis_mtn_e2.tmx">
 
 	</zone>
 
 
 	<zone name="-7_deniran_atlantis_mtn_s_e2" level="-7" x="499488" y="500128"
-		file="Level -7/deniran/atlantis_mtn_se.tmx">
+		file="Level -7/deniran/atlantis_mtn_s_e2.tmx">
 
 	</zone>
 
