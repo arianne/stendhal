@@ -172,6 +172,29 @@
     </equipable>
   </item>
 
+  <item name="magic plate boots">
+    <type class="boots" subclass="magic_plate_boots" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="14"/>
+      <min_level value="90"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <susceptibility type="fire" value="0.98"/>
+    <susceptibility type="ice" value="0.98"/>
+    <susceptibility type="dark" value="0.98"/>
+    <susceptibility type="light" value="0.98"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
   <item name="mainio boots">
     <type class="boots" subclass="mainio_boots" tileid="-1"/>
     <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>

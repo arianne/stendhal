@@ -102,6 +102,7 @@ green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 killer_boots.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+magic_plate_boots.*        Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mainio_boots.png           ScratchIO; CC0; https://opengameart.org/node/108295
 mithril_boots.png          janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
