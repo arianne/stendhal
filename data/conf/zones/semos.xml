@@ -169,6 +169,15 @@
 
   <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx">
 
+    <!-- hint to secret lab -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="enterMessage">You feel a cool breeze coming in from somewhere.</parameter>
+        <parameter name="coversZone">true</parameter>
+        <parameter name="warnPlayer">true</parameter>
+      </implementation>
+    </entity>
+
     <!-- Portals -->
     <portal x="7" y="19" ref="exit">
       <destination zone="0_semos_mountain_n2_w" ref="apothecary_entrance" />
