@@ -15,7 +15,7 @@
 
 -- Example SpeakerNPC
 
---[[
+--[[ disabled
 logger:info("Loading Lua SpeakerNPC...")
 
 -- Set zone to Semos City

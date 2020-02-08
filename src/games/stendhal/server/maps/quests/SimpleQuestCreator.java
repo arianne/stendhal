@@ -221,22 +221,30 @@ public class SimpleQuestCreator {
 					final StringBuilder sb = new StringBuilder();
 					sb.append("Thank you.");
 
-					if (itemReward.size() > 0) {
+					final int rewardCount = itemReward.size();
+
+					if (rewardCount > 0) {
 						sb.append(" As a reward I will give you ");
 
 						int idx = 0;
 						for (final String itemName: itemReward.keySet()) {
 							final int quantity = itemReward.get(itemName);
 
-							if (idx == itemReward.size() - 1) {
+							if (idx == rewardCount - 1) {
 								sb.append("and ");
 							}
 
 							sb.append(Integer.toString(quantity) + " " + Grammar.plnoun(quantity, itemName));
 
-							if (idx < itemReward.size() - 1) {
-								sb.append(", ");
+							if (idx < rewardCount - 1) {
+								if (rewardCount == 2) {
+									sb.append(" ");
+								} else {
+									sb.append(", ");
+								}
 							}
+
+							idx++;
 						}
 
 						sb.append(".");
