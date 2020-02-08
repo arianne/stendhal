@@ -49,7 +49,7 @@ marauroa.rpobjectFactory["door"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	isVisibleToAction: function(filter) {
 		return true;
 	},
-	
+
 
 	/**
 	 * Create the default action for this entity. If the entity specifies a
@@ -69,4 +69,3 @@ marauroa.rpobjectFactory["door"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	}
 
 });
-

@@ -49,7 +49,7 @@ marauroa.rpobjectFactory["portal"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	isVisibleToAction: function(filter) {
 		return true;
 	},
-	
+
 
 	/**
 	 * Create the default action for this entity. If the entity specifies a

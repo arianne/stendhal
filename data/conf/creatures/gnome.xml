@@ -168,7 +168,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,50]" probability="70.0"/>
-      <item value="potion" quantity="[1,1]" probability="20.0"/> 
+      <item value="potion" quantity="[1,1]" probability="20.0"/>
       <item value="porcini" quantity="[1,10]" probability="10.0"/>
     </drops>
     <ai>
@@ -194,7 +194,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,50]" probability="70.0"/>
-      <item value="potion" quantity="[1,1]" probability="20.0"/> 
+      <item value="potion" quantity="[1,1]" probability="20.0"/>
       <item value="porcini" quantity="[1,10]" probability="10.0"/>
     </drops>
     <ai>

@@ -30,9 +30,9 @@ marauroa.rpobjectFactory["visible_entity"] = marauroa.util.fromProto(marauroa.rp
 	set: function(key, value) {
 		marauroa.rpobjectFactory["visible_entity"].proto.set.apply(this, arguments);
 		if (key === "class" || key === "subclass" || key === "_name") {
-			this.sprite.filename = "/data/sprites/" 
-				+ (this["class"] || "") + "/" 
-				+ (this["subclass"] || "") + "/" 
+			this.sprite.filename = "/data/sprites/"
+				+ (this["class"] || "") + "/"
+				+ (this["subclass"] || "") + "/"
 				+ (this["_name"] || "") + ".png";
 		} else if (key === "state") {
 			this.sprite.offsetY = value * 32;
