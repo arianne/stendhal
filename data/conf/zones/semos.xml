@@ -167,7 +167,7 @@
 
   <!-- Interiors in 0_semos_mountain_n2_w -->
 
-  <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx" accessible="false">
+  <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx">
 
     <!-- Portals -->
     <portal x="7" y="19" ref="exit">
