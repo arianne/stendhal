@@ -24,7 +24,7 @@ local zones = {
 	"deniran_atlantis_n",
 	"deniran_atlantis",
 	"deniran_atlantis_s",
-	"deniran_atlantis_n_e2",
+	"deniran_atlantis_n2_e",
 	"deniran_atlantis_ne",
 	"deniran_atlantis_e",
 	"deniran_atlantis_se",
