@@ -65,7 +65,7 @@ public class SimpleQuestCreator {
 
 		private String description;
 
-		private boolean repeatable = true;
+		private boolean repeatable = false;
 		private int repeatDelay = 0;
 
 		private String itemToCollect;
