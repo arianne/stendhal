@@ -37,6 +37,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -74,6 +75,7 @@ public class SimpleQuestCreator {
 			// default replies
 			put("request", "Will you help me?");
 			put("reject", "Okay. Perhaps another time then.");
+			put("reward", "Thank you.");
 		}};
 
 		private int xpReward = 0;
@@ -163,6 +165,11 @@ public class SimpleQuestCreator {
 		}
 
 		@SuppressWarnings("unused")
+		public void setRewardReply(final String reply) {
+			setReply("reward", reply);
+		}
+
+		@SuppressWarnings("unused")
 		public void setRegion(final String regionName) {
 			region = regionName;
 		}
@@ -212,6 +219,13 @@ public class SimpleQuestCreator {
 				}
 			};
 
+			final ChatCondition questRepeatableCondition = new ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, Entity npc) {
+					return repeatable;
+				}
+			};
+
 			final ChatAction rewardAction = new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -219,7 +233,7 @@ public class SimpleQuestCreator {
 					player.drop(itemToCollect, quantityToCollect);
 
 					final StringBuilder sb = new StringBuilder();
-					sb.append("Thank you.");
+					sb.append(getReply("reward"));
 
 					final int rewardCount = itemReward.size();
 
@@ -266,10 +280,21 @@ public class SimpleQuestCreator {
 
 			npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new NotCondition(canStartCondition),
-				ConversationStates.QUEST_OFFERED,
+				new AndCondition(
+					questRepeatableCondition,
+					new QuestInStateCondition(QUEST_SLOT, 0, "done")),
+				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, repeatDelay, "If you want to help me again, please come back in "));
+
+			npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+					new NotCondition(questRepeatableCondition),
+					new QuestInStateCondition(QUEST_SLOT, 0, "done")),
+				ConversationStates.ATTENDING,
+				"Thanks, but I don't need any more help.",
+				null);
 
 			npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
