@@ -211,7 +211,6 @@ stendhal.ui.gamewindow = {
 
 		function _onMouseDown(e) {
 			var pos = stendhal.ui.html.extractPosition(e);
-			console.log(e.type, pos);
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
 			}
@@ -247,14 +246,12 @@ stendhal.ui.gamewindow = {
 
 		function onMouseUp(e) {
 			var pos = stendhal.ui.html.extractPosition(e);
-			console.log(e.type, pos);
 			if (isRightClick(e)) {
 				console.log("right click", entity);
 				if (entity != stendhal.zone.ground) {
 					new stendhal.ui.Menu(entity, pos.pageX - 50, pos.pageY - 5);
 				}
 			} else {
-				console.log("left click", entity);
 				entity.onclick(pos.offsetX, pos.offsetY);
 			}
 			cleanUp(e);
