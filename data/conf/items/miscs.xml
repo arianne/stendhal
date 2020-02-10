@@ -344,6 +344,26 @@
     </equipable>
   </item>
 
+  <item name="leather thread">
+    <type class="misc" subclass="leather_thread" tileid="-1"/>
+    <description>You see a strand of sturdy leather thread.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="unicorn horn">
     <type class="misc" subclass="unicorn_horn" tileid="-1"/>
     <description></description>
