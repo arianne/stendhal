@@ -76,6 +76,7 @@ Changelog
     - "hard": for players level 151+
   - items added to Daily Item quest
     - leather needle
+    - leather thread (20)
     - pelt (5)
   - items added to Kirdneh Museum quest
     - medicinal ring (medium)
