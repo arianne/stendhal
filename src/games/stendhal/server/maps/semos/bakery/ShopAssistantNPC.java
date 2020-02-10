@@ -62,7 +62,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 	private static final int COST = 3000;
 	private static final String QUEST_SLOT = "borrow_kitchen_equipment";
 
-	private static final List<String> ITEMS = Arrays.asList("sugar mill", "pestle and mortar");
+	private static final List<String> ITEMS = Arrays.asList("sugar mill", "pestle and mortar", "rotary cutter");
 
 
 	@Override

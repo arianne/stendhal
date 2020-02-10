@@ -16,6 +16,7 @@ Changelog
   - imperial ring (+1 ATK)
   - magic plate legs
   - magic plate boots
+  - rotary cutter (tool for making leather thread)
   - royal armor
   - royal boots
   - royal cloak

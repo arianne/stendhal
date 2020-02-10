@@ -204,4 +204,23 @@
     </equipable>
   </item>
 
+  <item name="rotary cutter">
+    <type class="tool" subclass="rotary_cutter" tileid="-1"/>
+    <description>You see a rotary cutter. It can be used to cut up leather. Be careful, the blade is sharp.</description>
+    <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+    <attributes>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
