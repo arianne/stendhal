@@ -80,6 +80,8 @@ Changelog
     - medicinal ring (medium)
     - scroll eraser (medium)
     - ugmash (easy)
+- new quests
+  - Unicorn Horns for Zelan
 - new achievements:
   - Westerner: visit all outside zones in Deniran region (easy score)
   - Spelunker: visit all underground zones in Deniran region (hard score)
