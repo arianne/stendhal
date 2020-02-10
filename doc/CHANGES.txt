@@ -5,7 +5,8 @@ Changelog
 1.33
 *world*
 - new NPCs
-  - Skinner Rawhide
+  - Skinner Rawhide (Denrian Tannery)
+  - Zelan (Atlantis)
 - new maps
   - Deniran Tannery
 - new items:
