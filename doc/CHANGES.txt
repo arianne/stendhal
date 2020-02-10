@@ -23,6 +23,7 @@ Changelog
   - royal legs
   - royal shield
   - royal dagger
+  - unicorn horn
 - new enemies:
   - bull elephant
   - musth elephant
