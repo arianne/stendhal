@@ -7,7 +7,8 @@ Changelog
 - new NPCs
   - Skinner Rawhide (Denrian Tannery)
   - Zelan (Atlantis)
-- new maps
+- new regions/maps
+  - Atlantis
   - Deniran Tannery
 - new items:
   - pelt (ingredient to make money pouch)
