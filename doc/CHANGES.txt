@@ -95,9 +95,9 @@ Changelog
   - David vs. Goliath: kill 20 of each type of giant solo (medium score)
   - Heavenly Wrath: kill 100 of each type of angel (hard score)
   - Silver Bullet: kill 500 werewolves (medium score)
-  - Herbal Practitioner: harvest 20 of each type of herb found growing in Faiumoni
-  - It's Happy Hour Somewhere: purchase 100 bottles of beer & 100 glasses of wine
-  - Serenade the Siren: kill 10,000 gem mermaids
+  - Herbal Practitioner: harvest 20 of each type of herb found growing in Faiumoni (easy score)
+  - It's Happy Hour Somewhere: purchase 100 bottles of beer & 100 glasses of wine (easy score)
+  - Serenade the Siren: kill 10,000 gem mermaids (hard score)
   - Imperialist Lackey: finish Kill Blordroughs quest 5 times (medium score)
   - Imperialist Soldier: finish Kill Blordoughs quest 25 times (hard score)
 - new music
