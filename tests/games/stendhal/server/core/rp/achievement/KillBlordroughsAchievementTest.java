@@ -37,7 +37,12 @@ import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 
-public class KillBlordroughsTest extends ZonePlayerAndNPCTestImpl {
+/*
+ * NOTE: This test class cannot be named "KillBlordroughsTest" as it will conflict with
+ *       games.stendhal.server.maps.quests.KillBlordroughsTest. Thus, the "Achievement"
+ *       suffix has been added to it.
+ */
+public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player;
 	private SpeakerNPC npc;
@@ -91,6 +96,8 @@ public class KillBlordroughsTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	private void testAchievement() {
+		assertNull(player.getQuest(QUEST_SLOT));
+
 		for (int idx = 0; idx < requiredCompletions; idx++) {
 			completeQuest();
 
