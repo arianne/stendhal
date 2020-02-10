@@ -206,7 +206,7 @@
 
   <item name="rotary cutter">
     <type class="tool" subclass="rotary_cutter" tileid="-1"/>
-    <description>You see a rotary cutter. It can be used to cut up leather. Be careful, the blade is sharp.</description>
+    <description>You see a rotary cutter. It can be used to cut up pizza. But perhaps it can be used on other things as well.</description>
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
     <attributes>
       <menu value="Use|Use"/>
