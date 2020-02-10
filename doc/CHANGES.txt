@@ -96,6 +96,7 @@ Changelog
   - It's Happy Hour Somewhere: purchase 100 bottles of beer & 100 glasses of wine
   - Serenade the Siren: kill 10,000 gem mermaids
   - Imperialist Lackey: finish Kill Blordroughs quest 5 times (medium score)
+  - Imperialist Soldier: finish Kill Blordoughs quest 25 times (hard score)
 - new music
   - -1_semos_yeti_cave
   - levels -2 & -3 of Semos Catacombs

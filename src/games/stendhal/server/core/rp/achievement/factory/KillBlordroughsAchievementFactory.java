@@ -33,6 +33,9 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 	public static final int COUNT_LACKEY = 5;
 	public static final String ID_LACKEY = prefix + "." + Integer.toString(COUNT_LACKEY);
 
+	public static final int COUNT_SOLDIER = 25;
+	public static final String ID_SOLDIER = prefix + "." + Integer.toString(COUNT_SOLDIER);
+
 	@Override
 	protected Category getCategory() {
 		return Category.QUEST_KILL_BLORDROUGHS;
@@ -45,7 +48,12 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 		achievements.add(createAchievement(
 				ID_LACKEY, "Imperialist Lackey", "Finish Kill Blordroughs quest 5 times",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new CompletedCountCondition(5)));
+				new CompletedCountCondition(COUNT_LACKEY)));
+
+		achievements.add(createAchievement(
+				ID_SOLDIER, "Imperialist Soldier", "Finish Kill Blordroughs quest 25 times",
+				Achievement.HARD_BASE_SCORE, true,
+				new CompletedCountCondition(COUNT_SOLDIER)));
 
 		return achievements;
 	}

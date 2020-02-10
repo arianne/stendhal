@@ -11,11 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_LACKEY;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_SOLDIER;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_LACKEY;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_SOLDIER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,7 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -49,12 +54,6 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private static final KillBlordroughs questInstance = KillBlordroughs.getInstance();
 	private static final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
-
-	// ID used for achievement
-	private final String achievementId = KillBlordroughsAchievementFactory.ID_LACKEY;
-
-	// required completions
-	private final int requiredCompletions = KillBlordroughsAchievementFactory.COUNT_LACKEY;
 
 
 	@BeforeClass
@@ -98,17 +97,21 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private void testAchievement() {
 		assertNull(player.getQuest(QUEST_SLOT));
 
-		for (int idx = 0; idx < requiredCompletions; idx++) {
+		for (int idx = 0; idx < COUNT_SOLDIER; idx++) {
 			completeQuest();
 
-			if (idx >= requiredCompletions - 1) {
-				assertEquals(requiredCompletions, questInstance.getCompletedCount(player));
+			if (idx >= COUNT_LACKEY - 1) {
+				assertTrue(achievementReached(ID_LACKEY));
 			} else {
-				assertFalse(achievementReached());
+				assertFalse(achievementReached(ID_LACKEY));
+			}
+
+			if (idx >= COUNT_SOLDIER - 1) {
+				assertTrue(achievementReached(ID_SOLDIER));
+			} else {
+				assertFalse(achievementReached(ID_SOLDIER));
 			}
 		}
-
-		assertTrue(achievementReached());
 	}
 
 
@@ -126,7 +129,10 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(player.arePlayerAchievementsLoaded());
 		player.initReachedAchievements();
 		assertTrue(player.arePlayerAchievementsLoaded());
-		assertFalse(achievementReached());
+
+		for (final String ID: Arrays.asList(ID_LACKEY, ID_SOLDIER)) {
+			assertFalse(achievementReached(ID));
+		}
 	}
 
 	/**
@@ -135,8 +141,8 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	 * @return
 	 * 		<code>true</player> if the player has the achievement.
 	 */
-	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
+	private boolean achievementReached(final String ID) {
+		return player.hasReachedAchievement(ID);
 	}
 
 	/**
