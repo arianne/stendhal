@@ -30,6 +30,10 @@ if game:setZone(zoneName) then
 	npcHelper:setPath(zelan, nodes)
 	zelan:setPosition(nodes[1][1], nodes[1][2])
 
+	-- NPC dialog
+	zelan:addGreeting()
+	zelan:addGoodbye()
+
 	-- add Zelan to the world
 	game:add(zelan)
 else
