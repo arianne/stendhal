@@ -35,7 +35,7 @@ stendhal.slashActionRepository = {
 				"target": params[0],
 			};
 			if (params.length >= 2) {
-				action.newlevel = params[1];
+				action["newlevel"] = params[1];
 			}
 			marauroa.clientFramework.sendAction(action);
 			return true;

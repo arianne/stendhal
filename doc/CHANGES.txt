@@ -125,6 +125,7 @@ Changelog
 *webclient*
 - added support for additional entities: rented signs, blackboards, blocks, house doors, doors
 - added online/offline icons on buddy list
+- added commands /adminlevel
 
 *scripting*
 - added Lua support
