@@ -198,6 +198,8 @@ public class KillBlordroughs extends AbstractQuest {
 				recsolo = 0;
 			} else if (temp.equals("")) {
 				recsolo = 0;
+			} else if (temp.startsWith("completed=")) {
+				recsolo = 0;
 			} else {
 				recsolo = Integer.parseInt(temp);
 			}
@@ -205,6 +207,8 @@ public class KillBlordroughs extends AbstractQuest {
 			if (temp == null) {
 				recshared = 0;
 			} else if (temp.equals("")) {
+				recshared = 0;
+			} else if (temp.startsWith("completed=")) {
 				recshared = 0;
 			} else {
 				recshared = Integer.parseInt(temp);
