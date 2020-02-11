@@ -298,10 +298,9 @@ public class KillBlordroughs extends AbstractQuest {
 		if (player.getQuest(QUEST_SLOT) != null) {
 			final String[] slots = player.getQuest(QUEST_SLOT).split(";");
 
-			for (final String s: slots) {
-				if (s.startsWith("completed=")) {
-					return Integer.parseInt(s.split("=")[1]);
-				}
+			final String temp = slots[slots.length - 1];
+			if (temp.startsWith("completed=")) {
+				return Integer.parseInt(temp.split("=")[1]);
 			}
 
 			// completion count was not previously tracked, so check if quest has been completed at least once
