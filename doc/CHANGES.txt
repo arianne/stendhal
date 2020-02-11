@@ -109,6 +109,7 @@ Changelog
   - Deniran Caves
   - Atlantis
   - Semos Village, Plains, & Road
+  - Nalwor River
 
 *grapics*
 - made dark dagger image more distinct from night dagger

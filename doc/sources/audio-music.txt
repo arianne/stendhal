@@ -14,6 +14,7 @@ dark_quest.ogg                  Alexandr Zhelanov; CC BY 4.0; https://soundcloud
 deep_forest.ogg                 Storyteller; GPL
 dungeon_entrance.ogg            Storyteller; GPL
 eerie_curious.ogg               Leerie; CC BY 3.0; https://opengameart.org/node/43367
+ghost_woods.ogg                 Aron Ben Elal (ONE ABE); CC BY-SA 4.0; https://iamoneabe.itch.io/sonic-eternity-project, https://opengameart.org/node/109276
 ice_cave.*                      Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
 kings_feast.ogg                 RandomMind; CC0; https://opengameart.org/node/88287
 lost_in_the_fog.ogg             Storyteller; GPL

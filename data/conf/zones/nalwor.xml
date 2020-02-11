@@ -962,6 +962,14 @@ below average.
   <zone name="0_nalwor_river_sw" level="0" x="500128" y="500384"
     file="Level 0/nalwor/river_sw.tmx">
 
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">ghost_woods</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+
     <configurator
       class-name="games.stendhal.server.maps.nalwor.river.PinkCrystalNPC" />
 
@@ -990,10 +998,20 @@ below average.
 
   <zone name="0_nalwor_river_s" level="0" x="500256" y="500384"
     file="Level 0/nalwor/river_s.tmx">
+
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">ghost_woods</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+
     <entity x="98" y="88">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -1016,20 +1034,38 @@ below average.
 
   <zone name="0_nalwor_river_se" level="0" x="500384" y="500384"
     file="Level 0/nalwor/river_se.tmx">
+
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">ghost_woods</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
 
   </zone>
 
 
   <zone name="0_nalwor_river_s_e2" level="0" x="500512" y="500384"
     file="Level 0/nalwor/river_s_e2.tmx">
+
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">ghost_woods</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
 
     <entity x="57" y="64">
       <implementation
