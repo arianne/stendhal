@@ -259,7 +259,7 @@ public class KillBlordroughs extends AbstractQuest {
 			sb.append(";" + shared);
 		}
 
-		sb.append(";" + getCompletedCount(player));
+		sb.append(";completed=" + getCompletedCount(player));
 
 		//player.sendPrivateText(sb.toString());
 		player.setQuest(QUEST_SLOT, sb.toString());
@@ -276,7 +276,7 @@ public class KillBlordroughs extends AbstractQuest {
 			.getItem("money");
 		money.setQuantity(50000);
 
-		player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis() + ";" + Integer.toString(getCompletedCount(player) + 1));
+		player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis() + ";completed=" + Integer.toString(getCompletedCount(player) + 1));
 		player.equipOrPutOnGround(money);
 		player.addKarma(karmabonus);
 		player.addXP(500000);
@@ -291,20 +291,22 @@ public class KillBlordroughs extends AbstractQuest {
 	 * 		Number of times player has completed quest.
 	 */
 	public int getCompletedCount(final Player player) {
-		int completedCount = 0;
-
 		if (player.getQuest(QUEST_SLOT) != null) {
 			final String[] slots = player.getQuest(QUEST_SLOT).split(";");
 
+			for (final String s: slots) {
+				if (s.startsWith("completed=")) {
+					return Integer.parseInt(s.split("=")[1]);
+				}
+			}
+
 			// completion count was not previously tracked, so check if quest has been completed at least once
-			if (slots.length <= 2 && slots[0].equals("done")) {
-				completedCount = 1;
-			} else if (slots.length > 2) {
-				completedCount = Integer.parseInt(slots[slots.length - 1]);
+			if (slots[0].equals("done")) {
+				return 1;
 			}
 		}
 
-		return completedCount;
+		return 0;
 	}
 
 	/**
