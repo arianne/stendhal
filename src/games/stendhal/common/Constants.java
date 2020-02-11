@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,8 +24,8 @@ public final class Constants {
 	 */
 	// TODO: let the slots decide that themselves
 	public static final String[] CARRYING_SLOTS = {
-			"bag", "pouch", "head", "rhand", "lhand", "armor", "finger", "cloak",
-			"legs", "feet", "keyring", "portfolio", "back", "belt"
+			"pouch", "bag", "keyring", "portfolio", "back", "belt", "head", "rhand", "lhand", "armor", "finger", "cloak",
+			"legs", "feet"
 	};
 
 	/**
