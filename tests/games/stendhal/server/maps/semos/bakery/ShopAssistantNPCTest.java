@@ -275,7 +275,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "borrow");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				"I lend out #'sugar mill', #'pestle and mortar', and #'rotary cutter'. If you're interested, please say which you want.",
 				getReply(npc));
 
 		en.step(player, "sugar mill");
@@ -330,7 +330,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "borrow");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				"I lend out #'sugar mill', #'pestle and mortar', and #'rotary cutter'. If you're interested, please say which you want.",
 				getReply(npc));
 
 		en.step(player, "sugar");
@@ -383,7 +383,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "borrow");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				"I lend out #'sugar mill', #'pestle and mortar', and #'rotary cutter'. If you're interested, please say which you want.",
 				getReply(npc));
 
 		en.step(player, "pestle and mortar");
@@ -439,7 +439,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "borrow");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				"I lend out #'sugar mill', #'pestle and mortar', and #'rotary cutter'. If you're interested, please say which you want.",
 				getReply(npc));
 
 		en.step(player, "pestle and  mortar");
@@ -461,6 +461,69 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
 				getReply(npc));
 	}
+
+
+	/**
+	 * Tests for borrowing rotary cutter.
+	 */
+	@Test
+	public void testBorrowRotaryCutter() {
+		final SpeakerNPC npc = getNPC("Erna");
+		final Engine en = npc.getEngine();
+
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Oh sorry, I don't lend equipment to people with so little experience as you.",
+				getReply(npc));
+
+		// level up
+		player.setLevel(10);
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"You'll have to speak to Leander and ask if you can help with the pizza before I'm allowed to lend you anything.",
+				getReply(npc));
+
+		player.setQuest("pizza_delivery", "done");
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"I lend out #'sugar mill', #'pestle and mortar', and #'rotary cutter'. If you're interested, please say which you want.",
+				getReply(npc));
+
+		en.step(player, "rotary cutter");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Here you are! Don't forget to #return it or you have to pay!",
+				getReply(npc));
+		final String[] questStatus = player.getQuest(BORROW).split(";");
+		assertEquals("rotary cutter", questStatus[0]);
+
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		//player.setQuest(BORROW, ";");
+
+		assertEquals(1, player.getNumberOfEquipped("rotary cutter"));
+
+		en.step(player, "hi");
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+
+		en.step(player, "return");
+		assertEquals("Do you want to return what you borrowed now?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Thank you! Just let me know if you want to #borrow any tools again.", getReply(npc));
+		assertFalse(player.isEquipped("rotary cutter"));
+	}
+
 
 /**
  * Erna dialog - ID: 3427142
