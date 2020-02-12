@@ -232,6 +232,12 @@ public class Creature extends NPC {
 			this.addSlot((RPSlot) slot.clone());
 		}
 
+		if (copy.has("no_shadow")) {
+			setShadowStyle(null);
+		} else if (copy.has("shadow_style")) {
+			setShadowStyle(copy.get("shadow_style"));
+		}
+
 		update();
 		updateModifiedAttributes();
 		stop();

@@ -148,6 +148,7 @@
 	<xsd:complexType name="Type">
 		<xsd:attribute name="class" type="xsd:string" />
 		<xsd:attribute name="subclass" type="xsd:string" />
+		<xsd:attribute name="shadow" type="xsd:string" />
 		<xsd:attribute name="tileid" type="xsd:string" />
 	</xsd:complexType>
 

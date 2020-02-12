@@ -45,6 +45,9 @@ public class DefaultCreature {
 	/** Creature subclass. */
 	private String subclass;
 
+	/** shadow to use for entity */
+	private String shadow_style = null;
+
 	/** Creature name. */
 	private String name;
 
@@ -284,6 +287,10 @@ public class DefaultCreature {
 		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
 
+		if (shadow_style != null) {
+			creature.setShadowStyle(shadow_style);
+		}
+
 		// Status attack types
 		if (statusAttack != null) {
 			Binding groovyBinding = new Binding();
@@ -370,6 +377,16 @@ public class DefaultCreature {
 	public void setStatusAttack(final String name, final double probability) {
 	    statusAttack = name;
 	    statusAttackProbability = probability;
+	}
+
+	/**
+	 * Sets the style of shadow to use for this entity.
+	 *
+	 * @param style
+	 * 		Name of the style.
+	 */
+	public void setShadowStyle(final String style) {
+		shadow_style = style;
 	}
 
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
