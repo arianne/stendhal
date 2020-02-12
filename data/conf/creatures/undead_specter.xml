@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="ghost">
-    <type class="undead" subclass="ghost" tileid="undead_specter.png:0"/>
+    <type class="undead" subclass="ghost" shadow="none" tileid="undead_specter.png:0"/>
     <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
     <attributes>
       <atk value="171"/>
