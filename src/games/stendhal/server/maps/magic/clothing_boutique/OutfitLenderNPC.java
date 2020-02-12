@@ -79,7 +79,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		final Pair<Outfit, Boolean> NOOB = new Pair<Outfit, Boolean>(new Outfit(null, 980, null, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> JESTER = new Pair<Outfit, Boolean>(new Outfit(null, 976, null, null, null, null, -1, 995, null), true);
 
-		// these outfits must replace the current outfit (what's null simply isn't there)
+		// these outfits must replace the current outfit (what's -1 simply isn't there)
 		final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(998, 981, -1, -1, -1, -1, -1, -1, null), false);
 		final Pair<Outfit, Boolean> HORSE = new Pair<Outfit, Boolean>(new Outfit(997, -1, -1, -1, -1, -1, -1, -1, null), false);
 		final Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(996, -1, -1, -1, -1, -1, -1, -1, null), false);
@@ -122,6 +122,10 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final Outfit outfit = outfitPair.first();
 						final boolean type = outfitPair.second();
+
+						// remove temporary outfits to avoid visual conflicts
+						player.returnToOriginalOutfit();
+
 						if (type) {
 							player.setOutfit(outfit.putOver(player.getOutfit()), true);
 						} else {

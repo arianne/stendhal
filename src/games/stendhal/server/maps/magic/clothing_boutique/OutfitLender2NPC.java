@@ -112,6 +112,10 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final Outfit outfit = outfitPair.first();
 						final boolean type = outfitPair.second();
+
+						// remove temporary outfits to avoid visual conflicts
+						player.returnToOriginalOutfit();
+
 						if (type) {
 							player.setOutfit(outfit.putOver(player.getOutfit()), true);
 						} else {
