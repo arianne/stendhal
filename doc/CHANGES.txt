@@ -140,6 +140,7 @@ Changelog
 - fixed Door & LockedDoor entities not handling continuous movement
 - fixed cannot complete Traps for Klaas quest when Antivenom Ring quest activated
 - fixed cannot enter apothecary lab if Traps for Klaas quest restarted
+- enemy/creature shadow can be set with "shadow" value under "type" tag
 
 
 
