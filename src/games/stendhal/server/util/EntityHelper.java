@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +16,9 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import java.util.Iterator;
 import java.util.List;
 
+import games.stendhal.common.Constants;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.equip.EquipUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -304,5 +305,47 @@ public class EntityHelper {
 		}
 
 		return entity;
+	}
+
+	private static Entity getEntityFromSlotByName(final Player player, final String slotName, final String itemName) {
+		RPSlot slot = player.getSlot(slotName);
+		if (slot == null) {
+			return null;
+		}
+		for (final RPObject item : slot) {
+			if (item.get("name").equals(itemName)) {
+				return (Entity) item;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * gets an entity by name from the players bag
+	 * @param player Player
+	 * @param itemName entity name
+	 * @return Entity or <code>null</code>
+	 */
+	public static Entity getEntityByName(final Player player, final String itemName) {
+		if (itemName == null) {
+			return null;
+		}
+		final String singularItemName = Grammar.singular(itemName);
+
+		for (final String slotName : Constants.CARRYING_SLOTS) {
+			Entity entity = getEntityFromSlotByName(player, slotName, itemName);
+			if (entity != null) {
+				return entity;
+			}
+
+			if (!itemName.equals(singularItemName)) {
+				entity = getEntityFromSlotByName(player, slotName, singularItemName);
+				if (entity != null) {
+					return entity;
+				}
+			}
+		}
+		return null;
 	}
 }

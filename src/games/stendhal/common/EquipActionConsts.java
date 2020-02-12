@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,5 +38,7 @@ public interface EquipActionConsts {
 	int MAX_CONTAINED_DEPTH = 25;
 
 	String CLICKED = "clicked";
+
+	String SOURCE_NAME = "source_name";
 
 }

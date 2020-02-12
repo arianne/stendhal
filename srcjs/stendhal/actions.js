@@ -97,6 +97,32 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"drop": {
+		execute: function(type, params, remainder) {
+			console.log(type, params, remainder);
+			let name = remainder;
+			let quantity = parseInt(params[0], 10);
+			console.log(name, quantity);
+			if (isNaN(quantity)) {
+				name = (params[0] + " " + remainder).trim();
+				quantity = 0;
+			}
+			console.log(name, quantity);
+			var action = {
+				"type": "drop",
+				"source_name": name,
+				"quantity": "" + quantity,
+				"x": "" + marauroa.me.x,
+				"y": "" + marauroa.me.y
+			};
+			console.log(action);
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 1
+	},
+
 	"gag": {
 		execute: function(type, params, remainder) {
 			var action = {
