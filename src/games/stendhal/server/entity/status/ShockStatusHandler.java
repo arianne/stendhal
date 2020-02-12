@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -20,6 +21,8 @@ import games.stendhal.server.entity.RPEntity;
  * handles ShockStatusHandler
  */
 public class ShockStatusHandler implements StatusHandler<ShockStatus> {
+
+	private StatusRemover remover;
 
 	/**
 	 * inflicts a status
@@ -39,20 +42,16 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 				} else {
 					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been shocked by " + attacker.getName() + ".");
 				}
+				statusList.addInternal(status);
+				statusList.activateStatusAttribute("status_" + status.getName());
+
+				remover = new StatusRemover(statusList, status);
+
+				// lasts between 30 seconds & 5 minutes
+				TurnNotifier.get().notifyInSeconds(Rand.randUniform(30, 60 * 5), remover);
+				TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
 			}
 		}
-
-		int count = statusList.countStatusByType(status.getStatusType());
-		if (count <= 6) {
-			statusList.addInternal(status);
-		}
-
-		if (count == 0) {
-			statusList.activateStatusAttribute("status_" + status.getName());
-			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
-			TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
-		}
-
 	}
 
 	/**
@@ -65,17 +64,18 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	public void remove(ShockStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 
-		RPEntity entity = statusList.getEntity();
+		final RPEntity entity = statusList.getEntity();
 		if (entity == null) {
 			return;
 		}
 
-		Status nextStatus = statusList.getFirstStatusByClass(ShockStatus.class);
-		if (nextStatus != null) {
-			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, nextStatus));
-		} else {
-			entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer shocked.");
-			entity.remove("status_" + status.getName());
+		entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer shocked.");
+		entity.remove("status_" + status.getName());
+
+		// disable pending notifications
+		if (remover != null) {
+			TurnNotifier.get().dontNotify(remover);
+			remover = null;
 		}
 	}
 }
