@@ -382,6 +382,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="active_idle"/>
     </ai>
   </creature>
 

@@ -325,6 +325,7 @@
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
+      <profile name="active_idle"/>
     </ai>
   </creature>
 
@@ -364,6 +365,7 @@
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
+      <profile name="active_idle"/>
     </ai>
   </creature>
 
@@ -396,6 +398,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
+      <profile name="active_idle"/>
     </ai>
   </creature>
 

@@ -35,6 +35,7 @@
       <profile name="offensive"/>
       <profile name="archer"/>
       <profile name="patrolling"/>
+      <profile name="active_idle"/>
     </ai>
   </creature>
 
