@@ -93,6 +93,8 @@ public class RPEntityRPClass {
 
 		/* Movement */
 		entity.addAttribute(PATHSET, Type.STRING, Definition.VOLATILE);
+		// animation should cycle even if entity is idle
+		entity.addAttribute("active_idle", Type.FLAG, Definition.VOLATILE);
 
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);

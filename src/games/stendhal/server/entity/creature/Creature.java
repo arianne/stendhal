@@ -224,6 +224,10 @@ public class Creature extends NPC {
 		setDeathSound(copy.deathSound);
 		setMovementSound(copy.movementSound);
 
+		if (this.aiProfiles.containsKey("active_idle")) {
+			put("active_idle", "");
+		}
+
 		for (RPSlot slot : copy.slots()) {
 			this.addSlot((RPSlot) slot.clone());
 		}

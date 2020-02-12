@@ -129,6 +129,9 @@ Changelog
 - added online/offline icons on buddy list
 - added commands /drop, /adminlevel
 
+*classic client*
+- entities with "active_idle" attribute will cycle animation even if stopped
+
 *scripting*
 - added Lua support
 
