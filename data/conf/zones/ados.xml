@@ -1733,6 +1733,15 @@ You should never dive with a cold or severe allergy because, you may not be able
   </zone>
 
   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarmanNPC" />
@@ -2238,6 +2247,15 @@ You should never dive with a cold or severe allergy because, you may not be able
   </zone>
 
   <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.bar.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.StichardRallmanNPC" />
@@ -2260,6 +2278,15 @@ You should never dive with a cold or severe allergy because, you may not be able
   </zone>
 
   <zone name="int_ados_bar_1" file="interiors/ados/bar_1.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <configurator class-name="games.stendhal.server.maps.ados.bar.ItemsOnTableUpstairs" />
 
     <!-- Portals -->

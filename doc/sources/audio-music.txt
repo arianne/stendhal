@@ -29,6 +29,7 @@ sacred_moments.ogg              Storyteller; GPL
 settlement_of_the_frontier.ogg  Tad Miller; CC BY 4.0; https://opengameart.org/node/109342
 sewers.ogg                      Norien; GPL
 snowflakelittlewhiteskirt.*     Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
+spinning_tavern.ogg             Jonathan Shaw (InspectorJ); CC BY 3.0; https://opengameart.org/node/98041 (Composed by Jonathan Shaw (www.jshaw.co.uk))
 spooky_forest.ogg               Bendzer; CC BY 4.0; https://opengameart.org/node/94146
 the_forsaken_mine.ogg           Storyteller; GPL
 the_magical_tower.ogg           Storyteller; GPL

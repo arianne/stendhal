@@ -1662,6 +1662,15 @@
   </zone>
 
   <zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.ItemsOnTable" />

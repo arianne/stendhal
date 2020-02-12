@@ -405,6 +405,15 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
   </zone>
 
   <zone name="int_fado_tavern" file="interiors/fado/tavern.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.fado.tavern.MaidNPC" />
 
@@ -673,6 +682,15 @@ If the bride is called Helen, you should say 'marry Helen'
   </zone>
 
   <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
+
+    <!-- music -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">spinning_tavern</parameter>
+        <parameter name="volume">127</parameter>
+      </implementation>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelChefNPC" />
