@@ -224,6 +224,7 @@
     <respawn value="2000"/>
     <corpse name="animal"/>
     <drops>
+      <item value="meat" quantity="[1,5]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
