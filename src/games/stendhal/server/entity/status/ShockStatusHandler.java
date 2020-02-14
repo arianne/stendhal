@@ -34,6 +34,8 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	@Override
 	public void inflict(ShockStatus status, StatusList statusList, Entity attacker) {
 
+		final String resistName = "resist_shocked";
+
 		if (!statusList.hasStatus(status.getStatusType())) {
 			RPEntity entity = statusList.getEntity();
 			if (entity != null) {
@@ -48,7 +50,13 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 				remover = new StatusRemover(statusList, status);
 
 				// lasts between 30 seconds & 5 minutes
-				TurnNotifier.get().notifyInSeconds(Rand.randUniform(30, 60 * 5), remover);
+				int persistence = Rand.randUniform(30, 60 * 5);
+				// shock-resistance also alters duration
+				if (entity.has(resistName)) {
+					persistence = (int) Math.round(persistence * (1.0 - entity.getDouble(resistName)));
+				}
+
+				TurnNotifier.get().notifyInSeconds(persistence, remover);
 				TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
 			}
 		}

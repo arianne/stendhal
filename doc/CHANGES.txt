@@ -111,6 +111,8 @@ Changelog
   - Semos Village, Plains, & Road
   - Nalwor River
   - taverns & inns in Ados, Fado, & Kirdneh cities
+- status effects
+  - shock resistance also alters duration of status
 
 *grapics*
 - made dark dagger image more distinct from night dagger
