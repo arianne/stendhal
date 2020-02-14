@@ -60,6 +60,15 @@ Changelog
       - imperial veteran (@ 0.017)
       - imperial elite archer (@ 0.05)
     - insulated ring (cobra: @ 0.08)
+    - placid ring
+      - gargoyle (@ 0.005)
+      - ghost (@ 0.02)
+      - incorporeal armor (@ 0.3)
+      - musth elephant (@ 0.5)
+      - polar bear (@ 0.1)
+      - rysin dragon (@ 2.5)
+      - water scarab (@ 0.75)
+      - werewolf (@ 0.5)
     - magic plate boots (cobra: @ 0.01)
     - magic plate legs (king cobra: @ 0.25)
     - pelt

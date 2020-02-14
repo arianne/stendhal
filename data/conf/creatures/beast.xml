@@ -106,6 +106,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
+      <item value="placid ring" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
