@@ -22,7 +22,6 @@
 			<element name="value" type="Q1:attribute"></element>
 			<element name="damage" type="Q1:damage" minOccurs="0"></element>
 			<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
-			<element name="resistance" type="Q1:resistance" minOccurs="0" maxOccurs="unbounded" />
 			<element name="equipable" type="Q1:equipable"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
@@ -74,6 +73,7 @@
 			<element name="slot_size" type="Q1:attribute" minOccurs="0"/>
 			<element name="menu" type="Q1:attribute" minOccurs="0"/>
 			<element name="uses" type="Q1:attribute" minOccurs="0" />
+			<element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -100,7 +100,7 @@
 		<attribute name="value" type="decimal" />
 	</complexType>
 
-	<complexType name="resistance">
+	<complexType name="stresist">
 		<attribute name="type" type="string" />
 		<attribute name="value" type="decimal" />
 		<attribute name="slots" type="string" />

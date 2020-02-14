@@ -9,10 +9,10 @@
     <description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
+      <status_resist type="poisoned" value="0.25" slots="finger;" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="0.25" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -28,10 +28,10 @@
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
+      <status_resist type="poisoned" value="0.5" slots="finger;" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="0.5" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -68,10 +68,10 @@
     <description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
+      <status_resist type="shocked" value="0.66" slots="finger;"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="shocked" value="0.66" slots="finger;"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
