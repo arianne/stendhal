@@ -63,6 +63,25 @@
   </item>
   DISABLED -->
 
+  <item name="placid ring">
+    <type class="ring" subclass="placid_ring" tileid="-1"/>
+    <description>You see a placid ring. It may reduce the effects of being shocked when worn on the finger.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+    <attributes>
+      <status_resist type="shocked" value="0.33" slots="finger;"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="finger"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
   <item name="insulated ring">
     <type class="ring" subclass="insulated_ring" tileid="-1"/>
     <description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
