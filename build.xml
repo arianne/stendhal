@@ -332,6 +332,14 @@
 			</classpath>
 		</javac>
 
+		<!-- data Groovy & Lua scripts -->
+		<copy todir="${build_server_script}">
+			<fileset dir="data/script">
+				<include name="**/*.groovy"/>
+				<include name="**/*.lua"/>
+			</fileset>
+		</copy>
+
 	</target>
 
 	<target name="jar" depends="client_build, server_build" description="Builds Client and Server">
@@ -597,6 +605,8 @@
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
 			<fileset dir="${buildroot}/build_server_script">
 				<include name="games/stendhal/server/script/**.*"/>
+				<include name="**/*.groovy"/>
+				<include name="**/*.lua"/>
 			</fileset>
 		</copy>
 
