@@ -11,8 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import java.io.File;
-import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -83,7 +85,7 @@ public class ScriptInLua extends ScriptingSandbox {
 	/**
 	 * Loads lua master script.
 	 */
-	public static void init() {
+	public void init() {
 		globals = JsePlatform.standardGlobals();
 
 		globals.load(new JseBaseLib());
@@ -97,11 +99,17 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
 
 		// load built-in master script
-		final String master = new File(ScriptRunner.class.getPackage().getName().replace(".", "/") + "/lua/init.lua").getPath();
-		final URL url = ScriptInLua.class.getClassLoader().getResource(master);
-
-		if (url != null) {
-			globals.loadfile(master).call();
+		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
+		if (is != null) {
+			try {
+				final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+				globals.load(reader, "init.lua").call();
+				reader.close();
+			} catch (final IOException e) {
+				logger.error(e, e);
+			}
+		} else {
+			logger.warn("Could not load Lua master script");
 		}
 	}
 
