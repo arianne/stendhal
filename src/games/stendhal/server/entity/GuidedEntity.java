@@ -16,6 +16,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.pathfinder.EntityGuide;
@@ -28,6 +30,9 @@ import marauroa.common.game.RPObject;
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
+
+	// logger instance
+	private static final Logger logger = Logger.getLogger(GuidedEntity.class);
 
 	/** The entity's default speed value */
 	protected double baseSpeed;
@@ -125,6 +130,27 @@ public abstract class GuidedEntity extends ActiveEntity {
 			this.remove(PATHSET);
 		}
 		guide.clearPath();
+	}
+
+	/**
+	 * Set path & starting position for entity. The starting position is
+	 * the first node in the path.
+	 *
+	 * @param path
+	 * 		Path to set.
+	 */
+	public void setPathAndPosition(final FixedPath path) {
+		setPath(path);
+
+		final Node[] nodes = path.getNodes();
+		if (nodes.length < 1) {
+			logger.error("Path is empty, cannot set entity position");
+			return;
+		}
+
+		// set initial position to first node
+		final Node start = path.getNodes()[0];
+		setPosition(start.getX(), start.getY());
 	}
 
 	/**

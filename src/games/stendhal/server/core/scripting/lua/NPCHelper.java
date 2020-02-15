@@ -55,19 +55,10 @@ public class NPCHelper {
 		return new SilentNPC();
 	}
 
-	/**
-	 * Helper function for setting an NPCs path.
-	 *
-	 * @param entity
-	 * 		The NPC instance of which path is being set.
-	 * @param table
-	 * 		Lua table with list of coordinates representing nodes.
-	 */
-	public void setPath(final RPEntity entity, final LuaTable table) {
-
+	private FixedPath tableToPath(final LuaTable table) {
 		if (!table.istable()) {
 			logger.error("Entity path must be a table");
-			return;
+			return null;
 		}
 
 		List<Node> nodes = new LinkedList<Node>();
@@ -87,23 +78,39 @@ public class NPCHelper {
 					nodes.add(new Node(X, Y));
 				} else {
 					logger.error("Path nodes must be integers");
-					return;
+					return null;
 				}
 			} else {
 				logger.error("Invalid table data in entity path");
-				return;
+				return null;
 			}
 		}
 
-		if (!nodes.isEmpty()) {
-			entity.setPath(new FixedPath(nodes, true));
-		} else {
-			if (entity.has("name")) {
-				logger.warn("Cannot set empty path for entity " + entity.getName());
-			} else {
-				logger.warn("Cannot set empty path for entity");
-			}
-		}
+		return new FixedPath(nodes, true);
+	}
+
+	/**
+	 * Helper function for setting an NPCs path.
+	 *
+	 * @param entity
+	 * 		The NPC instance of which path is being set.
+	 * @param table
+	 * 		Lua table with list of coordinates representing nodes.
+	 */
+	public void setPath(final RPEntity entity, final LuaTable table) {
+		entity.setPath(tableToPath(table));
+	}
+
+	/**
+	 * Helper function for setting an NPCs path & starting position.
+	 *
+	 * @param entity
+	 * 		The NPC instance of which path is being set.
+	 * @param table
+	 * 		Lua table with list of coordinates representing nodes.
+	 */
+	public void setPathAndPosition(final RPEntity entity, final LuaTable table) {
+		entity.setPathAndPosition(tableToPath(table));
 	}
 
 	// FIXME:
