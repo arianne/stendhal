@@ -77,7 +77,7 @@ public abstract class ScriptingSandbox {
 		if (zone != null) {
 			zone.add(npc);
 			loadedNPCs.put(npc, null);
-			logger.info(filename + " added NPC: " + npc);
+			logger.debug(filename + " added NPC: " + npc);
 		}
 	}
 
@@ -85,7 +85,7 @@ public abstract class ScriptingSandbox {
 		if (zone != null) {
 			zone.add(object);
 			loadedRPObjects.put(object, null);
-			logger.info(filename + " added object: " + object);
+			logger.debug(filename + " added object: " + object);
 		}
 	}
 
