@@ -57,7 +57,7 @@ public class SimpleQuestCreator {
 		return new SimpleQuest(slotName, properName, npcName);
 	}
 
-	private class SimpleQuest extends AbstractQuest {
+	public class SimpleQuest extends AbstractQuest {
 
 		private final String QUEST_SLOT;
 		private final String name;
