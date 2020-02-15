@@ -17,5 +17,5 @@
 do return end
 
 -- load the file with the actual instructions
-dofile("mods/npc/example/girl.lua")
-dofile("mods/npc/example/dog.lua")
+dofile("data/mods/npc/example/girl.lua")
+dofile("data/mods/npc/example/dog.lua")

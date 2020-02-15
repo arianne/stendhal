@@ -51,7 +51,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private final Map<String, ScriptingSandbox> scripts;
 
 	private final String scriptDir = "data/script/";
-	private final String modDir = "mods/";
+	private final String modsDir = "data/mods/";
 
 	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
@@ -149,7 +149,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 		final String rootDir;
 		if (ismod) {
-			rootDir = modDir;
+			rootDir = modsDir;
 		} else {
 			rootDir = scriptDir;
 		}
@@ -501,7 +501,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	}
 
 	/**
-	 * Retrieves Lua module initialization scripts from "mods/" directory.
+	 * Retrieves Lua module initialization scripts from "data/mods/" directory.
 	 *
 	 * Note: These modules are separate from the regular "data/script" scripts & must
 	 *       be named "init.lua".
@@ -512,7 +512,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private List<String> getLuaMods() {
 		final List<String> modlist = new ArrayList<String>();
 
-		final URL url = getClass().getClassLoader().getResource("mods/");
+		final URL url = getClass().getClassLoader().getResource(modsDir);
 		if (url != null) {
 			final String modroot = url.getFile();
 
