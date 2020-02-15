@@ -86,6 +86,8 @@ public class ScriptInLua extends ScriptingSandbox {
 	 * Loads lua master script.
 	 */
 	public void init() {
+		logger.info("Initializing Lua scripting engine");
+
 		globals = JsePlatform.standardGlobals();
 
 		globals.load(new JseBaseLib());
