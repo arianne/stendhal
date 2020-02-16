@@ -45,7 +45,7 @@ if game:setZone(zoneName) then
 		.. " I could really use some help gathering unicorn horns. Will you help me?")
 	quest:setAcceptReply("Great! Be careful out there lots of large monsters,"
 		.. " and those centaurs are really nasty")
-	quest:setRewardReply("Thank a bunch!")
+	quest:setRewardReply("Thanks a bunch!")
 	quest:setRejectReply("Thats ok, I will find someone else to help me.")
 	quest:setItemToCollect("unicorn horn", 10)
 	quest:setRepeatable(false)
