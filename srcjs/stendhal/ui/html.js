@@ -45,7 +45,7 @@ stendhal.ui.html = {
 				pageY: Math.round(event.changedTouches[0].pageY),
 				target: event.changedTouches[0].target
 			}
-			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;     
+			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
 			pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
 			return pos;
 		}
