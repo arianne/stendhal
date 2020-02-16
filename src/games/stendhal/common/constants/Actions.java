@@ -51,6 +51,7 @@ public final class Actions {
 
 	//outfit
 	public static final String OUTFIT = "outfit_ext";
+	public static final String REMOVEDETAIL = "removedetail";
 
 	public static final String MOVETO = "moveto";
 

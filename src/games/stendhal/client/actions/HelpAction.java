@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
@@ -87,7 +89,8 @@ class HelpAction implements SlashAction {
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
-				"- /help \tShow help information."
+				"- /help \tShow help information.",
+				"- /" + REMOVEDETAIL + " \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character."
 		};
 
 		for (final String line : lines) {

@@ -121,6 +121,7 @@ public class CommandCenter {
 		ProgressStatusQueryAction.register();
 		PushAction.register();
 		QuestListAction.register();
+		RemoveDetailAction.register();
 		ReorderAction.register();
 		SentenceAction.register();
 		SetCombatKarmaAction.register();

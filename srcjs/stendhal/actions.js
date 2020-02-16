@@ -193,7 +193,8 @@ stendhal.slashActionRepository = {
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
-				"- /help \tShow help information."
+				"- /help \tShow help information.",
+				"- /removedetail \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character."
 			];
 			for (var i = 0; i < msg.length; i++) {
 				stendhal.ui.chatLog.addLine("info", msg[i]);

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
 import java.util.HashMap;
@@ -127,6 +128,9 @@ public class SlashActionRepository {
 		actions.put("accept", new AcceptChallengeAction());
 
 		actions.put(COMBAT_KARMA, new SetCombatKarmaAction());
+
+		// allows players to remove the detail layer manually
+		actions.put(REMOVEDETAIL, new RemoveDetailAction());
 	}
 
 	/**
