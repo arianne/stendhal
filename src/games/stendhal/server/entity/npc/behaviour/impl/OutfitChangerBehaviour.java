@@ -36,6 +36,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 
 	private final String wearOffMessage;
 
+	/** if <code>true</code>, return player to original outfit before setting new temp outfit */
+	private boolean resetBeforeChange = false;
+
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
 	static {
@@ -84,6 +87,42 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 */
 	public OutfitChangerBehaviour(final Map<String, Integer> priceList) {
 		this(priceList, NEVER_WEARS_OFF, null);
+	}
+
+	/**
+	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
+	 * automatically.
+	 *
+	 * @param priceList
+	 * 		List of outfit types and their prices.
+	 * @param reset
+	 * 		If <code>true</code>, player's original outfit will be restored before setting
+	 * 		setting the new one.
+	 */
+	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final boolean reset) {
+		this(priceList, NEVER_WEARS_OFF, null, reset);
+	}
+
+	/**
+	 * Creates a new OutfitChangerBehaviour for outfits that wear off
+	 * automatically after some time.
+	 *
+	 * @param priceList
+	 * 		List of outfit types and their prices.
+	 * @param endurance
+	 * 		The time (in turns) the outfit will stay, or NEVER_WEARS_OFF if the outfit
+	 * 		should never disappear automatically.
+	 * @param wearOffMessage
+	 * 		the message that the player should receive after the outfit has worn off,
+	 * 		or null if no message should be sent.
+	 * @param reset
+	 * 		If <code>true</code>, player's original outfit will be restored before setting
+	 * 		setting the new one.
+	 */
+	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final int endurance,
+			final String wearOffMessage, final boolean reset) {
+		this(priceList, endurance, wearOffMessage);
+		resetBeforeChange = reset;
 	}
 
 	/**
@@ -192,6 +231,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * @param outfitType the outfit to wear
 	 */
 	public void putOnOutfit(final Player player, final String outfitType) {
+		if (resetBeforeChange) {
+			// cannot use OutfitChangerBehaviour.returnToOriginalOutfit(player) as it checks if the outfit was rented from here
+			player.returnToOriginalOutfit();
+		}
+
 		final List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
 		final Outfit newOutfit = Rand.rand(possibleNewOutfits);
 		player.setOutfit(newOutfit.putOver(player.getOutfit()), true);
