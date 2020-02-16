@@ -514,6 +514,7 @@ glas	OBJ	glas
 glass	OBJ	glasses
 glow	OBJ	glows
 glück	OBJ	glücke
+gnomess	OBJ gnomesses
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
 goblet	OBJ	goblets
