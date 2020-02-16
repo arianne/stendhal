@@ -166,6 +166,20 @@ public class Portal extends Entity implements UseListener {
 		return has(ATTR_HIDDEN);
 	}
 
+	/**
+	 * Sets or removes the "hidden" attribute.
+	 *
+	 * @param hide
+	 * 		If <code>true</code>, adds "hidden" attribute, otherwise removes it.
+	 */
+	public void setHidden(final boolean hide) {
+		if (hide) {
+			put(ATTR_HIDDEN, "");
+		} else {
+			remove(ATTR_HIDDEN);
+		}
+	}
+
 	public boolean loaded() {
 		return isDestinationSet;
 	}

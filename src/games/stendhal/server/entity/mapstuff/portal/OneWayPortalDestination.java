@@ -25,7 +25,7 @@ public class OneWayPortalDestination extends Portal {
 	 * Creates a OneWayPortalDestination.
 	 */
 	public OneWayPortalDestination() {
-		put("hidden", "");
+		setHidden(true);
 		setResistance(0);
 	}
 

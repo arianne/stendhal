@@ -55,7 +55,7 @@ public class LabEntrancePortal implements ZoneConfigurator {
 
 		labEntrance.setPosition(3, 13);
 		labEntrance.setResistance(0);
-		labEntrance.put("hidden", "");
+		labEntrance.setHidden(true);
 		labEntrance.setIdentifier("lab_entrance");
 		labEntrance.setDestination("int_apothecary_lab", "lab_exit");
 
