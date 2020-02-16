@@ -155,6 +155,7 @@ Changelog
 - enemy/creature shadow can be set with "shadow" value under "type" tag
 - removed multiple messages about no longer being shocked
 - fixed veil not being removed if renting from Timothy while wearing wedding gown
+- slash action "/removedetail" can be executed to manually remove the detail layer from a character
 
 
 
