@@ -668,4 +668,9 @@ public class PizzaDelivery extends AbstractQuest {
 	public String getNPCName() {
 		return "Leander";
 	}
+
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return true;
+	}
 }
