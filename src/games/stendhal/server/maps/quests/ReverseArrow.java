@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -425,6 +427,7 @@ public class ReverseArrow extends AbstractQuest implements
 		door.setPosition(95, 101);
 		door.setIdentifier(Integer.valueOf(0));
 		door.setDestination(ZONE_NAME, Integer.valueOf(0));
+		door.put(MOVE_CONTINUOUS, "");
 		entranceZone.add(door);
 
 		door.open();
@@ -433,6 +436,7 @@ public class ReverseArrow extends AbstractQuest implements
 		exit.setPosition(10, 17);
 		exit.setIdentifier(Integer.valueOf(0));
 		exit.setDestination(entranceZoneName, Integer.valueOf(0));
+		exit.put(MOVE_CONTINUOUS, "");
 		zone.add(exit);
 
 		final Sign sign = new Sign();
