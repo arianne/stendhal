@@ -1150,13 +1150,13 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <portal x="21" y="7" ref="portal_from_spire_2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="21" y="23" ref="portal_sparkle_to_seventh_floor">
       <destination zone="int_semos_wizards_tower_7" ref="portal_sparkle_enter_spire" />
     </portal>
     <portal x="21" y="6" ref="portal_to_spire_2">
       <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
-      <attribute name="hidden" />
     </portal>
     <!-- <portal x="7" y="28" ref="portal_to_malleus_plain"> <destination
       zone="malleus_plain" ref="portal_to_malleus" /> </portal> -->
@@ -1235,10 +1235,10 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <portal x="21" y="6" ref="portal_from_spire_1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="21" y="7" ref="portal_to_spire_1">
       <destination zone="int_semos_wizards_tower_8" ref="portal_from_spire_2" />
-      <attribute name="hidden" />
     </portal>
 
     <entity x="12" y="17">
