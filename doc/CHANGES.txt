@@ -154,6 +154,7 @@ Changelog
 - fixed cannot enter apothecary lab if Traps for Klaas quest restarted
 - enemy/creature shadow can be set with "shadow" value under "type" tag
 - removed multiple messages about no longer being shocked
+- fixed veil not being removed if renting from Timothy while wearing wedding gown
 
 
 

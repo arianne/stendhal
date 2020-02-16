@@ -65,7 +65,7 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("suit", 50);
-				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, true);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "wear");
 			}
 		};
