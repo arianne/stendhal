@@ -129,7 +129,7 @@ public final class ShopList {
 		shops.add("selltools", "hammer", 60);
 		// used for harvest grain.
 		shops.add("selltools", "old scythe", 120);
-        // for harvesting cane fields
+		// for harvesting cane fields
 		shops.add("selltools", "sickle", 80);
 		shops.add("selltools", "gold pan", 230);
 
@@ -159,7 +159,7 @@ public final class ShopList {
 		shops.add("buyrare", "plate armor", 62);
 		shops.add("buyrare", "plate shield", 40);
 		shops.add("buyrare", "lion shield", 50);
-                shops.add("buyrare", "blue legs",500);
+		shops.add("buyrare", "blue legs",500);
 
 		// rare elf weapons buyer
 		shops.add("elfbuyrare", "battle axe", 70);
@@ -177,7 +177,7 @@ public final class ShopList {
 		shops.add("buyrare2", "great sword", 250);
 		shops.add("buyrare2", "fire sword", 2000);
 		shops.add("buyrare2", "ice sword", 5000);
-        shops.add("buyrare2", "hell dagger", 8000);
+		shops.add("buyrare2", "hell dagger", 8000);
 
 		// very rare armor shop (ados)
 		shops.add("buyrare3", "golden legs", 3000);
@@ -223,9 +223,8 @@ public final class ShopList {
 		shops.add("boots&helm", "shadow boots", 2000);
 		shops.add("boots&helm", "stone boots", 2500);
 		shops.add("boots&helm", "chaos boots", 4000);
-        shops.add("boots&helm", "green thing boots", 6000);
-        shops.add("boots&helm", "xeno boots", 8000);
-        shops.add("boots&helm", "xeno helmet", 8000);
+		shops.add("boots&helm", "green thing boots", 6000);
+		shops.add("boots&helm", "xeno boots", 8000);
 
 		// helmet shop (mithrilbourgh)
 		// Note the shop sign is done by hand in
@@ -235,6 +234,7 @@ public final class ShopList {
 		shops.add("boots&helm", "horned golden helmet", 5000);
 		shops.add("boots&helm", "chaos helmet", 6000);
 		shops.add("boots&helm", "magic chain helmet", 8000);
+		shops.add("boots&helm", "xeno helmet", 8000);
 		shops.add("boots&helm", "black helmet", 10000);
 
 		// buy axes (woodcutter)
