@@ -67,7 +67,6 @@ import games.stendhal.server.maps.Region;
  * <li>1000 XP</li>
  * <li>5 greater antidote
  * <li>note to apothecary (if Antivenom Ring quest not started)
- * <li>Can sell rodent traps to Klaas</li>
  * <li>Karma: 10</li>
  * </ul>
  *
