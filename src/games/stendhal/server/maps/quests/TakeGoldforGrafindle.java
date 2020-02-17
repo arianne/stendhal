@@ -241,7 +241,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Take gold for Grafindle",
+				"Take Gold for Grafindle",
 				"Grafindle in the bank of Nalwor, searches for someone he can trust with gold.",
 				false);
 		step_1();

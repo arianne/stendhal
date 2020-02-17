@@ -179,8 +179,8 @@ public class PlinksToy extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Plinks toy",
-				"Plink is a sweet little boy, and like many little boys is frightened of wolves.",
+				"Plink's Toy",
+				"Plink is a sweet little boy, and like many little boys, is frightened of wolves.",
 				false);
 		step_1();
 		step_2();

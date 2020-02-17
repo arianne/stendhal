@@ -261,7 +261,7 @@ public class FishSoupForHughie extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Fish Soup For Hughie",
+				"Fish Soup for Hughie",
 				"Anastasia's son Hughie is sick and needs something to heal him.",
 				true);
 		prepareRequestingStep();
@@ -270,7 +270,7 @@ public class FishSoupForHughie extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Fish Soup For Hughie";
+		return "Fish Soup for Hughie";
 	}
 
 	@Override

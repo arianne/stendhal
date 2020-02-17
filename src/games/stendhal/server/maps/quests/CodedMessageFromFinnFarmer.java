@@ -298,8 +298,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		step2();
 		step3();
 		fillQuestInfo(
-			"Coded message from Finn Farmer",
-			"Finn Farmer, has imporant, secret information for George.",
+			"Coded Message from Finn Farmer",
+			"Finn Farmer has important, secret information for George.",
 			false);
 	}
 

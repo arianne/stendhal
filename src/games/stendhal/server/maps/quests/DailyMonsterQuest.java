@@ -483,7 +483,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Daily Monster Quest",
-				"Mayor Sakhs needs warriors to keep Semos city safe.",
+				"Mayor Sakhs needs warriors to keep Semos City safe.",
 				true);
 		step_1();
 		step_2();

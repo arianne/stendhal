@@ -427,7 +427,7 @@ public class MedicineForTad extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Medicine For Tad",
+				"Medicine for Tad",
 				"Tad, a boy in Semos Hostel, needs help to get his medicine.",
 				false);
 		step_1();

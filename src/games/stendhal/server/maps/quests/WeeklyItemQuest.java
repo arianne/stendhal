@@ -540,7 +540,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Kirdneh museum needs help!",
+				"Kirdneh Museum Needs Help!",
 				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",
 				true);
 		buildItemsMap();

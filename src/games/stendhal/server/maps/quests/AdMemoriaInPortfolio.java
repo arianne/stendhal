@@ -20,21 +20,16 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-//import com.google.common.collect.ImmutableList;
-
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
-
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-//import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -46,11 +41,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-//import games.stendhal.common.grammar.Grammar;
-//import games.stendhal.server.actions.admin.AdministrationAction;
-
 /**
- * QUEST: Ad Memoria In Portfolio
+ * QUEST: Ad Memoria in Portfolio
  *
  * @author omero
  *
@@ -392,7 +384,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 
 		fillQuestInfo(
             // title of the quest:
-            "AdMemoriaInPortfolio",
+            "Ad Memoria in Portfolio",
             // description of quest step:
             "Talk to Brosoklelo and agree to help him recover his memory." + " " +
             "Find Vlamyklela and talk with her..." + " " +

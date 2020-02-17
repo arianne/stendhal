@@ -191,7 +191,7 @@ public class MeetKetteh extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Meet Ketteh Wehoh",
-				"An elegant lady waits in the townhall in Semos and takes care, that new inhabitants of Faiumoni will walk around without freezing. She is the town Decency and Manners Warden.",
+				"An elegant lady waits in the town hall in Semos and takes care that new inhabitants of Faiumoni will walk around without freezing. She is the town Decency and Manners Warden.",
 				false);
 		step1();
 	}

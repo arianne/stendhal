@@ -460,7 +460,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Kanmararn Soldiers",
-				"Some time ago, Sergeant James started with his crew of four brave soldiers to their adventure of finding a treasure in Kanmararn, the city of dwarves. They didn't return yet.",
+				"Some time ago, Sergeant James started with his crew of four brave soldiers on their adventure of finding a treasure in Kanmararn, the city of dwarves. They didn't return yet.",
 				true);
 		prepareCowardSoldier();
 		prepareCorpses();

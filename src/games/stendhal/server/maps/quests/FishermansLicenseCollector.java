@@ -242,8 +242,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Fishermans License part 2",
-				"Santiago will grant a fishermans license to those who can prove their skills.",
+				"Fisherman's License part 2",
+				"Santiago will grant a fisherman's license to those who can prove their skills.",
 				true);
 		step_1();
 		step_2();

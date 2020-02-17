@@ -246,7 +246,7 @@ public class LookBookforCeryl extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Look for a book for Ceryl",
+				"Look for a Book for Ceryl",
 				"Ceryl wants an old book that was checked out.",
 				false);
 		step1LearnAboutQuest();

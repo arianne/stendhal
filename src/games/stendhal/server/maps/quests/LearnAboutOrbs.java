@@ -137,7 +137,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Learn About Orbs",
-				"Ilisa will teach about using Orbs.",
+				"Ilisa will teach about using orbs.",
 				false);
 		step1();
 

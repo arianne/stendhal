@@ -312,7 +312,7 @@ public class ImperialPrincess extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Gaining citizenship of Kalavan",
+				"Gaining Citizenship of Kalavan",
 				"To gain official citizenship for Kalavan City, one must first ask for the permission of the King. His daughter, Princess Ylflia, can help gain his ear.",
 				true);
 		step_1();

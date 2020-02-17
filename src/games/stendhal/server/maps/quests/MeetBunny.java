@@ -117,7 +117,7 @@ public class MeetBunny extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Meet Easter Bunny",
-				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. Bunny is really fast even though he carries some heavy surprises with him...",
+				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. He is really fast even though he carries some heavy surprises with him...",
 				false);
 
 		if (System.getProperty("stendhal.easterbunny") != null) {

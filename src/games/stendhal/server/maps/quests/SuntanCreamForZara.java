@@ -212,7 +212,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Suntan Cream For Zara",
+				"Suntan Cream for Zara",
 				"Zara is burning under the hot Athor sun.",
 				false);
 		createRequestingStep();

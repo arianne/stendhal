@@ -178,7 +178,7 @@ public class LearnAboutKarma extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Learn About Karma",
-				"Sarzina will teach about Karma.",
+				"Sarzina will teach about karma.",
 				false);
 		step1();
 	}

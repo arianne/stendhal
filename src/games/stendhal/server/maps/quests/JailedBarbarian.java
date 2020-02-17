@@ -295,7 +295,7 @@ import games.stendhal.server.maps.Region;
 	public void addToWorld() {
 		fillQuestInfo(
 				"Jailed Barbarian",
-				"Lorenz is a jailed Barbarian on Amazon Island. It's a mystery why he is jailed there, but perhaps he needs help.",
+				"Lorenz is a jailed barbarian on Amazon Island. It's a mystery why he is jailed there, but perhaps he needs help.",
 				true);
 		step1();
 		step2();

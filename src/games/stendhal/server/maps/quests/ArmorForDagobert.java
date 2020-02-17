@@ -209,7 +209,7 @@ public class ArmorForDagobert extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Armor For Dagobert",
+				"Armor for Dagobert",
 				"Dagobert, the consultant at the bank of Semos, needs protection.",
 				false);
 		prepareRequestingStep();

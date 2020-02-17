@@ -248,7 +248,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Easter Gifts For Children",
+				"Easter Gifts for Children",
 				"Caroline, the nice tavern owner in Ados city, wants to make some children happy during Easter holidays.",
 				false);
 		prepareRequestingStep();

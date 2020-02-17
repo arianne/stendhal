@@ -375,7 +375,7 @@ public class CloakCollector2 extends AbstractQuest {
 		step_2();
 		step_3();
 		fillQuestInfo(
-				"Cloaks Collector Two",
+				"Cloaks Collector part 2",
 				"Josephine wants even more cloaks!",
 				false);
 	}

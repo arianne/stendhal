@@ -222,7 +222,7 @@ public class CloaksForBario extends AbstractQuest {
 		step_3();
 		fillQuestInfo(
 				"Cloaks for Bario",
-				"Bario, the freezing dwarf, needs cloaks to keep him warm.",
+				"Bario, the freezing dwarf, needs cloaks to keep himself warm.",
 				false);
 	}
 

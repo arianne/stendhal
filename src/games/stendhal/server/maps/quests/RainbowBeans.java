@@ -233,7 +233,7 @@ public class RainbowBeans extends AbstractQuest {
 		});
 		fillQuestInfo(
 				"Rainbow Beans",
-				"Weird beans could be a way to strange and sometimes dangerous places!",
+				"Weird beans could be a way to strange, and sometimes dangerous places!",
 				false);
 		step_1();
 

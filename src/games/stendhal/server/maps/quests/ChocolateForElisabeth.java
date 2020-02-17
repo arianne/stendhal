@@ -304,7 +304,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Chocolate for Elisabeth",
-				"Sweet sweet chocolate! Noone can live without it! And Elisabeth loooves to have some...",
+				"Sweet, sweet chocolate! No one can live without it! And Elisabeth loooves to have some...",
 				true);
 		chocolateStep();
 		meetMummyStep();

@@ -51,7 +51,7 @@ import games.stendhal.server.maps.Region;
 
 
 /**
- * QUEST: Find Jefs mum
+ * QUEST: Find Jefs Mother
  *
  * PARTICIPANTS:
  * <ul>
@@ -262,8 +262,8 @@ public class FindJefsMom extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Find Jefs mother",
-				"Jef, a young boy in Kirdneh city, waits for his mum Amber who didn't return yet from the market.",
+				"Find Jefs Mother",
+				"Jef, a young boy in Kirdneh city, waits for his mum, Amber, who didn't return yet from the market.",
 				false);
 		offerQuestStep();
 		findMomStep();

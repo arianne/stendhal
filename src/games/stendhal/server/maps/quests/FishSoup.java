@@ -390,7 +390,7 @@ public class FishSoup extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Fish soup",
+				"Fish Soup",
 				"Florence Boullabaisse makes a healthy and tasty fish soup, but it needs rather a lot of ingredients.",
 				false);
 		step_1();
