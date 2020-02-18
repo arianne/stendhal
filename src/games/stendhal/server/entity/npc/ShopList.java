@@ -260,6 +260,7 @@ public final class ShopList {
 		shops.add("buyelvish", "drow sword", 1200);
 		shops.add("buyelvish", "elvish cloak", 400);
 		shops.add("buyelvish", "elvish armor", 400);
+		shops.add("buyelvish", "elvish hat", 150);
 
 		// magic items or 'relics' (witch in magic city)
 		shops.add("buymagic", "demon sword", 4000);
