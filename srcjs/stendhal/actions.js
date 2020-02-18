@@ -312,19 +312,33 @@ stendhal.slashActionRepository = {
 		execute: function(type, params, remainder) {
 			var x = null;
 			var y = null;
-			if (params.length > 2) {
-				x = params[params.length - 2];
-				y = params[params.length - 1];
+			var quantity = null;
 
-				if (!isNaN(x) && !isNaN(y)) {
-					params.length = params.length - 2;
+			var nameBuilder = [];
+			for (var idx = 0; idx < params.length; idx++) {
+				const str = params[idx];
+				if (str.match("[0-9].*")) {
+					if (x == null) {
+						x = str;
+					} else if (y == null) {
+						y = str;
+					} else if (quantity == null) {
+						quantity = str;
+					} else {
+						nameBuilder.push(str);
+					}
 				} else {
-					x = null;
-					y = null;
+					nameBuilder.push(str);
 				}
 			}
 
-			var creature = params.join(" ");
+			// use x value as quantity if y was not specified
+			if (quantity == null && y == null && x != null) {
+				quantity = x;
+				x = null;
+			}
+
+			var creature = nameBuilder.join(" ");
 			if (x == null || y == null) {
 				// for some reason, the action does not accept the x,y coordinates if they are not a string
 				x = marauroa.me.x.toString();
@@ -335,7 +349,8 @@ stendhal.slashActionRepository = {
 				"type": type,
 				"creature": creature,
 				"x": x,
-				"y": y
+				"y": y,
+				"quantity": quantity
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;

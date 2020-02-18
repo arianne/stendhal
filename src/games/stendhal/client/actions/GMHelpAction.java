@@ -83,6 +83,8 @@ class GMHelpAction implements SlashAction {
 				"- /alterquest <player> <questslot> <value>",
 				"\t\tUpdate the #questslot for #player to be #value.",
 				"- /summon <creature|item> [x] [y]",
+				"- /summon <stackable item> [quantity]",
+				"- /summon <stackable item> <x> <y> [quantity]",
 				"\t\tSummon the specified item or creature at co-ordinates #x, #y in the current zone.",
 				"- /summonat <player> <slot> [amount] <item>",
 				"\t\tSummon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified.",

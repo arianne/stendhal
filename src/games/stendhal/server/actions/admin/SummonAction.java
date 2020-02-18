@@ -31,6 +31,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.PurpleDragon;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
@@ -143,6 +144,13 @@ public class SummonAction extends AdministrationAction {
 							} else {
 								entityToBePlaced = entity;
 							}
+
+							if (entityToBePlaced instanceof StackableItem) {
+								if (action.has("quantity")) {
+									((StackableItem) entityToBePlaced).setQuantity(action.getInt("quantity"));
+								}
+							}
+
 							StendhalRPAction.placeat(zone, entityToBePlaced, x, y);
 							new GameEvent(player.getName(), SUMMON, type).raise();
 							// We found what we are searching for.

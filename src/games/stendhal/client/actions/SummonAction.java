@@ -27,9 +27,13 @@ class SummonAction implements SlashAction {
 	 * Execute a chat command.
 	 *
 	 * We accept the following command syntaxes, coordinates are recognized from numeric parameters:
-	 * /summon &lt;creature name&gt;
-	 * /summon &lt;creature name&gt; x y
-	 * /summon x y &lt;creature name&gt;
+	 * 		/summon entity
+	 * 		/summon x y entity
+	 * 		/summon entity x y
+	 * 		/summon quantity entity
+	 * 		/summon entity quantity
+	 *		/summon x y quantity entity
+	 *		/summon entity x y quantity
 	 *
 	 * @param params
 	 *            The formal parameters.
@@ -45,6 +49,7 @@ class SummonAction implements SlashAction {
 		final NameBuilder nameBuilder = new NameBuilder();
 		Integer x = null;
 		Integer y = null;
+		Integer quantity = null;
 
 		for (int i = 0; i < params.length; ++i) {
 			final String str = params[i];
@@ -58,6 +63,8 @@ class SummonAction implements SlashAction {
         					x = num;
         				} else if (y == null) {
         					y = num;
+        				} else if (quantity == null) {
+        					quantity = num;
         				} else {
         					nameBuilder.append(str);
         				}
@@ -71,8 +78,17 @@ class SummonAction implements SlashAction {
 			}
 		}
 
+		// use x value as quantity if y was not specified
+		if (quantity == null && y == null && x != null) {
+			quantity = x;
+			x = null;
+		}
+
 		summon.put("type", "summon");
 		summon.put("creature", nameBuilder.toString());
+		if (quantity != null) {
+			summon.put("quantity", quantity);
+		}
 
 		if (x != null) {
 			if (y != null) {
