@@ -57,6 +57,7 @@ public class CaptiveNPC implements ZoneConfigurator {
 		tomi.setPosition(119, 13);
 		tomi.setBaseHP(100);
 		tomi.setHP(50);
+		tomi.setShadowStyle(null);
 		tomi.setDescription("You see Tomi. He is sweating all over his body and definitely needs something to cool down.");
 		zone.add(tomi);
 	}
