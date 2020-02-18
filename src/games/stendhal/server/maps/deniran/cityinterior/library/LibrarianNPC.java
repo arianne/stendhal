@@ -80,7 +80,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(17, 14);
 		npc.setEntityClass("librarian2npc");
-		npc.setDescription("You see the King of Denrian.");
+		npc.setDescription("You see the Julia, Deniran's local librarian.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
