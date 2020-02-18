@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -29,6 +30,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * <p>Creates a normal version of Susi in the ross house.
  */
 public class LittleGirlNPC implements ZoneConfigurator {
+
+	public final static String SUSI_OUTFIT = "body=2,dress=32,head=0,eyes=0,hair=4";
 
 	/**
 	 * Configure a zone.
@@ -84,7 +87,8 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setOutfit(13, 32, 7, null, 0, null, 4, null, 0);
+		npc.setOutfit(SUSI_OUTFIT);
+		npc.setOutfitColor("skin", SkinColor.LIGHT);
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

@@ -11,12 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
 
+import static games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC.SUSI_OUTFIT;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -82,7 +85,8 @@ public class FoundGirl implements LoadableContent {
 		};
 
 		//	npcs.add(npc);
-		npc.setOutfit(13, 32, 7, null, 0, null, 4, null, 0);
+		npc.setOutfit(SUSI_OUTFIT);
+		npc.setOutfitColor("skin", SkinColor.LIGHT);
 		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
