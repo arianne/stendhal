@@ -43,7 +43,7 @@ public class KingNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(14,7);
 		npc.setEntityClass("deniran_king");
-		npc.setDescription("You see the King of Denrian.");
+		npc.setDescription("You see the King of Deniran.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
