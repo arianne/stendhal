@@ -53,11 +53,11 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		//		Achievement.HARD_BASE_SCORE, true, new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
 
 		// have completed all quests in Semos City?
-		questAchievements.add(createAchievement("quest.special.semos", "Aide to Semos folk", "Complete all quests in Semos City",
+		questAchievements.add(createAchievement("quest.special.semos", "Aide to Semos Folk", "Complete all quests in Semos City",
 				Achievement.MEDIUM_BASE_SCORE, true, new QuestsInRegionCompletedCondition(Region.SEMOS_CITY)));
 
 		// have completed all quests in Ados City?
-		questAchievements.add(createAchievement("quest.special.ados", "Helper of Ados city dwellers", "Complete all quests in Ados City",
+		questAchievements.add(createAchievement("quest.special.ados", "Helper of Ados City Dwellers", "Complete all quests in Ados City",
 				Achievement.MEDIUM_BASE_SCORE, true, new QuestsInRegionCompletedCondition(Region.ADOS_CITY)));
 
 		// complete nearly all the quests in the game?

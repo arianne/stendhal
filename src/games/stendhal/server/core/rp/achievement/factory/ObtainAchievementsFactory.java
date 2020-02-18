@@ -35,7 +35,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		final List<Achievement> achievements = new LinkedList<Achievement>();
 
 		// Wishing well achievement
-		achievements.add(createAchievement("obtain.wish", "A wish came true", "Get an item from the wishing well",
+		achievements.add(createAchievement("obtain.wish", "A Wish Came True", "Get an item from the wishing well",
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerGotNumberOfItemsFromWellCondition(0)));
 
