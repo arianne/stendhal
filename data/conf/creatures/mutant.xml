@@ -175,6 +175,7 @@
     <respawn value="1800"/> <!-- 9 minutes -->
     <corpse name="humanoid"/>
     <drops>
+      <item value="poison" quanityt="[1,1]" probability="25.0"/>
       <item value="spotted egg" quantity="1" probability="1.0"/>
     </drops>
     <ai>
