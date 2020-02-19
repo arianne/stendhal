@@ -221,6 +221,8 @@ stendhal.slashActionRepository = {
 					"\t\tLogs a note about #player.",
 					"- /inspect <player>",
 					"\t\tShow complete details of #player.",
+					"- /inspectquest <player> <quest_slot>",
+					"\t\tShow the state of quest for #player.",
 					"- /script <scriptname>",
 					"\t\tLoad (or reload) a script on the server. See #/gmhelp #script for details.",
 					"* CHATTING:",
@@ -317,6 +319,21 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 0,
 		getMaxParams: 1
+	},
+
+
+	"inspectquest": {
+		execute: function(type, params, remainder) {
+			var action = {
+					"type": "inspectquest",
+					"target": params[0],
+					"quest_slot": params[1]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 2,
+		getMaxParams: 2
 	},
 
 
