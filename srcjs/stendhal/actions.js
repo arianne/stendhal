@@ -509,6 +509,24 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"sentence": {
+		execute: function(type, params, remainder) {
+			if (params == null) {
+				return false;
+			};
+
+			const action = {
+				"type": "sentence",
+				"value": remainder
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"stopwalk": {
 		execute: function(type, params, remainder) {
 			const action = {
