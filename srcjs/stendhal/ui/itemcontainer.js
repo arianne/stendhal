@@ -118,6 +118,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 	}
 
 	function onMouseUp(e) {
+		e.preventDefault();
 		let event = stendhal.ui.html.extractPosition(e);
 		if (event.target.dataItem) {
 			if (quickPickup) {
