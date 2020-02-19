@@ -78,6 +78,21 @@ stendhal.slashActionRepository = {
 		getMaxParams: 3
 	},
 
+	"altercreature": {
+		execute: function(type, params, remainder) {
+			const action = {
+				"type": "altercreature",
+				"target": params[0],
+				"text": params[1]
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 2,
+		getMaxParams: 2
+	},
+
 	"alterquest": {
 		execute: function(type, params, remainder) {
 			const action = {
