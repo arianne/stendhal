@@ -401,6 +401,46 @@ stendhal.slashActionRepository = {
 	},
 
 
+	"ignore": {
+		execute: function(type, params, remainder) {
+			const action = {
+					"type": "ignore"
+			};
+
+			if (params[0] == null) {
+				action["list"] = "1";
+			} else {
+				action["target"] = params[0];
+				var duration = params[1];
+
+				if (duration != null) {
+					/*
+					 * Ignore "forever" values
+					 */
+					if (duration != "*" || duration != "-") {
+						/*
+						 * Validate it's a number
+						 */
+						if (isNaN(duration)) {
+							return false;
+						}
+
+						action["duration"] = duration;
+					}
+				}
+
+				if (remainder.length != 0) {
+					action["reason"] = remainder;
+				}
+			}
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 2
+	},
+
 	"inspectquest": {
 		execute: function(type, params, remainder) {
 			var action = {
