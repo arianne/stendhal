@@ -60,6 +60,25 @@ stendhal.slashActionRepository = {
 		getMaxParams: 3
 	},
 
+	"away": {
+		execute: function(type, params, remainder) {
+			var msg = null;
+			if (remainder.length != 0) {
+				msg = remainder;
+			};
+
+			var action = {
+				"type": "away",
+				"message": msg
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"ban": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -152,6 +171,25 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
+	"grumpy": {
+		execute: function(type, params, remainder) {
+			var reason = null;
+			if (remainder.length != 0) {
+				reason = remainder;
+			};
+
+			var action = {
+				"type": "grumpy",
+				"reason": reason
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 
 	"help": {
 		execute: function(type, params, remainder) {
@@ -175,11 +213,11 @@ stendhal.slashActionRepository = {
 				"- /ignore <player> [minutes|*|- [reason...]] \t\tAdd #player to your ignore list.",
 				"- /ignore \tFind out who is on your ignore list.",
 				"- /unignore <player> \t\tRemove #player from your ignore list.",
-/*				"* STATUS:",
+				"* STATUS:",
 				"- /away <message> \t\tSet an away message.",
 				"- /away \tRemove away status.",
 				"- /grumpy <message> \t\tSet a message to ignore all non-buddies.",
-				"- /grumpy \tRemove grumpy status.", */
+				"- /grumpy \tRemove grumpy status.",
 				"- /name <pet> <name> \t\tGive a name to your pet.",
 /*				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
 				"* PLAYER CONTROL:",
