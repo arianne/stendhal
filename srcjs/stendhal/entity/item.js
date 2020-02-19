@@ -39,8 +39,11 @@ marauroa.rpobjectFactory["item"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	getDefaultAction: function() {
 		return {
 			type: "equip",
+			"baseobject": marauroa.me["id"],
 			"source_path": this.getIdPath(),
 			"target_path": "[" + marauroa.me["id"] + "\tbag]",
+			"targetslot": "bag",
+			"clicked": "", // useful for changing default target in equip action
 			"zone": marauroa.currentZoneName
 		};
 	},
