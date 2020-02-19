@@ -29,12 +29,14 @@ import games.stendhal.server.maps.Region;
  */
 public class QuestAchievementFactory extends AbstractAchievementFactory {
 
+	public static final String ID_ELF_PRINCESS = "quest.special.elf_princess.0025";
+
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> questAchievements = new LinkedList<Achievement>();
 
 		// Elf Princess quest achievement
-		questAchievements.add(createAchievement("quest.special.elf_princess.0025", "Faiumoni's Casanova", "Finish elf princess quest 25 times",
+		questAchievements.add(createAchievement(ID_ELF_PRINCESS, "Faiumoni's Casanova", "Finish elf princess quest 25 times",
 												Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
 		// Kill Monks quest achievement
 		questAchievements.add(createAchievement("quest.special.kill_monks.0025", "Heretic", "Finish Kill Monks quest 25 times",
