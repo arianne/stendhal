@@ -57,11 +57,11 @@ public class CloneManager {
 
 			int idx;
 			if (registered == null) {
-				idx = 1;
+				idx = 2;
 				registered = new ArrayList<String>();
 				cloneList.put(origName, registered);
 			} else {
-				idx = registered.size() + 1;
+				idx = registered.size() + 2;
 			}
 
 			if (cloneName == null) {
