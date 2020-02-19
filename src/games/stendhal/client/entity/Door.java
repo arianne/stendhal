@@ -17,7 +17,7 @@ import marauroa.common.game.RPObject;
 /**
  * A door entity.
  */
-public class Door extends Entity {
+public class Door extends Portal {
 	/**
 	 * Open state property.
 	 */
@@ -114,14 +114,5 @@ public class Door extends Entity {
 			open = false;
 			fireChange(PROP_OPEN);
 		}
-	}
-
-	/**
-	 * Is this entity useable?
-	 *
-	 * @return true if it is useable, false otherwise
-	 */
-	public boolean isUseable() {
-		return rpObject.has("use");
 	}
 }

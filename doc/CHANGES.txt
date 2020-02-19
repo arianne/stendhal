@@ -145,6 +145,7 @@ Changelog
 
 *classic client*
 - entities with "active_idle" attribute will cycle animation even if stopped
+- minimap recognizes Door entity as Portal
 
 *scripting*
 - added Lua support
