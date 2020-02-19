@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import java.util.Arrays;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
@@ -64,11 +66,8 @@ public class EquipAction extends EquipmentAction {
 				if (moneyInPouch || (!moneyInPouch && !moneyInBag)) {
 					action.put(EquipActionConsts.TARGET_SLOT, "pouch");
 					if (action.has(Actions.TARGET_PATH)) {
-						// XXX: AntumDeluge: how to set the correct target path?
-						//action.put(Actions.TARGET_PATH, "pouch");
-
-						// XXX: AntumDeluge: just remove target path until I know how to set it correctly
-						action.remove(Actions.TARGET_PATH);
+						action.put(Actions.TARGET_PATH,
+								Arrays.asList(action.get(EquipActionConsts.BASE_OBJECT), "pouch"));
 					}
 				}
 			}
