@@ -60,6 +60,24 @@ stendhal.slashActionRepository = {
 		getMaxParams: 3
 	},
 
+	"answer": {
+		execute: function(type, params, remainder) {
+			if (remainder == null || remainder == "") {
+				return false;
+			};
+
+			const action = {
+				"type": "answer",
+				"text": remainder
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 0
+	},
+
 	"away": {
 		execute: function(type, params, remainder) {
 			var msg = null;
@@ -199,6 +217,8 @@ stendhal.slashActionRepository = {
 				"* CHATTING:",
 				"- /me <action> \tShow a message about what you are doing.",
 				"- /tell <player> <message> \tSend a private message to #player.",
+				"- /answer <message>",
+				"\t\tSend a private message to the last player who sent a message to you.",
 				"- // <message>\tSend a private message to the last player you sent a message to.",
 				"- /storemessage <player> <message> \t\tStore a private message to deliver for an offline #player.",
 				"- /who \tList all players currently online.",
