@@ -834,8 +834,8 @@ stendhal.slashActionRepository = {
 
 	"atlas": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/world/atlas.html?me="
-				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y, "_blank");
+			window.location = "https://stendhalgame.org/world/atlas.html?me="
+				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y;
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -843,7 +843,7 @@ stendhal.slashActionRepository = {
 
 	"beginnersguide": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide", "_blank");
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -859,7 +859,7 @@ stendhal.slashActionRepository = {
 
 	"faq": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/wiki/Stendhal_FAQ", "_blank");
+			window.location = "https://stendhalgame.org/wiki/Stendhal_FAQ";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -867,7 +867,7 @@ stendhal.slashActionRepository = {
 
 	"manual": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings", "_blank");
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -892,7 +892,7 @@ stendhal.slashActionRepository = {
 
 			url += name + ".html";
 			stendhal.ui.chatLog.addLine("info", "Trying to open #" + url + " in your browser.");
-			window.open(url, "_blank");
+			window.location = url;
 			return true;
 		},
 		getMinParams: 0,
@@ -901,7 +901,7 @@ stendhal.slashActionRepository = {
 
 	"rules": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/wiki/Stendhal_Rules", "_blank");
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Rules";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -918,7 +918,7 @@ stendhal.slashActionRepository = {
 
 	"loginhistory": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/account/history.html", "_blank");
+			window.location = "https://stendhalgame.org/account/history.html";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -926,7 +926,7 @@ stendhal.slashActionRepository = {
 
 	"halloffame": {
 		execute: function(type, params, remainder) {
-			window.open("https://stendhalgame.org/world/hall-of-fame/active_overview.html", "_blank");
+			window.location = "https://stendhalgame.org/world/hall-of-fame/active_overview.html";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
