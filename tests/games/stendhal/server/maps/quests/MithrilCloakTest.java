@@ -530,7 +530,7 @@ public class MithrilCloakTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-		npc = SingletonRepository.getNPCList().get("lda");
+		npc = SingletonRepository.getNPCList().get("twilight_ida"); // this is the version of Ida that is in the twilight zone
 		en = npc.getEngine();
 
 		en.step(player, "hi");
