@@ -219,11 +219,11 @@ stendhal.slashActionRepository = {
 				"- /grumpy <message> \t\tSet a message to ignore all non-buddies.",
 				"- /grumpy \tRemove grumpy status.",
 				"- /name <pet> <name> \t\tGive a name to your pet.",
-/*				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
+//				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
 				"* PLAYER CONTROL:",
-				"- /clickmode \tSwitches between single click mode and double click mode.",
+//				"- /clickmode \tSwitches between single click mode and double click mode.",
 				"- /walk \tToggles autowalk on/off.",
-				"- /stopwalk \tTurns autowalk off.",*/
+				"- /stopwalk \tTurns autowalk off.",
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
 /*				"* CLIENT SETTINGS:",
 				"- /mute \tMute or unmute the sounds.",
@@ -509,6 +509,19 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"stopwalk": {
+		execute: function(type, params, remainder) {
+			const action = {
+				"type": "walk",
+				"mode": "stop"
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"summon": {
 		execute: function(type, params, remainder) {
 			var x = null;
@@ -648,6 +661,18 @@ stendhal.slashActionRepository = {
 			var action = {
 				"type": "tellall",
 				"text": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"walk": {
+		execute: function(type, params, remainder) {
+			const action = {
+				"type": "walk"
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
