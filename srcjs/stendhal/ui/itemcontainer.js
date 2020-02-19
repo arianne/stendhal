@@ -168,6 +168,8 @@ stendhal.ui.equip = {
 		"slot-legs.png", "slot-boots.png", "slot-pouch.png", null, "slot-key.png", "slot-portfolio.png"],
 	counter: 0,
 
+	pouchVisible: false,
+
 	init: function() {
 		stendhal.ui.equip.inventory = [];
 		for (var i in this.slotNames) {
@@ -175,11 +177,27 @@ stendhal.ui.equip = {
 				new stendhal.ui.ItemContainerWindow(
 					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
 		}
+
+		// hide pouch by default
+		stendhal.ui.showPouch(false);
 	},
 
 	update: function() {
 		for (var i in this.inventory) {
 			stendhal.ui.equip.inventory[i].update();
+		}
+
+		if (!this.pouchVisible) {
+			var features = null
+			if (marauroa.me != null) {
+				features = marauroa.me["features"];
+			}
+
+			if (features != null) {
+				if (features["pouch"] != null) {
+					stendhal.ui.showPouch(true);
+				}
+			}
 		}
 	},
 
@@ -229,10 +247,8 @@ stendhal.ui.showPouch = function(show) {
 		} else {
 			equip.style.height = "160px";
 		}
+		pouchVisible = show;
 	}
 }
 
 stendhal.ui.equip.init();
-
-// hide money pouch by default
-//stendhal.ui.showPouch(false);
