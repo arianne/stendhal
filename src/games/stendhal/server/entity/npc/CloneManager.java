@@ -89,6 +89,9 @@ public class CloneManager {
 					}
 				}
 			}
+
+			// clones should not be displayed on website, but check for alternative image just to be safe
+			clone.setAlternativeImage(orig.getAlternativeImage());
 		}
 
 		return clone;
