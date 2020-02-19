@@ -20,7 +20,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
@@ -174,10 +173,6 @@ public class MeetZynn extends AbstractQuest {
 		return new ArrayList<String>();
 	}
 
-	@Override
-	public String getRegion() {
-		return Region.SEMOS_CITY;
-	}
 	@Override
 	public String getNPCName() {
 		return "Zynn Iwuhos";
