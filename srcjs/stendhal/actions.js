@@ -219,7 +219,7 @@ stendhal.slashActionRepository = {
 				"- /grumpy <message> \t\tSet a message to ignore all non-buddies.",
 				"- /grumpy \tRemove grumpy status.",
 				"- /name <pet> <name> \t\tGive a name to your pet.",
-//				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
+				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
 				"* PLAYER CONTROL:",
 //				"- /clickmode \tSwitches between single click mode and double click mode.",
 				"- /walk \tToggles autowalk on/off.",
@@ -720,6 +720,32 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 0,
 		getMaxParams: 0
+	},
+
+	"profile": {
+		execute: function(type, params, remainder) {
+			var url = "https://stendhalgame.org/character/";
+			var name = null;
+
+			if (params.length > 0 && params[0] != null) {
+				name = params[0];
+			} else {
+				name = marauroa.me["_name"];
+				if (name == null) {
+					// DEBUG:
+					console.log("Getting default username failed!");
+
+					return true;
+				}
+			}
+
+			url += name + ".html";
+			stendhal.ui.chatLog.addLine("info", "Trying to open #" + url + " in your browser.");
+			window.open(url, "_blank");
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 1
 	},
 
 	"rules": {
