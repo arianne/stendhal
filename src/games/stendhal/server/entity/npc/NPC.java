@@ -91,6 +91,7 @@ public abstract class NPC extends DressedEntity {
 			npc.addAttribute("subclass", Type.STRING);
 			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
+			npc.addAttribute("cloned", Type.STRING);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}

@@ -461,7 +461,12 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 
 	drawTitle: function(ctx, x, y) {
-		var title = this["title"];
+		// if this is a clone, the name of the original NPC will be displayed
+		var title = this["cloned"];
+		if (title == undefined) {
+			title = this["title"];
+		}
+
 		if (title == undefined) {
 			title = this["_name"];
 			if (title == undefined || title == "") {

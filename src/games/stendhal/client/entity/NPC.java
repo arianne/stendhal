@@ -28,6 +28,8 @@ public class NPC extends RPEntity {
 	 */
 	private String idea;
 
+	private String cloneOf = null;
+
 	/**
 	 * Get the idea setting.
 	 *
@@ -66,6 +68,11 @@ public class NPC extends RPEntity {
 		 * Idea
 		 */
 		onIdea(object.get("idea"));
+
+		// if this is a clone, the name of the original NPC will be displayed
+		if (object.has("cloned")) {
+			cloneOf = object.get("cloned");
+		}
 	}
 
 	/**
@@ -121,5 +128,21 @@ public class NPC extends RPEntity {
 			onIdea(null);
 			fireChange(PROP_IDEA);
 		}
+	}
+
+	/**
+	 * Checks if this entity is a clone of another NPC.
+	 */
+	public boolean isClone() {
+		return cloneOf != null;
+	}
+
+	@Override
+	public String getTitle() {
+		if (isClone()) {
+			return cloneOf;
+		}
+
+		return super.getTitle();
 	}
 }
