@@ -14,6 +14,24 @@
 var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.slashActionRepository = {
+	"add": {
+		execute: function(type, params, remainder) {
+			if (params == null) {
+				return false;
+			};
+
+			const action = {
+				"type": "addbuddy",
+				"target": params[0]
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+
 	"adminnote": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -230,6 +248,9 @@ stendhal.slashActionRepository = {
 				"* ITEM MANIPULATION:",
 				"- /markscroll <text> \t\tMark your empty scroll and add a #text label.",
 				"* BUDDIES AND ENEMIES:",
+				"- /add <player> \tAdd #player to your buddy list.",
+				"- /remove <player>",
+				"\t\tRemove #player from your buddy list.",
 				"- /ignore <player> [minutes|*|- [reason...]] \t\tAdd #player to your ignore list.",
 				"- /ignore \tFind out who is on your ignore list.",
 				"- /unignore <player> \t\tRemove #player from your ignore list.",
@@ -527,6 +548,24 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 0,
 		getMaxParams: 0
+	},
+
+	"remove": {
+		execute: function(type, params, remainder) {
+			if (params == null) {
+				return false;
+			}
+
+			const action = {
+				"type": "removebuddy",
+				"target": params[0]
+			};
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
 	},
 
 	"sentence": {
