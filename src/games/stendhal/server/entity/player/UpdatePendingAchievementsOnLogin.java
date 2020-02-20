@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import static games.stendhal.server.core.rp.achievement.factory.QuestAchievementFactory.ID_ELF_PRINCESS;
-
 import java.util.Map;
 
 import games.stendhal.common.MathHelper;
@@ -22,7 +20,6 @@ import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
@@ -55,10 +52,13 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 		}
 		Player player = command.getPlayer();
 
-		updateElfPrincessAchievement(player, command.getDetails(ID_ELF_PRINCESS));
-		for (final String ID: ItemAchievementFactory.getIDs()) {
-			updateItemLoots(player, command.getDetails(ID));
-		}
+		updateElfPrincessAchievement(player, command.getDetails("quest.special.elf_princess.0025"));
+		updateItemLoots(player, command.getDetails("item.set.black"));
+		updateItemLoots(player, command.getDetails("item.set.chaos"));
+		updateItemLoots(player, command.getDetails("item.set.shadow"));
+		updateItemLoots(player, command.getDetails("item.set.golden"));
+		updateItemLoots(player, command.getDetails("item.set.red"));
+		updateItemLoots(player, command.getDetails("item.set.mainio"));
 
 		// Could also check for reached achievements here. This is also checked on login but the order may vary due to the async access?
 
