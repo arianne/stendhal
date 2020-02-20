@@ -124,7 +124,6 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			if (quickPickup) {
 				marauroa.clientFramework.sendAction({
 					type: "equip",
-					"baseobject": marauroa.me["id"],
 					"source_path": event.target.dataItem.getIdPath(),
 					"target_path": "[" + marauroa.me["id"] + "\tbag]",
 					"targetslot": "bag",

@@ -67,7 +67,7 @@ public class EquipAction extends EquipmentAction {
 					action.put(EquipActionConsts.TARGET_SLOT, "pouch");
 					if (action.has(Actions.TARGET_PATH)) {
 						action.put(Actions.TARGET_PATH,
-								Arrays.asList(action.get(EquipActionConsts.BASE_OBJECT), "pouch"));
+								Arrays.asList(player.get("id"), "pouch"));
 					}
 				}
 			}
