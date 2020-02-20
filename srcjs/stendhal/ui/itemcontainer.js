@@ -126,7 +126,6 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 					type: "equip",
 					"source_path": event.target.dataItem.getIdPath(),
 					"target_path": "[" + marauroa.me["id"] + "\tbag]",
-					"targetslot": "bag",
 					"clicked": "", // useful for changing default target in equip action
 					"zone": marauroa.currentZoneName
 				});

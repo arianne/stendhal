@@ -54,8 +54,14 @@ public class EquipAction extends EquipmentAction {
 
 		}
 
+		final String targetPath = action.get(Actions.TARGET_PATH);
+		String targetSlot = null;
+		if (targetPath != null) {
+			targetSlot = targetPath.substring(targetPath.indexOf("\t") + 1, targetPath.indexOf("]"));
+		}
+
 		// try to move money to pouch by default
-		if (action.has(EquipActionConsts.CLICKED) && !action.get(EquipActionConsts.TARGET_SLOT).equals("pouch")
+		if (action.has(EquipActionConsts.CLICKED) && targetSlot != null && !targetSlot.equals("pouch")
 				&& source.getEntityName().equals("money")) {
 			// check if money can be moved to pouch
 			// XXX: this check should be changed if we switch to containers
