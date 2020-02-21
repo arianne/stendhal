@@ -90,7 +90,6 @@ public class SimpleQuestCreator {
 			npc = SingletonRepository.getNPCList().get(npcName);
 		}
 
-		@SuppressWarnings("unused")
 		public void setDescription(final String descr) {
 			description = descr;
 		}
@@ -111,18 +110,15 @@ public class SimpleQuestCreator {
 			repeatDelay = delay;
 		}
 
-		@SuppressWarnings("unused")
 		public void setItemToCollect(final String itemName, final int quantity) {
 			itemToCollect = itemName;
 			quantityToCollect = quantity;
 		}
 
-		@SuppressWarnings("unused")
 		public void setXPReward(final int xp) {
 			xpReward = xp;
 		}
 
-		@SuppressWarnings("unused")
 		public void setKarmaReward(final double karma) {
 			karmaReward = karma;
 		}
@@ -154,27 +150,22 @@ public class SimpleQuestCreator {
 			return reply;
 		}
 
-		@SuppressWarnings("unused")
 		public void setRequestReply(final String reply) {
 			setReply("request", reply);
 		}
 
-		@SuppressWarnings("unused")
 		public void setAcceptReply(final String reply) {
 			setReply("accept", reply);
 		}
 
-		@SuppressWarnings("unused")
 		public void setRejectReply(final String reply) {
 			setReply("reject", reply);
 		}
 
-		@SuppressWarnings("unused")
 		public void setRewardReply(final String reply) {
 			setReply("reward", reply);
 		}
 
-		@SuppressWarnings("unused")
 		public void setRegion(final String regionName) {
 			region = regionName;
 		}
@@ -200,7 +191,6 @@ public class SimpleQuestCreator {
 			player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
 		}
 
-		@SuppressWarnings("unused")
 		public void register() {
 			StendhalQuestSystem.get().loadQuest(this);
 		}
