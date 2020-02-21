@@ -48,7 +48,6 @@ if game:setZone(zoneName) then
 	quest:setRewardReply("Thanks a bunch!")
 	quest:setRejectReply("Thats ok, I will find someone else to help me.")
 	quest:setItemToCollect("unicorn horn", 10)
-	quest:setRepeatable(false)
 	quest:setXPReward(50000)
 	quest:setKarmaReward(5.0)
 	quest:addItemReward("soup", 3)
