@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.tannery;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -181,7 +182,7 @@ public class TannerNPC implements ZoneConfigurator {
 		tanner.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				sayRequiredItems("Okay. I will need [items]. Also, my fee is " + Integer.toString(serviceFee) + " money."
 				+ " Please come back when you have that.", false),
 				new SetQuestAction(QUEST_SLOT, "start"));
@@ -201,8 +202,7 @@ public class TannerNPC implements ZoneConfigurator {
 						dayCondition,
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new NotCondition(hasItemsCondition)),
-				ConversationStates.IDLE,
-				//"Bring me a pelt and " + Integer.toString(serviceFee) + " money and I will make a pouch to carry your money in.",
+				ConversationStates.ATTENDING,
 				sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in.", true),
 				null);
 
@@ -268,9 +268,29 @@ public class TannerNPC implements ZoneConfigurator {
 				ConversationStates.IDLE,
 				"I knew you would enjoy the pouch.",
 				null);
+
+
+		// keyword responses
+
+		final Map<String, String> responses = new HashMap<String, String>() {{
+			put("leather needle", "I'm sure I had one around here somewhere.");
+			put("leather thread", "Leather thread can be made by cutting up a #pelt. You will need a #'rotary cutter'.");
+			put("pelt", "Sometimes you can get pelts off of animals that drop them.");
+			put("rotary cutter", "I seem to have misplaced mine. Perhaps you could borrow one from somebody else. They are even used for slicing pizza"
+					+ ", so ask around in places that make pizza if you can't find one anywhere else.");
+		}};
+
+		for (final String res: responses.keySet()) {
+			tanner.add(ConversationStates.ATTENDING,
+					res,
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					ConversationStates.ATTENDING,
+					responses.get(res),
+					null);
+		}
 	}
 
-	public String sayRequiredItems(final String msg, final boolean includeFee) {
+	public String sayRequiredItems(final String msg, final boolean includeFee, final boolean highlight) {
 		final StringBuilder sb = new StringBuilder();
 
 		final Map<String, Integer> tempList = new LinkedHashMap<String, Integer>(requiredItems);
@@ -284,7 +304,13 @@ public class TannerNPC implements ZoneConfigurator {
 				sb.append("and ");
 			}
 
-			sb.append(Integer.toString(tempList.get(key)) + " " + key);
+			// highlight keywords
+			String itemName = key;
+			if (!itemName.equals("money") && highlight) {
+				itemName = "#'" + itemName + "'";
+			}
+
+			sb.append(Integer.toString(tempList.get(key)) + " " + itemName);
 
 			if (idx < tempList.size() - 1) {
 				sb.append(", ");
@@ -296,24 +322,9 @@ public class TannerNPC implements ZoneConfigurator {
 		return msg.replace("[items]", sb.toString());
 	}
 
-	/*
-	private String requiredItemsToString() {
-		final StringBuilder sb = new StringBuilder();
-
-		int idx = 0;
-		for (final String key: requiredItems.keySet()) {
-			sb.append(key + "=" + requiredItems.get(key));
-
-			if (idx < requiredItems.size() - 1) {
-				sb.append(",");
-			}
-
-			idx++;
-		}
-
-		return sb.toString();
+	public String sayRequiredItems(final String msg, final boolean includeFee) {
+		return sayRequiredItems(msg, includeFee, true);
 	}
-	*/
 
 
 	// some helper methods for tests

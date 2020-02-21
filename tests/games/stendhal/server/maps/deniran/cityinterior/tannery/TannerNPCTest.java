@@ -220,19 +220,34 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 
 		en.step(player, "yes");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 				configurator.sayRequiredItems("Okay. I will need [items]. Also, my fee is " + Integer.toString(configurator.getServiceFee())
 				+ " money. Please come back when you have that.", false),
 				getReply(tanner));
 		assertEquals("start", player.getQuest(QUEST_SLOT));
 
+		// test keyword responses
+		en.step(player, "leather needle");
+		assertEquals("I'm sure I had one around here somewhere.", getReply(tanner));
+		en.step(player, "leather thread");
+		assertEquals("Leather thread can be made by cutting up a #pelt. You will need a #'rotary cutter'.", getReply(tanner));
+		en.step(player, "pelt");
+		assertEquals("Sometimes you can get pelts off of animals that drop them.", getReply(tanner));
+		en.step(player, "rotary cutter");
+		assertEquals(
+				"I seem to have misplaced mine. Perhaps you could borrow one from somebody else. They are even used for slicing pizza"
+				+ ", so ask around in places that make pizza if you can't find one anywhere else.",
+				getReply(tanner));
+		en.step(player, "bye");
+
 		final String noItemsReply = configurator.sayRequiredItems("Bring me [items] and I will make a pouch to carry your money in.", true);
 
 		// player has none of the required items
 		en.step(player, "hi");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
+		en.step(player, "bye");
 
 		// player has money only
 		PlayerTestHelper.equipWithMoney(player, serviceFee);
@@ -243,8 +258,9 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("money", serviceFee));
 
 		en.step(player, "hi");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
+		en.step(player, "bye");
 
 		// player has items only
 		player.drop("money", serviceFee);
@@ -261,16 +277,18 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(player.isEquipped("money", serviceFee));
 
 		en.step(player, "hi");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
+		en.step(player, "bye");
 
 		// player has items & money but not enough
 		PlayerTestHelper.equipWithMoney(player, serviceFee - 1);
 		assertEquals(serviceFee - 1, player.getNumberOfEquipped("money"));
 
 		en.step(player, "hi");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(noItemsReply, getReply(tanner));
+		en.step(player, "bye");
 
 		// player has items & enough money
 		PlayerTestHelper.equipWithItem(player, "money");
