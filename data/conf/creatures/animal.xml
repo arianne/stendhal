@@ -1111,6 +1111,8 @@
     <respawn value="1220"/> <!-- 6.1 minutes -->
     <corpse name="animal"/>
     <drops>
+      <item value="meat" quantity="[5,15]" probability="60.0"/>
+      <item value="ham" quantity="[4,10]" probability="40.0"/>
       <item value="pelt" quantity="[1,1]" probability="20.0"/>
       <item value="placid ring" quantity="[1,1]" probability="0.1"/>
     </drops>
