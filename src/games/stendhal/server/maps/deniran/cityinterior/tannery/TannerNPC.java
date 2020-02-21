@@ -13,15 +13,19 @@ package games.stendhal.server.maps.deniran.cityinterior.tannery;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.DaylightPhase;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -48,6 +52,10 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.AbstractQuest;
+import games.stendhal.server.maps.quests.IQuest;
+import games.stendhal.server.util.TimeUtil;
 
 public class TannerNPC implements ZoneConfigurator {
 
@@ -57,6 +65,7 @@ public class TannerNPC implements ZoneConfigurator {
 
 	private final static String FEATURE_SLOT = "pouch";
 	private final static String QUEST_SLOT = "money_" + FEATURE_SLOT;
+	private final static String QUEST_NAME = "Money Pouch";
 
 	// players must have looted at least 1,000,000 money to get the money pouch
 	private static final int requiredMoneyLoot = 1000000;
@@ -77,6 +86,7 @@ public class TannerNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		prepareNPC(zone);
 		prepareDialogue();
+		prepareTravelLog();
 	}
 
 	private void prepareNPC(final StendhalRPZone zone) {
@@ -288,6 +298,95 @@ public class TannerNPC implements ZoneConfigurator {
 					responses.get(res),
 					null);
 		}
+	}
+
+	/**
+	 * Creates a quest entry in the player's travel log.
+	 */
+	private void prepareTravelLog() {
+		final IQuest quest = new AbstractQuest() {
+			@Override
+			public List<String> getHistory(final Player player) {
+				final List<String> res = new LinkedList<String>();
+				final String questState = player.getQuest(QUEST_SLOT);
+
+				if (questState == null) {
+					return res;
+				}
+
+				final String tannerName = tanner.getName();
+
+				res.add(tannerName + " will make a money pouch for me if I bring him some materials.");
+
+				if (questState.equals("start")) {
+					for (final String itemName: requiredItems.keySet()) {
+						final int quantity = requiredItems.get(itemName);
+						if (player.isEquipped(itemName, quantity)) {
+							res.add("I have the " + itemName + ".");
+						} else {
+							res.add("I still need to find " + Integer.toString(quantity) + " " + itemName);
+						}
+					}
+					if (player.isEquipped("money", serviceFee)) {
+						res.add("I have enough money to pay the service fee.");
+					} else {
+						res.add("I need more money to pay the service fee.");
+					}
+				}
+
+				if (!questState.equals("start") && !questState.equals("done")) {
+					if (new TimePassedCondition(QUEST_SLOT, TAN_TIME).fire(player, null, null)) {
+						res.add(tannerName + " has finished making my money pouch.");
+					} else {
+						try {
+							final long timeRemains = Long.parseLong(questState) + (TAN_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - System.currentTimeMillis();
+							final int secondsRemain = (int) (timeRemains / 1000L);
+
+							res.add(tannerName + " is making my money pouch. He will be done in "
+									+ TimeUtil.approxTimeUntil(secondsRemain) + ".");
+						} catch (NumberFormatException e) {
+							res.add(tannerName + " is making my money pouch.");
+						}
+					}
+				}
+
+				if (questState.equals("done")) {
+					res.add("I can now carry money in my pouch." );
+				}
+
+				return res;
+			}
+
+			@Override
+			public String getSlotName() {
+				return QUEST_SLOT;
+			}
+
+			@Override
+			public void addToWorld() {
+				fillQuestInfo(
+						QUEST_NAME,
+						tanner.getName() + " can make a pouch to carry money in.",
+						isRepeatable(null));
+			}
+
+			@Override
+			public String getName() {
+				return QUEST_NAME.replace(" ", "");
+			}
+
+			@Override
+			public String getRegion() {
+				return Region.DENIRAN;
+			}
+
+			@Override
+			public String getNPCName() {
+				return tanner.getName();
+			}
+		};
+
+		StendhalQuestSystem.get().loadQuest(quest);
 	}
 
 	public String sayRequiredItems(final String msg, final boolean includeFee, final boolean highlight) {
