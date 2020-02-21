@@ -31,7 +31,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -79,7 +78,10 @@ public class SimpleQuestCreator {
 
 		private int xpReward = 0;
 		private double karmaReward = 0;
-		private Map<String, Integer> itemReward = new HashMap<String, Integer>();
+		private double karmaAcceptReward = 0;
+		private double karmaRejectReward = 0;
+		private final Map<String, Integer> itemReward = new HashMap<String, Integer>();
+		//private final Map<String, Integer> statReward = new HashMap<String, Integer>();
 
 		private String region;
 
@@ -121,6 +123,14 @@ public class SimpleQuestCreator {
 
 		public void setKarmaReward(final double karma) {
 			karmaReward = karma;
+		}
+
+		public void setKarmaAcceptReward(final double karma) {
+			karmaAcceptReward = karma;
+		}
+
+		public void setKarmaRejectReward(final double karma) {
+			karmaRejectReward = karma;
 		}
 
 		public void addItemReward(final String itemName, final int quantity) {
@@ -170,60 +180,75 @@ public class SimpleQuestCreator {
 			region = regionName;
 		}
 
-		private void rewardPlayer(final Player player) {
-			player.addXP(xpReward);
-			player.addKarma(karmaReward);
+		/**
+		 * Retrives the number of times the player has completed the quest.
+		 *
+		 * @param player
+		 * 		The Player to check.
+		 * @return
+		 * 		Number of times completed.
+		 */
+		private int getCompletedCount(final Player player) {
+			final String state = player.getQuest(QUEST_SLOT, 0);
 
-			for (final String itemName: itemReward.keySet()) {
-				final EntityManager em = SingletonRepository.getEntityManager();
-				final Item item = em.getItem(itemName);
-				final int quantity = itemReward.get(itemName);
-
-				if (item instanceof StackableItem) {
-					((StackableItem) item).setQuantity(quantity);
-				}
-
-				if (item != null) {
-					player.equipOrPutOnGround(item);
-				}
+			if (state == null) {
+				return 0;
 			}
 
-			player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
+			int completedIndex = 2;
+			if (state.equals("start") || state.equals("rejected")) {
+				completedIndex = 1;
+			}
+
+			try {
+				return Integer.parseInt(player.getQuest(QUEST_SLOT, completedIndex));
+			} catch (NumberFormatException e) {
+				return 0;
+			}
 		}
 
-		public void register() {
-			StendhalQuestSystem.get().loadQuest(this);
-		}
-
-		@Override
-		public void addToWorld() {
-			fillQuestInfo(name, description, isRepeatable());
-
-			final ChatCondition canStartCondition = new ChatCondition() {
-				@Override
-				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-					if (player.getQuest(QUEST_SLOT) == null) {
-						return true;
-					}
-
-					if (isRepeatable() && player.getQuest(QUEST_SLOT, 0).equals("done")) {
-						return new TimePassedCondition(QUEST_SLOT, 1, repeatDelay).fire(player, sentence, npc);
-					}
-
-					return false;
-				}
-			};
-
-			final ChatCondition questRepeatableCondition = new ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, Entity npc) {
-					return isRepeatable();
-				}
-			};
-
-			final ChatAction rewardAction = new ChatAction() {
+		/**
+		 * Action to execute when player starts quest.
+		 *
+		 * @return
+		 * 		`ChatAction`
+		 */
+		private ChatAction startAction() {
+			return new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					player.addKarma(karmaAcceptReward);
+					player.setQuest(QUEST_SLOT, "start;" + Integer.toString(getCompletedCount(player)));
+				}
+			};
+		}
+
+		/**
+		 * Action to execute when player rejects quest.
+		 *
+		 * @return
+		 * 		`ChatAction`
+		 */
+		private ChatAction rejectAction() {
+			return new ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					player.addKarma(karmaRejectReward);
+					player.setQuest(QUEST_SLOT, "rejected;" + Integer.toString(getCompletedCount(player)));
+				}
+			};
+		}
+
+		/**
+		 * Action to execute when player completes quest
+		 *
+		 * @return
+		 * 		`ChatAction`
+		 */
+		private ChatAction completeAction() {
+			return new ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, EventRaiser npc) {
 					// drop collected items
 					player.drop(itemToCollect, quantityToCollect);
 
@@ -261,7 +286,59 @@ public class SimpleQuestCreator {
 
 					npc.say(sb.toString());
 
-					rewardPlayer(player);
+					// reward player
+					player.addXP(xpReward);
+					player.addKarma(karmaReward);
+
+					for (final String itemName: itemReward.keySet()) {
+						final EntityManager em = SingletonRepository.getEntityManager();
+						final Item item = em.getItem(itemName);
+						final int quantity = itemReward.get(itemName);
+
+						if (item instanceof StackableItem) {
+							((StackableItem) item).setQuantity(quantity);
+						}
+
+						if (item != null) {
+							player.equipOrPutOnGround(item);
+						}
+					}
+
+					player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis() + ";" + Integer.toString(getCompletedCount(player) + 1));
+				}
+			};
+		}
+
+		/**
+		 * This must be called in order for the quest to be added to game.
+		 */
+		public void register() {
+			StendhalQuestSystem.get().loadQuest(this);
+		}
+
+		@Override
+		public void addToWorld() {
+			fillQuestInfo(name, description, isRepeatable());
+
+			final ChatCondition canStartCondition = new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					if (player.getQuest(QUEST_SLOT) == null) {
+						return true;
+					}
+
+					if (isRepeatable() && player.getQuest(QUEST_SLOT, 0).equals("done")) {
+						return new TimePassedCondition(QUEST_SLOT, 1, repeatDelay).fire(player, sentence, npc);
+					}
+
+					return false;
+				}
+			};
+
+			final ChatCondition questRepeatableCondition = new ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, Entity npc) {
+					return isRepeatable();
 				}
 			};
 
@@ -303,14 +380,14 @@ public class SimpleQuestCreator {
 				null,
 				ConversationStates.ATTENDING,
 				getReply("accept"),
-				new SetQuestAction(QUEST_SLOT, "start"));
+				startAction());
 
 			npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				getReply("reject"),
-				null);
+				rejectAction());
 
 			npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
@@ -319,7 +396,7 @@ public class SimpleQuestCreator {
 					new PlayerHasItemWithHimCondition(itemToCollect, quantityToCollect)),
 				ConversationStates.ATTENDING,
 				null,
-				rewardAction);
+				completeAction());
 
 			npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
@@ -408,6 +485,16 @@ public class SimpleQuestCreator {
 				}
 			} else if (questState[0].equals("done")) {
 				res.add("I found " + Integer.toString(quantityToCollect) + " " + Grammar.plnoun(quantityToCollect, itemToCollect) + " for " + getNPCName() + ".");
+
+				if (isRepeatable()) {
+					final int completions = getCompletedCount(player);
+					String plural = "time";
+					if (completions != 1) {
+						plural += "s";
+					}
+
+					res.add("I have done this quest " + Integer.toString(completions) + " " + plural + ".");
+				}
 			}
 
 			return res;
