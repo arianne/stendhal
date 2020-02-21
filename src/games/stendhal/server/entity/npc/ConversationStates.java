@@ -115,5 +115,11 @@ public enum ConversationStates {
 
 	QUESTION_2,
 
-	QUESTION_3;
+	QUESTION_3,
+
+	/** Special scenarios where player may need to reset quest slot to a previous state
+	 * due to lost item or other problem.
+	 *
+	 */
+	RESTART_OFFERED;
 }

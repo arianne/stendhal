@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -31,7 +32,9 @@ import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectio
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -167,12 +170,16 @@ class InitialSteps {
 				   null,
 				   new SayRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
 
+			final String startMessage = "I will make you the most amazing cloak of mithril. "
+					+ "You just need to get me the fabric and any tools I need! First please bring me a couple yards of "
+					+ mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.";
+
 		   //offer cloak
 		   npc.add(ConversationStates.QUEST_2_OFFERED,
 				   ConversationPhrases.YES_MESSAGES,
 				   new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
 				   ConversationStates.ATTENDING,
-				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a couple yards of " + mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.",
+				   startMessage,
 				   new SetQuestAction(mithrilcloak.getQuestSlot(), "need_fabric"));
 
 
@@ -206,6 +213,79 @@ class InitialSteps {
 			// where to find wizard
 			npc.addReply("Kampusch", "He is obsessed with antiques so look for him in an antiques shop or a museum.");
 
+
+			// resetting quest to earlier state
+
+			// allows player to reset quest state to "need_fabric" in case they are unable to finish
+			final ChatCondition canResetCondition = new AndCondition(
+					new QuestActiveCondition(mithrilcloak.getQuestSlot()),
+					new NotCondition(new OrCondition(
+							new QuestInStateCondition(mithrilcloak.getQuestSlot(), 0, "machine"),
+							new QuestInStateCondition(mithrilcloak.getQuestSlot(), 0, "fixed_machine"),
+							//new QuestInStateCondition(mithrilcloak.getQuestSlot(), 0, "need_fabric"),
+							new QuestInStateCondition(mithrilcloak.getQuestSlot(), 0, "need_mithril_shield"))));
+
+			npc.add(ConversationStates.ATTENDING,
+					ConversationPhrases.HELP_MESSAGES,
+					canResetCondition,
+					ConversationStates.ATTENDING,
+					"You can ask to #restart the quest if you are stuck getting the items for the mithril cloak.",
+					null);
+
+			// player is unable to finish quest & needs to restart
+			npc.add(ConversationStates.ATTENDING,
+					Arrays.asList("restart", "reset"),
+					canResetCondition,
+					ConversationStates.RESTART_OFFERED,
+					"Are you sure you want to start over?",
+					null);
+
+			// allow player to restart in the cases that they have already had the thread or fabric made but have not finished quest
+			npc.add(ConversationStates.RESTART_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					new AndCondition(
+							canResetCondition,
+							new NotCondition(new PlayerHasItemWithHimCondition("silk thread", 40))),
+					ConversationStates.ATTENDING,
+					startMessage,
+					new SetQuestAction(mithrilcloak.getQuestSlot(), "need_fabric"));
+
+			// player wants to reset & already has silk thread
+			npc.add(ConversationStates.RESTART_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					new AndCondition(
+							canResetCondition,
+							new PlayerHasItemWithHimCondition("silk thread", 40)),
+					ConversationStates.ATTENDING,
+					startMessage,
+					new SetQuestAction(mithrilcloak.getQuestSlot(), "got_thread"));
+
+			// player wants to reset & already has mithril thread
+			npc.add(ConversationStates.RESTART_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					new AndCondition(
+							canResetCondition,
+							new PlayerHasItemWithHimCondition("mithril thread", 40)),
+					ConversationStates.ATTENDING,
+					startMessage,
+					new SetQuestAction(mithrilcloak.getQuestSlot(), "got_mithril_thread"));
+
+			// player wants to reset & already has mithril fabric
+			npc.add(ConversationStates.RESTART_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					new AndCondition(
+							canResetCondition,
+							new PlayerHasItemWithHimCondition("mithril fabric")),
+					ConversationStates.ATTENDING,
+					startMessage,
+					new SetQuestAction(mithrilcloak.getQuestSlot(), "got_fabric"));
+
+			npc.add(ConversationStates.RESTART_OFFERED,
+					ConversationPhrases.NO_MESSAGES,
+					canResetCondition,
+					ConversationStates.ATTENDING,
+					"Okay.",
+					null);
 	}
 
 	public void addToWorld() {

@@ -159,6 +159,7 @@ Changelog
 - removed multiple messages about no longer being shocked
 - fixed veil not being removed if renting from Timothy while wearing wedding gown
 - slash action "/removedetail" can be executed to manually remove the detail layer from a character
+- mithril cloak quest can be reset to an earlier state in case of lost items
 
 
 
