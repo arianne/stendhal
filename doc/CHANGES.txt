@@ -3,15 +3,23 @@ Changelog
 ---------
 
 1.33
+
+*webclient*
+- long touching to simulate right mouse button
+- added support for additional entities: rented signs, blackboards, blocks, house doors, doors
+- added online/offline icons on buddy list
+- added commands /drop, /adminlevel
+
+
 *world*
+- new regions/maps
+  - Atlantis
+  - Deniran Tannery
 - new NPCs
   - Skinner Rawhide (Denrian Tannery)
   - Zelan (Atlantis)
 - NPC changes
   - elvish hat added to items that Lupos buys
-- new regions/maps
-  - Atlantis
-  - Deniran Tannery
 - new items:
   - pelt (ingredient to make money pouch)
   - leather thread (ingredient to make money pouch)
@@ -21,37 +29,20 @@ Changelog
   - magic plate legs
   - magic plate boots
   - rotary cutter (tool for making leather thread)
-  - royal armor
-  - royal boots
-  - royal cloak
-  - royal helmet
-  - royal legs
-  - royal shield
-  - royal dagger
+  - royal armor, royal boots, royal cloak, royal helmet, royal legs, royal shield, royal dagger
   - unicorn horn
 - new enemies:
-  - bull elephant
-  - musth elephant
-  - giant bat
-  - giant killer bat
+  - bull elephant, musth elephant
+  - giant bat, giant killer bat
   - poison shroom
   - polar bear
-  - tiny scarab
-  - water scarab
+  - tiny scarab, water scarab
   - water demon
-  - white unicorn
-  - black unicorn
-  - golden unicorn
-  - baby pegasus
-  - bronze pegasus
-  - ivory pegasus
-  - ebony pegasus
-  - solar centaur
-  - glacier centaur
-  - centaur king
+  - white unicorn, black unicorn, golden unicorn
+  - baby pegasus, bronze pegasus, ivory pegasus, ebony pegasus
+  - solar centaur, glacier centaur, centaur king
   - woolly mammoth
-  - giant gnome
-  - giant gnomess
+  - giant gnome, giant gnomess
   - neo kraken
   - rysin dragon
 - enemy changes
@@ -138,10 +129,6 @@ Changelog
   - studded boots
   - trophy helmet
 
-*webclient*
-- added support for additional entities: rented signs, blackboards, blocks, house doors, doors
-- added online/offline icons on buddy list
-- added commands /drop, /adminlevel
 
 *classic client*
 - entities with "active_idle" attribute will cycle animation even if stopped
