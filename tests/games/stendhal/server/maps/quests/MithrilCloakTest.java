@@ -113,6 +113,8 @@ public class MithrilCloakTest {
 
 		en.step(player, "hi");
 		assertEquals("Hello there.", getReply(npc));
+		en.step(player, "help");
+		assertEquals("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("My sewing machine is broken, will you help me fix it?", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
@@ -499,7 +501,7 @@ public class MithrilCloakTest {
 		en.step(player, "task");
 		assertEquals("Ouch! I pricked my finger on that needle! I feel woozy ...", getReply(npc));
 		en.step(player, "help");
-		assertEquals("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.", getReply(npc));
+		assertEquals("You can ask to #restart the quest if you are stuck getting the items for the mithril cloak.", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("What's happening to me? I'm feverish .. I see twilight .. you can't understand unless you visit me here ... you must ask #Pdiddi how to get to the #twilight.", getReply(npc));
 		en.step(player, "pdiddi");
@@ -670,6 +672,8 @@ public class MithrilCloakTest {
 		en.step(player, "clasp");
 		assertEquals("Wow, Pedinghaus really outdid himself this time. It looks wonderful on your new cloak! Wear it with pride.", getReply(npc));
 		// [22:27] jammyjam earns 1000 experience points.
+		en.step(player, "help");
+		assertEquals("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 	}
