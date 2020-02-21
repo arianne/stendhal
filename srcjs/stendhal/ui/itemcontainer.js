@@ -142,7 +142,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 				});
 			}
 		}
-		event.target.focus();
+		document.getElementById("gamewindow").focus();
 	}
 
 	for (var i = 0; i < size; i++) {

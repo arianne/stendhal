@@ -254,7 +254,7 @@ stendhal.ui.gamewindow = {
 			} else {
 				entity.onclick(pos.offsetX, pos.offsetY);
 			}
-			cleanUp(e);
+			cleanUp(pos);
 			pos.target.focus();
 			e.preventDefault();
 		}
