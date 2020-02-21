@@ -55,7 +55,7 @@ public class NPCHelper {
 		return new SilentNPC();
 	}
 
-	private FixedPath tableToPath(final LuaTable table) {
+	private FixedPath tableToPath(final LuaTable table, final boolean loop) {
 		if (!table.istable()) {
 			logger.error("Entity path must be a table");
 			return null;
@@ -86,7 +86,7 @@ public class NPCHelper {
 			}
 		}
 
-		return new FixedPath(nodes, true);
+		return new FixedPath(nodes, loop);
 	}
 
 	/**
@@ -97,8 +97,12 @@ public class NPCHelper {
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
 	 */
-	public void setPath(final RPEntity entity, final LuaTable table) {
-		entity.setPath(tableToPath(table));
+	public void setPath(final RPEntity entity, final LuaTable table, Boolean loop) {
+		if (loop == null) {
+			loop = false;
+		}
+
+		entity.setPath(tableToPath(table, loop));
 	}
 
 	/**
@@ -109,8 +113,12 @@ public class NPCHelper {
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
 	 */
-	public void setPathAndPosition(final RPEntity entity, final LuaTable table) {
-		entity.setPathAndPosition(tableToPath(table));
+	public void setPathAndPosition(final RPEntity entity, final LuaTable table, Boolean loop) {
+		if (loop == null) {
+			loop = false;
+		}
+
+		entity.setPathAndPosition(tableToPath(table, loop));
 	}
 
 	// FIXME:
