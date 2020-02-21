@@ -65,8 +65,7 @@ public class SimpleQuestCreator {
 
 		private String description;
 
-		private boolean repeatable = false;
-		private int repeatDelay = 0;
+		private int repeatDelay = -1;
 
 		private String itemToCollect;
 		private int quantityToCollect = 1;
@@ -96,13 +95,19 @@ public class SimpleQuestCreator {
 			description = descr;
 		}
 
-		@SuppressWarnings("unused")
-		public void setRepeatable(final boolean repeatable) {
-			this.repeatable = repeatable;
-		}
+		/**
+		 * Sets the quest's repeatable status & repeat delay.
+		 *
+		 * @param delay
+		 * 		Number of minutes player must wait before repeating quest.
+		 * 		`0` means immediately repeatable. `null` or less than `0`
+		 * 		means not repeatable.
+		 */
+		public void setRepeatable(Integer delay) {
+			if (delay == null) {
+				delay = -1;
+			}
 
-		@SuppressWarnings("unused")
-		public void setRepeatDelay(final int delay) {
 			repeatDelay = delay;
 		}
 
@@ -202,7 +207,7 @@ public class SimpleQuestCreator {
 
 		@Override
 		public void addToWorld() {
-			fillQuestInfo(name, description, repeatable);
+			fillQuestInfo(name, description, isRepeatable());
 
 			final ChatCondition canStartCondition = new ChatCondition() {
 				@Override
@@ -211,7 +216,7 @@ public class SimpleQuestCreator {
 						return true;
 					}
 
-					if (repeatable && player.getQuest(QUEST_SLOT, 0).equals("done")) {
+					if (isRepeatable() && player.getQuest(QUEST_SLOT, 0).equals("done")) {
 						return new TimePassedCondition(QUEST_SLOT, 1, repeatDelay).fire(player, sentence, npc);
 					}
 
@@ -222,7 +227,7 @@ public class SimpleQuestCreator {
 			final ChatCondition questRepeatableCondition = new ChatCondition() {
 				@Override
 				public boolean fire(Player player, Sentence sentence, Entity npc) {
-					return repeatable;
+					return isRepeatable();
 				}
 			};
 
@@ -376,12 +381,22 @@ public class SimpleQuestCreator {
 
 		@Override
 		public boolean isRepeatable(final Player player) {
-			if (!repeatable) {
+			if (!isRepeatable()) {
 				return false;
 			}
 
 			return new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 					new TimePassedCondition(QUEST_SLOT, 1, repeatDelay)).fire(player, null, null);
+		}
+
+		/**
+		 * Checks if this quest has be set for repetition.
+		 *
+		 * @return
+		 * 		<code>true</code> if players are allowed to do this quest more than once.
+		 */
+		private boolean isRepeatable() {
+			return repeatDelay >= 0;
 		}
 
 		@Override
