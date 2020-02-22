@@ -81,7 +81,7 @@
  <tileset firstgid="436" name="light_5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
   <image source="../../tileset/light/light_5x5.png" width="160" height="160"/>
  </tileset>
- <layer name="0_floor" width="128" height="128" visible="0">
+ <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3VMQrAIAxA0WDvf2cXBymtIA5C8oa3B36iLSIaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEHPcHsO7nTXv553e/1r+Oo+97cHea3aewvy2+lvB3LSnr9/X/8a3Dvaoz/6AwAAAAAAAADAmQ5SsiPgAAABAA==
   </data>
