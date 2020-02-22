@@ -24,7 +24,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.rp.DaylightPhase;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -306,14 +305,8 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		en.step(player, "yes");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		// XXX: update after testing
-		/*
 		assertEquals(
-				"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(configurator.getWaitTime(), "minute") + ".",
-				getReply(tanner));
-		*/
-		assertEquals(
-				"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(configurator.getWaitTime(), "minute") + ".",
+				"Okay, I will begin making your money pouch. Please come back in 24 hours.",
 				getReply(tanner));
 		assertFalse(player.getQuest(QUEST_SLOT).equals("start"));
 		assertFalse(player.isEquipped("pouch"));
