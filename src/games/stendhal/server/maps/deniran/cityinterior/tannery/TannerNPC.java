@@ -20,7 +20,6 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SkinColor;
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -70,10 +69,7 @@ public class TannerNPC implements ZoneConfigurator {
 	// players must have looted at least 1,000,000 money to get the money pouch
 	private static final int requiredMoneyLoot = 1000000;
 	private static final int serviceFee = 50000;
-	// XXX: enable when testing done & update sayWaitTime method
-	//private static final int TAN_TIME = MathHelper.MINUTES_IN_ONE_DAY;
-	// XXX: disable when testing done
-	private static final int TAN_TIME = 2; // 2 minute for testing
+	private static final int TAN_TIME = MathHelper.MINUTES_IN_ONE_DAY;
 	// required items to make pouch
 	private static final Map<String, Integer> requiredItems = new LinkedHashMap<String, Integer>() {{
 		put("leather needle", 1);
@@ -231,12 +227,11 @@ public class TannerNPC implements ZoneConfigurator {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.IDLE,
-				// XXX: update after testing
-				//"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(TAN_TIME, "hour") + ".",
-				"Okay, I will begin making your money pouch. Please come back in " + Grammar.quantityplnoun(TAN_TIME, "minute") + ".",
+				null,
 				new MultipleActions(
 						startAction,
-						new SetQuestToTimeStampAction(QUEST_SLOT)));
+						new SetQuestToTimeStampAction(QUEST_SLOT),
+						new SayTimeRemainingAction(QUEST_SLOT, TAN_TIME, "Okay, I will begin making your money pouch. Please come back in ")));
 
 		tanner.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
