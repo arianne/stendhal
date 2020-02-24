@@ -420,16 +420,17 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			var nFrames = 3;
 			var nDirections = 4;
 			var yRow = this["dir"] - 1;
+			var frame = 1; // draw center column when idle
 			// Ents are a hack in Java client too
 			if (this["class"] == "ent") {
 				nFrames = 1;
 				nDirections = 2;
 				yRow = Math.floor((this["dir"] - 1) / 2);
+				frame = 0;
 			}
 			this["drawHeight"] = image.height / nDirections;
 			this["drawWidth"] = image.width / nFrames;
 			var drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
-			var frame = 0;
 			if (this["speed"] > 0 && nFrames != 1) {
 				var animLength = nFrames * 2 - 2;
 				// % Works normally with *floats* (just whose bright idea was
