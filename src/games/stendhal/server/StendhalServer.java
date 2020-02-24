@@ -15,7 +15,10 @@ package games.stendhal.server;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.GenerateINI;
+import games.stendhal.server.core.rp.DaylightPhase;
 
 /**
  * Starts a Stendhal server
@@ -23,6 +26,8 @@ import games.stendhal.server.core.engine.GenerateINI;
  * @author hendrik
  */
 public class StendhalServer {
+
+	private static final Logger logger = Logger.getLogger(StendhalServer.class);
 
 	private static String serverIni = "server.ini";
 
@@ -59,6 +64,19 @@ public class StendhalServer {
 			GenerateINI.main(args, serverIni);
 		}
 		marauroa.server.marauroad.main(args);
-	}
 
+		// permanently sets DaylightPhase for testing purposes
+		String testPhase = System.getProperty("testing.daylightphase");
+		if (testPhase != null) {
+			testPhase = testPhase.toLowerCase();
+			for (DaylightPhase phase: DaylightPhase.values()) {
+				if (phase.toString().toLowerCase().equals(testPhase)) {
+					logger.info("Setting testing DaylightPhase: " + phase);
+
+					DaylightPhase.setTestingPhase(phase);
+					break;
+				}
+			}
+		}
+	}
 }
