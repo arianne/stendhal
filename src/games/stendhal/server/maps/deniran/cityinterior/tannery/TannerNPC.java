@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -110,6 +111,16 @@ public class TannerNPC implements ZoneConfigurator {
 		zone.add(tanner);
 	}
 
+	/**
+	 * Creates a quest to acquire the money pouch.
+	 *
+	 * Reward:
+	 * - new slot to carry money in
+	 * - 100 karma
+	 *
+	 * Notes:
+	 * - Players can only talk to Skinner during daytime.
+	 */
 	private void prepareDialogue() {
 		// conditions to check if it is night or day time
 		final ChatCondition nightCondition = new DaylightCondition(DaylightPhase.NIGHT);
@@ -262,6 +273,7 @@ public class TannerNPC implements ZoneConfigurator {
 				"You came back just in time. Your money pouch is ready. Try it out. I know you will like it.",
 				new MultipleActions(
 						new EnableFeatureAction("pouch"),
+						new IncreaseKarmaAction(100.0),
 						new SetQuestAction(QUEST_SLOT, "done")));
 
 		// player speaks to tanner after completing quest
