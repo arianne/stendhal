@@ -169,7 +169,7 @@ public class TannerNPC implements ZoneConfigurator {
 				ConversationPhrases.GREETING_MESSAGES,
 				nightCondition,
 				ConversationStates.IDLE,
-				"It's late. I need to get to bed.",
+				"It's late. I need to get to bed. Please come back in the morning.",
 				null);
 
 		// player has not met requirement

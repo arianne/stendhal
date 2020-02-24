@@ -117,7 +117,7 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		DaylightPhase.setTestingPhase(DaylightPhase.NIGHT);
 		assertEquals(DaylightPhase.NIGHT, DaylightPhase.current());
 
-		final String nightReply = "It's late. I need to get to bed.";
+		final String nightReply = "It's late. I need to get to bed. Please come back in the morning.";
 
 		// XXX: is there an assert method for less/greater than comparison?
 		assertTrue(player.getNumberOfLootsForItem("money") < requiredMoneyLoot);
