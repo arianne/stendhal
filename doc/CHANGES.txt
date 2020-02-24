@@ -20,6 +20,7 @@ Changelog
   - Zelan (Atlantis)
 - NPC changes
   - elvish hat added to items that Lupos buys
+  - Adena sells olive oil & vinegar
 - new items:
   - pelt (ingredient to make money pouch)
   - leather thread (ingredient to make money pouch)

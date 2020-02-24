@@ -37,6 +37,8 @@ public final class ShopList {
 
 		shops.add("adosfoodseller", "apple", 50);
 		shops.add("adosfoodseller", "carrot", 50);
+		shops.add("adosfoodseller", "olive oil", 135);
+		shops.add("adosfoodseller", "vinegar", 135);
 
 		shops.add("buyfood", "cheese", 5);
 		shops.add("buyfood", "meat", 10);
