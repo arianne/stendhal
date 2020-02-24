@@ -84,9 +84,9 @@
       <item value="greater antidote" quantity="[1,1]" probability="30.0"/>
       <item value="spinach" quantity="[2,4]" probability="40.0"/>
       <item value="tomato" quantity="[2,3]" probability="40.0"/>
-      <item value="potato" quantity="[1,5]" probability="2.0"/>
-      <item value="olive oil" quantity="[1,5]" probability="2.0"/>
-      <item value="vinegar" quantity="[1,5]" probability="2.0"/>
+      <item value="potato" quantity="[1,5]" probability="5.0"/>
+      <item value="olive oil" quantity="[1,5]" probability="10.0"/>
+      <item value="vinegar" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
