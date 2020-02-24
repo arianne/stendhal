@@ -406,7 +406,7 @@ Possibly add to weekly item quest. -->
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="23"/>
-      <min_level value="200"/>
+      <min_level value="250"/>
     </attributes>
     <weight value="15.0"/>
     <value value="74536"/>
