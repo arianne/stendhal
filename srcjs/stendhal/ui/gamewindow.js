@@ -229,7 +229,7 @@ stendhal.ui.gamewindow = {
 				e.target.addEventListener("touchmove", onDrag);
 				e.target.addEventListener("touchend", onMouseUp);
 			} else if (entity == stendhal.zone.ground) {
-				entity.onclick(pos.offsetX, eposoffsetY, true);
+				entity.onclick(pos.offsetX, pos.offsetY, true);
 			}
 		}
 
