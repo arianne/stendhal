@@ -4,6 +4,7 @@
 
   <!-- START: northpole-->
 
+  <!--
   <creature name="elf george">
     <type class="northpole" subclass="northpole_george" tileid="northpole.png:4"></type>
     <description>You see a poor elf builder who can hardly keep it together with all the nasty little brats running around and making such a racket. Please help him out by getting rid of all those pesky little things.</description>
@@ -309,6 +310,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+-->
 
   <!-- END: northpole -->
 
