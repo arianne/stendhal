@@ -29,6 +29,7 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 import games.stendhal.server.core.scripting.lua.NPCHelper;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
@@ -99,6 +100,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("logger", CoerceJavaToLua.coerce(logger));
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
 		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
+		globals.set("shops", CoerceJavaToLua.coerce(ShopList.get()));
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
