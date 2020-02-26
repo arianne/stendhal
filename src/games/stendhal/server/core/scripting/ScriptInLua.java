@@ -28,6 +28,7 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.server.core.scripting.lua.NPCHelper;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
+import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
@@ -133,5 +134,28 @@ public class ScriptInLua extends ScriptingSandbox {
 		}
 
 		return new Reader();
+	}
+
+	/**
+	 * Creates a new ShopSign entity.
+	 *
+	 * @param name
+	 * 		The shop name.
+	 * @param title
+	 * 		The sign title.
+	 * @param caption
+	 * 		The caption above the table.
+	 * @param seller
+	 * 		<code>true</code>, if this sign is for items sold by an NPC (defaults to <code>true</code> if <code>null</code>).
+	 * @return
+	 * 		New ShopSign instance.
+	 */
+	public ShopSign createShopSign(final String name, final String title, final String caption, Boolean seller) {
+		// default to seller
+		if (seller == null) {
+			seller = true;
+		}
+
+		return new ShopSign(name, title, caption, seller);
 	}
 }
