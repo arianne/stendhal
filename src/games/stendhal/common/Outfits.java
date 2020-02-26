@@ -60,7 +60,7 @@ public class Outfits {
 
 	// layers that can be re-colored
 	public static final List<String> RECOLORABLE_OUTFIT_PARTS = Arrays.asList(
-			"detail", "dress", "hair", "body", "head", "eyes", "hat");
+			"detail", "dress", "hair", "body", "head", "eyes", "mask", "hat");
 
 
 	/**
