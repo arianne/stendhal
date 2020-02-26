@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionMatcher;
@@ -173,6 +174,11 @@ public class SpeakerNPC extends PassiveNPC {
 	private boolean actingAlone=false;
 
 	/**
+	 * if set, determines direction entity will face while idle
+	 */
+	private Direction idleDirection = null;
+
+	/**
 	 * Creates a new SpeakerNPC.
 	 *
 	 * @param name
@@ -322,6 +328,26 @@ public class SpeakerNPC extends PassiveNPC {
 				setSpeed(getBaseSpeed());
 			}
 			setIdea(null);
+		}
+
+		// set facing direction
+		if (idleDirection != null && !hasPath() && engine.getCurrentState() == ConversationStates.IDLE) {
+			setDirection(idleDirection);
+		}
+	}
+
+	/**
+	 * Sets the direction the entity should face while idle (not moving
+	 * & not attending).
+	 *
+	 * @param dir
+	 * 		Direction to face.
+	 */
+	public void setIdleDirection(final Direction dir) {
+		idleDirection = dir;
+
+		if (idleDirection != null && stopped()) {
+			setDirection(idleDirection);
 		}
 	}
 
