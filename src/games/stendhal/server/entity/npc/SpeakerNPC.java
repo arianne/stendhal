@@ -23,6 +23,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionMatcher;
+import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -990,5 +991,46 @@ public class SpeakerNPC extends PassiveNPC {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Retrieves string reply to trigger word.
+	 *
+	 * @param trigger
+	 * 		Word or phrase that triggers reply.
+	 * @param state
+	 * 		The conversation state the NPC is in when trigger is activated.
+	 * @param expressionType
+	 * @return
+	 * 		String reply or <code>null</code>.
+	 */
+	public String getReply(final String trigger, ConversationStates state, String expressionType) {
+		// default to attending
+		if (state == null) {
+			state = ConversationStates.ATTENDING;
+		}
+		if (expressionType == null) {
+			expressionType = ExpressionType.UNKNOWN;
+		}
+
+		for (final Transition tr: getTransitions()) {
+			if (tr.matches(state, new Expression(trigger, expressionType))) {
+				return tr.getReply();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Retrieves string reply to trigger word when NPC is in attending state.
+	 *
+	 * @param trigger
+	 * 		Word or phrase that triggers reply.
+	 * @return
+	 * 		String reply or <code>null</code>.
+	 */
+	public String getReply(final String trigger) {
+		return getReply(trigger, ConversationStates.ATTENDING, ExpressionType.UNKNOWN);
 	}
 }
