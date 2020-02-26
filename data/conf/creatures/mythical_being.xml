@@ -45,7 +45,7 @@
 
   <creature name="emerald mermaid">
     <type class="mythical_being" subclass="emerald_mermaid" tileid="mythical_being.png:3"/>
-    <description>You see a emerald mermaid.</description>
+    <description>You see an emerald mermaid.</description>
     <attributes>
       <atk value="1120"/>
       <def value="105"/>
@@ -87,7 +87,7 @@
 
   <creature name="amethyst mermaid">
     <type class="mythical_being" subclass="amethyst_mermaid" tileid="mythical_being.png:4"/>
-    <description>You see a amethyst mermaid.</description>
+    <description>You see an amethyst mermaid.</description>
     <attributes>
       <atk value="1120"/>
       <def value="105"/>
