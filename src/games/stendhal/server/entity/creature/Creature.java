@@ -838,7 +838,14 @@ public class Creature extends NPC {
 					stackItem.setQuantity(quantity);
 					list.add(stackItem);
 				} else {
-					list.add(item);
+					for (int count = 0; count < quantity; count++) {
+						if (count == 0) {
+							list.add(item);
+						} else {
+							// additional items must be new instances
+							list.add(new Item(item));
+						}
+					}
 				}
 			}
 		}
