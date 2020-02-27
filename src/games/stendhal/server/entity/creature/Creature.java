@@ -826,12 +826,19 @@ public class Creature extends NPC {
 					continue;
 				}
 
+				final int quantity;
 				if (dropped.min == dropped.max) {
-					list.add(item);
+					quantity = dropped.min;
 				} else {
+					quantity = Rand.randUniform(dropped.max, dropped.min);
+				}
+
+				if (item instanceof StackableItem) {
 					final StackableItem stackItem = (StackableItem) item;
-					stackItem.setQuantity(Rand.randUniform(dropped.max, dropped.min));
+					stackItem.setQuantity(quantity);
 					list.add(stackItem);
+				} else {
+					list.add(item);
 				}
 			}
 		}
