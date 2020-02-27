@@ -14,6 +14,8 @@
 -- 3,4,5,6,7,8,9  Paper Chase 2013 and newer
 -- S  Sokoban score
 
+SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
 INSERT INTO halloffame_archive_recent (charname, fametype, rank, points, day) 
 SELECT charname, fametype, @rownum:=@rownum+1 as rank, points, CURRENT_DATE() 
 FROM halloffame, character_stats, (SELECT @rownum:=0) r 
