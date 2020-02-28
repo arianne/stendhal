@@ -19,6 +19,9 @@ stendhal.ui = stendhal.ui || {};
  * @constructor
  */
 stendhal.ui.Popup = function(title, content, x, y) {
+
+	const closeSound = "click-1";
+
 	this.close = function() {
 		if (that.onClose) {
 			that.onClose.call(that);
@@ -36,6 +39,8 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	function onClose(e) {
 		that.close();
 		e.preventDefault();
+
+		stendhal.ui.sound.playGlobalizedEffect(closeSound);
 	}
 
 	/**
