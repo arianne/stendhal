@@ -45,5 +45,17 @@ stendhal.ui.sound = {
 		sound.autoplay = true;
 		sound.volume = volume;
 		sound.src = "/data/sounds/" + soundName + ".ogg";
+	},
+
+	playGlobalizedEffect: function(soundName, volume) {
+		if (!stendhal.config.sound.play) {
+			return;
+		}
+
+		const sound = new Audio("/data/sounds/" + soundName + ".ogg");
+		if (volume != null) {
+			sound.volume = volume;
+		}
+		sound.autoplay = true;
 	}
 };
