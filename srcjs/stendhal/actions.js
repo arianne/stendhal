@@ -660,6 +660,15 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"settings": {
+		execute: function(type, params, remainder) {
+			stendhal.ui.settings.onOpenSettingsMenu();
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"stopwalk": {
 		execute: function(type, params, remainder) {
 			const action = {
