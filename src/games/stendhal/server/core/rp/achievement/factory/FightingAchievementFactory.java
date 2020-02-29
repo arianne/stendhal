@@ -39,7 +39,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
 			"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
-			"Dhohr Nuggetcutter", "Lord Durin"
+			"Dhohr Nuggetcutter", "Lord Durin", "ice giant"
 	};
 	public static final String ID_GIANTS = "fight.solo.giant";
 	public static final int COUNT_GIANTS = 20;
