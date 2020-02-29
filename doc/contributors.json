@@ -1,0 +1,97 @@
+{
+	"all": [
+		{
+			"name": "nhnb",
+			"fullname": "Hendrik Brummermann",
+			"email": "nhnb@users.sourceforge.net",
+			"link": "https://github.com/nhnb",
+			"profile": "https://avatars3.githubusercontent.com/u/364184?s=64",
+			"active_from": "2006",
+			"active_until": null,
+			"contributions": {
+				"code": {
+					"link": "https://github.com/arianne/stendhal/commits?author=nhnb"
+				},
+				"projectManagement": {
+				},
+				"security": {
+				},
+				"test": {
+				},
+			},
+			"quotes": [
+				"SourceForge: 'What advice would you give to a project that’s just starting out?' - Hendrik: 'Have a vision. And a plan.'"
+			]
+		},
+		{
+			"name": null,
+			"fullname": null,
+			"email": null,
+			"link": null,
+			"profile": null,
+			"active_from": null,
+			"active_until": null,
+			"passive": false,
+			"contributions": {
+				"audio": {
+					"delete_this_line": "Music and Sound"
+				},
+				"bug": {
+					"delete_this_line": "Bug reports",
+				},
+				"blog": {
+					"delete_this_line": "Blogposts"
+				},
+				"code": {
+					"delete_this_line": "Code"
+				},
+				"content": {
+					"delete_this_line": "Content (Zones, Quests, Items, Creatures, NPCs...)"
+				},
+				"doc": {
+					"delete_this_line": "Documentation"
+				},
+				"eventOrganizing": {
+					"delete_this_line": "Event Organizing"
+				},
+				"graphics": {
+					"delete_this_line": "Sprites and other Images"
+				},
+				"ideas": {
+					"delete_this_line": "Ideas & Planning"
+				},	
+				"infra": {
+					"delete_this_line": "Infrastructure"
+				},
+				"projectManagement": {
+					"delete_this_line": "Project Management"
+				},	
+				"question": {
+					"delete_this_line": "Answering Questions"
+				},
+				"review": {
+					"delete_this_line": "Reviewed Pull Requests"
+				},	
+				"security": {
+					"delete_this_line": "Security"
+				},
+				"tool": {
+					"delete_this_line": "Tools"
+				},
+				"test": {
+					"delete_this_line": "Automatic Tests and manual testing"
+				},
+				"tutorial": {
+					"delete_this_line": "Tutorials"
+				},
+				"talk": {
+					"delete_this_line": "Talks"
+				},
+				"video": {
+					"delete_this_line": "Videos"
+				}
+			}
+		}
+	]
+}
+
