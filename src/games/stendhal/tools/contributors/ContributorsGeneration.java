@@ -66,7 +66,11 @@ public class ContributorsGeneration {
 	private void writeContributor(PrintStream out, Map<String, Object> contributor) {
 		out.print(" <td align=\"center\" width=\"100\">");
 		out.print("<a href=\"" + contributor.get("link") + "\">");
-		out.print("<img src=\"" + contributor.get("image") + "\" width=\"64\" height=\"64\" alt=\"\">");
+		String image = (String) contributor.get("image");
+		if (image == null || image.trim().equals("")) {
+			image = "https://i2.wp.com/openhub.net/anon80.gif";
+		}
+		out.print("<img src=\"" + image + "\" width=\"64\" height=\"64\" alt=\"\">");
 		out.print("<br />");
 		out.print("<sub><b>" + contributor.get("fullname") + "</b></sub></a>");
 		out.print("<br />");
