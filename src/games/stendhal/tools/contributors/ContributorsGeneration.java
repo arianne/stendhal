@@ -63,8 +63,8 @@ public class ContributorsGeneration {
 		out.println("<tr>");
 	}
 
-	private void writeContributor(PrintStream out, Map<String, Object> contributor) {
-		out.print(" <td align=\"center\" width=\"100\">");
+	private void writeContributor(PrintStream out, Map<String, Object> contributor, int colsPerRow) {
+		out.print(" <td align=\"center\" width=\"" + (colsPerRow / 100) + "\">");
 		out.print("<a href=\"" + contributor.get("link") + "\">");
 		String image = (String) contributor.get("image");
 		if (image == null || image.trim().equals("")) {
@@ -90,7 +90,7 @@ public class ContributorsGeneration {
 
 	private void writeContributors(PrintStream out) {
 		int i = 0;
-		int colsPerRow = 7;
+		int colsPerRow = 6;
 		for (Map<String, Object> contributor : contributors) {
 			if ((i % colsPerRow == 0) && (i > 0)) {
 				out.println("</tr>");
@@ -100,7 +100,7 @@ public class ContributorsGeneration {
 				continue;
 			}
 
-			this.writeContributor(out, contributor);
+			this.writeContributor(out, contributor, colsPerRow);
 			out.println("");
 			i++;
 		}
