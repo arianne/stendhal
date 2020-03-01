@@ -148,7 +148,7 @@
 			"fullname": "Kimmo Rundelin",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/15277",
-			"image": "https://gravatar.com/avatar/47fe272e163794babfc76306e18b93f6.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/47fe272e163794babfc76306e18b93f6.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kiheru.png",
 			"active_from": "2007",
 			"active_until": null,
 			"contributions": [
@@ -163,7 +163,7 @@
 			"fullname": "Astrid Sawatzky",
 			"email": "",
 			"link": "",
-			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/durkham.png",
 			"active_from": "2007",
 			"active_until": "2010",
 			"contributions": [
@@ -254,7 +254,7 @@
 			"fullname": "Chad F",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977855",
-			"image": "https://gravatar.com/avatar/f882eeed98bb5afbc521b26cb868940c.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/f882eeed98bb5afbc521b26cb868940c.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/chad3f.png",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -421,7 +421,7 @@
 			"aliases": ["laguz"],
 			"email": "",
 			"link": "https://www.openhub.net/accounts/Laguz",
-			"image": "https://gravatar.com/avatar/d24ffb02627e23e2c80c8c7bda13a133.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/d24ffb02627e23e2c80c8c7bda13a133.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/laguz.png",
 			"active_from": "2010",
 			"active_until": "2010",
 			"contributions": [
@@ -447,11 +447,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "berserkera3",
 			"fullname": "Berserker A3",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977858",
-			"image": "https://gravatar.com/avatar/ffa283ba87fa49149d9883a1f25a80d1.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/ffa283ba87fa49149d9883a1f25a80d1.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/berserkera3.png",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -466,7 +466,7 @@
 			"fullname": "plassy",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771311913",
-			"image": "https://gravatar.com/avatar/302f1cc269c2b331c18078afb4cac0ab.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/302f1cc269c2b331c18078afb4cac0ab.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/plassy.png",
 			"active_from": "2009",
 			"active_until": "2010",
 			"contributions": [
@@ -481,7 +481,7 @@
 			"fullname": "Storyteller",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771779586",
-			"image": "https://gravatar.com/avatar/fd562e83b916a848e480ae4e553a9d40.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/fd562e83b916a848e480ae4e553a9d40.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/storyteller.png",
 			"active_from": "2010",
 			"active_until": "2015",
 			"contributions": [
@@ -526,7 +526,7 @@
 			"fullname": "sshk5",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771157307",
-			"image": "https://gravatar.com/avatar/c8d538c1ba4164554269035d0689c31c.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/c8d538c1ba4164554269035d0689c31c.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/sshk5.png",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -556,7 +556,7 @@
 			"fullname": "seather",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771148456",
-			"image": "https://gravatar.com/avatar/99da6a0d8f5d67c62b1ef552d777d3c4.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/99da6a0d8f5d67c62b1ef552d777d3c4.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/seather.png",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -571,7 +571,7 @@
 			"fullname": "Red Queen",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977871",
-			"image": "https://gravatar.com/avatar/c762d0ef602a1ad4fc4fb94ef3be6f98.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/c762d0ef602a1ad4fc4fb94ef3be6f98.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/redqueen.png",
 			"active_from": "2011",
 			"active_until": "2012",
 			"contributions": [
@@ -601,7 +601,7 @@
 			"fullname": "Jose Luis Cabello",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977859",
-			"image": "https://gravatar.com/avatar/1a35f34c16d2e6534910c078fbfcfdeb.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/1a35f34c16d2e6534910c078fbfcfdeb.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kawn.png",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -631,7 +631,7 @@
 			"fullname": "johnnnny",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771165258",
-			"image": "https://gravatar.com/avatar/cdf68260d2e681cdf1cf8a31fd577846.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/cdf68260d2e681cdf1cf8a31fd577846.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/johnnnny.png",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -661,7 +661,7 @@
 			"fullname": "sjtsp2008",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573012",
-			"image": "https://gravatar.com/avatar/63cbf74e2e097a25aea21824b174c809.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/63cbf74e2e097a25aea21824b174c809.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/sjtsp.png",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -676,7 +676,7 @@
 			"fullname": "lumocra",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771640206",
-			"image": "https://gravatar.com/avatar/6d7f7aa5b40e7105fe2117f268568f54?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/6d7f7aa5b40e7105fe2117f268568f54?s=64&rating=PG&d=https://stendhalgame.org/images/profile/lumocra.png",
 			"active_from": "2012",
 			"active_until": "2012",
 			"contributions": [
@@ -691,7 +691,7 @@
 			"fullname": "filinep",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771585749",
-			"image": "https://gravatar.com/avatar/266a0f938de29c84f158275a3de492ab.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/266a0f938de29c84f158275a3de492ab.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/filinep.png",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -751,7 +751,7 @@
 			"fullname": "monsterdhal",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573672",
-			"image": "https://gravatar.com/avatar/20916c4de4dccdf3a0637adc7382f2a1.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/20916c4de4dccdf3a0637adc7382f2a1.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/monsterdhal.png",
 			"active_from": "2011",
 			"active_until": "2012",
 			"contributions": [
@@ -796,7 +796,7 @@
 			"fullname": "KarajuSs",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940773061551",
-			"image": "https://gravatar.com/avatar/1e9cc669830a0248353cf98b6fda8b38.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/1e9cc669830a0248353cf98b6fda8b38.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/karajuss.png",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -901,7 +901,7 @@
 			"fullname": "Lori Angela Nagel",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772664880",
-			"image": "https://gravatar.com/avatar/666b9bb87d245a859f70f147c01904e3.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/666b9bb87d245a859f70f147c01904e3.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/jastiv.png",
 			"active_from": "2018",
 			"active_until": "2018",
 			"contributions": [
@@ -931,7 +931,7 @@
 			"fullname": "oslsachem",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139179",
-			"image": "https://gravatar.com/avatar/0fcbac86dbc42e1235a8a44bb03b4ffa.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/0fcbac86dbc42e1235a8a44bb03b4ffa.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/oslsachem.png",
 			"active_from": "2006",
 			"active_until": "2006",
 			"contributions": [
@@ -976,7 +976,7 @@
 			"fullname": "kribbel",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144751",
-			"image": "https://gravatar.com/avatar/7cf637ca7fd4629c3a2db7ebc38e6921.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/7cf637ca7fd4629c3a2db7ebc38e6921.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kribbel.png",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -1049,11 +1049,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "kezman",
 			"fullname": "Kezman Rafael",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/22963",
-			"image": "https://gravatar.com/avatar/81f0648d91866f53ecf9a178e6f503e5?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/81f0648d91866f53ecf9a178e6f503e5?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kezman.png",
 			"active_from": "",
 			"active_until": "",
 			"confirmed": false,
