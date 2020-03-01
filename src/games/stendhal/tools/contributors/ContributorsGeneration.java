@@ -3,6 +3,7 @@ package games.stendhal.tools.contributors;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.JSONValue;
@@ -14,6 +15,37 @@ import org.json.simple.JSONValue;
  */
 public class ContributorsGeneration {
 	private Iterable<Map<String, Object>> contributors;
+	private Map<String, String> iconMap = new HashMap<>();
+	
+	public ContributorsGeneration() {
+		iconMap.put("a11y", "♿️");
+		iconMap.put("bug", "🐛");
+		iconMap.put("blog", "📝");
+		iconMap.put("business", "💼");
+		iconMap.put("code", "💻");
+		iconMap.put("content", "🖋");
+		iconMap.put("data", "🔣");
+		iconMap.put("doc", "📖");
+		iconMap.put("graphics", "🎨");
+		iconMap.put("example", "💡");
+		iconMap.put("eventOrganizing", "📋");
+		iconMap.put("ideas", "🤔");
+		iconMap.put("infra", "🚇");
+		iconMap.put("maintenance", "🚧");
+		iconMap.put("platform", "📦");
+		iconMap.put("plugin", "🔌");
+		iconMap.put("projectManagement", "📆");
+		iconMap.put("question", "💬");
+		iconMap.put("review", "👀");
+		iconMap.put("security", "🛡️");
+		iconMap.put("tool", "🔧");
+		iconMap.put("translation", "🌍");
+		iconMap.put("test", "⚠️");
+		iconMap.put("tutorial", "✅");
+		iconMap.put("talk", "📢");
+		iconMap.put("userTesting", "📓");
+		iconMap.put("video", "📹");
+	}
 
 	@SuppressWarnings("unchecked")
 	private void parse(String inputFilename) throws IOException {
@@ -32,9 +64,9 @@ public class ContributorsGeneration {
 	}
 
 	private void writeContributor(PrintStream out, Map<String, Object> contributor) {
-		out.print(" <td align=\"center\">");
+		out.print(" <td align=\"center\" width=\"100\">");
 		out.print("<a href=\"" + contributor.get("link") + "\">");
-		out.print("<img src=\"" + contributor.get("image") + "\" width=\"64\" alt=\"\">");
+		out.print("<img src=\"" + contributor.get("image") + "\" width=\"64\" height=\"64\" alt=\"\">");
 		out.print("<br />");
 		out.print("<sub><b>" + contributor.get("fullname") + "</b></sub></a>");
 		out.print("<br />");
@@ -46,8 +78,8 @@ public class ContributorsGeneration {
 	private void writeContributions(PrintStream out, Map<String, Object> contributor) {
 		Iterable<Map<String, Object>> contributions = (Iterable<Map<String, Object>>) contributor.get("contributions");
 		for (Map<String, Object> contribution : contributions) {
-			out.print("<a href=\"" + contribution.get("link") + "\">");
-			out.print(contribution.get("type"));
+			out.print("<a href=\"" + contribution.get("link") + "\" title=\"" + contribution.get("type") + "\">");
+			out.print(iconMap.get(contribution.get("type")));
 			out.print("</a> ");
 		}
 	}
