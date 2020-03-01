@@ -57,6 +57,7 @@ public class ContributorsGeneration {
 	
 
 	private void writeHeader(PrintStream out) {
+		out.println("<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->");
 		out.println("<!-- prettier-ignore-start -->");
 		out.println("<!-- markdownlint-disable -->");
 		out.println("<table>");
@@ -64,7 +65,7 @@ public class ContributorsGeneration {
 	}
 
 	private void writeContributor(PrintStream out, Map<String, Object> contributor, int colsPerRow) {
-		out.print(" <td align=\"center\" width=\"" + (colsPerRow / 100) + "\">");
+		out.print(" <td align=\"center\" width=\"" + (colsPerRow / 100) + "%\">");
 		out.print("<a href=\"" + contributor.get("link") + "\">");
 		String image = (String) contributor.get("image");
 		if (image == null || image.trim().equals("")) {
@@ -82,9 +83,11 @@ public class ContributorsGeneration {
 	private void writeContributions(PrintStream out, Map<String, Object> contributor) {
 		Iterable<Map<String, Object>> contributions = (Iterable<Map<String, Object>>) contributor.get("contributions");
 		for (Map<String, Object> contribution : contributions) {
-			out.print("<a href=\"" + contribution.get("link") + "\" title=\"" + contribution.get("type") + "\">");
+			//out.print("<a href=\"" + contribution.get("link") + "\" title=\"" + contribution.get("type") + "\">");
+			out.println("<span title=\"" + contribution.get("type") + "\">");
 			out.print(iconMap.get(contribution.get("type")));
-			out.print("</a> ");
+			//out.print("</a> ");
+			out.print("</span> ");
 		}
 	}
 
