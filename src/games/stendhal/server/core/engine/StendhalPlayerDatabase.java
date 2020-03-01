@@ -199,6 +199,11 @@ public class StendhalPlayerDatabase {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_layers VARCHAR(255));", null);
 		}
 
+		// 1.34: renamed kill_blordroughs achievements
+		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0005' WHERE identifier='quest.special.kill_blordroughs.5'", null);
+		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0025' WHERE identifier='quest.special.kill_blordroughs.25'", null);
+		
+
 		updateCharacterStatsOutfitToOutfitLayer(transaction);
 	}
 

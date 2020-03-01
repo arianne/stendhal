@@ -27,14 +27,11 @@ import games.stendhal.server.maps.quests.KillBlordroughs;
  */
 public class KillBlordroughsAchievementFactory extends AbstractAchievementFactory {
 
-	private static final String QUEST_SLOT = KillBlordroughs.getInstance().getSlotName();
-	private static final String prefix = "quest.special." + QUEST_SLOT;
-
 	public static final int COUNT_LACKEY = 5;
-	public static final String ID_LACKEY = prefix + "." + Integer.toString(COUNT_LACKEY);
+	public static final String ID_LACKEY = "quest.special.kill_blordroughs.0005";
 
 	public static final int COUNT_SOLDIER = 25;
-	public static final String ID_SOLDIER = prefix + "." + Integer.toString(COUNT_SOLDIER);
+	public static final String ID_SOLDIER = "quest.special.kill_blordroughs.0025";
 
 	@Override
 	protected Category getCategory() {
