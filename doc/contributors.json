@@ -18,9 +18,6 @@
 				},
 				{
 					"type": "security"
-				},
-				{
-					"type": "test"
 				}
 			],
 			"quotes": [
@@ -117,11 +114,11 @@
 			]
 		},
 		{
-	        "name": "antumdeluge",
-	        "fullname": "Jordan Irwin",
+			"name": "antumdeluge",
+			"fullname": "Jordan Irwin",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/243964",
-			"image": "https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG&d=wavatar",
 			"active_from": "2013",
 			"active_until": "",
 			"contributions": [
@@ -131,12 +128,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "kymara",
-	        "fullname": "Katie Russell",
+			"fullname": "Katie Russell",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/2634",
-			"image": "https://gravatar.com/avatar/66316a04c31f02b58fba743f13275f66?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/66316a04c31f02b58fba743f13275f66?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2013",
 			"contributions": [
@@ -147,11 +144,11 @@
 			]
 		},
 		{
-	        "name": "kiheru",
-	        "fullname": "Kimmo Rundelin",
+			"name": "kiheru",
+			"fullname": "Kimmo Rundelin",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/15277",
-			"image": "",
+			"image": "https://gravatar.com/avatar/47fe272e163794babfc76306e18b93f6.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": null,
 			"contributions": [
@@ -162,11 +159,11 @@
 			]
 		},
 		{
-			"name": "",
-	        "fullname": "Astrid Sawatzky",
+			"name": "astridemma",
+			"fullname": "Astrid Sawatzky",
 			"email": "",
 			"link": "",
-			"image": "",
+			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2010",
 			"contributions": [
@@ -176,12 +173,12 @@
 				}
 			]
 		},
-   		{
-			"name": "miguel",
-	        "fullname": "Miguel Angel Blanch Lardin",
+		{
+			"name": "arianne_rpg",
+			"fullname": "Miguel Angel Blanch Lardin",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771128093",
-			"image": "",
+			"image": "https://gravatar.com/avatar/dd405f8e0d73c92c0dc90812d34349e9?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2008",
 			"contributions": [
@@ -192,11 +189,11 @@
 			]
 		},
 		{
-			"name": "",
-	        "fullname": "Martin Fuchs",
+			"name": "martinfuchs",
+			"fullname": "Martin Fuchs",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/13110",
-			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2012",
 			"contributions": [
@@ -206,12 +203,13 @@
 				}
 			]
 		},
-   		{
-	        "name": "Bluelads4",
-	        "fullname": "Bluelads4",
+		{
+			"name": "bluelads4",
+			"fullname": "Bluelads",
+			"aliases": ["bluelads99"],
 			"email": "",
-			"link": "",
-			"image": "",
+			"link": "https://www.openhub.net/accounts/22618",
+			"image": "https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG&d=wavatar",
 			"active_from": "2010",
 			"active_until": "2014",
 			"contributions": [
@@ -221,14 +219,14 @@
 				}
 			]
 		},
-   		{
-			"name": "Markus",
-			"fullname": "Markus",
+		{
+			"name": "markus.keunecke",
+			"fullname": "Markus Keunecke",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771121091",
-			"image": "",
+			"image": "https://gravatar.com/avatar/4eebbab9cf562e67094a12dca480d92f.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2010",
-			"active_until": "2012",
+			"active_until": "2016",
 			"contributions": [
 				{
 					"type": "code",
@@ -236,12 +234,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
-	        "fullname": "Daniel Herding",
+		{
+			"name": "wikipedian",
+			"fullname": "Daniel Herding",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771763819",
-			"image": "",
+			"image": "https://gravatar.com/avatar/34ca9773fb6ae65deab8af8a7202ced3.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2006",
 			"active_until": "2007",
 			"contributions": [
@@ -251,12 +249,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
-	        "fullname": "Chad F",
+		{
+			"name": "chad3f",
+			"fullname": "Chad F",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977855",
-			"image": "",
+			"image": "https://gravatar.com/avatar/f882eeed98bb5afbc521b26cb868940c.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -266,12 +264,12 @@
 				}
 			]
 		},
-   		{
-	        "name": "bleutailfly",
-	        "fullname": "bleutailfly",
+		{
+			"name": "bleutailfly",
+			"fullname": "bleutailfly",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/20119",
-			"image": "https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": null,
 			"contributions": [
@@ -281,12 +279,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "omero",
 			"fullname": "omero",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/155766",
-			"image": "https://gravatar.com/avatar/ddf515c3445545d746bc672ee56e64b6?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/ddf515c3445545d746bc672ee56e64b6?s=64&rating=PG&d=wavatar",
 			"active_from": "2010",
 			"active_until": null,
 			"contributions": [
@@ -296,13 +294,13 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "tigertoes",
 			"fullname": "tigertoes",
 			"aliases": ["tigertoes13"],
 			"email": "",
 			"link": "https://www.openhub.net/accounts/18258",
-			"image": "https://gravatar.com/avatar/57fe325bb1f152df4a56969265da094c?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/57fe325bb1f152df4a56969265da094c?s=64&rating=PG&d=wavatar",
 			"active_from": "2008",
 			"active_until": null,
 			"contributions": [
@@ -312,12 +310,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "yoriy",
 			"fullname": "yoriy",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/55439",
-			"image": "https://gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG&d=wavatar",
 			"active_from": "2009",
 			"active_until": null,
 			"contributions": [
@@ -327,12 +325,12 @@
 				}
 			]
 		},
-    		{
-			"name": "",
-	        "fullname": "Anders Asplund",
+		{
+			"name": "damnter",
+			"fullname": "Anders Asplund",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771476414",
-			"image": "",
+			"image": "https://gravatar.com/avatar/c329880fbd3b575fea866392785dd44d.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2007",
 			"contributions": [
@@ -342,12 +340,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
-	        "fullname": "Matthias Totz",
+		{
+			"name": "mtotz",
+			"fullname": "Matthias Totz",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977851",
-			"image": "",
+			"image": "https://gravatar.com/avatar/7cb02d736735142133be3f0f71a05071.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2007",
 			"contributions": [
@@ -357,12 +355,12 @@
 				}
 			]
 		},
-   		{
-	        "name": "olonu",
-	        "fullname": "olonu",
+		{
+			"name": "olonu",
+			"fullname": "olonu",
 			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/",
-			"image": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772664883",
+			"image": "https://gravatar.com/avatar/a06c8bce7a84aa3f2a955b15f17b8c26.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2018",
 			"active_until": "2019",
 			"contributions": [
@@ -372,12 +370,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "timothyb89",
 			"fullname": "timothyb89",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/2437",
-			"image": "https://gravatar.com/avatar/71487518e6a187fcadf226fdae24b1ef?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/71487518e6a187fcadf226fdae24b1ef?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -387,12 +385,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
-	        "fullname": "Nadine Schlonies",
+		{
+			"name": "n-a-d-i-n-e",
+			"fullname": "Nadine Schlonies",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977861",
-			"image": "",
+			"image": "https://gravatar.com/avatar/1abbf8f051d78a7eab3577398c03e844.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -402,12 +400,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "onu",
 			"fullname": "onu",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772350884",
-			"image": "",
+			"image": "https://gravatar.com/avatar/38170811c7b661bc61e870f17f46f113.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2018",
 			"active_until": "2018",
 			"contributions": [
@@ -417,12 +415,13 @@
 				}
 			]
 		},
-   		{
-			"name": "laguz",
-			"fullname": "laguz",
+		{
+			"name": "mkvii",
+			"fullname": "Laguz",
+			"aliases": ["laguz"],
 			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771254022",
-			"image": "",
+			"link": "https://www.openhub.net/accounts/Laguz",
+			"image": "https://gravatar.com/avatar/d24ffb02627e23e2c80c8c7bda13a133.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2010",
 			"active_until": "2010",
 			"contributions": [
@@ -432,12 +431,12 @@
 				}
 			]
 		},
-   		{
-			"name": "Teiv",
+		{
+			"name": "juri82",
 			"fullname": "Teiv",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977863",
-			"image": "",
+			"image": "https://gravatar.com/avatar/a69cfbd309a7e57c1cc0812d8bcc0f02.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -447,12 +446,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "",
 			"fullname": "Berserker A3",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977858",
-			"image": "",
+			"image": "https://gravatar.com/avatar/ffa283ba87fa49149d9883a1f25a80d1.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -462,12 +461,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "plassy",
 			"fullname": "plassy",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771311913",
-			"image": "",
+			"image": "https://gravatar.com/avatar/302f1cc269c2b331c18078afb4cac0ab.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2009",
 			"active_until": "2010",
 			"contributions": [
@@ -477,14 +476,14 @@
 				}
 			]
 		},
-   		{
-			"name": "Storyteller",
+		{
+			"name": "story-teller",
 			"fullname": "Storyteller",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771779586",
-			"image": "",
+			"image": "https://gravatar.com/avatar/fd562e83b916a848e480ae4e553a9d40.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2010",
-			"active_until": "2011",
+			"active_until": "2015",
 			"contributions": [
 				{
 					"type": "code",
@@ -492,12 +491,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
+		{
+			"name": "intensifly",
 			"fullname": "Jo S",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977853",
-			"image": "",
+			"image": "https://gravatar.com/avatar/5f56c9cb2c2e6b6bd2cb701a781bfaa6.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2006",
 			"active_until": "2006",
 			"contributions": [
@@ -507,12 +506,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "soniccuz",
 			"fullname": "soniccuz",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771992757",
-			"image": "",
+			"image": "https://sourceforge.net/u/soniccuz/user_icon?1539674888",
 			"active_from": "2015",
 			"active_until": "2016",
 			"contributions": [
@@ -522,12 +521,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "sshk5",
 			"fullname": "sshk5",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771157307",
-			"image": "",
+			"image": "https://gravatar.com/avatar/c8d538c1ba4164554269035d0689c31c.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -537,13 +536,13 @@
 				}
 			]
 		},
-   		{
-			"name": "Balaur",
+		{
+			"name": "balaur",
 			"fullname": "Balaur",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977873",
-			"image": "",
-			"active_from": "2015",
+			"image": "https://gravatar.com/avatar/eae46117effb1bc840c96fe2c6d2371a.jpg?s=64&rating=PG&d=wavatar",
+			"active_from": "2014",
 			"active_until": "2017",
 			"contributions": [
 				{
@@ -552,12 +551,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "seather",
 			"fullname": "seather",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771148456",
-			"image": "",
+			"image": "https://gravatar.com/avatar/99da6a0d8f5d67c62b1ef552d777d3c4.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -567,12 +566,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
+		{
+			"name": "theredqueen",
 			"fullname": "Red Queen",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977871",
-			"image": "",
+			"image": "https://gravatar.com/avatar/c762d0ef602a1ad4fc4fb94ef3be6f98.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2012",
 			"contributions": [
@@ -582,12 +581,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
+		{
+			"name": "quisar",
 			"fullname": "Benjamin Lerman",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771784960",
-			"image": "",
+			"image": "https://gravatar.com/avatar/8467df814b0397399af3c754269a8031.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2005",
 			"contributions": [
@@ -597,12 +596,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
+		{
+			"name": "kawn",
 			"fullname": "Jose Luis Cabello",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977859",
-			"image": "",
+			"image": "https://gravatar.com/avatar/1a35f34c16d2e6534910c078fbfcfdeb.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -612,12 +611,12 @@
 				}
 			]
 		},
-   		{
-			"name": "",
+		{
+			"name": "thriceforged",
 			"fullname": "Steve Ierodiaconou",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771440300",
-			"image": "",
+			"image": "https://gravatar.com/avatar/774df7f5e8e64170c6a0d3f5299bd09b.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2007",
 			"contributions": [
@@ -632,7 +631,7 @@
 			"fullname": "johnnnny",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771165258",
-			"image": "",
+			"image": "https://gravatar.com/avatar/cdf68260d2e681cdf1cf8a31fd577846.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -642,12 +641,12 @@
 				}
 			]
 		},
-   		{
-   			"name": "",
+		{
+			"name": "janet-h",
 			"fullname": "Janet Hunt",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771737319",
-			"image": "",
+			"image": "https://gravatar.com/avatar/559177f25a18d4385cd7faf0cb94eecc.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2006",
 			"active_until": "2006",
 			"contributions": [
@@ -657,12 +656,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "sjtsp2008",
 			"fullname": "sjtsp2008",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573012",
-			"image": "",
+			"image": "https://gravatar.com/avatar/63cbf74e2e097a25aea21824b174c809.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -672,12 +671,12 @@
 				}
 			]
 		},
-   		{
+		{
 			"name": "lumocra",
 			"fullname": "lumocra",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771640206",
-			"image": "",
+			"image": "https://gravatar.com/avatar/6d7f7aa5b40e7105fe2117f268568f54?s=64&rating=PG&d=wavatar",
 			"active_from": "2012",
 			"active_until": "2012",
 			"contributions": [
@@ -692,7 +691,7 @@
 			"fullname": "filinep",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771585749",
-			"image": "",
+			"image": "https://gravatar.com/avatar/266a0f938de29c84f158275a3de492ab.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -703,11 +702,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "cix",
 			"fullname": "Javier Correa",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977852",
-			"image": "",
+			"image": "https://gravatar.com/avatar/16342659a8a17803800c208205d89a6d.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2006",
 			"active_until": "2006",
 			"contributions": [
@@ -722,7 +721,7 @@
 			"fullname": "amano",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771518097",
-			"image": "",
+			"image": "https://gravatar.com/avatar/766bd127208301ff05f389a373bbf98b.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2016",
 			"active_until": "2017",
 			"contributions": [
@@ -734,12 +733,12 @@
 		},
 		{
 			"name": "root777",
-			"fullname": "root777",
+			"fullname": "Waldemar Tribus",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139168",
-			"image": "",
+			"image": "https://gravatar.com/avatar/88e84e8d224fa123fcb67ed60e00164d.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2004",
-			"active_until": "2004",
+			"active_until": "2005",
 			"contributions": [
 				{
 					"type": "code",
@@ -752,7 +751,7 @@
 			"fullname": "monsterdhal",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573672",
-			"image": "",
+			"image": "https://gravatar.com/avatar/20916c4de4dccdf3a0637adc7382f2a1.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2012",
 			"contributions": [
@@ -763,28 +762,13 @@
 			]
 		},
 		{
-			"name": "Snowflake",
+			"name": "mudmagicworld",
 			"fullname": "Snowflake",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772350883",
-			"image": "",
+			"image": "https://gravatar.com/avatar/ccfc22f4450e70b4330843c48277d427.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2017",
 			"active_until": "2017",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "Bluelads4",
-			"fullname": "bluelads99",
-			"email": "",
-			"link": "https://www.openhub.net/accounts/22618",
-			"image": "https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG",
-			"active_from": "2015",
-			"active_until": "2015",
 			"contributions": [
 				{
 					"type": "code",
@@ -797,7 +781,7 @@
 			"fullname": "posts",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771175663",
-			"image": "",
+			"image": "https://gravatar.com/avatar/cd76d0318ecba5f7404e100962e83dca.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2009",
 			"contributions": [
@@ -808,11 +792,11 @@
 			]
 		},
  		{
-			"name": "PolskaGRA",
-			"fullname": "PolskaGRA",
+			"name": "karajuss",
+			"fullname": "KarajuSs",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940773061551",
-			"image": "",
+			"image": "https://gravatar.com/avatar/1e9cc669830a0248353cf98b6fda8b38.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -821,28 +805,13 @@
 					"link": ""
 				}
 			]
-		},
+		}
 		{
-			"name": "balaur",
-			"fullname": "balaur",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771956253",
-			"image": "",
-			"active_from": "2014",
-			"active_until": "2014",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "",
+			"name": "p_do",
 			"fullname": "p do",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977857",
-			"image": "",
+			"image": "https://gravatar.com/avatar/e1047ce1dba5cd5a98d7ac34ded078ee.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -852,27 +821,12 @@
 				}
 			]
 		},
- 		{
-			"name": "storyteller",
-			"fullname": "storyteller",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940772012732",
-			"image": "",
-			"active_from": "2015",
-			"active_until": "2015",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
 		{
-			"name": "",
+			"name": "cosmin",
 			"fullname": "Cosmin Humeniuc",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771804408",
-			"image": "",
+			"image": "https://gravatar.com/avatar/888691da483a8f3fafe49b805b78086c?s=64&rating=PG&d=wavatar",
 			"active_from": "2018",
 			"active_until": "2019",
 			"contributions": [
@@ -883,11 +837,11 @@
 			]
 		},
  		{
-			"name": "Chris",
+			"name": "pinchanzee",
 			"fullname": "Chris",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771147704",
-			"image": "",
+			"image": "https://gravatar.com/avatar/0fe9d5c761830bad06e4c01981d1b4ba?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -896,43 +850,13 @@
 					"link": ""
 				}
 			]
-		},
- 		{
-			"name": "",
-			"fullname": "Markus Keunecke",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771637415",
-			"image": "",
-			"active_from": "2016",
-			"active_until": "2016",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
+		}
 		{
-			"name": "",
-			"fullname": "Waldemar Tribus",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977850",
-			"image": "",
-			"active_from": "2005",
-			"active_until": "2005",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "meriharakka",
+			"name": "maria",
 			"fullname": "meriharakka",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772168009",
-			"image": "",
+			"image": "https://gravatar.com/avatar/06e41ced61f6c624db47bf2c5f0b6802.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2017",
 			"active_until": "2017",
 			"contributions": [
@@ -942,42 +866,12 @@
 				}
 			]
 		},
- 		{
-			"name": "thriceforged",
-			"fullname": "thriceforged",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139171",
-			"image": "",
-			"active_from": "2007",
-			"active_until": "2007",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
- 		{
-			"name": "KarajuSs",
-			"fullname": "KarajuSs",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144756",
-			"image": "",
-			"active_from": "2019",
-			"active_until": "2019",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
 		{
-			"name": "",
+			"name": "zzorn",
 			"fullname": "Hans Häggström",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771183463",
-			"image": "",
+			"image": "https://gravatar.com/avatar/59017c212175786d984d8f6a2db8c1ce.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2005",
 			"active_until": "2005",
 			"contributions": [
@@ -988,11 +882,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "retr0virus",
 			"fullname": "Marcel Miebach",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977869",
-			"image": "",
+			"image": "https://gravatar.com/avatar/684ab86623de071d923dff765ab6af11.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
@@ -1003,11 +897,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "jastiv",
 			"fullname": "Lori Angela Nagel",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772664880",
-			"image": "",
+			"image": "https://gravatar.com/avatar/666b9bb87d245a859f70f147c01904e3.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2018",
 			"active_until": "2018",
 			"contributions": [
@@ -1018,11 +912,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "tobias",
 			"fullname": "Tobias Frei",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771703239",
-			"image": "",
+			"image": "https://gravatar.com/avatar/a142253c42c6ecc08882107c3c3c4f7b.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2017",
 			"active_until": "2017",
 			"contributions": [
@@ -1037,7 +931,7 @@
 			"fullname": "oslsachem",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139179",
-			"image": "",
+			"image": "https://gravatar.com/avatar/0fcbac86dbc42e1235a8a44bb03b4ffa.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2006",
 			"active_until": "2006",
 			"contributions": [
@@ -1049,10 +943,10 @@
 		},
 		{
 			"name": "monica",
-			"fullname": "monica",
+			"fullname": "Monique Parent",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771142463",
-			"image": "",
+			"image": "https://gravatar.com/avatar/547f1cfd74c65667f3cbd8b29410fa70.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -1063,41 +957,11 @@
 			]
 		},
 		{
-			"name": "bleutailfly1",
-			"fullname": "bleutailfly1",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144758",
-			"image": "",
-			"active_from": "2019",
-			"active_until": null,
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "jordan",
-			"fullname": "jordan",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771129467",
-			"image": "",
-			"active_from": "2015",
-			"active_until": "2015",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "",
+			"name": "cpanagiot.csd.auth.gr",
 			"fullname": "Panagiotis Chatzigeorgiou",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772923575",
-			"image": "",
+			"image": "https://gravatar.com/avatar/e25c4b330c6348bce687448cbc2d95da.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -1108,26 +972,11 @@
 			]
 		},
 		{
-			"name": "",
-			"fullname": "A U Thor",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771492102",
-			"image": "",
-			"active_from": "2019",
-			"active_until": "2019",
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "krib...@example.com",
-			"fullname": "krib...@example.com",
+			"name": "kribbel",
+			"fullname": "kribbel",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144751",
-			"image": "",
+			"image": "https://gravatar.com/avatar/7cf637ca7fd4629c3a2db7ebc38e6921.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -1138,11 +987,11 @@
 			]
 		},
 		{
-			"name": "",
+			"name": "alexandru.p.copil",
 			"fullname": "Alexandru-Paul Copil",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772269452",
-			"image": "",
+			"image": "https://gravatar.com/avatar/10fa59baa9f5f86bc69b2b0f613cb510.jpg?s=64&rating=PG&d=wavatar",
 			"active_from": "2017",
 			"active_until": "2017",
 			"contributions": [
@@ -1157,7 +1006,7 @@
 			"fullname": "Redcxx",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144750",
-			"image": "",
+			"image": "https://avatars3.githubusercontent.com/u/39546701?s=64",
 			"active_from": "2019",
 			"active_until": "2019",
 			"contributions": [
@@ -1188,7 +1037,7 @@
 			"fullname": "matthewd",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/7470",
-			"image": "https://gravatar.com/avatar/e55df1cc7d5fdb4ae9bc2afcb9afe7e4?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/e55df1cc7d5fdb4ae9bc2afcb9afe7e4?s=64&rating=PG&d=wavatar",
 			"active_from": "",
 			"active_until": "",
 			"confirmed": false,
@@ -1204,7 +1053,7 @@
 			"fullname": "Kezman Rafael",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/22963",
-			"image": "https://gravatar.com/avatar/81f0648d91866f53ecf9a178e6f503e5?s=64&rating=PG",
+			"image": "https://gravatar.com/avatar/81f0648d91866f53ecf9a178e6f503e5?s=64&rating=PG&d=wavatar",
 			"active_from": "",
 			"active_until": "",
 			"confirmed": false,
