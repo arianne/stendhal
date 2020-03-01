@@ -26,12 +26,13 @@ public class ContributorsGeneration {
 		iconMap.put("content", "🖋");
 		iconMap.put("data", "🔣");
 		iconMap.put("doc", "📖");
-		iconMap.put("graphics", "🎨");
 		iconMap.put("example", "💡");
 		iconMap.put("eventOrganizing", "📋");
+		iconMap.put("graphics", "🎨");
 		iconMap.put("ideas", "🤔");
 		iconMap.put("infra", "🚇");
 		iconMap.put("maintenance", "🚧");
+		iconMap.put("maps", "🗺");
 		iconMap.put("platform", "📦");
 		iconMap.put("plugin", "🔌");
 		iconMap.put("projectManagement", "📆");
