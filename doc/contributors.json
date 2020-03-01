@@ -5,20 +5,24 @@
 			"fullname": "Hendrik Brummermann",
 			"email": "nhnb@users.sourceforge.net",
 			"link": "https://github.com/nhnb",
-			"profile": "https://avatars3.githubusercontent.com/u/364184?s=64",
+			"image": "https://avatars3.githubusercontent.com/u/364184?s=64",
 			"active_from": "2006",
 			"active_until": null,
-			"contributions": {
-				"code": {
+			"contributions": [
+				{
+					"type": "code",
 					"link": "https://github.com/arianne/stendhal/commits?author=nhnb"
 				},
-				"projectManagement": {
+				{
+					"type": "projectManagement"
 				},
-				"security": {
+				{
+					"type": "security"
 				},
-				"test": {
-				},
-			},
+				{
+					"type": "test"
+				}
+			],
 			"quotes": [
 				"SourceForge: 'What advice would you give to a project that’s just starting out?' - Hendrik: 'Have a vision. And a plan.'"
 			]
@@ -28,70 +32,1188 @@
 			"fullname": null,
 			"email": null,
 			"link": null,
-			"profile": null,
+			"image": null,
 			"active_from": null,
 			"active_until": null,
 			"passive": false,
-			"contributions": {
-				"audio": {
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "audio",
 					"delete_this_line": "Music and Sound"
 				},
-				"bug": {
-					"delete_this_line": "Bug reports",
+				{
+					"type": "bug",
+					"delete_this_line": "Bug reports"
 				},
-				"blog": {
+				{
+					"type": "blog",
 					"delete_this_line": "Blogposts"
 				},
-				"code": {
+				{
+					"type": "code",
 					"delete_this_line": "Code"
 				},
-				"content": {
+				{
+					"type": "content",
 					"delete_this_line": "Content (Zones, Quests, Items, Creatures, NPCs...)"
 				},
-				"doc": {
+				{
+					"type": "doc",
 					"delete_this_line": "Documentation"
 				},
-				"eventOrganizing": {
+				{
+					"type": "eventOrganizing",
 					"delete_this_line": "Event Organizing"
 				},
-				"graphics": {
+				{
+					"type": "graphics",
 					"delete_this_line": "Sprites and other Images"
 				},
-				"ideas": {
+				{
+					"type": "ideas",
 					"delete_this_line": "Ideas & Planning"
 				},	
-				"infra": {
+				{
+					"type": "infra",
 					"delete_this_line": "Infrastructure"
 				},
-				"projectManagement": {
+				{
+					"type": "projectManagement",
 					"delete_this_line": "Project Management"
 				},	
-				"question": {
+				{
+					"type": "question",
 					"delete_this_line": "Answering Questions"
 				},
-				"review": {
+				{
+					"type": "review",
 					"delete_this_line": "Reviewed Pull Requests"
 				},	
-				"security": {
+				{
+					"type": "security",
 					"delete_this_line": "Security"
 				},
-				"tool": {
+				{
+					"type": "tool",
 					"delete_this_line": "Tools"
 				},
-				"test": {
+				{
+					"type": "test",
 					"delete_this_line": "Automatic Tests and manual testing"
 				},
-				"tutorial": {
+				{
+					"type": "tutorial",
 					"delete_this_line": "Tutorials"
 				},
-				"talk": {
+				{
+					"type": "talk",
 					"delete_this_line": "Talks"
 				},
-				"video": {
+				{
+					"type": "video",
 					"delete_this_line": "Videos"
 				}
-			}
+			]
+		},
+		{
+	        "name": "antumdeluge",
+	        "fullname": "Jordan Irwin",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/243964",
+			"image": "https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG",
+			"active_from": "2013",
+			"active_until": "",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "kymara",
+	        "fullname": "Katie Russell",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/2634",
+			"image": "https://gravatar.com/avatar/66316a04c31f02b58fba743f13275f66?s=64&rating=PG",
+			"active_from": "2007",
+			"active_until": "2013",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+	        "name": "kiheru",
+	        "fullname": "Kimmo Rundelin",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/15277",
+			"image": "",
+			"active_from": "2007",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+	        "fullname": "Astrid Sawatzky",
+			"email": "",
+			"link": "",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2010",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "miguel",
+	        "fullname": "Miguel Angel Blanch Lardin",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771128093",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+	        "fullname": "Martin Fuchs",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/13110",
+			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG",
+			"active_from": "2007",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+	        "name": "Bluelads4",
+	        "fullname": "Bluelads4",
+			"email": "",
+			"link": "",
+			"image": "",
+			"active_from": "2010",
+			"active_until": "2014",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "Markus",
+			"fullname": "Markus",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771121091",
+			"image": "",
+			"active_from": "2010",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+	        "fullname": "Daniel Herding",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771763819",
+			"image": "",
+			"active_from": "2006",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+	        "fullname": "Chad F",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977855",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+	        "name": "bleutailfly",
+	        "fullname": "bleutailfly",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/20119",
+			"image": "https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG",
+			"active_from": "2007",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "omero",
+			"fullname": "omero",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/155766",
+			"image": "https://gravatar.com/avatar/ddf515c3445545d746bc672ee56e64b6?s=64&rating=PG",
+			"active_from": "2010",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "tigertoes",
+			"fullname": "tigertoes",
+			"aliases": ["tigertoes13"],
+			"email": "",
+			"link": "https://www.openhub.net/accounts/18258",
+			"image": "https://gravatar.com/avatar/57fe325bb1f152df4a56969265da094c?s=64&rating=PG",
+			"active_from": "2008",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "yoriy",
+			"fullname": "yoriy",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/55439",
+			"image": "https://gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG",
+			"active_from": "2009",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+    		{
+			"name": "",
+	        "fullname": "Anders Asplund",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771476414",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+	        "fullname": "Matthias Totz",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977851",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+	        "name": "olonu",
+	        "fullname": "olonu",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/",
+			"image": "",
+			"active_from": "2018",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "timothyb89",
+			"fullname": "timothyb89",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/2437",
+			"image": "https://gravatar.com/avatar/71487518e6a187fcadf226fdae24b1ef?s=64&rating=PG",
+			"active_from": "2007",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+	        "fullname": "Nadine Schlonies",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977861",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "onu",
+			"fullname": "onu",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772350884",
+			"image": "",
+			"active_from": "2018",
+			"active_until": "2018",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "laguz",
+			"fullname": "laguz",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771254022",
+			"image": "",
+			"active_from": "2010",
+			"active_until": "2010",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "Teiv",
+			"fullname": "Teiv",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977863",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Berserker A3",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977858",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "plassy",
+			"fullname": "plassy",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771311913",
+			"image": "",
+			"active_from": "2009",
+			"active_until": "2010",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "Storyteller",
+			"fullname": "Storyteller",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771779586",
+			"image": "",
+			"active_from": "2010",
+			"active_until": "2011",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Jo S",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977853",
+			"image": "",
+			"active_from": "2006",
+			"active_until": "2006",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "soniccuz",
+			"fullname": "soniccuz",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771992757",
+			"image": "",
+			"active_from": "2015",
+			"active_until": "2016",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "sshk5",
+			"fullname": "sshk5",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771157307",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "Balaur",
+			"fullname": "Balaur",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977873",
+			"image": "",
+			"active_from": "2015",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "seather",
+			"fullname": "seather",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771148456",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Red Queen",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977871",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Benjamin Lerman",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771784960",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2005",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Jose Luis Cabello",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977859",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "",
+			"fullname": "Steve Ierodiaconou",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771440300",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "johnnnny",
+			"fullname": "johnnnny",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771165258",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+   			"name": "",
+			"fullname": "Janet Hunt",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771737319",
+			"image": "",
+			"active_from": "2006",
+			"active_until": "2006",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "sjtsp2008",
+			"fullname": "sjtsp2008",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573012",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2011",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+   		{
+			"name": "lumocra",
+			"fullname": "lumocra",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771640206",
+			"image": "",
+			"active_from": "2012",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "filinep",
+			"fullname": "filinep",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771585749",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2011",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Javier Correa",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977852",
+			"image": "",
+			"active_from": "2006",
+			"active_until": "2006",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "amano",
+			"fullname": "amano",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771518097",
+			"image": "",
+			"active_from": "2016",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "root777",
+			"fullname": "root777",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139168",
+			"image": "",
+			"active_from": "2004",
+			"active_until": "2004",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "monsterdhal",
+			"fullname": "monsterdhal",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771573672",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "Snowflake",
+			"fullname": "Snowflake",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772350883",
+			"image": "",
+			"active_from": "2017",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "Bluelads4",
+			"fullname": "bluelads99",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/22618",
+			"image": "https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG",
+			"active_from": "2015",
+			"active_until": "2015",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"fullname": "posts",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771175663",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2009",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "PolskaGRA",
+			"fullname": "PolskaGRA",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940773061551",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "balaur",
+			"fullname": "balaur",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771956253",
+			"image": "",
+			"active_from": "2014",
+			"active_until": "2014",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "p do",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977857",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "storyteller",
+			"fullname": "storyteller",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772012732",
+			"image": "",
+			"active_from": "2015",
+			"active_until": "2015",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Cosmin Humeniuc",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771804408",
+			"image": "",
+			"active_from": "2018",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "Chris",
+			"fullname": "Chris",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771147704",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2011",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "",
+			"fullname": "Markus Keunecke",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771637415",
+			"image": "",
+			"active_from": "2016",
+			"active_until": "2016",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Waldemar Tribus",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977850",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2005",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "meriharakka",
+			"fullname": "meriharakka",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772168009",
+			"image": "",
+			"active_from": "2017",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "thriceforged",
+			"fullname": "thriceforged",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139171",
+			"image": "",
+			"active_from": "2007",
+			"active_until": "2007",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+ 		{
+			"name": "KarajuSs",
+			"fullname": "KarajuSs",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144756",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Hans Häggström",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771183463",
+			"image": "",
+			"active_from": "2005",
+			"active_until": "2005",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Marcel Miebach",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977869",
+			"image": "",
+			"active_from": "2011",
+			"active_until": "2011",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Lori Angela Nagel",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772664880",
+			"image": "",
+			"active_from": "2018",
+			"active_until": "2018",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Tobias Frei",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771703239",
+			"image": "",
+			"active_from": "2017",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "oslsachem",
+			"fullname": "oslsachem",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771139179",
+			"image": "",
+			"active_from": "2006",
+			"active_until": "2006",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "monica",
+			"fullname": "monica",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771142463",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "bleutailfly1",
+			"fullname": "bleutailfly1",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144758",
+			"image": "",
+			"active_from": "2019",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "jordan",
+			"fullname": "jordan",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771129467",
+			"image": "",
+			"active_from": "2015",
+			"active_until": "2015",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Panagiotis Chatzigeorgiou",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772923575",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "A U Thor",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771492102",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "krib...@example.com",
+			"fullname": "krib...@example.com",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144751",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Alexandru-Paul Copil",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940772269452",
+			"image": "",
+			"active_from": "2017",
+			"active_until": "2017",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "Redcxx",
+			"fullname": "Redcxx",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940773144750",
+			"image": "",
+			"active_from": "2019",
+			"active_until": "2019",
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "Morgoth",
+			"fullname": "Morgoth",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/7220",
+			"image": "",
+			"active_from": "",
+			"active_until": "",
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "matthewd",
+			"fullname": "matthewd",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/7470",
+			"image": "https://gravatar.com/avatar/e55df1cc7d5fdb4ae9bc2afcb9afe7e4?s=64&rating=PG",
+			"active_from": "",
+			"active_until": "",
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Kezman Rafael",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/22963",
+			"image": "https://gravatar.com/avatar/81f0648d91866f53ecf9a178e6f503e5?s=64&rating=PG",
+			"active_from": "",
+			"active_until": "",
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "code",
+					"link": ""
+				}
+			]
 		}
 	]
 }
-
