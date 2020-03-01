@@ -10,7 +10,7 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code",
+					"type": "code"
 					"link": "https://github.com/arianne/stendhal/commits?author=nhnb"
 				},
 				{
@@ -48,7 +48,7 @@
 					"delete_this_line": "Blogposts"
 				},
 				{
-					"type": "code",
+					"type": "code"
 					"delete_this_line": "Code"
 				},
 				{
@@ -75,6 +75,10 @@
 					"type": "infra",
 					"delete_this_line": "Infrastructure"
 				},
+				{
+					"type": "maps",
+					"delete_this_line": "Maps in Tiled"
+				},	
 				{
 					"type": "projectManagement",
 					"delete_this_line": "Project Management"
@@ -123,8 +127,27 @@
 			"active_until": "",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
+				},
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "bleutailfly",
+			"fullname": "bleutailfly",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/20119",
+			"image": "https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar",
+			"active_from": "2007",
+			"active_until": null,
+			"contributions": [
+				{
+					"type": "maps"
+				},
+				{
+					"type": "graphics"
 				}
 			]
 		},
@@ -138,8 +161,13 @@
 			"active_until": "2013",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
+				},
+				{
+					"type": "maps"
+				},
+				{
+					"type": "graphics"
 				}
 			]
 		},
@@ -153,8 +181,10 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
+				},
+				{
+					"type": "graphics"
 				}
 			]
 		},
@@ -168,8 +198,7 @@
 			"active_until": "2010",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -183,8 +212,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -198,8 +226,7 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -214,8 +241,7 @@
 			"active_until": "2014",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -229,8 +255,7 @@
 			"active_until": "2016",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -244,8 +269,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -259,23 +283,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
-				}
-			]
-		},
-		{
-			"name": "bleutailfly",
-			"fullname": "bleutailfly",
-			"email": "",
-			"link": "https://www.openhub.net/accounts/20119",
-			"image": "https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar",
-			"active_from": "2007",
-			"active_until": null,
-			"contributions": [
-				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -289,8 +297,7 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -305,8 +312,7 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -320,8 +326,7 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -335,8 +340,10 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
+				},
+				{
+					"type": "graphics",
 				}
 			]
 		},
@@ -350,8 +357,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -365,8 +371,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -380,8 +385,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -395,8 +399,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -410,8 +413,7 @@
 			"active_until": "2018",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -426,8 +428,7 @@
 			"active_until": "2010",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -441,8 +442,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -456,8 +456,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -471,8 +470,7 @@
 			"active_until": "2010",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -486,8 +484,7 @@
 			"active_until": "2015",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -501,8 +498,7 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -516,8 +512,7 @@
 			"active_until": "2016",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -531,8 +526,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -546,8 +540,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -561,8 +554,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -576,8 +568,7 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -591,8 +582,7 @@
 			"active_until": "2005",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -606,8 +596,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -621,8 +610,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -636,8 +624,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -651,8 +638,7 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -666,8 +652,7 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -681,8 +666,7 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -696,8 +680,7 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -711,8 +694,7 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -726,8 +708,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -741,8 +722,7 @@
 			"active_until": "2005",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -756,8 +736,7 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -771,8 +750,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -786,8 +764,7 @@
 			"active_until": "2009",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -801,8 +778,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		}
@@ -816,8 +792,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -831,8 +806,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -846,8 +820,7 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		}
@@ -861,8 +834,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -876,8 +848,7 @@
 			"active_until": "2005",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -891,8 +862,7 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -906,8 +876,7 @@
 			"active_until": "2018",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -921,8 +890,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -936,8 +904,7 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -951,8 +918,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -966,8 +932,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -981,8 +946,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -996,8 +960,7 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -1011,8 +974,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -1027,8 +989,7 @@
 			"confirmed": false,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -1043,8 +1004,7 @@
 			"confirmed": false,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		},
@@ -1059,8 +1019,7 @@
 			"confirmed": false,
 			"contributions": [
 				{
-					"type": "code",
-					"link": ""
+					"type": "code"
 				}
 			]
 		}

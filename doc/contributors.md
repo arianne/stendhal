@@ -12,17 +12,24 @@ This page is work in progress. Many people and details are still missing.
 📆</span> <span title="security">
 🛡️</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/243964"><img src="https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Jordan Irwin</b></sub></a><br /><span title="code">
-💻</span> </td>
+💻</span> <span title="graphics">
+🎨</span> </td>
+ <td align="center" width="0%"><a href="https://www.openhub.net/accounts/20119"><img src="https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>bleutailfly</b></sub></a><br /><span title="maps">
+🗺</span> <span title="graphics">
+🎨</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/2634"><img src="https://gravatar.com/avatar/66316a04c31f02b58fba743f13275f66?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Katie Russell</b></sub></a><br /><span title="code">
-💻</span> </td>
+💻</span> <span title="maps">
+🗺</span> <span title="graphics">
+🎨</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/15277"><img src="https://gravatar.com/avatar/47fe272e163794babfc76306e18b93f6.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kiheru.png" width="64" height="64" alt=""><br /><sub><b>Kimmo Rundelin</b></sub></a><br /><span title="code">
-💻</span> </td>
+💻</span> <span title="graphics">
+🎨</span> </td>
  <td align="center" width="0%"><a href=""><img src="https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/durkham.png" width="64" height="64" alt=""><br /><sub><b>Astrid Sawatzky</b></sub></a><br /><span title="code">
-💻</span> </td>
- <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940771128093"><img src="https://gravatar.com/avatar/dd405f8e0d73c92c0dc90812d34349e9?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Miguel Angel Blanch Lardin</b></sub></a><br /><span title="code">
 💻</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940771128093"><img src="https://gravatar.com/avatar/dd405f8e0d73c92c0dc90812d34349e9?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Miguel Angel Blanch Lardin</b></sub></a><br /><span title="code">
+💻</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/13110"><img src="https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Martin Fuchs</b></sub></a><br /><span title="code">
 💻</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/22618"><img src="https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Bluelads</b></sub></a><br /><span title="code">
@@ -33,8 +40,6 @@ This page is work in progress. Many people and details are still missing.
 💻</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940771977855"><img src="https://gravatar.com/avatar/f882eeed98bb5afbc521b26cb868940c.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/chad3f.png" width="64" height="64" alt=""><br /><sub><b>Chad F</b></sub></a><br /><span title="code">
 💻</span> </td>
- <td align="center" width="0%"><a href="https://www.openhub.net/accounts/20119"><img src="https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>bleutailfly</b></sub></a><br /><span title="code">
-💻</span> </td>
 </tr>
 <tr>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/155766"><img src="https://gravatar.com/avatar/ddf515c3445545d746bc672ee56e64b6?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>omero</b></sub></a><br /><span title="code">
@@ -44,7 +49,8 @@ This page is work in progress. Many people and details are still missing.
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/55439"><img src="https://gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>yoriy</b></sub></a><br /><span title="code">
 💻</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940771476414"><img src="https://gravatar.com/avatar/c329880fbd3b575fea866392785dd44d.jpg?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Anders Asplund</b></sub></a><br /><span title="code">
-💻</span> </td>
+💻</span> <span title="graphics">
+🎨</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940771977851"><img src="https://gravatar.com/avatar/7cb02d736735142133be3f0f71a05071.jpg?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Matthias Totz</b></sub></a><br /><span title="code">
 💻</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/p/stendhal/contributors/15940772664883"><img src="https://gravatar.com/avatar/a06c8bce7a84aa3f2a955b15f17b8c26.jpg?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>olonu</b></sub></a><br /><span title="code">
