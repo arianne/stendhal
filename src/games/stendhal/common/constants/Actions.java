@@ -197,6 +197,8 @@ public final class Actions {
 	public final static String MOVE_CONTINUOUS = MOVE_CONTINUOUS_PROPERTY;
 	public final static String COND_STOP = "conditional_stop";
 
+	public final static String BESTIARY = "bestiary";
+
 	private Actions() {
 		// hide constructor
 	}

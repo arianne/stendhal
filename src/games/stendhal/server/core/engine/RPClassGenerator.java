@@ -60,6 +60,7 @@ import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.events.AttackEvent;
+import games.stendhal.server.events.BestiaryEvent;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ExamineEvent;
@@ -318,6 +319,10 @@ public class RPClassGenerator {
 
 		if (!RPClass.hasRPClass(Events.GLOBAL_VISUAL)) {
 			GlobalVisualEffectEvent.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass(Events.BESTIARY)) {
+			BestiaryEvent.generateRPClass();
 		}
 
 		if (!RPClass.hasRPClass("action")) {

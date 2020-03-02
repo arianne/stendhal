@@ -58,4 +58,6 @@ public final class Events {
 
 	/** Event for visual effects affecting the entire game screen. */
 	public static final String GLOBAL_VISUAL = "global_visual_effect";
+
+	public static final String BESTIARY = Actions.BESTIARY;
 }
