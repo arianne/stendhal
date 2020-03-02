@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                     Copyright © 2020 - Arianne                          *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,34 +9,31 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.imageviewer;
+package games.stendhal.client.actions;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import static games.stendhal.common.constants.Actions.BESTIARY;
 
-import javax.swing.JComponent;
+import games.stendhal.client.ClientSingletonRepository;
+import marauroa.common.game.RPAction;
 
-/**
- * an abstract base class for all ViewPanels
- *
- * @author hendrik
- */
-public abstract class ViewPanel extends JComponent {
+public class BestiaryAction implements SlashAction {
 
-	private static final long serialVersionUID = 7442185832293104642L;
+	@Override
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction action = new RPAction();
+		action.put("type", BESTIARY);
+		ClientSingletonRepository.getClientFramework().send(action);
 
-	/**
-	 * creates a new ViewPanel
-	 */
-	public ViewPanel() {
-		setLayout(new BorderLayout());
-		setOpaque(true);
+		return true;
 	}
 
-	/**
-	 * prepares the view
-	 *
-	 * @param maxSize of the panel
-	 */
-	public abstract void prepareView(Dimension maxSize);
+	@Override
+	public int getMaximumParameters() {
+		return 0;
+	}
+
+	@Override
+	public int getMinimumParameters() {
+		return 0;
+	}
 }

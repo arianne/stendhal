@@ -175,13 +175,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	/**
 	 * Renderer used for the header row items.
 	 */
-	private static class HeaderRenderer extends JPanel implements TableCellRenderer {
+	public static class HeaderRenderer extends JPanel implements TableCellRenderer {
 		private final JLabel header = new JLabel();
 
 		/**
 		 * Create a new HeaderRenderer.
 		 */
-		HeaderRenderer() {
+		public HeaderRenderer() {
 			add(header);
 			header.setBorder(null);
 		}

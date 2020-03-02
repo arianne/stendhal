@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.BESTIARY;
 import static games.stendhal.common.constants.Actions.INSPECTQUEST;
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
@@ -87,6 +88,7 @@ public class SlashActionRepository {
 		actions.put("p", groupMessage);
 		actions.put("profile", new ProfileAction());
 		actions.put("travellog", new TravelLogAction());
+		actions.put(BESTIARY, new BestiaryAction());
 
 		actions.put("quit", new QuitAction());
 

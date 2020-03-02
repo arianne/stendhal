@@ -25,7 +25,7 @@ import games.stendhal.client.gui.j2DClient;
  *
  * @author timothyb89
  */
-class ImageViewWindow extends InternalManagedWindow {
+public class ImageViewWindow extends InternalManagedWindow {
 	/**
 	 * serial version uid
 	 */
@@ -42,7 +42,7 @@ class ImageViewWindow extends InternalManagedWindow {
 	 * @param title title of the window
 	 * @param viewPanel View Panel
 	 */
-	ImageViewWindow(String title, ViewPanel viewPanel) {
+	public ImageViewWindow(String title, ViewPanel viewPanel) {
 		super("examine", title);
 
 		viewPanel.prepareView(genMaxSize());
