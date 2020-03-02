@@ -10,7 +10,7 @@
 			"active_until": null,
 			"contributions": [
 				{
-					"type": "code"
+					"type": "code",
 					"link": "https://github.com/arianne/stendhal/commits?author=nhnb"
 				},
 				{
@@ -48,7 +48,7 @@
 					"delete_this_line": "Blogposts"
 				},
 				{
-					"type": "code"
+					"type": "code",
 					"delete_this_line": "Code"
 				},
 				{
@@ -131,6 +131,9 @@
 				},
 				{
 					"type": "graphics"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -148,6 +151,9 @@
 				},
 				{
 					"type": "graphics"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -185,63 +191,9 @@
 				},
 				{
 					"type": "graphics"
-				}
-			]
-		},
-		{
-			"name": "astridemma",
-			"fullname": "Astrid Sawatzky",
-			"email": "",
-			"link": "",
-			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/durkham.png",
-			"active_from": "2007",
-			"active_until": "2010",
-			"contributions": [
+				},
 				{
-					"type": "code"
-				}
-			]
-		},
-		{
-			"name": "arianne_rpg",
-			"fullname": "Miguel Angel Blanch Lardin",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771128093",
-			"image": "https://gravatar.com/avatar/dd405f8e0d73c92c0dc90812d34349e9?s=64&rating=PG&d=wavatar",
-			"active_from": "2005",
-			"active_until": "2008",
-			"contributions": [
-				{
-					"type": "code"
-				}
-			]
-		},
-		{
-			"name": "martinfuchs",
-			"fullname": "Martin Fuchs",
-			"email": "",
-			"link": "https://www.openhub.net/accounts/13110",
-			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG&d=wavatar",
-			"active_from": "2007",
-			"active_until": "2012",
-			"contributions": [
-				{
-					"type": "code"
-				}
-			]
-		},
-		{
-			"name": "bluelads4",
-			"fullname": "Bluelads",
-			"aliases": ["bluelads99"],
-			"email": "",
-			"link": "https://www.openhub.net/accounts/22618",
-			"image": "https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG&d=wavatar",
-			"active_from": "2010",
-			"active_until": "2014",
-			"contributions": [
-				{
-					"type": "code"
+					"type": "maps"
 				}
 			]
 		},
@@ -260,6 +212,78 @@
 			]
 		},
 		{
+			"name": "astridemma",
+			"fullname": "Astrid Sawatzky",
+			"email": "",
+			"link": "",
+			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/durkham.png",
+			"active_from": "2007",
+			"active_until": "2010",
+			"contributions": [
+				{
+					"type": "code"
+				},
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "arianne_rpg",
+			"fullname": "Miguel Angel Blanch Lardin",
+			"email": "",
+			"link": "https://www.openhub.net/p/stendhal/contributors/15940771128093",
+			"image": "https://gravatar.com/avatar/dd405f8e0d73c92c0dc90812d34349e9?s=64&rating=PG&d=wavatar",
+			"active_from": "2005",
+			"active_until": "2008",
+			"contributions": [
+				{
+					"type": "code"
+				},
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "martinfuchs",
+			"fullname": "Martin Fuchs",
+			"email": "",
+			"link": "https://www.openhub.net/accounts/13110",
+			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG&d=wavatar",
+			"active_from": "2007",
+			"active_until": "2012",
+			"contributions": [
+				{
+					"type": "code"
+				},
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "bluelads4",
+			"fullname": "Bluelads",
+			"aliases": ["bluelads99"],
+			"email": "",
+			"link": "https://www.openhub.net/accounts/22618",
+			"image": "https://gravatar.com/avatar/698635ef7bf5ea343c43a0cb4fc52dc8?s=64&rating=PG&d=wavatar",
+			"active_from": "2010",
+			"active_until": "2014",
+			"contributions": [
+				{
+					"type": "code"
+				},
+				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
+				}
+			]
+		},
+		{
 			"name": "wikipedian",
 			"fullname": "Daniel Herding",
 			"email": "",
@@ -270,6 +294,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -284,6 +311,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -298,6 +328,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -311,6 +344,12 @@
 			"active_from": "2008",
 			"active_until": null,
 			"contributions": [
+				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
+				},
 				{
 					"type": "code"
 				}
@@ -343,7 +382,10 @@
 					"type": "code"
 				},
 				{
-					"type": "graphics",
+					"type": "maps"
+				},
+				{
+					"type": "graphics"
 				}
 			]
 		},
@@ -358,6 +400,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -371,7 +416,7 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "graphics"
 				}
 			]
 		},
@@ -386,6 +431,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -400,6 +448,12 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -412,6 +466,9 @@
 			"active_from": "2018",
 			"active_until": "2018",
 			"contributions": [
+				{
+					"type": "graphics"
+				},
 				{
 					"type": "code"
 				}
@@ -428,6 +485,9 @@
 			"active_until": "2010",
 			"contributions": [
 				{
+					"type": "content"
+				},
+				{
 					"type": "code"
 				}
 			]
@@ -442,7 +502,13 @@
 			"active_until": "2008",
 			"contributions": [
 				{
+					"type": "maps"
+				},
+				{
 					"type": "code"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -456,7 +522,7 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "maps"
 				}
 			]
 		},
@@ -484,8 +550,18 @@
 			"active_until": "2015",
 			"contributions": [
 				{
+					"type": "audio"
+				},
+				{
+					"type": "maps"
+				},
+				{
 					"type": "code"
+				},
+				{
+					"type": "content"
 				}
+				
 			]
 		},
 		{
@@ -499,6 +575,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -513,6 +592,12 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -526,7 +611,7 @@
 			"active_until": "2008",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "maps"
 				}
 			]
 		},
@@ -541,6 +626,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -555,6 +643,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -568,7 +659,13 @@
 			"active_until": "2012",
 			"contributions": [
 				{
+					"type": "content"
+				},
+				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -610,6 +707,12 @@
 			"active_until": "2007",
 			"contributions": [
 				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
+				},
+				{
 					"type": "code"
 				}
 			]
@@ -624,7 +727,13 @@
 			"active_until": "2007",
 			"contributions": [
 				{
+					"type": "content"
+				},
+				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -639,6 +748,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -653,6 +765,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -667,6 +782,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -679,6 +797,9 @@
 			"active_from": "2011",
 			"active_until": "2011",
 			"contributions": [
+				{
+					"type": "content"
+				},
 				{
 					"type": "code"
 				}
@@ -694,7 +815,8 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "maps",
+					"count": 8
 				}
 			]
 		},
@@ -709,6 +831,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "maps"
 				}
 			]
 		},
@@ -736,7 +861,8 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "code",
+					"count": 2
 				}
 			]
 		},
@@ -750,7 +876,12 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "maps",
+					"count": 6
+				},
+				{
+					"type": "content",
+					"count": 4
 				}
 			]
 		},
@@ -781,7 +912,7 @@
 					"type": "code"
 				}
 			]
-		}
+		},
 		{
 			"name": "p_do",
 			"fullname": "p do",
@@ -806,7 +937,12 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "content",
+					"count": 1
+				},
+				{
+					"type": "maps",
+					"count": 1
 				}
 			]
 		},
@@ -820,10 +956,11 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "code",
+					"count": 3
 				}
 			]
-		}
+		},
 		{
 			"name": "maria",
 			"fullname": "meriharakka",
@@ -833,9 +970,6 @@
 			"active_from": "2017",
 			"active_until": "2017",
 			"contributions": [
-				{
-					"type": "code"
-				}
 			]
 		},
 		{
@@ -848,7 +982,8 @@
 			"active_until": "2005",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "code",
+					"count": 3
 				}
 			]
 		},
@@ -862,7 +997,8 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "code",
+					"count": 1
 				}
 			]
 		},
@@ -876,7 +1012,8 @@
 			"active_until": "2018",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "content",
+					"count": 1
 				}
 			]
 		},
@@ -904,7 +1041,10 @@
 			"active_until": "2006",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "content"
+				},
+				{
+					"type": "question"
 				}
 			]
 		},
@@ -918,7 +1058,8 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "maps",
+					"count": 1
 				}
 			]
 		},
@@ -932,7 +1073,8 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "content",
+					"count": 1
 				}
 			]
 		},
@@ -946,7 +1088,12 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "code"
+					"type": "content",
+					"count": 1
+				},
+				{
+					"type": "code",
+					"count": 1
 				}
 			]
 		},
@@ -959,9 +1106,6 @@
 			"active_from": "2017",
 			"active_until": "2017",
 			"contributions": [
-				{
-					"type": "code"
-				}
 			]
 		},
 		{
@@ -988,9 +1132,6 @@
 			"active_until": "",
 			"confirmed": false,
 			"contributions": [
-				{
-					"type": "code"
-				}
 			]
 		},
 		{
@@ -1003,9 +1144,6 @@
 			"active_until": "",
 			"confirmed": false,
 			"contributions": [
-				{
-					"type": "code"
-				}
 			]
 		},
 		{
@@ -1018,9 +1156,6 @@
 			"active_until": "",
 			"confirmed": false,
 			"contributions": [
-				{
-					"type": "code"
-				}
 			]
 		}
 	]

@@ -19,6 +19,7 @@ public class ContributorsGeneration {
 	
 	public ContributorsGeneration() {
 		iconMap.put("a11y", "♿️");
+		iconMap.put("audio", "🔊");
 		iconMap.put("bug", "🐛");
 		iconMap.put("blog", "📝");
 		iconMap.put("business", "💼");
