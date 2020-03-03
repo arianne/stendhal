@@ -39,7 +39,7 @@
 
   <creature name="blordrough corporal">
     <type class="human" subclass="armored_leader" tileid="human_armored.png:1"/>
-    <description>You see a man who feels his past indicates how he should be treated now but desparately wishes to exercise his intelect in a game of chess.</description>
+    <description>You see a man who feels his past indicates how he should be treated now but desperately wishes to exercise his intelect in a game of chess.</description>
     <attributes>
       <atk value="842"/>
       <def value="97"/>
