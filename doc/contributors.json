@@ -70,7 +70,7 @@
 				{
 					"type": "ideas",
 					"delete_this_line": "Ideas & Planning"
-				},	
+				},
 				{
 					"type": "infra",
 					"delete_this_line": "Infrastructure"
@@ -78,11 +78,11 @@
 				{
 					"type": "maps",
 					"delete_this_line": "Maps in Tiled"
-				},	
+				},
 				{
 					"type": "projectManagement",
 					"delete_this_line": "Project Management"
-				},	
+				},
 				{
 					"type": "question",
 					"delete_this_line": "Answering Questions"
@@ -90,7 +90,7 @@
 				{
 					"type": "review",
 					"delete_this_line": "Reviewed Pull Requests"
-				},	
+				},
 				{
 					"type": "security",
 					"delete_this_line": "Security"
@@ -134,6 +134,9 @@
 				},
 				{
 					"type": "maps"
+				},
+				{
+					"type": "audio"
 				}
 			]
 		},
@@ -561,7 +564,7 @@
 				{
 					"type": "content"
 				}
-				
+
 			]
 		},
 		{

@@ -14,7 +14,8 @@ This page is work in progress. Many people and details are still missing.
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/243964"><img src="https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Jordan Irwin</b></sub></a><br /><span title="code">
 💻</span> <span title="graphics">
 🎨</span> <span title="maps">
-🗺</span> </td>
+🗺</span> <span title="audio">
+🔊</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/20119"><img src="https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>bleutailfly</b></sub></a><br /><span title="maps">
 🗺</span> <span title="graphics">
 🎨</span> <span title="content">
