@@ -39,6 +39,16 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <!-- Archery Range -->
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" />
+
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
+      <parameter name="x">96</parameter>
+      <parameter name="y">96</parameter>
+      <parameter name="width">21</parameter>
+      <parameter name="height">12</parameter>
+    </configurator>
+
     <!-- sign indicating future assassins' dojo -->
     <entity x="97" y="116">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
