@@ -779,6 +779,7 @@
 				<pathelement path="${jorbis_jar}"/>
 				<pathelement path="${swinglayout_jar}"/>
 				<pathelement path="${luaj_jar}"/>
+				<pathelement path="${jsonsimple_jar}"/>
 			</classpath>
 		</javac>
 	</target>
