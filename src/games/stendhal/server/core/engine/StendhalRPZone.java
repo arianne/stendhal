@@ -65,6 +65,8 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPointFa
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.TrainingDummy;
+import games.stendhal.server.entity.npc.TrainingDummyFactory;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
@@ -671,6 +673,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 					passiveEntityrespawnPoint.setStartState();
 
 				}
+			} else if (clazz.contains("logic/training_dummy")) {
+				final TrainingDummy dummy = TrainingDummyFactory.create(type);
+				dummy.setPosition(x, y);
+				add(dummy);
 			}
 		} catch (final RuntimeException e) {
 			logger.error("error creating entity " + type + " at (" + x + ","

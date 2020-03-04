@@ -59,6 +59,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.Slots;
@@ -1277,6 +1278,11 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public boolean getsFightXpFrom(final RPEntity enemy) {
+		if (enemy instanceof TrainingDummy) {
+			// training dummies always give fight XP
+			return true;
+		}
+
 		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(enemy);
 		if (turnWhenLastDamaged == null) {
 			return false;
