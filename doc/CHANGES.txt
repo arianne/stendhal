@@ -9,6 +9,8 @@ Changelog
   - bestiary
 - new achievements:
   - Royally Endowed: loot a complete royal equipment set
+- ice giant added to David vs. Goliath achievement
+- new RATK stat independent from ATK
 
 
 1.33
