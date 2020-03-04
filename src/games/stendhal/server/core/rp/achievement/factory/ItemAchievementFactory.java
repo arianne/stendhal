@@ -26,6 +26,12 @@ import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondi
  */
 public class ItemAchievementFactory extends AbstractAchievementFactory {
 
+	public static final String ID_ROYAL = "item.set.royal";
+	public static final String[] ITEMS_ROYAL = {
+			"royal armor", "royal helmet", "royal cloak", "royal legs",
+			"royal boots", "royal shield"
+	};
+
 	@Override
 	protected Category getCategory() {
 		return Category.ITEM;
@@ -104,6 +110,10 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.ham.2500", "Ham Hocks", "Loot 2,500 ham",
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(2500, "ham")));
+
+		itemAchievements.add(createAchievement(ID_ROYAL, "Royally Endowed", "Loot a complete royal equipment set",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerLootedNumberOfItemsCondition(1, ITEMS_ROYAL)));
 
 		return itemAchievements;
 	}
