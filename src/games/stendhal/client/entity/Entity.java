@@ -35,6 +35,11 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	private int resistance;
 
 	/**
+	 * Completely blocks walking over if set to <code>true</code>.
+	 */
+	private boolean walkBlocker = false;
+
+	/**
 	 * The entity visibility.
 	 */
 	private int visibility;
@@ -438,6 +443,10 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			resistance = 0;
 		}
 
+		if (object.has("walk_blocker")) {
+			walkBlocker = true;
+		}
+
 		/*
 		 * Visibility
 		 */
@@ -481,6 +490,10 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 */
 	@Override
 	public boolean isObstacle(final IEntity entity) {
+		if (walkBlocker) {
+			return true;
+		}
+
 		return ((entity != this) && (getResistance(entity) > 95));
 	}
 

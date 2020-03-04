@@ -29,6 +29,7 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Fire;
+import games.stendhal.client.entity.FlyOverArea;
 import games.stendhal.client.entity.GameBoard;
 import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.GrainField;
@@ -92,6 +93,7 @@ public final class EntityMap {
 
 		register("plant_grower", null, null, PlantGrower.class);
 
+		register("flyover", null, null, FlyOverArea.class);
 		register("walkblocker", null, null, WalkBlocker.class);
 
 		register("growing_entity_spawner", "items/grower/carrot_grower", null,

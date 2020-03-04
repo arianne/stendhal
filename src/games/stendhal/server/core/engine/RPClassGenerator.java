@@ -31,6 +31,7 @@ import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.WeatherEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.area.FlyOverArea;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.area.Wall;
 import games.stendhal.server.entity.mapstuff.block.Block;
@@ -176,6 +177,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("walkblocker")) {
 			WalkBlocker.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("flyover")) {
+			FlyOverArea.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("house_portal")) {
 			HousePortal.generateRPClass();
