@@ -241,6 +241,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// Number of uses for BreakableItem
 		entity.addAttribute("uses", Type.INT);
+		entity.addAttribute("base_uses", Type.INT);
 	}
 
 

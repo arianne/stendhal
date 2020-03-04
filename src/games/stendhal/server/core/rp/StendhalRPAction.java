@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -328,6 +329,9 @@ public class StendhalRPAction {
 			}
 		}
 
+		// equipment that are broken are added to this list
+		final List<BreakableItem> broken = new ArrayList<>();
+
 		if (beaten) {
 			if ((defender instanceof Player)
 					&& defender.getsFightXpFrom(player)) {
@@ -361,16 +365,8 @@ public class StendhalRPAction {
 
 				if (weapon instanceof BreakableItem) {
 					final BreakableItem breakable = (BreakableItem) weapon;
-					if (breakable.isBroken() && breakable.isContained()) {
-						final RPObject slot = breakable.getContainer();
-						if (breakable.getContainerSlot().remove(breakable.getID()) != null) {
-							if (slot instanceof Entity) {
-								((Entity) slot).notifyWorldAboutChanges();
-							}
-							player.sendPrivateText("Your " + breakable.getName() + " has broken!");
-						} else {
-							logger.error("Could not remove BreakableItem \"" + breakable.getName() + "\" with ID " + breakable.getID().toString());
-						}
+					if (breakable.isBroken()) {
+						broken.add(breakable);
 					}
 				}
 			}
@@ -378,7 +374,15 @@ public class StendhalRPAction {
 			//randomly choose one defensive item to deteriorate
 			List<Item> defenseItems = defender.getDefenseItems();
 			if(!defenseItems.isEmpty()) {
-				Rand.rand(defenseItems).deteriorate();
+				final Item equip = Rand.rand(defenseItems);
+				equip.deteriorate();
+
+				if (equip instanceof BreakableItem) {
+					final BreakableItem breakable = (BreakableItem) equip;
+					if (breakable.isBroken()) {
+						broken.add(breakable);
+					}
+				}
 			}
 
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, isRanged));
@@ -398,6 +402,23 @@ public class StendhalRPAction {
 		}
 
 		player.notifyWorldAboutChanges();
+
+		for (final BreakableItem breakable: broken) {
+			if (breakable.isContained()) {
+				final RPObject slot = breakable.getContainer();
+				if (breakable.getContainerSlot().remove(breakable.getID()) != null) {
+					if (slot instanceof Entity) {
+						((Entity) slot).notifyWorldAboutChanges();
+					}
+
+					final String event = breakable.getName() + " has broken";
+
+					player.sendPrivateText("Your " + event + "!");
+				} else {
+					logger.error("Could not remove BreakableItem \"" + breakable.getName() + "\" with ID " + breakable.getID().toString());
+				}
+			}
+		}
 
 		return result;
 	}

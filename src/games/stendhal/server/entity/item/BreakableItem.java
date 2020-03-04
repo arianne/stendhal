@@ -27,27 +27,28 @@ public class BreakableItem extends Item {
 	}
 
 	/**
-	 * Decreases number of remaining uses by 1.
+	 * Increment number of times used.
 	 */
 	@Override
 	public void deteriorate() {
-		int usesRemaining = getInt("uses");
-
-		if (usesRemaining > 0) {
-			usesRemaining -= 1;
-			put("uses", usesRemaining);
-
-			return;
-		}
+		put("uses", getUses() + 1);
 	}
 
 	/**
 	 * Checks if the item has no uses remaining.
 	 *
 	 * @return
-	 * 		<code>true</code> if uses remaining are 0 or less.
+	 * 		<code>true</code> if uses are as much or more than base_uses.
 	 */
 	public boolean isBroken() {
-		return getInt("uses") <= 0;
+		return getUses() >= getBaseUses();
+	}
+
+	public int getBaseUses() {
+		return getInt("base_uses");
+	}
+
+	public int getUses() {
+		return getInt("uses");
 	}
 }
