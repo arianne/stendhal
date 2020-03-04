@@ -38,7 +38,6 @@ import games.stendhal.client.actions.SlashAction;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.common.constants.Actions;
 
 /**
  * The panel where you can adjust your settings.
@@ -213,8 +212,6 @@ class SettingsPanel extends JButton {
 		item = createMenuItem("Hall of Fame", "halloffame");
 		column.addComponent(item);
 		item = createMenuItem("Travel Log", "travellog");
-		column.addComponent(item);
-		item = createMenuItem("Bestiary", Actions.BESTIARY);
 		column.addComponent(item);
 	}
 

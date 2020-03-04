@@ -13,9 +13,9 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
-import games.stendhal.server.actions.BestiaryAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.BestiaryEvent;
 
 
 /**
@@ -35,7 +35,10 @@ public class Bestiary extends Item {
 	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (user instanceof Player) {
-			new BestiaryAction().onAction((Player) user, null);
+			final Player player = (Player) user;
+			player.addEvent(new BestiaryEvent(player));
+			player.notifyWorldAboutChanges();
+
 			return true;
 		}
 

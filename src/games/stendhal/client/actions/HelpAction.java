@@ -89,7 +89,6 @@ class HelpAction implements SlashAction {
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
-				"- /bestiary \tShow bestiary window.",
 				"- /help \tShow help information.",
 				"- /" + REMOVEDETAIL + " \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character."
 		};
