@@ -2,6 +2,13 @@ Changelog
 ---------
 ---------
 
+1.34
+
+*world*
+- new items:
+  - bestiary
+
+
 1.33
 
 *webclient*

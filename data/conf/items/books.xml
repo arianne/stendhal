@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+
   <item name="black book">
     <type class="book" subclass="book_black" tileid="-1"/>
     <description>You see the black book that Jynath kept out for so long.</description>
@@ -32,4 +34,21 @@
       <slot name="trade"/>
     </equipable>
   </item>
+
+  <item name="bestiary">
+    <type class="book" subclass="book_red" tileid="-1"/>
+    <description>You see a bestiary, containing information about enemies found in Faiumoni.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Bestiary"/>
+    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="conten"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
 </items>
