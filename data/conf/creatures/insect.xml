@@ -8,6 +8,7 @@
     <description>You see a killer bee which will sting you to death!</description>
     <attributes>
       <atk value="170"/>
+      <ratk value="170"/>
       <def value="25"/>
       <hp value="100"/>
       <speed value="0.6"/>

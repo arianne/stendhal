@@ -37,6 +37,7 @@
     <description/>
     <attributes>
       <atk value="487"/>
+      <ratk value="487"/>
       <def value="76"/>
       <hp value="540"/>
       <speed value="0.7"/>
@@ -100,6 +101,7 @@
     <description/>
     <attributes>
       <atk value="500"/>
+      <ratk value="500"/>
       <def value="73"/>
       <hp value="608"/>
       <speed value="0.8"/>

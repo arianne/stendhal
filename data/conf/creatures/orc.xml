@@ -44,6 +44,7 @@
     <description>You see an orc spearman. Run away fast before a spear pierces you.</description>
     <attributes>
       <atk value="150"/>
+      <ratk value="150"/>
       <def value="35"/>
       <hp value="80"/>
       <speed value="0.8"/>

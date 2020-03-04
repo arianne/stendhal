@@ -33,7 +33,7 @@ class StatsPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -353271026575752035L;
 
-	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
+	private final StatLabel hpLabel, atkLabel, defLabel, ratkLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
 	private final ManaIndicator manaIndicator;
@@ -59,6 +59,14 @@ class StatsPanel extends JPanel {
 
 		atkLabel = new StatLabel();
 		add(atkLabel, SLayout.EXPAND_X);
+
+		ratkLabel = new StatLabel();
+		add(ratkLabel, SLayout.EXPAND_X);
+		/* only show RATK stat if set by server
+		 *
+		 * TODO: this can be removed in future versions
+		 */
+		ratkLabel.setVisible(false);
 
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
@@ -98,6 +106,22 @@ class StatsPanel extends JPanel {
 	 */
 	void setDef(String def) {
 		defLabel.setText(def);
+	}
+
+	/**
+	 * Set the ratk description string.
+	 *
+	 * @param ratk
+	 */
+	void setRatk(String ratk) {
+		/* only show RATK stat if set by server
+		 *
+		 * TODO: this can be removed in future versions
+		 */
+		if (!ratkLabel.isVisible()) {
+			ratkLabel.setVisible(true);
+		}
+		ratkLabel.setText(ratk);
 	}
 
 	/**

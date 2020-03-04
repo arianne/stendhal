@@ -38,6 +38,7 @@
     <description>You see an oni archer. His arrows will follow you everywhere for protecting his queen!</description>
     <attributes>
       <atk value="511"/>
+      <ratk value="511"/>
       <def value="77"/>
       <hp value="600"/>
       <speed value="0.7"/>

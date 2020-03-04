@@ -9,6 +9,7 @@
     <description>You see a chaos green dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back.</description>
     <attributes>
       <atk value="867"/>
+      <ratk value="867"/>
       <def value="98"/>
       <hp value="2022"/>
       <speed value="1.0"/>
@@ -50,6 +51,7 @@
     <description>You see a chaos red dragonrider. He might look like a red dragon, but the sorcerer seated on his back guides him to give even more strength out.</description>
     <attributes>
       <atk value="1044"/>
+      <ratk value="1044"/>
       <def value="107"/>
       <hp value="3618"/>
       <speed value="1.0"/>
@@ -131,6 +133,7 @@
     <description>You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
     <attributes>
       <atk value="435"/>
+      <ratk value="435"/>
       <def value="48"/>
       <hp value="400"/>
       <speed value="1.0"/>
@@ -168,6 +171,7 @@
     <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!</description>
     <attributes>
       <atk value="511"/>
+      <ratk value="511"/>
       <def value="57"/>
       <hp value="900"/>
       <speed value="1.0"/>
@@ -209,6 +213,7 @@
     <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
     <attributes>
       <atk value="777"/>
+      <ratk value="777"/>
       <def value="115"/>
       <hp value="1200"/>
       <speed value="1.0"/>
@@ -247,6 +252,7 @@
     <description>You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.</description>
     <attributes>
       <atk value="1227"/>
+      <ratk value="1227"/>
       <def value="127"/>
       <hp value="3300"/>
       <speed value="1.0"/>
@@ -292,6 +298,7 @@
     <description>You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!</description>
     <attributes>
       <atk value="837"/>
+      <ratk value="837"/>
       <def value="138"/>
       <hp value="1100"/>
       <speed value="1.0"/>
@@ -334,6 +341,7 @@
     <description>You see a twin headed dragon. The two heads are staring at you with their four eyes!</description>
     <attributes>
       <atk value="836"/>
+      <ratk value="836"/>
       <def value="96"/>
       <hp value="1900"/>
       <speed value="1.0"/>
@@ -374,6 +382,7 @@
     <description></description>
     <attributes>
       <atk value="1350"/>
+      <ratk value="1350"/>
       <def value="153"/>
       <hp value="5610"/>
       <speed value="1.0"/>

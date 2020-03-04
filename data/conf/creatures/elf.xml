@@ -40,6 +40,7 @@
     <description>You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a distance of 100 meters.</description>
     <attributes>
       <atk value="345"/>
+      <ratk value="345"/>
       <def value="94"/>
       <hp value="150"/>
       <speed value="0.7"/>
@@ -202,6 +203,7 @@
     <description>You see a dark elf archer. Dark elf archer's flawless aim can be fatal for those who dare to oppose them.</description>
     <attributes>
       <atk value="385"/>
+      <ratk value="385"/>
       <def value="125"/>
       <hp value="130"/>
       <speed value="0.7"/>
@@ -269,6 +271,7 @@
     <description></description>
     <attributes>
       <atk value="432"/>
+      <ratk value="432"/>
       <def value="125"/>
       <hp value="200"/>
       <speed value="0.8"/>
@@ -764,6 +767,7 @@
     <description>You see an archer elf which can do much damage with its wooden arrows.</description>
     <attributes>
       <atk value="198"/>
+      <ratk value="198"/>
       <def value="42"/>
       <hp value="105"/>
       <speed value="0.6"/>

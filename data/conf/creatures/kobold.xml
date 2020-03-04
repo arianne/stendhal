@@ -92,6 +92,7 @@
     <description>You see an archer kobold. It runs away from humans.</description>
     <attributes>
       <atk value="115"/>
+      <ratk value="115"/>
       <def value="28"/>
       <hp value="40"/>
       <speed value="0.5"/>

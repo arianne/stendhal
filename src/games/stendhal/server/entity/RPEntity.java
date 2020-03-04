@@ -106,6 +106,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private int atk_xp;
 	protected int def;
 	private int def_xp;
+	protected int ratk;
+	private int ratk_xp;
 	private int base_hp;
 	private int hp;
 	protected int lv_cap;
@@ -489,6 +491,11 @@ public abstract class RPEntity extends GuidedEntity {
 			setDefXpInternal(def_xp, false);
 		}
 
+		if (has("ratk_xp")) {
+			ratk_xp = getInt("ratk_xp");
+			setRatkXPInternal(ratk_xp, false);
+		}
+
 		if (has("base_hp")) {
 			base_hp = getInt("base_hp");
 		}
@@ -598,8 +605,13 @@ public abstract class RPEntity extends GuidedEntity {
 		 * XXX: atkStrength never used outside of debugger.
 		 */
 		final int atkStrength, sourceAtk;
-		atkStrength = this.getAtk();
-		sourceAtk = this.getCappedAtk();
+		if (isRanged) {
+			atkStrength = this.getRatk();
+			sourceAtk = this.getCappedRatk();
+		} else {
+			atkStrength = this.getAtk();
+			sourceAtk = this.getCappedAtk();
+		}
 
 		// Attacking
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
@@ -888,6 +900,110 @@ public abstract class RPEntity extends GuidedEntity {
 		setDefXP(def_xp + 1);
 	}
 
+
+/* ### --- START RANGED --- ### */
+
+	/**
+	 * Set the value of the entity's ranged attack level.
+	 *
+	 * @param ratk
+	 * 		Integer value representing new ranged attack level
+	 */
+	public void setRatk(final int ratk) {
+		setRatkInternal(ratk, true);
+	}
+
+	/**
+	 * Set the entity's ranged attack level.
+	 *
+	 * @param ratk
+	 * 		Integer value representing new ranged attack level
+	 * @param notify
+	 * 		Update stat in real-time
+	 */
+	private void setRatkInternal(final int ratk, boolean notify) {
+		this.ratk = ratk;
+		put("ratk", ratk);  // visible ratk
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
+	}
+
+	/**
+	 * Gets the entity's current ranged attack level.
+	 *
+	 * @return
+	 * 		Integer value of ranged attack level
+	 */
+	public int getRatk() {
+		return this.ratk;
+	}
+
+	/**
+	 * gets the capped ranged attack level which prevents players from training
+	 * ratk way beyond what is reasonable for their level.
+	 *
+	 * @return
+	 * 		The maximum value player's ranged attack level can be at current
+	 * 		level
+	 */
+	public int getCappedRatk() {
+		return this.ratk;
+	}
+
+	/**
+	 * Sets the entity's ranged attack experience.
+	 *
+	 * @param ratkXP
+	 * 		Integer value of the target experience
+	 */
+	public void setRatkXP(final int ratkXP) {
+		setRatkXPInternal(ratkXP, true);
+	}
+
+	/**
+	 * Sets the entity's ranged attack experience.
+	 *
+	 * @param ratkXP
+	 * 		Integer value of the target experience
+	 * @param notify
+	 * 		Update ranged attack experience in real-time
+	 */
+	protected void setRatkXPInternal(final int ratkXP, boolean notify) {
+		this.ratk_xp = ratkXP;
+		put("ratk_xp", ratk_xp);
+
+		// Handle level changes
+		final int newLevel = Level.getLevel(ratk_xp);
+		final int levels = newLevel - (this.ratk - 10);
+
+		// In case we level up several levels at a single time.
+		if (levels != 0) {
+			setRatkInternal(this.ratk + levels, notify);
+			new GameEvent(getName(), "ratk", Integer.toString(this.ratk)).raise();
+		}
+	}
+
+	/**
+	 * Get's the entity's current ranged attack experience.
+	 *
+	 * @return
+	 * 		Integer representation of current experience
+	 */
+	public int getRatkXP() {
+		return ratk_xp;
+	}
+
+	/**
+	 * Increase ranged XP by 1.
+	 */
+	public void incRatkXP() {
+		setRatkXP(ratk_xp + 1);
+	}
+
+/* ### --- END RANGED --- ### */
+
+
 	/**
 	 * Set the base and current HP.
 	 *
@@ -1101,6 +1217,20 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected Nature getDamageType() {
 		return Nature.CUT;
+	}
+
+	/**
+	 * Get the nature of the damage the entity inflicts in ranged attacks.
+	 *
+	 * @return type of damage
+	 */
+	protected Nature getRangedDamageType() {
+		/*
+		 * Default to the same as the base damage type. Entities needing more
+		 * complicated behavior (ie. fire breathing dragons) should override the
+		 * method.
+		 */
+		return getDamageType();
 	}
 
 	/***************************************************************************
@@ -2613,6 +2743,30 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return weapon + ring;
 	}
 
+	/**
+	 * Retrieves total range attack value of held weapon & ammunition.
+	 */
+	public float getItemRatk() {
+		float ratk = 0;
+		final List<Item> weapons = getWeapons();
+
+		if (weapons.size() > 0) {
+			final Item held = getWeapons().get(0);
+			ratk += held.getRangedAttack();
+
+			StackableItem ammunitionItem = null;
+			if (held.isOfClass("ranged")) {
+				ammunitionItem = getAmmunition();
+
+				if (ammunitionItem != null) {
+					ratk += ammunitionItem.getRangedAttack();
+				}
+			}
+		}
+
+		return ratk;
+	}
+
 	public float getItemDef() {
 		int shield = 0;
 		int armor = 0;
@@ -2705,6 +2859,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public void updateItemAtkDef() {
 		put("atk_item", ((int) getItemAtk()));
+		put("ratk_item", ((int) getItemRatk()));
 		put("def_item", ((int) getItemDef()));
 		notifyWorldAboutChanges();
 	}
@@ -2832,7 +2987,18 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getCappedDef();
 
-		final int attackerATK = this.getCappedAtk();
+		// Check if attacking from distance
+		boolean usesRanged = false;
+		if (!this.nextTo(defender)) {
+			usesRanged = true;
+		}
+
+		final int attackerATK;
+		if (usesRanged) {
+			attackerATK = this.getCappedRatk(); // player is using ranged weapon
+		} else {
+			attackerATK = this.getCappedAtk(); // player is using hand-to-hand
+		}
 
 		/*
 		 * Use some karma unless attacker is much stronger than defender, in
@@ -2953,11 +3119,24 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		defender.rememberAttacker(this);
 
 		final int maxRange = getMaxRangeForArcher();
+		/*
+		 * The second part (damage type check) ensures that normal archers need
+		 * distance attack modifiers for melee, but creatures with special
+		 * ranged attacks (dragons) pay the price only when using their ranged
+		 * powers (yes, it's a bit of a hack).
+		 */
+		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange))
+			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0));
 
-		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange)) && (squaredDistance(defender) > 0);
-
-		Nature nature = getDamageType();
-		float itemAtk = getItemAtk();
+		Nature nature;
+		final float itemAtk;
+		if (isRanged) {
+			nature = getRangedDamageType();
+			itemAtk = getItemRatk();
+		} else {
+			nature = getDamageType();
+			itemAtk = getItemAtk();
+		}
 
 		// Try to inflict a status effect
 		for (StatusAttacker statusAttacker : statusAttackers) {

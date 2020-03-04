@@ -78,6 +78,8 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nID: " + action.get("target") + " in " + inspected.getZone().getName() + " at (" + + inspected.getX() + ", " + + inspected.getY()+")");
 			st.append("\nATK:    " + inspected.getAtk() + "("
 					+ inspected.getAtkXP() + ")");
+			st.append("\nRATK:  " + inspected.getRatk() + "("
+					+ inspected.getRatkXP() + ")");
 			st.append("\nDEF:    " + inspected.getDef() + "("
 					+ inspected.getDefXP() + ")");
 			st.append("\nHP:     " + inspected.getHP() + " / "

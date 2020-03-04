@@ -43,6 +43,7 @@
     <description>You see a risecia archer, just one of the warriors who wants to protect his chief.</description>
     <attributes>
       <atk value="159"/>
+      <ratk value="159"/>
       <def value="38"/>
       <hp value="70"/>
       <speed value="0.6"/>

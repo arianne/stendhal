@@ -50,9 +50,10 @@ public class RPEntityRPClass {
         entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
-
-        entity.addAttribute("ratk", Type.SHORT, Definition.VOLATILE); // TODO remove
-        entity.addAttribute("ratk_xp", Type.INT, Definition.VOLATILE);  // TODO remove
+        entity.addAttribute("ratk", Type.SHORT, Definition.PRIVATE);
+        entity.addAttribute("ratk_xp", Type.INT, Definition.PRIVATE);
+        entity.addAttribute("ratk_item", Type.INT,
+                (byte) (Definition.PRIVATE | Definition.VOLATILE));
 
         entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
         entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use

@@ -156,6 +156,7 @@
     <description>You see a tall black giant. His armor and sword will hit you hard. Be prepared!</description>
     <attributes>
       <atk value="1154"/>
+      <ratk value="1154"/>
       <def value="119"/>
       <hp value="4300"/>
       <speed value="0.8"/>

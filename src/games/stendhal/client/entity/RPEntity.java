@@ -178,6 +178,8 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int def;
 
+	private int ratk;
+
 	private int xp;
 
 	private int hp;
@@ -237,9 +239,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int defXP;
 
+	private int ratkXP;
+
 	private int atkItem = -1;
 
 	private int defItem = -1;
+
+	private int ratkItem = -1;
 
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
@@ -342,6 +348,27 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public int getDefXP() {
 		return defXP;
+	}
+
+	/**
+	 * @return Returns the ratk.
+	 */
+	public int getRatk() {
+		return ratk;
+	}
+
+	/**
+	 * @return Returns the ratk of items
+	 */
+	public int getRatkItem() {
+		return ratkItem;
+	}
+
+	/**
+	 * @return the ranged xp
+	 */
+	public int getRatkXP() {
+		return ratkXP;
 	}
 
 	/**
@@ -1331,6 +1358,13 @@ public abstract class RPEntity extends AudibleEntity {
 			def = changes.getInt("modified_def");
 		}
 
+		if (changes.has("ratk")) {
+			ratk = changes.getInt("ratk");
+		}
+		if (changes.has("modified_ratk")) {
+			ratk = changes.getInt("modified_ratk");
+		}
+
 		if (changes.has("level")) {
 			level = changes.getInt("level");
 		}
@@ -1346,12 +1380,20 @@ public abstract class RPEntity extends AudibleEntity {
 			defXP = changes.getInt("def_xp");
 		}
 
+		if (changes.has("ratk_xp")) {
+			ratkXP = changes.getInt("ratk_xp");
+		}
+
 		if (changes.has("atk_item")) {
 			atkItem = changes.getInt("atk_item");
 		}
 
 		if (changes.has("def_item")) {
 			defItem = changes.getInt("def_item");
+		}
+
+		if (changes.has("ratk_item")) {
+			ratkItem = changes.getInt("ratk_item");
 		}
 
 		if (changes.has("mana")) {

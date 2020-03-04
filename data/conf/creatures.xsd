@@ -73,6 +73,11 @@
 					<xsd:attribute name="value" type="xsd:positiveInteger" />
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="ratk" minOccurs="0" maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="value" type="xsd:positiveInteger" />
+				</xsd:complexType>
+			</xsd:element>
 			<xsd:element name="def" minOccurs="1">
 				<xsd:complexType>
 					<xsd:attribute name="value" type="xsd:positiveInteger" />

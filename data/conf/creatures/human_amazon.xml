@@ -8,6 +8,7 @@
     <description>You see an amazoness archer. She handles her bow quite well and her arrows are very dangerous when she shoots them at you out of the forest!</description>
     <attributes>
       <atk value="448"/>
+      <ratk value="448"/>
       <def value="66"/>
       <hp value="600"/>
       <speed value="0.5"/>
@@ -41,6 +42,7 @@
     <description>You see an amazoness archer commander. She is the leader of amazoness archers. Her bow skills are incredible and her arrows pierce everything.</description>
     <attributes>
       <atk value="518"/>
+      <ratk value="518"/>
       <def value="71"/>
       <hp value="700"/>
       <speed value="0.6"/>

@@ -55,6 +55,7 @@
     <description>You see a dark archangel. After she fell from heaven her soul became as dark as she is now.</description>
     <attributes>
       <atk value="1965"/>
+      <ratk value="1965"/>
       <def value="171"/>
       <hp value="18000"/>
       <speed value="1.0"/>
@@ -230,6 +231,7 @@
     <description>You see an archangel. She wants to kill you because she doesn't want you in the clouds.</description>
     <attributes>
       <atk value="1455"/>
+      <ratk value="1455"/>
       <def value="162"/>
       <hp value="7000"/>
       <speed value="1.0"/>

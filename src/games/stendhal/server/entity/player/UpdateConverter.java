@@ -318,6 +318,10 @@ public abstract class UpdateConverter {
     		object.put("def", "10");
     	}
 
+		if (!object.has("ratk_xp")) {
+			object.put("ratk_xp", "0");
+		}
+
     	if (!object.has("age")) {
     		object.put("age", "0");
     	}
