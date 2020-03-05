@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
@@ -814,4 +815,26 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+  <item name="training sword">
+    <type class="sword" subclass="training_sword" tileid="-1"/>
+    <description>You see a wooden training sword not even useful for cutting butter. But it is light and easy to swing.</description>
+    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
+    <attributes>
+      <atk value="0"/>
+      <rate value="1"/>
+      <durability value="150"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>

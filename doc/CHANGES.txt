@@ -10,6 +10,7 @@ Changelog
   - Omura Sumitada (assassin's dojo)
 - new items:
   - bestiary
+  - training sword
 - new achievements:
   - Royally Endowed: loot a complete royal equipment set
 - ice giant added to David vs. Goliath achievement
