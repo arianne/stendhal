@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
+import java.awt.Rectangle;
+import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -33,4 +35,13 @@ public class NoTeleportIn implements ZoneConfigurator {
 		}
 	}
 
+	public void configureZone(final StendhalRPZone zone, final Rectangle area) {
+		final Map<String, String> attributes = new HashMap<>();
+		attributes.put("x", Integer.toString(area.x));
+		attributes.put("y", Integer.toString(area.y));
+		attributes.put("width", Integer.toString(area.width));
+		attributes.put("height", Integer.toString(area.height));
+
+		configureZone(zone, attributes);
+	}
 }
