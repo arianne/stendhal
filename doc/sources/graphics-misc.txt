@@ -158,11 +158,11 @@ walkborder.png          ???; ???; ???
 
 data/sprites/doors/
 
-fence_gate_h.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fence_gate_v.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fence_gate_*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone.png      ???; ???; ??? (committed by kymara: 87b361f)
 housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ice_path_h.png     ???; ???; ??? (committed by laguz: d397492)
+palisade_gate_*    Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 skulldoor_e.png    ???; ???; ??? (committed by Miguel: a37b28b)
 skulldoor_n.png    ???; ???; ??? (committed by Miguel: c4c57b4)
 skulldoor_s.png    ???; ???; ??? (committed by Miguel: c4c57b4)
