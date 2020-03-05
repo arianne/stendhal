@@ -11,6 +11,7 @@ Changelog
   - Royally Endowed: loot a complete royal equipment set
 - ice giant added to David vs. Goliath achievement
 - new RATK stat independent from ATK
+- archery range area for training RATK stat
 
 
 1.33
