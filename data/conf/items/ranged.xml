@@ -126,7 +126,7 @@
     <description>This training bow is light and easy to use. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
     <attributes>
-      <ratk value="1" />
+      <ratk value="0" />
       <range value="3" />
       <rate value="1" />
       <durability value="150" />
