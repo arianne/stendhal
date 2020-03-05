@@ -15,6 +15,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * An item that wears & breaks.
@@ -28,6 +30,8 @@ public class BreakableItem extends Item {
 		put("well used", 0.25);
 		put("very worn", 0.0);
 	}};
+
+	private boolean notified = false;
 
 
 	public BreakableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
@@ -49,6 +53,24 @@ public class BreakableItem extends Item {
 	@Override
 	public void deteriorate() {
 		put("uses", getUses() + 1);
+	}
+
+	@Override
+	public void deteriorate(final RPEntity user) {
+		deteriorate();
+
+		if (getCondition() <= 0) {
+			onWeakened(user);
+		}
+	}
+
+	private void onWeakened(final RPEntity user) {
+		if (!notified) {
+			if (user instanceof Player) {
+				((Player) user).sendPrivateText("Your " + getName() + " is about to break.");
+				notified = true;
+			}
+		}
 	}
 
 	public String getConditionName() {

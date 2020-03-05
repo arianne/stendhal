@@ -383,6 +383,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * Can be overridden to handle actions on user entity.
+	 *
+	 * @param user
+	 * 		Entity using the item.
+	 */
+	public void deteriorate(@SuppressWarnings("unused") final RPEntity user) {
+		deteriorate();
+	}
+
+	/**
 	 * repair this item
 	 */
 	public void repair() {

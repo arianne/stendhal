@@ -399,7 +399,7 @@ public class StendhalRPAction {
 
 			//deteriorate weapons of attacker
 			for (Item weapon : weapons) {
-				weapon.deteriorate();
+				weapon.deteriorate(player);
 
 				if (weapon instanceof BreakableItem) {
 					final BreakableItem breakable = (BreakableItem) weapon;
@@ -413,7 +413,7 @@ public class StendhalRPAction {
 			List<Item> defenseItems = defender.getDefenseItems();
 			if(!defenseItems.isEmpty()) {
 				final Item equip = Rand.rand(defenseItems);
-				equip.deteriorate();
+				equip.deteriorate(defender);
 
 				if (equip instanceof BreakableItem) {
 					final BreakableItem breakable = (BreakableItem) equip;
