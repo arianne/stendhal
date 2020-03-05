@@ -11,12 +11,32 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.Entity;
+import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.SyntaxException;
 
 /**
  * An entity that can be used for training a player's ATK & RATK stats.
  */
 public class TrainingDummy extends NPC {
+
+	private static final Logger logger = Logger.getLogger(TrainingDummy.class);
+
+	public static final String RPCLASS_NAME = "training_dummy";
+
+
+	public static void generateRPClass() {
+		try {
+			final RPClass dummy = new RPClass(RPCLASS_NAME);
+			dummy.isA("npc");
+		} catch (final SyntaxException e) {
+			logger.error("cannot generate RPClass", e);
+		}
+	}
 
 	public TrainingDummy() {
 		super();
@@ -44,6 +64,8 @@ public class TrainingDummy extends NPC {
 	 * 		Text to show when player "looks".
 	 */
 	private void init(final String image, final String descr) {
+		setRPClass(RPCLASS_NAME);
+
 		put("unnamed", "");
 		put("no_hpbar", "");
 		put("no_shadow", "");

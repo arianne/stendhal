@@ -55,6 +55,7 @@ import games.stendhal.server.entity.mapstuff.useable.UseableEntity;
 import games.stendhal.server.entity.mapstuff.useable.WaterSpringSource;
 import games.stendhal.server.entity.mapstuff.useable.WellSource;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.entity.trade.Earning;
@@ -211,6 +212,9 @@ public class RPClassGenerator {
 		// NPC sub-classes
 		if (!RPClass.hasRPClass("creature")) {
 			Creature.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(TrainingDummy.RPCLASS_NAME)) {
+			TrainingDummy.generateRPClass();
 		}
 
 		// Creature sub-classes
