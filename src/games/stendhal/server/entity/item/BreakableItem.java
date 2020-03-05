@@ -48,6 +48,24 @@ public class BreakableItem extends Item {
 	}
 
 	/**
+	 * Sets the item's state back to new.
+	 */
+	@Override
+	public void repair() {
+		put("uses", 0);
+	}
+
+	/**
+	 * Checks the used state of the item.
+	 *
+	 * @return
+	 * 		<code>true</code> if the item has deteriorated.
+	 */
+	public boolean isUsed() {
+		return getUses() > 0;
+	}
+
+	/**
 	 * Increment number of times used.
 	 */
 	@Override
