@@ -16,6 +16,7 @@ Changelog
 - new RATK stat independent from ATK
 - dojo area for training ATK stat
 - archery range area for training RATK stat
+- fixed "Westerner" achievement
 
 
 1.33
