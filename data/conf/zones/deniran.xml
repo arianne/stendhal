@@ -70,7 +70,7 @@
 
 
 	<zone name="0_deniran_river_sw" level="0" x="499104" y="500256"
-		file="Level 0/deniran/river_sw.tmx">
+		file="Level 0/deniran/river_sw.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
