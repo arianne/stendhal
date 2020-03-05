@@ -116,7 +116,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 			}
 		};
 		shopSign.setEntityClass("blackboard");
-		shopSign.setPosition(37, 81);
+		shopSign.setPosition(36, 81);
 
 		dojoZone.add(shopSign);
 	}
