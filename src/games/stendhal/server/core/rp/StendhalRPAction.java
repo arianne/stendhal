@@ -317,8 +317,17 @@ public class StendhalRPAction {
 
 		final boolean beaten;
 		if (usesTrainingDummy) {
-			// training dummies can always be hit
-			beaten = true;
+			/* training dummies can always be hit except in cases of using a
+			 * ranged weapon against a melee-only dummy
+			 */
+			beaten = ((TrainingDummy) defender).canBeAttacked(player);
+
+			if (!beaten) {
+				player.sendPrivateText("You cannot attack this " + defender.getName() + " with a ranged weapon.");
+				player.stopAttack();
+
+				return false;
+			}
 		} else {
 			// Throw dices to determine if the attacker has missed the defender
 			beaten = player.canHit(defender);

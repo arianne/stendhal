@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -33,6 +34,7 @@ public class TrainingDummy extends NPC {
 		try {
 			final RPClass dummy = new RPClass(RPCLASS_NAME);
 			dummy.isA("npc");
+			dummy.addAttribute("melee_only", Type.FLAG, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -91,5 +93,42 @@ public class TrainingDummy extends NPC {
 	@Override
 	public void onDamaged(final Entity attacker, final int damage) {
 		// training dummies not damaged
+	}
+
+	/**
+	 * Marks dummy to only be usable with melee weapons only.
+	 */
+	public void setMeleeOnly(final boolean set) {
+		if (set) {
+			put("melee_only", "");
+		} else {
+			remove("melee_only");
+		}
+	}
+
+	/**
+	 * Checks if only melee weapons may be used against this dummy.
+	 *
+	 * @return
+	 * 		<code>true</code> if only melee weapons may be used, <code>false</code> otherwise.
+	 */
+	public boolean isMeleeOnly() {
+		return has("melee_only");
+	}
+
+	/**
+	 * Checks requirements for attacking this entity.
+	 *
+	 * @param entity
+	 * 		The entity that wants to attack.
+	 * @return
+	 * 		<code>true</code> if can attack, <code>false</code> otherwise.
+	 */
+	public boolean canBeAttacked(final RPEntity entity) {
+		if (isMeleeOnly()) {
+			return entity.nextTo(this);
+		}
+
+		return true;
 	}
 }
