@@ -65,7 +65,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 
 	private void initNPC() {
 		seller = new SpeakerNPC(sellerName);
-		seller.setEntityClass("samurainpc");
+		seller.setEntityClass("samurai2npc");
 		seller.setIdleDirection(Direction.LEFT);
 		seller.setPosition(37, 80);
 

@@ -184,7 +184,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 
 	private void initNPC() {
 		samurai = new SpeakerNPC(samuraiName);
-		samurai.setEntityClass("samurainpc");
+		samurai.setEntityClass("samurai1npc");
 		samurai.setIdleDirection(Direction.DOWN);
 		samurai.setPosition(24, 74);
 
