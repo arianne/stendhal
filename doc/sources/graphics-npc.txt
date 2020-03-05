@@ -181,6 +181,7 @@ ringsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 royalguardnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 rudolphnpc.*                  Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
 sailor1npc.*                  Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+samurainpc.png                Svetlana Kushnariova (Cabbit), DezrasDragons, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/47664, https://opengameart.org/node/80841
 santaclausnpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82411
 scarletarmynpc.*              Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 sellernpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804

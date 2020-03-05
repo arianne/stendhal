@@ -5,12 +5,16 @@ Changelog
 1.34
 
 *world*
+- new NPCs:
+  - Chester (assassin's archery range)
+  - Omura Sumitada (assassin's dojo)
 - new items:
   - bestiary
 - new achievements:
   - Royally Endowed: loot a complete royal equipment set
 - ice giant added to David vs. Goliath achievement
 - new RATK stat independent from ATK
+- dojo area for training ATK stat
 - archery range area for training RATK stat
 
 

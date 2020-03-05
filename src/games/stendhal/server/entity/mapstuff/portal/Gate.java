@@ -162,7 +162,7 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 	 * @param user player trying to close or open the gate
 	 * @return <code>true</code> iff the player is allowed to use the gate
 	 */
-	private boolean isAllowed(final RPEntity user) {
+	protected boolean isAllowed(final RPEntity user) {
 		Sentence sentence = ConversationParser.parse(user.get("text"));
 		return condition.fire((Player) user, sentence, this);
 	}
@@ -172,7 +172,7 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 	 *
 	 * @param open true if the door is opened, false otherwise
 	 */
-	private void setOpen(final boolean open) {
+	protected void setOpen(final boolean open) {
 		final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 
 		if (open) {
@@ -230,6 +230,13 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 	 */
 	public void setRefuseMessage(String message) {
 		refuseMessage = message;
+	}
+
+	/**
+	 * Retrieve message to be sent when access is refused.
+	 */
+	public String getRefuseMessage() {
+		return refuseMessage;
 	}
 
 	/**
