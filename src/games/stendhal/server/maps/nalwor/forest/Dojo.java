@@ -81,8 +81,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private static final int COOLDOWN = 6 * MathHelper.MINUTES_IN_ONE_HOUR;
 
 	/** max number of players allowed in training area at a time */
-	//private static final int MAX_OCCUPANTS = 16;
-	private static final int MAX_OCCUPANTS = 1;
+	private static final int MAX_OCCUPANTS = 16;
 
 	/** condition to check if training area is full */
 	AreaIsFullCondition dojoFullCondition;
