@@ -240,8 +240,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		entity.addAttribute("autobind", Type.FLAG, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		// Number of uses for BreakableItem
+		entity.addAttribute("durability", Type.INT, Definition.VOLATILE);
 		entity.addAttribute("uses", Type.INT);
-		entity.addAttribute("base_uses", Type.INT);
 	}
 
 

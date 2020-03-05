@@ -451,7 +451,7 @@ public class StendhalRPAction {
 
 					final String event = breakable.getName() + " has broken";
 
-					new GameEvent(player.getName(), event, "Used " + Integer.toString(breakable.getUses()) + " out of " + Integer.toString(breakable.getBaseUses()) + " times").raise();
+					new GameEvent(player.getName(), event, "Used " + Integer.toString(breakable.getUses()) + " times (durability: " + Integer.toString(breakable.getDurability()) + ")").raise();
 					player.sendPrivateText("Your " + event + "!");
 				} else {
 					logger.error("Could not remove BreakableItem \"" + breakable.getName() + "\" with ID " + breakable.getID().toString());

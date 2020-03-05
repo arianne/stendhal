@@ -44,8 +44,8 @@ public class BreakableItem extends Item {
 		return getUses() >= getBaseUses();
 	}
 
-	public int getBaseUses() {
-		return getInt("base_uses");
+	public int getDurability() {
+		return getInt("durability");
 	}
 
 	public int getUses() {

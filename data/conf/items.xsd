@@ -72,7 +72,7 @@
 			<element name="autobind" type="Q1:attribute" minOccurs="0"/>
 			<element name="slot_size" type="Q1:attribute" minOccurs="0"/>
 			<element name="menu" type="Q1:attribute" minOccurs="0"/>
-			<element name="uses" type="Q1:attribute" minOccurs="0" />
+			<element name="durability" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
 			<element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>

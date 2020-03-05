@@ -157,9 +157,9 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			if (qName.equals("status_resist")) {
 				this.resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 				this.activeSlots = attrs.getValue("slots");
-			} else if (qName.equals("uses")) {
-				attributes.put(qName, "0");
-				attributes.put("base_uses", attrs.getValue("value"));
+			} else if (qName.equals("durability")) {
+				attributes.put(qName, attrs.getValue("value"));
+				attributes.put("uses", "0");
 			} else {
 				attributes.put(qName, attrs.getValue("value"));
 			}
