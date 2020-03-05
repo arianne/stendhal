@@ -242,7 +242,25 @@ class DestinationObject extends MoveableObject {
 				final List<Node> path = Path.searchPath(entity, zone,
 						player.getX(), player.getY(), new Rectangle(x, y, 1, 1),
 						64 /* maxDestination * maxDestination */, false);
-				if (path.isEmpty()) {
+
+				boolean blocked = path.isEmpty();
+				if (!blocked && zone != null) {
+					for (final Node node: path) {
+						if (blocked) {
+							break;
+						}
+
+						final List<Entity> entities = zone.getEntitiesAt(node.getX(), node.getY());
+						for (final Entity e: entities) {
+							if (e.has("walk_blocker")) {
+								blocked = true;
+								break;
+							}
+						}
+					}
+				}
+
+				if (blocked) {
 					player.sendPrivateText("There is no easy path to that place.");
 					return false;
 				}
