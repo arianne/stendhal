@@ -41,7 +41,8 @@
 
     <!-- Archery Range -->
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC"/>
 
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
       <parameter name="x">96</parameter>

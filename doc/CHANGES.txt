@@ -8,6 +8,7 @@ Changelog
 - new NPCs:
   - Chester (assassin's archery range)
   - Omura Sumitada (assassin's dojo)
+  - Akutagawa (assassin's dojo)
 - new items:
   - bestiary
   - training sword
