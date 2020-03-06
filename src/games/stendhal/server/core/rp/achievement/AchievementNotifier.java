@@ -203,6 +203,7 @@ public final class AchievementNotifier {
 	 */
 	public void onItemLoot(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.ITEM);
+		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 	}
 
 	/**
