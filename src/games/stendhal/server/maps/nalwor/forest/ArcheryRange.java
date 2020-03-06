@@ -32,11 +32,14 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LogoutListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FlyOverArea;
 import games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -106,6 +109,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private static final String npcName = "Chester";
 	private SpeakerNPC npc;
 
+	private static final int bowPrice = 4500;
+
 	/** phrases used in conversations */
 	private static final List<String> TRAIN_PHRASES = Arrays.asList("train", "training");
 	private static final List<String> FEE_PHRASES = Arrays.asList("fee", "cost", "charge");
@@ -135,6 +140,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		buildNPC();
 		initShop();
+		initRepairShop();
 		initTraining();
 		initEntrance();
 		initBlockers();
@@ -148,6 +154,11 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				addGreeting("This is the assassins' archery range. Watch yer tongue if ya don't want to get hurt.");
 				addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
 				addGoodbye("Come back when ya got some cash. Courtesy aint currency 'round here.");
+				addQuest("I don't have any task for you to do. I only #fix and sell equipment.");
+				addHelp("If you want to train in the range, I recommend that you buy a #'training bow'.");
+				addReply("training bow", "Training bows are weak but easy to use, so you can fire from them"
+						+ " much faster than with a normal bow. But because of their poor quality, they don't"
+						+ " last long.");
 			}
 
 			@Override
@@ -197,7 +208,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		shop.put("wooden arrow", 4);
 		shop.put("wooden bow", 600);
 		shop.put("longbow", 1200);
-		shop.put("training bow", 4500);
+		shop.put("training bow", bowPrice);
 
 		// override seller bahaviour so that player must have assassins id
 		final SellerBehaviour seller = new SellerBehaviour(shop) {
@@ -233,6 +244,150 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		blackboard.setEntityClass("blackboard");
 		blackboard.setPosition(117, 101);
 		archeryZone.add(blackboard);
+	}
+
+	/**
+	 * If players bring their worn training swords they can get them repaired for half the
+	 * price of buying a new one.
+	 */
+	private void initRepairShop() {
+		final Sign repairSign = new Sign();
+		repairSign.setEntityClass("notice");
+		repairSign.setPosition(118, 101);
+		repairSign.setText("Training bows #repaired here for half the price of new ones.");
+		archeryZone.add(repairSign);
+
+		final List<String> repairPhrases = Arrays.asList("repair", "fix");
+
+		final ChatCondition needsRepairCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return getUsedBowsCount(player) > 0;
+			}
+		};
+
+		final ChatCondition canAffordRepairsCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return player.isEquipped("money", getRepairPrice(getUsedBowsCount(player)));
+			}
+		};
+
+		final ChatAction sayRepairPriceAction = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final int usedBows = getUsedBowsCount(player);
+				final boolean multiple = usedBows > 1;
+
+				final StringBuilder sb = new StringBuilder("You have " + Integer.toString(usedBows) + " used training bow");
+				if (multiple) {
+					sb.append("s");
+				}
+				sb.append(". I can repair ");
+				if (multiple) {
+					sb.append("them all");
+				} else {
+					sb.append("it");
+				}
+				sb.append(" for " + Integer.toString(getRepairPrice(usedBows)) + " money. Would you like me to do so?");
+
+				npc.say(sb.toString());
+			}
+		};
+
+		final ChatAction repairAction = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final int usedBows = getUsedBowsCount(player);
+				player.drop("money", getRepairPrice(usedBows));
+
+				for (final Item bow: player.getAllEquipped("training bow")) {
+					final BreakableItem breakable = (BreakableItem) bow;
+					if (breakable.isUsed()) {
+						breakable.repair();
+					}
+				}
+
+				if (usedBows > 1) {
+					npc.say("Done! Your training bows are as good as new.");
+				} else {
+					npc.say("Done! Your training bow is as good as new.");
+				}
+			}
+		};
+
+
+		npc.add(ConversationStates.ATTENDING,
+				repairPhrases,
+				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
+				ConversationStates.ATTENDING,
+				"Only members of the assassins guild can have their #'training bows' repaired.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				repairPhrases,
+				new AndCondition(
+						new PlayerHasItemWithHimCondition("assassins id"),
+						new NotCondition(needsRepairCondition)),
+				ConversationStates.ATTENDING,
+				"You don't have any #'training bows' that need repaired.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				repairPhrases,
+				new AndCondition(
+						new PlayerHasItemWithHimCondition("assassins id"),
+						needsRepairCondition),
+				ConversationStates.QUESTION_1,
+				null,
+				sayRepairPriceAction);
+
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Okay. Let me know if you need anything else.",
+				null);
+
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new NotCondition(needsRepairCondition),
+				ConversationStates.ATTENDING,
+				"Did you drop your bow?",
+				null);
+
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						needsRepairCondition,
+						new NotCondition(canAffordRepairsCondition)),
+				ConversationStates.ATTENDING,
+				"You don't have enough money. Get outta here!",
+				null);
+
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						needsRepairCondition,
+						canAffordRepairsCondition),
+				ConversationStates.ATTENDING,
+				null,
+				repairAction);
+	}
+
+	private int getUsedBowsCount(final Player player) {
+		int count = 0;
+		for (final Item bow: player.getAllEquipped("training bow")) {
+			if (((BreakableItem) bow).isUsed()) {
+				count++;
+			}
+		}
+
+		return count;
+	}
+
+	private int getRepairPrice(final int count) {
+		return count * (bowPrice / 2);
 	}
 
 	/**
