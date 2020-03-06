@@ -21,23 +21,24 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.factory.ObtainAchievementsFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
+
 
 public class BobbingForApplesTest {
 
-	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
 
 	// ID used for achievement
 	private final String achievementId = ObtainAchievementsFactory.ID_APPLES;
 
 	// required number of apples to harves or loot
-	private final int ITEM_COUNT = ObtainAchievementsFactory.COUNT_APPLES;
+	private final int itemCount = ObtainAchievementsFactory.COUNT_APPLES;
+	private final String item = "apple";
 
 
 	@BeforeClass
@@ -45,7 +46,6 @@ public class BobbingForApplesTest {
 		new DatabaseFactory().initializeDatabase();
 		// initialize world
 		MockStendlRPWorld.get();
-		notifier.initialize();
 	}
 
 	@AfterClass
@@ -60,34 +60,42 @@ public class BobbingForApplesTest {
 	}
 
 	private void testAchievement() {
-		setHarvestCount(999);
+		player.incLootForItem(item, itemCount - 1);
+		assertEquals(itemCount - 1, player.getNumberOfLootsForItem(item));
 		assertFalse(achievementReached());
-		setHarvestCount(0);
-		setLootCount(999);
-		assertFalse(achievementReached());
-		setLootCount(0);
-
-		assertEquals(0, player.getQuantityOfHarvestedItems("apple"));
-		assertEquals(0, player.getNumberOfLootsForItem("apple"));
-
-		setHarvestCount(1000);
+		player.incLootForItem(item, 1);
+		assertEquals(itemCount, player.getNumberOfLootsForItem(item));
 		assertTrue(achievementReached());
 
 		resetPlayer();
-		setLootCount(1000);
+
+		player.incHarvestedForItem(item, itemCount - 1);
+		assertEquals(itemCount - 1, player.getQuantityOfHarvestedItems(item));
+		assertFalse(achievementReached());
+		player.incHarvestedForItem(item, 1);
+		assertEquals(itemCount, player.getQuantityOfHarvestedItems(item));
 		assertTrue(achievementReached());
 
 		resetPlayer();
-		setHarvestCount(500);
-		setLootCount(499);
-		assertFalse(achievementReached());
 
-		setHarvestCount(499);
-		setLootCount(500);
-		assertFalse(achievementReached());
+		final int halfCount = itemCount / 2;
 
-		setHarvestCount(500);
-		setHarvestCount(500);
+		player.incLootForItem(item, halfCount);
+		player.incHarvestedForItem(item, halfCount - 1);
+		assertFalse(achievementReached());
+		player.incHarvestedForItem(item, 1);
+		assertEquals(halfCount, player.getNumberOfLootsForItem(item));
+		assertEquals(halfCount, player.getQuantityOfHarvestedItems(item));
+		assertTrue(achievementReached());
+
+		resetPlayer();
+
+		player.incLootForItem(item, halfCount - 1);
+		player.incHarvestedForItem(item, halfCount);
+		assertFalse(achievementReached());
+		player.incLootForItem(item, 1);
+		assertEquals(halfCount, player.getNumberOfLootsForItem(item));
+		assertEquals(halfCount, player.getQuantityOfHarvestedItems(item));
 		assertTrue(achievementReached());
 	}
 
@@ -101,12 +109,10 @@ public class BobbingForApplesTest {
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		assertEquals(0, player.getQuantityOfHarvestedItems("apple"));
-		assertEquals(0, player.getNumberOfLootsForItem("apple"));
+		assertEquals(0, player.getNumberOfLootsForItem(item));
+		assertEquals(0, player.getQuantityOfHarvestedItems(item));
 
-		assertFalse(player.arePlayerAchievementsLoaded());
-		player.initReachedAchievements();
-		assertTrue(player.arePlayerAchievementsLoaded());
+		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
@@ -117,26 +123,6 @@ public class BobbingForApplesTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
-	}
-
-	private void setHarvestCount(final int count) {
-		final int current = player.getQuantityOfHarvestedItems("apple");
-
-		// XXX: are apples "harvested" or "obtained"?
-		player.incHarvestedForItem("apple", count - current);
-		//player.incObtainedForItem("apple", count - current);
-
-		notifier.onObtain(player);
-	}
-
-	private void setLootCount(final int count) {
-		int current = player.getNumberOfLootsForItem("apple");
-
-		player.incLootForItem("apple", count - current);
-
-		// FIXME: looting events do not trigger checking Category.OBTAIN achievements
-		//notifier.onItemLoot(player);
-		notifier.onObtain(player);
+		return AchievementTestHelper.achievementReached(player, achievementId);
 	}
 }
