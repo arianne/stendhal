@@ -2457,6 +2457,8 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incLootForItem(String item, int count) {
 		itemCounter.incLootForItem(item, count);
+		// check achievements in item category
+		AchievementNotifier.get().onItemLoot(this);
 	}
 
 	/**
@@ -2468,6 +2470,8 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incProducedCountForItem(String item, int count) {
 		itemCounter.incProducedForItem(item, count);
+		// check achievements in production category
+		AchievementNotifier.get().onProduction(this);
 	}
 
 	/**
@@ -2479,6 +2483,8 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incObtainedForItem(String name, int quantity) {
 		itemCounter.incObtainedForItem(name, quantity);
+		// check achievements in obtain category
+		AchievementNotifier.get().onObtain(this);
 	}
 
 	/**
@@ -2490,7 +2496,6 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incSoldForItem(String name, int quantity) {
 		itemCounter.incSoldForItem(name, quantity);
-
 		// check achievements in commerce category
 		AchievementNotifier.get().onTrade(this);
 	}
@@ -2504,6 +2509,8 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incMinedForItem(String name, int quantity) {
 		itemCounter.incMinedForItem(name, quantity);
+		// check achievements in obtain category
+		AchievementNotifier.get().onObtain(this);
 	}
 
 	/**
@@ -2515,6 +2522,8 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incHarvestedForItem(String name, int quantity) {
 		itemCounter.incHarvestedForItem(name, quantity);
+		// check achievements in obtain category
+		AchievementNotifier.get().onObtain(this);
 	}
 
 	/**
@@ -2526,7 +2535,6 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incBoughtForItem(String name, int quantity) {
 		itemCounter.incBoughtForItem(name, quantity);
-
 		// check achievements in commerce category
 		AchievementNotifier.get().onTrade(this);
 	}

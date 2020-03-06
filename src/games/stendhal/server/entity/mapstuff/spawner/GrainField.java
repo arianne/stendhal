@@ -119,7 +119,6 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		entity.equipOrPutOnGround(grain);
 		if(entity instanceof Player) {
 			((Player) entity).incHarvestedForItem(grainName, 1);
-			SingletonRepository.getAchievementNotifier().onObtain((Player) entity);
 		}
 		return true;
 	}

@@ -18,7 +18,6 @@ import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -120,7 +119,6 @@ public class EquipAction extends EquipmentAction {
 					((Item) entity).setFromCorpse(false);
 				}
 				player.incLootForItem(entity.getTitle(), amount);
-				SingletonRepository.getAchievementNotifier().onItemLoot(player);
 			}
 			if (entity instanceof Item) {
 				((Item) entity).autobind(player.getName());
