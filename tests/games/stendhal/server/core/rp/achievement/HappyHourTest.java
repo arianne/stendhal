@@ -13,28 +13,29 @@ package games.stendhal.server.core.rp.achievement;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.semos.tavern.BarMaidNPC;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class HappyHourTest {
+public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
 
-	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
-	private Player player;
+	private static final String npcName = "Margaret";
 
 	// items used in achievement
 	private final List<String> itemList = Arrays.asList(CommerceAchievementFactory.ITEMS_HAPPY_HOUR);
@@ -49,9 +50,15 @@ public class HappyHourTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		new DatabaseFactory().initializeDatabase();
-		// initialize world
-		MockStendlRPWorld.get();
-		notifier.initialize();
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		setNpcNames(npcName);
+		setupZone("testzone", new BarMaidNPC());
+		setZoneForPlayer("testzone");
+		super.setUp();
 	}
 
 	@AfterClass
@@ -61,45 +68,52 @@ public class HappyHourTest {
 
 	@Test
 	public void init() {
-		resetPlayer();
+		initAchievements();
 		testAchievement();
 	}
 
 	private void testAchievement() {
-		setBoughtCount("beer", 0);
-		assertFalse(achievementReached());
-		setBoughtCount("wine", 0);
-		assertFalse(achievementReached());
+		final SpeakerNPC npc = getNPC(npcName);
+		final Engine en = npc.getEngine();
 
-		setBoughtCount("beer", ITEM_COUNT);
-		setBoughtCount("wine", ITEM_COUNT - 1);
-		assertFalse(achievementReached());
+		final int priceBeer = 10;
+		final int priceWine = 15;
+		final int fullPrice = (priceBeer * ITEM_COUNT) + (priceWine * ITEM_COUNT);
 
-		setBoughtCount("beer", ITEM_COUNT - 1);
-		setBoughtCount("wine", ITEM_COUNT);
-		assertFalse(achievementReached());
+		for (final String item: itemList) {
+			assertFalse(player.isEquipped(item));
+			assertEquals(0, player.getQuantityOfBoughtItems(item));
+		}
 
-		setBoughtCount("beer", ITEM_COUNT);
+		assertFalse(player.isEquipped("money"));
+
+		PlayerTestHelper.equipWithMoney(player, fullPrice);
+		assertTrue(player.isEquipped("money", fullPrice));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		en.step(player, "buy 100 beer");
+		en.step(player, "yes");
+		assertTrue(player.isEquipped("beer", ITEM_COUNT));
+		assertFalse(achievementReached());
+		en.step(player, "buy 100 wine");
+		en.step(player, "yes");
+		assertTrue(player.isEquipped("wine", ITEM_COUNT));
+
+		for (final String item: itemList) {
+			assertEquals(ITEM_COUNT, player.getQuantityOfBoughtItems(item));
+		}
+
 		assertTrue(achievementReached());
+		en.step(player, "bye");
 	}
 
 
 	/**
-	 * Resets player achievements & kills.
+	 * Initializes achievements engine.
 	 */
-	private void resetPlayer() {
-		player = null;
-		assertNull(player);
-		player = PlayerTestHelper.createPlayer("player");
-		assertNotNull(player);
-
-		for (final String item: itemList) {
-			assertEquals(0, player.getQuantityOfBoughtItems(item));
-		}
-
-		assertFalse(player.arePlayerAchievementsLoaded());
-		player.initReachedAchievements();
-		assertTrue(player.arePlayerAchievementsLoaded());
+	private void initAchievements() {
+		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
@@ -110,21 +124,6 @@ public class HappyHourTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
-	}
-
-	/**
-	 * Sets the number of items purchased by player.
-	 *
-	 * @param item
-	 * 		Name of item.
-	 * @param count
-	 * 		New value to set.
-	 */
-	private void setBoughtCount(final String item, final int count) {
-		final int current = player.getQuantityOfBoughtItems(item);
-
-		player.incBoughtForItem(item, count - current);
-		notifier.onObtain(player);
+		return AchievementTestHelper.achievementReached(player, achievementId);
 	}
 }
