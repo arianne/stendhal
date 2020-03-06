@@ -152,13 +152,16 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			@Override
 			protected void createDialog() {
 				addGreeting("This is the assassins' archery range. Watch yer tongue if ya don't want to get hurt.");
-				addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
 				addGoodbye("Come back when ya got some cash. Courtesy aint currency 'round here.");
-				addQuest("I don't have any task for you to do. I only #fix and sell equipment.");
-				addHelp("If you want to train in the range, I recommend that you buy a #'training bow'.");
+				addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
+				addQuest("Do I look like I need any help!? If yer not here to #train then get outta my sight!");
 				addReply("training bow", "Training bows are weak but easy to use, so you can fire from them"
 						+ " much faster than with a normal bow. But because of their poor quality, they don't"
 						+ " last long.");
+				addHelp("This is the assassins' archery range. I can let you #train here for a #fee"
+						+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
+						+ " on the end. The ninjas seem to like those. I recommend using a #'training bow'.");
+				addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
 			}
 
 			@Override
@@ -338,25 +341,25 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new AndCondition(
 						new PlayerHasItemWithHimCondition("assassins id"),
 						needsRepairCondition),
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUESTION_2,
 				null,
 				sayRepairPriceAction);
 
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Okay. Let me know if you need anything else.",
+				"Good luck then. Remember, once they break, they can't be repaired.",
 				null);
 
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(needsRepairCondition),
 				ConversationStates.ATTENDING,
 				"Did you drop your bow?",
 				null);
 
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						needsRepairCondition,
@@ -365,7 +368,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				"You don't have enough money. Get outta here!",
 				null);
 
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						needsRepairCondition,
@@ -394,11 +397,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	 * Initializes conversation & actions for archery training.
 	 */
 	private void initTraining() {
-		npc.addQuest("Do I look like I need any help!? If yer not here to #train then get outta my sight!");
-		npc.addHelp("This is the assassins' archery range. I can let you #train here for a #fee"
-				+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
-				+ " on the end. The ninjas seem to like those.");
-		npc.addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
 
 		// player has never trained before
 		npc.add(ConversationStates.ATTENDING,

@@ -173,7 +173,7 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 		en.step(player, "help");
 		assertEquals("This is the assassins' archery range. I can let you #train here for a #fee"
 				+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
-				+ " on the end. The ninjas seem to like those.", getReply(npc));
+				+ " on the end. The ninjas seem to like those. I recommend using a #'training bow'.", getReply(npc));
 		en.step(player, "fee");
 		assertEquals("The fee to #train is " + Integer.toString(cost) + " money.", getReply(npc));
 
