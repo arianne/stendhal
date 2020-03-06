@@ -61,6 +61,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_MERMAIDS = "fight.general.mermaids";
 	public static final int COUNT_MERMAIDS = 10000;
 
+	// enemies required for Deep Sea Fisherman
+	public static final String[] ENEMIES_DEEPSEA = {
+			"shark", "kraken", "neo kraken"
+	};
+	public static final String ID_DEEPSEA = "fight.general.deepsea";
+	public static final int COUNT_DEEPSEA = 500;
+
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -123,6 +130,11 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 						return kills >= COUNT_MERMAIDS;
 					}
 				}));
+
+		fightingAchievements.add(createAchievement(
+				ID_DEEPSEA, "Deep Sea Fisherman", "Kill 500 sharks, kraken, & neo kraken",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_DEEPSEA, ENEMIES_DEEPSEA)));
 
 		return fightingAchievements;
 	}

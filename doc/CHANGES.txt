@@ -15,6 +15,7 @@ Changelog
 - new achievements:
   - Bobbing for Apples: harvest or loot 1,000 apples
   - Royally Endowed: loot a complete royal equipment set
+  - Deep Sea Fisherman: kill 500 sharks, kraken, & neo kraken
 - ice giant added to David vs. Goliath achievement
 - new RATK stat independent from ATK
 - dojo area for training ATK stat
