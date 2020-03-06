@@ -13,6 +13,7 @@ Changelog
   - bestiary
   - training sword
 - new achievements:
+  - Bobbing for Apples: harvest or loot 1,000 apples
   - Royally Endowed: loot a complete royal equipment set
 - ice giant added to David vs. Goliath achievement
 - new RATK stat independent from ATK
