@@ -126,6 +126,13 @@ public final class AchievementNotifier {
 	}
 
 	/**
+	 * Checks if the achievement list has already been populated.
+	 */
+	public boolean isInitialized() {
+		return !achievements.isEmpty();
+	}
+
+	/**
 	 * collects all identifiers from the database
 	 *
 	 * @return a set of all identifier strings

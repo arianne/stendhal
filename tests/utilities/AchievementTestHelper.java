@@ -14,15 +14,19 @@ package utilities;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 
 
 public abstract class AchievementTestHelper {
 
+	static AchievementNotifier an = AchievementNotifier.get();
+
 	public static void init(final Player player) {
 		// initialize the notifier
-		SingletonRepository.getAchievementNotifier().initialize();
+		if (!an.isInitialized()) {
+			an.initialize();
+		}
 
 		// initialize player achievements
 		assertFalse(player.arePlayerAchievementsLoaded());
