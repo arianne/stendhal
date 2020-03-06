@@ -2490,6 +2490,9 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incSoldForItem(String name, int quantity) {
 		itemCounter.incSoldForItem(name, quantity);
+
+		// check achievements in commerce category
+		AchievementNotifier.get().onTrade(this);
 	}
 
 	/**
@@ -2523,6 +2526,9 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void incBoughtForItem(String name, int quantity) {
 		itemCounter.incBoughtForItem(name, quantity);
+
+		// check achievements in commerce category
+		AchievementNotifier.get().onTrade(this);
 	}
 
 	/**
