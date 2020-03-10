@@ -20,7 +20,10 @@ Changelog
 - new RATK stat independent from ATK
 - dojo area for training ATK stat
 - archery range area for training RATK stat
+
+*fixes*
 - fixed "Westerner" achievement
+- fixed kraken & neo kraken corpse dimensions
 
 
 1.33
