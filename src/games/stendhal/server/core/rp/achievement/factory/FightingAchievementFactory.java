@@ -68,6 +68,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_DEEPSEA = "fight.general.deepsea";
 	public static final int COUNT_DEEPSEA = 500;
 
+	// enemies required for Zombie Apocalypse
+	public static final String[] ENEMIES_ZOMBIES = {
+			"zombie", "bloody zombie", "headless monster", "rotten zombie"
+	};
+	public static final String ID_ZOMBIES = "fight.general.zombies";
+	public static final int COUNT_ZOMBIES = 500;
+
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -135,6 +142,22 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				ID_DEEPSEA, "Deep Sea Fisherman", "Kill 500 sharks, kraken, & neo kraken",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_DEEPSEA, ENEMIES_DEEPSEA)));
+
+		fightingAchievements.add(createAchievement(
+				ID_ZOMBIES, "Zombie Apocalypse", "Kill 500 zombies",
+				Achievement.EASY_BASE_SCORE, true,
+				new ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, Entity npc) {
+						int kills = 0;
+
+						for (final String zombie: ENEMIES_ZOMBIES) {
+							kills += player.getSoloKill(zombie) + player.getSharedKill(zombie);
+						}
+
+						return kills >= COUNT_ZOMBIES;
+					}
+				}));
 
 		return fightingAchievements;
 	}
