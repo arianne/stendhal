@@ -232,19 +232,19 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			harmlessCorpseName = attrs.getValue("harmless");
 			String value = attrs.getValue("width");
 
-			// Default to 1 for width and height to save the fingers
+			// Default to entity size for width and height to save the fingers
 			// of the people writing the creatures
 			if (value != null) {
 				corpseWidth = Integer.parseInt(value);
 			} else {
-				corpseWidth = 1;
+				corpseWidth = sizeWidth;
 			}
 
 			value = attrs.getValue("height");
 			if (value != null) {
 				corpseHeight = Integer.parseInt(value);
 			} else {
-				corpseHeight = 1;
+				corpseHeight = sizeHeight;
 			}
 		} else if (qName.equals("drops")) {
 			drops = true;
