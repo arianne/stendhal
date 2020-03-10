@@ -75,6 +75,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_ZOMBIES = "fight.general.zombies";
 	public static final int COUNT_ZOMBIES = 500;
 
+	// enemies required for Chicken Nuggets
+	public static final String[] ENEMIES_FOWL = {
+			"chick", "chicken", "dodo", "mother hen", "penguin", "pigeon"
+	};
+	public static final String ID_FOWL = "fight.general.fowl";
+	public static final int COUNT_FOWL = 100;
+
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -158,6 +165,11 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 						return kills >= COUNT_ZOMBIES;
 					}
 				}));
+
+		fightingAchievements.add(createAchievement(
+				ID_FOWL, "Chicken Nuggets", "Kill 100 of each type of fowl",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_FOWL, ENEMIES_FOWL)));
 
 		return fightingAchievements;
 	}
