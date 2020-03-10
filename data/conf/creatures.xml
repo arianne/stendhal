@@ -3,6 +3,8 @@
 	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="creatures/angel.xml" />
 	<group uri="creatures/animal.xml" />
+	<group uri="creatures/animal_aquatic.xml" />
+	<group uri="creatures/animal_fowl.xml" />
 	<group uri="creatures/beast.xml" />
 	<group uri="creatures/chess.xml" />
     <group uri="creatures/demon.xml" />
@@ -10,7 +12,6 @@
 	<group uri="creatures/dwarf.xml" />
 	<group uri="creatures/elemental.xml" />
 	<group uri="creatures/elf.xml" />
-	<group uri="creatures/fowl.xml" />
 	<group uri="creatures/giant.xml" />
     <group uri="creatures/gnome.xml" />
 	<group uri="creatures/goblin.xml" />
