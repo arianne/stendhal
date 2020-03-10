@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <!-- START: cephalopod -->
+
+  <creature name="kraken">
+	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
+	<description>From the depths of the sea rises a Kraken!</description>
+	<attributes>
+	<atk value="887"/>
+	<def value="114"/>
+	<hp value="1935"/>
+	<speed value="1"/>
+	<size value="3,2"/>
+	</attributes>
+	<level value="155"/>
+	<experience value="38830"/>
+    <respawn value="5400"/>
+    <corpse name="animal_2x2" harmless="bag_2x2"/>
+    <drops>
+      <item value="greater potion" quantity="[2,6]" probability="75.0"/>
+      <item value="greater poison" quantity="[1,2]" probability="90.0"/>
+      <item value="orcish sword" quantity="[1,1]" probability="0.3"/>
+      <item value="money" quantity="[30,150]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="1.5"/>
+    </abilities>
+    <ai>
+      <profile name="poisonous" params="15,deadly poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="neo kraken">
+	<type class="huge_animal" subclass="kraken_neo" tileid="huge_animal.png:0"/>
+	<description></description>
+	<attributes>
+	  <atk value="992"/>
+	  <def value="122"/>
+	  <hp value="3000"/>
+	  <speed value="1"/>
+	  <size value="3,2"/>
+	</attributes>
+	<level value="180"/>
+	<experience value="57400"/>
+    <respawn value="18600"/> <!-- 93 minutes -->
+    <corpse name="animal_2x2" harmless="bag_2x2"/>
+    <drops>
+      <item value="money" quantity="[50,100]" probability="33.0"/>
+      <item value="mega potion" quantity="[1,2]" probability="2.0"/>
+      <item value="disease poison" quantity="[1,2]" probability="15.0"/>
+      <item value="magic plate legs" quantity="[1,1]" probability="0.75"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="1.5"/>
+    </abilities>
+    <ai>
+      <profile name="poisonous" params="15,deadly poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <!-- END: cephalopod -->
+
+  <!-- START: fish -->
+
+  <creature name="shark">
+    <type class="giant_animal" subclass="shark" tileid="giant_animal.png:2"/>
+    <description>A shark! Best move cautiously.</description>
+    <attributes>
+      <atk value="340"/>
+      <def value="50"/>
+      <hp value="180"/>
+      <speed value="0.5"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="39"/>
+    <experience value="1500" />
+    <respawn value="1230"/>
+    <corpse name="shark_2x2" harmless="shark_2x2" width="2" height="2" />
+    <drops>
+      <item value="money" quantity="[7,40]" probability="30.0"/>
+      <item value="char" quantity="[2,6]" probability="15.0"/>
+      <item value="cod" quantity="[1,5]" probability="70.0"/>
+      <item value="clownfish" quantity="[1,3]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="2.0"/>
+    </abilities>
+    <ai>
+      <says>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+   </ai>
+ </creature>
+
+  <!-- END: fish -->
+
+</creatures>
