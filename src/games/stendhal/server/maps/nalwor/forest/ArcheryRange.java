@@ -37,7 +37,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.mapstuff.area.FlyOverArea;
 import games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -145,7 +144,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		initRepairShop();
 		initTraining();
 		initEntrance();
-		initBlockers();
 		addToQuestSystem();
 	}
 
@@ -528,19 +526,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	 */
 	private void initEntrance() {
 		archeryZone.add(new ArcheryRangeConditionAndActionPortal());
-	}
-
-	private void initBlockers() {
-		final int[] xLocations = {
-				97, 99, 101, 103, 105, 107, 109, 111, 113, 115
-		};
-
-		for (final int x: xLocations) {
-			final FlyOverArea blocker = new FlyOverArea();
-			blocker.setPosition(x, 102);
-
-			archeryZone.add(blocker);
-		}
 	}
 
 	/**
