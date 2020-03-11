@@ -21,6 +21,8 @@ Changelog
 - achievement changes:
   - ice giant added to David vs. Goliath
   - baby angel added to Heavenly Wrath
+- new enemy sounds:
+  - werewolf
 - new RATK stat independent from ATK
 - dojo area for training ATK stat
 - archery range area for training RATK stat
