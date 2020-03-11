@@ -184,6 +184,7 @@ undead-06.*               Dorothy Jean Thompson (pyro13djt); CC BY 3.0; https://
 water-faucet-1.*          unnamed; public domain; http://www.pdsounds.org/sounds/faucet_water_into_sink
 water-slosh-[01-03].*     pawsound; CC0; https://freesound.org/people/pawsound/sounds/154881/
 werewolf_growl-[01-02].*  ketamineface; CC0; https://freesound.org/people/ketamineface/sounds/242057/
+werewolf_howl-01.*        NaturesTemper; CC0; https://freesound.org/people/NaturesTemper/sounds/398430/
 werewolf_snarl-01.*       ketamineface; CC0; https://freesound.org/people/ketamineface/sounds/242057/
 wings-flap-large-1.*      dave.des; CC0; http://freesound.org/people/dave.des/sounds/127197/
 witch-cackle-1.ogg        Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81248
