@@ -384,6 +384,7 @@
       <profile name="human"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 

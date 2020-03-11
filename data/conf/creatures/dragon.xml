@@ -333,6 +333,7 @@
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
@@ -374,6 +375,7 @@
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
@@ -411,6 +413,7 @@
       <profile name="patrolling"/>
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 

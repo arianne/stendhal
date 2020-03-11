@@ -37,6 +37,7 @@
       <profile name="archer"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 

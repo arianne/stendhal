@@ -134,6 +134,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
@@ -167,6 +168,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
@@ -200,6 +202,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
@@ -235,6 +238,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="active_idle"/>
+      <profile name="flying"/>
     </ai>
   </creature>
 
