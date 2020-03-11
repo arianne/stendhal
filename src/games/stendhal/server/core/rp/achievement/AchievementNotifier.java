@@ -26,6 +26,7 @@ import org.apache.log4j.Logger;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
@@ -375,7 +376,7 @@ public final class AchievementNotifier {
 	private void notifyPlayerAboutReachedAchievement(Player player, Achievement achievement) {
 		if (achievement.isActive()) {
 			player.addEvent(new ReachedAchievementEvent(achievement));
-			player.addEvent(new SoundEvent("yay-1", SoundLayer.USER_INTERFACE));
+			player.addEvent(new SoundEvent(SoundID.ACHIEVEMENT, SoundLayer.USER_INTERFACE));
 			player.notifyWorldAboutChanges();
 		}
 	}

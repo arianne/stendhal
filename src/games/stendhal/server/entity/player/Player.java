@@ -42,6 +42,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.common.TradeState;
 import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
@@ -2217,7 +2218,7 @@ public class Player extends DressedEntity implements UseListener {
 		// reward players on level up
 		if (oldLevel < level) {
 			AchievementNotifier.get().onLevelChange(this);
-			this.addEvent(new SoundEvent("player/level_up-01", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent(SoundID.LEVEL_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}
@@ -2229,7 +2230,7 @@ public class Player extends DressedEntity implements UseListener {
 
 		if (oldDef < def) {
 			AchievementNotifier.get().onLevelChange(this);
-			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}
@@ -2241,7 +2242,7 @@ public class Player extends DressedEntity implements UseListener {
 
 		if (oldAtk < atk) {
 			AchievementNotifier.get().onLevelChange(this);
-			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}
@@ -2253,7 +2254,7 @@ public class Player extends DressedEntity implements UseListener {
 
 		if (oldRatk < ratk) {
 			AchievementNotifier.get().onLevelChange(this);
-			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}
