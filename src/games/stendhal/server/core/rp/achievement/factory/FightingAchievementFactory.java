@@ -83,6 +83,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_FOWL = "fight.general.fowl";
 	public static final int COUNT_FOWL = 100;
 
+	// enemies required for Pachyderm Mayhem
+	public static final String[] ENEMIES_PACHYDERM = {
+			"elephant", "bull elephant", "musth elephant", "wooly mammoth"
+	};
+	public static final String ID_PACHYDERM = "fight.general.pachyderm";
+	public static final int COUNT_PACHYDERM = 100;
+
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -171,6 +178,11 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				ID_FOWL, "Chicken Nuggets", "Kill 100 of each type of fowl",
 				Achievement.EASY_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_FOWL, ENEMIES_FOWL)));
+
+		fightingAchievements.add(createAchievement(
+				ID_PACHYDERM, "Pachyderm Mayhem", "Kill 100 of each type of pachyderm",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_PACHYDERM, ENEMIES_PACHYDERM)));
 
 		return fightingAchievements;
 	}

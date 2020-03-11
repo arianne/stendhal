@@ -18,6 +18,7 @@ Changelog
   - Deep Sea Fisherman: kill 500 sharks, kraken, & neo kraken
   - Zombie Apocalypse: kill 500 zombies
   - Chicken Nuggets: kill 100 of each type of fowl
+  - Pachyderm Mayhem: kill 100 of each type of pachyderm
 - achievement changes:
   - ice giant added to David vs. Goliath
   - baby angel added to Heavenly Wrath
