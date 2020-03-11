@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -66,6 +67,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
@@ -317,6 +319,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				} else {
 					npc.say("Done! Your training bow is as good as new.");
 				}
+
+				npc.addEvent(new SoundEvent("coins-01", SoundLayer.CREATURE_NOISE));
 			}
 		};
 
