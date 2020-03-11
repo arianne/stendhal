@@ -2217,7 +2217,7 @@ public class Player extends DressedEntity implements UseListener {
 		// reward players on level up
 		if (oldLevel < level) {
 			AchievementNotifier.get().onLevelChange(this);
-			this.addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent("player/level_up-01", SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}
