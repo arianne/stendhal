@@ -43,6 +43,9 @@ public abstract class ActiveEntity extends Entity {
 	/** The current speed of this entity vertically (tiles?/sec) . */
 	private double dy;
 
+	/** If <code>true</code>, this entity is not blocked by FlyOverArea */
+	private boolean flying = false;
+
 	/**
 	 * Create an active (moving) entity.
 	 */
@@ -215,6 +218,10 @@ public abstract class ActiveEntity extends Entity {
 			speed = 0.0;
 		}
 
+		if (base.has("flying")) {
+			flying = true;
+		}
+
 		dx = direction.getdx() * speed;
 		dy = direction.getdy() * speed;
 	}
@@ -345,5 +352,13 @@ public abstract class ActiveEntity extends Entity {
 	final void setSpeed(double dx, double dy) {
 		this.dx = dx;
 		this.dy = dy;
+	}
+
+	/**
+	 * Checks if the entity is a flying entity.
+	 * @return
+	 */
+	public boolean isFlying() {
+		return flying;
 	}
 }

@@ -11,6 +11,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+
 public class FlyOverArea extends InvisibleEntity {
 
+	@Override
+	public boolean isObstacle(final IEntity entity) {
+		if (entity instanceof ActiveEntity) {
+			if (((ActiveEntity) entity).isFlying()) {
+				return false;
+			}
+		}
+
+		return super.isObstacle(entity);
+	}
 }

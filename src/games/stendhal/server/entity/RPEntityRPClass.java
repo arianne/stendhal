@@ -94,6 +94,8 @@ public class RPEntityRPClass {
 
 		/* Movement */
 		entity.addAttribute(PATHSET, Type.STRING, Definition.VOLATILE);
+		// flying entities are not blocked by FlyOverArea
+		entity.addAttribute("flying", Type.FLAG, Definition.VOLATILE);
 		// animation should cycle even if entity is idle
 		entity.addAttribute("active_idle", Type.FLAG, Definition.VOLATILE);
 
