@@ -20,6 +20,12 @@ package games.stendhal.server.core.rp.achievement;
 public enum Category {
 	/** xp points */
 	EXPERIENCE,
+	/** def level */
+	EXPERIENCE_DEF,
+	/** atk level */
+	EXPERIENCE_ATK,
+	/** ratk level */
+	EXPERIENCE_RATK,
 	/** fighting and killing creatures */
 	FIGHTING,
 	/** solving quests */

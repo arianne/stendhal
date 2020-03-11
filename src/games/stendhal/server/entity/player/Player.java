@@ -2229,7 +2229,7 @@ public class Player extends DressedEntity implements UseListener {
 		super.setDefInternal(def, notify);
 
 		if (oldDef < def) {
-			AchievementNotifier.get().onLevelChange(this);
+			AchievementNotifier.get().onDefChange(this);
 			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
@@ -2241,7 +2241,7 @@ public class Player extends DressedEntity implements UseListener {
 		super.setAtkInternal(atk, notify);
 
 		if (oldAtk < atk) {
-			AchievementNotifier.get().onLevelChange(this);
+			AchievementNotifier.get().onAtkChange(this);
 			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
@@ -2253,7 +2253,7 @@ public class Player extends DressedEntity implements UseListener {
 		super.setRatkInternal(ratk, notify);
 
 		if (oldRatk < ratk) {
-			AchievementNotifier.get().onLevelChange(this);
+			AchievementNotifier.get().onRatkChange(this);
 			this.addEvent(new SoundEvent(SoundID.STAT_UP, SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}

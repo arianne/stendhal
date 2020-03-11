@@ -79,6 +79,9 @@ data/sprites/achievements/
 
 age.png                             ???; ???; ???
 experience.png                      ???; ???; ???
+experience_atk.png                  OCAL, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://freesvg.org/muscular-biceps-vector-clip-art
+experience_def.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
+experience_ratk.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 fighting.png                        ???; ???; ???
 friend.png                          ???; ???; ???
 interior_zone.*                     ???; ???; ???

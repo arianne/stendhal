@@ -157,6 +157,17 @@ public final class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE);
 	}
 
+	public void onDefChange(final Player player) {
+		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE_DEF);
+	}
+
+	public void onAtkChange(final Player player) {
+		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE_ATK);
+	}
+
+	public void onRatkChange(final Player player) {
+		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE_RATK);
+	}
 
 	/**
 	 * checks all achievements for a player that should be checked when a player kills sth
