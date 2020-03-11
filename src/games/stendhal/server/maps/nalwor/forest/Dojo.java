@@ -69,7 +69,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private static final String QUEST_SLOT = "dojo";
 
 	/** cost to use dojo */
-	private static final int COST = 10000;
+	private static final int COST = 5000;
 
 	/** capped attack level */
 	private static final int ATK_LIMIT = 80;
@@ -78,7 +78,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
 	/** time player must wait to train again */
-	private static final int COOLDOWN = 6 * MathHelper.MINUTES_IN_ONE_HOUR;
+	private static final int COOLDOWN = TRAIN_TIME;
 
 	/** max number of players allowed in training area at a time */
 	private static final int MAX_OCCUPANTS = 16;
