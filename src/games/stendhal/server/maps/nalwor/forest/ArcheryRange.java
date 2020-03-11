@@ -177,7 +177,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		};
 
 		npc.setDescription("You see a man who appears to be a skilled assassin.");
-		npc.setPosition(120, 100);
+		npc.setPosition(120, 99);
 		npc.setEntityClass("rangernpc");
 		archeryZone.add(npc);
 	}
@@ -246,7 +246,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			}
 		};
 		blackboard.setEntityClass("blackboard");
-		blackboard.setPosition(117, 101);
+		blackboard.setPosition(117, 100);
 		archeryZone.add(blackboard);
 	}
 
@@ -257,7 +257,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private void initRepairShop() {
 		final Sign repairSign = new Sign();
 		repairSign.setEntityClass("notice");
-		repairSign.setPosition(118, 101);
+		repairSign.setPosition(118, 100);
 		repairSign.setText("Training bows #repaired here for half the price of new ones.");
 		archeryZone.add(repairSign);
 
