@@ -53,6 +53,8 @@ public class BreakableItem extends Item {
 	@Override
 	public void repair() {
 		put("uses", 0);
+		// reset so player will be notified when item is about to break again
+		notified = false;
 	}
 
 	/**
