@@ -40,10 +40,12 @@ public class SoundEvent extends RPEvent {
 	/**
 	 * Creates a new sound event with an infinite range.
 	 *
-	 * @param sound name of sound to play
+	 * @param sound
+	 * 		Name of sound to play.
 	 * @param layer
+	 * 		Sound layer (e. g. ambient sound).
 	 */
-	public SoundEvent(final String sound, SoundLayer layer) {
+	public SoundEvent(final String sound, final SoundLayer layer) {
 		super(Events.SOUND);
 		put("sound", sound);
 		put("layer", layer.ordinal());
@@ -52,11 +54,14 @@ public class SoundEvent extends RPEvent {
 	/**
 	 * Creates a new sound event with a volume and infinite range.
 	 *
-	 * @param sound name of sound to play
+	 * @param sound
+	 * 		Name of sound to play.
 	 * @param volume
+	 * 		Volume level.
 	 * @param layer
+	 * 		Sound layer (e. g. ambient sound).
 	 */
-	public SoundEvent(final String sound, int volume, SoundLayer layer) {
+	public SoundEvent(final String sound, final int volume, final SoundLayer layer) {
 		this(sound, layer);
 		put("volume", volume);
 	}
@@ -64,12 +69,16 @@ public class SoundEvent extends RPEvent {
 	/**
 	 * Creates a new sound event with specified range and volume.
 	 *
-	 * @param sound name of sound to play
-	 * @param radius radius
-	 * @param volume volume
-	 * @param layer layer (e. g. ambient sound)
+	 * @param sound
+	 * 		Name of sound to play.
+	 * @param radius
+	 * 		Radius at which sound can be heard.
+	 * @param volume
+	 * 		Volume level.
+	 * @param layer
+	 * 		Sound layer (e. g. ambient sound).
 	 */
-	public SoundEvent(String sound, int radius, int volume, SoundLayer layer) {
+	public SoundEvent(final String sound, final int radius, final int volume, final SoundLayer layer) {
 		this(sound, volume, layer);
 		put("radius", radius);
 	}
