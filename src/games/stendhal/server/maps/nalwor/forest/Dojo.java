@@ -78,7 +78,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
 	/** time player must wait to train again */
-	private static final int COOLDOWN = TRAIN_TIME;
+	private static final int COOLDOWN = 15;
 
 	/** max number of players allowed in training area at a time */
 	private static final int MAX_OCCUPANTS = 16;
