@@ -2210,14 +2210,50 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	@Override
-	public void setLevel(int level) {
-		final int oldLevel = super.getLevel();
+	public void setLevel(final int level) {
+		final int oldLevel = getLevel();
 		super.setLevel(level);
 
 		// reward players on level up
 		if (oldLevel < level) {
 			AchievementNotifier.get().onLevelChange(this);
 			this.addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+			this.notifyWorldAboutChanges();
+		}
+	}
+
+	@Override
+	protected void setDefInternal(final int def, final boolean notify) {
+		final int oldDef = getDef();
+		super.setDefInternal(def, notify);
+
+		if (oldDef < def) {
+			AchievementNotifier.get().onLevelChange(this);
+			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
+			this.notifyWorldAboutChanges();
+		}
+	}
+
+	@Override
+	protected void setAtkInternal(final int atk, final boolean notify) {
+		final int oldAtk = getAtk();
+		super.setAtkInternal(atk, notify);
+
+		if (oldAtk < atk) {
+			AchievementNotifier.get().onLevelChange(this);
+			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
+			this.notifyWorldAboutChanges();
+		}
+	}
+
+	@Override
+	protected void setRatkInternal(final int ratk, final boolean notify) {
+		final int oldRatk = getRatk();
+		super.setRatkInternal(ratk, notify);
+
+		if (oldRatk < ratk) {
+			AchievementNotifier.get().onLevelChange(this);
+			this.addEvent(new SoundEvent("player/stat_up-01", SoundLayer.USER_INTERFACE));
 			this.notifyWorldAboutChanges();
 		}
 	}

@@ -789,7 +789,7 @@ public abstract class RPEntity extends GuidedEntity {
 		setAtkInternal(atk, true);
 	}
 
-	private void setAtkInternal(final int atk, boolean notify) {
+	protected void setAtkInternal(final int atk, boolean notify) {
 		this.atk = atk;
 		put("atk", atk);  // visible atk
 		if(notify) {
@@ -847,7 +847,7 @@ public abstract class RPEntity extends GuidedEntity {
 		setDefInternal(def, true);
 	}
 
-	private void setDefInternal(final int def, boolean notify) {
+	protected void setDefInternal(final int def, boolean notify) {
 		this.def = def;
 		put("def", def);  // visible def
 		if(notify) {
@@ -922,7 +922,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param notify
 	 * 		Update stat in real-time
 	 */
-	private void setRatkInternal(final int ratk, boolean notify) {
+	protected void setRatkInternal(final int ratk, boolean notify) {
 		this.ratk = ratk;
 		put("ratk", ratk);  // visible ratk
 		if(notify) {
