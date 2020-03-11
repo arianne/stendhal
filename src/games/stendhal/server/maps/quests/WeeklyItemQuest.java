@@ -240,6 +240,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		// legs (hard difficulty)
 		addHard("xeno legs", 1);
 
+		// misc (hard difficulty)
+		addHard("unicorn horn", 5);
+
 		// shield (hard difficulty)
 		addHard("xeno shield", 1);
 
