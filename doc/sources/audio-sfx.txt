@@ -194,3 +194,7 @@ wolf-howl-02.*            killyourpepe; CC0; https://freesound.org/people/killyo
 xylophone-1.*             Storyteller; GPL
 yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
 yay-1.ogg                 Katie Russell (kymara); GPL
+
+data/sounds/player/
+
+stat_up-01.*  wobbleboxx; CC0; https://opengameart.org/node/31038
