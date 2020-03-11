@@ -209,6 +209,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		// prices are higher than those of other shops
 		final Map<String, Integer> shop = new LinkedHashMap<>();
 		shop.put("wooden arrow", 4);
+		shop.put("wooden spear", 125);
 		shop.put("wooden bow", 600);
 		shop.put("longbow", 1200);
 		shop.put("training bow", bowPrice);
