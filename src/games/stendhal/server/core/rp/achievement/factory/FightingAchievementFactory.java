@@ -46,7 +46,8 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 
 	// enemies required for Heavenly Wrath
 	public static final String[] ENEMIES_ANGELS = {
-			"angel", "archangel", "dark angel", "dark archangel", "fallen angel"
+			"angel", "archangel", "dark angel", "dark archangel", "fallen angel",
+			"baby angel"
 	};
 	public static final String ID_ANGELS = "fight.general.angels";
 	public static final int COUNT_ANGELS = 100;
