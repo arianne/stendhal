@@ -129,7 +129,7 @@
       <ratk value="0" />
       <range value="3" />
       <rate value="1" />
-      <durability value="150" />
+      <durability value="500" />
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
