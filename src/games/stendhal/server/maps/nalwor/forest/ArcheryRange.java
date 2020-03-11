@@ -38,6 +38,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal;
+import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -99,6 +100,9 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	/** max number of players allowed in training area at a time */
 	private static final int MAX_OCCUPANTS = 10;
 
+	/** condition to check if training area is full */
+	AreaIsFullCondition rangeFullCondition;
+
 	/** zone info */
 	private StendhalRPZone archeryZone;
 	private String archeryZoneID;
@@ -122,12 +126,15 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 	private static final String FULL_MESSAGE = "The archery range is full. Come back later.";
 
-	/** position of portal that manages access to training area */
-	private static final Point PORTAL_POS = new Point(116, 104);
+	/** position of gate that manages access to training area */
+	private static final Point GATE_POS = new Point(116, 104);
 
 	/** misc objects for JUnit test */
 	private static AbstractQuest quest;
 	private static ShopSign blackboard;
+
+	/** message when player tries to enter without paying */
+	private static final String NO_ACCESS_MESSAGE = "Hey %s! You can't just walk into the archery range for free.";
 
 
 	@Override
@@ -139,15 +146,66 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		archeryZone = zone;
 		archeryZoneID = zone.getName();
 
-		buildNPC();
+		// initialize condition to check if training area is full
+		rangeFullCondition = new AreaIsFullCondition(new Area(archeryZone, archeryArea), MAX_OCCUPANTS);
+
+		initEntrance();
+		initNPC();
 		initShop();
 		initRepairShop();
 		initTraining();
-		initEntrance();
 		addToQuestSystem();
 	}
 
-	private void buildNPC() {
+	/**
+	 * Initializes portal & gate entities that manage access to the training area.
+	 */
+	private void initEntrance() {
+		// prevents players who haven't paid from entering if gate is open (must be added before gate)
+		archeryZone.add(new ArcheryRangeConditionAndActionPortal());
+
+		// gate to enter
+		final Gate gate = new Gate("v", "palisade_gate", new QuestInStateCondition("archery_range", 0, STATE_ACTIVE)) {
+
+			@Override
+			protected boolean isAllowed(final RPEntity user) {
+				// don't worry about players trying to leave
+				if (user.getDirectionToward(this) != Direction.LEFT) {
+					return true;
+				}
+
+				// check if player has paid
+				if (!super.isAllowed(user)) {
+					npc.say(NO_ACCESS_MESSAGE.replace("%s", user.getName()));
+					return false;
+				}
+
+				// check if dojo is full
+				if (isFull()) {
+					npc.say(FULL_MESSAGE);
+					return false;
+				}
+
+				return true;
+			}
+
+			@Override
+			public boolean onUsed(final RPEntity user) {
+				if (this.nextTo(user)) {
+					if (isAllowed(user)) {
+						setOpen(!isOpen());
+						return true;
+					}
+				}
+				return false;
+			}
+		};
+		gate.setAutoCloseDelay(2);
+		gate.setPosition(GATE_POS.x, GATE_POS.y);
+		archeryZone.add(gate);
+	}
+
+	private void initNPC() {
 		npc = new SpeakerNPC(npcName) {
 			@Override
 			protected void createDialog() {
@@ -465,13 +523,12 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player meets requirements but training area is full
-		Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea);
 		npc.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id"),
-						new AreaIsFullCondition(area, MAX_OCCUPANTS)),
+						rangeFullCondition),
 				ConversationStates.ATTENDING,
 				FULL_MESSAGE,
 				null);
@@ -519,13 +576,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, TRAIN_TIME, "Your training will end in about"));
 		*/
-	}
-
-	/**
-	 * Initializes portal entity that manages access to the training area.
-	 */
-	private void initEntrance() {
-		archeryZone.add(new ArcheryRangeConditionAndActionPortal());
 	}
 
 	/**
@@ -598,7 +648,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	@Override
 	public void onLoggedIn(final Player player) {
 		// don't allow players to login within archery range area boundaries
-		if (isPlayerInArea(player, archeryZoneID, archeryArea) || (player.getX() == PORTAL_POS.x && player.getY() == PORTAL_POS.y)) {
+		if (isPlayerInArea(player, archeryZoneID, archeryArea) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
 		}
 
@@ -619,6 +669,16 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	public void onLoggedOut(Player player) {
 		// disable timer/notifier
 		SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
+	}
+
+	/**
+	 * Checks if dojo is full.
+	 *
+	 * @return
+	 * 		<code>true</code> if max number of occupants are within training area bounds.
+	 */
+	private boolean isFull() {
+		return rangeFullCondition.fire(null, null, null);
 	}
 
 	/**
@@ -774,7 +834,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			rejections.put(
 					new QuestInStateCondition(QUEST_SLOT, 0, STATE_ACTIVE),
 					Arrays.asList(
-							"Hey %s! You can't just walk into the archery range for free.",
+							NO_ACCESS_MESSAGE,
 							pushMessage));
 			rejections.put(
 					new NotCondition(new AreaIsFullCondition(area, MAX_OCCUPANTS)),
@@ -782,7 +842,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 							FULL_MESSAGE,
 							pushMessage));
 
-			setPosition(PORTAL_POS.x, PORTAL_POS.y);
+			setPosition(GATE_POS.x, GATE_POS.y);
 			setIgnoreNoDestination(true);
 			setResistance(0);
 			setForceStop(true);

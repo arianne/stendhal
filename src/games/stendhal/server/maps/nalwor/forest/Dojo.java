@@ -132,7 +132,17 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		// players cannot teleport into dojo area
 		new NoTeleportIn().configureZone(dojoZone, dojoArea);
 
-		// prevents players who haven't paid from entering if gate is open
+		initEntrance();
+		initNPC();
+		initDialogue();
+		addToQuestSystem();
+	}
+
+	/**
+	 * Initializes portal & gate entities that manage access to the training area.
+	 */
+	private void initEntrance() {
+		// prevents players who haven't paid from entering if gate is open (must be added before gate)
 		dojoZone.add(new DojoConditionAndActionPortal());
 
 		// gate to enter
@@ -171,14 +181,9 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				return false;
 			}
 		};
-		//gate.setRefuseMessage("You must pay to enter the dojo.");
 		gate.setAutoCloseDelay(2);
 		gate.setPosition(GATE_POS.x, GATE_POS.y);
 		dojoZone.add(gate);
-
-		initNPC();
-		initDialogue();
-		addToQuestSystem();
 	}
 
 	private void initNPC() {
@@ -266,13 +271,12 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				null);
 
 		// player meets requirements but training area is full
-		Area area = new Area(SingletonRepository.getRPWorld().getZone(dojoZoneID), dojoArea);
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id"),
-						new AreaIsFullCondition(area, MAX_OCCUPANTS)),
+						dojoFullCondition),
 				ConversationStates.ATTENDING,
 				FULL_MESSAGE,
 				null);
