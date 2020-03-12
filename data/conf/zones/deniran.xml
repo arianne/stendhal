@@ -456,6 +456,7 @@
 
 	<zone name="-2_deniran_caves_sw" level="-2" x="499104" y="500128"
 		file="Level -2/deniran/caves_sw.tmx">
+		<configurator class-name="games.stendhal.server.maps.deniran.caves.SorcererNPC" />
 
 	</zone>
 

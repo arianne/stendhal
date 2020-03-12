@@ -416,6 +416,7 @@
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal armor" quantity="[1,1]" probability="0.05"/>
       <item value="royal boots" quantity="[1,1]" probability="0.05"/>
+      <item value="pegasus feather" quantity="[1,1]" probability="50"/>
     </drops>
     <equips/>
     <ai>
