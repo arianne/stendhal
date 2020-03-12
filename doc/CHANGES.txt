@@ -20,6 +20,7 @@ Changelog
   - Chicken Nuggets: kill 100 of each type of fowl
   - Pachyderm Mayhem: kill 100 of each type of pachyderm
   - 5 achievements for each stat (def, atk, & ratk)
+  - Bluffy the Slayer: kill 500 of any giant bat
 - achievement changes:
   - ice giant added to David vs. Goliath
   - baby angel added to Heavenly Wrath

@@ -90,6 +90,12 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_PACHYDERM = "fight.general.pachyderm";
 	public static final int COUNT_PACHYDERM = 100;
 
+	// enemies required for Bluffy the Slayer
+	public static final String[] ENEMIES_BLUFFY = {
+			"giant bat", "giant killer bat"
+	};
+	public static final String ID_BLUFFY = "fight.general.bluffy";
+	public static final int COUNT_BLUFFY = 500;
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -184,6 +190,22 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_PACHYDERM, ENEMIES_PACHYDERM)));
 
+		fightingAchievements.add(createAchievement(
+				ID_BLUFFY, "Bluffy the Slayer", "Kill "+COUNT_BLUFFY+" giant bats or giant killer bats", 
+				Achievement.MEDIUM_BASE_SCORE, true, 
+				new ChatCondition() {
+					@Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+						int kills = 0;
+
+						for (final String bat: ENEMIES_BLUFFY) {
+							kills += player.getSoloKill(bat) + player.getSharedKill(bat);
+						}
+
+						return kills >= COUNT_BLUFFY;
+					}
+				}));
+		
 		return fightingAchievements;
 	}
 
