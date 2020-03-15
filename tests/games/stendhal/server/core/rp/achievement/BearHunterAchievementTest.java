@@ -51,9 +51,9 @@ public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
 	@Test
 	public void init() {
 		final int requiredKills = count * ENEMIES_BEARS.length;
-		int totalKills = 0;
 
 		// solo kills
+		int totalKills = 0;
 		resetPlayer();
 		for (final String enemy: ENEMIES_BEARS) {
 			int killCount = player.getSoloKill(enemy);
@@ -74,6 +74,7 @@ public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
 		assertTrue(achievementReached());
 
 		// shared kills
+		totalKills = 0;
 		resetPlayer();
 		for (final String enemy: ENEMIES_BEARS) {
 			int killCount = player.getSharedKill(enemy);
