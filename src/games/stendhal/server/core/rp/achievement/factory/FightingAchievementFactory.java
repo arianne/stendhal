@@ -45,6 +45,9 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 			"ratman", "ratwoman", "archrat"
 	};
 
+	public static final String ID_DEER = "fight.general.deer";
+	public static final int COUNT_DEER = 25;
+
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
@@ -108,8 +111,8 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 													new PlayerHasKilledNumberOfCreaturesCondition("rat", COUNT_RATS)));
 		fightingAchievements.add(createAchievement(ID_EXTERMINATOR, "Exterminator", "Kill " + COUNT_EXTERMINATOR + " rats of each kind", Achievement.MEDIUM_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition(COUNT_EXTERMINATOR, ENEMIES_EXTERMINATOR)));
-		fightingAchievements.add(createAchievement("fight.general.deer", "Deer Hunter", "Kill 25 deer", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("deer", 25)));
+		fightingAchievements.add(createAchievement(ID_DEER, "Deer Hunter", "Kill " + COUNT_DEER + " deer", Achievement.EASY_BASE_SCORE, true,
+													new PlayerHasKilledNumberOfCreaturesCondition("deer", COUNT_DEER)));
 		fightingAchievements.add(createAchievement("fight.general.boars", "Boar Hunter", "Kill 20 boar", Achievement.EASY_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition("boar", 20)));
 		fightingAchievements.add(createAchievement("fight.general.bears", "Bear Hunter", "Kill 10 black bears, 10 bears and 10 babybears", Achievement.EASY_BASE_SCORE, true,
