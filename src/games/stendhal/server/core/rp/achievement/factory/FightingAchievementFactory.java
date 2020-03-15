@@ -55,6 +55,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_FOXES = "fight.general.foxes";
 	public static final String ID_SAFARI = "fight.general.safari";
 	public static final String ID_ENTS = "fight.general.ents";
+	public static final String ID_POACHER = "fight.special.rare";
 
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
@@ -135,7 +136,9 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 															)));
 		fightingAchievements.add(createAchievement(ID_ENTS, "Wood Cutter", "Kill 10 ents, 10 entwifes and 10 old ents", Achievement.MEDIUM_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition(10, "ent", "entwife", "old ent")));
-		fightingAchievements.add(createAchievement("fight.special.rare", "Poacher", "Kill any rare creature", Achievement.HARD_BASE_SCORE, true,
+		fightingAchievements.add(createAchievement(
+				ID_POACHER, "Poacher", "Kill any rare creature",
+				Achievement.HARD_BASE_SCORE, true,
 				new KilledRareCreatureCondition()));
 
 		fightingAchievements.add(createAchievement("fight.special.all", "Legend", "Kill all creatures solo", Achievement.HARD_BASE_SCORE, true,
