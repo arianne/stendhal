@@ -38,6 +38,13 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_RATS = "fight.general.rats";
 	public static final int COUNT_RATS = 15;
 
+	public static final String ID_EXTERMINATOR = "fight.general.exterminator";
+	public static final int COUNT_EXTERMINATOR = 10;
+	public static final String[] ENEMIES_EXTERMINATOR = {
+			"rat", "caverat", "razorrat", "venomrat", "zombie rat", "giantrat",
+			"ratman", "ratwoman", "archrat"
+	};
+
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
@@ -99,8 +106,8 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
 		fightingAchievements.add(createAchievement(ID_RATS, "Rat Hunter", "Kill " + COUNT_RATS + " rats", Achievement.EASY_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition("rat", COUNT_RATS)));
-		fightingAchievements.add(createAchievement("fight.general.exterminator", "Exterminator", "Kill 10 rats of each kind", Achievement.MEDIUM_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "razorrat", "venomrat", "zombie rat", "giantrat", "ratman", "ratwoman", "archrat")));
+		fightingAchievements.add(createAchievement(ID_EXTERMINATOR, "Exterminator", "Kill " + COUNT_EXTERMINATOR + " rats of each kind", Achievement.MEDIUM_BASE_SCORE, true,
+													new PlayerHasKilledNumberOfCreaturesCondition(COUNT_EXTERMINATOR, ENEMIES_EXTERMINATOR)));
 		fightingAchievements.add(createAchievement("fight.general.deer", "Deer Hunter", "Kill 25 deer", Achievement.EASY_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition("deer", 25)));
 		fightingAchievements.add(createAchievement("fight.general.boars", "Boar Hunter", "Kill 20 boar", Achievement.EASY_BASE_SCORE, true,
