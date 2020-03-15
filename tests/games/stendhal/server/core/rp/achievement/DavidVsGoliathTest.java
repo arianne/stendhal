@@ -11,21 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_GIANTS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_GIANTS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_GIANTS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
@@ -35,12 +34,6 @@ public class DavidVsGoliathTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
-	private final String achievementId = FightingAchievementFactory.ID_GIANTS;
-
-	private final List<String> requiredKills = Arrays.asList(FightingAchievementFactory.ENEMIES_GIANTS);
-
-	// required number of solo kills for each enemy
-	private final int KILL_COUNT = FightingAchievementFactory.COUNT_GIANTS;
 
 
 	@BeforeClass
@@ -63,30 +56,30 @@ public class DavidVsGoliathTest {
 	}
 
 	private void testAchievement() {
-		for (final String enemy: requiredKills) {
-			for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (final String enemy: ENEMIES_GIANTS) {
+			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
 				kill(enemy, false);
 			}
-			assertEquals(KILL_COUNT, player.getSharedKill(enemy));
+			assertEquals(COUNT_GIANTS, player.getSharedKill(enemy));
 		}
 		assertFalse(achievementReached());
 
-		for (final String enemy: requiredKills) {
-			for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (final String enemy: ENEMIES_GIANTS) {
+			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
 				kill(enemy, true);
 			}
-			assertEquals(KILL_COUNT, player.getSoloKill(enemy));
+			assertEquals(COUNT_GIANTS, player.getSoloKill(enemy));
 		}
 		assertTrue(achievementReached());
 
 		resetPlayer();
-		final int enemyCount = requiredKills.size();
+		final int enemyCount = ENEMIES_GIANTS.length;
 		for (int idx = 0; idx < enemyCount; idx++) {
-			final String enemy = requiredKills.get(idx);
-			for (int kills = 0; kills < KILL_COUNT; kills++) {
+			final String enemy = ENEMIES_GIANTS[idx];
+			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
 				kill(enemy, true);
 
-				if (idx >= enemyCount - 1 && kills >= KILL_COUNT - 1) {
+				if (idx >= enemyCount - 1 && kills >= COUNT_GIANTS - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
@@ -106,7 +99,7 @@ public class DavidVsGoliathTest {
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		for (final String enemy: requiredKills) {
+		for (final String enemy: ENEMIES_GIANTS) {
 			assertFalse(player.hasKilledSolo(enemy));
 			assertFalse(player.hasKilledShared(enemy));
 		}
@@ -124,7 +117,7 @@ public class DavidVsGoliathTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
+		return player.hasReachedAchievement(ID_GIANTS);
 	}
 
 	/**

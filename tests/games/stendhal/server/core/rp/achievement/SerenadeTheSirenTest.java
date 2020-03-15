@@ -11,21 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_MERMAIDS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_MERMAIDS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_MERMAIDS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
@@ -35,15 +34,6 @@ public class SerenadeTheSirenTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
-
-	// ID used for achievement
-	private final String achievementId = FightingAchievementFactory.ID_MERMAIDS;
-
-	// list of enemies
-	private final List<String> requiredKills = Arrays.asList(FightingAchievementFactory.ENEMIES_MERMAIDS);
-
-	// required number of kills for each enemy
-	private final int KILL_COUNT = FightingAchievementFactory.COUNT_MERMAIDS;
 
 
 	@BeforeClass
@@ -67,49 +57,49 @@ public class SerenadeTheSirenTest {
 
 	private void testAchievement() {
 		// test with solo kills for each enemy
-		for (final String enemy: requiredKills) {
-			for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (final String enemy: ENEMIES_MERMAIDS) {
+			for (int kills = 0; kills < COUNT_MERMAIDS; kills++) {
 				kill(enemy, true);
 
-				if (kills >= KILL_COUNT - 1) {
+				if (kills >= COUNT_MERMAIDS - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
 				}
 			}
-			assertEquals(KILL_COUNT, player.getSoloKill(enemy));
+			assertEquals(COUNT_MERMAIDS, player.getSoloKill(enemy));
 
 			resetPlayer();
 		}
 
 		// test with team kills for each enemy
-		for (final String enemy: requiredKills) {
-			for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (final String enemy: ENEMIES_MERMAIDS) {
+			for (int kills = 0; kills < COUNT_MERMAIDS; kills++) {
 				kill(enemy, false);
 
-				if (kills >= KILL_COUNT - 1) {
+				if (kills >= COUNT_MERMAIDS - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
 				}
 			}
-			assertEquals(KILL_COUNT, player.getSharedKill(enemy));
+			assertEquals(COUNT_MERMAIDS, player.getSharedKill(enemy));
 
 			resetPlayer();
 		}
 
 		// test with mixed kills
-		final int enemyTypes = requiredKills.size();
-		final double killsPerType = KILL_COUNT / enemyTypes / 2; // solo & team kills
+		final int enemyTypes = ENEMIES_MERMAIDS.length;
+		final double killsPerType = COUNT_MERMAIDS / enemyTypes / 2; // solo & team kills
 
 		for (int eType = 0; eType < enemyTypes; eType++) {
 			for (int kill = 0; kill < killsPerType; kill++) {
-				final String enemy = requiredKills.get(eType);
+				final String enemy = ENEMIES_MERMAIDS[eType];
 
 				kill(enemy, true);
 				kill(enemy, false);
 
-				if (enemy.equals(requiredKills.get(enemyTypes - 1)) && kill == killsPerType - 1) {
+				if (enemy.equals(ENEMIES_MERMAIDS[enemyTypes - 1]) && kill == killsPerType - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
@@ -128,7 +118,7 @@ public class SerenadeTheSirenTest {
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		for (final String enemy: requiredKills) {
+		for (final String enemy: ENEMIES_MERMAIDS) {
 			assertFalse(player.hasKilledSolo(enemy));
 			assertFalse(player.hasKilledShared(enemy));
 		}
@@ -146,7 +136,7 @@ public class SerenadeTheSirenTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
+		return player.hasReachedAchievement(ID_MERMAIDS);
 	}
 
 	/**

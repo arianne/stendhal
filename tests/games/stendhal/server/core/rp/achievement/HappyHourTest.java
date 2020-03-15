@@ -11,19 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import static games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory.COUNT_HAPPY_HOUR;
+import static games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory.ID_HAPPY_HOUR;
+import static games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory.ITEMS_HAPPY_HOUR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -36,15 +35,6 @@ import utilities.ZonePlayerAndNPCTestImpl;
 public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String npcName = "Margaret";
-
-	// items used in achievement
-	private final List<String> itemList = Arrays.asList(CommerceAchievementFactory.ITEMS_HAPPY_HOUR);
-
-	// ID used for achievement
-	private final String achievementId = CommerceAchievementFactory.ID_HAPPY_HOUR;
-
-	// required number of apples to harves or loot
-	private final int ITEM_COUNT = CommerceAchievementFactory.COUNT_HAPPY_HOUR;
 
 
 	@BeforeClass
@@ -78,9 +68,9 @@ public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
 
 		final int priceBeer = 10;
 		final int priceWine = 15;
-		final int fullPrice = (priceBeer * ITEM_COUNT) + (priceWine * ITEM_COUNT);
+		final int fullPrice = (priceBeer * COUNT_HAPPY_HOUR) + (priceWine * COUNT_HAPPY_HOUR);
 
-		for (final String item: itemList) {
+		for (final String item: ITEMS_HAPPY_HOUR) {
 			assertFalse(player.isEquipped(item));
 			assertEquals(0, player.getQuantityOfBoughtItems(item));
 		}
@@ -94,14 +84,14 @@ public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		en.step(player, "buy 100 beer");
 		en.step(player, "yes");
-		assertTrue(player.isEquipped("beer", ITEM_COUNT));
+		assertTrue(player.isEquipped("beer", COUNT_HAPPY_HOUR));
 		assertFalse(achievementReached());
 		en.step(player, "buy 100 wine");
 		en.step(player, "yes");
-		assertTrue(player.isEquipped("wine", ITEM_COUNT));
+		assertTrue(player.isEquipped("wine", COUNT_HAPPY_HOUR));
 
-		for (final String item: itemList) {
-			assertEquals(ITEM_COUNT, player.getQuantityOfBoughtItems(item));
+		for (final String item: ITEMS_HAPPY_HOUR) {
+			assertEquals(COUNT_HAPPY_HOUR, player.getQuantityOfBoughtItems(item));
 		}
 
 		assertTrue(achievementReached());
@@ -124,6 +114,6 @@ public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, achievementId);
+		return AchievementTestHelper.achievementReached(player, ID_HAPPY_HOUR);
 	}
 }

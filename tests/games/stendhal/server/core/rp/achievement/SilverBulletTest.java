@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_WEREWOLF;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_WEREWOLF;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -21,7 +23,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
@@ -31,12 +32,6 @@ public class SilverBulletTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
-
-	// ID used for achievement
-	private final String achievementId = FightingAchievementFactory.ID_WEREWOLF;
-
-	// required number of solo kills for each enemy
-	private final int KILL_COUNT = FightingAchievementFactory.COUNT_WEREWOLF;
 
 	private final String enemy = "werewolf";
 
@@ -62,10 +57,10 @@ public class SilverBulletTest {
 
 	private void testAchievement() {
 		// test with solo kills
-		for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (int kills = 0; kills < COUNT_WEREWOLF; kills++) {
 			kill(enemy, true);
 
-			if (kills >= KILL_COUNT - 1) {
+			if (kills >= COUNT_WEREWOLF - 1) {
 				assertTrue(achievementReached());
 			} else {
 				assertFalse(achievementReached());
@@ -75,10 +70,10 @@ public class SilverBulletTest {
 		resetPlayer();
 
 		// test with team kills
-		for (int kills = 0; kills < KILL_COUNT; kills++) {
+		for (int kills = 0; kills < COUNT_WEREWOLF; kills++) {
 			kill(enemy, false);
 
-			if (kills >= KILL_COUNT - 1) {
+			if (kills >= COUNT_WEREWOLF - 1) {
 				assertTrue(achievementReached());
 			} else {
 				assertFalse(achievementReached());
@@ -113,7 +108,7 @@ public class SilverBulletTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(achievementId);
+		return player.hasReachedAchievement(ID_WEREWOLF);
 	}
 
 	/**
