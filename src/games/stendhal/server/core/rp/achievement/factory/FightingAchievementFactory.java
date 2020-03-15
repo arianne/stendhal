@@ -53,6 +53,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 			"bear", "black bear", "babybear"
 	};
 	public static final String ID_FOXES = "fight.general.foxes";
+	public static final String ID_SAFARI = "fight.general.safari";
 
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
@@ -125,7 +126,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 													new PlayerHasKilledNumberOfCreaturesCondition(10, ENEMIES_BEARS)));
 		fightingAchievements.add(createAchievement(ID_FOXES, "Fox Hunter", "Kill 20 foxes", Achievement.EASY_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition("fox", 20)));
-		fightingAchievements.add(createAchievement("fight.general.safari", "Safari", "Kill 30 tigers, 30 lions and 50 elephants", Achievement.EASY_BASE_SCORE, true,
+		fightingAchievements.add(createAchievement(ID_SAFARI, "Safari", "Kill 30 tigers, 30 lions and 50 elephants", Achievement.EASY_BASE_SCORE, true,
 													new AndCondition(
 															new PlayerHasKilledNumberOfCreaturesCondition("tiger", 30),
 															new PlayerHasKilledNumberOfCreaturesCondition("lion", 30),
