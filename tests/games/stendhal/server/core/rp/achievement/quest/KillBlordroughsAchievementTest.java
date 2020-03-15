@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.quest;
 
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_LACKEY;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_SOLDIER;
@@ -29,6 +29,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -43,11 +44,6 @@ import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 
-/*
- * NOTE: This test class cannot be named "KillBlordroughsTest" as it will conflict with
- *       games.stendhal.server.maps.quests.KillBlordroughsTest. Thus, the "Achievement"
- *       suffix has been added to it.
- */
 public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player;
