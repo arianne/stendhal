@@ -35,6 +35,9 @@ import games.stendhal.server.entity.player.Player;
  */
 public class FightingAchievementFactory extends AbstractAchievementFactory {
 
+	public static final String ID_RATS = "fight.general.rats";
+	public static final int COUNT_RATS = 15;
+
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
@@ -94,8 +97,8 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
-		fightingAchievements.add(createAchievement("fight.general.rats", "Rat Hunter", "Kill 15 rats", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15)));
+		fightingAchievements.add(createAchievement(ID_RATS, "Rat Hunter", "Kill " + COUNT_RATS + " rats", Achievement.EASY_BASE_SCORE, true,
+													new PlayerHasKilledNumberOfCreaturesCondition("rat", COUNT_RATS)));
 		fightingAchievements.add(createAchievement("fight.general.exterminator", "Exterminator", "Kill 10 rats of each kind", Achievement.MEDIUM_BASE_SCORE, true,
 													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "razorrat", "venomrat", "zombie rat", "giantrat", "ratman", "ratwoman", "archrat")));
 		fightingAchievements.add(createAchievement("fight.general.deer", "Deer Hunter", "Kill 25 deer", Achievement.EASY_BASE_SCORE, true,
