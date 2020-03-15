@@ -9,21 +9,21 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_SAFARI;
-import static org.junit.Assert.assertEquals;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_POACHER;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -31,17 +31,12 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
+public class PoacherAchievementTest extends ZoneAndPlayerTestImpl {
 
-	private final int reqTiger = 30;
-	private final int reqLion = 30;
-	private final int reqElephant = 50;
-
-	private final Map<String, Integer> enemies = new HashMap<String, Integer>() {{
-		put("tiger", reqTiger);
-		put("lion", reqLion);
-		put("elephant", reqElephant);
-	}};
+	// NOTE: big bad wolf & twilight slime must be excluded
+	private final String[] rareEnemies = {
+		"unicorn", "centaur", "pegasus", "ghost hound"
+	};
 
 
 	@BeforeClass
@@ -55,56 +50,39 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(enemies.keySet().toArray(new String[0]));
+
+		final List<String> enemyList = new ArrayList<String>();
+		for (final String rare: rareEnemies) {
+			enemyList.add(rare);
+		}
+		// fox is used for testing negative result
+		enemyList.add("fox");
+		AchievementTestHelper.setEnemyNames(enemyList);
 	}
 
 	@Test
 	public void init() {
-		final int reqTotal = reqTiger + reqLion + reqElephant;
-
 		// solo kills
-		int totalKills = 0;
 		resetPlayer();
-		for (final String enemy: enemies.keySet()) {
-			int killCount = player.getSoloKill(enemy);
-			assertEquals(0, killCount);
+		onKill("fox");
+		assertFalse(achievementReached());
 
-			final int count = enemies.get(enemy);
-			while (killCount < count) {
-				killCount++;
-				player.setSoloKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
-
-			totalKills += killCount;
-
-			if (totalKills < reqTotal) {
-				assertFalse(achievementReached());
-			}
+		for (final String enemy: rareEnemies) {
+			resetPlayer();
+			onKill(enemy);
+			assertTrue(achievementReached());
 		}
-		assertTrue(achievementReached());
 
 		// shared kills
-		totalKills = 0;
 		resetPlayer();
-		for (final String enemy: enemies.keySet()) {
-			int killCount = player.getSharedKill(enemy);
-			assertEquals(0, killCount);
+		onKill("fox", true);
+		assertFalse(achievementReached());
 
-			final int count = enemies.get(enemy);
-			while (killCount < count) {
-				killCount++;
-				player.setSharedKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
-
-			totalKills += killCount;
-
-			if (totalKills < reqTotal) {
-				assertFalse(achievementReached());
-			}
+		for (final String enemy: rareEnemies) {
+			resetPlayer();
+			onKill(enemy, true);
+			assertTrue(achievementReached());
 		}
-		assertTrue(achievementReached());
 	}
 
 	private void resetPlayer() {
@@ -116,7 +94,7 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		for (final String enemy: enemies.keySet()) {
+		for (final String enemy: rareEnemies) {
 			assertFalse(player.hasKilled(enemy));
 		}
 
@@ -124,7 +102,21 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 		assertFalse(achievementReached());
 	}
 
+	private void onKill(final String enemy, final boolean shared) {
+		if (shared) {
+			player.setSharedKillCount(enemy, player.getSharedKill(enemy) + 1);
+		} else {
+			player.setSoloKillCount(enemy, player.getSoloKill(enemy) + 1);
+		}
+
+		AchievementNotifier.get().onKill(player);
+	}
+
+	private void onKill(final String enemy) {
+		onKill(enemy, false);
+	}
+
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_SAFARI);
+		return AchievementTestHelper.achievementReached(player, ID_POACHER);
 	}
 }

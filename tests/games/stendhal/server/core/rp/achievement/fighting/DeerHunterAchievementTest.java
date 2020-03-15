@@ -9,10 +9,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_BEARS;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_BEARS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_DEER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,6 +21,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -29,9 +29,10 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
+public class DeerHunterAchievementTest extends ZoneAndPlayerTestImpl {
 
-	private final int count = 10;
+	private final String enemy = "deer";
+	private final int reqCount = 25;
 
 
 	@BeforeClass
@@ -45,54 +46,44 @@ public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(ENEMIES_BEARS);
+		AchievementTestHelper.setEnemyNames(enemy);
 	}
 
 	@Test
 	public void init() {
-		final int requiredKills = count * ENEMIES_BEARS.length;
-
 		// solo kills
-		int totalKills = 0;
 		resetPlayer();
-		for (final String enemy: ENEMIES_BEARS) {
-			int killCount = player.getSoloKill(enemy);
-			assertEquals(0, killCount);
+		int killCount = player.getSoloKill(enemy);
+		assertEquals(0, killCount);
 
-			while (killCount < count) {
-				killCount++;
-				player.setSoloKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
+		while (killCount < reqCount) {
+			killCount++;
+			player.setSoloKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
 
-			totalKills += killCount;
-
-			if (totalKills < requiredKills) {
+			if (killCount < reqCount) {
 				assertFalse(achievementReached());
+			} else {
+				assertTrue(achievementReached());
 			}
 		}
-		assertTrue(achievementReached());
 
 		// shared kills
-		totalKills = 0;
 		resetPlayer();
-		for (final String enemy: ENEMIES_BEARS) {
-			int killCount = player.getSharedKill(enemy);
-			assertEquals(0, killCount);
+		killCount = player.getSharedKill(enemy);
+		assertEquals(0, killCount);
 
-			while (killCount < count) {
-				killCount++;
-				player.setSharedKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
+		while (killCount < reqCount) {
+			killCount++;
+			player.setSharedKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
 
-			totalKills += killCount;
-
-			if (totalKills < requiredKills) {
+			if (killCount < reqCount) {
 				assertFalse(achievementReached());
+			} else {
+				assertTrue(achievementReached());
 			}
 		}
-		assertTrue(achievementReached());
 	}
 
 	private void resetPlayer() {
@@ -104,15 +95,13 @@ public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		for (final String enemy: ENEMIES_BEARS) {
-			assertFalse(player.hasKilled(enemy));
-		}
+		assertFalse(player.hasKilled(enemy));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_BEARS);
+		return AchievementTestHelper.achievementReached(player, ID_DEER);
 	}
 }

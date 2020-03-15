@@ -9,20 +9,19 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_POACHER;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_BOARS;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -30,12 +29,10 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class PoacherAchievementTest extends ZoneAndPlayerTestImpl {
+public class BoarHunterAchievementTest extends ZoneAndPlayerTestImpl {
 
-	// NOTE: big bad wolf & twilight slime must be excluded
-	private final String[] rareEnemies = {
-		"unicorn", "centaur", "pegasus", "ghost hound"
-	};
+	private final String enemy = "boar";
+	private final int requiredCount = 20;
 
 
 	@BeforeClass
@@ -49,39 +46,42 @@ public class PoacherAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-
-		final List<String> enemyList = new ArrayList<String>();
-		for (final String rare: rareEnemies) {
-			enemyList.add(rare);
-		}
-		// fox is used for testing negative result
-		enemyList.add("fox");
-		AchievementTestHelper.setEnemyNames(enemyList);
+		AchievementTestHelper.setEnemyNames(enemy);
 	}
 
 	@Test
 	public void init() {
 		// solo kills
 		resetPlayer();
-		onKill("fox");
-		assertFalse(achievementReached());
+		int killCount = player.getSoloKill(enemy);
+		assertEquals(0, killCount);
 
-		for (final String enemy: rareEnemies) {
-			resetPlayer();
-			onKill(enemy);
-			assertTrue(achievementReached());
+		while (killCount < requiredCount) {
+			killCount++;
+			player.setSoloKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
+
+			if (killCount < requiredCount) {
+				assertFalse(achievementReached());
+			}
 		}
+		assertTrue(achievementReached());
 
 		// shared kills
 		resetPlayer();
-		onKill("fox", true);
-		assertFalse(achievementReached());
+		killCount = player.getSharedKill(enemy);
+		assertEquals(0, killCount);
 
-		for (final String enemy: rareEnemies) {
-			resetPlayer();
-			onKill(enemy, true);
-			assertTrue(achievementReached());
+		while (killCount < requiredCount) {
+			killCount++;
+			player.setSharedKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
+
+			if (killCount < requiredCount) {
+				assertFalse(achievementReached());
+			}
 		}
+		assertTrue(achievementReached());
 	}
 
 	private void resetPlayer() {
@@ -93,29 +93,13 @@ public class PoacherAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		for (final String enemy: rareEnemies) {
-			assertFalse(player.hasKilled(enemy));
-		}
+		assertFalse(player.hasKilled(enemy));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
-	private void onKill(final String enemy, final boolean shared) {
-		if (shared) {
-			player.setSharedKillCount(enemy, player.getSharedKill(enemy) + 1);
-		} else {
-			player.setSoloKillCount(enemy, player.getSoloKill(enemy) + 1);
-		}
-
-		AchievementNotifier.get().onKill(player);
-	}
-
-	private void onKill(final String enemy) {
-		onKill(enemy, false);
-	}
-
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_POACHER);
+		return AchievementTestHelper.achievementReached(player, ID_BOARS);
 	}
 }

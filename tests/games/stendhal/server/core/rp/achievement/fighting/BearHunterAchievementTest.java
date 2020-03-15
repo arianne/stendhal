@@ -9,10 +9,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_DEER;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_DEER;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_BEARS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_BEARS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -29,9 +30,9 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class DeerHunterAchievementTest extends ZoneAndPlayerTestImpl {
+public class BearHunterAchievementTest extends ZoneAndPlayerTestImpl {
 
-	private final String enemy = "deer";
+	private final int count = 10;
 
 
 	@BeforeClass
@@ -45,44 +46,54 @@ public class DeerHunterAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(enemy);
+		AchievementTestHelper.setEnemyNames(ENEMIES_BEARS);
 	}
 
 	@Test
 	public void init() {
+		final int requiredKills = count * ENEMIES_BEARS.length;
+
 		// solo kills
+		int totalKills = 0;
 		resetPlayer();
-		int killCount = player.getSoloKill(enemy);
-		assertEquals(0, killCount);
+		for (final String enemy: ENEMIES_BEARS) {
+			int killCount = player.getSoloKill(enemy);
+			assertEquals(0, killCount);
 
-		while (killCount < COUNT_DEER) {
-			killCount++;
-			player.setSoloKillCount(enemy, killCount);
-			AchievementNotifier.get().onKill(player);
+			while (killCount < count) {
+				killCount++;
+				player.setSoloKillCount(enemy, killCount);
+				AchievementNotifier.get().onKill(player);
+			}
 
-			if (killCount < COUNT_DEER) {
+			totalKills += killCount;
+
+			if (totalKills < requiredKills) {
 				assertFalse(achievementReached());
-			} else {
-				assertTrue(achievementReached());
 			}
 		}
+		assertTrue(achievementReached());
 
 		// shared kills
+		totalKills = 0;
 		resetPlayer();
-		killCount = player.getSharedKill(enemy);
-		assertEquals(0, killCount);
+		for (final String enemy: ENEMIES_BEARS) {
+			int killCount = player.getSharedKill(enemy);
+			assertEquals(0, killCount);
 
-		while (killCount < COUNT_DEER) {
-			killCount++;
-			player.setSharedKillCount(enemy, killCount);
-			AchievementNotifier.get().onKill(player);
+			while (killCount < count) {
+				killCount++;
+				player.setSharedKillCount(enemy, killCount);
+				AchievementNotifier.get().onKill(player);
+			}
 
-			if (killCount < COUNT_DEER) {
+			totalKills += killCount;
+
+			if (totalKills < requiredKills) {
 				assertFalse(achievementReached());
-			} else {
-				assertTrue(achievementReached());
 			}
 		}
+		assertTrue(achievementReached());
 	}
 
 	private void resetPlayer() {
@@ -94,13 +105,15 @@ public class DeerHunterAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		assertFalse(player.hasKilled(enemy));
+		for (final String enemy: ENEMIES_BEARS) {
+			assertFalse(player.hasKilled(enemy));
+		}
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_DEER);
+		return AchievementTestHelper.achievementReached(player, ID_BEARS);
 	}
 }

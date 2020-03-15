@@ -9,9 +9,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_ANGELS;
 import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_ANGELS;
 import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_ANGELS;
 import static org.junit.Assert.assertFalse;
@@ -25,16 +24,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
-public class HeavenlyWrathTest {
+public class HeavenlyWrathAchievementTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
+	private final int reqCount = 100;
 
 
 	@BeforeClass
@@ -66,10 +67,10 @@ public class HeavenlyWrathTest {
 
 		for (int idx = 0; idx < enemyCount; idx++) {
 			final String enemy = ENEMIES_ANGELS[idx];
-			for (int kills = 0; kills < COUNT_ANGELS; kills++) {
+			for (int kills = 0; kills < reqCount; kills++) {
 				kill(enemy, true);
 
-				if (idx >= enemyCount - 1 && kills >= COUNT_ANGELS - 1) {
+				if (idx >= enemyCount - 1 && kills >= reqCount - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
@@ -81,10 +82,10 @@ public class HeavenlyWrathTest {
 
 		for (int idx = 0; idx < enemyCount; idx++) {
 			final String enemy = ENEMIES_ANGELS[idx];
-			for (int kills = 0; kills < COUNT_ANGELS; kills++) {
+			for (int kills = 0; kills < reqCount; kills++) {
 				kill(enemy, false);
 
-				if (idx >= enemyCount - 1 && kills >= COUNT_ANGELS - 1) {
+				if (idx >= enemyCount - 1 && kills >= reqCount - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());

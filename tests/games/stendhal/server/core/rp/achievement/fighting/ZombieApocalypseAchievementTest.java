@@ -9,12 +9,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_FOWL;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_FOWL;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_FOWL;
-import static org.junit.Assert.assertEquals;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_ZOMBIES;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_ZOMBIES;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -23,13 +21,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
-public class ChickenNuggetsTest extends ZoneAndPlayerTestImpl {
+public class ZombieApocalypseAchievementTest extends ZoneAndPlayerTestImpl {
+
+	private final int reqCount = 500;
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -42,60 +45,60 @@ public class ChickenNuggetsTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(ENEMIES_FOWL);
+		AchievementTestHelper.setEnemyNames(ENEMIES_ZOMBIES);
 	}
 
 	@Test
 	public void init() {
-		final int totalRequiredKills = COUNT_FOWL * ENEMIES_FOWL.length;
+		final AchievementNotifier notifier = AchievementNotifier.get();
 
-		// solo kills
+		for (final String enemy: ENEMIES_ZOMBIES) {
+			// solo kills
+			resetPlayer();
+			for (int idx = 0; idx < reqCount; idx++) {
+				player.setSoloKillCount(enemy, player.getSoloKill(enemy) + 1);
+				notifier.onKill(player);
+
+				if (idx < reqCount - 1) {
+					assertFalse(achievementReached());
+				} else {
+					assertTrue(achievementReached());
+				}
+			}
+
+			// shared kills
+			resetPlayer();
+			for (int idx = 0; idx < reqCount; idx++) {
+				player.setSharedKillCount(enemy, player.getSharedKill(enemy) + 1);
+				notifier.onKill(player);
+
+				if (idx < reqCount - 1) {
+					assertFalse(achievementReached());
+				} else {
+					assertTrue(achievementReached());
+				}
+			}
+		}
+
 		resetPlayer();
 		int killCount = 0;
-		for (final String enemyName: ENEMIES_FOWL) {
-			for (int idx = 0; idx < COUNT_FOWL; idx++) {
-				player.setSoloKillCount(enemyName, player.getSoloKill(enemyName) + 1);
-				AchievementNotifier.get().onKill(player);
-				killCount++;
+		while (killCount < reqCount) {
+			final int enemyIndex = Rand.randUniform(0, ENEMIES_ZOMBIES.length - 1);
+			final String enemy = ENEMIES_ZOMBIES[enemyIndex];
+			final boolean soloKill = Rand.randUniform(0, 1) == 0;
 
-				if (killCount < totalRequiredKills) {
-					assertFalse(achievementReached());
-				} else {
-					assertTrue(achievementReached());
-				}
+			if (soloKill) {
+				player.setSoloKillCount(enemy, player.getSoloKill(enemy) + 1);
+			} else {
+				player.setSharedKillCount(enemy, player.getSharedKill(enemy) + 1);
 			}
+			notifier.onKill(player);
 
-			assertEquals(COUNT_FOWL, player.getSoloKill(enemyName));
-		}
-
-		// team kills
-		resetPlayer();
-		killCount = 0;
-		for (final String enemyName: ENEMIES_FOWL) {
-			for (int idx = 0; idx < COUNT_FOWL; idx++) {
-				player.setSharedKillCount(enemyName, player.getSharedKill(enemyName) + 1);
-				AchievementNotifier.get().onKill(player);
-				killCount++;
-
-				if (killCount < totalRequiredKills) {
-					assertFalse(achievementReached());
-				} else {
-					assertTrue(achievementReached());
-				}
-			}
-
-			assertEquals(COUNT_FOWL, player.getSharedKill(enemyName));
-		}
-
-		if (ENEMIES_FOWL.length > 1) {
-			for (final String enemyName: ENEMIES_FOWL) {
-				resetPlayer();
-				for (int idx = 0; idx < totalRequiredKills; idx++) {
-					player.setSoloKillCount(enemyName, player.getSoloKill(enemyName) + 1);
-					AchievementNotifier.get().onKill(player);
-				}
-
+			killCount++;
+			if (killCount < reqCount) {
 				assertFalse(achievementReached());
+			} else {
+				assertTrue(achievementReached());
 			}
 		}
 	}
@@ -128,7 +131,7 @@ public class ChickenNuggetsTest extends ZoneAndPlayerTestImpl {
 		equip("imperial ring", "finger");
 		*/
 
-		for (final String enemy: ENEMIES_FOWL) {
+		for (final String enemy: ENEMIES_ZOMBIES) {
 			assertFalse(player.hasKilled(enemy));
 		}
 
@@ -149,6 +152,6 @@ public class ChickenNuggetsTest extends ZoneAndPlayerTestImpl {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_FOWL);
+		return AchievementTestHelper.achievementReached(player, ID_ZOMBIES);
 	}
 }

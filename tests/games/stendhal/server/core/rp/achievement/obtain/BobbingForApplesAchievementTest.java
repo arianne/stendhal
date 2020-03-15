@@ -9,9 +9,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.obtain;
 
-import static games.stendhal.server.core.rp.achievement.factory.ObtainAchievementsFactory.COUNT_APPLES;
 import static games.stendhal.server.core.rp.achievement.factory.ObtainAchievementsFactory.ID_APPLES;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,11 +29,12 @@ import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
 
-public class BobbingForApplesTest {
+public class BobbingForApplesAchievementTest {
 
 	private Player player;
 
 	private final String item = "apple";
+	private final int reqCount = 1000;
 
 
 	@BeforeClass
@@ -56,25 +56,25 @@ public class BobbingForApplesTest {
 	}
 
 	private void testAchievement() {
-		player.incLootForItem(item, COUNT_APPLES - 1);
-		assertEquals(COUNT_APPLES - 1, player.getNumberOfLootsForItem(item));
+		player.incLootForItem(item, reqCount - 1);
+		assertEquals(reqCount - 1, player.getNumberOfLootsForItem(item));
 		assertFalse(achievementReached());
 		player.incLootForItem(item, 1);
-		assertEquals(COUNT_APPLES, player.getNumberOfLootsForItem(item));
+		assertEquals(reqCount, player.getNumberOfLootsForItem(item));
 		assertTrue(achievementReached());
 
 		resetPlayer();
 
-		player.incHarvestedForItem(item, COUNT_APPLES - 1);
-		assertEquals(COUNT_APPLES - 1, player.getQuantityOfHarvestedItems(item));
+		player.incHarvestedForItem(item, reqCount - 1);
+		assertEquals(reqCount - 1, player.getQuantityOfHarvestedItems(item));
 		assertFalse(achievementReached());
 		player.incHarvestedForItem(item, 1);
-		assertEquals(COUNT_APPLES, player.getQuantityOfHarvestedItems(item));
+		assertEquals(reqCount, player.getQuantityOfHarvestedItems(item));
 		assertTrue(achievementReached());
 
 		resetPlayer();
 
-		final int halfCount = COUNT_APPLES / 2;
+		final int halfCount = reqCount / 2;
 
 		player.incLootForItem(item, halfCount);
 		player.incHarvestedForItem(item, halfCount - 1);

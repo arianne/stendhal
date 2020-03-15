@@ -9,34 +9,32 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.item;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_WEREWOLF;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_WEREWOLF;
+import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ID_ROYAL;
+import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ITEMS_ROYAL;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
-public class SilverBulletTest {
+public class RoyallyEndowedAchievementTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
+
 	private Player player;
-
-	private final String enemy = "werewolf";
-
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -46,11 +44,6 @@ public class SilverBulletTest {
 		notifier.initialize();
 	}
 
-	@Before
-	public void setUp() {
-		AchievementTestHelper.setEnemyNames(enemy);
-	}
-
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		PlayerTestHelper.removeAllPlayers();
@@ -58,29 +51,20 @@ public class SilverBulletTest {
 
 	@Test
 	public void init() {
-		resetPlayer();
+		initPlayer();
 		testAchievement();
 	}
 
 	private void testAchievement() {
-		// test with solo kills
-		for (int kills = 0; kills < COUNT_WEREWOLF; kills++) {
-			kill(enemy, true);
+		final int itemCount = ITEMS_ROYAL.length;
+		int idx = 0;
+		for (final String item: ITEMS_ROYAL) {
+			idx++;
 
-			if (kills >= COUNT_WEREWOLF - 1) {
-				assertTrue(achievementReached());
-			} else {
-				assertFalse(achievementReached());
-			}
-		}
+			player.incLootForItem(item, 1);
+			notifier.onItemLoot(player);
 
-		resetPlayer();
-
-		// test with team kills
-		for (int kills = 0; kills < COUNT_WEREWOLF; kills++) {
-			kill(enemy, false);
-
-			if (kills >= COUNT_WEREWOLF - 1) {
+			if (idx >= itemCount) {
 				assertTrue(achievementReached());
 			} else {
 				assertFalse(achievementReached());
@@ -88,19 +72,14 @@ public class SilverBulletTest {
 		}
 	}
 
-
 	/**
 	 * Resets player achievements & kills.
 	 */
-	private void resetPlayer() {
-		//PlayerTestHelper.removePlayer(player); // IllegalArgumentException
+	private void initPlayer() {
 		player = null;
 		assertNull(player);
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
-
-		assertFalse(player.hasKilledSolo(enemy));
-		assertFalse(player.hasKilledShared(enemy));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
@@ -113,24 +92,6 @@ public class SilverBulletTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_WEREWOLF);
-	}
-
-	/**
-	 * Increments kill count for enemy.
-	 *
-	 * @param enemyName
-	 * 		Name of enemy to kill.
-	 * @param solo
-	 * 		If <code>true</code>, player was not assisted in kill.
-	 */
-	private void kill(final String enemyName, final boolean solo) {
-		if (solo) {
-			player.setSoloKillCount(enemyName, player.getSoloKill(enemyName) + 1);
-		} else {
-			player.setSharedKillCount(enemyName, player.getSharedKill(enemyName) + 1);
-		}
-
-		notifier.onKill(player);
+		return AchievementTestHelper.achievementReached(player, ID_ROYAL);
 	}
 }

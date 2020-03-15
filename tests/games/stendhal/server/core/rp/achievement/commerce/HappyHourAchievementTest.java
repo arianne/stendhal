@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.commerce;
 
 import static games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory.COUNT_HAPPY_HOUR;
 import static games.stendhal.server.core.rp.achievement.factory.CommerceAchievementFactory.ID_HAPPY_HOUR;
@@ -32,7 +32,7 @@ import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
-public class HappyHourTest extends ZonePlayerAndNPCTestImpl {
+public class HappyHourAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String npcName = "Margaret";
 

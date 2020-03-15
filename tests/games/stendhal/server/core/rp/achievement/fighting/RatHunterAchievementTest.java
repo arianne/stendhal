@@ -9,9 +9,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_ENTS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_RATS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -28,9 +29,10 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class WoodCutterAchievementTest extends ZoneAndPlayerTestImpl {
+public class RatHunterAchievementTest extends ZoneAndPlayerTestImpl {
 
-	private final String[] enemies = {"ent", "entwife", "old ent"};
+	private final String enemy = "rat";
+	private final int reqCount = 15;
 
 
 	@BeforeClass
@@ -44,55 +46,44 @@ public class WoodCutterAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(enemies);
+		AchievementTestHelper.setEnemyNames(enemy);
 	}
 
 	@Test
 	public void init() {
-		final int reqCount = 10;
-		final int reqTotal = reqCount * enemies.length;
-
 		// solo kills
-		int totalKills = 0;
 		resetPlayer();
-		for (final String enemy: enemies) {
-			int killCount = player.getSoloKill(enemy);
-			assertEquals(0, killCount);
+		int killCount = player.getSoloKill(enemy);
+		assertEquals(0, killCount);
 
-			while (killCount < reqCount) {
-				killCount++;
-				player.setSoloKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
+		while (killCount < reqCount) {
+			killCount++;
+			player.setSoloKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
 
-			totalKills += killCount;
-
-			if (totalKills < reqTotal) {
+			if (killCount < reqCount) {
 				assertFalse(achievementReached());
+			} else {
+				assertTrue(achievementReached());
 			}
 		}
-		assertTrue(achievementReached());
 
 		// shared kills
-		totalKills = 0;
 		resetPlayer();
-		for (final String enemy: enemies) {
-			int killCount = player.getSharedKill(enemy);
-			assertEquals(0, killCount);
+		killCount = player.getSharedKill(enemy);
+		assertEquals(0, killCount);
 
-			while (killCount < reqCount) {
-				killCount++;
-				player.setSharedKillCount(enemy, killCount);
-				AchievementNotifier.get().onKill(player);
-			}
+		while (killCount < reqCount) {
+			killCount++;
+			player.setSharedKillCount(enemy, killCount);
+			AchievementNotifier.get().onKill(player);
 
-			totalKills += killCount;
-
-			if (totalKills < reqTotal) {
+			if (killCount < reqCount) {
 				assertFalse(achievementReached());
+			} else {
+				assertTrue(achievementReached());
 			}
 		}
-		assertTrue(achievementReached());
 	}
 
 	private void resetPlayer() {
@@ -104,15 +95,13 @@ public class WoodCutterAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		for (final String enemy: enemies) {
-			assertFalse(player.hasKilled(enemy));
-		}
+		assertFalse(player.hasKilled("rat"));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_ENTS);
+		return AchievementTestHelper.achievementReached(player, ID_RATS);
 	}
 }

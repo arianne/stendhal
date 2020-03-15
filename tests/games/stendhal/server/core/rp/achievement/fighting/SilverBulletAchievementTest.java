@@ -9,12 +9,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_MERMAIDS;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_MERMAIDS;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_MERMAIDS;
-import static org.junit.Assert.assertEquals;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_WEREWOLF;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -26,16 +23,20 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
-public class SerenadeTheSirenTest {
+public class SilverBulletAchievementTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
+
+	private final String enemy = "werewolf";
+	private final int reqCount = 500;
 
 
 	@BeforeClass
@@ -48,7 +49,7 @@ public class SerenadeTheSirenTest {
 
 	@Before
 	public void setUp() {
-		AchievementTestHelper.setEnemyNames(ENEMIES_MERMAIDS);
+		AchievementTestHelper.setEnemyNames(enemy);
 	}
 
 	@AfterClass
@@ -63,54 +64,27 @@ public class SerenadeTheSirenTest {
 	}
 
 	private void testAchievement() {
-		// test with solo kills for each enemy
-		for (final String enemy: ENEMIES_MERMAIDS) {
-			for (int kills = 0; kills < COUNT_MERMAIDS; kills++) {
-				kill(enemy, true);
+		// test with solo kills
+		for (int kills = 0; kills < reqCount; kills++) {
+			kill(enemy, true);
 
-				if (kills >= COUNT_MERMAIDS - 1) {
-					assertTrue(achievementReached());
-				} else {
-					assertFalse(achievementReached());
-				}
+			if (kills >= reqCount - 1) {
+				assertTrue(achievementReached());
+			} else {
+				assertFalse(achievementReached());
 			}
-			assertEquals(COUNT_MERMAIDS, player.getSoloKill(enemy));
-
-			resetPlayer();
 		}
 
-		// test with team kills for each enemy
-		for (final String enemy: ENEMIES_MERMAIDS) {
-			for (int kills = 0; kills < COUNT_MERMAIDS; kills++) {
-				kill(enemy, false);
+		resetPlayer();
 
-				if (kills >= COUNT_MERMAIDS - 1) {
-					assertTrue(achievementReached());
-				} else {
-					assertFalse(achievementReached());
-				}
-			}
-			assertEquals(COUNT_MERMAIDS, player.getSharedKill(enemy));
+		// test with team kills
+		for (int kills = 0; kills < reqCount; kills++) {
+			kill(enemy, false);
 
-			resetPlayer();
-		}
-
-		// test with mixed kills
-		final int enemyTypes = ENEMIES_MERMAIDS.length;
-		final double killsPerType = COUNT_MERMAIDS / enemyTypes / 2; // solo & team kills
-
-		for (int eType = 0; eType < enemyTypes; eType++) {
-			for (int kill = 0; kill < killsPerType; kill++) {
-				final String enemy = ENEMIES_MERMAIDS[eType];
-
-				kill(enemy, true);
-				kill(enemy, false);
-
-				if (enemy.equals(ENEMIES_MERMAIDS[enemyTypes - 1]) && kill == killsPerType - 1) {
-					assertTrue(achievementReached());
-				} else {
-					assertFalse(achievementReached());
-				}
+			if (kills >= reqCount - 1) {
+				assertTrue(achievementReached());
+			} else {
+				assertFalse(achievementReached());
 			}
 		}
 	}
@@ -120,15 +94,14 @@ public class SerenadeTheSirenTest {
 	 * Resets player achievements & kills.
 	 */
 	private void resetPlayer() {
+		//PlayerTestHelper.removePlayer(player); // IllegalArgumentException
 		player = null;
 		assertNull(player);
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		for (final String enemy: ENEMIES_MERMAIDS) {
-			assertFalse(player.hasKilledSolo(enemy));
-			assertFalse(player.hasKilledShared(enemy));
-		}
+		assertFalse(player.hasKilledSolo(enemy));
+		assertFalse(player.hasKilledShared(enemy));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
@@ -141,7 +114,7 @@ public class SerenadeTheSirenTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_MERMAIDS);
+		return AchievementTestHelper.achievementReached(player, ID_WEREWOLF);
 	}
 
 	/**

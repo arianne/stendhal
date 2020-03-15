@@ -9,11 +9,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_GIANTS;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_GIANTS;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_GIANTS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_MERMAIDS;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_MERMAIDS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -26,16 +25,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
-public class DavidVsGoliathTest {
+public class SerenadeTheSirenAchievementTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 	private Player player;
+	private final int reqCount = 10000;
 
 
 	@BeforeClass
@@ -48,7 +49,7 @@ public class DavidVsGoliathTest {
 
 	@Before
 	public void setUp() {
-		AchievementTestHelper.setEnemyNames(ENEMIES_GIANTS);
+		AchievementTestHelper.setEnemyNames(ENEMIES_MERMAIDS);
 	}
 
 	@AfterClass
@@ -63,30 +64,50 @@ public class DavidVsGoliathTest {
 	}
 
 	private void testAchievement() {
-		for (final String enemy: ENEMIES_GIANTS) {
-			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
+		// test with solo kills for each enemy
+		for (final String enemy: ENEMIES_MERMAIDS) {
+			for (int kills = 0; kills < reqCount; kills++) {
+				kill(enemy, true);
+
+				if (kills >= reqCount - 1) {
+					assertTrue(achievementReached());
+				} else {
+					assertFalse(achievementReached());
+				}
+			}
+			assertEquals(reqCount, player.getSoloKill(enemy));
+
+			resetPlayer();
+		}
+
+		// test with team kills for each enemy
+		for (final String enemy: ENEMIES_MERMAIDS) {
+			for (int kills = 0; kills < reqCount; kills++) {
 				kill(enemy, false);
+
+				if (kills >= reqCount - 1) {
+					assertTrue(achievementReached());
+				} else {
+					assertFalse(achievementReached());
+				}
 			}
-			assertEquals(COUNT_GIANTS, player.getSharedKill(enemy));
+			assertEquals(reqCount, player.getSharedKill(enemy));
+
+			resetPlayer();
 		}
-		assertFalse(achievementReached());
 
-		for (final String enemy: ENEMIES_GIANTS) {
-			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
+		// test with mixed kills
+		final int enemyTypes = ENEMIES_MERMAIDS.length;
+		final double killsPerType = reqCount / enemyTypes / 2; // solo & team kills
+
+		for (int eType = 0; eType < enemyTypes; eType++) {
+			for (int kill = 0; kill < killsPerType; kill++) {
+				final String enemy = ENEMIES_MERMAIDS[eType];
+
 				kill(enemy, true);
-			}
-			assertEquals(COUNT_GIANTS, player.getSoloKill(enemy));
-		}
-		assertTrue(achievementReached());
+				kill(enemy, false);
 
-		resetPlayer();
-		final int enemyCount = ENEMIES_GIANTS.length;
-		for (int idx = 0; idx < enemyCount; idx++) {
-			final String enemy = ENEMIES_GIANTS[idx];
-			for (int kills = 0; kills < COUNT_GIANTS; kills++) {
-				kill(enemy, true);
-
-				if (idx >= enemyCount - 1 && kills >= COUNT_GIANTS - 1) {
+				if (enemy.equals(ENEMIES_MERMAIDS[enemyTypes - 1]) && kill == killsPerType - 1) {
 					assertTrue(achievementReached());
 				} else {
 					assertFalse(achievementReached());
@@ -100,13 +121,12 @@ public class DavidVsGoliathTest {
 	 * Resets player achievements & kills.
 	 */
 	private void resetPlayer() {
-		//PlayerTestHelper.removePlayer(player); // IllegalArgumentException
 		player = null;
 		assertNull(player);
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		for (final String enemy: ENEMIES_GIANTS) {
+		for (final String enemy: ENEMIES_MERMAIDS) {
 			assertFalse(player.hasKilledSolo(enemy));
 			assertFalse(player.hasKilledShared(enemy));
 		}
@@ -122,7 +142,7 @@ public class DavidVsGoliathTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_GIANTS);
+		return AchievementTestHelper.achievementReached(player, ID_MERMAIDS);
 	}
 
 	/**

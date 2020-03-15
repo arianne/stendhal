@@ -9,9 +9,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_EXTERMINATOR;
 import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_EXTERMINATOR;
 import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_EXTERMINATOR;
 import static org.junit.Assert.assertEquals;
@@ -23,6 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -30,9 +30,9 @@ import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
-public class ExterminatorTest extends ZoneAndPlayerTestImpl {
+public class ExterminatorAchievementTest extends ZoneAndPlayerTestImpl {
 
-	//private final String enemy = "rat";
+	private final int reqCount = 10;
 
 
 	@BeforeClass
@@ -51,7 +51,7 @@ public class ExterminatorTest extends ZoneAndPlayerTestImpl {
 
 	@Test
 	public void init() {
-		final int totalRequiredKills = COUNT_EXTERMINATOR * ENEMIES_EXTERMINATOR.length;
+		final int totalRequiredKills = reqCount * ENEMIES_EXTERMINATOR.length;
 
 		// solo kills
 		resetPlayer();
@@ -61,7 +61,7 @@ public class ExterminatorTest extends ZoneAndPlayerTestImpl {
 			int killCount = player.getSoloKill(enemy);
 			assertEquals(0, killCount);
 
-			while (killCount < COUNT_EXTERMINATOR) {
+			while (killCount < reqCount) {
 				killCount++;
 				player.setSoloKillCount(enemy, killCount);
 				AchievementNotifier.get().onKill(player);
@@ -83,7 +83,7 @@ public class ExterminatorTest extends ZoneAndPlayerTestImpl {
 			int killCount = player.getSharedKill(enemy);
 			assertEquals(0, killCount);
 
-			while (killCount < COUNT_EXTERMINATOR) {
+			while (killCount < reqCount) {
 				killCount++;
 				player.setSharedKillCount(enemy, killCount);
 				AchievementNotifier.get().onKill(player);
