@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_BEARS;
 import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_SAFARI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -56,7 +55,7 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
-		AchievementTestHelper.setEnemyNames(ENEMIES_BEARS);
+		AchievementTestHelper.setEnemyNames(enemies.keySet().toArray(new String[0]));
 	}
 
 	@Test
@@ -117,7 +116,7 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
-		for (final String enemy: ENEMIES_BEARS) {
+		for (final String enemy: enemies.keySet()) {
 			assertFalse(player.hasKilled(enemy));
 		}
 
