@@ -85,7 +85,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 
 	// enemies required for Pachyderm Mayhem
 	public static final String[] ENEMIES_PACHYDERM = {
-			"elephant", "bull elephant", "musth elephant", "wooly mammoth"
+			"elephant", "bull elephant", "musth elephant", "woolly mammoth"
 	};
 	public static final String ID_PACHYDERM = "fight.general.pachyderm";
 	public static final int COUNT_PACHYDERM = 100;

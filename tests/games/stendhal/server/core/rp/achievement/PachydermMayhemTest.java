@@ -19,8 +19,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -53,10 +51,24 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 
 	@Test
 	public void init() {
+		resetPlayer();
+
+		testEnemies();
+		testAchievement();
+	}
+
+	private void testEnemies() {
+		for (final String enemyName: ENEMIES_PACHYDERM) {
+			// check entity is valid
+			final Creature enemy = createEnemy(enemyName);
+			zone.remove(enemy);
+		}
+	}
+
+	private void testAchievement() {
 		final int totalRequiredKills = COUNT_PACHYDERM * ENEMIES_PACHYDERM.length;
 
 		// solo kills
-		resetPlayer();
 		int killCount = 0;
 		for (final String enemyName: ENEMIES_PACHYDERM) {
 			for (int idx = 0; idx < COUNT_PACHYDERM; idx++) {
@@ -129,6 +141,7 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		zone.add(player);
 		assertNotNull(player);
 
+		/*
 		player.setLevel(597);
 		player.setAtk(597);
 		player.setDef(597);
@@ -145,6 +158,7 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		equip("mithril boots", "feet");
 		equip("mithril cloak", "cloak");
 		equip("imperial ring", "finger");
+		*/
 
 		for (final String enemy: ENEMIES_PACHYDERM) {
 			assertFalse(player.hasKilled(enemy));
@@ -154,12 +168,15 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		assertFalse(achievementReached());
 	}
 
+	/*
 	private void equip(final String item, final String slot) {
 		PlayerTestHelper.equipWithItemToSlot(player, item, slot);
 	}
+	*/
 
 	private Creature createEnemy(final String enemyName) {
 		final Creature enemy = entityManager.getCreature(enemyName);
+		assertNotNull(enemy);
 		enemy.setPosition(player.getX() + 1, player.getY());
 		zone.add(enemy);
 
