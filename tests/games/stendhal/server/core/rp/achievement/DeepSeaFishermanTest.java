@@ -45,6 +45,7 @@ public class DeepSeaFishermanTest extends ZoneAndPlayerTestImpl {
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
 		//super.setUp();
+		AchievementTestHelper.setEnemyNames(ENEMIES_DEEPSEA);
 	}
 
 	@Test

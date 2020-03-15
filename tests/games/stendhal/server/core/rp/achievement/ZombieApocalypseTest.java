@@ -42,6 +42,7 @@ public class ZombieApocalypseTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
+		AchievementTestHelper.setEnemyNames(ENEMIES_ZOMBIES);
 	}
 
 	@Test
