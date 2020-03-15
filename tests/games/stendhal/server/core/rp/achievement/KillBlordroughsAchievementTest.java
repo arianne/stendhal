@@ -56,7 +56,6 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private static final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	// FIXME: should test all blordrough types
 	private final String enemy = "blordrough corporal";
 
 
@@ -158,7 +157,6 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(questIsActive());
 
 		// reset kill count & set quest state to repeatable
-		// FIXME: should test all blordrough types
 		player.setSoloKillCount(enemy, 0);
 		if (player.getQuest(QUEST_SLOT) != null) {
 			player.setQuest(QUEST_SLOT, 1, "0");
@@ -171,7 +169,6 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
-		// FIXME: should test all blordrough types
 		player.setSoloKillCount(enemy, 100);
 
 		en.step(player, "hi");
