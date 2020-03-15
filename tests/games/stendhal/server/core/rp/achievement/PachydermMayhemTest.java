@@ -25,7 +25,6 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
@@ -47,22 +46,13 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
+		AchievementTestHelper.setEnemyNames(ENEMIES_PACHYDERM);
 	}
 
 	@Test
 	public void init() {
 		resetPlayer();
-
-		testEnemies();
 		testAchievement();
-	}
-
-	private void testEnemies() {
-		for (final String enemyName: ENEMIES_PACHYDERM) {
-			// check entity is valid
-			final Creature enemy = createEnemy(enemyName);
-			zone.remove(enemy);
-		}
 	}
 
 	private void testAchievement() {
@@ -173,17 +163,6 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		PlayerTestHelper.equipWithItemToSlot(player, item, slot);
 	}
 	*/
-
-	private Creature createEnemy(final String enemyName) {
-		final Creature enemy = entityManager.getCreature(enemyName);
-		assertNotNull(enemy);
-		enemy.setPosition(player.getX() + 1, player.getY());
-		zone.add(enemy);
-
-		assertTrue(enemy.nextTo(player));
-
-		return enemy;
-	}
 
 	/**
 	 * Checks if the player has reached the achievement.

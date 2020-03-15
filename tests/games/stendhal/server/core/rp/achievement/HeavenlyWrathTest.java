@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -27,6 +28,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
 public class HeavenlyWrathTest {
@@ -41,6 +43,11 @@ public class HeavenlyWrathTest {
 		// initialize world
 		MockStendlRPWorld.get();
 		notifier.initialize();
+	}
+
+	@Before
+	public void setUp() {
+		AchievementTestHelper.setEnemyNames(ENEMIES_ANGELS);
 	}
 
 	@AfterClass
@@ -102,9 +109,7 @@ public class HeavenlyWrathTest {
 			assertFalse(player.hasKilledShared(enemy));
 		}
 
-		assertFalse(player.arePlayerAchievementsLoaded());
-		player.initReachedAchievements();
-		assertTrue(player.arePlayerAchievementsLoaded());
+		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
@@ -115,7 +120,7 @@ public class HeavenlyWrathTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(ID_ANGELS);
+		return AchievementTestHelper.achievementReached(player, ID_ANGELS);
 	}
 
 	/**

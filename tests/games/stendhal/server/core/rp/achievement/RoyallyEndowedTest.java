@@ -26,6 +26,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
 public class RoyallyEndowedTest {
@@ -79,9 +80,7 @@ public class RoyallyEndowedTest {
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
-		assertFalse(player.arePlayerAchievementsLoaded());
-		player.initReachedAchievements();
-		assertTrue(player.arePlayerAchievementsLoaded());
+		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
 	}
 
@@ -92,6 +91,6 @@ public class RoyallyEndowedTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return player.hasReachedAchievement(ID_ROYAL);
+		return AchievementTestHelper.achievementReached(player, ID_ROYAL);
 	}
 }

@@ -38,6 +38,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.barracks.BuyerNPC;
 import games.stendhal.server.maps.quests.KillBlordroughs;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -54,6 +55,9 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private static final KillBlordroughs questInstance = KillBlordroughs.getInstance();
 	private static final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
+
+	// FIXME: should test all blordrough types
+	private final String enemy = "blordrough corporal";
 
 
 	@BeforeClass
@@ -80,6 +84,7 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 		npc = getNPC("Mrotho");
 		questSystem.loadQuest(questInstance);
+		AchievementTestHelper.setEnemyNames(enemy);
 	}
 
 	@Test
@@ -126,10 +131,7 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 		assertNull(player.getQuest(QUEST_SLOT));
 
-		assertFalse(player.arePlayerAchievementsLoaded());
-		player.initReachedAchievements();
-		assertTrue(player.arePlayerAchievementsLoaded());
-
+		AchievementTestHelper.init(player);
 		for (final String ID: Arrays.asList(ID_LACKEY, ID_SOLDIER)) {
 			assertFalse(achievementReached(ID));
 		}
@@ -142,7 +144,7 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached(final String ID) {
-		return player.hasReachedAchievement(ID);
+		return AchievementTestHelper.achievementReached(player, ID);
 	}
 
 	/**
@@ -156,7 +158,8 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(questIsActive());
 
 		// reset kill count & set quest state to repeatable
-		player.setSoloKillCount("blordrough corporal", 0);
+		// FIXME: should test all blordrough types
+		player.setSoloKillCount(enemy, 0);
 		if (player.getQuest(QUEST_SLOT) != null) {
 			player.setQuest(QUEST_SLOT, 1, "0");
 		}
@@ -168,7 +171,8 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
-		player.setSoloKillCount("blordrough corporal", 100);
+		// FIXME: should test all blordrough types
+		player.setSoloKillCount(enemy, 100);
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
