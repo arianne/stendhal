@@ -45,6 +45,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_ENTS = "fight.general.ents";
 	public static final String ID_POACHER = "fight.special.rare";
 	public static final String ID_LEGEND = "fight.special.all";
+	public static final String ID_TEAM_PLAYER = "fight.special.allshared";
 	public static final String ID_GIANTS = "fight.solo.giant";
 	public static final String ID_ANGELS = "fight.general.angels";
 	public static final String ID_WEREWOLF = "fight.general.werewolf";
@@ -159,7 +160,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				new KilledSoloAllCreaturesCondition()));
 
 		fightingAchievements.add(createAchievement(
-				"fight.special.allshared", "Team Player", "Kill all creatures in a team",
+				ID_TEAM_PLAYER, "Team Player", "Kill all creatures in a team",
 				Achievement.HARD_BASE_SCORE, true,
 				new KilledSharedAllCreaturesCondition()));
 
