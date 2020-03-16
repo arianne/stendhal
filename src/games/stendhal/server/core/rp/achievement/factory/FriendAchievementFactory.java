@@ -28,12 +28,25 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
+
+
 /**
  * Factory for quest achievements
  *
  * @author kymara
  */
 public class FriendAchievementFactory extends AbstractAchievementFactory {
+
+	public static final String ID_CHILD_FRIEND = "friend.quests.children";
+	public static final String ID_PRIVATE_DETECTIVE = "friend.quests.find";
+	public static final String ID_GOOD_SAMARITAN = "friend.karma.250";
+	public static final String ID_STILL_BELIEVING = "friend.meet.seasonal";
+
+
+	@Override
+	protected Category getCategory() {
+		return Category.FRIEND;
+	}
 
 	@Override
 	public Collection<Achievement> createAchievements() {
@@ -42,7 +55,8 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 	    // TODO: add Pacifist achievement for not participating in pvp for 6 months or more (last_pvp_action_time)
 
 		// Befriend Susi and complete quests for all children
-		achievements.add(createAchievement("friend.quests.children", "Childrens' Friend", "Complete quests for all children",
+		achievements.add(createAchievement(
+				ID_CHILD_FRIEND, "Childrens' Friend", "Complete quests for all children",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new AndCondition(
 						// Susi Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
@@ -74,7 +88,8 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 				)));
 
 		// quests about finding people
-		achievements.add(createAchievement("friend.quests.find", "Private Detective", "Find all lost and hidden people",
+		achievements.add(createAchievement(
+				ID_PRIVATE_DETECTIVE, "Private Detective", "Find all lost and hidden people",
 				Achievement.HARD_BASE_SCORE, true,
 				new AndCondition(
 						// Rat Children (Agnus)
@@ -96,25 +111,24 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 						})));
 
 		// earn over 250 karma
-		achievements.add(createAchievement("friend.karma.250", "Good Samaritan", "Earn a very good karma",
+		achievements.add(createAchievement(
+				ID_GOOD_SAMARITAN, "Good Samaritan", "Earn a very good karma",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-				return player.getKarma()>250;
-			}
-		}));
+					@Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+						return player.getKarma() > 250;
+					}
+				}));
 
 		// meet Santa Claus and Easter Bunny
-		achievements.add(createAchievement("friend.meet.seasonal", "Still Believing", "Meet Santa Claus and Easter Bunny",
-												Achievement.EASY_BASE_SCORE, true, new AndCondition(new QuestWithPrefixCompletedCondition("meet_santa_"), new QuestWithPrefixCompletedCondition("meet_bunny_"))));
+		achievements.add(createAchievement(
+				ID_STILL_BELIEVING, "Still Believing", "Meet Santa Claus and Easter Bunny",
+				Achievement.EASY_BASE_SCORE, true,
+				new AndCondition(
+						new QuestWithPrefixCompletedCondition("meet_santa_"),
+						new QuestWithPrefixCompletedCondition("meet_bunny_"))));
 
 		return achievements;
 	}
-
-	@Override
-	protected Category getCategory() {
-		return Category.FRIEND;
-	}
-
 }
