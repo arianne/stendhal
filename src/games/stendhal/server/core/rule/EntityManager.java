@@ -39,6 +39,8 @@ public interface EntityManager {
 	 */
 	Collection<Creature> getCreatures();
 
+	public void populateCreatureList();
+
 	/**
 	 * @return a list of all Items that are being used at least once.
 	 */
