@@ -2703,7 +2703,22 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String describe() {
 		String text = super.describe();
 		if (getLevel() > 0) {
-			text += " It is level " + getLevel() + ".";
+			boolean showLevel = true;
+			if (this instanceof Creature) {
+				/**
+				 * Hide level information of chess pieces.
+				 *
+				 * Don't call "Creature.isAbnormal" method here since it also checks "rare" attribute.
+				 */
+				if (((Creature) this).getAIProfiles().containsKey("abnormal") &&
+						(this.getName().startsWith("chaos") || this.getName().startsWith("madaram"))) {
+					showLevel = false;
+				}
+			}
+
+			if (showLevel) {
+				text += " It is level " + getLevel() + ".";
+			}
 		}
 
 		return text;
