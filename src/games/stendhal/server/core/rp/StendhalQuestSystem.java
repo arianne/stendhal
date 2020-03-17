@@ -221,6 +221,11 @@ public class StendhalQuestSystem {
 	 * @param quest Quest to add
 	 */
 	private void initQuestAndAddToWorld(final IQuest quest) {
+		if (isLoaded(quest)) {
+			logger.warn("Not loading previously loaded quest: " + quest.getName());
+			return;
+		}
+
 		logger.info("Loading Quest: " + quest.getName());
 		quest.addToWorld();
 		quests.add(quest);
@@ -575,5 +580,23 @@ public class StendhalQuestSystem {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Checks if a quest instance has been added to the world.
+	 *
+	 * @param quest
+	 * 		<code>IQuest</code> instance to be checked.
+	 * @return
+	 * 		<code>true</code> if the instance matches stored quests.
+	 */
+	public boolean isLoaded(final IQuest quest) {
+		for (final IQuest loaded: quests) {
+			if (loaded.equals(quest)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

@@ -9,11 +9,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.fighting;
 
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.COUNT_PACHYDERM;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_PACHYDERM;
-import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_PACHYDERM;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ENEMIES_DEEPSEA;
+import static games.stendhal.server.core.rp.achievement.factory.FightingAchievementFactory.ID_DEEPSEA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -25,18 +24,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
-public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
+public class DeepSeaFishermanAchievementTest extends ZoneAndPlayerTestImpl {
 
-	private static final EntityManager entityManager = SingletonRepository.getEntityManager();
+	private final int reqCount = 500;
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -49,33 +47,21 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		zone = setupZone("testzone");
+		//super.setUp();
+		AchievementTestHelper.setEnemyNames(ENEMIES_DEEPSEA);
 	}
 
 	@Test
 	public void init() {
-		final int totalRequiredKills = COUNT_PACHYDERM * ENEMIES_PACHYDERM.length;
+		final int totalRequiredKills = reqCount * ENEMIES_DEEPSEA.length;
 
 		// solo kills
 		resetPlayer();
 		int killCount = 0;
-		for (final String enemyName: ENEMIES_PACHYDERM) {
-			for (int idx = 0; idx < COUNT_PACHYDERM; idx++) {
+		for (final String enemyName: ENEMIES_DEEPSEA) {
+			for (int idx = 0; idx < reqCount; idx++) {
 				player.setSoloKillCount(enemyName, player.getSoloKill(enemyName) + 1);
 				AchievementNotifier.get().onKill(player);
-
-				/* FIXME: how to initialize RPManager
-				Creature enemy = createEnemy(enemyName);
-				player.setTarget(enemy);
-				assertTrue(player.getAttackTarget().equals(enemy));
-
-				while (enemy.getHP() > 0) {
-					//player.attack();
-					StendhalRPAction.playerAttack(player, enemy);
-				}
-
-				assertFalse(enemy.nextTo(player));
-				*/
-
 				killCount++;
 
 				if (killCount < totalRequiredKills) {
@@ -85,14 +71,14 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 				}
 			}
 
-			assertEquals(COUNT_PACHYDERM, player.getSoloKill(enemyName));
+			assertEquals(reqCount, player.getSoloKill(enemyName));
 		}
 
 		// team kills
 		resetPlayer();
 		killCount = 0;
-		for (final String enemyName: ENEMIES_PACHYDERM) {
-			for (int idx = 0; idx < COUNT_PACHYDERM; idx++) {
+		for (final String enemyName: ENEMIES_DEEPSEA) {
+			for (int idx = 0; idx < reqCount; idx++) {
 				player.setSharedKillCount(enemyName, player.getSharedKill(enemyName) + 1);
 				AchievementNotifier.get().onKill(player);
 				killCount++;
@@ -104,11 +90,11 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 				}
 			}
 
-			assertEquals(COUNT_PACHYDERM, player.getSharedKill(enemyName));
+			assertEquals(reqCount, player.getSharedKill(enemyName));
 		}
 
-		if (ENEMIES_PACHYDERM.length > 1) {
-			for (final String enemyName: ENEMIES_PACHYDERM) {
+		if (ENEMIES_DEEPSEA.length > 1) {
+			for (final String enemyName: ENEMIES_DEEPSEA) {
 				resetPlayer();
 				for (int idx = 0; idx < totalRequiredKills; idx++) {
 					player.setSoloKillCount(enemyName, player.getSoloKill(enemyName) + 1);
@@ -146,7 +132,7 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		equip("mithril cloak", "cloak");
 		equip("imperial ring", "finger");
 
-		for (final String enemy: ENEMIES_PACHYDERM) {
+		for (final String enemy: ENEMIES_DEEPSEA) {
 			assertFalse(player.hasKilled(enemy));
 		}
 
@@ -158,16 +144,6 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 		PlayerTestHelper.equipWithItemToSlot(player, item, slot);
 	}
 
-	private Creature createEnemy(final String enemyName) {
-		final Creature enemy = entityManager.getCreature(enemyName);
-		enemy.setPosition(player.getX() + 1, player.getY());
-		zone.add(enemy);
-
-		assertTrue(enemy.nextTo(player));
-
-		return enemy;
-	}
-
 	/**
 	 * Checks if the player has reached the achievement.
 	 *
@@ -175,6 +151,6 @@ public class PachydermMayhemTest extends ZoneAndPlayerTestImpl {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_PACHYDERM);
+		return AchievementTestHelper.achievementReached(player, ID_DEEPSEA);
 	}
 }

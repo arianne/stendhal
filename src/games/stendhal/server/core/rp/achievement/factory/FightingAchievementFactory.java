@@ -35,60 +35,72 @@ import games.stendhal.server.entity.player.Player;
  */
 public class FightingAchievementFactory extends AbstractAchievementFactory {
 
+	public static final String ID_RATS = "fight.general.rats";
+	public static final String ID_EXTERMINATOR = "fight.general.exterminator";
+	public static final String ID_DEER = "fight.general.deer";
+	public static final String ID_BOARS = "fight.general.boars";
+	public static final String ID_BEARS = "fight.general.bears";
+	public static final String ID_FOXES = "fight.general.foxes";
+	public static final String ID_SAFARI = "fight.general.safari";
+	public static final String ID_ENTS = "fight.general.ents";
+	public static final String ID_POACHER = "fight.special.rare";
+	public static final String ID_LEGEND = "fight.special.all";
+	public static final String ID_TEAM_PLAYER = "fight.special.allshared";
+	public static final String ID_GIANTS = "fight.solo.giant";
+	public static final String ID_ANGELS = "fight.general.angels";
+	public static final String ID_WEREWOLF = "fight.general.werewolf";
+	public static final String ID_MERMAIDS = "fight.general.mermaids";
+	public static final String ID_DEEPSEA = "fight.general.deepsea";
+	public static final String ID_ZOMBIES = "fight.general.zombies";
+	public static final String ID_FOWL = "fight.general.fowl";
+	public static final String ID_PACHYDERM = "fight.general.pachyderm";
+
+	public static final String[] ENEMIES_EXTERMINATOR = {
+			"rat", "caverat", "razorrat", "venomrat", "zombie rat", "giantrat",
+			"ratman", "ratwoman", "archrat"
+	};
+
+	public static final String[] ENEMIES_BEARS = {
+			"bear", "black bear", "babybear"
+	};
+
 	// enemies required for David vs. Goliath
 	public static final String[] ENEMIES_GIANTS = {
 			"giant", "elder giant", "amazoness giant", "master giant", "black giant",
 			"imperial general giant", "kasarkutominubat", "giant kobold", "giant dwarf",
 			"Dhohr Nuggetcutter", "Lord Durin", "ice giant"
 	};
-	public static final String ID_GIANTS = "fight.solo.giant";
-	public static final int COUNT_GIANTS = 20;
 
 	// enemies required for Heavenly Wrath
 	public static final String[] ENEMIES_ANGELS = {
 			"angel", "archangel", "dark angel", "dark archangel", "fallen angel",
 			"baby angel"
 	};
-	public static final String ID_ANGELS = "fight.general.angels";
-	public static final int COUNT_ANGELS = 100;
-
-	public static final String ID_WEREWOLF = "fight.general.werewolf";
-	public static final int COUNT_WEREWOLF = 500;
 
 	// enemies required for Serenade the Siren
 	public static final String[] ENEMIES_MERMAIDS = {
 			"amethyst mermaid", "emerald mermaid", "ruby mermaid", "sapphire mermaid"
 	};
-	public static final String ID_MERMAIDS = "fight.general.mermaids";
-	public static final int COUNT_MERMAIDS = 10000;
 
 	// enemies required for Deep Sea Fisherman
 	public static final String[] ENEMIES_DEEPSEA = {
 			"shark", "kraken", "neo kraken"
 	};
-	public static final String ID_DEEPSEA = "fight.general.deepsea";
-	public static final int COUNT_DEEPSEA = 500;
 
 	// enemies required for Zombie Apocalypse
 	public static final String[] ENEMIES_ZOMBIES = {
 			"zombie", "bloody zombie", "headless monster", "rotten zombie"
 	};
-	public static final String ID_ZOMBIES = "fight.general.zombies";
-	public static final int COUNT_ZOMBIES = 500;
+
+	// enemies required for Pachyderm Mayhem
+	public static final String[] ENEMIES_PACHYDERM = {
+			"elephant", "bull elephant", "musth elephant", "woolly mammoth"
+	};
 
 	// enemies required for Chicken Nuggets
 	public static final String[] ENEMIES_FOWL = {
 			"chick", "chicken", "dodo", "mother hen", "penguin", "pigeon"
 	};
-	public static final String ID_FOWL = "fight.general.fowl";
-	public static final int COUNT_FOWL = 100;
-
-	// enemies required for Pachyderm Mayhem
-	public static final String[] ENEMIES_PACHYDERM = {
-			"elephant", "bull elephant", "musth elephant", "wooly mammoth"
-	};
-	public static final String ID_PACHYDERM = "fight.general.pachyderm";
-	public static final int COUNT_PACHYDERM = 100;
 
 	// enemies required for Bluffy the Slayer
 	public static final String[] ENEMIES_BLUFFY = {
@@ -100,48 +112,78 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
-		fightingAchievements.add(createAchievement("fight.general.rats", "Rat Hunter", "Kill 15 rats", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15)));
-		fightingAchievements.add(createAchievement("fight.general.exterminator", "Exterminator", "Kill 10 rats of each kind", Achievement.MEDIUM_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "razorrat", "venomrat", "zombie rat", "giantrat", "ratman", "ratwoman", "archrat")));
-		fightingAchievements.add(createAchievement("fight.general.deer", "Deer Hunter", "Kill 25 deer", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("deer", 25)));
-		fightingAchievements.add(createAchievement("fight.general.boars", "Boar Hunter", "Kill 20 boar", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("boar", 20)));
-		fightingAchievements.add(createAchievement("fight.general.bears", "Bear Hunter", "Kill 10 black bears, 10 bears and 10 babybears", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "bear", "black bear", "babybear")));
-		fightingAchievements.add(createAchievement("fight.general.foxes", "Fox Hunter", "Kill 20 foxes", Achievement.EASY_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition("fox", 20)));
-		fightingAchievements.add(createAchievement("fight.general.safari", "Safari", "Kill 30 tigers, 30 lions and 50 elephants", Achievement.EASY_BASE_SCORE, true,
-													new AndCondition(
-															new PlayerHasKilledNumberOfCreaturesCondition("tiger", 30),
-															new PlayerHasKilledNumberOfCreaturesCondition("lion", 30),
-															new PlayerHasKilledNumberOfCreaturesCondition("elephant", 50)
-															)));
-		fightingAchievements.add(createAchievement("fight.general.ents", "Wood Cutter", "Kill 10 ents, 10 entwifes and 10 old ents", Achievement.MEDIUM_BASE_SCORE, true,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "ent", "entwife", "old ent")));
-		fightingAchievements.add(createAchievement("fight.special.rare", "Poacher", "Kill any rare creature", Achievement.HARD_BASE_SCORE, true,
+		fightingAchievements.add(createAchievement(
+				ID_RATS, "Rat Hunter", "Kill 15 rats",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition("rat", 15)));
+
+		fightingAchievements.add(createAchievement(
+				ID_EXTERMINATOR, "Exterminator", "Kill 10 rats of each kind",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(10, ENEMIES_EXTERMINATOR)));
+
+		fightingAchievements.add(createAchievement(
+				ID_DEER, "Deer Hunter", "Kill 25 deer",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition("deer", 25)));
+
+		fightingAchievements.add(createAchievement(
+				ID_BOARS, "Boar Hunter", "Kill 20 boar",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition("boar", 20)));
+
+		fightingAchievements.add(createAchievement(
+				ID_BEARS, "Bear Hunter", "Kill 10 black bears, 10 bears and 10 babybears",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(10, ENEMIES_BEARS)));
+
+		fightingAchievements.add(createAchievement(
+				ID_FOXES, "Fox Hunter", "Kill 20 foxes",
+				Achievement.EASY_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition("fox", 20)));
+
+		fightingAchievements.add(createAchievement(
+				ID_SAFARI, "Safari", "Kill 30 tigers, 30 lions and 50 elephants",
+				Achievement.EASY_BASE_SCORE, true,
+				new AndCondition(
+						new PlayerHasKilledNumberOfCreaturesCondition("tiger", 30),
+						new PlayerHasKilledNumberOfCreaturesCondition("lion", 30),
+						new PlayerHasKilledNumberOfCreaturesCondition("elephant", 50))));
+
+		fightingAchievements.add(createAchievement(
+				ID_ENTS, "Wood Cutter", "Kill 10 ents, 10 entwifes and 10 old ents",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerHasKilledNumberOfCreaturesCondition(10, "ent", "entwife", "old ent")));
+
+		fightingAchievements.add(createAchievement(
+				ID_POACHER, "Poacher", "Kill any rare creature",
+				Achievement.HARD_BASE_SCORE, true,
 				new KilledRareCreatureCondition()));
 
-		fightingAchievements.add(createAchievement("fight.special.all", "Legend", "Kill all creatures solo", Achievement.HARD_BASE_SCORE, true,
+		fightingAchievements.add(createAchievement(
+				ID_LEGEND, "Legend", "Kill all creatures solo",
+				Achievement.HARD_BASE_SCORE, true,
 				new KilledSoloAllCreaturesCondition()));
-		fightingAchievements.add(createAchievement("fight.special.allshared", "Team Player", "Kill all creatures in a team", Achievement.HARD_BASE_SCORE, true,
+
+		fightingAchievements.add(createAchievement(
+				ID_TEAM_PLAYER, "Team Player", "Kill all creatures in a team",
+				Achievement.HARD_BASE_SCORE, true,
 				new KilledSharedAllCreaturesCondition()));
 
 		fightingAchievements.add(createAchievement(
 				ID_GIANTS, "David vs. Goliath", "Kill 20 of each type of giant solo",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_GIANTS, KillType.SOLO, ENEMIES_GIANTS)));
+				new PlayerHasKilledNumberOfCreaturesCondition(20, KillType.SOLO, ENEMIES_GIANTS)));
 
 		fightingAchievements.add(createAchievement(
 				ID_ANGELS, "Heavenly Wrath", "Kill 100 of each type of angel",
 				Achievement.HARD_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_ANGELS, ENEMIES_ANGELS)));
+				new PlayerHasKilledNumberOfCreaturesCondition(100, ENEMIES_ANGELS)));
 
 		fightingAchievements.add(createAchievement(
 				ID_WEREWOLF, "Silver Bullet", "Kill 500 werewolves",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_WEREWOLF, "werewolf")));
+				new PlayerHasKilledNumberOfCreaturesCondition(500, "werewolf")));
 
 		fightingAchievements.add(createAchievement(
 				ID_MERMAIDS, "Serenade the Siren", "Kill 10,000 gem mermaids",
@@ -155,14 +197,14 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 							kills += player.getSoloKill(mermaid) + player.getSharedKill(mermaid);
 						}
 
-						return kills >= COUNT_MERMAIDS;
+						return kills >= 10000;
 					}
 				}));
 
 		fightingAchievements.add(createAchievement(
 				ID_DEEPSEA, "Deep Sea Fisherman", "Kill 500 sharks, kraken, & neo kraken",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_DEEPSEA, ENEMIES_DEEPSEA)));
+				new PlayerHasKilledNumberOfCreaturesCondition(500, ENEMIES_DEEPSEA)));
 
 		fightingAchievements.add(createAchievement(
 				ID_ZOMBIES, "Zombie Apocalypse", "Kill 500 zombies",
@@ -176,19 +218,19 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 							kills += player.getSoloKill(zombie) + player.getSharedKill(zombie);
 						}
 
-						return kills >= COUNT_ZOMBIES;
+						return kills >= 500;
 					}
 				}));
 
 		fightingAchievements.add(createAchievement(
 				ID_FOWL, "Chicken Nuggets", "Kill 100 of each type of fowl",
 				Achievement.EASY_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_FOWL, ENEMIES_FOWL)));
+				new PlayerHasKilledNumberOfCreaturesCondition(100, ENEMIES_FOWL)));
 
 		fightingAchievements.add(createAchievement(
 				ID_PACHYDERM, "Pachyderm Mayhem", "Kill 100 of each type of pachyderm",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerHasKilledNumberOfCreaturesCondition(COUNT_PACHYDERM, ENEMIES_PACHYDERM)));
+				new PlayerHasKilledNumberOfCreaturesCondition(100, ENEMIES_PACHYDERM)));
 
 		fightingAchievements.add(createAchievement(
 				ID_BLUFFY, "Bluffy the Slayer", "Kill "+COUNT_BLUFFY+" giant bats or giant killer bats", 

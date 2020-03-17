@@ -9,9 +9,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement;
+package games.stendhal.server.core.rp.achievement.item;
 
-import static org.junit.Assert.assertEquals;
+import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ID_ROYAL;
+import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ITEMS_ROYAL;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -21,31 +22,26 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.rp.achievement.factory.ObtainAchievementsFactory;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
+public class RoyallyEndowedAchievementTest {
 
-public class BobbingForApplesTest {
+	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 
 	private Player player;
-
-	// ID used for achievement
-	private final String achievementId = ObtainAchievementsFactory.ID_APPLES;
-
-	// required number of apples to harves or loot
-	private final int itemCount = ObtainAchievementsFactory.COUNT_APPLES;
-	private final String item = "apple";
-
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		new DatabaseFactory().initializeDatabase();
 		// initialize world
 		MockStendlRPWorld.get();
+		notifier.initialize();
 	}
 
 	@AfterClass
@@ -55,62 +51,35 @@ public class BobbingForApplesTest {
 
 	@Test
 	public void init() {
-		resetPlayer();
+		initPlayer();
 		testAchievement();
 	}
 
 	private void testAchievement() {
-		player.incLootForItem(item, itemCount - 1);
-		assertEquals(itemCount - 1, player.getNumberOfLootsForItem(item));
-		assertFalse(achievementReached());
-		player.incLootForItem(item, 1);
-		assertEquals(itemCount, player.getNumberOfLootsForItem(item));
-		assertTrue(achievementReached());
+		final int itemCount = ITEMS_ROYAL.length;
+		int idx = 0;
+		for (final String item: ITEMS_ROYAL) {
+			idx++;
 
-		resetPlayer();
+			player.incLootForItem(item, 1);
+			notifier.onItemLoot(player);
 
-		player.incHarvestedForItem(item, itemCount - 1);
-		assertEquals(itemCount - 1, player.getQuantityOfHarvestedItems(item));
-		assertFalse(achievementReached());
-		player.incHarvestedForItem(item, 1);
-		assertEquals(itemCount, player.getQuantityOfHarvestedItems(item));
-		assertTrue(achievementReached());
-
-		resetPlayer();
-
-		final int halfCount = itemCount / 2;
-
-		player.incLootForItem(item, halfCount);
-		player.incHarvestedForItem(item, halfCount - 1);
-		assertFalse(achievementReached());
-		player.incHarvestedForItem(item, 1);
-		assertEquals(halfCount, player.getNumberOfLootsForItem(item));
-		assertEquals(halfCount, player.getQuantityOfHarvestedItems(item));
-		assertTrue(achievementReached());
-
-		resetPlayer();
-
-		player.incLootForItem(item, halfCount - 1);
-		player.incHarvestedForItem(item, halfCount);
-		assertFalse(achievementReached());
-		player.incLootForItem(item, 1);
-		assertEquals(halfCount, player.getNumberOfLootsForItem(item));
-		assertEquals(halfCount, player.getQuantityOfHarvestedItems(item));
-		assertTrue(achievementReached());
+			if (idx >= itemCount) {
+				assertTrue(achievementReached());
+			} else {
+				assertFalse(achievementReached());
+			}
+		}
 	}
-
 
 	/**
 	 * Resets player achievements & kills.
 	 */
-	private void resetPlayer() {
+	private void initPlayer() {
 		player = null;
 		assertNull(player);
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
-
-		assertEquals(0, player.getNumberOfLootsForItem(item));
-		assertEquals(0, player.getQuantityOfHarvestedItems(item));
 
 		AchievementTestHelper.init(player);
 		assertFalse(achievementReached());
@@ -123,6 +92,6 @@ public class BobbingForApplesTest {
 	 * 		<code>true</player> if the player has the achievement.
 	 */
 	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, achievementId);
+		return AchievementTestHelper.achievementReached(player, ID_ROYAL);
 	}
 }

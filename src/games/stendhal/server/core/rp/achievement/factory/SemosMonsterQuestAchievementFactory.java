@@ -26,27 +26,47 @@ import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition
  */
 public class SemosMonsterQuestAchievementFactory extends AbstractAchievementFactory {
 
-	@Override
-	public Collection<Achievement> createAchievements() {
-		List<Achievement> questAchievements = new LinkedList<Achievement>();
-		//daily monster quest achievements
-		questAchievements.add(createAchievement("quest.special.daily.0010", "Semos's Protector", "Finish daily monster quest 10 times",
-												Achievement.EASY_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily", 2, 9)));
-		questAchievements.add(createAchievement("quest.special.daily.0050", "Semos's Guardian", "Finish daily monster quest 50 times",
-												Achievement.EASY_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily", 2, 49)));
-		questAchievements.add(createAchievement("quest.special.daily.0100", "Semos's Hero", "Finish daily monster quest 100 times",
-												Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily", 2, 99)));
-		questAchievements.add(createAchievement("quest.special.daily.0250", "Semos's Champion", "Finish daily monster quest 250 times",
-												Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily", 2, 249)));
-		questAchievements.add(createAchievement("quest.special.daily.0500", "Semos's Vanquisher", "Finish daily monster quest 500 times",
-												Achievement.HARD_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily", 2, 499)));
+	public static final String ID_PROTECTOR = "quest.special.daily.0010";
+	public static final String ID_GUARDIAN = "quest.special.daily.0050";
+	public static final String ID_HERO = "quest.special.daily.0100";
+	public static final String ID_CHAMPION = "quest.special.daily.0250";
+	public static final String ID_VANQUISHER = "quest.special.daily.0500";
 
-		return questAchievements;
-	}
 
 	@Override
 	protected Category getCategory() {
 		return Category.QUEST_SEMOS_MONSTER;
 	}
 
+	@Override
+	public Collection<Achievement> createAchievements() {
+		List<Achievement> questAchievements = new LinkedList<Achievement>();
+
+		questAchievements.add(createAchievement(
+				ID_PROTECTOR, "Semos's Protector", "Finish daily monster quest 10 times",
+				Achievement.EASY_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("daily", 2, 9)));
+
+		questAchievements.add(createAchievement(
+				ID_GUARDIAN, "Semos's Guardian", "Finish daily monster quest 50 times",
+				Achievement.EASY_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("daily", 2, 49)));
+
+		questAchievements.add(createAchievement(
+				ID_HERO, "Semos's Hero", "Finish daily monster quest 100 times",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("daily", 2, 99)));
+
+		questAchievements.add(createAchievement(
+				ID_CHAMPION, "Semos's Champion", "Finish daily monster quest 250 times",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("daily", 2, 249)));
+
+		questAchievements.add(createAchievement(
+				ID_VANQUISHER, "Semos's Vanquisher", "Finish daily monster quest 500 times",
+				Achievement.HARD_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("daily", 2, 499)));
+
+		return questAchievements;
+	}
 }

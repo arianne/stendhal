@@ -68,6 +68,8 @@ import games.stendhal.server.maps.Region;
  */
 public class DailyItemQuest extends AbstractQuest {
 
+	private static DailyItemQuest instance;
+
 	private static final String QUEST_SLOT = "daily_item";
 
 	/** How long until the player can give up and start another quest */
@@ -81,6 +83,21 @@ public class DailyItemQuest extends AbstractQuest {
 	 * it better, go ahead. *
 	 */
 	private static Map<String,Integer> items;
+
+
+	/**
+	 * Get the static instance.
+	 *
+	 * @return
+	 * 		DailyItemQuest
+	 */
+	public static DailyItemQuest getInstance() {
+		if (instance == null) {
+			instance = new DailyItemQuest();
+		}
+
+		return instance;
+	}
 
 	private static void buildItemsMap() {
 		items = new HashMap<String, Integer>();

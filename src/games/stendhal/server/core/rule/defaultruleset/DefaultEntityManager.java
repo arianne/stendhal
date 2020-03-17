@@ -184,6 +184,18 @@ public class DefaultEntityManager implements EntityManager {
 		return true;
 	}
 
+	/**
+	 * For manually populating the creature list.
+	 *
+	 * Useful for tests.
+	 */
+	@Override
+	public void populateCreatureList() {
+		for (final DefaultCreature cr: getDefaultCreatures()) {
+			createdCreature.put(cr.getCreatureName(), cr.getCreature());
+		}
+	}
+
 	@Override
 	public boolean addSpell(DefaultSpell spell) {
 		if(nameToSpell.containsKey(spell.getName())) {

@@ -73,8 +73,11 @@ import games.stendhal.server.maps.Region;
 
 public class DailyMonsterQuest extends AbstractQuest {
 
+	private static DailyMonsterQuest instance;
+
 	private static final String QUEST_SLOT = "daily";
-	private final SpeakerNPC npc = npcs.get("Mayor Sakhs");
+	private SpeakerNPC npc;
+	private final String npcName = "Mayor Sakhs";
 	private static Logger logger = Logger.getLogger("DailyMonsterQuest");
 
 	private final static int delay = MathHelper.MINUTES_IN_ONE_DAY;
@@ -83,6 +86,21 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	/** All creatures, sorted by level. */
 	private static List<Creature> sortedcreatures;
+
+
+	/**
+	 * Get the static instance.
+	 *
+	 * @return
+	 * 		DailyMonsterQuest
+	 */
+	public static DailyMonsterQuest getInstance() {
+		if (instance == null) {
+			instance = new DailyMonsterQuest();
+		}
+
+		return instance;
+	}
 
 	private static void refreshCreaturesList(final String excludedCreature) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
@@ -481,6 +499,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
+		npc = npcs.get(npcName);
+
 		fillQuestInfo(
 				"Daily Monster Quest",
 				"Mayor Sakhs needs warriors to keep Semos City safe.",
@@ -514,6 +534,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	@Override
 	public String getNPCName() {
-		return "Mayor Sakhs";
+		return npcName;
 	}
 }
