@@ -52,14 +52,14 @@ public class BestiaryEvent extends Event<RPEntity> {
 				public void prepareView(final Dimension maxSize) {
 					Dimension screenSize = GameScreen.get().getSize();
 					int maxPreferredWidth = screenSize.width - 80;
-					if (event.has("caption")) {
-						JLabel caption = new JLabel("<html><div width=" + (maxPreferredWidth
-								- 10) + ">" + event.get("caption") + "</div></html>");
-						caption.setBorder(BorderFactory.createEmptyBorder(PAD, PAD, PAD, PAD));
-						add(caption, BorderLayout.NORTH);
-					}
 
-					JTable table = createTable();
+					final String headerText = "\"???\" = unknown";
+					JLabel header = new JLabel("<html><div width=" + (maxPreferredWidth
+							- 10) + ">" + headerText + "</div></html>");
+					header.setBorder(BorderFactory.createEmptyBorder(PAD, PAD, PAD, PAD));
+					add(header, BorderLayout.NORTH);
+
+					final JTable table = createTable();
 					// Prevents selection
 					table.setEnabled(false);
 					table.setFillsViewportHeight(true);
@@ -104,12 +104,12 @@ public class BestiaryEvent extends Event<RPEntity> {
 				}
 
 				private JTable createTable() {
-					String[] columnNames = { "Name", "Solo", "Shared" };
+					final String[] columnNames = { "Name", "Solo", "Shared" };
 
 					final List<String> enemies = Arrays.asList(event.get("enemies").split(";"));
 					Collections.sort(enemies, String.CASE_INSENSITIVE_ORDER);
 
-					Object[][] data = new Object[enemies.size()][];
+					final Object[][] data = new Object[enemies.size()][];
 					int i = 0;
 					for (final String e: enemies) {
 						data[i] = createDataRow(e.split(","));
@@ -119,7 +119,7 @@ public class BestiaryEvent extends Event<RPEntity> {
 				}
 
 				private Object[] createDataRow(final String[] enemy) {
-					Object[] rval = new Object[4];
+					final Object[] rval = new Object[4];
 
 					final boolean solo = enemy[1].equals("true");
 					final boolean shared = enemy[2].equals("true");
@@ -149,7 +149,7 @@ public class BestiaryEvent extends Event<RPEntity> {
 				 * @param table adjusted table
 				 */
 				private void adjustColumnWidths(JTable table) {
-					TableColumnModel model = table.getColumnModel();
+					final TableColumnModel model = table.getColumnModel();
 					for (int column = 0; column < table.getColumnCount(); column++) {
 						TableColumn tc = model.getColumn(column);
 						int width = tc.getWidth();
