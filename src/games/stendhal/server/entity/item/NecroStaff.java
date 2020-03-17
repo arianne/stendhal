@@ -83,7 +83,7 @@ public class NecroStaff extends Item {
 		final List<Creature> possibleCreatures = new ArrayList<Creature>();
 		for (final Creature creature : creatures) {
 			if (creature.getLevel() <= LEVEL_FACTOR * playerlevel && creature.get("class").equals("undead")
-					&& !creature.isRare()) {
+					&& !creature.isAbnormal()) {
 
 				possibleCreatures.add(creature);
 			}

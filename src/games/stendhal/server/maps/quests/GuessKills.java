@@ -100,7 +100,7 @@ public class GuessKills extends AbstractQuest {
 	 */
 	public GuessKills() {
 		for (Creature creature : SingletonRepository.getEntityManager().getCreatures()) {
-			if (!creature.isRare()) {
+			if (!creature.isAbnormal()) {
 				POSSIBLE_CREATURES.add(creature);
 			}
 		}

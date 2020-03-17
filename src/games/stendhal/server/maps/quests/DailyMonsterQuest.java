@@ -106,7 +106,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedcreatures = new LinkedList<Creature>();
 		for (Creature creature : creatures) {
-			if (!creature.isRare() && !creature.getName().equals(excludedCreature)) {
+			if (!creature.isAbnormal() && !creature.getName().equals(excludedCreature)) {
 				sortedcreatures.add(creature);
 			}
 		}

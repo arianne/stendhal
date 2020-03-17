@@ -29,7 +29,7 @@ public class KilledSharedAllCreaturesCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
-			if (!creature.isRare()) {
+			if (!creature.isAbnormal()) {
 				if (!player.hasKilledShared(creature.getName())) {
 					return false;
 				}

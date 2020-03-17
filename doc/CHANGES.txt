@@ -23,6 +23,7 @@ Changelog
 - achievement changes:
   - ice giant added to David vs. Goliath
   - baby angel added to Heavenly Wrath
+  - chess pieces no longer required for "Legendary" & "Team Player" achievements
 - new enemy sounds:
   - werewolf
 - quest changes:

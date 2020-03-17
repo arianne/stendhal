@@ -30,7 +30,7 @@ public class KilledSoloAllCreaturesCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
-			if (!creature.isRare()) {
+			if (!creature.isAbnormal()) {
 				if (!player.hasKilledSolo(creature.getName())) {
 					return false;
 				}

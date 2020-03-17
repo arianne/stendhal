@@ -53,7 +53,7 @@ public class CreatureSpawner  {
 	public CreatureSpawner() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
-			if (!creature.isRare()) {
+			if (!creature.isAbnormal()) {
 				sortedCreatures.add(creature);
 			}
 		}

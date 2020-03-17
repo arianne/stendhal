@@ -804,6 +804,16 @@ public class Creature extends NPC {
 		return getAIProfiles().containsKey("rare");
 	}
 
+	/**
+	 * Checks if the creature has "abnormal" or "rare" profile.
+	 *
+	 * @return
+	 * 		<code>true</code> if creature is abnormal or rare.
+	 */
+	public boolean isAbnormal() {
+		return getAIProfiles().containsKey("abnormal") || isRare();
+	}
+
 	public void equip(final List<EquipItem> items) {
 		for (final EquipItem equippedItem : items) {
 			if (!hasSlot(equippedItem.slot)) {

@@ -100,7 +100,7 @@ public class SummonScroll extends Scroll {
 			final int magiclevel = 4;
 			final List<Creature> possibleCreatures = new ArrayList<Creature>();
 			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= magiclevel && !creature.isRare()) {
+				if (creature.getLevel() <= magiclevel && !creature.isAbnormal()) {
 					possibleCreatures.add(creature);
 				}
 			}

@@ -111,7 +111,7 @@ public class KillBlordroughs extends AbstractQuest {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		for (int i=0; i<BLORDROUGHS.size(); i++) {
 			Creature creature = manager.getCreature(BLORDROUGHS.get(i));
-			if (!creature.isRare()) {
+			if (!creature.isAbnormal()) {
 				blordroughs.add(creature);
 			}
 		}
