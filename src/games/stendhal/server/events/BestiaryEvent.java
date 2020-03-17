@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
@@ -60,6 +61,7 @@ public class BestiaryEvent extends RPEvent {
 			final char firstChar = killString.charAt(0);
 			final char lastChar = killString.charAt(killString.length() - 1);
 
+			// remove leading & trailing brackets
 			if (firstChar == '[') {
 				killString = killString.substring(1);
 			}
@@ -67,29 +69,39 @@ public class BestiaryEvent extends RPEvent {
 				killString = killString.substring(0, killString.length() - 1);
 			}
 
+			final EntityManager em = SingletonRepository.getEntityManager();
+
 			final List<String> soloKills = new ArrayList<String>();
 			final List<String> sharedKills = new ArrayList<String>();
 
 			for (String k: killString.split("\\]\\[")) {
+				boolean shared = false;
+
 				if (k.startsWith("solo.")) {
 					k = k.replace("solo.", "");
-					String[] count = k.split("=");
-					if (Integer.parseInt(count[1]) > 0) {
-						soloKills.add(count[0]);
-					}
 				} else if (k.startsWith("shared.")) {
+					shared = true;
 					k = k.replace("shared.", "");
-					String[] count = k.split("=");
-					if (Integer.parseInt(count[1]) > 0) {
-						sharedKills.add(count[0]);
+				}
+
+				final String[] count = k.split("=");
+				if (Integer.parseInt(count[1]) > 0) {
+					// exclude rare & abnormal creatures
+					final Creature creature = em.getCreature(count[0]);
+					if (creature != null && !creature.isAbnormal()) {
+						if (shared) {
+							sharedKills.add(count[0]);
+						} else {
+							soloKills.add(count[0]);
+						}
 					}
 				}
 			}
 
 			int idx = 0;
-			final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
-			for (final Creature cr: creatures) {
-				final String name = cr.getName();
+			final Collection<Creature> enemies = SingletonRepository.getEntityManager().getCreatures();
+			for (final Creature enemy: enemies) {
+				final String name = enemy.getName();
 				Boolean solo = false;
 				Boolean shared = false;
 
@@ -101,7 +113,7 @@ public class BestiaryEvent extends RPEvent {
 				}
 
 				sb.append(name + "," + solo.toString() + "," + shared.toString());
-				if (idx != creatures.size() - 1) {
+				if (idx != enemies.size() - 1) {
 					sb.append(";");
 				}
 
