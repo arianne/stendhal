@@ -120,7 +120,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
-      <profile name="rare"/>
+      <profile name="abnormal"/>
     </ai>
   </creature>
 
