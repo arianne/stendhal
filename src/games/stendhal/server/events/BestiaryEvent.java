@@ -14,7 +14,8 @@ package games.stendhal.server.events;
 import static games.stendhal.common.constants.Events.BESTIARY;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -99,9 +100,19 @@ public class BestiaryEvent extends RPEvent {
 			}
 
 			int idx = 0;
-			final Collection<Creature> enemies = SingletonRepository.getEntityManager().getCreatures();
+			final List<Creature> enemies = new ArrayList<>();
+			enemies.addAll(em.getCreatures());
+
+			// sort alphabetically
+			Collections.sort(enemies, new Comparator<Creature>() {
+				@Override
+				public int compare(final Creature c1, final Creature c2) {
+					return (c1.getName().toLowerCase().compareTo(c2.getName().toLowerCase()));
+				}
+			});
+
 			for (final Creature enemy: enemies) {
-				final String name = enemy.getName();
+				String name = enemy.getName();
 				Boolean solo = false;
 				Boolean shared = false;
 
@@ -110,6 +121,11 @@ public class BestiaryEvent extends RPEvent {
 				}
 				if (sharedKills.contains(name)) {
 					shared = true;
+				}
+
+				// hide the names of creatures not killed by player
+				if (!solo && !shared) {
+					name = "???";
 				}
 
 				sb.append(name + "," + solo.toString() + "," + shared.toString());

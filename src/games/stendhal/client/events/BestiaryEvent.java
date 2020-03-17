@@ -15,7 +15,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -107,7 +106,6 @@ public class BestiaryEvent extends Event<RPEntity> {
 					final String[] columnNames = { "Name", "Solo", "Shared" };
 
 					final List<String> enemies = Arrays.asList(event.get("enemies").split(";"));
-					Collections.sort(enemies, String.CASE_INSENSITIVE_ORDER);
 
 					final Object[][] data = new Object[enemies.size()][];
 					int i = 0;
@@ -121,23 +119,15 @@ public class BestiaryEvent extends Event<RPEntity> {
 				private Object[] createDataRow(final String[] enemy) {
 					final Object[] rval = new Object[4];
 
-					final boolean solo = enemy[1].equals("true");
-					final boolean shared = enemy[2].equals("true");
-
+					rval[0] = enemy[0];
 					rval[1] = "";
 					rval[2] = "";
 
-					if (!solo && !shared) {
-						rval[0] = "???";
-					} else {
-						rval[0] = enemy[0];
-
-						if (solo) {
-							rval[1] = "✔";
-						}
-						if (shared) {
-							rval[2] = "✔";
-						}
+					if (enemy[1].equals("true")) {
+						rval[1] = "✔";
+					}
+					if (enemy[2].equals("true")) {
+						rval[2] = "✔";
 					}
 
 					return rval;
