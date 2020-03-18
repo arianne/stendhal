@@ -152,7 +152,9 @@ public class TeleporterBehaviour implements TurnListener {
 		}
 		// remove NPC from old zone
 		zone = speakerNPC.getZone();
-		zone.remove(speakerNPC);
+		if (zone != null) {
+			zone.remove(speakerNPC);
+		}
 
 		// Teleport to another random place
 		boolean found = false;
