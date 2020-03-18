@@ -33,7 +33,7 @@ import marauroa.common.game.SyntaxException;
 public class BestiaryEvent extends RPEvent {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(ShowItemListEvent.class);
+	private static final Logger logger = Logger.getLogger(BestiaryEvent.class);
 
 	/**
 	 * Creates the rpclass.
