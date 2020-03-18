@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
@@ -173,7 +174,7 @@ public class SellerAdder {
 
 						boolean success = sellerBehaviour.transactAgreedDeal(currentBehavRes, raiser, player);
 						if (success) {
-							raiser.addEvent(new SoundEvent("coins-01", SoundLayer.CREATURE_NOISE));
+							raiser.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 						}
 
 						currentBehavRes = null;

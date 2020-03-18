@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
@@ -376,7 +377,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 					npc.say("Done! Your training bow is as good as new.");
 				}
 
-				npc.addEvent(new SoundEvent("coins-01", SoundLayer.CREATURE_NOISE));
+				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 			}
 		};
 

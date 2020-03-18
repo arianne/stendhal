@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -185,7 +186,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 					npc.say("Done! Your training sword is as good as new.");
 				}
 
-				npc.addEvent(new SoundEvent("coins-01", SoundLayer.CREATURE_NOISE));
+				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 			}
 		};
 
