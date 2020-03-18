@@ -5,10 +5,13 @@ Changelog
 1.34
 
 *world*
+- new zones/maps:
+  - Deniran Psychic Parlor
 - new NPCs:
-  - Chester (assassin's archery range)
-  - Omura Sumitada (assassin's dojo)
-  - Akutagawa (assassin's dojo)
+  - Chester (Assassin's Archery Range)
+  - Omura Sumitada (Assassin's Dojo)
+  - Akutagawa (Assassin's Dojo)
+  - Lovena (Deniran Psychic Parlor)
 - new items:
   - bestiary
   - training sword

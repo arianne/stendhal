@@ -255,6 +255,11 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<portal x="91" y="8" ref="psychic_entrance">
+			<destination zone="int_deniran_psychic_parlor" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 		<!-- NPCs -->
 		<!--
 		<configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC" />
@@ -1258,6 +1263,18 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tannery.TannerNPC"/>
+
+	</zone>
+
+	<zone name="int_deniran_psychic_parlor" file="interiors/deniran/psychic_parlor.tmx">
+
+		<portal x="10" y="22" ref="entrance">
+			<destination zone="0_deniran_river_se" ref="psychic_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.psychicparlor.PsychicNPC" />
 
 	</zone>
 

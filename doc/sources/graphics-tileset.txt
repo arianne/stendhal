@@ -708,6 +708,7 @@ huge_orb.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow1.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 native_masks.*             alles, Jordan Irwin (AntumDeluge); CC0; https://pixabay.com/en/masks-africa-african-masks-wooden-1675016/
+orb.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pelt.png                   OCAL; CC0; https://freesvg.org/vintage-sign-board
 pelts.png                  Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
 postbox.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

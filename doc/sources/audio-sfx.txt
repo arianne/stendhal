@@ -195,6 +195,12 @@ xylophone-1.*             Storyteller; GPL
 yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
 yay-1.ogg                 Katie Russell (kymara); GPL
 
+data/sounds/npc/
+
+goodbye_female-01.*  shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
+hello_female-01.*    shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
+mm_hmm_female-01.*   esperar; CC0; https://freesound.org/people/esperar/sounds/170767/
+
 data/sounds/player/
 
 level_up-01.*  LittleRainySeasons; CC0; https://freesound.org/people/LittleRainySeasons/sounds/365424/

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="23" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+ <tileset firstgid="1" name="wallpapers" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+  <image source="../../tileset/building/wall/wallpapers.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="26" name="wood_trim" tilewidth="32" tileheight="32" tilecount="50" columns="10">
+  <image source="../../tileset/building/wall/wood_trim.png" width="320" height="160"/>
+ </tileset>
+ <tileset firstgid="76" name="floor_tiles" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/ground/indoor/floor_tiles.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="85" name="logic/portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
+ <tileset firstgid="109" name="table/fancy_blue_red" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../tileset/furniture/table/fancy_blue_red.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="121" name="table/wooden_with_candles" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+  <image source="../../tileset/furniture/table/wooden_with_candles.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="133" name="orb" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/item/orb.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="134" name="webs" tilewidth="32" tileheight="32" tilecount="6" columns="2">
+  <image source="../../tileset/building/decoration/webs.png" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="140" name="logic/protection" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/logic/protection.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="142" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <layer id="1" name="0_floor" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eAETYGBgEBhgzAm0fyAwzN8gu4PojEF2jtoPCYPR8B9Nf6P5j75pYLT8GS1/R+uf0foHlAYGQ/0LcgM+DKof8MmTIwdL/8TQIPuJUUeqGgDDHbUG
+  </data>
+ </layer>
+ <layer id="2" name="1_terrain" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eAHtlksKwjAQQHMTERfib6XoqtIL+Xfjr2r14L6ASgiYGgKTFhJ40HSm85gw0LSUUu1IdPD2oA8DYYb4RqD9E5BeU4TJn86/qfO3YH6XsII1+K7Q+d8g3MIO9g75gdgRTlZOqN8q93N7JnKBwsqQ9D8i+2P2f6X3G9zBXFLnX76lT1POs5Tf0n63yZ/+v3W5f8yYyqo7qB7cqhyf+Jh6uv8cMgefe2nXyNHvXN/8G5tT5wVV6y83
+  </data>
+ </layer>
+ <layer id="3" name="2_object" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAsM1BFqHq8dG/TUaAqMhMOxDQAbqQ7kB8qka1F4NGtgPAEFpAQ4=
+  </data>
+ </layer>
+ <layer id="5" name="3_roof" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eAHt0LENACAMA0GPngoFWIJRMWKHUPCWXL90Kan71XMz0h8Oz+r4bZ52PEiTRAABBBBAAAEEEPhUoElrA+LMB3M=
+  </data>
+ </layer>
+ <layer id="4" name="objects" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eAHt0KEBAAAMwjDe3P+PzKORwRWZxAgQIECAAAECBAgQaIHrY9QPKhgAWg==
+  </data>
+ </layer>
+ <layer id="6" name="collision" width="32" height="23" visible="0" opacity="0.3">
+  <data encoding="base64" compression="zlib">
+   eAHrY2Bg6BvFwBCgL0APc/rajhnno/bTNwSGevxT6n566gfZhQ4otR/dPHz8UfsxQ2ckhT+m70fLX3rG/2j4Y4bAYAt/dPeg80E+QBejJ59W9gMAu493Qw==
+  </data>
+ </layer>
+ <layer id="7" name="protection" width="32" height="23" visible="0" opacity="0.29">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoBDooTNGD/VR++kbB6PhjxoCo+lvNP3RMw2gpj76hj3In+iAnn4ftR899Efjf6SnP8wUgSqCLc+gqqAtj1b2AwA91CQY
+  </data>
+ </layer>
+</map>
