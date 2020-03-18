@@ -85,17 +85,26 @@ public class BestiaryEvent extends RPEvent {
 					k = k.replace("shared.", "");
 				}
 
+				if (!k.contains("=")) {
+					logger.warn("Invalid !kill format: " + k);
+					continue;
+				}
+
 				final String[] count = k.split("=");
-				if (Integer.parseInt(count[1]) > 0) {
-					// exclude rare & abnormal creatures
-					final Creature creature = em.getCreature(count[0]);
-					if (creature != null && !creature.isAbnormal()) {
-						if (shared) {
-							sharedKills.add(count[0]);
-						} else {
-							soloKills.add(count[0]);
+				try {
+					if (Integer.parseInt(count[1]) > 0) {
+						// exclude rare & abnormal creatures
+						final Creature creature = em.getCreature(count[0]);
+						if (creature != null && !creature.isAbnormal()) {
+							if (shared) {
+								sharedKills.add(count[0]);
+							} else {
+								soloKills.add(count[0]);
+							}
 						}
 					}
+				} catch (final NumberFormatException e) {
+					logger.warn("Kill count value for creature \"" + count[1] + "\" not numeric");
 				}
 			}
 
