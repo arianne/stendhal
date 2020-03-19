@@ -20,6 +20,8 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -54,6 +56,10 @@ public abstract class GuidedEntity extends ActiveEntity {
      * The radius at which the entity will walk
      */
     private int movementRadius = 0;
+
+
+    // used to store & restore the entity's base speed for suspension
+    private Double storedSpeed = null;
 
 	/**
 	 * Create a guided entity.
@@ -257,6 +263,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * @param pathPos
 	 */
 	public void setPathPosition(final int pathPos) {
+		onNodeReached();
+
 		guide.pathPosition = pathPos;
 	}
 
@@ -329,6 +337,82 @@ public abstract class GuidedEntity extends ActiveEntity {
 				setSpeed(getBaseSpeed() * (100 - resistance) / 100.0);
 			}
 		}
+	}
+
+	/**
+	 * Suspends the entity's movement if the path position is marked for suspension.
+	 */
+	protected void onNodeReached() {
+		if (!isSuspended()) {
+			if (guide.path.suspendAt(guide.pathPosition)) {
+				stop();
+				storedSpeed = getBaseSpeed();
+				setBaseSpeed(0.0);
+
+				final Direction suspendDir = guide.path.getSuspendDirection(guide.pathPosition);
+				if (suspendDir != null) {
+					// FIXME: direction appears to be set, but client does not reflect it
+					setDirection(suspendDir);
+				}
+
+				TurnNotifier.get().notifyInTurns(guide.path.getSuspendValue(guide.pathPosition), new TurnListener() {
+					@Override
+					public void onTurnReached(final int currentTurn) {
+						setBaseSpeed(storedSpeed);
+						storedSpeed = null;
+						setSpeed(getBaseSpeed());
+					}
+				});
+			}
+		}
+	}
+
+	/**
+	 * Checks if the entity is in suspended state.
+	 *
+	 * @return
+	 * 		<code>true</code> if the entity is stopped & its base speed has been stored.
+	 */
+	private boolean isSuspended() {
+		return storedSpeed != null && stopped();
+	}
+
+	/**
+	 * Add a suspension to the entity's path.
+	 *
+	 * @param duration
+	 * 		Amount of time (in turns) the entity will be suspended.
+	 * @param dir
+	 * 		Direction to face while suspended, or <code>null</code>
+	 * 		if direction should not be changed.
+	 * @param pos
+	 * 		The position(s) in the path where to add the suspension.
+	 */
+	public void addSuspend(final int duration, final Direction dir, final int... pos) {
+		guide.path.addSuspend(duration, dir, pos);
+	}
+
+	/**
+	 * Add a suspension to the entity's path.
+	 *
+	 * @param duration
+	 * 		Amount of time (in turns) the entity will be suspended.
+	 * 		if direction should not be changed.
+	 * @param pos
+	 * 		The position(s) in the path where to add the suspension.
+	 */
+	public void addSuspend(final int duration, final int... pos) {
+		guide.path.addSuspend(duration, pos);
+	}
+
+	/**
+	 * Removes suspension value from path position.
+	 *
+	 * @param pos
+	 * 		The position(s) in the path from where to remove the suspension.
+	 */
+	public void removeSuspend(final int... pos) {
+		guide.path.removeSuspend(pos);
 	}
 
 	/**

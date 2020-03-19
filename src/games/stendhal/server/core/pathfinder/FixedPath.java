@@ -6,14 +6,19 @@
 
 package games.stendhal.server.core.pathfinder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.Direction;
 
 //
 //
 
 import games.stendhal.server.entity.ActiveEntity;
+import marauroa.common.Pair;
 
 /**
  * A path using a fixed route.
@@ -44,6 +49,12 @@ public class FixedPath {
 	 * The current position.
 	 */
 	protected int pos;
+
+	/**
+	 * Positions in the entity's path where it will suspend for a determined amount of turns.
+	 */
+	protected Map<Integer, Pair<Integer, Direction>> suspensions = new HashMap<>();
+
 
 	/**
 	 * Create a fixed path from a list. NOTE: The list is not copied, and should
@@ -199,6 +210,84 @@ public class FixedPath {
 
 	public boolean isFinished() {
 		return (currentGoal == null);
+	}
+
+	/**
+	 * Add a suspension to the entity's path.
+	 *
+	 * @param duration
+	 * 		Amount of time (in turns) the entity will be suspended.
+	 * @param dir
+	 * 		Direction to face while suspended, or <code>null</code>
+	 * 		if direction should not be changed.
+	 * @param pos
+	 * 		The position(s) in the path where to add the suspension.
+	 */
+	public void addSuspend(final int duration, final Direction dir, final int... pos) {
+		for (final int p: pos) {
+			suspensions.put(p, new Pair<Integer, Direction>(duration, dir));
+		}
+	}
+
+	/**
+	 * Add a suspension to the entity's path.
+	 *
+	 *
+	 * @param duration
+	 * 		Amount of time (in turns) the entity will be suspended.
+	 * @param pos
+	 * 		The position(s) in the path where to add the suspension.
+	 */
+	public void addSuspend(final int duration, final int... pos) {
+		addSuspend(duration, null, pos);
+	}
+
+	/**
+	 * Removes suspension value from path position.
+	 *
+	 * @param pos
+	 * 		The position(s) in the path from where to remove the suspension.
+	 */
+	public void removeSuspend(final int... pos) {
+		for (final int p: pos) {
+			suspensions.remove(p);
+		}
+	}
+
+	/**
+	 * Checks if the entity should be suspended at the given path position.
+	 *
+	 * @param pos
+	 * 		Path position to check.
+	 * @return
+	 * 		<code>true</code> if the entity should suspend.
+	 */
+	public boolean suspendAt(final int pos) {
+		return suspensions.get(pos) != null;
+	}
+
+	/**
+	 * Retrieves the duration of the suspension of the given path position.
+	 *
+	 * @param pos
+	 * 		Path position to check.
+	 * @return
+	 * 		Duration (in turns) the entity should suspend or <code>null</code>.
+	 */
+	public Integer getSuspendValue(final int pos) {
+		return suspensions.get(pos).first();
+	}
+
+	/**
+	 * Retrieves the direction the entity should face while suspended.
+	 *
+	 * @param pos
+	 * 		Path position to check.
+	 * @return
+	 * 		Direction to face or <code>null</code>.
+	 */
+	public Direction getSuspendDirection(final int pos) {
+		return suspensions.get(pos).second();
 	}
 
 	//
