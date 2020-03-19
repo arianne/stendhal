@@ -69,7 +69,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 		String chosenItemName = res.getChosenItemName();
 		int amount = res.getAmount();
 
-		final Item item = getAskedItem(chosenItemName);
+		final Item item = getAskedItem(chosenItemName, player);
 		if (item == null) {
 			logger.error("Trying to sell an nonexistent item: " + chosenItemName);
 			return false;
@@ -112,8 +112,12 @@ public class SellerBehaviour extends MerchantBehaviour {
 		}
 	}
 
-	public Item getAskedItem(final String askedItem) {
+	public Item getAskedItem(final String askedItem, @SuppressWarnings("unused") final Player player) {
 		final Item item = SingletonRepository.getEntityManager().getItem(askedItem);
 		return item;
+	}
+
+	public Item getAskedItem(final String askedItem) {
+		return getAskedItem(askedItem, null);
 	}
 }
