@@ -1,9 +1,6 @@
 package games.stendhal.server.maps.quests;
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.entity.npc.action.*;
-import games.stendhal.server.entity.npc.condition.*;
-import java.util.*;
 
 import java.util.List;
 
@@ -13,7 +10,6 @@ public class UnicornHornsForRer extends AbstractQuest {
 
 	public static final String QUEST_SLOT = "unicorn_rer";
 	public static final int REQUIRED_HORNS = 250;
-	public static final int REQUIRED_FEATHERS = 1;
 	
 	@Override
 	public List<String> getHistory(Player player) {
@@ -30,8 +26,7 @@ public class UnicornHornsForRer extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Unicorn Horns for Rer",
-				"Rer Ecros promised to make me stronger if I bring him "+REQUIRED_HORNS+" unicorn horns and "
-						+ (REQUIRED_FEATHERS > 1? REQUIRED_FEATHERS + " pegasus feathers.":"one pegasus feather."),
+				"Rer Ecros promised to make me stronger if I bring him "+REQUIRED_HORNS+" unicorn horns and one pegasus feather.",
 				false);
 		prepareQuestOfferingStep();
 		prepareFinishingStep();
@@ -69,8 +64,7 @@ public class UnicornHornsForRer extends AbstractQuest {
 	    		ConversationPhrases.YES_MESSAGES, 
 	    		null, 
 	    		ConversationStates.QUEST_STARTED,
-	    		"Go and bring me "+REQUIRED_HORNS+" unicorn horns and "
-						+ (REQUIRED_FEATHERS > 1? REQUIRED_FEATHERS + " pegasus feathers.":"one pegasus feather. Do you have these items with you already?"), 
+	    		"Go and bring me "+REQUIRED_HORNS+" unicorn horns and one pegasus feather. Do you have these items with you already?", 
 				new SetQuestAction(QUEST_SLOT, "started"));
 	    
 		npc.add(ConversationStates.QUEST_OFFERED, 
