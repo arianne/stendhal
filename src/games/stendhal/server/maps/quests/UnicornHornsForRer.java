@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.npc.action.*;
+//import games.stendhal.server.entity.npc.action.*;
 
 import java.util.List;
 
@@ -155,14 +155,14 @@ public class UnicornHornsForRer extends AbstractQuest {
 	}
 
 	private void prepareResetStep() {
-		SpeakerNPC npc = npcs.get("Rer Ecros");
+	/*	SpeakerNPC npc = npcs.get("Rer Ecros");
 		npc.add(ConversationStates.ANY,
 				"reset",
 				null,
 				ConversationStates.IDLE,
 				"The Quest Data has been erased",
 				new SetQuestAction(QUEST_SLOT, null)); 
-		
+		*/
 	}
 
 
