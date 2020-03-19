@@ -1201,6 +1201,9 @@
 
 	<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
 
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.dressshop.OutfitLenderNPC" />
+
 		<portal x="13" y="18" ref="entrance">
 			<destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance" />
 			<attribute name="move.continuous" />

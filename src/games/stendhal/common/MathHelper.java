@@ -28,6 +28,8 @@ public class MathHelper {
 	public static final int MINUTES_IN_ONE_DAY = MINUTES_IN_ONE_HOUR * 24;
 	public static final int MINUTES_IN_ONE_WEEK = MINUTES_IN_ONE_DAY * 7;
 
+	public static final int TURNS_IN_ONE_MINUTE = (int) (60 / 0.3); // 200
+
 	/**
 	 * Parses a double safely, returning a default if nothing can be sanely
 	 * parsed from it.

@@ -37,7 +37,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	private final String wearOffMessage;
 
 	/** if <code>true</code>, return player to original outfit before setting new temp outfit */
-	private boolean resetBeforeChange = false;
+	protected boolean resetBeforeChange = false;
 
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();

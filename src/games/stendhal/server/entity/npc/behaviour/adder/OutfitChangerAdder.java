@@ -126,7 +126,7 @@ public class OutfitChangerAdder {
 
 						if (outfitBehaviour.transactAgreedDeal(currentBehavRes, npc, player)) {
 							if (canReturn) {
-								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
+								npc.say(getReturnPhrase());
 								// -1 is also the public static final int NEVER_WEARS_OFF = -1;
 								// but it doesn't recognise it here ...
 							} else if (outfitBehaviour.getEndurance() != -1) {
@@ -163,5 +163,9 @@ public class OutfitChangerAdder {
 						}
 					});
 		}
+	}
+
+	protected String getReturnPhrase() {
+		return "Thanks, and please don't forget to #return it when you don't need it anymore!";
 	}
 }

@@ -13,6 +13,7 @@ Changelog
   - Akutagawa (Assassin's Dojo)
   - Lovena (Deniran Psychic Parlor)
   - Rengard (a wandering adventurer)
+  - Pierre (outfit lender in Deniran Dress Shop)
 - new items:
   - bestiary
   - training sword
