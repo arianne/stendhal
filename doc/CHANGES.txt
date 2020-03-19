@@ -12,6 +12,7 @@ Changelog
   - Omura Sumitada (Assassin's Dojo)
   - Akutagawa (Assassin's Dojo)
   - Lovena (Deniran Psychic Parlor)
+  - Rengard (a wandering adventurer)
 - new items:
   - bestiary
   - training sword
@@ -31,6 +32,8 @@ Changelog
   - werewolf
 - quest changes:
   - 5 unicorn horns added to Kirdneh Museum quest
+- new quests:
+  - Collect Enemy Data
 - new RATK stat independent from ATK
 - dojo area for training ATK stat
 - archery range area for training RATK stat
