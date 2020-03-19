@@ -81,14 +81,16 @@ public class PsychicNPC implements ZoneConfigurator {
 				new PlaySoundAction("npc/goodbye_female-01"));
 
 		psychic.addJob("I am a psychic. Would you like a #reading?");
-		psychic.addOffer("I can #read your combat past, as long as have #recorded the enemies you have defeated.");
+		final String helpReply = "I can #read your combat past, as long as have #recorded the enemies you have defeated.";
+		psychic.addHelp(helpReply);
+		psychic.addOffer(helpReply);
 		psychic.addQuest("The only task I have for you, is the quest for knowledge. I can offer you a #reading for insight into your past.");
 		psychic.addReply(
 				Arrays.asList("record", "recorded", "recording"),
 				"Some adventurers are wise enough to keep a record of the enemies they come accross in a #bestiary.");
 		psychic.addReply(
 				"bestiary",
-				"If you are unfamiliar, seek out an experienced adventurer that can show you how to keep a log of your foes");
+				"If you are unfamiliar, seek out an experienced adventurer that can show you how to keep a log of your foes.");
 
 		zone.add(psychic);
 	}
@@ -222,7 +224,7 @@ public class PsychicNPC implements ZoneConfigurator {
 				Arrays.asList("read", "reading"),
 				new NotCondition(new PlayerHasItemWithHimCondition("bestiary")),
 				ConversationStates.ATTENDING,
-				"I cannot read into your past unless you have a #record of the enemies you have faced",
+				"I cannot read into your past unless you have a #record of the enemies you have faced.",
 				null);
 
 		psychic.add(ConversationStates.ATTENDING,
