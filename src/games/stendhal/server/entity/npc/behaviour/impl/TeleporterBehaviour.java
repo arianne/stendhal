@@ -39,6 +39,12 @@ public class TeleporterBehaviour implements TurnListener {
 	private final String repeatedText;
 
 	/**
+	 * If set to <code>false</code>, NPC will not teleport if engaged in
+	 * conversation when turn reached for teleport.
+	 */
+	private boolean exitsConversation = true;
+
+	/**
 	 * Creates a new TeleporterBehaviour.
 	 *
 	 * @param speakerNPC
@@ -147,6 +153,10 @@ public class TeleporterBehaviour implements TurnListener {
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (speakerNPC.getEngine().getCurrentState() != ConversationStates.IDLE) {
+			if (!exitsConversation) {
+				return;
+			}
+
 			speakerNPC.say("Bye.");
 			speakerNPC.setCurrentState(ConversationStates.IDLE);
 		}
@@ -196,5 +206,17 @@ public class TeleporterBehaviour implements TurnListener {
 
 		// Schedule so we are notified again in 5 minutes
 		SingletonRepository.getTurnNotifier().notifyInTurns(5 * 60 * 3, this);
+	}
+
+	/**
+	 * Sets the behavior of the NPC when teleport turn is reached.
+	 *
+	 * @param exits
+	 * 		If <code>false</code>, NPC will not teleport if engaged in
+	 * 		conversation when turn reached for teleport. Otherwise, will
+	 * 		end conversation & teleport.
+	 */
+	public void setExitsConversation(final boolean exits) {
+		exitsConversation = exits;
 	}
 }
