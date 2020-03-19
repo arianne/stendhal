@@ -160,6 +160,23 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 
 	/**
+	 * Causes entity to retrace its path backwards when it reaches the end.
+	 */
+	public void retracePath() {
+		if (!hasPath()) {
+			logger.warn("Cannot set path to be retraced when entity does not have path set");
+			return;
+		}
+
+		final List<Node> nodes = guide.path.getNodeList();
+		for (int idx = nodes.size() - 2; idx > 1 - 1; idx--) {
+			nodes.add(nodes.get(idx));
+		}
+
+		setPath(new FixedPath(nodes, guide.path.isLoop()), guide.pathPosition);
+	}
+
+	/**
      * Set a path for this entity to follow. Any previous path is cleared and
      * the entity starts at the first node (so the first node should be its
      * position, of course). The speed will be set to the default for the
