@@ -30,11 +30,14 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ShowOutfitListEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.TimeUtil;
 
@@ -90,13 +93,17 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		public Outfit getOutfit() {
 			return new Outfit(outfitType.toString());
 		}
+
+		public String getOutfitString() {
+			return outfitType.toString();
+		}
 	}
 
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		initNPC(zone);
-		initShop();
+		initShop(zone);
 	}
 
 	private void initNPC(final StendhalRPZone zone) {
@@ -109,8 +116,9 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 		lender.addGreeting();
 		lender.addGoodbye();
-		final String helpReply = "I #rent outfits.";
+		final String helpReply = "Please see our catalog on the desk for the outfits that I #rent out.";
 		lender.addHelp(helpReply);
+		lender.addOffer(helpReply);
 		lender.addJob("I run the Deniran Dress Shop. Let me know if you want to #rent an outfit.");
 
 		final List<Node> nodes = new LinkedList<Node>() {{
@@ -129,7 +137,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		zone.add(lender);
 	}
 
-	private void initShop() {
+	private void initShop(final StendhalRPZone zone) {
 		final List<DeniranOutfit> outfitList = new LinkedList<DeniranOutfit>() {{
 			add(new DeniranOutfit("blue bear", OutfitType.BEAR_BLUE, 2500));
 			add(new DeniranOutfit("brown bear", OutfitType.BEAR_BROWN, 2500));
@@ -198,6 +206,39 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				return "You can wear this for " +  TimeUtil.timeUntil(60 * endurance)
 				+ ". But you can #return it before it expires if you like.";
 			};
-		}.addOutfitChanger(lender, behaviour, "rent");
+		}.addOutfitChanger(lender, behaviour, "rent", false, true);
+
+
+		// a catalog for players to browse
+		final ShopSign catalog = new ShopSign(null, null, null, true) {
+			@Override
+			public boolean onUsed(final RPEntity user) {
+				if (user instanceof Player) {
+					final Player player = (Player) user;
+
+					final StringBuilder toSend = new StringBuilder();
+					final int outfitCount = outfitList.size();
+
+					for (int idx = 0; idx < outfitCount; idx++) {
+						final DeniranOutfit of = outfitList.get(idx);
+						toSend.append(of.getLabel() + ";" + of.getOutfitString() + ";" + of.getPrice());
+						if (idx < outfitCount - 1) {
+							toSend.append(":");
+						}
+					}
+
+					player.addEvent(new ShowOutfitListEvent("Deniran Dress Shop", lender.getName() + " rents out the following outfits", toSend.toString()));
+					player.notifyWorldAboutChanges();
+
+					return true;
+				}
+
+				return false;
+			}
+		};
+		catalog.setEntityClass("book_turquoise");
+		catalog.setPosition(9, 4);
+
+		zone.add(catalog);
 	}
 }
