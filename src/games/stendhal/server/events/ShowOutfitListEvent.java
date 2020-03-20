@@ -39,7 +39,7 @@ public class ShowOutfitListEvent extends RPEvent {
 			final RPClass rpclass = new RPClass(OUTFIT_LIST);
 			rpclass.addAttribute(TITLE, Type.STRING, Definition.PRIVATE);
 			rpclass.addAttribute(CAPTION, Type.STRING, Definition.PRIVATE);
-			rpclass.addAttribute(OUTFITS, Type.STRING, Definition.PRIVATE);
+			rpclass.addAttribute(OUTFITS, Type.LONG_STRING, Definition.PRIVATE);
 			rpclass.addAttribute("show_base", Type.FLAG, Definition.PRIVATE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
