@@ -133,10 +133,12 @@ public class ShowOutfitListEvent extends Event<Entity> {
 			}
 
 			private Object[] createDataRow(final String[] outfit) {
-				final Object[] rval = new Object[outfit.length];
+				final Object[] rval = new Object[3];
+
+				boolean overrideHideBase = outfit.length > 3 && outfit[3].equals("showbase");
 
 				String outfitString = outfit[1];
-				if (!event.has("show_base")) {
+				if (!event.has("show_base") && !overrideHideBase) {
 					final Map<String, String> tmpValues = new HashMap<>();
 					for (final String layer: outfitString.split(",")) {
 						final String[] keyValue = layer.split("=");
@@ -163,8 +165,19 @@ public class ShowOutfitListEvent extends Event<Entity> {
 					outfitString = newOutfit.toString();
 				}
 
+				int xIndex = 1;
+				int yIndex = 2;
+				if (outfit.length > 5) {
+					try {
+						xIndex = Integer.parseInt(outfit[4]);
+						yIndex = Integer.parseInt(outfit[5]);
+					} catch (final NumberFormatException e) {
+						logger.warn("Failed to set frame index, using default");
+					}
+				}
+
 				rval[0] = outfit[0];
-				rval[1] = ((ImageSprite) OutfitStore.get().getAdjustedOutfit(outfitString, null, null, null)).getFrame(1, 2);
+				rval[1] = ((ImageSprite) OutfitStore.get().getAdjustedOutfit(outfitString, null, null, null)).getFrame(xIndex, yIndex);
 				rval[2] = outfit[2];
 
 				return rval;
