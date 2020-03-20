@@ -19,20 +19,22 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Occasion;
 import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ShowOutfitListEvent;
 import marauroa.common.Pair;
 
 public class OutfitLender2NPC implements ZoneConfigurator {
@@ -44,6 +46,22 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 	private static final double N = 1;
 
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
+	private final static Map<String, Integer> priceList = new HashMap<String, Integer>();
+
+	// for the client to know which bases should not be hidden in the preview
+	private final static Map<String, String> hideBaseOverrides = new HashMap<String, String>() {{
+		put("gingerbread man", "showbody");
+		put("black cat", "showbody");
+		put("white cat", "showbody");
+		put("green slime", "showbody");
+		put("red slime", "showbody");
+		put("purple slime", "showbody");
+		put("blue slime", "showbody");
+		put("goblin face", "showhead");
+		put("thing face", "showhead");
+	}};
+
+
 	/**
 	 * Configure a zone.
 	 *
@@ -164,7 +182,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 						return false;
 					}
 				}
-				final Map<String, Integer> priceList = new HashMap<String, Integer>();
+
 				priceList.put("goblin face", (int) (N * 500));
 				priceList.put("thing face", (int) (N * 500));
 				priceList.put("purple slime", (int) (N * 3000));
@@ -175,6 +193,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("umbrella", (int) (N * 300));
 				priceList.put("black cat", (int) (N * 4500));
 				priceList.put("white cat", (int) (N * 4500));
+
 			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
 				add(
@@ -189,7 +208,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					+ " #hire a #red #slime, #hire a #blue #slime,"
 					+ " #hire a #gingerbread #man outfit,"
 					+ " #hire a #white #cat, or #hire a #black #cat.",
-					new ExamineChatAction("outfits2.png", "Outfits", "Price varies"));
+					createPreviewAction());
+
 				addJob("I work with magic in a fun way! Ask about the #offer.");
 				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana also rents out from a different range.");
 				addGoodbye("Bye!");
@@ -219,5 +239,34 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		}
 
 		zone.add(npc);
+	}
+
+
+	private ChatAction createPreviewAction() {
+		return new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final StringBuilder outfitString = new StringBuilder();
+				final int outfitCount = outfitTypes.size();
+
+				int idx = 0;
+				for (final String outfitName: outfitTypes.keySet()) {
+					outfitString.append(outfitName + ";" + outfitTypes.get(outfitName).first().toString() + ";" + priceList.get(outfitName));
+					if (hideBaseOverrides.containsKey(outfitName)) {
+						outfitString.append(";" + hideBaseOverrides.get(outfitName));
+					} else {
+						outfitString.append(";"); // avoid index out of range exception
+					}
+
+					if (idx < outfitCount - 1) {
+						outfitString.append(":");
+					}
+					idx++;
+				}
+
+				player.addEvent(new ShowOutfitListEvent(npc.getName() + "s Shop", "Outfits rented here", outfitString.toString()));
+				player.notifyWorldAboutChanges();
+			}
+		};
 	}
 }

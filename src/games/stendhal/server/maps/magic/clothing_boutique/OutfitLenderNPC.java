@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.clothing_boutique;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,20 +21,22 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Occasion;
 import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ShowOutfitListEvent;
 import marauroa.common.Pair;
 
 public class OutfitLenderNPC implements ZoneConfigurator {
@@ -44,7 +47,13 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions
 	private static final double N = 1;
 
-	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
+	private final static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
+	private final static Map<String, Integer> priceList = new HashMap<String, Integer>();
+
+	// for the client to know which bases should not be hidden in the preview
+	private final static List<String> hideBaseOverrides = Arrays.asList("horse", "girl horse", "alien");
+
+	private SpeakerNPC npc;
 
 	private String jobReply;
 
@@ -98,7 +107,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	}
 
 	private void buildBoutiqueArea(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Liliana") {
+		npc = new SpeakerNPC("Liliana") {
 			@Override
 			protected void createPath() {
 			    final List<Node> nodes = new LinkedList<Node>();
@@ -174,7 +183,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						return false;
 					}
 				}
-				final Map<String, Integer> priceList = new HashMap<String, Integer>();
+
 				priceList.put("jumpsuit", (int) (N * 500));
 				priceList.put("dungarees", (int) (N * 500));
 				priceList.put("green dress", (int) (N * 500));
@@ -185,7 +194,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				priceList.put("horse", (int) (N * 1200));
 				priceList.put("girl horse", (int) (N * 1200));
 				priceList.put("alien", (int) (N * 1200));
-			       	addGreeting("Hi! How may I help you?");
+
+				addGreeting("Hi! How may I help you?");
 				addQuest("I can't think of anything for you, sorry.");
 				add(
 					ConversationStates.ATTENDING,
@@ -193,7 +203,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					null,
 					ConversationStates.ATTENDING,
 					"Just tell me if you want to #hire a #gown, #hire a #green #dress, #hire a #jester suit, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny suit or #hire an #orange outfit.",
-					new ExamineChatAction("outfits1.png", "Outfits", "Price varies"));
+					createPreviewAction());
+
 				addJob(jobReply);
 				// addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
 				addHelp("Our hired outfits wear off after some time, but you can always come back for more!");
@@ -224,5 +235,39 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		}
 
 		zone.add(npc);
+	}
+
+
+	private ChatAction createPreviewAction() {
+		return new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final StringBuilder outfitString = new StringBuilder();
+				final int outfitCount = outfitTypes.size();
+
+				int idx = 0;
+				for (final String outfitName: outfitTypes.keySet()) {
+					outfitString.append(outfitName + ";" + outfitTypes.get(outfitName).first().toString() + ";" + priceList.get(outfitName));
+					if (hideBaseOverrides.contains(outfitName)) {
+						outfitString.append(";showall");
+					} else {
+						outfitString.append(";"); // avoid index out of range exception
+					}
+
+					if (outfitName.equals("horse") || outfitName.equals("girl horse")) {
+						// show side-facing frame for horses
+						outfitString.append(";1;3");
+					}
+
+					if (idx < outfitCount - 1) {
+						outfitString.append(":");
+					}
+					idx++;
+				}
+
+				player.addEvent(new ShowOutfitListEvent(npc.getName() + "s Shop", "Outfits rented here", outfitString.toString()));
+				player.notifyWorldAboutChanges();
+			}
+		};
 	}
 }
