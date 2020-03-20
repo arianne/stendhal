@@ -26,6 +26,8 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.game.RPObject;
 
 /**
@@ -372,11 +374,21 @@ public abstract class GuidedEntity extends ActiveEntity {
 					setDirection(suspendDir);
 				}
 
+				final GuidedEntity tmp = this;
+
 				TurnNotifier.get().notifyInTurns(guide.path.getSuspendValue(guide.pathPosition), new TurnListener() {
 					@Override
 					public void onTurnReached(final int currentTurn) {
 						setBaseSpeed(storedSpeed);
 						storedSpeed = null;
+
+						// make sure the entity is not in conversation
+						if (tmp instanceof SpeakerNPC) {
+							if (((SpeakerNPC) tmp).getEngine().getCurrentState() != ConversationStates.IDLE) {
+								return;
+							}
+						}
+
 						setSpeed(getBaseSpeed());
 					}
 				});
