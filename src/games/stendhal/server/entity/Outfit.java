@@ -685,13 +685,14 @@ public class Outfit {
 
 		int idx = 0;
 		for (final String layer: Outfits.LAYER_NAMES) {
-			if (layers.containsKey(layer)) {
+			final Integer value = layers.get(layer);
+			if (value != null) {
 				if (idx > 0) {
 					sb.append(",");
 				}
 				sb.append(layer + "=" + layers.get(layer));
+				idx++;
 			}
-			idx++;
 		}
 
 		return sb.toString();
