@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -135,7 +136,14 @@ public class ShowOutfitListEvent extends Event<Entity> {
 			private Object[] createDataRow(final String[] outfit) {
 				final Object[] rval = new Object[3];
 
-				boolean overrideHideBase = outfit.length > 3 && outfit[3].equals("showbase");
+				boolean overrideHideBase = outfit.length > 3 && outfit[3].equals("showall");
+
+				final List<String> hideOverrides = new ArrayList<>();
+				if (!overrideHideBase && outfit.length > 3) {
+					for (final String o: outfit[3].split(",")) {
+						hideOverrides.add(o);
+					}
+				}
 
 				String outfitString = outfit[1];
 				if (!event.has("show_base") && !overrideHideBase) {
@@ -147,7 +155,9 @@ public class ShowOutfitListEvent extends Event<Entity> {
 
 					// overwrite base layers so they are hidden
 					for (final String hideLayer: Arrays.asList("body", "head", "eyes")) {
-						tmpValues.put(hideLayer, "-1");
+						if (!hideOverrides.contains("show" + hideLayer)) {
+							tmpValues.put(hideLayer, "-1");
+						}
 					}
 
 					final StringBuilder newOutfit = new StringBuilder();
