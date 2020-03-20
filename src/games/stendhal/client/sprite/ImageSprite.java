@@ -17,6 +17,7 @@ import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import games.stendhal.client.gui.TransparencyMode;
 
@@ -229,5 +230,26 @@ public class ImageSprite implements Sprite {
 	@Override
 	public boolean isConstant() {
 		return true;
+	}
+
+	/**
+	 * Retrieves a single frame from the image.
+	 *
+	 * @param xIndex
+	 * 		Horizontal index.
+	 * @param yIndex
+	 * 		Vertical index.
+	 * @return
+	 * 		Cropped Sprite.
+	 */
+	public Sprite getFrame(final int xIndex, final int yIndex) {
+		final BufferedImage orig = (BufferedImage) image;
+
+		final int w = getWidth() / 3;
+		final int h = getHeight() / 4;
+		final int x = w * xIndex;
+		final int y = h * yIndex;
+
+		return new ImageSprite(orig.getSubimage(x, y, w, h));
 	}
 }
