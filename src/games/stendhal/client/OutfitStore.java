@@ -95,10 +95,16 @@ public class OutfitStore {
 
 		ImageSprite sprite;
 
-		// TODO: draw transparent sprite for negative body indexes
+		Sprite layer;
 
 		// Body layer
-		Sprite layer = getLayerSprite("body", layer_map.get("body"), color);
+		final int bodyIndex = layer_map.get("body");
+		if (bodyIndex < 0) {
+			layer = store.getEmptySprite(48 * 3, 64 * 4);
+		} else {
+			layer = getLayerSprite("body", layer_map.get("body"), color);
+		}
+
 		if (layer == null) {
 			throw new IllegalArgumentException(
 					"No body image found for outfit: " + layer_map.get("body"));
