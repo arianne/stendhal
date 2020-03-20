@@ -144,6 +144,13 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 			add(new DeniranOutfit("superstendhal", OutfitType.SUPERSTENDHAL, 5000));
 		}};
 
+		// TODO: add special outfit during Mine Town
+		/*
+		if (Occasion.MINETOWN) {
+
+		}
+		*/
+
 		final Map<String, Integer> prices = new LinkedHashMap<>();
 		for (final DeniranOutfit outfit: outfitList) {
 			prices.put(outfit.getLabel(), outfit.getPrice());
