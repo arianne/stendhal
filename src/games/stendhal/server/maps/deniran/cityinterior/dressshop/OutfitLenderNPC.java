@@ -203,7 +203,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		new OutfitChangerAdder() {
 			@Override
 			protected String getReturnPhrase() {
-				return "You can wear this for " +  TimeUtil.timeUntil(60 * endurance)
+				return "This outfit can be worn for " +  TimeUtil.timeUntil(60 * endurance)
 				+ ". But you can #return it before it expires if you like.";
 			};
 		}.addOutfitChanger(lender, behaviour, "rent", false, true);
