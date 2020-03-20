@@ -254,7 +254,12 @@ public class OutfitStore {
 	 */
 	private Sprite getOutfit(final String strcode, final OutfitColor color) {
 		// Use the normalized string for the reference
-		final String reference = buildReference(strcode, color.toString());
+		String colorString = "null";
+		if (color != null) {
+			colorString = color.toString();
+		}
+
+		final String reference = buildReference(strcode, colorString);
 		return getOutfit(strcode, color, reference);
 	}
 

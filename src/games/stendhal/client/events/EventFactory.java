@@ -103,6 +103,8 @@ class EventFactory {
 			event = new ExamineEvent();
 		} else if (name.equals("show_item_list")) {
 			event = new ShowItemListEvent();
+		} else if (name.equals(Events.OUTFIT_LIST)) {
+			event = new ShowOutfitListEvent();
 		} else if (name.equals(Events.SOUND)) {
 			event = new SoundEvent();
 		} else if (name.equals("transition_graph")) {
