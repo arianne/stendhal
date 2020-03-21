@@ -9,6 +9,7 @@ Changelog
   - Deniran Psychic Parlor
   - Atlantis Postions Shop
 - new NPCs:
+  - Jimbo (Deniran Grocery Store)
   - Chester (Assassin's Archery Range)
   - Omura Sumitada (Assassin's Dojo)
   - Akutagawa (Assassin's Dojo)
@@ -63,7 +64,6 @@ Changelog
   - Atlantis
   - Deniran Tannery
 - new NPCs
-  - Jimbo (Deniran Grocery Store)
   - Skinner Rawhide (Denrian Tannery)
   - Zelan (Atlantis)
 - NPC changes
