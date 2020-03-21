@@ -486,6 +486,13 @@ public final class ShopList {
 		shops.add("cafe", "tuna sandwich", 180);
 		shops.add("cafe", "apple pie", 250);
 
+		// atlantis potions shop prices are twice as much as magic city
+		for (final Entry<String, Integer> potion: shops.get("superhealing").entrySet()) {
+			shops.add("atlantispotions", potion.getKey(), potion.getValue() * 2);
+		}
+		shops.add("atlantispotions", "sedative", 800);
+		shops.add("atlantispotions", "empty scroll", 4000);
+
 	}
 
 	private static ShopList instance;
