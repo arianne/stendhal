@@ -7,6 +7,7 @@ Changelog
 *world*
 - new zones/maps:
   - Deniran Psychic Parlor
+  - Atlantis Postions Shop
 - new NPCs:
   - Chester (Assassin's Archery Range)
   - Omura Sumitada (Assassin's Dojo)
@@ -15,6 +16,7 @@ Changelog
   - Rengard (a wandering adventurer)
   - Pierre (outfit lender in Deniran Dress Shop)
   - Ryla (greeter in Atlantis)
+  - Mirielle (Atlantis Potions Shop)
 - new items:
   - bestiary
   - training sword
