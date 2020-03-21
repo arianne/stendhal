@@ -57,6 +57,10 @@ public class TeleporterBehaviour implements TurnListener {
 		this.speakerNPC = speakerNPC;
 		this.zoneStartsWithLimiter = zoneStartsWithLimiter;
 		this.repeatedText = repeatedText;
+
+		// set flag that can be checked if entity is a teleporter
+		this.speakerNPC.setTeleportsFlag(true);
+
 		if (setZones != null)
 		{
 			final Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();

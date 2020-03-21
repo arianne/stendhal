@@ -394,9 +394,14 @@ public class GreeterNPC implements ZoneConfigurator {
 			final NPCList npcList = SingletonRepository.getNPCList();
 			for (final String npcName: npcList.getNPCs()) {
 				final SpeakerNPC npc = npcList.get(npcName);
+
+				// exclude teleporting NPCs
+				if (npc.isTeleporter()) {
+					continue;
+				}
+
 				final String zoneName = npc.getZone().getName();
 				// only include NPC inside city
-				// FIXME: should include exclusion for teleporting NPCs
 				if (zoneName.equals("-7_deniran_atlantis") || (zoneName.startsWith("int_") && zoneName.contains("atlantis"))) {
 					// use 'npc.getName()' instead of 'npcName' to get proper titleization
 					atlantisPeople.add(npc.getName());
