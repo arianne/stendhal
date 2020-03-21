@@ -989,6 +989,9 @@
 	<zone name="-7_deniran_atlantis" level="-7" x="499232" y="500000"
 		file="Level -7/deniran/atlantis.tmx">
 
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.atlantis.cityoutside.GreeterNPC" />
+
 	</zone>
 
 

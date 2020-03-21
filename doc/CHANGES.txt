@@ -14,6 +14,7 @@ Changelog
   - Lovena (Deniran Psychic Parlor)
   - Rengard (a wandering adventurer)
   - Pierre (outfit lender in Deniran Dress Shop)
+  - Ryla (greeter in Atlantis)
 - new items:
   - bestiary
   - training sword
