@@ -61,9 +61,6 @@ public abstract class AbstractAchievementFactory {
 		//add new created factories here
 		list.add(new AdosItemQuestAchievementsFactory());
 		list.add(new ExperienceAchievementFactory());
-		list.add(new ExperienceDEFAchievementFactory());
-		list.add(new ExperienceATKAchievementFactory());
-		list.add(new ExperienceRATKAchievementFactory());
 		list.add(new FightingAchievementFactory());
 		list.add(new FriendAchievementFactory());
 		list.add(new InteriorZoneAchievementFactory());
