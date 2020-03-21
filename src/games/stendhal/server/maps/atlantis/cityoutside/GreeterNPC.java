@@ -121,7 +121,10 @@ public class GreeterNPC implements ZoneConfigurator {
 							if (idx < zoneCount - 2) {
 								reply.append(",");
 							} else if (idx == zoneCount - 2) {
-								reply.append(", and");
+								if (zoneCount > 2) {
+									reply.append(",");
+								}
+								reply.append(" and");
 							}
 							idx++;
 						}
@@ -188,6 +191,9 @@ public class GreeterNPC implements ZoneConfigurator {
 							if (idx < creatureCount - 2) {
 								reply.append(",");
 							} else if (idx == creatureCount - 2) {
+								if (creatureCount > 2) {
+									reply.append(",");
+								}
 								reply.append(" and");
 							}
 							idx++;
