@@ -214,12 +214,12 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				addGoodbye("Come back when ya got some cash. Courtesy aint currency 'round here.");
 				addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
 				addQuest("Do I look like I need any help!? If yer not here to #train then get outta my sight!");
-				addReply("training bow", "Training bows are weak but easy to use, so you can fire from them"
+				addReply("auto crossbow", "Auto crossbows are weak but easy to use, so you can fire from them"
 						+ " much faster than with a normal bow. But because of their poor quality, they don't"
 						+ " last long.");
 				addHelp("This is the assassins' archery range. I can let you #train here for a #fee"
 						+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
-						+ " on the end. The ninjas seem to like those. I recommend using a #'training bow'.");
+						+ " on the end. The ninjas seem to like those. I recommend using an #'auto crossbow'.");
 				addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
 			}
 
@@ -271,7 +271,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		shop.put("wooden spear", 125);
 		shop.put("wooden bow", 600);
 		shop.put("longbow", 1200);
-		shop.put("training bow", bowPrice);
+		shop.put("auto crossbow", bowPrice);
 
 		// override seller bahaviour so that player must have assassins id
 		final SellerBehaviour seller = new SellerBehaviour(shop) {
@@ -317,7 +317,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		final Sign repairSign = new Sign();
 		repairSign.setEntityClass("notice");
 		repairSign.setPosition(118, 100);
-		repairSign.setText("Training bows #repaired here for half the price of new ones.");
+		repairSign.setText("Auto crossbows #repaired here for half the price of new ones.");
 		archeryZone.add(repairSign);
 
 		final List<String> repairPhrases = Arrays.asList("repair", "fix");
@@ -342,7 +342,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				final int usedBows = getUsedBowsCount(player);
 				final boolean multiple = usedBows > 1;
 
-				final StringBuilder sb = new StringBuilder("You have " + Integer.toString(usedBows) + " used training bow");
+				final StringBuilder sb = new StringBuilder("You have " + Integer.toString(usedBows) + " used auto crossbow");
 				if (multiple) {
 					sb.append("s");
 				}
@@ -364,7 +364,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				final int usedBows = getUsedBowsCount(player);
 				player.drop("money", getRepairPrice(usedBows));
 
-				for (final Item bow: player.getAllEquipped("training bow")) {
+				for (final Item bow: player.getAllEquipped("auto crossbow")) {
 					final BreakableItem breakable = (BreakableItem) bow;
 					if (breakable.isUsed()) {
 						breakable.repair();
@@ -372,9 +372,9 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				}
 
 				if (usedBows > 1) {
-					npc.say("Done! Your training bows are as good as new.");
+					npc.say("Done! Your auto crossbows are as good as new.");
 				} else {
-					npc.say("Done! Your training bow is as good as new.");
+					npc.say("Done! Your auto crossbow is as good as new.");
 				}
 
 				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
@@ -386,7 +386,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				repairPhrases,
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
-				"Only members of the assassins guild can have their #'training bows' repaired.",
+				"Only members of the assassins guild can have their #'auto crossbows' repaired.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -395,7 +395,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 						new PlayerHasItemWithHimCondition("assassins id"),
 						new NotCondition(needsRepairCondition)),
 				ConversationStates.ATTENDING,
-				"You don't have any #'training bows' that need repaired.",
+				"You don't have any #'auto crossbows' that need repaired.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -442,7 +442,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 	private int getUsedBowsCount(final Player player) {
 		int count = 0;
-		for (final Item bow: player.getAllEquipped("training bow")) {
+		for (final Item bow: player.getAllEquipped("auto crossbow")) {
 			if (((BreakableItem) bow).isUsed()) {
 				count++;
 			}
