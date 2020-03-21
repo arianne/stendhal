@@ -70,12 +70,19 @@ public class GreeterNPC implements ZoneConfigurator {
 	private static Map<String, String> peopleReplies = new HashMap<String, String>() {{
 		put("Ryla", "Who, me? I don't have much to say about myself.");
 		put("Zelan", "He is often looking for unicorn horns. You may want to ask him if needs any help.");
+		put("Mirielle", "She runs the potions shop just northeast of here.");
 	}};
 
 	private static Map<String, String> creatureReplies = new HashMap<String, String>() {{
 		put("baby pegasus",
 				"Those poor creatures. Foreigners come here to poach them for the special rings they drop. " +
 				"Their population has dwindled in recent years.");
+		put("ivory pegasus",
+				"They are very protective of their offspring. Don't be surprised if you find a couple guarding " +
+				"a group of #'baby pegasus'.");
+		put("woolly mammoth",
+				"Those behemoths have been around since the beginning of time. Be careful if you come across a " +
+				"herd. Their defense is high.");
 	}};
 
 
