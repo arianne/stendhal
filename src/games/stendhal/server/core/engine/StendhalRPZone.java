@@ -20,6 +20,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -70,6 +71,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.npc.TrainingDummyFactory;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -1275,6 +1277,48 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public String getName() {
 		return getID().getID();
+	}
+
+	public String getHumanReadableName() {
+		final List<String> commonSuffixes = Arrays.asList(
+				"n", "nw", "ne", "s", "sw", "se", "e", "w");
+
+		//final StringBuilder sb = new StringBuilder();
+		final List<String> prefix = new LinkedList<>();
+		final List<String> suffix = new LinkedList<>();
+
+		String level = null;
+		for (final String word: getName().split("_")) {
+			if (level == null) {
+				level = word;
+				continue;
+			}
+
+			if (commonSuffixes.contains(word)) {
+				suffix.add(word);
+				continue;
+			}
+
+			try {
+				if (word.length() > 1) {
+					Integer.parseInt(word.substring(1));
+					suffix.add(word);
+					continue;
+				}
+			} catch (final NumberFormatException e) {
+
+			}
+
+			prefix.add(word);
+		}
+
+		final StringBuilder sb = new StringBuilder(StringUtils.titleize(String.join(" ", prefix)));
+		if (!suffix.isEmpty()) {
+			sb.append(" " + String.join("", suffix).toUpperCase());
+		}
+		sb.append(", level " + level);
+
+		return sb.toString();
 	}
 
 	/**

@@ -121,4 +121,30 @@ public class StringUtils {
         }
         return res.toString();
     }
+
+    /**
+     * Converts a string to title case. Example: "hello world" is converted to "Hello World"
+     *
+     * @param st
+     * 		String to be formatted.
+     * @return
+     * 		Title case formatted string.
+     */
+	public static String titleize(final String st) {
+		final StringBuilder titleized = new StringBuilder();
+		boolean nextTitleCase = true;
+
+		for (char c: st.toCharArray()) {
+			if (Character.isSpaceChar(c)) {
+				nextTitleCase = true;
+			} else if (nextTitleCase) {
+				c = Character.toTitleCase(c);
+				nextTitleCase = false;
+			}
+
+			titleized.append(c);
+		}
+
+		return titleized.toString();
+	}
 }
