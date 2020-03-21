@@ -997,6 +997,21 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<portal x="18" y="73" ref="home_1">
+			<destination zone="int_atlantis_home_1" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="93" y="28" ref="home_2">
+			<destination zone="int_atlantis_home_2" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="103" y="85" ref="home_3">
+			<destination zone="int_atlantis_home_3" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -1298,6 +1313,33 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.atlantis.cityinside.PotionsDealerNPC" />
+
+	</zone>
+
+	<zone name="int_atlantis_home_1" file="interiors/atlantis/home_1.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_1" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_2" file="interiors/atlantis/home_1.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_2" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_3" file="interiors/atlantis/home_1.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_3" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
