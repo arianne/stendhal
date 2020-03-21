@@ -992,6 +992,11 @@
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.atlantis.cityoutside.GreeterNPC" />
 
+		<portal x="31" y="35" ref="potions_shop">
+			<destination zone="int_atlantis_potions_shop" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -1281,6 +1286,15 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.psychicparlor.PsychicNPC" />
+
+	</zone>
+
+	<zone name="int_atlantis_potions_shop" file="interiors/atlantis/potions_shop.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="potions_shop" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
