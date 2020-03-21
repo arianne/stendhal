@@ -51,6 +51,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.maps.Region;
 
 
 /**
@@ -130,13 +131,24 @@ public class CollectEnemyData extends AbstractQuest {
 		// TODO: add atlantis zones
 		final List<String> zonesBlacklist = Arrays.asList("*kikareukin_cave", "7_kikareukin_clouds",
 				"0_semos_village_w", "0_semos_mountain_n2_e2", "0_semos_mountain_n2", "0_semos_mountain_n_w2",
-				"0_ados_wall", "0_ados_wall_n", "0_ados_wall_n2", "0_ados_wall_s");
+				"0_ados_wall", "0_ados_wall_n", "0_ados_wall_n2", "0_ados_wall_s", "-7_deniran_atlantis");
 		final List<String> zonesWhitelist = new ArrayList<String>();
 
 		final StendhalRPWorld world = StendhalRPWorld.get();
 
 		for (final String region: world.getRegions()) {
-			for (final StendhalRPZone zone: world.getAllZonesFromRegion(region, true, true, true)) {
+			final Collection<StendhalRPZone> potentialZones = world.getAllZonesFromRegion(region, true, true, true);
+
+			// include Atlantis zones
+			if (region.equals(Region.DENIRAN.toLowerCase())) {
+				for (final StendhalRPZone zone: world.getAllZonesFromRegion(region, true, false, true)) {
+					if (zone.getName().contains("atlantis")) {
+						potentialZones.add(zone);
+					}
+				}
+			}
+
+			for (final StendhalRPZone zone: potentialZones) {
 				final String zoneName = zone.getName();
 
 				// exclude city zones
