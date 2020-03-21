@@ -1076,7 +1076,7 @@ eliza	SUB-NAM
 elodrin	SUB-NAM
 elos	SUB-NAM
 emperor	SUB
-enemy	SUB
+enemy	SUB enemies
 enrique	SUB-NAM
 ent	SUB
 entwife	SUB
