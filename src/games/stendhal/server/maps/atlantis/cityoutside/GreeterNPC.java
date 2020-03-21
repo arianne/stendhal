@@ -14,6 +14,7 @@ package games.stendhal.server.maps.atlantis.cityoutside;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
+import marauroa.common.Pair;
 
 
 public class GreeterNPC implements ZoneConfigurator {
@@ -44,8 +46,7 @@ public class GreeterNPC implements ZoneConfigurator {
 
 	private SpeakerNPC greeter;
 
-	private static List<String> atlantisZones = null;
-	private static List<String> atlantisFormattedZones = null;
+	private static List<Pair<String, String>> atlantisZones = null;
 	private static List<String> atlantisPeople = null;
 	private static List<String> atlantisCreatures = null;
 
@@ -113,9 +114,11 @@ public class GreeterNPC implements ZoneConfigurator {
 						buildAtlantisZoneList();
 
 						final StringBuilder reply = new StringBuilder("The Atlantis zones are");
-						final int zoneCount = atlantisFormattedZones.size();
+						final int zoneCount = atlantisZones.size();
 						int idx = 0;
-						for (String zoneName: atlantisFormattedZones) {
+						for (final Pair<String, String> zonePair: atlantisZones) {
+							final String zoneName = zonePair.first();
+
 							reply.append(" #'" + zoneName + "'");
 
 							if (idx < zoneCount - 2) {
@@ -341,54 +344,48 @@ public class GreeterNPC implements ZoneConfigurator {
 		};
 	}
 
-	private String formatZoneName(String zoneName) {
-		zoneName = zoneName.toLowerCase().replace("-7_deniran_atlantis", "").replace("_", " ");
+	private String formatZoneName(final StendhalRPZone zone) {
+		String zoneName = zone.getHumanReadableName().replace("Deniran ", "").split(",")[0].replace("Mtn", "Mountain");
 
-		boolean isMountain = false;
-		if (zoneName.contains("mtn")) {
-			isMountain = true;
-			zoneName = zoneName.replace("mtn", "");
+		if (zoneName.equals("Atlantis")) {
+			zoneName = "Atlantis City";
 		}
 
-		zoneName = zoneName.replace(" ", "").toUpperCase();
-
-		if (zoneName.equals("")) {
-			zoneName = "City";
-		} else if (isMountain) {
-			zoneName = "Mountain " + zoneName;
-		}
-
-		return "Atlantis " + zoneName;
+		return zoneName;
 	}
 
 	private void buildAtlantisZoneList() {
-		if (atlantisZones == null || atlantisFormattedZones == null) {
+		if (atlantisZones == null) {
 			atlantisZones = new ArrayList<>();
-			atlantisFormattedZones = new ArrayList<>();
 
-			final List<String> mountains = new ArrayList<>();
+			final List<Pair<String, String>> mountains = new ArrayList<>();
 
 			for (final StendhalRPZone z: world.getAllZonesFromRegion(Region.DENIRAN.toLowerCase(), true, false, true)) {
-				String zoneName = z.getName();
+				final String zoneName = z.getName();
 
 				if (zoneName.contains("atlantis")) {
-					atlantisZones.add(zoneName);
-
 					// format zone name for human readability
-					zoneName = formatZoneName(zoneName);
+					final String formattedName = formatZoneName(z);
 
-					if (zoneName.contains("Mountain")) {
+					if (formattedName.contains("Mountain")) {
 						// store mountains for later adding
-						mountains.add(zoneName);
+						mountains.add(new Pair<String, String>(formattedName, zoneName));
 					} else {
-						atlantisFormattedZones.add(zoneName);
+						atlantisZones.add(new Pair<String, String>(formattedName, zoneName));
 					}
 				}
 			}
 
-			Collections.sort(atlantisFormattedZones, String.CASE_INSENSITIVE_ORDER);
-			Collections.sort(mountains, String.CASE_INSENSITIVE_ORDER);
-			atlantisFormattedZones.addAll(mountains);
+			final Comparator<Pair<String, String>> sorter = new Comparator<Pair<String, String>>() {
+				@Override
+				public int compare(final Pair<String, String> p1, final Pair<String, String> p2) {
+					return p1.first().toLowerCase().compareTo(p2.first().toLowerCase());
+				}
+			};
+
+			Collections.sort(atlantisZones, sorter);
+			Collections.sort(mountains, sorter);
+			atlantisZones.addAll(mountains);
 		}
 	}
 
@@ -424,8 +421,9 @@ public class GreeterNPC implements ZoneConfigurator {
 
 			atlantisCreatures = new ArrayList<>();
 
-			for (final String zoneName: atlantisZones) {
-				final StendhalRPZone rpZone = world.getZone(zoneName);
+			for (final Pair<String, String> zonePair: atlantisZones) {
+				final String zoneID = zonePair.second();
+				final StendhalRPZone rpZone = world.getZone(zoneID);
 				if (rpZone != null) {
 					for (final CreatureRespawnPoint spawner: rpZone.getRespawnPointList()) {
 						final String creatureName = spawner.getPrototypeCreature().getName();
