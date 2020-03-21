@@ -1291,7 +1291,7 @@
 
 	<zone name="int_atlantis_potions_shop" file="interiors/atlantis/potions_shop.tmx">
 
-		<portal x="8" y="14" ref="entrance">
+		<portal x="8" y="15" ref="entrance">
 			<destination zone="-7_deniran_atlantis" ref="potions_shop" />
 			<attribute name="move.continuous" />
 		</portal>
