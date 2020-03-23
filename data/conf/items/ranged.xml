@@ -129,7 +129,7 @@
       <ratk value="0" />
       <range value="3" />
       <rate value="1" />
-      <durability value="500" />
+      <durability value="800" />
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -151,7 +151,7 @@
       <ratk value="0" />
       <range value="3" />
       <rate value="1" />
-      <durability value="1000" />
+      <durability value="1400" />
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -173,7 +173,7 @@
       <ratk value="0" />
       <range value="3" />
       <rate value="1" />
-      <durability value="3000" />
+      <durability value="3600" />
     </attributes>
     <weight value="0.5" />
     <value value="17280" />

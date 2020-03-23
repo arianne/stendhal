@@ -823,7 +823,7 @@
     <attributes>
       <atk value="0"/>
       <rate value="1"/>
-      <durability value="500"/>
+      <durability value="800"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
