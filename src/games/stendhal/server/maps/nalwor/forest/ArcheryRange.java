@@ -80,9 +80,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	/** cost to use archery range */
 	private static final int COST = 5000;
 
-	/** capped range attack level */
-	private static final int RATK_LIMIT = 80;
-
 	/** time (in seconds) allowed for training session */
 	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
@@ -334,7 +331,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
@@ -351,7 +348,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT)),
+						new NotCondition(meetsLevelCap())),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train. So, you good for it?",
 				null);
@@ -361,7 +358,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT)),
+						new NotCondition(meetsLevelCap())),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
@@ -369,7 +366,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		// player's RATK level is too high
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
-				new PlayerStatLevelCondition("ratk", ComparisonOperator.GREATER_OR_EQUALS, RATK_LIMIT),
+				meetsLevelCap(),
 				ConversationStates.ATTENDING,
 				"You are already too skilled to train here. Now get off yer lazy butt and fight some monsters!",
 				null);
@@ -378,7 +375,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new NotCondition(new PlayerHasItemWithHimCondition("assassins id"))),
 				ConversationStates.ATTENDING,
 				"You can't train here without permission from the assassins' HQ. Now git, before I sic the dogs on you!",
@@ -396,7 +393,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new PlayerHasItemWithHimCondition("assassins id"),
 						rangeFullCondition),
 				ConversationStates.ATTENDING,
@@ -563,6 +560,20 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		}
 
 		player.setQuest(QUEST_SLOT, STATE_DONE + ";" + Long.toString(System.currentTimeMillis()));
+	}
+
+	private ChatCondition meetsLevelCap() {
+		return new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				// FIXME: is there a forumula to calculate max level?
+				final double determiner = 597 * 1.5;
+				final int level = player.getLevel();
+				final double cap = Math.ceil(level * ((determiner - level) / determiner));
+
+				return player.getRatk() >= cap;
+			}
+		};
 	}
 
 	/**

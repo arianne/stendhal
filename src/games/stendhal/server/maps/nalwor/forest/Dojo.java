@@ -31,6 +31,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LogoutListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
@@ -49,10 +50,8 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.AreaIsFullCondition;
-import games.stendhal.server.entity.npc.condition.ComparisonOperator;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.PlayerStatLevelCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
@@ -70,9 +69,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 
 	/** cost to use dojo */
 	private static final int COST = 5000;
-
-	/** capped attack level */
-	private static final int ATK_LIMIT = 80;
 
 	/** time (in seconds) allowed for training session */
 	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -212,7 +208,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
@@ -229,7 +225,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT)),
+						new NotCondition(meetsLevelCap())),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train in the dojo. Woul you like to enter?",
 				null);
@@ -239,7 +235,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
-						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT)),
+						new NotCondition(meetsLevelCap())),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
@@ -247,7 +243,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		// player's RATK level is too high
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
-				new PlayerStatLevelCondition("atk", ComparisonOperator.GREATER_OR_EQUALS, ATK_LIMIT),
+				meetsLevelCap(),
 				ConversationStates.ATTENDING,
 				"You are too skilled to train here.",
 				null);
@@ -256,7 +252,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new NotCondition(new PlayerHasItemWithHimCondition("assassins id"))),
 				ConversationStates.ATTENDING,
 				"You can't train here without permission from the assassins' HQ.",
@@ -274,7 +270,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("atk", ComparisonOperator.LESS_THAN, ATK_LIMIT),
+						new NotCondition(meetsLevelCap()),
 						new PlayerHasItemWithHimCondition("assassins id"),
 						dojoFullCondition),
 				ConversationStates.ATTENDING,
@@ -424,6 +420,20 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	 */
 	private boolean isFull() {
 		return dojoFullCondition.fire(null, null, null);
+	}
+
+	private ChatCondition meetsLevelCap() {
+		return new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				// FIXME: is there a forumula to calculate max level?
+				final double determiner = 597 * 1.5;
+				final int level = player.getLevel();
+				final double cap = Math.ceil(level * ((determiner - level) / determiner));
+
+				return player.getAtk() >= cap;
+			}
+		};
 	}
 
 
