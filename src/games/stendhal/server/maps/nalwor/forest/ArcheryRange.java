@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
+import static games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.ID_NO_AFFORD;
+
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -20,12 +22,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.constants.SoundID;
-import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -36,7 +34,6 @@ import games.stendhal.server.core.events.LogoutListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
@@ -47,7 +44,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
@@ -59,16 +55,14 @@ import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.AreaIsFullCondition;
-import games.stendhal.server.entity.npc.condition.ComparisonOperator;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.PlayerStatLevelCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
-import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
@@ -79,9 +73,6 @@ import games.stendhal.server.util.TimeUtil;
  * FIXME: (client) no sound for training targets when hit
  */
 public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListener {
-
-	/** logger instance */
-	private static Logger logger = Logger.getLogger(ArcheryRange.class);
 
 	/** quest/activity identifier */
 	private static final String QUEST_SLOT = "archery_range";
@@ -113,9 +104,15 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 	/** NPC that manages archery area */
 	private static final String npcName = "Chester";
-	private SpeakerNPC npc;
+	private AssassinRepairer ranger;
 
-	private static final int bowPrice = 4500;
+	private AssassinRepairerAdder repairerAdder;
+
+	private static final Map<String, Integer> repairableSellPrices = new LinkedHashMap<String, Integer>() {{
+		put("auto crossbow", 2000);
+		put("auto crossbow A", 5500);
+		put("auto crossbow A+", 18000);
+	}};
 
 	/** phrases used in conversations */
 	private static final List<String> TRAIN_PHRASES = Arrays.asList("train", "training");
@@ -177,13 +174,13 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 				// check if player has paid
 				if (!super.isAllowed(user)) {
-					npc.say(NO_ACCESS_MESSAGE.replace("%s", user.getName()));
+					ranger.say(NO_ACCESS_MESSAGE.replace("%s", user.getName()));
 					return false;
 				}
 
 				// check if dojo is full
 				if (isFull()) {
-					npc.say(FULL_MESSAGE);
+					ranger.say(FULL_MESSAGE);
 					return false;
 				}
 
@@ -207,27 +204,9 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	}
 
 	private void initNPC() {
-		npc = new SpeakerNPC(npcName) {
-			@Override
-			protected void createDialog() {
-				addGreeting("This is the assassins' archery range. Watch yer tongue if ya don't want to get hurt.");
-				addGoodbye("Come back when ya got some cash. Courtesy aint currency 'round here.");
-				addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
-				addQuest("Do I look like I need any help!? If yer not here to #train then get outta my sight!");
-				addReply("auto crossbow", "Auto crossbows are weak but easy to use, so you can fire from them"
-						+ " much faster than with a normal bow. But because of their poor quality, they don't"
-						+ " last long.");
-				addHelp("This is the assassins' archery range. I can let you #train here for a #fee"
-						+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
-						+ " on the end. The ninjas seem to like those. I recommend using an #'auto crossbow'.");
-				addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
-			}
+		repairerAdder = new AssassinRepairerAdder();
 
-			@Override
-			protected void onGoodbye(final RPEntity player) {
-				setDirection(Direction.DOWN);
-			}
-
+		ranger = repairerAdder.new AssassinRepairer(npcName) {
 			@Override
 			public void say(final String text) {
 				// don't turn toward player
@@ -235,10 +214,24 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			}
 		};
 
-		npc.setDescription("You see a man who appears to be a skilled assassin.");
-		npc.setPosition(120, 99);
-		npc.setEntityClass("rangernpc");
-		archeryZone.add(npc);
+		ranger.setDescription("You see a man who appears to be a skilled assassin.");
+		ranger.setEntityClass("rangernpc");
+		ranger.setIdleDirection(Direction.DOWN);
+
+		ranger.addGreeting("This is the assassins' archery range. Watch yer tongue if ya don't want to get hurt.");
+		ranger.addGoodbye("Come back when ya got some cash. Courtesy aint currency 'round here.");
+		ranger.addJob("I manage this here archery range. It belongs to the assassins, so don't go pokin' yer nose where it doesn't belong.");
+		ranger.addQuest("Do I look like I need any help!? If yer not here to #train then get outta my sight!");
+		ranger.addReply("auto crossbow", "Auto crossbows are weak but easy to use, so you can fire from them"
+				+ " much faster than with a normal bow. But because of their poor quality, they don't"
+				+ " last long.");
+		ranger.addHelp("This is the assassins' archery range. I can let you #train here for a #fee"
+				+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
+				+ " on the end. The ninjas seem to like those. I recommend using an #'auto crossbow'.");
+		ranger.addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
+
+		ranger.setPosition(120, 99);
+		archeryZone.add(ranger);
 	}
 
 	/**
@@ -248,7 +241,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		final String rejectedMessage = "I'm not selling you anything without proof that you can be trusted.";
 
 		// override the default offer message
-		npc.add(ConversationStates.ANY,
+		ranger.add(ConversationStates.ANY,
 				ConversationPhrases.OFFER_MESSAGES,
 				new PlayerHasItemWithHimCondition("assassins id"),
 				ConversationStates.ATTENDING,
@@ -258,7 +251,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player wants to buy items but does not have assassins id
-		npc.add(ConversationStates.ANY,
+		ranger.add(ConversationStates.ANY,
 				ConversationPhrases.OFFER_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
@@ -271,7 +264,9 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		shop.put("wooden spear", 125);
 		shop.put("wooden bow", 600);
 		shop.put("longbow", 1200);
-		shop.put("auto crossbow", bowPrice);
+		for (final String crossbow: repairableSellPrices.keySet()) {
+			shop.put(crossbow, repairableSellPrices.get(crossbow));
+		}
 
 		// override seller bahaviour so that player must have assassins id
 		final SellerBehaviour seller = new SellerBehaviour(shop) {
@@ -285,7 +280,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				return new SayTextAction(rejectedMessage);
 			}
 		};
-		new SellerAdder().addSeller(npc, seller, false);
+		new SellerAdder().addSeller(ranger, seller, false);
 
 		// a sign showing prices of items
 		blackboard = new ShopSign("sellarcheryrange", "Assassins' Archery Shop", "Bows and arrows sold here:", true) {
@@ -298,7 +293,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 					user.addEvent(event);
 					user.notifyWorldAboutChanges();
 				} else {
-					npc.say("Get away from my blackboard you mongrel!");
+					ranger.say("Get away from my blackboard you mongrel!");
 				}
 
 				return true;
@@ -320,139 +315,13 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		repairSign.setText("Auto crossbows #repaired here for half the price of new ones.");
 		archeryZone.add(repairSign);
 
-		final List<String> repairPhrases = Arrays.asList("repair", "fix");
-
-		final ChatCondition needsRepairCondition = new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				return getUsedBowsCount(player) > 0;
-			}
-		};
-
-		final ChatCondition canAffordRepairsCondition = new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				return player.isEquipped("money", getRepairPrice(getUsedBowsCount(player)));
-			}
-		};
-
-		final ChatAction sayRepairPriceAction = new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				final int usedBows = getUsedBowsCount(player);
-				final boolean multiple = usedBows > 1;
-
-				final StringBuilder sb = new StringBuilder("You have " + Integer.toString(usedBows) + " used auto crossbow");
-				if (multiple) {
-					sb.append("s");
-				}
-				sb.append(". I can repair ");
-				if (multiple) {
-					sb.append("them all");
-				} else {
-					sb.append("it");
-				}
-				sb.append(" for " + Integer.toString(getRepairPrice(usedBows)) + " money. Would you like me to do so?");
-
-				npc.say(sb.toString());
-			}
-		};
-
-		final ChatAction repairAction = new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				final int usedBows = getUsedBowsCount(player);
-				player.drop("money", getRepairPrice(usedBows));
-
-				for (final Item bow: player.getAllEquipped("auto crossbow")) {
-					final BreakableItem breakable = (BreakableItem) bow;
-					if (breakable.isUsed()) {
-						breakable.repair();
-					}
-				}
-
-				if (usedBows > 1) {
-					npc.say("Done! Your auto crossbows are as good as new.");
-				} else {
-					npc.say("Done! Your auto crossbow is as good as new.");
-				}
-
-				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
-			}
-		};
-
-
-		npc.add(ConversationStates.ATTENDING,
-				repairPhrases,
-				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
-				ConversationStates.ATTENDING,
-				"Only members of the assassins guild can have their #'auto crossbows' repaired.",
-				null);
-
-		npc.add(ConversationStates.ATTENDING,
-				repairPhrases,
-				new AndCondition(
-						new PlayerHasItemWithHimCondition("assassins id"),
-						new NotCondition(needsRepairCondition)),
-				ConversationStates.ATTENDING,
-				"You don't have any #'auto crossbows' that need repaired.",
-				null);
-
-		npc.add(ConversationStates.ATTENDING,
-				repairPhrases,
-				new AndCondition(
-						new PlayerHasItemWithHimCondition("assassins id"),
-						needsRepairCondition),
-				ConversationStates.QUESTION_2,
-				null,
-				sayRepairPriceAction);
-
-		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Good luck then. Remember, once they break, they can't be repaired.",
-				null);
-
-		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES,
-				new NotCondition(needsRepairCondition),
-				ConversationStates.ATTENDING,
-				"Did you drop your bow?",
-				null);
-
-		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(
-						needsRepairCondition,
-						new NotCondition(canAffordRepairsCondition)),
-				ConversationStates.ATTENDING,
-				"You don't have enough money. Get outta here!",
-				null);
-
-		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(
-						needsRepairCondition,
-						canAffordRepairsCondition),
-				ConversationStates.ATTENDING,
-				null,
-				repairAction);
-	}
-
-	private int getUsedBowsCount(final Player player) {
-		int count = 0;
-		for (final Item bow: player.getAllEquipped("auto crossbow")) {
-			if (((BreakableItem) bow).isUsed()) {
-				count++;
-			}
+		final Map<String, Integer> repairPrices = new LinkedHashMap<>();
+		for (final String itemName: repairableSellPrices.keySet()) {
+			repairPrices.put(itemName, repairableSellPrices.get(itemName) / 2);
 		}
 
-		return count;
-	}
-
-	private int getRepairPrice(final int count) {
-		return count * (bowPrice / 2);
+		repairerAdder.add(ranger, repairPrices);
+		repairerAdder.setReply(ID_NO_AFFORD, "You don't have enough money. Get outta here!");
 	}
 
 	/**
@@ -461,7 +330,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private void initTraining() {
 
 		// player has never trained before
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
@@ -477,7 +346,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 								+ " money.")));
 
 		// player returns after cooldown period is up
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
@@ -488,7 +357,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player returns before cooldown period is up
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
@@ -498,7 +367,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
 
 		// player's RATK level is too high
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new PlayerStatLevelCondition("ratk", ComparisonOperator.GREATER_OR_EQUALS, RATK_LIMIT),
 				ConversationStates.ATTENDING,
@@ -506,7 +375,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player does not have an assassins id
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
@@ -516,7 +385,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player training state is active
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new QuestInStateCondition(QUEST_SLOT, 0, STATE_ACTIVE),
 				ConversationStates.ATTENDING,
@@ -524,7 +393,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player meets requirements but training area is full
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
@@ -542,7 +411,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		 *      timer/notifier will be removed if the player begins a new training session.
 		 *      Else the timer will simply be removed once it has run its lifespan.
 		 */
-		npc.add(ConversationStates.QUESTION_1,
+		ranger.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("money", COST),
 				ConversationStates.IDLE,
@@ -553,7 +422,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 						new ArcheryRangeTimerAction()));
 
 		// player does not have enough money to begin training
-		npc.add(ConversationStates.QUESTION_1,
+		ranger.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),
 				ConversationStates.ATTENDING,
@@ -561,7 +430,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player does not want to train
-		npc.add(ConversationStates.QUESTION_1,
+		ranger.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
@@ -570,7 +439,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		/* FIXME: How to get updated remaining time?
 		// player asks how much time is left in training session
-		npc.add(ConversationStates.ATTENDING,
+		ranger.add(ConversationStates.ATTENDING,
 				"time",
 				new QuestInStateCondition(QUEST_SLOT, 0, STATE_ACTIVE),
 				ConversationStates.ATTENDING,
@@ -687,7 +556,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	 */
 	private void endTrainingSession(final Player player) {
 		if (player.get("zoneid").equals(archeryZoneID)) {
-			npc.say("Your training time is up " + player.getName() + ".");
+			ranger.say("Your training time is up " + player.getName() + ".");
 		}
 		if (isPlayerInArea(player, archeryZoneID, archeryArea)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
@@ -740,7 +609,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 					// notify players at 10 minute mark & every minute after 5 minute mark
 					if (timeRemaining == 10 * MathHelper.SECONDS_IN_ONE_MINUTE ||
 							(timeRemaining <= 5 * MathHelper.SECONDS_IN_ONE_MINUTE && timeRemaining % 60 == 0)) {
-						npc.say(playerTemp.getName() + ", you have " + TimeUtil.timeUntil(timeRemaining) + " left.");
+						ranger.say(playerTemp.getName() + ", you have " + TimeUtil.timeUntil(timeRemaining) + " left.");
 					}
 					// remaining time needs to be updated every second in order to be saved if player logs out
 					timeRemaining = updateTimeRemaining(playerTemp);
@@ -801,7 +670,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private class ArcheryRangeTimerAction implements ChatAction {
 
 		@Override
-		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			// remove any existing notifiers
 			SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
 
@@ -920,7 +789,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				final Player player = (Player) user;
 
 				if (rejectedAction != null) {
-					rejectedAction.fire(player, ConversationParser.parse(user.get("text")), new EventRaiser(npc));
+					rejectedAction.fire(player, ConversationParser.parse(user.get("text")), new EventRaiser(ranger));
 				}
 
 				if (forceStop) {

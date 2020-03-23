@@ -132,27 +132,27 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 		assertEquals("Don't look at me all dumbfounded! Check my bow and arrow prices on"
 				+ " that blackboard over there. But if yer lookin' for a"
 				+ " bargain, then scram and find some other witless sucker.", getReply(npc));
-		en.step(player, "buy training bow");
-		assertEquals("A training bow will cost 4500. Do you want to buy it?", getReply(npc));
+		en.step(player, "buy auto crossbow");
+		assertEquals("An auto crossbow will cost 2000. Do you want to buy it?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, how else may I help you?", getReply(npc));
-		en.step(player, "buy training bow");
+		en.step(player, "buy auto crossbow");
 		en.step(player, "yes");
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
 
-		equipWithMoney(player, 4499);
+		equipWithMoney(player, 1999);
 
-		en.step(player, "buy training bow");
+		en.step(player, "buy auto crossbow");
 		en.step(player, "yes");
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
 
 		equipWithMoney(player, 1);
 
-		en.step(player, "buy training bow");
+		en.step(player, "buy auto crossbow");
 		en.step(player, "yes");
-		assertEquals("Congratulations! Here is your training bow!", getReply(npc));
+		assertEquals("Congratulations! Here is your auto crossbow!", getReply(npc));
 
-		assertTrue(player.isEquipped("training bow"));
+		assertTrue(player.isEquipped("auto crossbow"));
 
 		// make sure NPC is no longer attending to player
 		resetNPC(npc);
@@ -173,7 +173,7 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 		en.step(player, "help");
 		assertEquals("This is the assassins' archery range. I can let you #train here for a #fee"
 				+ " if you're in good with HQ. If you haven't quite got the range, try the targets"
-				+ " on the end. The ninjas seem to like those. I recommend using a #'training bow'.", getReply(npc));
+				+ " on the end. The ninjas seem to like those. I recommend using an #'auto crossbow'.", getReply(npc));
 		en.step(player, "fee");
 		assertEquals("The fee to #train is " + Integer.toString(cost) + " money.", getReply(npc));
 
@@ -184,6 +184,9 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testTrainingWithoutID() {
 		final Player player = createPlayer("foo");
+		player.addXP(28900); // set to level 15
+
+		assertEquals(15, player.getLevel());
 
 		// player is new to archery range & does not have assassin id
 		assertNull(player.getQuest(questSlot));
@@ -199,6 +202,9 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testTrainingWithID() {
 		final Player player = createPlayer("foo");
+		player.addXP(28900); // set to level 15
+
+		assertEquals(15, player.getLevel());
 
 		// player is new to archery range & has assassin id
 		assertNull(player.getQuest(questSlot));
