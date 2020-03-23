@@ -518,7 +518,7 @@ silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/ranged/
 
-auto_crossbow.png    Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+auto_crossbow*.png   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 composite_bow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 crossbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 hunter_crossbow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
