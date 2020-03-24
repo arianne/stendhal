@@ -289,6 +289,7 @@ littlewitch.*              Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan 
 littlewizard.*             Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
 masked_ninja.*             Svetlana Kushnariova (Cabbit), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
 master_assassin.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
+mithril_wizard.png         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://sourceforge.net/p/arianne/patches/716/
 monk.*                     Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/124
 risecia_archer.*           Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/66349
 risecia_leader.*           Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://github.com/bleutailfly/bleu-doodles/blob/98cd893/clothing/armor1.png
@@ -304,7 +305,6 @@ soldier_general.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (A
 soldier_knight.*           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152, https://opengameart.org/node/6622
 soldier_lieutenant.*       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_sergeant.png       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
-soldier_wizard.png         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://sourceforge.net/p/arianne/patches/716/
 super_human.png            Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
 
 data/sprites/monsters/hybrid/

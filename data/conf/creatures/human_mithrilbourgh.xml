@@ -221,7 +221,7 @@
   </creature>
 
   <creature name="mithrilbourgh wizard">
-    <type class="human" subclass="soldier_wizard" tileid="human_soldier.png:8"/>
+    <type class="human" subclass="mithril_wizard" tileid="human_soldier.png:8"/>
     <description/>
     <attributes>
       <atk value="634"/>
