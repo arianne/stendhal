@@ -539,7 +539,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 			if (!player.isEquipped(questItem, amount)) {
 				res.add(String.format("I have been asked to find " +Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum."));
 			} else {
-				res.add(String.format("I have " + Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum and need to take it."));
+				res.add(String.format("I have " + Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum and should deliver it to Hazel."));
 			}
 		}
 		if (isRepeatable(player)) {

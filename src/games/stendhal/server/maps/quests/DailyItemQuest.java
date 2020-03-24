@@ -462,11 +462,11 @@ public class DailyItemQuest extends AbstractQuest {
 			String questItem = player.getRequiredItemName(QUEST_SLOT,0);
 			int amount = player.getRequiredItemQuantity(QUEST_SLOT,0);
 			if (!player.isEquipped(questItem, amount)) {
-				res.add("I have been asked to fetch "
-						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados. I haven't got it yet.");
+				res.add("I have been asked to fetch " + Grammar.quantityplnoun(amount, questItem, "a")
+						+ " to help Ados. I haven't got " + Grammar.itthem(amount) + " yet.");
 			} else {
-				res.add("I have found "
-						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados and need to take it.");
+				res.add("I have found " + Grammar.quantityplnoun(amount, questItem, "a")
+						+ " to help Ados and should deliver " + Grammar.itthem(amount) + " to Mayor Chalmers.");
 			}
 		}
 		int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
