@@ -304,7 +304,7 @@ soldier_general.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (A
 soldier_knight.*           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152, https://opengameart.org/node/6622
 soldier_lieutenant.*       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_sergeant.png       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
-soldier_wizard.png         Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/716/
+soldier_wizard.png         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://sourceforge.net/p/arianne/patches/716/
 super_human.png            Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
 
 data/sprites/monsters/hybrid/
