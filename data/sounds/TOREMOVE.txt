@@ -1,5 +1,0 @@
-The following placeholder sound files can be deleted on or after 1.33 release:
-
-- kobold-groan-01.ogg
-- kobold-groan-02.ogg
-- kobold-groan-03.ogg
