@@ -973,6 +973,23 @@
 		</java>
 	</target>
 
+	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
+	<target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
+		<java classname="games.stendhal.tools.BalanceRPGame">
+			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="."/>
+				<pathelement path="${build_server}"/>
+				<pathelement path="${testsrc}"/>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${guava_jar}"/>
+				<pathelement path="${groovy_jar}"/>
+			</classpath>
+			<arg value="${creature}"/>
+		</java>
+	</target>
+
 
 
 
