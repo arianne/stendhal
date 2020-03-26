@@ -11,8 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.quest;
 
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_DICTATOR;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_DOMINATOR;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_LACKEY;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_SOLDIER;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_DICTATOR;
+import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_DOMINATOR;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_LACKEY;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.ID_SOLDIER;
 import static org.junit.Assert.assertEquals;
@@ -111,6 +115,18 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 			} else {
 				assertFalse(achievementReached(ID_SOLDIER));
 			}
+
+			if (idx >= COUNT_DOMINATOR - 1) {
+				assertTrue(achievementReached(ID_DOMINATOR));
+			} else {
+				assertFalse(achievementReached(ID_DOMINATOR));
+			}
+
+			if (idx >= COUNT_DICTATOR - 1) {
+				assertTrue(achievementReached(ID_DICTATOR));
+			} else {
+				assertFalse(achievementReached(ID_DICTATOR));
+			}
 		}
 	}
 
@@ -127,7 +143,7 @@ public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertNull(player.getQuest(QUEST_SLOT));
 
 		AchievementTestHelper.init(player);
-		for (final String ID: Arrays.asList(ID_LACKEY, ID_SOLDIER)) {
+		for (final String ID: Arrays.asList(ID_LACKEY, ID_SOLDIER, ID_DOMINATOR, ID_DICTATOR)) {
 			assertFalse(achievementReached(ID));
 		}
 	}

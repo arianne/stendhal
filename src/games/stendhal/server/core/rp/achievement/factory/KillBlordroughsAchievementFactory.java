@@ -33,6 +33,12 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 	public static final int COUNT_SOLDIER = 25;
 	public static final String ID_SOLDIER = "quest.special.kill_blordroughs.0025";
 
+	public static final int COUNT_DOMINATOR = 50;
+	public static final String ID_DOMINATOR = "quest.special.kill_blordroughs.0050";
+
+	public static final int COUNT_DICTATOR = 100;
+	public static final String ID_DICTATOR = "quest.special.kill_blordroughs.0100";
+
 	@Override
 	protected Category getCategory() {
 		return Category.QUEST_KILL_BLORDROUGHS;
@@ -51,6 +57,16 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 				ID_SOLDIER, "Imperialist Soldier", "Finish Kill Blordroughs quest 25 times",
 				Achievement.HARD_BASE_SCORE, true,
 				new CompletedCountCondition(COUNT_SOLDIER)));
+
+		achievements.add(createAchievement(
+				ID_DOMINATOR, "Imperialist Dominator", "Finish Kill Blordroughs quest 50 times",
+				Achievement.HARD_BASE_SCORE, true,
+				new CompletedCountCondition(COUNT_DOMINATOR)));
+
+		achievements.add(createAchievement(
+				ID_DICTATOR, "Imperialist Dictator", "Finish Kill Blordroughs quest 100 times",
+				Achievement.HARD_BASE_SCORE, true,
+				new CompletedCountCondition(COUNT_DICTATOR)));
 
 		return achievements;
 	}
