@@ -39,6 +39,7 @@ Changelog
 - enemy changes:
   - giant bat & giant killer bat drop ham
   - woolly mammoth drops ham
+  - baby pegasus runs away
   - fixed dimensions of dragon corpses
 - new enemy sounds:
   - werewolf
