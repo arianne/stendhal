@@ -278,6 +278,6 @@ public class PsychicNPC implements ZoneConfigurator {
 	}
 
 	private void calculateFee(final Player player) {
-		currentFee = player.getLevel() * 4 + requestedEnemy.getLevel() * 2;
+		currentFee = player.getLevel() * 10 + requestedEnemy.getLevel() * 15;
 	}
 }
