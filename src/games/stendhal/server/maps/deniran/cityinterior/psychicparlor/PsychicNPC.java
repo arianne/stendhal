@@ -156,10 +156,10 @@ public class PsychicNPC implements ZoneConfigurator {
 
 		final ChatAction sayKillsAction = new ChatAction() {
 			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (requestedEnemy == null) {
-					npc.say("Hmmm, my divination skills are cloudy. I cannot determine information on this enemy.");
-					npc.setCurrentState(ConversationStates.ATTENDING);
+					psychic.say("Hmmm, my divination skills are cloudy. I cannot determine information on this enemy.");
+					psychic.setCurrentState(ConversationStates.ATTENDING);
 					return;
 				}
 
@@ -174,42 +174,38 @@ public class PsychicNPC implements ZoneConfigurator {
 				final String enemyNamePlural = Grammar.pluralCreature(enemyName);
 				final int soloKills = player.getSoloKill(enemyName);
 				final int sharedKills = player.getSharedKill(enemyName);
+				final int totalKills = soloKills + sharedKills;
 
-				final StringBuilder sb = new StringBuilder(player.getName() + ", you have killed ");
-
-				if (soloKills == 0) {
-					sb.append("no");
+				final StringBuilder sb = new StringBuilder(player.getName() + ", you have killed a total of " + totalKills + " ");
+				if (totalKills == 1) {
+					sb.append(enemyName);
 				} else {
-					sb.append(Integer.toString(soloKills));
+					sb.append(enemyNamePlural);
 				}
-				if (soloKills == 1) {
-					sb.append(" " + enemyName);
+				sb.append(". You have killed ");
+				if (soloKills == 0) {
+					sb.append("none");
 				} else {
-					sb.append(" " + enemyNamePlural);
+					sb.append(soloKills);
 				}
 				sb.append(" alone and ");
-
 				if (sharedKills == 0) {
-					sb.append("no");
+					sb.append("none");
 				} else {
-					sb.append(Integer.toString(sharedKills));
+					sb.append(sharedKills);
 				}
-				if (sharedKills == 1) {
-					sb.append(" " + enemyName);
-				} else {
-					sb.append(" " + enemyNamePlural);
-				}
-				sb.append(" on a team.");
+				sb.append(" in a group.");
 
-				npc.say("Thank you.");
-				new NPCEmoteAction("puts her hand on the bestiary and stares into crystal ball.", false).fire(null, null, npc);
-				new PlaySoundAction("npc/mm_hmm_female-01").fire(null, null, npc);
+				psychic.say("Thank you.");
+				new NPCEmoteAction("puts her hand on the bestiary and stares into crystal ball.", false).fire(null, null, raiser);
+				new PlaySoundAction("npc/mm_hmm_female-01").fire(null, null, raiser);
+				psychic.setDirection(Direction.LEFT); // face crystal ball
 
 				// create a pause before the NPC replies
 				TurnNotifier.get().notifyInSeconds(6, new TurnListener() {
 					@Override
 					public void onTurnReached(final int currentTurn) {
-						npc.say(sb.toString());
+						psychic.say(sb.toString());
 					}
 				});
 
@@ -247,7 +243,7 @@ public class PsychicNPC implements ZoneConfigurator {
 						isValidCreatureCondition,
 						new NotCondition(hasKilledCondition)),
 				ConversationStates.ATTENDING,
-				"It appears you are not familiar with this creature.",
+				"It appears you have not encountered this creature.",
 				null);
 
 		psychic.add(ConversationStates.QUESTION_1,
@@ -279,7 +275,6 @@ public class PsychicNPC implements ZoneConfigurator {
 				ConversationStates.ATTENDING,
 				null,
 				sayKillsAction);
-
 	}
 
 	private void calculateFee(final Player player) {
