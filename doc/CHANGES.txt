@@ -41,6 +41,7 @@ Changelog
   - woolly mammoth drops ham
   - baby pegasus runs away
   - fixed dimensions of dragon corpses
+  - blordrough general attacks weakest
 - new enemy sounds:
   - werewolf
 - quest changes:
