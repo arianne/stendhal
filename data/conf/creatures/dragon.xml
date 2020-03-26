@@ -391,7 +391,7 @@
       <size value="3,2"/>
     </attributes>
     <level value="295"/>
-    <experience value="250290"/>
+    <experience value="180290"/>
     <respawn value="40000"/> <!-- 200 minutes -->
     <corpse name="dragon_3x3" harmless="bag_2x2" width="3" height="3"/>
     <drops>
