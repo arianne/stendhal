@@ -38,6 +38,7 @@ Changelog
   - chess pieces no longer required for "Legendary" & "Team Player" achievements
 - enemy changes:
   - giant bat & giant killer bat drop ham
+  - woolly mammoth drops ham
 - new enemy sounds:
   - werewolf
 - quest changes:
