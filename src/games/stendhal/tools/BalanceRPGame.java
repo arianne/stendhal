@@ -153,13 +153,28 @@ public class BalanceRPGame {
 		// Setup the list of creatures to balance
 		Collection<DefaultCreature> creaturesToBalance;
 		if (args.length > 0) {
-			Collection<String> names = Arrays.asList(args);
+			final List<String> names = new ArrayList<>();
+			names.addAll(Arrays.asList(args));
 			creaturesToBalance = new ArrayList<DefaultCreature>();
 
 			for (DefaultCreature creature : creatures) {
-				if (names.contains(creature.getCreatureName())) {
+				final String creatureName = creature.getCreatureName();
+				if (names.contains(creatureName)) {
 					creaturesToBalance.add(creature);
+					names.removeAll(Collections.singleton(creatureName));
 				}
+			}
+
+			if (!names.isEmpty()) {
+				final StringBuilder sb = new StringBuilder("\nWARNING: Unknown creature(s): ");
+				final int unknownCount = names.size();
+				for (int idx = 0; idx < unknownCount; idx ++) {
+					sb.append(names.get(idx));
+					if (idx < unknownCount - 1) {
+						sb.append(", ");
+					}
+				}
+				System.out.println(sb.toString() + "\n");
 			}
 		} else {
 			// default to all of them
