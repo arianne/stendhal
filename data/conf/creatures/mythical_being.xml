@@ -391,8 +391,7 @@
     </drops>
     <equips/>
     <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
