@@ -93,14 +93,10 @@ public class BestiaryEvent extends RPEvent {
 				final String[] count = k.split("=");
 				try {
 					if (Integer.parseInt(count[1]) > 0) {
-						// exclude rare & abnormal creatures
-						final Creature creature = em.getCreature(count[0]);
-						if (creature != null && !creature.isAbnormal()) {
-							if (shared) {
-								sharedKills.add(count[0]);
-							} else {
-								soloKills.add(count[0]);
-							}
+						if (shared) {
+							sharedKills.add(count[0]);
+						} else {
+							soloKills.add(count[0]);
 						}
 					}
 				} catch (final NumberFormatException e) {
@@ -108,19 +104,26 @@ public class BestiaryEvent extends RPEvent {
 				}
 			}
 
-			int idx = 0;
-			final List<Creature> enemies = new ArrayList<>();
-			enemies.addAll(em.getCreatures());
+			// list of enemies to be shown in bestiary
+			final List<Creature> standardEnemies = new ArrayList<>();
+			// exclude rare & abnormal enemies
+			for (final Creature e: em.getCreatures()) {
+				if (!e.isAbnormal()) {
+					standardEnemies.add(e);
+				}
+			}
 
 			// sort alphabetically
-			Collections.sort(enemies, new Comparator<Creature>() {
+			Collections.sort(standardEnemies, new Comparator<Creature>() {
 				@Override
 				public int compare(final Creature c1, final Creature c2) {
 					return (c1.getName().toLowerCase().compareTo(c2.getName().toLowerCase()));
 				}
 			});
 
-			for (final Creature enemy: enemies) {
+			final int creatureCount = standardEnemies.size();
+			int idx = 0;
+			for (final Creature enemy: standardEnemies) {
 				String name = enemy.getName();
 				Boolean solo = false;
 				Boolean shared = false;
@@ -138,7 +141,7 @@ public class BestiaryEvent extends RPEvent {
 				}
 
 				sb.append(name + "," + solo.toString() + "," + shared.toString());
-				if (idx != enemies.size() - 1) {
+				if (idx != creatureCount - 1) {
 					sb.append(";");
 				}
 
