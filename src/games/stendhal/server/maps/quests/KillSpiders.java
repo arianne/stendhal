@@ -84,7 +84,7 @@ public class KillSpiders extends AbstractQuest {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							raiser.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
 							raiser.setCurrentState(ConversationStates.QUEST_OFFERED);
-						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
+						}  else if (player.getQuest(QUEST_SLOT, 0).equals("started")) {
 							raiser.say("I already asked you to kill all creatures in the basement!");
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
