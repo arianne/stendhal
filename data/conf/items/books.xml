@@ -45,7 +45,7 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="conten"/>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
