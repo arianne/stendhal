@@ -47,6 +47,7 @@ Changelog
   - werewolf
 - quest changes:
   - 5 unicorn horns added to Kirdneh Museum quest
+  - Fix KillEnemyArmy-Quest: All Blordroughs are counted
 - new quests:
   - Collect Enemy Data
 - new RATK stat independent from ATK
