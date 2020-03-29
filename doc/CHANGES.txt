@@ -40,6 +40,7 @@ Changelog
 - enemy changes:
   - giant bat & giant killer bat drop ham
   - woolly mammoth drops ham
+  - penguin drops chicken instead of meat
   - dodo drops chicken instead of ham
   - baby pegasus runs away
   - fixed dimensions of dragon corpses

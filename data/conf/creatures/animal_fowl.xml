@@ -146,7 +146,7 @@
     <respawn value="900"/>
     <corpse name="small_animal" harmless="feathered"/>
     <drops>
-      <item value="meat" quantity="[2,4]" probability="60.0"/>
+      <item value="chicken" quantity="[2,4]" probability="60.0"/>
       <item value="cod" quantity="[2,3]" probability="30.0"/>
     </drops>
     <equips>
