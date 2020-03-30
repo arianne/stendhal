@@ -323,7 +323,7 @@
   </creature>
 
   <creature name="water demon">
-    <type class="elemental" subclass="water_demon" tileid="elemental.png:7"/>
+    <type class="elemental" subclass="water_demon" tileid="demon.png:5"/>
     <description></description>
     <attributes>
       <atk value="735"/>
