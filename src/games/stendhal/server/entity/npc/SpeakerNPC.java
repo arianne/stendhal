@@ -462,6 +462,14 @@ public class SpeakerNPC extends PassiveNPC {
 		setAttending(null);
 	}
 
+	public boolean inConversationRange() {
+		if (attending == null) {
+			return false;
+		}
+
+		return attending.squaredDistance(this) <= squaredGoodByeRange;
+	}
+
 	public boolean isTalking() {
 		return engine.getCurrentState() != ConversationStates.IDLE;
 	}

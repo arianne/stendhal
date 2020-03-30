@@ -121,5 +121,8 @@ public enum ConversationStates {
 	 * due to lost item or other problem.
 	 *
 	 */
-	RESTART_OFFERED;
+	RESTART_OFFERED,
+
+	/** Special state when players should not be able to interact with NPC. */
+	BUSY;
 }

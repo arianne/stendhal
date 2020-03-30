@@ -198,6 +198,7 @@ public class PsychicNPC implements ZoneConfigurator {
 
 				psychic.say("Thank you.");
 				new NPCEmoteAction("puts her hand on the bestiary and stares into crystal ball.", false).fire(null, null, raiser);
+				psychic.setCurrentState(ConversationStates.BUSY);
 				new PlaySoundAction("npc/mm_hmm_female-01").fire(null, null, raiser);
 				psychic.setDirection(Direction.LEFT); // face crystal ball
 
@@ -205,6 +206,12 @@ public class PsychicNPC implements ZoneConfigurator {
 				TurnNotifier.get().notifyInSeconds(6, new TurnListener() {
 					@Override
 					public void onTurnReached(final int currentTurn) {
+						/* FIXME: There is a bit of strange behavior if player walks away before receiving
+						 *        response as another player can request reading.
+						 */
+						if (psychic.inConversationRange()) {
+							psychic.setCurrentState(ConversationStates.ATTENDING);
+						}
 						psychic.say(sb.toString());
 					}
 				});
@@ -272,7 +279,7 @@ public class PsychicNPC implements ZoneConfigurator {
 		psychic.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				hasFeeCondition,
-				ConversationStates.ATTENDING,
+				null,
 				null,
 				sayKillsAction);
 	}
