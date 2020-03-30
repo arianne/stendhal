@@ -307,4 +307,32 @@
     </ai>
   </creature>
 
+  <creature name="fire demon">
+    <type class="demon" subclass="fire_demon" tileid="demon.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="874"/>
+      <def value="232"/>
+      <hp value="3600"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="310"/>
+    <experience value="190000"/>
+    <respawn value="48000"/> <!-- 240 minutes -->
+    <corpse name="humanoid"/>
+    <drops>
+    </drops>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.5"/>
+      <susceptibility type="fire" value="0.5"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
