@@ -63,6 +63,7 @@ Changelog
 
 *graphics*
 - mithrilbourgh army enemies now have same skin color as mithrilbourgh wizard
+- new sprite for demon enemy
 
 
 1.33
