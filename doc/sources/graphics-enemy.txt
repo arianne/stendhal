@@ -124,7 +124,7 @@ lord_durin.png      Svetlana Kushnariova (Cabbit), GrumpyDiamond, Jordan Irwin (
 
 data/sprites/monsters/elemental/
 
-air_elemental.png    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+air_elemental.*      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 djinn.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82929
 earth_elemental.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; https://opengameart.org/node/3393
 fire_elemental.png   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
