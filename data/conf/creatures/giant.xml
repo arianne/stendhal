@@ -54,7 +54,7 @@
     <level value="110"/>
     <experience value="14400"/>
     <respawn value="5400"/>
-    <corpse name="humanoid_2x2" harmless="bag_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="80.0"/>
