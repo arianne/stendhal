@@ -297,7 +297,7 @@ risecia_swordsman.*        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDel
 risecia_thug.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 samurai.*                  Svetlana Kushnariova (Cabbit), DezrasDragons, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/47664, https://opengameart.org/node/80841
 shadows_assassin.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
-soldier_archer.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, SCay, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/76291
+soldier_archer.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, SCay, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/76291
 soldier_colonel.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 soldier_common.*           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/130
 soldier_elite_archer.*     Svetlana Kushnariova (Cabbit), bearmetal, SCay, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/52442, https://opengameart.org/node/76291
