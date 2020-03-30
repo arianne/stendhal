@@ -130,6 +130,7 @@ earth_elemental.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; htt
 fire_elemental.png   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 ice_elemental.png    Wolfgang Wozniak (Ouren); CC BY 3.0; https://opengameart.org/node/45977
 nymph.png            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+water_demon.*        Svetlana Kushnariova (Cabbit), ???, Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/72969, ???
 water_elemental.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/monsters/elemental_legendary/
@@ -200,7 +201,6 @@ data/sprites/monsters/giant_animal/
 
 dwarf_golem.*    Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262, https://opengameart.org/node/72969
 shark.png        Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
-water_demon.png  Svetlana Kushnariova (Cabbit), ???; ???; ???
 
 data/sprites/monsters/giant_human/
 
