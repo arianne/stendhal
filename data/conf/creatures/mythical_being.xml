@@ -56,7 +56,7 @@
     <level value="215"/>
     <experience value="90000"/>
     <respawn value="28000"/>
-    <corpse name="humanoid_2x2" width="2" height="2" />
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="emerald" quantity="[1,1]" probability="5.0"/>
@@ -98,7 +98,7 @@
     <level value="215"/>
     <experience value="90000"/>
     <respawn value="28000"/>
-    <corpse name="humanoid_2x2" width="2" height="2" />
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="emerald" quantity="[1,1]" probability="5.0"/>
@@ -141,7 +141,7 @@
     <level value="215"/>
     <experience value="90000"/>
     <respawn value="28000"/>
-    <corpse name="humanoid_2x2" width="2" height="2" />
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="carbuncle" quantity="[1,1]" probability="5.0"/>
@@ -183,7 +183,7 @@
     <level value="215"/>
     <experience value="90000"/>
     <respawn value="28000"/>
-    <corpse name="humanoid_2x2" width="2" height="2" />
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="sapphire" quantity="[1,1]" probability="5.0"/>
@@ -259,7 +259,7 @@
     <level value="250"/>
     <experience value="125000"/>
     <respawn value="36000"/> <!-- 180 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -287,7 +287,7 @@
     <level value="275"/>
     <experience value="150000"/>
     <respawn value="40000"/> <!-- 200 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -317,7 +317,7 @@
     <level value="300"/>
     <experience value="175000"/>
     <respawn value="44000"/> <!-- 220 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -409,7 +409,7 @@
     <level value="280"/>
     <experience value="151000"/>
     <respawn value="50000"/> <!-- 250 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -437,7 +437,7 @@
     <level value="285"/>
     <experience value="158000"/>
     <respawn value="52000"/> <!-- 260 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -465,7 +465,7 @@
     <level value="290"/>
     <experience value="162000"/>
     <respawn value="54000"/> <!-- 270 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -531,7 +531,7 @@
     <level value="201"/>
     <experience value="53001"/>
     <respawn value="14000"/> <!-- 70 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -564,7 +564,7 @@
     <level value="206"/>
     <experience value="55500"/>
     <respawn value="15000"/> <!-- 75 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -597,7 +597,7 @@
     <level value="219"/>
     <experience value="64000"/>
     <respawn value="16000"/> <!-- 80 minutes -->
-    <corpse name="animal_2x2" width="3" height="2"/>
+    <corpse name="animal_2x2"/>
     <drops>
       <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>

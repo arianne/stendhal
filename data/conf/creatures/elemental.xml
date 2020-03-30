@@ -259,7 +259,7 @@
     <level value="160"/>
     <experience value="42500"/>
     <respawn value="13700"/>
-    <corpse name="humanoid_2x2" harmless="puddle_light_blue_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" harmless="puddle_light_blue_2x2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -335,7 +335,7 @@
     <level value="212"/>
     <experience value="86999"/>
     <respawn value="23000"/> <!-- 115 minutes -->
-    <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2" width="2" height="2"/>
+    <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -373,7 +373,7 @@
     <experience value="5920"/>
     <respawn value="2820"/>
     <blood name="green" />
-    <corpse name="leafy_2x2" harmless="leafy_2x2" width="2" height="1"/>
+    <corpse name="leafy_2x2" harmless="leafy_2x2"/>
     <drops>
       <item value="money" quantity="[50,70]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="20.0"/>
@@ -412,7 +412,7 @@
    <experience value="6540"/>
    <respawn value="3010"/>
    <blood name="green" />
-   <corpse name="wooden_2x2" harmless="wooden_2x2" width="2" height="1"/>
+   <corpse name="wooden_2x2" harmless="wooden_2x2"/>
    <drops>
      <item value="money" quantity="[30,50]" probability="100.0"/>
      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
@@ -451,7 +451,7 @@
     <experience value="15000"/>
     <respawn value="3200"/>
     <blood name="green" />
-    <corpse name="leafy_2x2" harmless="leafy_2x2" width="2" height="1"/>
+    <corpse name="leafy_2x2" harmless="leafy_2x2"/>
     <drops>
       <item value="button mushroom" quantity="[1,6]" probability="50.0"/>
       <item value="greater potion" quantity="[2,3]" probability="10.0"/>

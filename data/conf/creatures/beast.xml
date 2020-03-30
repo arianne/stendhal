@@ -333,7 +333,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater poison" quantity="[1,2]" probability="5.0"/>
@@ -401,7 +401,7 @@
     <level value="175"/>
     <experience value="55300"/>
     <respawn value="17300"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2"/>
     <drops>
       <item value="mega potion" quantity="[1,3]" probability="100.0"/>
       <item value="greater antidote" quantity="[1,6]" probability="80.0"/>
