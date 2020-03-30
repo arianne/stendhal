@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="mithrilbourgh soldier">
-    <type class="human" subclass="soldier_common" tileid="human_soldier.png:2"/>
+    <type class="human" subclass="mithril_soldier" tileid="human_soldier.png:2"/>
     <description/>
     <attributes>
       <atk value="490"/>
@@ -33,7 +33,7 @@
   </creature>
 
   <creature name="mithrilbourgh archer">
-    <type class="human" subclass="soldier_archer" tileid="human_soldier.png:0"/>
+    <type class="human" subclass="mithril_archer" tileid="human_soldier.png:0"/>
     <description/>
     <attributes>
       <atk value="487"/>
@@ -66,7 +66,7 @@
   </creature>
 
   <creature name="mithrilbourgh knight">
-    <type class="human" subclass="soldier_knight" tileid="human_soldier.png:5"/>
+    <type class="human" subclass="mithril_knight" tileid="human_soldier.png:5"/>
     <description/>
     <attributes>
       <atk value="523"/>
@@ -97,7 +97,7 @@
   </creature>
 
   <creature name="mithrilbourgh elite archer">
-    <type class="human" subclass="soldier_elite_archer" tileid="human_soldier.png:3"/>
+    <type class="human" subclass="mithril_elite_archer" tileid="human_soldier.png:3"/>
     <description/>
     <attributes>
       <atk value="500"/>
@@ -131,7 +131,7 @@
   </creature>
 
   <creature name="mithrilbourgh sergeant">
-    <type class="human" subclass="soldier_sergeant" tileid="human_soldier.png:7"/>
+    <type class="human" subclass="mithril_sergeant" tileid="human_soldier.png:7"/>
     <description/>
     <attributes>
       <atk value="547"/>
@@ -161,7 +161,7 @@
   </creature>
 
   <creature name="mithrilbourgh lieutenant">
-    <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
+    <type class="human" subclass="mithril_lieutenant" tileid="human_soldier.png:6"/>
     <description/>
     <attributes>
       <atk value="577"/>
@@ -191,7 +191,7 @@
   </creature>
 
   <creature name="mithrilbourgh colonel">
-    <type class="human" subclass="soldier_colonel" tileid="human_soldier.png:1"/>
+    <type class="human" subclass="mithril_colonel" tileid="human_soldier.png:1"/>
     <description/>
     <attributes>
       <atk value="610"/>
@@ -253,7 +253,7 @@
   </creature>
 
   <creature name="mithrilbourgh general">
-    <type class="human" subclass="soldier_general" tileid="human_soldier.png:4"/>
+    <type class="human" subclass="mithril_general" tileid="human_soldier.png:4"/>
     <description>You see a mithrilbourgh general. Some call him Hawkeyes. He cast his gaze over the city walls and saw you coming from miles away.</description>
     <attributes>
       <atk value="624"/>
