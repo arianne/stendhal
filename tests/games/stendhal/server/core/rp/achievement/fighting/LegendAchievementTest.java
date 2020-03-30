@@ -67,7 +67,7 @@ public class LegendAchievementTest extends ZoneAndPlayerTestImpl {
 		resetPlayer();
 
 		for (final Creature enemy: enemyList) {
-			if (!enemy.isRare()) {
+			if (!enemy.isAbnormal()) {
 				assertFalse(achievementReached());
 				onKill(enemy.getName());
 			}
