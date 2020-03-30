@@ -125,6 +125,7 @@
     <drops>
       <item value="disease poison" quantity="[1,1]" probability="5.0"/>
       <item value="magic plate legs" quantity="[1,1]" probability="0.25"/>
+      <item value="venom gland" quantity="1" probability="50.0"/>
     </drops>
     <equips>
     </equips>
