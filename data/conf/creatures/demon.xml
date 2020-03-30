@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-
-  <!-- START: demon -->
 
   <creature name="violet avenger">
     <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
@@ -204,10 +203,6 @@
     </ai>
   </creature>
 
-  <!-- END: demon -->
-
-  <!-- START: imp -->
-
   <creature name="imp">
     <type class="demon" subclass="imp" tileid="demon.png:0"/>
     <description>You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!</description>
@@ -262,8 +257,8 @@
       <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
       <item value="poison" quantity="[1,2]" probability="40.0"/>
-       <item value="blue boots" quantity="[1,1]" probability="5.0"/>
-        <item value="blue legs" quantity="[1,1]" probability="1.5"/>
+      <item value="blue boots" quantity="[1,1]" probability="5.0"/>
+      <item value="blue legs" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -279,6 +274,37 @@
     </ai>
   </creature>
 
-  <!-- END: imp -->
+  <creature name="water demon">
+    <type class="elemental" subclass="water_demon" tileid="demon.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="735"/>
+      <def value="155"/>
+      <hp value="4120"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="212"/>
+    <experience value="86999"/>
+    <respawn value="23000"/> <!-- 115 minutes -->
+    <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="greater antidote" quantity="[1,2]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <!-- "water" not currently supported
+      <susceptibility type="water" value="1.3"/>
+      -->
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
 
 </creatures>

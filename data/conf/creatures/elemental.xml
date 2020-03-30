@@ -322,39 +322,6 @@
     </ai>
   </creature>
 
-  <creature name="water demon">
-    <type class="elemental" subclass="water_demon" tileid="demon.png:5"/>
-    <description></description>
-    <attributes>
-      <atk value="735"/>
-      <def value="155"/>
-      <hp value="4120"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="212"/>
-    <experience value="86999"/>
-    <respawn value="23000"/> <!-- 115 minutes -->
-    <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2"/>
-    <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="greater antidote" quantity="[1,2]" probability="20.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <abilities>
-      <!-- "water" not currently supported
-      <susceptibility type="water" value="1.3"/>
-      -->
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
   <!-- END: water -->
 
   <!-- START: wood -->
