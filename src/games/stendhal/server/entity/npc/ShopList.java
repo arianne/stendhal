@@ -493,6 +493,14 @@ public final class ShopList {
 		shops.add("atlantispotions", "sedative", 800);
 		shops.add("atlantispotions", "empty scroll", 4000);
 
+		shops.add("deniranpawnbuy", "skull ring", 250);
+		shops.add("deniranpawnbuy", "engagement ring", 1000);
+		shops.add("deniranpawnbuy", "medicinal ring", 2500);
+		shops.add("deniranpawnbuy", "placid ring", 2800);
+		//shops.add("deniranpawnbuy", "emerald ring", 9000); // should avoid selling bound rings
+		shops.add("deniranpawnbuy", "insulated ring", 25000);
+		shops.add("deniranpawnbuy", "turtle shell ring", 25000);
+		shops.add("deniranpawnbuy", "imperial ring", 100000);
 	}
 
 	private static ShopList instance;

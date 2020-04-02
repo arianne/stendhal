@@ -19,6 +19,7 @@ Changelog
   - Pierre (outfit lender in Deniran Dress Shop)
   - Ryla (greeter in Atlantis)
   - Mirielle (Atlantis Potions Shop)
+  - Sawyer (Deniran Pawn Shop)
 - new items:
   - bestiary
   - training sword
