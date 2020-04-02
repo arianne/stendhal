@@ -78,7 +78,7 @@ public class NPCHelper {
 			 * @param actions
 			 * 		ChatAction instance or LuaTable of ChatAction instances.
 			 */
-			@SuppressWarnings("unused")
+			@SuppressWarnings({ "unused", "unchecked" })
 			public void add(final Object states, final Object triggers, final Object conditions,
 					final ConversationStates nextState, final String reply, final Object actions) {
 
@@ -112,6 +112,8 @@ public class NPCHelper {
 					listenTriggers = new ArrayList<>();
 					if (triggers instanceof String) {
 						listenTriggers.add((String) triggers);
+					} else if (triggers instanceof List) {
+						listenTriggers.addAll((List<String>) triggers);
 					} else {
 						final LuaTable table = (LuaTable) triggers;
 						for (final LuaValue idx: table.keys()) {
