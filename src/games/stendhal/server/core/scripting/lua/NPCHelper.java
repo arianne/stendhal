@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,12 +27,18 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SilentNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 
 
 /**
@@ -52,11 +60,89 @@ public class NPCHelper {
 	 * 		New SpeakerNPC instance.
 	 */
 	public SpeakerNPC createSpeakerNPC(final String name) {
-		return new SpeakerNPC(name);
+		return new SpeakerNPC(name) {
+			/**
+			 * Additional method to support transitions using Lua tables.
+			 *
+			 * @param states
+			 * 		The conversation state(s) the entity should be in to trigger response.
+			 * 		Can be ConversationStates enum value or LuaTable of ConversationStates.
+			 * @param triggers
+			 * 		String or LuaTable of strings to trigger response.
+			 * @param conditions
+			 * 		ChatCondition instance or LuaTable of ChatCondition instances.
+			 * @param nextState
+			 * 		Conversation state to set entity to after response.
+			 * @param reply
+			 * 		The NPC's response or <code>null</code>
+			 * @param actions
+			 * 		ChatAction instance or LuaTable of ChatAction instances.
+			 */
+			@SuppressWarnings("unused")
+			public void add(final Object states, final Object triggers, final Object conditions,
+					final ConversationStates nextState, final String reply, final Object actions) {
+
+				ConversationStates[] listenStates = null;
+				List<String> listenTriggers = null;
+				ChatCondition listenConditions = null;
+				ChatAction listenActions = null;
+
+				if (states != null) {
+					if (states instanceof ConversationStates) {
+						listenStates = Arrays.asList((ConversationStates) states).toArray(new ConversationStates[] {});
+					} else {
+						final List<ConversationStates> tmp = new LinkedList<>();
+						final LuaTable table = (LuaTable) states;
+						for (final LuaValue idx: table.keys()) {
+							final ConversationStates state = (ConversationStates) table.get(idx).touserdata(ConversationStates.class);
+
+							if (state == null) {
+								logger.error("Invalid ConversationStates data");
+								continue;
+							}
+
+							tmp.add(state);
+						}
+
+						listenStates = tmp.toArray(new ConversationStates[] {});
+					}
+				}
+
+				if (triggers != null) {
+					listenTriggers = new ArrayList<>();
+					if (triggers instanceof String) {
+						listenTriggers.add((String) triggers);
+					} else {
+						final LuaTable table = (LuaTable) triggers;
+						for (final LuaValue idx: table.keys()) {
+							listenTriggers.add(table.get(idx).tojstring());
+						}
+					}
+				}
+
+				if (conditions != null) {
+					if (conditions instanceof ChatCondition) {
+						listenConditions = (ChatCondition) conditions;
+					} else {
+						listenConditions = newAndCondition((LuaTable) conditions);
+					}
+				}
+
+				if (actions != null) {
+					if (actions instanceof ChatAction) {
+						listenActions = (ChatAction) actions;
+					} else {
+						listenActions = newMultipleActions((LuaTable) actions);
+					}
+				}
+
+				add(listenStates, listenTriggers, listenConditions, nextState, reply, listenActions);
+			}
+		};
 	}
 
 	/**
-	 * Created a new SilentNPC instance.
+	 * Creates a new SilentNPC instance.
 	 *
 	 * @return
 	 * 		New SilentNPC instance.
@@ -304,5 +390,65 @@ public class NPCHelper {
 	 */
 	public void addBuyer(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
 		addMerchant("buyer", npc, prices, addOffer);
+	}
+
+	/**
+	 * Helper method for creating a NotCondition instance.
+	 *
+	 * @param condition
+	 * 		Condition to be checked.
+	 * @return
+	 * 		New NotCondition instance.
+	 */
+	public NotCondition newNotCondition(final ChatCondition condition) {
+		return new NotCondition(condition);
+	}
+
+	/**
+	 * Helper method to create a AndCondition instance.
+	 *
+	 * @param conditionList
+	 * 		LuaTable containing a list of ChatCondition instances.
+	 * @return
+	 * 		New AndCondition instance.
+	 */
+	public AndCondition newAndCondition(final LuaTable conditionList) {
+		final List<ChatCondition> conditions = new LinkedList<>();
+		for (final LuaValue idx: conditionList.keys()) {
+			final LuaValue value = conditionList.get(idx);
+			if (value.istable()) {
+				conditions.add(newAndCondition(value.checktable()));
+			} else if (value.isuserdata(ChatCondition.class)) {
+				conditions.add((ChatCondition) value.touserdata(ChatCondition.class));
+			} else {
+				logger.warn("Invalid data type. Must be ChatCondition.");
+			}
+		}
+
+		return new AndCondition(conditions.toArray(new ChatCondition[] {}));
+	}
+
+	/**
+	 * Helper method for creating a MultipleActions instance.
+	 *
+	 * @param actionList
+	 * 		LuaTable containing list of ChatAction instances.
+	 * @return
+	 * 		New MultipleActions instance.
+	 */
+	public MultipleActions newMultipleActions(final LuaTable actionList) {
+		final List<ChatAction> actions = new LinkedList<>();
+		for (final LuaValue idx: actionList.keys()) {
+			final LuaValue value = actionList.get(idx);
+			if (value.istable()) {
+				actions.add(newMultipleActions(value.checktable()));
+			} else if (value.isuserdata(ChatAction.class)) {
+				actions.add((ChatAction) value.touserdata(ChatAction.class));
+			} else {
+				logger.warn("Invalid data type. Must be ChatAction or LuaTable.");
+			}
+		}
+
+		return new MultipleActions(actions.toArray(new ChatAction[] {}));
 	}
 }
