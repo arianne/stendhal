@@ -143,8 +143,13 @@
 			<attribute name="move.continuous" />
 		</portal>
 
-			<portal x="97" y="20" ref="deniran_library_entrance">
+		<portal x="97" y="20" ref="deniran_library_entrance">
 			<destination zone="int_deniran_library" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="119" y="41" ref="pawn_shop">
+			<destination zone="int_deniran_pawn_shop" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -1301,6 +1306,59 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.psychicparlor.PsychicNPC" />
+
+	</zone>
+
+	<zone name="int_deniran_pawn_shop" file="interiors/deniran/pawn_shop.tmx">
+
+		<portal x="6" y="13" ref="entrance">
+			<destination zone="0_deniran_city" ref="pawn_shop" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<!-- clock -->
+		<entity x="19" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+			<attribute name="height">2</attribute>
+		</entity>
+		<entity x="19" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">clock-1</parameter>
+				<parameter name="radius">15</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
+		<!-- interactive sounds -->
+		<entity x="6" y="21">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+				<parameter name="sound">guitar-1</parameter>
+				<parameter name="radius">40</parameter>
+			</implementation>
+			<attribute name="description">You see a guitar. Play a few chords.</attribute>
+		</entity>
+		<entity x="12" y="5">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+				<parameter name="sound">piano-01</parameter>
+				<parameter name="radius">40</parameter>
+			</implementation>
+			<attribute name="width">2</attribute>
+			<attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+		</entity>
+		<entity x="15" y="16">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+				<parameter name="sound">rubber_toy-01</parameter>
+				<parameter name="radius">40</parameter>
+			</implementation>
+			<attribute name="description">You see a rubber ducky. Squeeze it!</attribute>
+		</entity>
+		<entity x="8" y="3">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+				<parameter name="sound">toy_train-01</parameter>
+				<parameter name="radius">40</parameter>
+			</implementation>
+			<attribute name="description">You see a toy train. Toot toot!</attribute>
+		</entity>
 
 	</zone>
 

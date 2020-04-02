@@ -6,6 +6,7 @@ Changelog
 
 *world*
 - new zones/maps:
+  - Deniran Pawn Shop
   - Deniran Psychic Parlor
   - Atlantis Postions Shop
 - new NPCs:
