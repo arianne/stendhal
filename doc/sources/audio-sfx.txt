@@ -139,7 +139,7 @@ ogre-yell-01.*            tim.kahn; CC BY 3.0; https://freesound.org/people/tim.
 orc-snarl-01.*            qubodup; CC BY 3.0; https://freesound.org/people/qubodup/sounds/212764/
 penguin-1.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
 penguin-2.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
-piano-1.*                 public domain
+piano-01.*                Scott Joplin, Tim Starling; CC0; https://commons.wikimedia.org/wiki/File:Maple_leaf_rag.ogg
 pick-metallic-1.*         qubodup; CC0; http://freesound.org/people/qubodup/sounds/182821/
 pig-snort-01.*            yottasounds; CC BY 3.0; https://freesound.org/people/yottasounds/sounds/174615/
 pig-squeal-01.ogg         unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/pig/

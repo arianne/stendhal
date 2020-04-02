@@ -702,7 +702,7 @@ If the bride is called Helen, you should say 'marry Helen'
     <entity x="72" y="20">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -834,7 +834,7 @@ For example say:  11  if you want the room called Water of Love.
     <entity x="2" y="21">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -866,7 +866,7 @@ For example say:  11  if you want the room called Water of Love.
     <entity x="20" y="14">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -1307,7 +1307,7 @@ For example say:  11  if you want the room called Water of Love.
     <entity x="7" y="9">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -2197,7 +2197,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
     <entity x="20" y="14">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>

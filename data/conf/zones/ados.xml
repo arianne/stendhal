@@ -2141,7 +2141,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Interactive sounds -->
     <entity x="39" y="16">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -3707,7 +3707,7 @@ My fee:
   <!-- Interactive sounds -->
   <entity x="3" y="11">
     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
+      <parameter name="sound">piano-01</parameter>
       <parameter name="radius">40</parameter>
     </implementation>
     <attribute name="width">2</attribute>
@@ -3750,7 +3750,7 @@ My fee:
     <!-- Piano -->
     <entity x="11" y="6">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -4030,7 +4030,7 @@ My fee:
     <!-- Interactive sounds -->
     <entity x="3" y="11">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -4396,7 +4396,7 @@ My fee:
     <!-- Interactive sounds -->
     <entity x="13" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
@@ -5869,7 +5869,7 @@ East Tunnel: Uncharted</attribute>
     <!-- Interactive sounds -->
     <entity x="19" y="22">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
+        <parameter name="sound">piano-01</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="width">2</attribute>
