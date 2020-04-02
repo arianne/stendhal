@@ -176,6 +176,7 @@ tiger-roar-02.*           videog; CC BY 3.0; https://freesound.org/people/videog
 tiger-snarl-01.*          videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
 tiger-snarl-[02-04].*     schots; CC0; https://freesound.org/people/schots/sounds/439280/
 toilet-flush-1.*          KevanGC; public domain; http://soundbible.com/1657-Toilet-Flushing.html
+toy_train-01.*            FuriousGinger; CC0; https://freesound.org/people/FuriousGinger/sounds/196632/
 troll-growl-[01-04].*     -sihiL; CC BY 3.0; https://freesound.org/people/-sihiL/sounds/213846/
 undead-1.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-2.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
