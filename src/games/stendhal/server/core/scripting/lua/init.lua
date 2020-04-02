@@ -41,6 +41,11 @@ newCondition = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
 end
 
+--- Helper function for creating NotCondition instances.
+newNotCondition = function(condition)
+	return npcHelper:newNotCondition(condition)
+end
+
 --- Helper function for creating ChatAction instances.
 newAction = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.action." .. classname, ...)

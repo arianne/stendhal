@@ -407,6 +407,18 @@ public class NPCHelper {
 	}
 
 	/**
+	 * Helper method for creating a NotCondition instance.
+	 *
+	 * @param lv
+	 * 	Condition to be checked inside a LuaValue instance.
+	 * @return
+	 * 		New NotCondition instance.
+	 */
+	public NotCondition newNotCondition(final LuaValue lv) {
+		return newNotCondition((ChatCondition) lv.touserdata(ChatCondition.class));
+	}
+
+	/**
 	 * Helper method to create a AndCondition instance.
 	 *
 	 * @param conditionList
