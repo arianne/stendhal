@@ -26,6 +26,16 @@ Region = luajava.bindClass("games.stendhal.server.maps.Region")
 MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
 
 
+--- Cleans nil values from table.
+table.clean = function(tbl)
+	local tmp = {}
+	for _, v in pairs(tbl) do
+		tmp[#tmp+1] = v
+	end
+
+	return tmp
+end
+
 --- Helper function for creating ChatCondition instances.
 newCondition = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
