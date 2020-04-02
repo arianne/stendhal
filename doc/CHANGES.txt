@@ -20,6 +20,7 @@ Changelog
   - Ryla (greeter in Atlantis)
   - Mirielle (Atlantis Potions Shop)
   - Sawyer (Deniran Pawn Shop)
+  - Harley (Deniran Pawn Shop)
 - new items:
   - bestiary
   - training sword
