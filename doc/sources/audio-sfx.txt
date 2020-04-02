@@ -156,6 +156,7 @@ roar-large-1.*            ibm5155; CC0; http://freesound.org/people/ibm5155/soun
 robot-1.ogg               Jordan Irwin (AntumDeluge); BSD; Stendhal
 robot-3.ogg               Loge the 60th; Public Domain; http://soundbible.com/1758-Door-Entry-Notification.html
 rocks-1.*                 ALLANZ10D; CC0; http://freesound.org/people/ALLANZ10D/sounds/155934/
+rubber_toy-01.*           Free-Rush; CC0; https://freesound.org/people/Free-Rush/sounds/454575/
 scrape-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scream-fem-2.ogg          NeoPhyTe; public domain: http://soundbible.com/1627-Female-Scream-Horror.html
