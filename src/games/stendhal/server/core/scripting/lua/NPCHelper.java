@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +20,10 @@ import org.apache.log4j.Logger;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SilentNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -38,6 +40,8 @@ public class NPCHelper {
 
 	// logger instance
 	private static final Logger logger = Logger.getLogger(NPCHelper.class);
+
+	private static final EntityManager eManager = SingletonRepository.getEntityManager();
 
 	/**
 	 * Creates a new SpeakerNPC instance.
@@ -227,46 +231,50 @@ public class NPCHelper {
 	 * 		If set to "buyer", will add buyer behavior, otherwise will be "seller".
 	 * @param npc
 	 * 		The SpeakerNPC to add the behavior to.
-	 * @param items
-	 * 		List of items & their prices.
-	 * @param offer
+	 * @param prices
+	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 * @param addOffer
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
-	public void addMerchant(final String merchantType, final SpeakerNPC npc, final LuaTable items, Boolean offer) {
+	@SuppressWarnings("unchecked")
+	public void addMerchant(final String merchantType, final SpeakerNPC npc, final Object prices, Boolean addOffer) {
 		// default is to add an "offer" response
-		if (offer == null) {
-			offer = true;
+		if (addOffer == null) {
+			addOffer = true;
 		}
 
-		final Map<String, Integer> priceList = new HashMap<String, Integer>();
-		// Lua indexing begins with "1"
-		for (int idx = 1; idx <= items.length(); idx++) {
-			final LuaValue item = items.get(idx);
-			if (!item.istable()) {
-				logger.error("Value is not a LuaTable");
-				return;
-			}
+		Map<String, Integer> priceList = null;
+		if (prices instanceof LuaTable) {
+			priceList = new LinkedHashMap<>();
+			final LuaTable priceTable = (LuaTable) prices;
+			for (final LuaValue key: priceTable.keys()) {
+				String itemName = key.tojstring();
+				final int itemPrice = priceTable.get(key).toint();
 
-			final LuaValue itemName = ((LuaTable) item).get(1);
-			final LuaValue itemPrice = ((LuaTable) item).get(2);
+				// special handling of underscore characters in item names
+				if (itemName.contains("_")) {
+					// check if item is real item
+					if (!eManager.isItem(itemName)) {
+						itemName = itemName.replace("_", " ");
+					}
+				}
 
-			if (!itemName.isstring()) {
-				logger.error("Item name must be a string");
-				return;
+				priceList.put(itemName, itemPrice);
 			}
-			if (!itemPrice.isinttype()) {
-				logger.error("Item price must be an integer");
-				return;
-			}
+		} else if (prices instanceof Map<?, ?>) {
+			priceList = (LinkedHashMap<String, Integer>) prices;
+		}
 
-			priceList.put(itemName.tojstring(), itemPrice.toint());
+		if (priceList == null) {
+			logger.error("Invalid price list type: must by LuaTable or Map<String, Integer>");
+			return;
 		}
 
 		//final MerchantBehaviour behaviour;
 		if (merchantType != null && merchantType.equals("buyer")) {
-			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(priceList), offer);
+			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(priceList), addOffer);
 		} else {
-			new SellerAdder().addSeller(npc, new SellerBehaviour(priceList), offer);
+			new SellerAdder().addSeller(npc, new SellerBehaviour(priceList), addOffer);
 		}
 	}
 
@@ -275,13 +283,13 @@ public class NPCHelper {
 	 *
 	 * @param npc
 	 * 		The SpeakerNPC to add the behavior to.
-	 * @param items
-	 * 		List of items & their prices.
-	 * @param offer
+	 * @param prices
+	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 * @param addOffer
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
-	public void addSeller(final SpeakerNPC npc, final LuaTable items, final boolean offer) {
-		addMerchant("seller", npc, items, offer);
+	public void addSeller(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
+		addMerchant("seller", npc, prices, addOffer);
 	}
 
 	/**
@@ -289,12 +297,12 @@ public class NPCHelper {
 	 *
 	 * @param npc
 	 * 		The SpeakerNPC to add the behavior to.
-	 * @param items
-	 * 		List of items & their prices.
-	 * @param offer
+	 * @param prices
+	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 * @param addOffer
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
-	public void addBuyer(final SpeakerNPC npc, final LuaTable items, final boolean offer) {
-		addMerchant("buyer", npc, items, offer);
+	public void addBuyer(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
+		addMerchant("buyer", npc, prices, addOffer);
 	}
 }
