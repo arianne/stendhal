@@ -1001,6 +1001,11 @@
 			<destination zone="int_atlantis_potions_shop" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		<entity x="104" y="39">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Potions Shop</attribute>
+			<attribute name="class">transparent</attribute>
+		</entity>
 
 		<portal x="18" y="73" ref="home_1">
 			<destination zone="int_atlantis_home_1" ref="entrance" />
