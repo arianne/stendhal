@@ -1383,7 +1383,7 @@
 
 	</zone>
 
-	<zone name="int_atlantis_home_2" file="interiors/atlantis/home_1.tmx">
+	<zone name="int_atlantis_home_2" file="interiors/atlantis/home_2.tmx">
 
 		<portal x="8" y="14" ref="entrance">
 			<destination zone="-7_deniran_atlantis" ref="home_2" />
@@ -1392,7 +1392,7 @@
 
 	</zone>
 
-	<zone name="int_atlantis_home_3" file="interiors/atlantis/home_1.tmx">
+	<zone name="int_atlantis_home_3" file="interiors/atlantis/home_3.tmx">
 
 		<portal x="8" y="14" ref="entrance">
 			<destination zone="-7_deniran_atlantis" ref="home_3" />
