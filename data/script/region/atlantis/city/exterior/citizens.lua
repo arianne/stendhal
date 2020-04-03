@@ -38,6 +38,27 @@ if game:setZone(zoneName) then
 			class = "atlantismale02npc",
 			desc = genericDesc,
 		},
+		{
+			path = {
+				{49, 67}, {52, 67}, {52, 72}, {62, 72}, {62, 82}, {65, 82},
+			},
+			name = "butterfly",
+			class = "animal/butterfly",
+			resistance = 0,
+			speed = 0.1,
+			desc = "You see a butterfly peacefully gliding through the air.",
+			flags = {"ignore_collision"},
+		},
+		{
+			pos = {x=61, y=79},
+			name = "bee",
+			class = "../monsters/insect/killer_bee",
+			dir = Direction.LEFT,
+			resistance = 0,
+			desc = "You see a bee gathering nectar from the flowers.",
+			flags = {"active_idle"},
+			sounds = {"bee-1"},
+		},
 	}
 
 	for _, detail in pairs(details) do
