@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
+ <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="int_grey" tilewidth="32" tileheight="32" tilecount="121" columns="11">
@@ -33,44 +33,47 @@
  <tileset firstgid="175" name="potions" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../../tileset/item/chemistry/potions.png" width="96" height="96"/>
  </tileset>
- <layer name="0_floor" width="16" height="16">
+ <tileset firstgid="184" name="logic/portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
+ <layer id="1" name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA6thYGCoGcWjeBSPSAwA9sxrcAAEAAA=
+   H4sIAAAAAAAECqthYGCoGcWjYTCaBkZkGgAA9sxrcAAEAAA=
   </data>
  </layer>
- <layer name="1_terrain" width="16" height="16">
+ <layer id="2" name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA83OuQrCQBCA4W28OjW+jJb6BorpFO28OjW+gVc8yqgJeDypf5HAMkjYNRYOfM3O/LA5pVQeBUtFlFBGBVVLDmqoo6Hsp4nWH/Vrw+6Ox4d+k7E3HdN+ix328L/oDzjihLP2/sQrw/+T+XUf4IJrSqPfyP6GEFFKr98k/QhjTIQ2OnHXhSv2U8wwxwJLoYd+3A8wFHsPK7wB12H0RwAEAAA=
+   H4sIAAAAAAAECs3PuQrCQBSF4Wk02rm9jJb6BgbtlNi5dW5vYFyilhoVXJ7UP4VwuWCYQQsHPshNzuFmMsaYLDxHOfJ5FFBEyVGZfAVV1OB66hQa+Jf+0vICN3J36P8Pv+xb1s2n/bq/4sUaG2zFR9t+RGeHPQ6i/+D5CX1/EbF6/HX/yNYT4pTtMqP3n+ldcE3py8y73yc/wFBpMvtITgttyMyIeYwJppgpHeYukhOgB5mZMy/wAtdh9EcABAAA
   </data>
  </layer>
- <layer name="2_object" width="16" height="16">
+ <layer id="3" name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgQAVLgXgZA/lgORCvQOLXo9GLCehfCcSrkPjNaPQSCtw2GMA2IN5Agf7NFNq/GeoGSsB2CvUPRrCRAeKvTQTUbQHi9bR3Dt0AADH2A6wABAAA
+   H4sIAAAAAAAECmNgQAVLgdxlqEIk8ZYDVa9A0lEPZcPoxUhy2JgrgYKrkCSaoWwYvQRJbigytwEdvYECh2+mQC9IK0g/yA2UgO2UaB6kejcC3QXy1yYC7tsClF9PQM1QkgYAMfYDrAAEAAA=
   </data>
  </layer>
- <layer name="3_roof" width="16" height="16">
+ <layer id="4" name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWkgLlAPG+gHTEKMMAUIJ4KxNMoVDPSAABcwGj9AAQAAA==
+   H4sIAAAAAAAECmNgGAWkhMBcoOJ5pGgYVUuXEJgCtGUqEE/DYxsxavBoH5ZSAFzAaP0ABAAA
   </data>
  </layer>
- <layer name="4_roof_add" width="16" height="16">
+ <layer id="5" name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
   </data>
  </layer>
- <layer name="objects" width="16" height="16">
+ <layer id="6" name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAECmNgGAWjITAaAoM1BPbQ2GEAmMSLJAAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" visible="0" opacity="0.44">
+ <layer id="7" name="collision" width="16" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NkYGBgHAQYBtD56IARTR0h9fjMoaZ+Ys0gJgzI0U8sIFY/ofghVz+x8qT6g1L9xJhFalomVz+6WZTmK3zyAJgxbCYABAAA
+   H4sIAAAAAAAECs2O0QoAIAgD7f9/uiwOZGAJ9VBQS7ezmpm1D/b4wlz8hVrVfV/k0NWtn3BonVxJuKiVGTGv9xu+wnpG36RWnj6KT62Kj976zMn0ND/j6CsfazKqMbO7K0e9YzLP2cx70e8yNLbXAAQAAA==
   </data>
  </layer>
- <layer name="protection" width="16" height="16">
+ <layer id="8" name="protection" width="16" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
   </data>
  </layer>
 </map>
