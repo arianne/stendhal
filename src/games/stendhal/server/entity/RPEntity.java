@@ -117,7 +117,6 @@ public abstract class RPEntity extends GuidedEntity {
 	private int mana;
 	private int base_mana;
 
-	protected boolean ignoreCollision;
 	private String deathSound;
 	private String bloodClass;
 
@@ -293,7 +292,6 @@ public abstract class RPEntity extends GuidedEntity {
 		damageReceived = new CounterMap<>(true);
 		enemiesThatGiveFightXP = new WeakHashMap<>();
 		totalDamageReceived = 0;
-		ignoreCollision = false;
 	}
 
 	public RPEntity() {
@@ -302,7 +300,6 @@ public abstract class RPEntity extends GuidedEntity {
 		damageReceived = new CounterMap<>(true);
 		enemiesThatGiveFightXP = new WeakHashMap<>();
 		totalDamageReceived = 0;
-		ignoreCollision = false;
 	}
 
 	/**
