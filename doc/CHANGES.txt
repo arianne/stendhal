@@ -34,8 +34,13 @@ Changelog
   - Zombie Apocalypse: kill 500 zombies
   - Chicken Nuggets: kill 100 of each type of fowl
   - Pachyderm Mayhem: kill 100 of each type of pachyderm
+<<<<<<< HEAD
   - Imperialist Dominator: finish Kill Blordroughs quest 50 times
   - Imperialist Dictator: finish Kill Blordroughs quest 100 times
+=======
+  - 5 achievements for each stat (def, atk, & ratk)
+  - Bluffy the Slayer: kill 500 of any giant bat
+>>>>>>> 7d4cf86cd6e51dbf0b2bbbdcdda0665c237afce5
 - achievement changes:
   - ice giant added to David vs. Goliath
   - baby angel added to Heavenly Wrath
