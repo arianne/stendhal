@@ -997,7 +997,7 @@
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.atlantis.cityoutside.GreeterNPC" />
 
-		<portal x="31" y="35" ref="potions_shop">
+		<portal x="104" y="41" ref="potions_shop">
 			<destination zone="int_atlantis_potions_shop" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
