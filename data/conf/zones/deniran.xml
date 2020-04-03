@@ -1027,6 +1027,56 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<portal x="47" y="106" ref="home_6">
+			<destination zone="int_atlantis_home_6" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="119" y="16" ref="home_7">
+			<destination zone="int_atlantis_home_7" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="123" y="94" ref="home_8">
+			<destination zone="int_atlantis_home_8" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="114" y="124" ref="home_9">
+			<destination zone="int_atlantis_home_9" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="6" y="121" ref="home_10">
+			<destination zone="int_atlantis_home_10" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="4" y="99" ref="home_11">
+			<destination zone="int_atlantis_home_11" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="18" y="56" ref="home_12">
+			<destination zone="int_atlantis_home_12" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="4" y="29" ref="home_13">
+			<destination zone="int_atlantis_home_13" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="6" y="6" ref="home_14">
+			<destination zone="int_atlantis_home_14" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="15" y="8" ref="home_15">
+			<destination zone="int_atlantis_home_15" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -1452,6 +1502,96 @@
 				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
+
+	</zone>
+
+	<zone name="int_atlantis_home_6" file="interiors/atlantis/home_6.tmx">
+
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_6" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_7" file="interiors/atlantis/home_7.tmx">
+
+		<portal x="25" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_7" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_8" file="interiors/atlantis/home_8.tmx">
+
+		<portal x="8" y="38" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_8" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_9" file="interiors/atlantis/home_9.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_9" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_10" file="interiors/atlantis/home_10.tmx">
+
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_10" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_11" file="interiors/atlantis/home_11.tmx">
+
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_11" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_12" file="interiors/atlantis/home_12.tmx">
+
+		<portal x="8" y="32" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_12" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_13" file="interiors/atlantis/home_13.tmx">
+
+		<portal x="8" y="38" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_13" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_14" file="interiors/atlantis/home_14.tmx">
+
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_14" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_15" file="interiors/atlantis/home_15.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_15" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
