@@ -1017,6 +1017,16 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<portal x="31" y="35" ref="home_4">
+			<destination zone="int_atlantis_home_4" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="62" y="17" ref="home_5">
+			<destination zone="int_atlantis_home_5" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -1398,6 +1408,50 @@
 			<destination zone="-7_deniran_atlantis" ref="home_3" />
 			<attribute name="move.continuous" />
 		</portal>
+
+	</zone>
+
+	<zone name="int_atlantis_home_4" file="interiors/atlantis/home_4.tmx">
+
+		<portal x="8" y="14" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_4" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<!-- interactive objects -->
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+			<attribute name="height">2</attribute>
+		</entity>
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">clock-1</parameter>
+				<parameter name="radius">15</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
+	</zone>
+
+	<zone name="int_atlantis_home_5" file="interiors/atlantis/home_5.tmx">
+
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="-7_deniran_atlantis" ref="home_5" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<!-- interactive objects -->
+		<entity x="11" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+			<attribute name="height">2</attribute>
+		</entity>
+		<entity x="11" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">clock-1</parameter>
+				<parameter name="radius">15</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
 
 	</zone>
 
