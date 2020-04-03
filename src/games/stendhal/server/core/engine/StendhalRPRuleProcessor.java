@@ -39,6 +39,7 @@ import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.core.engine.dbcommand.SetOnlineStatusCommand;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
@@ -155,9 +156,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			StendhalRPAction.initialize(rpman);
 
 			/* Initialize quests */
-			SingletonRepository.getStendhalQuestSystem().init();
+			final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
+			questSystem.init();
 
 			new ScriptRunner().init();
+
+			/* initialize quests stored in cache */
+			questSystem.loadCachedQuests();
 
 			final Configuration config = Configuration.getConfiguration();
 			try {

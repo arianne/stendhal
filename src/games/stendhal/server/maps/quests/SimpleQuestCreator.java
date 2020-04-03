@@ -313,7 +313,7 @@ public class SimpleQuestCreator {
 		 * This must be called in order for the quest to be added to game.
 		 */
 		public void register() {
-			StendhalQuestSystem.get().loadQuest(this);
+			StendhalQuestSystem.get().cacheQuest(this);
 		}
 
 		@Override

@@ -38,6 +38,8 @@ public class StendhalQuestSystem {
 
 	private final static List<IQuest> quests = new LinkedList<IQuest>();
 
+	private final static List<IQuest> cached = new ArrayList<>();
+
 
 	private StendhalQuestSystem() {
 		// hide constructor, this is a Singleton
@@ -229,6 +231,33 @@ public class StendhalQuestSystem {
 		logger.info("Loading Quest: " + quest.getName());
 		quest.addToWorld();
 		quests.add(quest);
+	}
+
+	/**
+	 * Caches a quest for loading later.
+	 *
+	 * @param quest
+	 * 		Quest to be cached.
+	 */
+	public void cacheQuest(final IQuest quest) {
+		if (cached.contains(quest)) {
+			logger.warn("Quest previously cached: " + quest.getName());
+			return;
+		}
+
+		cached.add(quest);
+	}
+
+	/**
+	 * Loads all quests stored in the cache.
+	 */
+	public void loadCachedQuests() {
+		for (final IQuest quest: cached) {
+			loadQuest(quest);
+		}
+
+		// empty cache
+		cached.clear();
 	}
 
 	/**
