@@ -27,7 +27,6 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -51,7 +50,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
-import games.stendhal.server.maps.Region;
 
 
 /**
@@ -127,59 +125,12 @@ public class CollectEnemyData extends AbstractQuest {
 				helpReply,
 				null);
 
-		// NPC only visits exterior zones that are not cities & not highly populated
-		// TODO: add atlantis zones
-		final List<String> zonesBlacklist = Arrays.asList("*kikareukin_cave", "7_kikareukin_clouds",
-				"0_semos_village_w", "0_semos_mountain_n2_e2", "0_semos_mountain_n2", "0_semos_mountain_n_w2",
-				"0_ados_wall", "0_ados_wall_n", "0_ados_wall_n2", "0_ados_wall_s", "-7_deniran_atlantis");
-		final List<String> zonesWhitelist = new ArrayList<String>();
+		final String[] zonesWhitelist = {
+				"0_semos_mountain_n2_w", "0_semos_mountain_n2_w2", "0_deniran_forest_n2_e",
+				"-7_deniran_atlantis_mtn_n_e2", "0_orril_mountain_n_w2"
+		};
 
-		final StendhalRPWorld world = StendhalRPWorld.get();
-
-		for (final String region: world.getRegions()) {
-			final Collection<StendhalRPZone> potentialZones = world.getAllZonesFromRegion(region, true, true, true);
-
-			// include Atlantis zones
-			if (region.equals(Region.DENIRAN.toLowerCase())) {
-				for (final StendhalRPZone zone: world.getAllZonesFromRegion(region, true, false, true)) {
-					if (zone.getName().contains("atlantis")) {
-						potentialZones.add(zone);
-					}
-				}
-			}
-
-			for (final StendhalRPZone zone: potentialZones) {
-				final String zoneName = zone.getName();
-
-				// exclude city zones
-				if (zoneName.endsWith("_city")) {
-					continue;
-				}
-
-				boolean blacklisted = false;
-
-				for (String blZone: zonesBlacklist) {
-					if (blZone.startsWith("*")) {
-						blZone = blZone.replace("*", "");
-						if (zoneName.contains(blZone)) {
-							blacklisted = true;
-							break;
-						}
-					} else {
-						if (zoneName.equals(blZone)) {
-							blacklisted = true;
-							break;
-						}
-					}
-				}
-
-				if (!blacklisted) {
-					zonesWhitelist.add(zone.getName());
-				}
-			}
-		}
-
-		teleporterBehaviour = new TeleporterBehaviour(npc, zonesWhitelist, "", "♫♫♫") {
+		teleporterBehaviour = new TeleporterBehaviour(npc, Arrays.asList(zonesWhitelist), "", "♫♫♫") {
 			@Override
 			protected void doRegularBehaviour() {
 				super.doRegularBehaviour();
