@@ -97,18 +97,17 @@ if game:setZone(zone) then
 	local rewardAction = {
 		newAction("EquipItemAction", ring),
 		newAction("SetQuestAction", questSlot, nil),
+		-- FIXME: need to call player.incProducedCountForItem
 	}
 
-	local helpPhrases = arrays:arrayToTable(ConversationPhrases.HELP_MESSAGES)
-	table.concat(helpPhrases, ConversationPhrases.OFFER_MESSAGES)
-
-	local requestRingPhrases = {"ring", "imperial ring"}
-	for _, phrase in ipairs(helpPhrases) do
-		table.insert(requestRingPhrases, phrase)
-	end
+	local forgePhrases = {"forge", "ring"}
+	-- FIXME: concatenating multiple tables at once doesn't work
+	--table.concat(forgePhrases, ConversationPhrases.HELP_MESSAGES, ConversationPhrases.OFFER_MESSAGES)
+	table.concat(forgePhrases, ConversationPhrases.HELP_MESSAGES)
+	table.concat(forgePhrases, ConversationPhrases.OFFER_MESSAGES)
 
 	ringsmith:add(ConversationStates.ATTENDING,
-		helpPhrases,
+		forgePhrases,
 		{
 			newCondition("QuestNotActiveCondition", questSlot),
 			newNotCondition(hasItemsCondition),
@@ -118,7 +117,7 @@ if game:setZone(zone) then
 		nil)
 
 	ringsmith:add(ConversationStates.ATTENDING,
-		helpPhrases,
+		forgePhrases,
 		{
 			newCondition("QuestNotActiveCondition", questSlot),
 			hasItemsCondition,
@@ -149,7 +148,7 @@ if game:setZone(zone) then
 		startAction)
 
 	ringsmith:add(ConversationStates.ATTENDING,
-		requestRingPhrases,
+		forgePhrases,
 		{
 			newCondition("QuestActiveCondition", questSlot),
 			newNotCondition("TimePassedCondition", questSlot, waitTime),
@@ -159,7 +158,7 @@ if game:setZone(zone) then
 		newAction("SayTimeRemainingAction", questSlot, waitTime, "Your ring is not ready. Please come back in"))
 
 	ringsmith:add(ConversationStates.ATTENDING,
-		requestRingPhrases,
+		forgePhrases,
 		{
 			newCondition("QuestActiveCondition", questSlot),
 			newCondition("TimePassedCondition", questSlot, waitTime),
