@@ -28,6 +28,18 @@ public class Grammar {
 
 	private static final Logger logger = Logger.getLogger(Grammar.class);
 
+	// static instance
+	private static Grammar instance;
+
+
+	public static Grammar get() {
+		if (instance == null) {
+			instance = new Grammar();
+		}
+
+		return instance;
+	}
+
 	/**
 	 * "it" or "them", depending on the quantity.
 	 *
