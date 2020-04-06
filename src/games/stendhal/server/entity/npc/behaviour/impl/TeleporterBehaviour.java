@@ -158,6 +158,8 @@ public class TeleporterBehaviour implements TurnListener {
 	public void onTurnReached(final int currentTurn) {
 		if (speakerNPC.getEngine().getCurrentState() != ConversationStates.IDLE) {
 			if (!exitsConversation) {
+				// Schedule so we are notified again in 1 minute
+				SingletonRepository.getTurnNotifier().notifyInSeconds(60, this);
 				return;
 			}
 
