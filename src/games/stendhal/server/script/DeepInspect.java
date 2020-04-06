@@ -23,6 +23,8 @@ import java.util.Map;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
@@ -79,8 +81,16 @@ public class DeepInspect extends ScriptImpl {
 	private void inspectOffline(final Player admin, final String username) {
 		try {
 			Map<String, RPObject> characters = DAORegister.get().get(CharacterDAO.class).loadAllActiveCharacters(username);
+			int i = 0;
 			for (RPObject object : characters.values()) {
-				inspect(admin, object);
+				i++;
+				TurnNotifier.get().notifyInSeconds(i, new TurnListener() {
+					
+					@Override
+					public void onTurnReached(int currentTurn) {
+						inspect(admin, object);
+					}
+				});
 			}
 		} catch (SQLException e) {
 			admin.sendPrivateText(NotificationType.ERROR, e.toString());

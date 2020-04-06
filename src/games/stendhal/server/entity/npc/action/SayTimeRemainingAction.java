@@ -38,6 +38,7 @@ public class SayTimeRemainingAction implements ChatAction {
 
 	private final String questname;
 	private final String message;
+	private String secondMessage = null;
 	private final int delay;
 	private final int index;
 
@@ -81,6 +82,42 @@ public class SayTimeRemainingAction implements ChatAction {
 		this.index = 0;
 	}
 
+	/**
+	 *
+	 * @param questname
+	 * 		Name of quest slot to check.
+	 * @param index
+	 * 		Index of sub-state.
+	 * @param delay
+	 * 		Delay in minutes.
+	 * @param message
+	 * 		Message to come before statement of remaining time.
+	 * @param secondMessage
+	 * 		Message to come after statement of remaining time.
+	 */
+	@Dev
+	public SayTimeRemainingAction(final String questname, @Dev(defaultValue="1") final int index, final int delay, final String message,
+			final String secondMessage) {
+		this(questname, index, delay, message);
+		this.secondMessage = secondMessage;
+	}
+
+	/**
+	 *
+	 * @param questname
+	 * 		Name of quest slot to check.
+	 * @param delay
+	 * 		Delay in minutes.
+	 * @param message
+	 * 		Message to come before statement of remaining time.
+	 * @param secondMessage
+	 * 		Message to come after statement of remaining time.
+	 */
+	public SayTimeRemainingAction(final String questname, final int delay, final String message, final String secondMessage) {
+		this(questname, delay, message);
+		this.secondMessage = secondMessage;
+	}
+
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!player.hasQuest(questname)) {
@@ -99,7 +136,11 @@ public class SayTimeRemainingAction implements ChatAction {
 				- System.currentTimeMillis();
 			// MathHelper.parseLong will catch the number format exception in case tokens[arg] is no number and return 0
 			// we trim the message of whitespace so that if the developer added a space at the end we don't now duplicate it
-			raiser.say(message.trim() + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+			String msg = message.trim() + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".";
+			if (secondMessage != null) {
+				msg += " " + secondMessage.trim();
+			}
+			raiser.say(msg);
 		}
 	}
 

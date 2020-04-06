@@ -77,7 +77,7 @@ public class PsychicNPC implements ZoneConfigurator {
 				ConversationPhrases.GOODBYE_MESSAGES,
 				null,
 				ConversationStates.IDLE,
-				null,
+				"I knew you were about to leave. Goodbye.",
 				new PlaySoundAction("npc/goodbye_female-01"));
 
 		psychic.addJob("I am a psychic. Would you like a #reading?");

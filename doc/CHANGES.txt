@@ -21,12 +21,14 @@ Changelog
   - Mirielle (Atlantis Potions Shop)
   - Sawyer (Deniran Pawn Shop)
   - Harley (Deniran Pawn Shop)
+  - Raven (Deniran Weapons Shop)
 - new items:
   - bestiary
   - training sword
   - auto crossbow (replaces unused training bow)
   - auto crossbow A
   - auto crossbow A+
+  - enhanced imperial ring (atk +1, def +1)
 - new achievements:
   - Bobbing for Apples: harvest or loot 1,000 apples
   - Royally Endowed: loot a complete royal equipment set
