@@ -21,6 +21,7 @@ Changelog
   - Mirielle (Atlantis Potions Shop)
   - Sawyer (Deniran Pawn Shop)
   - Harley (Deniran Pawn Shop)
+  - Raven (Deniran Weapons Shop)
 - new items:
   - bestiary
   - training sword
