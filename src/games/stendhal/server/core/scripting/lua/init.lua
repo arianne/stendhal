@@ -24,6 +24,7 @@ Direction = luajava.bindClass("games.stendhal.common.Direction")
 DaylightPhase = luajava.bindClass("games.stendhal.server.core.rp.DaylightPhase")
 Region = luajava.bindClass("games.stendhal.server.maps.Region")
 MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
+Color = luajava.bindClass("java.awt.Color")
 
 
 --- Cleans nil values from table.
