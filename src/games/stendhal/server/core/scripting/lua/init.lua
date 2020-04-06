@@ -37,6 +37,26 @@ table.clean = function(tbl)
 	return tmp
 end
 
+--- Appends values of a table into another table.
+--
+-- @param tbl1
+-- 		The table to receive the new values.
+-- @param tbl2
+-- 		The table containing the new values.
+table.concat = function(tbl1, tbl2)
+	if type(tbl1) == "userdata" then
+		tbl1 = arrays:arrayToTable(tbl1)
+	end
+
+	if type(tbl2) == "userdata" then
+		tbl2 = arrays:arrayToTable(tbl2)
+	end
+
+	for _, v in pairs(tbl2) do
+		table.insert(tbl1, v)
+	end
+end
+
 --- Helper function for creating ChatCondition instances.
 newCondition = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
