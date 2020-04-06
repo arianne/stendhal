@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.constants.SoundLayer;
@@ -139,6 +140,7 @@ public class CollectEnemyData extends AbstractQuest {
 			}
 		};
 
+		teleporterBehaviour.setTarryDuration(MathHelper.SECONDS_IN_ONE_MINUTE * 15); // spends 15 minutes on a map
 		teleporterBehaviour.setExitsConversation(false);
 		teleporterBehaviour.onTurnReached(0); // initialize NPC on random map
 	}
