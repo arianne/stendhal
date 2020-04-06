@@ -84,3 +84,15 @@ setZoneMusic = function(filename, volume, x, y, radius)
 	musicSource:setPosition(x, y)
 	game:add(musicSource)
 end
+
+--- Exposes StringBuilder class to Lua.
+--
+-- @param str
+-- 		Optional string to add.
+newStringBuilder = function(str)
+	if str ~= nil then
+		return luajava.newInstance("java.lang.StringBuilder", str)
+	else
+		return luajava.newInstance("java.lang.StringBuilder")
+	end
+end
