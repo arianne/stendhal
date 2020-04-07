@@ -203,6 +203,7 @@ public final class StatsPanelController {
 			@Override
 			public void run() {
 				panel.setHP(text);
+				panel.setHPBar(maxhp, hp);
 			}
 		});
 	}

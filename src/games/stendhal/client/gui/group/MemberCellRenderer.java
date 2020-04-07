@@ -13,7 +13,6 @@ package games.stendhal.client.gui.group;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 
@@ -22,10 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import games.stendhal.client.gui.LinearScalingModel;
-import games.stendhal.client.gui.StatusDisplayBar;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.stats.HPIndicator;
 
 /**
  * A cell renderer for the member list. Shows names of the members, the leader
@@ -94,20 +92,7 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 	/**
 	 * HP bar component with a grayed out mode for absent members.
 	 */
-	private static class HPBar extends StatusDisplayBar {
-		/** Default preferred height of the component. */
-		private static final int DEFAULT_HEIGHT = 6;
-
-		/**
-		 * Create new HP bar.
-		 */
-		HPBar() {
-			super(new LinearScalingModel());
-			setBackground(Color.DARK_GRAY);
-			setForeground(Color.WHITE);
-			setPreferredSize(new Dimension(0, DEFAULT_HEIGHT));
-			setMinimumSize(getPreferredSize());
-		}
+	private static class HPBar extends HPIndicator {
 
 		/**
 		 * Set present or absent.
@@ -120,19 +105,6 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 				setBarColor(Color.LIGHT_GRAY);
 				getModel().setValue(1.0);
 			}
-		}
-
-		/**
-		 * Set the ratio of HP/Maximum HP.
-		 *
-		 * @param ratio hp ratio
-		 */
-		void setRatio(float ratio) {
-			// Pick a color from red to green depending on the hp ratio.
-			float r = Math.min((1.0f - ratio) * 2.0f, 1.0f);
-			float g = Math.min(ratio * 2.0f, 1.0f);
-			setBarColor(new Color(r, g, 0.0f));
-			getModel().setValue(ratio);
 		}
 	}
 }

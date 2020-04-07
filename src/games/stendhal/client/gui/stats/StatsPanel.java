@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -34,6 +36,7 @@ class StatsPanel extends JPanel {
 	private static final long serialVersionUID = -353271026575752035L;
 
 	private final StatLabel hpLabel, atkLabel, defLabel, ratkLabel, xpLabel, levelLabel, moneyLabel;
+	private final HPIndicator hpBar;
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
 	private final ManaIndicator manaIndicator;
@@ -56,6 +59,11 @@ class StatsPanel extends JPanel {
 
 		hpLabel = new StatLabel();
 		add(hpLabel, SLayout.EXPAND_X);
+
+		hpBar = new HPIndicator();
+		hpBar.setPreferredSize(new Dimension(0, 10));
+		hpBar.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+		add(hpBar, SLayout.EXPAND_X);
 
 		atkLabel = new StatLabel();
 		add(atkLabel, SLayout.EXPAND_X);
@@ -88,6 +96,18 @@ class StatsPanel extends JPanel {
 	 */
 	void setHP(String hp) {
 		hpLabel.setText(hp);
+	}
+
+	/**
+	 * Update the HP indicator bar.
+	 *
+	 * @param maxhp
+	 * 		Player's maximum HP value.
+	 * @param hp
+	 * 		Player's actual HP value.
+	 */
+	void setHPBar(final int maxhp, final int hp) {
+		hpBar.setHP(maxhp, hp);
 	}
 
 	/**
