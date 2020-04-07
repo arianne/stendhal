@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -12,44 +12,80 @@
  <tileset firstgid="126" name="logic/portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="96"/>
  </tileset>
- <layer id="1" name="0_floor" width="16" height="16">
+ <tileset firstgid="150" name="green_bookshelf" tilewidth="32" tileheight="32" tilecount="6" columns="2">
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="156" name="greenish_grey" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/furniture/chair/greenish_grey.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="160" name="vendors_table" tilewidth="32" tileheight="32" tilecount="35" columns="7">
+  <image source="../../tileset/furniture/table/vendors_table.png" width="224" height="160"/>
+ </tileset>
+ <tileset firstgid="195" name="large_island" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/furniture/picture/large_island.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="197" name="loom" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/furniture/other/loom.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="201" name="spinningwheel" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../tileset/furniture/other/spinningwheel.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="209" name="ship_lamps" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/furniture/light/ship_lamps.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="211" name="blankets" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+  <image source="../../tileset/item/textile/blankets.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="223" name="towels" tilewidth="32" tileheight="32" tilecount="24" columns="6">
+  <image source="../../tileset/item/textile/towels.png" width="192" height="128"/>
+ </tileset>
+ <tileset firstgid="247" name="laundry" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../../tileset/item/textile/laundry.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="263" name="boxes" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/boxes.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="267" name="brush" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+  <image source="../../tileset/item/brush.png" width="32" height="96"/>
+ </tileset>
+ <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECqtlYGCoHcWjYTCaBkZkGgAAtNup7AAEAAA=
+   H4sIAAAAAAAAA6tlYGCoHcWjeBSPSAwAtNup7AAEAAA=
   </data>
  </layer>
- <layer id="2" name="1_terrain" width="16" height="16">
+ <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3SKQ6AQAyF4TFsju0yIOEGEHAQcGyO7fr84ybjKkmmySde8mqaekopH4FQSD9CjASpUEY/R4ES0qlYqOH23f3+/D8LP7xiszTkFno69DA7O/nAiQu3ZSCP0DNhhtl5yC8+W9Y8IgAEAAA=
+   H4sIAAAAAAAAA83Quw4BQRSA4bORdencXma35A0IHaHD6txehoQKDd6CjkfyJyaxToaY3Uic5Csmc/4pxheRLHKO8iigiBLKjiqoIkAobrNBDfWE/e4P++UX3SpBv5bHf8W59FuzH7e39O/mgKNysvRX3D68oyfN//+qP+Ni2c14r2ffe/YDDDFSGmia/Rba6j7CGBNMMVM66Jq+h766n2OBO7rpp/4ABAAA
   </data>
  </layer>
- <layer id="3" name="2_object" width="16" height="16">
+ <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
+   H4sIAAAAAAAAA2NgQABuRgaGaUB6OpR/GIiPIMkjy2EDPED9M4D0TCC+DMRXoOI3gfg2A0IOG+AE6uUF4llA9mwgvgbE16Fyd4D4HgNCjlLwhEL97IyU6X9Aof33SVDLgebWq2TYd4kB4uYnUP0XyTBjFAxOAAA0cd0wAAQAAA==
   </data>
  </layer>
- <layer id="4" name="3_roof" width="16" height="16">
+ <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
+   H4sIAAAAAAAAA2NgGAWjgHJwFojPDbQjKARHgfgYFvH/IIIRgRkZSTebhRGBBxMAAJ/r0BAABAAA
   </data>
  </layer>
- <layer id="5" name="4_roof_add" width="16" height="16">
+ <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
+   H4sIAAAAAAAAA2NgGAWjYBQQAmyMDAxMQPyPTP0gvb+g5gwmAAC74hwSAAQAAA==
   </data>
  </layer>
- <layer id="6" name="objects" width="16" height="16">
+ <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNgGAWjITAaAoM1BJpo7DAAPbL4uQAEAAA=
+   H4sIAAAAAAAAA2NgGAWjYBQMVtBEY/MBPbL4uQAEAAA=
   </data>
  </layer>
- <layer id="7" name="collision" width="16" height="16" visible="0" opacity="0.24">
+ <layer name="collision" width="16" height="16" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNkYGBgHAQY6ASSALqbSdIMVDyqHzUMRsOPtBCgdvpBNw/GB7kKxqYFDQByJpFeAAQAAA==
+   H4sIAAAAAAAAA2NkYGBgHCSYgUgxXHqJBYNRPylmkKKf1PAnVz+pgNphQKn91NCPyyx0MUrzBDUxAGPI0NIABAAA
   </data>
  </layer>
- <layer id="8" name="protection" width="16" height="16" visible="0" opacity="0.24">
+ <layer name="protection" width="16" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECmNgGAWjITAaAiM1BAAur7XvAAQAAA==
+   H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
 </map>
