@@ -78,6 +78,8 @@ end
 
 --- Sets the background music for the zone.
 --
+-- FIXME: concatenating multiple tables at once doesn't work
+--
 -- @param filename
 -- 		File basename excluding ".ogg" extensions.
 -- @param volume
