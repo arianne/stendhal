@@ -11,7 +11,7 @@ import java.util.Map;
 public class PlayerLootedItemsHandler {
 
 	/** name of the map where the items and the corresponding numbers are stored */
-	private static final String LOOTED_ITEMS = "looted_items";
+	public static final String LOOTED_ITEMS = "looted_items";
 
 	private final Player player;
 
@@ -252,5 +252,4 @@ public class PlayerLootedItemsHandler {
 		}
 		return sum;
 	}
-
 }

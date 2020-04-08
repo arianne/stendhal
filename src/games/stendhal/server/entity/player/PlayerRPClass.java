@@ -15,6 +15,7 @@ package games.stendhal.server.entity.player;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
+import static games.stendhal.server.entity.player.PlayerLootedItemsHandler.LOOTED_ITEMS;
 
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.Definition;
@@ -96,7 +97,7 @@ public class PlayerRPClass {
 		player.addRPSlot("!kills", 1, Definition.HIDDEN);
 
 		// Count looted items
-		player.addAttribute("looted_items", Type.MAP, Definition.HIDDEN);
+		player.addAttribute(LOOTED_ITEMS, Type.MAP, Definition.HIDDEN);
 
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);

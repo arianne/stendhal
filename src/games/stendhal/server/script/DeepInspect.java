@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import static games.stendhal.server.entity.player.PlayerLootedItemsHandler.LOOTED_ITEMS;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -19,6 +21,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -85,7 +89,7 @@ public class DeepInspect extends ScriptImpl {
 			for (RPObject object : characters.values()) {
 				i++;
 				TurnNotifier.get().notifyInSeconds(i, new TurnListener() {
-					
+
 					@Override
 					public void onTurnReached(int currentTurn) {
 						inspect(admin, object);
@@ -189,6 +193,45 @@ public class DeepInspect extends ScriptImpl {
 
 
 			Collection<Item> itemList = SingletonRepository.getEntityManager().getItems();
+
+			// all production
+			sb.append("All Production (excludes items above):");
+
+			final Map<String, Map<String, String>> allProduced = new TreeMap<>(); // TreeMap keeps items sorted alphabetically
+			for (final Entry<String, String> e: player.getMap(LOOTED_ITEMS).entrySet()) {
+				String prefix = "misc";
+				String itemName = e.getKey();
+				final String itemQuantity = e.getValue();
+
+				if (itemName.contains(".")) {
+					prefix = itemName.substring(0,itemName.indexOf("."));
+					itemName = itemName.replace(prefix + ".", "");
+				}
+
+				// exclude items from "Production" section
+				if (!produceList.contains(itemName)) {
+					final Map<String, String> tmp;
+					if (!allProduced.containsKey(prefix)) {
+						tmp = new TreeMap<>();
+					} else {
+						tmp = allProduced.get(prefix);
+					}
+
+					tmp.put(itemName, itemQuantity);
+					allProduced.put(prefix, tmp);
+				}
+			}
+
+			for (final String category: allProduced.keySet()) {
+				sb.append("\n   " + category + ":\n      ");
+				for (final Entry<String, String> e: allProduced.get(category).entrySet()) {
+					sb.append("[" + e.getKey() + "=" + e.getValue() + "]");
+				}
+			}
+
+			sb.append("\n");
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
 
 			// Looted items
 			sb.append("Loots:\n   ");
