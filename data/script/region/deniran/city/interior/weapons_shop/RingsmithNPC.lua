@@ -20,18 +20,24 @@ local questSlot = "raven_forge_ring"
 local waitTime = MathHelper.MINUTES_IN_ONE_HOUR * 6
 local ring = "enhanced imperial ring"
 
+local fee = 260000
+
 local requirements = {
 	{"imperial ring", 1},
 	{"turtle shell ring", 1},
 	{"unicorn horn", 25},
-	{"money", 260000},
+	{"money", fee}, -- fee needs to be the last item in this list
 }
 
-local function sayBringMessage(npc)
+local function getItemListString(includeFee)
 	sb = newStringBuilder()
 
-	reqCount = #requirements
-	for idx, item in ipairs(requirements) do
+	local reqCount = #requirements
+	if not includeFee then
+		reqCount = reqCount - 1
+	end
+
+	for idx = 1, reqCount do
 		if idx > 1 then
 			sb:append(", ")
 
@@ -40,8 +46,8 @@ local function sayBringMessage(npc)
 			end
 		end
 
-		local itemName = item[1]
-		local quant = item[2]
+		local itemName = requirements[idx][1]
+		local quant = requirements[idx][2]
 		itemName = grammar:plnoun(quant, itemName)
 		if itemName ~= "money" then
 			itemName = "#'" .. itemName .. "'"
@@ -50,19 +56,12 @@ local function sayBringMessage(npc)
 		sb:append(tostring(quant) .. " " .. itemName)
 	end
 
-	if npc == nil then
-		return sb:toString()
-	else
-		sb:insert(0, "Bring me ")
-		sb:append(" and I can make you something special.")
-		ringsmith:say(sb:toString())
-	end
+	return sb:toString()
 end
 
 if game:setZone(zone) then
 	ringsmith = npcHelper:createSpeakerNPC("Raven")
 	ringsmith:setOutfit("body=1,head=0,eyes=24,dress=52,hair=13")
-	--ringsmith:setOutfitColor("eyes", Color.GREEN)
 	ringsmith:setOutfitColor("eyes", 0x1f6521)
 	ringsmith:setOutfitColor("hair", Color.RED)
 
@@ -80,6 +79,9 @@ if game:setZone(zone) then
 	ringsmith:addGoodbye()
 	ringsmith:addQuest("I have no task for you at this time.")
 	ringsmith:addJob("I #forge special items.")
+	local helpReply = "I can #forge a useful #ring if you bring me some materials."
+	ringsmith:addHelp(helpReply)
+	ringsmith:addOffer(helpReply)
 
 	local hasItemsCondition = {}
 	local startAction = {
@@ -101,10 +103,6 @@ if game:setZone(zone) then
 	}
 
 	local forgePhrases = {"forge", "ring"}
-	-- FIXME: concatenating multiple tables at once doesn't work
-	--table.concat(forgePhrases, ConversationPhrases.HELP_MESSAGES, ConversationPhrases.OFFER_MESSAGES)
-	table.concat(forgePhrases, ConversationPhrases.HELP_MESSAGES)
-	table.concat(forgePhrases, ConversationPhrases.OFFER_MESSAGES)
 
 	ringsmith:add(ConversationStates.ATTENDING,
 		forgePhrases,
@@ -113,7 +111,7 @@ if game:setZone(zone) then
 			newNotCondition(hasItemsCondition),
 		},
 		ConversationStates.ATTENDING,
-		"Bring me " .. sayBringMessage() .. " and I can make you something special.",
+		"If you bring me " .. getItemListString(true) .. ", I can make a special ring for you.",
 		nil)
 
 	ringsmith:add(ConversationStates.ATTENDING,
@@ -123,7 +121,8 @@ if game:setZone(zone) then
 			hasItemsCondition,
 		},
 		ConversationStates.QUESTION_1,
-		"I will make you a special item for " .. sayBringMessage() .. ". Do you want me to start?",
+		"I see that you have " .. getItemListString(false) .. ". Would you like me to forge a special ring?" ..
+			" The fee is " .. tostring(fee) .. " money.",
 		nil)
 
 	ringsmith:add(ConversationStates.QUESTION_1,
