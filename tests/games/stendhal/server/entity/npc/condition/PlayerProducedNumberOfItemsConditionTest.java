@@ -45,11 +45,11 @@ public class PlayerProducedNumberOfItemsConditionTest {
 		PlayerProducedNumberOfItemsCondition condition = new PlayerProducedNumberOfItemsCondition(5, "flour");
 		Player player = PlayerTestHelper.createPlayer("producer");
 		assertThat(condition.fire(player, null, null), is(false));
-		player.incProducedCountForItem("iron", 12);
+		player.incProducedForItem("iron", 12);
 		assertThat(condition.fire(player, null, null), is(false));
-		player.incProducedCountForItem("flour", 4);
+		player.incProducedForItem("flour", 4);
 		assertThat(condition.fire(player, null, null), is(false));
-		player.incProducedCountForItem("flour", 2);
+		player.incProducedForItem("flour", 2);
 		assertThat(condition.fire(player, null, null), is(true));
 	}
 

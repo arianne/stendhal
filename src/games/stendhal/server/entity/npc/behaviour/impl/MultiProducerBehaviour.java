@@ -413,7 +413,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 				// give some XP as a little bonus for industrious workers
 				player.addXP(numberOfProductItems);
 				player.notifyWorldAboutChanges();
-				player.incProducedCountForItem(productName, products.getQuantity());
+				player.incProducedForItem(productName, products.getQuantity());
 			} else {
 				npc.say("Welcome back! I'm done with your order. But right now you cannot take the "
 						+ Grammar.plnoun(numberOfProductItems, productName)
