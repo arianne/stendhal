@@ -40,6 +40,9 @@ public class BestiaryEvent extends Event<RPEntity> {
 	// logger instance
 	private static Logger logger = Logger.getLogger(BestiaryEvent.class);
 
+	private boolean hasRare = false;
+	private boolean hasAbnormal = false;
+
 	@Override
 	public void execute() {
 		if (event.has("enemies")) {
@@ -52,9 +55,8 @@ public class BestiaryEvent extends Event<RPEntity> {
 					Dimension screenSize = GameScreen.get().getSize();
 					int maxPreferredWidth = screenSize.width - 80;
 
-					final String headerText = "\"???\" = unknown";
-					JLabel header = new JLabel("<html><div width=" + (maxPreferredWidth
-							- 10) + ">" + headerText + "</div></html>");
+					final StringBuilder headerText = new StringBuilder("\"???\" = unknown");
+					JLabel header = new JLabel();
 					header.setBorder(BorderFactory.createEmptyBorder(PAD, PAD, PAD, PAD));
 					add(header, BorderLayout.NORTH);
 
@@ -64,7 +66,6 @@ public class BestiaryEvent extends Event<RPEntity> {
 					table.setFillsViewportHeight(true);
 					table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 					TableColumn col = table.getColumnModel().getColumn(0);
-					//col.setCellRenderer(new SpriteCellRenderer());
 					col.setCellRenderer(new DefaultTableCellRenderer());
 
 					DefaultTableCellRenderer r = new DefaultTableCellRenderer();
@@ -74,7 +75,6 @@ public class BestiaryEvent extends Event<RPEntity> {
 					col.setCellRenderer(r);
 
 					col = table.getColumnModel().getColumn(2);
-					//col.setCellRenderer(new DescriptionCellRenderer());
 					col.setCellRenderer(r);
 
 					HeaderRenderer hr = new HeaderRenderer();
@@ -99,6 +99,24 @@ public class BestiaryEvent extends Event<RPEntity> {
 					viewPort.getComponent().setBackground(table.getBackground());
 					add(viewPort.getComponent(), BorderLayout.CENTER);
 
+					// show explanation of "rare" & "abnormal" creatures in header
+					if (hasRare || hasAbnormal) {
+						headerText.append("<br>");
+						if (!hasRare) {
+							headerText.append("\"abnormal\"");
+						} else {
+							headerText.append("\"rare\"");
+							if (hasAbnormal) {
+								headerText.append(" and \"abnormal\"");
+							}
+						}
+
+						headerText.append(" creatures not required for achievements");
+					}
+
+					header.setText("<html><div width=" + (maxPreferredWidth
+							- 10) + ">" + headerText.toString() + "</div></html>");
+
 					setVisible(true);
 				}
 
@@ -113,13 +131,22 @@ public class BestiaryEvent extends Event<RPEntity> {
 						data[i] = createDataRow(e.split(","));
 						i++;
 					}
+
 					return new JTable(data, columnNames);
 				}
 
 				private Object[] createDataRow(final String[] enemy) {
 					final Object[] rval = new Object[4];
 
-					rval[0] = enemy[0];
+					final String name = enemy[0];
+
+					if (isRare(name)) {
+						hasRare = true;
+					} else if (isAbnormal(name)) {
+						hasAbnormal = true;
+					}
+
+					rval[0] = name;
 					rval[1] = "";
 					rval[2] = "";
 
@@ -175,5 +202,29 @@ public class BestiaryEvent extends Event<RPEntity> {
 		} else {
 			logger.warn("Could not create bestiary: Event does not have \"enemies\" attribute");
 		}
+	}
+
+	/**
+	 * Checks name for "rare" identifier.
+	 *
+	 * @param enemyName
+	 * 		String to check.
+	 * @return
+	 * 		<code>true</code> if enemyName ends with "(rare)".
+	 */
+	private boolean isRare(final String enemyName) {
+		return enemyName.endsWith("(rare)");
+	}
+
+	/**
+	 * Checks name for "abnormal" identifier.
+	 *
+	 * @param enemyName
+	 * 		String to check.
+	 * @return
+	 * 		<code>true</code> if enemyName ends with "(abnormal)".
+	 */
+	private boolean isAbnormal(final String enemyName) {
+		return enemyName.endsWith("(abnormal)");
 	}
 }
