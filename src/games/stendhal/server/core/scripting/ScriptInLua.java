@@ -30,6 +30,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.lua.ArraysHelper;
 import games.stendhal.server.core.scripting.lua.NPCHelper;
+import games.stendhal.server.core.scripting.lua.QuestHelper;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -103,6 +104,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("game", game);
 		globals.set("logger", CoerceJavaToLua.coerce(logger));
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
+		globals.set("questHelper", CoerceJavaToLua.coerce(QuestHelper.get()));
 		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
 		globals.set("shops", CoerceJavaToLua.coerce(ShopList.get()));
 		globals.set("questSystem", CoerceJavaToLua.coerce(SingletonRepository.getStendhalQuestSystem()));
