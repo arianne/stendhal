@@ -1220,8 +1220,8 @@ public class Grammar {
 		if (word.length() > 2) {
 			char last = word.charAt(word.length()-1);
 
-			if (last == 'y' || last == 'w') {
-				// word finishes with a 'y' or a 'w'
+			if (last == 'y' || last == 'w' || last == 'x') {
+				// word finishes with a 'y', 'w', or an 'x'
 				return word + "ing";
 			} else if (isVowel(last)) {
 				// word finishes with a vowel
