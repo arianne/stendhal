@@ -23,7 +23,7 @@ local ring = "enhanced imperial ring"
 local requirements = {
 	{"imperial ring", 1},
 	{"turtle shell ring", 1},
-	{"unicorn horn", 15},
+	{"unicorn horn", 25},
 	{"money", 260000},
 }
 
