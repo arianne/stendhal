@@ -99,7 +99,7 @@ if game:setZone(zone) then
 	local rewardAction = {
 		newAction("EquipItemAction", ring),
 		newAction("SetQuestAction", questSlot, nil),
-		-- FIXME: need to call player.incProducedCountForItem
+		newAction("IncreaseItemExchangeAction", "produce", ring)
 	}
 
 	local forgePhrases = {"forge", "ring"}
