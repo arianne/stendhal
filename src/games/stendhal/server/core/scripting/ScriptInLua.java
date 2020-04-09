@@ -171,6 +171,22 @@ public class ScriptInLua extends ScriptingSandbox {
 	 * Exposes Java system properties to Lua.
 	 *
 	 * @param p
+	 * 		The property of which the value should be returned.
+	 * @return
+	 * 		Value of the property or <code>null</code> if not set.
+	 */
+	public String getProperty(final String p) {
+		if (p == null) {
+			return null;
+		}
+
+		return System.getProperty(p);
+	}
+
+	/**
+	 * Exposes Java system properties to Lua.
+	 *
+	 * @param p
 	 * 		The property string to check.
 	 * @return
 	 * 		<code>true</code> if the property is not <code>null</code>.
