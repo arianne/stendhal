@@ -42,7 +42,7 @@ public class Bestiary extends OwnedItem {
 		final Player player = (Player) user;
 
 		if (!super.onUsed(player)) {
-			player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + getOwner() + ". Please return it to it's rightful owner.");
+			player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + getOwner() + ". Please return it to its rightful owner.");
 			return false;
 		}
 
