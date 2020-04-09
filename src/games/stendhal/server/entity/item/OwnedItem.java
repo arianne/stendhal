@@ -11,13 +11,65 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 
 /**
  * Class representing an item owned by an entity.
  */
-public interface OwnedItem {
+public abstract class OwnedItem extends Item {
+
+	// slots to which item cannot be equipped if it has an owner
+	protected List<String> ownedBlacklistSlots;
+	// slots to which non-owners cannot equip
+	protected List<String> ownerOnlySlots;
+
+
+	public OwnedItem(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+	}
+
+	public OwnedItem(Item item) {
+		super(item);
+	}
+
+	@Override
+	public String describe() {
+		String description = super.describe();
+
+		final String owner = getOwner();
+		if (owner != null) {
+			description += " This " + getTitle() + " belongs to " + owner + " and cannot be used by others.";
+		}
+
+		return description;
+	}
+
+	@Override
+	public boolean onUsed(final RPEntity user) {
+		// only allow owner to use
+		final String owner = getOwner();
+		if (owner != null && !user.getName().equals(owner)) {
+			onUseFail(user);
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Sets the owner of the item.
+	 *
+	 * @param name
+	 * 		Owner's name.
+	 */
+	public void setOwner(final String name) {
+		put("owner", name);
+	}
 
 	/**
 	 * Override to retrieve owner name.
@@ -25,7 +77,9 @@ public interface OwnedItem {
 	 * @return
 	 * 		Name of owner.
 	 */
-	public String getOwner();
+	public String getOwner() {
+		return get("owner");
+	}
 
 	/**
 	 * Override to check if item has owner.
@@ -33,7 +87,9 @@ public interface OwnedItem {
 	 * @return
 	 * 		<code>true</code> if has owner.
 	 */
-	public boolean hasOwner();
+	public boolean hasOwner() {
+		return has("owner");
+	}
 
 	/**
 	 * Override to check if an entity can equip to slot.
@@ -45,7 +101,19 @@ public interface OwnedItem {
 	 * @return
 	 * 		<code>true</code> if can be equipped, <code>false</code> otherwise.
 	 */
-	public boolean canEquipToSlot(final RPEntity entity, final String slot);
+	public boolean canEquipToSlot(final RPEntity entity, final String slot) {
+		if (hasOwner()) {
+			if (ownedBlacklistSlots != null && ownedBlacklistSlots.contains(slot)) {
+				return false;
+			}
+
+			if (ownerOnlySlots != null && ownerOnlySlots.contains(slot)) {
+				return entity.getName().equals(getOwner());
+			}
+		}
+
+		return true;
+	}
 
 	/**
 	 * Override for action to take when an entity cannot equip to specified slot.
@@ -55,5 +123,41 @@ public interface OwnedItem {
 	 * @param slot
 	 * 		Slot where item could not be equipped.
 	 */
-	public void onEquipFail(final RPEntity entity, final String slot);
+	public void onEquipFail(final RPEntity entity, final String slot) {
+		if (entity instanceof Player) {
+			final Player player = (Player) entity;
+			if (ownedBlacklistSlots.contains(slot)) {
+				player.sendPrivateText("You can't carry this owned " + getTitle() + " on your " + slot + ".");
+			} else if (ownerOnlySlots.contains(slot)) {
+				player.sendPrivateText("Only " + getOwner() + " can carry this " + getTitle() + " in their " + slot + ".");
+			}
+		}
+	}
+
+	@SuppressWarnings("unused")
+	public void onUseFail(final RPEntity user) {
+		// override to add behavior
+	}
+
+	/**
+	 * Sets the slots that this item cannot be equipped to if
+	 * it has an owner.
+	 *
+	 * @param slots
+	 * 		List of slot names.
+	 */
+	public void setBlacklistSlots(final List<String> slots) {
+		ownedBlacklistSlots = slots;
+	}
+
+	/**
+	 * Sets the slots that can be equipped to by owner only if
+	 * it has an owner.
+	 *
+	 * @param slots
+	 * 		List of slots names.
+	 */
+	public void setOwnerOnlySlots(final List<String> slots) {
+		ownerOnlySlots = slots;
+	}
 }

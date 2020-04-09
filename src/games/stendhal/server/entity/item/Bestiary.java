@@ -12,7 +12,6 @@
 package games.stendhal.server.entity.item;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.NotificationType;
@@ -24,54 +23,49 @@ import games.stendhal.server.events.BestiaryEvent;
 /**
  * Item class that shows some basic information about enemies around Faiumoni.
  */
-public class Bestiary extends Item implements OwnedItem {
-
-	// slots to which item cannot be equipped if it has an owner
-	private final static List<String> ownedBlacklistSlots = Arrays.asList("trade");
-	// slots to which non-owners cannot equip
-	private final static List<String> ownerOnlySlots = Arrays.asList();
-
+public class Bestiary extends OwnedItem {
 
 	public Bestiary(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		setMenu("Read|Use");
+
+		setBlacklistSlots(Arrays.asList("trade"));
 	}
 
 	public Bestiary(final Item item) {
 		super(item);
+
+		setBlacklistSlots(Arrays.asList("trade"));
 	}
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		if (user instanceof Player) {
-			final Player player = (Player) user;
-			final String infostring = getInfoString();
-
-			// only allow owner to use
-			if (infostring != null && !player.getName().equals(infostring)) {
-				player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + infostring + ". Please return it to it's rightful owner.");
-				return false;
-			}
-
-			player.addEvent(new BestiaryEvent(player));
-			player.notifyWorldAboutChanges();
-
-			return true;
+		if (!(user instanceof Player)) {
+			return false;
 		}
 
-		return false;
+		final Player player = (Player) user;
+
+		if (!super.onUsed(player)) {
+			player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + getOwner() + ". Please return it to it's rightful owner.");
+			return false;
+		}
+
+		player.addEvent(new BestiaryEvent(player));
+		player.notifyWorldAboutChanges();
+
+		return true;
 	}
 
+	/**
+	 * Sets the owner of the item.
+	 *
+	 * @param name
+	 * 		Owner's name.
+	 */
 	@Override
-	public String describe() {
-		String description = super.describe();
-
-		final String owner = getOwner();
-		if (owner != null) {
-			description += " This book belongs to " + owner + " and cannot be used by others.";
-		}
-
-		return description;
+	public void setOwner(final String name) {
+		put("infostring", name);
 	}
 
 	/**
@@ -94,32 +88,5 @@ public class Bestiary extends Item implements OwnedItem {
 	@Override
 	public boolean hasOwner() {
 		return getOwner() != null;
-	}
-
-	@Override
-	public boolean canEquipToSlot(final RPEntity entity, final String slot) {
-		if (hasOwner()) {
-			if (ownedBlacklistSlots.contains(slot)) {
-				return false;
-			}
-
-			if (ownerOnlySlots.contains(slot)) {
-				return entity.getName().equals(getOwner());
-			}
-		}
-
-		return true;
-	}
-
-	@Override
-	public void onEquipFail(final RPEntity entity, final String slot) {
-		if (entity instanceof Player) {
-			final Player player = (Player) entity;
-			if (ownedBlacklistSlots.contains(slot)) {
-				player.sendPrivateText("You can't carry this owned " + getTitle() + " on your " + slot + ".");
-			} else if (ownerOnlySlots.contains(slot)) {
-				player.sendPrivateText("Only " + getOwner() + " can carry this " + getTitle() + " in their " + slot + ".");
-			}
-		}
 	}
 }
