@@ -93,6 +93,18 @@ public abstract class OwnedItem extends Item {
 	}
 
 	/**
+	 * Checks if the submitted name matches the owner of the item.
+	 *
+	 * @param name
+	 * 		Name to check.
+	 * @return
+	 * 		<code>true</code> if the name matches the item owner.
+	 */
+	public boolean isOwner(final String name) {
+		return name.equals(getOwner());
+	}
+
+	/**
 	 * Override to check if an entity can equip to slot.
 	 *
 	 * @param entity
