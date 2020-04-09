@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,9 @@ import games.stendhal.server.entity.player.Player;
 public abstract class OwnedItem extends Item {
 
 	// slots to which item cannot be equipped if it has an owner
-	protected List<String> ownedBlacklistSlots;
+	private List<String> ownedBlacklistSlots = Arrays.asList("trade");
 	// slots to which non-owners cannot equip
-	protected List<String> ownerOnlySlots;
+	private List<String> ownerOnlySlots;
 
 
 	public OwnedItem(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {

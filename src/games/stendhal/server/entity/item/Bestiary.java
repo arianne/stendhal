@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import games.stendhal.common.NotificationType;
@@ -28,14 +27,10 @@ public class Bestiary extends OwnedItem {
 	public Bestiary(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		setMenu("Read|Use");
-
-		setBlacklistSlots(Arrays.asList("trade"));
 	}
 
 	public Bestiary(final Item item) {
 		super(item);
-
-		setBlacklistSlots(Arrays.asList("trade"));
 	}
 
 	@Override
