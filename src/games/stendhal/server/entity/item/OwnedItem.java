@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Class representing an item owned by an entity.
  */
-public abstract class OwnedItem extends Item {
+public class OwnedItem extends Item {
 
 	// slots to which item cannot be equipped if it has an owner
 	private List<String> ownedBlacklistSlots = Arrays.asList("trade");
