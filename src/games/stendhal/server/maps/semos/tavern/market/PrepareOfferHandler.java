@@ -17,6 +17,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.dbcommand.LogTradeEventCommand;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.OwnedItem;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -122,14 +123,24 @@ public class PrepareOfferHandler {
 					// The item name might not be what was used for looking it up (plurals)
 					itemName = item.getName();
 
+					String owner = null;
+					if (item.isBound()) {
+						owner = player.getName();
+					} else if (item instanceof OwnedItem) {
+						owner = ((OwnedItem) item).getOwner();
+					}
+
 					if (itemName.equals("money")) {
 						npc.say("Oh, offering money for money? That sounds rather fishy. I am sorry, I cannot do that");
 						return;
 					} else if ((number > 1) && !(item instanceof StackableItem)) {
 						npc.say("Sorry, you can only put those for sale as individual items.");
 						return;
-					} else if (item.isBound()) {
-						npc.say("That " + itemName + " can be used only by you. I cannot sell it.");
+					} else if (owner != null) {
+						if (owner.equals(player.getName())) {
+							owner = "you";
+						}
+						npc.say("That " + itemName + " can be used only by " + owner + ". I cannot sell it.");
 						return;
 					} else if (item.getDeterioration() > 0) {
 						npc.say("That " + itemName + " is damaged. I cannot sell it.");
