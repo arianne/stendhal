@@ -22,6 +22,7 @@ import games.stendhal.client.entity.Block;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.entity.Box;
+import games.stendhal.client.entity.BreakableRing;
 import games.stendhal.client.entity.CarrotGrower;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Corpse;
@@ -43,7 +44,6 @@ import games.stendhal.client.entity.Pet;
 import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
-import games.stendhal.client.entity.Ring;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
@@ -127,8 +127,8 @@ public final class EntityMap {
 
 		register("item", null, null, Item.class);
 		register("item", "box", null, Box.class);
-		register("item", "ring", "emerald-ring", Ring.class);
 		register("item", "ring", null, UseableRing.class);
+		register("item", "ring", "emerald-ring", BreakableRing.class);
 
 		register("item", "drink", null, UseableItem.class);
 		register("item", "flower", null, StackableItem.class);

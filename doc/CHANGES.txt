@@ -70,6 +70,9 @@ Changelog
 - mithrilbourgh army enemies now have same skin color as mithrilbourgh wizard
 - new sprite for demon enemy
 
+*Java client*
+- rings can now be animated
+
 
 1.33
 
