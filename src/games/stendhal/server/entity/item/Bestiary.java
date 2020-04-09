@@ -62,6 +62,18 @@ public class Bestiary extends Item implements OwnedItem {
 		return false;
 	}
 
+	@Override
+	public String describe() {
+		String description = super.describe();
+
+		final String owner = getOwner();
+		if (owner != null) {
+			description += " This book belongs to " + owner + " and cannot be used by others.";
+		}
+
+		return description;
+	}
+
 	/**
 	 * Retrieves the owners name if the book has one.
 	 *
