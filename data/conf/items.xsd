@@ -20,6 +20,7 @@
 			<element name="attributes" type="Q1:attributes"></element>
 			<element name="weight" type="Q1:attribute"></element>
 			<element name="value" type="Q1:attribute"></element>
+			<element name="preview" type="string" minOccurs="0" maxOccurs="1" />
 			<element name="damage" type="Q1:damage" minOccurs="0"></element>
 			<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
 			<element name="equipable" type="Q1:equipable"></element>
