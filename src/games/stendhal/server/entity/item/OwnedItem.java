@@ -75,7 +75,7 @@ public abstract class OwnedItem extends Item {
 	 * Override to retrieve owner name.
 	 *
 	 * @return
-	 * 		Name of owner.
+	 * 		Name of owner or <code>null</code> if not owned.
 	 */
 	public String getOwner() {
 		return get("owner");
@@ -85,7 +85,7 @@ public abstract class OwnedItem extends Item {
 	 * Override to check if item has owner.
 	 *
 	 * @return
-	 * 		<code>true</code> if has owner.
+	 * 		<code>true</code> if owned.
 	 */
 	public boolean hasOwner() {
 		return has("owner");

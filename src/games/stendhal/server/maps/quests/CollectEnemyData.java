@@ -32,6 +32,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.OwnedItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -305,8 +306,8 @@ public class CollectEnemyData extends AbstractQuest {
 			public Item getAskedItem(final String askedItem, final Player player) {
 				final Item item = super.getAskedItem(askedItem, player);
 
-				// set infostring with player name to prevent others from using it
-				item.setInfoString(player.getName());
+				// set owner to prevent others from using it
+				((OwnedItem) item).setOwner(player.getName());
 				return item;
 			}
 		};

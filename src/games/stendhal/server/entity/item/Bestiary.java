@@ -56,37 +56,4 @@ public class Bestiary extends OwnedItem {
 
 		return true;
 	}
-
-	/**
-	 * Sets the owner of the item.
-	 *
-	 * @param name
-	 * 		Owner's name.
-	 */
-	@Override
-	public void setOwner(final String name) {
-		put("infostring", name);
-	}
-
-	/**
-	 * Retrieves the owners name if the book has one.
-	 *
-	 * @return
-	 * 		Name of owner or <code>null</code> if not owned.
-	 */
-	@Override
-	public String getOwner() {
-		return get("infostring");
-	}
-
-	/**
-	 * Checks if the book has an owner.
-	 *
-	 * @return
-	 * 		<code>true</code> if the infostring is set.
-	 */
-	@Override
-	public boolean hasOwner() {
-		return getOwner() != null;
-	}
 }
