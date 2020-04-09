@@ -166,4 +166,38 @@ public class ScriptInLua extends ScriptingSandbox {
 
 		return new ShopSign(name, title, caption, seller);
 	}
+
+	/**
+	 * Exposes Java system properties to Lua.
+	 *
+	 * @param p
+	 * 		The property string to check.
+	 * @return
+	 * 		<code>true</code> if the property is not <code>null</code>.
+	 */
+	public boolean propertyEnabled(final String p) {
+		if (p == null) {
+			return false;
+		}
+
+		return System.getProperty(p) != null;
+	}
+
+	/**
+	 * Exposes Java system properties to Lua.
+	 *
+	 * @param p
+	 * 		The property string to check.
+	 * @param v
+	 * 		The value to check the property against.
+	 * @return
+	 * 		<code>true</code> if the property value is equal to v.
+	 */
+	public boolean propertyEquals(final String p, final String v) {
+		if (p == null || v == null) {
+			return false;
+		}
+
+		return System.getProperty(p).equals(v);
+	}
 }
