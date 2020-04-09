@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.HP_BAR_PROPERTY;
+
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -23,6 +25,7 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /**
  * Display panel for status icons and player stats. The methods may be safely
@@ -64,6 +67,9 @@ class StatsPanel extends JPanel {
 		hpBar.setPreferredSize(new Dimension(0, 10));
 		hpBar.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		add(hpBar, SLayout.EXPAND_X);
+
+		// show/hide HP bar depending on settings property
+		toggleHPBar(WtWindowManager.getInstance().getPropertyBoolean(HP_BAR_PROPERTY, true));
 
 		atkLabel = new StatLabel();
 		add(atkLabel, SLayout.EXPAND_X);
@@ -108,6 +114,16 @@ class StatsPanel extends JPanel {
 	 */
 	void setHPBar(final int maxhp, final int hp) {
 		hpBar.setHP(maxhp, hp);
+	}
+
+	/**
+	 * Show/Hide HP bar.
+	 *
+	 * @param show
+	 * 		If <code>true</code>, HP bar will be visible.
+	 */
+	void toggleHPBar(final boolean show) {
+		hpBar.setVisible(show);
 	}
 
 	/**
