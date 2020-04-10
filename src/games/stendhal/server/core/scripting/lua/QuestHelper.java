@@ -23,14 +23,19 @@ import games.stendhal.server.maps.quests.AbstractQuest;
 
 
 /**
- * A class to expose quest making to Lua.
+ * Exposes quest creation & handling to Lua.
  */
 public class QuestHelper {
 
-	// static instance
 	private static QuestHelper instance;
 
 
+	/**
+	 * Retrieves the static instance.
+	 *
+	 * @return
+	 * 		Static QuestHelper instance.
+	 */
 	public static QuestHelper get() {
 		if (instance == null) {
 			instance = new QuestHelper();
@@ -66,6 +71,9 @@ public class QuestHelper {
 	}
 
 
+	/**
+	 * Class to aid with quest manipulation in Lua.
+	 */
 	@SuppressWarnings("unused")
 	private class LuaQuest extends AbstractQuest {
 

@@ -65,10 +65,10 @@ end
 --- Helper function for creating NotCondition instances.
 newNotCondition = function(classname, ...)
 	if type(classname) == "table" then
-		return npcHelper:newNotCondition(classname)
+		return conditions:notCondition(classname)
 	end
 
-	return npcHelper:newNotCondition(newCondition(classname, ...))
+	return conditions:notCondition(newCondition(classname, ...))
 end
 
 --- Helper function for creating ChatAction instances.

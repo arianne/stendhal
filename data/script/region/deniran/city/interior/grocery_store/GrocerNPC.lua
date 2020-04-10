@@ -16,7 +16,7 @@
 local grocer = nil
 
 local function addNPC()
-	grocer = npcHelper:createSpeakerNPC("Jimbo")
+	grocer = entities:createSpeakerNPC("Jimbo")
 	grocer:setOutfit("dress=5,mouth=1,eyes=0,mask=1")
 	grocer:setOutfitColor("skin", SkinColor.DARK)
 	grocer:setOutfitColor("dress", 0x8b4513) -- saddle brown
@@ -36,11 +36,11 @@ local function addNPC()
 		{"olive oil", 135},
 		{"vinegar", 135},
 	}
-	npcHelper:addSeller(grocer, sellPrices, false)
+	merchants:addSeller(grocer, sellPrices, false)
 
 	-- add to shop list
 	for _, item in pairs(sellPrices) do
-		shops:add("denirangrocerysell", item[1], item[2])
+		merchants.shops:add("denirangrocerysell", item[1], item[2])
 	end
 
 	game:add(grocer)
@@ -48,7 +48,7 @@ end
 
 local function addSign()
 	if grocer ~= nil then
-		local sellSign = game:createShopSign("denirangrocerysell", grocer:getName() .. "'s Shop (selling)", "You can buy these things.")
+		local sellSign = entities:createShopSign("denirangrocerysell", grocer:getName() .. "'s Shop (selling)", "You can buy these things.")
 		sellSign:setEntityClass("blackboard")
 		sellSign:setPosition(23, 23)
 

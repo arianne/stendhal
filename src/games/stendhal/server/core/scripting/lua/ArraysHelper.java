@@ -18,11 +18,20 @@ import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 
+/**
+ * Handles some conversion of Java arrays to Lua tables.
+ */
 public class ArraysHelper {
 
-	// static instance
 	private static ArraysHelper instance;
 
+
+	/**
+	 * Retrieves the static instance.
+	 *
+	 * @return
+	 * 		Static ArraysHelper instance.
+	 */
 	public static ArraysHelper get() {
 		if (instance == null) {
 			instance = new ArraysHelper();

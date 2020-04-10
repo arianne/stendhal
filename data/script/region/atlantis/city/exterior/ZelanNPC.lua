@@ -16,7 +16,7 @@
 local zoneName = "-7_deniran_atlantis"
 
 if game:setZone(zoneName) then
-	local zelan = npcHelper:createSpeakerNPC("Zelan")
+	local zelan = entities:createSpeakerNPC("Zelan")
 
 	-- NPC appearance & behavior
 	zelan:setEntityClass("atlantismale01npc")
@@ -27,7 +27,7 @@ if game:setZone(zoneName) then
 		{63, 66},
 		{75, 66},
 	}
-	npcHelper:setPathAndPosition(zelan, nodes, true)
+	entities:setPathAndPosition(zelan, nodes, true)
 
 	-- NPC dialog
 	zelan:addGreeting()

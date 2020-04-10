@@ -60,7 +60,7 @@ local function getItemListString(includeFee)
 end
 
 if game:setZone(zone) then
-	ringsmith = npcHelper:createSpeakerNPC("Raven")
+	ringsmith = entities:createSpeakerNPC("Raven")
 	ringsmith:setOutfit("body=1,head=0,eyes=24,dress=52,hair=13")
 	ringsmith:setOutfitColor("eyes", 0x1f6521)
 	ringsmith:setOutfitColor("hair", Color.RED)
@@ -72,7 +72,7 @@ if game:setZone(zone) then
 		{31, 6},
 		{24, 6},
 	}
-	npcHelper:setPathAndPosition(ringsmith, nodes, true)
+	entities:setPathAndPosition(ringsmith, nodes, true)
 
 	-- dialogue
 	ringsmith:addGreeting()

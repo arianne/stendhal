@@ -28,14 +28,13 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.scripting.lua.ActionHelper;
 import games.stendhal.server.core.scripting.lua.ArraysHelper;
-import games.stendhal.server.core.scripting.lua.NPCHelper;
+import games.stendhal.server.core.scripting.lua.ConditionHelper;
+import games.stendhal.server.core.scripting.lua.EntityHelper;
+import games.stendhal.server.core.scripting.lua.MerchantHelper;
+import games.stendhal.server.core.scripting.lua.PropertiesHelper;
 import games.stendhal.server.core.scripting.lua.QuestHelper;
-import games.stendhal.server.entity.mapstuff.sign.Reader;
-import games.stendhal.server.entity.mapstuff.sign.ShopSign;
-import games.stendhal.server.entity.mapstuff.sign.Sign;
-import games.stendhal.server.entity.npc.ShopList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
@@ -50,7 +49,7 @@ public class ScriptInLua extends ScriptingSandbox {
 	private static Globals globals;
 	private static LuaValue game;
 
-	private final String luaScript;
+	private static String luaScript;
 
 
 	public ScriptInLua() {
@@ -103,16 +102,17 @@ public class ScriptInLua extends ScriptingSandbox {
 
 		game = CoerceJavaToLua.coerce(getInstance());
 		globals.set("game", game);
-		globals.set("logger", CoerceJavaToLua.coerce(logger));
-		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
-		globals.set("questHelper", CoerceJavaToLua.coerce(QuestHelper.get()));
+		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
+		globals.set("entities", CoerceJavaToLua.coerce(EntityHelper.get()));
+		globals.set("properties", CoerceJavaToLua.coerce(PropertiesHelper.get()));
+		globals.set("quests", CoerceJavaToLua.coerce(QuestHelper.get()));
 		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
-		globals.set("singletonRepository", CoerceJavaToLua.coerce(SingletonRepository.get()));
-		globals.set("shops", CoerceJavaToLua.coerce(ShopList.get()));
+		globals.set("actions", CoerceJavaToLua.coerce(ActionHelper.get()));
+		globals.set("conditions", CoerceJavaToLua.coerce(ConditionHelper.get()));
+		globals.set("merchants", CoerceJavaToLua.coerce(MerchantHelper.get()));
 		globals.set("questSystem", CoerceJavaToLua.coerce(SingletonRepository.getStendhalQuestSystem()));
 		globals.set("arrays", CoerceJavaToLua.coerce(ArraysHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
-		globals.set("entityManager", CoerceJavaToLua.coerce(SingletonRepository.getEntityManager()));
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
@@ -129,118 +129,63 @@ public class ScriptInLua extends ScriptingSandbox {
 		}
 	}
 
-	/**
-	 * Creates a new Sign entity.
-	 *
-	 * @return
-	 * 		Sign object.
-	 */
-	public Sign createSign() {
-		return createSign(true);
-	}
 
-	public Sign createSign(final boolean visible) {
-		if (visible) {
-			return new Sign();
+	/**
+	 * Handles logging from Lua.
+	 */
+	public static class LuaLogger {
+
+		private static LuaLogger instance;
+
+
+		/**
+		 * Retrieves the static instance.
+		 *
+		 * @return
+		 * 		Static LuaLogger instance.
+		 */
+		public static LuaLogger get() {
+			if (instance == null) {
+				instance = new LuaLogger();
+			}
+
+			return instance;
 		}
 
-		return new Reader();
-	}
+		public void info(String message) {
+			message = message.trim();
 
-	/**
-	 * Creates a new ShopSign entity.
-	 *
-	 * @param name
-	 * 		The shop name.
-	 * @param title
-	 * 		The sign title.
-	 * @param caption
-	 * 		The caption above the table.
-	 * @param seller
-	 * 		<code>true</code>, if this sign is for items sold by an NPC (defaults to <code>true</code> if <code>null</code>).
-	 * @return
-	 * 		New ShopSign instance.
-	 */
-	public ShopSign createShopSign(final String name, final String title, final String caption, Boolean seller) {
-		// default to seller
-		if (seller == null) {
-			seller = true;
+			if (luaScript == null) {
+				message = "(unknown source) " + message;
+			} else {
+				message = "(" + luaScript + ") " + message;
+			}
+
+			logger.info(message);
 		}
 
-		return new ShopSign(name, title, caption, seller);
-	}
+		public void warn(String message) {
+			message = message.trim();
 
-	/**
-	 * Exposes Java system properties to Lua.
-	 *
-	 * @param p
-	 * 		The property of which the value should be returned.
-	 * @return
-	 * 		Value of the property or <code>null</code> if not set.
-	 */
-	public String getProperty(final String p) {
-		if (p == null) {
-			return null;
+			if (luaScript == null) {
+				message = "(unknown source) " + message;
+			} else {
+				message = "(" + luaScript + ") " + message;
+			}
+
+			logger.warn(message);
 		}
 
-		return System.getProperty(p);
-	}
+		public void error(String message) {
+			message = message.trim();
 
-	/**
-	 * Exposes Java system properties to Lua.
-	 *
-	 * @param p
-	 * 		The property string to check.
-	 * @return
-	 * 		<code>true</code> if the property is not <code>null</code>.
-	 */
-	public boolean propertyEnabled(final String p) {
-		if (p == null) {
-			return false;
+			if (luaScript == null) {
+				message = "(unknown source) " + message;
+			} else {
+				message = "(" + luaScript + ") " + message;
+			}
+
+			logger.error(message);
 		}
-
-		return System.getProperty(p) != null;
-	}
-
-	/**
-	 * Exposes Java system properties to Lua.
-	 *
-	 * @param p
-	 * 		The property string to check.
-	 * @param v
-	 * 		The value to check the property against.
-	 * @return
-	 * 		<code>true</code> if the property value is equal to v.
-	 */
-	public boolean propertyEquals(final String p, final String v) {
-		if (p == null || v == null) {
-			return false;
-		}
-
-		return System.getProperty(p).equals(v);
-	}
-
-	/**
-	 * Retrieves a Player.
-	 *
-	 * @param name
-	 * 		Name of player.
-	 * @return
-	 * 		Logged in player or <code>null</code>.
-	 */
-	public Player getPlayer(final String name) {
-		return SingletonRepository.getRuleProcessor().getPlayer(name);
-	}
-
-	/**
-	 * Retrieves a SpeakerNPC.
-	 *
-	 * @param name
-	 * 		Name of NPC.
-	 * @return
-	 * 		SpeakerNPC instance or <code>null</code>.
-	 */
-	public SpeakerNPC getNPC(final String name) {
-		return SingletonRepository.getNPCList().get(name);
 	}
 }
