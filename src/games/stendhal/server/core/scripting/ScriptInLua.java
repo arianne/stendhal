@@ -106,10 +106,12 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("npcHelper", CoerceJavaToLua.coerce(new NPCHelper()));
 		globals.set("questHelper", CoerceJavaToLua.coerce(QuestHelper.get()));
 		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
+		globals.set("singletonRepository", CoerceJavaToLua.coerce(SingletonRepository.get()));
 		globals.set("shops", CoerceJavaToLua.coerce(ShopList.get()));
 		globals.set("questSystem", CoerceJavaToLua.coerce(SingletonRepository.getStendhalQuestSystem()));
 		globals.set("arrays", CoerceJavaToLua.coerce(ArraysHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
+		globals.set("entityManager", CoerceJavaToLua.coerce(SingletonRepository.getEntityManager()));
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
