@@ -35,6 +35,7 @@ import games.stendhal.server.entity.mapstuff.sign.Reader;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
@@ -217,5 +218,29 @@ public class ScriptInLua extends ScriptingSandbox {
 		}
 
 		return System.getProperty(p).equals(v);
+	}
+
+	/**
+	 * Retrieves a Player.
+	 *
+	 * @param name
+	 * 		Name of player.
+	 * @return
+	 * 		Logged in player or <code>null</code>.
+	 */
+	public Player getPlayer(final String name) {
+		return SingletonRepository.getRuleProcessor().getPlayer(name);
+	}
+
+	/**
+	 * Retrieves a SpeakerNPC.
+	 *
+	 * @param name
+	 * 		Name of NPC.
+	 * @return
+	 * 		SpeakerNPC instance or <code>null</code>.
+	 */
+	public SpeakerNPC getNPC(final String name) {
+		return SingletonRepository.getNPCList().get(name);
 	}
 }
