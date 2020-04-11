@@ -51,4 +51,14 @@ public class Bestiary extends OwnedItem {
 
 		return true;
 	}
+
+	@Override
+	public void setOwner(final String name) {
+		put("infostring", name);
+	}
+
+	@Override
+	public String getOwner() {
+		return get("infostring");
+	}
 }
