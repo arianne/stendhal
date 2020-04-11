@@ -54,7 +54,7 @@ if game:setZone(zoneName) then
 	quest:addItemReward("money", 20000)
 	quest:setRegion(Region.ATLANTIS)
 
-	quest:register()
+	quests:register(quest)
 else
 	logger:error("Could not set zone: " .. zoneName)
 end

@@ -27,7 +27,6 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.lua.ActionHelper;
 import games.stendhal.server.core.scripting.lua.ArraysHelper;
 import games.stendhal.server.core.scripting.lua.ConditionHelper;
@@ -108,7 +107,6 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("actions", CoerceJavaToLua.coerce(ActionHelper.get()));
 		globals.set("conditions", CoerceJavaToLua.coerce(ConditionHelper.get()));
 		globals.set("merchants", CoerceJavaToLua.coerce(MerchantHelper.get()));
-		globals.set("questSystem", CoerceJavaToLua.coerce(SingletonRepository.getStendhalQuestSystem()));
 		globals.set("arrays", CoerceJavaToLua.coerce(ArraysHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
 

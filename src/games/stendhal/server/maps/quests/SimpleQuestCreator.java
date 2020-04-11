@@ -309,13 +309,6 @@ public class SimpleQuestCreator {
 			};
 		}
 
-		/**
-		 * This must be called in order for the quest to be added to game.
-		 */
-		public void register() {
-			StendhalQuestSystem.get().cacheQuest(this);
-		}
-
 		@Override
 		public void addToWorld() {
 			fillQuestInfo(name, description, isRepeatable());

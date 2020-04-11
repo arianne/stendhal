@@ -28,4 +28,4 @@ quest:addItemReward("rose", 3)
 quest:addItemReward("money", 100)
 quest:setRegion(Region.SEMOS_CITY)
 
-quest:register()
+quests:register(quest)

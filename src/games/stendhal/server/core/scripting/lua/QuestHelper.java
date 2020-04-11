@@ -17,9 +17,11 @@ import java.util.List;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
+import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
 
@@ -27,6 +29,8 @@ import games.stendhal.server.maps.quests.SimpleQuestCreator;
  * Exposes quest creation & handling to Lua.
  */
 public class QuestHelper {
+
+	private static StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 
 	// expose SimpleQuestCreator to Lua
 	public static final SimpleQuestCreator simple = SimpleQuestCreator.getInstance();
@@ -72,6 +76,205 @@ public class QuestHelper {
 	 */
 	public LuaQuest createQuest(final String slotName, final String name) {
 		return new LuaQuest(slotName, name);
+	}
+
+	/**
+	 * Adds a quest to the world.
+	 *
+	 * @param quest
+	 * 		Quest to be loaded.
+	 */
+	public void load(final IQuest quest) {
+		questSystem.loadQuest(quest);
+	}
+
+	/**
+	 * Removes a qeust from the world.
+	 *
+	 * @param questName
+	 * 		String name of the quest.
+	 */
+	public void unload(final String questName) {
+		questSystem.unloadQuest(questName);
+	}
+
+	/**
+	 * Caches a quest for loading at startup.
+	 *
+	 * @param quest
+	 * 		Quest to be cached.
+	 */
+	public void cache(final IQuest quest) {
+		questSystem.cacheQuest(quest);
+	}
+
+	/**
+	 * Caches a quest fro loading at startup.
+	 *
+	 * @param quest
+	 * 		Quest to be cached.
+	 */
+	public void register(final IQuest quest) {
+		cache(quest);
+	}
+
+	/**
+	 * Checks if a quest has been loaded.
+	 *
+	 * @param quest
+	 * 		Quest instance to be checked.
+	 * @return
+	 * 		<code>true</code> if the instances matches stored quests.
+	 */
+	public boolean isLoaded(final IQuest quest) {
+		return questSystem.isLoaded(quest);
+	}
+
+	/**
+	 * List all quests the player knows about.
+	 *
+	 * @param player
+	 * 		Player to create the report for.
+	 * @return
+	 * 		Report.
+	 */
+	public String listAll(final Player player) {
+		return questSystem.listQuests(player);
+	}
+
+	/**
+	 * Creates a report on a specified quest for a specified player.
+	 *
+	 * @param player
+	 * 		Player to create the report for.
+	 * @param questName
+	 * 		Name of quest to be reported.
+	 * @return
+	 * 		Report.
+	 */
+	public String list(final Player player, final String questName) {
+		return questSystem.listQuest(player, questName);
+	}
+
+	/**
+	 * Dumps the internal quest states for the specified player. This is used for the InspectAction.
+	 *
+	 * @param player
+	 * 		Player to create report for.
+	 * @return
+	 * 		Report.
+	 */
+	public String listStates(final Player player) {
+		return questSystem.listQuestsStates(player);
+	}
+
+	/**
+	 * Retrieves the IQuest object for a named quest.
+	 *
+	 * @param questName
+	 * 		Name of quest.
+	 * @return
+	 * 		IQuest or <code>null</code> if it does not exist.
+	 */
+	public IQuest getQuest(final String questName) {
+		return questSystem.getQuest(questName);
+	}
+
+	/**
+	 *
+	 * @param questSlot
+	 * @return
+	 */
+	public IQuest getQuestFromSlot(final String questSlot) {
+		return questSystem.getQuestFromSlot(questSlot);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @return
+	 */
+	public List<String> getOpen(final Player player) {
+		return questSystem.getOpenQuests(player);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @return
+	 */
+	public List<String> getCompleted(final Player player) {
+		return questSystem.getCompletedQuests(player);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param region
+	 * @return
+	 */
+	public List<String> getIncomplete(final Player player, final String region) {
+		return questSystem.getIncompleteQuests(player, region);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @return
+	 */
+	public List<String> getRepeatable(final Player player) {
+		return questSystem.getRepeatableQuests(player);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param questName
+	 * @return
+	 */
+	public String getDescription(final Player player, final String questName) {
+		return questSystem.getQuestDescription(player, questName);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param questName
+	 * @return
+	 */
+	public String getLevelWarning(final Player player, final String questName) {
+		return questSystem.getQuestLevelWarning(player, questName);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param questName
+	 * @return
+	 */
+	public List<String> getProgressDetails(final Player player, final String questName) {
+		return questSystem.getQuestProgressDetails(player, questName);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param region
+	 * @return
+	 */
+	public List<String> getNPCNamesForUnstartedInRegionForLevel(final Player player, final String region) {
+		return questSystem.getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
+	}
+
+	/**
+	 *
+	 * @param player
+	 * @param region
+	 * @param name
+	 * @return
+	 */
+	public List<String> getDescriptionForUnstartedInRegionFromNPCName(final Player player, final String region, final String name) {
+		return questSystem.getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player, region, name);
 	}
 
 
