@@ -16,45 +16,6 @@
 local zone = "0_semos_city"
 local npc = nil
 
-local approvedItems = {
-	["money"] = 100000,
-	["mega potion"] = 100,
-	["greater antidote"] = 100,
-	["sedative"] = 100,
-	["fish soup"] = 100,
-	["home scroll"] = 100,
-	["ados city scroll"] = 100,
-	["fado city scroll"] = 100,
-	["kirdneh city scroll"] = 100,
-	["kalavan city scroll"] = 100,
-	["nalwor city scroll"] = 100,
-	["deniran city scroll"] = 100,
-	["empty scroll"] = 100,
-	["balloon"] = 100,
-	["rainbow beans"] = 100,
-	["twilight moss"] = 100,
-	["bestiary"] = 1,
-	["royal helmet"] = 1,
-	["royal armor"] = 1,
-	["royal legs"] = 1,
-	["royal boots"] = 1,
-	["royal shield"] = 1,
-	["royal cloak"] = 1,
-	["royal dagger"] = 1,
-	["golden blade"] = 1,
-}
-
-local function getItemListString()
-	local st = "I can give you "
-
-	for key in pairs(approvedItems) do
-		st = st .. "#'" .. key .. "', "
-	end
-
-	st = st .. "#'super royal dagger', and #'super golden blade'."
-	return st
-end
-
 local approvedMaps = {
 	["amazon"] = {"int_amazon_princess_hut", 10, 15},
 	["athor"] = {"0_athor_island", 36, 73},
@@ -106,67 +67,68 @@ local function createNPC()
 	npc:addOffer(helpReply)
 
 	local giftAction = actions:create(function(player, sentence, npc)
-		local target = sentence:getTrimmedText():gsub("^%s*(.-)%s*$", "%1"):lower()
+		local target = sentence:getTrimmedText():lower()
 
-		local superGoldenBlade = target == "super golden blade"
-		local superRoyalDagger = target == "super royal dagger"
-
-		if superGoldenBlade then
-			target = "golden blade"
-		end
-		if superRoyalDagger then
-			target = "royal dagger"
-		end
-
-		if not entities.manager:isItem(target) then
-			npc:say("That is not an item.")
-			return
-		end
-
-		local quantity = approvedItems[target]
-		if quantity == nil then
-			npc:say("I cannot give you that.")
-			return
-		end
-
-		local item = nil;
-		if quantity > 1 then
-			item = entities:getStackableItem(target)
-			item:setQuantity(quantity)
-		else
-			item = entities:getItem(target)
-			if superGoldenBlade or superRoyalDagger then
-				item:put("atk", "50")
-				item:put("lifesteal", "1.0")
-				item:remove("min_level")
+		local superItem = false
+		if string.beginsWith(target, "super ") then
+			local tmp = string.trim(target:sub(6, #target))
+			if tmp == "golden blade" or tmp == "royal dagger" then
+				superItem = true
+				target = tmp
 			end
 		end
 
-		-- TODO: check if item is nil
-
-		if item:getName():find("royal") then
-			item:remove("min_level")
+		if not entities.manager:isItem(target) then
+			npc:say("\"" .. target .. "\" is not an item.")
+			return
 		end
 
-		item:put("bound", player:getName())
+		local item = entities:getStackableItem(target)
+		local quantity = 1
+		if item ~= nil then
+			-- if stackable, give players 100
+			quantity = 100
+			item:setQuantity(quantity)
+		else
+			item = entities:getItem(target)
+		end
+
+		if item == nil then
+			npc:say("Hmmmm... I'm sorry, there was a problem creating the " .. target .. ". Let's try something else.")
+			return
+		end
+
 		if target == "bestiary" then
-			item:put("owner", player:getName())
+			-- convert to Bestiary item so item:setOwner() can be called instead of directly adding the attribute
+			item = luajava.newInstance("games.stendhal.server.entity.item.Bestiary", item)
+			item:setOwner(player:getName())
 		end
+
+		-- bind to player so can't be lost
+		--item:put("bound", player:getName())
 
 		if player:getSlotToEquip(item) == nil then
 			npc:say("You don't have room to carry that item.")
 			return
 		end
 
-		-- FIXME: modified attributes "atk", "lifesteal", & "owner" are not restored after logout
-
 		local response = "Here "
 		if quantity > 1 then
-			response = response .. "are your " .. tostring(quantity) .. " "
+			response = response .. "are " .. tostring(quantity) .. " "
 		else
 			response = response .. "is your "
 		end
+		if superItem then
+			item:put("atk", "50")
+			item:put("lifesteal", "1.0")
+
+			response = response .. "super "
+		end
 		response = response .. grammar:plnoun(quantity, item:getName()) .. "."
+		if superItem then
+			-- FIXME: modified attributes "atk", "lifesteal", & "owner" are not restored after logout
+			response = response .. " If you log off, your item will lose its \"super\" attributes."
+		end
 
 		npc:say(response)
 		player:equipOrPutOnGround(item)
@@ -210,7 +172,7 @@ local function createNPC()
 		"gift",
 		nil,
 		ConversationStates.QUESTION_1,
-		getItemListString() .. " What would you like?",
+		"I can give you any item. I can also give you a special #'super golden blade' or #'super royal dagger'. What would you like?",
 		nil)
 
 	npc:add(ConversationStates.ATTENDING,
