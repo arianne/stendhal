@@ -48,8 +48,8 @@ public class ArraysHelper {
 	 * @return
 	 * 		New LuaTable.
 	 */
-	public LuaTable arrayToTable(final Object[] list) {
-		return arrayToTable(Arrays.asList(list));
+	public LuaTable toTable(final Object[] list) {
+		return toTable(Arrays.asList(list));
 	}
 
 
@@ -61,7 +61,7 @@ public class ArraysHelper {
 	 * @return
 	 * 		New LuaTable.
 	 */
-	public LuaTable arrayToTable(final List<Object> list) {
+	public LuaTable toTable(final List<Object> list) {
 		final LuaTable table = new LuaTable();
 
 		for (final Object obj: list) {

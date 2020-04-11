@@ -69,7 +69,7 @@ public class MerchantHelper {
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
 	@SuppressWarnings("unchecked")
-	public void addMerchant(final String merchantType, final SpeakerNPC npc, final Object prices, Boolean addOffer) {
+	public void add(final String merchantType, final SpeakerNPC npc, final Object prices, Boolean addOffer) {
 		// default is to add an "offer" response
 		if (addOffer == null) {
 			addOffer = true;
@@ -121,7 +121,7 @@ public class MerchantHelper {
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
 	public void addSeller(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
-		addMerchant("seller", npc, prices, addOffer);
+		add("seller", npc, prices, addOffer);
 	}
 
 	/**
@@ -135,6 +135,6 @@ public class MerchantHelper {
 	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
 	 */
 	public void addBuyer(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
-		addMerchant("buyer", npc, prices, addOffer);
+		add("buyer", npc, prices, addOffer);
 	}
 }

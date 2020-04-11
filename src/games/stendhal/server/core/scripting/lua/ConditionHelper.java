@@ -60,7 +60,7 @@ public class ConditionHelper {
 	 * @return
 	 * 		New ChatCondition.
 	 */
-	public ChatCondition createCondition(final LuaFunction f) {
+	public ChatCondition create(final LuaFunction f) {
 		return new ChatCondition() {
 
 			@Override
@@ -120,7 +120,7 @@ public class ConditionHelper {
 	*/
 
 	/**
-	 * Helper method for creating a NotCondition instance.
+	 * Creates a NotCondition instance.
 	 *
 	 * @param condition
 	 * 		Condition to be checked.

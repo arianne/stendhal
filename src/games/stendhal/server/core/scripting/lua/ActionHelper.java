@@ -59,7 +59,7 @@ public class ActionHelper {
 	 * @return
 	 * 		New ChatAction instance.
 	 */
-	public ChatAction createAction(final LuaFunction f) {
+	public ChatAction create(final LuaFunction f) {
 		return new ChatAction() {
 
 			@Override
@@ -135,12 +135,12 @@ public class ActionHelper {
 	 * @return
 	 * 		New MultipleActions instance.
 	 */
-	public MultipleActions multipleActions(final LuaTable actionList) {
+	public MultipleActions multiple(final LuaTable actionList) {
 		final List<ChatAction> actions = new LinkedList<>();
 		for (final LuaValue idx: actionList.keys()) {
 			final LuaValue value = actionList.get(idx);
 			if (value.istable()) {
-				actions.add(multipleActions(value.checktable()));
+				actions.add(multiple(value.checktable()));
 			} else if (value.isuserdata(ChatAction.class)) {
 				actions.add((ChatAction) value.touserdata(ChatAction.class));
 			} else {

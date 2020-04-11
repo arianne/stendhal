@@ -247,7 +247,7 @@ public class EntityHelper {
 					if (actions instanceof ChatAction) {
 						listenActions = (ChatAction) actions;
 					} else {
-						listenActions = actionHelper.multipleActions((LuaTable) actions);
+						listenActions = actionHelper.multiple((LuaTable) actions);
 					}
 				}
 
