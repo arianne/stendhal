@@ -42,6 +42,12 @@ import utilities.QuestHelper;
 
 public class KillSpidersTest extends SpidersCreatures {
 
+	private static final String NPC_HELLO = "Hello my friend. Nice day for walking isn't it?";
+	private static final String NPC_BYE = "Bye.";
+	private static final String NPC_OFFER_QUEST = "Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?";
+	private static final String NPC_ACKNOWLEDGE_QUEST_ACCEPTED = "Fine. Go down to the basement and kill all the creatures there!";
+	private static final String NPC_QUEST_ALREADY_OFFERED = "I already asked you to kill all creatures in the basement!";
+
 	private static String questSlot = "kill_all_spiders";
 
 	private Player player = null;
@@ -240,5 +246,30 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
+	}
+
+	/**
+	 * <ul>
+	 * <li>given the player has not completed the quest yet</li>
+	 * <li>when the player asks again for a quest</li>
+	 * <li>then the NPC says the quest was already offered</li>
+	 * </ul>
+	 */
+	@Test
+	public void testAskForQuestBeforeCompleting() {
+		en.step(player, "hi");
+		assertEquals(NPC_HELLO, getReply(npc));
+
+		en.step(player, "task");
+		assertEquals(NPC_OFFER_QUEST, getReply(npc));
+
+		en.step(player, "yes");
+		assertEquals(NPC_ACKNOWLEDGE_QUEST_ACCEPTED, getReply(npc));
+
+		en.step(player, "task");
+		assertEquals(NPC_QUEST_ALREADY_OFFERED, getReply(npc));
+
+		en.step(player, "bye");
+		assertEquals(NPC_BYE, getReply(npc));
 	}
 }
