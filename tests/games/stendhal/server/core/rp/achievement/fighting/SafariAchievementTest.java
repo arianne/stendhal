@@ -109,9 +109,12 @@ public class SafariAchievementTest extends ZoneAndPlayerTestImpl {
 	}
 
 	private void resetPlayer() {
+		/*
 		if (player != null) {
 			PlayerTestHelper.removePlayer(player.getName(), "testzone");
 		}
+		*/
+		player = null;
 		player = PlayerTestHelper.createPlayer("player");
 		player.setPosition(0, 0);
 		zone.add(player);
