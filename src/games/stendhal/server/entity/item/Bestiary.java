@@ -29,7 +29,7 @@ public class Bestiary extends OwnedItem {
 		setMenu("Read|Use");
 	}
 
-	public Bestiary(final Item item) {
+	public Bestiary(final Bestiary item) {
 		super(item);
 	}
 

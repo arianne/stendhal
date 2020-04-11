@@ -34,7 +34,7 @@ public class OwnedItem extends Item {
 		super(name, clazz, subclass, attributes);
 	}
 
-	public OwnedItem(Item item) {
+	public OwnedItem(final OwnedItem item) {
 		super(item);
 	}
 
