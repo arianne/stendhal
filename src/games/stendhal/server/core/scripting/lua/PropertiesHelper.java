@@ -81,6 +81,7 @@ public class PropertiesHelper {
 			return false;
 		}
 
-		return System.getProperty(p).equals(v);
+		final String property = System.getProperty(p);
+		return property != null && property.equals(v);
 	}
 }
