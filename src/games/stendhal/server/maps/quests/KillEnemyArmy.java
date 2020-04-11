@@ -129,7 +129,12 @@ import marauroa.common.Pair;
 		enemys.put("blordrough",
 				Arrays.asList("blordrough quartermaster",
 							  "blordrough corporal",
-							  "blordrough storm trooper"));
+							  "blordrough storm trooper",
+							  "blordrough soldier",
+							  "blordrough elite",
+							  "blordrough infantry",
+							  "blordrough captain",
+							  "blordrough general"));
 		enemys.put("dark elf",
 				Arrays.asList("child dark elf",
 							  "dark elf archer",
