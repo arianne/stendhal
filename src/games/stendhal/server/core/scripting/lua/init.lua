@@ -125,6 +125,38 @@ end
 
 -- ** string manipulation functions ** --
 
+--- Checks if a string begins with a specified set of characters.
+--
+-- @param input
+-- 		Original string.
+-- @param st
+-- 		Prefix to compare.
+function string.startsWith(input, st)
+	local firstChars = string.sub(input, 1, #st)
+	return firstChars == st
+end
+
+--- Alias for `string.startsWith`
+string.beginsWith = string.startsWith
+
+--- Checks if a string ends with a specified set of characters.
+--
+-- @param input
+-- 		Original string.
+-- @param st
+-- 		Suffix to compare.
+function string.endsWith(input, st)
+	local inSize = #input
+	local stSize = #st
+
+	if stSize > inSize then
+		return false
+	end
+
+	local lastChars = string.sub(input, inSize - stSize + 1, inSize)
+	return lastChars == st
+end
+
 --- Remove leading & trailing whitespace from string.
 --
 -- http://lua-users.org/wiki/CommonFunctions
