@@ -360,11 +360,12 @@ public class SimpleQuestCreator {
 			final ChatCondition canStartCondition = new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-					if (player.getQuest(QUEST_SLOT) == null) {
+					final String questState = player.getQuest(QUEST_SLOT, 0);
+					if (questState == null || questState.equals("rejected")) {
 						return true;
 					}
 
-					if (isRepeatable() && player.getQuest(QUEST_SLOT, 0).equals("done")) {
+					if (isRepeatable() && questState.equals("done")) {
 						return new TimePassedCondition(QUEST_SLOT, 1, repeatDelay).fire(player, sentence, npc);
 					}
 
@@ -513,7 +514,9 @@ public class SimpleQuestCreator {
 
 			final String[] questState = player.getQuest(QUEST_SLOT).split(";");
 
-			if (questState[0].equals("start")) {
+			if (questState[0].equals("rejected")) {
+				res.add("I do not want to help " + getNPCName() + ".");
+			} else if (questState[0].equals("start")) {
 				res.add(getNPCName() + " asked me to get " + Integer.toString(quantityToCollect) + " " + Grammar.plnoun(quantityToCollect, itemToCollect) + ".");
 				if (player.isEquipped(itemToCollect, quantityToCollect)) {
 					res.add("I have what " + getNPCName() + " asked for.");
