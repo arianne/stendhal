@@ -240,6 +240,11 @@ public class StendhalQuestSystem {
 	 * 		Quest to be cached.
 	 */
 	public void cacheQuest(final IQuest quest) {
+		if (quest == null) {
+			logger.error("Attempted to cache null quest");
+			return;
+		}
+
 		if (cached.contains(quest)) {
 			logger.warn("Quest previously cached: " + quest.getName());
 			return;
