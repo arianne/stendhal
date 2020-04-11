@@ -829,6 +829,16 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
+	/**
+	 * Adjust entity's ATK XP by specified amount.
+	 *
+	 * @param xp
+	 * 		Amount to add.
+	 */
+	public void addAtkXP(final int xp) {
+		setAtkXP(getAtkXP() + xp);
+	}
+
 	public int getAtkXP() {
 		return atk_xp;
 	}
@@ -885,6 +895,16 @@ public abstract class RPEntity extends GuidedEntity {
 			setDefInternal(this.def + levels, notify);
 			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
 		}
+	}
+
+	/**
+	 * Adjust entity's DEF XP by specified amount.
+	 *
+	 * @param xp
+	 * 		Amount to add.
+	 */
+	public void addDefXP(final int xp) {
+		setDefXP(getDefXP() + xp);
 	}
 
 	public int getDefXP() {
@@ -980,6 +1000,16 @@ public abstract class RPEntity extends GuidedEntity {
 			setRatkInternal(this.ratk + levels, notify);
 			new GameEvent(getName(), "ratk", Integer.toString(this.ratk)).raise();
 		}
+	}
+
+	/**
+	 * Adjust entity's RATK XP by specified amount.
+	 *
+	 * @param xp
+	 * 		Amount to add.
+	 */
+	public void addRatkXP(final int xp) {
+		setRatkXP(getRatkXP() + xp);
 	}
 
 	/**

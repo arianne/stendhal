@@ -110,7 +110,7 @@ public class SimpleQuestCreator {
 		// list of items to be rewarded to player upon completion
 		private final Map<String, Integer> itemReward = new HashMap<String, Integer>();
 
-		// usable stat rewards are: xp
+		// usable stat rewards are: xp, def, atk, ratk
 		private final Map<String, Integer> statReward = new HashMap<String, Integer>();
 
 		// if <code>true</code>, NPC will tell player what items were given as a reward
@@ -168,6 +168,10 @@ public class SimpleQuestCreator {
 
 		public void addItemReward(final String itemName, final int quantity) {
 			itemReward.put(itemName, quantity);
+		}
+
+		public void addStatReward(final String id, final int amount) {
+			statReward.put(id, amount);
 		}
 
 		@SuppressWarnings("unused")
@@ -327,9 +331,21 @@ public class SimpleQuestCreator {
 
 					// reward player
 					final Integer xpReward = statReward.get(ID_XP);
+					final Integer defReward = statReward.get(ID_DEF);
+					final Integer atkReward = statReward.get(ID_ATK);
+					final Integer ratkReward = statReward.get(ID_RATK);
 
 					if (xpReward != null) {
 						player.addXP(xpReward);
+					}
+					if (defReward != null) {
+						player.addDefXP(defReward);
+					}
+					if (atkReward != null) {
+						player.addAtkXP(atkReward);
+					}
+					if (ratkReward != null) {
+						player.addRatkXP(ratkReward);
 					}
 
 					player.addKarma(karmaReward);
