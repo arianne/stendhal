@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.PackageLib;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -79,11 +80,27 @@ public class ScriptInLua extends ScriptingSandbox {
 	 * 			The arguments the admin specified or <code>null</code> on server start.
 	 */
 	@Override
-	public boolean load(Player player, List<String> args) {
-		LuaValue chunk = globals.loadfile(luaScript);
-		chunk.call();
+	public boolean load(final Player player, final List<String> args) {
+		if (luaScript == null) {
+			logger.error("Attempted to load null Lua script");
+			return false;
+		}
 
-		return true;
+		final LuaFunction chunk = (LuaFunction) globals.loadfile(luaScript);
+		final LuaValue lresult = chunk.call();
+
+		boolean result = true;
+		if (lresult.isint()) {
+			result = lresult.toint() == 0;
+		} else if (lresult.isboolean()) {
+			result = lresult.toboolean();
+		}
+
+		if (!result) {
+			logger.warn("Lua script return non-zero or \"false\": " + luaScript);
+		}
+
+		return result;
 	}
 
 	/**
@@ -115,13 +132,19 @@ public class ScriptInLua extends ScriptingSandbox {
 		if (is != null) {
 			try {
 				final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-				globals.load(reader, "init.lua").call();
+				final LuaValue result = globals.load(reader, "init.lua").call();
 				reader.close();
+
+				if (!result.toboolean()) {
+					logger.warn("Loading Lua master script failed: " + getClass().getPackage().getName() + ".lua/init.lua");
+				} else {
+					logger.info("Lua master script loaded: " + getClass().getPackage().getName() + ".lua/init.lua");
+				}
 			} catch (final IOException e) {
 				logger.error(e, e);
 			}
 		} else {
-			logger.warn("Could not load Lua master script");
+			logger.warn("Could not retrieve Lua master script as resource: " + getClass().getPackage().getName() + ".lua/init.lua");
 		}
 	}
 

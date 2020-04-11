@@ -118,3 +118,5 @@ newStringBuilder = function(str)
 		return luajava.newInstance("java.lang.StringBuilder")
 	end
 end
+
+return true
