@@ -20,12 +20,16 @@ import org.luaj.vm2.LuaValue;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
+import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
 
 /**
  * Exposes quest creation & handling to Lua.
  */
 public class QuestHelper {
+
+	// expose SimpleQuestCreator to Lua
+	public static final SimpleQuestCreator simple = SimpleQuestCreator.getInstance();
 
 	private static QuestHelper instance;
 

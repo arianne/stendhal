@@ -13,7 +13,7 @@
 ]]
 
 
-local quest = simpleQuest:create("wood_for_lua", "Wood for Lua", "Lua")
+local quest = quests.simple:create("wood_for_lua", "Wood for Lua", "Lua")
 quest:setDescription("Lua needs help gathering wood.")
 quest:setRequestReply("I need help gathering some wood. Will you help me?")
 quest:setAcceptReply("Great!")

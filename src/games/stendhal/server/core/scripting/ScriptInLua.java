@@ -36,7 +36,6 @@ import games.stendhal.server.core.scripting.lua.MerchantHelper;
 import games.stendhal.server.core.scripting.lua.PropertiesHelper;
 import games.stendhal.server.core.scripting.lua.QuestHelper;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.SimpleQuestCreator;
 
 /**
  * Manages scripts written in Lua.
@@ -106,7 +105,6 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("entities", CoerceJavaToLua.coerce(EntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(PropertiesHelper.get()));
 		globals.set("quests", CoerceJavaToLua.coerce(QuestHelper.get()));
-		globals.set("simpleQuest", CoerceJavaToLua.coerce(SimpleQuestCreator.getInstance()));
 		globals.set("actions", CoerceJavaToLua.coerce(ActionHelper.get()));
 		globals.set("conditions", CoerceJavaToLua.coerce(ConditionHelper.get()));
 		globals.set("merchants", CoerceJavaToLua.coerce(MerchantHelper.get()));

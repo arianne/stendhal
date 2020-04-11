@@ -38,7 +38,7 @@ if game:setZone(zoneName) then
 
 
 	-- quest
-	local quest = simpleQuest:create("unicorn_horns_for_zelan", "Unicorn Horns for Zelan", "Zelan")
+	local quest = quests.simple:create("unicorn_horns_for_zelan", "Unicorn Horns for Zelan", "Zelan")
 	quest:setDescription("Zelan needs help gathering unicorn horns.")
 	quest:setRequestReply("Hello! I'm in need of some unicorn horns to make some daggers."
 		.. " It is really dangerous in the woods surrounding Atlantis. If you are a brave sort"
