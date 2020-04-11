@@ -40,13 +40,16 @@ if game:setZone(zoneName) then
 	-- quest
 	local quest = quests.simple:create("unicorn_horns_for_zelan", "Unicorn Horns for Zelan", "Zelan")
 	quest:setDescription("Zelan needs help gathering unicorn horns.")
-	quest:setRequestReply("Hello! I'm in need of some unicorn horns to make some daggers."
+
+	quest:setReply(quests.simple.ID_REQUEST,
+		"Hello! I'm in need of some unicorn horns to make some daggers."
 		.. " It is really dangerous in the woods surrounding Atlantis. If you are a brave sort"
 		.. " I could really use some help gathering unicorn horns. Will you help me?")
-	quest:setAcceptReply("Great! Be careful out there lots of large monsters,"
-		.. " and those centaurs are really nasty")
-	quest:setRewardReply("Thanks a bunch!")
-	quest:setRejectReply("Thats ok, I will find someone else to help me.")
+	quest:setReply(quests.simple.ID_ACCEPT,
+		"Great! Be careful out there lots of large monsters, and those centaurs are really nasty")
+	quest:setReply(quests.simple.ID_REWARD, "Thanks a bunch!")
+	quest:setReply(quests.simple.ID_REJECT, "Thats ok, I will find someone else to help me.")
+
 	quest:setItemToCollect("unicorn horn", 10)
 	quest:setXPReward(50000)
 	quest:setKarmaReward(5.0)
