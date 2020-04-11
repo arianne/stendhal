@@ -104,7 +104,8 @@ public class ZooFood extends AbstractQuest {
 			if (!player.isEquipped(questItem, amount)) {
 				res.add(String.format("I have been asked to fetch " +Grammar.quantityplnoun(amount, questItem, "a") + " for the animals."));
 			} else {
-				res.add(String.format("I have " +Grammar.quantityplnoun(amount, questItem, "a") + " to feed the animals, and need to take it."));
+				res.add(String.format("I have " + Grammar.quantityplnoun(amount, questItem, "a")
+						+ " to feed the animals, and should deliver " + Grammar.itthem(amount) + " to Katinka."));
 			}
 		}
 		if (isCompleted(player)) {
