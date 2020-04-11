@@ -27,36 +27,6 @@ MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
 Color = luajava.bindClass("java.awt.Color")
 
 
---- Cleans nil values from table.
-table.clean = function(tbl)
-	local tmp = {}
-	for _, v in pairs(tbl) do
-		tmp[#tmp+1] = v
-	end
-
-	return tmp
-end
-
---- Appends values of a table into another table.
---
--- @param tbl1
--- 		The table to receive the new values.
--- @param tbl2
--- 		The table containing the new values.
-table.concat = function(tbl1, tbl2)
-	if type(tbl1) == "userdata" then
-		tbl1 = arrays:arrayToTable(tbl1)
-	end
-
-	if type(tbl2) == "userdata" then
-		tbl2 = arrays:arrayToTable(tbl2)
-	end
-
-	for _, v in pairs(tbl2) do
-		table.insert(tbl1, v)
-	end
-end
-
 --- Helper function for creating ChatCondition instances.
 newCondition = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
@@ -118,5 +88,80 @@ newStringBuilder = function(str)
 		return luajava.newInstance("java.lang.StringBuilder")
 	end
 end
+
+
+-- ** table manipulation functions ** --
+
+--- Cleans nil values from table.
+table.clean = function(tbl)
+	local tmp = {}
+	for _, v in pairs(tbl) do
+		tmp[#tmp+1] = v
+	end
+
+	return tmp
+end
+
+--- Appends values of a table into another table.
+--
+-- @param tbl1
+-- 		The table to receive the new values.
+-- @param tbl2
+-- 		The table containing the new values.
+table.concat = function(tbl1, tbl2)
+	if type(tbl1) == "userdata" then
+		tbl1 = arrays:arrayToTable(tbl1)
+	end
+
+	if type(tbl2) == "userdata" then
+		tbl2 = arrays:arrayToTable(tbl2)
+	end
+
+	for _, v in pairs(tbl2) do
+		table.insert(tbl1, v)
+	end
+end
+
+
+-- ** string manipulation functions ** --
+
+--- Remove leading & trailing whitespace from string.
+--
+-- http://lua-users.org/wiki/CommonFunctions
+--
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with leading & trailing whitespace removed.
+function string.trim(st)
+	return (st:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+--- Remove leading whitespace from string.
+--
+-- http://lua-users.org/wiki/CommonFunctions
+--
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with leading whitespace removed.
+function string.ltrim(st)
+	return (st:gsub("^%s*", ""))
+end
+
+--- Remove trailing whitespace from string.
+--
+-- http://lua-users.org/wiki/CommonFunctions
+--
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with trailing whitespace removed.
+function string.rtrim(st)
+	local n = #st
+	while n > 0 and st:find("^%s", n) do n = n - 1 end
+	return st:sub(1, n)
+end
+
 
 return true
