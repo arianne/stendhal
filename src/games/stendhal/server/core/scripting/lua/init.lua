@@ -28,11 +28,15 @@ Color = luajava.bindClass("java.awt.Color")
 
 
 --- Helper function for creating ChatCondition instances.
+--
+-- FIXME: this should be done with the "conditions" object
 newCondition = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
 end
 
 --- Helper function for creating NotCondition instances.
+--
+-- FIXME: this should be done with the "conditions" object
 newNotCondition = function(classname, ...)
 	if type(classname) == "table" then
 		return conditions:notCondition(classname)
@@ -42,13 +46,15 @@ newNotCondition = function(classname, ...)
 end
 
 --- Helper function for creating ChatAction instances.
+--
+-- FIXME: this should be done with the "actions" object
 newAction = function(classname, ...)
 	return luajava.newInstance("games.stendhal.server.entity.npc.action." .. classname, ...)
 end
 
 --- Sets the background music for the zone.
 --
--- FIXME: concatenating multiple tables at once doesn't work
+-- FIXME: this should be done with the "game" object
 --
 -- @param filename
 -- 		File basename excluding ".ogg" extensions.
@@ -78,6 +84,8 @@ setZoneMusic = function(filename, volume, x, y, radius)
 end
 
 --- Exposes StringBuilder class to Lua.
+--
+-- FIXME: this should be done with the "string" object
 --
 -- @param str
 -- 		Optional string to add.
@@ -136,8 +144,10 @@ function string.startsWith(input, st)
 	return firstChars == st
 end
 
---- Alias for `string.startsWith`
+--- Aliases for `string.startsWith`
+string.startswith = string.startsWith
 string.beginsWith = string.startsWith
+string.beginswith = string.startsWith
 
 --- Checks if a string ends with a specified set of characters.
 --
@@ -156,6 +166,9 @@ function string.endsWith(input, st)
 	local lastChars = string.sub(input, inSize - stSize + 1, inSize)
 	return lastChars == st
 end
+
+--- Aliases for `string.endsWith`
+string.endswith = string.endsWith
 
 --- Remove leading & trailing whitespace from string.
 --

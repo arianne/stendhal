@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
+import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.PackageLib;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -32,6 +33,7 @@ import games.stendhal.server.core.scripting.lua.ActionHelper;
 import games.stendhal.server.core.scripting.lua.ArraysHelper;
 import games.stendhal.server.core.scripting.lua.ConditionHelper;
 import games.stendhal.server.core.scripting.lua.EntityHelper;
+import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.MerchantHelper;
 import games.stendhal.server.core.scripting.lua.PropertiesHelper;
 import games.stendhal.server.core.scripting.lua.QuestHelper;
@@ -46,7 +48,6 @@ public class ScriptInLua extends ScriptingSandbox {
 
 	private static ScriptInLua instance;
 	private static Globals globals;
-	private static LuaValue game;
 
 	private static String luaScript;
 
@@ -115,8 +116,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		game = CoerceJavaToLua.coerce(getInstance());
-		globals.set("game", game);
+		globals.set("game", CoerceJavaToLua.coerce(getInstance()));
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(EntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(PropertiesHelper.get()));
@@ -126,6 +126,9 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("merchants", CoerceJavaToLua.coerce(MerchantHelper.get()));
 		globals.set("arrays", CoerceJavaToLua.coerce(ArraysHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
+
+		// initialize supplemental string functions
+		LuaStringHelper.get().init((LuaTable) globals.get("string"));
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
