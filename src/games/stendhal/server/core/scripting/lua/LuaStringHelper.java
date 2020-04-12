@@ -126,6 +126,48 @@ public class LuaStringHelper {
 				return LuaBoolean.TRUE;
 			}
 		});
+
+		/** add string.startsWith method */
+		stringTable.set("startsWith", new LuaFunction() {
+
+			/**
+			 * Checks if a string begins with a specified set of characters.
+			 *
+			 * @param orig
+			 * 		The original Lua string to be checked.
+			 * @param prefix
+			 * 		Prefix to compare against.
+			 * @return
+			 * 		<code>LuaBoolean.TRUE</code> if the characters in prefix
+			 * 		match the beginning of orig, <code>LuaBoolean.FALSE</code>
+			 * 		otherwise.
+			 */
+			@Override
+			public LuaBoolean call(final LuaValue orig, final LuaValue prefix) {
+				return (LuaBoolean) CoerceJavaToLua.coerce(orig.tojstring().startsWith(prefix.tojstring()));
+			}
+		});
+
+		/** add string.endsWith method */
+		stringTable.set("endsWith", new LuaFunction() {
+
+			/**
+			 * Checks if a string ends with a specified set of characters.
+			 *
+			 * @param orig
+			 * 		The original Lua string to be checked.
+			 * @param suffix
+			 * 		Suffix to compare against.
+			 * @return
+			 * 		<code>LuaBoolean.TRUE</code> if the characters in suffix
+			 * 		match the end of orig, <code>LuaBoolean.FALSE</code>
+			 * 		otherwise.
+			 */
+			@Override
+			public LuaBoolean call(final LuaValue orig, final LuaValue suffix) {
+				return (LuaBoolean) CoerceJavaToLua.coerce(orig.tojstring().endsWith(suffix.tojstring()));
+			}
+		});
 	}
 
 	/**
