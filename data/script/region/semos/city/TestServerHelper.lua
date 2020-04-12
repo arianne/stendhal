@@ -63,6 +63,7 @@ local function createNPC()
 	npc:addGreeting("Greetings! How may I #help you?")
 	npc:addGoodbye("See ya!");
 	local helpReply = "I can give you a #gift, teleport you to #visit some select areas, or teleport you to #meet with someone."
+		.. " Also, if you have an empty scroll, I can #mark it for you."
 	npc:addHelp(helpReply)
 	npc:addOffer(helpReply)
 
@@ -135,7 +136,7 @@ local function createNPC()
 	end)
 
 	local visitAction = actions:create(function(player, sentence, npc)
-		local target = sentence:getTrimmedText():gsub("^%s*(.-)%s*$", "%1"):lower()
+		local target = sentence:getTrimmedText():lower()
 		local details = approvedMaps[target]
 
 		if details == nil then
@@ -148,7 +149,7 @@ local function createNPC()
 	end)
 
 	local meetAction = actions:create(function(player, sentence, npc)
-		local targetName = sentence:getTrimmedText():gsub("^%s*(.-)%s*$", "%1"):lower()
+		local targetName = sentence:getTrimmedText():lower()
 		local target = entities:getPlayer(targetName)
 
 		if target == nil then
@@ -166,6 +167,62 @@ local function createNPC()
 
 		player:teleport(zone, x, y, nil, player)
 		npc:setCurrentState(ConversationStates.IDLE)
+	end)
+
+	local markAction = actions:create(function(player, sentence, npc)
+		local scroll = player:getFirstEquipped("empty scroll")
+		if scroll == nil then
+			npc:say("You are not carrying an empty scroll.")
+			return
+		end
+
+		local target = sentence:getTrimmedText():lower()
+		local args = string.split(target, " ")
+
+		local map = args[1]
+		local x = args[2]
+		local y = args[3]
+
+		if map == nil then
+			npc:say("I cannot #mark your scroll unless you tell me the name of the map.")
+			return
+		elseif game:getZone(map) == nil then
+			npc:say("That map does not exist in this world. Please tell me a valid map so I can #mark your scroll.")
+			return
+		elseif string.startswith(map, "int_") then
+			npc:say("For privacy reasons, I will not mark your scroll for an interior map. Wouldn't want you"
+				.. " snooping around in someone else's house. What else can I do for you?")
+			return
+		end
+
+		if x == nil then
+			npc:say("I cannot #mark your scroll unless you tell me the X coordinate.")
+			return
+		end
+		if y == nil then
+			npc:say("I cannot #mark your scroll unless you tell me the Y coordinate.")
+			return
+		end
+
+		local badCoord = nil
+		if not string.isnumber(x) then
+			badCoord = "X"
+		elseif not string.isnumber(y) then
+			badCoord = "Y"
+		end
+
+		if badCoord ~= nil then
+			npc:say("The " .. badCoord .. " coordinate must be a number.")
+			return
+		end
+
+		-- take one scroll & mark it
+		player:drop(scroll)
+		local marked = entities:getItem("marked scroll")
+		marked:put("infostring", map .. " " .. x .. " " .. y)
+		player:equipOrPutOnGround(marked)
+
+		npc:say("Here is your scroll for " .. map .. ". What else can I do for you?")
 	end)
 
 	npc:add(ConversationStates.ATTENDING,
@@ -189,6 +246,21 @@ local function createNPC()
 		"Who would you like to meet?",
 		nil)
 
+	-- not carrying empty scroll
+	npc:add(ConversationStates.ATTENDING,
+		"mark",
+		newNotCondition("PlayerHasItemWithHimCondition", "empty scroll"),
+		ConversationStates.ATTENDING,
+		"You are not carrying an empty scroll.",
+		nil)
+
+	npc:add(ConversationStates.ATTENDING,
+		"mark",
+		newCondition("PlayerHasItemWithHimCondition", "empty scroll"),
+		ConversationStates.QUESTION_4,
+		"Please tell me the map and the X Y coordinates.",
+		nil)
+
 	npc:add(ConversationStates.QUESTION_1,
 		"",
 		nil,
@@ -209,6 +281,13 @@ local function createNPC()
 		ConversationStates.ATTENDING,
 		nil,
 		meetAction)
+
+	npc:add(ConversationStates.QUESTION_4,
+		"",
+		nil,
+		ConversationStates.ATTENDING,
+		nil,
+		markAction)
 end
 
 
