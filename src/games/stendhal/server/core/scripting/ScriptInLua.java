@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
+import org.luaj.vm2.LuaInteger;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.PackageLib;
@@ -37,6 +38,7 @@ import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.MerchantHelper;
 import games.stendhal.server.core.scripting.lua.PropertiesHelper;
 import games.stendhal.server.core.scripting.lua.QuestHelper;
+import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -149,6 +151,57 @@ public class ScriptInLua extends ScriptingSandbox {
 		} else {
 			logger.warn("Could not retrieve Lua master script as resource: " + getClass().getPackage().getName() + ".lua/init.lua");
 		}
+	}
+
+
+	/**
+	 * Sets the background music for the current zone.
+	 *
+	 * @param filename
+	 * 		File basename excluding .ogg extension.
+	 * @param args
+	 * 		Lua table of key=value integer values. Valid keys are `volume`,
+	 * 		`x`, `y`, & `radius`.
+	 */
+	public void setMusic(final String filename, final LuaTable args) {
+		// default values
+		int volume = 100;
+		int x = 1;
+		int y = 1;
+		int radius = 10000;
+
+		for (final LuaValue lkey: args.keys()) {
+			final String key = lkey.tojstring();
+			final LuaInteger lvalue = (LuaInteger) args.get(lkey);
+
+			if (!lvalue.isnil()) {
+				if (key.equals("volume")) {
+					volume = lvalue.toint();
+				} else if (key.equals("x")) {
+					x = lvalue.toint();
+				} else if (key.equals("y")) {
+					y = lvalue.toint();
+				} else if (key.equals("radius")) {
+					radius = lvalue.toint();
+				} else {
+					logger.warn("Unknown table key in game:setMusic: " + key);
+				}
+			}
+		}
+
+		final BackgroundMusicSource musicSource = new BackgroundMusicSource(filename, radius, volume);
+		musicSource.setPosition(x, y);
+		add(musicSource);
+	}
+
+	/**
+	 * Sets the background music for the current zone.
+	 *
+	 * @param filename
+	 * 		File basename excluding .ogg extension.
+	 */
+	public void setMusic(final String filename) {
+		setMusic(filename, new LuaTable());
 	}
 
 
