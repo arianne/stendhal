@@ -121,7 +121,7 @@ stendhal.ui.buddyList = {
 				title: "Talk",
 				action: function(entity) {
 					stendhal.ui.chatinput.setText("/msg "
-							+ stendhal.ui.buddyList.current.textContent
+							+ stendhal.ui.buddyList.current.textContent.trim()
 							+ " ");
 				}
 			});
@@ -130,7 +130,7 @@ stendhal.ui.buddyList = {
 				action: function(entity) {
 					var action = {
 						"type": "where",
-						"target": stendhal.ui.buddyList.current.textContent,
+						"target": stendhal.ui.buddyList.current.textContent.trim(),
 						"zone": marauroa.currentZoneName
 					};
 					marauroa.clientFramework.sendAction(action);
@@ -142,7 +142,7 @@ stendhal.ui.buddyList = {
 				title: "Leave Message",
 				action: function(entity) {
 					stendhal.ui.chatinput.setText("/storemessage "
-							+ stendhal.ui.buddyList.current.textContent
+							+ stendhal.ui.buddyList.current.textContent.trim()
 							+ " ");
 				}
 			});
@@ -152,11 +152,11 @@ stendhal.ui.buddyList = {
 			action: function(entity) {
 				var action = {
 					"type": "removebuddy",
-					"target": stendhal.ui.buddyList.current.textContent,
+					"target": stendhal.ui.buddyList.current.textContent.trim(),
 					"zone": marauroa.currentZoneName
 				};
 				marauroa.clientFramework.sendAction(action);
-				stendhal.ui.buddyList.removeBuddy(stendhal.ui.buddyList.current.textContent);
+				stendhal.ui.buddyList.removeBuddy(stendhal.ui.buddyList.current.textContent.trim());
 			}
 		});
 
