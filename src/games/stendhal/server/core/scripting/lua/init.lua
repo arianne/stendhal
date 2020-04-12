@@ -195,4 +195,8 @@ function string.rtrim(st)
 end
 
 
+-- supplemental string method aliases
+string.isnumber = string.isNumber
+
+
 return true

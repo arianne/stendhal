@@ -100,8 +100,8 @@ public class LuaStringHelper {
 			}
 		});
 
-		/** add string.isnumber method */
-		stringTable.set("isnumber", new LuaFunction() {
+		/** add string.isNumber method */
+		stringTable.set("isNumber", new LuaFunction() {
 
 			/**
 			 * string.isnumber(arg)
