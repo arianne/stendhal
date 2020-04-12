@@ -129,6 +129,8 @@ end
 
 -- supplemental string method aliases
 string.isnumber = string.isNumber
+string.isNumeric = string.isNumber
+string.isnumeric = string.isNumber
 string.startswith = string.startsWith
 string.beginsWith = string.startsWith
 string.beginswith = string.startsWith
