@@ -59,6 +59,18 @@ public abstract class ScriptingSandbox {
 				rpobject.getID());
 	}
 
+	/**
+	 * Retrieves a zone by string ID.
+	 *
+	 * @param zoneName
+	 * 		Name of zone to retrieve.
+	 * @return
+	 * 		StendhalRPZone, if exists, <code>null</code> otherwise.
+	 */
+	public StendhalRPZone getZone(final String zoneName) {
+		return SingletonRepository.getRPWorld().getZone(zoneName);
+	}
+
 	public boolean setZone(final String name) {
 		zone = SingletonRepository.getRPWorld().getZone(name);
 		return (zone != null);
