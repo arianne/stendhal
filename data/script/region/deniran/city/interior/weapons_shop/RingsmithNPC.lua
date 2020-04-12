@@ -30,7 +30,7 @@ local requirements = {
 }
 
 local function getItemListString(includeFee)
-	sb = newStringBuilder()
+	sb = string.builder()
 
 	local reqCount = #requirements
 	if not includeFee then

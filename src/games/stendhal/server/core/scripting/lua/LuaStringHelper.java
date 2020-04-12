@@ -17,12 +17,17 @@ import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaUserdata;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+
+import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 
 
 /**
  * Adds some useful string function members to Lua "string" object.
  */
 public class LuaStringHelper {
+
+	private static final LuaLogger logger = LuaLogger.get();
 
 	private static LuaStringHelper instance;
 
@@ -49,14 +54,66 @@ public class LuaStringHelper {
 	 */
 	public void init(final LuaTable stringTable) {
 
+		/** add string.builder method */
+		stringTable.set("builder", new LuaFunction() {
+
+			/**
+			 * Creates a StringBuilder for use in Lua.
+			 *
+			 * @return
+			 * 		New StringBuilder instance.
+			 */
+			@Override
+			public LuaUserdata call() {
+				return (LuaUserdata) CoerceJavaToLua.coerce(new StringBuilder());
+			}
+
+			/**
+			 * Creates a StringBuilder for use in Lua.
+			 *
+			 * @param arg
+			 * 		Lua string to initialize StringBuilder with or <code>null</code>.
+			 * @return
+			 * 		New StringBuilder instance.
+			 */
+			@Override
+			public LuaUserdata call(final LuaValue arg) {
+				if (arg.isnil()) {
+					logger.warn("Argument to string.builder is nil");
+					return call();
+				}
+
+				return (LuaUserdata) CoerceJavaToLua.coerce(new StringBuilder(arg.tojstring()));
+			}
+		});
+
+		/** add string.split method */
 		stringTable.set("split", new LuaFunction() {
+
+			/**
+			 * @return
+			 * 		LuaStringHelper.split(arg1, arg2)
+			 */
 			@Override
 			public LuaValue call(final LuaValue arg1, final LuaValue arg2) {
 				return split(arg1.strvalue(), arg2.strvalue());
 			}
 		});
 
+		/** add string.isnumber method */
 		stringTable.set("isnumber", new LuaFunction() {
+
+			/**
+			 * string.isnumber(arg)
+			 *
+			 * Checks if a string contains numeric characters only.
+			 *
+			 * @param arg
+			 * 		The Lua string to be checked.
+			 * @return
+			 * 		<code>LuaBoolean.TRUE</code> if all characters are numeric,
+			 * 		<code>LuaBoolean.FALSE</code> otherwise.
+			 */
 			@Override
 			public LuaBoolean call(final LuaValue arg) {
 				final String st = arg.tojstring();
