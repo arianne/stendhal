@@ -58,7 +58,7 @@ public class QuestHelper {
 	 * @return
 	 * 		New LuaQuest instance.
 	 */
-	public LuaQuest createQuest() {
+	public LuaQuest create() {
 		return new LuaQuest();
 	}
 
@@ -74,7 +74,7 @@ public class QuestHelper {
 	 * @return
 	 * 		New LuaQuest instance.
 	 */
-	public LuaQuest createQuest(final String slotName, final String name) {
+	public LuaQuest create(final String slotName, final String name) {
 		return new LuaQuest(slotName, name);
 	}
 
