@@ -225,6 +225,8 @@ local function createNPC()
 		npc:say("Here is your scroll for " .. map .. ". What else can I do for you?")
 	end)
 
+	local hasScrollCondition = conditions:create("PlayerHasItemWithHimCondition", {"empty scroll"})
+
 	npc:add(ConversationStates.ATTENDING,
 		"gift",
 		nil,
@@ -249,14 +251,14 @@ local function createNPC()
 	-- not carrying empty scroll
 	npc:add(ConversationStates.ATTENDING,
 		"mark",
-		newNotCondition("PlayerHasItemWithHimCondition", "empty scroll"),
+		conditions:notCondition(hasScrollCondition),
 		ConversationStates.ATTENDING,
 		"You are not carrying an empty scroll.",
 		nil)
 
 	npc:add(ConversationStates.ATTENDING,
 		"mark",
-		newCondition("PlayerHasItemWithHimCondition", "empty scroll"),
+		hasScrollCondition,
 		ConversationStates.QUESTION_4,
 		"Please tell me the map and the X Y coordinates.",
 		nil)

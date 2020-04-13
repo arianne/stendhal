@@ -27,31 +27,6 @@ MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
 Color = luajava.bindClass("java.awt.Color")
 
 
---- Helper function for creating ChatCondition instances.
---
--- FIXME: this should be done with the "conditions" object
-newCondition = function(classname, ...)
-	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
-end
-
---- Helper function for creating NotCondition instances.
---
--- FIXME: this should be done with the "conditions" object
-newNotCondition = function(classname, ...)
-	if type(classname) == "table" then
-		return conditions:notCondition(classname)
-	end
-
-	return conditions:notCondition(newCondition(classname, ...))
-end
-
---- Helper function for creating ChatAction instances.
---
--- FIXME: this should be done with the "actions" object
-newAction = function(classname, ...)
-	return luajava.newInstance("games.stendhal.server.entity.npc.action." .. classname, ...)
-end
-
 
 -- ** table manipulation functions ** --
 

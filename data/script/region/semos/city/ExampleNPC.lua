@@ -48,17 +48,17 @@ if properties:equals("stendhal.testserver", "junk") then
 
 		lua:add(ConversationStates.ATTENDING,
 			"Lua",
-			newCondition("PlayerNextToCondition"),
+			conditions:create("PlayerNextToCondition"),
 			ConversationStates.ATTENDING,
 			"Um, could you back up please? I can smell your breath.",
-			newAction("NPCEmoteAction", "coughs", false))
+			actions:create("NPCEmoteAction", {"coughs", false}))
 
 		lua:add(ConversationStates.ATTENDING,
 			"Lua",
-			newCondition("NotCondition", newCondition("PlayerNextToCondition")),
+			conditions:notCondition(conditions:create("PlayerNextToCondition")),
 			ConversationStates.ATTENDING,
 			"That's my name, don't wear it out!",
-			newAction("NPCEmoteAction", "giggles", false))
+			actions:create("NPCEmoteAction", {"giggles", false}))
 
 		-- set up a sign for Lua
 		local sign = entities:createSign()

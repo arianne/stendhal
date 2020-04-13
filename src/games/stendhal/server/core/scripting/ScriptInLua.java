@@ -262,5 +262,9 @@ public class ScriptInLua extends ScriptingSandbox {
 
 			logger.error(message);
 		}
+
+		public void error(final Object obj, final Throwable throwable) {
+			logger.error(obj, throwable);
+		}
 	}
 }

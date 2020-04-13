@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,12 +58,12 @@ public class LuaConditionHelper {
 	/**
 	 * Creates a custom ChatCondition.
 	 *
-	 * @param f
-	 * 		Function to be invoked when ChatCondition.fire() is called.
+	 * @param lf
+	 * 		LuaFunction to be invoked when ChatCondition.fire() is called.
 	 * @return
 	 * 		New ChatCondition.
 	 */
-	public ChatCondition create(final LuaFunction f) {
+	public ChatCondition create(final LuaFunction lf) {
 		return new ChatCondition() {
 
 			@Override
@@ -69,7 +72,7 @@ public class LuaConditionHelper {
 				final LuaValue luaSentence = CoerceJavaToLua.coerce(sentence);
 				final LuaValue luaNPC = CoerceJavaToLua.coerce(npc);
 
-				final LuaValue result = f.call(luaPlayer, luaSentence, luaNPC);
+				final LuaValue result = lf.call(luaPlayer, luaSentence, luaNPC);
 
 				if (!result.isboolean()) {
 					logger.warn("Lua function did not return boolean value");
@@ -84,40 +87,62 @@ public class LuaConditionHelper {
 	/**
 	 * Creates an instance of a ChatCondition from the class name string.
 	 *
-	 * FIXME:
-	 *
 	 * @param className
 	 * 		Class basename.
-	 * @param params
-	 * 		Parameters that should be passed to the constructor.
+	 * @param args
+	 * 		Lua table of objects that should be passed to the constructor.
 	 * @return
 	 * 		New <code>ChatCondition</code> instance or <code>null</code>.
 	 */
-	/*
-	public ChatCondition newCondition(String className, final Object... params) {
+	public ChatCondition create(String className, final LuaTable args) {
 		className = "games.stendhal.server.entity.npc.condition." + className;
+		Object[] objects = null;
+		if (args != null && !args.isnil()) {
+			objects = LuaArrayHelper.get().toArray(args);
+		}
+
+		final boolean noArgs = objects == null || objects.length == 0;
 
 		try {
-			final Constructor<?>[] constructors = Class.forName(className).getConstructors();
-			for (final Constructor<?> con: constructors) {
+			if (noArgs) {
 				try {
-					return (ChatCondition) con.newInstance(new Object[] { params });
-				} catch (InvocationTargetException e2) {
+					return (ChatCondition) Class.forName(className).newInstance();
+				} catch (final InstantiationException e2) {
+					// do nothing
+				}
+			} else {
+				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
+				for (final Constructor<?> con: constructors) {
+					try {
+						return (ChatCondition) con.newInstance(objects);
+					} catch (final InvocationTargetException e2) {
+						// do nothing
+					} catch (final InstantiationException e2) {
+						// do nothing
+					} catch (final IllegalArgumentException e2) {
+						// do nothing
+					}
 				}
 			}
-		} catch (ClassNotFoundException e1) {
+		} catch (final ClassNotFoundException e1) {
 			logger.error(e1, e1);
-		} catch (InstantiationException e1) {
+		} catch (final IllegalAccessException e1) {
 			logger.error(e1, e1);
-		} catch (IllegalAccessException e1) {
-			logger.error(e1, e1);
-		} catch (IllegalArgumentException e1) {
-			logger.error(e1, e1);
+		}
+
+
+		// FIXME: should we thrown an exception here?
+
+		if (noArgs) {
+			logger.error("No default constructor for " + className);
+		} else if (objects != null) {
+			logger.error("No constructor for " + className + " found for args: " + Arrays.toString(objects));
+		} else {
+			logger.error("Unknown instantiation error for " + className); // should not happen
 		}
 
 		return null;
 	}
-	*/
 
 	/**
 	 * Creates a NotCondition instance.

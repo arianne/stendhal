@@ -85,21 +85,21 @@ if game:setZone(zone) then
 
 	local hasItemsCondition = {}
 	local startAction = {
-		newAction("SetQuestToTimeStampAction", questSlot),
-		newAction("SayTimeRemainingAction", questSlot, waitTime, "Okay, I will get started. Please come back in ",
-			"And be sure to ask me about your #ring."),
-		newAction("PlaySoundAction", "coins-01"),
+		actions:create("SetQuestToTimeStampAction", {questSlot}),
+		actions:create("SayTimeRemainingAction", {questSlot, waitTime, "Okay, I will get started. Please come back in ",
+			"And be sure to ask me about your #ring."}),
+		actions:create("PlaySoundAction", {"coins-01"}),
 	}
 
 	for _, item in ipairs(requirements) do
-		table.insert(hasItemsCondition, newCondition("PlayerHasItemWithHimCondition", item[1], item[2]))
-		table.insert(startAction, newAction("DropItemAction", item[1], item[2]))
+		table.insert(hasItemsCondition, conditions:create("PlayerHasItemWithHimCondition", {item[1], item[2]}))
+		table.insert(startAction, actions:create("DropItemAction", {item[1], item[2]}))
 	end
 
 	local rewardAction = {
-		newAction("EquipItemAction", ring),
-		newAction("SetQuestAction", questSlot, nil),
-		newAction("IncreaseItemExchangeAction", "produce", ring)
+		actions:create("EquipItemAction", {ring}),
+		actions:clearQuest(questSlot),
+		actions:create("IncreaseItemExchangeAction", {"produce", ring})
 	}
 
 	local forgePhrases = {"forge", "ring"}
@@ -107,8 +107,8 @@ if game:setZone(zone) then
 	ringsmith:add(ConversationStates.ATTENDING,
 		forgePhrases,
 		{
-			newCondition("QuestNotActiveCondition", questSlot),
-			newNotCondition(hasItemsCondition),
+			conditions:create("QuestNotActiveCondition", {questSlot}),
+			conditions:notCondition(hasItemsCondition),
 		},
 		ConversationStates.ATTENDING,
 		"If you bring me " .. getItemListString(true) .. ", I can make a special ring for you.",
@@ -117,7 +117,7 @@ if game:setZone(zone) then
 	ringsmith:add(ConversationStates.ATTENDING,
 		forgePhrases,
 		{
-			newCondition("QuestNotActiveCondition", questSlot),
+			conditions:create("QuestNotActiveCondition", {questSlot}),
 			hasItemsCondition,
 		},
 		ConversationStates.QUESTION_1,
@@ -134,7 +134,7 @@ if game:setZone(zone) then
 
 	ringsmith:add(ConversationStates.QUESTION_1,
 		ConversationPhrases.YES_MESSAGES,
-		newNotCondition(hasItemsCondition),
+		conditions:notCondition(hasItemsCondition),
 		ConversationStates.ATTENDING,
 		"You seem to have dropped something.",
 		nil)
@@ -149,18 +149,18 @@ if game:setZone(zone) then
 	ringsmith:add(ConversationStates.ATTENDING,
 		forgePhrases,
 		{
-			newCondition("QuestActiveCondition", questSlot),
-			newNotCondition("TimePassedCondition", questSlot, waitTime),
+			conditions:create("QuestActiveCondition", {questSlot}),
+			conditions:notCondition(conditions:create("TimePassedCondition", {questSlot, waitTime})),
 		},
 		ConversationStates.ATTENDING,
 		nil,
-		newAction("SayTimeRemainingAction", questSlot, waitTime, "Your ring is not ready. Please come back in"))
+		actions:create("SayTimeRemainingAction", {questSlot, waitTime, "Your ring is not ready. Please come back in"}))
 
 	ringsmith:add(ConversationStates.ATTENDING,
 		forgePhrases,
 		{
-			newCondition("QuestActiveCondition", questSlot),
-			newCondition("TimePassedCondition", questSlot, waitTime),
+			conditions:create("QuestActiveCondition", {questSlot}),
+			conditions:create("TimePassedCondition", {questSlot, waitTime}),
 		},
 		ConversationStates.ATTENDING,
 		"Here is your " .. ring .. ".",

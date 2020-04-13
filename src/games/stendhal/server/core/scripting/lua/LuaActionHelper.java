@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +27,7 @@ import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -54,12 +58,12 @@ public class LuaActionHelper {
 	/**
 	 * Creates a custom ChatAction.
 	 *
-	 * @param f
+	 * @param lf
 	 * 		Function to be invoked when ChatAction.fire() is called.
 	 * @return
 	 * 		New ChatAction instance.
 	 */
-	public ChatAction create(final LuaFunction f) {
+	public ChatAction create(final LuaFunction lf) {
 		return new ChatAction() {
 
 			@Override
@@ -70,7 +74,7 @@ public class LuaActionHelper {
 
 				final LuaValue[] all = {luaPlayer, luaSentence, luaNPC};
 
-				f.invoke(all);
+				lf.invoke(all);
 			}
 		};
 	}
@@ -78,54 +82,62 @@ public class LuaActionHelper {
 	/**
 	 * Creates an instance of a ChatAction from the class name string.
 	 *
-	 * FIXME:
-	 *
 	 * @param className
 	 * 		Class basename.
-	 * @param params
-	 * 		Parameters that should be passed to the constructor.
+	 * @param args
+	 * 		Lua table of objects that should be passed to the constructor.
 	 * @return
 	 * 		New <code>ChatAction</code> instance or <code>null</code>.
 	 */
-	/*
-	public ChatAction newAction(String className, final Object... params) {
+	public ChatAction create(String className, final LuaTable args) {
 		className = "games.stendhal.server.entity.npc.action." + className;
+		Object[] objects = null;
+		if (args != null && !args.isnil()) {
+			objects = LuaArrayHelper.get().toArray(args);
+		}
+
+		final boolean noArgs = objects == null || objects.length == 0;
 
 		try {
-			if (params.length == 0) {
+			if (noArgs) {
 				try {
-					final Constructor<?> constructor = Class.forName(className).getConstructor();
-
-					return (ChatAction) constructor.newInstance();
-				} catch (InvocationTargetException e2) {
+					return (ChatAction) Class.forName(className).newInstance();
+				} catch (final InstantiationException e2) {
+					// do nothing
 				}
 			} else {
 				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
-
 				for (final Constructor<?> con: constructors) {
 					try {
-						return (ChatAction) con.newInstance(new Object[] { params });
-					} catch (InvocationTargetException e2) {
+						return (ChatAction) con.newInstance(objects);
+					} catch (final InvocationTargetException e2) {
+						// do nothing
+					} catch (final InstantiationException e2) {
+						// do nothing
+					} catch (final IllegalArgumentException e2) {
+						// do nothing
 					}
 				}
 			}
-		} catch (ClassNotFoundException e1) {
+		} catch (final ClassNotFoundException e1) {
 			logger.error(e1, e1);
-		} catch (InstantiationException e1) {
+		} catch (final IllegalAccessException e1) {
 			logger.error(e1, e1);
-		} catch (IllegalAccessException e1) {
-			logger.error(e1, e1);
-		} catch (IllegalArgumentException e1) {
-			logger.error(e1, e1);
-		} catch (NoSuchMethodException e1) {
-			logger.error(e1, e1);
-		} catch (SecurityException e1) {
-			logger.error(e1, e1);
+		}
+
+
+		// FIXME: should we thrown an exception here?
+
+		if (noArgs) {
+			logger.error("No default constructor for " + className);
+		} else if (objects != null) {
+			logger.error("No constructor for " + className + " found for args: " + Arrays.toString(objects));
+		} else {
+			logger.error("Unknown instantiation error for " + className); // should not happen
 		}
 
 		return null;
 	}
-	*/
 
 	/**
 	 * Helper method for creating a MultipleActions instance.
@@ -149,5 +161,20 @@ public class LuaActionHelper {
 		}
 
 		return new MultipleActions(actions.toArray(new ChatAction[] {}));
+	}
+
+	/**
+	 * Removes quest slot from player.
+	 *
+	 * This is needed because it's impossible to pass <code>nil</code> values in
+	 * a LuaTable.
+	 *
+	 * @param questSlot
+	 * 		Quest string identifier.
+	 * @return
+	 * 		New SetQuestAction that sets quest state to <code>null</code>.
+	 */
+	public SetQuestAction clearQuest(final String questSlot) {
+		return new SetQuestAction(questSlot, null);
 	}
 }
