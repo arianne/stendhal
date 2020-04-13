@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.HP_BAR_PROPERTY;
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
@@ -36,6 +38,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
@@ -155,6 +158,17 @@ class VisualSettings {
 		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
 				true, "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
 		page.add(scaleScreenToggle);
+
+		// controller for setting visibility of HP br
+		final JCheckBox showHPBarToggle = SettingsComponentFactory.createSettingsToggle(HP_BAR_PROPERTY, true, "Show HP bar", "Show bar representation of HP.");
+		showHPBarToggle.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(final ItemEvent e) {
+				StatsPanelController.get().toggleHPBar(e.getStateChange() == ItemEvent.SELECTED);
+			}
+		});
+		page.add(showHPBarToggle);
+
 		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
 
 		// Font stuff

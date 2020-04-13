@@ -1,0 +1,36 @@
+--[[
+ ***************************************************************************
+ *                       Copyright © 2020 - Arianne                        *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************
+]]
+
+
+--- This script does not have a .lua filename extension because it is
+--  loaded by data/script/region/semos/city/ExampleNPC.lua instead of
+--  being loaded directly.
+
+
+local quest = quests.simple:create("apples_for_lua", "Apples for Lua", "Lua")
+quest:setDescription("Lua is hungry and wants some apples to eat.")
+quest:setReply(quests.simple.ID_REQUEST, "I'm hungry. Would you get me some apples?")
+quest:setReply(quests.simple.ID_ACCEPT, "Great! I would like 5 apples.")
+quest:setReply(quests.simple.ID_REJECT, "Fine! I don't need your help anyway.")
+quest:setReply(quests.simple.ID_REWARD, "Thank a bunch!")
+quest:setVerboseReward(true) -- the default is "true", just showing here as an example
+quest:setItemToCollect("apple", 5)
+quest:setRepeatable(1)
+quest:setXPReward(50)
+quest:setKarmaReward(5.0)
+quest:addItemReward("rose", 3)
+quest:addItemReward("money", 100)
+quest:setRegion(Region.SEMOS_CITY)
+
+quests:register(quest)

@@ -59,6 +59,7 @@ Changelog
   - werewolf
 - quest changes:
   - 5 unicorn horns added to Kirdneh Museum quest
+  - Fix KillEnemyArmy-Quest: All Blordroughs are counted
 - new quests:
   - Collect Enemy Data
 - new RATK stat independent from ATK
@@ -74,6 +75,9 @@ Changelog
 *graphics*
 - mithrilbourgh army enemies now have same skin color as mithrilbourgh wizard
 - new sprite for demon enemy
+
+*Java client*
+- rings can now be animated
 
 
 1.33

@@ -30,10 +30,22 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.SyntaxException;
 
+
+/**
+ * An event to show which creatures a player has killed.
+ */
 public class BestiaryEvent extends RPEvent {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(BestiaryEvent.class);
+
+	private final List<Creature> standardEnemies;
+	private final List<Creature> rareEnemies;
+	private final List<Creature> abnormalEnemies;
+
+	private final List<String> soloKills;
+	private final List<String> sharedKills;
+
 
 	/**
 	 * Creates the rpclass.
@@ -48,14 +60,37 @@ public class BestiaryEvent extends RPEvent {
 	}
 
 	/**
+	 * Creates a new bestiary event.
 	 *
 	 * @param player
 	 * 		Player from whom the bestiary is requested.
 	 */
 	public BestiaryEvent(final Player player) {
+		this(player, true, true);
+	}
+
+	/**
+	 * Creates a new bestiary event.
+	 *
+	 * @param player
+	 * 		Player from whom the bestiary is requested.
+	 * @param includeRare
+	 * 		If <code>true</code>, creatures marked as "rare" will be included.
+	 * @param includeAbnormal
+	 * 		If <code>true</code>, creatures marked as "abnormal" will be included.
+	 */
+	public BestiaryEvent(final Player player, final boolean includeRare, final boolean includeAbnormal) {
 		super(BESTIARY);
 
-		final StringBuilder sb = new StringBuilder();
+		// lists of enemies to be shown in bestiary
+		standardEnemies = new ArrayList<>();
+		rareEnemies = new ArrayList<>();
+		abnormalEnemies = new ArrayList<>();
+
+		soloKills = new ArrayList<String>();
+		sharedKills = new ArrayList<String>();
+
+		final StringBuilder formatted = new StringBuilder();
 
 		if (player.hasSlot("!kills")) {
 			String killString = player.getSlot("!kills").getFirst().toAttributeString();
@@ -71,9 +106,6 @@ public class BestiaryEvent extends RPEvent {
 			}
 
 			final EntityManager em = SingletonRepository.getEntityManager();
-
-			final List<String> soloKills = new ArrayList<String>();
-			final List<String> sharedKills = new ArrayList<String>();
 
 			for (String k: killString.split("\\]\\[")) {
 				boolean shared = false;
@@ -104,51 +136,90 @@ public class BestiaryEvent extends RPEvent {
 				}
 			}
 
-			// list of enemies to be shown in bestiary
-			final List<Creature> standardEnemies = new ArrayList<>();
-			// exclude rare & abnormal enemies
+			// place rare & abnormal enemies in separate lists
 			for (final Creature e: em.getCreatures()) {
-				if (!e.isAbnormal()) {
+				if (e.isRare()) {
+					rareEnemies.add(e);
+				} else if (e.isAbnormal()) {
+					abnormalEnemies.add(e);
+				} else {
 					standardEnemies.add(e);
 				}
 			}
 
 			// sort alphabetically
-			Collections.sort(standardEnemies, new Comparator<Creature>() {
+			final Comparator<Creature> sorter = new Comparator<Creature>() {
 				@Override
 				public int compare(final Creature c1, final Creature c2) {
 					return (c1.getName().toLowerCase().compareTo(c2.getName().toLowerCase()));
 				}
-			});
+			};
+			Collections.sort(standardEnemies, sorter);
+			Collections.sort(rareEnemies, sorter);
+			Collections.sort(abnormalEnemies, sorter);
 
-			final int creatureCount = standardEnemies.size();
-			int idx = 0;
-			for (final Creature enemy: standardEnemies) {
-				String name = enemy.getName();
-				Boolean solo = false;
-				Boolean shared = false;
-
-				if (soloKills.contains(name)) {
-					solo = true;
-				}
-				if (sharedKills.contains(name)) {
-					shared = true;
-				}
-
-				// hide the names of creatures not killed by player
-				if (!solo && !shared) {
-					name = "???";
-				}
-
-				sb.append(name + "," + solo.toString() + "," + shared.toString());
-				if (idx != creatureCount - 1) {
-					sb.append(";");
-				}
-
-				idx++;
+			formatted.append(getFormattedString(standardEnemies));
+			if (includeRare) {
+				formatted.append(getFormattedString(rareEnemies));
+			}
+			if (includeAbnormal) {
+				formatted.append(getFormattedString(abnormalEnemies));
 			}
 		}
 
-		put("enemies", sb.toString());
+		put("enemies", formatted.toString());
+	}
+
+	/**
+	 * Formats a list of creatures into a string to be sent to & parsed by client.
+	 *
+	 * Entries are separated by semi-colons & are in the form of "name,solo,shared"
+	 * where "solo" & "shared" are boolean values.
+	 *
+	 * @param enemies
+	 * 		List of enemies.
+	 * @return
+	 * 		Formatted string.
+	 */
+	private String getFormattedString(final List<Creature> enemies) {
+		final boolean rare = enemies.equals(rareEnemies);
+		final boolean abnormal = enemies.equals(abnormalEnemies);
+
+		final StringBuilder sb = new StringBuilder();
+		final int creatureCount = enemies.size();
+		int idx = 0;
+
+		for (final Creature enemy: enemies) {
+			String name = enemy.getName();
+			Boolean solo = false;
+			Boolean shared = false;
+
+			if (soloKills.contains(name)) {
+				solo = true;
+			}
+			if (sharedKills.contains(name)) {
+				shared = true;
+			}
+
+			// hide the names of creatures not killed by player
+			if (!solo && !shared) {
+				name = "???";
+			}
+
+			if (rare) {
+				name += " (rare)";
+			} else if (abnormal) {
+				name += " (abnormal)";
+			}
+
+			sb.append(name + "," + solo.toString() + "," + shared.toString());
+			if (idx != creatureCount - 1) {
+				sb.append(";");
+			}
+
+			idx++;
+		}
+
+		return sb.toString();
 	}
 }

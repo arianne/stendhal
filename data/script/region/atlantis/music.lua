@@ -34,7 +34,7 @@ for _, z in pairs(zones) do
 	local zone = "-7_" .. z
 
 	if game:setZone(zone) then
-		setZoneMusic("settlement_of_the_frontier", 85)
+		game:setMusic("settlement_of_the_frontier", {volume=85})
 	else
 		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
 	end

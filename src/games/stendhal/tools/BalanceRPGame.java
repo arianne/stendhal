@@ -203,6 +203,8 @@ public class BalanceRPGame {
 
 			durationThreshold = DEFAULT_DURATION_THRESHOLD;
 
+			Integer proposedXPValue = null;
+
 			boolean balanced = false;
 			int tries = 0;
 			while (!balanced) {
@@ -211,7 +213,7 @@ public class BalanceRPGame {
 				final int meanTurns = results.first();
 				final int meanLeftHP = results.second();
 
-				final int proposedXPValue = (int) ((2 * creature.getLevel() + 1) * (meanTurns / 2.0));
+				proposedXPValue = (int) ((2 * creature.getLevel() + 1) * (meanTurns / 2.0));
 				creature.setLevel(creature.getLevel(), proposedXPValue);
 
 				System.out.println("Target ATK: "
@@ -274,6 +276,11 @@ public class BalanceRPGame {
 			stringBuilder.append(target.getDef());
 			stringBuilder.append("\t\tHP: ");
 			stringBuilder.append(target.getBaseHP());
+
+			if (System.getProperty("showxp") != null && proposedXPValue != null) {
+				stringBuilder.append("\t\tSuggested XP: " + proposedXPValue);
+			}
+
 			System.out.println(stringBuilder.toString());
 		}
 	}

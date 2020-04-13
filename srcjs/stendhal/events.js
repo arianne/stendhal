@@ -196,3 +196,60 @@ marauroa.rpeventFactory["view_change"] = marauroa.util.fromProto(marauroa.rpeven
 	}
 });
 // Dummy comment to prevent accidental re-push of a rebase done into the wrong direction
+
+marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		if (!this.hasOwnProperty("enemies")) {
+			// FIXME: proper logging of errors?
+			console.log("ERROR: event does not have \"enemies\" attribute");
+			return;
+		}
+
+		const title = "Bestiary";
+		var header = ["\"???\" = unknown"];
+
+		const hasRare = this["enemies"].includes("(rare)");
+		const hasAbnormal = this["enemies"].includes("(abnormal)");
+
+		// show explanation of "rare" & "abnormal" creatures in header
+		if (hasRare || hasAbnormal) {
+			var subheader = "";
+			if (!hasRare) {
+				subheader += "\"abnormal\"";
+			} else {
+				subheader += "\"rare\"";
+				if (hasAbnormal) {
+					subheader += " and \"abnormal\"";
+				}
+			}
+
+			header[1] = subheader + " creatures not required for achievements";
+		}
+
+		// spacing for clarity
+		header[2] = "------------------";
+
+		// FIXME: hack until a proper window is implemented
+		stendhal.ui.chatLog.addLine("normal", title + ":");
+		for (h of header) {
+			stendhal.ui.chatLog.addLine("normal", h);
+		}
+
+		const enemies = this["enemies"].split(";");
+		for (e of enemies) {
+			const info = e.split(",");
+			const name = info[0];
+			var solo = " ";
+			var shared = " ";
+			if (info[1] == "true") {
+				solo = "✔";
+			}
+			if (info[2] == "true") {
+				shared = "✔";
+			}
+
+			// FIXME: hack until a proper window is implemented
+			stendhal.ui.chatLog.addLine("normal", name + ":   solo [" + solo + "], shared [" + shared + "]");
+		}
+	}
+});

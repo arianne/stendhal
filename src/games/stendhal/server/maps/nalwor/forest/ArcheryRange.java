@@ -63,7 +63,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
-import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
 
@@ -124,8 +123,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	/** position of gate that manages access to training area */
 	private static final Point GATE_POS = new Point(116, 104);
 
-	/** misc objects for JUnit test */
-	private static AbstractQuest quest;
 	private static ShopSign blackboard;
 
 	/** message when player tries to enter without paying */
@@ -149,7 +146,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		initShop();
 		initRepairShop();
 		initTraining();
-		addToQuestSystem();
 	}
 
 	/**
@@ -446,35 +442,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	}
 
 	/**
-	 * Makes visible in inspect command.
-	 */
-	private void addToQuestSystem() {
-		quest = new AbstractQuest() {
-
-			@Override
-			public List<String> getHistory(Player player) {
-				return null;
-			}
-
-			@Override
-			public String getSlotName() {
-				return QUEST_SLOT;
-			}
-
-			@Override
-			public void addToWorld() {
-			}
-
-			@Override
-			public String getName() {
-				return "ArcheryRange";
-			}
-		};
-
-		SingletonRepository.getStendhalQuestSystem().loadQuest(quest);
-	}
-
-	/**
 	 * Allows time remaining to be altered by changing quest slot.
 	 */
 	private Integer updateTimeRemaining(final Player player) {
@@ -581,7 +548,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	 */
 	public List<Object> getJunitObjects() {
 		return Arrays.asList(
-				quest,
 				blackboard,
 				COST,
 				TRAIN_TIME);

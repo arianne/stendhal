@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -76,6 +75,7 @@ public class BalloonForBobbyTest {
 	}
 
 	public void runQuestDialogue() {
+		System.getProperties().remove("stendhal.minetown");
 
 		npc = SingletonRepository.getNPCList().get("Bobby");
 		en = npc.getEngine();
@@ -171,7 +171,7 @@ public class BalloonForBobbyTest {
 		Outfit outfitWithBalloon = new Outfit(5, 4, 3, null, 0, null, 2, null, 1);
 
 		// Mine Town weeks are on: it should not matter if player has a balloon or not
-		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());
+		System.setProperty("stendhal.minetown", "true");
 
 		// Player HAS balloon; Mine Town Weeks ARE ON
 		player.setOutfit(outfitWithBalloon);
@@ -195,12 +195,12 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 
-		StendhalQuestSystem.get().unloadQuest(MineTownRevivalWeeks.QUEST_NAME);
+		System.getProperties().remove("stendhal.minetown");
 
 
 		// Player HAS NO balloon; Mine Town Weeks ARE ON
 		player.setOutfit(outfitNoBalloon);
-		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());
+		System.setProperty("stendhal.minetown", "true");
 
 		en.step(player, "hi");
 		assertEquals("Hm?", getReply(npc));
@@ -221,6 +221,6 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 
-		StendhalQuestSystem.get().unloadQuest(MineTownRevivalWeeks.QUEST_NAME);
+		System.getProperties().remove("stendhal.minetown");
 	}
 }

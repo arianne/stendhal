@@ -2505,7 +2505,7 @@ public class Player extends DressedEntity implements UseListener {
 	 *            the item name
 	 * @param count
 	 */
-	public void incProducedCountForItem(String item, int count) {
+	public void incProducedForItem(String item, int count) {
 		itemCounter.incProducedForItem(item, count);
 		// check achievements in production category
 		AchievementNotifier.get().onProduction(this);

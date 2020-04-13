@@ -194,15 +194,21 @@ public final class StatsPanelController {
 	 */
 	private void updateHP() {
 
-		int maxhpvalue = maxhp;
+		final int maxhpvalue;
 		if (maxhpModified != 0) {
 			maxhpvalue = maxhpModified;
+		} else {
+			maxhpvalue = maxhp;
 		}
+
 		final String text = "HP:" + SPC + hp + "/" + maxhpvalue;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				panel.setHP(text);
+				if (maxhpvalue > 0) {
+					panel.setHPBar(maxhpvalue, hp);
+				}
 			}
 		});
 	}
@@ -250,6 +256,16 @@ public final class StatsPanelController {
 				panel.setRatk(text);
 			}
 		});
+	}
+
+	/**
+	 * Show/Hide HP bar.
+	 *
+	 * @param show
+	 * 		If <code>true</code>, HP bar will be visible.
+	 */
+	public void toggleHPBar(final boolean show) {
+		panel.toggleHPBar(show);
 	}
 
 	/**

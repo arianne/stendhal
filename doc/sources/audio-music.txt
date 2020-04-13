@@ -10,7 +10,7 @@ bongos.*                        MarleneAyni; CC0; http://freesound.org/people/Ma
 casket.ogg                      Tozan; CC0; https://opengameart.org/node/68090
 christmastree.*                 Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
 come_to_rest.ogg                Storyteller; GPL
-dark_quest.ogg                  Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
+dark_quest.*                    Alexandr Zhelanov; CC BY 4.0; https://soundcloud.com/alexandr-zhelanov, https://opengameart.org/node/83011
 deep_forest.ogg                 Storyteller; GPL
 dungeon_entrance.ogg            Storyteller; GPL
 eerie_curious.ogg               Leerie; CC BY 3.0; https://opengameart.org/node/43367
@@ -22,7 +22,7 @@ market_day.ogg                  RandomMind; CC0; https://opengameart.org/node/93
 medieval_harp.ogg               Storyteller; GPL
 mystical_aura.ogg               Storyteller; GPL
 new_hope.ogg                    Storyteller; GPL
-night_town.ogg                  Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
+night_town.*                    Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
 ohhowjoyfully.*                 Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
 pleasant_creek_loop.ogg         Matthew Pablo; CC BY 3.0; https://opengameart.org/node/21503, http://matthewpablo.com/
 sacred_moments.ogg              Storyteller; GPL

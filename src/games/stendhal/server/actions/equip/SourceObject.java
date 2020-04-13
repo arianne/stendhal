@@ -24,6 +24,7 @@ import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.OwnedItem;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -315,11 +316,22 @@ class SourceObject extends MoveableObject {
 	 * @return true if successful
 	 */
 	public boolean moveTo(final DestinationObject dest, final Player player) {
-		if (!((EquipListener) item).canBeEquippedIn(dest.getContentSlotName())) {
+		final String targetSlot = dest.getContentSlotName();
+
+		if (!((EquipListener) item).canBeEquippedIn(targetSlot)) {
 			// give some feedback
-			player.sendPrivateText("You can't carry this " + item.getTitle() + " on your " + dest.getContentSlotName() + ".");
+			player.sendPrivateText("You can't carry this " + item.getTitle() + " on your " + targetSlot + ".");
 			logger.warn("tried to equip an entity into disallowed slot: " + item.getClass() + "; equip rejected");
 			return false;
+		}
+
+		if (item instanceof OwnedItem) {
+			final OwnedItem owned = (OwnedItem) item;
+			if (owned.hasOwner() && !owned.canEquipToSlot(player, targetSlot)) {
+				owned.onEquipFail(player, targetSlot);
+				logger.warn("tried to equip an owned entity into disallowed slot: " + item.getClass() + "; equip rejected");
+				return false;
+			}
 		}
 
 		if (!dest.isValid() || !dest.preCheck(item, player)) {

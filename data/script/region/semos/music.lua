@@ -26,7 +26,7 @@ local zones = {
 
 for _, zone in pairs(zones) do
 	if game:setZone(zone) then
-		setZoneMusic("pleasant_creek_loop", 85)
+		game:setMusic("pleasant_creek_loop", {volume=85})
 	else
 		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
 	end

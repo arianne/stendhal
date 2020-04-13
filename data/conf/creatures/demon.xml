@@ -332,6 +332,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 

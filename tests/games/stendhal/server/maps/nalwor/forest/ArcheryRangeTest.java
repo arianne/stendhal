@@ -36,7 +36,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.quests.AbstractQuest;
 import utilities.QuestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
@@ -76,10 +75,10 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 		range.configureZone(zone, null);
 
 		final List<Object> objects = range.getJunitObjects();
-		questSlot = ((AbstractQuest) objects.get(0)).getSlotName();
-		blackboard = ((ShopSign) objects.get(1));
-		cost = ((int) objects.get(2));
-		trainTime = ((int) objects.get(3));
+		questSlot = "archery_range";
+		blackboard = ((ShopSign) objects.get(0));
+		cost = ((int) objects.get(1));
+		trainTime = ((int) objects.get(2));
 		trainTimeMinutes = Integer.toString(trainTime / MathHelper.SECONDS_IN_ONE_MINUTE);
 
 		npc = SingletonRepository.getNPCList().get("Chester");

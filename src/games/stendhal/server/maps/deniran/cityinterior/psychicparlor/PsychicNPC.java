@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.deniran.cityinterior.psychicparlor;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -27,6 +28,8 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.OwnedItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -39,6 +42,7 @@ import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
@@ -223,16 +227,29 @@ public class PsychicNPC implements ZoneConfigurator {
 		};
 
 
+		final List<String> readPhrases = Arrays.asList("read", "reading");
+
+		// player is not carrying a bestiary
 		psychic.add(ConversationStates.ATTENDING,
-				Arrays.asList("read", "reading"),
+				readPhrases,
 				new NotCondition(new PlayerHasItemWithHimCondition("bestiary")),
 				ConversationStates.ATTENDING,
 				"I cannot read into your past unless you have a #record of the enemies you have faced.",
 				null);
 
+		// player does not have a usable bestiary
 		psychic.add(ConversationStates.ATTENDING,
-				Arrays.asList("read", "reading"),
-				new PlayerHasItemWithHimCondition("bestiary"),
+				readPhrases,
+				cannotUseHeldBestiary(),
+				ConversationStates.ATTENDING,
+				"It appears that bestiary you are carrying belongs to someone else. I suggest you return it to them.",
+				null);
+
+		psychic.add(ConversationStates.ATTENDING,
+				readPhrases,
+				new OrCondition(
+						hasNonOwnedBestiary(),
+						ownsBestiary()),
 				ConversationStates.QUESTION_1,
 				"I see you are carrying a bestiary. Which enemy would you like information about?",
 				null);
@@ -250,7 +267,7 @@ public class PsychicNPC implements ZoneConfigurator {
 						isValidCreatureCondition,
 						new NotCondition(hasKilledCondition)),
 				ConversationStates.ATTENDING,
-				"It appears you have not encountered this creature.",
+				"It appears you have not encountered that creature.",
 				null);
 
 		psychic.add(ConversationStates.QUESTION_1,
@@ -284,7 +301,63 @@ public class PsychicNPC implements ZoneConfigurator {
 				sayKillsAction);
 	}
 
+	/**
+	 * Calculates the fee for receiving a reading based on player & requested
+	 * creature levels.
+	 *
+	 * @param player
+	 * 		The player requesting the reading.
+	 */
 	private void calculateFee(final Player player) {
 		currentFee = player.getLevel() * 10 + requestedEnemy.getLevel() * 15;
+	}
+
+	/**
+	 * Checks if player is carrying a non-owned bestiary.
+	 */
+	private ChatCondition hasNonOwnedBestiary() {
+		return new ChatCondition() {
+
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				for (final Item bestiary: player.getAllEquipped("bestiary")) {
+					if (!((OwnedItem) bestiary).hasOwner()) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+		};
+	}
+
+	/**
+	 * Checks if player is carrying a bestiary that he/she is the owner of.
+	 */
+	private ChatCondition ownsBestiary() {
+		return new ChatCondition() {
+
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				for (final Item bestiary: player.getAllEquipped("bestiary")) {
+					if (((OwnedItem) bestiary).isOwner(player.getName())) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+		};
+	}
+
+	/**
+	 * Checks if the player is only carrying bestiary that he/she cannot use.
+	 */
+	private ChatCondition cannotUseHeldBestiary() {
+		return new AndCondition(
+				new PlayerHasItemWithHimCondition("bestiary"),
+				new NotCondition(new OrCondition(
+						hasNonOwnedBestiary(),
+						ownsBestiary())));
 	}
 }

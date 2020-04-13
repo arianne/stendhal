@@ -22,35 +22,43 @@ import games.stendhal.server.events.BestiaryEvent;
 /**
  * Item class that shows some basic information about enemies around Faiumoni.
  */
-public class Bestiary extends Item {
+public class Bestiary extends OwnedItem {
 
 	public Bestiary(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		setMenu("Read|Use");
 	}
 
-	public Bestiary(final Item item) {
+	public Bestiary(final Bestiary item) {
 		super(item);
 	}
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		if (user instanceof Player) {
-			final Player player = (Player) user;
-			final String infostring = getInfoString();
-
-			// only allow owner to use
-			if (infostring != null && !player.getName().equals(infostring)) {
-				player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + infostring + ". Please return it to it's rightful owner.");
-				return false;
-			}
-
-			player.addEvent(new BestiaryEvent(player));
-			player.notifyWorldAboutChanges();
-
-			return true;
+		if (!(user instanceof Player)) {
+			return false;
 		}
 
-		return false;
+		final Player player = (Player) user;
+
+		if (!super.onUsed(player)) {
+			player.sendPrivateText(NotificationType.RESPONSE, "You read: This bestiary is the property of " + getOwner() + ". Please return it to its rightful owner.");
+			return false;
+		}
+
+		player.addEvent(new BestiaryEvent(player));
+		player.notifyWorldAboutChanges();
+
+		return true;
+	}
+
+	@Override
+	public void setOwner(final String name) {
+		put("infostring", name);
+	}
+
+	@Override
+	public String getOwner() {
+		return get("infostring");
 	}
 }

@@ -207,6 +207,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
+    <preview>5</preview>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>

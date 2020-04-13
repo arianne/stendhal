@@ -73,7 +73,7 @@ public class WeddingRing extends Item {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		RPObject base = getBaseContainer();
+		final RPObject base = getBaseContainer();
 
 		if ((user instanceof Player) && user.nextTo((Entity) base)) {
 			return teleportToSpouse((Player) user);
@@ -124,6 +124,12 @@ public class WeddingRing extends Item {
 	 * 	<code>false</code>
 	 */
 	private boolean teleportToSpouse(final Player player) {
+		// don't allow use if on the ground
+		if (!isContained()) {
+			player.sendPrivateText("You should pick the wedding ring up to use it.");
+			return false;
+		}
+
 		// check if pets and sheep are near
 		if (!player.isZoneChangeAllowed()) {
 			player.sendPrivateText("You were told to watch your pet, weren't you?");

@@ -19,7 +19,7 @@ local shopName = "buyanimalmaterials"
 
 
 local function initNPC()
-	buyer = npcHelper:createSpeakerNPC(buyerName)
+	buyer = entities:createSpeakerNPC(buyerName)
 	buyer:setOutfit("body=0,head=0,eyes=0,hair=11,dress=53")
 	buyer:setPosition(17, 21)
 	buyer:setDirection(Direction.UP)
@@ -37,10 +37,10 @@ local function initNPC()
 end
 
 local function initShop()
-	npcHelper:addBuyer(buyer, shops:get(shopName), false)
+	merchants:addBuyer(buyer, merchants.shops:get(shopName), false)
 
 	-- shop sign
-	local sign = game:createShopSign(shopName, "Animal Materials Barter", buyerName .. " buys the following items", false)
+	local sign = entities:createShopSign(shopName, "Animal Materials Barter", buyerName .. " buys the following items", false)
 	sign:setEntityClass("blackboard")
 	sign:setPosition(19, 20)
 

@@ -27,6 +27,9 @@ MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
 Color = luajava.bindClass("java.awt.Color")
 
 
+
+-- ** table manipulation functions ** --
+
 --- Cleans nil values from table.
 table.clean = function(tbl)
 	local tmp = {}
@@ -57,62 +60,56 @@ table.concat = function(tbl1, tbl2)
 	end
 end
 
---- Helper function for creating ChatCondition instances.
-newCondition = function(classname, ...)
-	return luajava.newInstance("games.stendhal.server.entity.npc.condition." .. classname, ...)
-end
 
---- Helper function for creating NotCondition instances.
-newNotCondition = function(classname, ...)
-	if type(classname) == "table" then
-		return npcHelper:newNotCondition(classname)
-	end
+-- ** string manipulation functions ** --
 
-	return npcHelper:newNotCondition(newCondition(classname, ...))
-end
-
---- Helper function for creating ChatAction instances.
-newAction = function(classname, ...)
-	return luajava.newInstance("games.stendhal.server.entity.npc.action." .. classname, ...)
-end
-
---- Sets the background music for the zone.
+--- Remove leading & trailing whitespace from string.
 --
--- @param filename
--- 		File basename excluding ".ogg" extensions.
--- @param volume
--- 		Volume level (default: 100)
-setZoneMusic = function(filename, volume, x, y, radius)
-	-- default volume
-	if volume == nil then
-		volume = 100
-	end
-
-	if x == nil then
-		x = 1
-	end
-	if y == nil then
-		y = 1
-	end
-
-	-- default radius
-	if radius == nil then
-		radius = 10000
-	end
-
-	local musicSource = luajava.newInstance("games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource", filename, radius, volume)
-	musicSource:setPosition(x, y)
-	game:add(musicSource)
-end
-
---- Exposes StringBuilder class to Lua.
+-- http://lua-users.org/wiki/CommonFunctions
 --
--- @param str
--- 		Optional string to add.
-newStringBuilder = function(str)
-	if str ~= nil then
-		return luajava.newInstance("java.lang.StringBuilder", str)
-	else
-		return luajava.newInstance("java.lang.StringBuilder")
-	end
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with leading & trailing whitespace removed.
+function string.trim(st)
+	return (st:gsub("^%s*(.-)%s*$", "%1"))
 end
+
+--- Remove leading whitespace from string.
+--
+-- http://lua-users.org/wiki/CommonFunctions
+--
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with leading whitespace removed.
+function string.ltrim(st)
+	return (st:gsub("^%s*", ""))
+end
+
+--- Remove trailing whitespace from string.
+--
+-- http://lua-users.org/wiki/CommonFunctions
+--
+-- @param st
+-- 		String to be manipulated.
+-- @return
+-- 		Copy of string with trailing whitespace removed.
+function string.rtrim(st)
+	local n = #st
+	while n > 0 and st:find("^%s", n) do n = n - 1 end
+	return st:sub(1, n)
+end
+
+
+-- supplemental string method aliases
+string.isnumber = string.isNumber
+string.isNumeric = string.isNumber
+string.isnumeric = string.isNumber
+string.startswith = string.startsWith
+string.beginsWith = string.startsWith
+string.beginswith = string.startsWith
+string.endswith = string.endsWith
+
+
+return true

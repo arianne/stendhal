@@ -56,8 +56,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.AbstractQuest;
-import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
 
@@ -131,7 +129,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		initEntrance();
 		initNPC();
 		initDialogue();
-		addToQuestSystem();
 	}
 
 	/**
@@ -310,35 +307,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				ConversationStates.ATTENDING,
 				"Good luck then.",
 				null);
-	}
-
-	/**
-	 * Makes visible in inspect command.
-	 */
-	private void addToQuestSystem() {
-		final IQuest quest = new AbstractQuest() {
-
-			@Override
-			public List<String> getHistory(final Player player) {
-				return null;
-			}
-
-			@Override
-			public String getSlotName() {
-				return QUEST_SLOT;
-			}
-
-			@Override
-			public void addToWorld() {
-			}
-
-			@Override
-			public String getName() {
-				return "Dojo";
-			}
-		};
-
-		SingletonRepository.getStendhalQuestSystem().loadQuest(quest);
 	}
 
 	/**

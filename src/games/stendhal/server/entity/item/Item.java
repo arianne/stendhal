@@ -242,6 +242,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		// Number of uses for BreakableItem
 		entity.addAttribute("durability", Type.INT, Definition.VOLATILE);
 		entity.addAttribute("uses", Type.INT);
+
+		// player that owns the item
+		entity.addAttribute("owner", Type.STRING, Definition.HIDDEN);
 	}
 
 

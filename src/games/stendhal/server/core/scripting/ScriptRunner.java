@@ -524,6 +524,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 						// trim absolute path prefix
 						filepath = filepath.substring(modroot.length() - 1);
 
+						// mods must use an initialization script name "init.lua"
 						if (new File(filepath).getName().equals("init.lua")) {
 							modlist.add(filepath);
 						}
