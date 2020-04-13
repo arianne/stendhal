@@ -689,7 +689,7 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     // Stefan uses this to advance the quest:
-    // - after the player has gathered all of required ingredients for the main dish
+    // - after the player has gathered all of the required ingredients for the main dish
     // - after the player has asked Groongo which dessert he'd like along the main dish
     // - after the player has gathered all of required ingredients for the dessert
     class advanceQuestInProgressAction implements ChatAction {
@@ -895,7 +895,7 @@ public class MealForGroongo extends AbstractQuest {
                   Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2))) + "..." +
               "For that I'll need some ingredients that at the moment I'm missing: " +
                   Grammar.enumerateCollection(missingIngredients.toStringList()) + "..." +
-              "Do you happen to have them all of the required ingredients with you already?"
+              "Do you happen to have all of the required ingredients with you already?"
             );
 
             //logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
