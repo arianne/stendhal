@@ -31,11 +31,11 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Exposes ChatCondition classes to Lua.
  */
-public class ConditionHelper {
+public class LuaConditionHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
-	private static ConditionHelper instance;
+	private static LuaConditionHelper instance;
 
 
 	/**
@@ -44,9 +44,9 @@ public class ConditionHelper {
 	 * @return
 	 * 		Static ConditionHelper instance.
 	 */
-	public static ConditionHelper get() {
+	public static LuaConditionHelper get() {
 		if (instance == null) {
-			instance = new ConditionHelper();
+			instance = new LuaConditionHelper();
 		}
 
 		return instance;

@@ -21,9 +21,9 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 /**
  * Handles some conversion of Java arrays to Lua tables.
  */
-public class ArraysHelper {
+public class LuaArrayHelper {
 
-	private static ArraysHelper instance;
+	private static LuaArrayHelper instance;
 
 
 	/**
@@ -32,9 +32,9 @@ public class ArraysHelper {
 	 * @return
 	 * 		Static ArraysHelper instance.
 	 */
-	public static ArraysHelper get() {
+	public static LuaArrayHelper get() {
 		if (instance == null) {
-			instance = new ArraysHelper();
+			instance = new LuaArrayHelper();
 		}
 
 		return instance;

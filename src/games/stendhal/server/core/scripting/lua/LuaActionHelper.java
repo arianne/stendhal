@@ -30,11 +30,11 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Exposes ChatAction classes to Lua.
  */
-public class ActionHelper {
+public class LuaActionHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
-	private static ActionHelper instance;
+	private static LuaActionHelper instance;
 
 
 	/**
@@ -43,9 +43,9 @@ public class ActionHelper {
 	 * @return
 	 * 		Static ActionHelper instance.
 	 */
-	public static ActionHelper get() {
+	public static LuaActionHelper get() {
 		if (instance == null) {
-			instance = new ActionHelper();
+			instance = new LuaActionHelper();
 		}
 
 		return instance;

@@ -15,9 +15,9 @@ package games.stendhal.server.core.scripting.lua;
 /**
  * Exposes Java system properties to Lua.
  */
-public class PropertiesHelper {
+public class LuaPropertiesHelper {
 
-	private static PropertiesHelper instance;
+	private static LuaPropertiesHelper instance;
 
 
 	/**
@@ -26,9 +26,9 @@ public class PropertiesHelper {
 	 * @return
 	 * 		Static PropertiesHelper instance.
 	 */
-	public static PropertiesHelper get() {
+	public static LuaPropertiesHelper get() {
 		if (instance == null) {
-			instance = new PropertiesHelper();
+			instance = new LuaPropertiesHelper();
 		}
 
 		return instance;

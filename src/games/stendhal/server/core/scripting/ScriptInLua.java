@@ -30,14 +30,14 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.scripting.lua.ActionHelper;
-import games.stendhal.server.core.scripting.lua.ArraysHelper;
-import games.stendhal.server.core.scripting.lua.ConditionHelper;
-import games.stendhal.server.core.scripting.lua.EntityHelper;
+import games.stendhal.server.core.scripting.lua.LuaActionHelper;
+import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
+import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
+import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
+import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
+import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
+import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
-import games.stendhal.server.core.scripting.lua.MerchantHelper;
-import games.stendhal.server.core.scripting.lua.PropertiesHelper;
-import games.stendhal.server.core.scripting.lua.QuestHelper;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 
@@ -120,13 +120,13 @@ public class ScriptInLua extends ScriptingSandbox {
 
 		globals.set("game", CoerceJavaToLua.coerce(getInstance()));
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
-		globals.set("entities", CoerceJavaToLua.coerce(EntityHelper.get()));
-		globals.set("properties", CoerceJavaToLua.coerce(PropertiesHelper.get()));
-		globals.set("quests", CoerceJavaToLua.coerce(QuestHelper.get()));
-		globals.set("actions", CoerceJavaToLua.coerce(ActionHelper.get()));
-		globals.set("conditions", CoerceJavaToLua.coerce(ConditionHelper.get()));
-		globals.set("merchants", CoerceJavaToLua.coerce(MerchantHelper.get()));
-		globals.set("arrays", CoerceJavaToLua.coerce(ArraysHelper.get()));
+		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
+		globals.set("properties", CoerceJavaToLua.coerce(LuaPropertiesHelper.get()));
+		globals.set("quests", CoerceJavaToLua.coerce(LuaQuestHelper.get()));
+		globals.set("actions", CoerceJavaToLua.coerce(LuaActionHelper.get()));
+		globals.set("conditions", CoerceJavaToLua.coerce(LuaConditionHelper.get()));
+		globals.set("merchants", CoerceJavaToLua.coerce(LuaMerchantHelper.get()));
+		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
 
 		// initialize supplemental string functions

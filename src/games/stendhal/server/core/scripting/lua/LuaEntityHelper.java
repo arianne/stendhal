@@ -41,16 +41,16 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Exposes some entity classes & functions to Lua.
  */
-public class EntityHelper {
+public class LuaEntityHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
 	public static final EntityManager manager = SingletonRepository.getEntityManager();
 
-	private static final ConditionHelper conditionHelper = ConditionHelper.get();
-	private static final ActionHelper actionHelper = ActionHelper.get();
+	private static final LuaConditionHelper conditionHelper = LuaConditionHelper.get();
+	private static final LuaActionHelper actionHelper = LuaActionHelper.get();
 
-	private static EntityHelper instance;
+	private static LuaEntityHelper instance;
 
 
 	/**
@@ -59,9 +59,9 @@ public class EntityHelper {
 	 * @return
 	 * 		Static EntityHelper instance.
 	 */
-	public static EntityHelper get() {
+	public static LuaEntityHelper get() {
 		if (instance == null) {
-			instance = new EntityHelper();
+			instance = new LuaEntityHelper();
 		}
 
 		return instance;

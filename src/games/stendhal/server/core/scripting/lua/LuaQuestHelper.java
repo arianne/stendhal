@@ -28,14 +28,14 @@ import games.stendhal.server.maps.quests.SimpleQuestCreator;
 /**
  * Exposes quest creation & handling to Lua.
  */
-public class QuestHelper {
+public class LuaQuestHelper {
 
 	private static StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 
 	// expose SimpleQuestCreator to Lua
 	public static final SimpleQuestCreator simple = SimpleQuestCreator.getInstance();
 
-	private static QuestHelper instance;
+	private static LuaQuestHelper instance;
 
 
 	/**
@@ -44,9 +44,9 @@ public class QuestHelper {
 	 * @return
 	 * 		Static QuestHelper instance.
 	 */
-	public static QuestHelper get() {
+	public static LuaQuestHelper get() {
 		if (instance == null) {
-			instance = new QuestHelper();
+			instance = new LuaQuestHelper();
 		}
 
 		return instance;

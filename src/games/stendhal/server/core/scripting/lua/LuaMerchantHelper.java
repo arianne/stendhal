@@ -31,7 +31,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 /**
  * Exposes merchant handling classes & functions to Lua.
  */
-public class MerchantHelper {
+public class LuaMerchantHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
@@ -39,7 +39,7 @@ public class MerchantHelper {
 
 	public static ShopList shops = ShopList.get();
 
-	private static MerchantHelper instance;
+	private static LuaMerchantHelper instance;
 
 
 	/**
@@ -48,9 +48,9 @@ public class MerchantHelper {
 	 * @return
 	 * 		Static MerchantHelper instance.
 	 */
-	public static MerchantHelper get() {
+	public static LuaMerchantHelper get() {
 		if (instance == null) {
-			instance = new MerchantHelper();
+			instance = new LuaMerchantHelper();
 		}
 
 		return instance;
