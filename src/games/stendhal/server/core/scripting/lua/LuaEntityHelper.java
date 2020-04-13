@@ -77,7 +77,7 @@ public class LuaEntityHelper {
 	 * @return
 	 * 		New FixedPath instance.
 	 */
-	private FixedPath tableToPath(final LuaTable table, final boolean loop) {
+	private static FixedPath tableToPath(final LuaTable table, final boolean loop) {
 		if (!table.istable()) {
 			logger.error("Entity path must be a table");
 			return null;
@@ -172,88 +172,8 @@ public class LuaEntityHelper {
 	 * @return
 	 * 		New SpeakerNPC instance.
 	 */
-	public SpeakerNPC createSpeakerNPC(final String name) {
-		return new SpeakerNPC(name) {
-			/**
-			 * Additional method to support transitions using Lua tables.
-			 *
-			 * @param states
-			 * 		The conversation state(s) the entity should be in to trigger response.
-			 * 		Can be ConversationStates enum value or LuaTable of ConversationStates.
-			 * @param triggers
-			 * 		String or LuaTable of strings to trigger response.
-			 * @param conditions
-			 * 		ChatCondition instance or LuaTable of ChatCondition instances.
-			 * @param nextState
-			 * 		Conversation state to set entity to after response.
-			 * @param reply
-			 * 		The NPC's response or <code>null</code>
-			 * @param actions
-			 * 		ChatAction instance or LuaTable of ChatAction instances.
-			 */
-			@SuppressWarnings({ "unused", "unchecked" })
-			public void add(final Object states, final Object triggers, final Object conditions,
-					final ConversationStates nextState, final String reply, final Object actions) {
-
-				ConversationStates[] listenStates = null;
-				List<String> listenTriggers = null;
-				ChatCondition listenConditions = null;
-				ChatAction listenActions = null;
-
-				if (states != null) {
-					if (states instanceof ConversationStates) {
-						listenStates = Arrays.asList((ConversationStates) states).toArray(new ConversationStates[] {});
-					} else {
-						final List<ConversationStates> tmp = new LinkedList<>();
-						final LuaTable table = (LuaTable) states;
-						for (final LuaValue idx: table.keys()) {
-							final ConversationStates state = (ConversationStates) table.get(idx).touserdata(ConversationStates.class);
-
-							if (state == null) {
-								logger.error("Invalid ConversationStates data");
-								continue;
-							}
-
-							tmp.add(state);
-						}
-
-						listenStates = tmp.toArray(new ConversationStates[] {});
-					}
-				}
-
-				if (triggers != null) {
-					listenTriggers = new ArrayList<>();
-					if (triggers instanceof String) {
-						listenTriggers.add((String) triggers);
-					} else if (triggers instanceof List) {
-						listenTriggers.addAll((List<String>) triggers);
-					} else {
-						final LuaTable table = (LuaTable) triggers;
-						for (final LuaValue idx: table.keys()) {
-							listenTriggers.add(table.get(idx).tojstring());
-						}
-					}
-				}
-
-				if (conditions != null) {
-					if (conditions instanceof ChatCondition) {
-						listenConditions = (ChatCondition) conditions;
-					} else {
-						listenConditions = conditionHelper.andCondition((LuaTable) conditions);
-					}
-				}
-
-				if (actions != null) {
-					if (actions instanceof ChatAction) {
-						listenActions = (ChatAction) actions;
-					} else {
-						listenActions = actionHelper.multiple((LuaTable) actions);
-					}
-				}
-
-				add(listenStates, listenTriggers, listenConditions, nextState, reply, listenActions);
-			}
-		};
+	public LuaSpeakerNPC createSpeakerNPC(final String name) {
+		return new LuaSpeakerNPC(name);
 	}
 
 	/**
@@ -262,8 +182,8 @@ public class LuaEntityHelper {
 	 * @return
 	 * 		New SilentNPC instance.
 	 */
-	public SilentNPC createSilentNPC() {
-		return new SilentNPC();
+	public LuaSilentNPC createSilentNPC() {
+		return new LuaSilentNPC();
 	}
 
 	/**
@@ -274,7 +194,10 @@ public class LuaEntityHelper {
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
 	 */
+	@Deprecated
 	public void setPath(final RPEntity entity, final LuaTable table, Boolean loop) {
+		logger.warn("entities:setPath is deprecated. Call \"setPath\" directly from the entity instance.");
+
 		if (loop == null) {
 			loop = false;
 		}
@@ -290,7 +213,42 @@ public class LuaEntityHelper {
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
 	 */
+	@Deprecated
 	public void setPathAndPosition(final RPEntity entity, final LuaTable table, Boolean loop) {
+		logger.warn("entities:setPathAndPosition is deprecated. Call \"setPathAndPosition\" directly from the entity instance.");
+
+		if (loop == null) {
+			loop = false;
+		}
+
+		entity.setPathAndPosition(tableToPath(table, loop));
+	}
+
+	/**
+	 * Sets a LuaGuidedEntity's path using a table.
+	 *
+	 * @param entity
+	 * 		The NPC instance of which path is being set.
+	 * @param table
+	 * 		Lua table with list of coordinates representing nodes.
+	 */
+	private static void setEntityPath(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
+		if (loop == null) {
+			loop = false;
+		}
+
+		entity.setPath(tableToPath(table, loop));
+	}
+
+	/**
+	 * Sets a LuaGuidedEntity's path & starting position using a table.
+	 *
+	 * @param entity
+	 * 		The NPC instance of which path is being set.
+	 * @param table
+	 * 		Lua table with list of coordinates representing nodes.
+	 */
+	private static void setEntityPathAndPosition(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
 		if (loop == null) {
 			loop = false;
 		}
@@ -345,5 +303,132 @@ public class LuaEntityHelper {
 		}
 
 		return new ShopSign(name, title, caption, seller);
+	}
+
+
+	/**
+	 * A special interface that overloads setPath & setPathAndPosition
+	 * methods to accept a Lua table as parameter argument.
+	 */
+	private interface LuaGuidedEntity {
+
+		public void setPath(final FixedPath path);
+
+		public void setPath(final LuaTable table, Boolean loop);
+
+		public void setPathAndPosition(final FixedPath path);
+
+		public void setPathAndPosition(final LuaTable table, Boolean loop);
+	}
+
+	private class LuaSpeakerNPC extends SpeakerNPC implements LuaGuidedEntity {
+
+		public LuaSpeakerNPC(final String name) {
+			super(name);
+		}
+
+		/**
+		 * Additional method to support transitions using Lua tables.
+		 *
+		 * @param states
+		 * 		The conversation state(s) the entity should be in to trigger response.
+		 * 		Can be ConversationStates enum value or LuaTable of ConversationStates.
+		 * @param triggers
+		 * 		String or LuaTable of strings to trigger response.
+		 * @param conditions
+		 * 		ChatCondition instance or LuaTable of ChatCondition instances.
+		 * @param nextState
+		 * 		Conversation state to set entity to after response.
+		 * @param reply
+		 * 		The NPC's response or <code>null</code>
+		 * @param actions
+		 * 		ChatAction instance or LuaTable of ChatAction instances.
+		 */
+		@SuppressWarnings({ "unused", "unchecked" })
+		public void add(final Object states, final Object triggers, final Object conditions,
+				final ConversationStates nextState, final String reply, final Object actions) {
+
+			ConversationStates[] listenStates = null;
+			List<String> listenTriggers = null;
+			ChatCondition listenConditions = null;
+			ChatAction listenActions = null;
+
+			if (states != null) {
+				if (states instanceof ConversationStates) {
+					listenStates = Arrays.asList((ConversationStates) states).toArray(new ConversationStates[] {});
+				} else {
+					final List<ConversationStates> tmp = new LinkedList<>();
+					final LuaTable table = (LuaTable) states;
+					for (final LuaValue idx: table.keys()) {
+						final ConversationStates state = (ConversationStates) table.get(idx).touserdata(ConversationStates.class);
+
+						if (state == null) {
+							logger.error("Invalid ConversationStates data");
+							continue;
+						}
+
+						tmp.add(state);
+					}
+
+					listenStates = tmp.toArray(new ConversationStates[] {});
+				}
+			}
+
+			if (triggers != null) {
+				listenTriggers = new ArrayList<>();
+				if (triggers instanceof String) {
+					listenTriggers.add((String) triggers);
+				} else if (triggers instanceof List) {
+					listenTriggers.addAll((List<String>) triggers);
+				} else {
+					final LuaTable table = (LuaTable) triggers;
+					for (final LuaValue idx: table.keys()) {
+						listenTriggers.add(table.get(idx).tojstring());
+					}
+				}
+			}
+
+			if (conditions != null) {
+				if (conditions instanceof ChatCondition) {
+					listenConditions = (ChatCondition) conditions;
+				} else {
+					listenConditions = conditionHelper.andCondition((LuaTable) conditions);
+				}
+			}
+
+			if (actions != null) {
+				if (actions instanceof ChatAction) {
+					listenActions = (ChatAction) actions;
+				} else {
+					listenActions = actionHelper.multiple((LuaTable) actions);
+				}
+			}
+
+			add(listenStates, listenTriggers, listenConditions, nextState, reply, listenActions);
+		}
+
+		@Override
+		public void setPath(LuaTable table, Boolean loop) {
+			LuaEntityHelper.setEntityPath(this, table, loop);
+		}
+
+		@Override
+		public void setPathAndPosition(LuaTable table, Boolean loop) {
+			LuaEntityHelper.setEntityPathAndPosition(this, table, loop);
+		}
+	}
+
+	private class LuaSilentNPC extends SilentNPC implements LuaGuidedEntity {
+
+		@Override
+		public void setPath(LuaTable table, Boolean loop) {
+			LuaEntityHelper.setEntityPath(this, table, loop);
+		}
+
+		@Override
+		public void setPathAndPosition(LuaTable table, Boolean loop) {
+			LuaEntityHelper.setEntityPathAndPosition(this, table, loop);
+		}
+
 	}
 }

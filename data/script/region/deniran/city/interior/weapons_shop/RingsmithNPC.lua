@@ -72,7 +72,7 @@ if game:setZone(zone) then
 		{31, 6},
 		{24, 6},
 	}
-	entities:setPathAndPosition(ringsmith, nodes, true)
+	ringsmith:setPathAndPosition(nodes, true)
 
 	-- dialogue
 	ringsmith:addGreeting()

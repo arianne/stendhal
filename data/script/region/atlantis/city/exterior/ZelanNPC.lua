@@ -27,7 +27,7 @@ if game:setZone(zoneName) then
 		{63, 66},
 		{75, 66},
 	}
-	entities:setPathAndPosition(zelan, nodes, true)
+	zelan:setPathAndPosition(nodes, true)
 
 	-- NPC dialog
 	zelan:addGreeting()

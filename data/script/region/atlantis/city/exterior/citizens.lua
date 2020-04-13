@@ -65,7 +65,7 @@ if game:setZone(zoneName) then
 		local npc = entities:createSilentNPC()
 
 		if detail.path ~= nil then
-			entities:setPathAndPosition(npc, detail.path, true)
+			npc:setPathAndPosition(detail.path, true)
 			npc:retracePath() -- make entities walk the path backwards when reaching end
 		else
 			npc:setPosition(detail.pos.x, detail.pos.y)

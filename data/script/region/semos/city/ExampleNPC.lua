@@ -32,8 +32,7 @@ if properties:equals("stendhal.testserver", "junk") then
 			{10, 56},
 		}
 
-		-- use helper object to create NPC path
-		entities:setPathAndPosition(lua, nodes, true)
+		lua:setPathAndPosition(nodes, true)
 		lua:setBaseSpeed(0.1)
 		lua:setCollisionAction(CollisionAction.STOP)
 
