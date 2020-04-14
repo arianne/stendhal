@@ -8,7 +8,7 @@ Changelog
 - new zones/maps:
   - Deniran Pawn Shop
   - Deniran Psychic Parlor
-  - Atlantis Postions Shop
+  - Atlantis Potions Shop
 - new NPCs:
   - Jimbo (Deniran Grocery Store)
   - Chester (Assassin's Archery Range)
@@ -39,15 +39,18 @@ Changelog
   - Imperialist Dominator: finish Kill Blordroughs quest 50 times
   - Imperialist Dictator: finish Kill Blordroughs quest 100 times
 - achievement changes:
-  - ice giant added to David vs. Goliath
-  - baby angel added to Heavenly Wrath
-  - chess pieces no longer required for "Legendary" & "Team Player" achievements
+  - ice giant added as requirement for "David vs. Goliath"
+  - baby angel added as requirement for "Heavenly Wrath"
+  - chess pieces no longer required for "Legend" & "Team Player" achievements
+  - "Spelunker" fixed so players do not have to revisit -2_deniran_caves_n & -2_deniran_caves_nw
+- new enemies:
+  - fire demon
 - enemy changes:
   - giant bat & giant killer bat drop ham
   - woolly mammoth drops ham
   - penguin drops chicken instead of meat
   - dodo drops chicken instead of ham
-  - baby pegasus runs away
+  - baby pegasus is now non-aggressive & retreats when attacked
   - fixed dimensions of dragon corpses
   - blordrough general attacks weakest
 - new enemy sounds:
