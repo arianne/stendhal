@@ -113,6 +113,15 @@ public class Outfit {
 	}};
 
 	/**
+	 * If entity is wearing an index from this layer list, should not be considered naked.
+	 */
+	private final static Map<String, List<Integer>> bodyCoveringIndexes = new HashMap<String, List<Integer>>() {{
+		put("body", Arrays.asList(978, 979, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997));
+		put("hat", Arrays.asList(993, 994));
+	}};
+
+
+	/**
 	 * Creates a new outfit. Set some of the parameters to null if you want an
 	 * entity that put on this outfit to keep on the corresponding parts of its
 	 * current outfit.
@@ -591,6 +600,12 @@ public class Outfit {
 	 * @return true if naked, false if dressed
 	 */
 	public boolean isNaked() {
+		for (final String layerName: bodyCoveringIndexes.keySet()) {
+			if (bodyCoveringIndexes.get(layerName).contains(layers.get(layerName))) {
+				return false;
+			}
+		}
+
 		final Integer dress = layers.get("dress");
 
 		if (isCompatibleWithClothes()) {
