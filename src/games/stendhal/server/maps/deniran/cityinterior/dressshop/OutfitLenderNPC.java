@@ -54,8 +54,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 	private enum OutfitType {
 		// set hair to -1 to not be drawn
-		BEAR_BLUE("hat=993,hair=-1"),
-		BEAR_BROWN("hat=994,hair=-1"),
+		BEAR_BLUE("dress=0,hat=993,hair=-1"),
+		BEAR_BROWN("dress=0,hat=994,hair=-1"),
 		SUPERSTENDHAL("dress=973,hat=992,hair=-1");
 
 		String outfit_str;
