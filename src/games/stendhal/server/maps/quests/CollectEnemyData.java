@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import marauroa.common.Pair;
 
 
 /**
@@ -97,7 +99,12 @@ public class CollectEnemyData extends AbstractQuest {
 
 	private static final int bestiaryPrice = 500000;
 
-	private String questionOption = null;
+	private static final Map<String, Pair<String, String>> questionOptions = new HashMap<String, Pair<String, String>>() {{
+		put("level", new Pair<String, String>("What is the level of", null));
+		put("hp", new Pair<String, String>("How much HP does", "have"));
+		put("def", new Pair<String, String>("What is the defense level of", null));
+		put("atk", new Pair<String, String>("What is the attack level of", null));
+	}};
 
 
 	private void initNPC() {
@@ -146,35 +153,92 @@ public class CollectEnemyData extends AbstractQuest {
 		teleporterBehaviour.onTurnReached(0); // initialize NPC on random map
 	}
 
-	private void initQuestDialogue() {
-		final ChatCondition isFinalStepCondition = new ChatCondition() {
+	private void initQuest() {
+
+		final ChatCondition hasKilledCreatureCondition = new ChatCondition() {
 			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-				final String state = player.getQuest(QUEST_SLOT);
+				final String[] state = player.getQuest(QUEST_SLOT).split(";");
 				if (state == null) {
 					return false;
 				}
 
-				final String[] steps = state.split(";");
-				if (steps.length < 3) {
+				final int currentStep = getCurrentStep(player);
+				final String creature = getEnemyForStep(player, currentStep);
+				final Integer recordedKills = getRecordedKillsForStep(player, currentStep);
+
+				if (creature == null || recordedKills == null) {
+					onError(null);
 					return false;
 				}
 
-				boolean step1Done = false;
-				boolean step2Done = false;
-				boolean step3Done = false;
+				return (player.getSoloKill(creature) + player.getSharedKill(creature)) > recordedKills;
+			}
+		};
 
-				if (steps[0].contains("=")) {
-					step1Done = steps[0].split("=")[1].equals("done");
-				}
-				if (steps[1].contains("=")) {
-					step2Done = steps[1].split("=")[1].equals("done");
-				}
-				if (steps[2].contains("=")) {
-					step3Done = steps[2].split("=")[1].equals("done");
+		final ChatCondition answeredCorrectlyCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity raiser) {
+				final int currentStep = getCurrentStep(player);
+				final String fromQuestSlot = getEnemyForStep(player, currentStep);
+				final Creature creature = SingletonRepository.getEntityManager().getCreature(fromQuestSlot);
+
+				if (creature == null) {
+					logger.error("Invalid creature name in quest slot: " + fromQuestSlot);
+					return false;
 				}
 
-				return step1Done && step2Done && !step3Done;
+				final String answer = sentence.getTrimmedText();
+				String correctAnswer = getAnswerForStep(player, creature, currentStep);
+
+				// should not happen
+				if (correctAnswer == null) {
+					onError(null);
+					return false;
+				}
+
+				return answer.equals(correctAnswer);
+			}
+		};
+
+		final ChatCondition isFinalStepCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+				final List<String> steps = getStepsStates(player);
+				if (steps.size() < 3) {
+					return false;
+				}
+
+				return isStepDone(player, 0) && isStepDone(player, 1) && isStepDone(player, 2);
+			}
+		};
+
+		final ChatAction setQuestAction = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				final String selected = selectCreature(player);
+				final int killCount = player.getSoloKill(selected) + player.getSharedKill(selected);
+
+				if (player.getQuest(QUEST_SLOT) == null) {
+					setQuestSlot(player, 0, selected, killCount);
+					player.addKarma(35.0);
+
+					npc.say("Great! I have compiled much info on creatures I have come across. But I am still missing three. First, I need some info on "
+							+ Grammar.singular(selected) + ".");
+				} else {
+					setQuestSlot(player, getCurrentStep(player), selected, killCount);
+
+					npc.say("Thank you! I am going to write this down. Now I need information on " + Grammar.singular(selected) + ".");
+				}
+			}
+		};
+
+		final ChatAction completeStepAction = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				final int currentStep = getCurrentStep(player);
+				final String creatureName = player.getQuest(QUEST_SLOT, currentStep).split(",")[0];
+				player.setQuest(QUEST_SLOT, currentStep, creatureName + ",done");
 			}
 		};
 
@@ -214,7 +278,7 @@ public class CollectEnemyData extends AbstractQuest {
 				null,
 				ConversationStates.IDLE,
 				null,
-				setQuestAction());
+				setQuestAction);
 
 		// player has to returned to give info
 		npc.add(ConversationStates.IDLE,
@@ -233,21 +297,32 @@ public class CollectEnemyData extends AbstractQuest {
 
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				new NotCondition(hasKilledCreatureCondition()),
+				new NotCondition(hasKilledCreatureCondition),
 				ConversationStates.ATTENDING,
 				"Don't lie to me. You haven't even killed one yet.",
 				null);
 
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				hasKilledCreatureCondition(),
+				hasKilledCreatureCondition,
 				ConversationStates.QUESTION_2,
 				null,
-				askAboutCreatureAction());
+				new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						final String question = getQuestionForStep(player, getCurrentStep(player));
+						if (question == null) {
+							onError("Could not retrieve question for player: " + player.getName());
+							return;
+						}
+
+						npc.say(question);
+					}
+				});
 
 		npc.add(ConversationStates.QUESTION_2,
 				"",
-				new NotCondition(answeredCorrectlyCondition()),
+				new NotCondition(answeredCorrectlyCondition),
 				ConversationStates.IDLE,
 				"Hmmm, that doesn't seem accurate. Perhaps you could double check.",
 				null);
@@ -255,24 +330,31 @@ public class CollectEnemyData extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2,
 				"",
 				new AndCondition(
-						answeredCorrectlyCondition(),
+						answeredCorrectlyCondition,
 						new NotCondition(isFinalStepCondition)),
 				ConversationStates.IDLE,
 				null,
 				new MultipleActions(
-						completeStepAction(),
-						setQuestAction()));
+						completeStepAction,
+						setQuestAction));
 
 		npc.add(ConversationStates.QUESTION_2,
 				"",
 				new AndCondition(
-						answeredCorrectlyCondition(),
+						answeredCorrectlyCondition,
 						isFinalStepCondition),
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						completeStepAction(),
-						rewardPlayerAction()));
+						completeStepAction,
+						new ChatAction() {
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+								npc.say("Thanks so much for you help. Now I have all the information I need to complete my #bestiary."
+										+ " If you would like one of your own, I can sell you one.");
+								player.addKarma(200.0);
+								player.setQuest(QUEST_SLOT, "done");
+							}}));
 	}
 
 	private void initShop() {
@@ -288,7 +370,8 @@ public class CollectEnemyData extends AbstractQuest {
 
 			@Override
 			public ChatAction getRejectedTransactionAction() {
-				return new SayTextAction("I need your help first.");
+				// FIXME: response should be different if quest is in progress
+				return new SayTextAction("I need your help with a #task first.");
 			}
 
 			@Override
@@ -336,70 +419,49 @@ public class CollectEnemyData extends AbstractQuest {
 				null);
 	}
 
-	private ChatAction setQuestAction() {
-		return new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				if (player.getQuest(QUEST_SLOT) == null) {
-					final String selected = selectCreature(player);
-					final int killCount = player.getSoloKill(selected) + player.getSharedKill(selected);
-					player.setQuest(QUEST_SLOT, selected + "=" + killCount + ";null;null");
-					player.addKarma(35.0);
 
-					npc.say("Great! I have compiled much info on creatures I have come across. But I am still missing three. First, I need some info on "
-							+ Grammar.singular(selected) + ".");
-				} else {
-					final String selected = selectCreature(player);
-					final int killCount = player.getSoloKill(selected) + player.getSharedKill(selected);
-					player.setQuest(QUEST_SLOT, getCurrentStep(player), selected + "=" + killCount);
+	/**
+	 * Fills in information in the quest slot for a step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param slotIndex
+	 * 		The quest step in question.
+	 * @param enemyName
+	 * 		The enemy player is tasked to kill.
+	 * @param killCount
+	 * 		Recorded number of kills retrieved from player.
+	 * @param questionKey
+	 * 		Key to identify which question should be asked.
+	 */
+	private void setQuestSlot(final Player player, final int slotIndex, final String enemyName, final int killCount) {
+		String slotString = enemyName + "," + killCount + "," + selectQuestionKey();
 
-					npc.say("Thank you! I am going to write this down. Now I need information on " + Grammar.singular(selected) + ".");
-				}
-			}
-		};
-	}
-
-	private ChatAction askAboutCreatureAction() {
-		return new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				final List<String> options = Arrays.asList("level", "hp");
-				final int lot = Rand.randUniform(0, options.size() - 1);
-
-				questionOption = options.get(lot);
-				final String currentCreature = getCurrentCreature(player);
-
-				if (questionOption.equals("level")) {
-
-				} if (questionOption.equals("hp")) {
-					npc.say("How much HP does " + Grammar.singular(currentCreature) + " have?");
-				} else {
-					npc.say("What is the level of " + Grammar.singular(currentCreature) + "?");
-				}
-			}
-		};
-	}
-
-	private List<String> getStates(final Player player) {
-		final String state = player.getQuest(QUEST_SLOT);
-
-		if (state == null || !state.contains(";")) {
-			return Arrays.asList("null", "null", "null");
+		if (slotIndex == 0) {
+			slotString += ";null;null";
 		}
 
-		final List<String> states = new ArrayList<>();
-		for (final String st: state.split(";")) {
-			states.add(st);
-		}
-
-		// in case there were less than 3 slot indexes
-		while (states.size() < 3) {
-			states.add("null");
-		}
-
-		return states;
+		player.setQuest(QUEST_SLOT, slotIndex, slotString);
 	}
 
+	/**
+	 * Randomly chooses the identifier for the question that should be asked.
+	 *
+	 * @return
+	 * 		Key to identify which question should be be asked.
+	 */
+	private String selectQuestionKey() {
+		return questionOptions.keySet().toArray(new String[] {})[Rand.randUniform(0, questionOptions.size() - 1)];
+	}
+
+	/**
+	 * Randomly chooses an enemy based on player level.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @return
+	 * 		Creature name.
+	 */
 	private String selectCreature(final Player player) {
 		int threshold = 10;
 		final int playerLevel = player.getLevel();
@@ -412,9 +474,9 @@ public class CollectEnemyData extends AbstractQuest {
 		}
 
 		final List<String> previous = new ArrayList<>();
-		for (final String value: getStates(player)) {
-			if (value.contains("=")) {
-				final String[] tmp = value.split("=");
+		for (final String value: getStepsStates(player)) {
+			if (value.contains(",")) {
+				final String[] tmp = value.split(",");
 				if (tmp[1].equals("done")) {
 					previous.add(tmp[0]);
 				}
@@ -453,20 +515,47 @@ public class CollectEnemyData extends AbstractQuest {
 		return eligible.get(Rand.randUniform(0, eligible.size() - 1));
 	}
 
-	private int getCurrentStep(final Player player) {
-		int step = 0;
+	/**
+	 * Retrieves information for each step from quest slot.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @return
+	 * 		List containing quest steps information.
+	 */
+	private List<String> getStepsStates(final Player player) {
 		final String state = player.getQuest(QUEST_SLOT);
 		if (state == null || !state.contains(";")) {
-			return step;
+			return Arrays.asList("null", "null", "null");
 		}
 
-		final String[] states = state.split(";");
+		final List<String> states = new ArrayList<>();
+		for (final String st: state.split(";")) {
+			states.add(st);
+		}
 
-		for (final String slot: states) {
-			if (!slot.contains("=")) {
-				break;
-			}
-			if (!slot.split("=")[1].equals("done")) {
+		// in case there were less than 3 slot indexes
+		while (states.size() < 3) {
+			states.add("null");
+		}
+
+		return states;
+	}
+
+	/**
+	 * Retrieves currently active step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @return
+	 * 		The step index.
+	 */
+	private int getCurrentStep(final Player player) {
+		int step = 0;
+
+		// max 3 steps
+		while (step < 3) {
+			if (!isStepDone(player, step)) {
 				break;
 			}
 
@@ -476,78 +565,174 @@ public class CollectEnemyData extends AbstractQuest {
 		return step;
 	}
 
-	private String getCurrentCreature(final Player player) {
-		final String state = player.getQuest(QUEST_SLOT, getCurrentStep(player));
-
-		if (state != null && state.contains("=")) {
-			return state.split("=")[0];
+	/**
+	 * Checks if player has completed a step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		<code>true</code> if the player has completed the step.
+	 */
+	private boolean isStepDone(final Player player, final int step) {
+		final List<String> states = getStepsStates(player);
+		if (states.size() < step + 1) {
+			return false;
 		}
 
-		return state;
+		final String[] currentState = states.get(step).split(",");
+		if (currentState.length > 1) {
+			return currentState[1].equals("done");
+		}
+
+		return false;
 	}
 
-	private ChatCondition hasKilledCreatureCondition() {
-		return new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-				final String[] state = player.getQuest(QUEST_SLOT).split(";");
-				if (state == null) {
-					return false;
-				}
+	/**
+	 * Retrieves enemy name stored in quest slot that player must kill for step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		Name of enemy player is tasked to kill for step.
+	 */
+	private String getEnemyForStep(final Player player, final int step) {
+		final String enemy = getStepsStates(player).get(step).split(",")[0];
+		if (enemy == null) {
+			logger.error("Could not retrieve enemy/creature from quest slot for step " + step);
+		}
 
-				final int currentStep = getCurrentStep(player);
-				final String creature = state[currentStep].split("=")[0];
-				final int recordedKills = Integer.parseInt(state[currentStep].split("=")[1]);
-
-				return (player.getSoloKill(creature) + player.getSharedKill(creature)) > recordedKills;
-			}
-		};
+		return enemy;
 	}
 
-	private ChatCondition answeredCorrectlyCondition() {
-		return new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				final String fromQuestSlot = getCurrentCreature(player);
-				final Creature creature = SingletonRepository.getEntityManager().getCreature(fromQuestSlot);
-
-				if (creature == null) {
-					logger.error("Invalid creature name in quest slot: " + fromQuestSlot);
-					return false;
-				}
-
-				final String answer = sentence.getTrimmedText();
-
-				if (questionOption.equals("hp")) {
-					return answer.equals(Integer.toString(creature.getBaseHP()));
-				}
-
-				return answer.equals(Integer.toString(creature.getLevel()));
+	/**
+	 * Retrieves original kill count of enemy before quest was started.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		Recorded kill count stored in quest slot.
+	 */
+	private Integer getRecordedKillsForStep(final Player player, final int step) {
+		Integer kills = null;
+		final String[] indexState = getStepsStates(player).get(step).split(",");
+		if (indexState.length > 1) {
+			try {
+				kills = Integer.parseInt(indexState[1]);
+			} catch (final NumberFormatException e) {
+				logger.error("Error parsing kill count from quest slot for step " + step);
 			}
-		};
+		}
+
+		if (kills == null) {
+			logger.error("Could not retrieve kill count from quest slot for step " + step);
+		}
+
+		return kills;
 	}
 
-	private ChatAction completeStepAction() {
-		return new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				final int currentStep = getCurrentStep(player);
-				final String creatureName = player.getQuest(QUEST_SLOT, currentStep).split("=")[0];
-				player.setQuest(QUEST_SLOT, currentStep, creatureName + "=done");
-			}
-		};
+	/**
+	 * Retrieves the key to identify which question should be asked.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		Key stored in quest slot that identifies which question should be asked.
+	 */
+	private String getQuestionKeyForStep(final Player player, final int step) {
+		final String[] indexState = getStepsStates(player).get(step).split(",");
+		if (indexState.length < 3) {
+			logger.warn("Question key not found in quest slog");
+			return null;
+		}
+
+		final String questionKey = indexState[2];
+		if (questionKey == null) {
+			logger.error("Could not retrieve question key from quest slot for step " + step);
+		}
+
+		return indexState[2];
 	}
 
-	private ChatAction rewardPlayerAction() {
-		return new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				npc.say("Thanks so much for you help. Now I have all the information I need to complete my #bestiary."
-						+ " If you would like one of your own, I can sell you one.");
-				player.addKarma(200.0);
-				player.setQuest(QUEST_SLOT, "done");
-			}
-		};
+	/**
+	 * Retrieves the question that will be asked for the step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		Question to be asked to player.
+	 */
+	private String getQuestionForStep(final Player player, final int step) {
+		String questionKey = getQuestionKeyForStep(player, getCurrentStep(player));
+		if (questionKey == null || !questionOptions.containsKey(questionKey)) {
+			// default to "level" in case an appropriate question cannot be found
+			logger.warn("Using default \"level\" to retrieve question for step " + step);
+			questionKey = "level";
+		}
+
+		final Pair<String, String> questionPair = questionOptions.get(questionKey);
+		final String prefix = questionPair.first();
+		final String suffix = questionPair.second();
+		final String currentCreature = getEnemyForStep(player, step);
+
+		if (prefix == null || currentCreature == null) {
+			return null;
+		}
+
+		String questionString = prefix.trim() + " " + Grammar.singular(currentCreature);
+		if (suffix != null) {
+			questionString += " " + suffix.trim();
+		}
+
+		return questionString + "?";
+	}
+
+	/**
+	 * Retrieves the correct answer for the step.
+	 *
+	 * @param player
+	 * 		Player doing the quest.
+	 * @param creature
+	 * 		Creature which player was tasked to kill.
+	 * @param step
+	 * 		The current quest step.
+	 * @return
+	 * 		The answer to the question asked.
+	 */
+	private String getAnswerForStep(final Player player, final Creature creature, final int step) {
+		String answer = null;
+
+		// FIXME: is there a way to call these methods automatically?
+		final String questionKey = getQuestionKeyForStep(player, step);
+
+		if (questionKey.equals("hp")) {
+			answer = Integer.toString(creature.getBaseHP());
+		} else if (questionKey.equals("level")) {
+			answer = Integer.toString(creature.getLevel());
+		} else if (questionKey.equals("def")) {
+			answer = Integer.toString(creature.getDef());
+		} else if (questionKey.equals("atk")) {
+			answer = Integer.toString(creature.getAtk());
+		} else if (questionKey.equals("ratk")) {
+			answer = Integer.toString(creature.getRatk());
+		}
+
+		if (answer == null) {
+			// default to "level" in case an appropriate answer cannot be found
+			logger.warn("Using default \"level\" to retrieve answer for step " + step);
+			answer = Integer.toString(creature.getLevel());
+		}
+
+		return answer;
 	}
 
 	@Override
@@ -570,7 +755,7 @@ public class CollectEnemyData extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		initNPC();
-		initQuestDialogue();
+		initQuest();
 		initShop();
 
 		fillQuestInfo(
@@ -602,5 +787,19 @@ public class CollectEnemyData extends AbstractQuest {
 		}
 
 		return npc.getName();
+	}
+
+	/**
+	 *
+	 * @param msg
+	 * 		Message to print in the console.
+	 */
+	private void onError(final String msg) {
+		if (msg != null) {
+			logger.error(msg);
+		}
+
+		npc.say("Strange. I'm having some memory loss. It appears I cannot help you finish this quest.");
+		npc.setCurrentState(ConversationStates.ATTENDING);
 	}
 }
