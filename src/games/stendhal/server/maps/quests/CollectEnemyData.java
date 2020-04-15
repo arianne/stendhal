@@ -204,12 +204,7 @@ public class CollectEnemyData extends AbstractQuest {
 		final ChatCondition isFinalStepCondition = new ChatCondition() {
 			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-				final List<String> steps = getStepsStates(player);
-				if (steps.size() < 3) {
-					return false;
-				}
-
-				return isStepDone(player, 0) && isStepDone(player, 1) && isStepDone(player, 2);
+				return getCurrentStep(player) > 1;
 			}
 		};
 
