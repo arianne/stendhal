@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="17" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <editorsettings>
-  <export target="home_7.tmx" format="tmx"/>
- </editorsettings>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="40" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -15,44 +12,80 @@
  <tileset firstgid="132" name="logic/portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="96"/>
  </tileset>
- <layer id="1" name="0_floor" width="17" height="40">
+ <tileset firstgid="156" name="chest_2" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="../../tileset/item/chest/chest_2.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="162" name="notes2" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/documents/notes2.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="166" name="pot_on_metal" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/item/pot/pot_on_metal.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="167" name="blankets" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+  <image source="../../tileset/item/textile/blankets.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="179" name="throw_4" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/item/textile/throw_4.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="182" name="sofa_cream" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="../../tileset/furniture/chair/sofa_cream.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="188" name="royal_blue_drapes" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/furniture/curtain/royal_blue_drapes.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="197" name="bb_dk_blue" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../tileset/furniture/bed/bb_dk_blue.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="205" name="blue" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/furniture/carpet/blue.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="214" name="cabinets" tilewidth="32" tileheight="32" tilecount="44" columns="4">
+  <image source="../../tileset/furniture/kitchen/cabinets.png" width="128" height="352"/>
+ </tileset>
+ <tileset firstgid="258" name="wooden" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/furniture/table/wooden.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="259" name="wooden" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/furniture/chair/wooden.png" width="160" height="32"/>
+ </tileset>
+ <layer name="0_floor" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3SMREAAAyEMLy/8drokAEDXFZNHjDAAAMMMMAAAww8MXBiALWsoAoAAA==
+   H4sIAAAAAAAAA2tmYGBoHqb4LBCfw4PPE2HGBSC+iAdfGmFmXAbiK3jw1UEQ76N4FI9iCG4iA1PDDHRzBsodw9mM4YZrScAjwYxRzMAAAB1URYegCgAA
   </data>
  </layer>
- <layer id="2" name="1_terrain" width="17" height="40">
+ <layer name="1_terrain" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3UuwrCQBCF4W0StYuXLmI6g76BlvoGBu0U06mx8/b6/oNI2EEQtgphBj7ILjuBHDYTOedidAJ06ekhQR+DAEN6RlhgiZBa0bSGveOTnuXh3yLLo/15nPjEMy7KhnUBqS120Gcq9q644Y6Hsmd9gNQRJfSZJ3svRPg1T1P2x5CaIIOeuf/m6ZSeHFIzzKFnrs1TSacu+/frLOTJ8rA8/AT81fd+NGWevgG2c8fvoAoAAA==
+   H4sIAAAAAAAAA+3USw7BQBjA8dnUY+e1I+wIN2DJDQg7ws5r53WcsukRPE/Aqfwllcjko2lTVHSSX9JMvvmnoRlDKRVB1IMY4kggiZQHaWRQRU15W3U0XjTOuAjPbhp+vIfTsgLSUGHjIw3T5XnzTe9hfaEhfae3vTU2DmfvM4+NIUYYa5po2efa6AgzE0wxwxwLTRc9u9HHQJhZYgVDyfdpFjm7kUdBmHG6T4so2Y0yKsKMfp/68b94WWHj/xpb7LDX5qX9Z40DjjhpDWk/6L/HLzeCcp9eAUEf2Q2gCgAA
   </data>
  </layer>
- <layer id="3" name="2_object" width="17" height="40">
+ <layer name="2_object" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3QMQEAAADCoPVPbQ0PiEBhwIABAwYMGDBg4GdgEsHILqAKAAA=
+   H4sIAAAAAAAAA+2WSw/BQBSFp55/sz+tQUKIEI8dXbT4CZ4VsUBo7EiQEKcx4qamjykJi57kSyd3zj1zF11cxl7qgC7QmVhB91VgABP0QB8M+N3zTO9Lgoy6R7aXKpL+WLH+RUVJf01QK0tmNCT9saLJ5mzA2sOzIz7bwzMEI84FjEn9AI5gQeoiTcEJnMENWKQ+I1jCbsZWPtkiTcg5z5jmfLcuT0rxz5iDKz8X+JdmZNGfAEmfHCdDwX2OzyCaIx1iDsXl2fu3vGkpqGUC3v3U/ws1QQu0Q9YdYZdQsQuoUd7DLqFhJ9Gwk6hmxAzz0e/kqEbEDMyv6eQfi/U93QHADPgroAoAAA==
   </data>
  </layer>
- <layer id="4" name="3_roof" width="17" height="40">
+ <layer name="3_roof" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3QMQEAAADCoPVPbQ0PiEBhwIABAwYMGDBg4GdgEsHILqAKAAA=
+   H4sIAAAAAAAAA2NgGNzgOBCfwMIeBaNgIMEcGqsfimAuEM+jgppRMApGwSgYBaMAAC8nXcqgCgAA
   </data>
  </layer>
- <layer id="5" name="4_roof_add" width="17" height="40">
+ <layer name="4_roof_add" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3QMQEAAADCoPVPbQ0PiEBhwIABAwYMGDBg4GdgEsHILqAKAAA=
+   H4sIAAAAAAAAA+3BMQEAAADCoPVPbQ0PoAAA4McAEsHILqAKAAA=
   </data>
  </layer>
- <layer id="6" name="objects" width="17" height="40">
+ <layer name="objects" width="17" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3QIQEAAAzDsMm/7EsYGUxxURIRIECAAAECBAgQ6ALXl8nxv6/roqAKAAA=
+   H4sIAAAAAAAAA+3NMQEAAAwCIOMb2wj7dkEBEgAAuPXpGb+v66KgCgAA
   </data>
  </layer>
- <layer id="7" name="collision" width="17" height="40" visible="0" opacity="0.24">
+ <layer name="collision" width="17" height="40" opacity="0.45">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu2SwQoAIAhD9f9/Oj142E4aBAYLQgc5xjM3M190I8r4cP6xQQzIA6mJh3ggAVRb/wfnKp3pq7+tP3rg1nqK+fSm8JU8xAMJoNL/+IMH76l0pq/+ZT09zrkeoAoAAA==
+   H4sIAAAAAAAAA+3UQQoAIAgEwPX/n+4aYWa2UUaCF6lBShQAclnOhOd+XR+difTAMlbfgmVozjf4BmPWTxg9h9GHx4ruFMZeymjMRCYjOifsPk4ZkdhpWP9knW3rgG609dvf4wVj5x7zZAG+es7NoAoAAA==
   </data>
  </layer>
- <layer id="8" name="protection" width="17" height="40" visible="0" opacity="0.2">
+ <layer name="protection" width="17" height="40" visible="0" opacity="0.2">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAECu3QMQEAAADCoPVPbQ0PiEBhwIABAwYMGDBg4GdgEsHILqAKAAA=
+   H4sIAAAAAAAAA+3BMQEAAADCoPVPbQ0PoAAA4McAEsHILqAKAAA=
   </data>
  </layer>
 </map>
