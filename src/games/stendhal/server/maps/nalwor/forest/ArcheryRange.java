@@ -14,7 +14,6 @@ package games.stendhal.server.maps.nalwor.forest;
 import static games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.ID_NO_AFFORD;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
@@ -63,12 +62,11 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
-import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
+
 
 /**
  * TODO: create JUnit test
- * FIXME: should bows wear & break even if hit not successful?
  * FIXME: (client) no sound for training targets when hit
  */
 public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListener {
@@ -96,7 +94,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private String archeryZoneID;
 
 	/** archery range area */
-	private final Rectangle2D archeryArea = new Rectangle(97, 97, 19, 10);
+	private static TrainingArea archeryArea;
 
 	/** NPC that manages archery area */
 	private static final String npcName = "Chester";
@@ -137,9 +135,10 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		archeryZone = zone;
 		archeryZoneID = zone.getName();
+		archeryArea = new TrainingArea(archeryZone, 97, 97, 19, 10);
 
 		// initialize condition to check if training area is full
-		rangeFullCondition = new AreaIsFullCondition(new Area(archeryZone, archeryArea), MAX_OCCUPANTS);
+		rangeFullCondition = new AreaIsFullCondition(archeryArea, MAX_OCCUPANTS);
 
 		initEntrance();
 		initNPC();
@@ -322,12 +321,19 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	 */
 	private void initTraining() {
 
+		final ChatCondition meetsLevelCapCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return archeryArea.meetsLevelCap(player, player.getRatk());
+			}
+		};
+
 		// player has never trained before
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
@@ -344,7 +350,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new NotCondition(meetsLevelCap())),
+						new NotCondition(meetsLevelCapCondition)),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train. So, you good for it?",
 				null);
@@ -354,7 +360,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
-						new NotCondition(meetsLevelCap())),
+						new NotCondition(meetsLevelCapCondition)),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
@@ -362,7 +368,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		// player's RATK level is too high
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
-				meetsLevelCap(),
+				meetsLevelCapCondition,
 				ConversationStates.ATTENDING,
 				"You are already too skilled to train here. Now get off yer lazy butt and fight some monsters!",
 				null);
@@ -371,7 +377,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new NotCondition(new PlayerHasItemWithHimCondition("assassins id"))),
 				ConversationStates.ATTENDING,
 				"You can't train here without permission from the assassins' HQ. Now git, before I sic the dogs on you!",
@@ -389,7 +395,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		ranger.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id"),
 						rangeFullCondition),
 				ConversationStates.ATTENDING,
@@ -482,7 +488,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	@Override
 	public void onLoggedIn(final Player player) {
 		// don't allow players to login within archery range area boundaries
-		if (isPlayerInArea(player, archeryZoneID, archeryArea) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
+		if (archeryArea.contains(player) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
 		}
 
@@ -522,25 +528,11 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		if (player.get("zoneid").equals(archeryZoneID)) {
 			ranger.say("Your training time is up " + player.getName() + ".");
 		}
-		if (isPlayerInArea(player, archeryZoneID, archeryArea)) {
+		if (archeryArea.contains(player)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
 		}
 
 		player.setQuest(QUEST_SLOT, STATE_DONE + ";" + Long.toString(System.currentTimeMillis()));
-	}
-
-	private ChatCondition meetsLevelCap() {
-		return new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				// FIXME: is there a forumula to calculate max level?
-				final double determiner = 597 * 1.5;
-				final int level = player.getLevel();
-				final double cap = Math.ceil(level * ((determiner - level) / determiner));
-
-				return player.getRatk() >= cap;
-			}
-		};
 	}
 
 	/**
@@ -675,7 +667,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		public ArcheryRangeConditionAndActionPortal() {
 			super(null, null);
-			Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea);
 
 			rejections = new LinkedHashMap<>();
 			rejections.put(
@@ -684,7 +675,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 							NO_ACCESS_MESSAGE,
 							pushMessage));
 			rejections.put(
-					new NotCondition(new AreaIsFullCondition(area, MAX_OCCUPANTS)),
+					new NotCondition(new AreaIsFullCondition(archeryArea, MAX_OCCUPANTS)),
 					Arrays.asList(
 							FULL_MESSAGE,
 							pushMessage));

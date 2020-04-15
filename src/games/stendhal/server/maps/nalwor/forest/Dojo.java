@@ -12,8 +12,6 @@
 package games.stendhal.server.maps.nalwor.forest;
 
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -25,7 +23,6 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.config.zone.NoTeleportIn;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
@@ -56,7 +53,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
 
 
@@ -94,7 +90,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private String dojoZoneID;
 
 	/** dojo area */
-	private final Rectangle dojoArea = new Rectangle(5, 52, 35, 20);
+	private static TrainingArea dojoArea;
 
 	/** NPC that manages dojo area */
 	private static final String samuraiName = "Omura Sumitada";
@@ -119,12 +115,10 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 
 		dojoZone = zone;
 		dojoZoneID = zone.getName();
+		dojoArea = new TrainingArea(zone, 5, 52, 35, 20);
 
 		// initialize condition to check if dojo is full
-		dojoFullCondition = new AreaIsFullCondition(new Area(dojoZone, dojoArea), MAX_OCCUPANTS);
-
-		// players cannot teleport into dojo area
-		new NoTeleportIn().configureZone(dojoZone, dojoArea);
+		dojoFullCondition = new AreaIsFullCondition(dojoArea, MAX_OCCUPANTS);
 
 		initEntrance();
 		initNPC();
@@ -200,12 +194,19 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.addHelp("This is the assassins' dojo. I can let you #train here for a #fee if you're in good with HQ.");
 		samurai.addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
 
+		final ChatCondition meetsLevelCapCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return dojoArea.meetsLevelCap(player, player.getAtk());
+			}
+		};
+
 		// player has never trained before
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
@@ -222,7 +223,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new NotCondition(meetsLevelCap())),
+						new NotCondition(meetsLevelCapCondition)),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train in the dojo. Woul you like to enter?",
 				null);
@@ -232,7 +233,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
-						new NotCondition(meetsLevelCap())),
+						new NotCondition(meetsLevelCapCondition)),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
@@ -240,7 +241,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		// player's RATK level is too high
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
-				meetsLevelCap(),
+				meetsLevelCapCondition,
 				ConversationStates.ATTENDING,
 				"You are too skilled to train here.",
 				null);
@@ -249,7 +250,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new NotCondition(new PlayerHasItemWithHimCondition("assassins id"))),
 				ConversationStates.ATTENDING,
 				"You can't train here without permission from the assassins' HQ.",
@@ -267,7 +268,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new NotCondition(meetsLevelCap()),
+						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id"),
 						dojoFullCondition),
 				ConversationStates.ATTENDING,
@@ -334,33 +335,17 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		if (player.get("zoneid").equals(dojoZoneID)) {
 			samurai.say("Your training time is up " + player.getName() + ".");
 		}
-		if (isPlayerInArea(player, dojoZoneID, dojoArea)) {
+		if (dojoArea.contains(player)) {
 			player.teleport(dojoZoneID, END_POS.x, END_POS.y, null, null);
 		}
 
 		player.setQuest(QUEST_SLOT, STATE_DONE + ";" + Long.toString(System.currentTimeMillis()));
 	}
 
-	/**
-	 * Checks if entity is within bounds of an area.
-	 *
-	 * @param area
-	 * 		Area dimensions to check.
-	 * @return
-	 * 		<code>true</code> if entity is within area.
-	 */
-	public boolean isPlayerInArea(final Player player, final String zoneid, final Rectangle2D area) {
-		// TODO: Use standard collision check, which can handle entities larger than 1x1
-		if (!player.get("zoneid").equals(zoneid)) {
-			return false;
-		}
-		return area.contains(player.getInt("x"), player.getInt("y"));
-	}
-
 	@Override
 	public void onLoggedIn(final Player player) {
 		// don't allow players to login within archery range area boundaries
-		if (isPlayerInArea(player, dojoZoneID, dojoArea) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
+		if (dojoArea.contains(player) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
 			player.teleport(dojoZoneID, END_POS.x, END_POS.y, null, null);
 		}
 
@@ -388,20 +373,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	 */
 	private boolean isFull() {
 		return dojoFullCondition.fire(null, null, null);
-	}
-
-	private ChatCondition meetsLevelCap() {
-		return new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				// FIXME: is there a forumula to calculate max level?
-				final double determiner = 597 * 1.5;
-				final int level = player.getLevel();
-				final double cap = Math.ceil(level * ((determiner - level) / determiner));
-
-				return player.getAtk() >= cap;
-			}
-		};
 	}
 
 

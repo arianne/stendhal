@@ -23,7 +23,7 @@ public class Level {
 
 	// Max Level is LEVELS - 1.
 	// xp formula overflows for level = 599.
-	private static final int LEVELS = 598;
+	public static final int LEVELS = 598;
 
 	private static int[] xp;
 
