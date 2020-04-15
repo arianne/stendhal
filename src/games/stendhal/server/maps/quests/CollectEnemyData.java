@@ -97,6 +97,11 @@ public class CollectEnemyData extends AbstractQuest {
 
 	private TeleporterBehaviour teleporterBehaviour;
 
+	public static final String[] zonesWhitelist = {
+			"0_semos_mountain_n2_w", "0_semos_mountain_n2_w2", "0_deniran_forest_n2_e",
+			"-7_deniran_atlantis_mtn_n_e2", "0_orril_mountain_n_w2"
+	};
+
 	private static final int bestiaryPrice = 500000;
 
 	private static final Map<String, Pair<String, String>> questionOptions = new HashMap<String, Pair<String, String>>() {{
@@ -133,11 +138,6 @@ public class CollectEnemyData extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				helpReply,
 				null);
-
-		final String[] zonesWhitelist = {
-				"0_semos_mountain_n2_w", "0_semos_mountain_n2_w2", "0_deniran_forest_n2_e",
-				"-7_deniran_atlantis_mtn_n_e2", "0_orril_mountain_n_w2"
-		};
 
 		teleporterBehaviour = new TeleporterBehaviour(npc, Arrays.asList(zonesWhitelist), "", "♫♫♫") {
 			@Override
@@ -545,7 +545,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		The step index.
 	 */
-	private int getCurrentStep(final Player player) {
+	public int getCurrentStep(final Player player) {
 		int step = 0;
 
 		// max 3 steps
@@ -570,7 +570,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		<code>true</code> if the player has completed the step.
 	 */
-	private boolean isStepDone(final Player player, final int step) {
+	public boolean isStepDone(final Player player, final int step) {
 		if (player.getQuest(QUEST_SLOT).equals("done")) {
 			return true;
 		}
@@ -598,7 +598,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		Name of enemy player is tasked to kill for step.
 	 */
-	private String getEnemyForStep(final Player player, final int step) {
+	public String getEnemyForStep(final Player player, final int step) {
 		final String enemy = getStepsStates(player).get(step).split(",")[0];
 		if (enemy == null) {
 			logger.error("Could not retrieve enemy/creature from quest slot for step " + step);
@@ -617,7 +617,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		Recorded kill count stored in quest slot.
 	 */
-	private Integer getRecordedKillsForStep(final Player player, final int step) {
+	public Integer getRecordedKillsForStep(final Player player, final int step) {
 		Integer kills = null;
 		final String[] indexState = getStepsStates(player).get(step).split(",");
 		if (indexState.length > 1) {
@@ -670,7 +670,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		Question to be asked to player.
 	 */
-	private String getQuestionForStep(final Player player, final int step) {
+	public String getQuestionForStep(final Player player, final int step) {
 		String questionKey = getQuestionKeyForStep(player, getCurrentStep(player));
 		if (questionKey == null || !questionOptions.containsKey(questionKey)) {
 			// default to "level" in case an appropriate question cannot be found
@@ -707,7 +707,7 @@ public class CollectEnemyData extends AbstractQuest {
 	 * @return
 	 * 		The answer to the question asked.
 	 */
-	private String getAnswerForStep(final Player player, final Creature creature, final int step) {
+	public String getAnswerForStep(final Player player, final Creature creature, final int step) {
 		String answer = null;
 
 		// FIXME: is there a way to call these methods automatically?
