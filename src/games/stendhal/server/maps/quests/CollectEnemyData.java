@@ -571,6 +571,10 @@ public class CollectEnemyData extends AbstractQuest {
 	 * 		<code>true</code> if the player has completed the step.
 	 */
 	private boolean isStepDone(final Player player, final int step) {
+		if (player.getQuest(QUEST_SLOT).equals("done")) {
+			return true;
+		}
+
 		final List<String> states = getStepsStates(player);
 		if (states.size() < step + 1) {
 			return false;
