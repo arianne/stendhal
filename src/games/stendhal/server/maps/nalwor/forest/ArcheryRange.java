@@ -53,7 +53,6 @@ import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.AreaIsFullCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -83,11 +82,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	/** time player must wait to train again */
 	private static final int COOLDOWN = 15;
 
-	/** max number of players allowed in training area at a time */
-	private static final int MAX_OCCUPANTS = 10;
-
 	/** condition to check if training area is full */
-	AreaIsFullCondition rangeFullCondition;
+	private ChatCondition rangeFullCondition;
 
 	/** zone info */
 	private StendhalRPZone archeryZone;
@@ -136,9 +132,15 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		archeryZone = zone;
 		archeryZoneID = zone.getName();
 		archeryArea = new TrainingArea(archeryZone, 97, 97, 19, 10);
+		archeryArea.setCapacity(10);
 
 		// initialize condition to check if training area is full
-		rangeFullCondition = new AreaIsFullCondition(archeryArea, MAX_OCCUPANTS);
+		rangeFullCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return archeryArea.isFull();
+			}
+		};
 
 		initEntrance();
 		initNPC();
@@ -171,7 +173,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				}
 
 				// check if dojo is full
-				if (isFull()) {
+				if (archeryArea.isFull()) {
 					ranger.say(FULL_MESSAGE);
 					return false;
 				}
@@ -512,16 +514,6 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	}
 
 	/**
-	 * Checks if dojo is full.
-	 *
-	 * @return
-	 * 		<code>true</code> if max number of occupants are within training area bounds.
-	 */
-	private boolean isFull() {
-		return rangeFullCondition.fire(null, null, null);
-	}
-
-	/**
 	 * Teleports player out of archery range training area.
 	 */
 	private void endTrainingSession(final Player player) {
@@ -675,7 +667,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 							NO_ACCESS_MESSAGE,
 							pushMessage));
 			rejections.put(
-					new NotCondition(new AreaIsFullCondition(archeryArea, MAX_OCCUPANTS)),
+					new NotCondition(rangeFullCondition),
 					Arrays.asList(
 							FULL_MESSAGE,
 							pushMessage));

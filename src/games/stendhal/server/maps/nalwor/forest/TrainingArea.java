@@ -27,6 +27,9 @@ public class TrainingArea extends Area {
 
 	private static final int MAX_LEVEL = Level.LEVELS - 1;
 
+	// maximum number of players allowed in area at a single time.
+	private Integer maxCapacity;
+
 
 	public TrainingArea(final StendhalRPZone zone, final Rectangle shape) {
 		super(zone, shape);
@@ -38,6 +41,16 @@ public class TrainingArea extends Area {
 		this(zone, new Rectangle(x, y, width, height));
 	}
 
+
+	/**
+	 * Sets the maximum number of players allow to occupy the area at a single time.
+	 *
+	 * @param capacity
+	 * 		Capacity limit.
+	 */
+	public void setCapacity(final int capacity) {
+		maxCapacity = capacity;
+	}
 
 	/**
 	 * Checks if a player qualifies for training.
@@ -79,5 +92,28 @@ public class TrainingArea extends Area {
 		}
 
 		return level / 5 + 50;
+	}
+
+	/**
+	 * Checks if the area is full.
+	 *
+	 * @return
+	 * 		<code>false</code> if the number of players in area are less than maximum
+	 * 		capacity or there is not maximum capacity.
+	 */
+	public boolean isFull() {
+		if (maxCapacity == null) {
+			return false;
+		}
+
+		return getPlayers().size() < maxCapacity;
+	}
+
+	public int getMaxCapacity() {
+		if (maxCapacity == null) {
+			return -1;
+		}
+
+		return maxCapacity;
 	}
 }

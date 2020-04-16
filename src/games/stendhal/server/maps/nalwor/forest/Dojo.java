@@ -46,7 +46,6 @@ import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.AreaIsFullCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -70,11 +69,8 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	/** time player must wait to train again */
 	private static final int COOLDOWN = 15;
 
-	/** max number of players allowed in training area at a time */
-	private static final int MAX_OCCUPANTS = 16;
-
 	/** condition to check if training area is full */
-	AreaIsFullCondition dojoFullCondition;
+	private ChatCondition dojoFullCondition;
 
 	/** quest states */
 	private static final String STATE_ACTIVE = "training";
@@ -116,9 +112,15 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		dojoZone = zone;
 		dojoZoneID = zone.getName();
 		dojoArea = new TrainingArea(zone, 5, 52, 35, 20);
+		dojoArea.setCapacity(16);
 
 		// initialize condition to check if dojo is full
-		dojoFullCondition = new AreaIsFullCondition(dojoArea, MAX_OCCUPANTS);
+		dojoFullCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return dojoArea.isFull();
+			}
+		};
 
 		initEntrance();
 		initNPC();
@@ -149,7 +151,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				}
 
 				// check if dojo is full
-				if (isFull()) {
+				if (dojoArea.isFull()) {
 					samurai.say(FULL_MESSAGE);
 					return false;
 				}
@@ -363,16 +365,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	public void onLoggedOut(final Player player) {
 		// disable timer/notifier
 		SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
-	}
-
-	/**
-	 * Checks if dojo is full.
-	 *
-	 * @return
-	 * 		<code>true</code> if max number of occupants are within training area bounds.
-	 */
-	private boolean isFull() {
-		return dojoFullCondition.fire(null, null, null);
 	}
 
 
