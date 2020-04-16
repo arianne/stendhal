@@ -352,7 +352,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new NotCondition(meetsLevelCapCondition)),
+						new NotCondition(meetsLevelCapCondition),
+						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train. So, you good for it?",
 				null);
