@@ -688,6 +688,7 @@ path	OBJ	paths
 payment	OBJ	payments
 pear	OBJ-FOO
 pearl	OBJ	pearls
+pepper	OBJ-FOO peppers
 perch	OBJ-FOO-ANI	perches
 pestle	OBJ	pestles
 pet	OBJ-ANI	pets
