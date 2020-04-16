@@ -87,7 +87,8 @@ public class TrainingArea extends Area {
 			return -1;
 		}
 
-		if (level <= 50) {
+		// up to level 62, cap is player level
+		if (level <= 61) {
 			return level;
 		}
 
