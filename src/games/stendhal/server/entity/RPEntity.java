@@ -2775,6 +2775,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// does nothing in this implementation.
 	}
 
+	/**
+	 * Retrieves total ATK value of held weapons.
+	 */
 	public float getItemAtk() {
 		int weapon = 0;
 		int ring = 0;
@@ -2782,6 +2785,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final List<Item> weapons = getWeapons();
 		for (final Item weaponItem : weapons) {
 			weapon += weaponItem.getAttack();
+		}
+
+		// calculate ammo when not using RATK stat
+		if (!Testing.COMBAT && weapons.size() > 0) {
+			if (getWeapons().get(0).isOfClass("ranged")) {
+				weapon += getAmmoAtk();
+			}
 		}
 
 		if (hasRing()) {
@@ -2802,17 +2812,30 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			final Item held = getWeapons().get(0);
 			ratk += held.getRangedAttack();
 
-			StackableItem ammunitionItem = null;
 			if (held.isOfClass("ranged")) {
-				ammunitionItem = getAmmunition();
-
-				if (ammunitionItem != null) {
-					ratk += ammunitionItem.getRangedAttack();
-				}
+				ratk += getAmmoAtk();
 			}
 		}
 
 		return ratk;
+	}
+
+	/**
+	 * Retrieves ATK or RATK (depending on testing.combat system property) value of equipped ammunition.
+	 */
+	private float getAmmoAtk() {
+		float ammo = 0;
+
+		final StackableItem ammoItem = getAmmunition();
+		if (ammoItem != null) {
+			if (Testing.COMBAT) {
+				ammo = ammoItem.getRangedAttack();
+			} else {
+				ammo = ammoItem.getAttack();
+			}
+		}
+
+		return ammo;
 	}
 
 	public float getItemDef() {
@@ -2907,7 +2930,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public void updateItemAtkDef() {
 		put("atk_item", ((int) getItemAtk()));
-		put("ratk_item", ((int) getItemRatk()));
+		if (Testing.COMBAT) {
+			put("ratk_item", ((int) getItemRatk()));
+		}
 		put("def_item", ((int) getItemDef()));
 		notifyWorldAboutChanges();
 	}
