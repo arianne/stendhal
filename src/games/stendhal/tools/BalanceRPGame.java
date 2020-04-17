@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
@@ -46,6 +47,11 @@ import marauroa.common.game.RPObject;
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
 public class BalanceRPGame {
+
+	// suggested stats output at end of run
+	private static final List<String> suggestions = new LinkedList<>();
+
+
 	/**
 	 * A Simple (dumb) optimizer to adjust creature stats.
 	 */
@@ -198,7 +204,7 @@ public class BalanceRPGame {
 
 			equip(player, level);
 
-			System.out.println("Player(" + level + ") vs "
+			System.out.println("\nPlayer(" + level + ") vs "
 					+ creature.getCreatureName());
 
 			durationThreshold = DEFAULT_DURATION_THRESHOLD;
@@ -259,16 +265,17 @@ public class BalanceRPGame {
 				changed = true;
 			}
 
-			System.out.print("BALANCED: ");
+			System.out.println(creature.getCreatureName() + " done!");
+
 			final StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append(creature.getCreatureName());
-			stringBuilder.append("(");
+			stringBuilder.append(" (level ");
 			stringBuilder.append(creature.getLevel());
-			stringBuilder.append(")\t");
+			stringBuilder.append("):");
 			if (changed) {
-				stringBuilder.append("*\t");
+				stringBuilder.append(" *\t");
 			} else {
-				stringBuilder.append(" \t");
+				stringBuilder.append("  \t");
 			}
 			stringBuilder.append("ATK: ");
 			stringBuilder.append(target.getAtk());
@@ -278,11 +285,23 @@ public class BalanceRPGame {
 			stringBuilder.append(target.getBaseHP());
 
 			if (System.getProperty("showxp") != null && proposedXPValue != null) {
-				stringBuilder.append("\t\tSuggested XP: " + proposedXPValue);
+				stringBuilder.append("\t\tXP: " + proposedXPValue);
 			}
 
-			System.out.println(stringBuilder.toString());
+			suggestions.add(stringBuilder.toString());
 		}
+
+		if (suggestions.isEmpty()) {
+			System.out.println("\nNo suggestions available\n");
+		} else {
+			System.out.println("\nSuggested values:");
+			for (final String s: suggestions) {
+				System.out.println("\t" + s);
+			}
+			System.out.println();
+		}
+
+		// FIXME: why does balancer not exit automatically?
 	}
 
 	private static Pair<Integer, Integer> combat(final Player player, final Creature target) {
