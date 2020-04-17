@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+
   <item name="wooden arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
     <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="1"/>
+      <atk value="1" condition="!testing.combat"/>
+      <ratk value="1" condition="testing.combat"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -28,7 +31,8 @@
     <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="3"/>
+      <atk value="3" condition="!testing.combat"/>
+      <ratk value="3" condition="testing.combat"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -50,7 +54,8 @@
     <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="4"/>
+      <atk value="4" condition="!testing.combat"/>
+      <ratk value="4" condition="testing.combat"/>
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -72,7 +77,8 @@
     <description>You see a fire arrow. The tip burns brightly.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -90,12 +96,13 @@
     </equipable>
   </item>
 
-    <item name="ice arrow">
+  <item name="ice arrow">
     <type class="ammunition" subclass="ice_arrow" tileid="-1"/>
     <description>You see an ice arrow. It can deliver a bitter sting.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -113,12 +120,13 @@
     </equipable>
   </item>
 
-    <item name="light arrow">
+  <item name="light arrow">
     <type class="ammunition" subclass="light_arrow" tileid="-1"/>
     <description>You see a light arrow. It shines with a holy radiance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -141,7 +149,8 @@
     <description>You see a dark arrow. It's hard to describe.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -164,7 +173,8 @@
     <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -180,4 +190,5 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
 </items>

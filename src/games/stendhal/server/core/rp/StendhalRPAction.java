@@ -334,7 +334,10 @@ public class StendhalRPAction {
 		}
 
 		// For checking if RATK XP should be incremented on successful hit
-		boolean addRatkXP = isRanged;
+		boolean addRatkXP = false;
+		if (Testing.COMBAT) {
+			addRatkXP = isRanged;
+		}
 
 		/* TODO: Remove if alternate attack training method implemented in
 		 *       game.
@@ -343,17 +346,14 @@ public class StendhalRPAction {
 		 * player has recently received damage from the target. ATK experience
 		 * increases even if attack is blocked.
 		 */
-		if (!Testing.COMBAT) {
-			// disabled attack xp for attacking NPC's
-			if (!(defender instanceof SpeakerNPC)
-					&& player.getsFightXpFrom(defender)) {
-				if (isRanged) {
-					player.incRatkXP();
-					// don't allow player to receive double experience from successful hits
-					addRatkXP = false;
-				} else {
-					player.incAtkXP();
-				}
+		// disabled attack xp for attacking NPC's
+		if (!(defender instanceof SpeakerNPC) && player.getsFightXpFrom(defender)) {
+			if (Testing.COMBAT && isRanged) {
+				player.incRatkXP();
+				// don't allow player to receive double experience from successful hits
+				addRatkXP = false;
+			} else {
+				player.incAtkXP();
 			}
 		}
 
@@ -368,7 +368,7 @@ public class StendhalRPAction {
 
 			final List<Item> weapons = player.getWeapons();
 			final float itemAtk;
-			if (isRanged) {
+			if (Testing.COMBAT && isRanged) {
 				itemAtk = player.getItemRatk();
 			} else {
 				itemAtk = player.getItemAtk();
@@ -377,7 +377,7 @@ public class StendhalRPAction {
 			int damage = player.damageDone(defender, itemAtk, player.getDamageType());
 			if (!usesTrainingDummy && damage > 0) {
 
-				if (addRatkXP && !(defender instanceof SpeakerNPC)) {
+				if (Testing.COMBAT && addRatkXP && !(defender instanceof SpeakerNPC)) {
 					// Range attack XP is incremented for successful hits regardless of whether player has recently been hit
 					player.incRatkXP();
 				}

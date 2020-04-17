@@ -41,8 +41,7 @@
 
     <!-- Archery Range -->
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange"/>
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" condition="testing.combat" />
 
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
       <parameter name="x">96</parameter>
@@ -62,7 +61,8 @@
 
     <!-- Dojo -->
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" condition="testing.combat" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" condition="testing.combat" />
 
     <!-- sign indicating direction to assassins' dojo -->
     <entity x="97" y="116">

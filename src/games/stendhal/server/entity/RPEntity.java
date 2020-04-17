@@ -489,7 +489,7 @@ public abstract class RPEntity extends GuidedEntity {
 			setDefXpInternal(def_xp, false);
 		}
 
-		if (has("ratk_xp")) {
+		if (Testing.COMBAT && has("ratk_xp")) {
 			ratk_xp = getInt("ratk_xp");
 			setRatkXPInternal(ratk_xp, false);
 		}

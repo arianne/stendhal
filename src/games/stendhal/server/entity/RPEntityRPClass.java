@@ -50,8 +50,8 @@ public class RPEntityRPClass {
         entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
-        entity.addAttribute("ratk", Type.SHORT, Definition.PRIVATE);
-        entity.addAttribute("ratk_xp", Type.INT, Definition.PRIVATE);
+        entity.addAttribute("ratk", Type.SHORT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+        entity.addAttribute("ratk_xp", Type.INT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
         entity.addAttribute("ratk_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
 

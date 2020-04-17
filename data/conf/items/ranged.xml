@@ -6,7 +6,8 @@
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="12"/>
+      <atk value="12" condition="!testing.combat"/>
+      <ratk value="12" condition="testing.combat"/>
       <range value="3"/>
     </attributes>
     <weight value="1.0"/>
@@ -26,7 +27,8 @@
     <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="14"/>
+      <atk value="14" condition="!testing.combat"/>
+      <ratk value="14" condition="testing.combat"/>
       <range value="4"/>
     </attributes>
     <weight value="1.0"/>
@@ -46,7 +48,8 @@
     <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="15"/>
+      <atk value="15" condition="!testing.combat"/>
+      <ratk value="15" condition="testing.combat"/>
       <range value="5"/>
     </attributes>
     <weight value="1.0"/>
@@ -66,7 +69,8 @@
  <description>You see a crossbow. The attack is high but it has a very short range, what do you prefer?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="17"/>
+      <atk value="17" condition="!testing.combat"/>
+      <ratk value="17" condition="testing.combat"/>
       <range value="3"/>
     </attributes>
     <weight value="3.0"/>
@@ -86,7 +90,8 @@
  <description>You see a hunter crossbow. You must decide if the high attack is worth the short range it has.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="21"/>
+      <atk value="21" condition="!testing.combat"/>
+      <ratk value="21" condition="testing.combat"/>
       <range value="4"/>
     </attributes>
     <weight value="3.0"/>
@@ -101,12 +106,13 @@
     </equipable>
   </item>
 
-    <item name="mithril bow">
+  <item name="mithril bow">
     <type class="ranged" subclass="mithril_bow" tileid="-1"/>
    <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <ratk value="28"/>
+      <atk value="28" condition="!testing.combat"/>
+      <ratk value="28" condition="testing.combat"/>
       <range value="4"/>
     </attributes>
     <weight value="3.0"/>
@@ -121,12 +127,14 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="auto crossbow">
     <type class="ranged" subclass="auto_crossbow" tileid="-1" />
     <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
     <attributes>
-      <ratk value="0" />
+      <atk value="0" condition="!testing.combat"/>
+      <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
       <durability value="800" />
@@ -148,7 +156,8 @@
     <description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
     <attributes>
-      <ratk value="0" />
+      <atk value="0" condition="!testing.combat"/>
+      <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
       <durability value="1400" />
@@ -170,7 +179,8 @@
     <description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
     <attributes>
-      <ratk value="0" />
+      <atk value="0" condition="!testing.combat"/>
+      <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
       <durability value="3600" />
@@ -186,5 +196,6 @@
       <slot name="trade" />
     </equipable>
   </item>
+-->
 
 </items>

@@ -23,6 +23,7 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -31,6 +32,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LogoutListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -43,6 +45,7 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
@@ -147,6 +150,10 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		initShop();
 		initRepairShop();
 		initTraining();
+
+		if (Testing.COMBAT) {
+			initTrainingDummies();
+		}
 	}
 
 	/**
@@ -448,6 +455,29 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, TRAIN_TIME, "Your training will end in about"));
 		*/
+	}
+
+	private void initTrainingDummies() {
+		// normally added in tiled, but instantiated here so that can be disabled with "Testing.COMBAT"
+
+		// locations of targets
+		final List<Node> nodes = Arrays.asList(
+				new Node(97, 99),
+				new Node(99, 99),
+				new Node(101, 99),
+				new Node(103, 98),
+				new Node(105, 97),
+				new Node(107, 97),
+				new Node(109, 97),
+				new Node(111, 97),
+				new Node(113, 97),
+				new Node(115, 97));
+
+		for (final Node node: nodes) {
+			final TrainingDummy target = new TrainingDummy("other/bullseye", "You see a bullseye.");
+			target.setPosition(node.getX(), node.getY());
+			archeryZone.add(target);
+		}
 	}
 
 	/**

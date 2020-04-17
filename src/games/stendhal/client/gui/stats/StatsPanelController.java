@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Testing;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -136,7 +137,11 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("def_item", listener);
 
 		listener = new RangedWeaponChangeListener();
-		pcs.addPropertyChangeListener("ratk_item", listener);
+		if (Testing.COMBAT) {
+			pcs.addPropertyChangeListener("ratk_item", listener);
+		} else {
+			pcs.addPropertyChangeListener("atk_item", listener);
+		}
 
 		listener = new MoneyChangeListener();
 		for (String slot : MONEY_SLOTS) {
@@ -247,6 +252,10 @@ public final class StatsPanelController {
 	 * Called when ratk, ratkxp, or weaponRatk changes.
 	 */
 	private void updateRatk() {
+		if (!Testing.COMBAT) {
+			return;
+		}
+
 		// ratk uses 10 levels shifted starting point
 		final int next = Level.getXP(ratk - 9) - ratkxp;
 		final String text = "RATK:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
@@ -498,8 +507,14 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			weaponRatk = Integer.parseInt((String) event.getNewValue());
-			updateRatk();
+
+			if (Testing.COMBAT) {
+				weaponRatk = Integer.parseInt((String) event.getNewValue());
+				updateRatk();
+			} else {
+				weaponAtk = Integer.parseInt((String) event.getNewValue());
+				updateAtk();
+			}
 		}
 	}
 

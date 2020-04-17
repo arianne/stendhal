@@ -816,6 +816,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="training sword">
     <type class="sword" subclass="training_sword" tileid="-1"/>
     <description>You see a wooden training sword not even useful for cutting butter. But it is light and easy to swing.</description>
@@ -836,5 +837,6 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+-->
 
 </items>

@@ -7,7 +7,8 @@
     <description>You see snowballs. You can throw them at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.</description>
     <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
     <attributes>
-      <ratk value="-1"/>
+      <atk value="-1" condition="!testing.combat"/>
+      <ratk value="-1" condition="testing.combat"/>
       <range value="8"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -30,7 +31,8 @@
     <description>You see a pile of vomit. Gross!</description>
     <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
     <attributes>
-      <ratk value="-1"/>
+      <atk value="-1" condition="!testing.combat"/>
+      <ratk value="-1" condition="testing.combat"/>
       <range value="5"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -52,7 +54,8 @@
     <description>You see a dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="2"/>
+      <atk value="2" condition="!testing.combat"/>
+      <ratk value="2" condition="testing.combat"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -74,7 +77,8 @@
     <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="4"/>
+      <atk value="4" condition="!testing.combat"/>
+      <ratk value="4" condition="testing.combat"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -96,7 +100,8 @@
     <description>You see a shuriken. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="6"/>
+      <atk value="6" condition="!testing.combat"/>
+      <ratk value="6" condition="testing.combat"/>
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -118,7 +123,8 @@
     <description>You see a fire shuriken. Throwing this flaming missile unleashes fiendish power.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="12"/>
+      <atk value="12" condition="!testing.combat"/>
+      <ratk value="12" condition="testing.combat"/>
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
@@ -141,7 +147,8 @@
     <description>You see a wooden spear. You can attack at a distance with this primitive weapon. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <ratk value="10"/>
+      <atk value="10" condition="!testing.combat"/>
+      <ratk value="10" condition="testing.combat"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
