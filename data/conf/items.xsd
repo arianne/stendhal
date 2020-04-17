@@ -80,6 +80,7 @@
 
 	<complexType name="attribute">
 		<attribute name="value" type="string"></attribute>
+		<attribute name="condition" type="string"/>
 	</complexType>
 
 	<complexType name="equipable">
