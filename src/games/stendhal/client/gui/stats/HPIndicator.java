@@ -41,7 +41,12 @@ public class HPIndicator extends StatusDisplayBar {
 	 * @param ratio
 	 * 		HP ratio.
 	 */
-	public void setRatio(final float ratio) {
+	public void setRatio(float ratio) {
+		// hack to prevent ratio from being over 1.0
+		if (ratio > 1.0f) {
+			ratio = 1.0f;
+		}
+
 		// Pick a color from red to green depending on the hp ratio.
 		float r = Math.min((1.0f - ratio) * 2.0f, 1.0f);
 		float g = Math.min(ratio * 2.0f, 1.0f);

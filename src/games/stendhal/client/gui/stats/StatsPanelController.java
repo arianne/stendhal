@@ -210,6 +210,7 @@ public final class StatsPanelController {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				// FIXME: this seems to be run twice at level up
 				panel.setHP(text);
 				if (maxhpvalue > 0) {
 					panel.setHPBar(maxhpvalue, hp);
