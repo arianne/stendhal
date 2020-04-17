@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import static games.stendhal.common.constants.Actions.SUMMON;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -19,12 +21,17 @@ import java.util.List;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
@@ -303,6 +310,77 @@ public class LuaEntityHelper {
 		}
 
 		return new ShopSign(name, title, caption, seller);
+	}
+
+	/**
+	 * Summons a creature into the world.
+	 *
+	 * FIXME: "coercion error java.lang.IllegalArgumentException: argument type mismatch" occurs if "raid" is LuaBoolean or LuaValue type
+	 *
+	 * @param name
+	 * 		Name of creature to be summoned.
+	 * @param zone
+	 * 		Name of zone where creature should be summoned.
+	 * @param x
+	 * 		Horizontal position of summon location.
+	 * @param y
+	 * 		Vertical position of summon location.
+	 * @param summoner
+	 * 		Name of entity doing the summoning.
+	 * @param raid
+	 * 		(boolean) Whether or not the creature should be a RaidCreature instance (default: true)
+	 * @return
+	 * 		0 = success
+	 * 		1 = creature not found
+	 * 		2 = zone not found
+	 */
+	private int summonCreature(final String name, final String zoneName, final int x, final int y, String summoner, final boolean raid) {
+		if (summoner == null) {
+			logger.warn("Unknown summoner");
+			summoner = getClass().getName();
+		}
+
+		if (!manager.isCreature(name)) {
+			return 1;
+		}
+
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
+		if (zone == null) {
+			return 2;
+		}
+
+		if (raid) {
+			final RaidCreature creature = new RaidCreature(manager.getCreature(name));
+			StendhalRPAction.placeat(zone, creature, x, y);
+		} else {
+			final Creature creature = manager.getCreature(name); // use standard creatures
+			StendhalRPAction.placeat(zone, creature, x, y);
+		}
+
+		new GameEvent(summoner, SUMMON, name).raise();
+
+		return 0;
+	}
+
+	public int summonCreature(final LuaTable table) {
+		final String name = table.get("name").tojstring();
+		final String zoneName = table.get("zone").tojstring();
+		final Integer x = table.get("x").toint();
+		final Integer y = table.get("y").toint();
+		String summoner = null;
+		boolean raid = true;
+
+		final LuaValue checksummoner = table.get("summoner");
+		if (checksummoner != null && !checksummoner.isnil() && checksummoner.isstring()) {
+			summoner = checksummoner.tojstring();
+		}
+
+		final LuaValue checkraid = table.get("raid");
+		if (checkraid != null && !checkraid.isnil() && checkraid.isboolean()) {
+			raid = checkraid.toboolean();
+		}
+
+		return summonCreature(name, zoneName, x, y, summoner, raid);
 	}
 
 

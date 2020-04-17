@@ -62,8 +62,8 @@ local function createNPC()
 
 	npc:addGreeting("Greetings! How may I #help you?")
 	npc:addGoodbye("See ya!");
-	local helpReply = "I can give you a #gift, teleport you to #visit some select areas, or teleport you to #meet with someone."
-		.. " Also, if you have an empty scroll, I can #mark it for you."
+	local helpReply = "I can give you a #gift, teleport you to #visit some select areas, teleport you to #meet with someone,"
+		.. " or #summon an enemy for you to fight. Also, if you have an empty scroll, I can #mark it for you."
 	npc:addHelp(helpReply)
 	npc:addOffer(helpReply)
 
@@ -225,6 +225,30 @@ local function createNPC()
 		npc:say("Here is your scroll for " .. map .. ". What else can I do for you?")
 	end)
 
+	local summonAction = actions:create(function(player, sentence, npc)
+		-- NOTE: rare & abnormal creatures can be summon by Aida
+		local enemyName = sentence:getTrimmedText()
+
+		local summoned = entities:summonCreature({
+			name = enemyName,
+			zone = zone,
+			x = 15,
+			y = 52,
+			summoner = npc:getName(),
+			raid = false})
+
+		if summoned == 1 then
+			npc:say("That is not an enemy found in this world.")
+			return
+		elseif summon == 2 then
+			npc:say("I encountered a problem summoning that enemy to " .. zone .. ".")
+			return
+		end
+
+		npc:say("I have summoned the " .. enemyName .." below. Please be careful.")
+		npc:setCurrentState(ConversationStates.IDLE)
+	end)
+
 	local hasScrollCondition = conditions:create("PlayerHasItemWithHimCondition", {"empty scroll"})
 
 	npc:add(ConversationStates.ATTENDING,
@@ -263,6 +287,13 @@ local function createNPC()
 		"Please tell me the map and the X Y coordinates.",
 		nil)
 
+	npc:add(ConversationStates.ATTENDING,
+		"summon",
+		nil,
+		ConversationStates.QUESTION_5,
+		"What would you like me to summon?",
+		nil)
+
 	npc:add(ConversationStates.QUESTION_1,
 		"",
 		nil,
@@ -290,6 +321,13 @@ local function createNPC()
 		ConversationStates.ATTENDING,
 		nil,
 		markAction)
+
+	npc:add(ConversationStates.QUESTION_5,
+		"",
+		nil,
+		ConversationStates.ATTENDING,
+		nil,
+		summonAction)
 end
 
 
