@@ -307,6 +307,7 @@
     </ai>
   </creature>
 
+<!-- disabled
   <creature name="fire demon">
     <type class="demon" subclass="fire_demon" tileid="demon.png:6"/>
     <description></description>
@@ -319,7 +320,8 @@
     </attributes>
     <level value="310"/>
     <experience value="190000"/>
-    <respawn value="48000"/> <!-- 240 minutes -->
+    <respawn value="48000"/>--> <!-- 240 minutes -->
+    <!--
     <corpse name="humanoid"/>
     <drops>
     </drops>
@@ -335,5 +337,6 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
+-->
 
 </creatures>
