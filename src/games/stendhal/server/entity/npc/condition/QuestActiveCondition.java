@@ -41,6 +41,7 @@ public class QuestActiveCondition implements ChatCondition {
 
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+		// FIXME: this should check IQuest.isCompleted
 		return (player.hasQuest(questname) && !player.isQuestInState(questname, 0, "rejected") && !player.isQuestCompleted(questname));
 	}
 

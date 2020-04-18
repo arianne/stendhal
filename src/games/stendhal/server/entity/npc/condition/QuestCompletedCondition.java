@@ -41,6 +41,14 @@ public class QuestCompletedCondition implements ChatCondition {
 
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+		// FIXME: this should check IQuest.isCompleted
+		/*
+		final IQuest quest = StendhalQuestSystem.get().getQuestFromSlot(questname);
+		if (quest != null) {
+			return quest.isCompleted(player);
+		}
+		*/
+
 		return (player.isQuestCompleted(questname));
 	}
 
