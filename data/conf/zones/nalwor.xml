@@ -61,8 +61,8 @@
 
     <!-- Dojo -->
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" condition="testing.combat" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" condition="testing.combat" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" />
 
     <!-- sign indicating direction to assassins' dojo -->
     <entity x="97" y="116">
