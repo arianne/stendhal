@@ -107,7 +107,7 @@ public class TrainingArea extends Area {
 			return false;
 		}
 
-		return getPlayers().size() < maxCapacity;
+		return getPlayers().size() >= maxCapacity;
 	}
 
 	public int getMaxCapacity() {
