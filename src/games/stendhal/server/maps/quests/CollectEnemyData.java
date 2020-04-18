@@ -784,6 +784,25 @@ public class CollectEnemyData extends AbstractQuest {
 
 		res.add("I have found " + npc.getName() + ", a wandering adventurer.");
 
+		for (int step = 0; step < 3; step++) {
+			final String enemy = getEnemyForStep(player, step);
+			if (enemy != null) {
+				if (!isStepDone(player, step)) {
+					res.add("He has asked me to get information on " + Grammar.a_noun(enemy) + ".");
+				} else {
+					String key = getQuestionKeyForStep(player, step);
+					if (!key.equals("level")) {
+						key = key.toUpperCase();
+					}
+					res.add("I reported information on the " + key + " of " + Grammar.a_noun(enemy) + ".");
+				}
+			}
+		}
+
+		if (isCompleted(player)) {
+			res.add("I gathered all the information that " + npc.getName() + " requested on some enemies found in Faiumoni. Now I can purchase a bestiary from him.");
+		}
+
 		return res;
 	}
 
