@@ -63,36 +63,23 @@ public class TrainingArea extends Area {
 	 * 		<code>true</code> if the player's stat/level is too high to train.
 	 */
 	public boolean meetsLevelCap(final Player player, final int statLevel) {
-		final int levelCap = calculateLevelCap(player);
-		if (levelCap < 0) {
-			return false;
-		}
-
-		return statLevel >= levelCap;
+		return statLevel >= calculateLevelCap(player.getLevel());
 	}
 
 	/**
-	 * Calculates the level cap at which a player cannot train.
+	 * Calculates the stat level cap at which a player cannot train.
 	 *
-	 * @param player
-	 * 		Player to be checked.
+	 * @param playerLevel
+	 * 		Level of player to be checked.
 	 * @return
-	 * 		Capped level for training.
+	 * 		Capped stat level at which player cannot use area.
 	 */
-	private int calculateLevelCap(final Player player) {
-		final int level = player.getLevel();
-
-		// no limit at max level
-		if (level >= MAX_LEVEL) {
-			return -1;
+	private int calculateLevelCap(final int playerLevel) {
+		if (playerLevel <= 55) {
+			return playerLevel;
 		}
 
-		// up to level 62, cap is player level
-		if (level <= 61) {
-			return level;
-		}
-
-		return level / 5 + 50;
+		return 50 + playerLevel / 10;
 	}
 
 	/**
