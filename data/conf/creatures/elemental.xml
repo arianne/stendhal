@@ -180,12 +180,12 @@
       <def value="61"/>
       <hp value="700"/>
       <speed value="0.3"/>
-      <size value="1,1"/>
+      <size value="3,2"/>
     </attributes>
     <level value="100"/>
     <experience value="3500"/>
     <respawn value="144000"/> <!-- 144000 turns = 12 hours -->
-    <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
+    <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2" />
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater potion" quantity="[1,3]" probability="10.0"/>
