@@ -47,8 +47,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -111,6 +109,26 @@ public class CollectEnemyData extends AbstractQuest {
 		put("atk", new Pair<String, String>("What is the attack level of", null));
 	}};
 
+	// FIXME: QuestActiveCondition doesn't work for this quest because of the overridden isCompleted method
+	private final ChatCondition questActiveCondition = new ChatCondition() {
+		@Override
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+			if (player.getQuest(QUEST_SLOT) != null) {
+				return !isCompleted(player);
+			}
+
+			return false;
+		}
+	};
+
+	// FIXME: QuestCompletedCondition doesn't work for this quest because of the overridden isCompleted method
+	private final ChatCondition questCompletedCondition = new ChatCondition() {
+		@Override
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+			return isCompleted(player);
+		}
+	};
+
 
 	private void initNPC() {
 		npc = new SpeakerNPC("Rengard");
@@ -127,17 +145,20 @@ public class CollectEnemyData extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES,
-				new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+				//new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+				new NotCondition(questCompletedCondition),
 				ConversationStates.ATTENDING,
 				helpReply,
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.HELP_MESSAGES,
-				new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+				//new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+				new NotCondition(questCompletedCondition),
 				ConversationStates.ATTENDING,
 				helpReply,
 				null);
+
 
 		teleporterBehaviour = new TeleporterBehaviour(npc, Arrays.asList(zonesWhitelist), "", "♫♫♫") {
 			@Override
@@ -232,8 +253,9 @@ public class CollectEnemyData extends AbstractQuest {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				final int currentStep = getCurrentStep(player);
-				final String creatureName = player.getQuest(QUEST_SLOT, currentStep).split(",")[0];
-				player.setQuest(QUEST_SLOT, currentStep, creatureName + ",done");
+				String[] stepState = player.getQuest(QUEST_SLOT, currentStep).split(",");
+				stepState[1] = "done";
+				player.setQuest(QUEST_SLOT, currentStep, String.join(",", stepState));
 			}
 		};
 
@@ -249,14 +271,16 @@ public class CollectEnemyData extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestStartedCondition(QUEST_SLOT),
-						new NotCondition(new QuestCompletedCondition(QUEST_SLOT))),
+						//new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+						new NotCondition(questCompletedCondition)),
 				ConversationStates.ATTENDING,
 				"You have already agreed to help me collect creature data.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				//new QuestCompletedCondition(QUEST_SLOT),
+				questCompletedCondition,
 				ConversationStates.ATTENDING,
 				"Thank you for your help compiling creature information.",
 				null);
@@ -278,7 +302,8 @@ public class CollectEnemyData extends AbstractQuest {
 		// player has to returned to give info
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				//new QuestActiveCondition(QUEST_SLOT), // FIXME: doesn't work for this quest because of the overridden isCompleted method
+				questActiveCondition,
 				ConversationStates.QUESTION_1,
 				"Have you brought information about the creature I requested?",
 				null);
@@ -348,7 +373,6 @@ public class CollectEnemyData extends AbstractQuest {
 								npc.say("Thanks so much for you help. Now I have all the information I need to complete my #bestiary."
 										+ " If you would like one of your own, I can sell you one.");
 								player.addKarma(200.0);
-								player.setQuest(QUEST_SLOT, "done");
 							}}));
 	}
 
@@ -360,7 +384,8 @@ public class CollectEnemyData extends AbstractQuest {
 		final SellerBehaviour behaviour = new SellerBehaviour(prices) {
 			@Override
 			public ChatCondition getTransactionCondition() {
-				return new QuestCompletedCondition(QUEST_SLOT);
+				//return new QuestCompletedCondition(QUEST_SLOT);
+				return questCompletedCondition;
 			}
 
 			@Override
@@ -394,21 +419,24 @@ public class CollectEnemyData extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				//new QuestCompletedCondition(QUEST_SLOT),
+				questCompletedCondition,
 				ConversationStates.ATTENDING,
 				"I can sell you a #bestiary.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.HELP_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				//new QuestCompletedCondition(QUEST_SLOT),
+				questCompletedCondition,
 				ConversationStates.ATTENDING,
 				"If you own a #bestiary, you may be able to find a psychic that can give you more insight into the creatures you have encountered.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				"bestiary",
-				new QuestCompletedCondition(QUEST_SLOT),
+				//new QuestCompletedCondition(QUEST_SLOT),
+				questCompletedCondition,
 				ConversationStates.ATTENDING,
 				"A bestiary allows you to keep track of the enemies you have defeated.",
 				null);
@@ -602,6 +630,8 @@ public class CollectEnemyData extends AbstractQuest {
 		final String enemy = getStepsStates(player).get(step).split(",")[0];
 		if (enemy == null) {
 			logger.error("Could not retrieve enemy/creature from quest slot for step " + step);
+		} else if(enemy.equals("null") || enemy.equals("")) {
+			return null;
 		}
 
 		return enemy;
@@ -786,6 +816,15 @@ public class CollectEnemyData extends AbstractQuest {
 		}
 
 		return npc.getName();
+	}
+
+	@Override
+	public boolean isCompleted(final Player player) {
+		if (player.hasQuest(QUEST_SLOT)) {
+			return (isStepDone(player, 0) && isStepDone(player, 1) && isStepDone(player, 2)) || player.getQuest(QUEST_SLOT).equals("done");
+		}
+
+		return false;
 	}
 
 	/**
