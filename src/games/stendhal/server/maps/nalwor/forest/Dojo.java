@@ -216,7 +216,8 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new NotCondition(meetsLevelCapCondition),
-						new PlayerHasItemWithHimCondition("assassins id")),
+						new PlayerHasItemWithHimCondition("assassins id"),
+						new NotCondition(dojoFullCondition)),
 				ConversationStates.QUESTION_1,
 				null,
 				new MultipleActions(
@@ -235,7 +236,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
-				"It's " + Integer.toString(COST) + " money to train in the dojo. Woul you like to enter?",
+				"It's " + Integer.toString(COST) + " money to train in the dojo. Would you like to enter?",
 				null);
 
 		// player returns before cooldown period is up
@@ -248,7 +249,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
 
-		// player's RATK level is too high
+		// player's ATK level is too high
 		samurai.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				meetsLevelCapCondition,
@@ -280,6 +281,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				new AndCondition(
 						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id"),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 0, STATE_ACTIVE)),
 						dojoFullCondition),
 				ConversationStates.ATTENDING,
 				FULL_MESSAGE,
