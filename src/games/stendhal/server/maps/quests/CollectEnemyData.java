@@ -140,22 +140,23 @@ public class CollectEnemyData extends AbstractQuest {
 		npc.addGoodbye("May you have luck on your future adventures.");
 		npc.addJob("Job? Hah! I am a free spirit. I travel the world, seeking to increase my own knowledge and experience.");
 
-		final String helpReply = "If you seek to expand your knowledge as I do, I have a little #task I could use some help with.";
+		final List<String> helpTriggers = new ArrayList<>();
+		helpTriggers.addAll(ConversationPhrases.HELP_MESSAGES);
+		helpTriggers.addAll(ConversationPhrases.OFFER_MESSAGES);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.OFFER_MESSAGES,
+				helpTriggers,
 				//new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
-				new NotCondition(questCompletedCondition),
+				new NotCondition(new QuestStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
-				helpReply,
+				"If you seek to expand your knowledge as I do, I have a little #task I could use some help with.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.HELP_MESSAGES,
-				//new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
-				new NotCondition(questCompletedCondition),
+				helpTriggers,
+				questActiveCondition,
 				ConversationStates.ATTENDING,
-				helpReply,
+				"Finish helping me gather some enemy info and I will sell you something very useful.",
 				null);
 
 
