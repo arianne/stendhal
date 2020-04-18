@@ -36,12 +36,17 @@ local function addNPC()
 		{"olive oil", 135},
 		{"vinegar", 135},
 	}
-	merchants:addSeller(grocer, sellPrices, false)
+	-- FIXME: not working for Lua table as argument
+	--merchants:addSeller(grocer, sellPrices, false)
+
+	local shopName = "denirangrocerysell"
 
 	-- add to shop list
 	for _, item in pairs(sellPrices) do
-		merchants.shops:add("denirangrocerysell", item[1], item[2])
+		merchants.shops:add(shopName, item[1], item[2])
 	end
+
+	merchants:addSeller(grocer, merchants.shops:get(shopName), false)
 
 	game:add(grocer)
 end
