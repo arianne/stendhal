@@ -986,7 +986,7 @@
 				<pathelement path="${guava_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 			</classpath>
-			<arg value="${creature}"/>
+			<arg line="${creature}"/>
 		</java>
 	</target>
 
