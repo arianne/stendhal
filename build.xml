@@ -987,6 +987,7 @@
 				<pathelement path="${groovy_jar}"/>
 			</classpath>
 			<arg line="${creature}"/>
+			<sysproperty key="showxp" value=""/>
 		</java>
 	</target>
 
