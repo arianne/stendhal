@@ -20,6 +20,8 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -50,6 +52,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.TimeUtil;
 
 
@@ -221,6 +224,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				player.drop("money", dojoArea.calculateFee(player.getAtk()));
+				samurai.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 				player.setQuest(QUEST_SLOT, STATE_ACTIVE + ";" + Integer.toString(TRAIN_TIME));
 			}
 		};
@@ -323,7 +327,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				ConversationPhrases.YES_MESSAGES,
 				canAffordFeeCondition,
 				ConversationStates.IDLE,
-				"You can train for up to " + Integer.toString(TRAIN_TIME / MathHelper.SECONDS_IN_ONE_MINUTE) + " minutes. So make good use of yer time.",
+				"You can train for up to " + Integer.toString(TRAIN_TIME / MathHelper.SECONDS_IN_ONE_MINUTE) + " minutes. So make good use of your time.",
 				new MultipleActions(
 						startTrainingAction,
 						new DojoTimerAction()));
