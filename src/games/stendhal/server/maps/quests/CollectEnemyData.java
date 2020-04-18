@@ -420,9 +420,20 @@ public class CollectEnemyData extends AbstractQuest {
 			public Item getAskedItem(final String askedItem, final Player player) {
 				final Item item = super.getAskedItem(askedItem, player);
 
-				// set owner to prevent others from using it
-				((OwnedItem) item).setOwner(player.getName());
-				return item;
+				if (item != null && player != null) {
+					// set owner to prevent others from using it
+					((OwnedItem) item).setOwner(player.getName());
+					return item;
+				}
+
+				if (player == null) {
+					logger.error("Player is null, cannot set owner in bestiary");
+				}
+				if (item == null) {
+					logger.error("Could not create bestiary item");
+				}
+
+				return null; // don't give a bestiary without owner
 			}
 		};
 		new SellerAdder().addSeller(npc, behaviour, false);
