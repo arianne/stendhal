@@ -177,13 +177,13 @@
     <description>You see a Legendary Elemental of Ice... </description>
     <attributes>
       <atk value="800"/>
-      <def value="61"/>
-      <hp value="700"/>
+      <def value="200"/>
+      <hp value="4500"/>
       <speed value="0.3"/>
       <size value="3,2"/>
     </attributes>
-    <level value="100"/>
-    <experience value="3500"/>
+    <level value="255"/>
+    <experience value="155000"/>
     <respawn value="144000"/> <!-- 144000 turns = 12 hours -->
     <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2" />
     <drops>
@@ -207,6 +207,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
