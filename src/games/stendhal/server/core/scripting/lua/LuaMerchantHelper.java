@@ -59,6 +59,8 @@ public class LuaMerchantHelper {
 	/**
 	 * Adds merchant behavior to a SpeakerNPC.
 	 *
+	 * FIXME: LuaTable not working for "prices" object
+	 *
 	 * @param merchantType
 	 * 		If set to "buyer", will add buyer behavior, otherwise will be "seller".
 	 * @param npc
