@@ -117,4 +117,19 @@ public class TrainingArea extends Area {
 
 		return maxCapacity;
 	}
+
+	/**
+	 * Calculates a fee to use the area.
+	 *
+	 * Base fee is 625 & doubles every 20 levels.
+	 *
+	 * @param statLevel
+	 * 		Level of stat to be used as factor.
+	 * @return
+	 * 		Suggested fee.
+	 */
+	public int calculateFee(final int statLevel) {
+		int operand = ((int) Math.floor(statLevel / 20));
+		return ((int) Math.pow(2, operand)) * 625;
+	}
 }

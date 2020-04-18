@@ -41,12 +41,10 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TrainingDummy;
-import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -62,9 +60,6 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 
 	/** quest/activity identifier */
 	private static final String QUEST_SLOT = "dojo";
-
-	/** cost to use dojo */
-	private static final int COST = 5000;
 
 	/** time (in seconds) allowed for training session */
 	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -201,7 +196,18 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		samurai.addOffer("I can offer you a #training session for a #fee.");
 		samurai.addQuest("I don't need any help, but I can let you to #train for a #fee if you have been approved by the assassins' HQ.");
 		samurai.addHelp("This is the assassins' dojo. I can let you #train here for a #fee if you're in good with HQ.");
-		samurai.addReply(FEE_PHRASES, "The fee to #train is " + Integer.toString(COST) + " money.");
+
+		samurai.add(ConversationStates.ATTENDING,
+				FEE_PHRASES,
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						samurai.say("The fee to #train for your skill level is " + dojoArea.calculateFee(player.getAtk()) + " money.");
+					}
+				});
 
 		final ChatCondition meetsLevelCapCondition = new ChatCondition() {
 			@Override
@@ -209,6 +215,22 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				return dojoArea.meetsLevelCap(player, player.getAtk());
 			}
 		};
+
+		final ChatCondition canAffordFeeCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return player.isEquipped("money", dojoArea.calculateFee(player.getAtk()));
+			}
+		};
+
+		final ChatAction startTrainingAction = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				player.drop("money", dojoArea.calculateFee(player.getAtk()));
+				player.setQuest(QUEST_SLOT, STATE_ACTIVE + ";" + Integer.toString(TRAIN_TIME));
+			}
+		};
+
 
 		// player has never trained before
 		samurai.add(ConversationStates.ATTENDING,
@@ -222,10 +244,13 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				null,
 				new MultipleActions(
 						new NPCEmoteAction(samuraiName + " looks over your assassins id.", false),
-						new SayTextAction("Hmmm, I haven't seen you around here before."
-								+ " But you have the proper credentials. Do you want me to"
-								+ " open up the dojo? The fee is " + Integer.toString(COST)
-								+ " money.")));
+						new ChatAction() {
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+								samurai.say("Hmmm, I haven't seen you around here before. But you have the proper credentials. Do you want me to"
+										+ " open up the dojo? The fee is " + dojoArea.calculateFee(player.getAtk()) + " money.");
+							}
+						}));
 
 		// player returns after cooldown period is up
 		samurai.add(ConversationStates.ATTENDING,
@@ -236,8 +261,13 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 						new NotCondition(meetsLevelCapCondition),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
-				"It's " + Integer.toString(COST) + " money to train in the dojo. Would you like to enter?",
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						samurai.say("It's " + dojoArea.calculateFee(player.getAtk()) + " money to train in the dojo. Would you like to enter?");
+					}
+				});
 
 		// player returns before cooldown period is up
 		samurai.add(ConversationStates.ATTENDING,
@@ -297,18 +327,17 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		 */
 		samurai.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				new PlayerHasItemWithHimCondition("money", COST),
+				canAffordFeeCondition,
 				ConversationStates.IDLE,
 				"You can train for up to " + Integer.toString(TRAIN_TIME / MathHelper.SECONDS_IN_ONE_MINUTE) + " minutes. So make good use of yer time.",
 				new MultipleActions(
-						new DropItemAction("money", COST),
-						new SetQuestAction(QUEST_SLOT, STATE_ACTIVE + ";" + Integer.toString(TRAIN_TIME)),
+						startTrainingAction,
 						new DojoTimerAction()));
 
 		// player does not have enough money to begin training
 		samurai.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),
+				new NotCondition(canAffordFeeCondition),
 				ConversationStates.ATTENDING,
 				"You don't even have enough money for the #fee.",
 				null);
