@@ -41,7 +41,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
@@ -390,8 +389,19 @@ public class CollectEnemyData extends AbstractQuest {
 
 			@Override
 			public ChatAction getRejectedTransactionAction() {
-				// FIXME: response should be different if quest is in progress
-				return new SayTextAction("I need your help with a #task first.");
+				return new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						final String response;
+						if (questActiveCondition.fire(player, null, null)) {
+							response = "I still need you to help me gather information on " + Grammar.a_noun(getEnemyForStep(player, getCurrentStep(player))) + ".";
+						} else {
+							response = "I need your help with a #task first.";
+						}
+
+						npc.say(response);
+					}
+				};
 			}
 
 			@Override
