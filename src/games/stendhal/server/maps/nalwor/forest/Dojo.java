@@ -108,6 +108,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 		dojoZoneID = zone.getName();
 		dojoArea = new TrainingArea(zone, 5, 52, 35, 20);
 		dojoArea.setCapacity(16);
+		dojoArea.setGate(GATE_POS.x, GATE_POS.y);
 
 		// initialize condition to check if dojo is full
 		dojoFullCondition = new ChatCondition() {
@@ -378,8 +379,8 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 
 	@Override
 	public void onLoggedIn(final Player player) {
-		// don't allow players to login within archery range area boundaries
-		if (dojoArea.contains(player) || (player.getX() == GATE_POS.x && player.getY() == GATE_POS.y)) {
+		// don't allow players to login within dojo area boundaries
+		if (dojoArea.contains(player)) {
 			player.teleport(dojoZoneID, END_POS.x, END_POS.y, null, null);
 		}
 

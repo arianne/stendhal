@@ -11,11 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.core.config.zone.NoTeleportIn;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
@@ -29,6 +31,8 @@ public class TrainingArea extends Area {
 
 	// maximum number of players allowed in area at a single time.
 	private Integer maxCapacity;
+	// location of gate
+	private Point gatePos = null;
 
 
 	public TrainingArea(final StendhalRPZone zone, final Rectangle shape) {
@@ -50,6 +54,30 @@ public class TrainingArea extends Area {
 	 */
 	public void setCapacity(final int capacity) {
 		maxCapacity = capacity;
+	}
+
+	/**
+	 * Sets the position of the entrance to the training area.
+	 *
+	 * @param x
+	 * 		Horizontal position.
+	 * @param y
+	 * 		Vertical position.
+	 */
+	public void setGate(final int x, final int y) {
+		gatePos = new Point(x, y);
+		// don't allow teleporting or marking scrolls in gate area
+		new NoTeleportIn().configureZone(getZone(), new Rectangle(x, y, 1, 1));
+	}
+
+	@Override
+	public boolean contains(final Entity entity) {
+		boolean contained = super.contains(entity);
+		if (gatePos != null) {
+			contained = contained || (entity.getX() == gatePos.x && entity.getY() == gatePos.y);
+		}
+
+		return contained;
 	}
 
 	/**
