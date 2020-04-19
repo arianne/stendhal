@@ -263,7 +263,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						samurai.say("It's " + dojoArea.calculateFee(player.getAtk()) + " money to train in the dojo. Would you like to enter?");
+						samurai.say("At your level of experience, it's " + dojoArea.calculateFee(player.getAtk()) + " money to train in the dojo. Would you like to enter?");
 					}
 				});
 
@@ -282,7 +282,7 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 				TRAIN_PHRASES,
 				meetsLevelCapCondition,
 				ConversationStates.ATTENDING,
-				"You are too skilled to train here.",
+				"At your level of experience, your attack strength it too high to train here at this time.",
 				null);
 
 		// player does not have an assassins id
