@@ -739,7 +739,7 @@ public class CollectEnemyData extends AbstractQuest {
 			return null;
 		}
 
-		String questionString = prefix.trim() + " " + Grammar.singular(currentCreature);
+		String questionString = prefix.trim() + " " + Grammar.a_noun(currentCreature);
 		if (suffix != null) {
 			questionString += " " + suffix.trim();
 		}
