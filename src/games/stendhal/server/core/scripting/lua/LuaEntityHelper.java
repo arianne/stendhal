@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 
@@ -469,6 +470,8 @@ public class LuaEntityHelper {
 			if (conditions != null) {
 				if (conditions instanceof ChatCondition) {
 					listenConditions = (ChatCondition) conditions;
+				} else if (conditions instanceof LuaFunction) {
+					listenConditions = conditionHelper.create((LuaFunction) conditions);
 				} else {
 					listenConditions = conditionHelper.andCondition((LuaTable) conditions);
 				}
@@ -477,6 +480,8 @@ public class LuaEntityHelper {
 			if (actions != null) {
 				if (actions instanceof ChatAction) {
 					listenActions = (ChatAction) actions;
+				} else if (actions instanceof LuaFunction) {
+					listenActions = actionHelper.create((LuaFunction) actions);
 				} else {
 					listenActions = actionHelper.multiple((LuaTable) actions);
 				}
