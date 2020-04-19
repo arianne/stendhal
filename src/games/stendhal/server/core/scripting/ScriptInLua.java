@@ -38,6 +38,7 @@ import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
 import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
 import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
+import games.stendhal.server.core.scripting.lua.LuaTableHelper;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 
@@ -129,8 +130,9 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
 
-		// initialize supplemental string functions
+		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));
+		LuaTableHelper.get().init((LuaTable) globals.get("table"));
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
