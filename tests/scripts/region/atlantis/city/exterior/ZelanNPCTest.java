@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package data.script.region.atlantis.city.exterior;
+package scripts.region.atlantis.city.exterior;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
