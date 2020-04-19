@@ -335,8 +335,7 @@
 		<!-- data Groovy & Lua scripts -->
 		<copy todir="${build_server_script}">
 			<fileset dir="data/script">
-				<include name="**/*.groovy"/>
-				<include name="**/*.lua"/>
+				<include name="**/*"/>
 			</fileset>
 		</copy>
 
@@ -605,8 +604,7 @@
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
 			<fileset dir="${buildroot}/build_server_script">
 				<include name="games/stendhal/server/script/**.*"/>
-				<include name="**/*.groovy"/>
-				<include name="**/*.lua"/>
+				<include name="**/*"/>
 			</fileset>
 		</copy>
 
