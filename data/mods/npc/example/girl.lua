@@ -21,7 +21,7 @@ logger:info("Loading Lua SpeakerNPC...")
 if game:setZone("0_semos_city") then
 
 	-- Use helper object to create a new NPC
-	local npc = npcHelper:createSpeakerNPC("Lua")
+	local npc = entities:createSpeakerNPC("Lua")
 	npc:setEntityClass("littlegirlnpc")
 	npc:setPosition(10, 55)
 	npc:setBaseSpeed(0.1)
@@ -35,7 +35,7 @@ if game:setZone("0_semos_city") then
 	}
 
 	-- Use helper object to create NPC path
-	npcHelper:setPath(npc, nodes)
+	npc:setPath(nodes, true)
 
 	-- Dialogue
 	npc:addJob("Actually, I am jobless.")
@@ -53,22 +53,22 @@ if game:setZone("0_semos_city") then
 	npc:add(
 		ConversationStates.ATTENDING,
 		"Lua",
-		newCondition("PlayerNextToCondition"),
+		conditions:create("PlayerNextToCondition"),
 		ConversationStates.ATTENDING,
 		"Um, could you back up please? I can smell your breath.",
-		newAction("NPCEmoteAction", "coughs", false)
+		actions:create("NPCEmoteAction", {"coughs", false})
 	)
 	npc:add(
 		ConversationStates.ATTENDING,
 		"Lua",
-		newCondition("NotCondition", newCondition("PlayerNextToCondition")),
+		conditions:notCondition(conditions:create("PlayerNextToCondition")),
 		ConversationStates.ATTENDING,
 		"That's my name, don't wear it out!",
-		newAction("NPCEmoteAction", "giggles", false)
+		actions:create("NPCEmoteAction", {"giggles", false})
 	)
 
 	-- Set up a sign for Lua
-	local sign = game:createSign()
+	local sign = entities:createSign()
 	sign:setEntityClass("signpost")
 	sign:setPosition(12, 55)
 	sign:setText("Meet Lua!")

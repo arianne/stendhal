@@ -21,7 +21,7 @@ logger:info("Loading Lua SilentNPC...")
 if game:setZone("0_semos_city") then
 
 	-- Create new NPC instance
-	local dog = npcHelper:createSilentNPC()
+	local dog = entities:createSilentNPC()
 	dog:put("menu", "Pet|Use")
 	dog:setName("Puppy");
 	dog:setPosition(23, 54);
