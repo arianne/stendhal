@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -133,6 +134,20 @@ public class ScriptInLua extends ScriptingSandbox {
 		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));
 		LuaTableHelper.get().init((LuaTable) globals.get("table"));
+
+		// override dofile function to use relative paths
+		// FIXME: this only works at script initialization because it depends on "luaScript" variable
+		final LuaFunction dofileOrig = globals.get("dofile").checkfunction();
+		globals.set("dofile", new LuaFunction() {
+			@Override
+			public LuaValue call(final LuaValue lv) {
+				if (luaScript == null) {
+					return dofileOrig.call(lv);
+				}
+
+				return dofileOrig.call(Paths.get(Paths.get(luaScript).getParent().toString(), lv.checkjstring()).toString());
+			}
+		});
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
