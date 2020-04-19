@@ -36,6 +36,7 @@
 	<property name="build_server" value="${buildroot}/build_server"/>
 	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
 	<property name="build_server_script" value="${buildroot}/build_server_script"/>
+	<property name="build_server_mods" value="${buildroot}/build_server_mods"/>
 	<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf"/>
 
 	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
@@ -152,6 +153,7 @@
 		<delete dir="${build_server}" />
 		<delete dir="${build_server_maps}" />
 		<delete dir="${build_server_script}" />
+		<delete dir="${build_server_mods}" />
 		<delete dir="${buildroot}/build_server_quests" />
 		<delete dir="${buildroot}/build_server_xmlconf" />
 		<delete dir="${build_tests}" />
@@ -335,6 +337,14 @@
 		<!-- data Groovy & Lua scripts -->
 		<copy todir="${build_server_script}">
 			<fileset dir="data/script">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+
+		<!-- Lua mods -->
+		<mkdir dir="${build_server_mods}"/>
+		<copy todir="${build_server_mods}">
+			<fileset dir="data/mods">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
@@ -604,6 +614,12 @@
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
 			<fileset dir="${buildroot}/build_server_script">
 				<include name="games/stendhal/server/script/**.*"/>
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${buildroot}/stendhal-server-${version}/data/mods">
+			<fileset dir="${build_server_mods}">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
@@ -1039,6 +1055,7 @@
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_server_script}"/>
+				<pathelement path="${build_server_mods}"/>
 				<pathelement path="${build_postman}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -1091,6 +1108,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 					<pathelement path="${build_stendhaltools}"/>
 					<pathelement path="${build_stendhaltextclient}"/>
 					<pathelement path="${build_server_script}"/>
+					<pathelement path="${build_server_mods}"/>
 					<pathelement path="${build_postman}"/>
 					<pathelement path="${easymock_jar}"/>
 					<pathelement path="${easymockclassextension_jar}"/>
