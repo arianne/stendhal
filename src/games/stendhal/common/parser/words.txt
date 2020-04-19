@@ -672,7 +672,7 @@ number	OBJ	numbers
 o	OBJ	os
 obsidian	OBJ	obsidians
 offer	OBJ	offers
-oil	OBJ
+oil	OBJ-FOO-FLU	oils
 onion	OBJ-FOO	onions
 opposite	OBJ	opposites
 or'ril	OBJ	or'rils
@@ -879,6 +879,7 @@ vertex	OBJ	vertices
 victory	OBJ	victories
 vigilance	OBJ	vigilances
 village	OBJ	villages
+vinegar	OBJ-FOO-FLU	vinegars
 vodka	OBJ-FOO-FLU	vodkas
 vomit	OBJ-FLU	vomits
 vortex	OBJ	vortices
