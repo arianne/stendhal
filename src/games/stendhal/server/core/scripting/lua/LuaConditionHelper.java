@@ -160,14 +160,17 @@ public class LuaConditionHelper {
 	 * Helper method for creating a NotCondition instance.
 	 *
 	 * @param lv
-	 * 		Condition to be checked inside a LuaValue instance or list of
-	 * 		conditions inside a LuaTable.
+	 * 		Condition to be checked inside a LuaValue instance, a list of
+	 * 		conditions inside a LuaTable, or a LuaFunction that returns a
+	 * 		boolean value.
 	 * @return
 	 * 		New NotCondition instance.
 	 */
 	public NotCondition notCondition(final LuaValue lv) {
 		if (lv.istable()) {
 			return notCondition(andCondition(lv.checktable()));
+		} else if (lv.isfunction()) {
+			return new NotCondition(create((LuaFunction) lv));
 		}
 
 		return notCondition((ChatCondition) lv.touserdata(ChatCondition.class));
