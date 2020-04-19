@@ -70,7 +70,7 @@ if properties:equals("stendhal.testserver", "junk") then
 		game:add(sign)
 
 		-- load related quest
-		dofile("data/script/quest/ExampleQuest")
+		dofile("../../../quest/ExampleQuest")
 
 		logger:info("Lua SpeakerNPC loaded!")
 	else
