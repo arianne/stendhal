@@ -62,10 +62,10 @@ public class Dojo implements ZoneConfigurator,LoginListener,LogoutListener {
 	private static final String QUEST_SLOT = "dojo";
 
 	/** time (in seconds) allowed for training session */
-	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int TRAIN_TIME = 20 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
 	/** time player must wait to train again */
-	private static final int COOLDOWN = 15;
+	private static final int COOLDOWN = 5;
 
 	/** condition to check if training area is full */
 	private ChatCondition dojoFullCondition;
