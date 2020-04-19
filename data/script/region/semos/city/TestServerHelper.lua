@@ -63,7 +63,8 @@ local function createNPC()
 	npc:addGreeting("Greetings! How may I #help you?")
 	npc:addGoodbye("See ya!");
 	local helpReply = "I can give you a #gift, teleport you to #visit some select areas, teleport you to #meet with someone,"
-		.. " #summon an enemy for you to fight, or #inspect an attribute. Also, if you have an empty scroll, I can #mark it for you."
+		.. " #summon an enemy for you to fight, or #inspect or #alter an attribute. Also, if you have an empty scroll, I can"
+		.. " #mark it for you."
 	npc:addHelp(helpReply)
 	npc:addOffer(helpReply)
 
@@ -283,7 +284,7 @@ local function createNPC()
 
 		local parts = trigger:split(" ")
 		table.remove(parts, 1)
-		local attribute = parts[1]:lower()
+		local attribute = parts[1]
 		table.remove(parts, 1)
 		local target = table.join(parts, " ")
 
@@ -292,8 +293,8 @@ local function createNPC()
 			return
 		end
 
-		attribute = attribute:lower()
-		if attribute == "quest" then
+		local attrLower = attribute:lower()
+		if attrLower == "quest" then
 			if target == nil or target == "" then
 				npc:say("You must specify the quest ID you want to inspect.")
 				return
@@ -305,6 +306,75 @@ local function createNPC()
 			end
 
 			player:sendPrivateText(target .. " (" .. player:getName() .. "): " .. questState)
+			return
+		end
+
+		npc:say("I'm afraid I am not familiar with the \"" .. attribute .. "\" attribute.")
+	end
+
+	local alterAction = function(player, sentence, npc)
+		local attributes = {"quest"}
+		local attrCount = #attributes
+
+		local trigger = sentence:getTrimmedText()
+		if trigger:lower() == "alter" then
+			local sb = string.builder("I can ")
+			local idx = 0
+			for _, a in pairs(attributes) do
+				sb:append("#'alter " .. a .. "'")
+				if idx == attrCount - 1 then
+					sb:append(" ")
+				elseif idx == attrCount - 2 then
+					if attrCount == 2 then
+						sb:append(" and ")
+					else
+						sb:append(", and ")
+					end
+				else
+					sb:append(", ")
+				end
+
+				idx = idx + 1
+			end
+
+			--sb:append("or any recognized player attribute.")
+			sb:append(".")
+
+			npc:say(sb:toString())
+			return
+		end
+
+		local parts = trigger:split(" ")
+		table.remove(parts, 1)
+		local attribute = parts[1]
+		table.remove(parts, 1)
+		--local target = table.join(parts, " ")
+
+		local attrLower = attribute:lower()
+		if attrLower == "quest" then
+			local target = parts[1]
+			if target == nil or target == "" then
+				npc:say("You must specify the quest ID you want to alter.")
+				return
+			end
+
+			local prevState = player:getQuest(target)
+			if prevState == nil then
+				prevState = "null"
+			end
+
+			table.remove(parts, 1)
+			local nextState = table.join(parts, " ")
+			if nextState == "" then
+				nextState = nil
+			end
+
+			player:setQuest(target, nextState)
+
+			if nextState == nil then
+				nextState = "null"
+			end
+			player:sendPrivateText(target .. " (" .. player:getName() .. "): changed from \"" .. prevState .. "\" to \"" .. nextState .. "\"")
 			return
 		end
 
@@ -363,6 +433,13 @@ local function createNPC()
 		ConversationStates.ATTENDING,
 		nil,
 		inspectAction)
+
+	npc:add(ConversationStates.ATTENDING,
+		"alter",
+		nil,
+		ConversationStates.ATTENDING,
+		nil,
+		alterAction)
 
 	npc:add(ConversationStates.QUESTION_1,
 		"",
