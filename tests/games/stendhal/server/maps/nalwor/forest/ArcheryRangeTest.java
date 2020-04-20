@@ -11,32 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-//import static utilities.PlayerTestHelper.createPlayer;
-//import static utilities.PlayerTestHelper.equipWithItem;
-//import static utilities.PlayerTestHelper.equipWithMoney;
-//import static utilities.PlayerTestHelper.resetNPC;
-import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.mapstuff.sign.ShopSign;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import utilities.QuestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 
@@ -47,6 +21,7 @@ import utilities.ZoneAndPlayerTestImpl;
  */
 public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 
+	/*
 	private SpeakerNPC npc;
 	private Engine en;
 
@@ -246,4 +221,5 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 	public void testTrainingCooldownWithID() {
 
 	}
+	*/
 }
