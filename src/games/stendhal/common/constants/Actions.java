@@ -77,6 +77,7 @@ public final class Actions {
 	//inspect
 	public static final String INSPECT = "inspect";
 	public static final String INSPECTQUEST = "inspectquest";
+	public static final String INSPECTKILL = "inspectkill";
 
 	//teleport
 	public static final String ZONE = "zone";

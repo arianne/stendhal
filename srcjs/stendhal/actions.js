@@ -334,6 +334,8 @@ stendhal.slashActionRepository = {
 					"\t\tLogs a note about #player.",
 					"- /inspect <player>",
 					"\t\tShow complete details of #player.",
+					"- /inspectkill <player> <creature>",
+					"\t\tShow creature kill counts of #player for #creature.",
 					"- /inspectquest <player> <quest_slot>",
 					"\t\tShow the state of quest for #player.",
 					"- /script <scriptname>",
@@ -473,6 +475,30 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 0,
 		getMaxParams: 2
+	},
+
+	"inspectkill": {
+		execute: function(type, params, remainder) {
+			const target = params[0];
+			var creature = null;
+			if (remainder != null && remainder != "") {
+				// NOTE: unlike Java client, Javascript client automatically trims whitespace in "remainder" parameter
+				creature = remainder;
+			}
+
+			const action = {
+				"type": "inspectkill",
+				"target": target
+			};
+			if (creature != null) {
+				action["creature"] = creature;
+			}
+
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
 	},
 
 	"inspectquest": {
