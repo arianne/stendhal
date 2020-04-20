@@ -35,6 +35,7 @@ public class InspectKillAction extends AdministrationAction {
 
 		if (!action.has("target")) {
 			admin.sendPrivateText("\"target\" parameter required: " + action);
+			return;
 		}
 
 		final Entity target = getTargetAnyZone(admin, action);
