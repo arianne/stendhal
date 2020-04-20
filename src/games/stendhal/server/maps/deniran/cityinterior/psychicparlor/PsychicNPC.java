@@ -27,6 +27,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.OwnedItem;
@@ -62,7 +63,13 @@ public class PsychicNPC implements ZoneConfigurator {
 	}
 
 	private void initNPC(final StendhalRPZone zone) {
-		psychic = new SpeakerNPC("Lovena");
+		psychic = new SpeakerNPC("Lovena") {
+			@Override
+			protected void onGoodbye(final RPEntity attending) {
+				say("Come back soon " + attending.getName() + ".");
+				addEvent(new SoundEvent("npc/goodbye_female-01", SoundLayer.CREATURE_NOISE));
+			}
+		};
 		psychic.setOutfit("body=1,head=0,dress=42,eyes=2,hair=19");
 
 		psychic.setPosition(26, 11);
