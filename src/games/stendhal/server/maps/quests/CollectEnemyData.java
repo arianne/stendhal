@@ -319,7 +319,7 @@ public class CollectEnemyData extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(hasKilledCreatureCondition),
 				ConversationStates.ATTENDING,
-				"Don't lie to me. You haven't even killed one yet.",
+				"Don't lie to me. You haven't even killed one since we spoke.",
 				null);
 
 		npc.add(ConversationStates.QUESTION_1,
