@@ -228,7 +228,7 @@ public class CollectEnemyDataTest extends ZoneAndPlayerTestImpl {
 		en.step(player, "quest");
 		assertEquals("You have already agreed to help me collect creature data.", getReply(rengard));
 		en.step(player, "buy bestiary");
-		assertEquals("I need your help with a #task first.", getReply(rengard));
+		assertEquals("I still need you to help me gather information on " + Grammar.a_noun(currentEnemy) + ".", getReply(rengard));
 
 		assertEquals(0, killCount);
 
@@ -239,7 +239,7 @@ public class CollectEnemyDataTest extends ZoneAndPlayerTestImpl {
 				getReply(rengard));
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Don't lie to me. You haven't even killed one yet.", getReply(rengard));
+		assertEquals("Don't lie to me. You haven't even killed one since we spoke.", getReply(rengard));
 
 		en.step(player, "bye");
 
@@ -300,7 +300,7 @@ public class CollectEnemyDataTest extends ZoneAndPlayerTestImpl {
 
 	private boolean questIsDone() {
 		final String questState = player.getQuest(questSlot);
-		return (questState != null && questState.equals("done"));
+		return (questState != null && quest.isCompleted(player));
 	}
 
 	private boolean isStepDone(final int step) {
