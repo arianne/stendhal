@@ -110,6 +110,14 @@ public class Version {
 		return 0;
 	}
 
+	private static String firstWord(String sentence) {
+		int pos = sentence.indexOf(' ');
+		if (pos > -1) {
+			return sentence.substring(0, pos);
+		}
+		return sentence;
+	}
+
 	/**
 	 * Checks whether these versions of stendhal are compatible.
 	 *
@@ -120,8 +128,8 @@ public class Version {
 	 * @return true, iff the first two components are equal
 	 */
 	public static boolean checkCompatibility(final String v1, final String v2) {
-		final String ev1 = cut(v1, 2);
-		final String ev2 = cut(v2, 2);
+		final String ev1 = cut(firstWord(v1), 2);
+		final String ev2 = cut(firstWord(v2), 2);
 		final boolean res = ev1.equals(ev2);
 		return res;
 	}
