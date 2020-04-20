@@ -549,6 +549,7 @@ hoe	OBJ	hoes
 home	OBJ	homes
 honey	OBJ-FOO	honeys
 honeymoon	OBJ	honeymoons
+horn	OBJ	horns
 hospital	OBJ	hospitals
 hotdog	OBJ-FOO	hotdogs
 hotel	OBJ	hotels
@@ -671,7 +672,7 @@ number	OBJ	numbers
 o	OBJ	os
 obsidian	OBJ	obsidians
 offer	OBJ	offers
-oil	OBJ
+oil	OBJ-FOO-FLU	oils
 onion	OBJ-FOO	onions
 opposite	OBJ	opposites
 or'ril	OBJ	or'rils
@@ -688,6 +689,7 @@ path	OBJ	paths
 payment	OBJ	payments
 pear	OBJ-FOO
 pearl	OBJ	pearls
+pelt	OBJ	pelts
 pepper	OBJ-FOO peppers
 perch	OBJ-FOO-ANI	perches
 pestle	OBJ	pestles
@@ -877,6 +879,7 @@ vertex	OBJ	vertices
 victory	OBJ	victories
 vigilance	OBJ	vigilances
 village	OBJ	villages
+vinegar	OBJ-FOO-FLU	vinegars
 vodka	OBJ-FOO-FLU	vodkas
 vomit	OBJ-FLU	vomits
 vortex	OBJ	vortices
