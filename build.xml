@@ -539,7 +539,7 @@
 
 		<copy todir="${build_client_sound_data}/data/sounds">
 			<fileset dir="data/sounds">
-				<include name="**.ogg"/>
+				<include name="**/*.ogg"/>
 			</fileset>
 		</copy>
 
@@ -549,7 +549,7 @@
 
 		<copy todir="${build_client_music_data}/data/music">
 			<fileset dir="data/music">
-				<include name="**.ogg"/>
+				<include name="**/*.ogg"/>
 			</fileset>
 		</copy>
 
