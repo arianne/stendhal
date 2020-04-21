@@ -68,7 +68,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		// loot or harvest apples
 		achievements.add(createAchievement(
 				ID_APPLES, "Bobbing for Apples", "Harvest or loot 1,000 apples",
-				Achievement.EASY_BASE_SCORE, true,
+				Achievement.EASY_BASE_SCORE, false,
 				new ChatCondition() {
 					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {

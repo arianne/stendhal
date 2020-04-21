@@ -29,7 +29,6 @@ Changelog
   - auto crossbow A+
   - enhanced imperial ring (atk +1, def +1)
 - new achievements:
-  - Bobbing for Apples: harvest or loot 1,000 apples
   - Royally Endowed: loot a complete royal equipment set
   - Deep Sea Fisherman: kill 500 sharks, kraken, & neo kraken
   - Zombie Apocalypse: kill 500 zombies
