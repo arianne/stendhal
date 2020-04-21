@@ -160,10 +160,10 @@ public class BestiaryEvent extends RPEvent {
 
 			formatted.append(getFormattedString(standardEnemies));
 			if (includeRare) {
-				formatted.append(getFormattedString(rareEnemies));
+				formatted.append(";" + getFormattedString(rareEnemies));
 			}
 			if (includeAbnormal) {
-				formatted.append(getFormattedString(abnormalEnemies));
+				formatted.append(";" + getFormattedString(abnormalEnemies));
 			}
 		}
 
