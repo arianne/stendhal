@@ -625,6 +625,7 @@ public class Grammar {
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
 				|| enoun.endsWith("sheep")
 				|| enoun.endsWith("legs") || enoun.endsWith("boots")
+				|| enoun.endsWith("pegasus") || enoun.endsWith("djinn")
 				|| enoun.equals("deer") || enoun.equals("moose") || enoun.equals("magic")) {
 			return enoun + postfix;
 
