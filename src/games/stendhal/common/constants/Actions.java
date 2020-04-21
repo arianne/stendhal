@@ -169,6 +169,7 @@ public final class Actions {
 
 	public static final String ALTER = "alter";
 	public static final String UNSET = "unset";
+	public static final String ALTERKILL = "alterkill";
 
 	// for listing e.g. ignore list
 	public static final String LIST = "list";

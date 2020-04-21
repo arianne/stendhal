@@ -84,6 +84,8 @@ class GMHelpAction implements SlashAction {
 				"\t\tAlter stat #attrib of #player by the given amount; #mode can be ADD, SUB, SET or UNSET. See #/gmhelp #alter for details.",
 				"- /altercreature <id> name;atk;def;hp;xp",
 				"\t\tChange values of the creature. Use #- as a placeholder to keep default value. Useful in raids.",
+				"- /alterkill <player> <type> <count> <creature>",
+				"\t\tChange number of #creature killed #type (\"solo\" or \"shared\") to #count for #player.",
 				"- /alterquest <player> <questslot> <value>",
 				"\t\tUpdate the #questslot for #player to be #value.",
 				"- /summon <creature|item> [x] [y]",
