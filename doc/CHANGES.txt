@@ -24,9 +24,6 @@ Changelog
 - new items:
   - bestiary
   - training sword
-  - auto crossbow (replaces unused training bow)
-  - auto crossbow A
-  - auto crossbow A+
   - enhanced imperial ring (atk +1, def +1)
 - new achievements:
   - Royally Endowed: loot a complete royal equipment set
