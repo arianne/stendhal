@@ -3,4 +3,27 @@
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal shops.xsd">
 
+	<shop name="deniranpawnbuy" type="buys">
+		<item name="skull ring" price="250" />
+		<item name="engagement ring" price="1000" />
+		<item name="medicinal ring" price="2500" />
+		<item name="placid ring" price="2800" />
+		<!--<item name="emerald ring" price="9000" /> should avoid selling bound rings -->
+		<item name="insulated ring" price="25000" />
+		<item name="turtle shell ring" price="25000" />
+		<item name="imperial ring" price="100000" />
+	</shop>
+
+	<shop name="buyanimalmaterials" type="buys">
+		<!--<item name="wool" price="50" /> is this item obtainable? -->
+		<item name="leather thread" price="50" />
+		<item name="bat entrails" price="100" />
+		<item name="pelt" price="250" />
+		<item name="vampirette entrails" price="700" />
+		<item name="silk gland" price="1000" />
+		<item name="unicorn horn" price="1500" />
+		<item name="venom gland" price="2000" />
+		<item name="mythical egg" price="3000" />
+	</shop>
+
 </shops>

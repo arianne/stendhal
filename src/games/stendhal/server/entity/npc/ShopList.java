@@ -492,25 +492,6 @@ public final class ShopList {
 		}
 		shops.add("atlantispotions", "sedative", 800);
 		shops.add("atlantispotions", "empty scroll", 4000);
-
-		shops.add("deniranpawnbuy", "skull ring", 250);
-		shops.add("deniranpawnbuy", "engagement ring", 1000);
-		shops.add("deniranpawnbuy", "medicinal ring", 2500);
-		shops.add("deniranpawnbuy", "placid ring", 2800);
-		//shops.add("deniranpawnbuy", "emerald ring", 9000); // should avoid selling bound rings
-		shops.add("deniranpawnbuy", "insulated ring", 25000);
-		shops.add("deniranpawnbuy", "turtle shell ring", 25000);
-		shops.add("deniranpawnbuy", "imperial ring", 100000);
-
-		//shops.add("buyanimalmaterials", "wool", 50); // is this item obtainable?
-		shops.add("buyanimalmaterials", "leather thread", 50);
-		shops.add("buyanimalmaterials", "bat entrails", 100);
-		shops.add("buyanimalmaterials", "pelt", 250);
-		shops.add("buyanimalmaterials", "vampirette entrails", 700);
-		shops.add("buyanimalmaterials", "silk gland", 1000);
-		shops.add("buyanimalmaterials", "unicorn horn", 1500);
-		shops.add("buyanimalmaterials", "venom gland", 2000);
-		shops.add("buyanimalmaterials", "mythical egg", 3000);
 	}
 
 	private static ShopList instance;
