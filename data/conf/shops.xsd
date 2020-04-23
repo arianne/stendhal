@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/shops" elementFormDefault="qualified"
+	xmlns:Q2="stendhal">
+
+	<element name="shops" type="Q2:ShopGroup" />
+
+	<complexType name="ShopGroup">
+		<sequence>
+			<element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="Shop">
+		<sequence>
+			<element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" type="string" use="required" />
+		<attribute name="type" type="Q2:ShopType" use="required" />
+		<attribute name="condition" type="string" use="optional" />
+	</complexType>
+
+	<simpleType name="ShopType">
+		<restriction base="string">
+			<enumeration value="buys" />
+			<enumeration value="sells" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="ShopItem">
+		<attribute name="name" type="string" use="required" />
+		<attribute name="price" type="int" use="required" />
+	</complexType>
+
+</schema>
