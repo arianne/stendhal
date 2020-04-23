@@ -100,7 +100,7 @@ public class LuaMerchantHelper {
 		}
 
 		if (priceList == null) {
-			logger.error("Invalid price list type: must by LuaTable or Map<String, Integer>");
+			logger.error("Invalid price list type: must be LuaTable or Map<String, Integer>");
 			return;
 		}
 
