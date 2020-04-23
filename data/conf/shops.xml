@@ -3,6 +3,587 @@
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal shops.xsd">
 
+	<shop name="food&amp;drinks" type="sells">
+		<item name="beer" price="10" />
+		<item name="wine" price="15" />
+		<item name="flask" price="5" />
+		<item name="cheese" price="20" />
+		<item name="apple" price="10" />
+		<item name="carrot" price="10" />
+		<item name="meat" price="40" />
+		<item name="ham" price="80" />
+	</shop>
+
+	<shop name="adosfoodseller" type="sells">
+		<item name="apple" price="50" />
+		<item name="carrot" price="50" />
+		<item name="olive oil" price="135" />
+		<item name="vinegar" price="135" />
+	</shop>
+
+	<shop name="buyfood" type="buys">
+		<item name="cheese" price="5" />
+		<item name="meat" price="10" />
+		<item name="spinach" price="15" />
+		<item name="ham" price="20" />
+		<item name="flour" price="25" />
+		<item name="porcini" price="30" />
+	</shop>
+
+	<shop name="healing" type="sells">
+		<item name="antidote" price="50" />
+		<item name="minor potion" price="100" />
+		<item name="potion" price="250" />
+		<item name="greater potion" price="500" />
+	</shop>
+
+	<shop name="superhealing" type="sells">
+		<item name="antidote" price="50" />
+		<item name="greater antidote" price="100" />
+		<item name="potion" price="250" />
+		<item name="greater potion" price="500" />
+		<item name="mega potion" price="1500" />
+	</shop>
+
+	<shop name="scrolls" type="sells">
+		<item name="home scroll" price="250" />
+		<item name="summon scroll" price="200" />
+		<item name="empty scroll" price="2000" />
+	</shop>
+
+	<shop name="fadoscrolls" type="sells">
+		<item name="fado city scroll" price="600" />
+		<item name="empty scroll" price="2200" />
+	</shop>
+
+	<shop name="nalworscrolls" type="sells">
+		<item name="nalwor city scroll" price="400" />
+		<item name="empty scroll" price="2000" />
+	</shop>
+
+	<shop name="adosscrolls" type="sells">
+		<item name="ados city scroll" price="400" />
+		<item name="empty scroll" price="2000" />
+	</shop>
+
+	<shop name="kirdnehscrolls" type="sells">
+		<item name="kirdneh city scroll" price="400" />
+		<item name="home scroll" price="400" />
+		<item name="empty scroll" price="2000" />
+	</shop>
+
+	<shop name="allscrolls" type="sells">
+		<item name="home scroll" price="250" />
+		<item name="summon scroll" price="200" />
+		<item name="empty scroll" price="2000" />
+		<item name="ados city scroll" price="400" />
+		<item name="nalwor city scroll" price="400" />
+		<item name="fado city scroll" price="600" />
+		<item name="kirdneh city scroll" price="600" />
+		<item name="deniran city scroll" price="800" />
+	</shop>
+
+	<shop name="sellstuff" type="sells">
+		<item name="knife" price="15" />
+		<item name="club" price="10" />
+		<item name="dagger" price="25" />
+		<item name="wooden shield" price="25" />
+		<item name="dress" price="25" />
+		<item name="leather helmet" price="25" />
+		<item name="cloak" price="30" />
+		<item name="leather legs" price="35" />
+	</shop>
+
+	<shop name="sellbetterstuff1" type="sells">
+		<item name="blue armor" price="14000" />
+		<item name="blue boots" price="3000" />
+		<item name="blue striped cloak" price="5000" />
+		<item name="blue helmet" price="6000" />
+		<item name="blue legs" price="6000" />
+		<item name="blue shield" price="20000" />
+		<item name="assassin dagger" price="12000" />
+	</shop>
+
+	<shop name="sellbetterstuff2" type="sells">
+		<item name="shadow armor" price="18000" />
+		<item name="shadow boots" price="4000" />
+		<item name="shadow cloak" price="7000" />
+		<item name="shadow helmet" price="8000" />
+		<item name="shadow legs" price="10000" />
+		<item name="shadow shield" price="30000" />
+		<item name="hell dagger" price="20000" />
+	</shop>
+
+	<shop name="sellrangedstuff" type="sells">
+		<item name="wooden bow" price="300" />
+		<item name="wooden arrow" price="2" />
+	</shop>
+
+	<shop name="buystuff" type="buys">
+		<item name="short sword" price="15" />
+		<item name="sword" price="60" />
+		<item name="studded shield" price="20" />
+		<item name="studded armor" price="22" />
+		<item name="studded helmet" price="17" />
+		<item name="studded legs" price="20" />
+		<item name="chain armor" price="29" />
+		<item name="chain helmet" price="25" />
+		<item name="chain legs" price="27" />
+	</shop>
+
+	<shop name="selltools" type="sells">
+		<item name="small axe" price="15" />
+		<item name="hand axe" price="25" />
+		<item name="axe" price="40" />
+		<!-- enable these if you need them for a quest or something -->
+		<!-- <item name="pick" price="50" /> -->
+		<!-- <item name="shovel" price="50" /> -->
+		<item name="hammer" price="60" />
+		<item name="old scythe" price="120" /> <!-- used for harvest grain. -->
+		<item name="sickle" price="80" /> <!-- for harvesting cane fields -->
+		<item name="gold pan" price="230" />
+	</shop>
+
+	<shop name="buyiron" type="buys">
+		<item name="iron" price="75" />
+	</shop>
+
+	<shop name="buygrain" type="buys">
+		<item name="grain" price="1" />
+	</shop>
+
+	<shop name="sellrings" type="sells">
+		<item name="engagement ring" price="5000" />
+	</shop>
+
+	<!-- gold and gemstones -->
+	<shop name="buyprecious" type="buys">
+		<item name="gold bar" price="250" />
+		<item name="emerald" price="200" />
+		<item name="sapphire" price="400" />
+		<item name="carbuncle" price="600" />
+		<item name="diamond" price="800" />
+		<item name="obsidian" price="1000" />
+		<item name="mithril bar" price="2500" />
+	</shop>
+
+	<shop name="buyrare" type="buys">
+		<!-- rare weapons -->
+		<item name="scimitar" price="65" />
+		<item name="katana" price="70" />
+		<item name="bardiche" price="75" />
+		<item name="golden hammer" price="80" />
+		<!-- rare armor -->
+		<item name="enhanced chainmail" price="32" />
+		<item name="golden chainmail" price="52" />
+		<item name="plate armor" price="62" />
+		<item name="plate shield" price="40" />
+		<item name="lion shield" price="50" />
+		<item name="blue legs" price="500" />
+	</shop>
+
+	<!-- rare elf weapons buyer -->
+	<shop name="elfbuyrare" type="buys">
+		<item name="battle axe" price="70" />
+		<item name="twoside axe" price="80" />
+		<item name="claymore" price="90" />
+		<item name="broadsword" price="100" />
+		<item name="staff" price="75" />
+		<item name="enhanced lion shield" price="100" />
+		<item name="crown shield" price="120" />
+	</shop>
+
+	<!-- more rare weapons shop (fado) -->
+	<shop name="buyrare2" type="buys">
+		<item name="war hammer" price="120" />
+		<item name="biting sword" price="150" />
+		<item name="crossbow" price="175" />
+		<item name="great sword" price="250" />
+		<item name="fire sword" price="2000" />
+		<item name="ice sword" price="5000" />
+		<item name="hell dagger" price="8000" />
+	</shop>
+
+	<!-- very rare armor shop (ados) -->
+	<shop name="buyrare3" type="buys">
+		<item name="golden legs" price="3000" />
+		<item name="shadow legs" price="5000" />
+		<item name="golden armor" price="7000" />
+		<item name="shadow armor" price="9000" />
+		<item name="golden shield" price="10000" />
+		<item name="shadow shield" price="15000" />
+	</shop>
+
+	<!-- less rare armor shop (kobold city - kobolds drop some of these things) -->
+	<shop name="buystuff2" type="buys">
+		<item name="leather scale armor" price="65" />
+		<item name="studded legs" price="70" />
+		<item name="studded boots" price="75" />
+		<item name="chain boots" price="100" />
+		<item name="skull shield" price="100" />
+		<item name="unicorn shield" price="125" />
+		<item name="viking helmet" price="250" />
+	</shop>
+
+	<shop name="sellstuff2" type="sells">
+		<item name="leather boots" price="50" />
+		<item name="studded helmet" price="60" />
+		<item name="studded shield" price="80" />
+		<item name="sword" price="90" />
+		<item name="dwarf cloak" price="230" />
+	</shop>
+
+	<!-- cloaks shop -->
+	<shop name="buycloaks" type="buys">
+		<item name="blue elf cloak" price="300" />
+		<item name="green dragon cloak" price="400" />
+		<item name="blue dragon cloak" price="2000" />
+		<item name="shadow cloak" price="3000" />
+		<item name="black dragon cloak" price="4000" />
+		<item name="golden cloak" price="5000" />
+		<item name="chaos cloak" price="10000" />
+		<item name="black cloak" price="20000" />
+	</shop>
+
+	<shop name="boots&amp;helm" type="buys">
+		<!--
+			boots (mithrilbourgh)
+			Note the shop sign is done by hand in
+			games.stendhal.server.maps.mithrilbourgh.stores
+			Because I wanted to split boots and helmets
+			Please if you change anything, change also the sign (by hand)
+		-->
+		<item name="steel boots" price="1000" />
+		<item name="golden boots" price="1500" />
+		<item name="shadow boots" price="2000" />
+		<item name="stone boots" price="2500" />
+		<item name="chaos boots" price="4000" />
+		<item name="green thing boots" price="6000" />
+		<item name="xeno boots" price="8000" />
+		<!--
+			helmet (mithrilbourgh)
+			Note the shop sign is done by hand in
+			games.stendhal.server.maps.mithrilbourgh.stores
+		-->
+		<item name="golden helmet" price="3000" />
+		<item name="shadow helmet" price="4000" />
+		<item name="horned golden helmet" price="5000" />
+		<item name="chaos helmet" price="6000" />
+		<item name="magic chain helmet" price="8000" />
+		<item name="xeno helmet" price="8000" />
+		<item name="black helmet" price="10000" />
+	</shop>
+
+	<!-- buy axes (woodcutter) -->
+	<shop name="buyaxe" type="buys">
+		<item name="halberd" price="2000" />
+		<item name="golden twoside axe" price="4000" />
+		<item name="magic twoside axe" price="6000" />
+		<item name="durin axe" price="8000" />
+		<item name="black scythe" price="9000" />
+		<item name="chaos axe" price="10000" />
+		<item name="black halberd" price="12000" />
+	</shop>
+
+	<!-- buy chaos items (scared dwarf, after quest) -->
+	<shop name="buychaos" type="buys">
+		<item name="chaos legs" price="8000" />
+		<item name="chaos sword" price="12000" />
+		<item name="chaos shield" price="18000" />
+		<item name="chaos armor" price="20000" />
+	</shop>
+
+	<!-- buy elvish items (albino elf, after quest) -->
+	<shop name="buyelvish" type="buys">
+		<item name="elvish boots" price="300" />
+		<item name="elvish legs" price="300" />
+		<item name="elvish sword" price="800" />
+		<item name="elvish shield" price="1000" />
+		<item name="drow sword" price="1200" />
+		<item name="elvish cloak" price="400" />
+		<item name="elvish armor" price="400" />
+		<item name="elvish hat" price="150" />
+	</shop>
+
+	<!-- magic items or 'relics' (witch in magic city) -->
+	<shop name="buymagic" type="buys">
+		<item name="demon sword" price="4000" />
+		<item name="dark dagger" price="8000" />
+		<item name="liberty helmet" price="8000" />
+		<item name="immortal sword" price="10000" />
+		<item name="jewelled legs" price="12000" />
+		<item name="magic plate shield" price="16000" />
+		<item name="magic plate armor" price="20000" />
+	</shop>
+
+	<!-- red items (supplier in sedah city) -->
+	<shop name="buyred" type="buys">
+		<item name="red armor" price="300" />
+		<item name="red boots" price="200" />
+		<item name="red cloak" price="250" />
+		<item name="red helmet" price="200" />
+		<item name="red legs" price="200" />
+		<item name="red shield" price="750" />
+	</shop>
+
+	<!-- mainio items (despot in mithrilbourgh throne room) -->
+	<shop name="buymainio" type="buys">
+		<item name="mainio armor" price="22000" />
+		<item name="mainio boots" price="4000" />
+		<item name="mainio cloak" price="12000" />
+		<item name="mainio helmet" price="8000" />
+		<item name="mainio legs" price="7000" />
+		<item name="mainio shield" price="16000" />
+	</shop>
+
+	<!-- assassinhq principal Femme Fatale -->
+	<shop name="buy4assassins" type="buys">
+		<item name="buckler" price="20" />
+		<item name="aventail" price="25" />
+		<item name="robins hat" price="30" />
+		<item name="leather boots" price="30" />
+		<item name="dwarf cloak" price="60" />
+		<item name="dwarvish armor" price="17000" />
+		<item name="dwarvish legs" price="15000" />
+		<item name="assassin dagger" price="7000" />
+	</shop>
+
+	<!-- mountain dwarf buyer of odds and ends -3 ados abandoned keep -->
+	<shop name="buyoddsandends" type="buys">
+		<item name="shuriken" price="20" />
+		<item name="amulet" price="800" />
+		<item name="black pearl" price="100" />
+		<item name="lucky charm" price="60" />
+		<item name="knife" price="5" />
+		<item name="dagger" price="20" />
+		<item name="skull ring" price="250" />
+		<item name="greater antidote" price="80" />
+		<item name="marbles" price="80" />
+		<item name="magical needle" price="1500" />
+		<item name="snowglobe" price="150" />
+		<item name="silk gland" price="500" />
+	</shop>
+
+	<!-- archery shop in nalwor -->
+	<shop name="buyarcherstuff" type="buys">
+		<item name="wooden arrow" price="1" />
+		<item name="steel arrow" price="5" />
+		<item name="golden arrow" price="10" />
+		<item name="power arrow" price="35" />
+		<item name="wooden bow" price="250" />
+		<item name="crossbow" price="400" />
+		<item name="longbow" price="300" />
+		<item name="composite bow" price="350" />
+		<item name="hunter crossbow" price="800" />
+		<item name="mithril bow" price="2000" />
+	</shop>
+
+	<!-- selling arrows -->
+	<shop name="sellarrows" type="sells">
+		<item name="wooden arrow" price="2" />
+		<item name="steel arrow" price="7" />
+		<item name="golden arrow" price="25" />
+		<item name="power arrow" price="45" />
+	</shop>
+
+	<!--
+		assassinhq chief falatheen the dishwasher and veggie buyer
+		sign is hard coded so if you change this change the sign
+	-->
+	<shop name="buyveggiesandherbs" type="buys">
+		<item name="carrot" price="5" />
+		<item name="salad" price="10" />
+		<item name="leek" price="25" />
+		<item name="broccoli" price="30" />
+		<item name="courgette" price="10" />
+		<item name="cauliflower" price="30" />
+		<item name="tomato" price="20" />
+		<item name="onion" price="20" />
+		<item name="arandula" price="10" />
+		<item name="kokuda" price="200" />
+		<item name="kekik" price="25" />
+		<item name="sclaria" price="25" />
+	</shop>
+
+	<!-- gnome village buyer in 0 ados mountain n2 w2 -->
+	<shop name="buy4gnomes" type="buys">
+		<item name="leather armor" price="25" />
+		<item name="club" price="3" />
+		<item name="leather helmet" price="15" />
+		<item name="cloak" price="25" />
+		<item name="apple" price="5" />
+		<item name="marbles" price="50" />
+		<item name="wooden shield" price="20" />
+	</shop>
+
+	<!-- hotdog lady in athor -->
+	<shop name="buy4hotdogs" type="buys">
+		<item name="sausage" price="30" />
+		<item name="cheese sausage" price="25" />
+		<item name="bread" price="15" />
+		<item name="onion" price="20" />
+		<item name="canned tuna" price="15" />
+		<item name="ham" price="15" />
+		<item name="cheese" price="5" />
+	</shop>
+
+	<shop name="sellhotdogs" type="sells">
+		<item name="hotdog" price="160" />
+		<item name="cheeseydog" price="180" />
+		<item name="tuna sandwich" price="130" />
+		<item name="sandwich" price="120" />
+		<item name="vanilla shake" price="110" />
+		<item name="chocolate shake" price="110" />
+		<item name="chocolate bar" price="100" />
+		<item name="snowglobe" price="200" />
+	</shop>
+
+	<!-- magic city barmaid -->
+	<shop name="sellmagic" type="sells">
+		<item name="hotdog" price="160" />
+		<item name="cheeseydog" price="180" />
+		<item name="tuna sandwich" price="130" />
+		<item name="sandwich" price="120" />
+		<item name="vanilla shake" price="110" />
+		<item name="chocolate shake" price="110" />
+		<item name="chocolate bar" price="100" />
+		<item name="licorice" price="100" />
+	</shop>
+
+	<!-- kirdneh city armor -->
+	<shop name="buykirdneharmor" type="buys">
+		<item name="blue armor" price="13000" />
+		<item name="stone armor" price="18000" />
+		<item name="ice armor" price="19000" />
+		<item name="xeno armor" price="21000" />
+		<item name="barbarian armor" price="5000" />
+		<item name="green dragon shield" price="13000" />
+		<item name="xeno shield" price="20000" />
+	</shop>
+
+	<!-- amazon cloaks shop -->
+	<shop name="buyamazoncloaks" type="buys">
+		<item name="vampire cloak" price="14000" />
+		<item name="xeno cloak" price="18000" />
+		<item name="elf cloak" price="50" />
+		<item name="lich cloak" price="10000" />
+		<item name="stone cloak" price="350" />
+		<item name="blue striped cloak" price="280" />
+		<item name="red dragon cloak" price="4000" />
+		<item name="bone dragon cloak" price="1500" />
+	</shop>
+
+	<!-- kirdneh city fishy market) -->
+	<shop name="buyfishes" type="buys">
+		<item name="perch" price="22" />
+		<item name="mackerel" price="20" />
+		<item name="roach" price="10" />
+		<item name="char" price="30" />
+		<item name="clownfish" price="30" />
+		<item name="surgeonfish" price="15" />
+		<item name="trout" price="45" />
+		<item name="cod" price="10" />
+	</shop>
+
+	<!-- Semos trading - swords (unused?) -->
+	<shop name="tradeswords" type="sells">
+		<item name="dagger" price="10" />
+	</shop>
+
+	<!-- party time! For maria for example. Bit more expensive than normal -->
+	<shop name="sellparty" type="sells">
+		<item name="pina colada" price="100" />
+		<item name="chocolate bar" price="100" />
+		<item name="beer" price="10" />
+		<item name="wine" price="15" />
+		<item name="vanilla shake" price="150" />
+		<item name="icecream" price="50" />
+		<item name="hotdog" price="180" />
+		<item name="sandwich" price="140" />
+	</shop>
+
+	<!-- black items (balduin, when ultimate collector quest completed) -->
+	<shop name="buyblack" type="buys">
+		<item name="black armor" price="60000" />
+		<item name="black boots" price="10000" />
+		<item name="black cloak" price="20000" />
+		<item name="black helmet" price="15000" />
+		<item name="black legs" price="40000" />
+		<item name="black shield" price="75000" />
+		<item name="black sword" price="20000" />
+		<item name="black scythe" price="40000" />
+		<item name="black halberd" price="30000" />
+	</shop>
+
+	<!-- ados market -->
+	<shop name="buyadosarmors" type="buys">
+		<item name="blue helmet" price="900" />
+		<item name="blue boots" price="200" />
+		<item name="blue striped cloak" price="500" />
+		<item name="blue armor" price="13000" />
+		<item name="blue legs" price="400" />
+		<item name="blue shield" price="900" />
+	</shop>
+
+	<!-- Athor ferry -->
+	<shop name="buypoisons" type="buys">
+		<item name="poison" price="40" />
+		<item name="toadstool" price="60" />
+		<item name="greater poison" price="60" />
+		<item name="red lionfish" price="50" />
+		<item name="deadly poison" price="100" />
+		<item name="mega poison" price="500" />
+		<item name="disease poison" price="2000" />
+		<item name="rodent trap" price="50" /> <!-- Should have its own shop (buytraps) -->
+	</shop>
+
+	<!-- Scuba Instructor Edward -->
+	<shop name="sellScubaStuff" type="sells">
+		<item name="scuba gear" price="22000" />
+	</shop>
+
+	<!-- Mine Town Revival Weeks Caroline -->
+	<shop name="sellrevivalweeks" type="sells">
+		<item name="cherry pie" price="195" />
+		<item name="apple pie" price="195" />
+		<item name="vanilla shake" price="120" />
+		<item name="chocolate shake" price="120" />
+		<item name="icecream" price="60" />
+		<item name="chocolate bar" price="100" />
+		<item name="grilled steak" price="250" />
+		<item name="hotdog" price="170" />
+		<item name="cheeseydog" price="175" />
+		<item name="tuna sandwich" price="140" />
+		<item name="sandwich" price="130" />
+		<item name="wine" price="25" />
+		<item name="beer" price="20" />
+		<item name="water" price="15" />
+	</shop>
+
+	<!--
+		for ados botanical gardens or if you like, other cafes.
+		expensive prices to make sure that the npc production of these items isn't compromised
+	-->
+	<shop name="cafe" type="sells">
+		<item name="tea" price="80" />
+		<item name="water" price="50" />
+		<item name="chocolate shake" price="150" />
+		<item name="sandwich" price="170" />
+		<item name="tuna sandwich" price="180" />
+		<item name="apple pie" price="250" />
+	</shop>
+
+	<!-- atlantis potions shop prices are twice as much as magic city -->
+	<shop name="atlantispotions" type="sells">
+		<item name="antidote" price="100" />
+		<item name="greater antidote" price="200" />
+		<item name="potion" price="500" />
+		<item name="greater potion" price="1000" />
+		<item name="mega potion" price="3000" />
+		<item name="sedative" price="800" />
+		<item name="empty scroll" price="4000" />
+	</shop>
+
 	<shop name="deniranpawnbuy" type="buys">
 		<item name="skull ring" price="250" />
 		<item name="engagement ring" price="1000" />
