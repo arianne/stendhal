@@ -39,6 +39,7 @@ public class StendhalQuestSystem {
 	private final static List<IQuest> quests = new LinkedList<IQuest>();
 
 	private final static List<IQuest> cached = new ArrayList<>();
+	private static boolean cacheLoaded = false;
 
 
 	private StendhalQuestSystem() {
@@ -240,6 +241,12 @@ public class StendhalQuestSystem {
 	 * 		Quest to be cached.
 	 */
 	public void cacheQuest(final IQuest quest) {
+		// don't cache quests if server has already been initialized
+		if (cacheLoaded) {
+			loadQuest(quest);
+			return;
+		}
+
 		if (quest == null) {
 			logger.error("Attempted to cache null quest");
 			return;
@@ -263,6 +270,7 @@ public class StendhalQuestSystem {
 
 		// empty cache
 		cached.clear();
+		cacheLoaded = true;
 	}
 
 	/**
