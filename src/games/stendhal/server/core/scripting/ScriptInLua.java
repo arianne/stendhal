@@ -109,6 +109,23 @@ public class ScriptInLua extends ScriptingSandbox {
 	}
 
 	/**
+	 * For manually loading an external Lua script.
+	 *
+	 * @param filename
+	 * 		Relative path to script (usually in "data/script").
+	 * @param player
+	 * 		The admin who loads the script.
+	 * @param args
+	 * 		The arguments the admin specified.
+	 * @return
+	 * 		<code>true</code> if loading succeeded.
+	 */
+	public boolean load(final String filename, final Player player, final List<String> args) {
+		luaScript = filename;
+		return load(player, args);
+	}
+
+	/**
 	 * Loads lua master script.
 	 */
 	public void init() {
