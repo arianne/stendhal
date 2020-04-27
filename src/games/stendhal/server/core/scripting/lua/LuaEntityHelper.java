@@ -139,8 +139,8 @@ public class LuaEntityHelper {
 	 * @return
 	 * 		SpeakerNPC instance or <code>null</code>.
 	 */
-	public SpeakerNPC getNPC(final String name) {
-		return SingletonRepository.getNPCList().get(name);
+	public LuaSpeakerNPC getNPC(final String name) {
+		return (LuaSpeakerNPC) SingletonRepository.getNPCList().get(name);
 	}
 
 	/**
