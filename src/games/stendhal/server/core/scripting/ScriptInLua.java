@@ -105,6 +105,9 @@ public class ScriptInLua extends ScriptingSandbox {
 			logger.warn("Lua script return non-zero or \"false\": " + luaScript);
 		}
 
+		// reset member back to null state after loaded
+		luaScript = null;
+
 		return result;
 	}
 
