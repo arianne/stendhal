@@ -23,7 +23,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 
-public class PassiveNPC extends NPC {
+public abstract class PassiveNPC extends NPC {
 
 	private boolean teleports = false;
 
