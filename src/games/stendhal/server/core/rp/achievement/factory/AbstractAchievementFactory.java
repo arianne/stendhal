@@ -60,7 +60,7 @@ public abstract class AbstractAchievementFactory {
 		List<AbstractAchievementFactory> list = new LinkedList<AbstractAchievementFactory>();
 		//add new created factories here
 		list.add(new AdosItemQuestAchievementsFactory());
-		list.add(new DeathmatchHelperAchievementFactory());
+		list.add(new DeathmatchAchievementFactory());
 		list.add(new ExperienceAchievementFactory());
 		list.add(new FightingAchievementFactory());
 		list.add(new FriendAchievementFactory());

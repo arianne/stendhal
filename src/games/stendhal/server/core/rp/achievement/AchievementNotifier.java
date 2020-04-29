@@ -201,7 +201,7 @@ public final class AchievementNotifier {
 	 * @param player
 	 */
 	public void onFinishDeathmatch(final Player player) {
-		getAndCheckAchievementsInCategory(player, Category.DEATHMATCH_HELPER);
+		getAndCheckAchievementsInCategory(player, Category.DEATHMATCH);
 	}
 
 	/**

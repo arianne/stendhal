@@ -58,6 +58,6 @@ public enum Category {
 	QUEST_MITHRILBOURGH_ENEMY_ARMY,
 	/** kill blordroughs quest */
 	QUEST_KILL_BLORDROUGHS,
-	/** assisting other players in deathmatch */
-	DEATHMATCH_HELPER;
+	/** deathmatch related */
+	DEATHMATCH;
 }

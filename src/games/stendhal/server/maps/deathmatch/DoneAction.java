@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
-import static games.stendhal.server.core.rp.achievement.factory.DeathmatchHelperAchievementFactory.HELPER_SLOT;
+import static games.stendhal.server.core.rp.achievement.factory.DeathmatchAchievementFactory.HELPER_SLOT;
 
 import org.apache.log4j.Logger;
 

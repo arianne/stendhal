@@ -22,26 +22,27 @@ import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 
 
 /**
- * Achievements for players who help others with deathmatch.
+ * Deathmatch related achievements.
  */
-public class DeathmatchHelperAchievementFactory extends AbstractAchievementFactory {
+public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 
-	private static final Logger logger = Logger.getLogger(DeathmatchHelperAchievementFactory.class);
+	private static final Logger logger = Logger.getLogger(DeathmatchAchievementFactory.class);
 
 	public static final String HELPER_SLOT = "deathmatch_helper";
 
-	public static final String ID_25 = "deathmatch.helper.0025";
-	public static final String ID_50 = "deathmatch.helper.0050";
-	public static final String ID_100 = "deathmatch.helper.0100";
+	public static final String ID_HELPER_25 = "deathmatch.helper.0025";
+	public static final String ID_HELPER_50 = "deathmatch.helper.0050";
+	public static final String ID_HELPER_100 = "deathmatch.helper.0100";
 
 
 	@Override
 	protected Category getCategory() {
-		return Category.DEATHMATCH_HELPER;
+		return Category.DEATHMATCH;
 	}
 
 	@Override
@@ -49,17 +50,17 @@ public class DeathmatchHelperAchievementFactory extends AbstractAchievementFacto
 		final List<Achievement> achievements = new LinkedList<Achievement>();
 
 		achievements.add(createAchievement(
-				ID_25, "Deathmatch Helper", "Aid other players in 25 rounds of deathmatch",
+				ID_HELPER_25, "Deathmatch Helper", "Aid other players in 25 rounds of deathmatch",
 				Achievement.EASY_BASE_SCORE, true,
 				new HasHelpedNumberOfTimes(25)));
 
 		achievements.add(createAchievement(
-				ID_50, "Deathmatch Companion", "Aid other players in 50 rounds of deathmatch",
+				ID_HELPER_50, "Deathmatch Companion", "Aid other players in 50 rounds of deathmatch",
 				Achievement.EASY_BASE_SCORE, true,
 				new HasHelpedNumberOfTimes(50)));
 
 		achievements.add(createAchievement(
-				ID_100, "Deathmatch Convoy", "Aid other players in 100 rounds of deathmatch",
+				ID_HELPER_100, "Deathmatch Convoy", "Aid other players in 100 rounds of deathmatch",
 				Achievement.MEDIUM_BASE_SCORE, false,
 				new HasHelpedNumberOfTimes(100)));
 
