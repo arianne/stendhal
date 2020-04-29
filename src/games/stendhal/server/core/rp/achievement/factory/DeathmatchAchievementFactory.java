@@ -49,6 +49,21 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 	public Collection<Achievement> createAchievements() {
 		final List<Achievement> achievements = new LinkedList<Achievement>();
 
+		/*
+		// Ados Deathmatch
+		// disabled. Currently the wrong index is being checked (it would be index 6)
+		// and as per bug report https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111 the count is not saved anyway
+		achievements.add(createAchievement(
+				"quest.special.dm.025", "Gladiator", "Fight 25 Deathmatches",
+				Achievement.HARD_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
+		*/
+
+		achievements.add(createAchievement(
+				"quest.deathmatch", "Deathmatch Hero", "Earn 100,000 points in deathmatch",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new QuestStateGreaterThanCondition("deathmatch_score", 0, 100000)));
+
 		achievements.add(createAchievement(
 				ID_HELPER_25, "Deathmatch Helper", "Aid other players in 25 rounds of deathmatch",
 				Achievement.EASY_BASE_SCORE, true,

@@ -150,7 +150,7 @@ public class DoneAction implements ChatAction {
 		new SetQuestAction("deathmatch", 0, "done").fire(player, sentence, raiser);
 		// Track the number of wins.
 		new IncrementQuestAction("deathmatch", 6, 1).fire(player, sentence, raiser);
-		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
+		SingletonRepository.getAchievementNotifier().onFinishDeathmatch(player);
 
 		// track helpers
 		updateHelpers(player, System.currentTimeMillis());
