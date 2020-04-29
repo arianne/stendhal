@@ -2,6 +2,15 @@ Changelog
 ---------
 ---------
 
+1.35
+
+*world*
+- new achievements:
+  - Deathmatch Helper: aid other players in 25 rounds of deathmatch
+  - Deathmatch Companion: aid other players in 50 rounds of deathmatch
+  - Deathmatch Convoy: aid other players in 100 rounds of deathmatch
+
+
 1.34
 
 *world*

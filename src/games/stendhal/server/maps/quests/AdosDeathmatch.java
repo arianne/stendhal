@@ -205,7 +205,7 @@ public class AdosDeathmatch extends AbstractQuest {
 				// reward the player
 				add(ConversationStates.ATTENDING, Arrays.asList("victory",
 						"done", "yay"), null, ConversationStates.ATTENDING,
-						null, new DoneAction());
+						null, new DoneAction(deathmatchInfo));
 
 				// 'leave' command will send the victorious player home
 				add(ConversationStates.ATTENDING, Arrays

@@ -78,6 +78,7 @@ watersplash.png           ???; ???; ??? (committed by danter: 5c087df)
 data/sprites/achievements/
 
 age.png                             ???; ???; ???
+deathmatch_helper.png               Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81446
 experience.png                      ???; ???; ???
 experience_atk.png                  OCAL, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://freesvg.org/muscular-biceps-vector-clip-art
 experience_def.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622

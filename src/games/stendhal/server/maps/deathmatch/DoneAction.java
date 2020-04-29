@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
+import static games.stendhal.server.core.rp.achievement.factory.DeathmatchHelperAchievementFactory.HELPER_SLOT;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
@@ -29,6 +33,15 @@ import marauroa.server.db.command.DBCommandQueue;
  * Handles player claim of victory by giving reward after verifying the winning.
  */
 public class DoneAction implements ChatAction {
+
+	private static final Logger logger = Logger.getLogger(DoneAction.class);
+
+	private final DeathmatchInfo deathmatchInfo;
+
+
+	public DoneAction(final DeathmatchInfo deathmatchInfo) {
+		this.deathmatchInfo = deathmatchInfo;
+	};
 
 	/**
 	 * Creates the player bound special trophy helmet and equips it.
@@ -56,6 +69,41 @@ public class DoneAction implements ChatAction {
 	private void updatePoints(final Player player) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "D", deathmatchState.getPoints(), true));
+	}
+
+	/**
+	 * Tracks helping players & updates achievements related to helping with deathmatch.
+	 *
+	 * @param aided
+	 * 		The player who is being helped.
+	 * @param timestamp
+	 * 		Time the deathmatch was completed.
+	 */
+	private void updateHelpers(final Player aided, final long timestamp) {
+		for (final Player helper: deathmatchInfo.getArena().getPlayers()) {
+			if (!helper.equals(aided)) {
+				/* FIXME:
+				 * 		- should only count for helping players not associated with the helper's account
+				 * 		- should only count if helper has done a certain percentage of damage
+				 */
+				int helpCount = 0;
+				if (helper.hasQuest(HELPER_SLOT)) {
+					try {
+						helpCount = Integer.parseInt(helper.getQuest(HELPER_SLOT, 0));
+					} catch (final NumberFormatException e) {
+						logger.error("Deathmatch helper quest slot value not an integer.");
+						e.printStackTrace();
+					}
+				}
+
+				helpCount++;
+
+				helper.setQuest(HELPER_SLOT, 0, Integer.toString(helpCount));
+				helper.setQuest(HELPER_SLOT, 1, Long.toString(timestamp));
+
+				SingletonRepository.getAchievementNotifier().onFinishDeathmatch(helper);
+			}
+		}
 	}
 
 	@Override
@@ -103,6 +151,9 @@ public class DoneAction implements ChatAction {
 		// Track the number of wins.
 		new IncrementQuestAction("deathmatch", 6, 1).fire(player, sentence, raiser);
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
+
+		// track helpers
+		updateHelpers(player, System.currentTimeMillis());
 	}
 
 }

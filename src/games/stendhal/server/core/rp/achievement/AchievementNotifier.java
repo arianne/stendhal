@@ -196,6 +196,15 @@ public final class AchievementNotifier {
 	}
 
 	/**
+	 * check all achievements for a player that are related to deathmatch
+	 *
+	 * @param player
+	 */
+	public void onFinishDeathmatch(final Player player) {
+		getAndCheckAchievementsInCategory(player, Category.DEATHMATCH_HELPER);
+	}
+
+	/**
 	 * check all achievements for a player that belong to the zone category
 	 *
 	 * @param player
