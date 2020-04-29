@@ -104,6 +104,7 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 				} catch (final NumberFormatException e) {
 					logger.error("Deathmatch helper quest slot value not an integer.");
 					e.printStackTrace();
+					return false;
 				}
 			}
 
