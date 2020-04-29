@@ -97,26 +97,28 @@ public class DoneAction implements ChatAction {
 			}
 
 			for (final Player helper: deathmatchInfo.getArena().getPlayers()) {
-				if (!characters.contains(helper.getName())) {
-					/* FIXME:
-					 * 		- should only count if helper has done a certain percentage of damage
-					 */
-					int helpCount = 0;
-					if (helper.hasQuest(HELPER_SLOT)) {
-						try {
-							helpCount = Integer.parseInt(helper.getQuest(HELPER_SLOT, 0));
-						} catch (final NumberFormatException e) {
-							logger.error("Deathmatch helper quest slot value not an integer.");
-							e.printStackTrace();
+				final String helperName = helper.getName();
+				if (!characters.contains(helperName)) {
+					// player must have helped kill at least 3 deathmatch creatures to count towards achievement
+					final int aidedKills = deathmatchInfo.getAidedKills(helperName);
+					if (aidedKills > 2) {
+						int helpCount = 0;
+						if (helper.hasQuest(HELPER_SLOT)) {
+							try {
+								helpCount = Integer.parseInt(helper.getQuest(HELPER_SLOT, 0));
+							} catch (final NumberFormatException e) {
+								logger.error("Deathmatch helper quest slot value not an integer.");
+								e.printStackTrace();
+							}
 						}
+
+						helpCount++;
+
+						helper.setQuest(HELPER_SLOT, 0, Integer.toString(helpCount));
+						helper.setQuest(HELPER_SLOT, 1, Long.toString(timestamp));
+
+						SingletonRepository.getAchievementNotifier().onFinishDeathmatch(helper);
 					}
-
-					helpCount++;
-
-					helper.setQuest(HELPER_SLOT, 0, Integer.toString(helpCount));
-					helper.setQuest(HELPER_SLOT, 1, Long.toString(timestamp));
-
-					SingletonRepository.getAchievementNotifier().onFinishDeathmatch(helper);
 				}
 			}
 		} catch (final SQLException | IOException e) {
