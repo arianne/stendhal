@@ -56,6 +56,9 @@ Changelog
 - dojo area for training ATK stat
 - player is notified when stats level up
 - new sound effect for level up
+- commerce:
+  - sell value of mandragora reduced to 300
+  - sell value of venom gland reduced to 800
 
 *fixes*
 - fixed "Westerner" achievement
