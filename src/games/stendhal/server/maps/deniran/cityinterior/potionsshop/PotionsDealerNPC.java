@@ -64,7 +64,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 			put("greater poison", 60);
 			put("mega poison", 500);
 			put("deadly poison", 1000);
-			put("disease poison", 2000);
+			put("disease poison", 1200);
 			put("sedative", 200);
 			put("venom gland", 800);
 		}};
