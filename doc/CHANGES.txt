@@ -46,6 +46,8 @@ Changelog
   - baby pegasus is now non-aggressive & retreats when attacked
   - fixed dimensions of dragon corpses
   - blordrough general attacks weakest
+  - legendary ice elemental level & stats increased
+  - venom gland is now regular drop from king cobra
 - new enemy sounds:
   - werewolf
 - quest changes:
