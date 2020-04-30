@@ -61,6 +61,7 @@ Changelog
 - commerce:
   - sell value of mandragora reduced to 300
   - sell value of venom gland reduced to 800
+  - sell value of disease poison reduced to 1200
 
 *fixes*
 - fixed "Westerner" achievement
