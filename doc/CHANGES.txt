@@ -6,6 +6,7 @@ Changelog
 
 *world*
 - new achievements:
+  - Bobbing for Apples: harvest or loot 1,000 apples
   - Deathmatch Helper: aid other players in 25 rounds of deathmatch
   - Deathmatch Companion: aid other players in 50 rounds of deathmatch
   - Deathmatch Convoy: aid other players in 100 rounds of deathmatch
@@ -33,12 +34,8 @@ Changelog
 - new items:
   - bestiary
   - training sword
-  - auto crossbow (replaces unused training bow)
-  - auto crossbow A
-  - auto crossbow A+
   - enhanced imperial ring (atk +1, def +1)
 - new achievements:
-  - Bobbing for Apples: harvest or loot 1,000 apples
   - Royally Endowed: loot a complete royal equipment set
   - Deep Sea Fisherman: kill 500 sharks, kraken, & neo kraken
   - Zombie Apocalypse: kill 500 zombies
@@ -51,8 +48,6 @@ Changelog
   - baby angel added as requirement for "Heavenly Wrath"
   - chess pieces no longer required for "Legend" & "Team Player" achievements
   - "Spelunker" fixed so players do not have to revisit -2_deniran_caves_n & -2_deniran_caves_nw
-- new enemies:
-  - fire demon
 - enemy changes:
   - giant bat & giant killer bat drop ham
   - woolly mammoth drops ham
