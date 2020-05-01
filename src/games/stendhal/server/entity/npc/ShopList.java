@@ -500,17 +500,17 @@ public final class ShopList {
 		//shops.add("deniranpawnbuy", "emerald ring", 9000); // should avoid selling bound rings
 		shops.add("deniranpawnbuy", "insulated ring", 25000);
 		shops.add("deniranpawnbuy", "turtle shell ring", 25000);
-		shops.add("deniranpawnbuy", "imperial ring", 100000);
+		shops.add("deniranpawnbuy", "imperial ring", 50000);
 
 		//shops.add("buyanimalmaterials", "wool", 50); // is this item obtainable?
 		shops.add("buyanimalmaterials", "leather thread", 50);
 		shops.add("buyanimalmaterials", "bat entrails", 100);
 		shops.add("buyanimalmaterials", "pelt", 250);
 		shops.add("buyanimalmaterials", "vampirette entrails", 700);
+		shops.add("buyanimalmaterials", "venom gland", 800);
 		shops.add("buyanimalmaterials", "silk gland", 1000);
-		shops.add("buyanimalmaterials", "unicorn horn", 1500);
-		shops.add("buyanimalmaterials", "venom gland", 2000);
-		shops.add("buyanimalmaterials", "mythical egg", 3000);
+		shops.add("buyanimalmaterials", "unicorn horn", 1100);
+		shops.add("buyanimalmaterials", "mythical egg", 2500);
 	}
 
 	private static ShopList instance;
