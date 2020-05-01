@@ -5,6 +5,8 @@ Changelog
 1.35
 
 *world*
+- new items:
+  - ice shield: def 40, ice 0.9, fire 1.15, poison resist 50%
 - new achievements:
   - Bobbing for Apples: harvest or loot 1,000 apples
   - Deathmatch Helper: aid other players in 25 rounds of deathmatch

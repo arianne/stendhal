@@ -452,4 +452,25 @@
     </equipable>
   </item>
 
+  <item name="ice shield">
+    <type class="shield" subclass="ice_shield" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+    <attributes>
+      <def value="40"/>
+      <min_level value="110"/>
+      <status_resist type="poisoned" value="0.50" slots="lhand;rhand;"/>
+    </attributes>
+    <susceptibility type="ice" value="0.9"/>
+    <susceptibility type="fire" value="1.15"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
