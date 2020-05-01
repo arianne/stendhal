@@ -475,7 +475,7 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("lotuses", "lotus");
 		testPluralisationAndSingularisation("mumakil", "mumak");
 
-		testPluralisationAndSingularisation("djinn", "djinni");
+		testPluralisationAndSingularisation("djinns", "djinn");
 		testPluralisationAndSingularisation("efreet", "efreeti");
 		testPluralisationAndSingularisation("ys", "y");
 		// baby: ... + consonant + "y"

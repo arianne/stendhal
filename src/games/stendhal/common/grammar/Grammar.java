@@ -680,7 +680,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
 		} else if (enoun.endsWith("djin")) {
 			return enoun + "ni" + postfix;
-		} else if (enoun.endsWith("djinn") || enoun.endsWith("efreet")) {
+		} else if (enoun.endsWith("efreet")) {
 			return enoun + "i" + postfix;
 		} else if (enoun.endsWith("porcini") || enoun.endsWith("porcino")) {
 			return enoun.substring(0, enoun.length() - 1) + "o" + postfix;
