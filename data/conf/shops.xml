@@ -592,7 +592,7 @@
 		<!--<item name="emerald ring" price="9000" /> should avoid selling bound rings -->
 		<item name="insulated ring" price="25000" />
 		<item name="turtle shell ring" price="25000" />
-		<item name="imperial ring" price="100000" />
+		<item name="imperial ring" price="50000" />
 	</shop>
 
 	<shop name="buyanimalmaterials" type="buys">
@@ -601,10 +601,10 @@
 		<item name="bat entrails" price="100" />
 		<item name="pelt" price="250" />
 		<item name="vampirette entrails" price="700" />
+		<item name="venom gland" price="800" />
 		<item name="silk gland" price="1000" />
-		<item name="unicorn horn" price="1500" />
-		<item name="venom gland" price="2000" />
-		<item name="mythical egg" price="3000" />
+		<item name="unicorn horn" price="1100" />
+		<item name="mythical egg" price="2500" />
 	</shop>
 
 </shops>
