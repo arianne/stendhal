@@ -184,7 +184,11 @@ public class CollectEnemyDataTest extends ZoneAndPlayerTestImpl {
 
 		en.step(player, "buy bestiary");
 		en.step(player, "yes");
-		assertEquals("I have written your name down in it, just in case you lose it.", getReply(rengard));
+		assertEquals(
+				"I have written your name down in it, just in case you lose it. Remember, the creatures you track in this"
+				+ " bestiary are only for you. So it will not work for anyone else. Anyone who wants to track kills should"
+				+ " buy their own.",
+				getReply(rengard));
 
 		assertEquals(1, player.getAllEquipped("bestiary").size());
 		assertFalse(player.isEquipped("money"));

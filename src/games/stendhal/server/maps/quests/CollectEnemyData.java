@@ -408,7 +408,9 @@ public class CollectEnemyData extends AbstractQuest {
 			@Override
 			public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 				if (super.transactAgreedDeal(res, seller, player)) {
-					seller.say("I have written your name down in it, just in case you lose it.");
+					seller.say("I have written your name down in it, just in case you lose it. Remember, the creatures you track in this"
+							+ " bestiary are only for you. So it will not work for anyone else. Anyone who wants to track kills should"
+							+ " buy their own.");
 
 					return true;
 				}
