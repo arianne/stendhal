@@ -1360,6 +1360,12 @@
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tannery.TannerNPC"/>
 
+		<entity x="24" y="9">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Making leather thread: Simply use a rotary cutter to slice a pelt into thin strips (note to self: be sure to thank Erna for lending me her rotary cutter the last time I misplaced mine).</attribute>
+			<attribute name="class">book_red</attribute>
+		</entity>
+
 	</zone>
 
 	<zone name="int_deniran_psychic_parlor" file="interiors/deniran/psychic_parlor.tmx">
