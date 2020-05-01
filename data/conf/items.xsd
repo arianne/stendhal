@@ -18,8 +18,8 @@
 			<element name="implementation" type="Q1:implementation"></element>
 			<element name="behavior" type="Q1:behavior" minOccurs="0" maxOccurs="1"></element>
 			<element name="attributes" type="Q1:attributes"></element>
-			<element name="weight" type="Q1:attribute"></element>
-			<element name="value" type="Q1:attribute"></element>
+			<element name="weight" type="Q1:attribute" minOccurs="0" maxOccurs="1" />
+			<element name="value" type="Q1:attribute" minOccurs="0" maxOccurs="1" />
 			<element name="preview" type="string" minOccurs="0" maxOccurs="1" />
 			<element name="damage" type="Q1:damage" minOccurs="0"></element>
 			<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
