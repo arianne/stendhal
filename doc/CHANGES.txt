@@ -73,6 +73,7 @@ Changelog
 
 *Java client*
 - rings can now be animated
+- optional health bar in stats panel
 
 
 1.33
