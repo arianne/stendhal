@@ -563,7 +563,6 @@
 			alias="${keystore.alias}"
 			keystore="keystore.ks"
 			storepass="${keystore.password}"
-			tsaurl="http://tsa.starfieldtech.com"
 			jar="${lib}/${client_starter_jarname}" />
 	</target>
 
