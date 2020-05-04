@@ -202,7 +202,11 @@ public class StendhalPlayerDatabase {
 		// 1.34: renamed kill_blordroughs achievements
 		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0005' WHERE identifier='quest.special.kill_blordroughs.5'", null);
 		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0025' WHERE identifier='quest.special.kill_blordroughs.25'", null);
-		
+
+		// 1.35: 
+		if (!transaction.doesColumnExist("achievement", "reached")) {
+			transaction.execute("ALTER TABLE achievement ADD COLUMN (reached INTEGER);", null);
+		}
 
 		updateCharacterStatsOutfitToOutfitLayer(transaction);
 	}

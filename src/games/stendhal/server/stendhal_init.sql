@@ -230,6 +230,7 @@ CREATE TABLE IF NOT EXISTS achievement (
     description VARCHAR(254),
     base_score INTEGER,
     active INTEGER,
+    reached INTEGER,
     PRIMARY KEY(id)
 );
 CREATE UNIQUE INDEX IF NOT EXISTS i_achievement_identifier ON achievement(identifier);
