@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,10 +15,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import games.stendhal.server.core.engine.db.AchievementDAO;
-import games.stendhal.server.core.rp.achievement.Category;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
+
 /**
  * command to log a reached achievement to the database
  *
@@ -29,6 +28,7 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 
 	private final Integer id;
 	private final String playerName;
+	private final boolean incReachedCount;
 
 	/**
 	 * Create a new command.
@@ -37,17 +37,19 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	 * @param title achievement title
 	 * @param category achievement category
 	 * @param playerName name of player who has reached it
+	 * @param incReachedCount shall the reached counter of this achievement be incremented
 	 */
-	public WriteReachedAchievementCommand(Integer id, String title, Category category, String playerName) {
+	public WriteReachedAchievementCommand(Integer id, String playerName, boolean incReachedCount) {
 		this.id = id;
 		this.playerName = playerName;
+		this.incReachedCount = incReachedCount;
 	}
 
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
 		AchievementDAO dao = DAORegister.get().get(AchievementDAO.class);
-		dao.saveReachedAchievement(transaction, id, playerName);
+		dao.saveReachedAchievement(transaction, id, playerName, incReachedCount);
 	}
 
 	/**

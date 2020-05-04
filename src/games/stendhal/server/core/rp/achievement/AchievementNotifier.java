@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -382,7 +381,7 @@ public final class AchievementNotifier {
 		String title = achievement.getTitle();
 		Category category = achievement.getCategory();
 		String playerName = player.getName();
-		DBCommandQueue.get().enqueue(new WriteReachedAchievementCommand(identifiersToIds.get(identifier), title, category, playerName));
+		DBCommandQueue.get().enqueue(new WriteReachedAchievementCommand(identifiersToIds.get(identifier), playerName, player.getAdminLevel() < 600));
 		player.addReachedAchievement(achievement.getIdentifier());
 		new GameEvent(playerName, "reach-achievement", category.toString(), title, identifier).raise();
 	}

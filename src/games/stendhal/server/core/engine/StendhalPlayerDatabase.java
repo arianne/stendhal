@@ -206,6 +206,7 @@ public class StendhalPlayerDatabase {
 		// 1.35: 
 		if (!transaction.doesColumnExist("achievement", "reached")) {
 			transaction.execute("ALTER TABLE achievement ADD COLUMN (reached INTEGER);", null);
+			transaction.execute("UPDATE achievement SET reached = 0 WHERE reached IS NULL;", null);
 		}
 
 		updateCharacterStatsOutfitToOutfitLayer(transaction);
