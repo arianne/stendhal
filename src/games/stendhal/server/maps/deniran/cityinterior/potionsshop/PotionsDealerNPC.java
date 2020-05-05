@@ -12,13 +12,13 @@
 package games.stendhal.server.maps.deniran.cityinterior.potionsshop;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -56,40 +56,12 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 				new Node(9, 5)
 		);
 
-		final Map<String, Integer> pricesBuy = new HashMap<String, Integer>() {{
-			put("mandragora", 300);
-			//put("kokuda", 5000);
-			put("toadstool", 60);
-			put("poison", 40);
-			put("greater poison", 60);
-			put("mega poison", 500);
-			put("deadly poison", 1000);
-			put("disease poison", 1200);
-			put("sedative", 200);
-			put("venom gland", 800);
-		}};
-
-		final Map<String, Integer> pricesSell = new HashMap<String, Integer>() {{
-			put("minor potion", 150);
-			put("potion", 300);
-			put("greater potion", 600);
-			put("mega potion", 1650);
-			put("antidote", 100);
-			put("greater antidote", 150);
-			put("sedative", 400);
-		}};
+		final ShopList shops = SingletonRepository.getShopList();
+		final Map<String, Integer> pricesBuy = shops.get("deniranpotionsbuy");
+		final Map<String, Integer> pricesSell = shops.get("deniranpotionssell");
 
 		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy));
 		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell));
-
-		// add Wanda's shop to the general shop list
-		final ShopList shops = ShopList.get();
-		for (final String key: pricesBuy.keySet()) {
-			shops.add("deniranpotionsbuy", key, pricesBuy.get(key));
-		}
-		for (final String key: pricesSell.keySet()) {
-			shops.add("deniranpotionssell", key, pricesSell.get(key));
-		}
 
 		npc.addGreeting("Welcome to Deniran's potion shop.");
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");

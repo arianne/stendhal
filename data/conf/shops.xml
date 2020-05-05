@@ -611,4 +611,29 @@
 		<item name="deniran city scroll" price="800" />
 	</shop>
 
+	<!-- Wanda: Deniran Potions Shop -->
+	<shop name="deniranpotionsbuy" type="buys">
+		<item name="mandragora" price="300" />
+		<!--<item name="kokuda" price="5000" />-->
+		<item name="toadstool" price="60" />
+		<item name="poison" price="40" />
+		<item name="greater poison" price="60" />
+		<item name="mega poison" price="500" />
+		<item name="deadly poison" price="1000" />
+		<item name="disease poison" price="1200" />
+		<item name="sedative" price="200" />
+		<item name="venom gland" price="800" />
+	</shop>
+
+	<!-- Wanda: Deniran Potions Shop -->
+	<shop name="deniranpotionssell" type="sells">
+		<item name="minor potion" price="150" />
+		<item name="potion" price="300" />
+		<item name="greater potion" price="600" />
+		<item name="mega potion" price="1650" />
+		<item name="antidote" price="100" />
+		<item name="greater antidote" price="150" />
+		<item name="sedative" price="400" />
+	</shop>
+
 </shops>
