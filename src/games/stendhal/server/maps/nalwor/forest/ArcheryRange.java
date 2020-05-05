@@ -134,7 +134,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		archeryZone = zone;
 		archeryZoneID = zone.getName();
-		archeryArea = new TrainingArea(archeryZone, 97, 97, 19, 10);
+		//archeryArea = new TrainingArea(archeryZoneID, archeryZone, 97, 97, 19, 10, ranger, new Point(118, 104), GATE_POS, Direction.RIGHT);
 		archeryArea.setCapacity(10);
 
 		// initialize condition to check if training area is full
