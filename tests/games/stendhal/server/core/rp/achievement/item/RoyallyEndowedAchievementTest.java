@@ -12,7 +12,6 @@
 package games.stendhal.server.core.rp.achievement.item;
 
 import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ID_ROYAL;
-import static games.stendhal.server.core.rp.achievement.factory.ItemAchievementFactory.ITEMS_ROYAL;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -30,11 +29,18 @@ import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 
+
 public class RoyallyEndowedAchievementTest {
 
 	private static final AchievementNotifier notifier = SingletonRepository.getAchievementNotifier();
 
 	private Player player;
+
+	private final String[] ITEMS_ROYAL = {
+			"royal armor", "royal helmet", "royal cloak", "royal legs",
+			"royal boots", "royal shield"
+	};
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

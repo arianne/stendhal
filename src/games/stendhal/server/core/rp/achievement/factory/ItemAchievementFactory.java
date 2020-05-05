@@ -27,11 +27,6 @@ import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondi
 public class ItemAchievementFactory extends AbstractAchievementFactory {
 
 	public static final String ID_ROYAL = "item.set.royal";
-	public static final String[] ITEMS_ROYAL = {
-			"royal armor", "royal helmet", "royal cloak", "royal legs",
-			"royal boots", "royal shield"
-	};
-
 	public static final String ID_MAGIC = "item.set.magic";
 
 
@@ -116,7 +111,8 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 
 		itemAchievements.add(createAchievement(ID_ROYAL, "Royally Endowed", "Loot a complete royal equipment set",
 				Achievement.MEDIUM_BASE_SCORE, true,
-				new PlayerLootedNumberOfItemsCondition(1, ITEMS_ROYAL)));
+				new PlayerLootedNumberOfItemsCondition(1, "royal armor", "royal helmet", "royal cloak", "royal legs",
+						"royal boots", "royal shield")));
 
 		itemAchievements.add(createAchievement(ID_MAGIC, "Magic Supplies", "Loot a complete magic equipment set",
 				Achievement.MEDIUM_BASE_SCORE, true,
