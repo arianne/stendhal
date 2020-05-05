@@ -12,6 +12,7 @@ Changelog
   - Deathmatch Helper: aid other players in 25 rounds of deathmatch
   - Deathmatch Companion: aid other players in 50 rounds of deathmatch
   - Deathmatch Convoy: aid other players in 100 rounds of deathmatch
+  - Magic Supplies: loot a complete magic equipment set
 
 
 1.34

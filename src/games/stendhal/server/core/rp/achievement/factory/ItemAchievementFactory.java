@@ -32,6 +32,9 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 			"royal boots", "royal shield"
 	};
 
+	public static final String ID_MAGIC = "item.set.magic";
+
+
 	@Override
 	protected Category getCategory() {
 		return Category.ITEM;
@@ -115,7 +118,11 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, ITEMS_ROYAL)));
 
+		itemAchievements.add(createAchievement(ID_MAGIC, "Magic Supplies", "Loot a complete magic equipment set",
+				Achievement.MEDIUM_BASE_SCORE, true,
+				new PlayerLootedNumberOfItemsCondition(1, "magic plate armor", "magic chain helmet", "magic cloak",
+						"magic plate legs", "magic plate boots", "magic plate shield")));
+
 		return itemAchievements;
 	}
-
 }
