@@ -38,6 +38,8 @@ import games.stendhal.server.core.account.CharacterCreator;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.core.engine.dbcommand.SetOnlineStatusCommand;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
+import games.stendhal.server.core.events.LogoutListener;
+import games.stendhal.server.core.events.LogoutListenerFactory;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -576,6 +578,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					notifyOnlineStatus(false, player);
 				}
 				updatePlayerNameListForPlayersOnLogout(player);
+
+				// XXX: hack
+				for (final LogoutListener registeredListener: LogoutListenerFactory.get().getListeners()) {
+					registeredListener.onLoggedOut(player);
+				}
 
 				Player.destroy(player);
 				getOnlinePlayers().remove(player);

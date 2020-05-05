@@ -21,6 +21,8 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.events.LogoutListener;
+import games.stendhal.server.core.events.LogoutListenerFactory;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -54,7 +56,7 @@ import marauroa.common.game.IRPZone;
  * @author kymara
  */
 
-public class WizardBank extends AbstractQuest implements LoginListener {
+public class WizardBank extends AbstractQuest implements LoginListener,LogoutListener {
 
 	// constants
 	private static final String QUEST_SLOT = "wizard_bank";
@@ -355,6 +357,12 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		teleportAway(player);
 	}
 
+	@Override
+	public void onLoggedOut(final Player player) {
+		// FIXME: this only works if the player logs out correctly & not if player is disconnected
+		SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
+	}
+
 	/**
 	 * Finishes the time and teleports the player out.
 	 *
@@ -386,6 +394,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		createNPC();
+
+		// XXX: hack
+		LogoutListenerFactory.get().register(this);
 	}
 
 	@Override
