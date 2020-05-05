@@ -97,7 +97,7 @@ public class AssassinRepairerAdder {
 				new PlayerHasItemWithHimCondition("assassins id"),
 				ConversationStates.QUESTION_2,
 				null,
-				requestRepairAction());
+				requestRepairAction(repairer));
 
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
@@ -234,15 +234,22 @@ public class AssassinRepairerAdder {
 		}
 	}
 
-	private ChatAction requestRepairAction() {
+	private ChatAction requestRepairAction(final AssassinRepairer repairer) {
 		return new ChatAction() {
 			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser repairer) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				final int repairables = repairer.getNumberOfRepairables();
+
 				String request = sentence.getTrimmedText();
 				if (repairPhrases.contains(request.toLowerCase())) {
-					repairer.say(getReply(ID_UNDECLARED));
-					repairer.setCurrentState(ConversationStates.ATTENDING);
-					return;
+					if (repairables > 1) {
+						repairer.say(getReply(ID_UNDECLARED));
+						repairer.setCurrentState(ConversationStates.ATTENDING);
+						return;
+					}
+
+					// player does not need to specify item name if repairer only repairs one item
+					request = request + " " + repairer.getFirstRepairable();
 				}
 
 				for (final String rWord: repairPhrases) {
@@ -393,14 +400,39 @@ public class AssassinRepairerAdder {
 
 	public class AssassinRepairer extends SpeakerNPC {
 
-		public AssassinRepairer(String name) {
+		private final Map<String, Integer> repairList;
+
+		public AssassinRepairer(String name, final Map<String, Integer> repairList) {
 			super(name);
+
+			this.repairList = repairList;
 		}
 
 		@Override
 		public void onGoodbye(final RPEntity attending) {
 			// reset item name, count, & fee to null
 			reset();
+		}
+
+		/**
+		 * Retrieves number of item types that can be repaired by this NPC.
+		 *
+		 * @return
+		 * 		Number of repairable item types.
+		 */
+		public int getNumberOfRepairables() {
+			return repairList.size();
+		}
+
+		/**
+		 * Retrieves the first item name from repair list.
+		 *
+		 * @return
+		 * 		First item.
+		 */
+		@SuppressWarnings("unchecked")
+		public String getFirstRepairable() {
+			return repairList.keySet().toArray(new String[] {})[0];
 		}
 	}
 }

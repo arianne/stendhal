@@ -207,7 +207,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private void initNPC() {
 		repairerAdder = new AssassinRepairerAdder();
 
-		ranger = repairerAdder.new AssassinRepairer(npcName) {
+		ranger = repairerAdder.new AssassinRepairer(npcName, repairableSellPrices) {
 			@Override
 			public void say(final String text) {
 				// don't turn toward player
