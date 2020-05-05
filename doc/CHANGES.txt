@@ -13,6 +13,8 @@ Changelog
   - Deathmatch Companion: aid other players in 50 rounds of deathmatch
   - Deathmatch Convoy: aid other players in 100 rounds of deathmatch
   - Magic Supplies: loot a complete magic equipment set
+- NPC changes:
+  - King Edward sells Deniran City scrolls
 
 
 1.34

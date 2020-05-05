@@ -17,7 +17,10 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 public class KingNPC implements ZoneConfigurator {
 
@@ -32,7 +35,7 @@ public class KingNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addGreeting("Hello, and welcome to Deniran castle.");
 				addJob("We are the king!");
-				addOffer("I don't have anything for you at the moment. But... There have been rumors of blordroughs digging caves under the city. I will probobly need your help in the future.");
+				addQuest("I don't have anything for you at the moment. But... There have been rumors of blordroughs digging caves under the city. I will probobly need your help in the future.");
 				addGoodbye("Fare thee well, stranger!");
 			}
 
@@ -46,6 +49,11 @@ public class KingNPC implements ZoneConfigurator {
 		npc.setDescription("You see the King of Deniran.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
+
+		buildShops(npc);
 	}
 
+	private void buildShops(final SpeakerNPC npc) {
+		new SellerAdder().addSeller(npc, new SellerBehaviour(ShopList.get().get("denirankingsell")));
+	}
 }

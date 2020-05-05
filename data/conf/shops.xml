@@ -607,4 +607,8 @@
 		<item name="mythical egg" price="2500" />
 	</shop>
 
+	<shop name="denirankingsell" type="sells">
+		<item name="deniran city scroll" price="800" />
+	</shop>
+
 </shops>
