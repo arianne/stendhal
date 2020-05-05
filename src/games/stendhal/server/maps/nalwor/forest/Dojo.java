@@ -72,7 +72,7 @@ public class Dojo implements ZoneConfigurator {
 	private TrainerNPC samurai;
 
 	/** phrases used in conversations */
-	private static final List<String> TRAIN_PHRASES = Arrays.asList("train", "training");
+	private static final List<String> TRAIN_PHRASES = Arrays.asList("train", "training", "enter", "start");
 	private static final List<String> FEE_PHRASES = Arrays.asList("fee", "cost", "charge");
 
 	/** message when dojo is full */
