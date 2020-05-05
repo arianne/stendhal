@@ -266,6 +266,7 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	@Override
 	public void onLoggedOut(final Player player) {
 		// disable timer/notifier
+		// FIXME: this only works if the player logs out correctly & not if player is disconnected
 		SingletonRepository.getTurnNotifier().dontNotify(new TrainingTimer(player));
 	}
 
