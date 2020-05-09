@@ -348,7 +348,7 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 					new ChatCondition() {
 						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-							return isFull();
+							return !isFull();
 						}
 					},
 					Arrays.asList(
