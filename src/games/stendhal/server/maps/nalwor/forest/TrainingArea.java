@@ -301,9 +301,10 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
 			if (playerTemp != null) {
 				if (timeRemaining != null && timeRemaining > 0) {
-					// notify players at 10 minute mark & every minute after 5 minute mark
-					if (timeRemaining == 10 * MathHelper.SECONDS_IN_ONE_MINUTE ||
-							(timeRemaining <= 5 * MathHelper.SECONDS_IN_ONE_MINUTE && timeRemaining % 60 == 0)) {
+					// notify players at 10, 5, & 1 minute mark
+					if (timeRemaining == 10 * MathHelper.SECONDS_IN_ONE_MINUTE
+							|| timeRemaining == 5 * MathHelper.SECONDS_IN_ONE_MINUTE
+							|| timeRemaining == 60) {
 						trainer.say(playerTemp.getName() + ", you have " + TimeUtil.timeUntil(timeRemaining) + " left.");
 					}
 					// remaining time needs to be updated every second in order to be saved if player logs out
