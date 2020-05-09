@@ -60,10 +60,9 @@
     </entity>
 
     <!-- Dojo -->
-
+<!--
     <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" />
-
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" />-->
     <!-- sign indicating direction to assassins' dojo -->
     <entity x="97" y="116">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
