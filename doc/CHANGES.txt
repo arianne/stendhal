@@ -15,6 +15,7 @@ Changelog
   - Magic Supplies: loot a complete magic equipment set
 - NPC changes:
   - King Edward sells Deniran City scrolls
+  - Rengard visits 0_ados_mountain_n2_w2 instead of 0_semos_mountain_n2_w2
 
 
 1.34

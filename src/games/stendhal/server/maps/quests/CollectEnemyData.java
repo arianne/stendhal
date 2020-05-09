@@ -95,7 +95,7 @@ public class CollectEnemyData extends AbstractQuest {
 	private TeleporterBehaviour teleporterBehaviour;
 
 	public static final String[] zonesWhitelist = {
-			"0_semos_mountain_n2_w", "0_semos_mountain_n2_w2", "0_deniran_forest_n2_e",
+			"0_semos_mountain_n2_w", "0_ados_mountain_n2_w2", "0_deniran_forest_n2_e",
 			"-7_deniran_atlantis_mtn_n_e2", "0_orril_mountain_n_w2"
 	};
 
