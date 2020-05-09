@@ -172,6 +172,9 @@ public class CollectEnemyData extends AbstractQuest {
 		teleporterBehaviour.setTarryDuration(MathHelper.SECONDS_IN_ONE_MINUTE * 15); // spends 15 minutes on a map
 		teleporterBehaviour.setExitsConversation(false);
 		teleporterBehaviour.setTeleportWarning("I must leave soon.");
+
+		// initialize Rengard with a zone so JUnit test does not fail
+		SingletonRepository.getRPWorld().getZone(zonesWhitelist[0]).add(npc);
 	}
 
 	private void initQuest() {
