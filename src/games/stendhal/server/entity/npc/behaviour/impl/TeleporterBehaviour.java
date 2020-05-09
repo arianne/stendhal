@@ -38,8 +38,11 @@ public class TeleporterBehaviour implements TurnListener {
 	private final String zoneStartsWithLimiter;
 	private final String repeatedText;
 
-	// time spend on each map (if null, uses default value ~ 5 minutes)
+	// time spent on each map (if null, uses default value ~ 5 minutes)
 	private Integer tarryDuration = null;
+
+	// phrase for when NPC cannot teleport when engaged in conversation
+	private String teleportWarning = null;
 
 	/**
 	 * If set to <code>false</code>, NPC will not teleport if engaged in
@@ -163,6 +166,9 @@ public class TeleporterBehaviour implements TurnListener {
 			if (!exitsConversation) {
 				// Schedule so we are notified again in 1 minute
 				SingletonRepository.getTurnNotifier().notifyInSeconds(60, this);
+				if (teleportWarning != null) {
+					speakerNPC.say(teleportWarning);
+				}
 				return;
 			}
 
@@ -242,5 +248,16 @@ public class TeleporterBehaviour implements TurnListener {
 	 */
 	public void setTarryDuration(final Integer duration) {
 		this.tarryDuration = duration;
+	}
+
+	/**
+	 * Sets the message that NPC will say when failing to teleport if engaged
+	 * in conversation.
+	 *
+	 * @param phrase
+	 * 		Message to say.
+	 */
+	public void setTeleportWarning(final String phrase) {
+		teleportWarning = phrase;
 	}
 }

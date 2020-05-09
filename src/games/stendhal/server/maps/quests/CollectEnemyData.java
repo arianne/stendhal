@@ -171,6 +171,7 @@ public class CollectEnemyData extends AbstractQuest {
 
 		teleporterBehaviour.setTarryDuration(MathHelper.SECONDS_IN_ONE_MINUTE * 15); // spends 15 minutes on a map
 		teleporterBehaviour.setExitsConversation(false);
+		teleporterBehaviour.setTeleportWarning("I must leave soon.");
 		teleporterBehaviour.onTurnReached(0); // initialize NPC on random map
 	}
 
