@@ -189,7 +189,7 @@ public class Dojo implements ZoneConfigurator {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						samurai.say("At your level of experience, it's " + dojoArea.calculateFee(player.getAtk()) + " money to train in the dojo. Would you like to enter?");
+						samurai.say("At your skill level, it's " + dojoArea.calculateFee(player.getAtk()) + " money to train in the dojo. Would you like to enter?");
 					}
 				});
 
