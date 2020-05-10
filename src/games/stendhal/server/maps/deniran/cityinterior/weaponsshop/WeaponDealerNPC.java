@@ -87,7 +87,7 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 	}
 
 	private void buildSigns(final StendhalRPZone zone) {
-		final ShopSign buys = new ShopSign("deniranequipbuy", "D J Smith's Shop (buying)", "You can buy these things from D J Smith.", false);
+		final ShopSign buys = new ShopSign("deniranequipbuy", "D J Smith's Shop (buying)", "You can sell these things to D J Smith.", false);
 		buys.setEntityClass("blackboard");
 		buys.setPosition(20, 4);
 
