@@ -15,12 +15,14 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.zone.NoTeleportIn;
@@ -50,6 +52,8 @@ import games.stendhal.server.util.TimeUtil;
  */
 public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
+	private static final Logger logger = Logger.getLogger(TrainingArea.class);
+
 	// quest slot
 	private final String QUEST_SLOT;
 	// point to which player is teleported after sessions
@@ -67,6 +71,8 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	/** quest states */
 	private static final String STATE_ACTIVE = "training";
 	private static final String STATE_DONE = "done";
+
+	private static final Map<String, TrainingTimer> activeTimers = new HashMap<>();
 
 
 	public TrainingArea(final String slot, final StendhalRPZone zone, final Rectangle shape,
@@ -167,10 +173,26 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 		return getPlayers().size() >= maxCapacity;
 	}
 
+	/**
+	 * Checks if the entity is exiting the training area.
+	 *
+	 * @param trainee
+	 * 		Entity to check.
+	 * @return
+	 * 		<code>true</code> if the entity is traversing the gate in the direction
+	 * 		away from training area.
+	 */
 	public boolean isExiting(final RPEntity trainee) {
 		return !trainee.getDirectionToward(gate).oppositeDirection().equals(entersFrom);
 	}
 
+	/**
+	 * Retrieves the maximum number of players that can occupy the training area
+	 * at one time.
+	 *
+	 * @return
+	 * 		Max occupants.
+	 */
 	public int getMaxCapacity() {
 		if (maxCapacity == null) {
 			return -1;
@@ -195,39 +217,62 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	}
 
 	/**
-	 * Allows time remaining to be altered by changing quest slot.
-	 */
-	private Integer updateTimeRemaining(final Player player) {
-		try {
-			final int timeRemaining = Integer.parseInt(player.getQuest(QUEST_SLOT, 1)) - 1;
-			player.setQuest(QUEST_SLOT, 1, Integer.toString(timeRemaining));
-			return timeRemaining;
-		} catch (NumberFormatException e) {
-			// couldn't get time remaining from quest state
-			SingletonRepository.getTurnNotifier().dontNotify(new TrainingTimer(player));
-
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	/**
 	 * Starts timer to track players session time.
 	 *
 	 * @param player
 	 * 		Player to track.
+	 * @param trainTime
+	 * 		Amount of time (in seconds) player is allowed to train.
 	 */
-	private void startTimer(final Player player) {
-		// remove any existing notifiers
-		SingletonRepository.getTurnNotifier().dontNotify(new TrainingTimer(player));
-		// create the new notifier
-		SingletonRepository.getTurnNotifier().notifyInSeconds(0, new TrainingTimer(player));
+	private void startTimer(final Player player, final int trainTime) {
+		final String playerName = player.getName();
+
+		// deactivate any residual timers
+		TrainingTimer timer = activeTimers.get(playerName);
+		if (timer != null) {
+			activeTimers.remove(playerName);
+			SingletonRepository.getTurnNotifier().dontNotify(timer);
+		}
+
+		timer = new TrainingTimer(player, trainTime);
+		activeTimers.put(playerName, timer);
 	}
 
+	/**
+	 * Sets quest slot state & starts timer for session.
+	 *
+	 * @param player
+	 * 		Player starting training session.
+	 * @param trainTime
+	 * 		Amount of time (in seconds) player is allowed to train.
+	 */
 	public void startSession(final Player player, final int trainTime) {
 		player.setQuest(QUEST_SLOT, STATE_ACTIVE + ";" + Integer.toString(trainTime));
-		startTimer(player);
+		startTimer(player, trainTime);
+
+		final TrainingTimer timer = activeTimers.get(player.getName());
+		if (timer != null) {
+			timer.skipFirstNotify();
+			timer.init();
+		}
+	}
+
+	/**
+	 * Resumes a training session without setting quest slot state nor
+	 * skipping first notification to player.
+	 *
+	 * @param player
+	 * 		Player starting training session.
+	 * @param trainTime
+	 * 		Amount of time (in seconds) player is allowed to train.
+	 */
+	private void resumeSession(final Player player, final int trainTime) {
+		startTimer(player, trainTime);
+
+		final TrainingTimer timer = activeTimers.get(player.getName());
+		if (timer != null) {
+			timer.init();
+		}
 	}
 
 	/**
@@ -243,7 +288,15 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 			player.teleport(zone, END_POS.x, END_POS.y, null, null);
 		}
 
+		setSessionDone(player);
+	}
+
+	/**
+	 * Sets the training state to "done" & cooldown time.
+	 */
+	private void setSessionDone(final Player player) {
 		player.setQuest(QUEST_SLOT, STATE_DONE + ";" + Long.toString(System.currentTimeMillis()));
+		activeTimers.remove(player.getName());
 	}
 
 	@Override
@@ -257,17 +310,33 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 		if (sessionState != null && sessionState.equals(STATE_ACTIVE)) {
 			final String sessionTimeString = player.getQuest(QUEST_SLOT, 1);
 			if (sessionTimeString != null) {
-				// re-initialize turn notifier if player still has active training session
-				startTimer(player);
+				try {
+					resumeSession(player, Integer.parseInt(sessionTimeString));
+				} catch (final NumberFormatException e) {
+					logger.error("Session time not in number format, cannot resume training. Setting quest slot to \"done\" state.");
+					e.printStackTrace();
+					setSessionDone(player);
+				}
 			}
 		}
 	}
 
 	@Override
 	public void onLoggedOut(final Player player) {
-		// disable timer/notifier
-		// FIXME: this only works if the player logs out correctly & not if player is disconnected
-		SingletonRepository.getTurnNotifier().dontNotify(new TrainingTimer(player));
+		/** disable timer/notifier
+		 *
+		 *  NOTE: if player gets disconnected without proper logout, the time will restart
+		 *  from the previous session start/resume time.
+		 *  FIXME: is there a way to catch player timeout?
+		 */
+		final TrainingTimer timer = activeTimers.get(player.getName());
+		final String state = player.getQuest(QUEST_SLOT, 0);
+		if (timer != null && (state != null && state.equals(STATE_ACTIVE))) {
+			player.setQuest(QUEST_SLOT, 1, Integer.toString(timer.getRemainingSecs()));
+			SingletonRepository.getTurnNotifier().dontNotify(timer);
+		} else if (state != null && !state.equals(STATE_DONE)) {
+			setSessionDone(player);
+		}
 	}
 
 
@@ -276,44 +345,96 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	 */
 	private class TrainingTimer implements TurnListener {
 
+		// player that is being timed
 		private final WeakReference<Player> timedPlayer;
 
-		private Integer timeRemaining = 0;
+		// timestamp at which training session will end
+		private Long targetTimeStamp = 0L;
+
+		private boolean skipNotify = false;
 
 
-		private TrainingTimer(final Player player) {
+		/**
+		 * Constructor.
+		 *
+		 * @param player
+		 * 		Player to be timed.
+		 * @param secsRemaining
+		 * 		Time remaining (in seconds) for player to train.
+		 */
+		private TrainingTimer(final Player player, final int secsRemaining) {
 			timedPlayer = new WeakReference<Player>(player);
+			targetTimeStamp = System.currentTimeMillis() + (secsRemaining * 1000);
+		}
 
-			try {
-				final String questState = timedPlayer.get().getQuest(QUEST_SLOT, 0);
-				if (questState != null && questState.equals(STATE_ACTIVE)) {
-					// set player's time remaining from quest slot value
-					timeRemaining = Integer.parseInt(timedPlayer.get().getQuest(QUEST_SLOT, 1));
-				}
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
+		public void init() {
+			onTurnReached(0);
+		}
+
+		public void skipFirstNotify() {
+			skipNotify = true;
+		}
+
+		/**
+		 * Retrieves the remaining time in training session.
+		 *
+		 * @return
+		 * 		Remaining time in milliseconds.
+		 */
+		public long getRemainingMillis() {
+			long remaining = targetTimeStamp - System.currentTimeMillis();
+			if (remaining < 0) {
+				remaining = 0;
 			}
+
+			return remaining;
+		}
+
+		/**
+		 * Retrieves the remaining time in training session.
+		 *
+		 * @return
+		 * 		Remaining time in seconds.
+		 */
+		public int getRemainingSecs() {
+			return (int) Math.ceil(getRemainingMillis() / 1000);
 		}
 
 		@Override
-		public void onTurnReached(int currentTurn) {
-			final Player playerTemp = timedPlayer.get();
+		public void onTurnReached(final int currentTurn) {
+			final Player player = timedPlayer.get();
 
-			if (playerTemp != null) {
-				if (timeRemaining != null && timeRemaining > 0) {
-					// notify players at 10, 5, & 1 minute mark
-					if (timeRemaining == 10 * MathHelper.SECONDS_IN_ONE_MINUTE
-							|| timeRemaining == 5 * MathHelper.SECONDS_IN_ONE_MINUTE
-							|| timeRemaining == 60) {
-						trainer.say(playerTemp.getName() + ", you have " + TimeUtil.timeUntil(timeRemaining) + " left.");
-					}
-					// remaining time needs to be updated every second in order to be saved if player logs out
-					timeRemaining = updateTimeRemaining(playerTemp);
-					SingletonRepository.getTurnNotifier().notifyInSeconds(1, this);
-				} else {
-					endSession(playerTemp);
+			final int secsRemain = getRemainingSecs();
+			if (secsRemain <= 0) {
+				endSession(player);
+				return;
+			}
+
+			final int minsRemain = Math.round((float) secsRemain / 60);
+
+			// set default value to notify at last minute mark
+			int notifyIn = minsRemain - 1;
+			if (minsRemain == 1 ) {
+				notifyIn = 1;
+			} else if (minsRemain > 10) {
+				notifyIn = minsRemain % 10;
+				if (notifyIn == 0) {
+					notifyIn = 10;
+				}
+			} else if (minsRemain > 5) {
+				notifyIn = minsRemain % 5;
+				if (notifyIn == 0) {
+					notifyIn = 5;
 				}
 			}
+
+			if (skipNotify) {
+				skipNotify = false;
+			} else {
+				trainer.say(player.getName() + ", you have " + TimeUtil.timeUntil(minsRemain * 60) + " left.");
+			}
+
+			SingletonRepository.getTurnNotifier().notifyInSeconds(notifyIn * 60, this);
 		}
 	}
 
