@@ -134,13 +134,17 @@ public class LuaEntityHelper {
 	/**
 	 * Retrieves an existing SpeakerNPC.
 	 *
+	 * FIXME: cannot cast to LuaSpeakerNPC, so specialized methods will not work
+	 * 			with entities retrieved from this method that are not instances
+	 * 			of LuaSpeakerNPC.
+	 *
 	 * @param name
 	 * 		Name of NPC.
 	 * @return
 	 * 		SpeakerNPC instance or <code>null</code>.
 	 */
-	public LuaSpeakerNPC getNPC(final String name) {
-		return (LuaSpeakerNPC) SingletonRepository.getNPCList().get(name);
+	public SpeakerNPC getNPC(final String name) {
+		return SingletonRepository.getNPCList().get(name);
 	}
 
 	/**
