@@ -144,7 +144,17 @@ public class LuaEntityHelper {
 	 * 		SpeakerNPC instance or <code>null</code>.
 	 */
 	public SpeakerNPC getNPC(final String name) {
-		return SingletonRepository.getNPCList().get(name);
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(name);
+
+		if (npc == null) {
+			logger.warn("NPC \"" + name + "\" not found");
+			return null;
+		}
+		if (!(npc instanceof LuaSpeakerNPC)) {
+			logger.warn("Lua call to entities:getNPC did not return LuaSpeakerNPC instance, specialized methods will fail with NPC \"" + npc.getName() + "\"");
+		}
+
+		return npc;
 	}
 
 	/**
