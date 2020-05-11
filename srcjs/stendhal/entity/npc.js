@@ -39,3 +39,6 @@ marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFacto
 	}
 
 });
+
+marauroa.rpobjectFactory["training_dummy"] = marauroa.rpobjectFactory["npc"];
+

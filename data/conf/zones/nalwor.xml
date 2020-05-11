@@ -60,7 +60,6 @@
     </entity>
 
     <!-- Dojo -->
-
     <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" />
     <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" />
 
