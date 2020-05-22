@@ -52,7 +52,7 @@ public enum TutorialEventType {
 	FIRST_EQUIPPED(
 			"You just got given something! Check your bag and hands."),
 	TIMED_HELP(
-			"Press F1 to read the manual with many pictures."),
+			"You can find a manual with many pictures and a beginner's guide in the Menu (see upper right hand corner of the Stendhal window)."),
 	TIMED_NAKED(
 			"Oh, aren't you feeling cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
 	TIMED_PASSWORD(
