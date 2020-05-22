@@ -256,10 +256,34 @@ span.logi {
 	width: 70vw;
 	top: 30vh;
 	height: 20vh;
-	line-height: 20vh;
+	line-height: 10vh;
 	position: absolute;
 	z-index: 1000000;
 	color: #000;
 	text-align: center;
 	padding: 1em
+}
+
+.progressbar {
+	border: 1px solid #005;
+	line-height: 5Vh;
+}
+
+.progressbarvalue {
+	width: 100%;
+	background-color: #00A;
+	animation-duration: 600s;
+	animation-name: progressbar;
+	animation-timing-function: cubic-bezier(0, 0, 0.1, 1);
+	animation-iteration-count: infinite;
+}
+
+@keyframes progressbar {
+	from {
+		width: 0 
+	}
+
+	to {
+		width: 100%;
+	}
 }
