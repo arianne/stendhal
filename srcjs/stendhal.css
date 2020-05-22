@@ -176,8 +176,9 @@ span.logi {
 }
 
 .popupdiv {
-  border: 1px solid #000;
+  x-border: 1px solid #000;
   background-color: #FFF;
+  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
 }
 
 .popuptitle {
@@ -244,4 +245,21 @@ span.logi {
 
 #portfolio {
 	display: none;
+}
+
+#client {
+	display: none;
+}
+
+#loginpopup {
+	left: 15vw;
+	width: 70vw;
+	top: 30vh;
+	height: 20vh;
+	line-height: 20vh;
+	position: absolute;
+	z-index: 1000000;
+	color: #000;
+	text-align: center;
+	padding: 1em
 }
