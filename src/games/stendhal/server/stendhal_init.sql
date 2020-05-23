@@ -126,8 +126,8 @@ CREATE TABLE IF NOT EXISTS kills (
   PRIMARY KEY (id)
 );
 
-CREATE INDEX IF NOT EXISTS i_kills_killed ON kills (killed_type, killed);
-CREATE INDEX IF NOT EXISTS i_kills_killer ON kills (killer_type, killer);
+CREATE INDEX IF NOT EXISTS i_kills_day_killed ON kills (day, killed);
+CREATE INDEX IF NOT EXISTS i_kills_killer_day ON kills (killer, day);
 
 
 CREATE TABLE IF NOT EXISTS npcs (
