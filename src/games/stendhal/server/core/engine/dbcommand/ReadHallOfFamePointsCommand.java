@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2007-2010 - Stendhal                   *
+ *                    (C) Copyright 2007-2020 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -42,7 +42,7 @@ public class ReadHallOfFamePointsCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		StendhalHallOfFameDAO dao = DAORegister.get().get(StendhalHallOfFameDAO.class);
-		points = dao.getHallOfFamePoints(playername, fametype);
+		points = dao.getHallOfFamePoints(transaction, playername, fametype);
 	}
 
 	/**
