@@ -39,7 +39,7 @@
  <tileset firstgid="432" name="animal" tilewidth="32" tileheight="32" tilecount="32" columns="8">
   <image source="../../tileset/logic/creature/animal.png" width="256" height="128"/>
  </tileset>
- <layer name="0_floor" width="128" height="128" visible="0">
+ <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2cTVbjQAwGwznmaLzsuP8ZZsNiJi+x225Jn35qUdsgqwrTMYHvx+Px3YAfB9TXBPjvwvMX/M/j+cD/ZJ4P/wYm+v/z9T/qeVb9ezSA/7wdvPNv3cI090f+s3Vw5t+iA/zn7QD/NLDaQQb/6j15dKCeb7UBtXv86xu40gLu1xpQz3a3g0j/6n14+VfPtdNBlPvq/qu6P2sgyr/6+qf7/9QA7u/7V8/k5R/35/7V81h14OW9k/tufPrex/9ccD8Xa/f4rwPu5+LhHv81wP1sot1HfEYRdO7f+Y/4XBrkc7/6+2cawP9rA3RR2/0d/9wb6vr3co//fv6vNqLeVzcyuH8H7uu73/EPtfzjvh6K+776msHe/4p33OeD7/vZ4H82Hme+dw2or3MyR59P9vL/2oB6B5M5+oy6p3/I5R3/s8C/ze7Us+A/396ys/o/CfC/vrdKDazOj/9e/q/Oj//1/aln85gf/+e7VM9h4R7//blz38J/H+78zNr1TwO5uHpewX8v7pxXaWA2+J+Nhf/VBqq9p5qAwn+15yrdiWqg+vPVrlj5P2vgzD8d1Pd/1AD+80IDs7H2z3mgHooGzjpQ72QSHv53G1DvZBo0AF4dRDbA36Dl879zLtx1TwO1GrgK/0NqdgP4r9mAVQe4r+vfqgM80wHU908HuaGDulidj6IboIMY/1d6UDRAB/ENHHVg5bFzAxnfk9xpwLIDr9fISEb/Ox1YNODZUSYqPX+KPBNYvEb2Bqo+f7R4j7DrrLr/Ds+fvRuwvA+od4V/+wYq+/+0P/VMFv6vvk7E+wH1rlb3qJ5l1/3da5js/999qufI6n8X9b664XF+wX8dvM4umfzzdyfr/i1fO7t7OvClkn8ayN3A3a9/xX/lDrLOrvbfvYPsM2fxf7cH9f6uzq+ey8N/9A4z77PavJn9n+1Uvbsr7tWzebmPaqACVbx7+H/tYGIXldx7+Z98j6jkP9r9aguVW6py/1e773xvye5f7al7D/jPx6frj2hA7Rv/a11M8K/et5Wn7P6zovZo7Qb/Pf1HXZPaB+5tvOC/v/9VZ/iv73+3Efz3du/ZUEfUe86K2gv+8Y//Of4V86l3nJmMzq1nVO+4Cll8W86o3ml23u2p6o6zzpUZdgZHPUTez9XXDnFU+HkC+IdY/+q5AP8Q24B6DgAAAACAKfwFwBOuKwAAAQA=
   </data>
