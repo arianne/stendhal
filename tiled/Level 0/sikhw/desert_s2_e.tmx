@@ -18,6 +18,15 @@
  <tileset firstgid="315" name="tree_darkgreen" tilewidth="32" tileheight="32" tilecount="88" columns="8">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" width="256" height="352"/>
  </tileset>
+ <tileset firstgid="403" name="sand_2" tilewidth="32" tileheight="32" tilecount="15" columns="5">
+  <image source="../../tileset/ground/sand_2.png" width="160" height="96"/>
+ </tileset>
+ <tileset firstgid="418" name="cactus_2" tilewidth="32" tileheight="32" tilecount="10" columns="5">
+  <image source="../../tileset/plant/cactus_2.png" width="160" height="64"/>
+ </tileset>
+ <tileset firstgid="428" name="evergreen" tilewidth="32" tileheight="32" tilecount="36" columns="3">
+  <image source="../../tileset/plant/tree/evergreen.png" width="96" height="384"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3cSW4jMRBEUQM9LPr+x/QhemsIkIpDDpGZfxE7A2LxBVmssqDvr6+v7+T8XcifjfxzyM7nf8rKte7k92Z+vSTbHn/8VzqQ7W/VAWv/2w5ku+Mf7/+zA9nulTqAf50OqPqrdEDV36oD3APq+j91AP/+/p86UP0egH9MBybtAdWf/zzuA/jjr+pv3YHq7/9O/Kt3AP97/8odwD9mD1DtQLT/q30V/6cOrM63WgfwpwP4z+4A/nb+Ch046QL+OR3w7EL0PnBi39VfoQPR9wL87ztg3YPIMyH+eh3Av6Z/dgfwt/PP7gD++f6ZZ8II/9Nnv6r+UR2o8iw40f+mAzs9UPc//b9fB/+IDuCvn6n+q/bd/U87gH++W2YHFP097PGf7f/OHn8tf49zH/79/K32/sn+qyZq9pZrv5P/lLWPv7+/hbvXuQ//e/tP/lb2Xmsf/15r/6S7+ONvYT/Rv+qZD3/88b/zj3jm8zrz44+/9dlvkn8He/xnr338e6z9iL1/gn/VtY9/n3Vf2b6qv5I9/tjjX8u+mv+ufUd/pbOeuv+qfRV/S3v8a/nvzFO0ffWzn7q/tT3+s/2t7Xf9T+zx1137O/6n9vjrrn38a9jjX8vf2r66/24HKvtbn/nw1/W/nRP8a/jfXjv+Nf293Cv6R54Bd/x3xqBkj3+8v1om+e90AP+e/qsdwH+2/04Hsg2j/L06sDsG/PHH3860mn9UBxT9PW3x1/XPdlfzv+2Aun+2M/7r/lbjzLat5q/SgWyT6v7V94Bsk8n+Nx3AX8c/Yw+Y5O/plu1/2oEJ/tmm+GMe0QEv/5UOWHV4krNCBzz8d67J4m87pqM/8fff7QD+mlHzf+pA9nypWd0a3gZ/7TWKf51kW+Ifk5/zku1XzX/187JMsz06dMDq/Z9lNz5dV/b8ZyfyOTBjzNnzq56K/gR/gj/Bn+BfLUrnUvzz5jN7rPg/J/p3RqJ7ouKvNo9Z1t7duPmsW//suSL4E/wJ/sSvA/j3Dv6zg//sRPuvnjtuEzF3T++RKryH8PCPMn6K1+9T34zptRMn33Na6ZvVHD75Zxt3zup3kz3H8M4/e25ITPAn+M8O/iTC/929ZifZ89Q1lvNs4fwUnk80/COsn3pgfe3T9qLVa8u2JnHBnhBCCCGEEEII6Z//ShZNLgAAAQA=

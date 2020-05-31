@@ -247,7 +247,6 @@ stendhal.ui.gamewindow = {
 		function onMouseUp(e) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (isRightClick(e)) {
-				console.log("right click", entity);
 				if (entity != stendhal.zone.ground) {
 					new stendhal.ui.Menu(entity, pos.pageX - 50, pos.pageY - 5);
 				}

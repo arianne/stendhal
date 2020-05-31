@@ -2,7 +2,7 @@
 <html>
 <!--
 /***************************************************************************
- *                   (C) Copyright 2014-2017 - Stendhal                    *
+ *                   (C) Copyright 2014-2020 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,6 +19,7 @@
 	</head>
 
 	<body id="body" class="background">
+	<div id="client">
 		<div id="leftColumn" class="unselectable">
 			<canvas id="minimap" width="128" height="128"></canvas>
 			<div id="zoneinfo"></div>
@@ -93,6 +94,12 @@
 		<div id="chat"></div>
 
 		<div id="popupcontainer"></div>
+		</div>
+
+		<div id="loginpopup" class="popupdiv">
+			Cross world teleport initiated. Please hold tight.
+			<div class="progressbar"><div class="progressbarvalue">&nbsp;</div></div>
+		</div>
 
 		<script type="text/javascript" src="stendhal-compiled.js"></script>
 	</body>

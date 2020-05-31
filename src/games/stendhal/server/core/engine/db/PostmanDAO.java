@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +22,6 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.ChatMessage;
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 
 /**
  * Database access for postman messages.
@@ -56,24 +54,6 @@ public class PostmanDAO {
 		transaction.execute(query, params);
 	}
 
-	/**
-	 * store a message from any named source
-	 *
-	 * @param source  name of source
-	 * @param target  name of player that the message is for
-	 * @param message 	message to be sent
-	 * @param messagetype type of the message
-	 */
-	public void storeMessage(String source, String target, String message, String messagetype) {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			storeMessage(transaction, source, target, message, messagetype);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			TransactionPool.get().rollback(transaction);
-			logger.error(e, e);
-		}
-	}
 
 	/**
 	 * gets a list of ChatMessages for this character
@@ -111,22 +91,6 @@ public class PostmanDAO {
 		}
 	}
 
-	/**
-	 * gets a list of ChatMessages for this character
-	 *
-	 * @param charname charname - name of character
-	 * @return list of ChatMessages
-	 * @throws SQLException in case of an database error
-	 */
-	public List<ChatMessage> getChatMessages(String charname) throws SQLException {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			List<ChatMessage>  res = getChatMessages(transaction, charname);
-			return res;
-		} finally {
-			TransactionPool.get().commit(transaction);
-		}
-	}
 
 	/**
 	 * marks messages delivered for this character
@@ -149,18 +113,4 @@ public class PostmanDAO {
 		}
 	}
 
-	/**
-	 * marks messages delivered for this character
-	 *
-	 * @param charname charname - name of character
-	 * @throws SQLException in case of an database error
-	 */
-	public void markMessagesDelivered(String charname) throws SQLException {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			markMessagesDelivered(transaction, charname);
-		} finally {
-			TransactionPool.get().commit(transaction);
-		}
-	}
 }

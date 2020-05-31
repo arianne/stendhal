@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,6 @@ import java.util.Map;
 
 import games.stendhal.server.util.MapOfMaps;
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 
 /**
  * DAO to gather information on pending achievements
@@ -67,34 +66,6 @@ public class PendingAchievementDAO {
 			map.put(identifier, param, cnt);
 		}
 		return map;
-	}
-
-
-	/**
-	 * Get details on pending achievements for a given player
-	 *
-	 * @param charname name of player
-	 * @return details as param and count
-	 * @throws SQLException in case of an database error
-	 */
-	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname) throws SQLException {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		Map<String, Map<String, Integer>> map = getPendingAchievementDetails(transaction, charname);
-		TransactionPool.get().commit(transaction);
-		return map;
-	}
-
-	/**
-	 * Delete used records for a pending achievement for a given player
-	 *
-	 * @param charname name of player
-	 * @throws SQLException in case of an database error
-
-	 */
-	public void deletePendingAchievementDetails(String charname) throws SQLException {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		deletePendingAchievementDetails(transaction, charname);
-		TransactionPool.get().commit(transaction);
 	}
 
 }

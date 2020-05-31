@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2009 - Stendhal                   *
+ *                    (C) Copyright 2003-2020 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,6 @@ import org.apache.log4j.Logger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 
 /**
  * database base access for the NPC dump used on the website
@@ -103,17 +102,4 @@ public class StendhalNPCDAO {
 		logger.debug("Completed dumping of NPCs in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
-	/**
-	 * dumps all NPCs
-	 */
-	public void dumpNPCs() {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			dumpNPCs(transaction);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			logger.error(e, e);
-			TransactionPool.get().rollback(transaction);
-		}
-	}
 }

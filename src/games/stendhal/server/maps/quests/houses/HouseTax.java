@@ -308,7 +308,7 @@ class HouseTax implements TurnListener {
 					}
 				}
 				logger.info("sending a notice to '" + target + "': " + message);
-				postmandao.storeMessage(source, target, message, "N");
+				postmandao.storeMessage(transaction, source, target, message, "N");
 			} else {
 				logger.error("Not sending a Taxman notice to '" + target
 						+ ", because the account does not exist. Message': " + message);

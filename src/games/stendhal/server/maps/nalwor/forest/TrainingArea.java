@@ -397,7 +397,7 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 		 * 		Remaining time in seconds.
 		 */
 		public int getRemainingSecs() {
-			return (int) Math.ceil(getRemainingMillis() / 1000);
+			return (int) Math.floor(getRemainingMillis() / 1000);
 		}
 
 		@Override
@@ -412,8 +412,7 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
 			final int minsRemain = Math.round((float) secsRemain / 60);
 
-			// set default value to notify at last minute mark
-			int notifyIn = minsRemain - 1;
+			int notifyIn;
 			if (minsRemain == 1 ) {
 				notifyIn = 1;
 			} else if (minsRemain > 10) {
@@ -425,6 +424,12 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 				notifyIn = minsRemain % 5;
 				if (notifyIn == 0) {
 					notifyIn = 5;
+				}
+			} else {
+				// set default value to notify at last minute mark
+				notifyIn = minsRemain - 1;
+				if (notifyIn < 0) {
+					notifyIn = 0; // don't allow negative
 				}
 			}
 

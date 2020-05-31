@@ -17,6 +17,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 stendhal.main = {
 	errorCounter: 0,
 	zoneFile: null,
+	loaded: false,
 
 	onDataMap: function(data) {
 		var zoneinfo = {};
@@ -104,6 +105,14 @@ stendhal.main = {
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
 				stendhal.ui.stats.update();
+				if (!stendhal.main.loaded) {
+					stendhal.main.loaded = true;
+					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
+					setTimeout(function() {
+						document.getElementById("client").style.display = "block";
+						document.getElementById("loginpopup").style.display = "none";
+					}, 300);
+				}
 			}
 		}
 	},

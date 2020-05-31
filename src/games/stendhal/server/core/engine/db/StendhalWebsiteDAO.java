@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2009 - Stendhal                   *
+ *                    (C) Copyright 2003-2020 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,22 +78,6 @@ public class StendhalWebsiteDAO {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			clearOnlineStatus(transaction);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			TransactionPool.get().rollback(transaction);
-		}
-	}
-
-	/**
-	 * sets the online status of a particular player
-	 *
-	 * @param playerName name of player
-	 * @param online true, if the player is online; false otherwise
-	 */
-	public void setOnlineStatus(final String playerName, final boolean online) {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			setOnlineStatus(transaction, playerName, online);
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			TransactionPool.get().rollback(transaction);

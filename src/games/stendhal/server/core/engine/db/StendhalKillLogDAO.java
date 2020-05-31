@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2009 - Stendhal                   *
+ *                    (C) Copyright 2003-2020 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,14 +17,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 
 /**
  * database access to the kill log
@@ -32,8 +29,6 @@ import marauroa.server.db.TransactionPool;
  * @author hendrik
  */
 public class StendhalKillLogDAO {
-	private static Logger logger = Logger.getLogger(StendhalKillLogDAO.class);
-
 
 	/**
 	 * Logs a kill.
@@ -66,23 +61,6 @@ public class StendhalKillLogDAO {
 			transaction.execute(query, params);
 		}
 
-	}
-
-	/**
-	 * Logs a kill.
-	 *
-	 * @param killed killed entity
-	 * @param killer killer
-	 */
-	public void logKill(final Entity killed, final Entity killer) {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			logKill(transaction, killed, killer);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			logger.error(e, e);
-			TransactionPool.get().rollback(transaction);
-		}
 	}
 
 	/**
