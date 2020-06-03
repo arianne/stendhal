@@ -51,7 +51,7 @@ public class LogTradeEventCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException, IOException {
 		StendhalItemDAO stendhalItemDao = DAORegister.get().get(StendhalItemDAO.class);
-		stendhalItemDao.itemLogAssignIDIfNotPresent(transaction, item);
+		stendhalItemDao.itemLogAssignIDIfNotPresent(transaction, item, getEnqueueTime());
 
 		StendhalWebsiteDAO stendhalWebsiteDao = DAORegister.get().get(StendhalWebsiteDAO.class);
 		String description = item.describe();
@@ -60,7 +60,7 @@ public class LogTradeEventCommand extends AbstractDBCommand {
 		if(start > -1) {
 			stats = description.substring(start);
 		}
-		stendhalWebsiteDao.logTradeEvent(transaction, charname, item.getName(), item.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), quantity, price, stats);
+		stendhalWebsiteDao.logTradeEvent(transaction, charname, item.getName(), item.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), quantity, price, stats, getEnqueueTime());
 	}
 
 }

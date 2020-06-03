@@ -18,6 +18,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -62,12 +65,12 @@ public class BanActionTest {
 
 			// I don't know if this is still needed.
 			if (!accountDAO.hasPlayer(transaction, player.getName())) {
-				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 
 			// we do a character check now. Made the the character name and the account name the same
 			if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
-				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
+				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player, new Timestamp(new Date().getTime()));
 			}
 
 			System.out.println(DAORegister.get().get(CharacterDAO.class).getAccountName(transaction, player.getName()));
@@ -109,16 +112,16 @@ public class BanActionTest {
 			action.put("hours",  -1);
 			action.put("reason", "whynot");
 			if (!accountDAO.hasPlayer(transaction, player.getName())) {
-				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 
 			accountDAO.setAccountStatus(transaction, player.getName(), "active");
 			if (!accountDAO.hasPlayer(transaction, admin.getName())) {
-				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 			// we do a character check now. Made the the character name and the account name the same
 	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
-				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
+				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player, new Timestamp(new Date().getTime()));
 	    	}
 
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
@@ -168,12 +171,12 @@ public class BanActionTest {
 			action.put("hours",  -1);
 			action.put("reason", "Because I can't type the correct name");
 			if (!accountDAO.hasPlayer(transaction, player.getName())) {
-				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 
 			accountDAO.setAccountStatus(transaction, player.getName(), "active");
 			if (!accountDAO.hasPlayer(transaction, admin.getName())) {
-				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
@@ -224,16 +227,16 @@ public class BanActionTest {
 			action.put("hours",  1);
 			action.put("reason", "We want to test the temporary bans");
 			if (!accountDAO.hasPlayer(transaction, player.getName())) {
-				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 
 			accountDAO.setAccountStatus(transaction, player.getName(), "active");
 			if (!accountDAO.hasPlayer(transaction, admin.getName())) {
-				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel");
+				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 			// we do a character check now. Made the the character name and the account name the same
 	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
-				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
+				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player, new Timestamp(new Date().getTime()));
 	    	}
 
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");

@@ -13,7 +13,9 @@
 package games.stendhal.server.maps.quests.houses;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -308,7 +310,7 @@ class HouseTax implements TurnListener {
 					}
 				}
 				logger.info("sending a notice to '" + target + "': " + message);
-				postmandao.storeMessage(transaction, source, target, message, "N");
+				postmandao.storeMessage(transaction, source, target, message, "N", new Timestamp(new Date().getTime()));
 			} else {
 				logger.error("Not sending a Taxman notice to '" + target
 						+ ", because the account does not exist. Message': " + message);

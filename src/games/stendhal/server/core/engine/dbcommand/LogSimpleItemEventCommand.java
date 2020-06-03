@@ -66,8 +66,8 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 			return;
 		}
 		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
-		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, item);
-		stendhalItemDAO.itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, item, getEnqueueTime());
+		stendhalItemDAO.itemLogWriteEntry(transaction, getEnqueueTime(), item, player, event, param1, param2, param3, param4);
 	}
 
 	/**

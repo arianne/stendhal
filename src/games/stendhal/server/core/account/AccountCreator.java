@@ -13,6 +13,8 @@
 package games.stendhal.server.core.account;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -95,7 +97,7 @@ public class AccountCreator {
 				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
 			}
 
-			accountDAO.addPlayer(transaction, username, Hash.hash(password), email);
+			accountDAO.addPlayer(transaction, username, Hash.hash(password), email, new Timestamp(new Date().getTime()));
 
 			transactionPool.commit(transaction);
 			return new AccountResult(Result.OK_CREATED, username);

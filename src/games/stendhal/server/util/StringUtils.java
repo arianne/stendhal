@@ -147,4 +147,22 @@ public class StringUtils {
 
 		return titleized.toString();
 	}
+
+	/**
+	 * trims a string to the specified size. It will not throw an error, if the string is already short enough.
+	 *
+	 * @param string string to trim down
+	 * @param size size
+	 * @return trimmed string
+	 */
+	public static String trimTo(String string, int size) {
+		if (string == null) {
+			return null;
+		}
+		String res = string.trim();
+		if (res.length() > size) {
+			return res.substring(0, size);
+		}
+		return res;
+	}
 }
