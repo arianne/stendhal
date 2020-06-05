@@ -3395,7 +3395,9 @@ North: Semos City
 South: Kirdneh City
 East: Nalwor City
 Southwest: Or'ril Castle and Fado City
-                         </attribute>
+West: Deniran City
+      </attribute>
+      <attribute name="class">signpost</attribute>
     </entity>
 
 
