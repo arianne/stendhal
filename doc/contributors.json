@@ -177,6 +177,9 @@
 				},
 				{
 					"type": "graphics"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -203,6 +206,7 @@
 		{
 			"name": "markus.keunecke",
 			"fullname": "Markus Keunecke",
+			"aliases": ["madmetzger"],
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771121091",
 			"image": "https://gravatar.com/avatar/4eebbab9cf562e67094a12dca480d92f.jpg?s=64&rating=PG&d=wavatar",
@@ -217,6 +221,7 @@
 		{
 			"name": "astridemma",
 			"fullname": "Astrid Sawatzky",
+			"aliases": ["durkham"],
 			"email": "",
 			"link": "",
 			"image": "https://gravatar.com/avatar/25c2fd9797203da2ed1ac801df0bc374.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/durkham.png",
@@ -228,6 +233,12 @@
 				},
 				{
 					"type": "maps"
+				},
+				{
+					"type": "test"
+				},
+				{
+					"type": "graphics"
 				}
 			]
 		},
@@ -245,12 +256,16 @@
 				},
 				{
 					"type": "maps"
+				},
+				{
+					"type": "founder"
 				}
 			]
 		},
 		{
 			"name": "martinfuchs",
 			"fullname": "Martin Fuchs",
+			"aliases": ["MartinF"],
 			"email": "",
 			"link": "https://www.openhub.net/accounts/13110",
 			"image": "https://gravatar.com/avatar/71695b83c8cdf2465d19086bdf6fefec?s=64&rating=PG&d=wavatar",
@@ -283,12 +298,16 @@
 				},
 				{
 					"type": "content"
+				},
+				{
+					"type": "doc"
 				}
 			]
 		},
 		{
-			"name": "wikipedian",
+			"name": "mort",
 			"fullname": "Daniel Herding",
+			"aliases": ["wikipedian"],
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771763819",
 			"image": "https://gravatar.com/avatar/34ca9773fb6ae65deab8af8a7202ced3.jpg?s=64&rating=PG&d=wavatar",
@@ -297,6 +316,9 @@
 			"contributions": [
 				{
 					"type": "code"
+				},
+				{
+					"type": "graphics"
 				},
 				{
 					"type": "maps"
@@ -322,7 +344,8 @@
 		},
 		{
 			"name": "omero",
-			"fullname": "omero",
+			"fullname": "Omero",
+			"aliases": ["nylon0700"],
 			"email": "",
 			"link": "https://www.openhub.net/accounts/155766",
 			"image": "https://gravatar.com/avatar/ddf515c3445545d746bc672ee56e64b6?s=64&rating=PG&d=wavatar",
@@ -334,6 +357,12 @@
 				},
 				{
 					"type": "maps"
+				},
+				{
+					"type": "graphics"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -360,7 +389,7 @@
 		},
 		{
 			"name": "yoriy",
-			"fullname": "yoriy",
+			"fullname": "Yoriy Krawtsow",
 			"email": "",
 			"link": "https://www.openhub.net/accounts/55439",
 			"image": "https://gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG&d=wavatar",
@@ -373,7 +402,7 @@
 			]
 		},
 		{
-			"name": "damnter",
+			"name": "danter",
 			"fullname": "Anders Asplund",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771476414",
@@ -382,13 +411,16 @@
 			"active_until": "2007",
 			"contributions": [
 				{
-					"type": "code"
-				},
-				{
 					"type": "maps"
 				},
 				{
 					"type": "graphics"
+				},
+				{
+					"type": "design"
+				},
+				{
+					"type": "code"
 				}
 			]
 		},
@@ -441,7 +473,7 @@
 			]
 		},
 		{
-			"name": "n-a-d-i-n-e",
+			"name": "dine, n-a-d-i-n-e",
 			"fullname": "Nadine Schlonies",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977861",
@@ -479,7 +511,7 @@
 		},
 		{
 			"name": "mkvii",
-			"fullname": "Laguz",
+			"fullname": "Marco Engelmann",
 			"aliases": ["laguz"],
 			"email": "",
 			"link": "https://www.openhub.net/accounts/Laguz",
@@ -586,7 +618,7 @@
 		},
 		{
 			"name": "soniccuz",
-			"fullname": "soniccuz",
+			"fullname": "Diligent Dodo",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771992757",
 			"image": "https://sourceforge.net/u/soniccuz/user_icon?1539674888",
@@ -776,7 +808,7 @@
 		},
 		{
 			"name": "lumocra",
-			"fullname": "lumocra",
+			"fullname": "Arco Mul",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771640206",
 			"image": "https://gravatar.com/avatar/6d7f7aa5b40e7105fe2117f268568f54?s=64&rating=PG&d=https://stendhalgame.org/images/profile/lumocra.png",
@@ -864,8 +896,13 @@
 			"active_until": "2012",
 			"contributions": [
 				{
-					"type": "code",
-					"count": 2
+					"type": "code"
+				},
+				{
+					"type": "content"
+				},
+				{
+					"type": "doc"
 				}
 			]
 		},
@@ -879,12 +916,10 @@
 			"active_until": "2017",
 			"contributions": [
 				{
-					"type": "maps",
-					"count": 6
+					"type": "maps"
 				},
 				{
-					"type": "content",
-					"count": 4
+					"type": "content"
 				}
 			]
 		},
@@ -1000,8 +1035,10 @@
 			"active_until": "2011",
 			"contributions": [
 				{
-					"type": "code",
-					"count": 1
+					"type": "code"
+				},
+				{
+					"type": "content"
 				}
 			]
 		},
@@ -1091,12 +1128,10 @@
 			"active_until": "2019",
 			"contributions": [
 				{
-					"type": "content",
-					"count": 1
+					"type": "content"
 				},
 				{
-					"type": "code",
-					"count": 1
+					"type": "code"
 				}
 			]
 		},
@@ -1159,6 +1194,225 @@
 			"active_until": "",
 			"confirmed": false,
 			"contributions": [
+			]
+		},
+		{
+			"name": "Athana",
+			"aliases": ["Athanas"], 
+			"fullname": "Athana",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "maps"
+				},
+				{
+					"type": "idea"
+				}
+			]
+		},
+		{
+			"name": "Lenocas",
+			"fullname": "Lenocas",
+			"email": "",
+			"link": "https://stendhalgame.org/character/lenocas.html",
+			"image": "https://stendhalgame.org/images/profile/lenocas.png",
+			"contributions": [
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "Atlan",
+			"fullname": "Atlan",
+			"email": "",
+			"link": "https://stendhalgame.org/character/Atlan.html",
+			"image": "https://stendhalgame.org/images/profile/Atlan.png",
+			"contributions": [
+			]
+		},
+		{
+			"name": "",
+			"fullname": "Laurent Soubrevilla",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "code"
+				}
+			]
+		},
+		{
+			"name": "",
+			"fullname": "João Costa",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "code"
+				}
+			]
+		},
+		{
+			"name": "TheGeneral",
+			"fullname": "TheGeneral",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "code"
+				}
+			]
+		},
+		{
+			"name": "Samoa",
+			"fullname": "Kim Purnell",
+			"email": "",
+			"link": "https://stendhalgame.org/character/samoa.html",
+			"image": "https://stendhalgame.org/images/profile/samoa.png",
+			"contributions": [
+				{
+					"type": "graphics"
+				},
+				{
+					"type": "idea"
+				}
+			]
+		},
+		{
+			"name": "Damosh",
+			"fullname": "Jonas",
+			"email": "",
+			"link": "",
+			"image": "",
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "filinep",
+			"fullname": "Filipe",
+			"email": "",
+			"link": "https://stendhalgame.org/character/filinep.html",
+			"image": "https://stendhalgame.org/images/profile/filinep.png",
+			"confirmed": false,
+			"contributions": [
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
+			"name": "vesper",
+			"fullname": "vesper",
+			"email": "",
+			"link": "https://stendhalgame.org/character/vesper.html",
+			"image": "https://stendhalgame.org/images/profile/vesper.png",
+			"contributions": [
+				{
+					"type": "content"
+				},
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{		
+			"name": "barbranegra",
+			"fullname": "barbranegra",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "Tiborius",
+			"fullname": "Tiborius",
+			"email": "",
+			"link": "https://stendhalgame.org/character/Tiborius.html",
+			"image": "https://stendhalgame.org/images/profile/Tiborius.png",
+			"contributions": [
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "Janay",
+			"fullname": "Janay",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "Juan",
+			"fullname": "Juan",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "maps"
+				},
+				{
+					"type": "content"
+				}
+			]
+		},
+		{
+			"name": "gummipferd",
+			"fullname": "gummipferd",
+			"email": "",
+			"link": "https://stendhalgame.org/character/gummipferd.html",
+			"image": "https://stendhalgame.org/images/profile/gummipferd.png",
+			"contributions": [
+				{
+					"type": "maps"
+				},
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "Freakuser",
+			"fullname": "Freakuser",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "graphics"
+				}
+			]
+		},
+		{
+			"name": "Hades the Emperor",
+			"fullname": "Hades the Emperor",
+			"email": "",
+			"link": "",
+			"image": "",
+			"contributions": [
+				{
+					"type": "graphics"
+				}
 			]
 		}
 	]
