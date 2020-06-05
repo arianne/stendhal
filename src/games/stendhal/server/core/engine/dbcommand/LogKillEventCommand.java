@@ -44,7 +44,7 @@ public class LogKillEventCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
-		killLog.logKill(transaction, frozenKilled, frozenKiller);
+		killLog.logKill(transaction, frozenKilled, frozenKiller, getEnqueueTime());
 	}
 
 	/**

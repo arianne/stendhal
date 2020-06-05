@@ -12,8 +12,8 @@
 package games.stendhal.server.core.engine.db;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public class StendhalKillLogDAO {
 	 * @param killer killer
 	 * @throws SQLException in case of an database error
 	 */
-	public void logKill(final DBTransaction transaction, final Entity killed, final Killer killer) throws SQLException {
+	public void logKill(final DBTransaction transaction, final Entity killed, final Killer killer, Timestamp timestamp) throws SQLException {
 		// try update in case we already have this combination
 		String query = "UPDATE kills SET cnt = cnt+1"
 			+ " WHERE killed = '[killed]' AND killed_type = '[killed_type]'"
@@ -50,7 +50,7 @@ public class StendhalKillLogDAO {
 		params.put("killed_type", entityToType(killed));
 		params.put("killer", killer.getName());
 		params.put("killer_type", entityToType(killer));
-		params.put("day", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		params.put("day", new SimpleDateFormat("yyyy-MM-dd").format(timestamp));
 
 		final int rowCount = transaction.execute(query, params);
 

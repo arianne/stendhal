@@ -102,6 +102,7 @@ public class StendhalSearchIndexDAO {
 			writeEntry(stmt, entry);
 		}
 		stmt.executeBatch();
+		stmt.close();
 	}
 
 	/**

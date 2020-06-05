@@ -24,11 +24,12 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
-import marauroa.server.game.db.AccountDAO;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
+import marauroa.server.game.dbcommand.BanAccountCommand;
 
 /**
  * Bans an account
@@ -61,14 +62,6 @@ public class BanAction extends AdministrationAction {
 
 
 			try {
-
-				// look up username
-				String username = DAORegister.get().get(CharacterDAO.class).getAccountName(bannedName);
-				if (username == null) {
-					player.sendPrivateText(NotificationType.ERROR, "No such character");
-					return;
-				}
-
 				// parse expire
 				Timestamp expire = null;
 				String expireStr = "end of time";
@@ -79,7 +72,13 @@ public class BanAction extends AdministrationAction {
 					expireStr = expire.toString();
 				}
 
-				DAORegister.get().get(AccountDAO.class).addBan(username, reason, expire);
+				// look up username
+				String username = DAORegister.get().get(CharacterDAO.class).getAccountName(bannedName);
+				if (username == null) {
+					player.sendPrivateText(NotificationType.ERROR, "No such character");
+					return;
+				}
+				DBCommandQueue.get().enqueue(new BanAccountCommand(username, reason, expire));
 				player.sendPrivateText("You have banned account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
 
 				// logging

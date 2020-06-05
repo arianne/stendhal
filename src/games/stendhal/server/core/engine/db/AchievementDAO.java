@@ -13,6 +13,7 @@ package games.stendhal.server.core.engine.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -35,15 +36,17 @@ public class AchievementDAO {
 	 * @param transaction DBTransaction
 	 * @param achievementId id of achievement
 	 * @param playerName name of player
+	 * @param timestamp timestamp
 	 * @throws SQLException in case of an database error
 	 */
-	public void saveReachedAchievement(DBTransaction transaction, Integer achievementId, String playerName, boolean incReachedCount) throws SQLException {
+	public void saveReachedAchievement(DBTransaction transaction, Integer achievementId, String playerName, boolean incReachedCount, Timestamp timestamp) throws SQLException {
 		String query  = "INSERT INTO reached_achievement " +
-						"(charname, achievement_id) VALUES" +
-						"('[charname]','[achievement_id]');";
+						"(charname, achievement_id, timedate) VALUES" +
+						"('[charname]','[achievement_id]', '[timedate]');";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("charname", playerName);
 		parameters.put("achievement_id", achievementId);
+		parameters.put("timedate", timestamp);
 		transaction.execute(query, parameters);
 
 		if (incReachedCount) {

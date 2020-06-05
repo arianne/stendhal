@@ -13,6 +13,7 @@ package games.stendhal.server.core.engine.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,16 +42,19 @@ public class PostmanDAO {
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
 	 * @param messagetype	N for NPCs, S for support, P for player
+	 * @param timestamp timestamp
 	 * @throws SQLException in case of an database error
 	 */
-	public void storeMessage(DBTransaction transaction, String source, String target, String message, String messagetype) throws SQLException {
-		String query = "INSERT INTO postman(source, target, message, messagetype) values ('[source]', '[target]', '[message]', '[messagetype]')";
+	public void storeMessage(DBTransaction transaction, String source, String target, String message, String messagetype, Timestamp timestamp) throws SQLException {
+		String query = "INSERT INTO postman(source, target, message, messagetype, timedate)"
+				+ " values ('[source]', '[target]', '[message]', '[messagetype]', '[timedate]')";
 		logger.debug("postman is storing a message " + query);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("source", source);
 		params.put("target", target);
 		params.put("message", message);
 		params.put("messagetype", messagetype);
+		params.put("timedate", timestamp);
 		transaction.execute(query, params);
 	}
 

@@ -49,7 +49,7 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
 		AchievementDAO dao = DAORegister.get().get(AchievementDAO.class);
-		dao.saveReachedAchievement(transaction, id, playerName, incReachedCount);
+		dao.saveReachedAchievement(transaction, id, playerName, incReachedCount, getEnqueueTime());
 	}
 
 	/**

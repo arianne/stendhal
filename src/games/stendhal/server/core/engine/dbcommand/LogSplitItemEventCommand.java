@@ -51,16 +51,16 @@ public class LogSplitItemEventCommand extends AbstractLogItemEventCommand {
 	@Override
 	protected void log(DBTransaction transaction) throws SQLException {
 		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
-		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveItem);
-		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveNewItem);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveItem, getEnqueueTime());
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveNewItem, getEnqueueTime());
 
 		final String outlivingQuantity = getQuantity(frozenItem);
 		final String newQuantity = getQuantity(frozenNewItem);
 		final String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
-		stendhalItemDAO.itemLogWriteEntry(transaction, liveItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "split out",
+		stendhalItemDAO.itemLogWriteEntry(transaction, getEnqueueTime(), liveItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "split out",
 				liveNewItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				outlivingQuantity, newQuantity);
-		stendhalItemDAO.itemLogWriteEntry(transaction, liveNewItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "splitted out",
+		stendhalItemDAO.itemLogWriteEntry(transaction, getEnqueueTime(), liveNewItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "splitted out",
 				liveItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				newQuantity, outlivingQuantity);
 

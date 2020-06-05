@@ -51,17 +51,17 @@ public class LogMergeItemEventCommand extends AbstractLogItemEventCommand {
 	@Override
 	protected void log(DBTransaction transaction) throws SQLException {
 		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
-		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOldItem);
-		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOutlivingItem);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOldItem, getEnqueueTime());
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOutlivingItem, getEnqueueTime());
 
 		final String oldQuantity = getQuantity(frozenOldItem);
 		final String oldOutlivingQuantity = getQuantity(frozenOutlivingItem);
 		final String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
 
-		stendhalItemDAO.itemLogWriteEntry(transaction, liveOldItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merge in",
+		stendhalItemDAO.itemLogWriteEntry(transaction, getEnqueueTime(), liveOldItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merge in",
 				liveOutlivingItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				oldOutlivingQuantity, newQuantity);
-		stendhalItemDAO.itemLogWriteEntry(transaction, liveOutlivingItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merged in",
+		stendhalItemDAO.itemLogWriteEntry(transaction, getEnqueueTime(), liveOutlivingItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merged in",
 				liveOldItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldOutlivingQuantity,
 				oldQuantity, newQuantity);
 	}

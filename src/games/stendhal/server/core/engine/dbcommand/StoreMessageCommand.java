@@ -67,7 +67,7 @@ public class StoreMessageCommand extends AbstractDBCommand {
 		}
 
 		PostmanDAO postmanDAO = DAORegister.get().get(PostmanDAO.class);
-		postmanDAO.storeMessage(transaction, source, target, message, messagetype);
+		postmanDAO.storeMessage(transaction, source, target, message, messagetype, getEnqueueTime());
 	}
 
 	/**
