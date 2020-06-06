@@ -50,11 +50,11 @@ blue_circle.png           Juan?; ???; ??? (committed by kymara: 04f76ce)
 blue_circle2.png          Juan?; ???; ??? (committed by kymara: 7ef5772)
 blue_green.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_green_2.png          Katie Russell (kymara); GPL 2.0+; Stendhal
-caldron_sign.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/, https://github.com/crawl/tiles
+caldron_sign.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/, https://github.com/crawl/tiles
 chests_banner.*           ???, Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); ??? (don't know who author of wooden board & Deniran emblem are); ???, Stendhal, https://opengameart.org/node/12210
 chimney.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_big.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-chimney_brown_stacks.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors
+chimney_brown_stacks.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors
 coal_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 colours_circle.png        Juan?; ???; ??? (committed by kymara: 7ef5772)
 fancy_gate.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -88,7 +88,7 @@ wreaths.png               bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/building/door/
 
-brown_door.*              Lanea Zimmerman (Sharm), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html
+brown_door.*              Lanea Zimmerman (Sharm), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html
 closed.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 closed_with_key.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 closed_with_notice.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -530,7 +530,7 @@ green_paving_4.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 greenGround2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground_2.png                 ???; ???; ??? (committed by kymara: 75b5e35)
-ground_3.png                 Rachel J Morris (Moosader); CC0; http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+ground_3.png                 Rachel J Morris (Moosader); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 ground_4.png                 durkham?; ???; ??? (committed by AntumDeluge: 394898f & kymara: 500d43a)
 hexagramm.png                Laguz?; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
 marble.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -553,14 +553,14 @@ spikes.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square_patch.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square_paving.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stonecircle.*                MELLE, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/90099
-stone_floors.*               Kimmo Rundelin (kiheru), Rachel J Morris (Moosader), Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+stone_floors.*               Kimmo Rundelin (kiheru), Rachel J Morris (Moosader), Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 tall_grass.png               Saphy.Len Pabin; GPL 2.0; https://opengameart.org/node/5575
 
 tiled/tileset/ground/fire/
 
 fire.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fire_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-flame.png         XenosNS; CC0; http://opengameart.org/node/17220
+flame.png         XenosNS; CC0; https://opengameart.org/node/17220
 flame_large.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flames.png        DkuCook; CC0; https://opengameart.org/node/76781
 lava.*            Jordan Irwin (AntumDeluge), Ogrebane; OGA BY 3.0; https://opengameart.org/node/79141, https://opengameart.org/node/4562
@@ -723,14 +723,14 @@ sign_large.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snowman.*                  ???; ???; ??? (committed by kymara: 62d73ad)
 swing.png                  bleutailfly; OGA BY 3.0; Stendhal
 tools.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-toys.png                   ???, David E. Gervais, PrinterKiller, Jordan Irwin (AntumDeluge); ???; http://openclipart.org/detail/166981, http://openclipart.org/detail/64909, https://opengameart.org/node/6622
+toys.png                   ???, David E. Gervais, PrinterKiller, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/166981, https://openclipart.org/detail/64909, https://opengameart.org/node/6622
 
 tiled/tileset/item/armor/
 
 armor.png             David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
-bloodied_small_axe.*  Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+bloodied_small_axe.*  Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chains.*              Katie Russell (kymara); GPL 2.0+; Stendhal
-suit_of_armor2.png    Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, http://www.lostgarden.com/2006/07/more-free-game-graphics.html
+suit_of_armor2.png    Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, https://lostgarden.com/2006/07/more-free-game-graphics.html
 sword_rack.png        Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
 weapons_for_walls.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 weapons_rack.*        Katie Russell (kymara), durkham, David E. Gervais, Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal, https://opengameart.org/node/6622, https://opengameart.org/node/12210
@@ -762,7 +762,7 @@ bottle.png         Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal (ba
 copper_still.png   ???; ???; ??? (committed by omero: d44c676, appears to be based on a photograph)
 empty_bottles.png  Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal
 flask.png          Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-potions.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+potions.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 tiled/tileset/item/chest/
 
@@ -783,7 +783,7 @@ skeleton-hanging.png  RedVoxel; CC BY 3.0; https://opengameart.org/node/79009, h
 skull_dark.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skull_pale.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skulls.png            ???; ???; ??? (committed by Laguz: f3797c5)
-snake_skeleton.*      Johann Daniel Meyer, Jordan Irwin (AntumDeluge); CC0; http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
+snake_skeleton.*      Johann Daniel Meyer, Jordan Irwin (AntumDeluge); CC0; https://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
 swamp_sunken.png      ???; ???; ??? (committed by Laguz: 5de924b)
 
 tiled/tileset/item/documents/
@@ -792,7 +792,7 @@ book.png        ???; ???; ??? (committed by kymara: b6a354f)
 books.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 books2.png      ???; ???; ??? (committed by kymara: b6a354f)
 books3.png      ???; ???; ??? (committed by kymara: b6a354f)
-books4.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+books4.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 kids_art.png    bleutailfly; OGA BY 3.0; Stendhal
 kids_art_2.png  bleutailfly; OGA BY 3.0; Stendhal
 letter.png      ???; ???; ??? (committed by kymara: b6a354f)
@@ -809,7 +809,7 @@ bottles_and_cups.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 casks.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cognac.png            ???; ???; ??? (committed by Miguel: 12d51cd)
 fierywater.png        omero; CC BY-SA 3.0; Stendhal
-juice_glass.*         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, http://openclipart.org/detail/12865
+juice_glass.*         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
 red_wine.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 white_wine.png        ???; ???; ??? (committed by Miguel: 12d51cd)
 
@@ -919,7 +919,7 @@ blackened_column.png     ???; ???; ??? (committed by kiheru: e075fa1)
 blobcreature.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broken_green_column.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broken_lion.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-buddha.png               Tomas Sobek; CC0; http://openclipart.org/detail/79567/golden-buddha-by-tomas-sobek
+buddha.png               Tomas Sobek; CC0; https://openclipart.org/detail/79567/golden-buddha-by-tomas-sobek
 cross.png                Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
@@ -969,7 +969,7 @@ trousers.png           ???; ???; ??? (committed by kymara: c68f448)
 
 tiled/tileset/item/weapon/
 
-assassindagger.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+assassindagger.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 box_of_weapons.png  Lanea Zimmerman (Sharm), Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/32386
 cannon.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79098
 composite_bow.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -981,7 +981,7 @@ skull_spear.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spear.png           Jordan Irwin (AntumDeluge); CC0; Stendhal
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-swords.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+swords.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 wooden_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 tiled/tileset/light/
@@ -1007,8 +1007,8 @@ arrows.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 birds.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                johnnnny?; ???; ??? (committed by kymara: 9c6764a)
-creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
-creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
+creep_large.*           StumpyStrust, Charlie; CC0; https://opengameart.org/node/20435, https://opengameart.org/node/20363
+creep_med.*             StumpyStrust, Charlie; CC0; https://opengameart.org/node/20435, https://opengameart.org/node/20363
 ents.*                  Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/291622
 hay_cart.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
@@ -1016,7 +1016,7 @@ letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mine_rails_2.png        Xenodora; CC BY-SA 3.0; https://opengameart.org/node/17247
 question_marks.png      ???; ???; ??? (committed by kymara: 2b3fbca)
-rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; https://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
 row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
 scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -1035,15 +1035,15 @@ well_with_rope.png      (placeholder) (committed by bleutailfly: 62dadc2)
 
 tiled/tileset/object/rock/
 
-pillars_stone.*  Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
-rocks.*          Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+pillars_stone.*  Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
+rocks.*          Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 
 tiled/tileset/plant/
 
 brown_mushrooms.png      Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
 bushes_and_trees.png     Jetrel, Zabin, Bertram; CC BY-SA; https://opengameart.org/node/12897
 cactus.png               Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71279
-cactus_2.*               Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+cactus_2.*               Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 grasses.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grasses_swamp.png        ???; ???; ??? (committed by Laguz: 63c64f0)
 grasses_wildland.png     ???; ???; ??? (committed by omero: a5c1ee7)
@@ -1054,7 +1054,7 @@ mistletoe.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mosses.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mushroom.png             durkham?; ???; ??? (committed by kymara: cf55548)
 mushroom2.png            durkham?; ???; ??? (committed by kymara: cf55548)
-mushroom3.*              Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+mushroom3.*              Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 pineapple_plant.png      ???; ???; ??? (committed by kymara: 4b7035f)
 pumpkin_halloween.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 round_cactuses.png       Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71279
@@ -1187,8 +1187,8 @@ tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_green.png           ???; ???; ??? (committed by Miguel: 12d51cd)
 tree_realistic.png       tiborious?; ???; ??? (committed by Kymara: ded2708)
-trees_1.*                Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
-umbrella_thorn.png       Carl Olsson (surt); CC0; http://opengameart.org/node/15082
+trees_1.*                Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
+umbrella_thorn.png       Carl Olsson (surt); CC0; https://opengameart.org/node/15082
 
 tiled/tileset/sky/
 

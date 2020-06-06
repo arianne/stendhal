@@ -14,7 +14,7 @@ dragon_3x2.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dragon_3x3.png         Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 dragon_6x6.png         Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 enormous_humanoid.png  Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
-feathered.png          beakman; CC0; http://openclipart.org/detail/23073
+feathered.png          beakman; CC0; https://openclipart.org/detail/23073
 gnome*                 rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207, https://opengameart.org/node/78045
 halo*                  freedo; CC0; https://openclipart.org/detail/20950
 harmless_player.png    Jordan Irwin (AntumDeluge); CC0; Stendhal
@@ -34,11 +34,11 @@ shark_2x2.png          soniccuz; CC BY-SA 3.0; Stendhal
 small_animal.png       Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 small_boneless.png     Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 small_winged.png       ???; ???; ??? (Note: committed by Bluelads4)
-snake*                 Jordan Irwin (AntumDeluge); CC0; https://www.wpclipart.com/animals/snake/snakes_3/Snake_skeleton.png.html
+snake*                 Jordan Irwin (AntumDeluge); CC0; https://wpclipart.com/animals/snake/snakes_3/Snake_skeleton.png.html
 spiderweb*             j4p4n; CC0; https://openclipart.org/detail/274095
 tail_rodent*           CC0; http://www.clker.com/clipart-185713.html
 tiny_bone.*            Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); GPL2+; Stendhal; based on tiny_humanoid
 tiny_humanoid.png      Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 winged_2x2.png         ???; ???; ??? (scaled small_winged.png)
-winged_bat.png         Machovka; CC0; http://openclipart.org/detail/2699
+winged_bat.png         Machovka; CC0; https://openclipart.org/detail/2699
 wooden*                Farmeral; CC0; https://openclipart.org/detail/20280

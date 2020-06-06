@@ -165,7 +165,7 @@ data/sprites/monsters/farm_animal/
 
 bull.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cow.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-goat.png         bluecarrot16; CC BY 3.0; https://opengameart.org/node/36051; Based on "LPC Style Farm Animals" by Daniel Eddeland (daneeklu), commissioned by Thomas Bruno (tebruno99). License: CC-BY 3.0 / GPL 2+. http://opengameart.org/content/lpc-style-farm-animals
+goat.png         bluecarrot16; CC BY 3.0; https://opengameart.org/node/36051; Based on "LPC Style Farm Animals" by Daniel Eddeland (daneeklu), commissioned by Thomas Bruno (tebruno99). License: CC-BY 3.0 / GPL 2+. https://opengameart.org/content/lpc-style-farm-animals
 horse.png        bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 piglet.png       Daniel Eddeland (daneeklu); CC BY 3.0; https://opengameart.org/node/11629
 ram.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -336,7 +336,7 @@ xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA B
 
 data/sprites/monsters/insect/
 
-killer_bee.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
+killer_bee.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 scarab*.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
 
 data/sprites/monsters/kobold/
@@ -391,7 +391,7 @@ lamia.*                  Svetlana Kushnariova (Cabbit), Yamilian, bleutailfly; C
 poison_shroom.png        Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 poison_shroom_small.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 naga.png                 bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
-werewolf.*               Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#characters-and-base, https://opengameart.org/node/20830
+werewolf.*               Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#characters-and-base, https://opengameart.org/node/20830
 
 data/sprites/monsters/mythical_animal/
 
@@ -464,7 +464,7 @@ cobra.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org
 crocodile.png    bleutailfly; OGA BY 3.0; https://opengameart.org/node/101290
 grass_snake.png  yolkati, Sebastian Riedel (Baŝto); CC BY-SA 4.0; https://opengameart.org/node/97610
 king_cobra.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
-snake.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
+snake.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 turtle.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 
 data/sprites/monsters/rodent/
@@ -526,7 +526,7 @@ high_lich.*           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrik
 incorporeal_armor.*   Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 invisible_man.png     Svetlana Kushnariova (Cabbit); CC0; https://opengameart.org/node/24944
 lich.*                Stephen Challener (Redshrike), Lori Angela Nagel (Jastiv), artisticdude, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/82964, https://opengameart.org/node/6262, https://opengameart.org/node/83067
-myling.*              Artisticdude; CC0; http://opengameart.org/node/14803
+myling.*              Artisticdude; CC0; https://opengameart.org/node/14803
 rotten_zombie.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 skeleton.png          artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 tiny_skelly.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262

@@ -3,10 +3,10 @@ data/music/
 
 a_weird_place.ogg               Storyteller; GPL
 adventurers_wish.ogg            Storyteller; GPL
-ambiance-church-1.ogg           Natalie; public domain; http://soundbible.com/253-Church-Bells-Ringing.html
-ambiance-demon-1.ogg            Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
-ambiance-restaurant-1.ogg       stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
-bongos.*                        MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
+ambiance-church-1.ogg           Natalie; public domain; https://soundbible.com/253-Church-Bells-Ringing.html
+ambiance-demon-1.ogg            Adam Webb; public domain; https://soundbible.com/1883-Scary-Demon-Haunting.html
+ambiance-restaurant-1.ogg       stephan; public domain; https://soundbible.com/1664-Restaurant-Ambiance.html
+bongos.*                        MarleneAyni; CC0; https://freesound.org/people/MarleneAyni/sounds/89608/
 casket.ogg                      Tozan; CC0; https://opengameart.org/node/68090
 christmastree.*                 Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
 come_to_rest.ogg                Storyteller; GPL
@@ -24,7 +24,7 @@ mystical_aura.ogg               Storyteller; GPL
 new_hope.ogg                    Storyteller; GPL
 night_town.*                    Angus Macnaughton; CC BY 4.0; https://opengameart.org/node/88304
 ohhowjoyfully.*                 Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
-pleasant_creek_loop.ogg         Matthew Pablo; CC BY 3.0; https://opengameart.org/node/21503, http://matthewpablo.com/
+pleasant_creek_loop.ogg         Matthew Pablo; CC BY 3.0; https://opengameart.org/node/21503, https://matthewpablo.com/
 sacred_moments.ogg              Storyteller; GPL
 settlement_of_the_frontier.ogg  Tad Miller; CC BY 4.0; https://opengameart.org/node/109342
 sewers.ogg                      Norien; GPL

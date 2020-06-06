@@ -24,13 +24,13 @@ wooden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 
 data/sprites/items/armor/
 
-barbarian_armor.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+barbarian_armor.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 blue_armor.png                bleutailfly; OGA BY 3.0; Stendhal
 chain_armor.png               Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_armor.png               ScratchIO; CC0; https://opengameart.org/node/108448
 dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
-dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_armor.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; https://sourceforge.net/p/arianne/patches/270/
 enhanced_chainmail.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -41,13 +41,13 @@ golden_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere
 golden_chainmail.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_armor.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 iron_scale_armor.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-magic_plate_armor.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-mainio_armor.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+magic_plate_armor.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+mainio_armor.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
-plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 red_armor.png                 bleutailfly; OGA BY 3.0; Stendhal
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
@@ -56,25 +56,25 @@ stone_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere
 studded_armor.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 water_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wind_robe.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_armor.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+xeno_armor.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 data/sprites/items/axe/
 
 axe.png                      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-chaos_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+chaos_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
 golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 halberd.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-hand_axe.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+hand_axe.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
 oldscythe.*                  David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sickle.png                   omero; CC BY-SA 3.0; Stendhal
-small_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+small_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/book/
@@ -102,7 +102,7 @@ green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 killer_boots.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-magic_plate_boots.*        Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+magic_plate_boots.*        Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mainio_boots.png           ScratchIO; CC0; https://opengameart.org/node/108295
 mithril_boots.png          janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
@@ -110,7 +110,7 @@ shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            Daniel Cook; CC BY 3.0; https://lostgarden.home.blog/2006/07/08/more-free-game-graphics/
 studded_boots.*            ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/108295
-xeno_boots.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+xeno_boots.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 data/sprites/items/box/
 
@@ -120,39 +120,39 @@ stocking.png  bleutailfly; OGA BY 3.0; Stendhal
 
 data/sprites/items/cloak/
 
-black_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-black_dragon_cloak.png  Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_dragon_cloak.png   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_elf_cloak.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_striped_cloak.*    Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-bone_dragon_cloak.png   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-chaos_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-cloak.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-dwarf_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-elf_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-golden_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-green_dragon_cloak.*    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-lich_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-lion_clan_cloak.*       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-mainio_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-magic_cloak.*           Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+black_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+black_dragon_cloak.png  Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+blue_dragon_cloak.png   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+blue_elf_cloak.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+blue_striped_cloak.*    Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+bone_dragon_cloak.png   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+chaos_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+cloak.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+dwarf_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+elf_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+golden_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+green_dragon_cloak.*    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+lich_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+lion_clan_cloak.*       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+mainio_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+magic_cloak.*           Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
-red_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-red_dragon_cloak.png    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-rift_cloak.png          Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-shadow_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-stone_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-vampire_cloak.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-xeno_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+red_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+red_dragon_cloak.png    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+rift_cloak.png          Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+shadow_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+stone_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+vampire_cloak.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+xeno_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 
 data/sprites/items/club/
 
 chaos_hammer.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara)
-club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-club_of_thorns.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+club_of_thorns.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 flail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_flail.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_hammer.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -166,7 +166,7 @@ skull_staff.*            Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://o
 staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
 ugmash.png               Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
-wizard_staff.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+wizard_staff.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 data/sprites/items/container/
 
@@ -191,14 +191,14 @@ vial.png                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 
 data/sprites/items/crystal/
 
-crystal*  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystal*  Iwan Gabovitch (qubodup); CC BY 3.0; https://opengameart.org/node/11013
 
 data/sprites/items/documents/
 
 closed_envelope.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 coupon.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 envelope.xcf.bz2       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-ice_scroll.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+ice_scroll.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 license.png            tigertoes; CC BY-SA 3.0; Stendhal
 map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
@@ -283,8 +283,8 @@ corn.*                   ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Sten
 courgette.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png         omero; CC BY-SA 3.0; Stendhal
-easter_egg.png           dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
-egg.png                  dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+easter_egg.png           dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+egg.png                  dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
@@ -298,8 +298,8 @@ icecream.png             thekingphoenix; CC0; https://opengameart.org/node/77345
 leek.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 licorice.png             tigertoes; CC BY-SA 3.0; Stendhal; Based on rope by Xenodora from OGA, Modded and Committed by tigertoes
 mackerel.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-meat.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-meat_smoked.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+meat.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+meat_smoked.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 olive.png                tigertoes; CC BY-SA 3.0; Stendhal
 onion.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pear.png                 RedQueen; OGA BY 3.0; Stendhal
@@ -315,9 +315,9 @@ salad.png                Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verif
 sandwich.png             Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png              thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 sausage_on_bun.png       thekingphoenix; CC0; https://opengameart.org/node/77345
-small_easter_egg.png     dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+small_easter_egg.png     dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 spinach.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spotted_egg.png          dStulle, Jordan Irwin (AntumDeluge); CC0; Stendhal, http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+spotted_egg.png          dStulle, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 sugar.png                ScratchIO; CC0; https://opengameart.org/node/99798
 surgeonfish.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png            Daniel Herding (mort); GPL 2.0; Stendhal
@@ -345,7 +345,7 @@ chinese_cabbage_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155)
-egg_grower.png              dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+egg_grower.png              dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
 grapes_grower.png           RedQueen; OGA BY 3.0; Stendhal
 kekik_grower.png            ???; ???; ??? (based on kekik.png, committed by kiheru: c058ed6)
@@ -368,8 +368,8 @@ zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 data/sprites/items/helmet/
 
 aventail.*                  Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
-black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
@@ -380,9 +380,9 @@ horned_helmet.*             Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Sten
 leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 liberty_helmet.*            David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
-red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ committed by Miguel: 3e5e746)
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
@@ -518,7 +518,7 @@ silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/ranged/
 
-auto_crossbow*.png   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+auto_crossbow*.png   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 composite_bow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 crossbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 hunter_crossbow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -539,13 +539,13 @@ beeswax.png         Jan Helebrant; CC0; https://freesvg.org/beekeeper-by-juhele
 candle.*            liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/2658
 cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
 coal.png            Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
-egg.png             dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg (duplicate of items/food/egg.png)
+egg.png             dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg (duplicate of items/food/egg.png)
 flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal
-golden_egg.png      dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+golden_egg.png      dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal (based on iron.png)
 gold_ore.png        Nadine Schlonies (dine); GPL 2.0; Stendhal
 grain.png           Daniel Herding (mort); GPL 2.0; Stendhal
-green_egg.png       dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+green_egg.png       dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 horsehair.png       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
@@ -623,7 +623,7 @@ lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_plate_shield.*          Hernandack, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/91222
 mainio_shield.png             ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/97166
-mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heather Lee Harvey (Emerald) EmeraldActivities.com & http://opengameart.org/users/emerald
+mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heather Lee Harvey (Emerald) EmeraldActivities.com & https://opengameart.org/users/emerald
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
 shadow_shield.png             Hernandack; CC0; https://opengameart.org/node/91222
@@ -631,11 +631,11 @@ skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_shield.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_shield.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+xeno_shield.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 data/sprites/items/special/
 
-eggshells.png             dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+eggshells.png             dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 GM_tokend_bronze.png      Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_gold1.png       Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_gold2.png       Anders Asplund (Danter); GPL 2.0; Stendhal
@@ -645,48 +645,48 @@ GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0; Stendhal
 lucky_charm.*             nicubunu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/94153, https://freesvg.org/st-patrick01
 mithril_clasp.png         tigertoes; CC BY-SA 3.0; Stendhal
-mythical_egg.png          dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
+mythical_egg.png          dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 
 data/sprites/items/sword/
 
-assassin_dagger.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+assassin_dagger.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-black_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-black_sword.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+black_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+black_sword.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-buster.png                   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-chaos_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+buster.png                   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+chaos_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 demon_fire_sword.png         durkham, Katie Russell (kymara); GPL 2.0+; Stendhal
-elvish_sword.*               Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+elvish_sword.*               Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_blade.png             David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
-golden_orc_sword.png         Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+golden_orc_sword.png         Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-hell_dagger.png              Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+hell_dagger.png              Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
-katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 kilij.png                    durkham; GPL 2.0; Stendhal
 knife.png                    thekingphoenix; CC0; https://opengameart.org/node/77305
 [l|r]_hand_sword.png         LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/11142
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-orc_sword.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+orc_sword.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 scimitar.png                 David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 short_sword.png              David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
-soul_dagger.*                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+soul_dagger.*                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-training_sword.png           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-vampire_sword.png            Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+training_sword.png           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+vampire_sword.png            Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 
 data/sprites/items/token/
 
@@ -706,6 +706,6 @@ magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/84600
 rotary_cutter.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
-shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/116893
+scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
+shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/116893
 sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)

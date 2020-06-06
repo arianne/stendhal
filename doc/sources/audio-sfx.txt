@@ -1,53 +1,53 @@
 
 data/sounds/
 
-alligator-1.ogg           U.S. Fish and Wildlife Service; public domain; http://www.fws.gov/video/sound.htm
+alligator-1.ogg           U.S. Fish and Wildlife Service; public domain; https://fws.gov/video/sound.htm
 arrow-hit-1.ogg           Storyteller; GPL
-attack-fire-1.*           Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
-attack-fire-2.*           Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
-attack-fire-3.*           Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
+attack-fire-1.*           Nic3_one; CC0; https://freesound.org/people/Nic3_one/sounds/166555/
+attack-fire-2.*           Nic3_one; CC0; https://freesound.org/people/Nic3_one/sounds/166555/
+attack-fire-3.*           Nic3_one; CC0; https://freesound.org/people/Nic3_one/sounds/166555/
 attack-melee-[01-02].ogg  CGEffex; CC BY 3.0; https://freesound.org/people/CGEffex/sounds/98341/
 attack-melee-[03-07].ogg  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/100746
 baby_croc-*               Félix Blume; CC0; https://freesound.org/people/felix.blume/sounds/403373/
 balrog-growl.ogg          cylon8472; CC BY 3.0; https://freesound.org/people/cylon8472/sounds/249686/
-bat-1.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
-bat-2.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
-bat-3.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
-bear-[01-02].*            U.S. Fish & Wildlife Service; public domain: https://www.fws.gov/video/sound.htm
+bat-1.*                   polymorpheva; CC0; https://freesound.org/people/polymorpheva/sounds/104205/
+bat-2.*                   polymorpheva; CC0; https://freesound.org/people/polymorpheva/sounds/104205/
+bat-3.*                   polymorpheva; CC0; https://freesound.org/people/polymorpheva/sounds/104205/
+bear-[01-02].*            U.S. Fish & Wildlife Service; public domain: https://fws.gov/video/sound.htm
 bear-03.*                 tylerandbergsd; CC BY 3.0; https://freesound.org/people/tylerandbergsd/sounds/416859/
-bee-1.ogg                 nps.gov; public domain; http://soundbible.com/971-Bee.html
+bee-1.ogg                 nps.gov; public domain; https://soundbible.com/971-Bee.html
 bell-1.ogg                Storyteller; GPL
 bird-blackbird-[01-03].*  Samuel Strågefors (straget); CC BY 3.0; https://freesound.org/people/straget/sounds/475697/
 bird-crow-01.*            Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/418262/
 bird-crow-02.*            Samuel Strågefors (straget); CC0; https://freesound.org/people/straget/sounds/404687/
-bird-dodo-01.ogg          winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
-bird-pigeon-1.*           winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
-bird-pigeon-flap-1.*      winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
+bird-dodo-01.ogg          winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
+bird-pigeon-1.*           winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
+bird-pigeon-flap-1.*      winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
 bird-raven-01.*           dauser; CC0; https://freesound.org/people/dauser/sounds/328846/
 bird-woodpecker-01.*      Benboncan; CC BY 3.0; https://freesound.org/people/Benboncan/sounds/66955/
 bones-2.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16324
 book-1.ogg                Storyteller; GPL
 book-2.ogg                Storyteller; GPL
-cat-purr-1.*              Belhene; CC0; http://freesound.org/people/Belhene/sounds/157837/
+cat-purr-1.*              Belhene; CC0; https://freesound.org/people/Belhene/sounds/157837/
 chicken-[01-02].*         www.bonson.ca; CC BY 3.0; https://freesound.org/people/www.bonson.ca/sounds/24967/
 chicken-03.*              Rudmer_Rotteveel; CC0; https://freesound.org/people/Rudmer_Rotteveel/sounds/316921/
-chicken-chick-1.*         Barbamiz; CC0; http://www.freesound.org/people/Barbamiz/sounds/116135/
-chicken-chick-2.*         Barbamiz; CC0; http://www.freesound.org/people/Barbamiz/sounds/116135/
-clang-dull-1.*            alienistcog; CC0; http://www.freesound.org/people/alienistcog/sounds/124711/
-clang-metallic-1.*        lostchocolatelab; CC0; http://www.freesound.org/people/lostchocolatelab/sounds/1468/
-click-1.*                 satrebor; CC0; http://www.freesound.org/people/satrebor/sounds/113218/
-click-clack-1.*           satrebor; CC0; http://www.freesound.org/people/satrebor/sounds/113218/
+chicken-chick-1.*         Barbamiz; CC0; https://freesound.org/people/Barbamiz/sounds/116135/
+chicken-chick-2.*         Barbamiz; CC0; https://freesound.org/people/Barbamiz/sounds/116135/
+clang-dull-1.*            alienistcog; CC0; https://freesound.org/people/alienistcog/sounds/124711/
+clang-metallic-1.*        lostchocolatelab; CC0; https://freesound.org/people/lostchocolatelab/sounds/1468/
+click-1.*                 satrebor; CC0; https://freesound.org/people/satrebor/sounds/113218/
+click-clack-1.*           satrebor; CC0; https://freesound.org/people/satrebor/sounds/113218/
 clock-1.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16323
 coins-01.*                monotraum; CC0; https://freesound.org/people/monotraum/sounds/162192/
-cork-pop-1.*              fryzu82; CC0; http://www.freesound.org/people/fryzu82/sounds/142325/
+cork-pop-1.*              fryzu82; CC0; https://freesound.org/people/fryzu82/sounds/142325/
 cough-male-01.*           Joe DeShon; CC BY 3.0; https://freesound.org/people/joedeshon/sounds/266019/
 cough-male-02.*           FrostyFrost; CC0; https://freesound.org/people/FrostyFrost/sounds/348364/
 cough-male-03.*           Eelke; CC BY 3.0; https://freesound.org/people/Eelke/sounds/462843/
-cow-1.ogg                 unnamed; public domain; http://soundbible.com/1143-Cow-And-Bell.html
-cow-2.*                   FunnyMan374; CC0; http://freesound.org/people/FunnyMan374/sounds/112068/
-cowbell-1.*               cloudyeyetavern; CC0; http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
-creak-2.*                 stephan; public domain; http://soundbible.com/1717-Creaking-Door-Spooky.html
-creak-tree-2.*            Department64; CC0; http://www.freesound.org/people/Department64/sounds/95262/
+cow-1.ogg                 unnamed; public domain; https://soundbible.com/1143-Cow-And-Bell.html
+cow-2.*                   FunnyMan374; CC0; https://freesound.org/people/FunnyMan374/sounds/112068/
+cowbell-1.*               cloudyeyetavern; CC0; https://freesound.org/people/cloudyeyetavern/sounds/148931/
+creak-2.*                 stephan; public domain; https://soundbible.com/1717-Creaking-Door-Spooky.html
+creak-tree-2.*            Department64; CC0; https://freesound.org/people/Department64/sounds/95262/
 creaky-door-close-1.ogg   Storyteller; GPL
 creaky-door-open-1.ogg    Storyteller; GPL
 creaky-door-open-2.ogg    Storyteller; GPL
@@ -56,16 +56,16 @@ cyclops-laugh-01.*        AP3850; CC0; https://freesound.org/people/AP3850/sound
 cyclops-laugh-02.*        thanvannispen; CC BY 3.0; https://freesound.org/people/thanvannispen/sounds/9552/
 cyclops-scream-01.*       pandaplague; CC0; https://freesound.org/people/pandaplague/sounds/89359/
 cyclops-yell-01.*         UncleSigmund; CC0; https://freesound.org/people/UncleSigmund/sounds/30989/
-dog-angry-low-1.ogg       Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
-dog-small-bark-1.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/100032/
-dog-small-bark-2.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/100032/
-dog-snarl-1.ogg           Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
-dog-snarl-2.ogg           Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
+dog-angry-low-1.ogg       Lisa Redfern; public domain; https://soundbible.com/2034-Growling-Snarling-Dogs.html
+dog-small-bark-1.*        nfrae; CC0; https://freesound.org/people/nfrae/sounds/100032/
+dog-small-bark-2.*        nfrae; CC0; https://freesound.org/people/nfrae/sounds/100032/
+dog-snarl-1.ogg           Lisa Redfern; public domain; https://soundbible.com/2034-Growling-Snarling-Dogs.html
+dog-snarl-2.ogg           Lisa Redfern; public domain; https://soundbible.com/2034-Growling-Snarling-Dogs.html
 eat-01.*                  Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/412068/
-elephant-1.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
-elephant-2.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
+elephant-1.*              vataaa; CC0; https://freesound.org/people/vataaa/sounds/148873/
+elephant-2.*              vataaa; CC0; https://freesound.org/people/vataaa/sounds/148873/
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
-fishing-1.*               be_crc + j1987; CC0; http://www.freesound.org/people/vibe_crc/sounds/50623/, http://www.freesound.org/people/j1987/sounds/95564/
+fishing-1.*               be_crc + j1987; CC0; https://freesound.org/people/vibe_crc/sounds/50623/, https://freesound.org/people/j1987/sounds/95564/
 gargoyle-01.*             lazr2012; CC BY 3.0; https://freesound.org/people/lazr2012/sounds/169298/
 gasha-yell-01.ogg         Inge Jard Grønås (JarAxe); CC BY 3.0; https://freesound.org/people/JarAxe/sounds/92026/
 ghost-01.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431979/
@@ -74,46 +74,46 @@ ghost-03.*                HorrorAudio; CC0; https://freesound.org/people/HorrorA
 giantrat-growl-01.*       Zabuhailo; CC0; https://freesound.org/people/Zabuhailo/sounds/146968/
 giantrat-growl-02.*       Deganoth; CC BY 3.0; https://freesound.org/people/Deganoth/sounds/348700/
 giggle-female-*           Ch0cchi; CC BY 3.0; https://freesound.org/people/Ch0cchi/sounds/15288/
-glass-break-2.*           martinimeniscus; CC0; http://www.freesound.org/people/martinimeniscus/sounds/164462/
-goat-1.*                  stephan; public domain; http://soundbible.com/1662-Farm.html
-goat-2.*                  stephan; public domain; http://soundbible.com/1632-On-The-Farm.html
+glass-break-2.*           martinimeniscus; CC0; https://freesound.org/people/martinimeniscus/sounds/164462/
+goat-1.*                  stephan; public domain; https://soundbible.com/1662-Farm.html
+goat-2.*                  stephan; public domain; https://soundbible.com/1632-On-The-Farm.html
 goblin-01.*               spookymodem; CC0; https://freesound.org/people/spookymodem/sounds/249813/
 goblin-burp-01.*          ohnobones; CC0; https://freesound.org/people/ohnobones/sounds/416968/
 goblin-laugh-01.*         spookymodem; CC0; https://freesound.org/people/spookymodem/sounds/202096/
-growl-large-3.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
-grunt-large-1.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
-grunt-large-2.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+growl-large-3.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
+grunt-large-1.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
+grunt-large-2.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
 gui-window-fold.*         Nicole Marie T; CC BY 4.0; https://opengameart.org/node/92701
 guitar-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16326
 hiccup-01.*               ceoux; CC0; https://freesound.org/people/ceoux/sounds/338196/
 naga_hiss-0[1-5].*        columbia23; CC BY 3.0; https://freesound.org/people/columbia23/sounds/395396/
 heal-01.*                 renatalmar; CC0; https://freesound.org/people/renatalmar/sounds/264981/
-ho-ho-ho-1.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110641/
-ho-ho-ho-2.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110642/
+ho-ho-ho-1.*              canucklovingbrit; CC0; https://freesound.org/people/canucklovingbrit/sounds/110641/
+ho-ho-ho-2.*              canucklovingbrit; CC0; https://freesound.org/people/canucklovingbrit/sounds/110642/
 horse-snort-01.*          Andune; CC BY 3.0; https://freesound.org/people/Andune/sounds/61605/
 horse-whinny-01.*         foxen10; CC0; https://freesound.org/people/foxen10/sounds/149024/
 horse-whinny-02.*         Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/419231/
 imp-laugh-01.*            scorpion67890; CC0; https://freesound.org/people/scorpion67890/sounds/205751/
 keys-1.ogg                Storyteller; GPL
 kiss-female-01.*          guinefurrie; CC BY 3.0; https://freesound.org/people/guinefurrie/sounds/441510/
-kitten-meow-1.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
-kitten-meow-2.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
-kitten-meow-3.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
+kitten-meow-1.*           videog; CC0; https://freesound.org/people/videog/sounds/149191/
+kitten-meow-2.*           videog; CC0; https://freesound.org/people/videog/sounds/149191/
+kitten-meow-3.*           videog; CC0; https://freesound.org/people/videog/sounds/149191/
 kitten-mew-1.*            Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81250
-kitten-purr-1.*           Belhene; CC0; http://freesound.org/people/Belhene/sounds/157837/
+kitten-purr-1.*           Belhene; CC0; https://freesound.org/people/Belhene/sounds/157837/
 kobold_bark-[01-04].*     apolloaiello; CC0; https://freesound.org/people/apolloaiello/sounds/276267/
 kobold-snort-01.*         Bob H; CC BY 3.0; https://www.youtube.com/watch?v=gmFFv-rXLeU
-lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+lamb-[01-02].*            cognito perceptu; CC0; https://freesound.org/people/cognito%20perceptu/sounds/88423/
 lamia_hiss-[01-02].*      poots; CC BY 3.0; https://freesound.org/people/poots/sounds/71031/
 laugh-evil-[01-02].ogg    Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81237
 laugh-evil-03.*           klankbeeld; CC BY 3.0; https://freesound.org/people/klankbeeld/sounds/126113/
 laugh-evil-04.*           ShadowFlayer; CC0; https://freesound.org/people/ShadowFlayer/sounds/401605/
 laugh-old-man-[01-02].*   Jordan Irwin (AntumDeluge); CC0; Stendhal
-lion-roar-01.ogg          Info-farmer; public domain; http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
+lion-roar-01.ogg          Info-farmer; public domain; https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
 lion-roar-02.*            Bidone; CC0; https://freesound.org/people/Bidone/sounds/69570/
 liquid-fill-01.*          ericlichtenberg; CC0; https://freesound.org/people/ericlichtenberg/sounds/432350/
-loop-drag-slimy-1.*       altfuture; CC0; http://www.freesound.org/people/altfuture/sounds/174634/
-loop-grind-stone-1.*      j1987; CC0; http://www.freesound.org/people/j1987/sounds/95007/
+loop-drag-slimy-1.*       altfuture; CC0; https://freesound.org/people/altfuture/sounds/174634/
+loop-grind-stone-1.*      j1987; CC0; https://freesound.org/people/j1987/sounds/95007/
 mermaid_song-[01-05].*    poots; CC BY 3.0; https://freesound.org/people/poots/sounds/123092/
 minimare-die.*            Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
 minimare-hiss.*           Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
@@ -121,12 +121,12 @@ minimare-hurt.*           Kevin Smith (TKZ Productions); CC BY 3.0; https://open
 monkey-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81240
 monkey-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81240
 monkey-3.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81240
-monster-11.*              Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
-monster-12.*              Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
-monster-14.*              Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
-monster-16.*              Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
-monster-1.*               Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
-monster-2.*               Ogrebane; CC0; http://opengameart.org/content/monster-sound-effects-2
+monster-11.*              Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
+monster-12.*              Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
+monster-14.*              Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
+monster-16.*              Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
+monster-1.*               Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
+monster-2.*               Ogrebane; CC0; https://opengameart.org/content/monster-sound-effects-2
 mouse-2.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16331
 mutant-frog-1.ogg         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81249
 mutant-frog-2.*           Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81249
@@ -137,59 +137,59 @@ ogre-fart-04.*            DSISStudios; CC0; https://freesound.org/people/DSISStu
 ogre-groan-[01-02].*      noahpardo; CC0; https://freesound.org/people/noahpardo/sounds/345734/
 ogre-yell-01.*            tim.kahn; CC BY 3.0; https://freesound.org/people/tim.kahn/sounds/163728/
 orc-snarl-01.*            qubodup; CC BY 3.0; https://freesound.org/people/qubodup/sounds/212764/
-penguin-1.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
-penguin-2.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
+penguin-1.*               Bidone; CC0; https://freesound.org/people/Bidone/sounds/66150/
+penguin-2.*               Bidone; CC0; https://freesound.org/people/Bidone/sounds/66150/
 piano-01.*                Scott Joplin, Tim Starling; CC0; https://commons.wikimedia.org/wiki/File:Maple_leaf_rag.ogg
-pick-metallic-1.*         qubodup; CC0; http://freesound.org/people/qubodup/sounds/182821/
+pick-metallic-1.*         qubodup; CC0; https://freesound.org/people/qubodup/sounds/182821/
 pig-snort-01.*            yottasounds; CC BY 3.0; https://freesound.org/people/yottasounds/sounds/174615/
-pig-squeal-01.ogg         unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/pig/
+pig-squeal-01.ogg         unnamed; public domain; https://www.mediacollege.com/downloads/sound-effects/animals/pig/
 pout-1.ogg                Jordan Irwin (AntumDeluge); CC0; Stendhal
-puppy-bark-1.*            moffet; CC0; http://www.freesound.org/people/moffet/sounds/72579/
+puppy-bark-1.*            moffet; CC0; https://freesound.org/people/moffet/sounds/72579/
 rat-angry-[01-02].*       SieuAmThanh; CC0; https://freesound.org/people/SieuAmThanh/sounds/397651/
 rat-squeak-01.*           toefur; CC0; https://freesound.org/people/toefur/sounds/288941/
 rat-squeak-02.*           shyguy014; CC0; https://freesound.org/people/shyguy014/sounds/463789/
 rat-squeak-03.*           JoseAgudelo; CC0; https://freesound.org/people/JoseAgudelo/sounds/472399/
-rattlesnake-1.*           fws.gov; public domain; http://soundbible.com/237-Rattlesnake-Rattle.html
-roar-dragon-1.*           JoelAudio; CC0; http://freesound.org/people/JoelAudio/sounds/85568/
-roar-dragon-2.*           frasbr; CC0; http://freesound.org/people/frasbr/sounds/145729/
-roar-large-1.*            ibm5155; CC0; http://freesound.org/people/ibm5155/sounds/174913/
+rattlesnake-1.*           fws.gov; public domain; https://soundbible.com/237-Rattlesnake-Rattle.html
+roar-dragon-1.*           JoelAudio; CC0; https://freesound.org/people/JoelAudio/sounds/85568/
+roar-dragon-2.*           frasbr; CC0; https://freesound.org/people/frasbr/sounds/145729/
+roar-large-1.*            ibm5155; CC0; https://freesound.org/people/ibm5155/sounds/174913/
 robot-1.ogg               Jordan Irwin (AntumDeluge); BSD; Stendhal
-robot-3.ogg               Loge the 60th; Public Domain; http://soundbible.com/1758-Door-Entry-Notification.html
-rocks-1.*                 ALLANZ10D; CC0; http://freesound.org/people/ALLANZ10D/sounds/155934/
+robot-3.ogg               Loge the 60th; Public Domain; https://soundbible.com/1758-Door-Entry-Notification.html
+rocks-1.*                 ALLANZ10D; CC0; https://freesound.org/people/ALLANZ10D/sounds/155934/
 rubber_toy-01.*           Free-Rush; CC0; https://freesound.org/people/Free-Rush/sounds/454575/
 scrape-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
-scream-fem-2.ogg          NeoPhyTe; public domain: http://soundbible.com/1627-Female-Scream-Horror.html
-shake-leaves-1.*          vibe_crc; CC0; http://www.freesound.org/people/vibe_crc/sounds/59315/
-sheep-[01-04].*           cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+scream-fem-2.ogg          NeoPhyTe; public domain: https://soundbible.com/1627-Female-Scream-Horror.html
+shake-leaves-1.*          vibe_crc; CC0; https://freesound.org/people/vibe_crc/sounds/59315/
+sheep-[01-04].*           cognito perceptu; CC0; https://freesound.org/people/cognito%20perceptu/sounds/88423/
 skeleton-laugh-01.*       Nanakisan; CC BY 3.0; https://freesound.org/people/Nanakisan/sounds/253524/
 sleep-1.ogg               Storyteller; GPL
 snake-[01-05].*           7h3_lark; CC0; https://freesound.org/people/7h3_lark/sounds/268580/
 snake-cobra-1.ogg         unnamed; public domain; https://archive.org/details/unknowncobracobrabitewmv
 snake-cobra-2.ogg         unnamed; public domain; https://archive.org/details/unknowncobracobrabitewmv
-snap-branch-1.*           mrjingles; CC0; http://www.freesound.org/people/mrjingles/sounds/17184/
-sneeze-baby-1.ogg         Stephan; public domain; http://soundbible.com/23-Baby-Sneeze.html
+snap-branch-1.*           mrjingles; CC0; https://freesound.org/people/mrjingles/sounds/17184/
+sneeze-baby-1.ogg         Stephan; public domain; https://soundbible.com/23-Baby-Sneeze.html
 sneeze-male-01.*          Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/352177/
 tadaa-1.ogg               Katie Russell (kymara); GPL
-tiger-roar-01.ogg         unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
+tiger-roar-01.ogg         unnamed; public domain; https://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
 tiger-roar-02.*           videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
 tiger-snarl-01.*          videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
 tiger-snarl-[02-04].*     schots; CC0; https://freesound.org/people/schots/sounds/439280/
-toilet-flush-1.*          KevanGC; public domain; http://soundbible.com/1657-Toilet-Flushing.html
+toilet-flush-1.*          KevanGC; public domain; https://soundbible.com/1657-Toilet-Flushing.html
 toy_train-01.*            FuriousGinger; CC0; https://freesound.org/people/FuriousGinger/sounds/196632/
 troll-growl-[01-04].*     -sihiL; CC BY 3.0; https://freesound.org/people/-sihiL/sounds/213846/
 undead-1.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-2.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-3.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-4.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
-undead-5.*                ArriGD; CC0; http://www.freesound.org/people/ArriGD/sounds/144005/
+undead-5.*                ArriGD; CC0; https://freesound.org/people/ArriGD/sounds/144005/
 undead-06.*               Dorothy Jean Thompson (pyro13djt); CC BY 3.0; https://freesound.org/people/pyro13djt/sounds/256032/, http://djtvoiceovers.com/
-water-faucet-1.*          unnamed; public domain; http://www.pdsounds.org/sounds/faucet_water_into_sink
+water-faucet-1.*          unnamed; public domain; https://pdsounds.org/sounds/faucet_water_into_sink
 water-slosh-[01-03].*     pawsound; CC0; https://freesound.org/people/pawsound/sounds/154881/
 werewolf_growl-[01-02].*  ketamineface; CC0; https://freesound.org/people/ketamineface/sounds/242057/
 werewolf_howl-01.*        NaturesTemper; CC0; https://freesound.org/people/NaturesTemper/sounds/398430/
 werewolf_snarl-01.*       ketamineface; CC0; https://freesound.org/people/ketamineface/sounds/242057/
-wings-flap-large-1.*      dave.des; CC0; http://freesound.org/people/dave.des/sounds/127197/
+wings-flap-large-1.*      dave.des; CC0; https://freesound.org/people/dave.des/sounds/127197/
 witch-cackle-1.ogg        Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81248
 wolf-growl-01.*           newagesoup; CC BY 3.0; https://freesound.org/people/newagesoup/sounds/338674/
 wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312/sounds/139901/

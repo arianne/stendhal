@@ -49,7 +49,7 @@ drugsdealernpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 dwarf_guardiannpc.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfguardnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
-easterbunnynpc.*              Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/14851, https://www.wpclipart.com/food/vegetables/vegetable_basket.png.html
+easterbunnynpc.*              Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/14851, https://wpclipart.com/food/vegetables/vegetable_basket.png.html
 elegantladynpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 elfbankeroldnpc.*             Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://opengameart.org/node/83523
 elfbankladynpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -251,7 +251,7 @@ zoologistnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jord
 
 data/sprites/npc/alternative/
 
-crystal*npc.png  qubodup; GPL 2.0; http://opengameart.org/node/11013
+crystal*npc.png  qubodup; GPL 2.0; https://opengameart.org/node/11013
 tendertwig.png   Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 tomi.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83718
 vulcanus.png     Svetlana Kushnariova (Cabbit), Nila122, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82370, https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/54590
@@ -259,7 +259,7 @@ zekiel.*         etcgood1; CC BY 4.0; https://opengameart.org/node/75195
 
 data/sprites/npc/animal/
 
-bee.png       Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
+bee.png       Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79095
 cat.png       bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 fish_roach.*  Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal; Based on data/sprites/item/food/roach.png
@@ -270,4 +270,4 @@ rabbit.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org
 data/sprites/npc/other/
 
 bullseye.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-training_dummy.png  Danimal; CC BY-SA 3.0; https://opengameart.org/node/17272; http://opengameart.org/users/danimal
+training_dummy.png  Danimal; CC BY-SA 3.0; https://opengameart.org/node/17272; https://opengameart.org/users/danimal
