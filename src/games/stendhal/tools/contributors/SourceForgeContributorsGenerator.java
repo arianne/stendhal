@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.Reader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,6 +21,7 @@ public class SourceForgeContributorsGenerator {
 
 	public void process(String folder, PrintStream out) throws FileNotFoundException, IOException {
 		Map<String, Map<String, Object>> contributors = parse(folder);
+		fetchProfiles(contributors);
 		dump(contributors, out);
 	}
 
@@ -118,6 +121,28 @@ public class SourceForgeContributorsGenerator {
 		return url.replaceAll("\\?.*", "?s=64&rating=PG&d=" + DEFAULT_AVATARS[i]);
 	}
 
+	@SuppressWarnings("unchecked")
+	private void fetchProfiles(Map<String, Map<String, Object>> contributors) throws IOException {
+		for (Map.Entry<String, Map<String, Object>> entry : contributors.entrySet()) {
+			try (Reader reader = new InputStreamReader(new URL("https://sourceforge.net/rest/u/" + entry.getKey() +"/profile").openStream(), "UTF-8")) {
+				Map<String, Object> contributor = entry.getValue();
+				Map<String, Object> profile = (Map<String, Object>) JSONValue.parse(reader);
+				String fullname = (String) profile.get("name");
+				contributor.put("fullname", fullname);
+				Map<String, String> location = (Map<String, String>) profile.get("localization");
+				String city = location.get("city");
+				if (city != null && !city.trim().equals("")) {
+					contributor.put("city", city);
+				}
+				String country = location.get("country");
+				if (country != null && !country.trim().equals("")) {
+					contributor.put("country", country);
+				}
+			} catch (FileNotFoundException e) {
+				System.err.println("Profile " + entry.getKey() + " does not exist.");
+			}
+		}
+	}
 	
 	private void dump(Map<String, Map<String, Object>> contributors, PrintStream out) {
 		for (Map<String, Object> contributor : contributors.values()) {
@@ -126,6 +151,12 @@ public class SourceForgeContributorsGenerator {
 			out.println("\t\t\t\"fullname\": \"" + contributor.get("fullname") + "\",");
 			out.println("\t\t\t\"link\": \"" + contributor.get("link") + "\",");
 			out.println("\t\t\t\"image\": \"" + contributor.get("image") + "\",");
+			if (contributor.get("city") != null) {
+				out.println("\t\t\t\"city\": \"" + contributor.get("city") + "\",");
+			}
+			if (contributor.get("country") != null) {
+				out.println("\t\t\t\"country\": \"" + contributor.get("country") + "\",");
+			}
 			out.print("\t\t\t\"contributions\": [");
 			boolean first = true;
 			for (Object contribution : (JSONArray) contributor.get("contributions")) {
