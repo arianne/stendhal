@@ -1,9 +1,11 @@
 package games.stendhal.tools.contributors;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,9 +16,14 @@ import org.json.simple.JSONValue;
 
 public class SourceForgeContributorsGenerator {
 	private static final String[] DEFAULT_AVATARS = {"monsterid", "wavatar", "retro", "robohash"};
-	
+
+	public void process(String folder, PrintStream out) throws FileNotFoundException, IOException {
+		Map<String, Map<String, Object>> contributors = parse(folder);
+		dump(contributors, out);
+	}
+
 	@SuppressWarnings("unchecked")
-	private void parse(String folder) throws FileNotFoundException, IOException {
+	private Map<String, Map<String, Object>>  parse(String folder) throws FileNotFoundException, IOException {
 		Map<String, String> trackerToType = new HashMap<>();
 		trackerToType.put("bugs", "bug");
 		trackerToType.put("developers", "ideas");
@@ -34,12 +41,7 @@ public class SourceForgeContributorsGenerator {
 			Map<String, Object> map = (Map<String, Object>) (JSONValue.parse(reader));
 			parseDiscussionFile(map, contributors, "ideas");
 		}
-		
-		JSONArray array = new JSONArray();
-		for (Map<String, Object> contributor : contributors.values()) {
-			array.add(contributor);
-		}
-		System.out.println(JSONValue.toJSONString(array));
+		return contributors;
 	}
 
 	private void parseDiscussionFile(Map<String, Object> file, Map<String, Map<String, Object>> contributors, String contributionType) {
@@ -86,6 +88,11 @@ public class SourceForgeContributorsGenerator {
 		for (Object contributionObject : contributions) {
 			JSONObject contribution = (JSONObject) contributionObject;
 			if (contribution.get("type").equals(contributionType)) {
+				Integer count = (Integer) contribution.get("count");
+				if (count == null) {
+					count = Integer.valueOf(1);
+				}
+				contribution.put("count", count + 1);
 				return;
 			}
 		}
@@ -99,6 +106,7 @@ public class SourceForgeContributorsGenerator {
 	private static Object generateContributionsObject(String contributionType) {
 		JSONObject type = new JSONObject();
 		type.put("type", contributionType);
+		type.put("count", Integer.valueOf(1));
 
 		JSONArray contributions = new JSONArray();
 		contributions.add(type);
@@ -110,7 +118,39 @@ public class SourceForgeContributorsGenerator {
 		return url.replaceAll("\\?.*", "?s=64&rating=PG&d=" + DEFAULT_AVATARS[i]);
 	}
 
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		new SourceForgeContributorsGenerator().parse("/tmp/backup/arianne-backup-2020-06-06-210506/");
+	
+	private void dump(Map<String, Map<String, Object>> contributors, PrintStream out) {
+		for (Map<String, Object> contributor : contributors.values()) {
+			out.println("\t\t{");
+			out.println("\t\t\t\"name\": \"" + contributor.get("name") + "\",");
+			out.println("\t\t\t\"fullname\": \"" + contributor.get("fullname") + "\",");
+			out.println("\t\t\t\"link\": \"" + contributor.get("link") + "\",");
+			out.println("\t\t\t\"image\": \"" + contributor.get("image") + "\",");
+			out.print("\t\t\t\"contributions\": [");
+			boolean first = true;
+			for (Object contribution : (JSONArray) contributor.get("contributions")) {
+				if (first) {
+					first = false;
+				} else {
+					out.print(",");
+				}
+				out.println();
+				out.println("\t\t\t\t{");
+				out.println("\t\t\t\t\t\"type\": \"" + ((JSONObject) contribution).get("type") + "\",");
+				out.println("\t\t\t\t\t\"count\": \"" + ((JSONObject) contribution).get("count") + "\"");
+				out.print("\t\t\t\t}");
+			}
+			out.println();
+			out.println("\t\t\t]");
+			out.println("\t\t},");
+		}
 	}
+
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		try (PrintStream out = new PrintStream(new FileOutputStream("/tmp/out.json"))) {
+			new SourceForgeContributorsGenerator().process("/tmp/backup/arianne-backup-2020-06-06-210506/", out);
+		}
+	}
+
 }
