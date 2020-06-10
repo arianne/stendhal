@@ -490,7 +490,7 @@
 			"fullname": "olonu",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940772664883",
-			"image": "https://gravatar.com/avatar/a06c8bce7a84aa3f2a955b15f17b8c26.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/a06c8bce7a84aa3f2a955b15f17b8c26.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/olonu.png",
 			"active_from": "2018",
 			"active_until": "2019",
 			"contributions": [
@@ -528,7 +528,7 @@
 			"aliases": ["n-a-d-i-n-e"],
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977861",
-			"image": "https://gravatar.com/avatar/1abbf8f051d78a7eab3577398c03e844.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/1abbf8f051d78a7eab3577398c03e844.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/dine.png",
 			"active_from": "2007",
 			"active_until": "2007",
 			"contributions": [
@@ -595,7 +595,7 @@
 			"fullname": "Teiv",
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977863",
-			"image": "https://gravatar.com/avatar/a69cfbd309a7e57c1cc0812d8bcc0f02.jpg?s=64&rating=PG&d=wavatar",
+			"image": "https://gravatar.com/avatar/a69cfbd309a7e57c1cc0812d8bcc0f02.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/teiv.png",
 			"active_from": "2007",
 			"active_until": "2008",
 			"contributions": [
@@ -781,6 +781,7 @@
 		{
 			"name": "theredqueen",
 			"fullname": "Red Queen",
+			"aliases": ["redqueen", "redpawn"],
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977871",
 			"image": "https://gravatar.com/avatar/c762d0ef602a1ad4fc4fb94ef3be6f98.jpg?s=64&rating=PG&d=https://stendhalgame.org/images/profile/redqueen.png",
@@ -951,7 +952,7 @@
 					"type": "content"
 				},
 				{
-					"type": "map"
+					"type": "maps"
 				},
 				{
 					"type": "code"
@@ -1519,15 +1520,20 @@
 		},
 		{
 			"name": "pepsz",
-			"fullname": "pepsz",
-			"link": "https://stendhalgame.org/character/pepsz.html",
-			"image": "https://stendhalgame.org/images/profile/pepsz.png",
+			"fullname": "Guilherme Silva",
+			"aliases": ["pepzs"],
+			"link": "https://sourceforge.net/u/pepzs/profile",
+			"image": "https://secure.gravatar.com/avatar/dff9f27c3c606ddf2d76f886a0d7d6b6?s=64&rating=PG&d=https://stendhalgame.org/images/profile/pepzs.png",
 			"contributions": [
 				{
 					"type": "security"
 				},
 				{
 					"type": "bug"
+				},
+				{
+					"type": "ideas",
+					"count": "2"
 				}
 			]
 		},
@@ -1758,24 +1764,6 @@
 				{
 					"type": "bug",
 					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "antumdeluge",
-			"fullname": "AntumDeluge",
-			"link": "https://sourceforge.net/u/antumdeluge/profile",
-			"image": "https://secure.gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG&d=retro",
-			"city": "",
-			"country": "United States",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "255"
-				},
-				{
-					"type": "ideas",
-					"count": "284"
 				}
 			]
 		},
@@ -2099,7 +2087,7 @@
 			"name": "borgomatic",
 			"fullname": "Borgomatic",
 			"link": "https://sourceforge.net/u/borgomatic/profile",
-			"image": "https://secure.gravatar.com/avatar/82c1296b53bc5cba173f9b7172fa2951?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/82c1296b53bc5cba173f9b7172fa2951?s=64&rating=PG&d=https://stendhalgame.org/images/profile/borgomatic.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -3154,7 +3142,7 @@
 			"name": "erdnuggel",
 			"fullname": "erdnuggel",
 			"link": "https://sourceforge.net/u/erdnuggel/profile",
-			"image": "https://secure.gravatar.com/avatar/52f5b5639238741621251264aaf073eb?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/52f5b5639238741621251264aaf073eb?s=64&rating=PG&d=https://stendhalgame.org/images/profile/erdnuggel.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -3792,7 +3780,7 @@
 			"name": "iigambitii",
 			"fullname": "gambit",
 			"link": "https://sourceforge.net/u/iigambitii/profile",
-			"image": "https://secure.gravatar.com/avatar/0cc2e29dd98c10faa85f8365693994ce?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/0cc2e29dd98c10faa85f8365693994ce?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ladygambit.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -3852,7 +3840,7 @@
 			"name": "ischbing",
 			"fullname": "IschBing",
 			"link": "https://sourceforge.net/u/ischbing/profile",
-			"image": "https://secure.gravatar.com/avatar/7e61f5f5a08f711fd7a425bac2e64dc9?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/7e61f5f5a08f711fd7a425bac2e64dc9?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ischbing.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -4135,28 +4123,17 @@
 		{
 			"name": "kidlat_admin",
 			"fullname": "Arthur Bulala",
+			"aliases": ["kidlat", "kulog"],
 			"link": "https://sourceforge.net/u/kidlat_admin/profile",
-			"image": "https://secure.gravatar.com/avatar/f90a78eee525579d463e052716361bf0?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "kiheru",
-			"fullname": "Kimmo Rundelin",
-			"link": "https://sourceforge.net/u/kiheru/profile",
-			"image": "https://secure.gravatar.com/avatar/3fe7167331cd8d257a8acc71e4ecd0a1?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/f90a78eee525579d463e052716361bf0?s=64&rating=PG&d=https://stendhalgame.org/images/profile/kidlat.png",
 			"contributions": [
 				{
 					"type": "bug",
-					"count": "1011"
+					"count": "3"
 				},
 				{
 					"type": "ideas",
-					"count": "369"
+					"count": "1"
 				}
 			]
 		},
@@ -4243,18 +4220,6 @@
 			]
 		},
 		{
-			"name": "kulog",
-			"fullname": "Arthur Bulala",
-			"link": "https://sourceforge.net/u/kulog/profile",
-			"image": "https://secure.gravatar.com/avatar/4b05a1ca51b3fffe9734e60f5348344b?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "3"
-				}
-			]
-		},
-		{
 			"name": "kundarsa",
 			"fullname": "kundarsa",
 			"link": "https://sourceforge.net/u/kundarsa/profile",
@@ -4294,7 +4259,7 @@
 			"name": "ladygambit",
 			"fullname": "ladygambit",
 			"link": "https://sourceforge.net/u/ladygambit/profile",
-			"image": "https://secure.gravatar.com/avatar/0cc2e29dd98c10faa85f8365693994ce?s=64&rating=PG&d=monsterid",
+			"image": "https://secure.gravatar.com/avatar/0cc2e29dd98c10faa85f8365693994ce?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ladygambit.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -4417,21 +4382,10 @@
 		},
 		{
 			"name": "love_puppet",
-			"fullname": "love_puppet",
-			"link": "https://sourceforge.net/u/love_puppet/profile",
-			"image": "https://secure.gravatar.com/avatar/aee40d15fd12f2354d9af7dff957c80f?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "love_puppet89",
-			"fullname": "will scott",
+			"fullname": "Will Scott",
+			"aliases": ["love_puppet89"],
 			"link": "https://sourceforge.net/u/love_puppet89/profile",
-			"image": "https://secure.gravatar.com/avatar/a7dcb0311ca1e45dcc2ed2e6078a745a?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/a7dcb0311ca1e45dcc2ed2e6078a745a?s=64&rating=PG&d=https://stendhalgame.org/images/profile/love_puppet.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -4439,7 +4393,7 @@
 				},
 				{
 					"type": "ideas",
-					"count": "10"
+					"count": "11"
 				}
 			]
 		},
@@ -4459,7 +4413,7 @@
 			"name": "lunga666",
 			"fullname": "lunga",
 			"link": "https://sourceforge.net/u/lunga666/profile",
-			"image": "https://secure.gravatar.com/avatar/3d4c7fcea5914709c553184c6c96d349?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/3d4c7fcea5914709c553184c6c96d349?s=64&rating=PG&d=https://stendhalgame.org/images/profile/lunga.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -4675,7 +4629,7 @@
 			"name": "megajack64",
 			"fullname": "Jorge",
 			"link": "https://sourceforge.net/u/megajack64/profile",
-			"image": "https://secure.gravatar.com/avatar/afbcc323f06b5570f799a447e4d88257?s=64&rating=PG&d=retro",
+			"image": "https://secure.gravatar.com/avatar/afbcc323f06b5570f799a447e4d88257?s=64&rating=PG&d=https://stendhalgame.org/images/profile/megajack64.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -5047,7 +5001,7 @@
 			"name": "nobun",
 			"fullname": "Nobun",
 			"link": "https://sourceforge.net/u/nobun/profile",
-			"image": "https://secure.gravatar.com/avatar/92f3024f03f22fb05a43a8ec4499346e?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/92f3024f03f22fb05a43a8ec4499346e?s=64&rating=PG&d=https://stendhalgame.org/images/profile/nobun.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -5083,7 +5037,7 @@
 			"name": "ogeretal",
 			"fullname": "Ogeretal",
 			"link": "https://sourceforge.net/u/ogeretal/profile",
-			"image": "https://secure.gravatar.com/avatar/83b7b985f0d1af66c59f51f6f11fa1e9?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/83b7b985f0d1af66c59f51f6f11fa1e9?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ogeretal.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -5169,9 +5123,9 @@
 		},
 		{
 			"name": "pajaritooo",
-			"fullname": "hugo sanchez",
+			"fullname": "Hugo Sanchez",
 			"link": "https://sourceforge.net/u/pajaritooo/profile",
-			"image": "https://secure.gravatar.com/avatar/8dd93204d126bc5a772ec61f30969059?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/8dd93204d126bc5a772ec61f30969059?s=64&rating=PG&d=https://stendhalgame.org/images/profile/pajarito.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -5183,7 +5137,7 @@
 			"name": "palmmon",
 			"fullname": "PalmMon",
 			"link": "https://sourceforge.net/u/palmmon/profile",
-			"image": "https://secure.gravatar.com/avatar/328a962932d43454400a0c702618e9f8?s=64&rating=PG&d=retro",
+			"image": "https://secure.gravatar.com/avatar/328a962932d43454400a0c702618e9f8?s=64&rating=PG&d=https://stendhalgame.org/images/profile/palmmon.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -5304,18 +5258,6 @@
 				{
 					"type": "bug",
 					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "pepzs",
-			"fullname": "Guilherme Silva",
-			"link": "https://sourceforge.net/u/pepzs/profile",
-			"image": "https://secure.gravatar.com/avatar/dff9f27c3c606ddf2d76f886a0d7d6b6?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
 				}
 			]
 		},
@@ -6017,7 +5959,7 @@
 			"name": "snaketails",
 			"fullname": "Snaketails",
 			"link": "https://sourceforge.net/u/snaketails/profile",
-			"image": "https://secure.gravatar.com/avatar/261db9c1aa0373aee401820db04913c0?s=64&rating=PG&d=monsterid",
+			"image": "https://secure.gravatar.com/avatar/261db9c1aa0373aee401820db04913c0?s=64&rating=PG&d=https://stendhalgame.org/images/profile/snaketails.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -6033,7 +5975,7 @@
 			"name": "snakevip",
 			"fullname": "snakevip",
 			"link": "https://sourceforge.net/u/snakevip/profile",
-			"image": "https://secure.gravatar.com/avatar/09c49912436b6984160697f362ec20fa?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/09c49912436b6984160697f362ec20fa?s=64&rating=PG&d=https://stendhalgame.org/images/profile/snakevip.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -6260,8 +6202,9 @@
 		{
 			"name": "taberenc",
 			"fullname": "reburbujo",
+			"aliases": ["reburbujo"],
 			"link": "https://sourceforge.net/u/taberenc/profile",
-			"image": "https://secure.gravatar.com/avatar/1ce37da568973ef99aa30a9626ac1af6?s=64&rating=PG&d=retro",
+			"image": "https://secure.gravatar.com/avatar/1ce37da568973ef99aa30a9626ac1af6?s=64&rating=PG&d=https://stendhalgame.org/images/profile/reburbujo.png",
 			"contributions": [
 				{
 					"type": "bug",
@@ -6839,7 +6782,7 @@
 			"name": "xavier_stendhal",
 			"fullname": "Alec",
 			"link": "https://sourceforge.net/u/xavier_stendhal/profile",
-			"image": "https://secure.gravatar.com/avatar/4d54668d765e89f694cbdefe679f0fcd?s=64&rating=PG&d=monsterid",
+			"image": "https://secure.gravatar.com/avatar/4d54668d765e89f694cbdefe679f0fcd?s=64&rating=PG&d=https://stendhalgame.org/images/profile/xavier.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -6946,22 +6889,6 @@
 				{
 					"type": "bug",
 					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "yoriy",
-			"fullname": "yoriy",
-			"link": "https://sourceforge.net/u/yoriy/profile",
-			"image": "https://secure.gravatar.com/avatar/9fc8dde77377927a8890247684e6b745?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "87"
-				},
-				{
-					"type": "ideas",
-					"count": "85"
 				}
 			]
 		},
