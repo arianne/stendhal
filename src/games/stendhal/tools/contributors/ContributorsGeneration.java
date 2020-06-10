@@ -58,6 +58,7 @@ public class ContributorsGeneration {
 		iconMap.put("talk", "📢");
 		iconMap.put("userTesting", "📓");
 		iconMap.put("video", "📹");
+		iconMap.put("founder", "💼");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -86,7 +87,9 @@ public class ContributorsGeneration {
 		}
 		out.print("<img src=\"" + image + "\" width=\"64\" height=\"64\" alt=\"\">");
 		out.print("<br />");
-		out.print("<sub><b>" + contributor.get("fullname") + "</b></sub></a>");
+		out.print("<sub><b>" + contributor.get("fullname") + "</b></sub>");
+		// out.print("<br> (" + contributor.get("name") + ")");
+		out.print("</a>");
 		out.print("<br />");
 		this.writeContributions(out, contributor);
 		out.print("</td>");
