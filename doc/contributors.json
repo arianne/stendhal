@@ -1388,19 +1388,6 @@
 			]
 		},
 		{
-			"name": "",
-			"fullname": "João Costa",
-			"email": "",
-			"link": "",
-			"image": "",
-			"confirmed": false,
-			"contributions": [
-				{
-					"type": "code"
-				}
-			]
-		},
-		{
 			"name": "samoa",
 			"fullname": "Kim Purnell",
 			"email": "",
@@ -1425,18 +1412,6 @@
 				{
 					"type": "content"
 				},
-				{
-					"type": "graphics"
-				}
-			]
-		},
-		{		
-			"name": "barbranegra",
-			"fullname": "barbranegra",
-			"email": "",
-			"link": "",
-			"image": "",
-			"contributions": [
 				{
 					"type": "graphics"
 				}
@@ -1507,18 +1482,6 @@
 			]
 		},
 		{
-			"name": "Hades the Emperor",
-			"fullname": "Hades the Emperor",
-			"email": "",
-			"link": "",
-			"image": "",
-			"contributions": [
-				{
-					"type": "graphics"
-				}
-			]
-		},
-		{
 			"name": "pepsz",
 			"fullname": "Guilherme Silva",
 			"aliases": ["pepzs"],
@@ -1545,11 +1508,11 @@
 			"contributions": [
 				{
 					"type": "bug",
-					"count": "165"
+					"count": "498"
 				},
 				{
 					"type": "ideas",
-					"count": "668"
+					"count": "1856"
 				}
 			]
 		},
@@ -2438,7 +2401,7 @@
 			"name": "czimmy",
 			"fullname": "Czimmy",
 			"link": "https://sourceforge.net/u/czimmy/profile",
-			"image": "https://secure.gravatar.com/avatar/62fc761a7f453b8a22c1a4c283cf3ea3?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/62fc761a7f453b8a22c1a4c283cf3ea3?s=64&rating=PG&d=https://stendhalgame.org/images/profile/Czimmy.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -4434,30 +4397,6 @@
 			]
 		},
 		{
-			"name": "macmac",
-			"fullname": "Ephrim Khong",
-			"link": "https://sourceforge.net/u/macmac/profile",
-			"image": "https://secure.gravatar.com/avatar/4428fe9475d2122ed71f09dd2027eb7b?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "magao",
-			"fullname": "Marcos Garcia Ochoa",
-			"link": "https://sourceforge.net/u/magao/profile",
-			"image": "https://secure.gravatar.com/avatar/da60b3800f799eeea751e246aac7465e?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "magicandmight",
 			"fullname": "Magicandmight",
 			"link": "https://sourceforge.net/u/magicandmight/profile",
@@ -4466,18 +4405,6 @@
 				{
 					"type": "ideas",
 					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "maheee",
-			"fullname": "mahe",
-			"link": "https://sourceforge.net/u/maheee/profile",
-			"image": "https://secure.gravatar.com/avatar/6faccba96361c414fe2db50ec57e3f74?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "7"
 				}
 			]
 		},
@@ -4494,46 +4421,10 @@
 			]
 		},
 		{
-			"name": "malumaureus",
-			"fullname": "Justin Bartee",
-			"link": "https://sourceforge.net/u/malumaureus/profile",
-			"image": "https://secure.gravatar.com/avatar/1e209fc2153a5fc2c463ebd968fe78cf?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "manakel166",
-			"fullname": "Man Heim",
-			"link": "https://sourceforge.net/u/manakel166/profile",
-			"image": "https://secure.gravatar.com/avatar/437770ffc4976fa27cfa7bbcb3f5728a?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "manfire",
-			"fullname": "Mathieu Duchesneau",
-			"link": "https://sourceforge.net/u/manfire/profile",
-			"image": "https://secure.gravatar.com/avatar/41c0c8c878e23a6a10ed3979bcd7823b?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "manuellg81",
 			"fullname": "MLG",
 			"link": "https://sourceforge.net/u/manuellg81/profile",
-			"image": "https://secure.gravatar.com/avatar/9b3b13b068df2175c743a645a71fbdb6?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/9b3b13b068df2175c743a645a71fbdb6?s=64&rating=PG&d=https://stendhalgame.org/images/profile/manuellg81.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -4545,47 +4436,11 @@
 			"name": "marcosn",
 			"fullname": "marcosn",
 			"link": "https://sourceforge.net/u/marcosn/profile",
-			"image": "https://secure.gravatar.com/avatar/e18cca73281413df90b0b1b49796db51?s=64&rating=PG&d=robohash",
+			"image": "https://secure.gravatar.com/avatar/e18cca73281413df90b0b1b49796db51?s=64&rating=PG&d=https://stendhalgame.org/images/profile/marcosn.png",
 			"contributions": [
 				{
 					"type": "ideas",
 					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "marcospdsf",
-			"fullname": "marcospdsf",
-			"link": "https://sourceforge.net/u/marcospdsf/profile",
-			"image": "https://secure.gravatar.com/avatar/af2b53ea99966b71ec573be973e37bfb?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "marcosscriven",
-			"fullname": "Marcos Scriven",
-			"link": "https://sourceforge.net/u/marcosscriven/profile",
-			"image": "https://secure.gravatar.com/avatar/16347c6a7e7eb72e124cc253093363fb?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "marksie531",
-			"fullname": "marksie531",
-			"link": "https://sourceforge.net/u/marksie531/profile",
-			"image": "https://secure.gravatar.com/avatar/b1a2c6c46dbcffb504eea014eb97089d?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
 				}
 			]
 		},
@@ -4598,30 +4453,6 @@
 				{
 					"type": "ideas",
 					"count": "14"
-				}
-			]
-		},
-		{
-			"name": "mauvegnome",
-			"fullname": "Sam Beed",
-			"link": "https://sourceforge.net/u/mauvegnome/profile",
-			"image": "https://secure.gravatar.com/avatar/b5242fa3dac6af53f641f772b606bbc7?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "mdraper",
-			"fullname": "Matthew Draper",
-			"link": "https://sourceforge.net/u/mdraper/profile",
-			"image": "https://secure.gravatar.com/avatar/e55df1cc7d5fdb4ae9bc2afcb9afe7e4?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
 				}
 			]
 		},
@@ -4660,160 +4491,11 @@
 			"image": "https://secure.gravatar.com/avatar/38b4c8ce978ee19ed34f7cdaa13f6a59?s=64&rating=PG&d=retro",
 			"contributions": [
 				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "metalmassacre",
-			"fullname": "James Dunne",
-			"link": "https://sourceforge.net/u/metalmassacre/profile",
-			"image": "https://secure.gravatar.com/avatar/58c4bdd82dc83fe535b168ebc8c3a4fb?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "michael_taylor",
-			"fullname": "Michael Taylor",
-			"link": "https://sourceforge.net/u/michael_taylor/profile",
-			"image": "https://secure.gravatar.com/avatar/9d0e1449d7c699d2a368b6162d26c1be?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "midtocry",
-			"fullname": "midtocry",
-			"link": "https://sourceforge.net/u/midtocry/profile",
-			"image": "https://secure.gravatar.com/avatar/1992cb88c91081f49cace00249700baa?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "miraage",
-			"fullname": "Boris Smus",
-			"link": "https://sourceforge.net/u/miraage/profile",
-			"image": "https://secure.gravatar.com/avatar/1239ec37bded195a6c58db7ff54cbb3c?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "mjdraper",
-			"fullname": "Matthew Draper",
-			"link": "https://sourceforge.net/u/mjdraper/profile",
-			"image": "https://secure.gravatar.com/avatar/81097906730b512b6cfe0b94fd19321d?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
+					"type": "code"
 				},
 				{
 					"type": "ideas",
-					"count": "null"
-				}
-			]
-		},
-		{
-			"name": "moican",
-			"fullname": "Oscar Sanz",
-			"link": "https://sourceforge.net/u/moican/profile",
-			"image": "https://secure.gravatar.com/avatar/0f6019c8b72a9dff7e82da2f37b09f88?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
 					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "monsto",
-			"fullname": "Monsto Brukes",
-			"link": "https://sourceforge.net/u/monsto/profile",
-			"image": "https://secure.gravatar.com/avatar/6a8c5ef69398b160d46c80e244903be3?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "4"
-				}
-			]
-		},
-		{
-			"name": "morgler",
-			"fullname": "Matthias Orgler",
-			"link": "https://sourceforge.net/u/morgler/profile",
-			"image": "https://secure.gravatar.com/avatar/e036ca0395332b62467d69db14905999?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "mortee",
-			"fullname": "Marton Fabo",
-			"link": "https://sourceforge.net/u/mortee/profile",
-			"image": "https://secure.gravatar.com/avatar/eb57880fb2ae070d845bd2156e650cc3?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "mrdankas",
-			"fullname": "MrDankas",
-			"link": "https://sourceforge.net/u/mrdankas/profile",
-			"image": "https://secure.gravatar.com/avatar/ca3a874e477169805f5adeb67206afb6?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "mrlount",
-			"fullname": "Chris Lount",
-			"link": "https://sourceforge.net/u/mrlount/profile",
-			"image": "https://secure.gravatar.com/avatar/d36bbc607672e984f32a7074fd70dedd?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "mutable",
-			"fullname": "Brian Rowe",
-			"link": "https://sourceforge.net/u/mutable/profile",
-			"image": "https://secure.gravatar.com/avatar/220753e521d33388755ef24dcf3d781b?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "3"
-				},
-				{
-					"type": "ideas",
-					"count": "6"
 				}
 			]
 		},
@@ -4837,42 +4519,6 @@
 			"contributions": [
 				{
 					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "natonstan",
-			"fullname": "Nathan Staniforth",
-			"link": "https://sourceforge.net/u/natonstan/profile",
-			"image": "https://secure.gravatar.com/avatar/0f096f8b3fa6a189b40e8cbb631d2868?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "navier1783",
-			"fullname": "Mike Higginbottom",
-			"link": "https://sourceforge.net/u/navier1783/profile",
-			"image": "https://secure.gravatar.com/avatar/761a011f20b9695f54919f1ff4f72830?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "10"
-				}
-			]
-		},
-		{
-			"name": "nekoincardine",
-			"fullname": "Erik Ottosen",
-			"link": "https://sourceforge.net/u/nekoincardine/profile",
-			"image": "https://secure.gravatar.com/avatar/ca890658d071381a21c796e374861ad6?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
 					"count": "1"
 				}
 			]
@@ -4902,18 +4548,6 @@
 			]
 		},
 		{
-			"name": "nephros",
-			"fullname": "Peter G.",
-			"link": "https://sourceforge.net/u/nephros/profile",
-			"image": "https://secure.gravatar.com/avatar/f1fc1f20da94bf97ee4ed10b3d30d51d?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "11"
-				}
-			]
-		},
-		{
 			"name": "nickazza",
 			"fullname": "nickazza",
 			"link": "https://sourceforge.net/u/nickazza/profile",
@@ -4926,30 +4560,6 @@
 				{
 					"type": "ideas",
 					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "nicotz",
-			"fullname": "Nicolas LeTesteur",
-			"link": "https://sourceforge.net/u/nicotz/profile",
-			"image": "https://secure.gravatar.com/avatar/f19daa2e2ff1fd7a577b7d577062c02d?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "ninja034",
-			"fullname": "Pitt",
-			"link": "https://sourceforge.net/u/ninja034/profile",
-			"image": "https://secure.gravatar.com/avatar/2f587e6b2000577593c23c391d81bddb?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
 				}
 			]
 		},
@@ -4970,34 +4580,6 @@
 			]
 		},
 		{
-			"name": "nobleham",
-			"fullname": "Sidney Seth Colowick-Harbour",
-			"link": "https://sourceforge.net/u/nobleham/profile",
-			"image": "https://secure.gravatar.com/avatar/2ec1897fa3f4b4a92b7d94584f92c701?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "nobody",
-			"fullname": "nobody",
-			"link": "https://sourceforge.net/u/nobody/profile",
-			"image": "https://secure.gravatar.com/avatar/1a7ebb6e6184b4162e349ad33749f070?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "333"
-				},
-				{
-					"type": "ideas",
-					"count": "1188"
-				}
-			]
-		},
-		{
 			"name": "nobun",
 			"fullname": "Nobun",
 			"link": "https://sourceforge.net/u/nobun/profile",
@@ -5006,30 +4588,6 @@
 				{
 					"type": "ideas",
 					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "nprotect",
-			"fullname": "nProtect",
-			"link": "https://sourceforge.net/u/nprotect/profile",
-			"image": "https://secure.gravatar.com/avatar/4e639ed5c180b75f29f9e3b3fd6643fe?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "odlouhy",
-			"fullname": "Oldrich Dlouhy",
-			"link": "https://sourceforge.net/u/odlouhy/profile",
-			"image": "https://secure.gravatar.com/avatar/378706cc3708c712c2e592af70136e89?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
 				}
 			]
 		},
@@ -5050,90 +4608,6 @@
 			]
 		},
 		{
-			"name": "ogretech",
-			"fullname": "Steve Crockett",
-			"link": "https://sourceforge.net/u/ogretech/profile",
-			"image": "https://secure.gravatar.com/avatar/57ead5c57770b103bfc3177da2dfdea3?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "olterman",
-			"fullname": "Patrik Olterman",
-			"link": "https://sourceforge.net/u/olterman/profile",
-			"image": "https://secure.gravatar.com/avatar/d2808ce21d50bc181805d1905e88f8db?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "orden",
-			"fullname": "Pierre Wargnier",
-			"link": "https://sourceforge.net/u/orden/profile",
-			"image": "https://secure.gravatar.com/avatar/357e4cca69f39d1f8017c8a157e64eab?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "oripessach",
-			"fullname": "Ori Pessach",
-			"link": "https://sourceforge.net/u/oripessach/profile",
-			"image": "https://secure.gravatar.com/avatar/06980343c865ecc3bcf9a121def6796c?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "otavio145",
-			"fullname": "Otavio Mesquita",
-			"link": "https://sourceforge.net/u/otavio145/profile",
-			"image": "https://secure.gravatar.com/avatar/d16b68007e1ec214b6cda405de98f27e?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "21"
-				}
-			]
-		},
-		{
-			"name": "ozbak",
-			"fullname": "Oz Bakshi",
-			"link": "https://sourceforge.net/u/ozbak/profile",
-			"image": "https://secure.gravatar.com/avatar/8485b513538ce3c494d67cfa2b6a39da?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "pajaritooo",
-			"fullname": "Hugo Sanchez",
-			"link": "https://sourceforge.net/u/pajaritooo/profile",
-			"image": "https://secure.gravatar.com/avatar/8dd93204d126bc5a772ec61f30969059?s=64&rating=PG&d=https://stendhalgame.org/images/profile/pajarito.png",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "palmmon",
 			"fullname": "PalmMon",
 			"link": "https://sourceforge.net/u/palmmon/profile",
@@ -5150,202 +4624,6 @@
 			]
 		},
 		{
-			"name": "pandatrax",
-			"fullname": "Douglas Rodgers",
-			"link": "https://sourceforge.net/u/pandatrax/profile",
-			"image": "https://secure.gravatar.com/avatar/dd8441632ecf7521ec158c8bf0b85ced?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "pantherse",
-			"fullname": "Keith Mendoza",
-			"link": "https://sourceforge.net/u/pantherse/profile",
-			"image": "https://secure.gravatar.com/avatar/9468e42aa9f6918c5b0e8d75a276694a?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "panzhong",
-			"fullname": "pan",
-			"link": "https://sourceforge.net/u/panzhong/profile",
-			"image": "https://secure.gravatar.com/avatar/e920fa975eadb1de1ae07300c8e807e0?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "parker20121",
-			"fullname": "parker20121",
-			"link": "https://sourceforge.net/u/parker20121/profile",
-			"image": "https://secure.gravatar.com/avatar/d173f5435523169cc26cd3f9b9c6369e?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "patrician",
-			"fullname": "Patrician",
-			"link": "https://sourceforge.net/u/patrician/profile",
-			"image": "https://secure.gravatar.com/avatar/39eed8890a5df0e0093c0637f53d4f45?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "paul1980au",
-			"fullname": "Paul Jones",
-			"link": "https://sourceforge.net/u/paul1980au/profile",
-			"image": "https://secure.gravatar.com/avatar/95901de2851b8613e5614bcd580e82bc?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "pauldobbins",
-			"fullname": "Paul Dobbins",
-			"link": "https://sourceforge.net/u/pauldobbins/profile",
-			"image": "https://secure.gravatar.com/avatar/bf13d7142043a82340988483d4de07ea?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "pchitescu",
-			"fullname": "Paul Chitescu",
-			"link": "https://sourceforge.net/u/pchitescu/profile",
-			"image": "https://secure.gravatar.com/avatar/4466bc41b0b807ffa8c3ae31f50ffd8a?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "45"
-				},
-				{
-					"type": "ideas",
-					"count": "15"
-				}
-			]
-		},
-		{
-			"name": "pdu82",
-			"fullname": "Shaun Patson",
-			"link": "https://sourceforge.net/u/pdu82/profile",
-			"image": "https://secure.gravatar.com/avatar/4fe366a4769538a5f951654e8311746a?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "pernalonga",
-			"fullname": "Grundle",
-			"link": "https://sourceforge.net/u/pernalonga/profile",
-			"image": "https://secure.gravatar.com/avatar/753c5ea37032f9a5fd4fd8945bc775c4?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "phauly",
-			"fullname": "paolo massa",
-			"link": "https://sourceforge.net/u/phauly/profile",
-			"image": "https://secure.gravatar.com/avatar/59bf3afff99f6ad038052af216f7fdaa?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "piercew",
-			"fullname": "Wayne Pierce",
-			"link": "https://sourceforge.net/u/piercew/profile",
-			"image": "https://secure.gravatar.com/avatar/ea1eac62c1ef911a8ec357db0ceac167?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "pipcan",
-			"fullname": "pipcan",
-			"link": "https://sourceforge.net/u/pipcan/profile",
-			"image": "https://secure.gravatar.com/avatar/9db786f1465cb9e83a0629ae0491c5c0?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "player100",
-			"fullname": "PlAyEr100",
-			"link": "https://sourceforge.net/u/player100/profile",
-			"image": "https://secure.gravatar.com/avatar/1067a09176f999a61cc718ad451ec89d?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "9"
-				}
-			]
-		},
-		{
-			"name": "posterboy",
-			"fullname": "chris davis",
-			"link": "https://sourceforge.net/u/posterboy/profile",
-			"image": "https://secure.gravatar.com/avatar/f6c931b016ea60b78fc0ba7e16373589?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "premonitionj",
-			"fullname": "Juan",
-			"link": "https://sourceforge.net/u/premonitionj/profile",
-			"image": "https://secure.gravatar.com/avatar/f04b4624cb0839b2c16e3b88c6f8e0d6?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "priest333",
 			"fullname": "Priest",
 			"link": "https://sourceforge.net/u/priest333/profile",
@@ -5358,39 +4636,14 @@
 			]
 		},
 		{
-			"name": "propheteus",
-			"fullname": "Propheteus",
-			"link": "https://sourceforge.net/u/propheteus/profile",
-			"image": "https://secure.gravatar.com/avatar/7d2e7f57705bb0af5bf62506d70da6fd?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "2"
-				},
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "qwerty800",
-			"fullname": "Nicolas Roy-Renaud",
-			"link": "https://sourceforge.net/u/qwerty800/profile",
-			"image": "https://secure.gravatar.com/avatar/d800a00b5950bb345668d19784badc3e?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "raignarok",
 			"fullname": "florianjacob",
 			"link": "https://sourceforge.net/u/raignarok/profile",
 			"image": "https://secure.gravatar.com/avatar/9cf4e54437d86b8de8e74ada23c454a2?s=64&rating=PG&d=monsterid",
 			"contributions": [
+				{
+					"type": "code"
+				},
 				{
 					"type": "ideas",
 					"count": "5"
@@ -5410,54 +4663,6 @@
 			]
 		},
 		{
-			"name": "rathore",
-			"fullname": "Iftikhar Rathore",
-			"link": "https://sourceforge.net/u/rathore/profile",
-			"image": "https://secure.gravatar.com/avatar/c825b3964b26f244874d72ab2911143d?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "razor123",
-			"fullname": "Carlos Correa",
-			"link": "https://sourceforge.net/u/razor123/profile",
-			"image": "https://secure.gravatar.com/avatar/05aacc2c4684c3b03d1db28c438c008b?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "reacocard",
-			"fullname": "reacocard",
-			"link": "https://sourceforge.net/u/reacocard/profile",
-			"image": "https://secure.gravatar.com/avatar/f05d425cbdb63d069369fef0aab01a73?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "reidrac",
-			"fullname": "Juan J. Martínez",
-			"link": "https://sourceforge.net/u/reidrac/profile",
-			"image": "https://secure.gravatar.com/avatar/b01cc89e4fba47f127a03ea78acd93a5?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "rimy0",
 			"fullname": "rimy",
 			"link": "https://sourceforge.net/u/rimy0/profile",
@@ -5466,66 +4671,6 @@
 				{
 					"type": "ideas",
 					"count": "7"
-				}
-			]
-		},
-		{
-			"name": "risatara",
-			"fullname": "Christoph Henninger",
-			"link": "https://sourceforge.net/u/risatara/profile",
-			"image": "https://secure.gravatar.com/avatar/06fd24de1d800489b81f29d018229b30?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "rob9000",
-			"fullname": "Robert Wallis",
-			"link": "https://sourceforge.net/u/rob9000/profile",
-			"image": "https://secure.gravatar.com/avatar/72ceb3c2aba468230e2ca64e64b4a472?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "robert-s",
-			"fullname": "Robert Smith",
-			"link": "https://sourceforge.net/u/robert-s/profile",
-			"image": "https://secure.gravatar.com/avatar/57f95918ba36aab6ed43db2866441a64?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "rocetti",
-			"fullname": "João Paulo Rocetti",
-			"link": "https://sourceforge.net/u/rocetti/profile",
-			"image": "https://secure.gravatar.com/avatar/8479c6ca3c7a10749ab631e90c6a88e7?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "rodneymillerpca",
-			"fullname": "World of Ours",
-			"link": "https://sourceforge.net/u/rodneymillerpca/profile",
-			"image": "https://secure.gravatar.com/avatar/ec52ee21fae4d4cf1e34de9351dc3b96?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
 				}
 			]
 		},
@@ -5546,22 +4691,10 @@
 			]
 		},
 		{
-			"name": "rogue",
-			"fullname": "Erik Hansen",
-			"link": "https://sourceforge.net/u/rogue/profile",
-			"image": "https://secure.gravatar.com/avatar/93617b207ec0607a70b813d99839aab3?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "romzizo",
 			"fullname": "Wojciech Glapa",
 			"link": "https://sourceforge.net/u/romzizo/profile",
-			"image": "https://secure.gravatar.com/avatar/ee533d85e37a64cd9cfdba83a8b7327b?s=64&rating=PG&d=wavatar",
+			"image": "https://secure.gravatar.com/avatar/ee533d85e37a64cd9cfdba83a8b7327b?s=64&rating=PG&d=https://stendhalgame.org/images/profile/romzizo.png",
 			"contributions": [
 				{
 					"type": "ideas",
@@ -5578,30 +4711,6 @@
 				{
 					"type": "bug",
 					"count": "8"
-				}
-			]
-		},
-		{
-			"name": "rulk",
-			"fullname": "RedEYERulk",
-			"link": "https://sourceforge.net/u/rulk/profile",
-			"image": "https://secure.gravatar.com/avatar/db5be1cb8b9f1e725af6e7543cf3be8c?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "russi",
-			"fullname": "Roland Russwurm",
-			"link": "https://sourceforge.net/u/russi/profile",
-			"image": "https://secure.gravatar.com/avatar/051c9baea327e4c98afbcf6708411c42?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
 				}
 			]
 		},
@@ -5642,18 +4751,6 @@
 			]
 		},
 		{
-			"name": "sallos",
-			"fullname": "sallos",
-			"link": "https://sourceforge.net/u/sallos/profile",
-			"image": "https://secure.gravatar.com/avatar/ac183efbc5181022ac3c9146741e2c8e?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "salz85",
 			"fullname": "Sal Z",
 			"link": "https://sourceforge.net/u/salz85/profile",
@@ -5666,18 +4763,6 @@
 			]
 		},
 		{
-			"name": "samlecrack",
-			"fullname": "sam pasquier",
-			"link": "https://sourceforge.net/u/samlecrack/profile",
-			"image": "https://secure.gravatar.com/avatar/0d74c3666a00dc966c461a5d4755413e?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "samsonette",
 			"fullname": "Hardy",
 			"link": "https://sourceforge.net/u/samsonette/profile",
@@ -5686,30 +4771,6 @@
 				{
 					"type": "bug",
 					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "scachi",
-			"fullname": "Ingo Arndt",
-			"link": "https://sourceforge.net/u/scachi/profile",
-			"image": "https://secure.gravatar.com/avatar/39ebb280eba9677c21e3e6779ee78339?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "sccarroll",
-			"fullname": "Sean Carroll",
-			"link": "https://sourceforge.net/u/sccarroll/profile",
-			"image": "https://secure.gravatar.com/avatar/11c0de1124ef184bb0927f041adfa895?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
 				}
 			]
 		},
@@ -5729,7 +4790,7 @@
 			"name": "selenil",
 			"fullname": "selenil",
 			"link": "https://sourceforge.net/u/selenil/profile",
-			"image": "https://secure.gravatar.com/avatar/7c3c722ae29c1a07a33eeb8fa4914554?s=64&rating=PG&d=retro",
+			"image": "https://secure.gravatar.com/avatar/7c3c722ae29c1a07a33eeb8fa4914554?s=64&rating=PG&d=https://stendhalgame.org/images/profile/selenil.png",
 			"city": "Montreal",
 			"country": "Canada",
 			"contributions": [
@@ -5740,26 +4801,10 @@
 			]
 		},
 		{
-			"name": "serspock",
-			"fullname": "Serge Jadot",
-			"link": "https://sourceforge.net/u/serspock/profile",
-			"image": "https://secure.gravatar.com/avatar/a1973fce2d6a1130e5831ad63807d26a?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				},
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
 			"name": "sf-robot",
 			"fullname": "SourceForge Robot",
 			"link": "https://sourceforge.net/u/sf-robot/profile",
-			"image": "https://secure.gravatar.com/avatar/954bc49aec1a4e4ce9b032903707ca1e?s=64&rating=PG&d=monsterid",
+			"image": "https://secure.gravatar.com/avatar/954bc49aec1a4e4ce9b032903707ca1e?s=64&rating=PG&d=robohash",
 			"contributions": [
 				{
 					"type": "bug",
@@ -5768,42 +4813,6 @@
 				{
 					"type": "ideas",
 					"count": "44"
-				}
-			]
-		},
-		{
-			"name": "shadowunlimited",
-			"fullname": "spencer ",
-			"link": "https://sourceforge.net/u/shadowunlimited/profile",
-			"image": "https://secure.gravatar.com/avatar/9bdaa96335e52aa0b8e4c9c17e39ec73?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "shoe54",
-			"fullname": "Shoe",
-			"link": "https://sourceforge.net/u/shoe54/profile",
-			"image": "https://secure.gravatar.com/avatar/317bc499c18e1a51de57c70b9b7a0682?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "shuraknight",
-			"fullname": "Shura Andromeda",
-			"link": "https://sourceforge.net/u/shuraknight/profile",
-			"image": "https://secure.gravatar.com/avatar/312db9417de810e2624acfa535f4fca2?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
 				}
 			]
 		},
@@ -5836,18 +4845,6 @@
 			]
 		},
 		{
-			"name": "sing4life",
-			"fullname": "elise",
-			"link": "https://sourceforge.net/u/sing4life/profile",
-			"image": "https://secure.gravatar.com/avatar/6aabdf945576cc02ab531b5b8a9a5baf?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "skewing",
 			"fullname": "silvia ",
 			"link": "https://sourceforge.net/u/skewing/profile",
@@ -5872,22 +4869,6 @@
 				{
 					"type": "ideas",
 					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "skyflash",
-			"fullname": "Ralf HQSoft",
-			"link": "https://sourceforge.net/u/skyflash/profile",
-			"image": "https://secure.gravatar.com/avatar/2c49bc77a39a7d1d3b612a4aece24a05?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "58"
-				},
-				{
-					"type": "ideas",
-					"count": "4"
 				}
 			]
 		},
@@ -5920,42 +4901,6 @@
 			]
 		},
 		{
-			"name": "slyxsith",
-			"fullname": "Mark M",
-			"link": "https://sourceforge.net/u/slyxsith/profile",
-			"image": "https://secure.gravatar.com/avatar/0e8a6080716debde613ced73e7643cdd?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "smacktruck",
-			"fullname": "S L M",
-			"link": "https://sourceforge.net/u/smacktruck/profile",
-			"image": "https://secure.gravatar.com/avatar/cd9b233bb3beae1b97e1499a010373b2?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "smokaren",
-			"fullname": "Daniel Politis",
-			"link": "https://sourceforge.net/u/smokaren/profile",
-			"image": "https://secure.gravatar.com/avatar/8c76d2576e3aa4690be476c2914c8be5?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "snaketails",
 			"fullname": "Snaketails",
 			"link": "https://sourceforge.net/u/snaketails/profile",
@@ -5978,46 +4923,11 @@
 			"image": "https://secure.gravatar.com/avatar/09c49912436b6984160697f362ec20fa?s=64&rating=PG&d=https://stendhalgame.org/images/profile/snakevip.png",
 			"contributions": [
 				{
+					"type": "security"
+				},
+				{
 					"type": "ideas",
 					"count": "8"
-				}
-			]
-		},
-		{
-			"name": "sneakbug8",
-			"fullname": "SneakBug8",
-			"link": "https://sourceforge.net/u/sneakbug8/profile",
-			"image": "https://secure.gravatar.com/avatar/da7844a38d2d96559d65d42b1023c791?s=64&rating=PG&d=retro",
-			"city": "",
-			"country": "Russia",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "socana",
-			"fullname": "Sergio Ocańa Gálvez",
-			"link": "https://sourceforge.net/u/socana/profile",
-			"image": "https://secure.gravatar.com/avatar/021f639d903b931c0a027c13f7ff18ea?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "4"
-				}
-			]
-		},
-		{
-			"name": "someotherguy",
-			"fullname": "SomeOtherGuy",
-			"link": "https://sourceforge.net/u/someotherguy/profile",
-			"image": "https://secure.gravatar.com/avatar/b4db958150aeb3390302a87c0a40e130?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
 				}
 			]
 		},
@@ -6062,42 +4972,6 @@
 			]
 		},
 		{
-			"name": "stapelfahrerjoe",
-			"fullname": "Camillo Dell'mour",
-			"link": "https://sourceforge.net/u/stapelfahrerjoe/profile",
-			"image": "https://secure.gravatar.com/avatar/5fa4e25f26e1e2635570c6fb8f26f441?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "stapostol",
-			"fullname": "steve apostol",
-			"link": "https://sourceforge.net/u/stapostol/profile",
-			"image": "https://secure.gravatar.com/avatar/0e45587eff9664293f5607395d940605?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "4"
-				}
-			]
-		},
-		{
-			"name": "steve1979",
-			"fullname": "Steve Barrett",
-			"link": "https://sourceforge.net/u/steve1979/profile",
-			"image": "https://secure.gravatar.com/avatar/3009c86e2f97096ef67bf9f4aa18b888?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "steveread",
 			"fullname": "Steve Read",
 			"link": "https://sourceforge.net/u/steveread/profile",
@@ -6106,56 +4980,6 @@
 				{
 					"type": "bug",
 					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "stinky_",
-			"fullname": "Rupert R",
-			"link": "https://sourceforge.net/u/stinky_/profile",
-			"image": "https://secure.gravatar.com/avatar/e6d9d44d5c6e123efd4097e57922f760?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "str0nkson2001",
-			"fullname": "Greg Smith",
-			"link": "https://sourceforge.net/u/str0nkson2001/profile",
-			"image": "https://a.fsdn.com/allura/u/str0nkson2001/user_icon",
-			"city": "Manchester",
-			"country": "Britain (UK)",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "subifrisks",
-			"fullname": "Subi frisks",
-			"link": "https://sourceforge.net/u/subifrisks/profile",
-			"image": "https://secure.gravatar.com/avatar/015b5bcbc8e81a6448acfff51c673c8e?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "supperhpxd",
-			"fullname": "st supperhpxd",
-			"link": "https://sourceforge.net/u/supperhpxd/profile",
-			"image": "https://secure.gravatar.com/avatar/e88618966389c0e282a0fa9f812f73de?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
 				}
 			]
 		},
@@ -6217,18 +5041,6 @@
 			]
 		},
 		{
-			"name": "takver",
-			"fullname": "Takver",
-			"link": "https://sourceforge.net/u/takver/profile",
-			"image": "https://secure.gravatar.com/avatar/fbc0f73ae2b8bdda7813f5c70c99bc9e?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "tari_stendhal",
 			"fullname": "Tari",
 			"link": "https://sourceforge.net/u/tari_stendhal/profile",
@@ -6245,18 +5057,6 @@
 			]
 		},
 		{
-			"name": "tbr_mrc",
-			"fullname": "Antonio Winkler",
-			"link": "https://sourceforge.net/u/tbr_mrc/profile",
-			"image": "https://secure.gravatar.com/avatar/b7b14fd71a286c93dcdca4de2cdf608a?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
 			"name": "technosphere",
 			"fullname": "technosphere",
 			"link": "https://sourceforge.net/u/technosphere/profile",
@@ -6268,42 +5068,6 @@
 				},
 				{
 					"type": "ideas",
-					"count": "null"
-				}
-			]
-		},
-		{
-			"name": "termelator",
-			"fullname": "Robert Speelpenning",
-			"link": "https://sourceforge.net/u/termelator/profile",
-			"image": "https://secure.gravatar.com/avatar/a374069ef64112763c83893cfd3cc524?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "teroajk",
-			"fullname": "Tero Kuusela",
-			"link": "https://sourceforge.net/u/teroajk/profile",
-			"image": "https://secure.gravatar.com/avatar/0120acf7b027a1737886d82632e7a476?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "tharding",
-			"fullname": "Tyson Harding",
-			"link": "https://sourceforge.net/u/tharding/profile",
-			"image": "https://secure.gravatar.com/avatar/f0bc2b04bfd5e66cbf1eb126b24818e3?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
 					"count": "1"
 				}
 			]
@@ -6325,94 +5089,13 @@
 			]
 		},
 		{
-			"name": "thekroge",
-			"fullname": "Philip Devine",
-			"link": "https://sourceforge.net/u/thekroge/profile",
-			"image": "https://secure.gravatar.com/avatar/baf67bc6091e75c089d4f789817c8233?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "thelinuxmaniac",
-			"fullname": "Abhishek Dutta",
-			"link": "https://sourceforge.net/u/thelinuxmaniac/profile",
-			"image": "https://secure.gravatar.com/avatar/f9ffe9d1e54392d42d9fb9c6d67bd4ae?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "thriceforged",
-			"fullname": "Steve Ierodiaconou",
-			"link": "https://sourceforge.net/u/thriceforged/profile",
-			"image": "https://secure.gravatar.com/avatar/f7336d4e554c0a2dffdec85f54abd987?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "321"
-				},
-				{
-					"type": "ideas",
-					"count": "162"
-				}
-			]
-		},
-		{
 			"name": "tiagomt",
 			"fullname": "tiago teixeira",
 			"link": "https://sourceforge.net/u/tiagomt/profile",
 			"image": "https://secure.gravatar.com/avatar/8272ad8bf384250e150a937295aec5da?s=64&rating=PG&d=monsterid",
 			"contributions": [
 				{
-					"type": "ideas",
-					"count": "10"
-				}
-			]
-		},
-		{
-			"name": "tietyt",
-			"fullname": "tieTYT",
-			"link": "https://sourceforge.net/u/tietyt/profile",
-			"image": "https://secure.gravatar.com/avatar/f63c38ea4fdc4bb776ee39ade06722ce?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "tim2005",
-			"fullname": "Tim2005",
-			"link": "https://sourceforge.net/u/tim2005/profile",
-			"image": "https://secure.gravatar.com/avatar/fbb24f6b996ce30962b8acd95760db91?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "13"
-				}
-			]
-		},
-		{
-			"name": "timothyb89",
-			"fullname": "timothyb89",
-			"link": "https://sourceforge.net/u/timothyb89/profile",
-			"image": "https://secure.gravatar.com/avatar/71487518e6a187fcadf226fdae24b1ef?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "18"
-				},
-				{
-					"type": "ideas",
-					"count": "43"
+					"type": "graphics"
 				}
 			]
 		},
@@ -6481,30 +5164,6 @@
 			]
 		},
 		{
-			"name": "trace1",
-			"fullname": "Joakim Kolsjö",
-			"link": "https://sourceforge.net/u/trace1/profile",
-			"image": "https://secure.gravatar.com/avatar/c92c0bbf27c44089bbe71ec42b84e863?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "treefinger",
-			"fullname": "Peter Andersson",
-			"link": "https://sourceforge.net/u/treefinger/profile",
-			"image": "https://secure.gravatar.com/avatar/d341c07962247bb19cf83832949efa17?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "tuebix",
 			"fullname": " tuebix",
 			"link": "https://sourceforge.net/u/tuebix/profile",
@@ -6541,42 +5200,6 @@
 				{
 					"type": "ideas",
 					"count": "12"
-				}
-			]
-		},
-		{
-			"name": "vangop",
-			"fullname": "vangop",
-			"link": "https://sourceforge.net/u/vangop/profile",
-			"image": "https://secure.gravatar.com/avatar/6e44f3d8ed98b3c075a2ec2ce563d8a7?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "4"
-				}
-			]
-		},
-		{
-			"name": "vanigo",
-			"fullname": "Kyle Kinney",
-			"link": "https://sourceforge.net/u/vanigo/profile",
-			"image": "https://secure.gravatar.com/avatar/964bb3f981cac2516cd55b51d279ea61?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "veedeem",
-			"fullname": "Bob van Dam",
-			"link": "https://sourceforge.net/u/veedeem/profile",
-			"image": "https://secure.gravatar.com/avatar/d5f9defc9e87c2c98833ee8276f1cdeb?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
 				}
 			]
 		},
@@ -6621,30 +5244,6 @@
 			]
 		},
 		{
-			"name": "waba",
-			"fullname": "Thomas Equeter",
-			"link": "https://sourceforge.net/u/waba/profile",
-			"image": "https://secure.gravatar.com/avatar/fdbe4d88d17d0d57cf97e5b3b5d5fdeb?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "18"
-				}
-			]
-		},
-		{
-			"name": "warewolf8",
-			"fullname": "Jaymeson Beck",
-			"link": "https://sourceforge.net/u/warewolf8/profile",
-			"image": "https://secure.gravatar.com/avatar/54212b2e2b69a780e4aaa1a0fc86abca?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "weasel75",
 			"fullname": "Hans-Peter Jacobs",
 			"link": "https://sourceforge.net/u/weasel75/profile",
@@ -6652,32 +5251,6 @@
 			"contributions": [
 				{
 					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "werewolf561",
-			"fullname": "Yuri Mataev",
-			"link": "https://sourceforge.net/u/werewolf561/profile",
-			"image": "https://secure.gravatar.com/avatar/f30d9f185f8f0d31f13f265ae7a148b4?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "5"
-				}
-			]
-		},
-		{
-			"name": "wiehepeter",
-			"fullname": "peter.wiehe",
-			"link": "https://sourceforge.net/u/wiehepeter/profile",
-			"image": "https://a.fsdn.com/allura/u/wiehepeter/user_icon",
-			"city": "Muenster",
-			"country": "Germany",
-			"contributions": [
-				{
-					"type": "ideas",
 					"count": "1"
 				}
 			]
@@ -6715,54 +5288,6 @@
 			]
 		},
 		{
-			"name": "wizkid17",
-			"fullname": "Tracy Poff",
-			"link": "https://sourceforge.net/u/wizkid17/profile",
-			"image": "https://secure.gravatar.com/avatar/3e5fd27fb9ff98aaa213239c50e6fdb3?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "wk2",
-			"fullname": "Winter Knight",
-			"link": "https://sourceforge.net/u/wk2/profile",
-			"image": "https://secure.gravatar.com/avatar/af8011065b2c5e0765c4c8b33a9b73db?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "wobre",
-			"fullname": "avwbre",
-			"link": "https://sourceforge.net/u/wobre/profile",
-			"image": "https://secure.gravatar.com/avatar/f7f0a367399328065a2af8828c5115be?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "wunk",
-			"fullname": "Wunk",
-			"link": "https://sourceforge.net/u/wunk/profile",
-			"image": "https://secure.gravatar.com/avatar/de17f927e840aec3a1f2e004f8ca0f63?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "10"
-				}
-			]
-		},
-		{
 			"name": "x2862",
 			"fullname": "Norien",
 			"link": "https://sourceforge.net/u/x2862/profile",
@@ -6779,66 +5304,6 @@
 			]
 		},
 		{
-			"name": "xavier_stendhal",
-			"fullname": "Alec",
-			"link": "https://sourceforge.net/u/xavier_stendhal/profile",
-			"image": "https://secure.gravatar.com/avatar/4d54668d765e89f694cbdefe679f0fcd?s=64&rating=PG&d=https://stendhalgame.org/images/profile/xavier.png",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "7"
-				}
-			]
-		},
-		{
-			"name": "xayan",
-			"fullname": "Damian ",
-			"link": "https://sourceforge.net/u/xayan/profile",
-			"image": "https://secure.gravatar.com/avatar/c8b9a26b640d4dada8be7ca45e17f12f?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "xevilstar",
-			"fullname": "Xevil",
-			"link": "https://sourceforge.net/u/xevilstar/profile",
-			"image": "https://secure.gravatar.com/avatar/16b952762285a13edaf07813f4f17bd1?s=64&rating=PG&d=wavatar",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "xjasonhilox",
-			"fullname": "Jason Hilo",
-			"link": "https://sourceforge.net/u/xjasonhilox/profile",
-			"image": "https://secure.gravatar.com/avatar/4a5bbe45afff420193ab39cbfda0cc7c?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "xoie",
-			"fullname": "sfizer",
-			"link": "https://sourceforge.net/u/xoie/profile",
-			"image": "https://secure.gravatar.com/avatar/6c092c4d324d8739b3549a2c577b2f5a?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "yagisan",
 			"fullname": "Yagisan",
 			"link": "https://sourceforge.net/u/yagisan/profile",
@@ -6847,18 +5312,6 @@
 				{
 					"type": "bug",
 					"count": "5"
-				}
-			]
-		},
-		{
-			"name": "yanrosey",
-			"fullname": "yanrosey",
-			"link": "https://sourceforge.net/u/yanrosey/profile",
-			"image": "https://secure.gravatar.com/avatar/18da5bc35a7324786261da25b66a04b4?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "10"
 				}
 			]
 		},
@@ -6881,23 +5334,14 @@
 			]
 		},
 		{
-			"name": "yoda2031",
-			"fullname": "C",
-			"link": "https://sourceforge.net/u/yoda2031/profile",
-			"image": "https://secure.gravatar.com/avatar/bad8b784faee838febbcd29b0d6bbd50?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "1"
-				}
-			]
-		},
-		{
 			"name": "yugiohjcj",
 			"fullname": "YuGiOhJCJ",
 			"link": "https://sourceforge.net/u/yugiohjcj/profile",
-			"image": "https://secure.gravatar.com/avatar/4aada1b94cbb2ce5417fca6f313e4223?s=64&rating=PG&d=monsterid",
+			"image": "https://secure.gravatar.com/avatar/4aada1b94cbb2ce5417fca6f313e4223?s=64&rating=PG&d=https://stendhalgame.org/images/profile/yugiohjcj.png",
 			"contributions": [
+				{
+					"type": "bug"
+				},
 				{
 					"type": "ideas",
 					"count": "2"
@@ -6937,54 +5381,6 @@
 				{
 					"type": "ideas",
 					"count": "4"
-				}
-			]
-		},
-		{
-			"name": "zepplin",
-			"fullname": "ross",
-			"link": "https://sourceforge.net/u/zepplin/profile",
-			"image": "https://secure.gravatar.com/avatar/224f6010b12bfe54a00ae502754f4be6?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "6"
-				}
-			]
-		},
-		{
-			"name": "zhodani",
-			"fullname": "clasic_traveller_diehard",
-			"link": "https://sourceforge.net/u/zhodani/profile",
-			"image": "https://secure.gravatar.com/avatar/8b5fa742b885b8a89f9dc6739a1af109?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "3"
-				}
-			]
-		},
-		{
-			"name": "zhuqing0423",
-			"fullname": "zhuqing0423",
-			"link": "https://sourceforge.net/u/zhuqing0423/profile",
-			"image": "https://secure.gravatar.com/avatar/6a0c175acdc64e18be2dff3bfb0d121b?s=64&rating=PG&d=retro",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "1"
-				}
-			]
-		},
-		{
-			"name": "zhuzhi",
-			"fullname": "Zero",
-			"link": "https://sourceforge.net/u/zhuzhi/profile",
-			"image": "https://secure.gravatar.com/avatar/d1f52a49ca6d150bbef0f882230b7177?s=64&rating=PG&d=robohash",
-			"contributions": [
-				{
-					"type": "ideas",
-					"count": "2"
 				}
 			]
 		},
