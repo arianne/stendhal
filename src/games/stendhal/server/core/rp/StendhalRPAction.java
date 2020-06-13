@@ -94,8 +94,14 @@ public class StendhalRPAction {
 	 *            The target of attack.
 	 */
 	public static void startAttack(final Player player, final RPEntity victim) {
+
 		// Player's can't attack themselves
 		if (player.equals(victim)) {
+			return;
+		}
+
+		// if we are already attacking the target, do nothing
+		if (player.getAttackTarget() == victim) {
 			return;
 		}
 
