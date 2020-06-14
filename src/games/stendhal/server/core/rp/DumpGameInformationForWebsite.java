@@ -15,6 +15,7 @@ import games.stendhal.server.core.engine.dbcommand.DumpSpeakerNPCsCommand;
 import games.stendhal.server.core.engine.dbcommand.DumpZonesCommand;
 import games.stendhal.server.core.engine.dbcommand.UpdateSearchIndexCommand;
 import games.stendhal.server.core.events.TurnListener;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
@@ -26,8 +27,8 @@ public class DumpGameInformationForWebsite implements TurnListener {
 
 	@Override
 	public void onTurnReached(int currentTurn) {
-		DBCommandQueue.get().enqueue(new DumpSpeakerNPCsCommand());
-		DBCommandQueue.get().enqueue(new DumpZonesCommand());
-		DBCommandQueue.get().enqueue(new UpdateSearchIndexCommand());
+		DBCommandQueue.get().enqueue(new DumpSpeakerNPCsCommand(), DBCommandPriority.LOW);
+		DBCommandQueue.get().enqueue(new DumpZonesCommand(), DBCommandPriority.LOW);
+		DBCommandQueue.get().enqueue(new UpdateSearchIndexCommand(), DBCommandPriority.LOW);
 	}
 }

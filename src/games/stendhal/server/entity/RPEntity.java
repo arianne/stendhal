@@ -75,6 +75,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
@@ -1804,7 +1805,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			new GameEvent(killerName, "killed", this.getName(), killLog.entityToType(killer), killLog.entityToType(this)).raise();
 		}
 
-		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));
+		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer), DBCommandPriority.LOW);
 
 		die(killer, remove);
 	}

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
@@ -35,7 +36,7 @@ public class ItemLogger {
 
 
 	public void addLogItemEventCommand(final AbstractLogItemEventCommand command) {
-		DBCommandQueue.get().enqueue(command);
+		DBCommandQueue.get().enqueue(command, DBCommandPriority.LOW);
 	}
 
 

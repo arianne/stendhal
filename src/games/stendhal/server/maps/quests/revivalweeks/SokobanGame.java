@@ -41,6 +41,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
@@ -200,7 +201,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 				+ TimeUtil.approxTimeUntil(timeDiff));
 
 		int points = level * 1000000 - totalTime;
-		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), FAME_TYPE, points, false));
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), FAME_TYPE, points, false), DBCommandPriority.LOW);
 
 		loadSignFromHallOfFame.fire(null, null, null);
 	}

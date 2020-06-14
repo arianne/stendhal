@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +14,7 @@ package games.stendhal.server.core.engine;
 import java.util.List;
 
 import marauroa.server.db.command.DBCommand;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.dbcommand.LogGameEventCommand;
 
@@ -58,6 +58,6 @@ public class GameEvent {
 	 */
 	public void raise() {
 		DBCommand command = new LogGameEventCommand(source, event, params);
-		DBCommandQueue.get().enqueue(command);
+		DBCommandQueue.get().enqueue(command, DBCommandPriority.LOW);
 	}
 }

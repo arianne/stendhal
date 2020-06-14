@@ -47,6 +47,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.RPObject;
+import marauroa.server.db.command.DBCommandPriority;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
@@ -553,7 +554,7 @@ public class MazeGenerator {
 		// Give at least one xp for persistent but hopelessly slow players
 		points = Math.max(points, 1);
 
-		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "M", points, true));
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "M", points, true), DBCommandPriority.LOW);
 		new SetQuestAction("maze", 0, "done").fire(player, null, null);
 		new IncrementQuestAction("maze", 2, 1).fire(player, null, null);
 		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
