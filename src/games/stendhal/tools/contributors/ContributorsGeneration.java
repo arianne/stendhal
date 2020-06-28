@@ -141,7 +141,7 @@ public class ContributorsGeneration {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new ContributorsGeneration().process("/doc/contributors.json");
+		new ContributorsGeneration().process("/doc/contributors/contributors.json");
 	}
 
 }
