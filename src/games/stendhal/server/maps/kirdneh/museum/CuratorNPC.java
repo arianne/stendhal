@@ -62,7 +62,7 @@ public class CuratorNPC implements ZoneConfigurator {
 				addGreeting("Welcome to Kirdneh Museum.");
 				addJob("I am the curator of this museum. That means I organise the displays and look for new #exhibits.");
 				addHelp("This is a place for rare artefacts and special #exhibits.");
-				addReply("exhibits","Perhaps you'd have a knack for finding rate items and would like to do a #task for me.");
+				addReply("exhibits","Perhaps you'd have a knack for finding rare items and would like to do a #task for me.");
 				// remaining behaviour defined in games.stendhal.server.maps.quests.WeeklyItemQuest
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("kirdnehscrolls")));
 				addGoodbye("Good bye, it was pleasant talking with you.");
