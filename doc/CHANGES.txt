@@ -16,7 +16,18 @@ Changelog
 - NPC changes:
   - King Edward sells Deniran City scrolls
   - Rengard visits 0_ados_mountain_n2_w2 instead of 0_semos_mountain_n2_w2
+- small improvements to various maps
 
+*webclient*
+- show progress bar on login
+
+*engine*
+- massive improvements to the database queue
+- support for recent versions of Java
+
+*other*
+- started to work on a list of all contributors, please help to add to it:
+  https://github.com/arianne/stendhal/blob/master/doc/contributors.md
 
 1.34
 
