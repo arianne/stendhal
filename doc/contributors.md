@@ -1,6 +1,6 @@
 # Contributors
 
-This page is work in progress. Many people and details are still missing.
+This page is work in progress. Many people and details are still missing. Please <a href="https://stendhalgame.org/chat/">let us know</a>.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
