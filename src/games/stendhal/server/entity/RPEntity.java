@@ -3505,7 +3505,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return a predicate for matching the name
 	 */
 	private Predicate<Item> nameMatches(String name) {
-		return it -> name.equals(it.getName());
+		return it -> name.equalsIgnoreCase(it.getName());
 	}
 
 	/**

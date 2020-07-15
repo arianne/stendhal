@@ -108,7 +108,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 							"There is your enhanced lion shield.",
 							new MultipleActions(
 								new DropItemAction("iron", 8),
-								new DropItemAction("plate Shield", 1),
+								new DropItemAction("plate shield", 1),
 								new EquipItemAction("enhanced lion shield", 1, true),
 								new IncreaseXPAction(250)));
 						add(ConversationStates.INFORMATION_1,
