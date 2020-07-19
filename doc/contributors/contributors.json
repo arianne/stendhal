@@ -3544,6 +3544,22 @@
 					"count": "1"
 				}
 			]
+		},
+		{
+			"name": "flareon",
+			"fullname": "flareon",
+			"link": "",
+			"image": "https://stendhalgame.org/images/profile/flareon.png",
+			"contributions": [
+				{
+					"type": "ideas",
+					"count": "1"
+				},
+				{
+					"type": "bug",
+					"count": "1"
+				}
+			]
 		}
 	]
 }

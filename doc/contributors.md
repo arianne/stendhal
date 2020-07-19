@@ -713,6 +713,9 @@ null</span> </td>
 🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/zymora/profile"><img src="https://secure.gravatar.com/avatar/79c9537bbcb4a7e7ba97323822d1ccc5?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Annika Gareis</b></sub></a><br /><span title="bug">
 🐛</span> </td>
+ <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/flareon.png" width="64" height="64" alt=""><br /><sub><b>flareon</b></sub></a><br /><span title="ideas">
+🤔</span> <span title="bug">
+🐛</span> </td>
 </tr>
 </table>
 <!-- markdownlint-enable -->
