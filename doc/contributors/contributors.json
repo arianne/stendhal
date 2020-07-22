@@ -3552,14 +3552,35 @@
 			"image": "https://stendhalgame.org/images/profile/flareon.png",
 			"contributions": [
 				{
-					"type": "ideas",
-					"count": "1"
+					"type": "ideas"
 				},
 				{
-					"type": "bug",
-					"count": "1"
+					"type": "bug"
+				}
+			]
+		},
+		{
+			"name": "marcospdsf",
+			"fullname": "marcospdsf",
+			"link": "",
+			"image": "https://stendhalgame.org/images/profile/marcospdsf.png",
+			"contributions": [
+				{
+					"type": "ideas"
+				}
+			]
+		},
+		{
+			"name": "kimet",
+			"fullname": "kimet",
+			"link": "",
+			"image": "https://stendhalgame.org/images/profile/xkimetx.png",
+			"contributions": [
+				{
+					"type": "ideas"
 				}
 			]
 		}
+		
 	]
 }

@@ -716,6 +716,12 @@ null</span> </td>
  <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/flareon.png" width="64" height="64" alt=""><br /><sub><b>flareon</b></sub></a><br /><span title="ideas">
 🤔</span> <span title="bug">
 🐛</span> </td>
+ <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/marcospdsf.png" width="64" height="64" alt=""><br /><sub><b>marcospdsf</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
+</tr>
+<tr>
+ <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/xkimetx.png" width="64" height="64" alt=""><br /><sub><b>kimet</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
 </tr>
 </table>
 <!-- markdownlint-enable -->
