@@ -739,29 +739,6 @@
 			]
 		},
 		{
-			"name": "balaur",
-			"fullname": "Balaur",
-			"email": "",
-			"link": "https://www.openhub.net/p/stendhal/contributors/15940771977873",
-			"image": "https://gravatar.com/avatar/eae46117effb1bc840c96fe2c6d2371a.jpg?s=64&rating=PG&d=wavatar",
-			"active_from": "2014",
-			"active_until": "2017",
-			"contributions": [
-				{
-					"type": "code"
-				},
-				{
-					"type": "maps"
-				},
-				{
-					"type": "bug"
-				},
-				{
-					"type": "ideas"
-				}
-			]
-		},
-		{
 			"name": "seather",
 			"fullname": "seather",
 			"email": "",
@@ -1105,19 +1082,31 @@
 		{
 			"name": "cosmin",
 			"fullname": "Cosmin Humeniuc",
+			"aliases": ["cosmin", "balaur", "bonneville"],
 			"email": "",
 			"link": "https://www.openhub.net/p/stendhal/contributors/15940771804408",
-			"image": "https://gravatar.com/avatar/888691da483a8f3fafe49b805b78086c?s=64&rating=PG&d=wavatar",
-			"active_from": "2018",
-			"active_until": "2019",
+			"image": "https://stendhalgame.org/images/profile/cosmin.png",
+			"active_from": "2014",
+			"active_until": null,
 			"contributions": [
 				{
 					"type": "content",
 					"count": 1
 				},
 				{
+					"type": "code"
+				},
+				{
 					"type": "maps",
 					"count": 1
+				},
+				{
+					"type": "bug",
+					"count": 4
+				},
+				{
+					"type": "ideas",
+					"count": 4
 				}
 			]
 		},
@@ -1849,22 +1838,6 @@
 				{
 					"type": "ideas",
 					"count": "2"
-				}
-			]
-		},
-		{
-			"name": "devbonneville",
-			"fullname": "bonneville",
-			"link": "https://sourceforge.net/u/devbonneville/profile",
-			"image": "https://secure.gravatar.com/avatar/b2d2addc0a314e86480cb539e38c3942?s=64&rating=PG&d=monsterid",
-			"contributions": [
-				{
-					"type": "bug",
-					"count": "3"
-				},
-				{
-					"type": "ideas",
-					"count": "3"
 				}
 			]
 		},
