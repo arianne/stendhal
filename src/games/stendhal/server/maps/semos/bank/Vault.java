@@ -103,7 +103,7 @@ public class Vault extends StendhalRPZone {
 						boolean equippedToBag = false;
 
 						// attempt to equip money in pouch first
-						if (item.getName().equals("money")) {
+						if (item.getName().equals("money") && player.getFeature("pouch") != null) {
 							equippedToBag = player.equip("pouch", item);
 							if (equippedToBag) {
 								slotName = "pouch";
