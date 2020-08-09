@@ -32,7 +32,8 @@ public class StendhalRPZoneTest {
                 {"-3_semos_dungeon", "deep below ground level at Semos dungeon"},
                 {"-1_ados_caves", "below ground level at Ados caves"},
                 {"6_kikareukin_islands", "high above the ground level at Kikareukin islands"},
-                {"hell", "in Hell"}
+                {"hell", "in Hell"},
+                {"malleus_plain", "in Malleus Plain"}
 		});
 	}
 

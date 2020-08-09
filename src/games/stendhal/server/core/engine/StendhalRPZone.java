@@ -1750,6 +1750,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		zoneNameMappings.put("-1_athor_ship_w2", "on Athor ferry");
 		zoneNameMappings.put("-2_athor_ship_w2", "on Athor ferry");
 		zoneNameMappings.put("hell", "in Hell");
+		zoneNameMappings.put("malleus_plain", "in Malleus Plain");
 	}
 
 	/**
