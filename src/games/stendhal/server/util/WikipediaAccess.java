@@ -175,6 +175,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 								+ keyword.replace(' ', '_').replace("%", "%25")
 								+ "&prop=revisions&rvprop=content&format=xml");
 				final SAXParserFactory factory = SAXParserFactory.newInstance();
+				factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 
 				// Parse the input
 				final SAXParser saxParser = factory.newSAXParser();

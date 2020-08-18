@@ -61,9 +61,13 @@ public class TransitionDiagram {
 			}
 
 			// execute
-			final Process p = Runtime.getRuntime().exec(
-					dotPath + " -Tpng -o " + image.getAbsolutePath() + " "
-							+ dat.getAbsolutePath());
+			final Process p = Runtime.getRuntime().exec(new String[] {
+				dotPath,
+				"-Tpng",
+				"-o",
+				image.getAbsolutePath(),
+				dat.getAbsolutePath()
+			});
 			p.waitFor();
 
 			// open up the image

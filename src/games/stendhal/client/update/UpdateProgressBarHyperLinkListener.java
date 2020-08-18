@@ -73,7 +73,7 @@ class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 									new Object[] { url });
 				} else if (osName.startsWith("Windows")) {
 					Runtime.getRuntime().exec(
-							"rundll32 url.dll,FileProtocolHandler " + url);
+							new String[] { "rundll32", "url.dll,FileProtocolHandler", url });
 				} else { // assume Unix or Linux
 					boolean found = false;
 					for (String browser : BROWSER) {
