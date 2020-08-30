@@ -722,6 +722,8 @@ null</span> </td>
 <tr>
  <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/xkimetx.png" width="64" height="64" alt=""><br /><sub><b>kimet</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
+ <td align="center" width="0%"><a href="https://github.com/maxgmer"><img src="https://avatars0.githubusercontent.com/u/24964174" width="64" height="64" alt=""><br /><sub><b>maxgmer</b></sub></a><br /><span title="code">
+💻</span> </td>
 </tr>
 </table>
 <!-- markdownlint-enable -->

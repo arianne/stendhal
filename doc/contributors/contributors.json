@@ -3553,7 +3553,17 @@
 					"type": "ideas"
 				}
 			]
+		},
+		{
+			"name": "maxhapeyenka",
+			"fullname": "maxgmer",
+			"link": "https://github.com/maxgmer",
+			"image": "https://avatars0.githubusercontent.com/u/24964174",
+			"contributions": [
+				{
+					"type": "code"
+				}
+			]
 		}
-		
 	]
 }
