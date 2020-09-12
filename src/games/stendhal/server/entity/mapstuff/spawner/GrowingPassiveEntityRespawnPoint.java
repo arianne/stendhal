@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -177,6 +178,13 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		super.onFruitPicked(picked);
 		setRipeness(0);
 		notifyWorldAboutChanges();
+	}
+
+	
+
+	@Override
+	public void onItemPickedUp(Player player) {
+		// do nothing, harvest is already counted in Use-action
 	}
 
 	@Override

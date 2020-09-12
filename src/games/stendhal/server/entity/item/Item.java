@@ -708,6 +708,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		}
 	}
 
+	public void onPickedUp(Player player) {
+		if (fromCorpse && this.plantGrower != null) {
+			this.plantGrower.onItemPickedUp(player);
+			this.fromCorpse = false;
+		}
+	}
+
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on the ground

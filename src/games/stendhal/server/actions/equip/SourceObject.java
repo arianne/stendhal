@@ -340,6 +340,7 @@ class SourceObject extends MoveableObject {
 		}
 
 		final String[] srcInfo = getLogInfo();
+		item.onPickedUp(player);
 		final Item entity = removeFromWorld();
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);

@@ -271,6 +271,7 @@ public class DisplaceAction implements ActionListener {
 			if ((quantity > 0) && (stackableItem != null) && (quantity < stackableItem.getQuantity())) {
 				newItem = removeFromWorld(player, stackableItem, quantity);
 			} else {
+				item.onPickedUp(player);
 				item.onRemoveFromGround();
 				newItem = item;
 			}
