@@ -60,6 +60,7 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 		updateItemLoots(player, command.getDetails("item.set.golden"));
 		updateItemLoots(player, command.getDetails("item.set.red"));
 		updateItemLoots(player, command.getDetails("item.set.mainio"));
+		updateItemHarvest(player, command.getDetails("item.harvest.passiveentityrespawn"));
 
 		// Could also check for reached achievements here. This is also checked on login but the order may vary due to the async access?
 
@@ -131,7 +132,6 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 				String slotValue = slot.substring(slot.lastIndexOf('=') + 1);
 				if (MathHelper.parseIntDefault(slotValue, 0) < missingCount) {
 					player.setQuest(QUEST_SLOT, slot.substring(0, slot.lastIndexOf('=') + 1) + missingCount);
-					
 				}
 			}
 		}
@@ -145,9 +145,22 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 		}
 
 		// update player loots which have been stored as param (key) = itemname, count (value) = number of loots
-		for (Map.Entry<String, Integer> detail : details.entrySet())
-		{
+		for (Map.Entry<String, Integer> detail : details.entrySet()) {
 			player.incLootForItem(detail.getKey(), detail.getValue());
+		}
+	}
+
+
+	private static void updateItemHarvest(final Player player, final Map<String, Integer> details) {
+
+		// nothing to update
+		if (details == null) {
+			return;
+		}
+
+		// update player loots which have been stored as param (key) = itemname, count (value) = number of loots
+		for (Map.Entry<String, Integer> detail : details.entrySet()) {
+			player.incHarvestedForItem(detail.getKey(), detail.getValue());
 		}
 	}
 
