@@ -45,7 +45,7 @@ create table if not exists halloffame
   (
   id integer auto_increment not null,
   charname varchar(32) not null,
-  fametype char(1) not null,
+  fametype char(10) not null,
   points integer not null,
 
   primary key(id)
@@ -58,7 +58,7 @@ create table if not exists halloffame_archive_recent
   (
   id integer auto_increment not null,
   charname varchar(32) not null,
-  fametype char(1) not null,
+  fametype char(10) not null,
   rank integer not null,
   points integer not null,
   day date not null,
@@ -72,7 +72,7 @@ create table if not exists halloffame_archive_alltimes
   (
   id integer auto_increment not null,
   charname varchar(32) not null,
-  fametype char(1) not null,
+  fametype char(10) not null,
   rank integer not null,
   points integer not null,
   day date not null,

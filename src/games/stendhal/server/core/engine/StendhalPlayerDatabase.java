@@ -197,6 +197,7 @@ public class StendhalPlayerDatabase {
 		}
 		if (!transaction.doesColumnExist("character_stats", "outfit_layers")) {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_layers VARCHAR(255));", null);
+			updateCharacterStatsOutfitToOutfitLayer(transaction);
 		}
 
 		// 1.34: renamed kill_blordroughs achievements
@@ -209,7 +210,13 @@ public class StendhalPlayerDatabase {
 			transaction.execute("UPDATE achievement SET reached = 0 WHERE reached IS NULL;", null);
 		}
 
-		updateCharacterStatsOutfitToOutfitLayer(transaction);
+		// 1.36: increase size of halloffame.fametype
+		if (transaction.getColumnLength("halloffame", "fametype") == 1) {
+			transaction.execute("ALTER TABLE halloffame                  MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
+			transaction.execute("ALTER TABLE halloffame_archive_alltimes MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
+			transaction.execute("ALTER TABLE halloffame_archive_recent   MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
+		}
+		
 	}
 
 
