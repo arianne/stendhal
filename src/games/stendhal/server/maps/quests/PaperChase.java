@@ -45,6 +45,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.QuestUtils;
 
 /**
  * A kind of paper chase.
@@ -53,7 +54,6 @@ import games.stendhal.server.maps.Region;
  */
 public class PaperChase extends AbstractQuest implements TeleportListener {
 	private static final String QUEST_SLOT = "paper_chase_20[year]";
-	private static final String FAME_TYPE = QUEST_SLOT.substring(QUEST_SLOT.length() - 1);
 
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
@@ -109,6 +109,12 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
 
+	private String getFameType() {
+		String questSlot = QuestUtils.evaluateQuestSlotName(QUEST_SLOT);
+		return questSlot.substring(questSlot.length() - 1);
+
+	}
+	
 	/**
 	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)
@@ -173,7 +179,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 
 	private void createHallOfFameSign() {
-		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behalf of Fidorea:\n", FAME_TYPE, 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behalf of Fidorea:\n", getFameType(), 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
@@ -242,7 +248,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			new IncreaseXPAction(400),
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new EquipItemAction("empty scroll", 5),
-			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, FAME_TYPE),
+			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, getFameType()),
 			loadSignFromHallOfFame);
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"),

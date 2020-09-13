@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2015 - Stendhal                    *
+ *                   (C) Copyright 2003-2020 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,18 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.util.StringUtils;
+import games.stendhal.server.util.QuestUtils;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -68,7 +65,7 @@ class PlayerQuests {
 	 * @return true iff the player has made any progress in the quest
 	 */
 	public boolean hasQuest(final String name) {
-		return (player.getKeyedSlot("!quests", evaluateSlotName(name)) != null);
+		return (player.getKeyedSlot("!quests", QuestUtils.evaluateQuestSlotName(name)) != null);
 	}
 
 	/**
@@ -79,7 +76,7 @@ class PlayerQuests {
 	 * @return the player's status in the quest
 	 */
 	public String getQuest(final String name) {
-		return player.getKeyedSlot("!quests", evaluateSlotName(name));
+		return player.getKeyedSlot("!quests", QuestUtils.evaluateQuestSlotName(name));
 	}
 
 	/**
@@ -96,10 +93,10 @@ class PlayerQuests {
 	 *            reset the player's status for the quest.
 	 */
 	public void setQuest(final String name, final String status) {
-		final String oldStatus = player.getKeyedSlot("!quests", evaluateSlotName(name));
-		player.setKeyedSlot("!quests", evaluateSlotName(name), status);
+		final String oldStatus = player.getKeyedSlot("!quests", QuestUtils.evaluateQuestSlotName(name));
+		player.setKeyedSlot("!quests", QuestUtils.evaluateQuestSlotName(name), status);
 		if ((status == null) || !status.equals(oldStatus)) {
-			new GameEvent(player.getName(), "quest", evaluateSlotName(name), status).raise();
+			new GameEvent(player.getName(), "quest", QuestUtils.evaluateQuestSlotName(name), status).raise();
 		}
 		// check for reached achievements
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
@@ -186,7 +183,7 @@ class PlayerQuests {
 	}
 
 	public void removeQuest(final String name) {
-		player.setKeyedSlot("!quests", evaluateSlotName(name), null);
+		player.setKeyedSlot("!quests", QuestUtils.evaluateQuestSlotName(name), null);
 	}
 
 	/**
@@ -299,20 +296,4 @@ class PlayerQuests {
 		return MathHelper.parseIntDefault(questState, 0);
 	}
 
-	/**
-	 * evaluates slot names by replacing variables
-	 *
-	 * @param name name of slot
-	 * @return evaluated slot
-	 */
-	String evaluateSlotName(String name) {
-		Map<String, String> params = new HashMap<String, String>();
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		params.put("year", Integer.toString(year).substring(2));
-		calendar.add(Calendar.MONTH, -2);
-		year = calendar.get(Calendar.YEAR);
-		params.put("seasonyear", Integer.toString(year).substring(2));
-		return StringUtils.substitute(name, params);
-	}
 }
