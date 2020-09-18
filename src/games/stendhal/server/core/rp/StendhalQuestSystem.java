@@ -193,6 +193,9 @@ public class StendhalQuestSystem {
 			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 			loadQuest(new MineTownRevivalWeeks());
 		}
+		if (Occasion.MINETOWN_CONSTRUCTION) {
+			loadQuest(new MineTownRevivalWeeksConstruction());
+		}
 
 		TurnNotifier.get().notifyInTurns(10, new DumpGameInformationForWebsite());
 	}
