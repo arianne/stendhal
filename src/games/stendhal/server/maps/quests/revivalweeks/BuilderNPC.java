@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.quests.revivalweeks;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -20,10 +21,9 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.dbcommand.ReadGroupQuestCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.behaviour.adder.CollectingGroupQuestAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.CollectingGroupQuestBehaviour;
 import games.stendhal.server.util.QuestUtils;
 import marauroa.server.db.command.DBCommandQueue;
 
@@ -31,7 +31,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 	private SpeakerNPC npc = null;
 	private static final String QUEST_SLOT = QuestUtils.evaluateQuestSlotName("minetown_construction_[year]");
 	private ReadGroupQuestCommand command;
-	private Map<String, Integer> progress;
+	private CollectingGroupQuestBehaviour behaviour;
 
 	@Override
 	public void addToWorld() {
@@ -46,8 +46,18 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 			TurnNotifier.get().notifyInTurns(0, this);
 			return;
 		}
-		this.progress = command.getProgress();
+		Map<String, Integer> progress = command.getProgress();
+		setupCollectingGroupQuest(progress);
 		addNPC();
+	}
+
+	private void setupCollectingGroupQuest(Map<String, Integer> progress) {
+		Map<String, Integer> required = new HashMap<>();
+		Map<String, Integer> chunkSize = new HashMap<>();
+		required.put("wood", 100);
+		chunkSize.put("wood", 10);
+		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, progress);
+		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
 	}
 
 	private void addNPC() {
@@ -85,20 +95,15 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 	
 
 	private void addQuestDialog(SpeakerNPC npc) {
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"Thanks again for your help. The #status of the construction is improving. Hopefully we will be finished in time.",
-				null);
+		new CollectingGroupQuestAdder().add(npc, behaviour);
 		npc.addReply(Arrays.asList("Mine", "Town", "Revival", "Weeks", "Mine Town",
 				"Mine Town Revival", "Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
 				"During the Revival Weeks we #celebrate the old and now mostly dead Mine Town north of Semos City. It has been a tradition for many years, but this year the #status of the build up is not looking well.",
 				null);
-
-		npc.addReply(Arrays.asList("status", "progress"),
-				"There is still so much to do before the #Mine #Town #Revival #Weeks can start.",
+		npc.addReply(Arrays.asList("project"),
+				"I am responsible for setting up the #Mine #Town #Revival #Weeks. I have to get everything prepared for the festival to take place.",
 				null);
+
 	}
 
 	@Override
