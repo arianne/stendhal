@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.db.PendingAchievementDAO;
 import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 import games.stendhal.server.core.engine.db.StendhalCharacterDAO;
+import games.stendhal.server.core.engine.db.StendhalGroupQuestDAO;
 import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
@@ -204,7 +205,7 @@ public class StendhalPlayerDatabase {
 		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0005' WHERE identifier='quest.special.kill_blordroughs.5'", null);
 		transaction.execute("UPDATE achievement SET identifier='quest.special.kill_blordroughs.0025' WHERE identifier='quest.special.kill_blordroughs.25'", null);
 
-		// 1.35: 
+		// 1.35: for performance reasons, keep track of number if awarded achievement
 		if (!transaction.doesColumnExist("achievement", "reached")) {
 			transaction.execute("ALTER TABLE achievement ADD COLUMN (reached INTEGER);", null);
 			transaction.execute("UPDATE achievement SET reached = 0 WHERE reached IS NULL;", null);
@@ -212,11 +213,11 @@ public class StendhalPlayerDatabase {
 
 		// 1.36: increase size of halloffame.fametype
 		if (transaction.getColumnLength("halloffame", "fametype") == 1) {
-			transaction.execute("ALTER TABLE halloffame                  MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
-			transaction.execute("ALTER TABLE halloffame_archive_alltimes MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
-			transaction.execute("ALTER TABLE halloffame_archive_recent   MODIFY COLUMN fametype char(10) COLLATE utf8mb4_unicode_ci NOT NULL", null);
+			transaction.execute("ALTER TABLE halloffame                  MODIFY COLUMN fametype char(10) NOT NULL", null);
+			transaction.execute("ALTER TABLE halloffame_archive_alltimes MODIFY COLUMN fametype char(10) NOT NULL", null);
+			transaction.execute("ALTER TABLE halloffame_archive_recent   MODIFY COLUMN fametype char(10) NOT NULL", null);
 		}
-		
+
 	}
 
 
@@ -261,6 +262,7 @@ public class StendhalPlayerDatabase {
 		// define additional DAOs
 		DAORegister.get().register(PostmanDAO.class, new PostmanDAO());
 		DAORegister.get().register(StendhalBuddyDAO.class, new StendhalBuddyDAO());
+		DAORegister.get().register(StendhalGroupQuestDAO.class, new StendhalGroupQuestDAO());
 		DAORegister.get().register(StendhalHallOfFameDAO.class, new StendhalHallOfFameDAO());
 		DAORegister.get().register(StendhalKillLogDAO.class, new StendhalKillLogDAO ());
 		DAORegister.get().register(StendhalNPCDAO.class, new StendhalNPCDAO());
