@@ -11,16 +11,42 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.dbcommand.ReadGroupQuestCommand;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.util.QuestUtils;
+import marauroa.server.db.command.DBCommandQueue;
 
-public class BuilderNPC implements LoadableContent {
+public class BuilderNPC implements LoadableContent, TurnListener {
 	private SpeakerNPC npc = null;
+	private static final String QUEST_SLOT = QuestUtils.evaluateQuestSlotName("minetown_construction_[year]");
+	private ReadGroupQuestCommand command;
+	private Map<String, Integer> progress;
 
 	@Override
 	public void addToWorld() {
+		this.command = new ReadGroupQuestCommand(QUEST_SLOT);
+		DBCommandQueue.get().enqueue(command);
+		TurnNotifier.get().notifyInTurns(0, this);
+	}
+			
+	@Override
+	public void onTurnReached(int currentTurn) {
+		if (command.getProgress() == null) {
+			TurnNotifier.get().notifyInTurns(0, this);
+			return;
+		}
+		this.progress = command.getProgress();
+		addNPC();
+	}
+
+	private void addNPC() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		final SpeakerNPC npc = new SpeakerNPC("Klaus") {
 

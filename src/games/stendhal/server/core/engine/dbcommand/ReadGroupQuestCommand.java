@@ -50,6 +50,9 @@ public class ReadGroupQuestCommand extends AbstractDBCommand {
 	 * @return list of character names
 	 */
 	public Map<String, Integer> getProgress() {
+		if (res == null) {
+			return null;
+		}
 		return new HashMap<String, Integer>(res);
 	}
 
