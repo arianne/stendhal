@@ -12,10 +12,13 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.dbcommand.UpdateGroupQuestCommand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -25,11 +28,13 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.CollectingGroupQuestBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import marauroa.server.db.command.DBCommandQueue;
 
 public class CollectingGroupQuestAdder {
 
@@ -51,6 +56,7 @@ public class CollectingGroupQuestAdder {
 	public void add(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		addGreeting(npc, behaviour);
 		addProgress(npc, behaviour);
+		addQuest(npc, behaviour);
 		addCollectingItems(npc, behaviour);
 	}
 	
@@ -60,15 +66,6 @@ public class CollectingGroupQuestAdder {
 				new QuestCompletedCondition(behaviour.getQuestSlot()),
 				ConversationStates.ATTENDING,
 				"Thanks again for your help. We are making #progress. Hopefully we will finish in time.",
-				null);
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
-						new LevelLessThanCondition(5)
-						),
-				ConversationStates.ATTENDING,
-				"I am sorry, I am very busy at the moment, trying to finish this #project in time. I would ask you for help, but you seem to be very #inexperienced.",
 				null);
 		
 		npc.addReply(
@@ -97,29 +94,47 @@ public class CollectingGroupQuestAdder {
 		});
 	}
 
-	private void addCollectingItems(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
+	private void addQuest(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotCompletedCondition(behaviour.getQuestSlot()),
+				new AndCondition(
+						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
+						new LevelLessThanCondition(5)
+				),
+				ConversationStates.ATTENDING,
+				"I am sorry, I am very busy at the moment, trying to finish this #project in time. I would ask you for help, but you seem to be very #inexperienced.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
+						new LevelGreaterThanCondition(4)
+				),
 				ConversationStates.QUEST_OFFERED,
-				"",
+				null,
 				new ChatAction() {
 					
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
-						StringBuilder sb = new StringBuilder();
-						sb.append("Could you provide any of the following items?");
+						npc.say("Could you provide any of the following items to help with construction? ");
 						Map<String, Integer> remaining = behaviour.calculateRemainingItems();
-						/*for (Map.Entry<String, Integer> entry : remaining.entrySet()) {
-							sb.append(Grammar.quantityNumberStrNoun(entry.getValue(), "#" + entry.getKey()));
-							sb.append(Grammar.quantityNumberStrNoun(entry.getValue(), entry.getKey()));
-						}*/
-						sb.append(Grammar.enumerateCollectionWithHash(remaining.keySet()));
-						sb.append(".");
-						npc.say(sb.toString());
+						Set<String> entries = new HashSet<>();
+						for (Map.Entry<String, Integer> entry : remaining.entrySet()) {
+							int chunkSize = behaviour.getChunkSize(entry.getKey()).intValue();
+							String entr = Grammar.numberString(chunkSize) + " #'" + Grammar.plnoun(chunkSize, entry.getKey()) + "'";
+							if (chunkSize < entry.getValue().intValue()) {
+								entr = entr + " out of " + Grammar.numberString(entry.getValue().intValue()) + " still needed";
+							}
+							entries.add(entr);
+						}
+						npc.say(Grammar.enumerateCollection(entries) + ".");
 					}
 				});
+	}
 
+
+	private void addCollectingItems(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(behaviour.getQuestSlot()),
@@ -168,11 +183,12 @@ public class CollectingGroupQuestAdder {
 							npc.say("I am sorry, you don't seem to have " + Grammar.numberString(stackSize) + " " + Grammar.plural(item) + ".");
 							return;
 						}
-
 						player.drop(item, stackSize);
+
 						player.setQuest(behaviour.getQuestSlot(), 0, "done");
-						// TODO: record group progress
-						// TODO: reward
+						UpdateGroupQuestCommand command = new UpdateGroupQuestCommand(behaviour.getQuestSlot(), item, player.getName(), stackSize);
+						DBCommandQueue.get().enqueue(command);
+						// TODO: reward players
 						npc.say("Thank you for your help!");
 					}
 				});
