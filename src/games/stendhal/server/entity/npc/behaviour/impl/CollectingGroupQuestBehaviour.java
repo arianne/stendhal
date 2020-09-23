@@ -61,4 +61,20 @@ public class CollectingGroupQuestBehaviour {
 		this.projectName = projectName;
 	}
 
+	public Map<String, Integer> calculateRemainingItems() {
+		Map<String, Integer> res = new HashMap<>();
+		for (Map.Entry<String, Integer> entry : required.entrySet()) {
+			Integer remaining = entry.getValue();
+			Integer collected = progress.get(entry.getKey());
+			if (collected != null) {
+				remaining = Integer.valueOf(remaining.intValue() - collected.intValue());
+			}
+			res.put(entry.getKey(), remaining);
+		}
+		return res;
+	}
+
+	public Integer getChunkSize(String item) {
+		return chunkSize.get(item);
+	}
 }
