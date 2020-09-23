@@ -18,16 +18,18 @@ import com.google.common.collect.ImmutableMap;
 
 public class CollectingGroupQuestBehaviour {
 	private String questSlot;
+	private String projectName;
 	private Map<String, Integer> required;
 	private Map<String, Integer> chunkSize;
+	private Map<String, String> hints;
 	private Map<String, Integer> progress;
-	private String projectName;
 
 	public CollectingGroupQuestBehaviour(String questSlot, Map<String, Integer> required, 
-			Map<String, Integer> chunkSize, Map<String, Integer> progress) {
+			Map<String, Integer> chunkSize, Map<String, String> hints, Map<String, Integer> progress) {
 		this.questSlot = questSlot;
 		this.required = ImmutableMap.copyOf(required);
 		this.chunkSize = ImmutableMap.copyOf(chunkSize);
+		this.hints = ImmutableMap.copyOf(hints);
 		this.progress = new HashMap<>(progress);
 	}
 
@@ -76,5 +78,9 @@ public class CollectingGroupQuestBehaviour {
 
 	public Integer getChunkSize(String item) {
 		return chunkSize.get(item);
+	}
+
+	public String getHint(String item) {
+		return hints.get(item);
 	}
 }

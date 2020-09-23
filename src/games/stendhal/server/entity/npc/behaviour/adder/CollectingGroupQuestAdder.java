@@ -173,14 +173,20 @@ public class CollectingGroupQuestAdder {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						String item = Grammar.singular(sentence.getNormalized());
-						
+						String hint = behaviour.getHint(item);
 						if (!player.isEquipped(item, 1)) {
 							npc.say("I am sorry, you don't seem to have any " + Grammar.plural(item) + ".");
+							if (hint != null) {
+								npc.say(hint);
+							}
 							return;
 						}
 						Integer stackSize = behaviour.getChunkSize(item);
 						if (!player.isEquipped(item, stackSize)) {
 							npc.say("I am sorry, you don't seem to have " + Grammar.numberString(stackSize) + " " + Grammar.plural(item) + ".");
+							if (hint != null) {
+								npc.say(hint);
+							}
 							return;
 						}
 						player.drop(item, stackSize);

@@ -54,9 +54,11 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 	private void setupCollectingGroupQuest(Map<String, Integer> progress) {
 		Map<String, Integer> required = new HashMap<>();
 		Map<String, Integer> chunkSize = new HashMap<>();
+		Map<String, String> hints = new HashMap<>();
 		required.put("wood", 100);
 		chunkSize.put("wood", 10);
-		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, progress);
+		hints.put("wood", "You can find wood in the forests.");
+		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, hints, progress);
 		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
 	}
 
