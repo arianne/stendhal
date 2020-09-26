@@ -18,8 +18,10 @@ import java.util.Set;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.UpdateGroupQuestCommand;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -226,7 +228,11 @@ public class CollectingGroupQuestAdder {
 						player.setQuest(behaviour.getQuestSlot(), 0, "done");
 						UpdateGroupQuestCommand command = new UpdateGroupQuestCommand(behaviour.getQuestSlot(), item, player.getName(), stackSize);
 						DBCommandQueue.get().enqueue(command);
+						behaviour.addProgress(item, stackSize);
+
 						// TODO: reward players
+						final Item reward = SingletonRepository.getEntityManager().getItem("coupon");
+						player.equipOrPutOnGround(reward);
 						npc.say("Thank you for your help!");
 					}
 				});

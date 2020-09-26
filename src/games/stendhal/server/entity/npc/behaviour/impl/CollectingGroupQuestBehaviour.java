@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -27,7 +28,7 @@ public class CollectingGroupQuestBehaviour {
 	public CollectingGroupQuestBehaviour(String questSlot, Map<String, Integer> required, 
 			Map<String, Integer> chunkSize, Map<String, String> hints, Map<String, Integer> progress) {
 		this.questSlot = questSlot;
-		this.required = ImmutableMap.copyOf(required);
+		this.required = new LinkedHashMap<>(required);
 		this.chunkSize = ImmutableMap.copyOf(chunkSize);
 		this.hints = ImmutableMap.copyOf(hints);
 		this.progress = new HashMap<>(progress);
@@ -64,14 +65,16 @@ public class CollectingGroupQuestBehaviour {
 	}
 
 	public Map<String, Integer> calculateRemainingItems() {
-		Map<String, Integer> res = new HashMap<>();
+		Map<String, Integer> res = new LinkedHashMap<>();
 		for (Map.Entry<String, Integer> entry : required.entrySet()) {
 			Integer remaining = entry.getValue();
 			Integer collected = progress.get(entry.getKey());
 			if (collected != null) {
 				remaining = Integer.valueOf(remaining.intValue() - collected.intValue());
+				if (remaining.intValue() > 0) {
+					res.put(entry.getKey(), remaining);
+				}
 			}
-			res.put(entry.getKey(), remaining);
 		}
 		return res;
 	}
@@ -82,5 +85,14 @@ public class CollectingGroupQuestBehaviour {
 
 	public String getHint(String item) {
 		return hints.get(item);
+	}
+
+	public void addProgress(String item, Integer stackSize) {
+		Integer quantity = progress.get(item);
+		if (quantity == null) {
+			quantity = Integer.valueOf(0);
+		}
+		quantity = Integer.valueOf(quantity.intValue() + stackSize);
+		progress.put(item, quantity);
 	}
 }
