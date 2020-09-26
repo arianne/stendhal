@@ -53,6 +53,20 @@ public class CollectingGroupQuestAdder {
 		}
 	}
 
+	private static final class GroupQuestCompletedCondition implements ChatCondition {
+		private final CollectingGroupQuestBehaviour behaviour;
+
+		public GroupQuestCompletedCondition(CollectingGroupQuestBehaviour behaviour) {
+			this.behaviour = behaviour;
+		}
+
+		@Override
+		public boolean fire(Player player, Sentence sentence, Entity npc) {
+			return behaviour.calculateRemainingItems().isEmpty();
+		}
+		
+	}
+
 	public void add(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		addGreeting(npc, behaviour);
 		addProgress(npc, behaviour);
@@ -80,15 +94,19 @@ public class CollectingGroupQuestAdder {
 			
 			@Override
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
+				if (behaviour.calculateRemainingItems().isEmpty()) {
+					npc.say("Thanks God! We finally got all materil. Stay tuned. The construction will finish in no time.");
+					return;
+				}
 				int percent = behaviour.getProgressPercent();
 				if (percent < 10) {
-					npc.say("There is still so much to do before the " + behaviour.getProjectName()  + " can start. We have hardly started.");
+					npc.say("There is still so much to do before the " + behaviour.getProjectName()  + " can start. We have hardly started. Perhaps you could help with some #tasks.");
 				} else if (percent < 50) {
-					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. We have not even reached the half way point");
+					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. We have not even reached the half way point. Perhaps you could help with some #tasks.");
 				} else if (percent < 75) {
-					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. We have barly reached the half way point.");
+					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. We have barly reached the half way point. Perhaps you could help with some #tasks.");
 				} else if (percent < 90) {
-					npc.say("We are almost there. But still, there is more work to be done before the " + behaviour.getProjectName() + " can start.");
+					npc.say("We are almost there. But still, there are still some #tasks left before the " + behaviour.getProjectName() + " can start.");
 				}
 			}
 		});
@@ -98,6 +116,7 @@ public class CollectingGroupQuestAdder {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
+						new NotCondition(new GroupQuestCompletedCondition(behaviour)),
 						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
 						new LevelLessThanCondition(5)
 				),
@@ -108,6 +127,7 @@ public class CollectingGroupQuestAdder {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
+						new NotCondition(new GroupQuestCompletedCondition(behaviour)),
 						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
 						new LevelGreaterThanCondition(4)
 				),
@@ -131,16 +151,28 @@ public class CollectingGroupQuestAdder {
 						npc.say(Grammar.enumerateCollection(entries) + ".");
 					}
 				});
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestCompletedCondition(behaviour.getQuestSlot()),
+						new NotCondition(new GroupQuestCompletedCondition(behaviour))
+				),
+				ConversationStates.ATTENDING,
+				"Thank you for your help! At the moment I won't bother you again.",
+				null);
+		
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new GroupQuestCompletedCondition(behaviour),
+				ConversationStates.ATTENDING,
+				"Thank to all the help, we got all material. We will finish construction in no time. Just check again soon.",
+				null);
 	}
 
 
 	private void addCollectingItems(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING,
-				"Thank you for your help! At the moment I won't bother you again.",
-				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
