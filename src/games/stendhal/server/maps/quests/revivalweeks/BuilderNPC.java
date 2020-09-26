@@ -13,6 +13,7 @@ package games.stendhal.server.maps.quests.revivalweeks;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -52,12 +53,33 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 	}
 
 	private void setupCollectingGroupQuest(Map<String, Integer> progress) {
-		Map<String, Integer> required = new HashMap<>();
+		Map<String, Integer> required = new LinkedHashMap<>();
 		Map<String, Integer> chunkSize = new HashMap<>();
 		Map<String, String> hints = new HashMap<>();
+
+		required.put("old scythe", 1);
+		chunkSize.put("old scythe", 1);
+		hints.put("old scythe", "I am sure, that Xoderos in Semos will sell you an old scythe.");
+		
+		required.put("axe", 1);
+		chunkSize.put("axe", 1);
+		hints.put("axe", "I am sure, that Xoderos in Semos will sell you an axe.");
+		
+		required.put("hammer", 1);
+		chunkSize.put("hammer", 1);
+		hints.put("hammer", "I am sure, that Xoderos in Semos will sell you a hammer.");
+		
+		required.put("knife", 1);
+		chunkSize.put("knife", 1);
+		hints.put("knife", "I am sure, that Xin Blanca in Semos will sell you a knife.");
+
 		required.put("wood", 100);
 		chunkSize.put("wood", 10);
 		hints.put("wood", "You can find wood in the forests.");
+		
+		required.put("beer", 10);
+		chunkSize.put("beer", 5);
+
 		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, hints, progress);
 		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
 	}
