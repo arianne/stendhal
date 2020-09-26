@@ -18,16 +18,22 @@ import java.util.Set;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.UpdateGroupQuestCommand;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.behaviour.impl.CollectingGroupQuestBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -35,11 +41,13 @@ import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.command.DBCommandQueue;
 
 public class CollectingGroupQuestAdder {
 
+	private static final int REPEAT_DELAY_MINUTES = 24 * 60;
 	private static final class IsRemainingItem implements ChatCondition {
 		private final CollectingGroupQuestBehaviour behaviour;
 
@@ -66,8 +74,8 @@ public class CollectingGroupQuestAdder {
 		public boolean fire(Player player, Sentence sentence, Entity npc) {
 			return behaviour.calculateRemainingItems().isEmpty();
 		}
-		
 	}
+
 
 	public void add(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		addGreeting(npc, behaviour);
@@ -130,7 +138,7 @@ public class CollectingGroupQuestAdder {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new NotCondition(new GroupQuestCompletedCondition(behaviour)),
-						new QuestNotCompletedCondition(behaviour.getQuestSlot()),
+						new TimePassedCondition(behaviour.getQuestSlot(), REPEAT_DELAY_MINUTES),
 						new LevelGreaterThanCondition(4)
 				),
 				ConversationStates.QUEST_OFFERED,
@@ -158,6 +166,7 @@ public class CollectingGroupQuestAdder {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestCompletedCondition(behaviour.getQuestSlot()),
+						new NotCondition(new TimePassedCondition(behaviour.getQuestSlot(), 1, REPEAT_DELAY_MINUTES)),
 						new NotCondition(new GroupQuestCompletedCondition(behaviour))
 				),
 				ConversationStates.ATTENDING,
@@ -225,15 +234,20 @@ public class CollectingGroupQuestAdder {
 						}
 						player.drop(item, stackSize);
 
-						player.setQuest(behaviour.getQuestSlot(), 0, "done");
 						UpdateGroupQuestCommand command = new UpdateGroupQuestCommand(behaviour.getQuestSlot(), item, player.getName(), stackSize);
 						DBCommandQueue.get().enqueue(command);
 						behaviour.addProgress(item, stackSize);
 
-						// TODO: reward players
-						final Item reward = SingletonRepository.getEntityManager().getItem("coupon");
-						player.equipOrPutOnGround(reward);
-						npc.say("Thank you for your help!");
+						MultipleActions action = new MultipleActions(
+							new SetQuestAction(behaviour.getQuestSlot(), 0, "done"),
+							new SetQuestToTimeStampAction(behaviour.getQuestSlot(), 1),
+							new IncrementQuestAction(behaviour.getQuestSlot(), 2, 1),
+							new EquipItemAction("coupon"),
+							new IncreaseKarmaAction(10),
+							new IncreaseXPAction(5000),
+							new SayTextAction("Thank you for your help!")
+						);
+						action.fire(player, sentence, npc);
 					}
 				});
 	}
