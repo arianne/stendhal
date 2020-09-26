@@ -76,9 +76,10 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		required.put("wood", 100);
 		chunkSize.put("wood", 10);
 		hints.put("wood", "You can find wood in the forests.");
-		
+
 		required.put("beer", 10);
 		chunkSize.put("beer", 5);
+		hints.put("beer", "You can probably find beer in any tavern.");
 
 		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, hints, progress);
 		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
@@ -96,7 +97,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, there.");
+				addGreeting("Hi, there. Please be careful, we are building up #Mine #Town #Revival #Weeks.");
 				addHelp("#Mine #Town #Revival #Weeks is an annual festival.");
 				addQuest("We have run short of supplies and may not be able to finish contruction in time! What a desaster.");
 				addJob("I am the construction manager responsible for setting up #Mine #Town #Revival #Weeks.");
