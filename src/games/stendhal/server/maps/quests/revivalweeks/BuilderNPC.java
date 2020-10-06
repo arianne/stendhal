@@ -72,6 +72,10 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		required.put("knife", 1);
 		chunkSize.put("knife", 1);
 		hints.put("knife", "I am sure, that Xin Blanca in Semos will sell you a knife.");
+		
+		required.put("lamp", 5);
+		chunkSize.put("lamp", 1);
+		hints.put("lamp", "You can probably buy a lamp from Jimbo in Deniran.");
 
 		required.put("wood", 100);
 		chunkSize.put("wood", 10);
