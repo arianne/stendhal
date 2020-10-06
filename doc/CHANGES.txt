@@ -2,6 +2,23 @@ Changelog
 ---------
 ---------
 
+1.36
+*world*
+- building Mine Town Revival Weeks as group quest
+- new item: lamp
+- new masks
+
+*chat*
+- New Discord Server: https://discord.gg/sw7kKgu
+
+*code*
+- batched database operations to improve performance
+
+*fixes*
+- fixed Bobbing for Apples
+- map fixes
+- do not put money into disabled money pouch
+
 1.35
 
 *world*
