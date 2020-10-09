@@ -74,6 +74,8 @@ public class CollectingGroupQuestBehaviour {
 				if (remaining.intValue() > 0) {
 					res.put(entry.getKey(), remaining);
 				}
+			} else {
+				res.put(entry.getKey(), entry.getValue());
 			}
 		}
 		return res;
