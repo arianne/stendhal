@@ -255,6 +255,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying(temperature=-1)</parameter>
       <parameter name="file" condition="stendhal.minetown">Level 0/semos/mountain_n2_mine_town_weeks.tmx</parameter>
+      <parameter name="file" condition="stendhal.minetownconstruction">Level 0/semos/mountain_n2_mine_town_weeks_construction.tmx</parameter>
     </attributes>
 
     <point-of-interest x="90" y="97">

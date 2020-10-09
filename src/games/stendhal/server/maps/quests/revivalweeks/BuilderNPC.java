@@ -112,8 +112,8 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		};
 
 		npc.setOutfit("body=0,dress=55,head=2,mouth=0,eyes=18,mask=0,hair=25,hat=1");
-		npc.setPosition(90, 111);
-		npc.setDirection(Direction.DOWN);
+		npc.setPosition(70, 118);
+		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		npc.setDescription("You see Klaus. He is in charge of construction.");
 		zone.add(npc);
