@@ -132,7 +132,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		npc.addReply(Arrays.asList("project"),
 				"I am responsible for setting up the #Mine #Town #Revival #Weeks. I have to get everything prepared for the festival to take place.",
 				null);
-
+		npc.addReply("celebrate", "There will be games and a lot to eat and drink. I even heard about a paper chase.");
 	}
 
 	@Override
