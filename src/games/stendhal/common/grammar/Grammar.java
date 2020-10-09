@@ -987,6 +987,20 @@ public class Grammar {
 	 * @return A nice String representation of the collection
 	 */
 	public static String enumerateCollection(final Collection<String> collection) {
+		return enumerateCollection(collection, "and");
+	}
+		/**
+		 * Helper function to nicely formulate an enumeration of a collection.
+		 * <p>
+		 * For example, for a collection containing the 3 elements x, y, z, returns the
+		 * string "x, y, and z".
+		 *
+		 * @param collection
+		 *            The collection whose elements should be enumerated
+		 * @param conjunction "and" or "or"
+		 * @return A nice String representation of the collection
+		 */
+	public static String enumerateCollection(final Collection<String> collection, String conjunction) {
 		if (collection == null) {
 			return "";
 		}
@@ -998,14 +1012,14 @@ public class Grammar {
 		} else if (elements.length == 1) {
 			ret = quoteHash(elements[0]);
 		} else if (elements.length == 2) {
-			ret = quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
+			ret = quoteHash(elements[0]) + " " + conjunction + " " + quoteHash(elements[1]);
 		} else {
 			final StringBuilder sb = new StringBuilder();
 
 			for(int i = 0; i < elements.length - 1; i++) {
 				sb.append(quoteHash(elements[i]) + ", ");
 			}
-			sb.append("and " + quoteHash(elements[elements.length - 1]));
+			sb.append(conjunction + " " + quoteHash(elements[elements.length - 1]));
 
 			ret = sb.toString();
 		}

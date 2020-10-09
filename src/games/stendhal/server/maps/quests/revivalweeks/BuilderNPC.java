@@ -81,7 +81,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("wood", 10);
 		hints.put("wood", "You can find wood in the forests.");
 
-		required.put("beer", 10);
+		required.put("beer", 20);
 		chunkSize.put("beer", 5);
 		hints.put("beer", "You can probably find beer in any tavern.");
 

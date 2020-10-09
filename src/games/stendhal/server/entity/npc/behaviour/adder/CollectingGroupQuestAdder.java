@@ -154,11 +154,11 @@ public class CollectingGroupQuestAdder {
 							int chunkSize = behaviour.getChunkSize(entry.getKey()).intValue();
 							String entr = Grammar.numberString(chunkSize) + " #'" + Grammar.plnoun(chunkSize, entry.getKey()) + "'";
 							if (chunkSize < entry.getValue().intValue()) {
-								entr = entr + " out of " + Grammar.numberString(entry.getValue().intValue()) + " still needed";
+								entr = entr + " out of the remaining " + Grammar.numberString(entry.getValue().intValue()) + " still needed";
 							}
 							entries.add(entr);
 						}
-						npc.say(Grammar.enumerateCollection(entries) + ".");
+						npc.say(Grammar.enumerateCollection(entries, "or") + ".");
 					}
 				});
 
@@ -170,7 +170,7 @@ public class CollectingGroupQuestAdder {
 						new NotCondition(new GroupQuestCompletedCondition(behaviour))
 				),
 				ConversationStates.ATTENDING,
-				"Thank you for your help! At the moment I won't bother you again.",
+				"Thank you for your help! At the moment I won't bother you again. Please check again tomorrow.",
 				null);
 		
 
