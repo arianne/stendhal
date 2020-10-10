@@ -188,7 +188,7 @@ public class CollectingGroupQuestAdder {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING,
+				ConversationStates.QUEST_OFFERED,
 				"Oh, thank you. Which items could you provide?",
 				null);
 
