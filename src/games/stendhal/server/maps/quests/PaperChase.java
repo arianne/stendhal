@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.events.TeleportListener;
@@ -53,15 +55,14 @@ import games.stendhal.server.util.QuestUtils;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest implements TeleportListener {
+	private static final Logger logger = Logger.getLogger(PaperChase.class);
 	private static final String QUEST_SLOT = "paper_chase_20[year]";
 
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
-	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
+	private static final List<String> NPC_IDLE = Arrays.asList();
 
-	private List<String> points = Arrays.asList("Nishiya", "Marcus", "Eheneumniranin", "Balduin", "Rachel", "Fritz",
-												"Alice Farmer", "Elisabeth", "Sue", "Old Mother Helena", "Hazel",
-												"Captain Brownbeard", "Jane", "Seremela", "Phalk", "Fidorea");
+	private List<String> points = Arrays.asList("Fiete", "Marcellus", "Marianne", "Ermenegilda", "Pierre", "Julia", "Christina", "Fidorea");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -71,42 +72,25 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 
 	private void setupGreetings() {
-		// Each greeting is said by the previous NPC to point to the NPC in the key.
-		greetings.put("Marcus", "My sheep knew that you were on the way to me. ");
-		greetings.put("Eheneumniranin", "Long time ago that someone visited me here. Nice that you found me. ");
-		greetings.put("Balduin", "Ahh, you found me while gathering sheaves of grain with my sickle. Great! ");
-		greetings.put("Rachel", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
-		greetings.put("Fritz", "Oh I love customers of Ados bank! They are so sweet! ");
-		greetings.put("Alice Farmer", "Smelling fish here, right? That's the spirit of the ocean! ");
-		greetings.put("Elisabeth", "Fantastic vacation so far and so much to explore! ");
-		greetings.put("Sue", "I love chocolate! You found me, maybe you can bring me a bar next time. ");
-		greetings.put("Old Mother Helena", "All of these flowers around give me a warm feeling. Hope you enjoy them too, thanks for visiting me! ");
-		greetings.put("Hazel", "Oh hello, so nice that you found me here. Come and join me again soon to let me cook some nice soup for you. ");
-		greetings.put("Captain Brownbeard", "The museum really is a lovely place to work at. Wonderful that you found me here. ");
-		greetings.put("Jane", "Yaaarrrr! My boatey will bring you over the sea, the sea! *sing* ");
-		greetings.put("Seremela", "It's hot here at the beach, hope you used some suntan cream. ");
-		greetings.put("Phalk", "Beautiful flowers in this city here! Unfortunately those elves don't appreciate them much. ");
-		greetings.put("Fidorea", "Young warrior, you did great things on your journey! Now return to finish it. You must be thirsty! ");
+		greetings.put("Fiete", "Nice! You finnally arrived! Birds told me ages ago.");
+		greetings.put("Marcellus", "Thanks for visiting me at my post.");
+		greetings.put("Marianne", "Oh, hello. Nice to meet you. I would like to ask you for some eggs from those scary chickens.");
+		greetings.put("Ermenegilda", "Oh, don't be scared. I can #heal you, if you like.");
+		greetings.put("Pierre", "Please consider to continue your journey in a lovely made bear constume.");
+		greetings.put("Julia", "If you like, take a rest from your journey and enjoy a book or two.");
+		greetings.put("Christina", "I really wished, I was able to provide some food for a traveler like yourself.");
 	}
 
 
 	private void setupTexts() {
-		texts.put("Marcus", "The next person you should find takes care of thieves and other criminals. "
-				  + "He works in a fort near Semos.");
-		texts.put("Eheneumniranin", "You'll have to find the half sickling elf on Ados farm, next. He is always busy while gathering grain.");
-		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
-		texts.put("Rachel", "The next lady to find works in a bank and can tell you all about her job.");
-		texts.put("Fritz", "Please go and find the old fisherman in Ados who can tell you great stories about fish. He also has a daughter named Caroline.");
-		texts.put("Alice Farmer", "The next person you'll have to seek out is on vacation in Ados, together with her whole family. She also knows everything about food and drinks.");
-		texts.put("Elisabeth", "Now you have to find a young girl who plays on a playground in Kirdneh and loves chocolate.");
-		texts.put("Sue", "Please go and find the nice gardener who owns some greenhouses with tomatoes inside near Kalavan.");
-		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy. She might ask you about them first, just try to put her off for now :)");
-		texts.put("Hazel", "I know a really nice lady who can help you next. She works in a museum and loves her job.");
-		texts.put("Captain Brownbeard", "Now you have to travel on a ferry and talk to an old salt who will lead you to the next person to meet up with.");
-		texts.put("Jane", "Harrr yarrr the next lady enjoys a sunbath together with her husband on Athor beach.");
-		texts.put("Seremela", "It's not long ago that the next person you have to find opened a beautiful flowershop. I've seen lots of long eared creatures walking around her, hidden in a city which lays in a forest.");
-		texts.put("Phalk", "The next person you have to find is an old warrior who guards the mines, north to Semos.");
-		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
+		texts.put("Fiete", "The next person you should find, is responsible for port operations south of Deniran.");
+		texts.put("Marcellus", "The next person guards the bridge east of here.");
+		texts.put("Marianne", "The next person you should find, is a little girl afraid of chicken.");
+		texts.put("Ermenegilda", "But I see, you are in a hurry to meet the next person on the list: An old scary lady at the market. But she is nice and heals people in need.");
+		texts.put("Pierre", "The next person is a well known costume maker.");
+		texts.put("Julia", "I am sure the next person would love it. She is a book work, but quite cute.");
+		texts.put("Christina", "If a book cannot grant you some rest, perhaps some bread will. The bakery will be the next stop on your jouney.");
+		texts.put("Fidorea", "The final person to talk to, is the one who started all this. And I am sure, that you will get plenty of food there.");
 	}
 
 	private String getFameType() {
@@ -147,7 +131,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			}
 
 			// send player to the next NPC and record it in quest state
-			raiser.say(greetings.get(next) + texts.get(next) + " Good luck!");
+			raiser.say(greetings.get(state) + " " + texts.get(next) + " Good luck!");
 			player.setQuest(QUEST_SLOT, 0, next);
 			player.addXP((idx + 1) * 10);
 		}
@@ -169,6 +153,9 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	private void addTaskToNPC(final int idx) {
 		final String state = points.get(idx);
 		final SpeakerNPC npc = npcs.get(state);
+		if (npc == null) {
+			logger.error("NPC " + state + " missing for paper chase");
+		}
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase", "paperchase"), new SystemPropertyCondition("stendhal.minetown"),
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 		if (NPC_IDLE.contains(state)) {
@@ -221,7 +208,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. Your journey starts in Semos Village, where you find a sheep loving and sheep selling man. "
+			"You must ask every person on the trail about the #paper #chase. Your journey starts south of Deniran at the port. The person, you are looking for, is responsible for port operations. "
 			+ "And just a warning: you may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
