@@ -75,7 +75,7 @@ public class PhotographerChatAction implements ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		String outfit = Integer.toString(player.getOutfit().getCode());
+		String outfit = player.getOutfit().getData(player.getOutfitColors());
 		int i = determinePhoto(player);
 
 		String url = generateUrl(outfit, i);
