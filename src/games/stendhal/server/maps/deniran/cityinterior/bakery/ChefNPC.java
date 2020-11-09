@@ -64,7 +64,7 @@ public class ChefNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello and welcome to Deniran Bakery.");
-				addJob("I run Denirn Bakery. ");
+				addJob("I run Deniran Bakery. ");
 				addHelp("Be careful. Don't get drawn into the war.");
 				addOffer("Christina handles sales, just talk to her.");
 
