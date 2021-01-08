@@ -18,6 +18,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.GhostModeAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -56,6 +57,7 @@ public class Observer extends ScriptImpl {
 			admin.unhide();
 		}
 		admin.teleport(SingletonRepository.getRPWorld().getZone("int_semos_house"), 3, 3, null, admin);
+		StendhalRPRuleProcessor.get().notifyOnlineStatus(!admin.isGhost(), admin);
 
 	}
 
