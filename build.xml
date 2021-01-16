@@ -1245,7 +1245,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-license"  value="srcjs/stendhal/license.js" />
 		<property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js build/js/inflate.js build/js/deserializer.js" />
 		<property name="js-files-config"   value="srcjs/stendhal/config.js build/js/build.js" />
-		<property name="js-files-lib"      value="srcjs/jsxgraph-util.js" />
+		<property name="js-files-lib1"     value="srcjs/jsxgraph-util.js" />
+		<property name="js-files-lib2"     value="" />
 		<property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/group.js srcjs/stendhal/data/map.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js" />
 		<property name="js-files-data2"    value="" />
 		<property name="js-files-entity1"  value="srcjs/stendhal/entity/entity.js srcjs/stendhal/entity/unknown.js srcjs/stendhal/entity/blood.js srcjs/stendhal/entity/corpse.js" />
@@ -1278,7 +1279,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg line="${js-files-license}" />
 			<arg line="${js-files-marauroa}" />
 			<arg line="${js-files-config}" />
-			<arg line="${js-files-lib}" />
+			<arg line="${js-files-lib1}" />
+			<arg line="${js-files-lib2}" />
 			<arg line="${js-files-data1}" />
 			<arg line="${js-files-data2}" />
 			<arg line="${js-files-entity1}" />
