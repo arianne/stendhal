@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,6 +33,10 @@ stendhal.ui.minimap = {
 	},
 
 	updateBasePosition: function() {
+		if (!marauroa.me)
+		{
+			return;
+		}
 		stendhal.ui.minimap.xOffset = 0;
 		stendhal.ui.minimap.yOffset = 0;
 

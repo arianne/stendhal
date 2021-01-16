@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -188,7 +188,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 * says a text
 	 */
 	say: function (text) {
-		if (marauroa.me.isInHearingRange(this)) {
+		if (marauroa.me && marauroa.me.isInHearingRange(this)) {
 			stendhal.ui.chatLog.addLine("normal", text);
 		}
 	},

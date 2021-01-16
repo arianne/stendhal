@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -54,6 +54,11 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 
 	function onDragStart(e) {
 		var myobject = object || marauroa.me;
+		if (!myobject[slot]) {
+			e.preventDefault();
+			return;
+		}
+
 		var slotNumber = e.target.id.slice(slot.length + suffix.length);
 		var item = myobject[slot].getByIndex(slotNumber);
 		if (item) {
