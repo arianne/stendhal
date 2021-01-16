@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -173,10 +173,21 @@ stendhal.main = {
 		chatinput.addEventListener("keypress", stendhal.ui.chatinput.onKeyPress);
 	},
 
+	devWarning: function() {
+		console.log("%c", "padding: 3em; background-image: url(/images/screenshot.jpg); color: #AF0");
+		console.log("%cIf someone told you, to copy and paste something here, it's a scam and will give them access to your account.", "color:#A00; background-color:#FFF");
+		console.log("If you are a developer and curious about Stendhal, have a look at https://stendhalgame.org/development/introduction.html to get the source code. And perhaps, contribute a feature or a bugfix. ");
+		console.log("");
+		console.log("");
+		window["eval"] = undefined;
+	},
+
 	/**
 	 * starts the Stendhal web client and connects to the Stendhal server.
 	 */
 	startup: function() {
+		stendhal.main.devWarning();
+
 		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
 
