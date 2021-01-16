@@ -153,6 +153,9 @@ stendhal.data.map = {
 			var source = deserializer.readString();
 			var firstgid = deserializer.readInt()
 
+			// Security Note: The following line triggers a false positive.
+			// This is not input validation. It just rewrites a path used by the
+			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
 			images.push(filename);
 			stendhal.data.map.firstgids.push(firstgid);
