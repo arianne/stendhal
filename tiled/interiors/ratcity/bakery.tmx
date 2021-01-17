@@ -16,43 +16,43 @@
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="58" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="59" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="63" name="warmer" tilewidth="32" tileheight="32">
+ <tileset firstgid="71" name="warmer" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
- <tileset firstgid="65" name="cabnets" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="cabnets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset firstgid="109" name="floor 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="117" name="floor 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
- <tileset firstgid="113" name="food prep" tilewidth="32" tileheight="32">
+ <tileset firstgid="121" name="food prep" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset firstgid="129" name="crates" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="crates" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/wooden_crates.png"/>
  </tileset>
- <tileset firstgid="135" name="wood" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="wood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
- <tileset firstgid="147" name="sack" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="sack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>
  </tileset>
- <tileset firstgid="149" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="157" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="158" name="chair" tilewidth="32" tileheight="32">
+ <tileset firstgid="166" name="chair" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNmYGBgHgI4D4gLsNDEqMnDYh4x6nCpQbeXFu4jBpPiPkrCmFz3jeJRPNgxAM87
-/ecABQAA
+   H4sIAAAAAAAAAGNmYGBgHgK4DIgrsNDEqCnDYh4x6nCpQbeXFu4jBpPiPkrCmFz3jeJRPNgxAP3W
+ULcABQAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="16">
@@ -63,14 +63,14 @@
  </layer>
  <layer name="2_object" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA2wJ0KNJxBHQbE3EHtB2dFY1DpgEStH4/sCsR8U1yKxg4lyMfHAYwia10KB
-eT5EmDcPj350uTYC5k0F4mlAPB2LOmxy2MyDgQVoehYSIdeKxzwQmAHEM4F4FpFyhMwDgflkylED
-oOcjdNAIxE1Q3AzEk4F4ClSuG4h70MSsaeBGWgEAdz62qgAFAAA=
+   H4sIAAAAAAAAAGNgoA1wJ0JNIBAnQXEwEAdB2clY1HpgEatH44cCcRgUtyKxo4lzMtEgYAia10OB
+eSFEmLcMj350uT4C5s0F4nlAPB+LOmxy2MyDgRVoelYSIdeLxzwQWADEC4F4EZFyhMwDgeVkylED
+oOcjdNAJxF1Q3A3Es4F4DlRuMhBPQRNzpoEbaQUArAw4iQAFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFhQCsRlQFwH5TcAcQmSfAOd3TMKBh5MBeJpQDydRLlRMApIBQA/GXUpAAUA
+   H4sIAAAAAAAAAGNgGFhQC8R1QNwG5XcAcQ2SfAfdXTQKBhrMBeJ5QDyfRLlRMApIBQCesncYAAUA
 AA==
   </data>
  </layer>
@@ -81,8 +81,8 @@ AA==
  </layer>
  <layer name="collision" width="20" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNiYGCwGgDMQKYeZIAuRolZpIChaB4lZtLbPEJxjk89Nn2D3TxyAD3THyl5GJ/6
-wYgBrVWHYgAFAAA=
+   H4sIAAAAAAAAAHNiYGBwGgDMQKYeZIAuRolZpIChaB4lZtLbPEJxjk89Nn2D3TxyAD3THyl5GJ/6
+wYgBjNfQrQAFAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="16">

@@ -49,10 +49,10 @@
  <tileset firstgid="352" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="368" name="spruce_xmas4" tilewidth="32" tileheight="32">
+ <tileset firstgid="376" name="spruce_xmas4" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce_xmas4.png"/>
  </tileset>
- <tileset firstgid="374" name="xmas_lights" tilewidth="32" tileheight="32">
+ <tileset firstgid="382" name="xmas_lights" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/xmas_lights.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -67,7 +67,7 @@ sh58+SeKgbj88QRq1jM8akA4BYhTgRgA0lVN4EAGAAA=
    H4sIAAAAAAAAAGNgQIBgRgYUgM6HAUmguCwQy0Hl1XCoCweKfwbSX4D4K5SPDNihfC5GCBaE0sI4
 zPsGxN/xiHFA9fExQrAolBbHYd4PIP5JhBix4BcQ/yZCDATMkdwkgMN9xAIzoH5TILZgpI55IGBJ
 RfehAxEqm0cv4I3kbh8q+OEfELszQmhPKA0C7GSazQjU58GISoMAB5p5VkC+NSPEbhs8drEwYqfR
-gS1Q3A5qp/0gjFsHoJscgdgNiJ2o4D5noBkuUP+6EmFeCVBNKY3C5QYQ3wTiW1Q08ykJagFjN8tO
+gS1Q3A5qp/0gjFsHoJscgdgNiJ2o4D5noBkuUP+6EmFeDVBNLY3C5QYQ3wTiW1Q08ykJagH6WWvQ
 QAYAAA==
   </data>
  </layer>
@@ -79,13 +79,13 @@ GoJpQAYAAA==
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLngDxD/JUIMHfAw0sY9o2AUjALSQQEwPxZSMU8WAc0qHs3jRAEAoDCa+kAG
+   H4sIAAAAAAAAAGNgGLngDxD/JUIMHfAw0sY9o2AUjALSQQUwP1ZSMU9WAc2qHs3jRAEARz7hMUAG
 AAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMgqELqhkZGGoYqWdePdCsBiqa1wQ0q4WK5g0mAAA4EVkTQAYAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMgqELmhkZGFoYqWdeO9CsDiqa1wU0q4eK5g0mAACByvcOQAYAAA==
   </data>
  </layer>
  <layer name="objects" width="20" height="20">

@@ -43,31 +43,31 @@
  <tileset firstgid="96" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="106" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="112" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="122" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="136" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="123" name="weaponrack" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="weaponrack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="141" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/longbow.png"/>
  </tileset>
- <tileset firstgid="142" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="156" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/composite_bow.png"/>
  </tileset>
- <tileset firstgid="143" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="157" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/wooden_bow.png"/>
  </tileset>
- <tileset firstgid="144" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="158" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/golden_arrow.png"/>
  </tileset>
- <tileset firstgid="145" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="159" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/power_arrow.png"/>
  </tileset>
- <tileset firstgid="146" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="160" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/steel_arrow.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -78,34 +78,34 @@ YAkAAA==
  </layer>
  <layer name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UwQqCUBBF5xvKNqVkm0yzVQn1bUELDVrUR3sDBRm9z1AHWnjhbN7McDZvJhCR
+   H4sIAAAAAAAAAO2UwQqCUBBF5xvKNqVkm0yzVQn1iUELDVrU13oDBRm9z1AHWnjhbN7McDZvJhCR
 JcEHgdhkBU4gVqTAc9Q1Q7wRuFbU2Te83/qNzLP3X7062nsHD5ArCmPvE7zAW/Ex9k6d2ftf3qH7
 MsZ7BIcOzobeDVh0sCVzU3hD4bd715hjPa67z7wX6b/JWdXb18fuvsV/ZbHek9nb9rL9tCAR935a
-sgYlyHo0ImAJAAA=
+sgYlxZpcumAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAyEicAyRJiDDZhDMTlAB4hFyNSLDJxJVK9Ggb2WRKrrBeIaIK4F4n4q2GuP
-hAmBViBuA+I+OtuLDiixlxIwFP07Gs70sdcRiskBA2mvApl6nZDYxJZdMGBCpp3o9gYDcSQQRxHA
-0UjuJKQepDaIgL30BOj2EuvfQCLVRzNgBzB7SY3bUUAcAACTKOU2YAkAAA==
+   H4sIAAAAAAAAAGNgIAyEicAyRJiDDZhDMTlAB4hFyNSLDJxJVK9Ggb2WRKqbDcRdQNwNxHOpYK89
+EiYEJgPxFCCeQ2d70QEl9lIChqJ/R8OZPvY6QjE5YCDtVSBTrxMSm9iyCwZMyLQT3d5gII4E4igC
+OBrJnYTUg9QGEbCXngDdXmL9G0ik+mgG7ABmL6lxOwqIAwDxnfg8YAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAAzKMYHJgDxRCCeREDdKBgFo2AUjILhCeKRMD4xdDls7FEwCoYzAAAS8KDi
+   H4sIAAAAAAAAAGNggAAzKMYH5gHxfCBeQEDdKBgFo2AUjILhCeKRMD4xdDls7FEwCoYzAACwj0Aa
 YAkAAA==
   </data>
  </layer>
  <layer name="objects" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAV5A2Bn8gDYOQpGAa3AaHoeBaOAMBjIfDKaR+kPAClfB1ZgCQAA
+   H4sIAAAAAAAAAGNgGAUlA2Bn8gDYOQpGAa3AaHoeBaOAMBjIfDKaR+kPAEv3Ra5gCQAA
   </data>
  </layer>
  <layer name="collision" width="30" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtiYGCoGoEYHQyU3cPdv4TsxQdG7R369uKzeyDS86i95NtNqp6hbi8tASF7aeFn
-fPbS2t+UxslQxQC7/KTaYAkAAA==
+   H4sIAAAAAAAAAOtgYGDoGIEYHQyU3cPdv4TsxQdG7R369uKzeyDS86i95NtNqp6hbi8tASF7aeFn
+fPbS2t+UxslQxQCp9aFLYAkAAA==
   </data>
  </layer>
  <layer name="protection" width="30" height="20">

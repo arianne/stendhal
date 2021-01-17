@@ -79,7 +79,7 @@
  <tileset firstgid="282" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="298" name="square" tilewidth="32" tileheight="32">
+ <tileset firstgid="306" name="square" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -93,12 +93,12 @@ QVuyl1nbgS5kKTnGHm+/B31BL1btB3Gvv6ZgCQAA
  </layer>
  <layer name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWTR0oEQRSGu4wYNma9ggcwHsKFiIirGXHpQly4MitiDmA4iHGjzqinEFEwHsNv
-4IHVQ1VNVzHhh4838+r1+7oXFUX/eRH0tKgoaoU2Fe+bZnOZgrT8Tms9vebnVcjlTWo7vg7oVPG+
-PmvKCMxJHYcZx6yed6ld+LqhR8X7rqRgFOalTsIsjCV0hyZl6Zu8HxXyfgU6Ph3eBViEJYf3J9D7
-7fAuwwqsOryh+TX0pi2zEwl3XsAlXAW9kX965c5cww3c5vVLkQfIWM7u4N5z30HCuSd4tpxl4dHD
-uQbrsOHxTDFyBJtwXAHvXhm9p5pX/96TMnm3YBt2HF7FHamCaqgpcF9qOa+DesvsudRdOIR9+X9m
-2NXA843QBM0FvD6zoemDfhgozXprBmEIhou89w9CXI+EYAkAAA==
+   H4sIAAAAAAAAAMWTx0oEQRCGp40YLmZ9DQ/Gh/AgIuJpVzx6EA+ezIqYAxgexHhRd9WnEFEwPobf
+QoE9S3fvdLPhh4/ara6pb+bQUfSfF0FPi4qiVmhT8b5pNpcpSMvvtNbTa35ehVzepLbj64BOFe/r
+s6aMwJzUcZhxzOp5l9qFrxt6VLzvSgpGYV7qJMzCWEJ3aFKWvsn7USHvV6Dj0+FdgEVYcnh/Ar3f
+Du8yrMCqwxuaX0Nv2jI7kXDnBVzCVdAb+adX7sw13MBtXr8UeYCM5ewO7j33HSSce4Jny1kWHj2c
+a7AOGx7PFCNHsAnHFfDuldF7qnn17z0pk3cLtmHH4VXckSqohpoC96WW8zqot8yeS92FQ9iX/2eG
+XQ083whN0FzA6zMbmj7oh4HSrLdmEIZguMh7/wDcpb40YAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="20">

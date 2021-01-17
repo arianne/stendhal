@@ -55,43 +55,43 @@
  <tileset firstgid="183" name="banner.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/banner.png"/>
  </tileset>
- <tileset firstgid="192" name="banner_rotated_gm.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="195" name="banner_rotated_gm.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/banner_rotated_gm.png"/>
  </tileset>
- <tileset firstgid="198" name="tiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="201" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
  </tileset>
- <tileset firstgid="204" name="towels" tilewidth="32" tileheight="32">
+ <tileset firstgid="207" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset firstgid="228" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="231" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png"/>
  </tileset>
  <layer name="0_floor" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNzgGBXwqFmkmTHY3DVq1tA3CxughlkA4UnhUMAEAAA=
+   H4sIAAAAAAAAAGNgGNzgJBXwqFmkmTHY3DVq1tA3CxughlkAs/6EEsAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3Ty07CQBTG8QO6Ed1WRNwqyPNAgglJNxg2JL6ObrRy8QJyEdAnApS38E9sw/TQ
+   H4sIAAAAAAAAAK3Ty07CQBTG8QO6Ed1WRNwqyPNAgglJNxg2JL6ObrRy8QJyEdBXApSH8E9sw/TQ
 UNL2JL/NzJkvPZPpiYikE3CMQ1zgLIY8DtysU3Txgle8YY6F+Mtb072WkWXjHT308YElflSWt6Z7
 a0ZWAwMMMcIYv1ipLG9N99Zx62bd4RMTTDGT3aV7m+q+HkPO71NlVPCEToTzz7K5+ypu4ET8FnMe
 b8ZWhJy2/M9jGVm26vkKyTD3Hdl+E2Z94xJXAQruvln6Tegq4jpASfU9yPabiFLrnHvx/0PnyMaQ
-c7MySCXgCH/eK+4NwAQAAA==
+c7MySCXgCH8MFjL+wAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="19" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONhYGBgYqAMgPRzAzELEMtQaJY0EDNDzRID4qlAPB2IvYnU7w1VD9InCjVrB1Ru
-GpluAumLQXIXtQA1zMpBMgsUXnMpMAsWXiFAHArEs6lgVgQQR1Jgzhwks2B+pATAzCqj0JwzDLRN
-EzMpMAOUJpDDawYF5iGHvRQQi1OAJaFmcQExIx6MDPCp4wRiADvaz/vABAAA
+GpluAumLQXIXtQA1zMpBMgsUXnMpMAsWXiFAHArEs6lgVgQQR1Jgzhwks2B+pATAzCqj0JzzDLRN
+EzMpMAOUJpDDawYF5iGHvRQQi1OAJaFmcQExIx6MDPCp4wRiAPcuXjfABAAA
   </data>
  </layer>
  <layer name="3_roof" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAWeDMQBYtR5EWkWserIBUk4xF8B8WsixGAgFojTqOSmPiDOo5JZuVQyZyQB
-XGmCVIAvTZgDsQUWbIlD/WiaIB0AAO0a4aHABAAA
+   H4sIAAAAAAAAAGNgQAWeDMQBYtR5EWkWserIBUk4xN8C8TsixGAgFojTqOSmPiDOo5JZuVQyZyQB
+XGmCVIAvTZgDsQUWbIlD/WiaIB0AANnD3tzABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="19" height="16">
@@ -99,7 +99,7 @@ XGmCVIAvTZgDsQUWbIlD/WiaIB0AAO0a4aHABAAA
    <property name="4_roof_add" value=""/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGP7gAJXMOUIlc0bBKMAFDlHJnMNUMmewAwDLj+t/wAQAAA==
+   H4sIAAAAAAAAAGNgGP7gMJXMOU4lc0bBKMAFjlLJnGNUMmewAwD6V01ZwAQAAA==
   </data>
  </layer>
  <layer name="objects" width="19" height="16">

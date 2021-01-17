@@ -1,80 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/ground/brown.png" width="160" height="32"/>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset firstgid="6" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="16" columns="2">
-  <image source="../../tileset/building/wall/int_wall_pale.png" width="64" height="256"/>
+ <tileset firstgid="6" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
- <tileset firstgid="22" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="20" columns="2">
-  <image source="../../tileset/building/wall/int_wall_purple.png" width="64" height="320"/>
+ <tileset firstgid="22" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
- <tileset firstgid="42" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="36" columns="9">
-  <image source="../../tileset/building/entrance/pale_red_ns.png" width="288" height="128"/>
+ <tileset firstgid="42" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
- <tileset firstgid="78" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/item/chest/small_2.png" width="32" height="32"/>
+ <tileset firstgid="78" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/chest/small_2.png"/>
  </tileset>
- <tileset firstgid="79" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="../../tileset/furniture/bed/side_on.png" width="64" height="32"/>
+ <tileset firstgid="79" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset firstgid="81" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/furniture/chair/stool.png" width="32" height="32"/>
+ <tileset firstgid="81" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset firstgid="82" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="6" columns="3">
-  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" width="96" height="64"/>
+ <tileset firstgid="82" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="88" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/item/pot/pot_burgundy.png" width="32" height="32"/>
+ <tileset firstgid="88" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/pot_burgundy.png"/>
  </tileset>
- <tileset firstgid="89" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="2" columns="1">
-  <image source="../../tileset/plant/indoor/pot_plant_sprout.png" width="32" height="64"/>
+ <tileset firstgid="89" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
  </tileset>
- <tileset firstgid="91" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/building/decoration/webs.png" width="64" height="96"/>
+ <tileset firstgid="91" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/webs.png"/>
  </tileset>
- <tileset firstgid="97" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="16" columns="8">
-  <image source="../../tileset/logic/portal.png" width="256" height="64"/>
+ <tileset firstgid="97" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="113" name="Unbenannt" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ <tileset firstgid="121" name="Unbenannt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="114" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
-  <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
+ <tileset firstgid="122" name="logic/creature/spider" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/spider.png"/>
  </tileset>
- <layer id="1" name="0_floor" width="15" height="15">
+ <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNhYGBgGcWjeBQPGAYAoIGW84QDAAA=
+   H4sIAAAAAAAAAGNhYGBgGcWjeBQPGAYAoIGW84QDAAA=
   </data>
  </layer>
- <layer id="2" name="1_terrain" width="15" height="15">
+ <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAChNkYGBgJwMLADEnECsCsSwJWAGIOaB6pRlIA1Kjekf10livPBDLoGEtINYGYh0scnJQvfxAzIYFGwOxCRCb4pDnA2IAQMKcfIQDAAA=
+   H4sIAAAAAAAAABNkYGBgJwMLADEnECsCsSwJWAGIOaB6pRlIA1Kjekf10livPBDLoGEtINYGYh0s
+cnJQvfxAzIYFGwOxCRCb4pDnA2IAQMKcfIQDAAA=
   </data>
  </layer>
- <layer id="3" name="2_object" width="15" height="15">
+ <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgoB2IhNLBaHx04AfFyCAKSoeh8YcSiBgAOwMHmX3+QBxAptmU6B1KAADmniHzhAMAAA==
+   H4sIAAAAAAAAAGNgoB2IhNLBaHx04AfFyCAKSoeh8YcSiBgAOwMHmX3+QBxAptmU6B1KAADmniHz
+hAMAAA==
   </data>
  </layer>
- <layer id="4" name="3_roof" width="15" height="15">
+ <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgIA9E00jtcAWxA+2AAQIgf8eRqTeemg6hMcDlVmL8AACbvNPnhAMAAA==
+   H4sIAAAAAAAAAGNgIA9E00jtcAWxA+2AAQIgf8eRqTeemg6hMcDlVmL8AACbvNPnhAMAAA==
   </data>
  </layer>
- <layer id="5" name="objects" width="15" height="15">
+ <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWUgOKBdgAUFA20A2gMBtp/qTQ0GwBviPHbhAMAAA==
+   H4sIAAAAAAAAAGNgGAWUgOqBdgAUVA20A2gMBtp/qTQ0GwB/VzhPhAMAAA==
   </data>
  </layer>
- <layer id="6" name="collision" width="15" height="15" visible="0" opacity="0.49">
+ <layer name="collision" width="15" height="15" visible="0" opacity="0.49">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACitkYGAoHEDMgMZmQBJD52PTSywYCL1D0c3U1kuKGdTUSwogNZ1SGwMAd5M1A4QDAAA=
+   H4sIAAAAAAAAAKtkYGCoHEDMgMZmQBJD52PTSywYCL1D0c3U1kuKGdTUSwogNZ1SGwMA60twB4QD
+AAA=
   </data>
  </layer>
- <layer id="7" name="protection" width="15" height="15" visible="0">
+ <layer name="protection" width="15" height="15" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjYBQMJAAA7Ly31YQDAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQMJAAA7Ly31YQDAAA=
   </data>
  </layer>
 </map>

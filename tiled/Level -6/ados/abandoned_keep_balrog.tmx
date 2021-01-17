@@ -16,24 +16,24 @@
  <tileset firstgid="17" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset firstgid="31" name="necro" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="necro" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset firstgid="47" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VsQ2AMAxEUReMxAopKViCGoZgESaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAe
+   H4sIAAAAAAAAAO3VsQ2AMAxEURfMxAopKViCGoZgEQaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAe
 hEM1tNioBo2tbUDYrQ1IW9pgYXMbLO1ag4ddavC03xqWDv4afvjhh/8Bf+vg7/T8AM+G3PZsKNke
-DTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwGwwAWTABAAAA==
+DTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwFnF2/8ABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BK7mDXkWilFDp3cF1zXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0O
+   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BO7mDXkWilFDp3cFtzXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0O
 di94PwAbpDayQWsjGqy2pQFlaxrQtqTBy+Y0eNtPDROtqeBnYy74tS788MP/nv/m/2ehrRX8jbYX
-vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wSzj7cLABAAAA==
+vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wRAeDW8ABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -48,7 +48,7 @@ vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wSzj7cLABAAAA==
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OAQkAQAgEQSP4Jewf0RIHjzATYNkquKl/DwBxE+69cA8A4LIFBKKXZwAQAAA=
+   H4sIAAAAAAAAAO3OAQkAQAgEQSP4Leyf0BIHjzATYNkquKl/DwBxE+69cA8A4LIF9QpAewAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

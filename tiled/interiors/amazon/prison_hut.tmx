@@ -22,13 +22,13 @@
  <tileset firstgid="104" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="120" name="plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="128" name="plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset firstgid="122" name="plants 1" tilewidth="32" tileheight="32">
+ <tileset firstgid="130" name="plants 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset firstgid="125" name="shelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="133" name="shelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -38,19 +38,19 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZYC4kgECGoG4BoibgLgaSoP4qUCcBlUD
-UiuNpp9UQG391SToraGB/ZTqr0TCuACyGmrbX0OC3moa2E+pfnzhhg7Qw48LiCWxYDcc4iDMDdXP
-C8R8OLAXHjkQFgBiAEfqye8ABAAA
+   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZYC4kQECOoG4BYi7gLgZSoP4qUCcBlUD
+UiuNpp9UQG39zSTobaGB/ZTqb0TCuACyGmrb30KC3mYa2E+pfnzhhg7Qw48LiCWxYDcc4iDMDdXP
+C8R8OLAXHjkQFgBiALwmXRcABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6ogNJ1ULoejcamdhSMglGAHbhCaXcy9XtCaW8C6gCH8FooAAQAAA==
+   H4sIAAAAAAAAAGNgoA5ogNJtULodjcamdhSMglGAHbhCaXcy9XtCaW8C6gAhaJeXAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXDAVQgYUrUjFRASpgMp/ADAI8KUSgABAAA
+   H4sIAAAAAAAAAGNgGAXDATQgYUrUjFTQQCO1gx0AAGCW5t8ABAAA
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

@@ -28,10 +28,10 @@
  <tileset firstgid="115" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="131" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="132" name="rods" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="rods" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/fishrods.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -41,9 +41,9 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYD4r1GYgDomj6SQXo+mF2o9vfA8R9
-QNwLxf00sl+fAbv9xOrHBayA2BqIbaC0Ew79MP/rUdl+YvXjin/k8AfRQy38idEvBcTiWLAzELsA
-sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAWMCyrgAEAAA=
+   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYD4r1GYgDomj6SQXo+mF2o9s/BYin
+AfFUKJ5OI/v1GbDbT6x+XMAKiK2B2AZKO+HQD/O/HpXtJ1Y/rvhHDn8QPdTCnxj9UkAsjgU7A7EL
+ELtikZOE6ucCYkYc2AeIfYHYD4c8JxADAMu6n5IABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -53,8 +53,8 @@ sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAWMCyrgAEAAA=
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNygBUq3QjGpoAOIu4C4E4q7qeQuegFDIDYCYmMobUln+5HDnxyAHP4geqiF
-/3AHABazH0oABAAA
+   H4sIAAAAAAAAAGNgGNygB0r3QjGpYAIQTwLiiVA8mUruohcwBGIjIDaG0pZ0th85/MkByOEPooda
++A93AAD8S1S0AAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="32">
@@ -64,7 +64,7 @@ sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAWMCyrgAEAAA=
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtmYGBoHmSYGECOHnz6cZmFS55e9hOrnxR76Gk/Ke4ajuFPjv2kxBWlGADDNn2d
+   H4sIAAAAAAAAAOtmYGDoHmSYGECOHnz6cZmFS55e9hOrnxR76Gk/Ke4ajuFPjv2kxBWlGAAzXnok
 AAQAAA==
   </data>
  </layer>

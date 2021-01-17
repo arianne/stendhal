@@ -34,59 +34,59 @@
  <tileset firstgid="91" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="107" name="table 33" tilewidth="32" tileheight="32">
+ <tileset firstgid="115" name="table 33" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset firstgid="110" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="118" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
- <tileset firstgid="116" name="ground" tilewidth="32" tileheight="32">
+ <tileset firstgid="124" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/square_paving.png"/>
  </tileset>
- <tileset firstgid="117" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="125" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="126" name="pictures" tilewidth="32" tileheight="32">
+ <tileset firstgid="134" name="pictures" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
- <tileset firstgid="142" name="armchair" tilewidth="32" tileheight="32">
+ <tileset firstgid="150" name="armchair" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
- <tileset firstgid="154" name="fancy gate" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="fancy gate" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
- <tileset firstgid="160" name="brown rug" tilewidth="32" tileheight="32">
+ <tileset firstgid="168" name="brown rug" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
- <tileset firstgid="172" name="potted plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="180" name="potted plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
- <tileset firstgid="178" name="double_white_pink" tilewidth="32" tileheight="32">
+ <tileset firstgid="186" name="double_white_pink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_white_pink.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANNhYGDQoTEuIVINMsYlji5PSB299BPjJ3rrJyX8COHFQLwEipeSoX8ZEC+H4hUj
-UP9KIF4FxavJ0E8rDACiq+ZrAAQAAA==
+   H4sIAAAAAAAAANNhYGDQoTGuIVINMsYlji5PSB299BPjJ3rrJyX8COHVQLwGiteSoX8dEK+H4g0j
+UP9GIN4ExZvJ0E8rDADSq97UAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONlYGDgJxMLALEgEAsBsRoaFsYhjiwvAdWvwYAJFIFYCcrOBuIcKM6Fiqlj0a+P
-xRxcAJt+UgCyfjEgVkXDciToxxZOSri1YnW/Iw5MqX5ZHH4hVr86A/bwxaa/FIjL8ejfAsRb8eiv
-AOIqPPp3AfFuCtx/AIgP0sD/2NIPDIvjkBeH6pcEYikysQwQAwBEsjlIAAQAAA==
+   H4sIAAAAAAAAAONlYGDgJxMLALEgEAsBsRoaFsYhjiwvAdWvwYAJFIFYCcouBuISKC6Fiqlj0a+P
+xRxcAJt+UgCyfjEgVkXDciToxxZOSri1YnW/Iw5MqX5ZHH4hVr86A/bwxaa/Fojr8ejfA8R78ehv
+AOImPPoPAfFhCtx/AohP0sD/2NIPDIvjkBeH6pcEYikysQwQAwCWFOP4AAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAA+BvyghYA8PrAGiFuJVOuOxl8PxBugNDoQJcI8byD2AWJfIPZDEhch0j3+
-QBwAxIFAHESkHmQQDMQhQBwKxGE41DQisRvQ5MKBOAKII4E4Cof+PCDOR8IFJLqxEIiLkHAxmvxc
-IJ6PRNMCMAOxFQX6eZDYk4B4MhF6cKWfaUA8nYBeYtMPCHjiYFMTSJOhBgBokDG2AAQAAA==
+   H4sIAAAAAAAAAGNgQAA+Bvygh4A8PrAFiHuJVOuOxt8OxDugNDoQJcI8byD2AWJfIPZDEhch0j3+
+QBwAxIFAHESkHmQQDMQhQBwKxGE41HQisTvQ5MKBOAKII4E4Cof+MiAuR8IVJLqxEoirkHA1mvxS
+IF6ORNMCMAOxFQX6eZDYs4B4NhF6cKWfeUA8n4BeYtMPCHjiYFMTSJOhBgC6io/PAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD1Yi0aPAvqDWUA8B4keCqCfAr19WMT2APFeMs3zwMEe6gAARSAppwAEAAA=
+   H4sIAAAAAAAAAGNgoD3YikaPAvqDRUC8BIkeCmA6BXqnYRE7AsRHyTTPAwd7qAMAKzpOlQAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

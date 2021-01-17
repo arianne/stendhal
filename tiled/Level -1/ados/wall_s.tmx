@@ -22,10 +22,10 @@
  <tileset firstgid="79" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>
  </tileset>
- <tileset firstgid="85" name="giantrat" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="giantrat" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_animal.png"/>
  </tileset>
- <tileset firstgid="88" name="animals" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="animals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -62,9 +62,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bMQrAMAgF0ByxQ8nS+9+jcyEWpJWAvDeKg9sXxDEAAAAAAAAAAACAXWay/yqZ
-AgD4Qj5DH8fuAQCAMnIeAPqT9/ztDOrZGy8AUOttD4zyHAAAAABW/AYAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA0w1ohPo1AAABAA==
+   H4sIAAAAAAAAAO3bMQrAMAgF0ByxQyFL73+OzoVYkFYC8t4oDm5fEMcAAAAAAAAAAAAAdpnJ/qtk
+CgDgC/kMfRy7BwAAysh5AOhP3vO3M6hnb7wAQK23PTDKcwAAAABY8RsAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATzfCozN7AAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.54">

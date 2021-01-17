@@ -55,16 +55,16 @@
  <tileset firstgid="178" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="194" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="202" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="204" name="../../tileset/logic/creature/sheep.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="218" name="../../tileset/logic/creature/sheep.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
- <tileset firstgid="205" name="../../tileset/logic/item/sheepfood.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="219" name="../../tileset/logic/item/sheepfood.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset firstgid="206" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="220" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -88,14 +88,14 @@ JuQ+UsBGCvQSC2D5oweN7kWjsQF6uI9aAACtqqMlQAYAAA==
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBpg2wDbf3SA7ScFDCW30hoMxbA4A6XPUsk8dHPOYFVFfXuGEzhEgD9YAL3L
-SQCIoHA4QAYAAA==
+   H4sIAAAAAAAAAGNgGBpg2wDbf3aA7ScFDCW30hoMxbC4BaVvU8k8dHNuYVVFfXuGEzhFgD9YAL3L
+SQD0ak4yQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvHwMBwbghgSgEl5p/DQlPDPFLcR2oY0MMsSgAtzcJmJrXTHzXCkJB5uOwg1X3E
-pEdy3EfITkLuG6gygV7lCwMRNLFmkRIm1AhbYjEAyOv72UAGAAA=
+   H4sIAAAAAAAAALvDwMBwZwhgSgEl5t/BQlPDPFLcR2oY0MMsSgAtzcJmJrXTHzXCkJB5uOwg1X3E
+pEdy3EfITkLuG6gygV7lCwMRNLFmkRIm1AhbYjEAiQPYMUAGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

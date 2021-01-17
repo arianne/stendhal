@@ -49,10 +49,10 @@
  <tileset firstgid="113" name="logic/portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="129" name="double_red" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="double_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_red.png"/>
  </tileset>
- <tileset firstgid="137" name="item/firewood" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="item/firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
@@ -63,19 +63,19 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD7QBWI9ItV2o2F9IDYgQS+twEQK9E4B4kYgbiJTfzMQt5CptxWI28jUSytg
-CsSGQGxEpn5jIDaBmjMKsKf7LCDOJkIPtnSdB8T5RNg7hQg1dkBsD8QORKhFB45A7ATEznjUAACT
-MaFPsAQAAA==
+   H4sIAAAAAAAAAGNgoD7QBWI9ItVORsP6QGxAgl5agZkU6J0DxJ1A3EWm/m4g7iFTby8Q95Gpl1bA
+FIgNgdiITP3GQGwCNWcUYE/3WUCcTYQebOk6D4jzibB3DhFq7IDYHogdiFCLDhyB2AmInfGoAQCW
+hYMLsAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6YiIRJ1TcFCeMCXljE8KmnFFjR0OyRCiwH2gGjYMgDAHptTGiwBAAA
+   H4sIAAAAAAAAAGNgoA6YiYRJ1TcHCeMCXljE8KmnFFjR0OyRCiwH2gGjYMgDAEfVMwiwBAAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoAzEAnEcEr+bBL3xQJxAof3DEbQDccdAO2IUjIJBCADarzoOsAQAAA==
+   H4sIAAAAAAAAAGNgoAzEAnEcEn8yCXrjgTiBQvuHI+gH4gkD7YhRMAoGIQAA9MJkvbAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">

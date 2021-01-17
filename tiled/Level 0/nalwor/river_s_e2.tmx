@@ -34,7 +34,7 @@
  <tileset firstgid="216" name="animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="246" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="248" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -84,13 +84,13 @@ ccI2XAAAAQA=
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RQYrDMBBEUd//wF4PsxoIxJkklqqlfg8+eGl1HQcAAAAAAAAAAAAAAAAAAAAA
+   H4sIAAAAAAAAAO3RQYrDMBBEUd//xF4OsxoIxJkklqqlfg8+eGl1HQcAAAAAAAAAAAAAAAAAAAAA
 kHCmf4CY87B/R+dD7O9xc/v3cbW9/ff1anf77+u/29t/L+/sbv/92L+vT7a3/x4+3d7+6/tme/uv
 69vd7b+uu7a3/3ru3N7+67F/b/bvzf593b29/dcxYnv7r2HU9vavbeTu9q9pxub2r2n29rvvfz75
 riSxuf3z0rvbPye9edf9q7w5vXmlW4z0bP/ku9N7V7nDDFf7z75Bemf75+6Q3rjr/r9Sd0jvav8/
 M26R3tH+1969RXoX+98rfeeqdZG+c9W6SN+5ah2kb1y5laRvtWPVpe+ze1Wl79KlatL36FYV6Tt0
 LS39/u4lpd+u+dLv1Zj90+/Q3P3T/63c/ul/1vz90/+pzP7p/5MkSZIkSZIkSZIkSZIkSZIkSZIk
-SZIkSZIkSZIkSZIkSVqtH3pkDOgAAAEA
+SZIkSZIkSZIkSZIkSVqtH6XMiAkAAAEA
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

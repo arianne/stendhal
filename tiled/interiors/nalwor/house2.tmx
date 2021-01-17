@@ -64,10 +64,10 @@
  <tileset firstgid="161" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="171" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="177" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="187" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="201" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -97,13 +97,13 @@ n/DldkVaO/ZpBJa5O7iHB89z8nlHeILnmvPiCr1vpSbf24NL2K9xDxPdL86qSlTyLRTmTNgh6/t/
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGH5gCQ72KKAuGA1b2gBqhys1zKOmm2iRbkZqWlw/wPYDANguk3FABgAA
+   H4sIAAAAAAAAAGNgGH5gCQ72KKAuGA1b2gBqhys1zKOmm2iRbkZqWtw6wPYDANU0/9tABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvNwMCwewhgdIAsjs7GJY/PPFIBvdxH7fAbaeahm4suhk0NPdILITMJqSPVfdQ2
-j1i7cJlJqh30zr+UmIUrPZNiNynpnFp5hhwMALd/3QZABgAA
+   H4sIAAAAAAAAADvJwMBwcghgdIAsjs7GJY/PPFIBvdxH7fAbaeahm4suhk0NPdILITMJqSPVfdQ2
+j1i7cJlJqh30zr+UmIUrPZNiNynpnFp5hhwMAMnP0ApABgAA
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

@@ -79,10 +79,10 @@
  <tileset firstgid="144" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="154" name="grey table" tilewidth="32" tileheight="32">
+ <tileset firstgid="160" name="grey table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset firstgid="163" name="red_drapes" tilewidth="32" tileheight="32">
+ <tileset firstgid="169" name="red_drapes" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/red_drapes.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -92,17 +92,17 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ROw5AQBSF4fGmF3SIFQjRkbAArM8zduoUVyJTKMYUElN8zbnJ31yfMRZIEkIE
+   H4sIAAAAAAAAAO3ROw5AQBSF4fGmF3SIFQjRkbAALNEztukUVyJTKMYUElN8zbnJ31yfMRZIEkIE
 NZQ3PQwwcvvTrYGYegVooAsyoOJ6JliCbNVTPUm9CWaySOitsJH9B73L8bH/OuAK8rheC/lLHfUS
-SCXJ4AQf+bjFQAYAAA==
+SCXJ4AQlyYgBQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQABRIF4MxB5Q7AnlI2OYOExOlAE7KIfSy4DYC4j9gdgbykfG6HIgkInFvFoo
-vRKIfaBsXygfGaPLgUAukjkyONxLDpCmkjlhVDIHHygF4jIGSFgUAHEvHewcCEBO/LYCcRsUtzMg
-0gu++E0mwx5coAOIO4G4B4d8EhDXQWl8IBVKJyCJpVHkssEPFgDxQiBOAeJFZOinVXkAS0PpQJxB
-ojm5BOQDgTgIiIPJlIcBJTLk0MUBXOu2WkAGAAA=
+   H4sIAAAAAAAAAGNgQABRIF4JxB5Q7AnlI2OYOExOlAE7KIfSa4DYC4j9gdgbykfG6HIgkInFvFoo
+vR6IfaBsXygfGaPLgUAukjkyONxLDpCmkjlhVDIHHygF4jIGSFgUAHEvHewcCEBO/LYCcRsUtzMg
+0gu++E0mwx5coAOIO4G4B4d8EhDXQWl8IBVKJyCJpVHkssEPlgHxciBOAeIVZOinVXkAS0PpQJxB
+ojm5BOQDgTgIiIPJlIcBJTLk0MUBN4YAkEAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">

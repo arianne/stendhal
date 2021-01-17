@@ -16,34 +16,34 @@
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="58" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="59" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="63" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="71" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset firstgid="69" name="desk" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="desk" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
- <tileset firstgid="73" name="cabnets" tilewidth="32" tileheight="32">
+ <tileset firstgid="81" name="cabnets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset firstgid="117" name="rat" tilewidth="32" tileheight="32">
+ <tileset firstgid="125" name="rat" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset firstgid="120" name="carpet" tilewidth="32" tileheight="32">
+ <tileset firstgid="128" name="carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
- <tileset firstgid="129" name="table2" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="table2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="138" name="double_purple_gold" tilewidth="32" tileheight="32">
+ <tileset firstgid="146" name="double_purple_gold" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_purple_gold.png"/>
  </tileset>
- <tileset firstgid="156" name="stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="164" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="16">
@@ -53,32 +53,32 @@
  </layer>
  <layer name="1_terrain" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ONw6AMAyFYc/0ukDol6TDWTgpb8gQZUCAWUBY+gZ7+GWHiMyHuGBDABlTCJbs
-pcSf5IO9FjpNz+gNMGqmv/eK3naiN8OiWRn/HY3ai0BclEMBpdxj2fPAuKGCGhrl5sMOcgsvaAAF
+   H4sIAAAAAAAAAO3ONw6AMAyFYc/0ukDoF6XDWTglb8gQZUCAWUBY+gZ7+GWHiMyHuGBDABlTCJbs
+pcSf5IO9FjpNz+gNMGqmv/eK3naiN8OiWRn/HY3ai0BclEMBpdxj2fPAuKGCGhrl5sMOTCeQsgAF
 AAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA1IguIgIA5G4gfiUO8BxD1A3AvEbljk44E4DIrDkdihOMxzB+JJQDwZykYH
-McR4Ag3MAOKZOOTIMQ8foLZ5CVDaF4j9oNgfizp7IHaAYkcq2OsExM5Q7EJAbSMQN6HhZgrsprZ5
-LUDciobbKDBvMAPrAdJLbwAABCQuqgAFAAA=
+   H4sIAAAAAAAAAGNgoA3IguIoII5G4kfiUB8AxFOAeCoQ+2GRTwfiOCiOR2LH4jDPH4hnAfFsKBsd
+pBDjCTSwAIgX4pAjxzx8gNrmZUDpUCAOg+JwLOrcgdgDij2pYK8XEHtDsQ8BtZ1A3IWGuymwm9rm
+9QBxLxruo8C8wQycB0gvvQEArmnodgAFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL5gChBPHWhHjIJRMAoGLQAAi5Fq6AAFAAA=
+   H4sIAAAAAAAAAGNgGL5gDhDPHWhHjIJRMAoGLQAAfavHgwAFAAA=
   </data>
  </layer>
  <layer name="objects" width="20" height="16" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAW0AOUD7YBRQDQoG2gHUAHoDbQDaADo4ScARTPCVQAFAAA=
+   H4sIAAAAAAAAAGNgGAW0APUD7YBRQDSoG2gHUAHoDbQDaADo4ScA+o2nLQAFAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNiYGCwGuKYGECuPmxmUMs8aruPGPMI2YFLnly3oZuBzzxqxu9QMI8SMJjNo2a+
-pnXZAQDhiNJIAAUAAA==
+   H4sIAAAAAAAAAHNiYGBwGuKYGECuPmxmUMs8aruPGPMI2YFLnly3oZuBzzxqxu9QMI8SMJjNo2a+
+pnXZAQBHRPrrAAUAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="16">

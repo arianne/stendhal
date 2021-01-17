@@ -37,10 +37,10 @@
  <tileset firstgid="79" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="95" name="small" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="small" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
- <tileset firstgid="98" name="bb_dk_blue" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="bb_dk_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bb_dk_blue.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -53,9 +53,9 @@ PTyJfB7DDqKRXiW6PSTg95B35fMDpIxeJboAlsr1OUJYGfSm3VD/HvHfdWu3gnri3Qd138bTcrdh
  </layer>
  <layer name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIBEJHY8A3ZgDcQ2OOSwySfgMJ9UYAvEdhTI4wJOBOTtgdiBAnlcdjoSYTex
-IAmIk0mwm1xADfeSY4YjGj8NiNNJtJOc8B4o/w41YAnEVgPtCDoCSv3rCqWdgdgFC5tWwANKuwGx
-OwMkT8DY+MBo/JIG/KC0DxD7MkDCGcYeBSMLAABvTKjfYAkAAA==
+   H4sIAAAAAAAAAGNgQIBMJHY6A3ZgDcQ2OOSwyWfgMJ9UYAvEdhTI4wJOBOTtgdiBAnlcdjoSYTex
+IAuIs0mwm1xADfeSY4YjGj8PiPNJtJOc8B4o/w41YAnEVgPtCDoCSv3rCqWdgdgFC5tWwANKuwGx
+OwMkT8DY+MBo/JIG/KC0DxD7MkDCGcYeBSMLAACNNRBiYAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="20">
@@ -65,7 +65,7 @@ OwMkT8DY+MBo/JIG/KC0DxD7MkDCGcYeBSMLAABvTKjfYAkAAA==
  </layer>
  <layer name="3_roof" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDyQAsSpA+2IUTAKRsEowAK8obQnEHthYY+CUUBrAADCqk4RYAkAAA==
+   H4sIAAAAAAAAAGNgGAWjgDyQA8S5A+2IUTAKRsEowAK8obQnEHthYY+CUUBrAABLs5UCYAkAAA==
   </data>
  </layer>
  <layer name="objects" width="30" height="20">

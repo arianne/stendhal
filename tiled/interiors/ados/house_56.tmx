@@ -40,75 +40,75 @@
  <tileset firstgid="172" name="edge" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
- <tileset firstgid="187" name="rug border" tilewidth="32" tileheight="32">
+ <tileset firstgid="197" name="rug border" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset firstgid="196" name="rugcolor" tilewidth="32" tileheight="32">
+ <tileset firstgid="206" name="rugcolor" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset firstgid="206" name="food1" tilewidth="32" tileheight="32">
+ <tileset firstgid="216" name="food1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset firstgid="210" name="food2" tilewidth="32" tileheight="32">
+ <tileset firstgid="220" name="food2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset firstgid="212" name="details1" tilewidth="32" tileheight="32">
+ <tileset firstgid="222" name="details1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset firstgid="215" name="details2" tilewidth="32" tileheight="32">
+ <tileset firstgid="225" name="details2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png"/>
  </tileset>
- <tileset firstgid="217" name="bushes" tilewidth="32" tileheight="32">
+ <tileset firstgid="227" name="bushes" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hosta.png"/>
  </tileset>
- <tileset firstgid="226" name="plant1" tilewidth="32" tileheight="32">
+ <tileset firstgid="236" name="plant1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset firstgid="228" name="plant2" tilewidth="32" tileheight="32">
+ <tileset firstgid="238" name="plant2" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset firstgid="240" name="plant3" tilewidth="32" tileheight="32">
+ <tileset firstgid="250" name="plant3" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset firstgid="242" name="sheep foord" tilewidth="32" tileheight="32">
+ <tileset firstgid="252" name="sheep foord" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset firstgid="243" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="253" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgHMVUwcfQ8EjTP5C4BwkPRf3YcAYd9AMA/EToEgAEAAA=
+   H4sIAAAAAAAAAGNkYGBgHMVUwRfQ8EjTP5C4BwkPRf3YcAYd9AMAAPXiNQAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3SSQrCMBTG8ZzHASdwwm1VXHgR3SjuxfE4denCWe8g4kJwKyh4A7/AC4RnkqZ9
+   H4sIAAAAAAAAAJ3SSQrCMBTG8ZzHASdwwm1VXHgR3SjuxfE4dekJnPUOIi4Et4KCG7/AC4RnkqZ9
 8IM27b8ptFkhRC6hPBSgCM2YSlClvg1v8T8p7fgKAxjCDVqslzPS7u9B2vBMNaZenyT9BrZkBxla
 H8OMTGBq6fdwIEdtrzksNMuYve/7n+BMLo72Zeg/Efv57O8z6p/gfUjWjlZ9076hv9M9q4j91Tfl
-/QOe1H9Zw895X4bAoGNZlyrU16Bu0XVckxrwA69QSroABAAA
+/QOe1H9Zw895X4bAoGNZlyrU16Bu0XVckxrwA3nz+EYABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA5cAeJcIM7DIf+cgP6rQJwPxAVAfJ1IOy8SqQ4XuESh/ssU6kcG7Ujsx1Q0
-dxSQBjQH2gFEAk8o7U2mfl8o7U9AHQA2s1feAAQAAA==
+   H4sIAAAAAAAAAGNgIA7cA+JcIM7DIf+RgP77QJwPxAVA/JBIO28TqQ4XuEOh/rsU6kcG7Ujst1Q0
+dxSQBjQH2gFEAk8o7U2mfl8o7U9AHQBmppI3AAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjDTzBIvaC7q4YvOADAf5wAgCYwckwAAQAAA==
+   H4sIAAAAAAAAAGNgGAUjDbzDIvaJ7q4YvOAXAf5wAgDsHOg3AAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBR8GiRm0BsAAErOfGIABAAA
+   H4sIAAAAAAAAAGNgGAWjYBT8GSRm0BsAAB86CLYABAAA
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPvMwMDweZBgdIAuRopebPrxmUVL/eT4HZ9dpOon1/2kuoce9uMKU0r1E2sGoThF
-VoOuB12MmDildZ4DADqGZtsABAAA
+   H4sIAAAAAAAAAPvLwMDwd5BgdIAuRopebPrxmUVL/eT4HZ9dpOon1/2kuoce9uMKU0r1E2sGoThF
+VoOuB12MmDildZ4DADBVrJ0ABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

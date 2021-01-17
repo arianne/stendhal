@@ -37,19 +37,19 @@
  <tileset firstgid="237" name="logic/creature/rodent" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/rodent.png"/>
  </tileset>
- <tileset firstgid="242" name="housewife" tilewidth="32" tileheight="32">
+ <tileset firstgid="245" name="housewife" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_kalavan.png"/>
  </tileset>
- <tileset firstgid="247" name="assassin" tilewidth="32" tileheight="32">
+ <tileset firstgid="250" name="assassin" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset firstgid="257" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="260" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="258" name="portal" tilewidth="32" tileheight="32">
+ <tileset firstgid="261" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="274" name="intstairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="285" name="intstairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="20">
@@ -60,10 +60,10 @@ DAAA
  </layer>
  <layer name="1_terrain" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VyQrCQAwG4PTgUq37vtVat16svo0nT558cx/DX3RgKHXoNEEoNPBdJoT8UEpc
-IqomXOlTt5Se0gDX0Jfw3lGHPVw092++R+JdOUDtx6wUfUdMdnVizGatmLGjzMfb0YI2dKCb0n8a
-/CNfD/owgKHlbNbi5BvBGCYwFc6lipNPnz3CmWkGc1hob5FAviZUBCxhBX7i3WPmk7ofawhgQ+n3
-g/N9TffDd7AbAsd8K0LYwo6Kcz+k/o8yX5kvTxUpn+0NiBiztjvy3gCPMWuz4wVMwavfgAwAAA==
+   H4sIAAAAAAAAAO3VyQrCQAwG4PTgUq37vu9aFatv48mTJ9/cx/AXLQxDHTpNEAoNfJcJIT+UEpeI
+8porfeoW0QuVwDX0Jbx3FGEDF8X9m++hvYe2UPgxK0XdEZBdnRizcStg7Mjy8XZUoAo1qEf0nwb/
+yNeAJrSgbTkbtzj5OtCFHvSFc4XFyafO7uDMNIAhjJQ3XyBfGXICxjCBqfbuMfNJ3Y8ZzGFB0feD
+831N92PvEB3g6JhvxRJWsKb03A+p/yPLl+VLUmnKZ3sDfMas7Y6kN8BjzNrseAER9SJygAwAAA==
   </data>
  </layer>
  <layer name="2_object" width="40" height="20">
@@ -88,15 +88,15 @@ XIAMAAA=
  </layer>
  <layer name="objects" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA7YGHFIjIJRMAroBr7gYJMK3lHqkFEwCkYBBqBnPfmWflaNOECtsB2IOPox
-AHaOglFADQAAm6DlSIAMAAA=
+   H4sIAAAAAAAAAGNgwA44GXFIjIJRMAroBr7jYJMK3lHqkFEwCkYBBqBnPfmWflaNOECtsB2IOPo9
+AHaOglFADQAAgj2If4AMAAA=
   </data>
  </layer>
  <layer name="collision" width="40" height="20" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USwoAIAhE8/6XjvZW/kYsHJiNJL7UIhqDGC9x8SquxsfpFJfc6XZe0xuNPLkZ
-NdB80vla+Ky7FMmHFrJ/KEZPbtT/4dmJ5tO/rR07qi6qfwi9xueZbwZfVu6vfNXn27Z5AtR4yvWA
-DAAA
+   H4sIAAAAAAAAAO2USwoAIAhEC7r/maO9lb8RCwdmI4kvtUZvbRBeouJZnI2P0inOudPtvKQ3Elly
+I2qg+bjz1fBpd8mTDy1k/1CMllyv/8OyE8Unf1s7dlRdVP8Qeo3PMt8IvqjcX/myz7es8wTlgB6P
+gAwAAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="20">

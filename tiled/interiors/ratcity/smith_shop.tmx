@@ -4,60 +4,60 @@
  <tileset firstgid="1" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="17" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="18" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="26" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="22" name="int blue green" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="int blue green" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset firstgid="38" name="int green blue" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="int green blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset firstgid="54" name="door" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="door" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset firstgid="62" name="floor" tilewidth="32" tileheight="32">
+ <tileset firstgid="70" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset firstgid="72" name="floor" tilewidth="32" tileheight="32">
+ <tileset firstgid="80" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset firstgid="81" name="weapons" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="weapons" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
- <tileset firstgid="97" name="weapons 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="105" name="weapons 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="115" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset firstgid="124" name="stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="132" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJzAkwI8WMygBaaWm0DAYxD4BzmsKXHPYI2vkYLdoZhUfQCBCJ1ZgAQAAA==
+   H4sIAAAAAAAAAGNgGJwgkAI8WMygBaaWm0AgYBD4BzmsKXHPYI2vkYL9oZhUfQANehKBgAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNjYGAQpxBLArEcEEsDsQmZWAaIZaHm6DKQD7QoNKeZSuZQyz2j5oyaQ21z5IFY
-A4rNgNgciU8IK0DNUQJiZSQMA8okYFUgBgBLWXdVgAQAAA==
+   H4sIAAAAAAAAAJNjYGCQpxArArEaECsDsQ2ZWAWIVaHmmDKQD4woNKebSuZQyz2j5oyaQ21z1IHY
+AIrtgNgeiU8Ia0DN0QJibSQMA9okYF0gBgAVaqNmgAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3TSQ6CQBSE4XcGbqbgFDCiEBXUqIwCl+cn9oYNM8ZKvhXdlU4liHyzwBIGdGyw
+   H4sIAAAAAAAAAM3TSQ6CQBSE4XcObqbgFDCiEBXUqIwCF+cn9oYNM8ZKvhXdlU4liHyzwBIGdGyw
 Vd92WGMFExYO2MOWeaL96E6fHHGCAxfewB4fN9zxQDDJ6+ZJiEiJW85W+1xxwVnq+yRIlU9LT7XP
-Gy88pb5Pn56mTNWTIVeKET1d84//xZiU++isSYAEAAA=
+Gy88pb5Pn56mTNWTIVeKET1d84//xZiUcSNFwoAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXEgkQgTgLiZCBOAeLMgXXOoAOg8MkA4nQgTmMYDZ+RBCyA2JIMfQCcTi/6
+   H4sIAAAAAAAAAGNgGAXEgkwgzgLibCDOAeLCgXXOoAOg8CkA4nwgzmMYDZ+RBByA2JEMfQA8loni
 gAQAAA==
   </data>
  </layer>
@@ -68,8 +68,8 @@ gAQAAA==
  </layer>
  <layer name="collision" width="18" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNkYGAQHKSYVEANM3CZRU1zyHHnQPkLl3pamoMvfAbCPfQwh1jzqZUvCLmXXhgA
-5HlnWIAEAAA=
+   H4sIAAAAAAAAAJNkYGCQHKSYVEANM3CZRU1zyHHnQPkLl3pamoMvfAbCPfQwh1jzqZUvCLmXXhgA
+FQ44P4AEAAA=
   </data>
  </layer>
  <layer name="protection" width="18" height="16">

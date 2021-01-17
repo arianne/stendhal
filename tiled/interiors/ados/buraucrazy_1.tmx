@@ -64,31 +64,31 @@
  <tileset firstgid="228" name="bricked_edges.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="243" name="rustic_meals.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="253" name="rustic_meals.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="245" name="large_island.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="255" name="large_island.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
- <tileset firstgid="247" name="book.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="257" name="book.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset firstgid="251" name="small.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="261" name="small.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
- <tileset firstgid="254" name="small_lamp.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="264" name="small_lamp.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="258" name="detail_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="268" name="detail_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="264" name="portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="274" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="280" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="298" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="281" name="protection" tilewidth="32" tileheight="32">
+ <tileset firstgid="299" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
@@ -109,32 +109,32 @@ BvuRufOgQTgFZ+AcNJlHew0B6qf5RuADfEbypSW930kwxqCVnFeJx3sSVWE2Let+1IP876bl6VGm
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF7gKxB/g7L/0Nnup0h4MIIPQPwMiN8D8YsBdgs+8JxhcLrvNQMkbl8xDE73
-PUPChMBPIs38B1X7j1xHjYIRAz4D8ZeBdsQIAjPJlKMXWESmHAzsp5ZDaAQODLQDRsEoIAAAXRCH
-S+ALAAA=
+   H4sIAAAAAAAAAGNgGF7gP4hghLDZGOlr91MkPBjBByB+BsTvgfjFALsFH3jOMDjd95oBErevGAan
++54hYUKAmci8wcEIUctB57w0CoYe+AvE/wbaESMIzCRTjl5gEZlyMLCfWg6hETgw0A4YBaOAAAAA
+cZO6WOALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGD6gnkh1m4F4CxBvJSAGA4codBcMNFDJnFEwCkYB/QGx5ctAgYaBdsAooBuY
-AcTMjAwMs0iUoxdYCMRsQDcsJlFuFIyCUUA9AACwGJ9o4AsAAA==
+AcS8jAwMs0iUoxdYCMQCQDcsJlFuFIyCUUA9AABsta/Q4AsAAA==
   </data>
  </layer>
  <layer name="objects" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3JoQ0AAAgDsOH5/14+wJCgWtsE/nTdHgCA3QD0Lnd14AsAAA==
+   H4sIAAAAAAAAAO3JMQ0AAAgDsGEC/1JxwEPC1b5N4E/X7QEA2A0c0o3h4AsAAA==
   </data>
  </layer>
  <layer name="collision" width="40" height="19" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SwQ0AIAgDdQv3n9QFwFLQSAIkfYlwFNYcY7XCksKSI+VJf9j+qI5W8wUf643G
-Z/UPRYTv5F8GPmYGNIe2y+p83rzbvbPxWfeDajGz3OZDt2R5e7XfqnxS/0x8Xv9+RmY+5i5aZ20I
-hW8d4AsAAA==
+   H4sIAAAAAAAAAO2SwQ0AIAgDdR33H9AFwFLQSAIkfYlwFNYcY7XCksKSI+VJf9j+qI5W8wUf643G
+Z/UPRYTv5F8GPmYGNIe2y+p83rzbvbPxWfeDajGz3OZDt2R5e7XfqnxS/0x8Xv9+RmY+5i5aZ22K
+wCro4AsAAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="19" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwDoD3G+hddj6NgL6mqqvriAMPLhHTgCwAA
+   H4sIAAAAAAAAAO3DAQkAAAwDoD3P+vdbj6NgL6mqqvriADECC6jgCwAA
   </data>
  </layer>
 </map>

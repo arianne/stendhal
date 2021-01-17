@@ -25,62 +25,62 @@
  <tileset firstgid="29" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="45" name="stone-floors" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="stone-floors" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/stone_floors.png"/>
  </tileset>
- <tileset firstgid="51" name="small-lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="59" name="small-lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="55" name="albino-elf" tilewidth="32" tileheight="32">
+ <tileset firstgid="63" name="albino-elf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/albino_elf.png"/>
  </tileset>
- <tileset firstgid="60" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="68" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="69" name="dishes" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="dishes" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
- <tileset firstgid="75" name="barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset firstgid="77" name="ground_4" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="ground_4" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_4.png"/>
  </tileset>
- <tileset firstgid="117" name="weapons-rack" tilewidth="32" tileheight="32">
+ <tileset firstgid="125" name="weapons-rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="135" name="dk-barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="dk-barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png"/>
  </tileset>
- <tileset firstgid="137" name="sm-barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="sm-barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset firstgid="139" name="int_clay.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="147" name="int_clay.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNlYGDwpTI2xIEpMQ/dbErdRy2zsLmRWuFH7XgZxaN4FI9iamIALcF5akAGAAA=
+   H4sIAAAAAAAAAAtlYGAIpTK2xIEpMQ/dbErdRy2zsLmRWuFH7XgZxaN4FI9iamIAq8jTMEAGAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOtmYGCYQCU8EYinAvE0IJ5JIZ4FxIeh5i0AYj4g5meAAAEgFmQgDexAM49cIE1l
-82CAUvOYKDAPXS82gMs8GyC2RcJ2RJhFinm2WPTWAXETELcCcRsVzCPFffZA7ICEHSk0j1yAbp40
-XtUMDIwMkHADhVkDlCYm/EgByOlosOUPepsnARVnJMMsCTTz9gHxfhz4AFTPOjxqQPgQ1LzjQHwC
-Dz4FxKeB+AwBdSB8FogB/0htJUAGAAA=
+   H4sIAAAAAAAAAJvMwMAwg0p4JhDPBeJ5QLyQQrwIiE9DzVsBxHxAzM8AAQJALMhAGjiAZh65QJrK
+5sEApeYxUWAeul5sAJd5LkDsioTdiDCLFPNcsehtA+IuIO4F4j4qmEeK+9yB2AMJe1JoHrkA3Txp
+vKoZGBgZIOEGCrMOKE1M+JECkNMRNcxDBkPNPAmoOCMZZkmgmXcMiI/jwCegerbhUQPCp6DmnQfi
+C3jwJSC+DMRXCKgD4atADAAS3D86QAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBjQicT2poJ5XUhsHyqYR01zhjtgpaJZrmh8YzLN6YDSLBSaM1wBJxFqOggr
-GQUjHAAANsdJyEAGAAA=
+   H4sIAAAAAAAAAGNgGBgwEYkdTAXzJiGxQ6hgHjXNGe6AlYpm+aLxrck0ZwKUZqHQnOEKOIlQM4Gw
+klEwwgEAjHnSd0AGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA3gAmJuKJsHiHnxqPWmkp3YzJGiktmjgHxQCsSVQFwDxLU41LTTzzmDAhCT
-LkHhBgqzciiNL/xAYKSFITWByADpHeoAAAlV/1JABgAA
+   H4sIAAAAAAAAAGNgoA3gAmJuKJsHiHnxqA2mkp3YzJGiktmjgHxQC8SNQNwCxK041PTTzzmDAhCT
+LkHhBgqzeiiNL/xAYKSFITWByADpHeoAAPOkaxVABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -90,7 +90,7 @@ LkHhBgqzciiNL/xAYKSFITWByADpHeoAAAlV/1JABgAA
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFrAYqAdQAYwH6Z2jYJRMAqGH1AkQS0AFkP1yEAGAAA=
+   H4sIAAAAAAAAAGNgGFrAYaAdQAawH6Z2jYJRMAqGH1AkQS0A23aS4kAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.31">

@@ -34,13 +34,13 @@
  <tileset firstgid="165" name="small_tree.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/small_tree.png"/>
  </tileset>
- <tileset firstgid="166" name="drawer_with_mirror.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="169" name="drawer_with_mirror.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
- <tileset firstgid="168" name="detail_ew.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="171" name="detail_ew.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="174" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="177" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -58,13 +58,13 @@ Rymj5rg39/Su7nWMCaZoWu6L+p9hjoWk/Y4s31/Uv5qb5CemfzV34z6mfzVX4z6mf9vE9K898MRL
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6YTaS6ZTjUzsUithSL2HIgnkeso+gIFpCgDpu/RgoAxf0yPPKLGSDhgyuM
-QHG/nNqOohHA5geQ2AI6uwMfAADJJNMmAAQAAA==
+   H4sIAAAAAAAAAGNgoA6YTaS6lTjUzsUithSL2Cognkeso+gIFpCgDpu/RgoAxf1KPPKLGSDhgyuM
+QHG/itqOohHA5geQ2AI6uwMfAAC7lbMkAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF5gBRCvJEIMHcyH0quAeDWaHLLYfIZRMNQAMfGPD6CnieGUBgBa+oqKAAQA
+   H4sIAAAAAAAAAGNgGF5gNRCvIUIMHcyH0muBeB2aHLLYfIZRMNQAMfGPD6CnieGUBgDOnnmoAAQA
 AA==
   </data>
  </layer>
@@ -75,8 +75,8 @@ AA==
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvHwMCwbhhgBhLE8IkTC8h1E6V+Gq76sYUrufoZ0PikxD+xaYGY9DOQYU8sBgBz
-Ks2HAAQAAA==
+   H4sIAAAAAAAAANvIwMCwcRhgBhLE8IkTC8h1E6V+Gq76sYUrufoZ0PikxD+xaYGY9DOQYU8sBgC9
+oVITAAQAAA==
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

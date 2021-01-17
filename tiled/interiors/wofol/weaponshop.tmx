@@ -19,31 +19,31 @@
  <tileset firstgid="39" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="55" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="63" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="56" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="177" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="185" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNjYGBgIxEzEYmR1RNjJjnqGaFsRgKYCQd7pKhHxlugGF0clzl7oRibGgA5OuQ4
+   H4sIAAAAAAAAAGNjYGBgIxEzEYmR1RNjJjnqGaFsRgKYCQd7pKhHxnugGF0clzlHoRibGgC8s4bZ
 QAIAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Kuw2AMBAE0evLYDI+bgZCaMbYZGDokUksXXYJISO9ZLVORBq0Bo8OPQaMhgkB
-MxaxW7H9/8//ETuSUtNbxoETF4pS09uNBy/StCYZQAIAAA==
+   H4sIAAAAAAAAAO3Kuw2AMBAE0evNYDI+bgZCaMbYZGDoj0ksXXYJISO9ZLVORBq0Bo8OPQaMhgkB
+MxaxW7H9/8//ETuSUtNbxoETF4pS09uNBy9rfMdxQAIAAA==
   </data>
  </layer>
  <layer name="2_object" width="12" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgwA/kgFgeizgPEPMjYRGouCIQK2FRLwrEEkhYFiquAsSqBNxACwByjxQSlsWv
-nCqAHYi5gJgTh3vEgFiaxm7ZjMTeSoT6HUjsXVjkATQx24tAAgAA
+nCqAHYi5gJgTh3vEgFiaxm7ZjcTeS4T6A0jsQ1jkAU+NahZAAgAA
   </data>
  </layer>
  <layer name="3_roof" width="12" height="12">
@@ -58,7 +58,7 @@ nCqAHYi5gJgTh3vEgFiaxm7ZjMTeSoT6HUjsXVjkATQx24tAAgAA
  </layer>
  <layer name="collision" width="12" height="12" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNnYGAwHyDMQEAOH6BUPSE7aeEeUsOGmu7BppcacQgAlc4RdUACAAA=
+   H4sIAAAAAAAAALNnYGCwHyDMQEAOH6BUPSE7aeEeUsOGmu7BppcacQgA1PGeSkACAAA=
   </data>
  </layer>
  <layer name="protection" width="12" height="12">

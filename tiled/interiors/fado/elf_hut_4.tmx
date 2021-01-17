@@ -13,24 +13,24 @@
  <tileset firstgid="13" name="logic/portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="29" name="ground_4" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="ground_4" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_4.png"/>
  </tileset>
- <tileset firstgid="69" name="wall/int_clay" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="wall/int_clay" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
- <tileset firstgid="169" name="rotating_crystal" tilewidth="32" tileheight="32">
+ <tileset firstgid="177" name="rotating_crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/rotating_crystal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNlYGCQHcWjeBSP4lE8iknEADBSYltABgAA
+   H4sIAAAAAAAAAFNlYGBQHcWjeBSP4lE8iknEAGE7SSNABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNlYGDwohL2BmJ/IA4A4mAKcQgQ10LNi2KgHBSNmjcg5jFSwbyLRNgzWPw7mMxj
-IsIcWPwMB/8OJvO4KDCLC828CiCuxIGroHoy8KgB4RqoeY1A3IQHtwBxKxC3EVAHwu1ADAC6syHP
+   H4sIAAAAAAAAAPNlYGAIohIOBuJwII4A4mgKcQwQt0LNS2KgHFSNmjcg5jFSwbybRNgzWPw7mMxj
+IsIcWPwMB/8OJvO4KDCLC828BiBuxIGboHoK8KgB4RaoeZ1A3IUH9wBxLxD3EVAHwv1ADADyRkRN
 QAYAAA==
   </data>
  </layer>
@@ -41,7 +41,7 @@ QAYAAA==
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgLrg5EA7YBSMAhIB2wDpHeoAABEiZXZABgAA
+   H4sIAAAAAAAAAGNgGAWjgLrg4kA7YBSMAhIB2wDpHeoAAOPVO41ABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">

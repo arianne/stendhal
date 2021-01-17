@@ -16,22 +16,22 @@
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="58" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="59" name="bookshelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="bookshelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="65" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="69" name="warmer" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="warmer" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
- <tileset firstgid="75" name="single_purple_gold" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="single_purple_gold" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_purple_gold.png"/>
  </tileset>
- <tileset firstgid="84" name="stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="92" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -41,19 +41,19 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONjYGDgJhPzAzEvEAsBsSwOLIMDiwMxD1S/NAPpQHpUP9X1+yDJE2Jj0++PpI4Q
-G5v+ICR1hNiDMfzI1S8CxHJALA/ECgy48wwyloTqFwBiLiBWBGIlIFaG8onBgkAMALEiGeAABAAA
+   H4sIAAAAAAAAAONjYGDgJhPzAzEvEAsBsSwOLIMDiwMxD1S/NAPpQHpUP9X1hyDJE2Jj0x+OpI4Q
+G5v+KCR1hNiDMfzI1S8CxHJALA/ECgy48wwyloTqFwBiLiBWBGIlIFaG8onBgkAMAHnJlSgABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB7wAWJbKPYhQhwZRAOxPxDbQ7E/khy6uCMOM4JIZA934AnEXnS2ExZPxIoP
-F4ArTVKqltYAAEQUDOUABAAA
+   H4sIAAAAAAAAAGNgoB4IAWJXKA4hQhwZJANxOBC7Q3E4khy6uCcOM6JIZA93EAjEQXS2ExZPxIoP
+F4ArTVKqltYAAN1VsroABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDwggET2YAeuQOxGgX53IPagkluIBbZQTKw4Mhhu8TcSAACxpJYlAAQAAA==
+   H4sIAAAAAAAAAGNgGDwggkT2YAe+QOxHgX5/IA6gkluIBa5QTKw4Mhhu8TcSAACb6dvpAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16" visible="0">
@@ -63,8 +63,8 @@ F4ArTVKqltYAAEQUDOUABAAA
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNiYGCwGgSYAQsfGeBShy7OQCQbm35SwFDQT4wcte0nJv5w6R/K8UeKGcTmAXpg
-ANFQvH8ABAAA
+   H4sIAAAAAAAAAHNiYGBwGgSYAQsfGeBShy7OQCQbm35SwFDQT4wcte0nJv5w6R/K8UeKGcTmAXpg
+AChVeWsABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

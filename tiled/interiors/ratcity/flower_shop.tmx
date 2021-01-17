@@ -16,34 +16,34 @@
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="58" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="59" name="rat" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="rat" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset firstgid="62" name="flowers on bench" tilewidth="32" tileheight="32">
+ <tileset firstgid="70" name="flowers on bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
- <tileset firstgid="68" name="bench flowers" tilewidth="32" tileheight="32">
+ <tileset firstgid="76" name="bench flowers" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
- <tileset firstgid="78" name="collard pot" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="collard pot" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
  </tileset>
- <tileset firstgid="80" name="flower vase 1" tilewidth="32" tileheight="32">
+ <tileset firstgid="88" name="flower vase 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset firstgid="83" name="flower vase 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="flower vase 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset firstgid="85" name="carpet" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
- <tileset firstgid="97" name="vegtable" tilewidth="32" tileheight="32">
+ <tileset firstgid="105" name="vegtable" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset firstgid="110" name="stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="118" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="26" height="14">
@@ -53,27 +53,27 @@
  </layer>
  <layer name="1_terrain" width="26" height="14">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NSw6CMBSF4Y4F5aFMlKeuSUUr0EWw/3BI2qQ0hj6SMuImX2jKTf8TISTwLIIj
-pFB4coaQd24wErOh8Iaf4f1V6Zg2xLT8XeEj/ZNbth2qX1mMaNl2vpadbu9s2uktO4NjR209gfHz
-/H39abh2RIspb63dy50L5A5KqKBe2cl4J4aDowbu8NDsJTABvrSywbAFAAA=
+   H4sIAAAAAAAAAO3NSw6CMBSF4Y4F5aFMlKeuS0Ur0EWweA5Jm5TG0EdSRtzkC0256X8ihASeRXCE
+FApPzhDyzg1GYjYU3vAzvL8qHdOGmJa/K3ykf3LLtkP1K4sRLdvO17LT7Z1NO71lZ3DsqK0nMH6e
+v68/DdeOaDHlrbV7uXOB3EEJFdQrOxnvxHBw1MAdHpq9BCa1d63GsAUAAA==
   </data>
  </layer>
  <layer name="2_object" width="26" height="14">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWTCQrAIAwEfVlvRErpZf//lq6QQAihF5bShUEQZTwS575JAUpQgY54IzVoQAs8
+   H4sIAAAAAAAAANWTCQrAIAwEfV1vRErpZf//jq6QQAihF5bShUEQZTwS575JAUpQgY54IzVoQAs8
 CGAGC1jV2k0gs9L6+aKzJyzHWdilY7k9cdchXTrWmfk+8aHH2heN+eQImT36Lx05fGaPFa63tz3J
-kd4uZx2MhOxT/p+cdT0Rsk8H4qhP5agdV/v0j9kBXknycLAFAAA=
+kd4uZx2MhOxT/p+cdT0Rsk8H4qhP5agdV/v0j9kBJl3H7LAFAAA=
   </data>
  </layer>
  <layer name="objects" width="26" height="14" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ5Ab6AdMAqoCqwH2gEjDGRD8UgHg60cAQC6HciCsAUAAA==
+   H4sIAAAAAAAAAGNgGJ5Ab6AdMAqoCpwH2gEjDBRD8UgHg60cAQAdt9EPsAUAAA==
   </data>
  </layer>
  <layer name="collision" width="26" height="14" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNiYGCwGoYYBohVh64Wlzg+/bjUkwJIsYtcO0i1a6jbg08dtewhpG642UPNdE1K
-fmZA4pOSTymxlxbmkosB6oIqMLAFAAA=
+   H4sIAAAAAAAAAHNiYGBwGoYYBohVh64Wlzg+/bjUkwJIsYtcO0i1a6jbg08dtewhpG642UPNdE1K
+fmZA4pOSTymxlxbmkosBTkhCs7AFAAA=
   </data>
  </layer>
  <layer name="protection" width="26" height="14">

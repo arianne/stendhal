@@ -37,10 +37,10 @@
  <tileset firstgid="301" name="animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="331" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="333" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="332" name="herb" tilewidth="32" tileheight="32">
+ <tileset firstgid="334" name="herb" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/herb.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -108,21 +108,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg7gaK8kr5AAABAA==
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YsQ3AIAwEQLIDNKkyASVbsP861CkjoRiSuwnc+G19SgAAAAAAAAAAAAAAAAAA
+   H4sIAAAAAAAAAO3YsQ3AIAwEQLIDNKkyASVrsP821CkjoRiSuwnc+G19SgAAAAAAAAAAAAAAAAAA
 RGpH9ATAm+w8xOv2EICHqtsBAADb8L8DrOmSzwAAAACwLP0dAAAAwFynvgUAAADgc7LOB+A3iswH
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgZpGPOlgAAAQA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgZYevrOAAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aMU5DQRAFQTgf978PEQkSGCHLvbNTT6rMwWra4f94f3v7YJ2v1e9Af5r2+u/z
+   H4sIAAAAAAAAAO3aMU5DQRAFQTgg978OEQkSGCHLvbNTT6rMwWra4f94f3v7YJ2v1e9Af5r2+u/z
 ffV70B/9eX17/XfRfzf99/pp9bvQn6a9/vd7tPp96I/+6I/+6I/+6I/+6I/+6I/+PPd/UL8L/dEf
 /Xldd/130P8cxb31P0N1c/3b1q/cf95V3+pG1fQ/Q7nvb3j0pvpWt5qy+k63mrL6TreasvpON5q0
 +lY3mrT6VreZtvpeN5m4+mY3mbj6Zqf46y1++93E1Xc/wbNuN3H17U/wrNtNXH372rPuN3X1/ad0
 vnV1F/3b1V20b1e30b5d3Uf/dnUf/dvVfXRuV3fTv13dTf92dTf929Xd9G9Xd9O/Xd1Nw3Z1c/3b
 1c21b6fX7um/e/rvnv67p//u6b972u+e9run/+5pv3v67572u6f77um/e9rvnv67p72ZmZmZbdx/
 v4OYbvvq+9e2rr77KTasvvHJblp9y4mmrr7bLaatvtdtpqy+061OXn2bDU5bfY9ttAQAAAAAAAAA
-AAAAAAAAAACAzicRFRZCAAABAA==
+AAAAAAAAAACAzicP1wL6AAABAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

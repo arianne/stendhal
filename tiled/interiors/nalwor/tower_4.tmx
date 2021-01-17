@@ -34,7 +34,7 @@
  <tileset firstgid="59" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="69" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -44,11 +44,11 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKWUSwrCMBRFA6I4U9CRf2q30Hx24G/mwM04djMOnPlbnTeQ4CO8tAm5cCBtksNr
+   H4sIAAAAAAAAAKWUSwrCMBRFA6I4U9CRf2q30Hw24W/mwM04djMOnPlbmjeQ4CO8tAm5cCBtksNr
 +tqdEGIPDoUcwQmcwQgMChmDC7iCPmgcPgYosHRjQ+bsOkmuNRiCG/Fxkc6nI/M0KT6bDdg6Fhm+
 thrss9pnrMi9KlgT+lZgTghr0c6hGJ9ifMbtUUwtXE10bBgfja11neFLfb+pPpHh830oM30ymJ+J
 f5946Bl0+ZpgfunuGcGnCvak+JSIp8sX1lFHPL6vaC9yPs04fbrOMqU+Gn+WsbT1swz22rprEf++
-/b/L++5gAnqFTMEDPMELvAv5gC/4AT8c21hABgAA
+/b/L++5gAnqFTMEDPMELvAv5gC/4AeGP1OpABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">

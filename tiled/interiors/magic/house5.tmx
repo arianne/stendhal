@@ -76,46 +76,46 @@
  <tileset firstgid="176" name="madaram" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/madaram.png"/>
  </tileset>
- <tileset firstgid="189" name="indoor/floor" tilewidth="32" tileheight="32">
+ <tileset firstgid="192" name="indoor/floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor.png"/>
  </tileset>
- <tileset firstgid="192" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="195" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="313" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="316" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset firstgid="338" name="single_dingy_white" tilewidth="32" tileheight="32">
+ <tileset firstgid="341" name="single_dingy_white" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_dingy_white.png"/>
  </tileset>
- <tileset firstgid="341" name="single_purple_gold" tilewidth="32" tileheight="32">
+ <tileset firstgid="344" name="single_purple_gold" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_purple_gold.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvPwMCwfxSP4lE8ikfxKCYRAwB3tRxkQAYAAA==
+   H4sIAAAAAAAAADvEwMBwaBSP4lE8ikfxKCYRAwCG1f4sQAYAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3TSQrCMBQG4ARceQoVcZ5ah43DSi+gIghew+F+rbpzOogrQZf+4itKzEuj9cFH
-afn7k5bEE0L4sI5oA1vYwR4OER3hBFe4idcM5fOaFuaZUC4TPMC9lJ99I8oVQ/qmao7pG8uQIpqZ
-mmP6fh5N3xwWX1QsYaX0ZSALOY2Y8k1xJveQhwI44DI+/gOe1RkNaIIn+P2s6/OZvM1+Pit1FyZn
-2s+/TJ/W/q/90jP0laBMKoYO17KvCjXiMF0NaEHTos926pbrS0CSpCy7dX1Zy3fb0FF03/pM5y3Q
-IaaMet64c/QwIKZMcN7ufmm0fUAGAAA=
+   H4sIAAAAAAAAAK3TSQrCMBQG4BQFV95BRRS1dWxVcNq48AIqguApHE7Yqjung7gSdONffCLEvjQO
+Dz5K4O9PWhJXCOHB+kcb2MIO9nD40RFOcIWbeM3QeDzTQj0TymVoHcE6arz3jShXCOmbSjmub2yE
+FNHMpBzX9+0E9c1h8UHHElZSXw7yUAgQk74pzuR8Jlhgg8OQ/4O/hzqjAU1wBX+eg/o8Jq9zns9S
+34XJqc7zN9MX/z0vXUWfCRYpKjqqmn0lKJMK02VDHRyNPt2pae4vAUmS0uwO6stqvtuCtqQj9O7b
+U4+oMvJ94+6Rb0BUmed9uwOi0rKAQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNggABGIGYBYlYgZgNiZqg4PwMmwKUWHXABMTcQ8+CQBwFeEtQSA/jI1KdKZXWj
 YGCBPJHq1gFxExLfHYg98KhPJmBeLRDbA7EDEDsCsTcQ+2BRlwnEWUCcAsTpeMyrA2JnIHYBYlco
-bUfADaSCZVQ2j9pgEZXNW0hAfjqV7cMF1lDBDGtGBNuWEbc6YoEDkhlORJgHAF8fALNABgAA
+bUfADaSCZVQ2j9pgEZXNW0hAfjqV7cMF1lDBDDtGBNuBEbc6YoEzkhmuRJgHACXryxJABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkgmJE4dVFEqqMmKALiYvpbOwpGwSjAAcyB2AINWw6oi6gPHBkhmBgAANEZ
-qJVABgAA
+   H4sIAAAAAAAAAGNgGNkgjJE4dbFEqqMmKALiYvpbOwpGwSjAAcyB2AINWw6oi6gPXBghmBgAAJri
+DAtABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

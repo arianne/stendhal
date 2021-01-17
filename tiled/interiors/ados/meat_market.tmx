@@ -10,51 +10,51 @@
  <tileset firstgid="12" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="28" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="36" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="29" name="carpets.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="carpets.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset firstgid="37" name="glass.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="glass.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/glass.png"/>
  </tileset>
- <tileset firstgid="53" name="grey_fancy_horizontal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="grey_fancy_horizontal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy_horizontal.png"/>
  </tileset>
- <tileset firstgid="62" name="barrels_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="70" name="barrels_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_2.png"/>
  </tileset>
- <tileset firstgid="70" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="191" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="199" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset firstgid="216" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
+ <tileset firstgid="224" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFNkYGBQHERYlgAe7voHQ7iTo2ao6FccYP30TgcMBOQB/CZ92AAEAAA=
+   H4sIAAAAAAAAANNkYGDQHERYlQAe7voHQ7iTo2ao6NccYP30TgcMBOQB63ba0QAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNkYGDwAmJvErEPEPsCcQgQqwKxGolYA4gjgLgWiHWBmAuKCQGYOgMgbkfSD5OD
-AQsgtoRiKzT9DDj0IwNrILaBYlss8oT0EwKj+jH1MxKhD6YGm35WIvTD1NBCPycR+tnR9K8BYkMg
-NsaBb+MQNwHiDUC8HYh3APFOHPg+DvFdQLwbiAHD4aOnAAQAAA==
+   H4sIAAAAAAAAAAtkYGAIAuJgEnEIEIcCcQwQ6wKxHonYAIgTgLgViE2BmAuKCQGYOgsg7kfSD5OD
+AQcgdoRiJzT9DDj0IwNnIHaBYlcs8oT0EwKj+jH1MxKhD6YGm35WIvTD1NBCPycR+tnR9G8BYksg
+tsaBH+MQtwHiHUC8H4gPAPFBHPg5DvFDQHwYiAHhMbO1AAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ7AAYltN1COGAUkAXsi1DjR0H5HItQ445FjJ0I/J5FuAYGDUPowCXqQwTEo
-fQKPGgCAAZy/AAQAAA==
+   H4sIAAAAAAAAAGNgGJ7AA4ntNmCuGAWkAHci1HjR0H5PItR445FjJ0I/J5FuAYGTUPo0CXqQwTko
+fQGPGgAUUhGFAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMRnAQSh8mU/8xID4OxCfwqAEA4aUovQAEAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQMRnASSp8mU/85ID4PxBfwqAEAQTihogAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="32">
@@ -64,7 +64,7 @@ fQKPGgCAAZy/AAQAAA==
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNhYGCQGUSYEMCnTwaPOgY0NaTaS8gdo/op109s/A9W/aQAUvIDLfMbANHfQ/EA
+   H4sIAAAAAAAAAFNhYGBQGUSYEMCnTwWPOgY0NaTaS8gdo/op109s/A9W/aQAUvIDLfMbAC8+r8wA
 BAAA
   </data>
  </layer>

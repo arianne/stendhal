@@ -97,7 +97,7 @@
  <tileset firstgid="1293" name="..\tileset\logic\portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="1309" name="..\tileset\logic\protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1317" name="..\tileset\logic\protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="30">
@@ -170,7 +170,7 @@ k9GBGYVp7VCZTuf2+sh6hr1+K21vst4OZL8iyB14//fOi9rIni5vamX+/K6xzYwOERfpwfCe9q7L
  </layer>
  <layer name="protection" width="31" height="30" visible="0" opacity="0.32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DMQ0AAAwDoD6TUf8262IXJPSSqqqq6tMBC3MCMYgOAAA=
+   H4sIAAAAAAAAAO3DMQ0AAAwDoD6TUv8W62IXJPSSqqqq6tMBNK1KOYgOAAA=
   </data>
  </layer>
 </map>

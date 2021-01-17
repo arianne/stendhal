@@ -28,52 +28,52 @@
  <tileset firstgid="19" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="35" name="brownground2" tilewidth="32" tileheight="32">
+ <tileset firstgid="43" name="brownground2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground2.png"/>
  </tileset>
- <tileset firstgid="36" name="small_lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="44" name="small_lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="40" name="shadow" tilewidth="32" tileheight="32">
+ <tileset firstgid="48" name="shadow" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
- <tileset firstgid="43" name="albino_elf" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="albino_elf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/albino_elf.png"/>
  </tileset>
- <tileset firstgid="48" name="bed" tilewidth="32" tileheight="32">
+ <tileset firstgid="56" name="bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset firstgid="50" name="wooden_rec" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="wooden_rec" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="59" name="dishes" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="dishes" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
- <tileset firstgid="65" name="rusticmeals" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="rusticmeals" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
- <tileset firstgid="67" name="tall_barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="tall_barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset firstgid="69" name="int_sandstone" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="int_sandstone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_sandstone.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFNmYGBQHsWjeBSP4lE8iknEAA5u/FhABgAA
+   H4sIAAAAAAAAANNmYGDQHsWjeBSP4lE8iknEAKWgn0tABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUWw7CIBBFx0bRqtG4B7/88u0G1Ph2/7vxEiGZjFMKLd7kBNrCCZQJDyJ6ZuIO
+   H4sIAAAAAAAAALWUWw7CIBBFx0bRqtG4D7/88u0G1Ph2/zvxEiGZjFMKLd7kBNrCCZQJDyJ6ZuIO
 3mBOvylcuwYbxlYZa+cfwcv5uqCnjLPZgT3j4N7PFKf3mQqXz7CiL+N9ueJ9S7DK6Bs1nF+KNsd+
 p6wfc76xKZmv39I1pu86Q/u13weJ3tD5huqszheTToKvab0U4vlf9dz2fKUvRyak17P8J1rkXWVd
-hvm0+zRlXYb5ruAW4AwW4FQzznIBH7KK5npABgAA
+hvm0+zRlXYb5ruAW4AwW4FQzznIBH2fk4/NABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA5wJlKdIxA7Qdk2VLJ7FIyCUTAKRgH9AQBKfXgRQAYAAA==
+   H4sIAAAAAAAAAGNgoA7wJlKdJxB7QdkuVLJ7FIyCUTAKRgH9AQBUdSWpQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
@@ -83,7 +83,7 @@ hvm0+zRlXYb5ruAW4AwW4FQzznIBH7KK5npABgAA
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAV6A+2AUTCgQGegHUBloD9M7RoF9AHiJKgFADUeiG5ABgAA
+   H4sIAAAAAAAAAGNgGAVmA+2AUTCgwGSgHUBlYD5M7RoF9AHiJKgFAEKPSFdABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.31">

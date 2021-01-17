@@ -43,10 +43,10 @@
  <tileset firstgid="124" name="golem.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset firstgid="127" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="128" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="128" name="stone_ruins" tilewidth="32" tileheight="32">
+ <tileset firstgid="129" name="stone_ruins" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stone_ruins.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -63,8 +63,8 @@ pgG6WGLa0AKdqh9jJagp8cEo6tcJrZ+v6MN2I+6Px+rDtqx5BtXHe61R509trf3qjE16Pzvsccjo
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB44hEVsHxFqQKAASptCcQEOdSBQhkcOpLcEjzw+ANKbB8TFZOotZcDvbmLs
-JheQa+8oGNkAAHF1nQAABAAA
+   H4sIAAAAAAAAAGNgoB44jEVsPxFqQKAASptCcQEOdSBQhkcOpLcEjzw+ANKbB8TFZOotZcDvbmLs
+JheQa+8oGNkAAPtm5r0ABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -79,8 +79,8 @@ JheQa+8oGNkAAHF1nQAABAAA
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGCoHyQYGaDz0eXI1YvLDHRxcvQTqxeffnL0kmIvPvupoZ9YM2mln1hAbf2U
-hj++OKVlngMALI+gtgAEAAA=
+   H4sIAAAAAAAAAGtgYGBoGCQYGaDz0eXI1YvLDHRxcvQTqxeffnL0kmIvPvupoZ9YM2mln1hAbf2k
+moFNPy4ziVVLDgYAjDkMdAAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

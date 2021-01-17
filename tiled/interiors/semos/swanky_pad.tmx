@@ -22,60 +22,60 @@
  <tileset firstgid="26" name="logic/portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="42" name="oriental_table" tilewidth="32" tileheight="32">
+ <tileset firstgid="50" name="oriental_table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/oriental_table.png"/>
  </tileset>
- <tileset firstgid="46" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset firstgid="52" name="sofa_red" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="sofa_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
- <tileset firstgid="58" name="table_with_beer_dark" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="table_with_beer_dark" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
- <tileset firstgid="68" name="large_chest" tilewidth="32" tileheight="32">
+ <tileset firstgid="76" name="large_chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset firstgid="76" name="sea_horse" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="sea_horse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
- <tileset firstgid="88" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="209" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="217" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset firstgid="234" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
+ <tileset firstgid="242" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
- <tileset firstgid="242" name="item/firewood" tilewidth="32" tileheight="32">
+ <tileset firstgid="250" name="item/firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGAQoQDnkYFF0Nik2DVU9aKzR/Xi1sswQHoHwr8MA6SXWv4llL9xyZOLAQAh
-YPCwBAAA
+   H4sIAAAAAAAAABNhYGAQoQCXkYFF0Nik2DVU9aKzR/Xi1sswQHoHwr8MA6SXWv4llL9xyZOLAR+i
+0dWwBAAA
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3OPQrCMBiA4RxA6T2snkHBpd2rDv5tWr2MjvUEnbyCf5t/R/EChYLvoBBKEhOh
-pR88S5KXL2MhxARTBzPMscASsYMV1thgK35PgBAeEuyk1rPov1NsXcbUdtGT9Cvaq5shRiXsbaLx
-R2vTmPbWsW3B17QRBoa2jU4Jf84su0zR5pZtLrUHHHFSeGnOz7jgihvuBenn3V5x98ATb1AicF2w
-BAAA
+   H4sIAAAAAAAAAM3NOQrCQBiG4VFIp+QuUc+gYBN7l8KtU+NlkjKewCpXcOvcjmLvKygMQ2YyE1D8
+4GmSefnHQogJpg5mmGOBJVYOIqwRIxHFC9GDjxQbqfUt+s/U1mWmto2OpPuju7oNMfrC3TpqJVqb
+xnT3H9sADU3bx8DQNtEqeVee2lYrdt3rndp6lq0ntTvsccjx0Hw/4oQzLrgqtu93Wc6/G+54Avr6
+Vb+wBAAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBy4AbE7HnkXIHbFIecFxN5IfD0g1gdiAxLMhwFDIDYCYmM85o+CwQNMgNgU
-is1I1GsOxBZQbElldw1FwEpldeSCy1D6Khl6bwDxRyC+hUcNADFZFgWwBAAA
+   H4sIAAAAAAAAAGNgoBz4AbE/HnkfIPbFIRcExMFIfDMgNgdiCxLMhwFLILYCYms85o+CwQNsgNgW
+iu1I1GsPxA5Q7EhVVw1NwEpldeSC21D6Lhl6HwDxTyB+hEcNAKkQn3OwBAAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVWQGyNhO2oYKYfEPuTqTcIiIOp4AZ0wAXEnGToI0fPQAMfIPYlU28AEAdS
-0S2jgHhwk4A8AN8ZRuWwBAAA
+   H4sIAAAAAAAAAGNgGAVOQOyMhN2oYGYYEIeTqTcKiKOp4AZ0wAXEnGToI0fPQIMQIA4lU28EEEdS
+0S2jgHjwkIA8AP5clH+wBAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">

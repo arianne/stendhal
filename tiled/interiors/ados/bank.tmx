@@ -43,51 +43,51 @@
  <tileset firstgid="163" name="dark_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="172" name="chest_purple.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="178" name="chest_purple.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="174" name="floors_3.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="180" name="floors_3.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="186" name="wooden.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="192" name="wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="187" name="wooden.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="193" name="wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="192" name="pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="198" name="pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="204" name="oil_paintings.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="210" name="oil_paintings.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="220" name="banners.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="226" name="banners.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>
  </tileset>
- <tileset firstgid="226" name="flowering_plant.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="232" name="flowering_plant.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png" trans="ff00ff"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvHwMCwbhRTjJdTiHGZu55MPJLchy9eBoP76BF+tMKj7qOtuweLOcSaS6pd+NxH
-bXcTsmswpZOdo+6jSdyPum94uo+Qu+lt50D7m1gMAB9zDIXgCwAA
+   H4sIAAAAAAAAANvCwMCwZRRTjJdTiHGZu5VMPJLchy9eBoP76BF+tMKj7qOtuweLOcSaS6pd+NxH
+bXcTsmswpZP9o+6jSdyPum94uo+Qu+lt50D7m1gMACDCM7DgCwAA
   </data>
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2Uyy5DURSGlzJxmdZ9giKRVKuYkrjN8CZmgg47cZkZkWBswgvQBi0P4k38J107
+   H4sIAAAAAAAAAM2Uyy5DURSGlzJxmdZ9giKRVKuYkrjN8CZmgg47cZkZkWBszgvQBi0P4jX8J107
 VlbXPu05+0T8yZezzsre6/zd3flHiCgH1sA617l/0hsGA2AajGfMVODcaH8/+xsFN+ASXFFbT+C5
 S01izxE4Bxdc53lujdfN87PGdRGUubbW5A1/afUIquK9Kvw5Laja+dN9p6z9aWl/i6p2/nTf5+8O
 3INbJkn9EONvGSwlpGT4+za+0ausvc5fMcW8MnX6y1rO3wpYTUjlj/xNgjGDWfq9fzOeNRPCX9yc
 6P6UYua4dVpz5M+2ArXPtSLWvYMP0KTO/PPlaEH8Tt/3ojnW+R/HoHUNWuATfPG7/n9DctTydwJO
 Dc6MtZZ89y9NjmZ5f+td/KXJ0az8vYEX8Gr4C8nRUH91UTf4qf2F5GiIP3lmUtpfSI6Gnl/D6El/
-Mv82wCb5s87KUZ2fO2AX7Kl+ktkun4dAn2ALbPfQi+vvgwNwGDhnEPwALAX46uALAAA=
+Mv82wCb5s87KUZ2fO2AX7Kl+ktkun4dAn2ALbPfQi+vvgwNwGDhnEPwAQM2HruALAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAyuAfF1ItQNFLgFxLfJ1FtHgA8C1QT41ACPkdiPiFDfDsQdNHDHKBgFQwl0
-AnEXDdWPAuJBHQ42MqjGwR4Fo2AUDBwYLUeHJwAAsL8Wu+ALAAA=
+   H4sIAAAAAAAAAGNgIAzuAPFdItQNFHgAxA/J1FtHgA8C1QT41AAvkdgviFDfDsQdNHDHKBgFQwl0
+AnEXDdWPAuJBHQ42MqjGwR4Fo2AUDBwYLUeHJwAA4u9yMOALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">

@@ -40,10 +40,10 @@
  <tileset firstgid="414" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="430" name="collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="438" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="431" name="protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="439" name="protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="32">
@@ -87,14 +87,14 @@ GmauqFTdH+8DmO1Z+t7hz/x/AAAAAEZ7ASyS5I8AIAAA
  </layer>
  <layer name="collision" width="64" height="32" opacity="0.57">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TYQqAMAhG1/3vsjP2azAEzdbMgU94sLDY99D61VoHAAD4ibmys2i5VstyHGfZ
+   H4sIAAAAAAAAAO2TYQqAMAhG1/3vs/P1azAEzdbMgU94sLDY99D61VoHAAD4ibmys2i5VstyHGfZ
 83y3M1ukv3XvOMuefCc6x5O/lkNz8PZX8u7IMz9nzP+U8vh79vRL38oWcZ/ca+bP/58x/7f7H5WB
-/c/nxEz4448//vjX9K9S+AMAANTmBroOrnMAIAAA
+/c/nxEz4448//vjX9K9S+AMAANTmBu9GLAAAIAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="32" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwDoL1/mFVcjoOCvaSqqqqqqqqq6usDVidfAAAgAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwDoL1/oNVbjoOCvaSqqqqqqqqq6usD/d5auQAgAAA=
   </data>
  </layer>
 </map>

@@ -64,13 +64,13 @@
  <tileset firstgid="195" name="logic/portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="211" name="logic/creature/elf" tilewidth="32" tileheight="32">
+ <tileset firstgid="219" name="logic/creature/elf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="221" name="logic/collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="235" name="logic/collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="222" name="item/firewood" tilewidth="32" tileheight="32">
+ <tileset firstgid="236" name="item/firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="15">
@@ -81,7 +81,7 @@
  <layer name="1_terrain" width="30" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNjYGDgoDPmBGIuIOYGYnk6YR4gFoTaq8hAHLADYnsKsAMQK5BhryMQO1GAncm0
-1wWIXSnAbmTa+wAJkwuGkr3UAKP2jtpLa3v5gVgOipWR2LTAAlB7hYBYGAmzoPFpgUWBGAA8ZAqv
+1wWIXSnAbmTa+w4JkwuGkr3UAKP2jtpLa3v5gVgOipWR2LTAAlB7hYBYGAmzoPFpgUWBGACurbRt
 CAcAAA==
   </data>
  </layer>
@@ -106,13 +106,13 @@ sRxmcm8HutD7ca9TKtL7606m4nMvdvbM8wJXciN38nDp1flv/GOeJwQmFToIBwAA
  </layer>
  <layer name="objects" width="30" height="15" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQgg2tEio2CUTCQ4BYJailNv8cp1D/YAQASAx21CAcAAA==
+   H4sIAAAAAAAAAGNgGAWjYBQgg3tEio2CUTCQ4BEJailNv8cp1D/YAQDUqcOsCAcAAA==
   </data>
  </layer>
  <layer name="collision" width="30" height="15" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvLwMBwd4RiQmC42ovLLbT2Kyn2MqDRhMSoaS+6PD4xcsKZkNvwiVHbXlLFKLWX
-HEBueqaV3cToIUQTyjPk2EsNQKqbhgsGAFJdrwIIBwAA
+   H4sIAAAAAAAAAHvNwMDweoRiQmC42ovLLbT2Kyn2MqDRhMSoaS+6PD4xcsKZkNvwiVHbXlLFKLWX
+HEBueqaV3cToIUQTyjPk2EsNQKqbhgsGAMgtk6MIBwAA
   </data>
  </layer>
  <layer name="protection" width="30" height="15" visible="0">

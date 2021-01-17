@@ -67,7 +67,7 @@
  <tileset firstgid="125" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="141" name="item/firewood" tilewidth="32" tileheight="32">
+ <tileset firstgid="149" name="item/firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="64">
@@ -78,14 +78,14 @@
  </layer>
  <layer name="1_terrain" width="32" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YyU7DMBCGR6JwASTEha3cEOeyqqfSW24tfQeQuOUA9NR36CszIxxp5NqO7Ynj
+   H4sIAAAAAAAAAO2YyU7DMBCGR6JwASTEha3cEOeyqqfSW24tfQeQuOUA9NT36OsyIxxp5NqO7Ynj
 BPJLv5I6rr/Ey3gZAcAok4/Rl5l8jd5HF7CrhSENLHld+W1lUP4zxc+lgd9P/kdmfohc79rX+u8q
 /90zTefb4p8t1jUhHv8uLL5JyAfG3zP4BH3eEt+kg4GflF8k4IfGZSl/GciL4dvWNS/o1xb4LhF/
 nonfle/nejPkMaWR6tafXa9/0krAboIvlWT8tcVPpZj4S2NOGvO4YvjSPi/hA8hjjolv2pefGvgx
 Mc9n/W/bn98a/kNjfh74DnX83OvfXPoLfN6/Yvc/ufSf+XXxvw013f9y8CUa+GHxv8m1mM/5R+oz
 Edf5h+tM5Av9bfFaY9jyriG8/fmaaFZz5ZpZ7iX8JtRXfqm8Yc822jUlv1B8X03Qz+g79AN6CnHz
 D6//iSqPfI9+VIypZ1mlgB8bh3gbxaw/m+x/SwH/U/2uvofagtrgCX7bgdqkagtTf6z2MdL+L1Hf
-+VuWXsLuO221PFzS+udlV9wFu6dnhZZPHzOrSP4YwuZrl68C+UfgP1f7+hD9A+zFcF4AIAAA
++VuWXsLuO221PFzS+udlV9wFu6dnhZZPHzOrSP4YwuZrl68C+UfgP1f7+hD9A1wJxMEAIAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="64">
