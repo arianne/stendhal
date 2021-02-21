@@ -105,7 +105,7 @@ public class CollectingGroupQuestAdder {
 			@Override
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				if (behaviour.calculateRemainingItems().isEmpty()) {
-					npc.say("Thanks God! We finally got all materil. Stay tuned. The construction will finish in no time.");
+					npc.say("Thanks God! We finally got all material. Stay tuned. The construction will finish in no time.");
 					return;
 				}
 				int percent = behaviour.getProgressPercent();

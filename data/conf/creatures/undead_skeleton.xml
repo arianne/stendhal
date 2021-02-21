@@ -219,7 +219,7 @@
 
   <creature name="fallen warrior">
     <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
-    <description>You see a fallen warrior. Once he fought in great battles but now he has fallen to the depths of hell only to come back up to get his revenge. It is level 55.</description>
+    <description>You see a fallen warrior. Once he fought in great battles but now he has fallen to the depths of hell only to come back up to get his revenge.</description>
     <attributes>
       <atk value="438"/>
       <def value="66"/>

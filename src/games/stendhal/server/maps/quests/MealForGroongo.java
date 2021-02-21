@@ -788,7 +788,7 @@ public class MealForGroongo extends AbstractQuest {
                     "Today I really feel like trying " +
                         Grammar.a_noun(getRequiredMainDishFancyName(requiredMainDish)) +
                     ". Now go ask Chef Stefan to prepare my #" + requiredMainDish +
-                    ", If you please..."
+                    ", if you please..."
             );
 
             //logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
@@ -827,10 +827,10 @@ public class MealForGroongo extends AbstractQuest {
             player.setQuest(QUEST_SLOT, 5, requiredIngredientsForDessert);
 
             SpeakerNPC.say(
-                    "Indeed I shouldn't have forgot to ask for a dessert! " +
+                    "Indeed I shouldn't have forgotten to ask for a dessert! " +
                     "With " + Grammar.article_noun(getRequiredMainDishFancyName(requiredMainDish), true) +
                     " I want to try " + Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
-                    " Now go ask Chef Stefan to prepare my " + requiredDessert + " for dessert!"
+                    ". Now go ask Chef Stefan to prepare my " + requiredDessert + " for dessert!"
             );
 
             //logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
@@ -857,7 +857,7 @@ public class MealForGroongo extends AbstractQuest {
                 meal = Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2)));
                 //question = " Should I also choose some #dessert to go with that?";
                 // not a question but a way to give the player a hint about how to 'ask' for which dessert
-                question = " Maybe I should also choose some #dessert to go with that...";
+                question = "Maybe I should also choose some #dessert to go with that...";
             } else if (
                     "tell_dessert".equals(questState) ||
                     "fetch_dessert".equals(questState) ||
@@ -892,9 +892,9 @@ public class MealForGroongo extends AbstractQuest {
 
             SpeakerNPC.say(
               "Ah! Our troublesome customer has asked this time for " +
-                  Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2))) + "..." +
+                  Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2))) + "... " +
               "For that I'll need some ingredients that at the moment I'm missing: " +
-                  Grammar.enumerateCollection(missingIngredients.toStringList()) + "..." +
+                  Grammar.enumerateCollection(missingIngredients.toStringList()) + "... " +
               "Do you happen to have all of the required ingredients with you already?"
             );
 
@@ -972,7 +972,7 @@ public class MealForGroongo extends AbstractQuest {
                         Grammar.article_noun( getWhatToPrepare(player, questState), true) +
                     " I need " +
                         Grammar.enumerateCollection(missingIngredientsToFetch.toStringListWithHash()) +
-                    " Please, bring me ALL those ingredients *AT ONCE*" +
+                    ". Please, bring me ALL those ingredients *AT ONCE*" +
                     " as I've asked already!"
                 );
             }
@@ -1028,7 +1028,7 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.QUEST_OFFERED,
             "Gah! Here I stand, covered in cobwebs... " +
             "Waiting to order a decent meal... For eons! " +
-            "Let me ask you ... Can you bring me a decent meal NOW?",
+            "Let me ask you... Can you bring me a decent meal NOW?",
             null
         );
 
@@ -1423,7 +1423,7 @@ public class MealForGroongo extends AbstractQuest {
             new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert"),
             ConversationStates.IDLE,
             "Oh, fetch them quickly then!" +
-            " Please, be sure to bring me all the ingredients " +
+            " Please, be sure to bring me all the ingredients." +
             " All at the same time, of course!",
             null
         );
@@ -1610,8 +1610,8 @@ public class MealForGroongo extends AbstractQuest {
                     npc.say(
                     	"Very well! Since you have been so helpful..." +
                         " Please, accept " +
-                        Grammar.thisthese(amountOfSandwiches) + " experimental " +
-                        Grammar.quantityNumberStrNoun(amountOfSandwiches, "sandwich") +
+                        Grammar.thisthese(amountOfSandwiches) + " " +
+                        Grammar.quantityNumberStrNoun(amountOfSandwiches, "experimental sandwich") +
                         " and " +
                         Grammar.thisthese(amountOfMoneys) + " " +
                         Grammar.quantityNumberStrNoun(amountOfMoneys, "money") +
@@ -1724,8 +1724,8 @@ public class MealForGroongo extends AbstractQuest {
                         " and " +
                         Grammar.thisthese(amountOfMoneys) + " " +
                         Grammar.quantityNumberStrNoun(amountOfMoneys, "money") +
-                        " as my reward! " +
-                        " Please be sure to forward to Chef Stefan my special and very deserved THANKS " +
+                        " as my reward!" +
+                        " Please be sure to forward to Chef Stefan my special and very deserved THANKS" +
                         " for preparing me such a decent meal! I am sure he will appreciate..."
                     );
 
