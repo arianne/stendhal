@@ -2706,6 +2706,17 @@
 			]
 		},
 		{
+			"name": "rakhadjo",
+			"fullname": "Rakha Djokosoetono",
+			"link": "https://github.com/maxgmer",
+			"image": "https://avatars.githubusercontent.com/u/48625405",
+			"contributions": [
+				{
+					"type": "test"
+				}
+			]
+		},
+		{
 			"name": "raignarok",
 			"fullname": "florianjacob",
 			"link": "https://sourceforge.net/u/raignarok/profile",
@@ -3564,6 +3575,5 @@
 					"type": "code"
 				}
 			]
-		}
-	]
+		}	]
 }
