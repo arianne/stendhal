@@ -125,7 +125,10 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
 	@Override
 	public boolean contains(final Entity entity) {
-		return super.contains(entity) || (entity.getX() == GATE_POS.x && entity.getY() == GATE_POS.y);
+		if (super.contains(entity)) {
+			return true;
+		}
+		return super.getZone().has(entity.getID()) && (entity.getX() == GATE_POS.x && entity.getY() == GATE_POS.y);
 	}
 
 	/**
