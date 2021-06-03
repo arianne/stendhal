@@ -77,7 +77,7 @@ public class ReorderAction implements ActionListener {
 		for (RPObject obj : objectsCopy) {
 			slot.addPreservingId(obj);
 		}
-		SlotOwner parent = entity.getContainerOwner();
+		SlotOwner parent = entity.getContainerBaseOwner();
 		if (parent instanceof Entity) {
 			((Entity) parent).notifyWorldAboutChanges();
 		}
@@ -125,7 +125,7 @@ public class ReorderAction implements ActionListener {
 				}
 			}
 			slot = object.getContainerSlot();
-			if ((slot != null) && isReachableSlot(player, slot)) {
+			if ((slot != null) && !isReachableSlot(player, slot)) {
 				return false;
 			}
 
