@@ -125,7 +125,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_5,
-			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #https://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
+			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.libera.chat'. There is a web frontend at #https://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
 			null);
 
 		npc.add(

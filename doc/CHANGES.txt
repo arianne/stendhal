@@ -2929,7 +2929,6 @@ Aug 14, 2006
 - admins / game masters
   - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
   - (*) Inspect, (*) Destroy and /alter #12345 can be used on items
-  - /support and /supportanswer can now be forwarded to irc://irc.freenode.net/#arianne-support
   - added a new jail map
   - admins can summon lots of monsters with /script plague.groovy 1 rat
   - admins can create signs using /script adminsign.groovy

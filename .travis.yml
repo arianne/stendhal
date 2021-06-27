@@ -12,8 +12,8 @@ script: xvfb-run -e /dev/stdout -a ant test
 notifications:
   irc:
     channels:
-      - "chat.freenode.net#arianne"
-      - "chat.freenode.net#arianne-devel"
+      - "irc.libera.chat#arianne"
+      - "irc.libera.chat#arianne-devel"
     on_success: change
     on_failure: change
     use_notice: false
