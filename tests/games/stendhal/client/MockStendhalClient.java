@@ -15,7 +15,7 @@ package games.stendhal.client;
 public class MockStendhalClient extends StendhalClient {
 
 	protected MockStendhalClient() {
-		super(new UserContext(), new PerceptionDispatcher());
+		super(UserContext.get(), new PerceptionDispatcher());
 		client = this;
 	}
 

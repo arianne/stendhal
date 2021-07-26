@@ -263,7 +263,7 @@ public final class stendhal {
 		StendhalFirstScreen splash;
 
 		Startup(String[] args) {
-			final UserContext userContext = new UserContext();
+			final UserContext userContext = UserContext.get();
 			final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 			final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
