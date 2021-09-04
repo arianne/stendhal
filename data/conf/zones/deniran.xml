@@ -319,6 +319,8 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.MuseumCashierNPC" />
+
 		<!-- portals -->
 		<portal x="78" y="65" ref="tannery_entrance">
 			<destination zone="int_deniran_tannery" ref="entrance" />
@@ -326,6 +328,23 @@
 			<!--<attribute name="resistance">0</attribute>-->
 		</portal>
 
+		<portal x="26" y="45" ref="deniran_museum_entrance">
+			<destination zone="int_deniran_museum" ref="entrance" />
+			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+				<parameter name="condition">new QuestActiveCondition("museum_entrance_fee")</parameter>
+				<parameter name="action">new SetQuestAction("museum_entrance_fee", null)</parameter>
+				<parameter name="rejected">The door is locked. Maybe that boy knows how to get in.</parameter>
+			</implementation>	
+			<attribute name="move.continuous" />
+		</portal>
+		
+		<entity x="28" y="46">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">DENIRAN AIR AND SPACE MUSEUM
+
+Entrance fee is 10 money</attribute>
+		</entity>
+		
 	</zone>
 
 
@@ -1364,6 +1383,32 @@
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Making leather thread: Simply use a rotary cutter to slice a pelt into thin strips (note to self: be sure to thank Erna for lending me her rotary cutter the last time I misplaced mine).</attribute>
 			<attribute name="class">book_red</attribute>
+		</entity>
+
+	</zone>
+
+	<zone name="int_deniran_museum" file="interiors/deniran/museum.tmx">
+
+		<portal x="15" y="14" ref="entrance">
+			<destination zone="0_deniran_city_s_e2" ref="deniran_museum_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="coversZone">true</parameter>
+				<parameter name="enterMessage">WOW, so much air and space. Isn't this amazing?</parameter>
+				<parameter name="warnPlayer">true</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="2" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="width">21</parameter>
+				<parameter name="height">12</parameter>
+				<parameter name="leaveMessage">Wasn't that a really impressive experience?</parameter>
+				<parameter name="warnPlayer">true</parameter>
+			</implementation>
 		</entity>
 
 	</zone>

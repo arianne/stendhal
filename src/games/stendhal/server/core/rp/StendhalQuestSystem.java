@@ -150,6 +150,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
 		loadQuest(new MixtureForOrtiv());
+		loadQuest(new MuseumEntranceFee());
 		loadQuest(new NewsFromHackim());
 		loadQuest(new ObsidianKnife());
 		loadQuest(new PizzaDelivery());

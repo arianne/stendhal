@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="25" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="1">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="wood_trim" tilewidth="32" tileheight="32" tilecount="50" columns="10">
+  <image source="../../tileset/building/wall/wood_trim.png" width="320" height="160"/>
+ </tileset>
+ <tileset firstgid="52" name="wallpapers" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+  <image source="../../tileset/building/wall/wallpapers.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="77" name="floor_tiles" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/ground/indoor/floor_tiles.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="86" name="ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+  <image source="../../tileset/ground/ground.png" width="96" height="352"/>
+ </tileset>
+ <tileset firstgid="119" name="ground_3" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/ground/ground_3.png" width="160" height="32"/>
+ </tileset>
+ <tileset firstgid="124" name="portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
+ <layer id="8" name="0_floor" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA7NlYGCwpQO2oCFGtiOYBnjUjlE7Ru0YtYMWdpCDK4hQQ0yZHI5HroJIMwCipmarQAYAAA==
+  </data>
+ </layer>
+ <layer id="9" name="1_terrain" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NnYGDgAGJONMwFFacUcwOxIBALAbEwDbAIEItC7ZBhoA2QG7WDZDvk6GDHcAmrUTtGph3yDJjlLjFYkYC8NNQODSDWxINl8cgxENALwmpADAAHdDtpQAYAAA==
+  </data>
+ </layer>
+ <layer id="10" name="2_object" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwFAALlGajoR18UFqACLUAnIrKS0AGAAA=
+  </data>
+ </layer>
+ <layer id="11" name="3_roof" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwChCAn0h1AJ0PX0VABgAA
+  </data>
+ </layer>
+ <layer id="12" name="objects" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwVEDDQDsACQAAH+dZKkAGAAA=
+  </data>
+ </layer>
+ <layer id="13" name="collision" width="25" height="16" opacity="0.43">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NkYGBgHEaYFmDUjlE7Ru0YtYMWdpBbxg10OQvDAHoZL+JABgAA
+  </data>
+ </layer>
+ <layer id="14" name="protection" width="25" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+ </layer>
+</map>
