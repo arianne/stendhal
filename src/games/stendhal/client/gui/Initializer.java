@@ -100,6 +100,8 @@ class Initializer {
 			logger.debug("Not setting X application name " + e.getMessage());
 		} catch (IllegalAccessException e) {
 			logger.debug("Not setting X application name: " + e.getMessage());
+		} catch (RuntimeException e) { // InaccessibleObjectException: is not available on Java 8
+			logger.debug("Not setting X application name: " + e.getMessage());
 		}
 		// Setting the name for Mac probably requires using the native LAF, and
 		// we do not use it
