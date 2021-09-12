@@ -2094,6 +2094,8 @@
       class-name="games.stendhal.server.maps.kalavan.citygardens.MummyNPC" />
     <configurator
       class-name="games.stendhal.server.maps.kalavan.citygardens.OracleNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.FishermanNPC" />
     <portal x="114" y="116" ref="greenhouse_1_entrance">
       <destination zone="int_kalavan_greenhouse_1" ref="entrance" />
       <attribute name="move.continuous" />
