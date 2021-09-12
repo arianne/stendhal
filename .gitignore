@@ -47,3 +47,4 @@ build_server_xmlconf
 /*.cert
 /*.csr
 /map.map
+/hs_err_*.log
