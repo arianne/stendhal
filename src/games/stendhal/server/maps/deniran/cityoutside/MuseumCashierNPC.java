@@ -78,9 +78,9 @@ public class MuseumCashierNPC implements ZoneConfigurator {
 				)
 				);
 				add(ConversationStates.ATTENDING,
-					Arrays.asList("parents","father","dad","mother","mom"),
+					Arrays.asList("parents","father","dad","mother","mom", "guardian"),
 					ConversationStates.ATTENDING,
-					"Talking to my parents won't help you. You need to talk to the director.",
+					"Talking to my parents won't help you. You need to talk to the #director.",
 					null
 				);
 				addReply("manager","I'm very sorry, the manager is currently unavailable.");
@@ -94,6 +94,13 @@ public class MuseumCashierNPC implements ZoneConfigurator {
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
+
+			@Override
+			public void onRejectedAttackStart(RPEntity attacker) {
+				super.onRejectedAttackStart(attacker);
+				say("!me shouts: Dad! Dad! Help! I am attacked by " + attacker.getName() + "!");
+			}
+
 		};
 
 		// I took this as a placeholder, it's the ghost in Ados. A boy clad in something more formal would be better.
