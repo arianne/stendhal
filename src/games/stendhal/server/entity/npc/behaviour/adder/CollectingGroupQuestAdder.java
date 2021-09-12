@@ -47,7 +47,7 @@ import marauroa.server.db.command.DBCommandQueue;
 
 public class CollectingGroupQuestAdder {
 
-	private static final int REPEAT_DELAY_MINUTES = 24 * 60;
+	private static final int REPEAT_DELAY_MINUTES = 20 * 60;
 	private static final class IsRemainingItem implements ChatCondition {
 		private final CollectingGroupQuestBehaviour behaviour;
 
@@ -138,7 +138,7 @@ public class CollectingGroupQuestAdder {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new NotCondition(new GroupQuestCompletedCondition(behaviour)),
-						new TimePassedCondition(behaviour.getQuestSlot(), REPEAT_DELAY_MINUTES),
+						new TimePassedCondition(behaviour.getQuestSlot(), 1, REPEAT_DELAY_MINUTES),
 						new LevelGreaterThanCondition(4)
 				),
 				ConversationStates.QUEST_OFFERED,
