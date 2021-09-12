@@ -69,7 +69,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("hammer", 1);
 		hints.put("hammer", "I am sure, that Xoderos in Semos will sell you a hammer.");
 		
-		required.put("knife", 1);
+		required.put("knife", 2);
 		chunkSize.put("knife", 1);
 		hints.put("knife", "I am sure, that Xin Blanca in Semos will sell you a knife.");
 		
@@ -77,11 +77,11 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("lamp", 1);
 		hints.put("lamp", "You can probably buy a lamp from Jimbo in Deniran.");
 
-		required.put("wood", 100);
+		required.put("wood", 200);
 		chunkSize.put("wood", 10);
 		hints.put("wood", "You can find wood in the forests.");
 
-		required.put("beer", 20);
+		required.put("beer", 25);
 		chunkSize.put("beer", 5);
 		hints.put("beer", "You can probably find beer in any tavern.");
 
