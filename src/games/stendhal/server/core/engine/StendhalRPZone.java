@@ -89,6 +89,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private static final double DANGER_WEIGHT_CREATURE_DENSITY = 1.0;
 
+	private static final Pattern ZONE_NAME_PATTERN = Pattern.compile("^(-?[\\d]|int)_(.+)$");
+
 	TeleportationRules teleRules = new TeleportationRules();
 
 	/** the logger instance. */
@@ -1748,6 +1750,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		zoneNameMappings.put("-1_athor_ship_w2", "on Athor ferry");
 		zoneNameMappings.put("-2_athor_ship_w2", "on Athor ferry");
 		zoneNameMappings.put("hell", "in Hell");
+		zoneNameMappings.put("malleus_plain", "in Malleus Plain");
 	}
 
 	/**
@@ -1762,8 +1765,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			return zoneNameMappings.get(zoneName);
 		}
 		String result = "";
-		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
-		final Matcher m = p.matcher(zoneName);
+		final Matcher m = ZONE_NAME_PATTERN.matcher(zoneName);
 		int levelValue = -1;
 		if (m.matches()) {
 			final String level = m.group(1);
@@ -1865,8 +1867,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private String createReadableName(String zoneName) {
 		StringBuilder result = new StringBuilder();
-		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
-		final Matcher m = p.matcher(zoneName);
+		final Matcher m = ZONE_NAME_PATTERN.matcher(zoneName);
 		if (m.matches()) {
 			final String level = m.group(1);
 			String remainder = m.group(2);
