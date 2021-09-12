@@ -2,6 +2,20 @@ Changelog
 ---------
 ---------
 
+1.37
+
+*world*
+- added Baelin NPC
+- added Denrian Space Museum
+- various small improvements to maps
+
+*fixes*
+- fixed crash on startup with Java 16 because of an incompatible API change
+- fixed halloffame on newer versions of MySQL due to "rank" now being treated as a reserved word
+
+
+
+
 1.36
 *world*
 - building Mine Town Revival Weeks as group quest
