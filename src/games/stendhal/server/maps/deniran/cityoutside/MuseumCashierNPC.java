@@ -97,7 +97,6 @@ public class MuseumCashierNPC implements ZoneConfigurator {
 
 			@Override
 			public void onRejectedAttackStart(RPEntity attacker) {
-				super.onRejectedAttackStart(attacker);
 				say("!me shouts: Dad! Dad! Help! I am attacked by " + attacker.getName() + "!");
 			}
 
