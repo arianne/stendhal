@@ -63,8 +63,8 @@ public class MuseumCashierNPC implements ZoneConfigurator {
 					)
 				);
 				addHelp("Please pay the entrance fee first, then you are allowed to walk through the door to #visit the famous Deniran Air And Space Museum.");
-				addJob("I am very proud to be the cashier of the famous Deniran Air And Space Mueseum.");
-				addOffer("I'm allowed to grant you access to the famous Deniran Air And Space Mueseum, if you like to pay a #visit.");
+				addJob("I am very proud to be the cashier of the famous Deniran Air And Space Museum.");
+				addOffer("I'm allowed to grant you access to the famous Deniran Air And Space Museum, if you like to pay a #visit.");
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("refund","fraud","hoax","scam","swindle","rip-of","swizz","screw","screwed","diddle","diddled"),
 					ConversationStates.IDLE,
