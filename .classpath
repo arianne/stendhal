@@ -7,7 +7,7 @@
 	<classpathentry kind="lib" path="libs/cglib-nodep-2.2_beta1.jar"/>
 	<classpathentry kind="lib" path="libs/easymock.jar"/>
 	<classpathentry kind="lib" path="libs/easymockclassextension.jar"/>
-	<classpathentry kind="lib" path="libs/groovy.jar"/>
+	<classpathentry kind="lib" path="libs/groovy-3.0.9.jar"/>
 	<classpathentry kind="lib" path="libs/guava.jar"/>
 	<classpathentry kind="lib" path="libs/h2.jar"/>
 	<classpathentry kind="lib" path="libs/jardiff.jar"/>
