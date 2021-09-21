@@ -302,11 +302,6 @@ class TileStore implements Tileset {
 	 */
 	@Override
 	public Sprite getSprite(int index) {
-		if (index < 0) {
-			logger.error("Accessing unassigned sprite at: " + index);
-			return store.getEmptySprite();
-		}
-		
 		int flip = index & TILE_FLIP_MASK;
 		index &= TILE_ID_MASK;
 		if (index >= tiles.size()) {
