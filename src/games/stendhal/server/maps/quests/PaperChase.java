@@ -84,7 +84,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private void setupTexts() {
 		texts.put("Fiete", "The next person you should find, is responsible for port operations south of Deniran.");
-		texts.put("Marcellus", "The next person guards the bridge east of here.");
+		texts.put("Marcellus", "The next person guards the bridge west of here.");
 		texts.put("Marianne", "The next person you should find, is a little girl afraid of chicken.");
 		texts.put("Ermenegilda", "But I see, you are in a hurry to meet the next person on the list: An old scary lady at the market. But she is nice and heals people in need.");
 		texts.put("Pierre", "The next person is a well known costume maker.");
