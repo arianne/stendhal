@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.DressedEntityRPClass;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -319,6 +320,10 @@ public abstract class PlayerTestHelper {
 
 		if (!RPClass.hasRPClass("rpentity")) {
 			RPEntity.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass("dressed_entity")) {
+			DressedEntityRPClass.generateRPClass();
 		}
 	}
 
