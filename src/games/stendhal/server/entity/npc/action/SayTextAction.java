@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +13,11 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+
+import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -33,7 +37,7 @@ import games.stendhal.server.util.StringUtils;
 @Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextAction implements ChatAction {
 
-	private final String text;
+	private final List<String> texts;
 
 	/**
 	 * Creates a new SayTextAction.
@@ -41,13 +45,31 @@ public class SayTextAction implements ChatAction {
 	 * @param text text to say
 	 */
 	public SayTextAction(String text) {
-		this.text = checkNotNull(text);
+		this.texts = ImmutableList.of(checkNotNull(text));
+	}
+
+	/**
+	 * Creates a new SayTextAction.
+	 *
+	 * @param texts list of texts from which a random one is said
+	 */
+	public SayTextAction(Iterable<String> texts) {
+		this.texts = ImmutableList.copyOf(checkNotNull(texts));
+	}
+
+	/**
+	 * Creates a new SayTextAction.
+	 *
+	 * @param texts array of texts from which a random one is said
+	 */
+	public SayTextAction(String[] texts) {
+		this.texts = ImmutableList.copyOf(checkNotNull(texts));
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		PlayerMapAdapter map = new PlayerMapAdapter(player);
-		raiser.say(StringUtils.substitute(text, map));
+		raiser.say(StringUtils.substitute(Rand.rand(texts), map));
 	}
 
 	@Override
@@ -57,7 +79,7 @@ public class SayTextAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return 5417 * text.hashCode();
+		return 5417 * texts.hashCode();
 	}
 
 	@Override
@@ -66,6 +88,6 @@ public class SayTextAction implements ChatAction {
 			return false;
 		}
 		SayTextAction other = (SayTextAction) obj;
-		return text.equals(other.text);
+		return texts.equals(other.texts);
 	}
 }
