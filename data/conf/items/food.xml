@@ -12,7 +12,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -107,7 +108,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -130,7 +132,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="10" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -153,7 +156,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="10" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -200,7 +204,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="15" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -223,7 +228,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="15" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -246,7 +252,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="5" />
-			<frequency value="1" />
+			<frequency value="1" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -269,7 +276,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="10" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -292,7 +300,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="7" />
+			<frequency value="7" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -315,7 +324,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="15" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -338,7 +348,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="15" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -361,7 +372,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -384,7 +396,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -407,7 +420,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -430,7 +444,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -453,7 +468,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -476,7 +492,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -499,7 +516,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -522,7 +540,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -545,7 +564,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -568,7 +588,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -591,7 +612,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -614,7 +636,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -637,7 +660,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="1" />
 			<menu value="Eat|Use"/>
@@ -660,7 +684,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="15" />
+			<frequency value="15" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="2" />
 			<menu value="Eat|Use"/>
@@ -683,7 +708,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -1008,7 +1034,8 @@
 		<description>You see a loaf of bread. It is freshly baked and ready to eat.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="40" />
+			<frequency value="40" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<frequency value="30" />
 			<quantity value="1" />
 			<regen value="4" />
@@ -1032,7 +1059,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="150" />
-			<frequency value="25" />
+			<frequency value="25" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="12" />
 			<menu value="Eat|Use"/>
@@ -1055,7 +1083,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="230" />
-			<frequency value="15" />
+			<frequency value="15" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="15" />
 			<menu value="Eat|Use"/>
@@ -1078,7 +1107,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="230" />
-			<frequency value="15" />
+			<frequency value="15" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="15" />
 			<menu value="Eat|Use"/>
@@ -1101,7 +1131,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="160" />
-			<frequency value="18" />
+			<frequency value="18" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="10" />
 			<menu value="Eat|Use"/>
@@ -1147,7 +1178,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="120" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="10" />
 			<menu value="Eat|Use"/>
@@ -1193,7 +1225,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
-			<frequency value="40" />
+			<frequency value="40" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="4" />
 			<menu value="Eat|Use"/>
@@ -1217,7 +1250,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="25" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="6" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="1" />
 			<menu value="Eat|Use"/>
@@ -1240,7 +1274,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="40" />
+			<frequency value="40" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="4" />
 			<menu value="Eat|Use"/>
@@ -1263,7 +1298,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -1309,7 +1345,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="160" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="16" />
 			<menu value="Eat|Use"/>
@@ -1355,7 +1392,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="90" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="10" />
 			<menu value="Eat|Use"/>
@@ -1378,7 +1416,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="80" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="10" />
 			<menu value="Eat|Use"/>
@@ -1424,7 +1463,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="100" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="20" />
 			<menu value="Eat|Use"/>
@@ -1447,7 +1487,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="100" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="20" />
 			<menu value="Eat|Use"/>
@@ -1471,7 +1512,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -1494,7 +1536,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -1517,7 +1560,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="3" />
 			<menu value="Eat|Use"/>
@@ -1566,7 +1610,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
-			<frequency value="15" />
+			<frequency value="15" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="1" />
 			<menu value="Eat|Use"/>
@@ -1589,7 +1634,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="50" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="5" />
 			<menu value="Eat|Use"/>
@@ -1798,7 +1844,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="50" />
-			<frequency value="10" />
+			<frequency value="10" condition="!stendhal.testserver"/>
+			<frequency value="5" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="5" />
 			<menu value="Eat|Use"/>
@@ -1821,7 +1868,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="80" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="6" />
 			<menu value="Eat|Use"/>
@@ -1844,7 +1892,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="60" />
-			<frequency value="20" />
+			<frequency value="20" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="5" />
 			<menu value="Eat|Use"/>
@@ -1961,7 +2010,8 @@
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="250" />
-			<frequency value="12" />
+			<frequency value="12" condition="!stendhal.testserver"/>
+			<frequency value="10" condition="stendhal.testserver"/>
 			<quantity value="1" />
 			<regen value="50" />
 			<menu value="Eat|Use"/>
