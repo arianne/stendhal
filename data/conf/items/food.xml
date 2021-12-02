@@ -1034,9 +1034,9 @@
 		<description>You see a loaf of bread. It is freshly baked and ready to eat.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<frequency value="40" condition="!stendhal.testserver"/>
+			<amount value="40"/>
+			<frequency value="30" condition="!stendhal.testserver"/>
 			<frequency value="10" condition="stendhal.testserver"/>
-			<frequency value="30" />
 			<quantity value="1" />
 			<regen value="4" />
 			<menu value="Eat|Use"/>
