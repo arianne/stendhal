@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -240,8 +239,7 @@ public class MealForGroongo extends AbstractQuest {
     private static final int BRINGTHANKS_DELAY = 10;
 
     //Every when the quest can be repeated
-    //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
-    private static final int REPEATQUEST_DELAY = 10;
+    private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
 
     // how much XP is given as the reward
     private static final int XP_REWARD = 1000;
@@ -1594,7 +1592,7 @@ public class MealForGroongo extends AbstractQuest {
                 @Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                     final int amountOfMoneys = Rand.randUniform(1200, 4800);
-                    final int amountOfSandwiches = Rand.randUniform(12, 48);
+                    final int amountOfSandwiches = Rand.randUniform(10, 20);
                     final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
                     final StackableItem sandwich = (StackableItem) SingletonRepository.getEntityManager().getItem("sandwich");
 
