@@ -1268,7 +1268,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 				fork="true"
 				failonerror="true"
 				maxmemory="128m">
-			<arg value="--language_in=ECMASCRIPT_2015"/>
+			<arg value="--language_in=ECMASCRIPT_2020"/>
+			<arg value="--language_out=STABLE"/>
 			<arg value="--compilation_level" />
 			<arg value="ADVANCED" />
 			<arg line="${js-debug}" />
