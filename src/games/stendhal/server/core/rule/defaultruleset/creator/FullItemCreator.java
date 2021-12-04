@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +14,8 @@ package games.stendhal.server.core.rule.defaultruleset.creator;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.item.Item;
 
@@ -25,6 +26,8 @@ import games.stendhal.server.entity.item.Item;
  */
 public class FullItemCreator extends AbstractItemCreator {
 
+	private static final Logger logger = Logger.getLogger(FullItemCreator.class);
+
 	public FullItemCreator(DefaultItem defaultItem, final Constructor< ? > construct) {
 		super(defaultItem, construct);
 	}
@@ -32,7 +35,15 @@ public class FullItemCreator extends AbstractItemCreator {
 	@Override
 	protected Item createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return (Item) construct.newInstance(new Object[] { this.defaultItem.getItemName(), this.defaultItem.getItemClass(), this.defaultItem.getItemSubclass(),
-				this.defaultItem.getAttributes() });
+		try {
+			return (Item) construct.newInstance(new Object[] { 
+					this.defaultItem.getItemName(),
+					this.defaultItem.getItemClass(),
+					this.defaultItem.getItemSubclass(),
+					this.defaultItem.getAttributes() });
+		} catch (IllegalAccessException | InstantiationException | InvocationTargetException | RuntimeException e) {
+			logger.error("Creating item \"" + this.defaultItem.getItemName() + "\" failed.");
+			throw e;
+		}
 	}
 }
