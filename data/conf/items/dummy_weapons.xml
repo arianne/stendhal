@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 	<!-- Weapons that can be given to creatures to adjust their rate of attack,
 	without giving them a visible weapon. These should never be seen as actual
 	items in the game. -->
@@ -12,6 +11,7 @@
     <attributes>
       <atk value="12"/>
       <range value="3"/>
+    <min_level condition="stendhal.testserver" value="9999"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -26,6 +26,7 @@
     <attributes>
       <atk value="22"/>
       <range value="8"/>
+    <min_level condition="stendhal.testserver" value="9999"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="arandula">
     <type class="herb" subclass="arandula" tileid="-1"/>
     <description>You see a arandula. It has medicinal properties, if the right person uses it.</description>
@@ -104,7 +103,7 @@
   <item name="reindeer moss">
     <type class="herb" subclass="reindeer_moss" tileid="-1"/>
     <description>You see reindeer moss, something that grows only around Semos. It is quite a delicacy to reindeer, but extremely bitter to humans.</description>
-	<implementation class-name="games.stendhal.server.entity.item.Item" />
+	<implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>

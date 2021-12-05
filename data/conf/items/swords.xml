@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="assassin dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
@@ -181,6 +179,7 @@
     <attributes>
       <atk value="8"/>
       <rate value="3"/>
+    <min_level condition="stendhal.testserver" value="3"/>
     </attributes>
     <weight value="0.2"/>
     <value value="8533"/>
@@ -246,7 +245,8 @@
     <attributes>
       <atk value="22"/>
       <rate value="6"/>
-      <min_level value="30"/>
+      <min_level condition="stendhal.testserver" value="20"/>
+      <min_level condition="!stendhal.testserver" value="30"/>
     </attributes>
     <weight value="4.0"/>
     <value value="88733"/>
@@ -268,7 +268,8 @@
     <attributes>
       <atk value="31"/>
       <rate value="6"/>
-      <min_level value="85"/>
+      <min_level condition="stendhal.testserver" value="80"/>
+      <min_level condition="!stendhal.testserver" value="85"/>
     </attributes>
     <weight value="4.0"/>
     <value value="248258"/>
@@ -290,7 +291,8 @@
     <attributes>
       <atk value="16"/>
       <rate value="4"/>
-      <min_level value="30"/>
+      <min_level condition="stendhal.testserver" value="25"/>
+      <min_level condition="!stendhal.testserver" value="30"/>
     </attributes>
     <weight value="4.0"/>
     <value value="219700"/>
@@ -377,7 +379,8 @@
     <attributes>
       <atk value="60"/>
       <rate value="15"/>
-      <min_level value="25"/>
+      <min_level condition="stendhal.testserver" value="30"/>
+      <min_level condition="!stendhal.testserver" value="25"/>
     </attributes>
     <weight value="8.0"/>
     <value value="303750"/>
@@ -398,7 +401,8 @@
     <attributes>
       <atk value="9"/>
       <rate value="2"/>
-      <min_level value="70"/>
+      <min_level condition="stendhal.testserver" value="60"/>
+      <min_level condition="!stendhal.testserver" value="70"/>
     </attributes>
     <weight value="0.2"/>
     <value value="12800"/>
@@ -420,7 +424,8 @@
     <attributes>
       <atk value="29"/>
       <rate value="6"/>
-      <min_level value="40"/>
+      <min_level condition="stendhal.testserver" value="70"/>
+      <min_level condition="!stendhal.testserver" value="40"/>
     </attributes>
     <weight value="4.0"/>
     <value value="174207"/>
@@ -442,7 +447,8 @@
     <attributes>
       <atk value="14"/>
       <rate value="3"/>
-      <min_level value="50"/>
+      <min_level condition="stendhal.testserver" value="70"/>
+      <min_level condition="!stendhal.testserver" value="50"/>
     </attributes>
     <weight value="4.0"/>
     <value value="34300"/>
@@ -463,7 +469,8 @@
     <attributes>
       <atk value="35"/>
       <rate value="6"/>
-	  <min_level value="80"/>
+	  <min_level condition="stendhal.testserver" value="150"/>
+      <min_level condition="!stendhal.testserver" value="80"/>
     </attributes>
     <weight value="9.0"/>
     <value value="357291"/>
@@ -506,6 +513,7 @@
     <attributes>
       <atk value="7"/>
       <rate value="3"/>
+    <min_level condition="stendhal.testserver" value="1"/>
     </attributes>
     <weight value="0.2"/>
     <value value="5716"/>
@@ -569,7 +577,8 @@
     <attributes>
       <atk value="20"/>
       <rate value="4"/>
-      <min_level value="70"/>
+      <min_level condition="stendhal.testserver" value="80"/>
+      <min_level condition="!stendhal.testserver" value="70"/>
     </attributes>
     <weight value="4.0"/>
     <value value="90535"/>
@@ -612,6 +621,7 @@
     <attributes>
       <atk value="24"/>
       <rate value="10"/>
+    <min_level condition="stendhal.testserver" value="10"/>
     </attributes>
     <weight value="4.0"/>
     <value value="69120"/>
@@ -718,6 +728,7 @@
     <attributes>
       <atk value="11"/>
       <rate value="4"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="2.0"/>
     <value value="16637"/>
@@ -738,7 +749,8 @@
     <attributes>
       <atk value="5"/>
       <rate value="1"/>
-      <min_level value="130"/>
+      <min_level condition="stendhal.testserver" value="250"/>
+      <min_level condition="!stendhal.testserver" value="130"/>
     </attributes>
     <weight value="0.2"/>
     <value value="6250"/>
@@ -781,7 +793,8 @@
       <atk value="28"/>
        <rate value="5"/>
        <lifesteal value="0.1"/>
-       <min_level value="35"/>
+       <min_level condition="stendhal.testserver" value="90"/>
+      <min_level condition="!stendhal.testserver" value="35"/>
     </attributes>
     <weight value="4.0"/>
     <value value="98742"/>
@@ -823,6 +836,7 @@
     <attributes>
       <atk value="0"/>
       <rate value="1"/>
+      <min_level condition="stendhal.testserver" value="10"/>
       <durability value="800"/>
     </attributes>
     <weight value="2.0"/>

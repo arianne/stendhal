@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="decent meal">
-    <type class="misc" subclass="decent_meal" tileid="-1" />
+    <type class="misc" subclass="decent_meal" tileid="-1"/>
     <description>You see a decent meal for Groongo Rahnnt. Deliver it to him quickly!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <quantity value="1" />
+      <quantity value="1"/>
     </attributes>
-    <weight value="1.0" />
-    <value value="1" />
+    <weight value="1.0"/>
+    <value value="1"/>
     <equipable>
-	  <slot name="ground" />
-	  <slot name="content" />
-	  <slot name="lhand" />
-	  <slot name="rhand" />
-	  <slot name="bag" />
-	  <slot name="trade" />
+	  <slot name="ground"/>
+	  <slot name="content"/>
+	  <slot name="lhand"/>
+	  <slot name="rhand"/>
+	  <slot name="bag"/>
+	  <slot name="trade"/>
     </equipable>
   </item>
 
@@ -327,7 +326,7 @@
 
   <item name="pelt">
     <type class="misc" subclass="pelt" tileid="-1"/>
-    <description></description>
+    <description/>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
@@ -367,7 +366,7 @@
 
   <item name="unicorn horn">
     <type class="misc" subclass="unicorn_horn" tileid="-1"/>
-    <description></description>
+    <description/>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>

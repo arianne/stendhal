@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="12" condition="!testing.combat"/>
-      <ratk value="12" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="12"/>
+      <ratk condition="testing.combat" value="12"/>
       <range value="3"/>
+    <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="1.0"/>
     <value value="17280"/>
@@ -27,9 +27,10 @@
     <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="14" condition="!testing.combat"/>
-      <ratk value="14" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="14"/>
+      <ratk condition="testing.combat" value="14"/>
       <range value="4"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="1.0"/>
     <value value="27440"/>
@@ -48,9 +49,10 @@
     <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="15" condition="!testing.combat"/>
-      <ratk value="15" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="15"/>
+      <ratk condition="testing.combat" value="15"/>
       <range value="5"/>
+    <min_level condition="stendhal.testserver" value="10"/>
     </attributes>
     <weight value="1.0"/>
     <value value="33750"/>
@@ -69,9 +71,10 @@
  <description>You see a crossbow. The attack is high but it has a very short range, what do you prefer?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="17" condition="!testing.combat"/>
-      <ratk value="17" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="17"/>
+      <ratk condition="testing.combat" value="17"/>
       <range value="3"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="3.0"/>
     <value value="49130"/>
@@ -90,9 +93,10 @@
  <description>You see a hunter crossbow. You must decide if the high attack is worth the short range it has.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="21" condition="!testing.combat"/>
-      <ratk value="21" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="21"/>
+      <ratk condition="testing.combat" value="21"/>
       <range value="4"/>
+    <min_level condition="stendhal.testserver" value="50"/>
     </attributes>
     <weight value="3.0"/>
     <value value="92610"/>
@@ -111,9 +115,10 @@
    <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <atk value="28" condition="!testing.combat"/>
-      <ratk value="28" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="28"/>
+      <ratk condition="testing.combat" value="28"/>
       <range value="4"/>
+    <min_level condition="stendhal.testserver" value="300"/>
     </attributes>
     <weight value="3.0"/>
     <value value="142610"/>

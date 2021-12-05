@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="olive oil">
     <type class="drink" subclass="olive_oil" tileid="-1"/>
@@ -215,13 +214,13 @@
     <description>You see a bottle of fresh spring water. It's really tasty and fresh.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount value="15" condition="!stendhal.testserver"/>
-      <amount value="20" condition="stendhal.testserver"/>
-      <frequency value="6" condition="!stendhal.testserver"/>
-      <frequency value="5" condition="stendhal.testserver"/>
+      <amount condition="!stendhal.testserver" value="15"/>
+      <amount condition="stendhal.testserver" value="20"/>
+      <frequency condition="!stendhal.testserver" value="6"/>
+      <frequency condition="stendhal.testserver" value="5"/>
       <quantity value="1"/>
-      <regen value="2" condition="!stendhal.testserver"/>
-      <regen value="5" condition="stendhal.testserver"/>
+      <regen condition="!stendhal.testserver" value="2"/>
+      <regen condition="stendhal.testserver" value="5"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
@@ -264,12 +263,12 @@
     <description>You see a lovely cup of tea.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount value="30" condition="!stendhal.testserver"/>
-      <amount value="50" condition="stendhal.testserver"/>
+      <amount condition="!stendhal.testserver" value="30"/>
+      <amount condition="stendhal.testserver" value="50"/>
       <frequency value="5"/>
       <quantity value="1"/>
-      <regen value="3" condition="!stendhal.testserver"/>
-      <regen value="10" condition="stendhal.testserver"/>
+      <regen condition="!stendhal.testserver" value="3"/>
+      <regen condition="stendhal.testserver" value="10"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
@@ -289,12 +288,12 @@
     <description>You see a small bottle of fresh milk.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount value="10" condition="!stendhal.testserver"/>
-      <amount value="30" condition="stendhal.testserver"/>
+      <amount condition="!stendhal.testserver" value="10"/>
+      <amount condition="stendhal.testserver" value="30"/>
       <frequency value="5"/>
       <quantity value="1"/>
-      <regen value="1" condition="!stendhal.testserver"/>
-      <regen value="5" condition="stendhal.testserver"/>
+      <regen condition="!stendhal.testserver" value="1"/>
+      <regen condition="stendhal.testserver" value="5"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
@@ -682,26 +681,26 @@
   </item>
 
   <item name="sedative">
-    <type class="drink" subclass="sedative" tileid="-1" />
+    <type class="drink" subclass="sedative" tileid="-1"/>
     <description>You see a sedative. It's effects can protect you from a shocked state.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusHealer" />
+    <implementation class-name="games.stendhal.server.entity.item.StatusHealer"/>
     <attributes>
-      <immunization value="shocked" />
-      <amount value="400" />
+      <immunization value="shocked"/>
+      <amount value="400"/>
       <frequency value="1"/>
       <quantity value="1"/>
       <regen value="1"/>
-      <menu value="Drink|Use" />
+      <menu value="Drink|Use"/>
     </attributes>
-    <weight value="1.0" />
-    <value value="1" />
+    <weight value="1.0"/>
+    <value value="1"/>
     <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -729,25 +728,25 @@
   </item>-->
 
   <item name="cobra venom">
-    <type class="drink" subclass="cobra_venom" />
+    <type class="drink" subclass="cobra_venom"/>
     <description>You see a vial filled with cobra venom. Even in this small amount, it could be deadly if ingested.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink" />
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount value="-1000" />
-      <frequency value="10" />
-      <quantity value="1" />
-      <regen value="-60" />
-      <menu value="Drink|Use" />
+      <amount value="-1000"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="-60"/>
+      <menu value="Drink|Use"/>
     </attributes>
-    <weight value="1.0" />
-    <value value="1" />
+    <weight value="1.0"/>
+    <value value="1"/>
     <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 

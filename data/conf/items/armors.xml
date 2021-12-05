@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="barbarian armor">
     <type class="armor" subclass="barbarian_armor" tileid="-1"/>
@@ -27,7 +26,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="26"/>
-	  <min_level value="200"/>
+	  <min_level condition="stendhal.testserver" value="250"/>
+      <min_level condition="!stendhal.testserver" value="200"/>
     </attributes>
     <weight value="45.0"/>
     <value value="123032"/>
@@ -67,6 +67,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="6"/>
+    <min_level condition="stendhal.testserver" value="7"/>
     </attributes>
     <weight value="45.0"/>
     <value value="1512"/>
@@ -104,6 +105,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="1"/>
+    <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="5.0"/>
     <value value="7"/>
@@ -160,6 +162,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="7"/>
+    <min_level condition="stendhal.testserver" value="7"/>
     </attributes>
     <weight value="45.0"/>
     <value value="2401"/>
@@ -197,7 +200,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="9"/>
-      <min_level value="5"/>
+      <min_level condition="stendhal.testserver" value="10"/>
+      <min_level condition="!stendhal.testserver" value="5"/>
     </attributes>
     <weight value="45.0"/>
     <value value="5103"/>
@@ -216,7 +220,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="19"/>
-	  <min_level value="80"/>
+	  <min_level condition="stendhal.testserver" value="85"/>
+      <min_level condition="!stendhal.testserver" value="80"/>
     </attributes>
     <weight value="35.0"/>
     <value value="48013"/>
@@ -237,6 +242,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="8"/>
+    <min_level condition="stendhal.testserver" value="10"/>
     </attributes>
     <weight value="45.0"/>
     <value value="3584"/>
@@ -255,7 +261,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="3"/>
-      <undroppableondeath value="1" />
+      <min_level condition="stendhal.testserver" value="0"/>
+      <undroppableondeath value="1"/>
     </attributes>
     <weight value="15.0"/>
     <value value="189"/>
@@ -274,6 +281,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="4"/>
+    <min_level condition="stendhal.testserver" value="1"/>
     </attributes>
     <weight value="15.0"/>
     <value value="448"/>
@@ -292,6 +300,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="4"/>
+    <min_level condition="stendhal.testserver" value="1"/>
     </attributes>
     <weight value="15.0"/>
     <value value="448"/>
@@ -310,7 +319,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="24"/>
-	  <min_level value="150"/>
+	  <min_level condition="stendhal.testserver" value="160"/>
+      <min_level condition="!stendhal.testserver" value="150"/>
     </attributes>
     <weight value="45.0"/>
     <value value="96768"/>
@@ -333,7 +343,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="22"/>
-	  <min_level value="125"/>
+	  <min_level condition="stendhal.testserver" value="130"/>
+      <min_level condition="!stendhal.testserver" value="125"/>
     </attributes>
     <weight value="45.0"/>
     <value value="86000"/>
@@ -352,6 +363,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="29"/>
+    <min_level condition="stendhal.testserver" value="330"/>
     </attributes>
     <weight value="42.0"/>
     <value value="323032"/>
@@ -372,7 +384,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="9"/>
-      <min_level value="5"/>
+      <min_level condition="stendhal.testserver" value="10"/>
+      <min_level condition="!stendhal.testserver" value="5"/>
     </attributes>
     <weight value="45.0"/>
     <value value="5103"/>
@@ -391,6 +404,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="5"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="15.0"/>
     <value value="875"/>
@@ -409,7 +423,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="10"/>
-      <min_level value="10"/>
+      <min_level condition="stendhal.testserver" value="13"/>
+      <min_level condition="!stendhal.testserver" value="10"/>
     </attributes>
     <weight value="45.0"/>
     <value value="7000"/>
@@ -470,6 +485,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="7"/>
+    <min_level condition="stendhal.testserver" value="7"/>
     </attributes>
     <weight value="45.0"/>
     <value value="3584"/>
@@ -554,6 +570,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="5"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="25.0"/>
     <value value="875"/>

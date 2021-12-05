@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="wooden arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
     <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="1" condition="!testing.combat"/>
-      <ratk value="1" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="1"/>
+      <ratk condition="testing.combat" value="1"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="10"/>
@@ -31,11 +30,12 @@
     <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="3" condition="!testing.combat"/>
-      <ratk value="3" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="3"/>
+      <ratk condition="testing.combat" value="3"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="1"/>
     </attributes>
     <weight value="0.1"/>
     <value value="270"/>
@@ -54,11 +54,12 @@
     <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="4" condition="!testing.combat"/>
-      <ratk value="4" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="4"/>
+      <ratk condition="testing.combat" value="4"/>
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="0.1"/>
     <value value="640"/>
@@ -77,11 +78,12 @@
     <description>You see a fire arrow. The tip burns brightly.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="6" condition="!testing.combat"/>
-      <ratk value="6" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="6"/>
+      <ratk condition="testing.combat" value="6"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -101,11 +103,12 @@
     <description>You see an ice arrow. It can deliver a bitter sting.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="6" condition="!testing.combat"/>
-      <ratk value="6" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="6"/>
+      <ratk condition="testing.combat" value="6"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -125,11 +128,12 @@
     <description>You see a light arrow. It shines with a holy radiance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="6" condition="!testing.combat"/>
-      <ratk value="6" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="6"/>
+      <ratk condition="testing.combat" value="6"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -149,11 +153,12 @@
     <description>You see a dark arrow. It's hard to describe.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="6" condition="!testing.combat"/>
-      <ratk value="6" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="6"/>
+      <ratk condition="testing.combat" value="6"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -173,11 +178,12 @@
     <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="6" condition="!testing.combat"/>
-      <ratk value="6" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="6"/>
+      <ratk condition="testing.combat" value="6"/>
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+    <min_level condition="stendhal.testserver" value="20"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>

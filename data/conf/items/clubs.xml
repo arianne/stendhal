@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
   <item name="chaos hammer">
     <type class="club" subclass="chaos_hammer" tileid="-1"/>
@@ -31,7 +30,8 @@
     <attributes>
       <atk value="6"/>
       <rate value="4"/>
-      <undroppableondeath value="1" />
+      <min_level condition="stendhal.testserver" value="0"/>
+      <undroppableondeath value="1"/>
     </attributes>
     <weight value="2.0"/>
     <value value="2700"/>
@@ -53,6 +53,7 @@
       <atk value="48"/>
        <rate value="7"/>
       <lifesteal value="-0.1"/>
+    <min_level condition="stendhal.testserver" value="50"/>
     </attributes>
     <weight value="8.0"/>
     <value value="691200"/>
@@ -73,6 +74,7 @@
     <attributes>
       <atk value="19"/>
       <rate value="7"/>
+    <min_level condition="stendhal.testserver" value="3"/>
     </attributes>
     <weight value="8.0"/>
     <value value="48992"/>
@@ -93,6 +95,7 @@
     <attributes>
       <atk value="19"/>
       <rate value="7"/>
+    <min_level condition="stendhal.testserver" value="3"/>
     </attributes>
     <weight value="8.0"/>
     <value value="48992"/>
@@ -113,7 +116,8 @@
     <attributes>
       <atk value="36"/>
       <rate value="9"/>
-      <min_level value="15"/>
+      <min_level condition="stendhal.testserver" value="30"/>
+      <min_level condition="!stendhal.testserver" value="15"/>
     </attributes>
     <weight value="8.0"/>
     <value value="259200"/>
@@ -134,6 +138,7 @@
     <attributes>
       <atk value="22"/>
       <rate value="8"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="8.0"/>
     <value value="66550"/>
@@ -197,6 +202,7 @@
     <attributes>
       <atk value="16"/>
       <rate value="6"/>
+    <min_level condition="stendhal.testserver" value="5"/>
     </attributes>
     <weight value="8.0"/>
     <value value="34133"/>
@@ -217,7 +223,8 @@
     <attributes>
       <atk value="25"/>
       <rate value="7"/>
-      <min_level value="13"/>
+      <min_level condition="stendhal.testserver" value="15"/>
+      <min_level condition="!stendhal.testserver" value="13"/>
     </attributes>
     <weight value="8.0"/>
     <value value="111607"/>
@@ -238,6 +245,7 @@
     <attributes>
       <atk value="8"/>
       <rate value="5"/>
+      <min_level condition="stendhal.testserver" value="500"/>
       <menu value="Use|Use"/>
     </attributes>
     <weight value="0.2"/>
@@ -260,6 +268,7 @@
       <atk value="100"/>
       <def value="100"/>
       <rate value="2"/>
+    <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.01"/>
     <value value="10000000"/>
@@ -281,7 +290,8 @@
       <atk value="22"/>
       <rate value="7"/>
       <lifesteal value="0.05"/>
-      <min_level value="8"/>
+      <min_level condition="stendhal.testserver" value="20"/>
+      <min_level condition="!stendhal.testserver" value="8"/>
     </attributes>
     <weight value="8.0"/>
     <value value="76057"/>
@@ -302,6 +312,7 @@
     <attributes>
       <atk value="9"/>
       <rate value="5"/>
+    <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="4.0"/>
     <value value="7290"/>
@@ -322,7 +333,8 @@
     <attributes>
       <atk value="40"/>
       <rate value="6"/>
-      <min_level value="120"/>
+      <min_level condition="stendhal.testserver" value="180"/>
+      <min_level condition="!stendhal.testserver" value="120"/>
     </attributes>
     <weight value="2.0"/>
     <value value="533333"/>
@@ -365,7 +377,8 @@
     <attributes>
       <atk value="38"/>
       <rate value="9"/>
-      <min_level value="35"/>
+      <min_level condition="stendhal.testserver" value="40"/>
+      <min_level condition="!stendhal.testserver" value="35"/>
     </attributes>
     <weight value="8.0"/>
     <value value="304844"/>
