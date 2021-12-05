@@ -1,7 +1,6 @@
 package games.stendhal.tools.xml;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,18 +8,15 @@ import java.util.TreeMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import games.stendhal.server.core.config.XMLUtil;
 
 public class XmlMergerAndSplitter {
 	TreeMap<String, Element> elements = new TreeMap<>();
@@ -53,19 +49,7 @@ public class XmlMergerAndSplitter {
 			resultDocument.adoptNode(entry.getValue());
 			root.appendChild(entry.getValue());
 		}
-		writeFile(resultDocument, filename);
-	}
-
-	private void writeFile(Document document, String filename) throws IOException, TransformerException {
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-		DOMSource source = new DOMSource(document);
-		FileWriter writer = new FileWriter(new File(filename));
-		StreamResult result = new StreamResult(writer);
-		transformer.transform(source, result);
-		writer.close();
+		XMLUtil.writeFile(resultDocument, filename);
 	}
 
 
@@ -77,7 +61,7 @@ public class XmlMergerAndSplitter {
 
 			document.adoptNode(entry.getValue());
 			root.appendChild(entry.getValue());
-			writeFile(document, folder + "/" + entry.getKey());
+			XMLUtil.writeFile(document, folder + "/" + entry.getKey());
 		}
 	}
 

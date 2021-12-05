@@ -1,22 +1,23 @@
-/*
- * @(#) src/games/stendhal/server/config/XMLUtil.java
- *
- * $Id$
- */
-
 package games.stendhal.server.core.config;
 
-//
-//
-
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,9 +29,6 @@ import org.xml.sax.SAXException;
  * XML utility methods for DOM reading.
  */
 public class XMLUtil {
-	//
-	// XMLUtil
-	//
 
 	/**
 	 * Get all the direct children elements of an element.
@@ -137,6 +135,36 @@ public class XMLUtil {
 	}
 
 	/**
+	 * creates a child element at the specified position
+	 *
+	 * @param parent parent element
+	 * @param name   name of new child element
+	 * @param order  order of elements to insert the new child element at the correct position
+	 * @return newly created child element
+	 */
+	public static Element createChildElement(Element parent, String name, List<String> order) {
+		Element newChild = parent.getOwnerDocument().createElement(name);
+
+		int pos = order.indexOf(name);
+		if (pos < 0) {
+			parent.appendChild(newChild);
+			return newChild;
+		}
+
+		Set<String> before = new HashSet<>(order.subList(0, pos));
+		
+		for (Element child : XMLUtil.getElements(parent)) {
+			if (!before.contains(child.getTagName())) {
+				parent.insertBefore(newChild, child);
+				return newChild;
+			}
+		}
+
+		parent.appendChild(newChild);
+		return newChild;
+	}
+
+	/**
 	 * Parse an XML document.
 	 *
 	 * @param in
@@ -153,7 +181,7 @@ public class XMLUtil {
 	 */
 	public static Document parse(final InputStream in) throws SAXException,
 			IOException {
-		return parse(new InputSource(in));
+	return parse(new InputSource(in));
 	}
 
 	/**
@@ -182,6 +210,28 @@ public class XMLUtil {
 					"DOM parser configuration error: " + ex.getMessage());
 		}
 	}
+
+	
+	/**
+	 * writes an xml document to a file
+	 * 
+	 * @param document DOM document
+	 * @param filename filename
+	 * @throws IOException in case of an input/output error
+	 * @throws TransformerException in case of an transformation issue
+	 */
+	public static void writeFile(Document document, String filename) throws IOException, TransformerException {
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+		DOMSource source = new DOMSource(document);
+		FileWriter writer = new FileWriter(new File(filename));
+		StreamResult result = new StreamResult(writer);
+		transformer.transform(source, result);
+		writer.close();
+	}
+
 
 
 	/**
