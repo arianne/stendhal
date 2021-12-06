@@ -96,6 +96,7 @@ dress_059.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_060.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_061.png (ranger uniform)   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/50909
 dress_062.png (armor)            bleutailfly; OGA BY 3.0; https://postimg.cc/xcf7MS00
+dress_970.*   (postal)           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_971.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_972.*   (armor)            bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_973.png (superstendhal)    bleutailfly; OGA BY 3.0; https://postimg.cc/p5LbSWQw
@@ -219,6 +220,8 @@ hat_010.*   (robin's hat)      Svetlana Kushnariova (Cabbit), Jordan Irwin (Antu
 hat_011.*   (fedora/panama)    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_012.png (boggin)           bleutailfly; OGA BY 3.0; Stendhal
 hat_013.*   (robe hood)        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hat_990.png (postal)           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/100767
+hat_991.png (wedding veil)
 hat_992.png (superstendhal)    bleutailfly; OGA BY 3.0; Stendhal
 hat_993.png (blue bear suit)   bleutailfly; OGA BY 3.0; Stendhal
 hat_994.png (brown bear suit)  bleutailfly; OGA BY 3.0; Stendhal
