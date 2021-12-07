@@ -196,7 +196,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 				}));
 
 		fightingAchievements.add(createAchievement(
-				ID_DEEPSEA, "Deep Sea Fisherman", "Kill 500 sharks, kraken, & neo kraken",
+				ID_DEEPSEA, "Deep Sea Fisherman", "Kill 500 sharks, 500 kraken and 500 neo kraken",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(500, ENEMIES_DEEPSEA)));
 
