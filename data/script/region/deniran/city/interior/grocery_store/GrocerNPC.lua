@@ -44,7 +44,7 @@ local function addNPC()
 
 	-- add to shop list
 	for _, item in pairs(sellPrices) do
-		merchants.shops:add(shopName, item[1], item[2], item[3])
+		merchants.shops:add(shopName, item[1], item[2])
 	end
 
 	merchants:addSeller(grocer, merchants.shops:get(shopName), false)
