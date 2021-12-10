@@ -69,5 +69,5 @@ if game:setZone(zone) then
 	addNPC()
 	addSign()
 else
-	logger:error("Could not set zone: " .. zoneName)
+	logger:error("Could not set zone: " .. zone)
 end
