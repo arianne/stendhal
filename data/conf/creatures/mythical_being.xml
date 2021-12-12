@@ -358,7 +358,6 @@
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="ice sword" quantity="[1,1]" probability="20.0"/>
       <item value="apple" quantity="[10,30]" probability="80.0"/>
-      <item value="mithril armor" quantity="[1,1]" probability="0.9"/>
     </drops>
     <equips/>
     <ai>
