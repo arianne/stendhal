@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,6 +10,8 @@
  ***************************************************************************/
 
 "use strict";
+
+var openWebsiteAction = require("../../build/ts/action/OpenWebsiteAction");
 
 var stendhal = window.stendhal = window.stendhal || {};
 
@@ -915,29 +917,11 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
-	"characterselector": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/account/mycharacters.html";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"characterselector": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html"),
 
-	"faq": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/wiki/Stendhal_FAQ";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"faq": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_FAQ"),
 
-	"manual": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"manual": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings"),
 
 	"profile": {
 		execute: function(type, params, remainder) {
@@ -965,38 +949,13 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
-	"rules": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/wiki/Stendhal_Rules";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"rules": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules"),
 
-	"changepassword": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/account/change-password.html";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"changepassword": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/change-password.html"),
 
+	"loginhistory": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/history.html"),
 
-	"loginhistory": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/account/history.html";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
-
-	"halloffame": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/world/hall-of-fame/active_overview.html";
-		},
-		getMinParams: 0,
-		getMaxParams: 0
-	},
+	"halloffame": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html"),
 
 	"storemessage": {
 		execute: function(type, params, remainder) {
