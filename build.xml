@@ -1271,9 +1271,19 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</echo>
 	</target>
 
-	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build" />
+	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build, js-prepare-node" />
+
+	<target name="js-prepare-node">
+		<exec executable="npm" failonerror="true">
+			<arg value="install" />
+		</exec>
+	</target>
 
 	<target name="js-invoke-compiler">
+		<exec executable="npx" dir="srcjs/stendhal" failonerror="true">
+			<arg value="tscc" />
+		</exec>
+
 		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content" />
 
 		<property name="js-files-license"  value="srcjs/stendhal/license.js" />
@@ -1296,6 +1306,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/menu.js srcjs/stendhal/ui/outfitdialog.js srcjs/stendhal/ui/travellog.js srcjs/stendhal/ui/settings.js" />
 		<property name="js-files-main2"    value="srcjs/stendhal/main.js" />
 		<property name="js-files-main3"    value="" />
+		<property name="js-files-ts"       value="build/ts/**/*.js" />
 
 
 		<java jar="buildtools/closure-compiler/compiler.jar"
@@ -1308,6 +1319,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg value="ADVANCED" />
 			<arg line="${js-debug}" />
 			<arg value="--jscomp_off=checkVars" />
+			<arg value="--process_common_js_modules" />
+			<arg value="--module_resolution=node" />
 
 			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
 
@@ -1331,6 +1344,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg line="${js-files-ui4}" />
 			<arg line="${js-files-main2}" />
 			<arg line="${js-files-main3}" />
+			<arg line="${js-files-ts}" />
 		</java>
 
 		<echo file="srcjs/stendhal-compiled.js" append="true">
