@@ -48,3 +48,4 @@ build_server_xmlconf
 /*.csr
 /map.map
 /hs_err_*.log
+/node_modules/
