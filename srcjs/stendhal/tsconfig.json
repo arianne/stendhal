@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
+		"rootDir": ".",
 		"target": "es5",
 		"module": "commonjs",
 		"strict": true,
