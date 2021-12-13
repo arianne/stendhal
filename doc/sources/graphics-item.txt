@@ -237,7 +237,7 @@ potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendha
 red_juice.png                  Open Clipart Library; CC0; http://www.clker.com/clipart-16755.html
 sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tea.png                        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+tea.png                        Jetrel; CC0; https://opengameart.org/node/4531
 twilight_elixir.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 waterbottle.png                Groundhug McHampster (h4mt4r0), Bluelads4; GPL 2.0+; Stendhal
 wine.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
