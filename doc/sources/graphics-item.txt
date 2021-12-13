@@ -501,7 +501,7 @@ virgin_olive_oil.png     tigertoes; CC BY-SA 3.0; Stendhal
 data/sprites/items/missile/
 
 dart.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-fire_shuriken.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+fire_shuriken.png  thekingphoenix; CC0; https://opengameart.org/node/77305
 poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shuriken.png       thekingphoenix; CC0; https://opengameart.org/node/77305
