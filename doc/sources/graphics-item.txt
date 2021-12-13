@@ -504,7 +504,7 @@ dart.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/to
 fire_shuriken.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-shuriken.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+shuriken.png       thekingphoenix; CC0; https://opengameart.org/node/77305
 snowballs.png      ???; ???; ??? (committed by Teiv: 97b6528)
 vomit.png          gummipferd; ???; ??? (committed by kymara: 10035a5)
 wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
