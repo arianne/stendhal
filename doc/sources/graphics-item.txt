@@ -489,7 +489,7 @@ potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
 seed.png                 kymara?, kiheru?; ???; ??? (committed by kiheru)
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
-suntan_cream.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+suntan_cream.png         Glitch, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/210635
 teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
 tripe.png                omero; CC BY-SA 3.0; Stendhal
 unicorn_horn.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
