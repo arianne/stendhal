@@ -74,6 +74,12 @@
 		</not>
 	</condition>
 
+	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
+	<condition property="executable.suffix" value=".cmd">
+		<os family="windows" />
+	</condition>
+	<property name="executable.suffix" value="" />
+
 	<tstamp>
 		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 	</tstamp>
@@ -1274,13 +1280,13 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build, js-prepare-node" />
 
 	<target name="js-prepare-node">
-		<exec executable="npm" failonerror="true">
+		<exec executable="npm${executable.suffix}" failonerror="true">
 			<arg value="install" />
 		</exec>
 	</target>
 
 	<target name="js-invoke-compiler">
-		<exec executable="npx" dir="srcjs/stendhal" failonerror="true">
+		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
 			<arg value="tsc" />
 		</exec>
 
