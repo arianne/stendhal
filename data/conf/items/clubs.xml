@@ -238,7 +238,7 @@
     </equipable>
   </item>
 
-  <item name="necromancers staff">
+  <item name="necromancers staff" condition="stendhal.testserver">
     <type class="club" subclass="wizard_staff" tileid="-1"/>
     <description>You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.</description>
     <implementation class-name="games.stendhal.server.entity.item.NecroStaff"/>

@@ -371,7 +371,7 @@
     </equipable>
   </item>
 
-  <item name="rift cloak">
+  <item name="rift cloak" condition="stendhal.testserver">
     <type class="cloak" subclass="rift_cloak" tileid="-1"/>
     <description>You see a rift cloak. Almost useless in the battle, but saves your life when you enter a magical rift.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
