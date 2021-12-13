@@ -553,7 +553,7 @@ mithril_bar.png     Daniel Herding (mort); GPL 2.0; Stendhal (based on iron.png)
 mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ore.png     Nadine Schlonies (dine); GPL 2.0; Stendhal (based on gold_ore.png)
 mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
-oil.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+oil.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
 silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
 sugarcane.png       wmbec7718; ???; ??? (committed by kiheru: 3edcf3d)
