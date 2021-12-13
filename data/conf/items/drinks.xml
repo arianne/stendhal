@@ -356,7 +356,7 @@
     </equipable>
   </item>
 
-  <item name="mana">
+  <item name="mana" condition="stendhal.testserver">
     <type class="drink" subclass="mana" tileid="-1"/>
     <description>You see an bottle of mana, to increase your mana rapidly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>

@@ -139,7 +139,7 @@
     </equipable>
   </item>
 
-  <item name="blank scroll">
+  <item name="blank scroll" condition="stendhal.testserver">
     <type class="documents" subclass="scroll" tileid="-1"/>
     <description>You see a rolled up blank scroll.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
@@ -158,7 +158,7 @@
     </equipable>
   </item>
 
-  <item name="ice scroll">
+  <item name="ice scroll" condition="stendhal.testserver">
     <type class="documents" subclass="ice_scroll" tileid="-1"/>
     <description>You see a scroll, circled by ice crystals. You can feel its cold aura.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>

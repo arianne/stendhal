@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
-  <item name="angel figurine">
+  <item name="angel figurine" condition="stendhal.testserver">
     <type class="relic" subclass="angel_figurine" tileid="-1"/>
     <description>You see a sparkling angel figurine.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
@@ -55,7 +55,7 @@
     </equipable>
   </item>
 
-  <item name="ankh">
+  <item name="ankh" condition="stendhal.testserver">
     <type class="relic" subclass="ankh" tileid="-1"/>
     <description>You see a mysterious ankh. You don't know what it is for.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>

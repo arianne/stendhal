@@ -26,7 +26,7 @@
   </item>
 -->
 
-  <item name="keyring">
+  <item name="keyring" condition="stendhal.testserver">
     <type class="container" subclass="keyring" tileid="-1"/>
     <description>You see a keyring.</description>
     <implementation class-name="games.stendhal.server.entity.item.Container"/>
