@@ -603,7 +603,7 @@ marked.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-S
 nalwor.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 ornament.png        ???; ???; ???
 rainbow_beans.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-summon.*            Henrique Lazarini (7Soul1), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
+summon.*            Kimmo Rundelin (kiheru), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82869
 summon_pet.*        Kimmo Rundelin (kiheru), triceratops; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/55254
 twilightmoss.png    tigertoes; CC BY-SA 3.0; Stendhal
 
