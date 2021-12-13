@@ -26,6 +26,7 @@
 			<element name="equipable" type="Q1:equipable"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="condition" type="string"></attribute>
 	</complexType>
 
 	<complexType name="typeType">

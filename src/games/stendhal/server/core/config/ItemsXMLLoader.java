@@ -127,6 +127,23 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			final Attributes attrs) {
 		text = "";
 		if (qName.equals("item")) {
+			// check for conditions
+			boolean conditionMet = true;
+			String condition = attrs.getValue("condition");
+
+			if (condition != null) {
+				if (condition.startsWith("!")) {
+					condition = new StringBuilder(condition).deleteCharAt(0).toString();
+					conditionMet = System.getProperty(condition) == null;
+				} else {
+					conditionMet = System.getProperty(condition) != null;
+				}
+			}
+
+			if (!conditionMet) {
+				return;
+			}
+
 			name = attrs.getValue("name");
 			attributes = new LinkedHashMap<String, String>();
 			slots = new LinkedList<String>();
