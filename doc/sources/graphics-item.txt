@@ -268,7 +268,7 @@ cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
 cheese_sausage_on_bun.*  thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 cheesesausage.*          thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
-cherry.png               Vesa Vanhatupa (Master484); CC0; https://opengameart.org/node/20467
+cherry.png               Glitch; CC0; https://opengameart.org/node/20149
 cherrypie.png            omero; CC BY-SA 3.0; Stendhal
 chicken.png              Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
 chinese-cabbage.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
