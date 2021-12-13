@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
 
   <item name="barbarian armor">
     <type class="armor" subclass="barbarian_armor" tileid="-1"/>
@@ -261,8 +261,8 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="3"/>
-      <min_level condition="stendhal.testserver" value="0"/>
       <undroppableondeath value="1"/>
+      <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="15.0"/>
     <value value="189"/>
@@ -504,8 +504,8 @@
     <implementation class-name="games.stendhal.server.entity.item.LifeSupportGear"/>
     <attributes>
       <def value="15"/>
-	  <min_level value="50"/>
 	  <life_support value="water"/>
+	  <min_level value="50"/>
     </attributes>
     <weight value="45.0"/>
     <value value="34391"/>

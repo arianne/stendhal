@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
 
   <!-- START: Status Protection -->
 
@@ -8,8 +8,8 @@
     <description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <min_level condition="stendhal.testserver" value="0"/>
       <status_resist slots="finger;" type="poisoned" value="0.25"/>
+      <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -28,8 +28,8 @@
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <min_level condition="stendhal.testserver" value="0"/>
       <status_resist slots="finger;" type="poisoned" value="0.5"/>
+      <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -69,8 +69,8 @@
     <description>You see a placid ring. It may reduce the effects of being shocked when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <min_level condition="stendhal.testserver" value="0"/>
       <status_resist slots="finger;" type="shocked" value="0.33"/>
+      <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -90,6 +90,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="shocked" value="0.66"/>
+      <min_level condition="stendhal.testserver" value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>

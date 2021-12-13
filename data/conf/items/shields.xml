@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
 
   <item name="black shield">
     <type class="shield" subclass="black_shield" tileid="-1"/>
@@ -465,9 +465,9 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <def value="40"/>
+      <status_resist slots="lhand;rhand;" type="poisoned" value="0.50"/>
       <min_level condition="stendhal.testserver" value="100"/>
       <min_level condition="!stendhal.testserver" value="110"/>
-      <status_resist slots="lhand;rhand;" type="poisoned" value="0.50"/>
     </attributes>
     <susceptibility type="ice" value="0.9"/>
     <susceptibility type="fire" value="1.15"/>
