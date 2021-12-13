@@ -1281,7 +1281,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 
 	<target name="js-invoke-compiler">
 		<exec executable="npx" dir="srcjs/stendhal" failonerror="true">
-			<arg value="tscc" />
+			<arg value="tsc" />
 		</exec>
 
 		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content" />

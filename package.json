@@ -29,8 +29,6 @@
   "homepage": "https://arianne-project.org",
   "private": true,
   "dependencies": {
-    "tscc": "0.0.2",
-    "tsickle": "^0.43.0",
     "typescript": "^4.5.3"
   }
 }
