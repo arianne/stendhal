@@ -11,7 +11,7 @@
 
 "use strict";
 
-var openWebsiteAction = require("../../build/ts/action/OpenWebsiteAction");
+var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenWebsiteAction;
 
 var stendhal = window.stendhal = window.stendhal || {};
 
@@ -917,11 +917,11 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
-	"characterselector": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html"),
+	"characterselector": new OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html"),
 
-	"faq": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_FAQ"),
+	"faq": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_FAQ"),
 
-	"manual": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings"),
+	"manual": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings"),
 
 	"profile": {
 		execute: function(type, params, remainder) {
@@ -949,13 +949,13 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
-	"rules": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules"),
+	"rules": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules"),
 
-	"changepassword": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/change-password.html"),
+	"changepassword": new OpenWebsiteAction("https://stendhalgame.org/account/change-password.html"),
 
-	"loginhistory": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/account/history.html"),
+	"loginhistory": new OpenWebsiteAction("https://stendhalgame.org/account/history.html"),
 
-	"halloffame": new openWebsiteAction.OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html"),
+	"halloffame": new OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html"),
 
 	"storemessage": {
 		execute: function(type, params, remainder) {
