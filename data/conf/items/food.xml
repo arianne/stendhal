@@ -1553,8 +1553,8 @@
 	</item>
 
     <!-- dropped -->
-<!--
-	<item name="tripe">
+
+	<item name="tripe" condition="stendhal.testserver">
 		<type class="food" subclass="tripe" tileid="-1" />
 		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it too!</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
@@ -1576,7 +1576,6 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
--->
 
 	<item name="cheese">
 		<type class="food" subclass="cheese" tileid="-1"/>
