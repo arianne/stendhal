@@ -50,16 +50,17 @@
     </equipable>
   </item>
 
-  <!--<item name="dart">
+  <item name="dart" condition="stendhal.testserver">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="2" condition="!testing.combat"/>
-      <ratk value="2" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="2"/>
+      <ratk condition="testing.combat" value="2"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+			<min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
@@ -73,16 +74,17 @@
     </equipable>
   </item>
 
-  <item name="power dart">
+  <item name="power dart" condition="stendhal.testserver">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk value="4" condition="!testing.combat"/>
-      <ratk value="4" condition="testing.combat"/>
+      <atk condition="!testing.combat" value="4"/>
+      <ratk condition="testing.combat" value="4"/>
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+			<min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="640"/>
@@ -94,7 +96,7 @@
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
-  </item>-->
+  </item>
 
   <item name="shuriken">
     <type class="missile" subclass="shuriken" tileid="-1"/>
