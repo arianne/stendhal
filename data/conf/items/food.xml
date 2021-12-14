@@ -1002,31 +1002,6 @@
 		</equipable>
 	</item>
 
-	<!-- Removing crab meat
-	<item name="crab meat">
-		<type class="food" subclass="crab_meat" tileid="-1" />
-		<description>You see a piece of crab meat. It's bite-sized but delicious.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="30" />
-			<frequency value="10" />
-			<quantity value="1" />
-			<regen value="5" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="0.1" />
-		<value value="2" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-	Removing crab meat -->
-
     <!-- product -->
 	<item name="bread">
 		<type class="food" subclass="baguette" tileid="-1"/>
