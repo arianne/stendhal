@@ -601,7 +601,7 @@ kalavan.*           Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-S
 kirdneh.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 marked.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 nalwor.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-ornament.png        ???; ???; ???
+ornament.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/88910
 rainbow_beans.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 summon.*            Kimmo Rundelin (kiheru), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82869
 summon_pet.*        Kimmo Rundelin (kiheru), triceratops; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/55254
