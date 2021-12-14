@@ -132,8 +132,7 @@
     </equipable>
   </item>
 
-<!-- disabled
-  <item name="auto crossbow">
+  <item name="auto crossbow" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow" tileid="-1" />
     <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
@@ -143,6 +142,7 @@
       <range value="3" />
       <rate value="1" />
       <durability value="800" />
+			<min_level value="0"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -156,7 +156,7 @@
     </equipable>
   </item>
 
-  <item name="auto crossbow A">
+  <item name="auto crossbow A" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow_a" tileid="-1" />
     <description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
@@ -166,6 +166,7 @@
       <range value="3" />
       <rate value="1" />
       <durability value="1400" />
+			<min_level value="0"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -179,7 +180,7 @@
     </equipable>
   </item>
 
-  <item name="auto crossbow A+">
+  <item name="auto crossbow A+" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow_aa" tileid="-1" />
     <description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
     <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
@@ -189,6 +190,7 @@
       <range value="3" />
       <rate value="1" />
       <durability value="3600" />
+			<min_level value="0"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -201,6 +203,5 @@
       <slot name="trade" />
     </equipable>
   </item>
--->
 
 </items>
