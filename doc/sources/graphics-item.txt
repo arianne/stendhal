@@ -506,7 +506,7 @@ poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/to
 power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shuriken.png       thekingphoenix; CC0; https://opengameart.org/node/77305
 snowballs.png      Admurin; CC BY-SA 4.0; https://opengameart.org/node/125121, https://admurin.itch.io/
-vomit.png          gummipferd; ???; ??? (committed by kymara: 10035a5)
+vomit.png          inky2010; CC0; https://openclipart.org/detail/86809
 wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
 
 data/sprites/items/money/
