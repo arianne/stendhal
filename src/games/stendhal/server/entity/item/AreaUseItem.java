@@ -13,11 +13,13 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.area.ToolUseArea;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 
 
 public class AreaUseItem extends Item {
@@ -38,6 +40,13 @@ public class AreaUseItem extends Item {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
+		// TODO: allow custom sound to be configured in items xml
+		final String item_name = getName();
+		if (item_name.equals("shovel")) {
+			user.addEvent(new SoundEvent("shovel_dig", SoundLayer.FIGHTING_NOISE));
+			user.notifyWorldAboutChanges();
+		}
+
 		if (user instanceof Player) {
 			final Player player = (Player) user;
 			final StendhalRPZone zone = player.getZone();

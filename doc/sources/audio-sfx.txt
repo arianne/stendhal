@@ -162,6 +162,7 @@ scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 scream-fem-2.ogg          NeoPhyTe; public domain: https://soundbible.com/1627-Female-Scream-Horror.html
 shake-leaves-1.*          vibe_crc; CC0; https://freesound.org/people/vibe_crc/sounds/59315/
 sheep-[01-04].*           cognito perceptu; CC0; https://freesound.org/people/cognito%20perceptu/sounds/88423/
+shovel_dig.*              andersmmg; CC BY 3.0; https://freesound.org/s/516318/
 skeleton-laugh-01.*       Nanakisan; CC BY 3.0; https://freesound.org/people/Nanakisan/sounds/253524/
 sleep-1.ogg               Storyteller; GPL
 snake-[01-05].*           7h3_lark; CC0; https://freesound.org/people/7h3_lark/sounds/268580/
