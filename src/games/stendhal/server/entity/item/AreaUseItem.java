@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2021 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,52 +11,48 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import java.util.List;
 import java.util.Map;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.mapstuff.area.ConditionAndActionArea;
+import games.stendhal.server.entity.mapstuff.area.ToolUseArea;
 import games.stendhal.server.entity.player.Player;
 
+
 public class AreaUseItem extends Item {
-    public AreaUseItem(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
-        super(name, clazz, subclass, attributes);
-    }
 
-    public AreaUseItem(AreaUseItem item) {
-        super(item);
-    }
+	public AreaUseItem(final String name, final String clazz, final String subclass,
+			final Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+	}
 
-    @Override
-    public boolean onUsed(RPEntity player) {
-        boolean success = false;
+	/**
+	 * Copy constructor.
+	 *
+	 * @param item Item to copy.
+	 */
+	public AreaUseItem(final AreaUseItem item) {
+		super(item);
+	}
 
-        StendhalRPZone zone = player.getZone();
-        Direction facing = player.getDirection();
-        int posX = player.getX();
-        int posY = player.getY();
+	@Override
+	public boolean onUsed(final RPEntity user) {
+		if (user instanceof Player) {
+			final Player player = (Player) user;
+			final StendhalRPZone zone = player.getZone();
 
-        // Tarrget one step in front of player
-        if (facing == Direction.RIGHT) {
-            posX += 1;
-        } else if (facing == Direction.LEFT) {
-            posX -= 1;
-        } else if (facing == Direction.DOWN) {
-            posY += 1;
-        } else if (facing == Direction.UP) {
-            posY += 1;
-        }
+			boolean used = false;
+			for (final Entity areaEntity : zone.getEntitiesAt(player.getX(), player.getY())) {
+				if (areaEntity instanceof ToolUseArea) {
+					used = ((ToolUseArea) areaEntity).use(player, item_name);
+				}
+			}
 
-        List<Entity> entityList = zone.getEntitiesAt(posX, posY);
-        for (Entity entity : entityList) {
-            if (entity instanceof ConditionAndActionArea) {
-                success = ((ConditionAndActionArea) entity).use((Player) player);
-            }
-        }
+			// FIXME: how to deal with multiple enties being used?
+			return used;
+		}
 
-        return success;
-    }
+		return false;
+	}
 }
