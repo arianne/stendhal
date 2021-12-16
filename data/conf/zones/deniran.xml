@@ -60,11 +60,22 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+ 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.OldFartNPC" /> 
 
 		<portal x="55" y="9" ref="deniran_inn_entrance">
 			<destination zone="int_deniran_inn" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+
+		<entity x="41" y="6">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+				<parameter name="width">11</parameter>
+				<parameter name="height">11</parameter>
+				<parameter name="enterMessage">Here's an unpleasant smell in the air. Is it a kind of magic?</parameter>
+				<parameter name="warnPlayer">true</parameter>
+			</implementation>
+		</entity>
 
 	</zone>
 
