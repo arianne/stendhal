@@ -228,7 +228,7 @@
 
   <creature name="archangel">
     <type class="angel" subclass="archangel" tileid="angel.png:3"/>
-    <description>You see an archangel. She wants to kill you because she doesn't want you in the clouds.</description>
+    <description>You see an archangel. It is Heaven's most terrifying weapon, a fierce and absolute force of primordial creation.</description>
     <attributes>
       <atk value="1455"/>
       <ratk value="1455"/>
