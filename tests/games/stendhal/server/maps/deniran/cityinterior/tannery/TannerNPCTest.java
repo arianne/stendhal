@@ -310,7 +310,7 @@ public class TannerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(
 				readyReply.equals("Okay, I will begin making your money pouch. Please come back in 24 hours.") ||
 				readyReply.equals("Okay, I will begin making your money pouch. Please come back in 1 day."));
-		
+
 		assertFalse(player.getQuest(QUEST_SLOT).equals("start"));
 		assertFalse(player.isEquipped("pouch"));
 		assertFalse(player.isEquipped("money"));

@@ -60,7 +60,7 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
- 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.OldFartNPC" /> 
+ 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.OldFartNPC" />
 
 		<portal x="55" y="9" ref="deniran_inn_entrance">
 			<destination zone="int_deniran_inn" ref="entrance" />
@@ -345,17 +345,17 @@
 				<parameter name="condition">new QuestActiveCondition("museum_entrance_fee")</parameter>
 				<parameter name="action">new SetQuestAction("museum_entrance_fee", null)</parameter>
 				<parameter name="rejected">The door is locked. Maybe that boy knows how to get in.</parameter>
-			</implementation>	
+			</implementation>
 			<attribute name="move.continuous" />
 		</portal>
-		
+
 		<entity x="28" y="46">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">DENIRAN AIR AND SPACE MUSEUM
 
 Entrance fee is 10 money</attribute>
 		</entity>
-		
+
 	</zone>
 
 

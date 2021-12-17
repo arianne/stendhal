@@ -54,7 +54,7 @@ public class UpdateGroupQuestCommand extends AbstractDBCommand {
 	 */
 	@Override
 	public String toString() {
-		return "UpdateGroupQuestCommand [questname=" + questname 
+		return "UpdateGroupQuestCommand [questname=" + questname
 			+ ", charname=" + charname + ", itemname=" + itemname
 			+ ", quantity=" + quantity + "]";
 	}

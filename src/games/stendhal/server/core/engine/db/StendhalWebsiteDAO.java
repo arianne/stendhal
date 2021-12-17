@@ -96,7 +96,7 @@ public class StendhalWebsiteDAO {
 	 * @param timestamp timestamp
 	 * @throws SQLException in case of an database error
 	 */
-	public void logTradeEvent(final DBTransaction transaction, String charname, String itemname, int itemid, 
+	public void logTradeEvent(final DBTransaction transaction, String charname, String itemname, int itemid,
 			int quantity, int price, String stats, Timestamp timestamp) throws SQLException {
 		String sql = "INSERT INTO trade(charname, itemname, itemid, quantity, price, stats, timedate) "
 				+ " VALUES ('[charname]', '[itemname]', [itemid], [quantity], [price], '[stats]', '[timedate]')";

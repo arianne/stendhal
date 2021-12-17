@@ -98,7 +98,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		return questSlot.substring(questSlot.length() - 1);
 
 	}
-	
+
 	/**
 	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)

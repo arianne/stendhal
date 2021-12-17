@@ -1044,7 +1044,7 @@ public class SpeakerNPC extends PassiveNPC {
 
 	/**
 	 * someone tried to attack us
-	 * 
+	 *
 	 * @param attacker
 	 */
 	public void onRejectedAttackStart(RPEntity attacker) {

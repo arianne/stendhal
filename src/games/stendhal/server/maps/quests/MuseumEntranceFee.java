@@ -28,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Museum Entrance Fee
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Iker</li>
@@ -48,7 +48,7 @@ import games.stendhal.server.entity.player.Player;
  * <ul>
  * <li> At any time</li>
  * </ul>
- * 
+ *
  * @author kribbel
  */
 
@@ -87,14 +87,14 @@ public class MuseumEntranceFee extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I'm sorry, I'm not allowed to offer you a discount. You have to give me 10 money.",
 				null);
-		
+
 		// Player wants to visit, and has enough money. Entering the portal will set quest slot to null and so end (and delete) it. Look at deniran.xml
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("money", 10),
 				ConversationStates.ATTENDING,
 				"Thank you, please step in and enjoy your visit.",
-				new MultipleActions(new DropItemAction("money", 10),new SetQuestAction(QUEST_SLOT, "start"))); 
+				new MultipleActions(new DropItemAction("money", 10),new SetQuestAction(QUEST_SLOT, "start")));
 
 		// Player doesn't want to visit
 		npc.add(ConversationStates.QUEST_OFFERED,

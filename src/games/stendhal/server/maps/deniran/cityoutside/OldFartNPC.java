@@ -34,12 +34,12 @@ import java.util.Map;
  * intended. It's unclear if the old fart is somehow senile or is making fun of
  * players. Some stories he talks about are from the game others just made up or
  * old stories, songs, nursery rhymes or from pop culture.
- * 
+ *
  * MonologueBehaviour could be combined with real fart sounds in the future.
  * There could be another old fart sitting near this NPC who somehow reacts on
  * the farts (and maybe the stories.) If that one is ever added, the stories
  * might move to a different NPC somewhere else.
- * 
+ *
  * @author kribbel
  */
 public class OldFartNPC implements ZoneConfigurator {

@@ -83,8 +83,8 @@ public class NineSwitchesGameBoard implements TurnListener {
 		if (completed) {
 
 			if (user instanceof DressedEntity) {
-				
-				
+
+
 				npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
 
 				final DressedEntity dressed = (DressedEntity) user;
@@ -101,8 +101,8 @@ public class NineSwitchesGameBoard implements TurnListener {
 				if (outfit_org != null) {
 					user.put("outfit_org", outfit_org);
 				}
-				
-				
+
+
 
 				user.put("outfit_colors", "detail", Rand.rand(balloonColors));
 			} else {

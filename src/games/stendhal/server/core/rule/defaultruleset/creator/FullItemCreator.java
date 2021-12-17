@@ -36,7 +36,7 @@ public class FullItemCreator extends AbstractItemCreator {
 	protected Item createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
 		try {
-			return (Item) construct.newInstance(new Object[] { 
+			return (Item) construct.newInstance(new Object[] {
 					this.defaultItem.getItemName(),
 					this.defaultItem.getItemClass(),
 					this.defaultItem.getItemSubclass(),

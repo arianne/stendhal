@@ -43,7 +43,7 @@ public class SoundActionTest {
 		final SoundAction action = new SoundAction();
 		assertTrue(action.execute(null, "remainder"));
 		assertEquals("This command is outdated. Please use \"/volume\" for changing the volume and \"/mute\" for muting all audio", ui.getEventBuffer());
-		
+
 	}
 
 	/**

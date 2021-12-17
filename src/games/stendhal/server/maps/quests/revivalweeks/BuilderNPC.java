@@ -40,7 +40,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		DBCommandQueue.get().enqueue(command);
 		TurnNotifier.get().notifyInTurns(0, this);
 	}
-			
+
 	@Override
 	public void onTurnReached(int currentTurn) {
 		if (command.getProgress() == null) {
@@ -60,19 +60,19 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		required.put("old scythe", 1);
 		chunkSize.put("old scythe", 1);
 		hints.put("old scythe", "I am sure, that Xoderos in Semos will sell you an old scythe.");
-		
+
 		required.put("axe", 1);
 		chunkSize.put("axe", 1);
 		hints.put("axe", "I am sure, that Xoderos in Semos will sell you an axe.");
-		
+
 		required.put("hammer", 1);
 		chunkSize.put("hammer", 1);
 		hints.put("hammer", "I am sure, that Xoderos in Semos will sell you a hammer.");
-		
+
 		required.put("knife", 2);
 		chunkSize.put("knife", 1);
 		hints.put("knife", "I am sure, that Xin Blanca in Semos will sell you a knife.");
-		
+
 		required.put("lamp", 5);
 		chunkSize.put("lamp", 1);
 		hints.put("lamp", "You can probably buy a lamp from Jimbo in Deniran.");
@@ -117,11 +117,11 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		npc.initHP(100);
 		npc.setDescription("You see Klaus. He is in charge of construction.");
 		zone.add(npc);
-		
+
 		addQuestDialog(npc);
 	}
 
-	
+
 
 	private void addQuestDialog(SpeakerNPC npc) {
 		new CollectingGroupQuestAdder().add(npc, behaviour);

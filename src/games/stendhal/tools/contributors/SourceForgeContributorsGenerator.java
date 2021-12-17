@@ -143,7 +143,7 @@ public class SourceForgeContributorsGenerator {
 			}
 		}
 	}
-	
+
 	private void dump(Map<String, Map<String, Object>> contributors, PrintStream out) {
 		for (Map<String, Object> contributor : contributors.values()) {
 			out.println("\t\t{");

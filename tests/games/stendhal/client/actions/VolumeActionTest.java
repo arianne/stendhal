@@ -26,7 +26,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import marauroa.common.game.RPAction;
 
 public class VolumeActionTest {
-	
+
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
@@ -44,24 +44,24 @@ public class VolumeActionTest {
 			}
 		};
 		final VolumeAction action = new VolumeAction();
-			
+
 		String[] param = {null};
 		assertTrue(action.execute(param, "remainder"));
-			
+
 	}
-	
+
 	/**
 	 * Tests for change volume.
 	 */
 	@Test
 	public void testChangeVolume() {
 		final VolumeAction action = new VolumeAction();
-		
+
 		String[] param = {"master", "50"};
 		assertTrue(action.execute(param, "remainder"));
 		StendhalClient.resetClient();
 		assertEquals("50", WtWindowManager.getInstance().getProperty("sound.volume.master", null));
-		
+
 	}
 
 	/**

@@ -127,7 +127,7 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 		if (missingCount > 0) {
 			String slot = player.getQuest(QUEST_SLOT);
 			if (slot.indexOf(";completed=") < 0) {
-				player.setQuest(QUEST_SLOT, slot + ";completed=" + missingCount); 
+				player.setQuest(QUEST_SLOT, slot + ";completed=" + missingCount);
 			} else {
 				String slotValue = slot.substring(slot.lastIndexOf('=') + 1);
 				if (MathHelper.parseIntDefault(slotValue, 0) < missingCount) {

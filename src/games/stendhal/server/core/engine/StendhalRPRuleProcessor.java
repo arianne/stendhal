@@ -102,7 +102,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/** a list of zone that should be removed (like vaults) */
 	private final List<StendhalRPZone> zonesToRemove = new LinkedList<StendhalRPZone>();
-	
+
 	private LinkedList<marauroa.server.game.rp.GameEvent> gameEvents = new LinkedList();
 
 	/**
@@ -609,7 +609,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		final AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
-	
+
 	@Override
 	public AccountResult createAccountWithToken(String username, String tokenType, String token) {
 		return null;
@@ -798,7 +798,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					DBCommand command = new LogGameEventCommand(gameEvents);
 					gameEvents.clear();
 					DBCommandQueue.get().enqueue(command, DBCommandPriority.LOW);
-					
+
 				}
 			});
 		}

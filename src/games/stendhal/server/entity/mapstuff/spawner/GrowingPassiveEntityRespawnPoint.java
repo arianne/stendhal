@@ -180,7 +180,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		notifyWorldAboutChanges();
 	}
 
-	
+
 
 	@Override
 	public void onItemPickedUp(Player player) {

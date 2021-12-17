@@ -152,7 +152,7 @@ public class XMLUtil {
 		}
 
 		Set<String> before = new HashSet<>(order.subList(0, pos));
-		
+
 		for (Element child : XMLUtil.getElements(parent)) {
 			if (!before.contains(child.getTagName())) {
 				parent.insertBefore(newChild, child);
@@ -211,10 +211,10 @@ public class XMLUtil {
 		}
 	}
 
-	
+
 	/**
 	 * writes an xml document to a file
-	 * 
+	 *
 	 * @param document DOM document
 	 * @param filename filename
 	 * @throws IOException in case of an input/output error

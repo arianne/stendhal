@@ -41,14 +41,14 @@ public class CastSpellActionTest {
 	 */
 	@Test
 	public void testExecute() {
-		
+
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				assertEquals(CASTSPELL, action.get("type"));
 			}
 		};
-		
+
 		final CastSpellAction action = new CastSpellAction();
 		String[] params = {"target", "killtype", "count"};
 		assertTrue(action.execute(params, "remainder"));

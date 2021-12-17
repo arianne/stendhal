@@ -1366,14 +1366,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 	<entity x="92" y="100">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description"/>
 		<attribute name="text">
-There is an inscription on the plinth of the statue. 
-You read: "These catacombs were built to hold 
-the mortal remains of the brave men and valiant women 
-who gave their lives to save ours. 
-Our debt can never be repaid. 
-They have earned our undying gratitude. 
-We, the people of Semos, 
-will never forget their sacrifices." 
+There is an inscription on the plinth of the statue.
+You read: "These catacombs were built to hold
+the mortal remains of the brave men and valiant women
+who gave their lives to save ours.
+Our debt can never be repaid.
+They have earned our undying gratitude.
+We, the people of Semos,
+will never forget their sacrifices."
 		</attribute>
 		<attribute name="class">transparent</attribute>
 		<attribute name="width">1</attribute>

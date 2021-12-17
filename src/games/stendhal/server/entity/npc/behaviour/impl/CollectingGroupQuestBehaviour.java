@@ -25,7 +25,7 @@ public class CollectingGroupQuestBehaviour {
 	private Map<String, String> hints;
 	private Map<String, Integer> progress;
 
-	public CollectingGroupQuestBehaviour(String questSlot, Map<String, Integer> required, 
+	public CollectingGroupQuestBehaviour(String questSlot, Map<String, Integer> required,
 			Map<String, Integer> chunkSize, Map<String, String> hints, Map<String, Integer> progress) {
 		this.questSlot = questSlot;
 		this.required = new LinkedHashMap<>(required);
@@ -40,7 +40,7 @@ public class CollectingGroupQuestBehaviour {
 
 	/**
 	 * counts the items in the parameter map
-	 * 
+	 *
 	 * @param map map to count items from
 	 * @return total amount of items
 	 */

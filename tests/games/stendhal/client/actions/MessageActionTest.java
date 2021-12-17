@@ -72,7 +72,7 @@ public class MessageActionTest {
 		final MessageAction action = new MessageAction();
 		assertThat(action.getMinimumParameters(), is(1));
 	}
-	
+
 	/*
 	 * Tests for getLastPlayerTell
 	 */

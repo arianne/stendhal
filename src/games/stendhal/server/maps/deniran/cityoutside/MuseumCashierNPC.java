@@ -24,19 +24,19 @@ import java.util.Map;
 import java.util.Arrays;
 
 /**
- * The cashier stands near the entrance to the museum. One has to talk to him and pay the fee to enter the museum. 
- * The idea is, that Iker needs more pocket money and so came up with the idea of turning the old empty building 
+ * The cashier stands near the entrance to the museum. One has to talk to him and pay the fee to enter the museum.
+ * The idea is, that Iker needs more pocket money and so came up with the idea of turning the old empty building
  * into the museum he heart of in a joke to take gullible tourists for a ride. So he is the manager but cleverly
  * denies being it to dodge responsibility.
- * 
+ *
  * The taking of the fee is in MuseumEntranceFee.java and the door condition in deniran.xml
- * 
+ *
  * An addition could be to make him attackable, and when a player does so, the father appears next to the player,
- * knocking the player out. The player would come back to consciousness outside of the city, with the HP halved 
- * and some money and items like food missing, not rings, armor, or weapons. 
- * 
+ * knocking the player out. The player would come back to consciousness outside of the city, with the HP halved
+ * and some money and items like food missing, not rings, armor, or weapons.
+ *
  * Iker is a Basque name meaning visit, visitation
- * 
+ *
  * @author kribbel
  */
 
@@ -53,7 +53,7 @@ public class MuseumCashierNPC implements ZoneConfigurator {
 			protected void createPath() {
 				setPath(null);
 			}
-			
+
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,ConversationPhrases.GREETING_MESSAGES,ConversationStates.ATTENDING,null,

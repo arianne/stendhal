@@ -27,7 +27,7 @@ import org.json.simple.JSONValue;
 public class ContributorsGeneration {
 	private Iterable<Map<String, Object>> contributors;
 	private Map<String, String> iconMap = new HashMap<>();
-	
+
 	public ContributorsGeneration() {
 		iconMap.put("a11y", "♿️");
 		iconMap.put("audio", "🔊");
@@ -68,7 +68,7 @@ public class ContributorsGeneration {
 			this.contributors = (Iterable<Map<String, Object>>) map.get("all");
 		}
 	}
-	
+
 
 	private void writeHeader(PrintStream out) {
 		out.println("<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->");
@@ -94,7 +94,7 @@ public class ContributorsGeneration {
 		this.writeContributions(out, contributor);
 		out.print("</td>");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void writeContributions(PrintStream out, Map<String, Object> contributor) {
 		Iterable<Map<String, Object>> contributions = (Iterable<Map<String, Object>>) contributor.get("contributions");

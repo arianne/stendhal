@@ -41,14 +41,14 @@ public class RemessageActionTest {
 	 */
 	@Test
 	public void testExecute() {
-		
+
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				assertEquals("tell", action.get("type"));
 			}
 		};
-		
+
 		final RemessageAction action = new RemessageAction();
 		assertFalse(action.execute(null, "remainder"));
 	}

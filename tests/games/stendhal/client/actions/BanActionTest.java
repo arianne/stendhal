@@ -46,7 +46,7 @@ public class BanActionTest {
 				assertEquals("ban", action.get("type"));
 			}
 		};
-		
+
 		final BanAction action = new BanAction();
 		String[] params = {"target", "hours"};
 		assertTrue(action.execute(params, "schnick"));

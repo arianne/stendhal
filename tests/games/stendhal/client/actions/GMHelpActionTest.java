@@ -27,7 +27,7 @@ import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPAction;
 
 public class GMHelpActionTest {
-	
+
 	@BeforeClass
 	public static void init() {
 		UserInterfaceTestHelper.resetUserInterface();
@@ -42,7 +42,7 @@ public class GMHelpActionTest {
 	 * Tests for execute.
 	 */
 	@Test
-	public void testExecute() {	
+	public void testExecute() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {

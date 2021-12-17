@@ -39,17 +39,17 @@ public class GroupManagementActionTest {
 	 */
 	@Test
 	public void testExecute() {
-		
+
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 			}
 		};
-		
+
 		final GroupManagementAction action = new GroupManagementAction(new GroupMessageAction());
 		String[] params = {"target", "killtype", "count"};
 		assertTrue(action.execute(params, "remainder"));
-		
+
 		final GroupManagementAction action_2 = new GroupManagementAction(new GroupMessageAction());
 		String[] params_2 = {"message", "killtype", "count"};
 		assertTrue(action_2.execute(params_2, "remainder"));

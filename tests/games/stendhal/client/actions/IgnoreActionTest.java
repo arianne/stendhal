@@ -44,11 +44,11 @@ public class IgnoreActionTest {
 		final IgnoreAction action = new IgnoreAction();
 		String[] params = {null};
 		assertTrue(action.execute(params, null));
-		
+
 		final IgnoreAction action_2 = new IgnoreAction();
 		String[] params_2 = {"target", "duration"};
 		assertFalse(action_2.execute(params_2, null));
-		
+
 		final IgnoreAction action_3 = new IgnoreAction();
 		String[] params_3 = {"target", "1"};
 		assertTrue(action_3.execute(params_3, "remainder"));

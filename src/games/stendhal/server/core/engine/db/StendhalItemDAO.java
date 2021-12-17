@@ -118,7 +118,7 @@ public class StendhalItemDAO {
 		params.put("param3", StringUtils.trimTo(param3, 64));
 		params.put("param4", StringUtils.trimTo(param4, 64));
 		params.put("timedate", timestamp);
-		
+
 		transaction.execute(query, params);
 	}
 

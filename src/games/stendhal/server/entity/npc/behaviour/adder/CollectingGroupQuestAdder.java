@@ -83,25 +83,25 @@ public class CollectingGroupQuestAdder {
 		addQuest(npc, behaviour);
 		addCollectingItems(npc, behaviour);
 	}
-	
+
 	private void addGreeting(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(behaviour.getQuestSlot()),
 				ConversationStates.ATTENDING,
 				"Thanks again for your help. We are making #progress. Hopefully we will finish in time.",
 				null);
-		
+
 		npc.addReply(
-				Arrays.asList("inexperienced", "inexperience", "experience"), 
+				Arrays.asList("inexperienced", "inexperience", "experience"),
 				"I am very sorry, I don't have time to teach you right now. You should explore the world and gain some experience.");
 	}
-	
+
 	private void addProgress(SpeakerNPC npc, CollectingGroupQuestBehaviour behaviour) {
 		npc.addReply(Arrays.asList("status", "progress"),
 				null,
 				new ChatAction() {
-			
+
 			@Override
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				if (behaviour.calculateRemainingItems().isEmpty()) {
@@ -144,7 +144,7 @@ public class CollectingGroupQuestAdder {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new ChatAction() {
-					
+
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("Could you provide any of the following items to help with construction? ");
@@ -172,7 +172,7 @@ public class CollectingGroupQuestAdder {
 				ConversationStates.ATTENDING,
 				"Thank you for your help! At the moment I won't bother you again. Please check again tomorrow.",
 				null);
-		
+
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -212,7 +212,7 @@ public class CollectingGroupQuestAdder {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					
+
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						String item = Grammar.singular(sentence.getNormalized());

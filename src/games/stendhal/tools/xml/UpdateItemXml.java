@@ -33,7 +33,7 @@ public class UpdateItemXml {
 		for (File file : new File(rootDirectory + "data/conf/items").listFiles(new PatternFilenameFilter(".*\\.xml"))) {
 			processFile(file.getAbsolutePath());
 		}
-		
+
 	}
 
 	private void readConfig() throws IOException {
