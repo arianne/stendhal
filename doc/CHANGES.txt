@@ -11,6 +11,9 @@ Changelog
 *graphics*
 - touched up some sprites with scaling artifacts
 
+*fixes*
+- solar & glacier centaur suceptibilities were backward
+
 
 1.37
 
