@@ -7,6 +7,9 @@ Changelog
 *world*
 - added elvish hat to list of items in Elvish Armor quest
 
+*graphics*
+- touched up some sprites with scaling artifacts
+
 
 1.37
 
