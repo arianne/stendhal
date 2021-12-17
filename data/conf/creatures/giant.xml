@@ -204,7 +204,7 @@
 
   <creature name="imperial general giant">
     <type class="giant_human" subclass="imperial_general_giant" tileid="giant_human.png:8"/>
-    <description></description>
+    <description>You see an imperial general giant. He lurks in caves with his comrades to take you down.</description>
     <attributes>
       <atk value="738"/>
       <def value="100"/>
