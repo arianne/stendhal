@@ -242,7 +242,7 @@
 
   <creature name="kasarkutominubat">
     <type class="madaram" subclass="kasarkutominubat" tileid="madaram.png:0"/>
-    <description></description>
+    <description>You see kasarkutominubat, a creature not known to many, told it was a human champion long ago, now it resembles nothing but that, with a mask bearing thousands of souls on it and hands running with nothing but blood.</description>
     <attributes>
       <atk value="606"/>
       <def value="86"/>
