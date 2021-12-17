@@ -212,7 +212,7 @@
 
   <creature name="blue mohiko">
     <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
-    <description></description>
+    <description>You see a blue mohiko. A brown alien with a large blue mohawk.</description>
     <attributes>
       <atk value="450"/>
       <def value="50"/>
