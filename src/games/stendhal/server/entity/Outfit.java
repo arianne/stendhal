@@ -31,12 +31,14 @@ import games.stendhal.common.Rand;
  * You can use this data structure so that you don't have to deal with the way
  * outfits are stored internally.
  *
- * An outfit can contain up to five parts: detail, hair, head, dress, and body.
+ * An outfit can contain up to nine parts: body, dress, head, mouth, eyes, mask,
+ * hair, hat, & detail.
  *
  * Note, however, that you can create outfit objects that consist of less than
- * five parts by setting the other parts to <code>null</code>. For example,
+ * nine parts by setting the other parts to <code>null</code>. For example,
  * you can create a dress outfit that you can combine with the player's current
- * so that the player gets the dress, but keeps his hair, head, and body.
+ * so that the player gets the dress, but keeps his hair, head, and body. To
+ * denote that a layer should not be drawn, its value can be set to -1.
  *
  * Not all outfits can be chosen by players.
  *
