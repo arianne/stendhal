@@ -103,7 +103,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** a list of zone that should be removed (like vaults) */
 	private final List<StendhalRPZone> zonesToRemove = new LinkedList<StendhalRPZone>();
 
-	private LinkedList<marauroa.server.game.rp.GameEvent> gameEvents = new LinkedList();
+	private LinkedList<marauroa.server.game.rp.GameEvent> gameEvents = new LinkedList<>();
 
 	/**
 	 * creates a new StendhalRPRuleProcessor
