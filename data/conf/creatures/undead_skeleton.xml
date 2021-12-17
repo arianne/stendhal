@@ -281,7 +281,7 @@
 
   <creature name="fallen high priest">
     <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
-    <description></description>
+    <description>You see a fallen high priest. It is manifested through the dark forces seized of this world.</description>
     <attributes>
       <atk value="619"/>
       <def value="81"/>
