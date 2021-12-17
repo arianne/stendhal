@@ -2,7 +2,14 @@ Changelog
 ---------
 ---------
 
+1.38
+
+*world*
+- added elvish hat to list of items in Elvish Armor quest
+
+
 1.37
+
 
 *world*
 - added Baelin NPC

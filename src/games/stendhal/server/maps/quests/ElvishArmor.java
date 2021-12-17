@@ -60,7 +60,7 @@ public class ElvishArmor extends AbstractQuest implements
 
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
-			"elvish cloak", "elvish shield");
+			"elvish cloak", "elvish shield", "elvish hat");
 
 	@Override
 	public String getSlotName() {
