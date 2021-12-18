@@ -18,7 +18,6 @@
     <respawn value="1290"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,37]" probability="100.0"/>
       <item value="onion" quantity="[1,1]" probability="18.0"/>
       <item value="leek" quantity="[1,1]" probability="15.0"/>
       <item value="tomato" quantity="[1,2]" probability="20.0"/>
@@ -52,7 +51,6 @@
     <respawn value="1350"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,39]" probability="100.0"/>
       <item value="wooden spear" quantity="[10,20]" probability="40.0"/>
       <item value="potato" quantity="[1,2]" probability="20.0"/>
       <item value="carrot" quantity="[1,2]" probability="20.0"/>
@@ -85,7 +83,6 @@
     <respawn value="1420"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[7,48]" probability="100.0"/>
       <item value="potion" quantity="[1,3]" probability="20.0"/>
       <item value="tomato" quantity="[1,2]" probability="30.0"/>
     </drops>
