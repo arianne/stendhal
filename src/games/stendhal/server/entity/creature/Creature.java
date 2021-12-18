@@ -688,7 +688,7 @@ public class Creature extends NPC {
 				corpse.add(item);
 				item.setFromCorpse(true);
 			} else {
-				LOGGER.warn("Cannot add item to full corpse: " + item.getName());
+				LOGGER.debug("Cannot add item to full corpse: " + item.getName());
 			}
 		}
 	}
