@@ -18,7 +18,6 @@
     <respawn value="1210"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[6,19]" probability="100.0"/>
       <item value="hammer" quantity="[1,1]" probability="7.0"/>
       <item value="golden hammer" quantity="[1,1]" probability="0.7"/>
       <item value="chain armor" quantity="[1,1]" probability="10.0"/>
@@ -61,7 +60,6 @@
     <respawn value="1240"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[6,27]" probability="100.0"/>
       <item value="scale armor" quantity="[1,1]" probability="4.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="1.0"/>
       <item value="skull staff" quantity="[1,1]" probability="1.0"/>
@@ -102,7 +100,6 @@
     <respawn value="1270"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[6,31]" probability="100.0"/>
       <item value="battle axe" quantity="[1,1]" probability="2.0"/>
       <item value="pinto beans" quantity="[1,2]" probability="30.0"/>
       <!--<item value="tripe" quantity="[1,1]" probability="50.0"/>-->
@@ -141,7 +138,6 @@
     <respawn value="1380"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[6,31]" probability="100.0"/>
       <item value="pinto beans" quantity="[1,5]" probability="50.0"/>
       <!--<item value="tripe" quantity="[1,2]" probability="50.0"/>-->
     </drops>
