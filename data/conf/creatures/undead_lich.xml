@@ -19,7 +19,6 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
       <item value="lich cloak" quantity="[1,1]" probability="1.0"/>
       <item value="golden shield" quantity="[1,1]" probability="0.5"/>
@@ -52,7 +51,6 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="greater potion" quantity="[1,1]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
       <item value="lich cloak" quantity="[1,1]" probability="1.5"/>
       <item value="golden shield" quantity="[1,1]" probability="1.5"/>
@@ -84,7 +82,6 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="mega potion" quantity="[1,1]" probability="20.0"/>
-      <item value="money" quantity="[40,100]" probability="100.0"/>
       <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
       <item value="lich cloak" quantity="[1,1]" probability="2.0"/>
       <item value="black shield" quantity="[1,1]" probability="0.0010"/>
