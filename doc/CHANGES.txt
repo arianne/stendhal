@@ -52,6 +52,9 @@ Changelog
 - replaced NPC sprites:
   - mithrilforgernpc (Baldemar, Kampusch, Pedinghaus, & Whiggins)
 
+*client*
+- corpse window can scale with contents
+
 *fixes*
 - solar & glacier centaur suceptibilities were backward
 
