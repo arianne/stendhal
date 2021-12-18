@@ -56,7 +56,7 @@ Changelog
 - corpse window can scale with contents
 
 *fixes*
-- solar & glacier centaur suceptibilities were backward
+- solar & glacier centaur susceptibilities were backward
 
 
 1.37
