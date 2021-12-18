@@ -21,7 +21,6 @@
     <respawn value="1200"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[6,13]" probability="100.0"/>
       <item value="chain armor" quantity="[1,1]" probability="1.0"/>
       <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
       <item value="studded boots" quantity="[1,1]" probability="0.5"/>
@@ -66,7 +65,6 @@
     <respawn value="1210"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="chain armor" quantity="[1,1]" probability="3.0"/>
       <item value="chain legs" quantity="[1,1]" probability="2.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
@@ -102,7 +100,6 @@
     <respawn value="1230"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,17]" probability="90.0"/>
       <item value="scale armor" quantity="[1,1]" probability="3.0"/>
       <item value="chain legs" quantity="[1,1]" probability="4.0"/>
       <item value="flail" quantity="[1,1]" probability="30.0"/>
@@ -138,7 +135,6 @@
     <respawn value="1870"/>
     <corpse name="humanoid_2x2"/>
     <drops>
-      <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="meat" quantity="[1,5]" probability="10.5"/>
       <!--<item value="tripe" quantity="[1,2]" probability="50.0"/>-->
       <item value="ugmash" quantity="[1,1]" probability="1.0"/>
