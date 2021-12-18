@@ -18,7 +18,6 @@
     <respawn value="1600"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="antidote" quantity="[1,2]" probability="30.0"/>
       <item value="mainio cloak" quantity="[1,1]" probability="0.1"/>
     </drops>
@@ -46,7 +45,6 @@
     <respawn value="1620"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="great sword" quantity="[1,1]" probability="2.0"/>
       <item value="night dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
@@ -78,7 +76,6 @@
     <respawn value="3050"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="demon fire sword" quantity="[1,1]" probability="0.005"/>
       <item value="fire sword" quantity="[1,1]" probability="1.0"/>
     </drops>
@@ -112,7 +109,6 @@
     <respawn value="3350"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,95]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.6"/>
       <item value="shadow boots" quantity="[1,1]" probability="0.7"/>
     </drops>
@@ -141,7 +137,6 @@
     <respawn value="5350"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[20,110]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
       <item value="magic plate armor" quantity="[1,1]" probability="0.002"/>
       <item value="chaos boots" quantity="[1,1]" probability="0.5"/>
@@ -218,7 +213,6 @@
     <respawn value="2050"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
     </drops>
     <equips>
@@ -254,7 +248,6 @@
     <respawn value="2250"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
       <item value="poison" quantity="[1,2]" probability="40.0"/>
       <item value="blue boots" quantity="[1,1]" probability="5.0"/>
@@ -289,7 +282,6 @@
     <respawn value="23000"/> <!-- 115 minutes -->
     <corpse name="puddle_light_blue_2x2" harmless="puddle_light_blue_2x2"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="greater antidote" quantity="[1,2]" probability="20.0"/>
     </drops>
