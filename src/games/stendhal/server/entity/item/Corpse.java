@@ -142,7 +142,11 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		entity.addAttribute(ATTR_HARMLESS_IMAGE, Type.STRING);
 		entity.addAttribute(ATTR_CORPSE_OWNER, Type.STRING);
 
-		entity.addRPSlot(CONTENT_SLOT, 4);
+		if (System.getProperty("stendhal.testserver") != null) {
+			entity.addRPSlot(CONTENT_SLOT, 6);
+		} else {
+			entity.addRPSlot(CONTENT_SLOT, 4);
+		}
 	}
 
 	/**
