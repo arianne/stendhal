@@ -137,7 +137,7 @@ class VisualSettings {
 
 		// blood
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, true,
-				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
+				"Mature themes", "Show blood splatters, corpses, and characters without undergarments.");
 		page.add(showBloodToggle);
 		// Inform players that some images won't update until after client is restarted.
 		// FIXME: Can't images be updated via map change?
