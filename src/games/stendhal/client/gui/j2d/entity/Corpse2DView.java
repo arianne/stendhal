@@ -210,7 +210,16 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 		case INSPECT:
 			boolean addListener = slotWindow == null;
 			RPSlot content = entity.getContent();
-			slotWindow = inspector.inspectMe(entity, content, slotWindow, 2, 2);
+			final int content_count = content.size();
+
+			int content_row = 2;
+			int content_col = 2;
+			if (content_count > 4) {
+				content_row = (int) Math.ceil(content_count / 2);
+				content_col = (int) Math.ceil(content_count / content_row);
+			}
+
+			slotWindow = inspector.inspectMe(entity, content, slotWindow, content_row, content_col);
 			SlotWindow window = slotWindow;
 			if (window != null) {
 				window.setTitle(entity.getTitle());
