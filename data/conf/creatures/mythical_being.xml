@@ -256,7 +256,6 @@
     <respawn value="36000"/> <!-- 180 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal cloak" quantity="[1,1]" probability="0.5"/>
       <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
@@ -284,7 +283,6 @@
     <respawn value="40000"/> <!-- 200 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
       <item value="turtle shell ring" quantity="[1,1]" probability="0.5"/>
@@ -314,7 +312,6 @@
     <respawn value="44000"/> <!-- 220 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
       <item value="royal armor" quantity="[1,1]" probability="0.5"/>
@@ -349,7 +346,6 @@
     <respawn value="12096000"/>
     <corpse name="animal"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="ice sword" quantity="[1,1]" probability="20.0"/>
       <item value="apple" quantity="[10,30]" probability="80.0"/>
@@ -379,7 +375,6 @@
     <respawn value="7400"/> <!-- 37 minutes -->
     <corpse name="animal"/>
     <drops>
-     <item value="money" quantity="[10,100]" probability="100.0"/>
      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
      <item value="imperial ring" quantity="[1,1]" probability="0.5"/>
     </drops>
@@ -405,7 +400,6 @@
     <respawn value="50000"/> <!-- 250 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal armor" quantity="[1,1]" probability="0.5"/>
       <item value="royal boots" quantity="[1,1]" probability="0.5"/>
@@ -433,7 +427,6 @@
     <respawn value="52000"/> <!-- 260 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal dagger" quantity="[1,1]" probability="0.1"/>
       <item value="royal legs" quantity="[1,1]" probability="0.5"/>
@@ -461,7 +454,6 @@
     <respawn value="54000"/> <!-- 270 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal dagger" quantity="[1,1]" probability="0.1"/>
       <item value="royal helmet" quantity="[1,1]" probability="0.5"/>
@@ -496,7 +488,6 @@
     <!-- uh, should this one be an animal or humanoid? -->
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[10,100]" probability="70.0"/>
       <item value="greater potion" quantity="[1,4]" probability="30.0"/>
       <item value="wooden spear" quantity="[20,40]" probability="30.0"/>
       <item value="imperial ring" quantity="[1,1]" probability="20.0"/>
@@ -527,7 +518,6 @@
     <respawn value="14000"/> <!-- 70 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal cloak" quantity="[1,1]" probability="0.5"/>
     </drops>
@@ -560,7 +550,6 @@
     <respawn value="15000"/> <!-- 75 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal boots" quantity="[1,1]" probability="0.5"/>
     </drops>
@@ -593,7 +582,6 @@
     <respawn value="16000"/> <!-- 80 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[10,250]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
       <item value="royal boots" quantity="[1,1]" probability="0.5"/>
       <item value="royal legs" quantity="[1,1]" probability="0.5"/>
