@@ -6,10 +6,51 @@ Changelog
 1.38
 
 *world*
-- added elvish hat to list of items in Elvish Armor quest
+- added elvish hat to required items in Elvish Armor quest
+- pegasus no longer drops mithril armor
+- new NPCs:
+  - Claude Conteur
+- disabled inaccessible items:
+  - angel figurine
+  - ankh
+  - blank scroll
+  - ice scroll
+  - keyring
+  - mana
+  - necromancers staff
+  - reptile egg
+  - rift cloak
+- added creature descriptions:
+  - blue mohiko
+  - fallen high priest
+  - imperial general giant
+  - kasarkutominubat
+- altered creature descriptions:
+  - archangel
+- quest changes:
+  - elvish hat added to required items in Elvish Armor
 
 *graphics*
-- touched up some sprites with scaling artifacts
+- added a postman outfit
+- touched up some outfit/character/creature sprites with scaling artifacts
+- touched up item sprites:
+  - chaos armor, boots, helmet, & legs
+  - studded boots
+- replaced item sprites:
+  - cherry
+  - fire shuriken
+  - leather legs
+  - lucky charm
+  - oil
+  - shuriken
+  - snowballs
+  - stone boots
+  - summon scroll
+  - suntan cream
+  - tea
+  - vomit
+- replaced NPC sprites:
+  - mithrilforgernpc (Baldemar, Kampusch, Pedinghaus, & Whiggins)
 
 *fixes*
 - solar & glacier centaur suceptibilities were backward
