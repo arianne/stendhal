@@ -151,7 +151,6 @@
     <respawn value="1200"/>
     <corpse name="small_animal" harmless="rodent_small" />
     <drops>
-      <item value="money" quantity="[3,10]" probability="100.0"/>
       <item value="cheese" quantity="[2,5]" probability="50.0"/>
       <item value="deadly poison" quantity="[1,1]" probability="8.0"/>
     </drops>
@@ -187,7 +186,6 @@
     <respawn value="1200"/>
     <corpse name="small_animal" harmless="rodent_small" />
     <drops>
-      <item value="money" quantity="[5,10]" probability="100.0"/>
       <item value="cheese" quantity="[1,3]" probability="50.0"/>
     </drops>
     <equips>
@@ -221,7 +219,6 @@
     <respawn value="1230"/>
     <corpse name="animal_2x2" harmless="rodent_large"/>
     <drops>
-      <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
       <item value="rodent trap" quantity="[1,1]" probability="15.0" />
     </drops>
