@@ -125,7 +125,6 @@
     <respawn value="1210"/>
     <corpse name="tiny_humanoid"/>
     <drops>
-      <item value="money" quantity="[3,7]" probability="90.0"/>
       <item value="fairy cake" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
@@ -190,7 +189,6 @@
     <respawn value="1260"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,25]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="0.5"/>
       <item value="mainio legs" quantity="[1,1]" probability="0.05"/>
     </drops>
