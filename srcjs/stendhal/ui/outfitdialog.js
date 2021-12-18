@@ -85,7 +85,7 @@ stendhal.ui.OutfitDialog = function() {
 		}
 
 		_getPartSprite(part, index, color = null) {
-			const fname = "/data/sprites/outfit/" + part + "/" + part + "_0" + indexString(index) + ".png";
+			const fname = "/data/sprites/outfit/" + part + "/" + part + "_" + indexString(index) + ".png";
 			if (color != null) {
 				return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 			}
@@ -478,13 +478,22 @@ stendhal.ui.OutfitDialog = function() {
 	"</div>"; //bg
 
 	function indexString(index) {
-		if (index < 10) {
-			return "0" + index;
+		if (index > -1 && index < 100) {
+			if (index < 10) {
+				return "00" + index;
+			} else {
+				return "0" + index;
+			}
 		}
 		return "" + index;
 	}
 
 	function makeSelector(part, index, partChanged) {
+		// FIXME: selector should be showing a default if index is less than 0
+		if (index < 0) {
+			index = 0;
+		}
+
 		const selector = new PartSelector(part, index, stendhal.ui.outfitCount[part] - 1, partChanged);
 
 		document.getElementById("setoutfitprev" + part).addEventListener("click", function(e) {
