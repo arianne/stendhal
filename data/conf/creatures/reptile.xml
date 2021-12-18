@@ -191,7 +191,6 @@
     <respawn value="1230"/>
     <corpse name="animal_2x2"/>
     <drops>
-      <item value="money" quantity="[3,12]" probability="100.0"/>
       <item value="meat" quantity="[3,7]" probability="80.0"/>
       <item value="ham" quantity="[2,5]" probability="50.0"/>
     </drops>
