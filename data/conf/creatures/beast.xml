@@ -19,7 +19,6 @@
     <respawn value="1200"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="money" quantity="[2,10]" probability="90.0"/>
     </drops>
     <equips>
     </equips>
@@ -48,7 +47,6 @@
     <respawn value="1200"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="money" quantity="[6,13]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -74,7 +72,6 @@
     <respawn value="1230"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="30.0"/>
     </drops>
     <equips>
