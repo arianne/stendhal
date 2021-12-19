@@ -144,6 +144,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   y             INTEGER,
   description   VARCHAR(1000),
   job           VARCHAR(1000),
+  cloned        VARCHAR(64),
   PRIMARY KEY (id)
 );
 

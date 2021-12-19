@@ -218,6 +218,10 @@ public class StendhalPlayerDatabase {
 			transaction.execute("ALTER TABLE halloffame_archive_recent   MODIFY COLUMN fametype char(10) NOT NULL", null);
 		}
 
+		// 1.38: entity is cloned from another NPC
+		if (!transaction.doesColumnExist("npcs", "cloned")) {
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (cloned VARCHAR(64));", null);
+		}
 	}
 
 

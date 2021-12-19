@@ -51,6 +51,7 @@ public class StendhalNPCDAO {
 		stmt.setString(12, npc.getDescription());
 		stmt.setString(13, npc.getJob());
 		stmt.setString(14, npc.getAlternativeImage());
+		stmt.setString(15, npc.get("cloned"));
 		stmt.addBatch();
 	}
 
@@ -92,8 +93,9 @@ public class StendhalNPCDAO {
 		long start = System.currentTimeMillis();
 		transaction.execute("DELETE FROM npcs", null);
 		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
-			"(name, title, class, outfit, outfit_layers, hp, base_hp, zone, x, y, level, description, job, image)" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+			"(name, title, class, outfit, outfit_layers, hp, base_hp, zone, x, y, " +
+			"level, description, job, image, cloned) " +
+			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
 		for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
 			dumpNPC(stmt, npc);
