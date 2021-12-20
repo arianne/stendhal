@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -22,11 +26,11 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -40,10 +44,6 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Campfire
@@ -74,8 +74,8 @@ import java.util.List;
  * </ul>
  */
 public class Campfire extends AbstractQuest {
-
 	private static final int REQUIRED_WOOD = 10;
+	private static final int REWARDS = 10;
 
 	private static final int REQUIRED_MINUTES = 60;
 
@@ -217,6 +217,7 @@ public class Campfire extends AbstractQuest {
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("wood", REQUIRED_WOOD));
+		reward.add(new EquipItemAction("charcoal", REWARDS));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
 		reward.add(new IncreaseKarmaAction(10));
@@ -229,13 +230,10 @@ public class Campfire extends AbstractQuest {
 				} else {
 					rewardClass = "ham";
 				}
-				npc.say("Thank you! Here, take some " + rewardClass + "charcoal!");
+				npc.say("Thank you! Here, take some " + rewardClass + " and charcoal!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
-				final StackableItem reward2 = (StackableItem) SingletonRepository.getEntityManager().getItem(charcoal);
-				reward.setQuantity(REQUIRED_WOOD);
-				reward2.setQuantity(REQUIRED_WOOD);
+				reward.setQuantity(REWARDS);
 				player.equipOrPutOnGround(reward);
-				player.equipOrPutOnGround(reward2);
 				player.notifyWorldAboutChanges();
 			}
 		});
