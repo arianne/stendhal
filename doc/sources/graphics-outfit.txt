@@ -14,11 +14,16 @@ body_979.png      (black cat)     Svetlana Kushnariova (Cabbit), bleutailfly, Jo
 body_980*.png     (pink body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 body_981*.png     (blue body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 body_988.png      (red slime)     meriharakka; GPL 2.0+; Stendhal
+body_988-safe.png                 nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 body_989.png      (green slime)   meriharakka; GPL 2.0+; Stendhal
+body_989-safe.png                 nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 body_990.png      (yellow slime)  meriharakka; GPL 2.0+; Stendhal
+body_990-safe.png                 nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 body_991.png      (teal slime)    meriharakka; GPL 2.0+; Stendhal
+body_991-safe.png                 nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 body_992.png      (gingerbread)   ???; ???; ???
 body_993.png      (purple slime)  meriharakka; GPL 2.0+; Stendhal
+body_993-safe.png                 nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 body_994.png                      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 body_995.png      (alien)         Fabzy; CC BY-SA 3.0; https://opengameart.org/node/88800
 body_996.png      (horse mount)   bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398

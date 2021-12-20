@@ -491,6 +491,7 @@ black_slime.*     meriharakka; GPL 2.0+; Stendhal
 brown_slime.*     meriharakka; GPL 2.0+; Stendhal
 green_slime.*     meriharakka; GPL 2.0+; Stendhal
 twilight_slime.*  meriharakka; GPL 2.0+; Stendhal
+*-safe.png        nudelchef (Dragon); CC0; https://sourceforge.net/p/arianne/patches/738/
 
 data/sprites/monsters/spider/
 
