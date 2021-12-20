@@ -504,4 +504,24 @@
     </equipable>
   </item>
 
+  <item name="charcoal">
+    <type class="resource" subclass="charcoal" tileid="-1"/>
+    <description>You see charcoal, a component of carbon steel.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.05"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>

@@ -113,7 +113,7 @@ public class Campfire extends AbstractQuest {
 			res.add("I have found the 10 wood needed to start the fire");
 		}
 		if (isCompleted(player)) {
-			res.add("I have given Sally the wood. She gave me some food in return. I also gained 50 xp");
+			res.add("I have given Sally the wood. She gave me some food and charcoal in return. I also gained 50 xp");
 		}
 		if(isRepeatable(player)){
 			res.add("Sally's fire needs some wood again.");
@@ -229,10 +229,13 @@ public class Campfire extends AbstractQuest {
 				} else {
 					rewardClass = "ham";
 				}
-				npc.say("Thank you! Here, take some " + rewardClass + "!");
+				npc.say("Thank you! Here, take some " + rewardClass + "charcoal!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+				final StackableItem reward2 = (StackableItem) SingletonRepository.getEntityManager().getItem(charcoal);
 				reward.setQuantity(REQUIRED_WOOD);
+				reward2.setQuantity(REQUIRED_WOOD);
 				player.equipOrPutOnGround(reward);
+				player.equipOrPutOnGround(reward2);
 				player.notifyWorldAboutChanges();
 			}
 		});
