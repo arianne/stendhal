@@ -31,6 +31,12 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+    <entity x="25" y="51">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">To Sikhw Desert.
+No access.</attribute>
+    </entity>
   </zone>
 
 
