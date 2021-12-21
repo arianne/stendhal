@@ -310,7 +310,7 @@ pomegranate.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https
 porcini.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red-lionfish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-salad.png                Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verified
+salad.png                bluecarrot16; CC0; https://opengameart.org/node/98209
 sandwich.png             Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png              thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 sausage_on_bun.png       thekingphoenix; CC0; https://opengameart.org/node/77345
@@ -355,7 +355,7 @@ onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
 porcini_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 reindeer_moss_grower.png    tigertoes?; ???; ??? (committed by tigertoes: e7b3dfb)
-salad_grower.png            Nadine Schlonies (dine); GPL 2.0; Stendhal (based on food/salad.png, committed by kiheru: 6c0e114)
+salad_grower.png            bluecarrot16; CC0; https://opengameart.org/node/98209
 sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
