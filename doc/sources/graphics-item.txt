@@ -149,7 +149,7 @@ xeno_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 
 data/sprites/items/club/
 
-chaos_hammer.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara)
+chaos_hammer.png         LordNeo; CC0; https://opengameart.org/node/113879, https://opengameart.org/node/15661
 club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 club_of_thorns.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
