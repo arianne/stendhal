@@ -391,7 +391,7 @@ data/sprites/items/herb/
 
 arandula.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
 kekik.png          frankes; CC0; https://openclipart.org/detail/264098
-kokuda.png         ???; ???; ??? (committed by danter: 83339fc)
+kokuda.png         Firkin; CC0; https://openclipart.org/detail/297464
 mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
 sclaria.png        martinix; CC0; https://openclipart.org/detail/3558
