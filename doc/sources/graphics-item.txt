@@ -230,7 +230,6 @@ mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendha
 mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 milk.png                       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 minor_potion.png               Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-pina_colada.png                Katie Russell (kymara)?
 pina_colada2.png               nicubunu, Bluelads4; GPL 2.0+; Based on CC0 image: https://openclipart.org/detail/12995
 poison.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
