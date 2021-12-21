@@ -347,7 +347,7 @@ daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155
 egg_grower.png              dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
 grapes_grower.png           RedQueen; OGA BY 3.0; Stendhal
-kekik_grower.png            ???; ???; ??? (based on kekik.png, committed by kiheru: c058ed6)
+kekik_grower.png            frankes; CC0; https://openclipart.org/detail/264098
 leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
 mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
@@ -390,7 +390,7 @@ xeno_helmet.*               Dungeon Crawl Stone Soup; CC0; https://opengameart.o
 data/sprites/items/herb/
 
 arandula.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
-kekik.png          ???; ???; ??? (committed by danter: 83339fc)
+kekik.png          frankes; CC0; https://openclipart.org/detail/264098
 kokuda.png         ???; ???; ??? (committed by danter: 83339fc)
 mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
