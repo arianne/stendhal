@@ -28,6 +28,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.gui.OutfitColor;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
@@ -197,7 +198,11 @@ public class OutfitStore {
 			}
 		}
 
-		final String suffix = getSpriteSuffix(index);
+		String suffix = getSpriteSuffix(index);
+		if (layer.equals("body") && WtWindowManager.getInstance().getPropertyBoolean("gamescreen.nonude", true)) {
+			suffix = suffix + "-nonude";
+		}
+
 		final String ref = OUTFITS + "/" + layer + "/" + layer + "_" + suffix + ".png";
 
 		if (color == null) {

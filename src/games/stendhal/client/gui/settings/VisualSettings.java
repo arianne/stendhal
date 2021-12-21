@@ -150,6 +150,18 @@ class VisualSettings {
 
 		});
 
+		JCheckBox noNudeToggle = SettingsComponentFactory.createSettingsToggle("gamescreen.nonude", true,
+			"Show undergarments", "\"Nude\" characters are covered with undergarments.");
+		page.add(noNudeToggle);
+		noNudeToggle.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
+					"Changes will take effect after changing maps.",
+					NotificationType.CLIENT));
+			}
+		});
+
 		// show creature speech bubbles
 		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, true,
 										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
