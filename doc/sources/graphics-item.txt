@@ -356,7 +356,7 @@ pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
 porcini_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 reindeer_moss_grower.png    tigertoes?; ???; ??? (committed by tigertoes: e7b3dfb)
 salad_grower.png            bluecarrot16; CC0; https://opengameart.org/node/98209
-sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
+sclaria_grower.png          martinix; CC0; https://openclipart.org/detail/3558
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tomato_grower.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -394,7 +394,7 @@ kekik.png          ???; ???; ??? (committed by danter: 83339fc)
 kokuda.png         ???; ???; ??? (committed by danter: 83339fc)
 mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
-sclaria.png        ???; ???; ??? (committed by danter: 83339fc)
+sclaria.png        martinix; CC0; https://openclipart.org/detail/3558
 
 data/sprites/items/holiday/
 
