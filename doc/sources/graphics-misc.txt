@@ -100,7 +100,7 @@ underground_zone.png              ???; ???; ???
 data/sprites/block/
 
 block.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-hay_cart.png           ???; ???; ??? (committed by madmetzger: 0eeedc7)
+hay_cart.png           Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 mine_cart_empty.png    ???; ???; ??? (committed by madmetzger: 0eeedc7)
 mine_cart_full.png     ???; ???; ??? (committed by madmetzger: 0eeedc7)
 pumpkin_halloween.png  ???; ???; ??? (committed by madmetzger: 0eeedc7)
