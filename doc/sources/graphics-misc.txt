@@ -298,7 +298,7 @@ heavy.*       migranerp, Jordan Irwin (AntumDeluge); CC0; https://openclipart.or
 merchant.png  gnokii, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/171507
 poison.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 shock.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-zombie.png    ???; ???; ???
+zombie.png    quadrochave; CC0; https://openclipart.org/detail/201838
 
 data/sprites/status/panel/
 
@@ -306,7 +306,7 @@ confuse.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 heavy.png    migranerp, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/190320
 poison.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 shock.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-zombie.png   ???; ???; ???
+zombie.png   quadrochave; CC0; https://openclipart.org/detail/201838
 
 data/sprites/switch/
 
