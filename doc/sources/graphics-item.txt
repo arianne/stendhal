@@ -343,7 +343,7 @@ cauliflower_grower.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chinese_cabbage_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155)
+daisies_grower.png          Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 egg_grower.png              dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
 grapes_grower.png           RedQueen; OGA BY 3.0; Stendhal
