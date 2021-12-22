@@ -74,7 +74,7 @@ watersplash.png           ???; ???; ??? (committed by danter: 5c087df)
 
 data/sprites/achievements/
 
-age.png                           ???; ???; ???
+age.png                           Markus Keunecke; GPL 2.0 or newer; Stendhal
 commerce.png                      Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 deathmatch.png                    Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81446
 experience.png                    bleutailfly; OGA BY 3.0; Stendhal
@@ -83,19 +83,19 @@ experience_def.png                David E. Gervais; CC BY 3.0; https://opengamea
 experience_ratk.png               David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 fighting.png                      David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 friend.png                        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-interior_zone.*                   ???; ???; ???
+interior_zone.*                   Markus Keunecke, Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 item.png                          bogdanco, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/3666
 obtain.png                        rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
-outside_zone.png                  ???; ???; ???
-production.png                    ???; ???; ???
+outside_zone.png                  Markus Keunecke, Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+production.png                    Kimmo Rundelin (kiheru), Katie Russell (kymara), Daniel Herding (mort), David E. Gervais; GPL 2.0 or newer; Stendhal, https://opengameart.org/node/6622
 quest.png                         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 quest_ados_items.*                David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622
 quest_kill_blordroughs.*          David E. Gervais, tigertoes, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/6622
 quest_kirdneh_item.*              David E. Gervais, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/6622
 quest_mithrilbourgh_enemy_army.*  David E. Gervais, Daniel Herding (mort), tigertoes, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://opengameart.org/node/6622
 quest_semos_monster.*             David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622
-special.png                       ???; ???; ???
-underground_zone.png              ???; ???; ???
+special.png                       zeimusu; CC0; https://openclipart.org/detail/2241
+underground_zone.png              Markus Keunecke; GPL 2.0 or newer; Stendhal
 
 data/sprites/block/
 
