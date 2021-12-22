@@ -10,9 +10,9 @@ buddy_online.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 chat.png                     ???; ???; ??? (source: https://sourceforge.net/p/arianne/patches/433/, committed by kymara: 332bb9c0bc)
 danger.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 forbidden.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-help.png                     ???; ???; ??? (committed by kymara: b0a471e4ad)
+help.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal
 karma_scale.png              ???; ???; ??? (committed by Chad F: e03a756ec3)
-keyring.png                  ???; ???; ??? (committed by kymara: 4a0a89d253)
+keyring.png                  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 mana_scale.png               ???; ???; ??? (committed by Red Queen: 1c127af583)
 offline.png                  ???; ???; ??? (committed by Miguel: 973bf6ee68)
 panel_aubergine_001.png      ???; ???; ??? (committed by AntumDeluge: cf09d6c722)
@@ -31,21 +31,22 @@ panelwood032.gif             ???; ???; ??? (committed by Miguel: d9791e5622)
 panelwood119.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
 rp.png                       David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 scroll_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-settings.png                 ???; ???; ??? (committed by kymara: d9d2eb6a7e)
+settings.png                 Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 slot.png                     ???; ???; ??? (committed by Miguel: d9791e5622)
 slot-armor.png               ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-bag.png                 CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
-slot-boots.png               ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-cloak.png               CC0; Stendhal
-slot-helmet.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-bag.png                 CC0; Stendhal (based on bag sprite)
+slot-boots.png               David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
+slot-cloak.png               CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
+slot-helmet.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9) (based on old golden helmet)
 slot-key.png                 ???; ???; ??? (committed by kiheru: 9445bdc645)
 slot-legs.png                ???; ???; ??? (committed by kiheru: 12f1c8aea9)
 slot-portfolio.png           Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+slot-pouch.png               Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (based on money/gold.png)
 slot-ring.png                ???; ???; ??? (committed by kiheru: 12f1c8aea9)
 slot-shield.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9)
 slot-weapon.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9)
 StendhalIcon.png             ???; ???; ??? (committed by Miguel: d9791e5622)
-StendhalSplash.jpg           Groundhug McHamster (h4mt4ro); GPL 2.0+; Stendhal
+StendhalSplash.jpg           Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
 trash.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tutorial_background.*        Svetlana Kushnariova (Cabbit), Nila122, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/83626, https://opengameart.org/node/29293
 
