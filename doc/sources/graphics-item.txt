@@ -245,7 +245,7 @@ data/sprites/items/flower/
 
 daisies.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 exotic_flower.png  bleutailfly; OGA BY 3.0; Stendhal
-lilia.png          omero?; ???; ??? (committed by kymara: d78af05)
+lilia.png          Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 pansy.png          omero; CC BY-SA 3.0; Stendhal
 rose.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/red-rose-with-thorns
 zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
@@ -349,7 +349,7 @@ garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
 grapes_grower.png           RedQueen; OGA BY 3.0; Stendhal
 kekik_grower.png            frankes; CC0; https://openclipart.org/detail/264098
 leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
+lilia_grower.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
 onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
