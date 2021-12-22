@@ -528,7 +528,7 @@ wooden_bow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/
 
 data/sprites/items/relic/
 
-amulet.png          juan?; ???; ??? (committed by bleutailfly: d390669)
+amulet.png          bleutailfly; OGA BY 3.0; Stendhal
 angel_figurine.png  ???; ???; ??? (committed by laguz: 8584f80)
 ankh.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 skull_ring.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
