@@ -32,7 +32,7 @@ chaos_armor.png               ScratchIO; CC0; https://opengameart.org/node/10844
 dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
 dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-elvish_armor.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; https://sourceforge.net/p/arianne/patches/270/
+elvish_armor.png              Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; https://sourceforge.net/p/arianne/patches/270/
 enhanced_chainmail.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 enhanced_iron_cuirass.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 enhanced_leather_cuirass.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -95,8 +95,8 @@ black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 blue_boots.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_boots.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_boots.png            ScratchIO; CC0; https://opengameart.org/node/108448
-darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal (re-color of elvish_boots)
-elvish_boots.png           Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/271/
+darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal (re-color of elvish_boots)
+elvish_boots.png           Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/271/
 golden_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 killer_boots.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -171,11 +171,11 @@ wizard_staff.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/
 data/sprites/items/container/
 
 backpack.png                 Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
-bottle.png                   Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+bottle.png                   Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 bottle_eared.png             omero; CC BY-SA 3.0; Stendhal
 bottle_fat.png               omero; CC BY-SA 3.0; Stendhal
 bottle_large.png             omero; CC BY-SA 3.0; Stendhal
-bottle_medium.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+bottle_medium.png            Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 bottle_short_rounded.png     omero; CC BY-SA 3.0; Stendhal
 bottle_short_triangular.png  omero; CC BY-SA 3.0; Stendhal
 bottle_slim.png              omero; CC BY-SA 3.0; Stendhal
@@ -184,7 +184,7 @@ bottle_tall.png              omero; CC BY-SA 3.0; Stendhal
 bottle_triangular.png        omero; CC BY-SA 3.0; Stendhal
 empty_goblet.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 empty_sack.png               omero; CC BY-SA 3.0; Stendhal
-flask.png                    Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+flask.png                    Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 full_goblet.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 keyring.png                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 vial.png                     Jordan Irwin (AntumDeluge); CC0; Stendhal
@@ -210,35 +210,35 @@ unsealed_envelope.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/items/drink/
 
-antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 beer.png                       Open Clipart Library, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha, http://www.clker.com/clipart-16755.html
 cobra_venom.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
-deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 fierywater.png                 omero; CC BY-SA 3.0; Stendhal
 fish_soup.png                  Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
-greater_antidote.png           Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-greater_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-greater_potion.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-holy_water.*                   Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+greater_antidote.png           Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+greater_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+greater_potion.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+holy_water.*                   Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 koboldish_torcibud_mild.png    omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_strong.png  omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_vsop.png    omero; CC BY-SA 3.0; Stendhal
-love_potion.png                Groundhug McHampster (h4mt4r0), Katie Russell (kymara); GPL 2.0+; Stendhal
-mana.png                       Groundhug McHampster (h4mt4r0), RedQueen; GPL 2.0+; Stendhal
-mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+love_potion.png                Groundhug McHampster (h4mt4r0), Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+mana.png                       Groundhug McHampster (h4mt4r0), RedQueen; GPL 2.0 or newer; Stendhal
+mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 milk.png                       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
-minor_potion.png               Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-pina_colada2.png               nicubunu, Bluelads4; GPL 2.0+; Based on CC0 image: https://openclipart.org/detail/12995
-poison.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+minor_potion.png               Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+pina_colada2.png               nicubunu, Bluelads4; GPL 2.0 or newer; Based on CC0 image: https://openclipart.org/detail/12995
+poison.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 red_juice.png                  Open Clipart Library; CC0; http://www.clker.com/clipart-16755.html
 sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        strawheart; CC BY-SA 3.0; https://opengameart.org/node/6309
-twilight_elixir.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-waterbottle.png                Groundhug McHampster (h4mt4r0), Bluelads4; GPL 2.0+; Stendhal
+twilight_elixir.png            Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+waterbottle.png                Groundhug McHampster (h4mt4r0), Bluelads4; GPL 2.0 or newer; Stendhal
 wine.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/items/flower/
@@ -284,7 +284,7 @@ crab_meat.*              Jordan Irwin (AntumDeluge); CC0; https://opengameart.or
 crepesuzette.png         omero; CC BY-SA 3.0; Stendhal
 easter_egg.png           dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 egg.png                  dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
-fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
+fairy_cake.png           Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
 grapes.png               RedQueen; OGA BY 3.0; Stendhal
@@ -553,7 +553,7 @@ mithril_bar.png     Daniel Herding (mort); GPL 2.0 or newer; Stendhal (based on 
 mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ore.png     Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal (based on gold_ore.png)
 mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
-oil.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+oil.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 shovelhandle.png    tigertoes; CC0; Stendhal, derived from shovel.png
 shovellog.png       tigertoes; CC0; Stendhal, derived from shovel.png
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
@@ -664,7 +664,7 @@ chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; 
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-demon_fire_sword.png         durkham, Katie Russell (kymara); GPL 2.0+; Stendhal
+demon_fire_sword.png         durkham, Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 elvish_sword.*               Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_blade.png             David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
