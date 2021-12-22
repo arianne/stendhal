@@ -439,7 +439,7 @@ navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-rat.png        Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+rat.png        ???; ???; added by Miguel: https://github.com/arianne/stendhal/commit/4236397
 red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 silver.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 square.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
