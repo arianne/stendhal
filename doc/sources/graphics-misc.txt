@@ -260,11 +260,11 @@ transparent.png       ???; ???; ???
 
 data/sprites/source/
 
-coal_source.png   ???; ???; ???
-fish_source.png   ???; ???; ???
-gold_source.png   ???; ???; ???
-water_source.png  ???; ???; ???
-well_source.png   ???; ???; ???
+coal_source.png   Storyteller; GPL 2.0 or newer; Stendhal
+fish_source.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+gold_source.png   Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+water_source.png  Daniel Herding (mort), Bluelads4; GPL 2.0 or newer; Stendhal
+well_source.png   Daniel Herding (mort), Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
 data/sprites/spells/
 
