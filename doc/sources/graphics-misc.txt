@@ -29,7 +29,7 @@ panelwood003.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
 panelwood006.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
 panelwood032.gif             ???; ???; ??? (committed by Miguel: d9791e5622)
 panelwood119.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
-rp.png                       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+rp.png                       David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 scroll_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 settings.png                 ???; ???; ??? (committed by kymara: d9d2eb6a7e)
 slot.png                     ???; ???; ??? (committed by Miguel: d9791e5622)
@@ -63,16 +63,13 @@ grain_field.png           wmbec7718; ???; ??? (committed by kiheru: 17e4966)
 musicnotes-intro.gif      ???; ???; ??? (committed by Miguel: bcb3d5a)
 musicnotes-loop.gif       ???; ???; ??? (committed by Miguel: bcb3d5a)
 musicnotes.png            ???; ???; ??? (committed by Miguel: bcb3d5a)
-placeholder-*.png         ???; ???; ???
-placeholder-NPC.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/24944
 plant_grower.png          ???; ???; ??? (committed by mort: 49b5697)
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-shadow.png                Jordan Irwin (AntumDeluge); CC0; Stendhal
 sheep.png                 ???; ???; ???
 shorn-sheep.png           ???; ???; ???
 shorn-sheep_more_fur.png  ???; ???; ???
 shorn-sheep_some_fur.png  ???; ???; ???
-sugar_cane_field.png      ???; ???; ???
+sugar_cane_field.png      ???; ???; ??? (committed by kymara, drawn by geomac: d36cebb)
 watersplash.png           ???; ???; ??? (committed by danter: 5c087df)
 
 data/sprites/achievements/
@@ -235,6 +232,10 @@ rune8.png   ???; ???; ???
 rune9.png   ???; ???; ???
 rune10.png  ???; ???; ???
 rune11.png  ???; ???; ???
+
+data/sprites/shadow/
+
+*.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
 
 data/sprites/signs/
 
