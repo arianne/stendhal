@@ -699,7 +699,7 @@ red_o_token.png             Hendrik Brummermann, Katie Russel (kymara); CC0; Ste
 data/sprites/items/tool/
 
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
-foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
+foodmill.png          Astrid Sawatzky (Durkham); GPL 2.0 or newer; Stendhal
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_needle.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
