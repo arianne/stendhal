@@ -115,7 +115,7 @@ xeno_boots.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.or
 data/sprites/items/box/
 
 basket.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-present.png   Katie Russell (kymara); GPL 2.0; Stendhal
+present.png   Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 stocking.png  bleutailfly; OGA BY 3.0; Stendhal
 
 data/sprites/items/cloak/
@@ -163,7 +163,7 @@ ice_grand_warhammer.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free
 mace.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rod_of_the_gm.png        Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
 skull_staff.*            Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
-staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
+staff.png                Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 ugmash.png               Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
 wizard_staff.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -200,8 +200,8 @@ coupon.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 envelope.xcf.bz2       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 ice_scroll.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 license.png            tigertoes; CC BY-SA 3.0; Stendhal
-map.png                Katie Russell (kymara); GPL 2.0; Stendhal
-mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
+map.png                Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+mapwithgrid.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 opened_envelope.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 paper.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 recipe.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
@@ -257,11 +257,11 @@ apple_red.png            tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.
 applepie.png             omero; CC BY-SA 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
-baguette.png             Katie Russell (kymara); GPL 2.0; Stendhal
+baguette.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 banana.png               RedQueen; OGA BY 3.0; Stendhal
 broccoli.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png               omero; CC BY-SA 3.0; Stendhal
-button_mushroom.png      Daniel Herding (mort); GPL 2.0; Stendhal
+button_mushroom.png      Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 carrot.png               Belohlavek; CC0; https://opengameart.org/node/12830
 cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
@@ -303,7 +303,7 @@ olive.png                tigertoes; CC BY-SA 3.0; Stendhal
 onion.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pear.png                 RedQueen; OGA BY 3.0; Stendhal
 perch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-piesmall.png             Katie Russell (kymara); GPL 2.0; Stendhal
+piesmall.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 pineapple.png            nicubunu; CC0; https://openclipart.org/detail/12995
 pizza.png                Alex Jackson (PancInteractive); CC BY 3.0; https://opengameart.org/node/22243
 pomegranate.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://commons.wikimedia.org/wiki/File:Afghan_pomegranate_Kandahar.jpg
@@ -311,7 +311,7 @@ porcini.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red-lionfish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 salad.png                bluecarrot16; CC0; https://opengameart.org/node/98209
-sandwich.png             Katie Russell (kymara); GPL 2.0; Stendhal
+sandwich.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 sausage.png              thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 sausage_on_bun.png       thekingphoenix; CC0; https://opengameart.org/node/77345
 small_easter_egg.png     dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
@@ -323,7 +323,7 @@ toadstool.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tomato.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 trout.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 trout_smoked.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tuna_sandwich.png        Katie Russell (kymara); GPL 2.0; Stendhal
+tuna_sandwich.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
 watermelon.png           RedQueen; OGA BY 3.0; Stendhal
@@ -338,7 +338,7 @@ arandula_grower.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, ht
 artichoke_grower.png        omero; CC BY-SA 3.0; Stendhal
 broccoli_grower.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 button_mushroom_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-carrot_grower.png           Katie Russell (kymara); GPL 2.0; Stendhal
+carrot_grower.png           Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 cauliflower_grower.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chinese_cabbage_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -361,7 +361,7 @@ spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tomato_grower.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 watermelon_grower.png       RedQueen; OGA BY 3.0; Stendhal
-wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
+wood_grower.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
@@ -422,29 +422,29 @@ sapphire_crystal.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 
 data/sprites/items/key/
 
-blue.png       Katie Russell (kymara); GPL 2.0; Stendhal
-bronze.png     Katie Russell (kymara); GPL 2.0; Stendhal
-brown.png      Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-common.png     Anders Asplund (Danter); GPL 2.0; Stendhal
-copper.png     Katie Russell (kymara); GPL 2.0; Stendhal
-filigree.png   Katie Russell (kymara); GPL 2.0; Stendhal
-gold.png       Katie Russell (kymara); GPL 2.0; Stendhal
-green.png      Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-grey.png       Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-iron.png       Katie Russell (kymara); GPL 2.0; Stendhal
-lilac.png      Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-lime.png       Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
+blue.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+bronze.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+brown.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+common.png     Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+copper.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+filigree.png   Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+gold.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+green.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+grey.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+iron.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+lilac.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+lime.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
 nalwor.png     ???; ???; ???  (appears to be based on key/common.png, committed by kymara: da7b9d9)
-navy.png       Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-orange.png     Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-pink.png       Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-purple.png     Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-rat.png        Anders Asplund (Danter); GPL 2.0; Stendhal
-red.png        Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-silver.png     Katie Russell (kymara); GPL 2.0; Stendhal
+navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+rat.png        Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+silver.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 square.png     ???; ???; ??? (committed by kymara: 830fe05)
-turquoise.png  Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
-yellow.png     Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on key/common.png)
+turquoise.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
 
 data/sprites/items/legs/
 
@@ -468,13 +468,13 @@ xeno_legs.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pouss
 
 data/sprites/items/misc/
 
-bat_entrails.png         Katie Russell (kymara); GPL 2.0; Stendhal
+bat_entrails.png         Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
 bulb.png                 omero; CC BY-SA 3.0; Stendhal
 canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
-cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
+cards.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 decent_meal.png          omero; CC BY-SA 3.0; Stendhal
-dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
+dice.png                 Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 giant_heart.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/291622
 lemon.png                omero; CC BY-SA 3.0; Stendhal
 leather_thread.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
@@ -489,10 +489,10 @@ rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image 
 seed.png                 kymara?, kiheru?; ???; ??? (committed by kiheru)
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         Glitch, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/210635
-teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
+teddy.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 tripe.png                omero; CC BY-SA 3.0; Stendhal
 unicorn_horn.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-vampirette_entrails.png  Katie Russell (kymara); GPL 2.0; Stendhal
+vampirette_entrails.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 venom_gland.png          Jordan Irwin; OGA BY 3.0; Stendhal
 vinegar.png              omero; CC BY-SA 3.0; Stendhal
 virgin_olive_oil.png     tigertoes; CC BY-SA 3.0; Stendhal
@@ -506,14 +506,14 @@ power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/to
 shuriken.png       thekingphoenix; CC0; https://opengameart.org/node/77305
 snowballs.png      Admurin; CC BY-SA 4.0; https://opengameart.org/node/125121, https://admurin.itch.io/
 vomit.png          inky2010; CC0; https://openclipart.org/detail/86809
-wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
+wooden_spear.png   Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/money/
 
-copper.png  Anders Asplund (Danter); GPL 2.0; Stendhal
-gold.png    Anders Asplund (Danter); GPL 2.0; Stendhal
-money.psd   Anders Asplund (Danter); GPL 2.0; Stendhal
-silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
+copper.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+gold.png    Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+money.psd   Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+silver.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/ranged/
 
@@ -530,27 +530,27 @@ data/sprites/items/relic/
 amulet.png          juan?; ???; ??? (committed by bleutailfly: d390669)
 angel_figurine.png  ???; ???; ??? (committed by laguz: 8584f80)
 ankh.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-skull_ring.png      Katie Russell (kymara); GPL 2.0; Stendhal
+skull_ring.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/resource/
 
 beeswax.png         Jan Helebrant; CC0; https://freesvg.org/beekeeper-by-juhele
 candle.*            liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/2658
-cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
+cloth.png           Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 coal.png            Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 egg.png             dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg (duplicate of items/food/egg.png)
-flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal
+flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 golden_egg.png      dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
-gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal (based on iron.png)
-gold_ore.png        Nadine Schlonies (dine); GPL 2.0; Stendhal
-grain.png           Daniel Herding (mort); GPL 2.0; Stendhal
+gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal (based on iron.png)
+gold_ore.png        Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
+grain.png           Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 green_egg.png       dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 horsehair.png       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
-iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
-iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
-mithril_bar.png     Daniel Herding (mort); GPL 2.0; Stendhal (based on iron.png)
+iron.png            Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+iron_ore.png        Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+mithril_bar.png     Daniel Herding (mort); GPL 2.0 or newer; Stendhal (based on iron.png)
 mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
-mithril_ore.png     Nadine Schlonies (dine); GPL 2.0; Stendhal (based on gold_ore.png)
+mithril_ore.png     Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal (based on gold_ore.png)
 mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
 oil.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 shovelhandle.png    tigertoes; CC0; Stendhal, derived from shovel.png
@@ -558,9 +558,9 @@ shovellog.png       tigertoes; CC0; Stendhal, derived from shovel.png
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
 silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
 sugarcane.png       wmbec7718; ???; ??? (committed by kiheru: 3edcf3d)
-wood.png            Daniel Herding (mort); GPL 2.0; Stendhal
-wool.png            Nadine Schlonies (dine); GPL 2.0; Stendhal
-yarn.png            tiborius; GPL 2.0; Stendhal
+wood.png            Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+wool.png            Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
+yarn.png            tiborius; GPL 2.0 or newer; Stendhal
 
 data/sprites/items/ring/
 
@@ -577,7 +577,7 @@ medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://openga
 placid_ring.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 silver-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 turtle_shell_ring.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
+wedding.png               Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/scent/
 
@@ -637,13 +637,13 @@ xeno_shield.png               Dungeon Crawl Stone Soup; CC0; https://opengameart
 data/sprites/items/special/
 
 eggshells.png             dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
-GM_tokend_bronze.png      Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_gold1.png       Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_gold2.png       Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_old_bronze.png  Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_old_gold.png    Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
-GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0; Stendhal
+GM_tokend_bronze.png      Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_gold1.png       Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_gold2.png       Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_old_bronze.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_old_gold.png    Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 lucky_charm.*             Almeidah, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/216715
 mithril_clasp.png         tigertoes; CC BY-SA 3.0; Stendhal
 mythical_egg.png          dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
@@ -673,7 +673,7 @@ hell_dagger.png              Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
 katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-kilij.png                    durkham; GPL 2.0; Stendhal
+kilij.png                    durkham; GPL 2.0 or newer; Stendhal
 knife.png                    thekingphoenix; CC0; https://opengameart.org/node/77305
 [l|r]_hand_sword.png         LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/11142
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -692,13 +692,13 @@ xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.
 data/sprites/items/token/
 
 blue_x_token.png            Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
-darkyellow_round_token.png  Daniel Herding (mort); GPL 2.0; Stendhal
-flag.png                    Daniel Herding (mort); GPL 2.0; Stendhal
+darkyellow_round_token.png  Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+flag.png                    Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 red_o_token.png             Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
 
 data/sprites/items/tool/
 
-fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
+fishing_rod.png       Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_needle.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
