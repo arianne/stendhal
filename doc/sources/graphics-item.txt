@@ -424,27 +424,27 @@ data/sprites/items/key/
 
 blue.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 bronze.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-brown.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+brown.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 common.png     Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 copper.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 filigree.png   Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 gold.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-green.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-grey.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+green.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+grey.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 iron.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-lilac.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-lime.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-nalwor.png     ???; ???; ???  (appears to be based on key/common.png, committed by kymara: da7b9d9)
-navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+lilac.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+lime.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+nalwor.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 rat.png        Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
-red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 silver.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-square.png     ???; ???; ??? (committed by kymara: 830fe05)
-turquoise.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
-yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal (appears to be based on key/common.png)
+square.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+turquoise.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/legs/
 
