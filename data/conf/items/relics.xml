@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
 
-  <item name="angel figurine" condition="stendhal.testserver">
-    <type class="relic" subclass="angel_figurine" tileid="-1"/>
-    <description>You see a sparkling angel figurine.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-       <quantity value="1"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
   <item name="skull ring">
     <type class="relic" subclass="skull_ring" tileid="-1"/>
     <description>You see a skull ring.</description>
