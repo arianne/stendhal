@@ -440,12 +440,12 @@ navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-rat.png        ???; ???; added by Miguel: https://github.com/arianne/stendhal/commit/4236397
 red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 silver.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 square.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 turquoise.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+zoo.png        Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/76757
 
 data/sprites/items/legs/
 

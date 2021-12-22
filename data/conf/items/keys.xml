@@ -124,7 +124,7 @@
 
  <!-- this is unused as yet but we create the key object so the door can reject properly-->
   <item name="pet sanctuary key">
-    <type class="key" subclass="rat" tileid="-1"/>
+    <type class="key" subclass="zoo" tileid="-1"/>
     <description>You see a key for the pet sanctuary in Ados.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
