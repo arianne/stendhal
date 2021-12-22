@@ -54,16 +54,16 @@ data/sprites/
 baby_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 block.xcf.bz2             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cat.png                   bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69399
-chest.png                 bleutailfly?; ???; ??? (committed by kymara: 284580e)
-corn_field.png            ???; ???; ??? (committed by bleutailfly: e199a37)
-failsafe.png              ???; ???; ??? (committed by danter: 6ad7e12)
-fire.png                  kiheru?; ???; ???
+chest.png                 bleutailfly, Katie Russell (kymara); OGA BY 3.0; Stendhal
+corn_field.png            bleutailfly; OGA BY 3.0; Stendhal
+failsafe.png              Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+fire.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 food.png                  ???; ???; ???
-grain_field.png           wmbec7718; ???; ??? (committed by kiheru: 17e4966)
+grain_field.png           Daniel Herding (mort), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
+musicnotes.png            ???; ???; ??? (committed by Miguel: bcb3d5a)
 musicnotes-intro.gif      ???; ???; ??? (committed by Miguel: bcb3d5a)
 musicnotes-loop.gif       ???; ???; ??? (committed by Miguel: bcb3d5a)
-musicnotes.png            ???; ???; ??? (committed by Miguel: bcb3d5a)
-plant_grower.png          ???; ???; ??? (committed by mort: 49b5697)
+plant_grower.png          ???; ???; ??? (committed by mort: 49b5697, just a transparent image)
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sheep.png                 ???; ???; ???
 shorn-sheep.png           ???; ???; ???
