@@ -487,7 +487,7 @@ pelt.png                 Michael Williams (BizmasterStudios); CC BY 3.0; https:/
 pinto_beans.png          omero; CC BY-SA 3.0; Stendhal
 potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
-seed.png                 kymara?, kiheru?; ???; ??? (committed by kiheru)
+seed.png                 Katie Russell (kymara), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         Glitch, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/210635
 teddy.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
