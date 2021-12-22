@@ -548,7 +548,7 @@ green_egg.png       dStulle; CC0; https://openclipart.org/detail/6695, https://f
 horsehair.png       Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 iron.png            Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0 or newer; Stendhal
-mithril_bar.png     Daniel Herding (mort); GPL 2.0 or newer; Stendhal (based on iron.png)
+mithril_bar.png     Daniel Herding (mort), tigertoes; GPL 2.0 or newer; Stendhal (based on iron.png)
 mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ore.png     Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal (based on gold_ore.png)
 mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
