@@ -434,6 +434,7 @@ grey.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 iron.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 lilac.png      Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 lime.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+master.png     7Soul1; CC0; https://www.deviantart.com/7soul1/art/129892453, https://opengameart.org/node/120374
 nalwor.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 navy.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 orange.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
