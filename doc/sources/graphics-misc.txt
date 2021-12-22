@@ -314,10 +314,10 @@ arrow_switch.png  ???; ???; ???
 
 data/sprites/weather/
 
-fog.png         ???; ???; ???
-fog_heavy.png   ???; ???; ???
-rain.*          ???; ???; ???
-rain_heavy.*    ???; ???; ???
-rain_light.*    ???; ???; ???
+fog.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fog_heavy.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rain.*          Jordan Irwin (AntumDeluge), Kimmo Rundelin (kiheru); OGA BY 3.0; Stendhal
+rain_heavy.*    Jordan Irwin (AntumDeluge), Kimmo Rundelin (kiheru); OGA BY 3.0; Stendhal
+rain_light.*    Jordan Irwin (AntumDeluge), Kimmo Rundelin (kiheru); OGA BY 3.0; Stendhal
 snow*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-wave.png        ???; ???; ???
+wave.png        Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
