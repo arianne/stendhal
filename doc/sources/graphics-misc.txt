@@ -66,10 +66,10 @@ musicnotes-intro.gif      ???; ???; ??? (committed by Miguel: bcb3d5a)
 musicnotes-loop.gif       ???; ???; ??? (committed by Miguel: bcb3d5a)
 plant_grower.png          ???; ???; ??? (committed by mort: 49b5697, just a transparent image)
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-sheep.png                 ???; ???; ???
-shorn-sheep.png           ???; ???; ???
-shorn-sheep_more_fur.png  ???; ???; ???
-shorn-sheep_some_fur.png  ???; ???; ???
+sheep.png                 Stendhal; GPL 2.0 or newer; Stendhal
+shorn-sheep.png           Stendhal; GPL 2.0 or newer; Stendhal
+shorn-sheep_more_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
+shorn-sheep_some_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
 sugar_cane_field.png      ???; ???; ??? (committed by kymara, drawn by geomac: d36cebb)
 watersplash.png           ???; ???; ??? (committed by danter: 5c087df)
 
