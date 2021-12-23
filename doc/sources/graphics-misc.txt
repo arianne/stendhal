@@ -1,7 +1,7 @@
 
 data/gui/
 
-accountcontrol.png           ???; ???; ???
+accountcontrol.png           Stendhal; GPL 2.0 or newer; Stendhal (based on sheep.png)
 bag.png                      rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
 banner_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddy.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
