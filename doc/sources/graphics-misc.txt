@@ -61,7 +61,6 @@ failsafe.png              Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 fire.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 food.png                  ???; ???; ???
 grain_field.png           Daniel Herding (mort), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
-plant_grower.png          ???; ???; ??? (committed by mort: 49b5697, just a transparent image)
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sheep.png                 Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep.png           Stendhal; GPL 2.0 or newer; Stendhal
