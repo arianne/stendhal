@@ -106,6 +106,7 @@
     <respawn value="1660"/>
     <corpse name="dragon_3x3"/>
     <drops>
+      <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="50.0"/>
       <item value="golden armor" quantity="[1,1]" probability="0.5"/>
       <item value="emerald" quantity="[1,4]" probability="5.0"/>
@@ -143,6 +144,7 @@
     <respawn value="1650"/>
     <corpse name="dragon_3x2" harmless="dragon_3x2"/>
     <drops>
+      <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="bone dragon cloak" quantity="[1,1]" probability="2.0"/>
     </drops>
@@ -181,6 +183,7 @@
     <corpse name="dragon_3x3"/>
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[20,100]" probability="100.0"/>
       <item value="sapphire" quantity="[1,4]" probability="10.0"/>
       <item value="blue dragon cloak" quantity="[1,1]" probability="1.0"/>
       <item value="blue armor" quantity ="[1,1]" probability="7.0"/>
@@ -222,6 +225,7 @@
     <corpse name="dragon_3x3"/>
     <drops>
       <item value="greater potion" quantity="[2,4]" probability="80.0"/>
+      <item value="money" quantity="[60,160]" probability="100.0"/>
       <item value="carbuncle" quantity="[1,4]" probability="10.0"/>
       <item value="red dragon cloak" quantity="[1,1]" probability="1.5"/>
     </drops>
@@ -260,6 +264,7 @@
     <corpse name="dragon_6x6"/>
     <drops>
       <item value="greater potion" quantity="[1,3]" probability="70.0"/>
+      <item value="money" quantity="[300,1000]" probability="100.0"/>
       <item value="obsidian" quantity="[1,4]" probability="10.0"/>
       <item value="black armor" quantity="[1,1]" probability="0.0050"/>
       <item value="black dragon cloak" quantity="[1,1]" probability="1.5"/>
@@ -305,6 +310,7 @@
     <corpse name="dragon_3x3"/>
     <drops>
       <item value="mega potion" quantity="[1,1]" probability="50.0"/>
+      <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="gold nugget" quantity="[2,5]" probability="10.0"/>
       <item value="diamond" quantity="[1,1]" probability="2.0"/>
       <item value="golden cloak" quantity="[1,1]" probability="2.5"/>
@@ -348,6 +354,7 @@
     <corpse name="dragon_3x3"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[30,200]" probability="100.0"/>
       <item value="sapphire" quantity="[2,5]" probability="10.0"/>
       <item value="blue dragon cloak" quantity="[1,1]" probability="2.5"/>
     </drops>
@@ -389,6 +396,7 @@
     <corpse name="dragon_3x3"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[30,200]" probability="100.0"/>
       <item value="magic plate boots" quantity="[1,1]" probability="1.0"/>
       <item value="placid ring" quantity="[1,1]" probability="2.5"/>
     </drops>
