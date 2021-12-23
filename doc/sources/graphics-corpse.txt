@@ -33,12 +33,12 @@ rodent_small.png       rg1024, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3
 shark_2x2.png          soniccuz; CC BY-SA 3.0; Stendhal
 small_animal.png       Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 small_boneless.png     Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
-small_winged.png       ???; ???; ??? (Note: committed by Bluelads4)
+small_winged.png       vesper; GPL 2.0 or newer; Stendhal
 snake*                 Jordan Irwin (AntumDeluge); CC0; https://wpclipart.com/animals/snake/snakes_3/Snake_skeleton.png.html
 spiderweb*             j4p4n; CC0; https://openclipart.org/detail/274095
 tail_rodent*           CC0; http://www.clker.com/clipart-185713.html
 tiny_bone.*            Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); GPL2+; Stendhal; based on tiny_humanoid
 tiny_humanoid.png      Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
-winged_2x2.png         ???; ???; ??? (scaled small_winged.png)
+winged_2x2.png         vesper; GPL 2.0 or newer; Stendhal
 winged_bat.png         Machovka; CC0; https://openclipart.org/detail/2699
 wooden*                Farmeral; CC0; https://openclipart.org/detail/20280
