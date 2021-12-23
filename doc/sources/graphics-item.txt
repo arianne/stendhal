@@ -383,7 +383,7 @@ mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.o
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
 red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-shadow_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ committed by Miguel: 3e5e746)
+shadow_helmet.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 xeno_helmet.*               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://github.com/crawl/tiles
 
