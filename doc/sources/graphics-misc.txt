@@ -108,11 +108,11 @@ pumpkin_halloween.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/combat/
 
-axe.png
-axe_dark.png                 ???; ???; ???
-axe_fire.png                 ???; ???; ???
-axe_ice.png                  ???; ???; ???
-axe_light.png                ???; ???; ???
+axe.png                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+axe_dark.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+axe_fire.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+axe_ice.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+axe_light.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blade_strike_cut.*           Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 blade_strike_dark.*          Anders Asplund (Danter), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 blade_strike_fire.*          Anders Asplund (Danter), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
