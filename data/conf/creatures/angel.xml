@@ -21,6 +21,7 @@
     <drops>
       <item value="mega potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="90.0"/>
+      <item value="money" quantity="[3000,30000]" probability="100.0"/>
       <item value="magic plate armor" quantity="[1,1]" probability="2.0"/>
       <item value="jewelled legs" quantity="[1,1]" probability="2.5"/>
       <item value="black cloak" quantity="[1,1]" probability="2.5"/>
@@ -71,6 +72,7 @@
       <item value="mithril boots" quantity="[1,1]" probability="1.0"/>
       <item value="power arrow" quantity="[10,30]" probability="5.0"/>
       <item value="mithril bow" quantity="[1,1]" probability="0.5"/>
+      <item value="money" quantity="[5000,25000]" probability="100.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
@@ -116,6 +118,7 @@
     <drops>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
+      <item value="money" quantity="[200,1000]" probability="100.0"/>
       <item value="black armor" quantity="[1,1]" probability="0.02"/>
       <item value="vulcano hammer" quantity="[1,1]" probability="0.01"/>
       <item value="black cloak" quantity="[1,1]" probability="1.0"/>
@@ -154,6 +157,7 @@
     <respawn value="3530"/>
     <corpse name="humanoid" harmless="halo" />
     <drops>
+      <item value="money" quantity="[30,60]" probability="100.0"/>
       <item value="fairy cake" quantity="[1,5]" probability="10.0"/>
       <item value="empty scroll" quantity="[1,2]" probability="5.0"/>
       <item value="golden cloak" quantity="[1,1]" probability="2.0"/>
@@ -197,6 +201,7 @@
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
+      <item value="money" quantity="[300,3000]" probability="100.0"/>
       <item value="magic plate armor" quantity="[1,1]" probability="0.1"/>
       <item value="magic chain helmet" quantity="[1,1]" probability="1.0"/>
       <item value="immortal sword" quantity="[1,1]" probability="1.0"/>
@@ -243,6 +248,7 @@
       <item value="mithril legs" quantity="[1,1]" probability="0.3"/>
       <item value="power arrow" quantity="[10,30]" probability="7.0"/>
       <item value="mithril bow" quantity="[1,1]" probability="0.2"/>
+      <item value="money" quantity="[4000,9000]" probability="100.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
