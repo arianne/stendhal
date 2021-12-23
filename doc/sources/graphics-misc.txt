@@ -129,11 +129,11 @@ club_light.png               David E. Gervais, Jordan Irwin (AntumDeluge); CC BY
 hitted.png                   ???; ???; ???
 missed.png                   ???; ???; ???
 ranged.*                     ???; ???; ???
-sword.*                      ???; ???; ???
-sword_dark.png               ???; ???; ???
-sword_fire.png               ???; ???; ???
-sword_ice.png                ???; ???; ???
-sword_light.png              ???; ???; ???
+sword.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+sword_dark.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+sword_fire.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+sword_ice.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+sword_light.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/combat/projectiles/
 
