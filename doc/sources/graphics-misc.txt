@@ -239,8 +239,8 @@ book_red.png          ???; ???; ???
 book_turquoise.png    bleutailfly; OGA BY 3.0; Stendhal
 book_white.png        bleutailfly; OGA BY 3.0; Stendhal
 book_yellow.png       bleutailfly; OGA BY 3.0; Stendhal
-danger_sign.*         ???; ???; ???
-default.png           ???; ???; ???
+danger_sign.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+default.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 map-orril-castle.png  ???; ???; ???
 map-semos-ados.png    ???; ???; ???
 map-wofol.png         ???; ???; ???
