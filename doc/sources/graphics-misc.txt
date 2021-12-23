@@ -135,10 +135,6 @@ sword_fire.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword_ice.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword_light.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
-data/sprites/combat/projectiles/
-
-wood_arrow.png  ???; ???; ???
-
 data/sprites/cursor/
 
 activity.png            ???; ???; ???
