@@ -128,7 +128,7 @@ club_ice.png                 David E. Gervais, Jordan Irwin (AntumDeluge); CC BY
 club_light.png               David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
 hitted.png                   ???; ???; ???
 missed.png                   ???; ???; ???
-ranged.*                     ???; ???; ???
+ranged.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword_dark.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword_fire.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
