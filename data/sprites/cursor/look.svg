@@ -29,7 +29,7 @@
      inkscape:document-units="px"
      showgrid="true"
      gridtolerance="10000"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="cursor_look"
      fit-margin-left="0"
      fit-margin-top="0"
      fit-margin-right="0"
@@ -134,12 +134,11 @@
          id="path5789-36-5-2-3-6"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccccc" />
-      <circle
-         style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+      <path
          id="path824-9"
-         cx="223.5"
-         cy="375.5"
-         r="7" />
+         style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+         d="m 9.5,2.5 a 7,7 0 0 0 -7,7 7,7 0 0 0 7,7 7,7 0 0 0 7,-7 7,7 0 0 0 -7,-7 z m 0,2.3339844 A 4.666666,4.6666665 0 0 1 14.166016,9.5 4.666666,4.6666665 0 0 1 9.5,14.166016 4.666666,4.6666665 0 0 1 4.8339844,9.5 4.666666,4.6666665 0 0 1 9.5,4.8339844 Z"
+         transform="translate(214,366)" />
     </g>
   </g>
   <metadata
