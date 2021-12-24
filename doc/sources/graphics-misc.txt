@@ -133,23 +133,23 @@ sword_light.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/cursor/
 
-activity.png            ???; ???; ???
-attack.png              ???; ???; ???
-bag.png                 ???; ???; ???
-emptybag.png            ???; ???; ???
-harvest.png             ???; ???; ???
-itemequip.png           ???; ???; ???
-itempickupfromslot.png  ???; ???; ???
-itemuse.png             ???; ???; ???
-lockedbag.png           ???; ???; ???
-look.png                ???; ???; ???
-normal.png              ???; ???; ???
-portal.png              ???; ???; ???
-stop.png                ???; ???; ???
-unknown.png             ???; ???; ???
-usemagic.*              ???; ???; ???
-walk.png                ???; ???; ???
-walkborder.png          ???; ???; ???
+activity.png            zoli111, Hendrik Brummermann; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+attack.png              zoli111, Miguel Angel Blanch Lardin; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+bag.*                   zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+emptybag.png            zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+harvest.png             zoli111, Katie Russell (kymara); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+itemequip.*             zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
+itempickupfromslot.png  zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/ (copy of itemequip.png)
+itemuse.png             zoli111, Hendrik Brummermann, Katie Russell (kymara); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+lockedbag.png           zoli111, Hendrik Brummermann, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+look.png                zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
+normal.*                zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
+portal.png              zoli111, Katie Russell (kymara); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+stop.png                zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
+unknown.png             zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+usemagic.*              zoli111, Markus Keunecke; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+walk.png                zoli111, Miguel Angel Blanch Lardin; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+walkborder.png          zoli111, Miguel Angel Blanch Lardin, Hendrik Brummermann; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 
 data/sprites/doors/
 
