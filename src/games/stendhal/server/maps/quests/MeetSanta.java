@@ -198,7 +198,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		if (month == 10) {
 			return day >= 23;
 		}
-		return false;
+		// December
+		return true;
 	}
 
 	/**
