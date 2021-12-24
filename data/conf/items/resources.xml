@@ -324,6 +324,7 @@
     </equipable>
   </item>
 
+<!-- disabled
  <item name="reptile egg" condition="stendhal.testserver">
     <type class="resource" subclass="green_egg" tileid="-1"/>
     <description>You see a valuable reptile egg.</description>
@@ -343,6 +344,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+-->
 
   <item name="silk gland">
     <type class="resource" subclass="silkgland" tileid="-1"/>

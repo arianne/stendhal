@@ -43,6 +43,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="antitoxin ring" condition="stendhal.testserver">
     <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
     <description>You see an antitoxin ring. It is highly resistant to poison when worn on the finger.</description>
@@ -62,6 +63,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+-->
 
   <item name="placid ring">
     <type class="ring" subclass="placid_ring" tileid="-1"/>

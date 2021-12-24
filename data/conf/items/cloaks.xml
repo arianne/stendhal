@@ -371,6 +371,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="rift cloak" condition="stendhal.testserver">
     <type class="cloak" subclass="rift_cloak" tileid="-1"/>
     <description>You see a rift cloak. Almost useless in the battle, but saves your life when you enter a magical rift.</description>
@@ -389,6 +390,7 @@
       <slot name="cloak"/>
     </equipable>
   </item>
+-->
 
   <item name="royal cloak">
     <type class="cloak" subclass="royal_cloak" tileid="-1"/>

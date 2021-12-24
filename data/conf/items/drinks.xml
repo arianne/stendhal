@@ -356,6 +356,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="mana" condition="stendhal.testserver">
     <type class="drink" subclass="mana" tileid="-1"/>
     <description>You see an bottle of mana, to increase your mana rapidly.</description>
@@ -378,6 +379,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
+-->
 
   <item name="poison">
     <type class="drink" subclass="poison" tileid="-1"/>
@@ -704,6 +706,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="holy water" condition="stendhal.testserver">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
@@ -726,6 +729,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
+-->
 
   <item name="cobra venom">
     <type class="drink" subclass="cobra_venom"/>

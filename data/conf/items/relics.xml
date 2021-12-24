@@ -36,6 +36,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="ankh" condition="stendhal.testserver">
     <type class="relic" subclass="ankh" tileid="-1"/>
     <description>You see a mysterious ankh. You don't know what it is for.</description>
@@ -52,5 +53,6 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+-->
 
 </items>

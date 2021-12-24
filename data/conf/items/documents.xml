@@ -139,6 +139,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="blank scroll" condition="stendhal.testserver">
     <type class="documents" subclass="scroll" tileid="-1"/>
     <description>You see a rolled up blank scroll.</description>
@@ -194,5 +195,6 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+-->
 
 </items>

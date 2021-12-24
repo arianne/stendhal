@@ -132,6 +132,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="auto crossbow" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow" tileid="-1" />
     <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
@@ -203,5 +204,6 @@
       <slot name="trade" />
     </equipable>
   </item>
+-->
 
 </items>

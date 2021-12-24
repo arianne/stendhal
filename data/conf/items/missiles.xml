@@ -50,6 +50,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="dart" condition="stendhal.testserver">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
@@ -97,6 +98,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
+-->
 
   <item name="shuriken">
     <type class="missile" subclass="shuriken" tileid="-1"/>

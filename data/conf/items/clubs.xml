@@ -238,6 +238,7 @@
     </equipable>
   </item>
 
+<!-- disabled
   <item name="necromancers staff" condition="stendhal.testserver">
     <type class="club" subclass="wizard_staff" tileid="-1"/>
     <description>You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.</description>
@@ -259,6 +260,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+-->
 
   <item name="rod of the gm">
     <type class="club" subclass="rod_of_the_gm" tileid="-1"/>
