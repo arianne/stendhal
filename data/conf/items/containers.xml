@@ -24,8 +24,9 @@
       <slot name="back"/>
     </equipable>
   </item>
+-->
 
-  <item name="keyring" condition="stendhal.testserver">
+  <item name="keyring">
     <type class="container" subclass="keyring" tileid="-1"/>
     <description>You see a keyring.</description>
     <implementation class-name="games.stendhal.server.entity.item.Container"/>
@@ -38,16 +39,15 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
--->
 <!-- <slot name="content"/>  -->
 <!-- <slot name="bag"/> -->
 <!-- <slot name="trade"/> -->
-<!--
       <slot name="ground"/>
       <slot name="belt"/>
     </equipable>
   </item>
 
+<!-- disabled
   <item name="portfolio" condition="stendhal.testserver">
     <type class="container" subclass="portfolio" tileid="-1"/>
     <description>You see a portfolio. It can hold some of your scrolls!</description>
