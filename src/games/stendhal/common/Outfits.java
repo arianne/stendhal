@@ -62,6 +62,8 @@ public class Outfits {
 	public static final List<String> RECOLORABLE_OUTFIT_PARTS = Arrays.asList(
 			"detail", "dress", "hair", "body", "head", "eyes", "mask", "hat");
 
+	public static final List<String> SKIN_LAYERS = Arrays.asList("body", "head");
+
 
 	/**
 	 * Checks if a dress layer can be worn over an outfit index.
