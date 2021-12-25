@@ -321,6 +321,12 @@ public abstract class DressedEntity extends RPEntity {
 		remove("outfit_colors", part);
 	}
 
+	public void restoreOriginalOutfit() {
+		if (has("outfit_ext_orig")) {
+			setOutfitWithDetail(new Outfit(get("outfit_ext_orig")), false);
+		}
+	}
+
 	@Override
 	protected abstract void dropItemsOn(Corpse corpse);
 

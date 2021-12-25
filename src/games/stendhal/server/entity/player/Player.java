@@ -1638,38 +1638,11 @@ public class Player extends DressedEntity implements UseListener {
 	public boolean returnToOriginalOutfit() {
 		removeOutfitExpireNotification();
 
-		final Outfit originalOutfit = getOriginalOutfit();
-		if (originalOutfit != null) {
+		final String outfit_orig = get("outfit_ext_orig");
+		restoreOriginalOutfit();
 
-			// do not restore details layer, unless the detail is still present
-			if (originalOutfit.getLayer("detail") > 0) {
-				final Outfit currentOutfit = getOutfit();
-				if (!currentOutfit.getLayer("detail").equals(
-						originalOutfit.getLayer("detail"))) {
-					originalOutfit.removeDetail();
-				}
-			}
-
-			remove("outfit_ext_orig");
-			remove("outfit_org");
-			setOutfit(originalOutfit, false);
-
-			// restore old colors
-			for (String part : RECOLORABLE_OUTFIT_PARTS) {
-				String tmp = part + "_orig";
-				String color = get("outfit_colors", tmp);
-				if (color != null) {
-					put("outfit_colors", part, color);
-					remove("outfit_colors", tmp);
-				} else if (has("outfit_colors", part)) {
-					// clear any colors from the temporary outfit if there was
-					// no saved color
-					remove("outfit_colors", part);
-				}
-			}
-			return true;
-		}
-		return false;
+		// FIXME: need to check outfit colors as well
+		return get("outfit_ext").equals(outfit_orig);
 	}
 
 	private void removeOutfitExpireNotification() {
