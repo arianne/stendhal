@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.player;
 
 import static games.stendhal.common.NotificationType.getServerNotificationType;
-import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.AWAY;
