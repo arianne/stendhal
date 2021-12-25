@@ -26,7 +26,7 @@ jobs:
         with:
           nodetail: true
           title: "Unittest failed"
-          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{GITHUB_SHA}})"
+          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{env.GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{env.GITHUB_SHA}})"
       - uses: sarisia/actions-status-discord@v101
         if: failure()
         env:
@@ -34,4 +34,4 @@ jobs:
         with:
           nodetail: true
           title: "Unittest failed"
-          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{GITHUB_SHA}})"
+          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{env.GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{env.GITHUB_SHA}})"
