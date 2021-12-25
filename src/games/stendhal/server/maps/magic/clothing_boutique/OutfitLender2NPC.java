@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.clothing_boutique;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -117,6 +118,9 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 			    setPath(new FixedPath(nodes, true));
 			}
 
+			final List<String> skinLayerOutfits = Arrays.asList("purple slime", "green slime", "red slime",
+				"blue slime", "black cat", "white cat", "gingerbread man", "thing face", "goblin face");
+
 			@Override
 			protected void createDialog() {
 				class SpecialOutfitChangerBehaviour extends OutfitChangerBehaviour {
@@ -139,6 +143,11 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 						} else {
 							player.setOutfit(outfit, true);
 						}
+
+						if (skinLayerOutfits.contains(outfitType)) {
+							player.unsetOutfitColor("skin");
+						}
+
 						player.registerOutfitExpireTime(endurance);
 					}
 					// override transact agreed deal to only make the player rest to a normal outfit if they want a put on over type.
