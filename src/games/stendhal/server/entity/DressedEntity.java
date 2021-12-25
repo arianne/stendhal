@@ -340,6 +340,14 @@ public abstract class DressedEntity extends RPEntity {
 	public void restoreOriginalOutfit() {
 		if (has("outfit_ext_orig")) {
 			setOutfitWithDetail(new Outfit(get("outfit_ext_orig")), false);
+
+			for (final String part : getColorableLayers()) {
+				final String color_orig = get("outfit_colors", part + "_orig");
+				if (color_orig != null) {
+					put("outfit_colors", part, color_orig);
+					remove("outfit_colors", part + "_orig");
+				}
+			}
 		}
 	}
 
