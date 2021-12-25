@@ -27,7 +27,7 @@ jobs:
           nodetail: true
           title: "Unittest failed"
           description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{env.GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{env.GITHUB_SHA}})"
-      - uses: sarisia/actions-status-discord@v101
+      - uses: sarisia/actions-status-discord@v1
         if: failure()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVLOG }}
