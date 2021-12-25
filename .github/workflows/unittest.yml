@@ -1,6 +1,6 @@
 name: Java CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,7 +13,25 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: xvfb
+        uses: GabrielBB/xvfb-action@v1
       - name: Build with Ant
         env:
           cikey: ${{ secrets.cikey }}
         run: ant -noinput -buildfile build.xml test
+      - uses: sarisia/actions-status-discord@v1
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVELOPMENT }}
+        with:
+          nodetail: true
+          title: "Unittest failed"
+          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{GITHUB_SHA}})"
+      - uses: sarisia/actions-status-discord@v101
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVLOG }}
+        with:
+          nodetail: true
+          title: "Unittest failed"
+          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{GITHUB_SHA}})"
