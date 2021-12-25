@@ -13,12 +13,12 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-      - name: xvfb
+      - name: Build with Ant xvfb
         uses: GabrielBB/xvfb-action@v1
-      - name: Build with Ant
         env:
           cikey: ${{ secrets.cikey }}
-        run: ant -noinput -buildfile build.xml test
+        with:
+          run: ant -noinput -buildfile build.xml test
       - uses: sarisia/actions-status-discord@v1
         if: failure()
         env:
@@ -26,7 +26,7 @@ jobs:
         with:
           nodetail: true
           title: "Unittest failed"
-          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{env.GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{env.GITHUB_SHA}})"
+          description: "https://stendhalgame.org/development/cireport.html"
       - uses: sarisia/actions-status-discord@v1
         if: failure()
         env:
@@ -34,4 +34,4 @@ jobs:
         with:
           nodetail: true
           title: "Unittest failed"
-          description: "[Test results](https://stendhalgame.org/?id=content/scripts/cireport) for [${{env.GITHUB_SHA}}](https://github.com/arianne/stendhal/commit/${{env.GITHUB_SHA}})"
+          description: "https://stendhalgame.org/development/cireport.html"
