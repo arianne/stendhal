@@ -65,7 +65,7 @@ public class ElvishArmorTest {
 
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
-			"elvish cloak", "elvish shield");
+			"elvish cloak", "elvish shield", "elvish hat");
 
 	private static SpeakerNPC npc;
 
@@ -327,7 +327,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, getReply(npc), is("If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one."));
+			assertThat(playerSays, getReply(npc), is("If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak, sword, or hat. I would also buy a drow sword if you have one."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 		}
 	}
