@@ -20,6 +20,7 @@ import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.client.gui.OutfitColor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
@@ -198,12 +200,15 @@ public class OutfitStore {
 			}
 		}
 
-		String suffix = getSpriteSuffix(index);
+		String ref = OUTFITS + "/" + layer + "/" + layer + "_" + getSpriteSuffix(index);
 		if (layer.equals("body") && WtWindowManager.getInstance().getPropertyBoolean("gamescreen.nonude", true)) {
-			suffix = suffix + "-nonude";
+			final URL nonudeURL = DataLoader.getResource(ref + "-nonude.png");
+			if (nonudeURL != null) {
+				ref = ref + "-nonude";
+			}
 		}
 
-		final String ref = OUTFITS + "/" + layer + "/" + layer + "_" + suffix + ".png";
+		ref = ref + ".png";
 
 		if (color == null) {
 			return store.getSprite(ref);
