@@ -162,8 +162,10 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		player.setOutfit(new Outfit(null, null, null, null, null, null, null, santaHat, null).putOver(origOutfit), true);
 
 		// restore colors
-		for (final String key : colors.keySet()) {
-			player.setOutfitColor(key, colors.get(key));
+		if (colors != null) {
+			for (final String key : colors.keySet()) {
+				player.setOutfitColor(key, colors.get(key));
+			}
 		}
 
 		player.registerOutfitExpireTime(43200);
