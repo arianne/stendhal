@@ -295,6 +295,10 @@ public abstract class DressedEntity extends RPEntity {
 		setOutfitColor(part, color.getRGB());
 	}
 
+	public void setOutfitColor(final String part, final String color) {
+		put("outfit_colors", part, color);
+	}
+
 	/**
 	 * Set colors for the entire outfit.
 	 *
