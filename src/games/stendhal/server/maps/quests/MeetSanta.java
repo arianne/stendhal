@@ -151,9 +151,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final int currentHat = origOutfit.getLayer("hat");
 		int santaHat = 999;
 		// unique Santa hats
-		if (currentHat == 3) {
+		if (currentHat == 3 || currentHat == 996) {
 			santaHat = 996;
-		} else if (currentHat == 4) {
+		} else if (currentHat == 4 || currentHat == 997) {
 			santaHat = 997;
 		}
 
