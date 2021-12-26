@@ -644,7 +644,7 @@ GM_tokend_old_bronze.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 GM_tokend_old_gold.png    Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
-lucky_charm.*             Almeidah, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/216715
+lucky_charm.*             Almeidah, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/216715
 mithril_clasp.png         tigertoes; CC BY-SA 3.0; Stendhal
 mythical_egg.png          dStulle, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 
