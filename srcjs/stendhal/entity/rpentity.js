@@ -123,13 +123,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * retrieves the entity's visible title
 	 */
 	getTitle: function() {
-		// if this is a clone, the name of the original NPC will be used
-		var title = this["cloned"];
-		if (title == undefined) {
-			title = this["title"];
-		}
-
-		return title;
+		return this["title"];
 	},
 
 	/**

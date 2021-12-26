@@ -117,6 +117,7 @@ blade_strike_light.*         Anders Asplund (Danter), Kimmo Rundelin (kiheru); G
 blocked.png                  ???; ???; ???
 blood_green.png              ???; ???; ???
 blood_red.png                ???; ???; ???
+blood_leaf.png               sandcat01; CC0; https://openclipart.org/detail/69757
 club.*                       David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
 club_dark.png                David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
 club_fire.png                David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)

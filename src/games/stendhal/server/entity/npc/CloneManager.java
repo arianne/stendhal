@@ -90,6 +90,9 @@ public class CloneManager {
 				}
 			}
 
+			// clones are displayed with name of original by default
+			clone.setTitle(origName);
+
 			// clones should not be displayed on website, but check for alternative image just to be safe
 			clone.setAlternativeImage(orig.getAlternativeImage());
 		}

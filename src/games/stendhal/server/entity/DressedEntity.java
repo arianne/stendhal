@@ -140,9 +140,10 @@ public abstract class DressedEntity extends RPEntity {
 		// a temporary outfit already, store the current outfit in a
 		// second slot so that we can return to it later.
 		if (temporary) {
-			if (has("outfit_ext") && !has("outfit_ext_orig")) {
-				put("outfit_ext_orig", get("outfit_ext"));
-			}
+			// remember original outfit & colors
+			storeOriginalOutfit();
+
+			// backward compatibility
 			if (has("outfit") && !has("outfit_org")) {
 				put("outfit_org", get("outfit"));
 			}
@@ -185,7 +186,7 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("body=" + newOutfit.getLayer("body") + ",");
 		sb.append("dress=" + newOutfit.getLayer("dress") + ",");
 		sb.append("head=" + newOutfit.getLayer("head") + ",");
@@ -335,6 +336,22 @@ public abstract class DressedEntity extends RPEntity {
 
 		new_list.add("skin");
 		return new_list;
+	}
+
+	private void storeOriginalOutfit() {
+		if (has("outfit_ext") && !has("outfit_ext_orig")) {
+			put("outfit_ext_orig", get("outfit_ext"));
+		}
+
+		for (final String part : getColorableLayers()) {
+			final String color_orig = get("outfit_colors", part + "_orig");
+			if (color_orig == null) {
+				final String color = get("outfit_colors", part);
+				if (color != null) {
+					put("outfit_colors", part + "_orig", color);
+				}
+			}
+		}
 	}
 
 	public void restoreOriginalOutfit() {
