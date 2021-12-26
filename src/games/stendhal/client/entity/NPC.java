@@ -136,13 +136,4 @@ public class NPC extends RPEntity {
 	public boolean isClone() {
 		return cloneOf != null;
 	}
-
-	@Override
-	public String getTitle() {
-		if (isClone()) {
-			return cloneOf;
-		}
-
-		return super.getTitle();
-	}
 }
