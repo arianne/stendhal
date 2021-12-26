@@ -185,7 +185,7 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("body=" + newOutfit.getLayer("body") + ",");
 		sb.append("dress=" + newOutfit.getLayer("dress") + ",");
 		sb.append("head=" + newOutfit.getLayer("head") + ",");
