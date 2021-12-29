@@ -261,7 +261,7 @@ baguette.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 banana.png               RedQueen; OGA BY 3.0; Stendhal
 broccoli.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png               omero; CC BY-SA 3.0; Stendhal
-button_mushroom.png      Daniel Herding (mort); GPL 2.0 or newer; Stendhal
+button_mushroom.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 carrot.png               Belohlavek; CC0; https://opengameart.org/node/12830
 cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
