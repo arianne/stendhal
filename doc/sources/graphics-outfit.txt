@@ -77,7 +77,7 @@ dress_035.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (An
 dress_036.*   (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_037.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_038.*   (soldier uniform)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-dress_039.png (cloak)            Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
+dress_039.*   (cloak)            Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 dress_040.*                      Charles Gabriel, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83035
 dress_041.png (cleric robes)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_042.*   (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
