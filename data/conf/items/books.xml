@@ -34,7 +34,7 @@
   </item>
 
   <item name="bestiary">
-    <type class="book" subclass="book_red" tileid="-1"/>
+    <type class="book" subclass="bestiary" tileid="-1"/>
     <description>You see a bestiary, containing information about enemies found in Faiumoni.</description>
     <implementation class-name="games.stendhal.server.entity.item.Bestiary"/>
     <attributes>
