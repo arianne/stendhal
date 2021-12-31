@@ -142,7 +142,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		entity.addAttribute(ATTR_HARMLESS_IMAGE, Type.STRING);
 		entity.addAttribute(ATTR_CORPSE_OWNER, Type.STRING);
 
-		entity.addRPSlot(CONTENT_SLOT, 4);
+		entity.addRPSlot(CONTENT_SLOT, 6);
 	}
 
 	/**
@@ -387,6 +387,14 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @return true if the corpse is full, false otherwise
 	 */
 	public boolean isFull() {
+		return getSlot(CONTENT_SLOT).size() >= 4;
+	}
+
+	public boolean isFull(final boolean boss) {
+		if (!boss) {
+			return isFull();
+		}
+
 		return getSlot(CONTENT_SLOT).isFull();
 	}
 

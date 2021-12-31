@@ -678,13 +678,13 @@ public class Creature extends NPC {
 		for (final Item item : dropItemInstances) {
 			item.setFromCorpse(true);
 			corpse.add(item);
-			if (corpse.isFull()) {
+			if (corpse.isFull(isBoss())) {
 				break;
 			}
 		}
 
 		for (final Item item : createDroppedItems(SingletonRepository.getEntityManager())) {
-			if (!corpse.isFull()) {
+			if (!corpse.isFull(isBoss())) {
 				corpse.add(item);
 				item.setFromCorpse(true);
 			} else {
@@ -796,6 +796,13 @@ public class Creature extends NPC {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if the entity is a "boss". Bosses have higher capacity corpses.
+	 */
+	public boolean isBoss() {
+		return aiProfiles.containsKey("boss");
 	}
 
 	/**
@@ -1180,5 +1187,4 @@ public class Creature extends NPC {
 		}
 		return getZone() == player.getZone();
 	}
-
 }
