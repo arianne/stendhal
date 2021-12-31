@@ -50,7 +50,7 @@ public class Outfits {
 	public static final int HAT_OUTFITS = 14;
 
 	// hair should not be drawn with hat indexes in this list
-	public static final List<Integer> HATS_NO_HAIR = Arrays.asList(3, 4, 13, 992, 993, 994);
+	public static final List<Integer> HATS_NO_HAIR = Arrays.asList(3, 4, 13, 992, 993, 994, 996, 997);
 
 	// layers used for building outfits
 	public static final List<String> LAYER_NAMES = Arrays.asList(
