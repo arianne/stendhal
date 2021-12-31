@@ -149,8 +149,8 @@ portal.png              zoli111, Katie Russell (kymara); GPL 3.0; Stendhal, http
 stop.png                zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
 unknown.png             zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 usemagic.*              zoli111, Markus Keunecke; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
-walk.png                zoli111, Miguel Angel Blanch Lardin; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
-walkborder.png          zoli111, Miguel Angel Blanch Lardin, Hendrik Brummermann; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+walk.png                zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
+walkborder.png          zoli111, Hendrik Brummermann, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 
 data/sprites/doors/
 
