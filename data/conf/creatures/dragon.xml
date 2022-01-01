@@ -286,6 +286,7 @@
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
       <profile name="strategy" params="archer(9),attack weakest,dual attack"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
