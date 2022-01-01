@@ -500,6 +500,7 @@
       <profile name="human"/>
       <profile name="heal" params="5,30"/>
       <profile name="lifesteal" params="0.1"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
