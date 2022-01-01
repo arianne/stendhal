@@ -451,6 +451,7 @@
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
@@ -484,6 +485,7 @@
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
@@ -518,6 +520,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
