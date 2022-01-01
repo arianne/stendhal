@@ -195,6 +195,7 @@
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
       <profile name="attack weakest"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
