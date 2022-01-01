@@ -50,6 +50,7 @@ Changelog
   - giant dwarf
   - ice giant
   - kasarkutominubat
+  - legendary ice elemental
   - Lord Durin
   - minotaur king
   - necrosophia
