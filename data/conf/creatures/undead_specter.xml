@@ -112,6 +112,7 @@
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
       <profile name="attack weakest"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
@@ -156,6 +157,7 @@
       <profile name="lifesteal" params="0.1"/>
       <profile name="patrolling"/>
       <profile name="attack weakest"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
