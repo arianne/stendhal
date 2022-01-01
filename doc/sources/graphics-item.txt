@@ -262,7 +262,7 @@ banana.png               RedQueen; OGA BY 3.0; Stendhal
 broccoli.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png               omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-carrot.png               Belohlavek; CC0; https://opengameart.org/node/12830
+carrot.png               frankes; CC0; https://openclipart.org/detail/215799
 cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
 cheese_sausage_on_bun.*  thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
