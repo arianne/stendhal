@@ -214,6 +214,7 @@
     <respawn value="2050"/>
     <corpse name="humanoid"/>
     <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
     </drops>
     <equips>
@@ -249,6 +250,7 @@
     <respawn value="2250"/>
     <corpse name="humanoid"/>
     <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
       <item value="poison" quantity="[1,2]" probability="40.0"/>
       <item value="blue boots" quantity="[1,1]" probability="5.0"/>
