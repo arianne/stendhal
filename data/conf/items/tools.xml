@@ -184,6 +184,7 @@
     </equipable>
   </item>
 
+<!--
   <item name="shovel">
     <type class="tool" subclass="shovel" tileid="-1"/>
     <description>You see a shovel, a tool for digging.</description>
@@ -202,6 +203,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+-->
 
   <item name="leather needle">
     <type class="tool" subclass="leather_needle" tileid="-1"/>
