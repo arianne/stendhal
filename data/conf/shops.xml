@@ -597,9 +597,9 @@
 
 	<shop name="buyanimalmaterials" type="buys">
 		<!--<item name="wool" price="50" /> is this item obtainable? -->
-		<item name="leather thread" price="50" />
+		<item name="leather thread" price="125" />
 		<item name="bat entrails" price="100" />
-		<item name="pelt" price="250" />
+		<item name="pelt" price="500" />
 		<item name="vampirette entrails" price="700" />
 		<item name="venom gland" price="800" />
 		<item name="silk gland" price="1000" />
