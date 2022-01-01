@@ -255,7 +255,7 @@
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="wood" quantity="[1,2]" probability="20.0"/>
-      <item value="pelt" quantity="[1,1]" probability="1.0"/>
+      <item value="pelt" quantity="[1,1]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
