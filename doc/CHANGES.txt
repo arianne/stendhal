@@ -56,6 +56,11 @@ Changelog
   - necrosophia
   - xenocium
 - blocked access to Sikhw from Kalavan Castle West
+- items sold to Harley:
+  - value of leather thread increased to 125
+  - value of pelt increased to 500
+  - value of unicorn horn increased to 2200
+- pelts are dropped more often & by more animals
 
 *graphics*
 - added a postman outfit
