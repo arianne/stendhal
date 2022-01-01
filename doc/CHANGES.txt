@@ -6,10 +6,15 @@ Changelog
 1.38
 
 *world*
-- added elvish hat to required items in Elvish Armor quest
+- quest changes
+  - added elvish hat to required items in Elvish Armor
+  - Sally rewards charcoal in Campfire
 - pegasus no longer drops mithril armor
 - new NPCs:
   - Claude Conteur
+  - fish in Semos Temple
+- new items:
+  - charcoal
 - disabled inaccessible items:
   - angel figurine
   - ankh
@@ -27,36 +32,63 @@ Changelog
   - kasarkutominubat
 - altered creature descriptions:
   - archangel
-- quest changes:
-  - elvish hat added to required items in Elvish Armor
+  - emperor dalmung
+- altered item descriptions:
+  - snowball
+- removed money drops from many creatures
+- added "boss" profiles (can drop up to six items):
+  - amazoness giant
+  - angel, archangel, dark angel, dark archangel, & fallen angel
+  - arachne
+  - balrog
+  - black & golden death
+  - black dragon
+  - black giant
+  - Dhohr Nuggetcutter
+  - emperor dalmung
+  - gashadokuro
+  - giant dwarf
+  - ice giant
+  - kasarkutominubat
+  - Lord Durin
+  - minotaur king
+  - necrosophia
+  - xenocium
+- blocked access to Sikhw from Kalavan Castle West
 
 *graphics*
 - added a postman outfit
-- touched up some outfit/character/creature sprites with scaling artifacts
+- touched up many outfit/character/creature sprites with scaling artifacts
 - touched up item sprites:
   - chaos armor, boots, helmet, & legs
   - studded boots
-- replaced item sprites:
-  - cherry
-  - fire shuriken
-  - leather legs
-  - lucky charm
-  - oil
-  - shuriken
-  - snowballs
-  - stone boots
-  - summon scroll
-  - suntan cream
-  - tea
-  - vomit
+- replaced many item sprites
 - replaced NPC sprites:
   - mithrilforgernpc (Baldemar, Kampusch, Pedinghaus, & Whiggins)
+- ents have leaf blood
+- replaced slime sprites
 
 *client*
 - corpse window can scale with contents
+- new cursor theme
+- Java client:
+  - setting to enable/disable character "nudity"
+- Web client:
+  - fixed layer index formatting in outfit dialog
 
 *fixes*
 - solar & glacier centaur susceptibilities were backward
+- hair layer is not drawn with hats 996 & 997
+- original outfit colors are restored with Player.returnToOriginalOutfit()
+- correspending layer color is unset when renting outfits from Liliana & Saskia
+- cloned NPCs set title to original NPCs name be default
+- fixed Santa hat being removed on login during Christmas season
+- fixed Santa unsetting outfit colors when giving hat to player
+- updated log4j to https://github.com/ltslog/ltslog
+- "min_level" is now required attribute for equipment
+
+*administration*
+- script RestoreOriginalOutfit to remove temp outfit & restore original
 
 
 1.37
