@@ -275,6 +275,7 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
+      <profile name="boss"/>
     </ai>
   </creature>
 
