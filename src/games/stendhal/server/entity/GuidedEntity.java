@@ -164,7 +164,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	/**
 	 * Causes entity to retrace its path backwards when it reaches the end.
 	 */
-	public void retracePath() {
+	public void setRetracePath() {
 		if (!hasPath()) {
 			logger.warn("Cannot set path to be retraced when entity does not have path set");
 			return;
@@ -176,6 +176,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 
 		setPath(new FixedPath(nodes, guide.path.isLoop()), guide.pathPosition);
+	}
+
+	/**
+	 * backward compatibility
+	 */
+	@Deprecated
+	public void retracePath() {
+		setRetracePath();
 	}
 
 	/**
