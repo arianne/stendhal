@@ -1,11 +1,13 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-		"rootDir": ".",
-		"target": "es5",
+		"lib": ["dom", "es2015"],
 		"module": "commonjs",
-		"strict": true,
+		"noImplicitOverride": true,
 		"outDir": "../../build/ts",
-		"sourceMap": true
+		"rootDir": ".",
+		"sourceMap": true,
+		"strict": true,
+		"target": "es5"
 	}
 }

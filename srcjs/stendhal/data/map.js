@@ -108,6 +108,11 @@ stendhal.data.map = {
 	targetTileWidth : 0,
 	targetTileHeight : 0,
 
+	layerGroups: [
+		["0_floor", "1_terrain", "2_object"],
+		["3_roof", "4_roof_add"]
+	],
+
 
 	/**
 	 * Returns the index of the tileset a tile belongs to.
@@ -140,6 +145,7 @@ stendhal.data.map = {
 		stendhal.data.map.decodeMapLayer(content, "4_roof_add");
 		stendhal.data.map.protection = stendhal.data.map.decodeMapLayer(content, "protection");
 		stendhal.data.map.collisionData = stendhal.data.map.decodeMapLayer(content, "collision");
+		stendhal.data.map.layerGroupIndexes = stendhal.data.map.mapLayerGroup();
 	},
 
 	decodeTileset: function(content, name) {
@@ -209,5 +215,22 @@ stendhal.data.map = {
 
 	isProtected: function(x, y) {
 		return this.protection[y * stendhal.data.map.zoneSizeX + x] != 0;
+	},
+
+	mapLayerGroup() {
+		let res = [];
+		for (let layers of stendhal.data.map.layerGroups) {
+			let group = [];
+			for (let layer of layers) {
+				let index = stendhal.data.map.layerNames.indexOf(layer);
+				if (index > - 1) {
+					group.push(index);
+				}
+			}
+			if (group) {
+				res.push(group);
+			}
+		}
+		return res;
 	}
 };
