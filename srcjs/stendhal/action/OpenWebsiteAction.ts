@@ -15,8 +15,8 @@ import { Action } from "./Action";
  * opens the specified website in the browser
  */
 export class OpenWebsiteAction extends Action {
-    getMinParams = 0;
-    getMaxParams = 0;
+    readonly minParams = 0;
+    readonly maxParams = 0;
 
     /**
      * creates a OpenWebsiteAction
@@ -27,7 +27,7 @@ export class OpenWebsiteAction extends Action {
         super();
     }
 
-    execute(type: string, params: string[], remainder: string) {
+    execute(_type: string, _params: string[], _remainder: string) {
         window.location.href = this.url;
     }
 

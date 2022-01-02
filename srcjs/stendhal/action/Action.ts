@@ -12,7 +12,7 @@
 /**
  * abstract base class for user actions
  */
- export abstract class Action {
+export abstract class Action {
 
     abstract execute(type: string, params: string[], remainder: string): void;
 

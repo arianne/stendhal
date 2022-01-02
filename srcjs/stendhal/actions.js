@@ -30,8 +30,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"adminnote": {
@@ -44,8 +44,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"adminlevel": {
@@ -60,8 +60,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 2
+		minParams: 1,
+		maxParams: 2
 	},
 
 	"alter": {
@@ -76,8 +76,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 3,
-		getMaxParams: 3
+		minParams: 3,
+		maxParams: 3
 	},
 
 	"altercreature": {
@@ -91,8 +91,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 2
+		minParams: 2,
+		maxParams: 2
 	},
 
 	"alterkill": {
@@ -120,8 +120,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 3,
-		getMaxParams: 3
+		minParams: 3,
+		maxParams: 3
 	},
 
 	"alterquest": {
@@ -139,8 +139,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 3
+		minParams: 2,
+		maxParams: 3
 	},
 
 	"answer": {
@@ -157,8 +157,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 0
+		minParams: 1,
+		maxParams: 0
 	},
 
 	"away": {
@@ -176,8 +176,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"ban": {
@@ -191,8 +191,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 2
+		minParams: 2,
+		maxParams: 2
 	},
 
 	"chat": {
@@ -204,8 +204,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"clear": {
@@ -213,8 +213,8 @@ stendhal.slashActionRepository = {
 			stendhal.ui.chatLog.clear();
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"drop": {
@@ -239,8 +239,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 1
+		minParams: 0,
+		maxParams: 1
 	},
 
 	"gag": {
@@ -254,8 +254,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 2
+		minParams: 2,
+		maxParams: 2
 	},
 
 	"group": {
@@ -268,8 +268,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"grumpy": {
@@ -287,8 +287,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 
@@ -345,8 +345,8 @@ stendhal.slashActionRepository = {
 			}
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 
@@ -465,8 +465,8 @@ stendhal.slashActionRepository = {
 
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 1
+		minParams: 0,
+		maxParams: 1
 	},
 
 
@@ -506,8 +506,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 2
+		minParams: 0,
+		maxParams: 2
 	},
 
 	"inspectkill": {
@@ -530,8 +530,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"inspectquest": {
@@ -544,8 +544,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 2
+		minParams: 2,
+		maxParams: 2
 	},
 
 
@@ -560,8 +560,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 2,
-		getMaxParams: 2
+		minParams: 2,
+		maxParams: 2
 	},
 
 	"/" : {
@@ -576,8 +576,8 @@ stendhal.slashActionRepository = {
 				return true;
 			}
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"me": {
@@ -589,8 +589,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"movecont": {
@@ -621,8 +621,8 @@ stendhal.slashActionRepository = {
 			stendhal.ui.chatLog.addLine("info", msg);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"msg" : {
@@ -636,8 +636,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"p": {
@@ -649,8 +649,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"progressstatus": {
@@ -679,8 +679,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"remove": {
@@ -697,8 +697,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"sentence": {
@@ -715,8 +715,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"settings": {
@@ -724,8 +724,8 @@ stendhal.slashActionRepository = {
 			stendhal.ui.settings.onOpenSettingsMenu();
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"stopwalk": {
@@ -737,8 +737,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"summon": {
@@ -788,8 +788,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
+		minParams: 1,
+		maxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
 	},
 
 	"summonat": {
@@ -815,8 +815,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 3,
-		getMaxParams: 3
+		minParams: 3,
+		maxParams: 3
 	},
 
 	"support": {
@@ -828,8 +828,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"supportanswer" : {
@@ -842,8 +842,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"teleport": {
@@ -858,8 +858,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 4,
-		getMaxParams: 4
+		minParams: 4,
+		maxParams: 4
 	},
 
 	"teleportto": {
@@ -871,8 +871,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"tellall": {
@@ -884,8 +884,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"walk": {
@@ -896,8 +896,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"atlas": {
@@ -905,16 +905,16 @@ stendhal.slashActionRepository = {
 			window.location = "https://stendhalgame.org/world/atlas.html?me="
 				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y;
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"beginnersguide": {
 		execute: function(type, params, remainder) {
 			window.location = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
 		},
-		getMinParams: 0,
-		getMaxParams: 0
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"characterselector": new OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html"),
@@ -945,8 +945,8 @@ stendhal.slashActionRepository = {
 			window.location = url;
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 1
+		minParams: 0,
+		maxParams: 1
 	},
 
 	"rules": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules"),
@@ -967,8 +967,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 1,
-		getMaxParams: 1
+		minParams: 1,
+		maxParams: 1
 	},
 
 	"_default": {
@@ -985,8 +985,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 0,
-		getMaxParams: 1
+		minParams: 0,
+		maxParams: 1
 	},
 
 	execute: function(line) {
@@ -1020,12 +1020,12 @@ stendhal.slashActionRepository = {
 			array[0] = marauroa.me["_name"];
 		}
 
-		if (action.getMinParams <= array.length) {
+		if (action.minParams <= array.length) {
 			var remainder = "";
-			for (var i = action.getMaxParams; i < array.length; i++) {
+			for (var i = action.maxParams; i < array.length; i++) {
 				remainder = remainder + array[i] + " ";
 			}
-			array.slice(action.getMaxParams);
+			array.slice(action.maxParams);
 			return action.execute(name, array, remainder.trim());
 		} else {
 			stendhal.ui.chatLog.addLine("error", "Missing arguments. Try /help");
