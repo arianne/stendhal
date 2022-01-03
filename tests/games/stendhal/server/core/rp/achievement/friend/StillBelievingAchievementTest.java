@@ -129,8 +129,6 @@ public class StillBelievingAchievementTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	private void doQuestSanta() {
-		final String questSlot = "meet_santa_" + year;
-		assertNull(player.getQuest(questSlot));
 
 		final SpeakerNPC santa = npcs.get("Santa");
 		assertNotNull(santa);
@@ -139,7 +137,5 @@ public class StillBelievingAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-
-		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 }
