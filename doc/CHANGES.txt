@@ -87,11 +87,14 @@ Changelog
 - hair layer is not drawn with hats 996 & 997
 - original outfit colors are restored with Player.returnToOriginalOutfit()
 - correspending layer color is unset when renting outfits from Liliana & Saskia
-- cloned NPCs set title to original NPCs name be default
 - fixed Santa hat being removed on login during Christmas season
 - fixed Santa unsetting outfit colors when giving hat to player
 - updated log4j to https://github.com/ltslog/ltslog
+
+*development*
+- starting with the next version after this release, an installation of Node.js will be required for developers
 - "min_level" is now required attribute for equipment
+- cloned NPCs set title to original NPCs name be default
 
 *administration*
 - script RestoreOriginalOutfit to remove temp outfit & restore original
