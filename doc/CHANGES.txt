@@ -94,7 +94,7 @@ Changelog
 *development*
 - starting with the next version after this release, an installation of Node.js will be required for developers
 - "min_level" is now required attribute for equipment
-- cloned NPCs set title to original NPCs name be default
+- cloned NPCs set title to original NPCs name by default
 
 *administration*
 - script RestoreOriginalOutfit to remove temp outfit & restore original
