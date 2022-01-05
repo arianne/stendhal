@@ -597,13 +597,13 @@
 
 	<shop name="buyanimalmaterials" type="buys">
 		<!--<item name="wool" price="50" /> is this item obtainable? -->
-		<item name="leather thread" price="50" />
-		<item name="bat entrails" price="100" />
-		<item name="pelt" price="250" />
-		<item name="vampirette entrails" price="700" />
+		<item name="leather thread" price="7" />
+		<item name="bat entrails" price="10" />
+		<item name="pelt" price="25" />
+		<item name="vampirette entrails" price="70" />
 		<item name="venom gland" price="800" />
-		<item name="silk gland" price="1000" />
-		<item name="unicorn horn" price="2200" />
+		<item name="silk gland" price="250" />
+		<item name="unicorn horn" price="1500" />
 		<item name="mythical egg" price="2500" />
 	</shop>
 
