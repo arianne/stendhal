@@ -9,6 +9,7 @@ Changelog
 - quest changes
   - added elvish hat to required items in Elvish Armor
   - Sally rewards charcoal in Campfire
+  - requirement for doing Money Pouch lowered to loot 100,000 money
 - pegasus no longer drops mithril armor
 - new NPCs:
   - Claude Conteur
@@ -61,6 +62,8 @@ Changelog
   - value of pelt increased to 500
   - value of unicorn horn increased to 2200
 - pelts are dropped more often & by more animals
+- new achievements:
+  - Moving up in the World: Loot 100,000 money
 
 *graphics*
 - added a postman outfit
