@@ -99,6 +99,7 @@ stendhal.data.map = {
 	tileHeight : 32,
 	zoom : 100,
 
+	tilesetFilenames: [],
 	aImages : -1,
 	layerNames : -1,
 	layers : -1,
@@ -153,7 +154,7 @@ stendhal.data.map = {
 		var deserializer = marauroa.Deserializer.fromBase64(layerData);
 		var amount = deserializer.readInt();
 
-		var images = [];
+		stendhal.data.map.tilesetFilenames = [];
 		for (var i = 0; i < amount; i++) {
 			var name = deserializer.readString();
 			var source = deserializer.readString();
@@ -163,7 +164,7 @@ stendhal.data.map = {
 			// This is not input validation. It just rewrites a path used by the
 			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
-			images.push(filename);
+			stendhal.data.map.tilesetFilenames.push(filename);
 			stendhal.data.map.firstgids.push(firstgid);
 		}
 
@@ -177,7 +178,7 @@ stendhal.data.map = {
 			lastStart = stendhal.data.map.firstgids[pos];
 		}
 
-		new ImagePreloader(images, function() {
+		new ImagePreloader(stendhal.data.map.tilesetFilenames, function() {
 			var body = document.getElementById("body");
 			body.style.cursor = "auto";
 		});
