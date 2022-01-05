@@ -9,51 +9,46 @@
  *                                                                         *
  ***************************************************************************/
 
+import { CombinedTileset } from "./CombinedTileset";
+
 declare var stendhal: any;
 
 export class LandscapeRenderer {
 
-	public layers: number[][] = [];
-	public tileset?: HTMLCanvasElement;
-
-	constructor(private targetTileWidth: number, private targetTileHeight: number) {}
-
-	drawLayer(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, layerNo: number, 
-			tileOffsetX: number, tileOffsetY: number): void {
-		if (!this.tileset) {
+	drawLayer(
+			canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D,
+			combinedTileset: CombinedTileset, layerNo: number, 
+			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
+		if (!combinedTileset) {
 			return;
 		}
-		const layer = this.layers[layerNo];
-		const yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
-		const xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+		const layer = combinedTileset.combinedLayers[layerNo];
+		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, stendhal.data.map.zoneSizeY);
+		const xMax = Math.min(tileOffsetX + canvas.width / targetTileWidth + 1, stendhal.data.map.zoneSizeX);
 
 		for (let y = tileOffsetY; y < yMax; y++) {
 			for (let x = tileOffsetX; x < xMax; x++) {
-				let gid = layer[y * stendhal.data.map.zoneSizeX + x];
-				if (gid > 0) {
-					const tileset = stendhal.data.map.getTilesetForGid(gid);
-					const base = stendhal.data.map.firstgids[tileset];
-					const idx = gid - base;
+				let index = layer[y * stendhal.data.map.zoneSizeX + x];
+				if (index > -1) {
 
 					try {
-						this.drawTile(ctx, idx, x, y);
+						const pixelX = x * targetTileWidth;
+						const pixelY = y * targetTileHeight;
+
+						ctx.drawImage(combinedTileset.canvas,
+
+							(index % combinedTileset.tilesPerRow) * stendhal.data.map.tileWidth,
+							Math.floor(index / combinedTileset.tilesPerRow) * stendhal.data.map.tileHeight,
+
+							stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
+							pixelX, pixelY,
+							targetTileWidth, targetTileHeight);
 					} catch (e) {
 						console.error(e);
 					}
 				}
 			}
 		}
-	}
-
-	private drawTile(ctx: CanvasRenderingContext2D, idx: number, x: number, y: number) {
-		const pixelX = x * this.targetTileWidth;
-		const pixelY = y * this.targetTileHeight;
-
-		ctx.drawImage(this.tileset!,
-			idx * stendhal.data.map.tileWidth, 0,
-			stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
-			pixelX, pixelY,
-			this.targetTileWidth, this.targetTileHeight);
 	}
 
 }

@@ -11,14 +11,28 @@
 
 declare var stendhal: any;
 
+/**
+ * a combined tileset with group layers using one single tileset image.
+ *
+ * For example: The layers 0_floor, 1_terrain and 2_object are all below the players.
+ * So instead of drawing up to 3 images per tile on every frame, we created a combined
+ * tile rewrote the layer information to point to that tile.
+ *
+ * We use one large tileset for the combined tiles in order to be compatible with WebGL.
+ */
 export class CombinedTileset {
-	private canvas!: HTMLCanvasElement;
+	public readonly canvas: HTMLCanvasElement;
 	public readonly ctx: CanvasRenderingContext2D;
+	public readonly tilesPerRow: number;
 
-	constructor(numberOfTiles: number) {
+	constructor(numberOfTiles: number, public readonly combinedLayers: number[][]) {
+
+		// The original approach used an a very wide image of 32 pixel height.
+		// But both Firefox and Chrome are limit the dimension of an image to 2^15 pixels.
+		this.tilesPerRow = Math.ceil(Math.sqrt(numberOfTiles));
 		this.canvas = document.createElement("canvas");
-		this.canvas.width = stendhal.data.map.tileWidth * numberOfTiles;
-		this.canvas.height = stendhal.data.map.tileHeight;
+		this.canvas.width = stendhal.data.map.tileWidth * this.tilesPerRow;
+		this.canvas.height = stendhal.data.map.tileHeight * this.tilesPerRow;
 		this.ctx = this.canvas.getContext("2d")!;
 	}
 

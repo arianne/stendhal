@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { CombinedTileset } from "./CombinedTileset";
+import { CombinedTilesetImageLoader } from "./CombinedTilesetImageLoader";
 
 export class CombinedTilesetFactory {
 
@@ -17,12 +18,20 @@ export class CombinedTilesetFactory {
 
 	combine(): CombinedTileset {
 		let combinedTilesToIndex: Map<string, number> = new Map();
+		let indexToCombinedTiles: Map<number, number[]> = new Map();
 		let combinedLayers: number[][] = [];
 		let index = 0;
 
+		// initialize the combinedLayers array
+		for (let group = 0; group < this.map.layerGroupIndexes.length; group++) {
+			combinedLayers[group] = [];
+		}
+
+		// lets examine every tile on both the floor and the roof layer-group
 		for (let x = 0; x < this.map.zoneSizeX; x++) {
 			for (let y = 0; y < this.map.zoneSizeY; y++) {
 				for (let group = 0; group < this.map.layerGroupIndexes.length; group++) {
+
 					let layers = this.map.layerGroupIndexes[group];
 					let combinedTile = []
 					for (let layer of layers) {
@@ -31,25 +40,34 @@ export class CombinedTilesetFactory {
 							combinedTile.push(gid);
 						}
 					}
-					// use json string because of equality
+
+					// most of the tiles on the roof layer are empty, so we add a special case here
+					// to skip drawing completely transparent tiles later.
+					if (combinedTile.length === 0) {
+						combinedLayers[group][y * this.map.zoneSizeX + x] = -1
+						continue;
+					}
+
+					// use json string as map key because of equality
 					let key = JSON.stringify(combinedTile);
 					let value = combinedTilesToIndex.get(key);
 					if (value === undefined) {
 						value = index;
 						combinedTilesToIndex.set(key, value);
+						indexToCombinedTiles.set(value, combinedTile);
 						index++;
-					}
-					if (combinedLayers[group] === undefined) {
-						combinedLayers[group] = [];
 					}
 					combinedLayers[group][y * this.map.zoneSizeX + x] = value
 				}
 			}
 		}
-		console.log(this.map, combinedTilesToIndex, combinedLayers);
-		let combinedTileset = new CombinedTileset(combinedTilesToIndex.size);
-		// let ctImageLoader = new CombinedTilesetImageLoader(combinedTileset);
-		// ctImageLoader.load(this.map, combinedTilesToIndex);
+		let combinedTileset = new CombinedTileset(combinedTilesToIndex.size, combinedLayers);
+
+		// console.log(this.map, combinedTilesToIndex, combinedLayers);
+		// document.getElementsByTagName("body")[0].append(combinedTileset.canvas);
+
+		let ctImageLoader = new CombinedTilesetImageLoader(this.map, indexToCombinedTiles, combinedTileset);
+		ctImageLoader.load();
 		return combinedTileset;
 	}
 }
