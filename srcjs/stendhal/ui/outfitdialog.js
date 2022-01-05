@@ -490,7 +490,7 @@ stendhal.ui.OutfitDialog = function() {
 
 	function makeSelector(part, index, partChanged) {
 		// FIXME: selector should be showing a default if index is less than 0
-		if (index < 0) {
+		if (index < 0 || index === undefined) {
 			index = 0;
 		}
 
