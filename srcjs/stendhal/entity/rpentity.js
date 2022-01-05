@@ -220,6 +220,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * @param {Number} index
 	 */
 	getOutfitPart: function(part, index) {
+		if (index < 0) {
+			return null;
+		}
+
 		let n = index;
 		if (index < 10) {
 			n = "00" + index;
