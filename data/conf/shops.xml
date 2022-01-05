@@ -656,8 +656,8 @@
 		<item name="black pearl" price="50" />
 		<item name="bat entrails" price="50" />
 		<item name="snowglobe" price="75" />
-		<item name="vampirette entrails" price="200" />
-		<item name="pelt" price="100" />
+		<item name="vampirette entrails" price="75" />
+		<item name="pelt" price="50" />
 		<item name="emerald" price="125" />
 		<item name="sapphire" price="210" />
 		<item name="carbuncle" price="300" />
