@@ -210,13 +210,11 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 		case INSPECT:
 			boolean addListener = slotWindow == null;
 			RPSlot content = entity.getContent();
-			final int content_count = content.size();
 
 			int content_row = 2;
-			int content_col = 2;
-			if (content_count > 4) {
-				content_row = (int) Math.ceil(content_count / 2);
-				content_col = (int) Math.ceil(content_count / content_row);
+			final int content_col = 2;
+			if (content.size() > 4) {
+				content_row = 3;
 			}
 
 			slotWindow = inspector.inspectMe(entity, content, slotWindow, content_row, content_col);
