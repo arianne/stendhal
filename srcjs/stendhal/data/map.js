@@ -196,10 +196,7 @@ stendhal.data.map = {
 
 		var layer = [];
 		for (var i = 0; i < stendhal.data.map.zoneSizeX * stendhal.data.map.zoneSizeY * 4 - 3; i=i+4) {
-			var tileId = (layerRaw.getUint8(i) >>> 0)
-				+ (layerRaw.getUint8(i + 1) << 8)
-				+ (layerRaw.getUint8(i + 2) << 16)
-				+ (layerRaw.getUint8(i + 3) << 24);
+			var tileId = layerRaw.getUint32(i, true);
 			layer.push(tileId);
 		}
 
