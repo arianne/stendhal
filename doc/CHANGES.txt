@@ -57,8 +57,7 @@ Changelog
   - necrosophia
   - xenocium
 - blocked access to Sikhw from Kalavan Castle West
-- items sold to Harley:
-  - value of unicorn horn increased to 2200
+- values changed of items sold to Harley in Deniran
 - pelts are dropped more often & by more animals
 - new achievements:
   - Moving up in the World: Loot 100,000 money
