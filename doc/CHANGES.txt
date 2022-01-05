@@ -58,8 +58,6 @@ Changelog
   - xenocium
 - blocked access to Sikhw from Kalavan Castle West
 - items sold to Harley:
-  - value of leather thread increased to 125
-  - value of pelt increased to 500
   - value of unicorn horn increased to 2200
 - pelts are dropped more often & by more animals
 - new achievements:
@@ -68,17 +66,15 @@ Changelog
 *graphics*
 - added a postman outfit
 - touched up many outfit/character/creature sprites with scaling artifacts
-- touched up item sprites:
-  - chaos armor, boots, helmet, & legs
-  - studded boots
+- touched up many item sprites
 - replaced many item sprites
 - replaced NPC sprites:
   - mithrilforgernpc (Baldemar, Kampusch, Pedinghaus, & Whiggins)
-- ents have leaf blood
+- ents have leafy blood
 - replaced slime sprites
 
 *client*
-- corpse window can scale with contents
+- corpse window displays 6 slots when creature drops more than 4 items
 - new cursor theme
 - Java client:
   - setting to enable/disable character "nudity"
