@@ -546,7 +546,10 @@ stendhal.ui.OutfitDialog = function() {
 	stendhal.ui.OutfitDialog.instance = self;
 
 
-	const outfit = marauroa.me["outfit_ext"];
+	let outfit = marauroa.me["outfit_ext_orig"];
+	if (outfit === undefined) {
+		outfit = marauroa.me["outfit_ext"];
+	}
 
 	let entries = outfit.split(",");
 	let currentOutfit = {};
@@ -571,7 +574,13 @@ stendhal.ui.OutfitDialog = function() {
 			if (part === "body" || part === "head") {
 				colorName = "skin";
 			}
-			return colors[colorName];
+
+			let layer_color = colors[colorName + "_orig"];
+			if (layer_color === undefined) {
+				layer_color = colors[colorName];
+			}
+
+			return layer_color;
 		}
 		return null;
 	}

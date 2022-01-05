@@ -80,6 +80,7 @@ Changelog
   - setting to enable/disable character "nudity"
 - Web client:
   - fixed layer index formatting in outfit dialog
+  - outfit dialog used "outfit_ext_orig" if set (same behavior as Java client)
 
 *fixes*
 - solar & glacier centaur susceptibilities were backward
