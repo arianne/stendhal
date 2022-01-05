@@ -14,6 +14,7 @@ Changelog
 - new NPCs:
   - Claude Conteur
   - fish in Semos Temple
+  - citizens in Denrian City
 - new items:
   - charcoal
 - disabled inaccessible items:
