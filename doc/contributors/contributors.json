@@ -3575,5 +3575,17 @@
 					"type": "code"
 				}
 			]
-		}	]
+		},
+		{
+			"name": "nudelchef",
+			"fullname": "nudelchef",
+			"link": "https://stendhalgame.org/character/Dragon.html",
+			"image": "https://stendhalgame.org/images/profile/Dragon.png",
+			"contributions": [
+				{
+					"type": "graphics",
+				}
+			]
+		}
+	]
 }
