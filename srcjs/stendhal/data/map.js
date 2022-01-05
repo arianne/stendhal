@@ -10,6 +10,9 @@
  ***************************************************************************/
 "use strict";
 
+var CombinedTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").CombinedTilesetRenderingStrategy;
+var IndividualTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").IndividualTilesetRenderingStrategy;
+
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
@@ -147,6 +150,8 @@ stendhal.data.map = {
 		stendhal.data.map.protection = stendhal.data.map.decodeMapLayer(content, "protection");
 		stendhal.data.map.collisionData = stendhal.data.map.decodeMapLayer(content, "collision");
 		stendhal.data.map.layerGroupIndexes = stendhal.data.map.mapLayerGroup();
+
+		stendhal.data.map.strategy.onMapLoaded(stendhal.data.map);
 	},
 
 	decodeTileset: function(content, name) {
@@ -178,10 +183,7 @@ stendhal.data.map = {
 			lastStart = stendhal.data.map.firstgids[pos];
 		}
 
-		new ImagePreloader(stendhal.data.map.tilesetFilenames, function() {
-			var body = document.getElementById("body");
-			body.style.cursor = "auto";
-		});
+		stendhal.data.map.strategy.onTilesetLoaded();
 	},
 
 	decodeMapLayer: function(content, name) {
@@ -231,4 +233,10 @@ stendhal.data.map = {
 		}
 		return res;
 	}
+};
+
+if (window.location.search.indexOf("old") > -1) {
+	stendhal.data.map.strategy = new IndividualTilesetRenderingStrategy();
+} else {
+	stendhal.data.map.strategy = new CombinedTilesetRenderingStrategy();
 };

@@ -11,9 +11,12 @@
 
 "use strict";
 
+var LandscapeRenderer = require("../../../build/ts/landscape/LandscapeRenderer").LandscapeRenderer;
+
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
+
 
 /**
  * game window aka world view
@@ -46,16 +49,7 @@ stendhal.ui.gamewindow = {
 				var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
-				for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
-					var name = stendhal.data.map.layerNames[drawingLayer];
-					if (name !== "protection" && name !== "collision" && name !== "objects"
-						&& name !== "blend_ground" && name !== "blend_roof") {
-						this.paintLayer(canvas, drawingLayer, tileOffsetX, tileOffsetY);
-					}
-					if (name === "2_object") {
-						this.drawEntities();
-					}
-				}
+				stendhal.data.map.strategy.render(canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.drawEntitiesTop();
 				this.drawTextSprites();

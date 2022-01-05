@@ -16,12 +16,14 @@ declare var stendhal: any;
 export class LandscapeRenderer {
 
 	drawLayer(
-			canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D,
+			canvas: HTMLCanvasElement,
 			combinedTileset: CombinedTileset, layerNo: number, 
 			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 		if (!combinedTileset) {
 			return;
 		}
+		let ctx = canvas.getContext("2d")!;
+
 		const layer = combinedTileset.combinedLayers[layerNo];
 		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, stendhal.data.map.zoneSizeY);
 		const xMax = Math.min(tileOffsetX + canvas.width / targetTileWidth + 1, stendhal.data.map.zoneSizeX);
