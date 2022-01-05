@@ -654,10 +654,10 @@
 		<item name="lucky charm" price="30" />
 		<item name="marbles" price="40" />
 		<item name="black pearl" price="50" />
-		<item name="bat entrails" price="50" />
+		<item name="bat entrails" price="5" />
 		<item name="snowglobe" price="75" />
-		<item name="vampirette entrails" price="75" />
-		<item name="pelt" price="50" />
+		<item name="vampirette entrails" price="25" />
+		<item name="pelt" price="12" />
 		<item name="emerald" price="125" />
 		<item name="sapphire" price="210" />
 		<item name="carbuncle" price="300" />
