@@ -131,6 +131,12 @@
 					"type": "code"
 				},
 				{
+					"type": "content",
+				},
+				{
+					"type": "doc",
+				},
+				{
 					"type": "graphics"
 				},
 				{
@@ -3579,8 +3585,10 @@
 		{
 			"name": "nudelchef",
 			"fullname": "nudelchef",
+			"aliases": ["Dragon"],
 			"link": "https://stendhalgame.org/character/Dragon.html",
 			"image": "https://stendhalgame.org/images/profile/Dragon.png",
+			"country": "Germany",
 			"contributions": [
 				{
 					"type": "graphics",
