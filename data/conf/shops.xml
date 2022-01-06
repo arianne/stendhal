@@ -602,7 +602,7 @@
 		<item name="pelt" price="25" />
 		<item name="vampirette entrails" price="70" />
 		<item name="venom gland" price="800" />
-		<item name="silk gland" price="250" />
+		<item name="silk gland" price="400" />
 		<item name="unicorn horn" price="1500" />
 		<item name="mythical egg" price="2500" />
 	</shop>
