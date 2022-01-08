@@ -12,6 +12,8 @@
 import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
 
+declare var stendhal: any;
+
 export class CombinedTilesetImageLoader {
 
 	private tileUsedAtIndex!: MapOfSets<number, number>
@@ -48,7 +50,7 @@ export class CombinedTilesetImageLoader {
 		img.onload = () => {
 			this.drawTileset(tileset);
 		}
-		img.src = this.map.tilesetFilenames[tileset];
+		img.src = this.map.tilesetFilenames[tileset] + "?v=" + stendhal.data.build.version;
 		this.tilesetImages[tileset] = img;
 	}
 
