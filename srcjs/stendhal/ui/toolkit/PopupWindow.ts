@@ -49,6 +49,9 @@ export class PopupWindow extends Component {
 		this.onMouseUpDuringDragListener = () => {
 			this.onMouseUpDuringDrag();
 		}
+		contentComponent.componentElement.addEventListener("close", (event) => {
+			this.onClose(event);
+		})
 
 		// add window to DOM
 		let popupcontainer = document.getElementById("popupcontainer")!;
