@@ -188,6 +188,7 @@ span.logi {
 .popuptitle, .windowtitlebar {
   cursor: default;
   padding: 3px;
+  border-bottom: 1px solid #777;
 }
 
 .popuptitleclose, .windowtitleclose {
@@ -245,6 +246,10 @@ span.logi {
 
 #travellogdescription {
   font-style: italic
+}
+
+.imageviewer h3 {
+	margin: 0;
 }
 
 #portfolio {

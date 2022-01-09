@@ -37,7 +37,7 @@ export class PopupWindow extends Component {
 		this.componentElement.querySelector(".windowcontent")!.append(contentComponent.componentElement);
 
 		// register and prepare event listeners
-		this.componentElement.querySelector(".windowtitle")!.addEventListener("mousedown", (event) => {
+		this.componentElement.querySelector(".windowtitlebar")!.addEventListener("mousedown", (event) => {
 			this.onMouseDown(event as MouseEvent)
 		});
 		this.componentElement.querySelector(".windowtitleclose")!.addEventListener("click", (event) => {
