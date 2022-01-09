@@ -88,22 +88,3 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	this.popupdiv.querySelector(".popuptitleclose").addEventListener("click", onClose);
 	popupcontainer.appendChild(this.popupdiv);
 }
-
-
-/**
- * @constructor
- */
-stendhal.ui.ImageViewer = function(title, caption, path) {
-	if (stendhal.ui.globalpopup) {
-		stendhal.ui.globalpopup.popup.close();
-	}
-
-	var content = "<h3>" + stendhal.ui.html.esc(caption) + "</h3><img src=\"" + stendhal.ui.html.esc(path) + "\">";
-	this.popup = new stendhal.ui.Popup(title, content, 100, 50);
-
-	this.close = function() {
-		this.popup.close();
-		stendhal.ui.globalpopup = null;
-	}
-	stendhal.ui.globalpopup = this;
-}
