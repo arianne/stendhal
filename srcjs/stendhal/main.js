@@ -16,6 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ui = require("../../build/ts/ui/UI").ui;
 var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
+var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;
 var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
 var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
 
@@ -166,7 +167,9 @@ stendhal.main = {
 		buddyList.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 
 		var menubutton = document.getElementById("menubutton");
-		menubutton.addEventListener("click", stendhal.ui.menu.onOpenAppMenu);
+		menubutton.addEventListener("click", (event) => {
+			ui.createSingletonPopupWindow("Menu", new ApplicationMenuDialog(), 150, event.pageY + 20)
+		});
 
 		var soundbutton = document.getElementById("soundbutton");
 		soundbutton.addEventListener("click", stendhal.main.toggleSound);

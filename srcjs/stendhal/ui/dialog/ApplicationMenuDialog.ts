@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                (C) Copyright 2003-2022 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,23 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Component } from "../toolkit/Compontent";
 
-window.marauroa = window.marauroa || {};
-window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+declare var stendhal: any;
 
-/**
- * game window aka world view
- */
-stendhal.ui.menu = {
+export class ApplicationMenuDialog extends Component {
 
-	onOpenAppMenu: function(e) {
-		if (stendhal.ui.globalpopup) {
-			stendhal.ui.globalpopup.popup.close();
-		}
-
-		var actions = [
+	private actions = [
 			{
 				title: "Account",
 				children: [
@@ -105,32 +95,33 @@ stendhal.ui.menu = {
 				]
 			},
 		]
-		var that = this;
 
-		var content = "<div class=\"actionmenu\">";
-		for (var i = 0; i < actions.length; i++) {
-			content += "<div class=\"inlineblock\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(actions[i].title) + "</h4>"
-			for (var j = 0; j < actions[i].children.length; j++) {
-				content += "<button id=\"menubutton." + actions[i].children[j].action + "\">" + stendhal.ui.html.esc(actions[i].children[j].title) + "</button><br>";
+	constructor() {
+		super("applicationmenudialog-template");
+
+		var content = "";
+		for (var i = 0; i < this.actions.length; i++) {
+			content += "<div class=\"inlineblock\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(this.actions[i].title) + "</h4>"
+			for (var j = 0; j < this.actions[i].children.length; j++) {
+				content += "<button id=\"menubutton." + this.actions[i].children[j].action + "\">" + stendhal.ui.html.esc(this.actions[i].children[j].title) + "</button><br>";
 			}
 			content += "</div>";
 		}
-		content += "</div>";
-		this.popup = new stendhal.ui.Popup("Action", content, 150, e.pageY + 20);
+		this.componentElement.innerHTML = content;
 
-		this.popup.popupdiv.addEventListener("click", function(e) {
-			var cmd = e.target.id.substring(11);
-			that.popup.close();
-			if (cmd) {
-				stendhal.slashActionRepository.execute("/" + cmd);
-			}
+		this.componentElement.addEventListener("click", (event) => {
+			this.onClick(event);
 		});
-
-		this.close = function() {
-			this.popup.close();
-			stendhal.ui.globalpopup = null;
-		}
-		stendhal.ui.globalpopup = this;
 	}
 
+
+	private onClick(event: Event) {
+		var cmd = (event.target as HTMLInputElement).id?.substring(11);
+		if (cmd) {
+			stendhal.slashActionRepository.execute("/" + cmd);
+		}
+		this.componentElement.dispatchEvent(new Event("close"));
+		event.preventDefault();
+
+	}
 }
