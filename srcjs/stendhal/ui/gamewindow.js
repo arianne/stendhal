@@ -332,7 +332,7 @@ stendhal.ui.gamewindow = {
 
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
-				new stendhal.ui.DropNumberDialog(action, pos.pageX - 50, pos.pageY - 25);
+				ui.createSingletonPopupWindow("Quantity", new DropQuantitySelectorDialog(action), pos.pageX - 50, pos.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}

@@ -94,7 +94,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			};
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
-				new stendhal.ui.DropNumberDialog(action, e.pageX - 50, e.pageY - 25);
+				ui.createSingletonPopupWindow("Quantity", new DropQuantitySelectorDialog(action), e.pageX - 50, e.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}

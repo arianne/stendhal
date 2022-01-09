@@ -16,6 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ui = require("../../build/ts/ui/UI").ui;
 var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
+var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
 
 stendhal.main = {
 	errorCounter: 0,

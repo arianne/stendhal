@@ -93,37 +93,6 @@ stendhal.ui.Popup = function(title, content, x, y) {
 /**
  * @constructor
  */
-stendhal.ui.DropNumberDialog = function(action, x, y) {
-	if (stendhal.ui.globalpopup) {
-		stendhal.ui.globalpopup.popup.close();
-	}
-
-	this.action = action;
-	var content = "<input type=\"number\" min=\"0\" value=\"1\" id=\"dropnumberdialogvalue\"><button id=\"dropnumberdialogbutton\">Drop</button>";
-	this.popup = new stendhal.ui.Popup("Quantity", content, x, y);
-
-	var that = this;
-	document.getElementById("dropnumberdialogbutton").addEventListener("click", function(e) {
-		var quantity = document.getElementById("dropnumberdialogvalue").value;
-		if (quantity && quantity > 0) {
-			that.action["quantity"] = quantity;
-			marauroa.clientFramework.sendAction(that.action);
-		}
-		that.popup.close();
-	});
-
-	this.close = function() {
-		this.popup.close();
-		stendhal.ui.globalpopup = null;
-	}
-	document.getElementById("dropnumberdialogvalue").focus();
-	stendhal.ui.globalpopup = this;
-}
-
-
-/**
- * @constructor
- */
 stendhal.ui.ImageViewer = function(title, caption, path) {
 	if (stendhal.ui.globalpopup) {
 		stendhal.ui.globalpopup.popup.close();
