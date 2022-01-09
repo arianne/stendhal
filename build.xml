@@ -42,8 +42,6 @@
 	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
 	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
 
-	<property name="build_client" value="${buildroot}/build_client"/>
-
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
 	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
