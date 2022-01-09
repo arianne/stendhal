@@ -150,21 +150,9 @@
 
 	<target name="clean">
 		<delete dir="${lib}" />
-		<delete dir="${build_client}" />
-		<delete dir="${buildroot}/build_client_data" />
 		<delete dir="${build}/build_client_music_data"/>
 		<delete dir="${build}/build_client_sound_data"/>
-		<delete dir="${build_server}" />
-		<delete dir="${build_server_maps}" />
-		<delete dir="${build_server_script}" />
-		<delete dir="${build_server_mods}" />
-		<delete dir="${buildroot}/build_server_quests" />
-		<delete dir="${buildroot}/build_server_xmlconf" />
-		<delete dir="${build_tests}" />
-		<delete dir="${buildroot}/build_stendhaltools" />
-		<delete dir="${buildroot}/build_stendhaltextclient" />
-		<delete dir="${buildroot}/buildbot" />
-		<delete dir="${build_tests_report}" />
+		<delete dir="${buildroot}" />
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
 		<delete file="cobertura.ser" />
