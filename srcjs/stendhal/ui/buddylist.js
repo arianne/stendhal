@@ -15,6 +15,7 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+
 /**
  * buddylist
  */
@@ -173,7 +174,7 @@ stendhal.ui.buddyList = {
 		}
 
 		if (stendhal.ui.buddyList.current) {
-			new stendhal.ui.Menu(stendhal.ui.buddyList,
+			ui.createSingletonPopupWindow("Action", new ActionContextMenu(stendhal.ui.buddyList),
 				Math.max(10, event.pageX - 50), event.pageY - 5);
 		}
 	}

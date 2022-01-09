@@ -14,6 +14,9 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var ui = require("../../build/ts/ui/UI").ui;
+var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
+
 stendhal.main = {
 	errorCounter: 0,
 	zoneFile: null,

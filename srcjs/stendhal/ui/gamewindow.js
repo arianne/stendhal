@@ -242,7 +242,7 @@ stendhal.ui.gamewindow = {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					new stendhal.ui.Menu(entity, pos.pageX - 50, pos.pageY - 5);
+					ui.createSingletonPopupWindow("Action", new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5);
 				}
 			} else {
 				entity.onclick(pos.offsetX, pos.offsetY);

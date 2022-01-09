@@ -138,7 +138,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			}
 
 			if (isRightClick(e)) {
-				new stendhal.ui.Menu(event.target.dataItem, event.pageX - 50, event.pageY - 5);
+				ui.createSingletonPopupWindow("Action", new ActionContextMenu(event.target.dataItem), event.pageX - 50, event.pageY - 5);
 			} else {
 				marauroa.clientFramework.sendAction({
 					type: "use",
