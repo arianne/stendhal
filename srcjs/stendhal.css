@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 li.online {
   color: #0A0
 }
@@ -175,18 +179,18 @@ span.logi {
   width: 200px;
 }
 
-.popupdiv {
+.popupdiv, .windowdiv {
   x-border: 1px solid #000;
   background-color: #FFF;
   box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
 }
 
-.popuptitle {
+.popuptitle, .windowtitlebar {
   cursor: default;
   padding: 3px;
 }
 
-.popuptitleclose {
+.popuptitleclose, .windowtitleclose {
   float: right
 }
 
