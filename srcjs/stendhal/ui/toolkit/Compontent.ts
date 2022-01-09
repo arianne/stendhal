@@ -20,8 +20,10 @@ export class Component {
 		}
 
 		if (element instanceof HTMLTemplateElement) {
-			element = element.content.cloneNode(true) as HTMLElement
+			let fragment = element.content.cloneNode(true) as DocumentFragment
+			element = fragment.children[0] as HTMLElement;
 		}
+
 		this.componentElement = element;
 	}
 }
