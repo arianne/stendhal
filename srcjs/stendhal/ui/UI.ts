@@ -10,11 +10,11 @@
  ***************************************************************************/
 
 import { Component } from "./toolkit/Compontent";
-import { SingletonPopupWindow } from "./toolkit/SingletonPopupWindow";
+import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
 class UI {
-	createSingletonPopupWindow(title: string, contentComponent: Component, x: number, y: number) {
-		new SingletonPopupWindow(title, contentComponent, x, y);
+	createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
+		new SingletonFloatingWindow(title, contentComponent, x, y);
 	}
 }
 

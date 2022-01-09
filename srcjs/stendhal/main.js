@@ -168,7 +168,7 @@ stendhal.main = {
 
 		var menubutton = document.getElementById("menubutton");
 		menubutton.addEventListener("click", (event) => {
-			ui.createSingletonPopupWindow("Menu", new ApplicationMenuDialog(), 150, event.pageY + 20)
+			ui.createSingletonFloatingWindow("Menu", new ApplicationMenuDialog(), 150, event.pageY + 20)
 		});
 
 		var soundbutton = document.getElementById("soundbutton");

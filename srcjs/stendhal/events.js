@@ -42,7 +42,7 @@ marauroa.rpeventFactory["examine"] = marauroa.util.fromProto(marauroa.rpeventFac
 		if (rpobject !== marauroa.me) {
 			return;
 		}
-		ui.createSingletonPopupWindow(this["title"], new ImageViewerDialog(this["caption"], this["path"]), 100, 50)
+		ui.createSingletonFloatingWindow(this["title"], new ImageViewerDialog(this["caption"], this["path"]), 100, 50)
 	}
 });
 

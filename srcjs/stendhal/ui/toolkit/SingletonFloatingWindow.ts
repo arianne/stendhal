@@ -10,16 +10,16 @@
  ***************************************************************************/
 
 import { Component } from "./Compontent";
-import { PopupWindow } from "./PopupWindow";
+import { FloatingWindow } from "./FloatingWindow";
 
 /**
- * A popup or dialog window that will disappear if another SingletonPopupWindow is opened
+ * A popup or dialog window that will disappear if another SingletonFloatingWindow is opened
  */
-export class SingletonPopupWindow extends PopupWindow {
-	private static visiblePopup?: SingletonPopupWindow;
+export class SingletonFloatingWindow extends FloatingWindow {
+	private static visiblePopup?: SingletonFloatingWindow;
 
 	/**
-	 * creates and shows a SingletonPopupWindow
+	 * creates and shows a SingletonFloatingWindow
 	 *
 	 * @param title title of the window
 	 * @param contentComponent Component that is shown inside of the window
@@ -28,16 +28,16 @@ export class SingletonPopupWindow extends PopupWindow {
 	 */
 	constructor(title: string, contentComponent: Component, x: number, y: number) {
 		super(title, contentComponent, x, y);
-		if (SingletonPopupWindow.visiblePopup) {
-			SingletonPopupWindow.visiblePopup.close();
+		if (SingletonFloatingWindow.visiblePopup) {
+			SingletonFloatingWindow.visiblePopup.close();
 		}
-		SingletonPopupWindow.visiblePopup = this;
+		SingletonFloatingWindow.visiblePopup = this;
 	}
 
 	override close() {
 		super.close();
-		if (SingletonPopupWindow.visiblePopup === this) {
-			SingletonPopupWindow.visiblePopup = this;
+		if (SingletonFloatingWindow.visiblePopup === this) {
+			SingletonFloatingWindow.visiblePopup = this;
 		}
 	}
 }

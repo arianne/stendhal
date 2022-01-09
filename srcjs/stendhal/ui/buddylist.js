@@ -174,7 +174,7 @@ stendhal.ui.buddyList = {
 		}
 
 		if (stendhal.ui.buddyList.current) {
-			ui.createSingletonPopupWindow("Action", new ActionContextMenu(stendhal.ui.buddyList),
+			ui.createSingletonFloatingWindow("Action", new ActionContextMenu(stendhal.ui.buddyList),
 				Math.max(10, event.pageX - 50), event.pageY - 5);
 		}
 	}

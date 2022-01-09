@@ -13,7 +13,7 @@ import { Component } from "./Compontent";
 
 declare var stendhal: any;
 
-export class PopupWindow extends Component {
+export class FloatingWindow extends Component {
 
 	private readonly closeSound = "click-1";
 

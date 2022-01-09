@@ -94,7 +94,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			};
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
-				ui.createSingletonPopupWindow("Quantity", new DropQuantitySelectorDialog(action), e.pageX - 50, e.pageY - 25);
+				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action), e.pageX - 50, e.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
@@ -138,7 +138,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPick
 			}
 
 			if (isRightClick(e)) {
-				ui.createSingletonPopupWindow("Action", new ActionContextMenu(event.target.dataItem), event.pageX - 50, event.pageY - 5);
+				ui.createSingletonFloatingWindow("Action", new ActionContextMenu(event.target.dataItem), event.pageX - 50, event.pageY - 5);
 			} else {
 				marauroa.clientFramework.sendAction({
 					type: "use",

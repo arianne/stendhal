@@ -242,7 +242,7 @@ stendhal.ui.gamewindow = {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					ui.createSingletonPopupWindow("Action", new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5);
+					ui.createSingletonFloatingWindow("Action", new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5);
 				}
 			} else {
 				entity.onclick(pos.offsetX, pos.offsetY);
@@ -332,7 +332,7 @@ stendhal.ui.gamewindow = {
 
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
-				ui.createSingletonPopupWindow("Quantity", new DropQuantitySelectorDialog(action), pos.pageX - 50, pos.pageY - 25);
+				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action), pos.pageX - 50, pos.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
