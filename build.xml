@@ -1282,6 +1282,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	<target name="js-prepare-node">
 		<exec executable="npm${executable.suffix}" failonerror="true">
 			<arg value="install" />
+			<arg value="--no-save" />
 		</exec>
 	</target>
 
