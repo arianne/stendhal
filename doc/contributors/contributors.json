@@ -3591,16 +3591,207 @@
 			"country": "Germany",
 			"contributions": [
 				{
-					"type": "graphics",
+					"type": "graphics"
 				}
 			]
-		}
+		},
 	],
 	"other": [
 		{
 			"name": "Cabbit",
 			"fullname": "Svetlana Kushnariova",
-			"link": "https://opengameart.org/users/cabbit",
+			"link": "https://opengameart.org/users/cabbit"
+		},
+		{
+			"name": "diamonddmgirl",
+			"link": "https://opengameart.org/users/diamonddmgirl"
+		},
+		{
+			"name": "Reemax",
+			"fullname": "Tuomo Untinen",
+			"link": "https://opengameart.org/users/reemax"
+		},
+		{
+			"name": "bagzie",
+			"link": "https://opengameart.org/users/bagzie"
+		},
+		{
+			"name": "ScratchIO",
+			"link": "https://opengameart.org/users/scratchio"
+		},
+		{
+			"name": "daneeklu",
+			"fullname": "Daniel Eddeland",
+			"link": "https://opengameart.org/users/daneeklu"
+		},
+		{
+			"name": "ienze",
+			"fullname": "Dominik Gmiterko",
+			"link": "https://opengameart.org/users/ienze"
+		},
+		{
+			"name": "Calciumtrice",
+			"link": "https://opengameart.org/users/calciumtrice"
+		},
+		{
+			"name": "lawnjelly",
+			"link": "https://opengameart.org/users/lawnjelly"
+		},
+		{
+			"name": "patvanmackelberg",
+			"link": "https://opengameart.org/users/patvanmackelberg"
+		},
+		{
+			"name": "Redshrike",
+			"fullname": "Stephen Challener",
+			"link": "https://opengameart.org/users/redshrike"
+		},
+		{
+			"name": "Code Inferno Games",
+			"link": "http://codeinferno.com/"
+		},
+		{
+			"fullname": "William Thompson",
+			"link": "https://opengameart.org/users/williamthompsonj"
+		},
+		{
+			"name": "ZaPaper",
+			"link": "https://opengameart.org/users/zapaper"
+		},
+		{
+			"name": "Ouren",
+			"fullname": "Wolfgang Wozniak",
+			"link": "https://opengameart.org/users/ouren"
+		},
+		{
+			"name": "bluecarrot16",
+			"link": "https://opengameart.org/users/bluecarrot16"
+		},
+		{
+			"name": "Shepardskin",
+			"link": "https://opengameart.org/users/shepardskin"
+		},
+		{
+			"fullname": "Kelvin Shadewing",
+			"link": "https://opengameart.org/users/kelvin-shadewing"
+		},
+		{
+			"name": "Enquest",
+			"fullname": "Onno Timmerman",
+			"link": "https://opengameart.org/users/enquest"
+		},
+		{
+			"name": "Nila122",
+			"link": "https://opengameart.org/users/nila122"
+		},
+		{
+			"name": "Buch",
+			"fullname": "Michele Bucelli",
+			"link": "https://opengameart.org/users/buch"
+		},
+		{
+			"name": "isaiah658",
+			"link": "https://opengameart.org/users/isaiah658"
+		},
+		{
+			"name": "IndigoFenix",
+			"link": "https://opengameart.org/users/indigofenix"
+		},
+		{
+			"name": "LordNeo",
+			"link": "https://opengameart.org/users/lordneo"
+		},
+		{
+			"name": "SCaydi",
+			"link": "https://opengameart.org/users/scaydi"
+		},
+		{
+			"fullname": "David E. Gervais",
+			"link": "http://pousse.rapiere.free.fr/tome/"
+		},
+		{
+			"name": "BizmasterStudios",
+			"fullname": "Michael Williams",
+			"link": "https://opengameart.org/users/bizmasterstudios"
+		},
+		{
+			"name": "Eldiran",
+			"link": "https://opengameart.org/users/eldiran"
+		},
+		{
+			"name": "Kevin O'Ryan",
+			"fullname": "Kevin Smith",
+			"link": "https://opengameart.org/users/kevin-oryan"
+		},
+		{
+			"name": "Tracy",
+			"link": "https://opengameart.org/users/tracy"
+		},
+		{
+			"name": "Fabzy",
+			"link": "https://opengameart.org/users/fabzy"
+		},
+		{
+			"name": "Kemono",
+			"link": "https://opengameart.org/users/kemono"
+		},
+		{
+			"name": "CharlesGabriel",
+			"fullname": "Charles Sanchez",
+			"aliases": ["CharlesGabriel", "Antifarea"],
+			"link": "https://opengameart.org/users/charlesgabriel"
+		},
+		{
+			"name": "yolkati",
+			"link": "https://opengameart.org/users/yolkati"
+		},
+		{
+			"name": "wulax",
+			"link": "https://opengameart.org/users/wulax"
+		},
+		{
+			"name": "Hernandack",
+			"link": "https://opengameart.org/users/hernandack"
+		},
+		{
+			"name": "Baŝto",
+			"fullname": "Sebastian Riedel",
+			"link": "https://opengameart.org/users/baŝto",
+		},
+		{
+			"name": "Jastiv",
+			"fullname": "Lori Angela Nagel",
+			"link": "https://opengameart.org/users/jastiv"
+		},
+		{
+			"name": "artisticdude",
+			"link": "https://opengameart.org/users/artisticdude"
+		},
+		{
+			"name": "Dungeon Crawl Stone Soup",
+			"link": "https://crawl.develz.org/"
+		},
+		{
+			"fullname": "Clint Bellanger",
+			"link": "https://opengameart.org/users/clint-bellanger"
+		},
+		{
+			"name": "amaranthia",
+			"fullname": "Katherine Fitch",
+			"link": "https://opengameart.org/users/amaranthia"
+		},
+		{
+			"name": "Openclipart Library",
+			"link": "https://openclipart.org/"
+		},
+		{
+			"name": "7Soul1",
+			"fullname": "Henrique Lazarini",
+			"link": "https://www.deviantart.com/7soul1"
+		},
+		{
+			"name": "thekingphoenix",
+			"link": "https://opengameart.org/users/thekingphoenix"
 		}
 	]
 }
