@@ -252,8 +252,8 @@ zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
 
-apple_mauve.png          tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
-apple_red.png            tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798 (duplicate: ./apple_special/apple_red.png)
+apple.png                ???; ???; ??? (added by tigertoes)
+apple_special/*          ???; ???; ??? (added by tigertoes)
 applepie.png             omero; CC BY-SA 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
@@ -327,10 +327,6 @@ tuna_sandwich.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
 watermelon.png           RedQueen; OGA BY 3.0; Stendhal
-
-data/sprites/items/food/apple_special/
-
-apple_*  tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
 
 data/sprites/items/grower/
 
