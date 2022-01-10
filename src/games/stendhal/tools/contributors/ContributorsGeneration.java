@@ -14,6 +14,7 @@ package games.stendhal.tools.contributors;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +64,8 @@ public class ContributorsGeneration {
 
 	@SuppressWarnings("unchecked")
 	private void parse(String inputFilename) throws IOException {
-		try (InputStreamReader reader = new InputStreamReader(this.getClass().getResourceAsStream(inputFilename))) {
+		try (InputStreamReader reader = new InputStreamReader(this.getClass().getResourceAsStream(inputFilename),
+				StandardCharsets.UTF_8)) {
 			Map<String, Object> map = (Map<String, Object>) (JSONValue.parse(reader));
 			this.contributors = (Iterable<Map<String, Object>>) map.get("all");
 		}
