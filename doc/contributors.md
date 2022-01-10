@@ -12,7 +12,9 @@ This page is work in progress. Many people and details are still missing. Please
 📆</span> <span title="security">
 🛡️</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/243964"><img src="https://gravatar.com/avatar/fea37ed56d2c80b91890d64568e7943d?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Jordan Irwin</b></sub></a><br /><span title="code">
-💻</span> <span title="graphics">
+💻</span> <span title="content">
+🖋</span> <span title="doc">
+📖</span> <span title="graphics">
 🎨</span> <span title="maps">
 🗺</span> <span title="audio">
 🔊</span> </td>
@@ -717,6 +719,8 @@ null</span> </td>
 <tr>
  <td align="center" width="0%"><a href="https://github.com/maxgmer"><img src="https://avatars0.githubusercontent.com/u/24964174" width="64" height="64" alt=""><br /><sub><b>maxgmer</b></sub></a><br /><span title="code">
 💻</span> </td>
+ <td align="center" width="0%"><a href="https://stendhalgame.org/character/Dragon.html"><img src="https://stendhalgame.org/images/profile/Dragon.png" width="64" height="64" alt=""><br /><sub><b>nudelchef</b></sub></a><br /><span title="graphics">
+🎨</span> </td>
 </tr>
 </table>
 <!-- markdownlint-enable -->
