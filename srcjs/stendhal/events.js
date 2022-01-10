@@ -14,6 +14,8 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
+var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -37,14 +39,7 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 });
 
 
-marauroa.rpeventFactory["examine"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		if (rpobject !== marauroa.me) {
-			return;
-		}
-		ui.createSingletonFloatingWindow(this["title"], new ImageViewerDialog(this["caption"], this["path"]), 100, 50)
-	}
-});
+marauroa.rpeventFactory["examine"] = new ExamineEvent();
 
 
 marauroa.rpeventFactory["global_visual_effect"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
@@ -109,21 +104,7 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 });
 
 
-marauroa.rpeventFactory["progress_status_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		var progressType = this["progress_type"];
-		var dataItems = this["data"].substring(1, this["data"].length - 1).split(/\t/);
-
-		if (!this["progress_type"]) {
-			stendhal.ui.travellog.open(dataItems);
-		} else if (!this["item"]) {
-			stendhal.ui.travellog.progressTypeData(progressType, dataItems);
-		} else {
-			stendhal.ui.travellog.itemData(progressType, this["item"], this["description"], dataItems);
-		}
-	}
-});
-
+marauroa.rpeventFactory["progress_status_event"] = new ProgressStatusEvent();
 
 marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {

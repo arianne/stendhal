@@ -233,18 +233,18 @@ span.logi {
   flex-direction: column;
 }
 
-#travellogitems {
+.travellogitems {
   float: left;
   width: 15em;
   margin-right: 2em;
 }
 
-#travellogdetails {
+.travellogdetails {
   color: #000;
   width: 40em;
 }
 
-#travellogdescription {
+.travellogdescription {
   font-style: italic
 }
 

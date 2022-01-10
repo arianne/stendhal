@@ -1296,7 +1296,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-ui2"      value="srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js srcjs/stendhal/ui/keyhandler.js srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
 		<property name="js-files-ui3"      value="" />
 		<property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
-		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/outfitdialog.js srcjs/stendhal/ui/travellog.js srcjs/stendhal/ui/settings.js" />
+		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/outfitdialog.js srcjs/stendhal/ui/settings.js" />
 		<property name="js-files-main2"    value="srcjs/stendhal/main.js" />
 		<property name="js-files-main3"    value="" />
 		<property name="js-files-ts"       value="build/ts/**/*.js" />

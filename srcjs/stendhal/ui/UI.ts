@@ -9,12 +9,29 @@
  *                                                                         *
  ***************************************************************************/
 
+import { UIComponentEnum } from "./UIComponentEnum";
 import { Component } from "./toolkit/Compontent";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
 class UI {
-	createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
+	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
+
+	public createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
 		new SingletonFloatingWindow(title, contentComponent, x, y);
+	}
+
+	public registerComponent(key: UIComponentEnum, component: Component) {
+		this.wellKnownComponents.set(key, component);
+	}
+
+	public unregisterComponent(key: UIComponentEnum, component: Component) {
+		if (this.wellKnownComponents.get(key) === component) {
+			this.wellKnownComponents.delete(key);
+		}
+	}
+
+	public get(key: UIComponentEnum): Component|undefined {
+		return this.wellKnownComponents.get(key);
 	}
 }
 
