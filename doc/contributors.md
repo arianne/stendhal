@@ -723,10 +723,12 @@ null</span> </td>
 🎨</span> </td>
 </tr>
 </table>
+
+# Special Thanks
+
+The following people released their work to the public with a suitable license for us to use.
+
+* [Svetlana Kushnariova(Cabbit)](https://opengameart.org/users/cabbit)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-# Special thanks to
-
-The following people released their work to the public with a suitable license for us to use.
