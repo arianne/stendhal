@@ -14,7 +14,9 @@ package games.stendhal.tools.contributors;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.lang.StringBuilder;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +30,7 @@ import org.json.simple.JSONValue;
 public class ContributorsGeneration {
 	private Iterable<Map<String, Object>> contributors;
 	private Map<String, String> iconMap = new HashMap<>();
+	private Iterable<Map<String, Object>> others;
 
 	public ContributorsGeneration() {
 		iconMap.put("a11y", "♿️");
@@ -68,6 +71,7 @@ public class ContributorsGeneration {
 				StandardCharsets.UTF_8)) {
 			Map<String, Object> map = (Map<String, Object>) (JSONValue.parse(reader));
 			this.contributors = (Iterable<Map<String, Object>>) map.get("all");
+			this.others = (Iterable<Map<String, Object>>) map.get("other");
 		}
 	}
 
@@ -133,6 +137,49 @@ public class ContributorsGeneration {
 		out.println("</table>");
 	}
 
+	private void formatOther(final StringBuilder sb, final Map<String, Object> other) {
+		final String name = (String) other.get("name");
+		final String fullname = (String) other.get("fullname");
+		final String link = (String) other.get("link");
+
+		sb.append("\n* ");
+		if (link != null) {
+			sb.append("[");
+		}
+		if (fullname != null) {
+			sb.append(fullname);
+			if (name != null) {
+				sb.append("(");
+			}
+		}
+		if (name != null) {
+			sb.append(name);
+			if (fullname != null) {
+				sb.append(")");
+			}
+		}
+		if (link != null) {
+			sb.append("](" + link + ")");
+		}
+	}
+
+	private void writeOthers(final PrintStream out) {
+		boolean add_others = false;
+		if (others instanceof Collection) {
+			add_others = ((Collection<?>) others).size() > 0;
+		}
+
+		if (add_others) {
+			final StringBuilder sb = new StringBuilder("\n# Special Thanks\n\nThe following people released their work to the public with a suitable license for us to use.\n");
+
+			for (final Map<String, Object> other : others) {
+				formatOther(sb, other);
+			}
+
+			out.println(sb.toString());
+		}
+	}
+
 	private void writeFooter(final PrintStream out) {
 		out.println("<!-- markdownlint-enable -->");
 		out.println("<!-- prettier-ignore-end -->");
@@ -156,6 +203,7 @@ public class ContributorsGeneration {
 		this.parse(filename);
 		this.writeHeader(out);
 		this.writeContributors(out);
+		this.writeOthers(out);
 		this.writeFooter(out);
 	}
 
