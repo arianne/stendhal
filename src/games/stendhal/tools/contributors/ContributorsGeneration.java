@@ -134,10 +134,12 @@ public class ContributorsGeneration {
 	}
 
 	public void process(String filename) throws IOException {
+		final PrintStream out = new PrintStream(System.out, true, "UTF-8");
+
 		this.parse(filename);
-		this.writeHeader(System.out);
-		this.writeContributors(System.out);
-		this.writeFooter(System.out);
+		this.writeHeader(out);
+		this.writeContributors(out);
+		this.writeFooter(out);
 	}
 
 	public static void main(String[] args) throws IOException {
