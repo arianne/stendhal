@@ -37,7 +37,7 @@ export class SingletonFloatingWindow extends FloatingWindow {
 	override close() {
 		super.close();
 		if (SingletonFloatingWindow.visiblePopup === this) {
-			SingletonFloatingWindow.visiblePopup = this;
+			SingletonFloatingWindow.visiblePopup = undefined;
 		}
 	}
 }

@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "./Compontent";
+import { ui } from "../UI";
 
 declare var stendhal: any;
 
@@ -22,7 +23,7 @@ export class FloatingWindow extends Component {
 	private offsetX = 0;
 	private offsetY = 0;
 
-	constructor(title: string, contentComponent: Component, x: number, y: number) {
+	constructor(title: string, protected contentComponent: Component, x: number, y: number) {
 		super("window-template");
 
 		// create HTML code for window
@@ -64,6 +65,7 @@ export class FloatingWindow extends Component {
 		if (popupcontainer.contains(this.componentElement)) {
 			popupcontainer.removeChild(this.componentElement);
 		}
+		ui.unregisterComponent(this.contentComponent);
 	}
 
 	private onClose(event: Event) {

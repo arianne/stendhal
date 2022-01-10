@@ -24,9 +24,12 @@ class UI {
 		this.wellKnownComponents.set(key, component);
 	}
 
-	public unregisterComponent(key: UIComponentEnum, component: Component) {
-		if (this.wellKnownComponents.get(key) === component) {
-			this.wellKnownComponents.delete(key);
+	public unregisterComponent(component: Component) {
+		for (let entry of this.wellKnownComponents.entries()) {
+			if (entry[1] === component) {
+				this.wellKnownComponents.delete(entry[0]);
+				return;
+			}
 		}
 	}
 
