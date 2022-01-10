@@ -252,8 +252,8 @@ zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
 
-apple.png                ???; ???; ??? (added by tigertoes)
-apple_special/*          ???; ???; ??? (added by tigertoes)
+apple.png                Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
+apple_special/*          Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
 applepie.png             omero; CC BY-SA 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
