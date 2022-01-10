@@ -73,11 +73,10 @@ public class ContributorsGeneration {
 
 
 	private void writeHeader(final PrintStream out) {
+		out.println("# Contributors\n");
 		out.println("<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->");
 		out.println("<!-- prettier-ignore-start -->");
 		out.println("<!-- markdownlint-disable -->");
-		out.println("<table>");
-		out.println("<tr>");
 	}
 
 	private void writeContributor(final PrintStream out, final Map<String, Object> contributor,
@@ -111,6 +110,9 @@ public class ContributorsGeneration {
 	}
 
 	private void writeContributors(final PrintStream out) {
+		out.println("<table>");
+		out.println("<tr>");
+
 		int i = 0;
 		int colsPerRow = 6;
 		for (Map<String, Object> contributor : contributors) {
@@ -126,11 +128,12 @@ public class ContributorsGeneration {
 			out.println("");
 			i++;
 		}
+
+		out.println("</tr>");
+		out.println("</table>");
 	}
 
 	private void writeFooter(final PrintStream out) {
-		out.println("</tr>");
-		out.println("</table>");
 		out.println("<!-- markdownlint-enable -->");
 		out.println("<!-- prettier-ignore-end -->");
 		out.println("<!-- ALL-CONTRIBUTORS-LIST:END -->");
