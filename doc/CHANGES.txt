@@ -3,6 +3,12 @@ Changelog
 ---------
 
 
+1.39
+
+*graphics*
+- touched up some NPC & enemy sprites
+
+
 1.38
 
 *world*
