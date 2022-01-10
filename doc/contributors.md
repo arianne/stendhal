@@ -764,7 +764,7 @@ The following people released their work to the public with a suitable license f
 * [yolkati](https://opengameart.org/users/yolkati)
 * [wulax](https://opengameart.org/users/wulax)
 * [Hernandack](https://opengameart.org/users/hernandack)
-* [Sebastian Riedel (Ba?to)](https://opengameart.org/users/ba?to)
+* [Sebastian Riedel (Baŝto)](https://opengameart.org/users/baŝto)
 * [Lori Angela Nagel (Jastiv)](https://opengameart.org/users/jastiv)
 * [artisticdude](https://opengameart.org/users/artisticdude)
 * [Dungeon Crawl Stone Soup](https://crawl.develz.org/)
