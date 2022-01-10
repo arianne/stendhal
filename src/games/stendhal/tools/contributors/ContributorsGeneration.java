@@ -63,7 +63,7 @@ public class ContributorsGeneration {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void parse(String inputFilename) throws IOException {
+	private void parse(final String inputFilename) throws IOException {
 		try (InputStreamReader reader = new InputStreamReader(this.getClass().getResourceAsStream(inputFilename),
 				StandardCharsets.UTF_8)) {
 			Map<String, Object> map = (Map<String, Object>) (JSONValue.parse(reader));
@@ -72,7 +72,7 @@ public class ContributorsGeneration {
 	}
 
 
-	private void writeHeader(PrintStream out) {
+	private void writeHeader(final PrintStream out) {
 		out.println("<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->");
 		out.println("<!-- prettier-ignore-start -->");
 		out.println("<!-- markdownlint-disable -->");
@@ -80,7 +80,8 @@ public class ContributorsGeneration {
 		out.println("<tr>");
 	}
 
-	private void writeContributor(PrintStream out, Map<String, Object> contributor, int colsPerRow) {
+	private void writeContributor(final PrintStream out, final Map<String, Object> contributor,
+			final int colsPerRow) {
 		out.print(" <td align=\"center\" width=\"" + (colsPerRow / 100) + "%\">");
 		out.print("<a href=\"" + contributor.get("link") + "\">");
 		String image = (String) contributor.get("image");
@@ -98,7 +99,7 @@ public class ContributorsGeneration {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void writeContributions(PrintStream out, Map<String, Object> contributor) {
+	private void writeContributions(final PrintStream out, final Map<String, Object> contributor) {
 		Iterable<Map<String, Object>> contributions = (Iterable<Map<String, Object>>) contributor.get("contributions");
 		for (Map<String, Object> contribution : contributions) {
 			//out.print("<a href=\"" + contribution.get("link") + "\" title=\"" + contribution.get("type") + "\">");
@@ -109,7 +110,7 @@ public class ContributorsGeneration {
 		}
 	}
 
-	private void writeContributors(PrintStream out) {
+	private void writeContributors(final PrintStream out) {
 		int i = 0;
 		int colsPerRow = 6;
 		for (Map<String, Object> contributor : contributors) {
@@ -127,7 +128,7 @@ public class ContributorsGeneration {
 		}
 	}
 
-	private void writeFooter(PrintStream out) {
+	private void writeFooter(final PrintStream out) {
 		out.println("</tr>");
 		out.println("</table>");
 		out.println("<!-- markdownlint-enable -->");
@@ -135,7 +136,7 @@ public class ContributorsGeneration {
 		out.println("<!-- ALL-CONTRIBUTORS-LIST:END -->");
 	}
 
-	public void process(String filename) throws IOException {
+	public void process(final String filename) throws IOException {
 		// encode to UTF-8 by default & force LF line endings
 		final PrintStream out = new PrintStream(System.out, true, "UTF-8") {
 			@Override
