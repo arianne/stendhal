@@ -134,7 +134,18 @@ public class ContributorsGeneration {
 	}
 
 	public void process(String filename) throws IOException {
-		final PrintStream out = new PrintStream(System.out, true, "UTF-8");
+		// encode to UTF-8 by default & force LF line endings
+		final PrintStream out = new PrintStream(System.out, true, "UTF-8") {
+			@Override
+			public void println() {
+				write("\n".getBytes(), 0, 1);
+			}
+
+			@Override
+			public void println(final String st) {
+				write((st + "\n").getBytes(), 0, st.length() + 1);
+			}
+		};
 
 		this.parse(filename);
 		this.writeHeader(out);
