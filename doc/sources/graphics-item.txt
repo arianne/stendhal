@@ -211,7 +211,7 @@ unsealed_envelope.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 data/sprites/items/drink/
 
 antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-beer.png                       Open Clipart Library, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha, http://www.clker.com/clipart-16755.html
+beer.png                       Open Clipart Library, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://www.clker.com/clipart-16755.html
 cobra_venom.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
