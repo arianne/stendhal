@@ -149,7 +149,7 @@ public class ContributorsGeneration {
 		if (fullname != null) {
 			sb.append(fullname);
 			if (name != null) {
-				sb.append("(");
+				sb.append(" (");
 			}
 		}
 		if (name != null) {
