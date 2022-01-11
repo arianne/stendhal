@@ -26,32 +26,11 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 		this._x = 0;
 		this._y = 0;
 		this.hX = this.baseImage.width / 2;
-		// These are stupid, but they make closure compiler shut up about
-		// undefined properties. (And there's no standard way to define
-		// fields in JS, duh).
-		this._colorMap = this._colorMap;
-		this._hsMap = this._hsMap;
-	}
-
-	set x(newX) {
-		this._x = Math.floor(newX / this._blockWidth);
-	}
-
-	get x() {
-		return this._x;
-	}
-
-	set y(newY) {
-		this._y = Math.floor(newY / this._blockHeight);
-	}
-
-	get y() {
-		return this._y;
 	}
 
 	override get color() {
 		if (this.enabled) {
-			const hs = this._hsMap[this.x][this.y];
+			const hs = this._hsMap[Math.floor(this._x / this._blockWidth)][Math.floor(this._y / this._blockHeight)];
 			const hsl = [hs[0], hs[1], this.hX / this.baseImage.width];
 			const rgbArray = stendhal.data.sprites.filter.hsl2rgb(hsl);
 			return stendhal.data.sprites.filter.mergergb(rgbArray);
@@ -73,8 +52,8 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 					const delta = (hueDelta * hueDelta) + (satDelta * satDelta);
 					if (delta < bestDelta) {
 						bestDelta = delta;
-						this._x = i;
-						this._y = j;
+						this._x = i * this._blockWidth;
+						this._y = j * this._blockHeight;
 					}
 				}
 			}
@@ -122,7 +101,7 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	}
 
 	override _calculateGradientStops() {
-		let hs = this._hsMap[this.x][this.y];
+		let hs = this._hsMap[Math.floor(this._x / this._blockWidth)][Math.floor(this._y / this._blockHeight)];
 		const hslLeft = [hs[0], hs[1], 0.08];
 		const hslMiddle = [hs[0], hs[1], 0.5];
 		const hslRight = [hs[0], hs[1], 0.92];
@@ -134,8 +113,10 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	}
 
 	override _drawSelection() {
+		let x = Math.floor(this._x / this._blockWidth);
+		let y = Math.floor(this._y / this._blockHeight);
 		this.ctx.strokeStyle = "white";
-		this.ctx.strokeRect(this.x * this._blockWidth, this.y * this._blockHeight, this._blockWidth, this._blockHeight);
+		this.ctx.strokeRect(x * this._blockWidth, y * this._blockHeight, this._blockWidth, this._blockHeight);
 	}
 
 
