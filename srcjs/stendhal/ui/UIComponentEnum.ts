@@ -12,5 +12,6 @@
 
 export enum UIComponentEnum {
 
+	OutfitDialog,
 	TravelLogDialog
 }

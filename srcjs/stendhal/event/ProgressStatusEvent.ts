@@ -15,8 +15,6 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { RPEvent } from "./RPEvent";
 
-declare var stendhal: any
-
 /**
  * show travel log and details
  */

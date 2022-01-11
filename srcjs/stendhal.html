@@ -147,6 +147,113 @@
 			</div>
 		</template>
 
+		<template id="outfitdialog-template">
+			<div class="background">
+			<div class="horizontalgroup">
+
+				<!-- part selectors -->
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhair">&lt;</button>
+				<canvas id="setoutfithaircanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthair">&gt;</button>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitpreveyes">&lt;</button>
+				<canvas id="setoutfiteyescanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexteyes">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevmouth">&lt;</button>
+				<canvas id="setoutfitmouthcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextmouth">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhead">&lt;</button>
+				<canvas id="setoutfitheadcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthead">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevbody">&lt;</button>
+				<canvas id="setoutfitbodycanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextbody">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevdress">&lt;</button>
+				<canvas id="setoutfitdresscanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextdress">&gt;</button>
+				</div>
+				</div>
+
+				<!-- color selectors -->
+				<div class="verticalgroup">
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfithaircolortoggle">
+				<label for="setoutfithaircolortoggle">Hair color</label>
+				</div>
+				<canvas id="setoutfithaircolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfithaircolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfiteyescolortoggle">
+				<label for="setoutfiteyescolortoggle">Eyes color</label>
+				</div>
+				<canvas id="setoutfiteyescolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfiteyescolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfitskincolortoggle">
+				<label for="setoutfitskincolortoggle">Skin color</label>
+				</div>
+				<canvas id="setoutfitskincolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfitskincolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfitdresscolortoggle">
+				<label for="setoutfitdresscolortoggle">Dress color</label>
+				</div>
+				<canvas id="setoutfitdresscolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfitdresscolorgradient" width="80" height="10"></canvas>
+				</div>
+				</div>
+
+				<!-- hat & mask part selectors -->
+				<div class="verticalgroup"> 
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhat">&lt;</button>
+				<canvas id="setoutfithatcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthat">&gt;</button>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevmask">&lt;</button>
+				<canvas id="setoutfitmaskcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextmask">&gt;</button>
+				</div>
+
+				</div>
+
+				<!-- horizontal group -->
+				<div><canvas id="setoutfitcompositecanvas" width="48" height="64"></canvas></div>
+			</div>
+			<div align="right"><button type="button" id="setoutfitcancel">Cancel</button>
+			<button type="button" id="setoutfitapply">Change Outfit</button></div>
+			</div>
+		</template>
+
 		<script type="text/javascript" src="stendhal-compiled.js"></script>
 	</body>
 

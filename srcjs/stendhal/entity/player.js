@@ -92,7 +92,12 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			list.push({
 				title: "Set outfit",
 				action: function(entity) {
-					new stendhal.ui.OutfitDialog();
+					let outfitDialog = ui.get(UIComponentEnum.OutfitDialog);
+					if (!outfitDialog) {
+						outfitDialog = new OutfitDialog();
+						new FloatingWindow("Choose outfit", outfitDialog, 300, 50);
+						ui.registerComponent(UIComponentEnum.OutfitDialog, outfitDialog);
+					}
 				}
 			});
 			list.push({
