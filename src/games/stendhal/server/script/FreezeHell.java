@@ -52,7 +52,7 @@ public class FreezeHell extends ScriptImpl {
 	private static final Logger LOGGER = Logger.getLogger(FreezeHell.class);
 	
 	private static final LocalDateTime DEFAULT_FREEZING_TIME = Year.now().atMonth(Month.APRIL).atDay(1).atStartOfDay();
-	private Duration freezingDuration = Duration.ofDays(1);
+	private static final Duration DEFAULT_FREEZING_DURATION = Duration.ofDays(1);
 	
 	@Override
 	public void execute(final Player admin, final List<String> args) {
@@ -61,25 +61,27 @@ public class FreezeHell extends ScriptImpl {
 		startTime = determineStartTime(admin, args, now);
 		int waitSec = (int) Duration.between(now, startTime).getSeconds();
 		
-		determineDuration(admin, args);
+		Duration freezingDuration = determineDuration(admin, args);
 		
 		String message = "Scheduling freezing hell in " + waitSec 
 				+ " seconds at " + startTime + ". Freeze for " + freezingDuration + ".";
 		admin.sendPrivateText(message);
 		LOGGER.info(message);
-		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, currentTurn -> freezeOrThaw(true));
+		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, currentTurn -> freezeOrThaw(true, freezingDuration));
 	}
 
-	private void determineDuration(final Player admin, final List<String> args) {
+	private Duration determineDuration(final Player admin, final List<String> args) {
 		if (args.size() > 1) {
 			try {
 				LocalTime time = LocalTime.parse(args.get(1));
-				freezingDuration = Duration.between(LocalTime.MIN, time);
+				return Duration.between(LocalTime.MIN, time);
 			} catch (DateTimeParseException e) {
 				admin.sendPrivateText(e.getMessage());
 				throw e;
 			}
 		}
+		
+		return DEFAULT_FREEZING_DURATION;
 	}
 
 	private LocalDateTime determineStartTime(final Player admin, final List<String> args,
@@ -126,7 +128,7 @@ public class FreezeHell extends ScriptImpl {
 	 * 
 	 * @param freeze <code>true</code> if the hell freezes
 	 */
-	private void freezeOrThaw(boolean freeze) {
+	private void freezeOrThaw(boolean freeze, Duration freezingDuration) {
 		String newMap;
 		if (freeze) {
 			newMap = "tiled/Level -2/nalwor/frozen_hell.tmx";
@@ -154,7 +156,7 @@ public class FreezeHell extends ScriptImpl {
 				int seconds = (int) freezingDuration.getSeconds();
 				LOGGER.info("Hell just froze, thawing in " + seconds + " seconds.");
 				// Schedule thawing too
-				SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, currentTurn -> freezeOrThaw(false));
+				SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, currentTurn -> freezeOrThaw(false, Duration.ZERO));
 			} else {
 				msg = "Grim Reaper shouts: Phew, it's comfortably warm again.";
 				LOGGER.info("Hell is back to normal");
