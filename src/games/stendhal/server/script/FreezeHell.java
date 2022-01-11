@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2016 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2022 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,13 @@
 package games.stendhal.server.script;
 
 import java.io.IOException;
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -25,45 +31,94 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
-import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 
 /**
- * Freezes the hell for 1st of April. The script should be run <em>before</em>
- * the day, not during it.
+ * Freezes the hell. The script should be run <em>before</em>
+ * the day, not during it. For testing it allows optionally specifying the time
+ * and duration.
+ * <p>
+ * First argument is the freezing time (either date time in ISO format, or time in
+ * HH:MM[:SS] format. Time before the current moment will be interpreted as the
+ * corresponding time of next day. The default is start of April 1, either the
+ * current year, or the next year if run after that moment.
+ * <p> 
+ * Second argument is the freezing duration in HH:MM[:SS] format. Default is one
+ * day.
  */
 public class FreezeHell extends ScriptImpl {
 	private static final Logger LOGGER = Logger.getLogger(FreezeHell.class);
 	
+	private static final LocalDateTime DEFAULT_FREEZING_TIME = Year.now().atMonth(Month.APRIL).atDay(1).atStartOfDay();
+	private Duration freezingDuration = Duration.ofDays(1);
+	
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, Calendar.APRIL);
-		cal.set(Calendar.DAY_OF_MONTH, 1);
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 1);
-		long waitTime = cal.getTimeInMillis() - System.currentTimeMillis();
-		// Starting the script 1st of April is too late - the event will be
-		// scheduled for the next year.
-		if (waitTime < 0) {
-			cal.add(Calendar.YEAR, 1);
-			cal.set(Calendar.MONTH, Calendar.APRIL);
-			cal.set(Calendar.DAY_OF_MONTH, 1);
-			cal.set(Calendar.HOUR_OF_DAY, 0);
-			cal.set(Calendar.MINUTE, 0);
-			waitTime = cal.getTimeInMillis() - System.currentTimeMillis();
-		}
-		// wait time in seconds
-		int waitSec = (int) waitTime / 1000;
-		LOGGER.info("Scheduling freezing hell in " + waitSec + " seconds.");
-		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, new TurnListener() {
-			@Override
-			public void onTurnReached(int currentTurn) {
-				freezeOrThaw(true);
+		LocalDateTime startTime;
+		LocalDateTime now = LocalDateTime.now();
+		startTime = determineStartTime(admin, args, now);
+		int waitSec = (int) Duration.between(now, startTime).getSeconds();
+		
+		determineDuration(admin, args);
+		
+		String message = "Scheduling freezing hell in " + waitSec 
+				+ " seconds at " + startTime + ". Freeze for " + freezingDuration + ".";
+		admin.sendPrivateText(message);
+		LOGGER.info(message);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, currentTurn -> freezeOrThaw(true));
+	}
+
+	private void determineDuration(final Player admin, final List<String> args) {
+		if (args.size() > 1) {
+			try {
+				LocalTime time = LocalTime.parse(args.get(1));
+				freezingDuration = Duration.between(LocalTime.MIN, time);
+			} catch (DateTimeParseException e) {
+				admin.sendPrivateText(e.getMessage());
+				throw e;
 			}
-		});
+		}
+	}
+
+	private LocalDateTime determineStartTime(final Player admin, final List<String> args,
+			LocalDateTime now) {
+		LocalDateTime startTime;
+		if (!args.isEmpty()) {
+			startTime = parseStartTime(admin, args, now);
+		} else {
+			startTime = DEFAULT_FREEZING_TIME;
+		}
+		if (startTime.isBefore(now)) {
+			startTime = startTime.plusYears(1);
+		}
+		return startTime;
+	}
+
+	private LocalDateTime parseStartTime(Player admin, final List<String> args,
+			LocalDateTime now) {
+		LocalDateTime startTime;
+		try {
+			LocalTime time = LocalTime.parse(args.get(0));
+			startTime = LocalDate.now().atTime(time);
+			if (startTime.isBefore(now)) {
+				// Testing - delay by a day
+				startTime = startTime.plusDays(1);
+			}
+		} catch (DateTimeParseException e) {
+			try {
+				startTime = LocalDateTime.parse(args.get(0));
+				if (startTime.isBefore(now)) {
+					throw new DateTimeParseException("The specified start time is in the past.", args.get(0), 0);
+				}
+			} catch (DateTimeParseException ex) {
+				admin.sendPrivateText(ex.getMessage());
+				throw ex;
+			}
+		}
+		
+		return startTime;
 	}
 	
 	/**
@@ -96,14 +151,10 @@ public class FreezeHell extends ScriptImpl {
 			String msg;
 			if (freeze) {
 				msg = "Grim Reaper shouts: Why is it suddenly cold here?";
-				LOGGER.info("Hell just froze, thawing in " + 60 * 60 * 24 + " seconds.");
+				int seconds = (int) freezingDuration.getSeconds();
+				LOGGER.info("Hell just froze, thawing in " + seconds + " seconds.");
 				// Schedule thawing too
-				SingletonRepository.getTurnNotifier().notifyInSeconds(60 * 60 * 24, new TurnListener() {
-					@Override
-					public void onTurnReached(int currentTurn) {
-						freezeOrThaw(false);
-					}
-				});
+				SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, currentTurn -> freezeOrThaw(false));
 			} else {
 				msg = "Grim Reaper shouts: Phew, it's comfortably warm again.";
 				LOGGER.info("Hell is back to normal");
