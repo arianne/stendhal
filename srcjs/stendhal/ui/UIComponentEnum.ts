@@ -10,15 +10,21 @@
  ***************************************************************************/
 
 
-export enum UIComponentEnum {
+/**
+ * well known user interface components
+ */
+export class UIComponentEnum {
+
+	// this should be an enum, but after TypeScript and closure compiler are done, all
+	// enum members resolve to undefined. That is both in JavaScript and TypeScript code
 
 	// Panel
-	TopPanel,
-	LeftPanel,
-	RightPanel,
-	BottomPanel,
+	public static readonly TopPanel = 0;
+	public static readonly LeftPanel = 1;
+	public static readonly RightPanel = 2;
+	public static readonly BottomPanel = 3;
 
 	// Dialog
-	OutfitDialog,
-	TravelLogDialog
+	public static readonly OutfitDialog = 4;
+	public static readonly TravelLogDialog = 5;
 }
