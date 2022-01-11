@@ -9,16 +9,25 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Panel } from "./toolkit/Panel";
 
-export enum UIComponentEnum {
+import { UIComponentEnum } from "./UIComponentEnum";
+import { ui } from "./UI";
 
-	// Panel
-	TopPanel,
-	LeftPanel,
-	RightPanel,
-	BottomPanel,
+export class UserInterfaceFactory {
 
-	// Dialog
-	OutfitDialog,
-	TravelLogDialog
+	public create() {
+		let topPanel = new Panel("topPanel");
+		ui.registerComponent(UIComponentEnum.LeftPanel, topPanel);
+		
+		let leftPanel = new Panel("leftColumn");
+		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
+
+		let rightPanel = new Panel("rightColumn");
+		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
+
+		let bottomPanel = new Panel("bottomPanel");
+		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
+	}
+
 }

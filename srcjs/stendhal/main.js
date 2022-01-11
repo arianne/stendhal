@@ -16,6 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+var UserInterfaceFactory = require("../../build/ts/ui/UserInterfaceFactory").UserInterfaceFactory;
 
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
 
@@ -201,6 +202,8 @@ stendhal.main = {
 	 */
 	startup: function() {
 		stendhal.main.devWarning();
+
+		new UserInterfaceFactory().create();
 
 		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
