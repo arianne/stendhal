@@ -19,13 +19,13 @@ export class OutfitPartSelector {
 		private _ctx: CanvasRenderingContext2D;
 		private _width: number;
 		private _height: number;
-		private _color = null;
-		private _image = null;
+		private _color?: any;
+		private _image?: Promise<CanvasImageSource>;
 
-	constructor(part: string, initialIndex: number, maxindex: number, onPartChanged: Function) {
+	constructor(part: string, initialIndex: any, maxindex: number, onPartChanged: Function) {
 		this._part = part;
 		this._onPartChanged = onPartChanged;
-		this._index = initialIndex;
+		this._index = parseInt(initialIndex, 10);
 		this._maxindex = maxindex;
 
 		const canvas = document.getElementById('setoutfit' + part + 'canvas') as HTMLCanvasElement;
@@ -33,8 +33,8 @@ export class OutfitPartSelector {
 		this._ctx = canvas.getContext("2d")!;
 		this._width = canvas.width;
 		this._height = canvas.height;
-		this._color = null;
-		this._image = null;
+		this._color = undefined;
+		this._image = undefined;
 	}
 
 
@@ -71,7 +71,7 @@ export class OutfitPartSelector {
 	}
 
 	set index(newIndex: any) {
-		this._index = newIndex;
+		this._index = parseInt(newIndex, 10);
 		this.draw();
 	}
 
@@ -96,7 +96,7 @@ export class OutfitPartSelector {
 		this._onPartChanged();
 	}
 
-	_getPartSprite(part: string, index: number, color = null) {
+	_getPartSprite(part: string, index: number, color = null): Promise<CanvasImageSource> {
 		const fname = "/data/sprites/outfit/" + part + "/" + part + "_" + this.indexString(index) + ".png";
 		if (color != null) {
 			return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
