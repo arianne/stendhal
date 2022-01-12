@@ -14,6 +14,7 @@ import { ui } from "../UI";
 
 import { Panel } from "../toolkit/Panel";
 
+import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
 export class DesktopUserInterfaceFactory {
@@ -25,9 +26,14 @@ export class DesktopUserInterfaceFactory {
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
+		let miniMap = new MiniMapComponent();
+		ui.registerComponent(UIComponentEnum.MiniMap, miniMap);
+		leftPanel.add(miniMap);
+
 		let playerStats = new PlayerStatsComponent();
 		ui.registerComponent(UIComponentEnum.PlayerStats, playerStats);
 		leftPanel.add(playerStats);
+
 
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
