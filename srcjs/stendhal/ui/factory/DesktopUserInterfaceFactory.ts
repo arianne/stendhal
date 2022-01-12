@@ -9,10 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Panel } from "./toolkit/Panel";
+import { Panel } from "../toolkit/Panel";
 
-import { UIComponentEnum } from "./UIComponentEnum";
-import { ui } from "./UI";
+import { UIComponentEnum } from "../UIComponentEnum";
+import { ui } from "../UI";
 
 export class UserInterfaceFactory {
 
