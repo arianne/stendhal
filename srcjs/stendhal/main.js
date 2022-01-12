@@ -115,7 +115,7 @@ stendhal.main = {
 			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 				stendhal.zone.sortEntities();
 				ui.get(UIComponentEnum.MiniMap).draw();
-				stendhal.ui.buddyList.update();
+				ui.get(UIComponentEnum.BuddyList).update();
 				stendhal.ui.equip.update();
 				if (!stendhal.main.loaded) {
 					stendhal.main.loaded = true;
@@ -163,10 +163,6 @@ stendhal.main = {
 		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
-
-		var buddyList = document.getElementById("buddyList");
-		buddyList.addEventListener("mouseup", stendhal.ui.buddyList.onMouseUp);
-		buddyList.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 
 		var menubutton = document.getElementById("menubutton");
 		menubutton.addEventListener("click", (event) => {

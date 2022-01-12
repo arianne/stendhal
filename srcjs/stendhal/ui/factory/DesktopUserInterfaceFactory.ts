@@ -12,8 +12,10 @@
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ui } from "../UI";
 
+import { Component } from "../toolkit/Compontent";
 import { Panel } from "../toolkit/Panel";
 
+import { BuddyListComponent } from "../component/BuddyListComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
@@ -26,13 +28,9 @@ export class DesktopUserInterfaceFactory {
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
-		let miniMap = new MiniMapComponent();
-		ui.registerComponent(UIComponentEnum.MiniMap, miniMap);
-		leftPanel.add(miniMap);
-
-		let playerStats = new PlayerStatsComponent();
-		ui.registerComponent(UIComponentEnum.PlayerStats, playerStats);
-		leftPanel.add(playerStats);
+		this.add(leftPanel, UIComponentEnum.MiniMap, new MiniMapComponent());
+		this.add(leftPanel, UIComponentEnum.PlayerStats, new PlayerStatsComponent());
+		this.add(leftPanel, UIComponentEnum.BuddyList, new BuddyListComponent());
 
 
 		let rightPanel = new Panel("rightColumn");
@@ -40,6 +38,11 @@ export class DesktopUserInterfaceFactory {
 
 		let bottomPanel = new Panel("bottomPanel");
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
+	}
+
+	private add(panel: Panel, uiComponentEnum: UIComponentEnum, component: Component) {
+		panel.add(component);
+		ui.registerComponent(uiComponentEnum, component);
 	}
 
 }
