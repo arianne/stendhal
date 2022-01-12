@@ -10,8 +10,12 @@
  ***************************************************************************/
 
 import { ui } from "../UI";
-import { ActionContextMenu } from "../dialog/ActionContextMenu";
+import { UIComponentEnum } from "../UIComponentEnum";
+
 import { Component } from "../toolkit/Component";
+
+import { ActionContextMenu } from "../dialog/ActionContextMenu";
+import { ChatInputComponent } from "./ChatInputComponent";
 
 
 declare let marauroa: any;
@@ -140,7 +144,7 @@ export class BuddyListComponent extends Component {
 			actions.push({
 				title: "Talk",
 				action: function(entity: any) {
-					stendhal.ui.chatinput.setText("/msg "
+					(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/msg "
 							+ this.current.textContent.trim()
 							+ " ");
 				}
@@ -161,7 +165,7 @@ export class BuddyListComponent extends Component {
 			actions.push({
 				title: "Leave Message",
 				action: function(entity: any) {
-					stendhal.ui.chatinput.setText("/storemessage "
+					(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/storemessage "
 							+ this.current.textContent.trim()
 							+ " ");
 				}

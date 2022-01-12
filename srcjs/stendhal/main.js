@@ -173,10 +173,6 @@ stendhal.main = {
 		soundbutton.addEventListener("click", stendhal.main.toggleSound);
 		// update button state
 		stendhal.main.onSoundToggled();
-
-		var chatinput = document.getElementById("chatinput");
-		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
-		chatinput.addEventListener("keypress", stendhal.ui.chatinput.onKeyPress);
 	},
 
 	devWarning: function() {

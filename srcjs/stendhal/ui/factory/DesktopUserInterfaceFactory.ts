@@ -16,6 +16,7 @@ import { Component } from "../toolkit/Component";
 import { Panel } from "../toolkit/Panel";
 
 import { BuddyListComponent } from "../component/BuddyListComponent";
+import { ChatInputComponent } from "../component/ChatInputComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
@@ -38,6 +39,8 @@ export class DesktopUserInterfaceFactory {
 
 		let bottomPanel = new Panel("bottomPanel");
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
+
+		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());
 	}
 
 	private add(panel: Panel, uiComponentEnum: UIComponentEnum, component: Component) {

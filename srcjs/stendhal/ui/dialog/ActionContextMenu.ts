@@ -9,7 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui} from "../UI";
+import { UIComponentEnum } from "../UIComponentEnum";
 import { Component } from "../toolkit/Component";
+import { ChatInputComponent } from "../component/ChatInputComponent";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -96,7 +99,7 @@ export class ActionContextMenu extends Component {
 			actions.push({
 				title: "(*) Alter",
 				action: function(entity: any) {
-					stendhal.ui.chatinput.setText("/alter #"
+					(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/alter #"
 							+ entity["id"]
 							+ " ");
 				}
