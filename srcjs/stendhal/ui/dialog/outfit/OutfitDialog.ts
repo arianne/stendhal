@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../../toolkit/Compontent";
+import { Component } from "../../toolkit/Component";
 import { OutfitPartSelector } from "./OutfitPartSelector";
 import { OutfitColorSelector } from "./OutfitColorSelector";
 import { OutfitPaletteColorSelector } from "./OutfitPaletteColorSelector";

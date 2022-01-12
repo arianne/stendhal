@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "./Compontent";
+import { Component } from "./Component";
 import { FloatingWindow } from "./FloatingWindow";
 
 /**

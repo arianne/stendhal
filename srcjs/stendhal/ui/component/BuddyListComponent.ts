@@ -11,7 +11,7 @@
 
 import { ui } from "../UI";
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
-import { Component } from "../toolkit/Compontent";
+import { Component } from "../toolkit/Component";
 
 
 declare let marauroa: any;

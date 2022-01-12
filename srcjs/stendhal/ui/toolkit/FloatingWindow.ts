@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "./Compontent";
+import { Component } from "./Component";
 import { ui } from "../UI";
 
 declare var stendhal: any;

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Compontent";
+import { Component } from "../toolkit/Component";
 
 declare var marauroa: any;
 

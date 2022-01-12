@@ -12,7 +12,7 @@
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ui } from "../UI";
 
-import { Component } from "../toolkit/Compontent";
+import { Component } from "../toolkit/Component";
 import { Panel } from "../toolkit/Panel";
 
 import { BuddyListComponent } from "../component/BuddyListComponent";

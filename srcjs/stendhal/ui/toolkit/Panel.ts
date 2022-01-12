@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "./Compontent";
+import { Component } from "./Component";
 
 /**
  * a panel

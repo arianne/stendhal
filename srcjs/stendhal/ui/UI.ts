@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { UIComponentEnum } from "./UIComponentEnum";
-import { Component } from "./toolkit/Compontent";
+import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
 class UI {
