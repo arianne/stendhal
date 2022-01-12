@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                (C) Copyright 2003-2022 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,30 +9,32 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Component } from "../toolkit/Compontent";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+declare var marauroa: any;
 
 /**
- * buddylist
+ * displays the player stats
  */
-stendhal.ui.stats = {
-	keys: ['hp', 'base_hp', 'atk', 'atk_item', 'atk_xp', 'def', 'def_item', 'def_xp', 'xp', 'level'],
+export class PlayerStatsComponent extends Component {
 
-	update: function() {
-		if (!stendhal.ui.stats.dirty) {
+	private readonly keys = ["hp", "base_hp", "atk", "atk_item", "atk_xp", "def", "def_item", "def_xp", "xp", "level"];
+
+	constructor() {
+		super("stats");
+	}
+
+	update(key: string) {
+		if (this.keys.indexOf(key) < -1) {
 			return;
 		}
-		stendhal.ui.stats.dirty = false;
-		var div = document.getElementById("stats");
-		var object = marauroa.me;
-		div.innerText =
+		let object = marauroa.me;
+		this.componentElement.innerText =
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
 			+ "ATK: " + object["atk"] + " x " + object["atk_item"] + "\r\n"
 			+ "DEF: " + object["def"] + " x " + object["def_item"] + "\r\n"
 			+ "XP: " + object["xp"] + "\r\n"
 			+ "Level: " + object["level"];
 	}
-};
+
+}

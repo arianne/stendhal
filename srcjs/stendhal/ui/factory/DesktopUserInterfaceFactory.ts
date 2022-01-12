@@ -9,12 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Panel } from "../toolkit/Panel";
-
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ui } from "../UI";
 
-export class UserInterfaceFactory {
+import { Panel } from "../toolkit/Panel";
+
+import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
+
+export class DesktopUserInterfaceFactory {
 
 	public create() {
 		let topPanel = new Panel("topPanel");
@@ -22,6 +24,10 @@ export class UserInterfaceFactory {
 		
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
+
+		let playerStats = new PlayerStatsComponent();
+		ui.registerComponent(UIComponentEnum.PlayerStats, playerStats);
+		leftPanel.add(playerStats);
 
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);

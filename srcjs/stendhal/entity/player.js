@@ -33,9 +33,10 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		if (marauroa.me !== this) {
 			return;
 		}
-		if (stendhal.ui.stats.keys.indexOf(key) > -1) {
-			stendhal.ui.stats.dirty = true;
-		}
+
+		queueMicrotask( () => {
+			ui.get(UIComponentEnum.PlayerStats).update(key);
+		});
 	},
 
 	/**

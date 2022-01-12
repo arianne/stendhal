@@ -117,7 +117,6 @@ stendhal.main = {
 				stendhal.ui.minimap.draw();
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
-				stendhal.ui.stats.update();
 				if (!stendhal.main.loaded) {
 					stendhal.main.loaded = true;
 					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
@@ -203,7 +202,7 @@ stendhal.main = {
 	startup: function() {
 		stendhal.main.devWarning();
 
-		new UserInterfaceFactory().create();
+		new DesktopUserInterfaceFactory().create();
 
 		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");

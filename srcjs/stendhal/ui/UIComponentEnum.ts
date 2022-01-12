@@ -27,4 +27,7 @@ export class UIComponentEnum {
 	// Dialog
 	public static readonly OutfitDialog = 4;
 	public static readonly TravelLogDialog = 5;
+
+	// Components
+	public static readonly PlayerStats = 6;
 }
