@@ -11,7 +11,7 @@
 "use strict";
 
 var CombinedTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").CombinedTilesetRenderingStrategy;
-var IndividualTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").IndividualTilesetRenderingStrategy;
+var IndividualTilesetRenderingStrategy = require("../../../build/ts/landscape/IndividualTilesetRenderingStrategy").IndividualTilesetRenderingStrategy;
 
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
