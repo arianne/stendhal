@@ -25,6 +25,8 @@ public class StendhalWebView extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		final WebView clientWebView = (WebView) findViewById(R.id.clientWebView);
+		clientWebView.getSettings().setJavaScriptEnabled(true);
+
 		clientWebView.loadUrl("https://stendhalgame.org/testclient/stendhal.html");
 	}
 }
