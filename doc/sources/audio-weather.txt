@@ -1,7 +1,7 @@
 
 data/sounds/weather/
 
-rain_heavy.*  Marcus Dellicompagni - www.PoundSound.co.uk; CC0; https://freesound.org/people/dingo1/sounds/134721
+rain_heavy.*  Marcus Dellicompagni - www.PoundSound.co.uk; CC0; https://freesound.org/people/dingo1/sounds/134721 (file & uploader removed from freesound.org)
 rain_light.*  Zepp2010; CC0; https://freesound.org/people/Zepp2010/sounds/163264
 rain.*        klangfabrik; CC0; https://freesound.org/people/klangfabrik/sounds/157149/
 thunder-01.*  vonz; CC0; https://freesound.org/people/vonz/sounds/188767/

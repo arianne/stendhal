@@ -23,7 +23,7 @@ bird-crow-02.*            Samuel Strågefors (straget); CC0; https://freesound.o
 bird-dodo-01.ogg          winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
 bird-pigeon-1.*           winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
 bird-pigeon-flap-1.*      winsx87; CC0; https://freesound.org/people/winsx87/sounds/152024/
-bird-raven-01.*           dauser; CC0; https://freesound.org/people/dauser/sounds/328846/
+bird-raven-01.*           dauser; CC0; https://freesound.org/people/dauser/sounds/328846/ (file & uploader removed from freesound.org)
 bird-woodpecker-01.*      Benboncan; CC BY 3.0; https://freesound.org/people/Benboncan/sounds/66955/
 bones-2.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16324
 book-1.ogg                Storyteller; GPL
@@ -67,7 +67,7 @@ elephant-2.*              vataaa; CC0; https://freesound.org/people/vataaa/sound
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
 fishing-1.*               vibe_crc + j1987; CC0; https://freesound.org/people/vibe_crc/sounds/50623/, https://freesound.org/people/j1987/sounds/95564/
 gargoyle-01.*             lazr2012; CC BY 3.0; https://freesound.org/people/lazr2012/sounds/169298/
-gasha-yell-01.ogg         Inge Jard Grønås (JarAxe); CC BY 3.0; https://freesound.org/people/JarAxe/sounds/92026/
+gasha-yell-01.ogg         Inge Jard Grønås (JarAxe); CC BY 3.0; https://freesound.org/people/JarAxe/sounds/92026/ (file & uploader deleted from freesound.org)
 ghost-01.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431979/
 ghost-02.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431980/
 ghost-03.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431981/
