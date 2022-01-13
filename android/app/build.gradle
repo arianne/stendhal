@@ -11,7 +11,8 @@ android {
 		targetSdk 32
 		versionCode 1
 		versionName "0.0.3"
-		setProperty("archivesBaseName", rootProject.getName() + "WebView-$versionName")
+		setProperty("archivesBaseName", rootProject.getName() + "WebView-${versionName}")
+		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32
