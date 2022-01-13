@@ -4,7 +4,6 @@ TODO:
 - vectorize Stendhal Icon
 
 BUILD TODO:
-- custom output filename
 - script to download Android SDK
 - create ant build target
 - add 'android/app/build` to ant 'clean' target
