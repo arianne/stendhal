@@ -13,6 +13,7 @@ package org.arianne.stendhal.client;
 
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -26,6 +27,16 @@ public class StendhalWebView extends AppCompatActivity {
 
 		final WebView clientWebView = (WebView) findViewById(R.id.clientWebView);
 		clientWebView.getSettings().setJavaScriptEnabled(true);
+
+		clientWebView.setWebViewClient(new WebViewClient() {
+			/* allow redirects */
+			@Override
+			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
+				/* FIXME: should only allow redirects to login page & web client URLs */
+				view.loadUrl(url);
+				return false;
+			}
+		});
 
 		clientWebView.loadUrl("https://stendhalgame.org/testclient/stendhal.html");
 	}
