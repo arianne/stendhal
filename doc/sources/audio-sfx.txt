@@ -65,7 +65,7 @@ eat-01.*                  Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesou
 elephant-1.*              vataaa; CC0; https://freesound.org/people/vataaa/sounds/148873/
 elephant-2.*              vataaa; CC0; https://freesound.org/people/vataaa/sounds/148873/
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
-fishing-1.*               be_crc + j1987; CC0; https://freesound.org/people/vibe_crc/sounds/50623/, https://freesound.org/people/j1987/sounds/95564/
+fishing-1.*               vibe_crc + j1987; CC0; https://freesound.org/people/vibe_crc/sounds/50623/, https://freesound.org/people/j1987/sounds/95564/
 gargoyle-01.*             lazr2012; CC BY 3.0; https://freesound.org/people/lazr2012/sounds/169298/
 gasha-yell-01.ogg         Inge Jard Grønås (JarAxe); CC BY 3.0; https://freesound.org/people/JarAxe/sounds/92026/
 ghost-01.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431979/
@@ -135,13 +135,13 @@ ogre-fart-02.*            dleigh; CC0; https://freesound.org/people/dleigh/sound
 ogre-fart-03.*            peridactyloptrix; CC0; https://freesound.org/people/peridactyloptrix/sounds/202528/
 ogre-fart-04.*            DSISStudios; CC0; https://freesound.org/people/DSISStudios/sounds/241000/
 ogre-groan-[01-02].*      noahpardo; CC0; https://freesound.org/people/noahpardo/sounds/345734/
-ogre-yell-01.*            tim.kahn; CC BY 3.0; https://freesound.org/people/tim.kahn/sounds/163728/
+ogre-yell-01.*            Tim Kahn; CC BY 3.0; https://freesound.org/people/tim.kahn/sounds/163728/
 orc-snarl-01.*            qubodup; CC BY 3.0; https://freesound.org/people/qubodup/sounds/212764/
 penguin-1.*               Bidone; CC0; https://freesound.org/people/Bidone/sounds/66150/
 penguin-2.*               Bidone; CC0; https://freesound.org/people/Bidone/sounds/66150/
 piano-01.*                Scott Joplin, Tim Starling; CC0; https://commons.wikimedia.org/wiki/File:Maple_leaf_rag.ogg
 pick-metallic-1.*         qubodup; CC0; https://freesound.org/people/qubodup/sounds/182821/
-pig-snort-01.*            yottasounds; CC BY 3.0; https://freesound.org/people/yottasounds/sounds/174615/
+pig-snort-01.*            Michael Beck (yottasounds); CC BY 3.0; https://freesound.org/people/yottasounds/sounds/174615/
 pig-squeal-01.ogg         unnamed; public domain; https://www.mediacollege.com/downloads/sound-effects/animals/pig/
 pout-1.ogg                Jordan Irwin (AntumDeluge); CC0; Stendhal
 puppy-bark-1.*            moffet; CC0; https://freesound.org/people/moffet/sounds/72579/
@@ -150,12 +150,12 @@ rat-squeak-01.*           toefur; CC0; https://freesound.org/people/toefur/sound
 rat-squeak-02.*           shyguy014; CC0; https://freesound.org/people/shyguy014/sounds/463789/
 rat-squeak-03.*           JoseAgudelo; CC0; https://freesound.org/people/JoseAgudelo/sounds/472399/
 rattlesnake-1.*           fws.gov; public domain; https://soundbible.com/237-Rattlesnake-Rattle.html
-roar-dragon-1.*           JoelAudio; CC0; https://freesound.org/people/JoelAudio/sounds/85568/
+roar-dragon-1.*           Joel Azzopardi (JoelAudio); CC0; https://freesound.org/people/JoelAudio/sounds/85568/
 roar-dragon-2.*           frasbr; CC0; https://freesound.org/people/frasbr/sounds/145729/
 roar-large-1.*            ibm5155; CC0; https://freesound.org/people/ibm5155/sounds/174913/
 robot-1.ogg               Jordan Irwin (AntumDeluge); BSD; Stendhal
 robot-3.ogg               Loge the 60th; Public Domain; https://soundbible.com/1758-Door-Entry-Notification.html
-rocks-1.*                 ALLANZ10D; CC0; https://freesound.org/people/ALLANZ10D/sounds/155934/
+rocks-1.*                 Allan K Zepeda (ALLANZ10D); CC0; https://freesound.org/people/ALLANZ10D/sounds/155934/
 rubber_toy-01.*           Free-Rush; CC0; https://freesound.org/people/Free-Rush/sounds/454575/
 scrape-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247

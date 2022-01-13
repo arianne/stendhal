@@ -13,5 +13,5 @@ thunder-06.*  Dave Welsh; CC0; https://freesound.org/people/Dave%20Welsh/sounds/
 thunder-07.*  Xythe; CC0; https://freesound.org/people/Xythe/sounds/37299/
 thunder-08.*  Yoyodaman234; CC0; https://freesound.org/people/Yoyodaman234/sounds/253953/
 wind_heavy.*  stewdio2003; CC0; https://freesound.org/people/stewdio2003/sounds/238374/
-wind_light.*  MrAuralization; CC0; https://freesound.org/people/MrAuralization/sounds/243617/
-wind.*        felix.blume; CC0; https://freesound.org/people/felix.blume/sounds/146436/
+wind_light.*  Dennis Johansson (MrAuralization); CC0; https://freesound.org/people/MrAuralization/sounds/243617/
+wind.*        Félix Blume; CC0; https://freesound.org/people/felix.blume/sounds/146436/
