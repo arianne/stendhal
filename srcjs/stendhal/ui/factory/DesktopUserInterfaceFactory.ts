@@ -17,6 +17,7 @@ import { Panel } from "../toolkit/Panel";
 
 import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
+import { ChatLogComponent } from "../component/ChatLogComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
@@ -41,6 +42,7 @@ export class DesktopUserInterfaceFactory {
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
 
 		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());
+		this.add(bottomPanel, UIComponentEnum.ChatLog, new ChatLogComponent());
 	}
 
 	private add(panel: Panel, uiComponentEnum: UIComponentEnum, component: Component) {

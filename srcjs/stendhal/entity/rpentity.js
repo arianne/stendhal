@@ -135,10 +135,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 		if (marauroa.me.isInHearingRange(this)) {
 			if (text.match("^!me") == "!me") {
-				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.getTitle()));
+				Chat.log("emote", text.replace(/^!me/, this.getTitle()));
 			} else {
 				this.addSpeechBubble(text);
-				stendhal.ui.chatLog.addLine("normal", this.getTitle() + ": " + text);
+				Chat.log("normal", this.getTitle() + ": " + text);
 			}
 		}
 	},
@@ -548,10 +548,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	onXPChanged: function(change) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
-			stendhal.ui.chatLog.addLine("significant_positive", this.getTitle() + " earns " + change + " experience points.");
+			Chat.log("significant_positive", this.getTitle() + " earns " + change + " experience points.");
 		} else if (change < 0) {
 			this.addFloater(change.toString(), "#ff8f8f");
-			stendhal.ui.chatLog.addLine("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
+			Chat.log("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
 		}
 	},
 

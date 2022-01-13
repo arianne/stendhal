@@ -14,11 +14,15 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var Chat = require("../../build/ts/util/Chat").Chat;
+
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
 
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
+
+var ChatLogComponent = require("../../build/ts/ui/component/ChatLogComponent").ChatLogComponent;
 
 var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
 var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;
@@ -48,7 +52,7 @@ stendhal.main = {
 	registerMarauroaEventHandlers: function() {
 
 		marauroa.clientFramework.onDisconnect = function(reason, error){
-			stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
+			Chat.log("error", "Disconnected: " + error);
 		};
 
 		marauroa.clientFramework.onLoginRequired = function() {
@@ -82,7 +86,7 @@ stendhal.main = {
 			marauroa.clientFramework.chooseCharacter(name);
 			var body = document.getElementById("body")
 			body.style.cursor = "auto";
-			stendhal.ui.chatLog.addLine("client", "Loading world...");
+			Chat.log("client", "Loading world...");
 		};
 
 
@@ -192,8 +196,8 @@ stendhal.main = {
 
 		new DesktopUserInterfaceFactory().create();
 
-		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
-		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
+		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
+		Chat.log("client", "Client loaded. Connecting...");
 
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();

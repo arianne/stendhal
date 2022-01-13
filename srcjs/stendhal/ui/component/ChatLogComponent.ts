@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                (C) Copyright 2003-2022 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,22 +9,23 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Component } from "../toolkit/Component";
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
 
 /**
  * Chat Log
  */
-stendhal.ui.chatLog = {
-	addLine: function(type, message) {
-		var chatElement = document.getElementById("chat");
-		if (!chatElement) {
-			return;
-		}
-		var date = new Date();
-		var time = "" + date.getHours() + ":";
+export class ChatLogComponent extends Component {
+
+	constructor() {
+		super("chat");
+	}
+
+
+	public addLine(type: string, message: string) {
+		let chatElement = this.componentElement;
+		let date = new Date();
+		let time = "" + date.getHours() + ":";
 		if (date.getHours() < 10) {
 			time = "0" + time;
 		}
@@ -33,32 +34,33 @@ stendhal.ui.chatLog = {
 		}
 		time = time + date.getMinutes();
 
-		var div = document.createElement("div");
+		let div = document.createElement("div");
 		div.className = "log" + type;
-		div.innerHTML = "[" + time + "] " + stendhal.ui.chatLog.formatLogEntry(message);
+		div.innerHTML = "[" + time + "] " + this.formatLogEntry(message);
 
-		var isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
+		let isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
 		chatElement.appendChild(div);
 
 		if (isAtBottom) {
 			chatElement.scrollTop = chatElement.scrollHeight;
 		}
-	},
+	}
 
-	formatLogEntry: function(message) {
+
+	private formatLogEntry(message: string) {
 		if (!message) {
 			return "";
 		}
-		var res = "";
-		var delims = [" ", ",", ".", "!", "?", ":", ";"];
-		var length = message.length;
-		var inHighlight = false, inUnderline = false,
+		let res = "";
+		let delims = [" ", ",", ".", "!", "?", ":", ";"];
+		let length = message.length;
+		let inHighlight = false, inUnderline = false,
 			inHighlightQuote = false, inUnderlineQuote = false;
-		for (var i = 0; i < length; i++) {
-			var c = message[i];
+		for (let i = 0; i < length; i++) {
+			let c = message[i];
 
 			if (c === "\\") {
-				var n = message[i + 1];
+				let n = message[i + 1];
 				res += n;
 				i++;
 
@@ -68,7 +70,7 @@ stendhal.ui.chatLog = {
 					res += c;
 					continue;
 				}
-				var n = message[i + 1];
+				let n = message[i + 1];
 				if (n === "#") {
 					res += c;
 					i++;
@@ -87,7 +89,7 @@ stendhal.ui.chatLog = {
 					res += c;
 					continue;
 				}
-				var n = message[i + 1];
+				let n = message[i + 1];
 				if (n === "§") {
 					res += c;
 					i++;
@@ -120,7 +122,7 @@ stendhal.ui.chatLog = {
 
 			// End of word
 			} else if (delims.indexOf(c) > -1) {
-				var n = message[i + 1];
+				let n = message[i + 1];
 				if (c === " " || n === " " || n == undefined) {
 					if (inUnderline && !inUnderlineQuote && !inHighlightQuote) {
 						inUnderline = false;
@@ -150,9 +152,11 @@ stendhal.ui.chatLog = {
 		}
 
 		return res;
-	},
-
-	clear: function() {
-		document.getElementById("chat").innerHTML = "";
 	}
+
+
+	public clear() {
+		this.componentElement.innerHTML = "";
+	}
+
 }

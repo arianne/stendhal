@@ -189,7 +189,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 */
 	say: function (text) {
 		if (marauroa.me && marauroa.me.isInHearingRange(this)) {
-			stendhal.ui.chatLog.addLine("normal", text);
+			Chat.log("normal", text);
 		}
 	},
 
