@@ -5,8 +5,11 @@ TODO:
 - disallow loading external pages
 - show input preview when typing
 - create dialog when back pressed to take screenshot or exit
+- hide soft keyboard when Enter pressed
+- scale page to fit inside view
 
 BUILD TODO:
 - script to download Android SDK
 - create ant build target
 - add 'android/app/build` to ant 'clean' target
+- add build instructions to README
