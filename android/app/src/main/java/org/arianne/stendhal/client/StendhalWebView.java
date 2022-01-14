@@ -41,7 +41,7 @@ public class StendhalWebView extends AppCompatActivity {
 			}
 		});
 
-		clientWebView.loadUrl("https://stendhalgame.org/testclient/stendhal.html");
+		clientWebView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
 	private String getServerUrl(String url) {
