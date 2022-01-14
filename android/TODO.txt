@@ -4,6 +4,7 @@ TODO:
 - link to main client for release build
 - disallow loading external pages
 - show input preview when typing
+- create dialog when back pressed to take screenshot or exit
 
 BUILD TODO:
 - script to download Android SDK

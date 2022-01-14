@@ -84,4 +84,25 @@ public class StendhalWebView extends AppCompatActivity {
 		final AlertDialog selectServer = builder.create();
 		selectServer.show();
 	}
+
+	@Override
+	public void onBackPressed() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Quit Stendhal?");
+
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				finish();
+			}
+		});
+
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				dialog.cancel();
+			}
+		});
+
+		final AlertDialog confirmQuit = builder.create();
+		confirmQuit.show();
+	}
 }
