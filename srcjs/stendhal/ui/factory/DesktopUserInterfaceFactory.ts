@@ -19,6 +19,7 @@ import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
+import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
 export class DesktopUserInterfaceFactory {
@@ -37,6 +38,8 @@ export class DesktopUserInterfaceFactory {
 
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
+		this.add(rightPanel, UIComponentEnum.PlayerEquipment, new PlayerEquipmentComponent());
+
 
 		let bottomPanel = new Panel("bottomPanel");
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);

@@ -121,6 +121,7 @@ stendhal.main = {
 				ui.get(UIComponentEnum.MiniMap).draw();
 				ui.get(UIComponentEnum.BuddyList).update();
 				stendhal.ui.equip.update();
+				ui.get(UIComponentEnum.PlayerEquipment).update();
 				if (!stendhal.main.loaded) {
 					stendhal.main.loaded = true;
 					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience

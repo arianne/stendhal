@@ -20,10 +20,9 @@ stendhal.ui = stendhal.ui || {};
 
 
 stendhal.ui.equip = {
-	slotNames: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet", "pouch", "bag", "keyring", "portfolio"],
-	slotSizes: [   1,       1,      1,       1,        1,       1,       1,     1,       1,      12,       8,         9     ],
-	slotImages: ["slot-helmet.png", "slot-shield.png", "slot-weapon.png", "slot-ring.png", "slot-armor.png", "slot-cloak.png",
-		"slot-legs.png", "slot-boots.png", "slot-pouch.png", null, "slot-key.png", "slot-portfolio.png"],
+	slotNames: ["bag", "keyring", "portfolio"],
+	slotSizes: [12,       8,         9     ],
+	slotImages: [null, "slot-key.png", "slot-portfolio.png"],
 	counter: 0,
 
 	pouchVisible: false,
@@ -43,19 +42,6 @@ stendhal.ui.equip = {
 	update: function() {
 		for (var i in this.inventory) {
 			stendhal.ui.equip.inventory[i].update();
-		}
-
-		if (!this.pouchVisible) {
-			var features = null
-			if (marauroa.me != null) {
-				features = marauroa.me["features"];
-			}
-
-			if (features != null) {
-				if (features["pouch"] != null) {
-					stendhal.ui.showPouch(true);
-				}
-			}
 		}
 	},
 
@@ -82,31 +68,5 @@ stendhal.ui.equip = {
 		return popup;
 	}
 };
-
-stendhal.ui.showSlot = function(id, show) {
-	var slot = document.getElementById(id);
-	var prevState = slot.style.display;
-
-	if (show === true) {
-		slot.style.display = "block";
-	} else {
-		slot.style.display = "none";
-	}
-
-	return prevState != slot.style.display;
-};
-
-stendhal.ui.showPouch = function(show) {
-	if (stendhal.ui.showSlot("pouch0", show)) {
-		// resize the inventory window
-		var equip = document.getElementById("equipment");
-		if (show) {
-			equip.style.height = "200px";
-		} else {
-			equip.style.height = "160px";
-		}
-		pouchVisible = show;
-	}
-}
 
 stendhal.ui.equip.init();

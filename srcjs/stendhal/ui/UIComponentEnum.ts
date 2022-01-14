@@ -33,7 +33,7 @@ export class UIComponentEnum {
 	public static readonly BuddyList = 7;
 	public static readonly ChatInput = 8;
 	public static readonly ChatLog = 9;
-	public static readonly Equipment = 10;
+	public static readonly PlayerEquipment = 10;
 	public static readonly Keyring = 11;
 	public static readonly MiniMap = 12;
 	public static readonly PlayerStats = 13;
