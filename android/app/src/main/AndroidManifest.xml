@@ -10,7 +10,7 @@
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.Stendhal">
+		android:theme="@style/Theme.Stendhal.FullScreen">
 		<activity
 			android:name=".StendhalWebView"
 			android:label="@string/app_name"

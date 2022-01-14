@@ -1,7 +1,7 @@
 
 TODO:
-- make fullscreen app
 - vectorize Stendhal Icon
+- link to main client for release build
 
 BUILD TODO:
 - script to download Android SDK
