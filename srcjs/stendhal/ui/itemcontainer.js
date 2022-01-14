@@ -11,7 +11,7 @@
 
 "use strict";
 
-var ItemContainerComponent = require("../../../build/ts/ui/component/ItemContainerComponent").ItemContainerComponent;
+var ItemContainerImplementation = require("../../../build/ts/ui/component/ItemContainerImplementation").ItemContainerImplementation;
 
 
 var marauroa = window.marauroa = window.marauroa || {};
@@ -31,7 +31,7 @@ stendhal.ui.equip = {
 		stendhal.ui.equip.inventory = [];
 		for (var i in this.slotNames) {
 			stendhal.ui.equip.inventory.push(
-				new ItemContainerComponent(
+				new ItemContainerImplementation(
 					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
 		}
 
@@ -59,7 +59,7 @@ stendhal.ui.equip = {
 		html += "</div>";
 
 		var popup = new stendhal.ui.Popup(title, html, 160, 370);
-		var itemContainer = new ItemContainerComponent(slot, sizeX * sizeY, object, suffix, quickPickup, null);
+		var itemContainer = new ItemContainerImplementation(slot, sizeX * sizeY, object, suffix, quickPickup, null);
 		stendhal.ui.equip.inventory.push(itemContainer);
 		itemContainer.update();
 		popup.onClose = function() {

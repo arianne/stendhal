@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 import { ui } from "../UI";
-import { Component } from "../toolkit/Component";
 
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
@@ -21,15 +20,17 @@ declare var stendhal: any;
 /**
  * a container for items like a bag or corpse
  */
-export class ItemContainerComponent extends Component {
+export class ItemContainerImplementation {
 	private timestampMouseDown = 0;
+
+
+	// TODO: replace usage of global document.getElementById() 
 
 	/**
 	 * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
 	 * which changes on zone change.
 	 */
 	constructor(private slot: string, private size: number, private object: any, private suffix: string, private quickPickup: boolean, private defaultImage: string) {
-		super("empty-template");
 		for (let i = 0; i < size; i++) {
 			let e = document.getElementById(slot + suffix + i)!;
 			e.setAttribute("draggable", "true");

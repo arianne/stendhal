@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
-import { ItemContainerComponent } from "./ItemContainerComponent";
+import { ItemContainerImplementation } from "./ItemContainerImplementation";
 
 declare var marauroa: any;
 
@@ -23,7 +23,7 @@ export class PlayerEquipmentComponent extends Component {
 	private slotSizes = [   1,       1,      1,       1,        1,       1,       1,     1,       1];
 	private slotImages = ["slot-helmet.png", "slot-shield.png", "slot-weapon.png", "slot-ring.png", "slot-armor.png", "slot-cloak.png",
 		"slot-legs.png", "slot-boots.png", "slot-pouch.png"];
-	private inventory: ItemContainerComponent[] = [];
+	private inventory: ItemContainerImplementation[] = [];
 
 	private pouchVisible = false;
 
@@ -33,7 +33,7 @@ export class PlayerEquipmentComponent extends Component {
 		for (var i in this.slotNames) {
 			console.log("PlayerEquipmentComponent", this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]);
 			this.inventory.push(
-				new ItemContainerComponent(
+				new ItemContainerImplementation(
 					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
 		}
 
