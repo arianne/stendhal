@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Chat } from "../util/Chat";
 import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 
 declare var stendhal: any;
@@ -18,6 +19,13 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 
 	private targetTileWidth = 32;
 	private targetTileHeight = 32;
+
+	constructor() {
+		super();
+		setTimeout(() => {
+			Chat.log("client", "Using IndividualTilesetRenderingStrategy");
+		}, 1000);
+	}
 
 	public onMapLoaded(_map: any): void {
 		// do nothing
