@@ -10,7 +10,7 @@ android {
 		minSdk 21
 		targetSdk 32
 		versionCode 1
-		versionName "0.0.3"
+		versionName "0.0.4"
 		setProperty("archivesBaseName", rootProject.getName() + "WebView-${versionName}")
 		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
 
