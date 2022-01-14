@@ -3,7 +3,6 @@ TODO:
 - vectorize Stendhal Icon
 - link to main client for release build
 - disallow loading external pages
-- initialize with buttons to choose between test & main server
 - show input preview when typing
 
 BUILD TODO:

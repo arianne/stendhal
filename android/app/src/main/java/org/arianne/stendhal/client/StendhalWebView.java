@@ -11,7 +11,10 @@
  ***************************************************************************/
 package org.arianne.stendhal.client;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +44,9 @@ public class StendhalWebView extends AppCompatActivity {
 			}
 		});
 
+		// TODO: "main" should be default & "testing" used in separate build
+		setServer();
+
 		clientWebView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
@@ -54,5 +60,28 @@ public class StendhalWebView extends AppCompatActivity {
 		}
 
 		return url;
+	}
+
+	private void setServer() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Select a server");
+		builder.setCancelable(false);
+
+		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				testing = false;
+				dialog.cancel();
+			}
+		});
+
+		builder.setNegativeButton("Testing", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				testing = true;
+				dialog.cancel();
+			}
+		});
+
+		final AlertDialog selectServer = builder.create();
+		selectServer.show();
 	}
 }
