@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StendhalWebView extends AppCompatActivity {
 
+	private boolean testing = true;
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,15 +32,27 @@ public class StendhalWebView extends AppCompatActivity {
 		clientWebView.getSettings().setJavaScriptEnabled(true);
 
 		clientWebView.setWebViewClient(new WebViewClient() {
-			/* allow redirects */
+			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				/* FIXME: should only allow redirects to login page & web client URLs */
-				view.loadUrl(url);
+				/* FIXME: should not allow external URLs */
+				view.loadUrl(getServerUrl(url));
 				return false;
 			}
 		});
 
 		clientWebView.loadUrl("https://stendhalgame.org/testclient/stendhal.html");
+	}
+
+	private String getServerUrl(String url) {
+		if (url.contains("stendhalgame.org/client/") || url.contains("stendhalgame.org/testclient/")) {
+			if (testing) {
+				url = url.replace("/client/", "/testclient/");
+			} else {
+				url = url.replace("/testclient/", "/client/");
+			}
+		}
+
+		return url;
 	}
 }
