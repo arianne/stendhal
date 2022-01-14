@@ -2,6 +2,10 @@
 TODO:
 - vectorize Stendhal Icon
 - link to main client for release build
+- disallow going to pages other than login & client
+- initialize with buttons to choose between test & main server
+  - store server & force correct server URL when logging in
+- show input preview when typing
 
 BUILD TODO:
 - script to download Android SDK
