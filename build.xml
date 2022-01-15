@@ -149,9 +149,6 @@
 	</target>
 
 	<target name="clean">
-		<delete dir="${lib}" />
-		<delete dir="${build}/build_client_music_data"/>
-		<delete dir="${build}/build_client_sound_data"/>
 		<delete dir="${buildroot}" />
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
