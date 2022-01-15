@@ -11,4 +11,3 @@ TODO:
 BUILD TODO:
 - script to download Android SDK
 - add 'android/app/build` to ant 'clean' target
-- add build instructions to README

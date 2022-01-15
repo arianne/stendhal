@@ -40,6 +40,7 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 * [Hosting a Stendhal Server](https://stendhalgame.org/wiki/Host_a_Stendhal_Server)
 * [Stendhal in Eclipse](https://stendhalgame.org/wiki/Stendhal_on_Eclipse)
 * [Building Stendhal](https://stendhalgame.org/wiki/HowToBuildStendhal)
+* [Building Android WebView Client](https://stendhalgame.org/wiki/BuildStendhalForAndroid#WebView_Client)
 
 
 ## Legal
