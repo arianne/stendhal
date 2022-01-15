@@ -114,6 +114,10 @@
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
+		<replaceregexp file="android/app/build.gradle"
+			match="versionName .*"
+			replace="versionName &quot;${version.webview}&quot;"
+			byline="true"/>
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="GAME_NAME=.*"
