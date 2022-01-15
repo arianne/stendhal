@@ -10,6 +10,8 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
+import { ui } from "../UI";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -22,7 +24,8 @@ export class TravelLogDialog extends Component {
 
 	constructor(dataItems: string[]) {
 		super("travellogdialog-template");
-		
+		ui.registerComponent(UIComponentEnum.TravelLogDialog, this);
+
 		this.createHtml(dataItems);
 
 		// trigger loading of content for first entry
@@ -111,6 +114,10 @@ export class TravelLogDialog extends Component {
 		}
 		html += "</ul>";
 		this.componentElement.querySelector(".travellogdetails")!.innerHTML = html;
+	}
+
+	public override onParentClose() {
+		ui.unregisterComponent(this);
 	}
 
 }

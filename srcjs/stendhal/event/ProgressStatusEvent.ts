@@ -33,7 +33,6 @@ export class ProgressStatusEvent extends RPEvent {
 			if (!travelLogDialog) {
 				travelLogDialog = new TravelLogDialog(dataItems);
 				new FloatingWindow("Travel Log", travelLogDialog, 160, 50);
-				ui.registerComponent(UIComponentEnum.TravelLogDialog, travelLogDialog);
 			}
 			return;
 		}

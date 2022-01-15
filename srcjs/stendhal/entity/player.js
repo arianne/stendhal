@@ -97,7 +97,6 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 					if (!outfitDialog) {
 						outfitDialog = new OutfitDialog();
 						new FloatingWindow("Choose outfit", outfitDialog, 300, 50);
-						ui.registerComponent(UIComponentEnum.OutfitDialog, outfitDialog);
 					}
 				}
 			});
