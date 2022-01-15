@@ -82,6 +82,18 @@
 		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 	</tstamp>
 
+
+	<!-- Android properties -->
+
+	<condition property="exclude.webview" value="true">
+		<not>
+			<isset property="env.ANDROID_SDK_ROOT" />
+		</not>
+	</condition>
+
+	<!-- END: Android properties -->
+
+
 	<target name="init">
 		<mkdir dir="${lib}"/>
 
@@ -557,6 +569,18 @@
 
 	</target>
 
+	<target name="client_android_build">
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+		<echo
+			unless:set="exclude.webview"
+			message="Building Android WebView client. ANDROID_SDK_ROOT=${env.ANDROID_SDK_ROOT}" />
+
+		<exec unless:set="exclude.webview" executable="sh" dir="android/">
+			<arg line="gradlew build" />
+		</exec>
+	</target> <!-- client_android_build -->
 
 	<target name="signjar" unless="exclude.signing">
 		<signjar
@@ -596,7 +620,8 @@
 	<target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
 
 	<target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
+
+	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_client_android"/>
 
 	<target name="dist_server_binary" depends="server_build, compilejs">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -709,6 +734,20 @@
 		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
+
+	<target name="dist_client_android">
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+
+		<antcall unless:set="exclude.webview" target="client_android_build" />
+		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
+			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
+				<include name="release/*.apk" />
+				<include name="debug/*.apk" />
+			</fileset>
+		</copy>
+	</target> <!-- dist_client_android -->
 
 	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
