@@ -86,9 +86,14 @@
 	<!-- Android properties -->
 
 	<condition property="exclude.webview" value="true">
-		<not>
-			<isset property="env.ANDROID_SDK_ROOT" />
-		</not>
+		<and>
+			<not>
+				<isset property="env.ANDROID_SDK_ROOT" />
+			</not>
+			<not>
+				<available file="${user.dir}/android/local.properties" />
+			</not>
+		</and>
 	</condition>
 
 	<!-- END: Android properties -->
@@ -592,7 +597,7 @@
 			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
 		<echo
 			unless:set="exclude.webview"
-			message="Building Android WebView client. ANDROID_SDK_ROOT=${env.ANDROID_SDK_ROOT}" />
+			message="Building Android WebView client." />
 
 		<!-- use Unix shell script -->
 		<exec unless:set="cannot_build_webview_other" failonerror="true"
