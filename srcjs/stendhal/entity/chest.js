@@ -50,8 +50,9 @@ marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFac
 		if (key === "open") {
 			this.sprite = CLOSED_SPRITE;
 			this.open = false;
-			if (this.inventory && this.inventory.popupdiv.parentNode) {
+			if (this.inventory && this.inventory.isOpen()) {
 				this.inventory.close();
+				this.inventory = undefined;
 			}
 		}
 	},
@@ -78,8 +79,10 @@ marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	openInventoryWindow: function() {
-		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
-			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 5, 6, this, "Chest", false);
+		if (!this.inventory || !this.inventory.isOpen()) {
+			this.inventory = new FloatingWindow("Chest", 
+				new ItemInventoryComponent(this, "content", 5, 6, false, undefined),
+				160, 370);
 		}
 	},
 

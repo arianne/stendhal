@@ -23,6 +23,7 @@ var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUser
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
 
 var ChatLogComponent = require("../../build/ts/ui/component/ChatLogComponent").ChatLogComponent;
+var ItemInventoryComponent = require("../../build/ts/ui/component/ItemInventoryComponent").ItemInventoryComponent;
 
 var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
 var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;

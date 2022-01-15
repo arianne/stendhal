@@ -18,6 +18,7 @@ import { Panel } from "../toolkit/Panel";
 import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
+import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
@@ -39,7 +40,13 @@ export class DesktopUserInterfaceFactory {
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
 		this.add(rightPanel, UIComponentEnum.PlayerEquipment, new PlayerEquipmentComponent());
+		this.add(rightPanel, UIComponentEnum.Bag,
+			new ItemInventoryComponent(undefined, "bag", 3, 4, false, undefined));
+		this.add(rightPanel, UIComponentEnum.Keyring,
+			new ItemInventoryComponent(undefined, "keyring", 2, 4, false, "slot-key.png"));
 
+
+		// hide pouch by default
 
 		let bottomPanel = new Panel("bottomPanel");
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);

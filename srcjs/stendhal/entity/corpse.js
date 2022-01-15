@@ -58,13 +58,14 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	},
 
 	closeCorpseInventory: function() {
-		if (this.inventory) {
+		if (this.inventory && this.inventory.isOpen()) {
 			this.inventory.close();
+			this.inventory = undefined;
 		}
 	},
 
 	openCorpseInventory: function() {
-		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
+		if (!this.inventory || !this.inventory.isOpen()) {
 			let content_row = 2;
 			const content_col = 2;
 			if (this["content"]) {
@@ -73,8 +74,9 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 				}
 			}
 
-			// FIXME: 3x2 corpses are shown as 6x1
-			this.inventory = stendhal.ui.equip.createInventoryWindow("content", content_row, content_col, this, "Corpse", true);
+			this.inventory = new FloatingWindow("Corpse", 
+				new ItemInventoryComponent(this, "content", content_row, content_col, true, undefined),
+				160, 370);
 		}
 	},
 
