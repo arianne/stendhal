@@ -53,6 +53,7 @@ export class FloatingWindow extends Component {
 		contentComponent.componentElement.addEventListener("close", (event) => {
 			this.onClose(event);
 		})
+		this.contentComponent.parentComponent = this;
 
 		// add window to DOM
 		let popupcontainer = document.getElementById("popupcontainer")!;
@@ -61,15 +62,16 @@ export class FloatingWindow extends Component {
 
 
 	public close() {
+		stendhal.ui.sound.playGlobalizedEffect(this.closeSound);
 		this.componentElement.remove();
 		this.contentComponent.onParentClose();
 		this.opened = false;
+		this.contentComponent.parentComponent = undefined;
 	}
 
 	private onClose(event: Event) {
 		this.close();
 		event.preventDefault();
-		stendhal.ui.sound.playGlobalizedEffect(this.closeSound);
 	}
 
 	public isOpen() {
