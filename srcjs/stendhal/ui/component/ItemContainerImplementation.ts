@@ -30,7 +30,7 @@ export class ItemContainerImplementation {
 	 * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
 	 * which changes on zone change.
 	 */
-	constructor(private slot: string, private size: number, private object: any, private suffix: string, private quickPickup: boolean, private defaultImage: string) {
+	constructor(private slot: string, private size: number, private object: any, private suffix: string, private quickPickup: boolean, private defaultImage?: string) {
 		for (let i = 0; i < size; i++) {
 			let e = document.getElementById(slot + suffix + i)!;
 			e.setAttribute("draggable", "true");
@@ -59,6 +59,7 @@ export class ItemContainerImplementation {
 				this.onContextMenu(event)
 			});
 		}
+		this.update();
 	}
 
 	public update() {
@@ -68,7 +69,7 @@ export class ItemContainerImplementation {
 	public render() {
 		let myobject = this.object || marauroa.me;
 		let cnt = 0;
-		if (myobject[this.slot]) {
+		if (myobject && myobject[this.slot]) {
 			for (let i = 0; i < myobject[this.slot].count(); i++) {
 				let o = myobject[this.slot].getByIndex(i);
 				let e = document.getElementById(this.slot + this.suffix + cnt)!;

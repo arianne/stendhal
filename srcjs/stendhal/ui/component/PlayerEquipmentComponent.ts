@@ -31,7 +31,6 @@ export class PlayerEquipmentComponent extends Component {
 		super("equipment");
 		this.inventory = [];
 		for (var i in this.slotNames) {
-			console.log("PlayerEquipmentComponent", this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]);
 			this.inventory.push(
 				new ItemContainerImplementation(
 					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
