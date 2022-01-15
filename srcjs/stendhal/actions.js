@@ -11,6 +11,7 @@
 
 "use strict";
 
+var DebugAction = require("../../build/ts/action/DebugAction").DebugAction;
 var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenWebsiteAction;
 
 var stendhal = window.stendhal = window.stendhal || {};
@@ -216,6 +217,8 @@ stendhal.slashActionRepository = {
 		minParams: 0,
 		maxParams: 0
 	},
+
+	"debug": new DebugAction(),
 
 	"drop": {
 		execute: function(type, params, remainder) {
