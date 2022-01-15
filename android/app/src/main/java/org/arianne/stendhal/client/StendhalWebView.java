@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,10 +32,17 @@ public class StendhalWebView extends AppCompatActivity {
 
 		setContentView(R.layout.activity_main);
 
-		final WebView clientWebView = (WebView) findViewById(R.id.clientWebView);
-		clientWebView.getSettings().setJavaScriptEnabled(true);
+		final WebView clientView = (WebView) findViewById(R.id.clientWebView);
+		final WebSettings viewSettings = clientView.getSettings();
 
-		clientWebView.setWebViewClient(new WebViewClient() {
+		viewSettings.setJavaScriptEnabled(true);
+
+		// keep elements in position in portrait mode
+		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		viewSettings.setLoadWithOverviewMode(true);
+		viewSettings.setUseWideViewPort(true);
+
+		clientView.setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
@@ -47,7 +55,7 @@ public class StendhalWebView extends AppCompatActivity {
 		// TODO: "main" should be default & "testing" used in separate build
 		setServer();
 
-		clientWebView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
+		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
 	private String getServerUrl(String url) {
