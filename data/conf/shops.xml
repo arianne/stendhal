@@ -638,31 +638,7 @@
 
 	<!-- broker in Semos Plains that purchases misc. items at a low values -->
 	<shop name="brokermisc" type="buys">
-		<item name="meat" price="5" />
-		<item name="ham" price="10" />
-		<item name="button mushroom" price="8" />
-		<item name="porcini" price="15" />
-		<item name="toadstool" price="30" />
-		<item name="poison" price="20" />
-		<item name="greater poison" price="30" />
-		<item name="arandula" price="2" />
-		<item name="kekik" price="8" />
-		<item name="sclaria" price="8" />
-		<item name="kokuda" price="50" />
-		<item name="mandragora" price="75" />
-		<item name="rodent trap" price="25" />
-		<item name="lucky charm" price="30" />
-		<item name="marbles" price="40" />
-		<item name="black pearl" price="50" />
-		<item name="bat entrails" price="5" />
-		<item name="snowglobe" price="75" />
-		<item name="vampirette entrails" price="25" />
-		<item name="pelt" price="12" />
-		<item name="emerald" price="125" />
-		<item name="sapphire" price="210" />
-		<item name="carbuncle" price="300" />
-		<item name="obsidian" price="500" />
-		<item name="diamond" price="400" />
+		<item name="pelt" price="10" />
 	</shop>
 
 </shops>
