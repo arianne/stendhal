@@ -17,6 +17,7 @@ declare var marauroa: any;
 export class KeyringComponent extends ItemInventoryComponent {
 
 	override update() {
+		// FIXME: keyring visibility not updating
 		let features = null;
 		if (marauroa.me != null) {
 			features = marauroa.me["features"];
