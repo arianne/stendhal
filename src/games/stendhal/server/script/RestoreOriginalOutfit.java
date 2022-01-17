@@ -22,6 +22,15 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 
+/**
+ * Usage:
+ *   /script RetoreOriginalOutfit.class <player>
+ *     Description:
+ *         Restores player's original outfit if they are wearing
+ *         a temporary one.
+ *     Parameters:
+ *       - **player:** Name of target player.
+ */
 public class RestoreOriginalOutfit extends ScriptImpl {
 
 	@Override
