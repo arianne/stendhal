@@ -42,8 +42,11 @@ export class DesktopUserInterfaceFactory {
 		this.add(rightPanel, UIComponentEnum.PlayerEquipment, new PlayerEquipmentComponent());
 		this.add(rightPanel, UIComponentEnum.Bag,
 			new ItemInventoryComponent(undefined, "bag", 3, 4, false, undefined));
-		this.add(rightPanel, UIComponentEnum.Keyring,
-			new ItemInventoryComponent(undefined, "keyring", 2, 4, false, "slot-key.png"));
+
+		const keyring = new ItemInventoryComponent(undefined, "keyring", 2, 4, false, "slot-key.png");
+		// hide keyring by default
+		keyring.setVisible(false);
+		this.add(rightPanel, UIComponentEnum.Keyring, keyring);
 
 
 		// hide pouch by default
