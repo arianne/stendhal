@@ -29,7 +29,7 @@ export class DesktopUserInterfaceFactory {
 	public create() {
 		let topPanel = new Panel("topPanel");
 		ui.registerComponent(UIComponentEnum.LeftPanel, topPanel);
-		
+
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 

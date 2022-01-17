@@ -58,7 +58,7 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 		}
 	}
 
-	private paintLayer(canvas: HTMLCanvasElement, drawingLayer: number, 
+	private paintLayer(canvas: HTMLCanvasElement, drawingLayer: number,
 		tileOffsetX: number, tileOffsetY: number) {
 		const layer = stendhal.data.map.layers[drawingLayer];
 		const yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);

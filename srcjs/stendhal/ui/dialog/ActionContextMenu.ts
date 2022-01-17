@@ -32,7 +32,7 @@ export class ActionContextMenu extends Component {
 		}
 		content += "</div>";
 		this.componentElement.innerHTML = content;
-	
+
 		this.componentElement.addEventListener("click", (event) => {
 			this.onClick(event);
 		});
@@ -60,7 +60,7 @@ export class ActionContextMenu extends Component {
 			this.executeFallbackAction(this.actions[i].type)
 		}
 	}
-	
+
 	private executeFallbackAction(type: string) {
 		let action: any = {
 			"type": type,
@@ -72,7 +72,7 @@ export class ActionContextMenu extends Component {
 			action['target'] = '#' + this.entity.id;
 		}
 		marauroa.clientFramework.sendAction(action);
-		
+
 	}
 
 	private gatherActions(){

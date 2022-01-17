@@ -9,7 +9,7 @@
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
- 
+
  /**
   * A sprite to be displayed on the screen. Note that a sprite contains no state
   * information, i.e. its just the image and not the location. This allows us to
@@ -36,7 +36,7 @@ export abstract class Sprite {
      * @return A new sprite.
      */
     abstract createRegion(x: number, y: number, width: number, height: number, ref: object): Sprite;
- 
+
     /**
      * Draw the sprite onto the graphics context provided.
      *
@@ -48,7 +48,7 @@ export abstract class Sprite {
      *            The y location at which to draw the sprite
      */
     abstract draw(g: CanvasRenderingContext2D, x: number, y: number): void;
- 
+
     /**
      * Draws the image.
      *

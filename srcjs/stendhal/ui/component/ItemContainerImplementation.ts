@@ -24,7 +24,7 @@ export class ItemContainerImplementation {
 	private timestampMouseDown = 0;
 
 
-	// TODO: replace usage of global document.getElementById() 
+	// TODO: replace usage of global document.getElementById()
 
 	/**
 	 * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
@@ -133,7 +133,7 @@ export class ItemContainerImplementation {
 			};
 			// if ctrl is pressed, we ask for the quantity
 			if (event.ctrlKey) {
-				ui.createSingletonFloatingWindow("Quantity", 
+				ui.createSingletonFloatingWindow("Quantity",
 					new DropQuantitySelectorDialog(action),
 					event.pageX - 50, event.pageY - 25);
 			} else {
@@ -194,4 +194,3 @@ export class ItemContainerImplementation {
 	}
 
 }
-

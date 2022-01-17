@@ -20,7 +20,7 @@ export class OutfitColorSelector {
 	protected _x: number;
 	protected _y: number;
 	protected hX: number;
-	
+
 	constructor(canvas: HTMLCanvasElement, gradientCanvas: HTMLCanvasElement, onColorChanged: Function) {
 		this.ctx = canvas.getContext("2d")!;
 		this.gradCtx = gradientCanvas.getContext("2d")!;

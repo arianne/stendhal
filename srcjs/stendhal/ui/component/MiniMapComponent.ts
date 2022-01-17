@@ -197,4 +197,3 @@ export class MiniMapComponent extends Component {
 	}
 
 }
-

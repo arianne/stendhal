@@ -44,26 +44,26 @@ import marauroa.common.game.IRPZone;
  * HH:MM[:SS] format. Time before the current moment will be interpreted as the
  * corresponding time of next day. The default is start of April 1, either the
  * current year, or the next year if run after that moment.
- * <p> 
+ * <p>
  * Second argument is the freezing duration in HH:MM[:SS] format. Default is one
  * day.
  */
 public class FreezeHell extends ScriptImpl {
 	private static final Logger LOGGER = Logger.getLogger(FreezeHell.class);
-	
+
 	private static final LocalDateTime DEFAULT_FREEZING_TIME = Year.now().atMonth(Month.APRIL).atDay(1).atStartOfDay();
 	private static final Duration DEFAULT_FREEZING_DURATION = Duration.ofDays(1);
-	
+
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		LocalDateTime startTime;
 		LocalDateTime now = LocalDateTime.now();
 		startTime = determineStartTime(admin, args, now);
 		int waitSec = (int) Duration.between(now, startTime).getSeconds();
-		
+
 		Duration freezingDuration = determineDuration(admin, args);
-		
-		String message = "Scheduling freezing hell in " + waitSec 
+
+		String message = "Scheduling freezing hell in " + waitSec
 				+ " seconds at " + startTime + ". Freeze for " + freezingDuration + ".";
 		admin.sendPrivateText(message);
 		LOGGER.info(message);
@@ -80,7 +80,7 @@ public class FreezeHell extends ScriptImpl {
 				throw e;
 			}
 		}
-		
+
 		return DEFAULT_FREEZING_DURATION;
 	}
 
@@ -119,13 +119,13 @@ public class FreezeHell extends ScriptImpl {
 				throw ex;
 			}
 		}
-		
+
 		return startTime;
 	}
-	
+
 	/**
 	 * The actual freezing and thawing routine.
-	 * 
+	 *
 	 * @param freeze <code>true</code> if the hell freezes
 	 */
 	private void freezeOrThaw(boolean freeze, Duration freezingDuration) {
@@ -166,10 +166,10 @@ public class FreezeHell extends ScriptImpl {
 			LOGGER.error("Failed to update map", e);
 		}
 	}
-	
+
 	/**
 	 * Change zone attributes depending on the freezing state.
-	 * 
+	 *
 	 * @param zone hell zone
 	 * @param freeze freezing state. <code>true</code> if the hell freezes
 	 */
@@ -183,10 +183,10 @@ public class FreezeHell extends ScriptImpl {
 			attr.put("color_method", "softlight");
 		}
 	}
-	
+
 	/**
 	 * Update zone from StendhalMapStructure.
-	 * 
+	 *
 	 * @param zone zone to be updated
 	 * @param map new map data
 	 * @throws IOException When encoding the layer data fails
@@ -210,7 +210,7 @@ public class FreezeHell extends ScriptImpl {
 		zone.addCollisionLayer(name + ".collision", map.getLayer("collision"));
 		zone.addProtectionLayer(name + ".protection", map.getLayer("protection"));
 	}
-	
+
 	/**
 	 * Load an optional layer, if present, to a zone.
 	 *

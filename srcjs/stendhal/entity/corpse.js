@@ -74,7 +74,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 				}
 			}
 
-			this.inventory = new FloatingWindow("Corpse", 
+			this.inventory = new FloatingWindow("Corpse",
 				new ItemInventoryComponent(this, "content", content_row, content_col, true, undefined),
 				160, 370);
 		}

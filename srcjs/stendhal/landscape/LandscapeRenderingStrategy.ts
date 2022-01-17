@@ -42,11 +42,11 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 	public render(
 		canvas: HTMLCanvasElement, gamewindow: any,
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
-	
+
 		let landscapeRenderder = new LandscapeRenderer();
 		landscapeRenderder.drawLayer(
 			canvas,
-			stendhal.data.map.combinedTileset, 
+			stendhal.data.map.combinedTileset,
 			0,
 			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
 
@@ -54,10 +54,9 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 
 		landscapeRenderder.drawLayer(
 			canvas,
-			stendhal.data.map.combinedTileset, 
+			stendhal.data.map.combinedTileset,
 			1,
 			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
 	}
-	
-}
 
+}

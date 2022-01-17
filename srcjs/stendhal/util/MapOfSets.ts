@@ -15,7 +15,7 @@
 export class MapOfSets<K, V> extends Map<K, Set<V>> {
 
 	/**
-	 * adds an entry to the map. If the key is already known, 
+	 * adds an entry to the map. If the key is already known,
 	 * the value is added to the associated set. Otherwise
 	 * a new set containing the value is created.
 	 *

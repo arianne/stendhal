@@ -20,7 +20,7 @@ export class OpenWebsiteAction extends Action {
 
     /**
      * creates a OpenWebsiteAction
-     * 
+     *
      * @param url website to open
      */
     constructor(private url: string) {

@@ -32,7 +32,7 @@ export class ShowFloatingWindowComponent extends Component {
 		if (!component) {
 			return;
 		}
-		
+
 		if ((component.parentComponent as FloatingWindow | null | undefined)?.isOpen()) {
 			(component.parentComponent as FloatingWindow | null | undefined)?.close();
 		} else {

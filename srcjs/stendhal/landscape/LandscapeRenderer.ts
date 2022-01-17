@@ -17,7 +17,7 @@ export class LandscapeRenderer {
 
 	drawLayer(
 			canvas: HTMLCanvasElement,
-			combinedTileset: CombinedTileset, layerNo: number, 
+			combinedTileset: CombinedTileset, layerNo: number,
 			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 		if (!combinedTileset) {
 			return;

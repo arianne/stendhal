@@ -94,7 +94,7 @@ export class CombinedTilesetImageLoader {
 			let base = this.map.firstgids[tileset];
 			let tileIndexInTileset = gid - base;
 			this.drawTile(pixelX, pixelY, image, tileIndexInTileset, flip);
-			
+
 		}
 	}
 

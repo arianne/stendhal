@@ -80,7 +80,7 @@ marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFac
 
 	openInventoryWindow: function() {
 		if (!this.inventory || !this.inventory.isOpen()) {
-			this.inventory = new FloatingWindow("Chest", 
+			this.inventory = new FloatingWindow("Chest",
 				new ItemInventoryComponent(this, "content", 5, 6, false, undefined),
 				160, 370);
 		}

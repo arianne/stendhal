@@ -12,7 +12,7 @@
 
 import { Sprite } from "./Sprite";
 
- 
+
 /**
  * An empty (non-drawing) sprite.
  */
@@ -42,7 +42,7 @@ export class EmptySprite {
     createRegion(x: number, y: number, width: number, height: number, ref: object): Sprite {
         return new EmptySprite(width, height, ref);
     }
- 
+
     /**
      * Draw the sprite onto the graphics context provided.
      *
@@ -54,7 +54,7 @@ export class EmptySprite {
      *            The y location at which to draw the sprite
      */
     draw(g: CanvasRenderingContext2D, x: number, y: number): void;
- 
+
     /**
      * Draws the image.
      *
@@ -76,7 +76,7 @@ export class EmptySprite {
     public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
     public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x?: number, y?: number, w?: number, h?: number): void {
     }
- 
+
     /**
      * Get the height of the drawn sprite.
      *
