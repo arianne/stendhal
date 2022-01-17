@@ -36,6 +36,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 
 		queueMicrotask( () => {
 			ui.get(UIComponentEnum.PlayerStats).update(key);
+			ui.get(UIComponentEnum.Keyring).update();
 		});
 	},
 
