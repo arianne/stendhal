@@ -89,6 +89,7 @@ marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.r
 	execute: function(rpobject) {
 		// TODO: new PlayerLoggedOnEvent();
 
+		// XXX: this can probably be removed if KeyringComponent.update() is fixed
 		let features = null;
 		if (marauroa.me != null) {
 			features = marauroa.me["features"];

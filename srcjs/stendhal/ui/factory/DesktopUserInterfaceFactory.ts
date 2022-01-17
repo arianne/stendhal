@@ -19,6 +19,7 @@ import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
 import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
+import { KeyringComponent } from "../component/KeyringComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
@@ -43,7 +44,7 @@ export class DesktopUserInterfaceFactory {
 		this.add(rightPanel, UIComponentEnum.Bag,
 			new ItemInventoryComponent(undefined, "bag", 3, 4, false, undefined));
 
-		const keyring = new ItemInventoryComponent(undefined, "keyring", 2, 4, false, "slot-key.png");
+		const keyring = new KeyringComponent(undefined, "keyring", 2, 4, false, "slot-key.png");
 		// hide keyring by default
 		keyring.setVisible(false);
 		this.add(rightPanel, UIComponentEnum.Keyring, keyring);

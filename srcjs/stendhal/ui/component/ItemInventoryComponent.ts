@@ -59,6 +59,10 @@ export class ItemInventoryComponent extends Component {
 		}
 	}
 
+	public isVisible(): boolean {
+		return this.componentElement.style.display !== "none";
+	}
+
 	public override onParentClose() {
 		let idx = stendhal.ui.equip.inventory.indexOf(this.itemContainerImplementation);
 		console.log(stendhal.ui.equip.inventory, stendhal.ui.equip.inventory.indexOf(this.itemContainerImplementation));
