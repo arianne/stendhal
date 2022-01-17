@@ -14,6 +14,7 @@ package games.stendhal.server.entity.slot;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.SlotOwner;
 
 /**
  * Keyring slots of players which contain items.
@@ -61,5 +62,17 @@ public class PlayerKeyringSlot extends PlayerSlot {
 		}
 		Player player = (Player) entity;
 		return (player.getFeature("keyring") != null);
+	}
+
+	@Override
+	public boolean isFull() {
+		final SlotOwner owner = getOwner();
+		if (owner instanceof Player) {
+			if (((Player) owner).getFeature("keyring_ext") != null) {
+				return super.isFull();
+			}
+		}
+
+		return size() >= 8;
 	}
 }
