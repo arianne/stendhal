@@ -20,13 +20,14 @@ declare var stendhal: any;
 export class ItemInventoryComponent extends Component {
 
 	private static counter = 0;
-	private itemContainerImplementation!: ItemContainerImplementation;
+	protected itemContainerImplementation!: ItemContainerImplementation;
+	protected suffix;
 
 	constructor(object: any, slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
 		super("iteminventory-template");
 
 		ItemInventoryComponent.counter++;
-		let suffix = "." + ItemInventoryComponent.counter + ".";
+		this.suffix = "." + ItemInventoryComponent.counter + ".";
 		this.componentElement.classList.add("inventorypopup_" + sizeX);
 		if (quickPickup) {
 			this.componentElement.classList.add("quickPickup");
@@ -35,13 +36,13 @@ export class ItemInventoryComponent extends Component {
 		// TODO: rewrite ItemContainerImplementation not to depend on unique ids (aka suffix)
 		let html = "";
 		for (let i = 0; i < sizeX * sizeY; i++) {
-			html += "<div id='" + slot + suffix + i + "' class='itemSlot'></div>";
+			html += "<div id='" + slot + this.suffix + i + "' class='itemSlot'></div>";
 		}
 		this.componentElement.innerHTML = html;
 
 		// ItemContainerImplementation uses document.getElementById, so our parent windows must be added to the DOM first.
 		queueMicrotask(() => {
-			this.itemContainerImplementation = new ItemContainerImplementation(slot, sizeX * sizeY, object, suffix, quickPickup, defaultImage);
+			this.itemContainerImplementation = new ItemContainerImplementation(slot, sizeX * sizeY, object, this.suffix, quickPickup, defaultImage);
 			stendhal.ui.equip.inventory.push(this.itemContainerImplementation);
 		});
 	}

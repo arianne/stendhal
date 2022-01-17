@@ -9,23 +9,42 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ItemContainerImplementation } from "./ItemContainerImplementation";
 import { ItemInventoryComponent } from "./ItemInventoryComponent";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 
 export class KeyringComponent extends ItemInventoryComponent {
 
+	private object: any;
+	private slotName: string;
+	private quickPickup: boolean;
+	private defaultImage?: string;
+	private isExtended: boolean = false;
+
+
+	constructor(object: any, slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
+		super(object, slot, sizeX, sizeY, quickPickup, defaultImage);
+
+		this.object = object;
+		this.slotName = slot;
+		this.quickPickup = quickPickup;
+		this.defaultImage = defaultImage;
+	}
+
 	override update() {
-		// FIXME: keyring visibility not updating
 		let features = null;
 		if (marauroa.me != null) {
 			features = marauroa.me["features"];
 		}
 
 		let keyringEnabled = false;
+		let extendedKeyring = false;
 		if (features != null) {
 			keyringEnabled = features["keyring"] != null;
+			extendedKeyring = features["keyring_ext"] != null;
 		}
 
 		if (keyringEnabled && !this.isVisible()) {
@@ -34,6 +53,26 @@ export class KeyringComponent extends ItemInventoryComponent {
 			this.setVisible(false);
 		}
 
+		if (extendedKeyring && !this.isExtended) {
+			this.addExtendedSlots();
+		}
+
 		super.update();
+	}
+
+	private addExtendedSlots() {
+		// FIXME: keyring is 2x6 instead of 3x4
+		let html = this.componentElement.innerHTML;
+		for (let i = 8; i < 12; i++) {
+			html += "<div id='" + this.slotName + this.suffix + i + "' class='itemSlot'></div>";
+		}
+		this.componentElement.innerHTML = html;
+
+		this.isExtended = true;
+
+		queueMicrotask(() => {
+			this.itemContainerImplementation = new ItemContainerImplementation(this.slotName, 12, this.object, this.suffix, this.quickPickup, this.defaultImage);
+			stendhal.ui.equip.inventory.push(this.itemContainerImplementation);
+		});
 	}
 }
