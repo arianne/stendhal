@@ -16,6 +16,8 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
 var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
+var ui = require("../../build/ts/ui/UI").ui;
+var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -86,6 +88,20 @@ marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeven
 marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		// TODO: new PlayerLoggedOnEvent();
+
+		let features = null;
+		if (marauroa.me != null) {
+			features = marauroa.me["features"];
+		}
+
+		if (features != null) {
+			if (features["keyring"] != null) {
+				const keyring = ui.get(UIComponentEnum.Keyring);
+				if (keyring != null) {
+					keyring.setVisible(true);
+				}
+			}
+		}
 	}
 });
 
