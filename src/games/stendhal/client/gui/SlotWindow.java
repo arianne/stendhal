@@ -40,11 +40,25 @@ public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	 * @param width number of slot columns
 	 * @param height number of slot rows
 	 */
-	public SlotWindow(String title, int width, int height) {
+	public SlotWindow(final String title, final int width, final int height) {
 		super(title, title);
 
 		content = new SlotGrid(width, height);
 		setContent(content);
+	}
+
+	protected void setSlotsLayout(final int width, final int height) {
+		content.setSlotsLayout(width, height);
+		setContent(content);
+
+		final String slotName = content.getSlotName();
+		if (parent != null && slotName != null) {
+			content.setSlot(parent, slotName);
+		}
+
+		revalidate();
+		repaint();
+		// FIXME: content not updating correctly
 	}
 
 	/**

@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.listener.FeatureChangeListener;
 
 /**
@@ -63,6 +64,13 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 	public void featureDisabled(final String name) {
 		if (name.equals("keyring")) {
 			disableKeyring();
+		} else if (name.equals("keyring_ext")) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					setSlotsLayout(2, 4);
+				}
+			});
 		}
 	}
 
@@ -83,6 +91,15 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 					if(!isVisible()) {
 						setVisible(true);
 					}
+				}
+			});
+		} else if (name.equals("keyring_ext")) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					setSlotsLayout(3, 4);
+					// needs to be updated for new slots
+					setAcceptedTypes(EntityMap.getClass("item", null, null));
 				}
 			});
 		}
