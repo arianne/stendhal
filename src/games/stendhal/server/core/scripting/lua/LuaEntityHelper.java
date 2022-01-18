@@ -25,6 +25,7 @@ import org.luaj.vm2.LuaValue;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -416,6 +417,9 @@ public class LuaEntityHelper {
 
 	private class LuaSpeakerNPC extends SpeakerNPC implements LuaGuidedEntity {
 
+		private LuaFunction goodbyeAction;
+
+
 		public LuaSpeakerNPC(final String name) {
 			super(name);
 		}
@@ -512,6 +516,22 @@ public class LuaEntityHelper {
 		@Override
 		public void setPathAndPosition(LuaTable table, Boolean loop) {
 			LuaEntityHelper.setEntityPathAndPosition(this, table, loop);
+		}
+
+		@Override
+		public void onGoodbye(final RPEntity attending) {
+			if (goodbyeAction != null) {
+				SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+					@Override
+					public void onTurnReached(final int currentTurn) {
+						goodbyeAction.call();
+					}
+				});
+			}
+		}
+
+		public void onGoodbye(final LuaFunction action) {
+			goodbyeAction = action;
 		}
 	}
 
