@@ -15,6 +15,9 @@
 	<condition property="exe.ext" value=".exe" else="">
 		<equals arg1="${os.win}" arg2="true"/>
 	</condition>
+	<condition property="executable.npm" value="npm.cmd" else="npm">
+		<equals arg1="${os.win}" arg2="true" />
+	</condition>
 
 	<!-- check for some executables -->
 	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
@@ -69,6 +72,11 @@
 	<condition property="exclude.jardiff" value="true">
 		<not>
 			<available file="${build-archive}/stendhal-${version.old}.zip"/>
+		</not>
+	</condition>
+	<condition property="exclude.webclient" value="true">
+		<not>
+			<available file="${executable.npm}" filepath="${env.PATH}"/>
 		</not>
 	</condition>
 
@@ -1329,7 +1337,13 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</schemavalidate>
 	</target>
 
-	<target name="compilejs" depends="js-prepare, js-invoke-compiler" />
+	<target name="compilejs">
+		<antcall target="js-prepare" unless:set="exclude.webclient" />
+		<antcall target="js-invoke-compiler" unless:set="exclude.webclient" />
+
+		<echo if:set="exclude.webclient" level="warning"
+			message="WARNING: Node.js is not installed, skipping web client build." />
+	</target>
 
 	<target name="js-prepare-marauroa">
 		<mkdir dir="build/js" />
