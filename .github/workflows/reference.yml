@@ -1,0 +1,23 @@
+
+name: Build Reference
+on:
+  push:
+    tags:
+    - 'v[0-9]*'
+
+jobs:
+  build:
+    name: Build Reference
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Doxygen
+      run: sudo apt install -y doxygen
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build
+      run: mkdir -p ./build/doxygen/ && doxygen ./doc/Doxyfile
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: './build/doxygen/html/'
