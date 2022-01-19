@@ -655,6 +655,8 @@
 				<pathelement path="libs/ant.jar"/>
 				<pathelement path="libs/jcurses.jar"/>
 				<pathelement path="libs/pircbot.jar"/>
+				<pathelement path="${luaj_jar}"/>
+				<pathelement path="libs/json-simple-1.1.1.jar"/>
 			</classpath>
 		</javadoc>
 	</target>
