@@ -240,7 +240,7 @@ myTable.myFunction()
 | Operator | Description        | Java Equivalent |
 | -------- | ------------------ | --------------- |
 | and      | logical *and*      | &amp;&amp;      |
-| or       | logical *or*       | &#x7c;&#x7c;    |
+| or       | logical *or*       | \|\|            |
 | not      | logical *inverse*  | !               |
 
 ### Relational Operators
@@ -275,8 +275,8 @@ Currently creating new zones via Lua is not supported.
 ### Add Zone Music
 
 Music can be added to zones with the `game:setMusic` function. It supports the following arguments:
-* <span style="color:darkgreen; font-style:italic;>filename:</span> Basename of the OGG audio file to use stored in {{StendhalFile|master|data/music|data/music}}.
-* <span style="color:darkgreen; font-style:italic;>args:</span> A table of key=value integers.
+* <span style="color:darkgreen; font-style:italic;">filename:</span> Basename of the OGG audio file to use stored in [data/music](https://github.com/arianne/stendhal/blob/master/data/music).
+* <span style="color:darkgreen; font-style:italic;">args:</span> A table of key=value integers.
 * Valid keys:
   * <span style="color:darkblue; font-style:italic;">volume:</span> Volume level (default: 100).
   * <span style="color:darkblue; font-style:italic;">x:</span> The horizontal point for the source of the music (default: 1).
