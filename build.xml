@@ -632,7 +632,7 @@
 			jar="${lib}/${client_starter_jarname}" />
 	</target>
 
-	<target name="docs" description="Build javadocs for fixedStendhal">
+	<target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
 		<javadoc packagenames="games.stendhal.*"
 		   defaultexcludes="yes"
 		   destdir="${docs}"
@@ -659,6 +659,10 @@
 				<pathelement path="libs/json-simple-1.1.1.jar"/>
 			</classpath>
 		</javadoc>
+	</target>
+
+	<target name="clean_docs" description="Delete javadoc generated HTML API reference.">
+		<delete dir="${docs}" />
 	</target>
 
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
