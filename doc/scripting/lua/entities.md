@@ -13,12 +13,12 @@ Methods:
 <span style="color:green; font-weight:bold;">entities:getPlayer</span>(name)
 * Retrieves a logged in Player.
 * ***name:*** (`String`) Name of player.
-* *returns:* Logged in {@link games/stendhal/server/entity/player/Player.java|Player}} or `null`.
+* *returns:* Logged in {@link games.stendhal.server.entity.player.Player} or `null`.
 
 <span style="color:green; font-weight:bold;">entities:getNPC</span>(name)
 * Retrieves an existing SpeakerNPC.
 * ***name:*** (`String`) Name of NPC.
-* *returns:* [SpeakerNPC](https://stendhalgame.org/wiki/StendhalScripting/LuaAPI#LuaSpeakerNPC instance or `null`.
+* *returns:* {@link games.stendhal.server.entity.npc.SpeakerNPC} instance or `null`.
 
 <span style="color:green; font-weight:bold;">entities:getItem</span>(name)
 * Retrieves a registered Item.
@@ -33,11 +33,11 @@ Methods:
 <span style="color:green### font-style:italic;">entities:createSpeakerNPC</span>(name)
 * Creates an interactive NPC.
 * ***name:*** (`String`) Name of new NPC.
-* *returns:* New {@link games.stendhal.server.core.scripting.lua.LuaEntityHelper#LuaSpeakerNPC SpeakerNPC} instance.
+* *returns:* New {@link games.stendhal.server.core.scripting.lua.LuaEntityHelper#LuaSpeakerNPC} instance.
 
 <span style="color:green; font-weight:bold;">entities:createSilentNPC</span>()
 * Creates a non-interactive NPC.
-* *returns:* New {@link games.stendhal.server.core.scripting.lua.LuaEntityHelper#LuaSilentNPC SilentNPC} instance.
+* *returns:* New {@link games.stendhal.server.core.scripting.lua.LuaEntityHelper#LuaSilentNPC} instance.
 
 <span style="color:green; font-weight:bold;">entities:setPath</span>(entity, table, loop)
 * ***DEPRECATED:** path can now be set by directly calling the NPC's `setPath` method*
