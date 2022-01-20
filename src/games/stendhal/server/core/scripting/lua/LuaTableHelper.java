@@ -21,6 +21,8 @@ import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
+import games.stendhal.server.core.pathfinder.Node;
+
 
 /**
  * Adds some useful function members to Lua "table" object.
@@ -95,5 +97,28 @@ public class LuaTableHelper {
 				return (LuaString) CoerceJavaToLua.coerce(String.join(delim.checkjstring(), parts));
 			}
 		});
+	}
+
+	/**
+	 * Converts a Lua table pair ({num, num}) to `Node`.
+	 */
+	public static Node pairToNode(final LuaTable lt) {
+		lt.checktable();
+		return new Node(lt.get(1).checkint(), lt.get(2).checkint());
+	}
+
+	/**
+	 * Converts a Lua table of table pairs ({{int, int}, {int, int}}) to
+	 * list of nodes (`List<Node>`).
+	 */
+	public static List<Node> pairsToNodes(final LuaTable lt) {
+		lt.checktable();
+		final List<Node> nodes = new LinkedList<>();
+
+		for (int idx=1; idx <= lt.length(); idx++) {
+			nodes.add(pairToNode((LuaTable) lt.get(idx)));
+		}
+
+		return nodes;
 	}
 }
