@@ -180,6 +180,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * backward compatibility
+	 *
+	 * @deprecated Use {@link #setRetracePath()}.
 	 */
 	@Deprecated
 	public void retracePath() {

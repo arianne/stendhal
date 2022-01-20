@@ -110,7 +110,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * Groovy bug has been resolved.
 	 *
 	 * @return StendhalRPWorld
-	 * @deprecated use StendhalRPWorld.get()
+	 * @deprecated use {@link #get()}.
 	 */
 	@Deprecated
 	public static StendhalRPWorld getInstance() {

@@ -217,6 +217,8 @@ public class LuaEntityHelper {
 	 * 		The NPC instance of which path is being set.
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
+	 * @deprecated
+	 *     Use {@link games.stendhal.server.entity.GuidedEntity#setPath(FixedPath).
 	 */
 	@Deprecated
 	public void setPath(final RPEntity entity, final LuaTable table, Boolean loop) {
@@ -236,6 +238,8 @@ public class LuaEntityHelper {
 	 * 		The NPC instance of which path is being set.
 	 * @param table
 	 * 		Lua table with list of coordinates representing nodes.
+	 * @deprecated
+	 *     Use {@link games.stendhal.server.entity.GuidedEntity#setPathAndPosition(FixedPath)}.
 	 */
 	@Deprecated
 	public void setPathAndPosition(final RPEntity entity, final LuaTable table, Boolean loop) {

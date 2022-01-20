@@ -732,7 +732,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 *
 	 * @param object
 	 *            The object.
-	 * @deprecated Moving to different listener. Use release().
+	 * @deprecated Moving to different listener. Use {@link #release()}.
 	 */
 	@Override
 	@Deprecated

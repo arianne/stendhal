@@ -419,6 +419,8 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Get the outfit code.
 	 *
 	 * @return The outfit code.
+	 * @deprecated
+	 *     Use {@link #getExtOutfit()}.
 	 */
 	@Deprecated
 	public int getOutfit() {
