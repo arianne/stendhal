@@ -71,9 +71,17 @@ if game:setZone(zone_name) then
 		husbandToBe:setIdea("love")
 	end)
 
+	local treeCarving = entities:create({
+		type = "Sign",
+		visible = false;
+		pos = {76, 54},
+		text = "You read \"" .. h_name .. " ❤ " .. w_name .. "\".",
+		description = "There is something etched into the tree.",
+	})
 
 	game:add(wifeToBe)
 	game:add(husbandToBe)
+	game:add(treeCarving)
 else
 	logger:error("could not set zone: " .. zone_name)
 end
