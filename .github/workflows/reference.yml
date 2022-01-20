@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Build
-      run: mkdir -p ./build/doxygen/ && doxygen ./doc/Doxyfile
+      run: mkdir -p ./build/doxygen/ && doxygen ./buildtools/doxygen/Doxyfile
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

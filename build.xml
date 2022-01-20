@@ -131,7 +131,7 @@
 			match="versionName .*"
 			replace="versionName &quot;${version.webview}&quot;"
 			byline="true"/>
-		<replaceregexp file="doc/doxygen/Doxyfile"
+		<replaceregexp file="buildtools/doxygen/Doxyfile"
 			match="^PROJECT_NUMBER .*$"
 			replace="PROJECT_NUMBER         = ${version}"
 			byline="true"/>
@@ -667,7 +667,7 @@
 
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
 		<exec executable="doxygen">
-			<arg value="./doc/doxygen/Doxyfile" />
+			<arg value="./buildtools/doxygen/Doxyfile" />
 		</exec>
 	</target>
 
@@ -716,9 +716,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="doxygen/" />
-			</fileset>
+			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
@@ -760,9 +758,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="doxygen/" />
-			</fileset>
+			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
@@ -786,9 +782,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="doxygen/" />
-			</fileset>
+			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
@@ -854,9 +848,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/doc">
-			<fileset dir="doc">
-				<exclude name="doxygen/" />
-			</fileset>
+			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
