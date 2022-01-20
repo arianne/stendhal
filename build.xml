@@ -716,7 +716,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="scripting/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
@@ -758,7 +760,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="scripting/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
@@ -782,7 +786,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="scripting/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
@@ -848,7 +854,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="scripting/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
