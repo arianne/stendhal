@@ -39,6 +39,13 @@
       <tab type="user" visible="yes" title="Lua" url="@ref lua"/>
     </tab>
     <tab type="examples" visible="yes" title="" intro=""/>
+    <tab type="user" visible="yes" title="Links">
+      <tab type="user" visible="yes" title="Stendhal Homepage" url="https://stendhalgame.org/"/>
+      <tab type="user" visible="yes" title="Arianne Homepage" url="https://arianne-project.org/"/>
+      <tab type="user" visible="yes" title="Wiki" url="https://stendhalgame.org/wiki/Stendhal"/>
+      <tab type="user" visible="yes" title="Sourceforge" url="https://sourceforge.net/projects/arianne"/>
+      <tab type="user" visible="yes" title="GitHub" url="https://github.com/arianne/stendhal"/>
+    </tab>
   </navindex>
 
   <!-- Layout definition for a class page -->
