@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['ice_7890',['ICE',['../dc/d32/enumgames_1_1stendhal_1_1common_1_1constants_1_1_nature.html#a8082f16ab9cc7114dd8bcebac95aa507',1,'games::stendhal::common::constants::Nature']]],
+  ['identifier_7891',['identifier',['../d8/dae/classgames_1_1stendhal_1_1server_1_1core_1_1config_1_1zone_1_1_portal_setup_descriptor.html#ada8245a8234454c9d94e5c051bce4ec4',1,'games::stendhal::server::core::config::zone::PortalSetupDescriptor']]],
+  ['idle_7892',['IDLE',['../de/d1d/enumgames_1_1stendhal_1_1server_1_1entity_1_1npc_1_1_conversation_states.html#a48d6f18719540f63e43c92b7d2d927a8',1,'games::stendhal::server::entity::npc::ConversationStates']]],
+  ['idlist_7893',['idList',['../d6/d0d/classgames_1_1stendhal_1_1server_1_1actions_1_1_c_status_action.html#a7cdca66e57a62977d4de4cfce8613a64',1,'games::stendhal::server::actions::CStatusAction']]],
+  ['ignore_7894',['IGNORE',['../dd/d47/classgames_1_1stendhal_1_1common_1_1parser_1_1_expression_type.html#a2e70c7c4bb884382f4bc4fbfa25ea312',1,'games::stendhal::common::parser::ExpressionType']]],
+  ['ignoreignorable_7895',['ignoreIgnorable',['../da/d99/classgames_1_1stendhal_1_1common_1_1parser_1_1_conversation_context.html#a41fbc2cd4a3f1edf709d7dfa3ec57c42',1,'games::stendhal::common::parser::ConversationContext']]],
+  ['image_7896',['IMAGE',['../db/daa/classgames_1_1stendhal_1_1common_1_1constants_1_1_events.html#aff6b7e8fb6a8d29d48c4eb0061403790',1,'games::stendhal::common::constants::Events']]],
+  ['in_5fprogress_7897',['IN_PROGRESS',['../de/d13/classgames_1_1stendhal_1_1server_1_1core_1_1pathfinder_1_1_pathfinder.html#af36ad52deb10ddb4889864a9970a3cbb',1,'games::stendhal::server::core::pathfinder::Pathfinder']]],
+  ['inadd_7898',['inAdd',['../d9/de8/classgames_1_1stendhal_1_1client_1_1entity_1_1_entity.html#a061bae8e67a2b6a3f7fa366f8ce68456',1,'games::stendhal::client::entity::Entity']]],
+  ['information_5f1_7899',['INFORMATION_1',['../de/d1d/enumgames_1_1stendhal_1_1server_1_1entity_1_1npc_1_1_conversation_states.html#a81cf76e595be0330968361a9db1dbd3c',1,'games::stendhal::server::entity::npc::ConversationStates']]],
+  ['instance_7900',['instance',['../d6/dd9/classgames_1_1stendhal_1_1server_1_1core_1_1engine_1_1_stendhal_r_p_rule_processor.html#a8655930050775bd705a8fa9fa928ff11',1,'games.stendhal.server.core.engine.StendhalRPRuleProcessor.instance()'],['../d4/d2f/classgames_1_1stendhal_1_1server_1_1core_1_1engine_1_1_stendhal_r_p_world.html#a4230f2d32c3473a5dcbfc1baa8ad7626',1,'games.stendhal.server.core.engine.StendhalRPWorld.instance()']]],
+  ['interior_5fzone_7901',['INTERIOR_ZONE',['../d0/d63/enumgames_1_1stendhal_1_1server_1_1core_1_1rp_1_1achievement_1_1_category.html#ad54098b94267f7b97715864adf2f7a5d',1,'games::stendhal::server::core::rp::achievement::Category']]],
+  ['interval_7902',['interval',['../d9/dbf/classgames_1_1stendhal_1_1server_1_1entity_1_1mapstuff_1_1area_1_1_occupant_area.html#ac46a7a658ae38f7092bf41b4e46c8bab',1,'games::stendhal::server::entity::mapstuff::area::OccupantArea']]],
+  ['item_7903',['ITEM',['../d0/d63/enumgames_1_1stendhal_1_1server_1_1core_1_1rp_1_1achievement_1_1_category.html#aec58f4696a2866e5b2789e3085e5b71d',1,'games.stendhal.server.core.rp.achievement.Category.ITEM()'],['../d3/dc7/enumgames_1_1stendhal_1_1server_1_1core_1_1rp_1_1searchindex_1_1_search_index_entry_type.html#ac9baa756d5e7994cbe59d9c9030f9900',1,'games.stendhal.server.core.rp.searchindex.SearchIndexEntryType.ITEM()']]],
+  ['itemnames_7904',['itemNames',['../d9/dd0/classgames_1_1stendhal_1_1common_1_1grammar_1_1_item_parser.html#ab77b1d2389c1651f35d930a698bf6eaf',1,'games::stendhal::common::grammar::ItemParser']]]
+];
