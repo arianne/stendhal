@@ -64,7 +64,7 @@ axe.png                      David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+black_scythe.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210
 chaos_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
 golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
