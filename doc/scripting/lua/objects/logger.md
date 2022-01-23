@@ -1,14 +1,14 @@
 
-Logger {#lua_logger}
+logger {#lua_logger}
 ======
 
 [TOC]
 
-# Introduction
+## Introduction
 
 Manages logging in Lua via the [org.apache.log4j.Logger](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/Logger.html) class.
 
-# Methods:
+## Methods
 
 ---
 ### logger:info

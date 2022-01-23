@@ -1,14 +1,14 @@
 
-Entities {#lua_entities}
+entities {#lua_entities}
 ========
 
 [TOC]
 
-# entities
+## Introduction
 
 See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entities) for public methods that can be performed on `Entity` objects.
 
-## Methods:
+## Methods
 
 ---
 ### entities:getPlayer

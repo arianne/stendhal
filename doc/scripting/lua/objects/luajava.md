@@ -4,7 +4,7 @@ luajava {#lua_luajava}
 
 [TOC]
 
-# Introduction
+## Introduction
 
 This is an object of the LuajavaLib library. It can be used to coerce Java static objects to Lua or create new Java object instances.
 

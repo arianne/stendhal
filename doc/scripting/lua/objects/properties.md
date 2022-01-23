@@ -1,14 +1,14 @@
 
-Properties {#lua_properties}
+properties {#lua_properties}
 ==========
 
 [TOC]
 
-# properties
+## Introduction
 
 Defines functions for accessing Java system properties.
 
-## Public Methods:
+## Methods
 
 ---
 ### poperties:getValue
