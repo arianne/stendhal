@@ -56,7 +56,7 @@ public class ChiefFalatheenDishwasherNPC implements ZoneConfigurator  {
 			}};
 			npc.setPosition(20, 3);
 			npc.setDescription("You see a strong looking man. He ate lots of healthy vegetables to look like that!");
-			npc.setEntityClass("chieffalatheennpc");
+			npc.setEntityClass("human/risecia_leader");
 			zone.add(npc);
 	}
 }

@@ -1,5 +1,6 @@
 The following images can be removed after 1.39 release:
 
 ./
+- chieffalatheennpc.png
 - yetifemalenpc.png
 - yetimalenpc.png
