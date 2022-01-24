@@ -54,7 +54,7 @@ public class CrulaminNPC implements ZoneConfigurator {
 		};
 
 		Crulamin.setDescription("You see Crulamin, a warrior who has given up everything but playing chess.  His hopes are to become 'The Best' ");
-		Crulamin.setEntityClass("chessplayernpc");
+		Crulamin.setEntityClass("human/armored_leader");
 		Crulamin.setPosition(73,93);
 		Crulamin.initHP(100);
 		zone.add(Crulamin);
