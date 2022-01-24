@@ -49,7 +49,7 @@ public class DeniranArmy implements ZoneConfigurator  {
 			for(int j=0; j<5; j++) {
 				final SilentNPC npc = new SilentNPC();
 				//npc.setIdea("defence");
-				npc.setEntityClass("deniran_stormtrooper");
+				npc.setEntityClass("human/deniran_stormtrooper");
 				npc.setDescription("you see Deniran army soldier.");
 				npc.setPosition(17+i, 83+j);
 				npc.setDirection(Direction.DOWN);
@@ -60,7 +60,7 @@ public class DeniranArmy implements ZoneConfigurator  {
 			for(int j=0; j<5; j++) {
 				final SilentNPC npc = new SilentNPC();
 				//npc.setIdea("defence");
-				npc.setEntityClass("deniran_stormtrooper");
+				npc.setEntityClass("human/deniran_stormtrooper");
 				npc.setDescription("you see Deniran army soldier.");
 				npc.setPosition(83+i, 83+j);
 				npc.setDirection(Direction.DOWN);
