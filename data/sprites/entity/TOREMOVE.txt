@@ -6,5 +6,6 @@ The following images can be removed after 1.39 release:
 - chieffalatheennpc.png
 - deniran_stormtrooper.png
 - dwarf_guardiannpc.png
+- koboldbarregularnpc.png
 - yetifemalenpc.png
 - yetimalenpc.png
