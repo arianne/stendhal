@@ -1,6 +1,7 @@
 The following images can be removed after 1.39 release:
 
 ./
+- chaos_sorcerornpc.png
 - chieffalatheennpc.png
 - yetifemalenpc.png
 - yetimalenpc.png
