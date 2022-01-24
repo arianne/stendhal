@@ -1,7 +1,0 @@
-The following placeholder images can be deleted on or after 1.34 release:
-
-elemental/
-- water_demon.png
-
-human/
-- soldier_wizard.png
