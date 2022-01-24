@@ -68,7 +68,7 @@ public class MrYetiNPC implements ZoneConfigurator {
 			}
 		};
 
-		yetimale.setEntityClass("yetimalenpc");
+		yetimale.setEntityClass("mythical_being/yeti_male");
 		yetimale.setDescription("You see Mr. Yeti, a white hairy man with huge feet!");
 		yetimale.setPosition(29, 29);
 		yetimale.setCollisionAction(CollisionAction.STOP);
