@@ -1,0 +1,5 @@
+The following images can be removed after 1.39 release:
+
+./
+- yetifemalenpc.png
+- yetimalenpc.png
