@@ -230,7 +230,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		} else if(index < 100) {
 			n = "0" + index;
 		}
-		const filename = "/data/sprites/outfit/" + part + "/" + part + "_" + n + ".png";
+		const filename = "/data/sprites/outfit/" + part + "/" + n + ".png";
 		const colors = this["outfit_colors"];
 		let colorname;
 		if (part === "body" || part === "head") {

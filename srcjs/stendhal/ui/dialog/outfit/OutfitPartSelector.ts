@@ -97,7 +97,7 @@ export class OutfitPartSelector {
 	}
 
 	_getPartSprite(part: string, index: number, color = null): Promise<CanvasImageSource> {
-		const fname = "/data/sprites/outfit/" + part + "/" + part + "_" + this.indexString(index) + ".png";
+		const fname = "/data/sprites/outfit/" + part + "/" + this.indexString(index) + ".png";
 		if (color != null) {
 			return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 		}
