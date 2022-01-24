@@ -664,12 +664,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				final String clazz = entity.getEntityClass();
 				final String subclazz = entity.getEntitySubclass();
 
-				custom_shadow = "data/sprites/";
-				if (entity instanceof Creature) {
-					custom_shadow += "entity/";
-				} else if (entity instanceof NPC) {
-					custom_shadow += "npc/";
-				}
+				custom_shadow = "data/sprites/entity/";
 
 				if (subclazz == null && clazz != null) {
 					custom_shadow += clazz;

@@ -18,7 +18,7 @@ var marauroa = window.marauroa = window.marauroa || {};
  */
 marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
 	minimapStyle: "rgb(0,0,255)",
-	spritePath: "npc",
+	spritePath: "entity",
 	titleStyle: "#c8c8ff",
 	"hp": 100,
 	"base_hp": 100,

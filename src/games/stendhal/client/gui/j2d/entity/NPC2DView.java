@@ -97,7 +97,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 						info.getColorMethod());
 			} else {
 				// This NPC's outfit is read from a single file.
-				sprite = store.getModifiedSprite(translate("npc/"
+				sprite = store.getModifiedSprite(translate("entity/"
 						+ entity.getEntityClass()), info.getZoneColor(),
 						info.getColorMethod());
 			}
