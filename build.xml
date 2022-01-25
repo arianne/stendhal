@@ -533,7 +533,7 @@
 				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
-				<exclude name="templates/" />
+				<exclude name="entity/templates/" />
 				<exclude name="placeholder-*.png" />
 				<exclude name="cursor/*.svg" />
 			</fileset>
