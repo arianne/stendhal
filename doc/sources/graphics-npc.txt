@@ -1,5 +1,5 @@
 
-data/sprites/npc/
+data/sprites/entity/
 
 adosbankassistantnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 albinoelf2npc.*               Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/128, https://opengameart.org/node/72969, https://opengameart.org/node/74802
@@ -247,7 +247,7 @@ youngwitchnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
 zoologistnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 
-data/sprites/npc/alternative/
+data/sprites/entity/alternative/
 
 crystal*npc.png  qubodup; GPL 2.0; https://opengameart.org/node/11013
 tendertwig.png   Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
@@ -255,7 +255,7 @@ tomi.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA 
 vulcanus.png     Svetlana Kushnariova (Cabbit), Nila122, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82370, https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/54590
 zekiel.*         etcgood1; CC BY 4.0; https://opengameart.org/node/75195
 
-data/sprites/npc/animal/
+data/sprites/entity/animal/
 
 bee.png       Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79095
@@ -265,7 +265,7 @@ kitten.png    bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69399
 puppy.*       triceratops; CC BY 3.0; https://opengameart.org/node/55254
 rabbit.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851
 
-data/sprites/npc/other/
+data/sprites/entity/other/
 
 bullseye.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 training_dummy.png  Danimal; CC BY-SA 3.0; https://opengameart.org/node/17272; https://opengameart.org/users/danimal
