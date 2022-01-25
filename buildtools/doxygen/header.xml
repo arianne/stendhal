@@ -21,6 +21,9 @@ $search
 $mathjax
 <link href="$relpath^$stylesheet" rel="stylesheet" type="text/css" />
 $extrastylesheet
+
+<link rel="icon" type="image/x-icon" href="$relpath^favicon.ico" />
+
 </head>
 <body>
 <!--BEGIN DISABLE_INDEX-->
