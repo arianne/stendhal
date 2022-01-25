@@ -366,7 +366,7 @@ madaram_windwalker.png   Andrew Friend; CC BY-SA 3.0; https://opengameart.org/no
 
 data/sprites/monsters/minotaur/
 
-mino_king.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/76913
+mino_king.png  Jordan Irwin (AntumDeluge),  David E. Gervais; CC BY 3.0; https://opengameart.org/node/76913, http://pousse.rapiere.free.fr/tome/
 minotaur.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/76913
 
 data/sprites/monsters/misc/
