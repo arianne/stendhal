@@ -876,6 +876,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ./README.md \
                          ./src/ \
+                         ../marauroa/src/ \
                          ./doc/scripting/
 
 # This tag can be used to specify the character encoding of the source files
