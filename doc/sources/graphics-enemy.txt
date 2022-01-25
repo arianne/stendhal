@@ -329,7 +329,7 @@ mimic_idle.png       Diligent Dodo / soniccuz; GPL 2.0 or newer; Stendhal
 necrosophia.*        Wolf W. (Ouren), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/45981
 red_roohako.*        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 robot_aruthon.png    Kevin Smith (TKZ Productions), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82760
-snarfkin.png         Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82910
+snarfkin.*           Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82910
 violet_avenger.*     Svetlana Kushnariova (Cabbit), johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://openclipart.org/detail/4365
 winged_blurble.png   Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/20221
 xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86934, https://opengameart.org/node/75162
