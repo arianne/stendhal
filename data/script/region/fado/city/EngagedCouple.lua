@@ -13,11 +13,6 @@
 ]]
 
 
--- disabled on main server
-if not properties:enabled("stendhal.testserver") then
-	do return end
-end
-
 
 local onGoodbye = function(entity)
 	entity:setIdea("love")
