@@ -14,7 +14,9 @@ Contents:
   - @subpage lua_conditions
   - @subpage lua_actions
   - @subpage lua_merchants
-- @subpage lua_exposed_classes
   - @subpage lua_grammar
+- @subpage lua_exposed_classes
 - @subpage lua_supplemental
+  - @subpage lua_strings
+  - @subpage lua_tables
   - @subpage lua_arrays

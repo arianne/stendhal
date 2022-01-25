@@ -2,5 +2,83 @@
 Static Classes & Enumerations {#lua_exposed_classes}
 =============================
 
-Contents:
-- @subpage lua_grammar
+[TOC]
+
+## ConversationStates
+
+The {@link games.stendhal.server.entity.npc.ConversationStates} enum.
+
+Example usage:
+```
+local npc = entities:createSpeakerNPC("foo")
+npc:setCurrentState(ConversationStates.IDLE)
+```
+
+## ConversationPhrases
+
+The {@link games.stendhal.server.entity.npc.ConversationPhrases} class.
+
+Example usage:
+```
+local npc = entities:createSpeakerNPC("foo")
+npc:add(ConversationStates.IDLE,
+	ConversationPhrases.GREETING_MESSAGES,
+	nil,
+	ConversationStates.ATTENDING,
+	"Hello! How can I help you.",
+	nil)
+```
+
+## CollisionAction
+
+The {@link games.stendhal.server.entity.CollisionAction} enum.
+
+Example usage:
+```
+local npc = entities:createSilentNPC()
+npc:setCollisionAction(CollisionAction.STOP)
+```
+
+## SkinColor
+
+The {@link games.stendhal.common.constants.SkinColor} enum.
+
+Example usage:
+```
+local npc = entities:createSpeakerNPC("foo")
+npc:setOutfit("body=0,head=0,hair=3,dress=5")
+npc:setOutfitColor("skin", SkinColor.DARK)
+```
+
+## Direction
+
+The {@link games.stendhal.common.Direction} enum.
+
+Example usage:
+```
+local npc = entities:createSpeakerNPC("foo")
+npc:setDirection(Direction.DOWN)
+```
+
+## DaylightPhase
+
+The {@link games.stendhal.server.core.rp.DaylightPhase} enum.
+
+## Region
+
+The {@link games.stendhal.server.maps.Region} class.
+
+## MathHelper
+
+The {@link games.stendhal.common.MathHelper} class.
+
+## Color
+
+The {@link java.awt.Color} class.
+
+Example usage:
+```
+local npc = entities:createSpeakerNPC("foo")
+npc:setOutfit("body=0,head=0,hair=3,dress=5")
+npc:setOutfitColor("dress", Color.BLUE)
+```

@@ -12,3 +12,4 @@ Contents:
 - @subpage lua_conditions
 - @subpage lua_actions
 - @subpage lua_merchants
+- @subpage lua_grammar
