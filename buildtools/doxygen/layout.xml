@@ -3,7 +3,7 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title=""/>
-    <tab type="pages" visible="yes" title="" intro=""/>
+    <tab type="pages" visible="no" title="" intro=""/>
     <tab type="modules" visible="yes" title="" intro=""/>
     <tab type="namespaces" visible="yes" title="">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
@@ -35,11 +35,12 @@
       <tab type="filelist" visible="yes" title="" intro=""/>
       <tab type="globals" visible="yes" title="" intro=""/>
     </tab>
-    <tab type="user" visible="yes" title="Scripting" url="@ref scripting">
+    <tab type="user" title="Deprecated List" url="da/d58/deprecated.html"/>
+    <tab type="usergroup" visible="yes" title="Scripting" url="@ref scripting">
       <tab type="user" visible="yes" title="Lua" url="@ref lua"/>
     </tab>
     <tab type="examples" visible="yes" title="" intro=""/>
-    <tab type="user" visible="yes" title="Links">
+    <tab type="usergroup" title="Links">
       <tab type="user" visible="yes" title="Stendhal Homepage" url="https://stendhalgame.org/"/>
       <tab type="user" visible="yes" title="Arianne Homepage" url="https://arianne-project.org/"/>
       <tab type="user" visible="yes" title="Wiki" url="https://stendhalgame.org/wiki/Stendhal"/>
