@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<tagfile doxygen_version="1.9.3" doxygen_gitid="c0b9eafbfb53286ce31e75e2b6c976ee4d345473">
+
+	<compound kind="class">
+		<name>java::lang::Object</name>
+		<filename>java.base/java/lang/Object.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::List</name>
+		<filename>java.base/java/util/List.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Set</name>
+		<filename>java.base/java/util/Set.html</filename>
+	</compound>
+
+</tagfile>
