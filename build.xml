@@ -90,6 +90,12 @@
 		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 	</tstamp>
 
+	<condition property="doxygen.fix_urls" value="true">
+		<and>
+			<equals arg1="${python.present}" arg2="true"/>
+			<available file="buildtools/doxygen/fix_urls.py"/>
+		</and>
+	</condition>
 
 	<!-- Android properties -->
 
@@ -668,6 +674,12 @@
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
 		<exec executable="doxygen">
 			<arg value="./buildtools/doxygen/Doxyfile" />
+		</exec>
+
+		<!-- bug in Doxygen 1.9.3 strips .html suffix from tag file URLs -->
+		<echo if:set="doxygen.fix_urls" message="Fixing external links ..."/>
+		<exec if:set="doxygen.fix_urls" executable="python">
+			<arg value="./buildtools/doxygen/fix_urls.py"/>
 		</exec>
 	</target>
 
