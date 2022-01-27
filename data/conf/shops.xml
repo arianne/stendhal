@@ -638,7 +638,9 @@
 
 	<!-- broker in Semos Plains that purchases misc. items at a low values -->
 	<shop name="brokermisc" type="buys">
+		<item name="bat entrails" price="5" />
 		<item name="pelt" price="10" />
+		<item name="vampirette entrails" price="20" />
 	</shop>
 
 </shops>
