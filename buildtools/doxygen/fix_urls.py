@@ -3,6 +3,8 @@
 # Doxygen is trimming the .html suffix from external references in tag files.
 # So this script is a hack to fix URLs after HTML documentation is generated
 # until a fix is determined for tag files.
+#
+# This is only needed if HTML_FILE_EXTENSION is set to ".html".
 
 
 import os, codecs
