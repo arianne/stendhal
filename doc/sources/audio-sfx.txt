@@ -185,6 +185,7 @@ undead-3.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 undead-4.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-5.*                ArriGD; CC0; https://freesound.org/people/ArriGD/sounds/144005/
 undead-06.*               Dorothy Jean Thompson (pyro13djt); CC BY 3.0; https://freesound.org/people/pyro13djt/sounds/256032/, http://djtvoiceovers.com/
+vampirette_hiss-01.*      Zabuhailo; CC0; https://freesound.org/s/146960/
 water-faucet-1.*          unnamed; public domain; https://pdsounds.org/sounds/faucet_water_into_sink
 water-slosh-[01-03].*     pawsound; CC0; https://freesound.org/people/pawsound/sounds/154881/
 werewolf_growl-[01-02].*  ketamineface; CC0; https://freesound.org/people/ketamineface/sounds/242057/

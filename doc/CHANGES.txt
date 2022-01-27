@@ -11,6 +11,8 @@ Changelog
   - Ari
   - Emeric
   - Emma
+- new sounds
+  - vampirette_hiss: vampirette & vampire bride
 
 *graphics*
 - touched up some entity, outfit, item, & corpse sprites
