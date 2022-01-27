@@ -5,8 +5,22 @@ Changelog
 
 1.39
 
+*world*
+- Sawyer is showing off a shiny golden blade that he acquired
+- new NPCs
+  - Ari
+  - Emeric
+  - Emma
+
 *graphics*
-- touched up some NPC & enemy sprites
+- touched up some entity, outfit, item, & corpse sprites
+- replaced some item sprites
+- some changes to client cursor theme
+
+*client*
+- experimental Android client created that links to web client
+- Java client
+  - updated Win32 executable (no longer requires registry configuration)
 
 
 1.38
