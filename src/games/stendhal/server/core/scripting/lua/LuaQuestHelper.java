@@ -588,8 +588,14 @@ public class LuaQuestHelper {
 		 *
 		 * @param func
 		 * 		Function to invoke when addToWorld() is called.
+		 *
+		 * @deprecated
+		 *     Set LuaQuest.init directly.
 		 */
+		@Deprecated
 		public void setAddFunction(final LuaFunction func) {
+			logger.debug("LuaQuest.setAddFunction deprecated. Set LuaQuest.init directly.");
+
 			this.init = func;
 		}
 
@@ -598,8 +604,13 @@ public class LuaQuestHelper {
 		 *
 		 * @param func
 		 * 		Function to invoke when removeFromWorld() is called.
+		 * @deprecated
+		 *     Set LuaQuest.remove directly.
 		 */
+		@Deprecated
 		public void setRemoveFunction(final LuaFunction func) {
+			logger.debug("LuaQuest.setRemoveFunction deprected. Set LuaQuest.remove directly.");
+
 			this.remove = func;
 		}
 
