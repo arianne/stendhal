@@ -14,11 +14,6 @@
 
 
 
-local onGoodbye = function(entity)
-	entity:setIdea("love")
-end
-
-
 local zone_name = "0_fado_city"
 
 if game:setZone(zone_name) then
@@ -49,22 +44,20 @@ if game:setZone(zone_name) then
 		idea = "love",
 		pos = {74, 56},
 		idleDirection = Direction.RIGHT,
-		greeting = {text="Hello."},
 	})
 
 	wifeToBe:setIgnorePlayers(true)
-	wifeToBe:setOnRejectedAttack(function(attacker)
+	wifeToBe.attackRejectedAction = function(self, attacker)
 		if attacker ~= nil then
-			husbandToBe:say(attacker:getName() .. ", please leave " .. w_name .. " alone.")
+			husbandToBe:say(attacker:getName() .. ", please leave " .. self:getName() .. " alone.")
 		else
-			husbandToBe:say("Please leave " .. w_name .. " alone.")
+			husbandToBe:say("Please leave " .. self:getName() .. " alone.")
 		end
-	end)
+	end
 
-	husbandToBe:addGoodbye()
-	husbandToBe:onGoodbye(function()
-		husbandToBe:setIdea("love")
-	end)
+	husbandToBe.idleAction = function(self)
+		self:setIdea("love")
+	end
 
 	local treeCarving = entities:create({
 		type = "Sign",
