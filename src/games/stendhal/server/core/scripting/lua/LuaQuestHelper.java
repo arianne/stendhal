@@ -298,13 +298,13 @@ public class LuaQuestHelper {
 		 * {@link StendhalQuestSystem.loadQuest}
 		 * is called.
 		 */
-		private LuaFunction add = null;
-		private LuaFunction remove = null;
-		private LuaFunction history = null;
-		private LuaFunction formattedHistory = null;
-		private LuaFunction startedCheck = null;
-		private LuaFunction repeatableCheck = null;
-		private LuaFunction completedCheck = null;
+		public LuaFunction add = null;
+		public LuaFunction remove = null;
+		public LuaFunction history = null;
+		public LuaFunction formattedHistory = null;
+		public LuaFunction startedCheck = null;
+		public LuaFunction repeatableCheck = null;
+		public LuaFunction completedCheck = null;
 
 
 		private LuaQuest() {
