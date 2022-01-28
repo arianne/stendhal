@@ -298,7 +298,7 @@ public class LuaQuestHelper {
 		 * {@link StendhalQuestSystem.loadQuest}
 		 * is called.
 		 */
-		public LuaFunction add = null;
+		public LuaFunction init = null;
 		public LuaFunction remove = null;
 		public LuaFunction history = null;
 		public LuaFunction formattedHistory = null;
@@ -331,7 +331,7 @@ public class LuaQuestHelper {
 		/**
 		 * Registers quest to be added to world.
 		 *
-		 * {@link LuaQuest.add} must be set before this is called.
+		 * {@link LuaQuest.init} must be set before this is called.
 		 *
 		 * (alternatively call questSystem:cacheQuest(LuaQuest))
 		 */
@@ -463,8 +463,8 @@ public class LuaQuestHelper {
 
 		@Override
 		public void addToWorld() {
-			if (add != null) {
-				add.invoke(); // or should this be add.call()?
+			if (init != null) {
+				init.invoke(); // or should this be init.call()?
 			} else {
 				logger.warn("LuaQuest.init not set. Quest will not work.");
 			}
@@ -590,7 +590,7 @@ public class LuaQuestHelper {
 		 * 		Function to invoke when addToWorld() is called.
 		 */
 		public void setAddFunction(final LuaFunction func) {
-			this.add = func;
+			this.init = func;
 		}
 
 		/**
