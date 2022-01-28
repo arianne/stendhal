@@ -31,6 +31,8 @@ import games.stendhal.server.maps.quests.SimpleQuestCreator;
  */
 public class LuaQuestHelper {
 
+	private static LuaLogger logger = LuaLogger.get();
+
 	private static StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 
 	// expose SimpleQuestCreator to Lua
@@ -104,8 +106,13 @@ public class LuaQuestHelper {
 	 *
 	 * @param quest
 	 * 		Quest to be cached.
+	 * @deprecated
+	 *     Use {@link LuaQuest.register}.
 	 */
+	@Deprecated
 	public void cache(final IQuest quest) {
+		logger.debug("LuaQuestHelper.cache deprecated. Use LuaQuest.register.");
+
 		questSystem.cacheQuest(quest);
 	}
 
@@ -114,7 +121,10 @@ public class LuaQuestHelper {
 	 *
 	 * @param quest
 	 * 		Quest to be cached.
+	 * @deprecated
+	 *     Use {@link LuaQuest.register}.
 	 */
+	@Deprecated
 	public void register(final IQuest quest) {
 		cache(quest);
 	}
