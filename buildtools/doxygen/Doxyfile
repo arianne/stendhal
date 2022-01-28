@@ -2296,7 +2296,8 @@ SKIP_FUNCTION_MACROS   = YES
 # run, you must also specify the path to the tagfile here.
 
 TAGFILES               = ./buildtools/doxygen/tags/java_api.xml=https://docs.oracle.com/en/java/javase/16/docs/api/ \
-                         ./buildtools/doxygen/tags/luaj_api.xml=http://luaj.org/luaj/3.0/api/
+                         ./buildtools/doxygen/tags/luaj_api.xml=http://luaj.org/luaj/3.0/api/ \
+                         ./buildtools/doxygen/tags/log4j_api.xml=https://logging.apache.org/log4j/1.2/apidocs/
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create a
 # tag file that is based on the input files it reads. See section "Linking to
