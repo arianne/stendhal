@@ -18,6 +18,10 @@
 		<filename>java.base/java/lang/Double.html</filename>
 	</compound>
 	<compound kind="class">
+		<name>java::lang::Exception</name>
+		<filename>java.base/java/lang/Exception.html</filename>
+	</compound>
+	<compound kind="class">
 		<name>java::lang::Float</name>
 		<filename>java.base/java/lang/Float.html</filename>
 	</compound>
@@ -44,6 +48,10 @@
 	<compound kind="class">
 		<name>java::lang::System</name>
 		<filename>java.base/java/lang/System.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Throwable</name>
+		<filename>java.base/java/lang/Throwable.html</filename>
 	</compound>
 
 
