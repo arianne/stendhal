@@ -264,7 +264,7 @@ public class ScriptInLua extends ScriptingSandbox {
 			return instance;
 		}
 
-		public void info(String message) {
+		private void formatMessage(String message) {
 			message = message.trim();
 
 			if (luaScript == null) {
@@ -272,36 +272,30 @@ public class ScriptInLua extends ScriptingSandbox {
 			} else {
 				message = "(" + luaScript + ") " + message;
 			}
+		}
 
+		public void info(String message) {
+			formatMessage(message);
 			logger.info(message);
 		}
 
 		public void warn(String message) {
-			message = message.trim();
-
-			if (luaScript == null) {
-				message = "(unknown source) " + message;
-			} else {
-				message = "(" + luaScript + ") " + message;
-			}
-
+			formatMessage(message);
 			logger.warn(message);
 		}
 
 		public void error(String message) {
-			message = message.trim();
-
-			if (luaScript == null) {
-				message = "(unknown source) " + message;
-			} else {
-				message = "(" + luaScript + ") " + message;
-			}
-
+			formatMessage(message);
 			logger.error(message);
 		}
 
 		public void error(final Object obj, final Throwable throwable) {
 			logger.error(obj, throwable);
+		}
+
+		public void debug(String message) {
+			formatMessage(message);
+			logger.debug(message);
 		}
 	}
 }
