@@ -55,6 +55,8 @@ if game:setZone(zone_name) then
 		end
 	end
 
+	-- does not respond to players if quest is not loaded
+	husbandToBe:setIgnorePlayers(true)
 	husbandToBe.idleAction = function(self)
 		self:setIdea("love")
 	end
