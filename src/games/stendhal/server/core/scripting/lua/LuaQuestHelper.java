@@ -19,6 +19,7 @@ import org.luaj.vm2.LuaValue;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.maps.quests.IQuest;
@@ -109,7 +110,7 @@ public class LuaQuestHelper {
 	}
 
 	/**
-	 * Caches a quest fro loading at startup.
+	 * Caches a quest for loading at startup.
 	 *
 	 * @param quest
 	 * 		Quest to be cached.
@@ -282,7 +283,9 @@ public class LuaQuestHelper {
 	 * Class to aid with quest manipulation in Lua.
 	 */
 	@SuppressWarnings("unused")
-	private class LuaQuest extends AbstractQuest {
+	private static class LuaQuest extends AbstractQuest {
+
+		private static LuaLogger logger = LuaLogger.get();
 
 		private String slotName = null;
 		private int minLevel = 0;
@@ -290,6 +293,11 @@ public class LuaQuestHelper {
 		private String npcName = null;
 		private boolean visible = true;
 
+		/**
+		 * Function executed when
+		 * {@link StendhalQuestSystem.loadQuest}
+		 * is called.
+		 */
 		private LuaFunction add = null;
 		private LuaFunction remove = null;
 		private LuaFunction history = null;
@@ -321,7 +329,9 @@ public class LuaQuestHelper {
 		}
 
 		/**
-		 * This must be called in order for the quest to be added to game.
+		 * Registers quest to be added to world.
+		 *
+		 * {@link LuaQuest.add} must be set before this is called.
 		 *
 		 * (alternatively call questSystem:cacheQuest(LuaQuest))
 		 */
@@ -455,6 +465,8 @@ public class LuaQuestHelper {
 		public void addToWorld() {
 			if (add != null) {
 				add.invoke(); // or should this be add.call()?
+			} else {
+				logger.warn("LuaQuest.init not set. Quest will not work.");
 			}
 		}
 
@@ -574,21 +586,21 @@ public class LuaQuestHelper {
 		/**
 		 * Sets the function for adding the quest to the game.
 		 *
-		 * @param addFunction
+		 * @param func
 		 * 		Function to invoke when addToWorld() is called.
 		 */
-		public void setAddFunction(final LuaFunction add) {
-			this.add = add;
+		public void setAddFunction(final LuaFunction func) {
+			this.add = func;
 		}
 
 		/**
 		 * Sets the function for removing the quest from the game.
 		 *
-		 * @param remove
+		 * @param func
 		 * 		Function to invoke when removeFromWorld() is called.
 		 */
-		public void setRemoveFunction(final LuaFunction remove) {
-			this.remove = remove;
+		public void setRemoveFunction(final LuaFunction func) {
+			this.remove = func;
 		}
 
 		/**
