@@ -101,8 +101,12 @@ public class LuaActionHelper {
 		try {
 			if (noArgs) {
 				try {
-					return (ChatAction) Class.forName(className).newInstance();
+					return (ChatAction) Class.forName(className).getDeclaredConstructor().newInstance();
+				} catch (final InvocationTargetException e2) {
+					// do nothing
 				} catch (final InstantiationException e2) {
+					// do nothing
+				} catch (final  NoSuchMethodException e2) {
 					// do nothing
 				}
 			} else {

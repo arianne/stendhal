@@ -106,8 +106,12 @@ public class LuaConditionHelper {
 		try {
 			if (noArgs) {
 				try {
-					return (ChatCondition) Class.forName(className).newInstance();
+					return (ChatCondition) Class.forName(className).getDeclaredConstructor().newInstance();
+				} catch (final InvocationTargetException e2) {
+					// do nothing
 				} catch (final InstantiationException e2) {
+					// do nothing
+				} catch (final NoSuchMethodException e2) {
 					// do nothing
 				}
 			} else {
