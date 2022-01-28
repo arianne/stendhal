@@ -886,7 +886,7 @@ public class LuaEntityHelper {
 	 */
 	private class LuaSpeakerNPC extends SpeakerNPC implements LuaGuidedEntity {
 
-		private LuaFunction goodbyeAction;
+		public LuaFunction idleAction;
 		public LuaFunction attackRejectedAction;
 		private boolean ignorePlayers = false;
 
@@ -990,26 +990,21 @@ public class LuaEntityHelper {
 		}
 
 		@Override
-		public void onGoodbye(final RPEntity attending) {
-			if (goodbyeAction != null) {
-				SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
-					@Override
-					public void onTurnReached(final int currentTurn) {
-						goodbyeAction.call();
-					}
-				});
-			}
-		}
-
-		public void onGoodbye(final LuaFunction action) {
-			goodbyeAction = action;
-		}
-
-		@Override
 		public void setAttending(final RPEntity rpentity) {
 			// workaround to prevent setIdea() being called
 			if (!ignorePlayers) {
 				super.setAttending(rpentity);
+
+				if (getEngine().getCurrentState().equals(ConversationStates.IDLE) && idleAction instanceof LuaFunction) {
+					final LuaSpeakerNPC thisNPC = this;
+
+					SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+						@Override
+						public void onTurnReached(final int currentTurn) {
+							idleAction.call(CoerceJavaToLua.coerce(thisNPC));
+						}
+					});
+				}
 			}
 		}
 
