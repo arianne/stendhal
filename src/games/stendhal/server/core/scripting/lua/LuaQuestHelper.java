@@ -340,6 +340,17 @@ public class LuaQuestHelper {
 		}
 
 		/**
+		 * Registers quest to be added to world.
+		 *
+		 * @param func
+		 *     Function to execute when {@link StendhalQuestSystem.loadQuest} is called.
+		 */
+		public void register(final LuaFunction func) {
+			this.init = func;
+			register();
+		}
+
+		/**
 		 * Gets the boolean return value of a Lua function.
 		 *
 		 * @param lf
