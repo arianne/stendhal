@@ -962,7 +962,7 @@ public class LuaEntityHelper {
 				} else if (conditions instanceof LuaFunction) {
 					listenConditions = conditionHelper.create((LuaFunction) conditions);
 				} else {
-					listenConditions = conditionHelper.andCondition((LuaTable) conditions);
+					listenConditions = conditionHelper.andC((LuaTable) conditions);
 				}
 			}
 

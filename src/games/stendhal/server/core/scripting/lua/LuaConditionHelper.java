@@ -156,8 +156,25 @@ public class LuaConditionHelper {
 	 * @return
 	 * 		New NotCondition instance.
 	 */
-	public NotCondition notCondition(final ChatCondition condition) {
+	public NotCondition notC(final ChatCondition condition) {
 		return new NotCondition(condition);
+	}
+
+	/**
+	 * Creates a NotCondition instance.
+	 *
+	 * @param condition
+	 * 		Condition to be checked.
+	 * @return
+	 * 		New NotCondition instance.
+	 * @deprecated
+	 *     Use {@link LuaConditionHelper.notC}.
+	 */
+	@Deprecated
+	public NotCondition notCondition(final ChatCondition condition) {
+		logger.debug("LuaConditionHelper.notCondition deprecated. Use LuaConditionHelper.notC.");
+
+		return this.notC(condition);
 	}
 
 	/**
@@ -170,25 +187,44 @@ public class LuaConditionHelper {
 	 * @return
 	 * 		New NotCondition instance.
 	 */
-	public NotCondition notCondition(final LuaValue lv) {
+	public NotCondition notC(final LuaValue lv) {
 		if (lv.istable()) {
-			return notCondition(andCondition(lv.checktable()));
+			return notC(andCondition(lv.checktable()));
 		} else if (lv.isfunction()) {
 			return new NotCondition(create((LuaFunction) lv));
 		}
 
-		return notCondition((ChatCondition) lv.touserdata(ChatCondition.class));
+		return this.notC((ChatCondition) lv.touserdata(ChatCondition.class));
 	}
 
 	/**
-	 * Helper method to create a AndCondition instance.
+	 * Helper method for creating a NotCondition instance.
+	 *
+	 * @param lv
+	 * 		Condition to be checked inside a LuaValue instance, a list of
+	 * 		conditions inside a LuaTable, or a LuaFunction that returns a
+	 * 		boolean value.
+	 * @return
+	 * 		New NotCondition instance.
+	 * @deprecated
+	 *     Use {@link LuaConditionHelper.notC}.
+	 */
+	@Deprecated
+	public NotCondition notCondition(final LuaValue lv) {
+		logger.debug("LuaConditionHelper.notCondition deprecated. Use LuaConditionHelper.notC.");
+
+		return this.notC(lv);
+	}
+
+	/**
+	 * Helper method to create an AndCondition instance.
 	 *
 	 * @param conditionList
 	 * 		LuaTable containing a list of ChatCondition instances.
 	 * @return
 	 * 		New AndCondition instance.
 	 */
-	public AndCondition andCondition(final LuaTable conditionList) {
+	public AndCondition andC(final LuaTable conditionList) {
 		final List<ChatCondition> conditions = new LinkedList<>();
 		for (final LuaValue idx: conditionList.keys()) {
 			final LuaValue value = conditionList.get(idx);
@@ -202,5 +238,22 @@ public class LuaConditionHelper {
 		}
 
 		return new AndCondition(conditions.toArray(new ChatCondition[] {}));
+	}
+
+	/**
+	 * Helper method to create an AndCondition instance.
+	 *
+	 * @param conditionList
+	 * 		LuaTable containing a list of ChatCondition instances.
+	 * @return
+	 * 		New AndCondition instance.
+	 * @deprecated
+	 *     Use {@link LuaConditionHelper.andC}.
+	 */
+	@Deprecated
+	public AndCondition andCondition(final LuaTable conditionList) {
+		logger.debug("LuaConditionHelper.andCondition deprecated. Use LuaConditionHelper.andC.");
+
+		return this.andC(conditionList);
 	}
 }
