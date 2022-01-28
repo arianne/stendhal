@@ -887,7 +887,7 @@ public class LuaEntityHelper {
 	private class LuaSpeakerNPC extends SpeakerNPC implements LuaGuidedEntity {
 
 		private LuaFunction goodbyeAction;
-		private LuaFunction attackRejectedAction;
+		public LuaFunction attackRejectedAction;
 		private boolean ignorePlayers = false;
 
 
@@ -1020,14 +1020,10 @@ public class LuaEntityHelper {
 		@Override
 		public void onRejectedAttackStart(final RPEntity attacker) {
 			if (attackRejectedAction != null) {
-				attackRejectedAction.call(CoerceJavaToLua.coerce(attacker));
+				attackRejectedAction.call(CoerceJavaToLua.coerce(this), CoerceJavaToLua.coerce(attacker));
 			} else if (!ignorePlayers) {
 				super.onRejectedAttackStart(attacker);
 			}
-		}
-
-		public void setOnRejectedAttack(final LuaFunction action) {
-			attackRejectedAction = action;
 		}
 	}
 
