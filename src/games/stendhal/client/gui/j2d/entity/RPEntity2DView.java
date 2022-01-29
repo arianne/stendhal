@@ -27,10 +27,8 @@ import java.util.Map;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.StatusID;
