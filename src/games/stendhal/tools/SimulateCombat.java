@@ -49,6 +49,12 @@ import marauroa.common.game.RPObject;
  *     Number of rounds to simulate (default: 500).
  * @param --threshold
  *     Difference threshold used to determine if combat was balanced.
+ * @param --barehanded
+ *     Entities will not be equipped with weapons & armor.
+ * @param --equipsame
+ *     Enemy will be equipped with same weapons & armor as player.
+ * @param --noboost
+ *     Player will not get boost from equipment.
  * @param --help
  *     Show usage information & exit.
  */
@@ -66,6 +72,14 @@ public class SimulateCombat {
 
 	private static Player player;
 	private static Creature enemy;
+
+	/**
+	 * If set to <code>true</code>, entities will not be equipped with weapons
+	 * & armor.
+	 */
+	private static boolean barehanded = false;
+	private static boolean equipsame = false;
+	private static boolean noboost = false;
 
 	/**
 	 * If a round exceeds this number of turns round will be terminated.
@@ -113,17 +127,21 @@ public class SimulateCombat {
 		System.out.println("\nUsage:"
 			+ "\n\t" + exe
 				+ " --lvl <lvl> --hp <hp> --atk <atk> --def <def>"
-				+ "[ --rounds <rounds>][ --threshold <threshold>]"
+				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
 			+ "\n\t" + exe + " --help"
-			+ "\n\nArguments:"
-			+ "\n\t--lvl:       Level at which player & enemy should be set."
-			+ "\n\t--hp:        HP value of enemy."
-			+ "\n\t--atk:       Attack level of enemy."
-			+ "\n\t--def:       Defense level of enemy."
-			+ "\n\t--rounds:    Number of rounds to simulate (default: " + default_rounds + ")."
-			+ "\n\t--threshold: Difference threshold used to determine if combat was balanced (default: "
+			+ "\n\nRegular Arguments:"
+			+ "\n\t--lvl:        Level at which player & enemy should be set."
+			+ "\n\t--hp:         HP value of enemy."
+			+ "\n\t--atk:        Attack level of enemy."
+			+ "\n\t--def:        Defense level of enemy."
+			+ "\n\t--rounds:     Number of rounds to simulate (default: " + default_rounds + ")."
+			+ "\n\t--threshold:  Difference threshold used to determine if combat was balanced (default: "
 				+ default_balance_threshold + ")."
-			+ "\n\t--help|-h:   Show usage information & exit.");
+			+ "\n\t--help|-h:    Show usage information & exit."
+			+ "\n\nFlag Arguments:"
+			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
+			+ "\n\t--equipsame:  Enemy will be equipped with same weapons & armor as player."
+			+ "\n\t--noboost:    Player will not get boost from equipment.");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
@@ -214,6 +232,12 @@ public class SimulateCombat {
 				}
 
 				idx++;
+			} else if (st.equals("--barehanded")) {
+				barehanded = true;
+			} else if (st.equals("--equipsame")) {
+				equipsame = true;
+			} else if (st.equals("--noboost")) {
+				noboost = true;
 			} else {
 				unknownArgs.add(st);
 			}
@@ -240,6 +264,7 @@ public class SimulateCombat {
 					+ l - 26);
 		}
 
+		final Item weapon = em.getItem("club");
 		final Item shield = em.getItem("wooden shield");
 		final Item armor = em.getItem("dress");
 		final Item helmet = em.getItem("leather helmet");
@@ -247,32 +272,47 @@ public class SimulateCombat {
 		final Item boots = em.getItem("leather boots");
 
 		player = (Player) new PlayerTransformer().transform(new RPObject());
-		player.equip("lhand", shield);
-		player.equip("rhand", em.getItem("club"));
-		player.equip("armor", armor);
-		player.equip("head", helmet);
-		player.equip("legs", legs);
-		player.equip("feet", boots);
 
 		player.setLevel(lvl);
 		player.setBaseHP(100 + 10 * lvl);
 		player.setAtk(atkLevels[lvl]);
 		player.setDef(defLevels[lvl]);
 
-		// not sure what this does (copied from games.stendhal.tools.BalanceRPGame)
-		player.getWeapon().put("atk", 7 + lvl * 2 / 6);
-		if (lvl == 0) {
-			player.getShield().put("def", 0);
-		} else {
-			player.getShield().put("def", 12 + lvl / 8);
+		if (!barehanded) {
+			player.equip("lhand", shield);
+			player.equip("rhand", weapon);
+			player.equip("armor", armor);
+			player.equip("head", helmet);
+			player.equip("legs", legs);
+			player.equip("feet", boots);
+
+			if (!noboost) {
+				// not sure what this does (copied from games.stendhal.tools.BalanceRPGame)
+				player.getWeapon().put("atk", 7 + lvl * 2 / 6);
+				if (lvl == 0) {
+					player.getShield().put("def", 0);
+				} else {
+					player.getShield().put("def", 12 + lvl / 8);
+				}
+				player.getArmor().put("def", 1 + lvl / 4);
+				player.getHelmet().put("def", 1 + lvl / 7);
+				player.getLegs().put("def", 1 + lvl / 7);
+				player.getBoots().put("def", 1 + lvl / 10);
+			}
 		}
-		player.getArmor().put("def", 1 + lvl / 4);
-		player.getHelmet().put("def", 1 + lvl / 7);
-		player.getLegs().put("def", 1 + lvl / 7);
-		player.getBoots().put("def", 1 + lvl / 10);
 
 		enemy = new Creature("dummy", "dummy", "dummy", hp, atk, atk, def, lvl,
 			1, 1, 1, 1.0, new ArrayList<>(), new HashMap<>(), new LinkedHashMap<>(), 1, "dummy");
+
+		if (!barehanded && equipsame) {
+			// doesn't appear to actually do anything
+			enemy.equip("lhand", shield);
+			enemy.equip("rhand", weapon);
+			enemy.equip("armor", armor);
+			enemy.equip("head", helmet);
+			enemy.equip("legs", legs);
+			enemy.equip("feet", boots);
+		}
 	}
 
 	private static void runSimulation() {
