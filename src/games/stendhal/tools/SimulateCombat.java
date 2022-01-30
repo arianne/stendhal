@@ -382,15 +382,18 @@ public class SimulateCombat {
 		final int pDef = player.getDef();
 		final double pItemAtk = player.getItemAtk();
 		final double pItemDef = player.getItemDef();
-		final double pAtkTotal = pAtk + pItemAtk;
-		final double pDefTotal = pDef + pItemDef;
+		final double pAtkTotal = pAtk * (pItemAtk + 1);
+		final double pDefTotal = pDef * (pItemDef + 1);
 
 		final int eAtk = enemy.getAtk();
 		final int eDef = enemy.getDef();
 		final double eItemAtk = enemy.getItemAtk();
 		final double eItemDef = enemy.getItemDef();
-		final double eAtkTotal = eAtk + eItemAtk;
-		final double eDefTotal = eDef + eItemDef;
+		final double eAtkTotal = eAtk * (eItemAtk + 1);
+		final double eDefTotal = eDef * (eItemDef + 1);
+
+
+		// *** player info ***
 
 		System.out.println("\n  Player stats:"
 			+ "\n    Level: " + player.getLevel()
@@ -399,6 +402,9 @@ public class SimulateCombat {
 			+ "\n           (item: " + pItemAtk + ", total: " + pAtkTotal + ")"
 			+ "\n    DEF:   " + pDef
 			+ "\n           (item: " + pItemDef + ", total: " + pDefTotal + ")");
+
+
+		// *** enemy info ***
 
 		System.out.println("\n  Enemy stats:"
 			+ "\n    Level: " + enemy.getLevel()
