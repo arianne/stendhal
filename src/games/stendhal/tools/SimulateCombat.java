@@ -55,6 +55,8 @@ import marauroa.common.game.RPObject;
  *     Enemy will be equipped with same weapons & armor as player.
  * @param --noboost
  *     Player will not get boost from equipment.
+ * @param --fair
+ *     Gives player weapon with atk 5 & no other equipment (overrides --barehanded).
  * @param --help
  *     Show usage information & exit.
  */
@@ -80,6 +82,7 @@ public class SimulateCombat {
 	private static boolean barehanded = false;
 	private static boolean equipsame = false;
 	private static boolean noboost = false;
+	private static boolean fair = false;
 
 	/**
 	 * If a round exceeds this number of turns round will be terminated.
@@ -141,7 +144,8 @@ public class SimulateCombat {
 			+ "\n\nFlag Arguments:"
 			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
 			+ "\n\t--equipsame:  Enemy will be equipped with same weapons & armor as player."
-			+ "\n\t--noboost:    Player will not get boost from equipment.");
+			+ "\n\t--noboost:    Player will not get boost from equipment."
+			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded).");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
@@ -238,6 +242,8 @@ public class SimulateCombat {
 				equipsame = true;
 			} else if (st.equals("--noboost")) {
 				noboost = true;
+			} else if (st.equals("--fair")) {
+				fair = true;
 			} else {
 				unknownArgs.add(st);
 			}
@@ -265,6 +271,7 @@ public class SimulateCombat {
 		}
 
 		final Item weapon = em.getItem("club");
+		final Item weapon_5 = em.getItem("soul dagger");
 		final Item shield = em.getItem("wooden shield");
 		final Item armor = em.getItem("dress");
 		final Item helmet = em.getItem("leather helmet");
@@ -278,7 +285,9 @@ public class SimulateCombat {
 		player.setAtk(atkLevels[lvl]);
 		player.setDef(defLevels[lvl]);
 
-		if (!barehanded) {
+		if (fair) {
+			player.equip("rhand", weapon_5);
+		} else if (!barehanded) {
 			player.equip("lhand", shield);
 			player.equip("rhand", weapon);
 			player.equip("armor", armor);
