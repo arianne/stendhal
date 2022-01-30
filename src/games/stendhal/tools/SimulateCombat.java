@@ -349,10 +349,13 @@ public class SimulateCombat {
 			+ "\n  Incomplete rounds: " + incomplete_rounds);
 
 		long diff_ratio = 0;
+		String beneficiary = "none";
 		if (wins > losses) {
 			diff_ratio = win_ratio - loss_ratio - tie_ratio;
+			beneficiary = "player";
 		} else if (wins < losses) {
 			diff_ratio = loss_ratio - win_ratio - tie_ratio;
+			beneficiary = "enemy";
 		}
 
 		System.out.println("\n  Resulting difference ratio: " + diff_ratio + "%");
@@ -363,6 +366,7 @@ public class SimulateCombat {
 			System.out.println("    Result is not within balance threshold of "
 				+ balance_threshold + "%");
 		}
+		System.out.println("    Beneficiary: " + beneficiary);
 	}
 
 	private static Pair<Integer, Integer> simulateRound() {
