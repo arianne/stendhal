@@ -315,12 +315,28 @@ public class SimulateCombat {
 
 		if (!barehanded && equipsame) {
 			// doesn't appear to actually do anything
-			enemy.equip("lhand", shield);
-			enemy.equip("rhand", weapon);
-			enemy.equip("armor", armor);
-			enemy.equip("head", helmet);
-			enemy.equip("legs", legs);
-			enemy.equip("feet", boots);
+			final Item pWeapon = player.getWeapon();
+			if (weapon != null) {
+				enemy.equip("rhand", pWeapon);
+			}
+			if (player.hasShield()) {
+				enemy.equip("lhand", player.getShield());
+			}
+			if (player.hasArmor()) {
+				enemy.equip("armor", player.getArmor());
+			}
+			if (player.hasHelmet()) {
+				enemy.equip("head", player.getHelmet());
+			}
+			if (player.hasLegs()) {
+				enemy.equip("legs", player.getLegs());
+			}
+			if (player.hasBoots()) {
+				enemy.equip("feet", player.getBoots());
+			}
+			if (player.hasRing()) {
+				enemy.equip("finger", player.getRing());
+			}
 		}
 	}
 
