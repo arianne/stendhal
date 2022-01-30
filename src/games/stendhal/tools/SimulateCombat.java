@@ -58,7 +58,7 @@ import marauroa.common.game.RPObject;
  * @param --noboost
  *     Player will not get boost from equipment.
  * @param --fair
- *     Gives player weapon with atk 5 & no other equipment (overrides --barehanded).
+ *     Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost).
  * @param --help
  *     Show usage information & exit.
  */
@@ -147,7 +147,7 @@ public class SimulateCombat {
 			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
 			+ "\n\t--equipsame:  Enemy will be equipped with same weapons & armor as player."
 			+ "\n\t--noboost:    Player will not get boost from equipment."
-			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded).");
+			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost).");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
