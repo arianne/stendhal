@@ -13,9 +13,11 @@ package games.stendhal.tools;
 
 import java.lang.StringBuilder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -392,6 +394,32 @@ public class SimulateCombat {
 		final double eAtkTotal = eAtk * (eItemAtk + 1);
 		final double eDefTotal = eDef * (eItemDef + 1);
 
+		final List<String> equip_types = Arrays.asList("weapon", "shield",
+			"helmet", "armor", "legs", "boots", "cloak", "ring");
+
+		final Map<String, Item> pEquip = new HashMap<String, Item>() {{
+			put("weapon", player.getWeapon());
+			put("shield", player.getShield());
+			put("helmet", player.getHelmet());
+			put("armor", player.getArmor());
+			put("legs", player.getLegs());
+			put("boots", player.getBoots());
+			put("cloak", player.getCloak());
+			put("ring", player.getRing());
+		}};
+		final Map<String, Item> eEquip = new HashMap<String, Item>() {{
+			put("weapon", enemy.getWeapon());
+			put("shield", enemy.getShield());
+			put("helmet", enemy.getHelmet());
+			put("armor", enemy.getArmor());
+			put("legs", enemy.getLegs());
+			put("boots", enemy.getBoots());
+			put("cloak", enemy.getCloak());
+			put("ring", enemy.getRing());
+		}};
+
+		final StringBuilder sb = new StringBuilder();
+
 
 		// *** player info ***
 
@@ -403,6 +431,27 @@ public class SimulateCombat {
 			+ "\n    DEF:   " + pDef
 			+ "\n           (item: " + pItemDef + ", total: " + pDefTotal + ")");
 
+		boolean has_equip = false;
+		sb.append("    Equip: ");
+		for (final String item_type: equip_types) {
+			final Item e = pEquip.get(item_type);
+			if (e != null) {
+				final String e_name = e.getName();
+				if (e_name != null && e_name != "") {
+					if (has_equip) {
+						sb.append(", ");
+					}
+
+					sb.append(item_type + "=" + e_name);
+					has_equip = true;
+				}
+			}
+		}
+		if (sb.toString().equals("    Equip: ")) {
+			sb.append("none");
+		}
+		System.out.println(sb.toString());
+
 
 		// *** enemy info ***
 
@@ -413,6 +462,37 @@ public class SimulateCombat {
 			+ "\n           (item: " + eItemAtk + ", total: " + eAtkTotal + ")"
 			+ "\n    DEF:   " + eDef
 			+ "\n           (item: " + eItemDef + ", total: " + eDefTotal + ")");
+
+		// reset equipment string
+		has_equip = false;
+		sb.delete(0, sb.length());
+		sb.append("    Equip: ");
+		for (final String item_type: equip_types) {
+			final Item e = eEquip.get(item_type);
+			if (e != null) {
+				String e_name = e.getName();
+				if (e_name != null && e_name != "") {
+					if (has_equip) {
+						sb.append(", ");
+					}
+
+					if (item_type.equals("weapon")) {
+						final Item e_weapon = enemy.getWeapon();
+						if (e_weapon != null && e_weapon.getName() == "") {
+							e_name = "unnamed weapon";
+						}
+					}
+
+					sb.append(item_type + "=" + e_name);
+					has_equip = true;
+				}
+			}
+		}
+		if (sb.toString().equals("    Equip: ")) {
+			sb.append("none");
+		}
+		System.out.println(sb.toString());
+
 
 		System.out.println("\n  Player wins:       " + wins + " (" + win_ratio + "%)"
 			+ "\n  Enemy wins:        " + losses + " (" + loss_ratio + "%)"
