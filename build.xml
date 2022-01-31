@@ -826,11 +826,12 @@
 		<antcall unless:set="exclude.webview" target="client_android_build" />
 		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
 			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
-				<include name="release/*.apk" />
-				<include name="debug/*.apk" />
+				<include name="**/*.apk" />
 			</fileset>
 		</copy>
 	</target> <!-- dist_client_android -->
+
+	<target name="dist_android_client" depends="dist_client_android" />
 
 	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
