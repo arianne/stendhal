@@ -339,17 +339,19 @@ public class SimulateCombat {
 				creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
 			}
 
-			for (final DefaultCreature df: creatures) {
-				if (df.getCreatureName().equals(creature_name)) {
-					enemy = df.getCreature();
-					boss = df.getAIProfiles().containsKey("boss");
-					break;
-				}
-			}
-
 			if (enemy == null) {
-				System.out.println("\nERROR: unknown creature \"" + creature_name + "\"");
-				System.exit(1);
+				for (final DefaultCreature df: creatures) {
+					if (df.getCreatureName().equals(creature_name)) {
+						enemy = df.getCreature();
+						boss = df.getAIProfiles().containsKey("boss");
+						break;
+					}
+				}
+
+				if (enemy == null) {
+					System.out.println("\nERROR: unknown creature \"" + creature_name + "\"");
+					System.exit(1);
+				}
 			}
 		}
 
@@ -635,6 +637,8 @@ public class SimulateCombat {
 	}
 
 	private static void runFullSimulation() {
+		new RPClassGenerator().createRPClasses();
+		em = SingletonRepository.getEntityManager();
 		creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
@@ -667,6 +671,9 @@ public class SimulateCombat {
 			}
 
 			c_idx++;
+			enemy = df.getCreature();
+			boss = df.getAIProfiles().containsKey("boss");
+
 			initEntities();
 
 			System.out.println("\nRunning simulation for " + creature_name
