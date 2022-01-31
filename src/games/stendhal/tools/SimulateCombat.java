@@ -509,7 +509,7 @@ public class SimulateCombat {
 			beneficiary = "enemy";
 		}
 
-		System.out.println("\n  Resulting difference ratio: " + diff_ratio + "%");
+		System.out.println("\n  Resulting difference ratio: " + Math.abs(diff_ratio) + "%");
 		if (diff_ratio <= balance_threshold) {
 			System.out.println("    Result is within balance threshold of "
 				+ balance_threshold + "%");
