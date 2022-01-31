@@ -14,6 +14,8 @@ package games.stendhal.tools;
 import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -65,6 +67,8 @@ import marauroa.common.game.RPObject;
  *     Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost).
  * @param --boss
  *     Denotes enemy is boss type (currently doesn't affect anything).
+ * @param --all
+ *     Runs simulation for each predefined creature.
  * @param --help
  *     Show usage information & exit.
  */
@@ -93,6 +97,10 @@ public class SimulateCombat {
 	private static boolean noboost = false;
 	private static boolean fair = false;
 	private static boolean boss = false;
+	private static boolean all = false;
+
+	private static EntityManager em;
+	private static List<DefaultCreature> creatures;
 
 	/**
 	 * If a round exceeds this number of turns round will be terminated.
@@ -112,7 +120,7 @@ public class SimulateCombat {
 			showUsageErrorAndExit("threshold argument must be a number between 1 & 100", 1);
 		}
 
-		if (creature_name == null) {
+		if (creature_name == null && !all) {
 			if (lvl == null) {
 				showUsageErrorAndExit("lvl argument must be set", 1);
 			} else if (hp == null) {
@@ -124,8 +132,12 @@ public class SimulateCombat {
 			}
 		}
 
-		initEntities();
-		runSimulation();
+		if (all) {
+			runFullSimulation();
+		} else {
+			initEntities();
+			runSimulation();
+		}
 	}
 
 	private static void showDescription() {
@@ -147,6 +159,8 @@ public class SimulateCombat {
 				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
 			+ "\n\t" + exe + " --creature <name>"
 				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
+			+ "\n\t" + exe + " --all"
+				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
 			+ "\n\t" + exe + " --help"
 			+ "\n\nRegular Arguments:"
 			+ "\n\t--lvl:        Level at which player & enemy should be set."
@@ -163,7 +177,8 @@ public class SimulateCombat {
 			+ "\n\t--equipsame:  Enemy will be equipped with same weapons & armor as player."
 			+ "\n\t--noboost:    Player will not get boost from equipment."
 			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost)."
-			+ "\n\t--boss:       Denotes enemy is boss type (currently doesn't affect anything).");
+			+ "\n\t--boss:       Denotes enemy is boss type (currently doesn't affect anything)."
+			+ "\n\t--all:        Runs simulation for each predefined creature.");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
@@ -272,6 +287,8 @@ public class SimulateCombat {
 				fair = true;
 			} else if (st.equals("--boss")) {
 				boss = true;
+			} else if (st.equals("--all")) {
+				all = true;
 			} else {
 				unknownArgs.add(st);
 			}
@@ -283,8 +300,10 @@ public class SimulateCombat {
 	}
 
 	private static void initEntities() {
-		new RPClassGenerator().createRPClasses();
-		final EntityManager em = SingletonRepository.getEntityManager();
+		if (em == null) {
+			new RPClassGenerator().createRPClasses();
+			em = SingletonRepository.getEntityManager();
+		}
 
 		final int HIGHEST_LEVEL = 597;
 
@@ -310,7 +329,9 @@ public class SimulateCombat {
 			enemy = new Creature("dummy", "dummy", "(generic creature)", hp, atk, atk, def, lvl,
 				1, 1, 1, 1.0, new ArrayList<>(), new HashMap<>(), new LinkedHashMap<>(), 1, "dummy");
 		} else {
-			final List<DefaultCreature> creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
+			if (creatures == null) {
+				creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
+			}
 
 			for (final DefaultCreature df: creatures) {
 				if (df.getCreatureName().equals(creature_name)) {
@@ -388,13 +409,20 @@ public class SimulateCombat {
 	}
 
 	private static void runSimulation() {
-		System.out.println("\nRunning simulation: ...");
+		if (!all) {
+			if (creature_name != null) {
+				System.out.println("\nRunning simulation for " + creature_name + " ...");
+			} else {
+				System.out.println("\nRunning simulation ...");
+			}
+		}
 
 		int wins = 0;
 		int losses = 0;
 		int ties = 0;
 
-		for (int ridx = 0; ridx < rounds; ridx++) {
+		int ridx;
+		for (ridx = 0; ridx < rounds; ridx++) {
 			final Pair<Integer, Integer> result = simulateRound();
 
 			final int playerHP = result.first();
@@ -407,8 +435,11 @@ public class SimulateCombat {
 				winner = "enemy";
 			}
 
-			System.out.println("\nRound " + (ridx+1) + "/" + rounds + " winner: " + winner
-				+ "\n  player HP: " + playerHP + "\n  enemy  HP: " + enemyHP);
+			// don't output detailed round info for full simulation of all defined creatures
+			if (!all) {
+				System.out.println("\nRound " + (ridx+1) + "/" + rounds + " winner: " + winner
+					+ "\n  player HP: " + playerHP + "\n  enemy  HP: " + enemyHP);
+			}
 
 			if (playerHP > enemyHP) {
 				wins++;
@@ -423,7 +454,7 @@ public class SimulateCombat {
 		final long loss_ratio = Math.round((Double.valueOf(losses) / rounds) * 100);
 		final long tie_ratio = Math.round((Double.valueOf(ties) / rounds) * 100);
 
-		System.out.println("\nFINAL RESULT:");
+		System.out.println("\nFINAL RESULT (" + ridx + " rounds):");
 
 		final int pAtk = player.getAtk();
 		final int pDef = player.getDef();
@@ -595,5 +626,32 @@ public class SimulateCombat {
 		}
 
 		return new Pair<Integer, Integer>(player.getHP(), enemy.getHP());
+	}
+
+	private static void runFullSimulation() {
+		System.out.println("\nRunning simulation of all predefined creatures ...");
+
+		creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
+
+		Collections.sort(creatures, new Comparator<DefaultCreature>() {
+			@Override
+			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
+				return o1.getLevel() - o2.getLevel();
+			}
+		});
+
+		final int c_count = creatures.size();
+		int c_idx = 0;
+
+		for (final DefaultCreature df: creatures) {
+			c_idx++;
+
+			creature_name = df.getCreatureName();
+			initEntities();
+
+			System.out.println("\nRunning simulation for " + creature_name
+				+ " (" + c_idx + "/" + c_count + ") ...");
+			runSimulation();
+		}
 	}
 }
