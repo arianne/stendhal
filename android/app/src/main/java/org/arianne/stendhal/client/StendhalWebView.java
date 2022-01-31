@@ -44,6 +44,17 @@ public class StendhalWebView extends AppCompatActivity {
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
 
+		initLoadURLHandler();
+
+		// TODO: "main" should be default & "testing" used in separate build
+		selectServer();
+
+		// initial page
+		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
+	}
+
+
+	private void initLoadURLHandler() {
 		clientView.setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
@@ -55,12 +66,6 @@ public class StendhalWebView extends AppCompatActivity {
 				return false;
 			}
 		});
-
-		// TODO: "main" should be default & "testing" used in separate build
-		selectServer();
-
-		// initial page
-		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
 	/**
