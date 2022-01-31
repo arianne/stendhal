@@ -47,15 +47,16 @@ public class StendhalWebView extends AppCompatActivity {
 			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				/* FIXME: should not allow external URLs */
+				/* FIXME: external URLs should be opened in browser */
 				view.loadUrl(getServerUrl(url));
 				return false;
 			}
 		});
 
 		// TODO: "main" should be default & "testing" used in separate build
-		setServer();
+		selectServer();
 
+		// initial page
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
@@ -71,7 +72,10 @@ public class StendhalWebView extends AppCompatActivity {
 		return url;
 	}
 
-	private void setServer() {
+	/**
+	 * Opens a message dialog for user to choose between main & test servers.
+	 */
+	private void selectServer() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Select a server");
 		builder.setCancelable(false);
