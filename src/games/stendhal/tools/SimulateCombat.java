@@ -63,6 +63,8 @@ import marauroa.common.game.RPObject;
  *     Player will not get boost from equipment.
  * @param --fair
  *     Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost).
+ * @param --boss
+ *     Denotes enemy is boss type (currently doesn't affect anything).
  * @param --help
  *     Show usage information & exit.
  */
@@ -90,6 +92,7 @@ public class SimulateCombat {
 	private static boolean equipsame = false;
 	private static boolean noboost = false;
 	private static boolean fair = false;
+	private static boolean boss = false;
 
 	/**
 	 * If a round exceeds this number of turns round will be terminated.
@@ -159,7 +162,8 @@ public class SimulateCombat {
 			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
 			+ "\n\t--equipsame:  Enemy will be equipped with same weapons & armor as player."
 			+ "\n\t--noboost:    Player will not get boost from equipment."
-			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost).");
+			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost)."
+			+ "\n\t--boss:       Denotes enemy is boss type (currently doesn't affect anything).");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
@@ -266,6 +270,8 @@ public class SimulateCombat {
 				noboost = true;
 			} else if (st.equals("--fair")) {
 				fair = true;
+			} else if (st.equals("--boss")) {
+				boss = true;
 			} else {
 				unknownArgs.add(st);
 			}
@@ -309,6 +315,7 @@ public class SimulateCombat {
 			for (final DefaultCreature df: creatures) {
 				if (df.getCreatureName().equals(creature_name)) {
 					enemy = df.getCreature();
+					boss = df.getAIProfiles().containsKey("boss");
 					break;
 				}
 			}
@@ -456,65 +463,70 @@ public class SimulateCombat {
 			put("ring", enemy.getRing());
 		}};
 
-		final StringBuilder sb = new StringBuilder();
-
 
 		// *** player info ***
 
-		System.out.println("\n  Player stats:"
+		final StringBuilder sb = new StringBuilder("\n  Player stats:"
 			+ "\n    Level: " + player.getLevel()
 			+ "\n    HP:    " + player.getBaseHP()
 			+ "\n    ATK:   " + pAtk
 			+ "\n           (item: " + pItemAtk + ", total: " + pAtkTotal + ")"
 			+ "\n    DEF:   " + pDef
-			+ "\n           (item: " + pItemDef + ", total: " + pDefTotal + ")");
+			+ "\n           (item: " + pItemDef + ", total: " + pDefTotal + ")"
+			+ "\n    Equip: ");
 
 		boolean has_equip = false;
-		sb.append("    Equip: ");
+		final StringBuilder equip_sb = new StringBuilder();
 		for (final String item_type: equip_types) {
 			final Item e = pEquip.get(item_type);
 			if (e != null) {
 				final String e_name = e.getName();
 				if (e_name != null && e_name != "") {
 					if (has_equip) {
-						sb.append(", ");
+						equip_sb.append(", ");
 					}
 
-					sb.append(item_type + "=" + e_name);
+					equip_sb.append(item_type + "=" + e_name);
 					has_equip = true;
 				}
 			}
 		}
-		if (sb.toString().equals("    Equip: ")) {
-			sb.append("none");
+		if (!has_equip) {
+			equip_sb.append("none");
 		}
+		sb.append(equip_sb.toString());
 		System.out.println(sb.toString());
 
 
 		// *** enemy info ***
 
-		System.out.println("\n  Enemy stats:");
+		sb.delete(0, sb.length()); // reset info
+
+		sb.append("\n  Enemy stats:");
 		if (creature_name != null) {
-			System.out.println("    Name:  " + enemy.getName());
+			sb.append("\n    Name:  " + enemy.getName());
+			if (boss) {
+				sb.append(" (boss)");
+			}
 		}
-		System.out.println("    Level: " + enemy.getLevel()
+		sb.append("\n    Level: " + enemy.getLevel()
 			+ "\n    HP:    " + enemy.getBaseHP()
 			+ "\n    ATK:   " + eAtk
 			+ "\n           (item: " + eItemAtk + ", total: " + eAtkTotal + ")"
 			+ "\n    DEF:   " + eDef
-			+ "\n           (item: " + eItemDef + ", total: " + eDefTotal + ")");
+			+ "\n           (item: " + eItemDef + ", total: " + eDefTotal + ")"
+			+ "\n    Equip: ");
 
 		// reset equipment string
 		has_equip = false;
-		sb.delete(0, sb.length());
-		sb.append("    Equip: ");
+		equip_sb.delete(0, equip_sb.length());
 		for (final String item_type: equip_types) {
 			final Item e = eEquip.get(item_type);
 			if (e != null) {
 				String e_name = e.getName();
 				if (e_name != null && e_name != "") {
 					if (has_equip) {
-						sb.append(", ");
+						equip_sb.append(", ");
 					}
 
 					if (item_type.equals("weapon")) {
@@ -524,14 +536,15 @@ public class SimulateCombat {
 						}
 					}
 
-					sb.append(item_type + "=" + e_name);
+					equip_sb.append(item_type + "=" + e_name);
 					has_equip = true;
 				}
 			}
 		}
-		if (sb.toString().equals("    Equip: ")) {
-			sb.append("none");
+		if (!has_equip) {
+			equip_sb.append("none");
 		}
+		sb.append(equip_sb.toString());
 		System.out.println(sb.toString());
 
 
