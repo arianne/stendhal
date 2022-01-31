@@ -307,7 +307,7 @@ public class SimulateCombat {
 		final Item boots = em.getItem("leather boots");
 
 		if (creature_name == null) {
-			enemy = new Creature("dummy", "dummy", "dummy", hp, atk, atk, def, lvl,
+			enemy = new Creature("dummy", "dummy", "(generic creature)", hp, atk, atk, def, lvl,
 				1, 1, 1, 1.0, new ArrayList<>(), new HashMap<>(), new LinkedHashMap<>(), 1, "dummy");
 		} else {
 			final List<DefaultCreature> creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
@@ -502,12 +502,10 @@ public class SimulateCombat {
 
 		sb.delete(0, sb.length()); // reset info
 
-		sb.append("\n  Enemy stats:");
-		if (creature_name != null) {
-			sb.append("\n    Name:  " + enemy.getName());
-			if (boss) {
-				sb.append(" (boss)");
-			}
+		sb.append("\n  Enemy stats:"
+			+ "\n    Name:  " + enemy.getName());
+		if (boss) {
+			sb.append(" (boss)");
 		}
 		sb.append("\n    Level: " + enemy.getLevel()
 			+ "\n    HP:    " + enemy.getBaseHP()
