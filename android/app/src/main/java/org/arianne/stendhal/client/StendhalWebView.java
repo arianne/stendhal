@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StendhalWebView extends AppCompatActivity {
 
+	private WebView clientView;
 	private boolean testing = true;
 
 
@@ -32,7 +33,7 @@ public class StendhalWebView extends AppCompatActivity {
 
 		setContentView(R.layout.activity_main);
 
-		final WebView clientView = (WebView) findViewById(R.id.clientWebView);
+		clientView = (WebView) findViewById(R.id.clientWebView);
 		final WebSettings viewSettings = clientView.getSettings();
 
 		viewSettings.setJavaScriptEnabled(true);
