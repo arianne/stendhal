@@ -19,12 +19,28 @@ android {
 		minSdkVersion 21
 	}
 
+	signingConfigs {
+		androiddebug {
+			// set this to the location of android debug.keystore file (usually ~/.android/debug.keystore)
+			storeFile file(System.getenv("HOME") + "/.android/debug.keystore")
+			keyAlias "androiddebugkey"
+			storePassword "android"
+			keyPassword "android"
+		}
+	}
+
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}
+
+		prerelease {
+			debuggable true
+			signingConfig signingConfigs.androiddebug
+		}
 	}
+
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
@@ -35,6 +51,20 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	/*
+	// custom output filename
+	applicationVariants.all { variant ->
+		def apkName = "stendhal-webview-${versionName}"
+		if (variant.buildType.name == "debug") {
+			apkName += "-DEBUG"
+		}
+
+		variant.outputs.all {
+			outputFileName = apkName + ".apk"
+		}
+	}
+	*/
 }
 
 dependencies {
