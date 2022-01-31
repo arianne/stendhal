@@ -618,18 +618,22 @@
 			unless:set="exclude.webview"
 			message="Building Android WebView client." />
 
+		<property name="android.build" value="assembleRelease" />
+
 		<!-- use Unix shell script -->
 		<exec unless:set="cannot_build_webview_other" failonerror="true"
 				executable="${user.dir}/android/gradlew" dir="android/">
-			<arg value="build" />
+			<arg value="${android.build}" />
 		</exec>
 
 		<!-- use Windows batch script -->
 		<exec unless:set="cannot_build_webview_win" failonerror="true"
 				executable="${user.dir}/android/gradlew.bat" dir="android/">
-			<arg value="build" />
+			<arg value="${android.build}" />
 		</exec>
 	</target> <!-- client_android_build -->
+
+	<target name="build_android_client" depends="client_android_build" />
 
 	<target name="signjar" unless="exclude.signing">
 		<signjar
