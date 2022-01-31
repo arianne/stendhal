@@ -14,6 +14,9 @@ package org.arianne.stendhal.client;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+//import android.view.DragEvent;
+//import android.view.InputDevice;
+//import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -45,6 +48,7 @@ public class StendhalWebView extends AppCompatActivity {
 		viewSettings.setUseWideViewPort(true);
 
 		initLoadURLHandler();
+		initTouchHandler();
 
 		// TODO: "main" should be default & "testing" used in separate build
 		selectServer();
@@ -66,6 +70,45 @@ public class StendhalWebView extends AppCompatActivity {
 				return false;
 			}
 		});
+	}
+
+	private void initTouchHandler() {
+		/*
+		clientView.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(final View view, final MotionEvent event) {
+				if (gameActive) {
+					final int source = event.getSource();
+					if (source == InputDevice.SOURCE_TOUCHSCREEN) {
+						clientView.dispatchTouchEvent(MotionEvent.obtain(
+							event.getDownTime(), event.getEventTime(), event.getAction(),
+							event.getX(), event.getY(), event.getPressure(), event.getSize(),
+							event.getMetaState(), event.getXPrecision(), event.getYPrecision(),
+							InputDevice.SOURCE_MOUSE, event.getEdgeFlags()));
+
+						// consume event
+						return true;
+					}
+
+					return true;
+				}
+
+				return false;
+			}
+		});
+
+		clientView.setOnDragListener(new View.OnDragListener() {
+			@Override
+			public boolean onDrag(final View view, final DragEvent event) {
+				if (gameActive) {
+					// consume event
+					return true;
+				}
+
+				return false;
+			}
+		});
+		*/
 	}
 
 	/**
