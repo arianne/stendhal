@@ -25,6 +25,7 @@ public class StendhalWebView extends AppCompatActivity {
 
 	private WebView clientView;
 	private boolean testing = true;
+	private boolean gameActive = false;
 
 
 	@Override
@@ -48,7 +49,9 @@ public class StendhalWebView extends AppCompatActivity {
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 				/* FIXME: external URLs should be opened in browser */
-				view.loadUrl(getServerUrl(url));
+				view.loadUrl(checkClientUrl(url));
+				gameActive = isClientUrl(clientView.getUrl());
+
 				return false;
 			}
 		});
@@ -60,8 +63,29 @@ public class StendhalWebView extends AppCompatActivity {
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
-	private String getServerUrl(String url) {
-		if (url.contains("stendhalgame.org/client/") || url.contains("stendhalgame.org/testclient/")) {
+	/**
+	 * Checks if a URL is a link to one of the web clients.
+	 *
+	 * @param url
+	 *     URL to be checked.
+	 * @return
+	 *     <code>true</code> if url links to "client" or "testclient".
+	 */
+	private boolean isClientUrl(final String url) {
+		return url.contains("stendhalgame.org/client/")
+			|| url.contains("stendhalgame.org/testclient/");
+	}
+
+	/**
+	 * Formats client URL for currently selected server.
+	 *
+	 * @param url
+	 *     URL to be checked.
+	 * @return
+	 *     URL to be loaded.
+	 */
+	private String checkClientUrl(String url) {
+		if (isClientUrl(url)) {
 			if (testing) {
 				url = url.replace("/client/", "/testclient/");
 			} else {
