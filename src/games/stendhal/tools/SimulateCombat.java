@@ -19,9 +19,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -51,6 +53,8 @@ import marauroa.common.game.RPObject;
  *     Number of rounds to simulate (default: 500).
  * @param --threshold
  *     Difference threshold used to determine if combat was balanced.
+ * @param --creature
+ *     Use a predefined creature as enemy.
  * @param --barehanded
  *     Entities will not be equipped with weapons & armor.
  * @param --equipsame
@@ -76,6 +80,7 @@ public class SimulateCombat {
 
 	private static Player player;
 	private static Creature enemy;
+	private static String creature_name;
 
 	/**
 	 * If set to <code>true</code>, entities will not be equipped with weapons
@@ -102,14 +107,18 @@ public class SimulateCombat {
 			showUsageErrorAndExit("rounds argument must be a postive number", 1);
 		} else if (balance_threshold < 1 || balance_threshold > 100) {
 			showUsageErrorAndExit("threshold argument must be a number between 1 & 100", 1);
-		} else if (lvl == null) {
-			showUsageErrorAndExit("lvl argument must be set", 1);
-		} else if (hp == null) {
-			showUsageErrorAndExit("hp argument must be set", 1);
-		} else if (atk == null) {
-			showUsageErrorAndExit("atk argument must be set", 1);
-		} else if (def == null) {
-			showUsageErrorAndExit("def argument must be set", 1);
+		}
+
+		if (creature_name == null) {
+			if (lvl == null) {
+				showUsageErrorAndExit("lvl argument must be set", 1);
+			} else if (hp == null) {
+				showUsageErrorAndExit("hp argument must be set", 1);
+			} else if (atk == null) {
+				showUsageErrorAndExit("atk argument must be set", 1);
+			} else if (def == null) {
+				showUsageErrorAndExit("def argument must be set", 1);
+			}
 		}
 
 		initEntities();
@@ -133,6 +142,8 @@ public class SimulateCombat {
 			+ "\n\t" + exe
 				+ " --lvl <lvl> --hp <hp> --atk <atk> --def <def>"
 				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
+			+ "\n\t" + exe + " --creature <name>"
+				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
 			+ "\n\t" + exe + " --help"
 			+ "\n\nRegular Arguments:"
 			+ "\n\t--lvl:        Level at which player & enemy should be set."
@@ -142,6 +153,7 @@ public class SimulateCombat {
 			+ "\n\t--rounds:     Number of rounds to simulate (default: " + default_rounds + ")."
 			+ "\n\t--threshold:  Difference threshold used to determine if combat was balanced (default: "
 				+ default_balance_threshold + ")."
+			+ "\n\t--creature:   Use a predefined creature as enemy."
 			+ "\n\t--help|-h:    Show usage information & exit."
 			+ "\n\nFlag Arguments:"
 			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
@@ -238,6 +250,14 @@ public class SimulateCombat {
 				}
 
 				idx++;
+			} else if (st.equals("--creature")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("threshold argument requires value", 1);
+				}
+
+				creature_name = argv[idx + 1];
+
+				idx++;
 			} else if (st.equals("--barehanded")) {
 				barehanded = true;
 			} else if (st.equals("--equipsame")) {
@@ -280,12 +300,33 @@ public class SimulateCombat {
 		final Item legs = em.getItem("leather legs");
 		final Item boots = em.getItem("leather boots");
 
+		if (creature_name == null) {
+			enemy = new Creature("dummy", "dummy", "dummy", hp, atk, atk, def, lvl,
+				1, 1, 1, 1.0, new ArrayList<>(), new HashMap<>(), new LinkedHashMap<>(), 1, "dummy");
+		} else {
+			final List<DefaultCreature> creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
+
+			for (final DefaultCreature df: creatures) {
+				if (df.getCreatureName().equals(creature_name)) {
+					enemy = df.getCreature();
+					break;
+				}
+			}
+
+			if (enemy == null) {
+				System.out.println("\nERROR: unknown creature \"" + creature_name + "\"");
+				System.exit(1);
+			}
+		}
+
 		player = (Player) new PlayerTransformer().transform(new RPObject());
 
-		player.setLevel(lvl);
-		player.setBaseHP(100 + 10 * lvl);
-		player.setAtk(atkLevels[lvl]);
-		player.setDef(defLevels[lvl]);
+		final int p_lvl = enemy.getLevel();
+
+		player.setLevel(p_lvl);
+		player.setBaseHP(100 + 10 * p_lvl);
+		player.setAtk(atkLevels[p_lvl]);
+		player.setDef(defLevels[p_lvl]);
 
 		if (fair) {
 			player.equip("rhand", weapon_5);
@@ -299,21 +340,18 @@ public class SimulateCombat {
 
 			if (!noboost) {
 				// not sure what this does (copied from games.stendhal.tools.BalanceRPGame)
-				player.getWeapon().put("atk", 7 + lvl * 2 / 6);
-				if (lvl == 0) {
+				player.getWeapon().put("atk", 7 + p_lvl * 2 / 6);
+				if (p_lvl == 0) {
 					player.getShield().put("def", 0);
 				} else {
-					player.getShield().put("def", 12 + lvl / 8);
+					player.getShield().put("def", 12 + p_lvl / 8);
 				}
-				player.getArmor().put("def", 1 + lvl / 4);
-				player.getHelmet().put("def", 1 + lvl / 7);
-				player.getLegs().put("def", 1 + lvl / 7);
-				player.getBoots().put("def", 1 + lvl / 10);
+				player.getArmor().put("def", 1 + p_lvl / 4);
+				player.getHelmet().put("def", 1 + p_lvl / 7);
+				player.getLegs().put("def", 1 + p_lvl / 7);
+				player.getBoots().put("def", 1 + p_lvl / 10);
 			}
 		}
-
-		enemy = new Creature("dummy", "dummy", "dummy", hp, atk, atk, def, lvl,
-			1, 1, 1, 1.0, new ArrayList<>(), new HashMap<>(), new LinkedHashMap<>(), 1, "dummy");
 
 		if (!barehanded && equipsame) {
 			// doesn't appear to actually do anything
@@ -455,8 +493,11 @@ public class SimulateCombat {
 
 		// *** enemy info ***
 
-		System.out.println("\n  Enemy stats:"
-			+ "\n    Level: " + enemy.getLevel()
+		System.out.println("\n  Enemy stats:");
+		if (creature_name != null) {
+			System.out.println("    Name:  " + enemy.getName());
+		}
+		System.out.println("    Level: " + enemy.getLevel()
 			+ "\n    HP:    " + enemy.getBaseHP()
 			+ "\n    ATK:   " + eAtk
 			+ "\n           (item: " + eItemAtk + ", total: " + eAtkTotal + ")"
