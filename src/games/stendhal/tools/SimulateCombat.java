@@ -101,6 +101,7 @@ public class SimulateCombat {
 
 	private static EntityManager em;
 	private static List<DefaultCreature> creatures;
+	private static final List<String> filtered_creatures = new ArrayList<>();
 
 	/**
 	 * If a round exceeds this number of turns round will be terminated.
@@ -160,7 +161,7 @@ public class SimulateCombat {
 			+ "\n\t" + exe + " --creature <name>"
 				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
 			+ "\n\t" + exe + " --all"
-				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...]"
+				+ "[ --rounds <rounds>][ --threshold <threshold>][ flags...][ names...]"
 			+ "\n\t" + exe + " --help"
 			+ "\n\nRegular Arguments:"
 			+ "\n\t--lvl:        Level at which player & enemy should be set."
@@ -178,7 +179,8 @@ public class SimulateCombat {
 			+ "\n\t--noboost:    Player will not get boost from equipment."
 			+ "\n\t--fair:       Gives player weapon with atk 5 & no other equipment (overrides --barehanded & assumes --noboost)."
 			+ "\n\t--boss:       Denotes enemy is boss type (currently doesn't affect anything)."
-			+ "\n\t--all:        Runs simulation for each predefined creature.");
+			+ "\n\t--all:        Runs simulation for each predefined creature. If names are"
+				+ " supplied, only those creatures will be simulated.");
 	}
 
 	private static void showUsageErrorAndExit(final String msg, final int err) {
@@ -290,7 +292,11 @@ public class SimulateCombat {
 			} else if (st.equals("--all")) {
 				all = true;
 			} else {
-				unknownArgs.add(st);
+				if (all) {
+					filtered_creatures.add(st);
+				} else {
+					unknownArgs.add(st);
+				}
 			}
 		}
 
@@ -629,8 +635,6 @@ public class SimulateCombat {
 	}
 
 	private static void runFullSimulation() {
-		System.out.println("\nRunning simulation of all predefined creatures ...");
-
 		creatures = new CreatureGroupsXMLLoader("/data/conf/creatures.xml").load();
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
@@ -640,18 +644,45 @@ public class SimulateCombat {
 			}
 		});
 
-		final int c_count = creatures.size();
+		boolean filtered = false;
+		int c_count = filtered_creatures.size();
+		if (c_count > 0) {
+			filtered = true;
+		} else {
+			c_count = creatures.size();
+		}
+
+		if (filtered) {
+			System.out.println("\nRunning simulation of select predefined creatures ...");
+		} else {
+			System.out.println("\nRunning simulation of all predefined creatures ...");
+		}
+
 		int c_idx = 0;
 
 		for (final DefaultCreature df: creatures) {
-			c_idx++;
-
 			creature_name = df.getCreatureName();
+			if (filtered && !filtered_creatures.contains(creature_name)) {
+				continue;
+			}
+
+			c_idx++;
 			initEntities();
 
 			System.out.println("\nRunning simulation for " + creature_name
 				+ " (" + c_idx + "/" + c_count + ") ...");
 			runSimulation();
+
+			if (filtered) {
+				filtered_creatures.remove(creature_name);
+			}
+		}
+
+		if (filtered_creatures.size() > 0) {
+			System.out.println("\nSkipped unknown creatures:");
+			for (final String c_name: filtered_creatures) {
+				System.out.println("  " + c_name);
+			}
 		}
 	}
 }
