@@ -13,7 +13,6 @@ package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
 //import android.view.DragEvent;
 //import android.view.InputDevice;
 //import android.view.MotionEvent;
@@ -24,20 +23,21 @@ import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class StendhalWebView extends AppCompatActivity {
+public class StendhalWebView {
 
-	private WebView clientView;
 	private boolean testing = true;
 	private boolean gameActive = false;
 
+	private final AppCompatActivity mainActivity;
+	private WebView clientView;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_main);
+	public StendhalWebView(final AppCompatActivity activity) {
+		mainActivity = activity;
+	}
 
-		clientView = (WebView) findViewById(R.id.clientWebView);
+	public void init() {
+		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
 		final WebSettings viewSettings = clientView.getSettings();
 
 		viewSettings.setJavaScriptEnabled(true);
@@ -80,7 +80,7 @@ public class StendhalWebView extends AppCompatActivity {
 				if (gameActive) {
 					final int source = event.getSource();
 					if (source == InputDevice.SOURCE_TOUCHSCREEN) {
-						clientView.dispatchTouchEvent(MotionEvent.obtain(
+						view.dispatchTouchEvent(MotionEvent.obtain(
 							event.getDownTime(), event.getEventTime(), event.getAction(),
 							event.getX(), event.getY(), event.getPressure(), event.getSize(),
 							event.getMetaState(), event.getXPrecision(), event.getYPrecision(),
@@ -148,7 +148,7 @@ public class StendhalWebView extends AppCompatActivity {
 	 * Opens a message dialog for user to choose between main & test servers.
 	 */
 	private void selectServer() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
 		builder.setMessage("Select a server");
 		builder.setCancelable(false);
 
@@ -168,26 +168,5 @@ public class StendhalWebView extends AppCompatActivity {
 
 		final AlertDialog selectServer = builder.create();
 		selectServer.show();
-	}
-
-	@Override
-	public void onBackPressed() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Quit Stendhal?");
-
-		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			public void onClick(final DialogInterface dialog, final int id) {
-				finish();
-			}
-		});
-
-		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(final DialogInterface dialog, final int id) {
-				dialog.cancel();
-			}
-		});
-
-		final AlertDialog confirmQuit = builder.create();
-		confirmQuit.show();
 	}
 }

@@ -12,7 +12,7 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.Stendhal.FullScreen">
 		<activity
-			android:name=".StendhalWebView"
+			android:name=".MainActivity"
 			android:label="@string/app_name"
 			android:exported="true">
 			<intent-filter>
