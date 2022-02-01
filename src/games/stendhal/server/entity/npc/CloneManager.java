@@ -29,12 +29,32 @@ public class CloneManager {
 
 	private final static Map<String, List<String>> cloneList = new HashMap<>();
 
-	public static CloneManager getInstance() {
+
+	/**
+	 * Retrieves the static instance.
+	 *
+	 * @return
+	 *     CloneManager instance.
+	 */
+	public static CloneManager get() {
 		if (instance == null) {
 			instance = new CloneManager();
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Retrieves the static instance.
+	 *
+	 * @return
+	 *     CloneManager instance.
+	 * @deprecated
+	 *     Use CloneManager.get().
+	 */
+	@Deprecated
+	public static CloneManager getInstance() {
+		return get();
 	}
 
 	/**
