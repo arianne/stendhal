@@ -41,6 +41,7 @@ import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.LuaTableHelper;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
+import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -155,6 +156,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("merchants", CoerceJavaToLua.coerce(LuaMerchantHelper.get()));
 		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
+		globals.set("clones", CoerceJavaToLua.coerce(CloneManager.get()));
 
 		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));

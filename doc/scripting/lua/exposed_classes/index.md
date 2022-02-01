@@ -82,3 +82,7 @@ local npc = entities:createSpeakerNPC("foo")
 npc:setOutfit("body=0,head=0,hair=3,dress=5")
 npc:setOutfitColor("dress", Color.BLUE)
 ```
+
+## CloneManager
+
+The {@link game.stendhal.server.entity.npc.CloneManager} static instance.
