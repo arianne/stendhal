@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 
 
@@ -25,9 +27,11 @@ import games.stendhal.server.core.engine.SingletonRepository;
  */
 public class CloneManager {
 
+	private static final Logger logger = Logger.getLogger(CloneManager.class);
+
 	private static CloneManager instance;
 
-	private final static Map<String, List<String>> cloneList = new HashMap<>();
+	private static final Map<String, List<String>> clonedList = new HashMap<>();
 
 
 	/**
@@ -58,6 +62,60 @@ public class CloneManager {
 	}
 
 	/**
+	 * Registers a clone name as cloned from original name.
+	 *
+	 * If the clone name is <code>null</code> the original NPC's name
+	 * will be used with an index number appended.
+	 *
+	 * @param origName
+	 *     Name of the SpeakerNPC that has been cloned.
+	 * @param cloneName
+	 *     Name to be registered as a clone.
+	 * @return
+	 *     <code>true</code> if name registration succeeded.
+	 */
+	private boolean register(final String origName, String cloneName) {
+		// the list of clones of this original entity
+		List<String> registeredClones = clonedList.get(origName);
+
+		int idx;
+		if (registeredClones == null) {
+			idx = 2;
+			registeredClones = new ArrayList<String>();
+			clonedList.put(origName, registeredClones);
+		} else {
+			idx = registeredClones.size() + 2;
+		}
+
+		if (cloneName == null) {
+			cloneName = origName + Integer.toString(idx);
+		}
+
+		if (!registeredClones.contains(cloneName)) {
+			registeredClones.add(cloneName);
+			return true;
+		}
+
+		logger.error("clone name already registered: " + cloneName);
+		return false;
+	}
+
+	/**
+	 * Registers a clone name as cloned from original name.
+	 *
+	 * The new clone's name will be the original NPC's name with an
+	 * index number appended.
+	 *
+	 * @param origName
+	 *     Name of the SpeakerNPC that has been cloned.
+	 * @return
+	 *     <code>true</code> if name registration succeeded.
+	 */
+	private boolean register(final String origName) {
+		return register(origName, null);
+	}
+
+	/**
 	 * Creates a new clone.
 	 *
 	 * @param orig
@@ -73,21 +131,10 @@ public class CloneManager {
 
 		if (orig != null) {
 			final String origName = orig.getName();
-			List<String> registered = cloneList.get(origName);
-
-			int idx;
-			if (registered == null) {
-				idx = 2;
-				registered = new ArrayList<String>();
-				cloneList.put(origName, registered);
-			} else {
-				idx = registered.size() + 2;
+			if (!register(origName, cloneName)) {
+				// abort creating NPC is name registration fails
+				return null;
 			}
-
-			if (cloneName == null) {
-				cloneName = origName + Integer.toString(idx);
-			}
-			registered.add(cloneName);
 
 			clone = new SpeakerNPC(cloneName);
 			clone.put("cloned", origName);
@@ -115,6 +162,16 @@ public class CloneManager {
 
 			// clones should not be displayed on website, but check for alternative image just to be safe
 			clone.setAlternativeImage(orig.getAlternativeImage());
+		}
+
+		if (clone == null) {
+			if (orig == null) {
+				logger.warn("attempted to clone null SpeakerNPC");
+			} else {
+				logger.warn("failed to clone SpeakerNPC: " + orig.getName());
+			}
+		} else if (orig != null) {
+			logger.debug("cloned SpeakerNPC: " + orig.getName() + " (" + clone.getName() + ")");
 		}
 
 		return clone;
@@ -160,6 +217,48 @@ public class CloneManager {
 	}
 
 	/**
+	 * Registeres an existing SpeakerNPC as a clone of another.
+	 *
+	 * This only sets the "cloned" attribute for the clone entity.
+	 * Any other attributes must be set manually.
+	 *
+	 * @param orig
+	 *     SpeakerNPC entity to be cloned.
+	 * @param clone
+	 *     SpeakerNPC entity to be registered as a clone.
+	 */
+	public void registerAsClone(final SpeakerNPC orig, final SpeakerNPC clone) {
+		final String origName = orig.getName();
+		if (!register(origName, clone.getName())) {
+			// abort if name registration fails
+			return;
+		}
+
+		clone.put("cloned", origName);
+	}
+
+	/**
+	 * Registeres an existing SpeakerNPC as a clone of another.
+	 *
+	 * This only sets the "cloned" attribute for the clone entity.
+	 * Any other attributes must be set manually.
+	 *
+	 * @param origName
+	 *     Name of the SpeakerNPC to be cloned.
+	 * @param cloneName
+	 *     Name to be registered as a clone.
+	 */
+	public void registerAsClone(final String origName, final String cloneName) {
+		final SpeakerNPC clone = SingletonRepository.getNPCList().get(cloneName);
+		if (!register(origName, cloneName)) {
+			// abort if name registration fails
+			return;
+		}
+
+		clone.put("cloned", origName);
+	}
+
+	/**
 	 * Checks if a name is registered as a clone.
 	 *
 	 * @param name
@@ -168,7 +267,7 @@ public class CloneManager {
 	 * 		<code>true</code> if the name is found in the registered list.
 	 */
 	public boolean isClone(final String name) {
-		for (final List<String> clones: cloneList.values()) {
+		for (final List<String> clones: clonedList.values()) {
 			if (clones.contains(name)) {
 				return true;
 			}
@@ -201,8 +300,8 @@ public class CloneManager {
 	public SpeakerNPC getOriginal(final String name) {
 		SpeakerNPC orig = null;
 
-		for (final String key: cloneList.keySet()) {
-			if (cloneList.get(key).contains(name)) {
+		for (final String key: clonedList.keySet()) {
+			if (clonedList.get(key).contains(name)) {
 				orig = SingletonRepository.getNPCList().get(key);
 				break;
 			}
