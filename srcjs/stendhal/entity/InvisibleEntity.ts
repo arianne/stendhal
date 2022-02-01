@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,16 +9,16 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Entity } from "./Entity";
 
-var marauroa = window.marauroa = window.marauroa || {};
+export class InvisibleEntity extends Entity {
 
-var InvisibleEntity = require("../../../build/ts/entity/InvisibleEntity").InvisibleEntity;
+	override isVisibleToAction(_filter: boolean) {
+		return false;
+	}
 
-marauroa.rpobjectFactory["invisible_entity"] = InvisibleEntity;
-marauroa.rpobjectFactory["area"] = InvisibleEntity;
-marauroa.rpobjectFactory["looped_sound_source"] = InvisibleEntity;
-marauroa.rpobjectFactory["tiled_entity"] = InvisibleEntity;
-marauroa.rpobjectFactory["wall"] = InvisibleEntity;
-marauroa.rpobjectFactory["blocktarget"] = InvisibleEntity;
-marauroa.rpobjectFactory["flyover"] = InvisibleEntity;
+	override getCursor(_x: number, _y: number) {
+		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+	}
+
+}
