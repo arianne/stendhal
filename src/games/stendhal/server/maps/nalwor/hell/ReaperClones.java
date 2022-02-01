@@ -29,12 +29,14 @@ public class ReaperClones implements ZoneConfigurator {
 	private void buildNPCS(final StendhalRPZone zone) {
 		final CloneManager cm = CloneManager.get();
 
-		SpeakerNPC npc = ReaperNPC.createNPC("Grim\u00A0Reaper");
+		SpeakerNPC npc = ReaperNPC.createNPC("Grim Reaper clone");
+		npc.setTitle("Grim Reaper");
 		npc.setPosition(5, 7);
 		zone.add(npc);
 		// NOTE: when using name to register, must be called after added to zone
 		cm.registerAsClone("Grim Reaper", npc.getName());
-		npc = Reaper2NPC.createNPC("repaeR\u00A0mirG");
+		npc = Reaper2NPC.createNPC("repaeR mirG clone");
+		npc.setTitle("repaeR mirG");
 		npc.setPosition(10, 7);
 		zone.add(npc);
 		cm.registerAsClone("repaeR mirG", npc.getName());
