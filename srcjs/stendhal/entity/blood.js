@@ -13,32 +13,6 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 
-/**
- * Blood
- */
-marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
+var Blood = require("../../../build/ts/entity/Blood").Blood;
 
-	minimapShow: false,
-	zIndex: 2000,
-
-	init: function() {
-		this.sprite = {
-			height: 32,
-			width: 32,
-			filename: "/data/sprites/combat/blood_red.png"
-		};
-	},
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory["blood"].proto.set.apply(this, arguments);
-		if (key === "amount") {
-			this.sprite.offsetY = parseInt(value, 10) * 32;
-		} else if (key === "class") {
-			this.sprite.filename = "/data/sprites/combat/blood_" + value + ".png";
-		}
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
-	}
-});
+marauroa.rpobjectFactory["blood"] = Blood;
