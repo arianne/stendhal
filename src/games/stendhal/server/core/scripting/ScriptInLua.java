@@ -68,12 +68,17 @@ public class ScriptInLua extends ScriptingSandbox {
 		luaScript = filename;
 	}
 
-	public static ScriptInLua getInstance() {
+	public static ScriptInLua get() {
 		if (instance == null) {
 			instance = new ScriptInLua();
 		}
 
 		return instance;
+	}
+
+	@Deprecated
+	public static ScriptInLua getInstance() {
+		return get();
 	}
 
 	/**
@@ -140,7 +145,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		globals.set("game", CoerceJavaToLua.coerce(getInstance()));
+		globals.set("game", CoerceJavaToLua.coerce(get()));
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(LuaPropertiesHelper.get()));
