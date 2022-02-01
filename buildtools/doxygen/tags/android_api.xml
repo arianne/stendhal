@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<tagfile>
+
+	<compound kind="namespace">
+		<name>android::app</name>
+		<filename>android/app/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::app::AlertDialog</name>
+		<filename>android/app/AlertDialog</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::content</name>
+		<filename>android/content/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::DialogInterface</name>
+		<filename>android/content/DialogInterface</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::os</name>
+		<filename>android/os/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::os::Bundle</name>
+		<filename>android/os/Bundle</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::view</name>
+		<filename>android/view/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::View</name>
+		<filename>android/view/View</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::webkit</name>
+		<filename>android/webkit/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebSettings</name>
+		<filename>android/webkit/WebSettings</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebView</name>
+		<filename>android/webkit/WebView</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebViewClient</name>
+		<filename>android/webkit/WebViewClient</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>androidx::appcompat::app</name>
+		<filename>androidx/appcompat/app/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>androidx::appcompat::app::AppCompatActivity</name>
+		<filename>androidx/appcompat/app/AppCompatActivity</filename>
+	</compound>
+
+</tagfile>
