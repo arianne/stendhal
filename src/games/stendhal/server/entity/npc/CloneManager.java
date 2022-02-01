@@ -20,6 +20,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 
 /**
@@ -116,6 +117,28 @@ public class CloneManager {
 	}
 
 	/**
+	 * Removes a clone name from registry.
+	 *
+	 * @param origName
+	 *     Name of the originally cloned NPC.
+	 * @param cloneName
+	 *     Clone name to be removed.
+	 * @return
+	 *     <code>true</code> if removal was successful, <code>false</code> otherwise
+	 *     or if original NPC did not have any clones.
+	 */
+	private boolean unregister(final String origName, final String cloneName) {
+		final List<String> registeredClones = clonedList.get(origName);
+		if (registeredClones == null) {
+			return false;
+		}
+
+		registeredClones.remove(cloneName);
+
+		return !registeredClones.contains(cloneName);
+	}
+
+	/**
 	 * Creates a new clone.
 	 *
 	 * @param orig
@@ -131,12 +154,21 @@ public class CloneManager {
 
 		if (orig != null) {
 			final String origName = orig.getName();
-			if (!register(origName, cloneName)) {
-				// abort creating NPC is name registration fails
-				return null;
-			}
+			// FIXME: clones using the same name can be added to world
+			clone = new SpeakerNPC(cloneName) {
+				@Override
+				public void onAdded(final StendhalRPZone zone) {
+					super.onAdded(zone);
+					register(origName, cloneName);
+				}
 
-			clone = new SpeakerNPC(cloneName);
+				@Override
+				public void onRemoved(final StendhalRPZone zone) {
+					super.onRemoved(zone);
+					unregister(origName, cloneName);
+				}
+			};
+
 			clone.put("cloned", origName);
 
 			final List<String> copyAttributes = Arrays.asList(
@@ -267,6 +299,7 @@ public class CloneManager {
 	 * 		<code>true</code> if the name is found in the registered list.
 	 */
 	public boolean isClone(final String name) {
+		// FIXME: this will fail if clone is not currently added to world
 		for (final List<String> clones: clonedList.values()) {
 			if (clones.contains(name)) {
 				return true;
