@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package data.script.quest;
+package scripts.quest;
 
 import static org.junit.Assert.*;
 import static utilities.SpeakerNPCTestHelper.getReply;
