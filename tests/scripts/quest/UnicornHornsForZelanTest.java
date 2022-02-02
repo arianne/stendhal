@@ -18,36 +18,27 @@ import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.LuaTestHelper;
 import utilities.PlayerTestHelper;
 
 
 public class UnicornHornsForZelanTest extends LuaTestHelper {
 
-	private static StendhalRPWorld world;
-
-	private Player player;
 	private SpeakerNPC zelan;
 
 	private final String slot = "unicorn_horns_for_zelan";
 
 
 	@Before
-	public void setup() {
-		world = MockStendlRPWorld.get();
-		world.addRPZone("deniran", new StendhalRPZone("-7_deniran_atlantis"));
-		LuaTestHelper.load("data/script/region/atlantis/city/exterior/ZelanNPC.lua");
-		LuaTestHelper.loadCachedQuests();
-		PlayerTestHelper.removeAllPlayers();
+	public void setUp() {
+		setUpZone("-7_deniran_atlantis");
+		load("data/script/region/atlantis/city/exterior/ZelanNPC.lua");
+		loadCachedQuests();
 
-		player = PlayerTestHelper.createPlayer("player");
+		addPlayerToWorld();
 		zelan = SingletonRepository.getNPCList().get("Zelan");
 	}
 
