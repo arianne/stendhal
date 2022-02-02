@@ -23,6 +23,12 @@ public class LuaTestHelper {
 	private static boolean initialized = false;
 
 
+	/**
+	 * Initializes scripting system & loads a script.
+	 *
+	 * @param script
+	 *     Path to script to be loaded.
+	 */
 	public static void load(final String script) {
 		if (!initialized) {
 			qs = StendhalQuestSystem.get();
@@ -32,6 +38,13 @@ public class LuaTestHelper {
 		}
 
 		luaEngine.load(script, null, null);
+	}
+
+	/**
+	 * This is executed separately so testing can be done
+	 * before quests are loaded.
+	 */
+	public static void loadCachedQuests() {
 		qs.loadCachedQuests();
 	}
 }
