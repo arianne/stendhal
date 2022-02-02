@@ -211,3 +211,7 @@ data/sounds/player/
 
 level_up-01.*  LittleRainySeasons; CC0; https://freesound.org/people/LittleRainySeasons/sounds/365424/
 stat_up-01.*   wobbleboxx; CC0; https://opengameart.org/node/31038
+
+data/sounds/ui/
+
+notify_*  finn.appleton; CC0; https://freesound.org/s/560880/

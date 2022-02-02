@@ -1,7 +1,5 @@
 # Contributors
 
-This page is work in progress. Many people and details are still missing. Please <a href="https://stendhalgame.org/chat/">let us know</a>.
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -985,6 +983,7 @@ The following people released their work to the public with a suitable license f
 * [Yoyodaman234](https://freesound.org/people/Yoyodaman234/)
 * [stewdio2003](https://freesound.org/people/stewdio2003/)
 * [Dennis Johansson (MrAuralization)](https://freesound.org/people/MrAuralization/)
+* [finn.appleton](https://freesound.org/people/finn.appleton/)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
