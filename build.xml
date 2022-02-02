@@ -681,13 +681,10 @@
 			<arg value="./buildtools/doxygen/Doxyfile" />
 		</exec>
 
-		<!-- bug in Doxygen 1.9.3 strips .html suffix from tag file URLs -->
-		<!-- fixed by setting HTML_FILE_EXTENSION to something other than ".html"
-		<echo if:set="doxygen.fix_urls" message="Fixing external links ..."/>
+		<!-- Doxygen 1.9.3 has some issues with tags files URLs -->
 		<exec if:set="doxygen.fix_urls" executable="python">
 			<arg value="./buildtools/doxygen/fix_urls.py"/>
 		</exec>
-		-->
 	</target>
 
 	<target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
