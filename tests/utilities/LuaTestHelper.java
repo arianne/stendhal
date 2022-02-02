@@ -11,8 +11,11 @@
  ***************************************************************************/
 package utilities;
 
+import org.junit.After;
+
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptInLua;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 
 public class LuaTestHelper {
@@ -22,6 +25,11 @@ public class LuaTestHelper {
 
 	private static boolean initialized = false;
 
+
+	@After
+	public void cleanUp() {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
+	}
 
 	/**
 	 * Initializes scripting system & loads a script.
