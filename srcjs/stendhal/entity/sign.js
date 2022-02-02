@@ -12,32 +12,9 @@
 "use strict";
 
 var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
 
-marauroa.rpobjectFactory["sign"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
-	zIndex: 5000,
-	"class": "default",
+var Sign = require("../../../build/ts/entity/Sign").Sign;
 
-	draw: function(ctx) {
-		if (!this.imagePath) {
-			this.imagePath = "/data/sprites/signs/" + this["class"] + ".png";
-		}
-		var image = stendhal.data.sprites.get(this.imagePath);
-		if (image.height) {
-			var localX = this["x"] * 32;
-			var localY = this["y"] * 32;
-			ctx.drawImage(image, localX, localY);
-		}
-	},
-
-	isVisibleToAction: function(filter) {
-		return true;
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
-	}
-});
-
-marauroa.rpobjectFactory["blackboard"] = marauroa.rpobjectFactory["sign"];
-marauroa.rpobjectFactory["rented_sign"] = marauroa.rpobjectFactory["sign"];
+marauroa.rpobjectFactory["sign"] = Sign; 
+marauroa.rpobjectFactory["blackboard"] = Sign;
+marauroa.rpobjectFactory["rented_sign"] = Sign;
