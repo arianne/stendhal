@@ -45,7 +45,9 @@ public class LuaTestHelper {
 			initialized = true;
 		}
 
-		luaEngine.load(script, null, null);
+		if (script != null) {
+			luaEngine.load(script, null, null);
+		}
 	}
 
 	/**
