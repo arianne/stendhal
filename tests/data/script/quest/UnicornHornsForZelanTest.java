@@ -29,7 +29,7 @@ import utilities.LuaTestHelper;
 import utilities.PlayerTestHelper;
 
 
-public class UnicornHornsForZelanTest {
+public class UnicornHornsForZelanTest extends LuaTestHelper {
 
 	private static StendhalRPWorld world;
 
@@ -44,6 +44,7 @@ public class UnicornHornsForZelanTest {
 		world = MockStendlRPWorld.get();
 		world.addRPZone("deniran", new StendhalRPZone("-7_deniran_atlantis"));
 		LuaTestHelper.load("data/script/region/atlantis/city/exterior/ZelanNPC.lua");
+		LuaTestHelper.loadCachedQuests();
 		PlayerTestHelper.removeAllPlayers();
 
 		player = PlayerTestHelper.createPlayer("player");
