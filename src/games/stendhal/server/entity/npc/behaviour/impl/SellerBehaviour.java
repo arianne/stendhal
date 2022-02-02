@@ -100,6 +100,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 						+ Grammar.isare(amount) + " your "
 						+ Grammar.plnoun(amount, chosenItemName) + "!");
 				player.incBoughtForItem(chosenItemName, amount);
+				player.incCommerceTransaction(seller.getName(), price, false);
 				return true;
 			} else {
 				seller.say("Sorry, but you cannot equip the "

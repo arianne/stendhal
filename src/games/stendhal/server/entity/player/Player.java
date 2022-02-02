@@ -2552,6 +2552,37 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Stores information about amount of money used & gained in NPC transactions.
+	 *
+	 * @param npcName
+	 *     Name of NPC with whom transactions is being done.
+	 * @param price
+	 *     Amount of money exchanged.
+	 * @param soldToNPC
+	 *     <code>true</code> means player is selling to NPC, <code>false</code> player is buying from.
+	 */
+	public void incCommerceTransaction(final String npcName, final int price, final boolean soldToNPC) {
+		int curAmount = 0;
+		if (soldToNPC) {
+			if (has("npc_sales", npcName)) {
+				curAmount = Integer.parseInt(get("npc_sales", npcName));
+			}
+		} else {
+			if (has("npc_purchases", npcName)) {
+				curAmount = Integer.parseInt(get("npc_purchases", npcName));
+			}
+		}
+
+		if (soldToNPC) {
+			put("npc_sales", npcName, curAmount + price);
+		} else {
+			put("npc_purchases", npcName, curAmount + price);
+		}
+
+		AchievementNotifier.get().onTrade(this);
+	}
+
+	/**
 	 * Gets the recorded item stored in a substate of quest slot
 	 *
 	 * @param questname

@@ -161,6 +161,10 @@ public class PlayerRPClass {
 
 		// client menu override
 		player.addAttribute("menu", Type.STRING, Definition.VOLATILE);
+
+		// commerce
+		player.addAttribute("npc_purchases", Type.MAP, Definition.PRIVATE);
+		player.addAttribute("npc_sales", Type.MAP, Definition.PRIVATE);
 	}
 
 }
