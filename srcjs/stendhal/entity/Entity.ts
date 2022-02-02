@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { RPObject } from "./RPObject";
 
@@ -92,7 +93,7 @@ export class Entity extends RPObject {
 		return actionCommand;
 	}
 
-	buildActions(list: {title: string, type: string}[]) {
+	buildActions(list: MenuItem[]) {
 		// menu is an alias for "Use" command
 		if (this["menu"]) {
 			var pos = this["menu"].indexOf("|");
