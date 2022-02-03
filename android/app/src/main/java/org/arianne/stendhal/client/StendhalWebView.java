@@ -13,6 +13,8 @@ package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
 //import android.view.DragEvent;
 //import android.view.InputDevice;
 //import android.view.MotionEvent;
@@ -38,6 +40,14 @@ public class StendhalWebView {
 
 	public void init() {
 		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
+
+		// make WebView debuggable for debug builds
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			if ((mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+				clientView.setWebContentsDebuggingEnabled(true);
+			}
+		}
+
 		final WebSettings viewSettings = clientView.getSettings();
 
 		viewSettings.setJavaScriptEnabled(true);

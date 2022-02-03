@@ -20,11 +20,24 @@
 		<filename>android/content/DialogInterface</filename>
 	</compound>
 
+	<compound kind="namespace">
+		<name>android::content::pm</name>
+		<filename>android/content/pm/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::pm::ApplicationInfo</name>
+		<filename>android/content/pm/ApplicationInfo</filename>
+	</compound>
+
 
 	<compound kind="namespace">
 		<name>android::os</name>
 		<filename>android/os/package-summary</filename>
 	</compound>
+	<compound kind="class">
+		<name>android::os::Build</name>
+		<filename>android/os/Build</filename>
+	</compund>
 	<compound kind="class">
 		<name>android::os::Bundle</name>
 		<filename>android/os/Bundle</filename>
