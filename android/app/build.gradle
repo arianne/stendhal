@@ -37,17 +37,6 @@ android {
 			}
 		}
 	}
-
-	signingConfigs {
-		androiddebug {
-			// set this to the location of android debug.keystore file (usually ~/.android/debug.keystore)
-			storeFile file(System.getenv("HOME") + "/.android/debug.keystore")
-			keyAlias "androiddebugkey"
-			storePassword "android"
-			keyPassword "android"
-		}
-	}
-
 	buildTypes {
 		release {
 			minifyEnabled false
@@ -55,7 +44,7 @@ android {
 		}
 
 		prerelease {
-			signingConfig signingConfigs.androiddebug
+			signingConfig signingConfigs.debug
 		}
 	}
 
