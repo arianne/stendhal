@@ -31,6 +31,10 @@ android {
 			variant.outputs.all { output ->
 				output.versionNameOverride = buildDate + "-debug"
 			}
+		} else if (variant.buildType.name == "prerelease") {
+			variant.outputs.all { output ->
+				output.versionNameOverride = buildDate + "-pre"
+			}
 		}
 	}
 
