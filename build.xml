@@ -619,13 +619,15 @@
 		<!-- use Unix shell script -->
 		<exec unless:set="cannot_build_webview_other" failonerror="true"
 				executable="${user.dir}/android/gradlew" dir="android/">
-			<arg value="${android.build}" />
+			<arg value="${android.build}" unless:set="android.rev" />
+			<arg line="-Pandroid.rev=${android.rev} ${android.build}" if:set="android.rev" />
 		</exec>
 
 		<!-- use Windows batch script -->
 		<exec unless:set="cannot_build_webview_win" failonerror="true"
 				executable="${user.dir}/android/gradlew.bat" dir="android/">
-			<arg value="${android.build}" />
+			<arg value="${android.build}" unless:set="android.rev" />
+			<arg line="-Pandroid.rev=${android.rev} ${android.build}" if:set="android.rev" />
 		</exec>
 	</target> <!-- client_android_build -->
 

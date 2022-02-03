@@ -6,6 +6,10 @@ android {
 	compileSdk 32
 
 	def buildDate = new Date().format("yyyyMMdd")
+	if (project.hasProperty("android.rev") && project["android.rev"]) {
+		buildDate += "-" + project["android.rev"]
+	}
+
 	def outputName = "stendhal-webview-${buildDate}"
 
 	defaultConfig {
