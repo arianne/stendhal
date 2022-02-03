@@ -286,7 +286,7 @@ public class LuaEntityHelper {
 
 		final LuaValue l_outfit = lt.get("outfit");
 		if (!l_outfit.isnil()) {
-			npc.setOutfit(l_outfit.get("layers").checkjstring());
+			npc.setOutfit(l_outfit.get("layers").checkjstring()); // FIXME: should change this to table
 
 			final LuaTable l_outfitColors = (LuaTable) l_outfit.get("colors");
 			if (!l_outfitColors.isnil()) {
