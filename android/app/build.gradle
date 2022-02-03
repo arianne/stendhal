@@ -10,7 +10,7 @@ android {
 		minSdk 21
 		targetSdk 32
 		versionCode 1
-		versionName "0.0.7"
+		versionName "0.0.8"
 		setProperty("archivesBaseName", "stendhal-webview-${versionName}")
 		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
 
