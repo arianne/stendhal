@@ -9,33 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
-
 var marauroa = window.marauroa = window.marauroa || {};
 
-/**
- * Creature
- */
-marauroa.rpobjectFactory["creature"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
-	minimapStyle: "rgb(255,255,0)",
-	spritePath: "entity",
-	titleStyle: "#ffc8c8",
+var Creature = require("../../../build/ts/entity/Creature").Creature;
 
-	onclick: function(x, y) {
-		var action = {
-				"type": "attack",
-				"target": "#" + this["id"]
-			};
-		marauroa.clientFramework.sendAction(action);
-	},
-
-	// Overrides the one in creature
-	say: function (text) {
-		this.addSpeechBubble(text);
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/attack.png) 1 3, auto";
-	}
-
-});
+marauroa.rpobjectFactory["creature"] = Creature;

@@ -345,11 +345,11 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				var centerY = (this["_y"] + this["height"]) * 32 - yRad;
 				ctx.strokeStyle = "#4a0000";
 				ctx.beginPath();
-				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, 0, Math.PI, false);
 				ctx.stroke();
 				ctx.strokeStyle = "#e60a0a";
 				ctx.beginPath();
-				ctx.ellipse(centerX, centerY, xRad, yRad, Math.PI, 2 * Math.PI, false);
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, 2 * Math.PI, false);
 				ctx.stroke();
 			} else {
 				ctx.strokeStyle = "#e60a0a";
@@ -366,11 +366,11 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				var centerY = (this["_y"] + this["height"]) * 32 - yRad - 1;
 				ctx.strokeStyle = "#ffc800";
 				ctx.beginPath();
-				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, 0, Math.PI, false);
 				ctx.stroke();
 				ctx.strokeStyle = "#ffdd0a";
 				ctx.beginPath();
-				ctx.ellipse(centerX, centerY, xRad, yRad, Math.PI, 2 * Math.PI, false);
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, 2 * Math.PI, false);
 				ctx.stroke();
 			} else {
 				ctx.strokeStyle = "#ffdd0a";
