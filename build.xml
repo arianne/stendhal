@@ -133,10 +133,6 @@
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
-		<replaceregexp file="android/app/build.gradle"
-			match="versionName .*"
-			replace="versionName &quot;${version.webview}&quot;"
-			byline="true"/>
 		<replaceregexp file="buildtools/doxygen/Doxyfile"
 			match="^PROJECT_NUMBER .*$"
 			replace="PROJECT_NUMBER         = ${version}"

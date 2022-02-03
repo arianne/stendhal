@@ -5,18 +5,29 @@ plugins {
 android {
 	compileSdk 32
 
+	def buildDate = new Date().format("yyyyMMdd")
+	def outputName = "stendhal-webview-${buildDate}"
+
 	defaultConfig {
 		applicationId "org.arianne.stendhal.client"
 		minSdk 21
 		targetSdk 32
 		versionCode 1
-		versionName "0.0.8"
-		setProperty("archivesBaseName", "stendhal-webview-${versionName}")
+		versionName "${buildDate}"
+		setProperty("archivesBaseName", "${outputName}")
 		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32
 		minSdkVersion 21
+	}
+
+	applicationVariants.all { variant ->
+		if (variant.buildType.name == "debug") {
+			variant.outputs.all { output ->
+				output.versionNameOverride = buildDate + "-debug"
+			}
+		}
 	}
 
 	signingConfigs {
@@ -51,20 +62,6 @@ android {
 	lintOptions {
 		abortOnError false
 	}
-
-	/*
-	// custom output filename
-	applicationVariants.all { variant ->
-		def apkName = "stendhal-webview-${versionName}"
-		if (variant.buildType.name == "debug") {
-			apkName += "-DEBUG"
-		}
-
-		variant.outputs.all {
-			outputFileName = apkName + ".apk"
-		}
-	}
-	*/
 }
 
 dependencies {
