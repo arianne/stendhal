@@ -8,47 +8,10 @@
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
-
 "use strict";
 
 var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
 
-marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
-	zIndex: 5000,
+var Food = require("../../../build/ts/entity/Food").Food;
 
-	set: function(key, value) {
-		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
-		if (key === "amount") {
-			this._amount = parseInt(value, 10);
-		}
-		// TODO: play sound effect
-	},
-
-	draw: function(ctx) {
-		var image = stendhal.data.sprites.get("/data/sprites/food.png");
-		if (image.height) {
-			var localX = this["x"] * 32;
-			var localY = this["y"] * 32;
-			var offset = this._amount * 32;
-			ctx.drawImage(image, 0, offset, 32, 32, localX, localY, 32, 32);
-		}
-	},
-
-	onclick: function(x, y) {
-		var action = {
-				"type": "look",
-				"target": "#" + this["id"]
-			};
-		marauroa.clientFramework.sendAction(action);
-	},
-
-	isVisibleToAction: function(filter) {
-		return true;
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
-	}
-
-});
+marauroa.rpobjectFactory["food"] = Food;
