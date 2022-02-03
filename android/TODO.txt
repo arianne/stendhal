@@ -1,8 +1,5 @@
 
 TODO:
-- vectorize Stendhal Icon
-- link to main client for release build
-- disallow loading external pages
 - show input preview when typing
 - create dialog when back pressed to take screenshot or exit
 - hide soft keyboard when Enter pressed
@@ -12,4 +9,4 @@ TODO:
 BUILD TODO:
 - script to download Android SDK
 - add 'android/app/build' to ant 'clean' target
-- fix parsing error when trying to install release .apk
+- use separate package name for debug builds so can be installed in parallel
