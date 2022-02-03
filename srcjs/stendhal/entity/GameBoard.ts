@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +9,35 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Entity } from "./Entity";
 
-"use strict";
+export class GameBoard extends Entity {
+	
+	override minimapShow = false;
+	override zIndex = 100;
 
-var marauroa = window.marauroa = window.marauroa || {};
+	constructor() {
+		super();
+		this.sprite = {
+			height: 32 * 3,
+			width: 32 * 3
+		};
+	}
 
-var GameBoard = require("../../../build/ts/entity/GameBoard").GameBoard;
+	override set(key: string, value: any) {
+		super.set(key, value);
+		if (key === "class") {
+			this.sprite.filename = "data/sprites/gameboard/"
+				+ this["class"] + ".png";
+		}
+	}
 
-marauroa.rpobjectFactory["game_board"] = GameBoard;
+	override isVisibleToAction(_filter: boolean) {
+		return false;
+	}
+
+	override getCursor(_x: number, _y: number) {
+		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+	}
+
+}
