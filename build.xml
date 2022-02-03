@@ -618,7 +618,7 @@
 			unless:set="exclude.webview"
 			message="Building Android WebView client." />
 
-		<property name="android.build" value="assembleRelease" />
+		<property name="android.build" value="assembleDebug" />
 
 		<!-- use Unix shell script -->
 		<exec unless:set="cannot_build_webview_other" failonerror="true"
