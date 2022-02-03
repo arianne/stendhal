@@ -55,7 +55,6 @@ android {
 		}
 
 		prerelease {
-			debuggable true
 			signingConfig signingConfigs.androiddebug
 		}
 	}

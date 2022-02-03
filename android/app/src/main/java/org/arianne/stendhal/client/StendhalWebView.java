@@ -27,7 +27,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StendhalWebView {
 
-	private boolean testing = true;
+	// FIXME: page should be set to character select if focus is lost
+
+	private boolean testing = false;
 	private boolean gameActive = false;
 
 	private final AppCompatActivity mainActivity;
@@ -43,7 +45,7 @@ public class StendhalWebView {
 
 		// make WebView debuggable for debug builds
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			if ((mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+			if (debugEnabled()) {
 				clientView.setWebContentsDebuggingEnabled(true);
 			}
 		}
@@ -60,8 +62,10 @@ public class StendhalWebView {
 		initLoadURLHandler();
 		initTouchHandler();
 
-		// TODO: "main" should be default & "testing" used in separate build
-		selectServer();
+		if (debugEnabled()) {
+			// debug builds support choosing between main & test server
+			selectServer();
+		}
 
 		// initial page
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
@@ -178,5 +182,15 @@ public class StendhalWebView {
 
 		final AlertDialog selectServer = builder.create();
 		selectServer.show();
+	}
+
+	/**
+	 * Checks if this is a debug build.
+	 *
+	 * @return
+	 *     <code>true</code> if debug flag set.
+	 */
+	private boolean debugEnabled() {
+		return (mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
 	}
 }
