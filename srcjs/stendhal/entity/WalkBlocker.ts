@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +9,18 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Entity } from "./Entity";
 
-"use strict";
+export class WalkBlocker extends Entity {
 
-var marauroa = window.marauroa = window.marauroa || {};
+	override zIndex = 3000;
 
-var WalkBlocker = require("../../../build/ts/entity/WalkBlocker").WalkBlocker;
+	override isVisibleToAction(_filter: boolean) {
+		return true;
+	}
 
-marauroa.rpobjectFactory["walkblocker"] = WalkBlocker;
+	override getCursor(_x: number, _y: number) {
+		return "url(/data/sprites/cursor/stop.png) 1 3, auto";
+	}
+
+}
