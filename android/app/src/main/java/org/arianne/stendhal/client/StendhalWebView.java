@@ -67,10 +67,9 @@ public class StendhalWebView {
 		if (debugEnabled()) {
 			// debug builds support choosing between main & test server
 			selectServer();
+		} else {
+			onSelectServer();
 		}
-
-		// initial page
-		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 	}
 
 
@@ -191,6 +190,7 @@ public class StendhalWebView {
 			public void onClick(final DialogInterface dialog, final int id) {
 				testing = false;
 				dialog.cancel();
+				onSelectServer();
 			}
 		});
 
@@ -198,11 +198,33 @@ public class StendhalWebView {
 			public void onClick(final DialogInterface dialog, final int id) {
 				testing = true;
 				dialog.cancel();
+				onSelectServer();
 			}
 		});
 
 		final AlertDialog selectServer = builder.create();
 		selectServer.show();
+	}
+
+	private void onSelectServer() {
+		// initial page
+		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
+
+		// warn players that WebView client is in early development
+		if (!testing) {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+			builder.setMessage("CAUTION: This software is in early development and not recommended"
+				+ " for use on the main server. Proceed with caution.");
+			builder.setCancelable(false);
+
+			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				public void onClick(final DialogInterface dialog, final int id) {
+					dialog.cancel();
+				}
+			});
+
+			builder.create().show();
+		}
 	}
 
 	/**
