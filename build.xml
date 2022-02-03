@@ -594,19 +594,6 @@
 	</target>
 
 	<target name="client_android_build">
-		<condition property="cannot_build_webview_other">
-			<or>
-				<isset property="exclude.webview" />
-				<equals arg1="${os.win}" arg2="true" />
-			</or>
-		</condition>
-		<condition property="cannot_build_webview_win">
-			<or>
-				<isset property="exclude.webview" />
-				<equals arg1="${os.win}" arg2="false" />
-			</or>
-		</condition>
-
 		<echo
 			if:set="exclude.webview"
 			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
@@ -614,20 +601,17 @@
 			unless:set="exclude.webview"
 			message="Building Android WebView client." />
 
+		<condition property="gradlew" value="${user.dir}/android/gradlew.bat">
+			<os family="windows" />
+		</condition>
+		<property name="gradlew" value="${user.dir}/android/gradlew" />
+
 		<property name="android.build" value="assembleDebug" />
 
-		<!-- use Unix shell script -->
-		<exec unless:set="cannot_build_webview_other" failonerror="true"
-				executable="${user.dir}/android/gradlew" dir="android/">
-			<arg value="${android.build}" unless:set="android.rev" />
-			<arg line="-Pandroid.rev=${android.rev} ${android.build}" if:set="android.rev" />
-		</exec>
-
-		<!-- use Windows batch script -->
-		<exec unless:set="cannot_build_webview_win" failonerror="true"
-				executable="${user.dir}/android/gradlew.bat" dir="android/">
-			<arg value="${android.build}" unless:set="android.rev" />
-			<arg line="-Pandroid.rev=${android.rev} ${android.build}" if:set="android.rev" />
+		<exec unless:set="exclude.webview" failonerror="true"
+				executable="${gradlew}" dir="android/">
+			<arg unless:set="android.rev" value="${android.build}" />
+			<arg if:set="android.rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
 		</exec>
 	</target> <!-- client_android_build -->
 
