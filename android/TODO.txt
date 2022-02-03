@@ -9,4 +9,3 @@ TODO:
 BUILD TODO:
 - script to download Android SDK
 - add 'android/app/build' to ant 'clean' target
-- use separate package name for debug builds so can be installed in parallel
