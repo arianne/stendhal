@@ -9,45 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
+
 "use strict";
 
 var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
 
-/**
- * VisibleEntity
- */
-marauroa.rpobjectFactory["visible_entity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
-	zIndex: 1,
+var VisibleEntity = require("../../../build/ts/entity/VisibleEntity").VisibleEntity;
 
-	init: function() {
-		this.sprite = {
-			height: 32,
-			width: 32
-		};
-	},
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory["visible_entity"].proto.set.apply(this, arguments);
-		if (key === "class" || key === "subclass" || key === "_name") {
-			this.sprite.filename = "/data/sprites/"
-				+ (this["class"] || "") + "/"
-				+ (this["subclass"] || "") + "/"
-				+ (this["_name"] || "") + ".png";
-		} else if (key === "state") {
-			this.sprite.offsetY = value * 32;
-		}
-	},
-
-	isVisibleToAction: function(filter) {
-		return true;
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
-	}
-
-});
-
-marauroa.rpobjectFactory["plant_grower"] = marauroa.rpobjectFactory["visible_entity"];
-marauroa.rpobjectFactory["block"] = marauroa.rpobjectFactory["visible_entity"];
+marauroa.rpobjectFactory["visible_entity"] = VisibleEntity;
+marauroa.rpobjectFactory["plant_grower"] = VisibleEntity;
+marauroa.rpobjectFactory["block"] = VisibleEntity;
