@@ -19,6 +19,10 @@
 		<name>android::content::DialogInterface</name>
 		<filename>android/content/DialogInterface</filename>
 	</compound>
+	<compound kind="class">
+		<name>android::content::Intent</name>
+		<filename>android/content/Intent</filename>
+	</compound>
 
 	<compound kind="namespace">
 		<name>android::content::pm</name>
@@ -28,6 +32,16 @@
 		<name>android::content::pm::ApplicationInfo</name>
 		<filename>android/content/pm/ApplicationInfo</filename>
 	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::net</name>
+		<filename>android/net/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::net::Uri</name>
+		<filename>android/net/Uri</filename>
+	</compund>
 
 
 	<compound kind="namespace">

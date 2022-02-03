@@ -13,7 +13,9 @@ package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Build;
 //import android.view.DragEvent;
 //import android.view.InputDevice;
@@ -77,10 +79,14 @@ public class StendhalWebView {
 			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				/* FIXME: external URLs should be opened in browser */
+				if (!isInternalUrl(url)) {
+					// FIXME: should we ask for confirmation?
+					mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+					return true;
+				}
+
 				view.loadUrl(checkClientUrl(url));
 				gameActive = isClientUrl(clientView.getUrl());
-
 				return false;
 			}
 		});
@@ -156,6 +162,21 @@ public class StendhalWebView {
 		}
 
 		return url;
+	}
+
+	/**
+	 * Checks if requested URL is whitelisted to be opened within WebView client.
+	 *
+	 * @param url
+	 *     URL to be checked.
+	 * @return
+	 *     <code>true</code> if URL is under domain stendhalgame.org or localhost.
+	 */
+	private boolean isInternalUrl(final String url) {
+		final String stripped = url.replaceAll("^https://", "")
+			.replaceAll("^http://", "").replaceAll("^www\\.", "");
+
+		return stripped.startsWith("stendhalgame.org") || stripped.startsWith("localhost");
 	}
 
 	/**
