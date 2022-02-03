@@ -26,17 +26,6 @@ android {
 		minSdkVersion 21
 	}
 
-	applicationVariants.all { variant ->
-		if (variant.buildType.name == "debug") {
-			variant.outputs.all { output ->
-				output.versionNameOverride = buildDate + "-debug"
-			}
-		} else if (variant.buildType.name == "prerelease") {
-			variant.outputs.all { output ->
-				output.versionNameOverride = buildDate + "-pre"
-			}
-		}
-	}
 	buildTypes {
 		release {
 			minifyEnabled false
@@ -44,7 +33,12 @@ android {
 		}
 
 		prerelease {
+			versionNameSuffix "-pre"
 			signingConfig signingConfigs.debug
+		}
+
+		debug {
+			versionNameSuffix "-debug"
 		}
 	}
 
