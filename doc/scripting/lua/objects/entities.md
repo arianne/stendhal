@@ -10,6 +10,95 @@ See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entit
 
 ## Methods
 
+
+---
+### entities:create
+<span style="color:green; font-weight:bold;">entities:create</span>(name)
+- Creates a new entity.
+- Parameters:
+  - ***def:*** Entity definition table.
+- Returns: games.stendhal.server.entity.Entity New entity instance.
+- See also: @ref games.stendhal.server.core.scripting.lua.LuaEntityHelper#create
+
+Options for `def` table:
+
+General:
+
+| Key         | Type   | Description                                                 |
+| ----------- | ------ | ----------------------------------------------------------- |
+| type        | string | "SpeakerNPC", "SilentNPC", "Sign", "ShopSign", or "Reader". |
+| pos         | table  | Entity position relative to zone ({x, y}).                  |
+| description | string | Information for "look" command.                             |
+| class       | string | |
+| subclass    | string | |
+| resistance  | int    | |
+| size        | table  | {w, h}                                                      |
+| cursor      | string | |
+| visibility  | int    | |
+| menu        | string | |
+
+
+SpeakerNPC & SilentNPC types:
+
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| dir | Direction | Entity's initial facing direction. |
+| ignoresCollision | boolean | |
+| path             | table   | |
+| path.nodes       | table   | |
+| path.loop        | boolean | |
+| path.retrace     | boolean | |
+| path.collisionAction | CollisionAction | |
+| speed                | double          | |
+| basehp               | int             | |
+| hp                   | int             | |
+| outfit               | table           | |
+| outfit.layers        | string          | |
+| outfit.colors        | table           | |
+| idea                 | string          | |
+| sounds               | table<string>   | |
+| teleports            | boolean         | |
+
+
+SpeakerNPC type:
+
+| Key              | Type               | Description |
+| ---------------- | ------------------ | ----------- |
+| name             | string             | |
+| idleDir          | Direction          | |
+| chatTimeout      | long               | |
+| perceptionRange  | int                | |
+| currentState     | ConversationStates | |
+| greeting         | table              | |
+| greeting.text    | string             | |
+| greeting.action  | ChatAction         | |
+| replies          | table              | |
+| replies.quest    | string             | Reply to "quest"/"task".                      |
+| replies.job      | string             | Reply to "job".                               |
+| replies.help     | string             | Reply to "help".                              |
+| replies.offer    | string             | Reply to "offer".                             |
+| replies.bye      | string             | Reply to "bye"/"goodbye".                     |
+| alternativeImage | string             | Image that will be displayed on NPCs webpage. |
+
+
+Sign type:
+
+| Key     | Type    | Description |
+| ------- | ------- | ----------- |
+| text    | string  | |
+| visible | boolean | |
+
+
+ShopSign type:
+
+| Key     | Type    | Description |
+| ------- | ------- | ----------- |
+| name    | string  | |
+| title   | string  | |
+| caption | string  | |
+| seller  | boolean | |
+
+
 ---
 ### entities:getPlayer
 <span style="color:green; font-weight:bold;">entities:getPlayer</span>(name)
@@ -53,6 +142,7 @@ See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entit
 ---
 ### entities:createSpeakerNPC
 <span style="color:green; font-weight:bold;">entities:createSpeakerNPC</span>(name)
+- ***DEPRECATED:*** Use [entities:create](#entities:create).
 - Creates an interactive NPC.
 - ***name:*** (`String`) Name of new NPC.
 - Returns:
@@ -61,6 +151,7 @@ See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entit
 ---
 ### entities:createSilentNPC
 <span style="color:green; font-weight:bold;">entities:createSilentNPC</span>()
+- ***DEPRECATED:*** *Use [entities:create](#entities:create).*
 - Creates a non-interactive NPC.
 - Returns:
   - New {@link games.stendhal.server.core.scripting.lua.LuaEntityHelper#LuaSilentNPC} instance.
@@ -88,6 +179,7 @@ See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entit
 ---
 ### entities:createSign
 <span style="color:green; font-weight:bold;">entities:createSign</span>(visible)
+- ***DEPRECATED:*** *Use [entities:create](#entities:create).*
 - Creates a new {@link games.stendhal.server.entity.sign.Sign} entity.
 - Parameters:
   - ***visible:*** (`boolean`) (optional) If `false`, the sign will not have a visual representation (default: `true`).
@@ -97,6 +189,7 @@ See also: [StendhalAPI#Entities](https://stendhalgame.org/wiki/StendhalAPI#Entit
 ---
 ### entities:createShopSign
 <span style="color:green; font-weight:bold;">entities:createShopSign</span>(name, title, caption, seller)
+- ***DEPRECATED:*** *Use [entities:create](#entities:create).*
 - Creates a new {@link games.stendhal.server.entity.sign.ShopSign} entity.
 - Parameters:
   - ***name:*** (`String`) The shop name.

@@ -85,4 +85,11 @@ npc:setOutfitColor("dress", Color.BLUE)
 
 ## CloneManager
 
-The {@link game.stendhal.server.entity.npc.CloneManager} static instance.
+The {@link games.stendhal.server.entity.npc.CloneManager} static instance.
+
+Implemented as <code>clones</code> object.
+
+Example usage:
+```
+local myClone = clones:clone(orig)
+```
