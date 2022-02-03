@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +9,25 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Entity } from "./Entity";
 
-var marauroa = window.marauroa = window.marauroa || {};
+declare var marauroa: any;
 
-var UnknownEntity = require("../../../build/ts/entity/UnknownEntity").UnknownEntity;
+export class UnknownEntity extends Entity {
 
-marauroa.rpobjectFactory["unknown"] = UnknownEntity;
-marauroa.rpobjectFactory["_default"] = UnknownEntity;
+	override zIndex = 1;
+
+	constructor() {
+		super();
+		setTimeout(() => {
+			if (this["_rpclass"]) {
+				console.log("Unknown entity", this["_rpclass"], "at", marauroa.currentZoneName, this["x"], this["y"], "is", this);
+			}
+		}, 1);
+	}
+
+	override isVisibleToAction(_filter: boolean) {
+		return (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600);
+	}
+
+}
