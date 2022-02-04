@@ -43,6 +43,12 @@ android {
 		}
 	}
 
+	buildTypes.all { type ->
+		if (!type.name.equals("debug")) {
+			sourceSets[type.name].java { srcDirs "src/shared/java" }
+		}
+	}
+
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
