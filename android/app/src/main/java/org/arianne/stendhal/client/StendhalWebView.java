@@ -40,6 +40,11 @@ public class StendhalWebView {
 
 	//private String currentHTML;
 
+	private final int doubleTapThreshold = 300;
+	private long timestampTouchUp = 0;
+	private long timestampTouchUpPrev = 0;
+	private int tapCount = 0;
+
 
 	public StendhalWebView(final AppCompatActivity activity) {
 		mainActivity = activity;
@@ -73,6 +78,11 @@ public class StendhalWebView {
 		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
+
+		// disable zoom
+		viewSettings.setSupportZoom(false);
+		viewSettings.setBuiltInZoomControls(false);
+		viewSettings.setDisplayZoomControls(false);
 
 		/*
 		clientView.addJavascriptInterface(new JSInterface() {
@@ -115,10 +125,10 @@ public class StendhalWebView {
 	}
 
 	private void initTouchHandler() {
-		/*
 		clientView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
+				/*
 				if (gameActive && event.getAction() == MotionEvent.ACTION_UP) {
 clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
@@ -132,11 +142,34 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 						}, 800, TimeUnit.MILLISECONDS);
 					}
 				}
+				*/
+
+				if (gameActive) {
+					switch (event.getAction()) {
+						case MotionEvent.ACTION_DOWN:
+							tapCount++;
+							break;
+						case MotionEvent.ACTION_UP:
+							timestampTouchUpPrev = timestampTouchUp;
+							timestampTouchUp = System.currentTimeMillis();
+
+							if (tapCount > 1) {
+								tapCount = 0;
+								if (timestampTouchUp - timestampTouchUpPrev <= doubleTapThreshold) {
+									DebugLog.writeLine("consumed double-tap event");
+									// disables double-tap zoom
+									// FIXME: need a workaround if double-taps should be used in game
+									return true;
+								}
+							}
+
+							break;
+					}
+				}
 
 				return false;
 			}
 		});
-		*/
 	}
 
 	private void initKeyboardHandler() {
