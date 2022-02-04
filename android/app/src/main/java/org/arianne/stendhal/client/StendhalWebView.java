@@ -61,6 +61,9 @@ public class StendhalWebView {
 		};
 		*/
 
+		clientView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+		clientView.setBackgroundResource(R.drawable.splash);
+
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
 			clientView.setWebContentsDebuggingEnabled(true);
