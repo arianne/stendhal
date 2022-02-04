@@ -175,7 +175,9 @@ export class ItemContainerImplementation {
 	}
 
 	onMouseUp(evt: MouseEvent|TouchEvent) {
-		evt.preventDefault();
+		if (evt.type !== "touchend") {
+			evt.preventDefault();
+		}
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			if (this.quickPickup) {
