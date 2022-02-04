@@ -186,7 +186,8 @@ export class ItemContainerImplementation {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
-			} else if (this.isDoubleClick(event)) {
+			//} else if (this.isDoubleClick(event)) {
+			} else { // some players might like single click
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
