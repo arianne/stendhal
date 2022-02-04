@@ -21,6 +21,7 @@ declare var stendhal: any;
  * a container for items like a bag or corpse
  */
 export class ItemContainerImplementation {
+	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
 
 
@@ -50,10 +51,10 @@ export class ItemContainerImplementation {
 				this.onMouseUp(event)
 			});
 			e.addEventListener("touchstart", (event: TouchEvent) => {
-				this.onMouseDown(event)
+				this.onTouchStart(event)
 			});
 			e.addEventListener("touchend", (event: TouchEvent) => {
-				this.onMouseUp(event)
+				this.onTouchEnd(event)
 			});
 			e.addEventListener("contextmenu", (event: MouseEvent) => {
 				this.onContextMenu(event)
@@ -149,7 +150,7 @@ export class ItemContainerImplementation {
 	}
 
 	isRightClick(event: MouseEvent) {
-		if (+new Date() - this.timestampMouseDown > 300) {
+		if (+new Date() - this.timestampMouseDown > this.rightClickDuration) {
 			return true;
 		}
 		if (event.which) {
@@ -193,4 +194,30 @@ export class ItemContainerImplementation {
 		document.getElementById("gamewindow")!.focus();
 	}
 
+	onTouchStart(evt: TouchEvent) {
+		// FIXME: how to temporarily disable scrolling
+		//evt.preventDefault();
+		this.onMouseDown(evt);
+	}
+
+	onTouchEnd(evt: TouchEvent) {
+		evt.preventDefault();
+
+		if (+new Date() - this.timestampMouseDown > this.rightClickDuration) {
+			// long touch
+			this.onLongTouchEnd(evt);
+		} else {
+			// short touch
+			this.onMouseUp(evt);
+		}
+	}
+
+	onLongTouchStart(evt: TouchEvent) {
+		// FIXME: how to trigger?
+		// TODO: pick up item for drag-and-drop start
+	}
+
+	onLongTouchEnd(evt: TouchEvent) {
+		// TODO: drop item for drag-and-drop end
+	}
 }
