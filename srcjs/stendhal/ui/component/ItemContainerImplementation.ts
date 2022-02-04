@@ -23,6 +23,7 @@ declare var stendhal: any;
 export class ItemContainerImplementation {
 	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
+	private timestampMouseDownPrev = 0;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -150,9 +151,6 @@ export class ItemContainerImplementation {
 	}
 
 	isRightClick(event: MouseEvent) {
-		if (+new Date() - this.timestampMouseDown > this.rightClickDuration) {
-			return true;
-		}
 		if (event.which) {
 			return (event.which === 3);
 		} else {
@@ -160,7 +158,12 @@ export class ItemContainerImplementation {
 		}
 	}
 
+	isDoubleClick(evt: MouseEvent) {
+		return (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration);
+	}
+
 	onMouseDown(event: MouseEvent|TouchEvent) {
+		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
 	}
 
@@ -183,7 +186,7 @@ export class ItemContainerImplementation {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
-			} else {
+			} else if (this.isDoubleClick(event)) {
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
