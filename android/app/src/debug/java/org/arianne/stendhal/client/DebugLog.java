@@ -85,7 +85,7 @@ public class DebugLog {
 		notify(message, DebugLevel.DEBUG);
 	}
 
-	public static void notify(final String message, final DebugLevel level) {
+	public static void notify(final String message, DebugLevel level) {
 		if (mainActivity == null) {
 			System.err.println("ERROR: DebugLog not initialized. Call DebugLog.init.");
 			return;
@@ -95,7 +95,7 @@ public class DebugLog {
 			level = DebugLevel.DEBUG;
 		}
 
-		final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
 		builder.setTitle(level.label);
 		builder.setMessage(message);
 
