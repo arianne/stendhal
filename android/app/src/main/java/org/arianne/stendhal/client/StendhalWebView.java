@@ -17,9 +17,8 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
-//import android.view.DragEvent;
-//import android.view.InputDevice;
-//import android.view.MotionEvent;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -37,6 +36,7 @@ public class StendhalWebView {
 
 	private final AppCompatActivity mainActivity;
 	private WebView clientView;
+	//private InputMethodManager imm;
 
 
 	public StendhalWebView(final AppCompatActivity activity) {
@@ -63,6 +63,7 @@ public class StendhalWebView {
 
 		initWebViewClient();
 		initTouchHandler();
+		initKeyboardHandler();
 
 		if (debugEnabled()) {
 			// debug builds support choosing between main & test server
@@ -96,38 +97,37 @@ public class StendhalWebView {
 		clientView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
-				if (gameActive) {
-					final int source = event.getSource();
-					if (source == InputDevice.SOURCE_TOUCHSCREEN) {
-						view.dispatchTouchEvent(MotionEvent.obtain(
-							event.getDownTime(), event.getEventTime(), event.getAction(),
-							event.getX(), event.getY(), event.getPressure(), event.getSize(),
-							event.getMetaState(), event.getXPrecision(), event.getYPrecision(),
-							InputDevice.SOURCE_MOUSE, event.getEdgeFlags()));
+				if (gameActive && event.getAction() == MotionEvent.ACTION_UP) {
+clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
-						// consume event
-						return true;
+					if (debugEnabled()) {
+						ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+						executorService.schedule(new Runnable() {
+							@Override
+							public void run() {
+								DebugLog.notify(currentHTML, mainActivity);
+							}
+						}, 800, TimeUnit.MILLISECONDS);
 					}
-
-					return true;
-				}
-
-				return false;
-			}
-		});
-
-		clientView.setOnDragListener(new View.OnDragListener() {
-			@Override
-			public boolean onDrag(final View view, final DragEvent event) {
-				if (gameActive) {
-					// consume event
-					return true;
 				}
 
 				return false;
 			}
 		});
 		*/
+	}
+
+	private void initKeyboardHandler() {
+		//imm = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+		clientView.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(final View view, final int keyCode, final KeyEvent event) {
+				// FIXME: cannot catch soft keyboard events without overriding WebView.onCreateInputConnection
+
+				return false;
+			}
+		});
 	}
 
 	/**
