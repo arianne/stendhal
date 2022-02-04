@@ -40,9 +40,7 @@ public class StendhalWebView {
 
 	public StendhalWebView(final AppCompatActivity activity) {
 		mainActivity = activity;
-	}
 
-	public void init() {
 		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
 
 		// make WebView debuggable for debug builds
