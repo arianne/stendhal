@@ -27,7 +27,7 @@ public class DebugLog {
 	}
 
 
-	public static void init(final File dir, , final AppCompatActivity activity) {
+	public static void init(final File dir, final AppCompatActivity activity) {
 		// do nothing
 	}
 

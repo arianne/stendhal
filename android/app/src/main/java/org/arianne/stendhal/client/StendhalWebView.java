@@ -45,7 +45,7 @@ public class StendhalWebView {
 		mainActivity = activity;
 
 		// FIXME: need to manually initialize WebView to override onCreateInputConnection
-		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView));
+		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
 		/*
 		clientView = new WebView(mainActivity) {
 			@Override
@@ -61,7 +61,7 @@ public class StendhalWebView {
 			clientView.setWebContentsDebuggingEnabled(true);
 
 			// initialize debug logging mechanism
-			DebugLog.init(clientView.getContext().getExternalFilesDir(null));
+			DebugLog.init(clientView.getContext().getExternalFilesDir(null), mainActivity);
 			DebugLog.writeLine("debugger initialized");
 		}
 
@@ -234,7 +234,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 
 		if (testing) {
 			DebugLog.writeLine("Connecting to test server");
-		else {
+		} else {
 			DebugLog.writeLine("Connecting to main server");
 
 			// warn players that WebView client is in early development
