@@ -57,7 +57,7 @@ public class StendhalWebView {
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
 
-		initLoadURLHandler();
+		initWebViewClient();
 		initTouchHandler();
 
 		if (debugEnabled()) {
@@ -69,7 +69,7 @@ public class StendhalWebView {
 	}
 
 
-	private void initLoadURLHandler() {
+	private void initWebViewClient() {
 		clientView.setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
