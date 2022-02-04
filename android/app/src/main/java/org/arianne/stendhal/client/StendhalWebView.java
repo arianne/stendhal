@@ -38,6 +38,8 @@ public class StendhalWebView {
 	private WebView clientView;
 	//private InputMethodManager imm;
 
+	//private String currentHTML;
+
 
 	public StendhalWebView(final AppCompatActivity activity) {
 		mainActivity = activity;
@@ -60,6 +62,15 @@ public class StendhalWebView {
 		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
+
+		/*
+		clientView.addJavascriptInterface(new JSInterface() {
+			@Override
+			protected void onFire() {
+				currentHTML = getHTML();
+			}
+		}, "JSI");
+		*/
 
 		initWebViewClient();
 		initTouchHandler();
