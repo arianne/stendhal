@@ -46,6 +46,10 @@ public class StendhalWebView {
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
 			clientView.setWebContentsDebuggingEnabled(true);
+
+			// initialize debug logging mechanism
+			DebugLog.init(clientView.getContext().getExternalFilesDir(null));
+			DebugLog.writeLine("debugger initialized");
 		}
 
 		final WebSettings viewSettings = clientView.getSettings();
@@ -206,8 +210,12 @@ public class StendhalWebView {
 		// initial page
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 
-		// warn players that WebView client is in early development
-		if (!testing) {
+		if (testing) {
+			DebugLog.writeLine("Connecting to test server");
+		else {
+			DebugLog.writeLine("Connecting to main server");
+
+			// warn players that WebView client is in early development
 			final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
 			builder.setMessage("CAUTION: This software is in early development and not recommended"
 				+ " for use on the main server. Proceed with caution.");
