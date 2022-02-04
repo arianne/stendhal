@@ -24,6 +24,9 @@ export class ItemContainerImplementation {
 	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
+	private longTouchDuration = 300;
+	private timestampTouchStart = 0;
+	private timestampTouchEnd = 0;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -162,6 +165,10 @@ export class ItemContainerImplementation {
 		return (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration);
 	}
 
+	private isLongTouch() {
+		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+	}
+
 	onMouseDown(event: MouseEvent|TouchEvent) {
 		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
@@ -182,7 +189,7 @@ export class ItemContainerImplementation {
 				return;
 			}
 
-			if (this.isRightClick(event) || evt.type === "touchend") {
+			if (this.isRightClick(event) || (evt.type === "touchend" && this.isLongTouch())) {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
@@ -202,27 +209,13 @@ export class ItemContainerImplementation {
 		// FIXME: how to temporarily disable scrolling
 		//evt.preventDefault();
 		this.onMouseDown(evt);
+		this.timestampTouchStart = this.timestampMouseDown;
 	}
 
 	onTouchEnd(evt: TouchEvent) {
-		evt.preventDefault();
+		this.timestampTouchEnd = +new Date();
+		this.onMouseUp(evt);
 
-		if (+new Date() - this.timestampMouseDown > this.rightClickDuration) {
-			// long touch
-			this.onLongTouchEnd(evt);
-		} else {
-			// show context menu on short touches
-			this.timestampMouseDown = +new Date();
-			this.onMouseUp(evt);
-		}
 	}
 
-	onLongTouchStart(evt: TouchEvent) {
-		// FIXME: how to trigger?
-		// TODO: pick up item for drag-and-drop start
-	}
-
-	onLongTouchEnd(evt: TouchEvent) {
-		// TODO: drop item for drag-and-drop end
-	}
 }
