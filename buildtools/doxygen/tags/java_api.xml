@@ -80,6 +80,16 @@
 
 
 	<compound kind="namespace">
+		<name>java::text</name>
+		<filename>java.base/java/text/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::text::SimpleDateFormat</name>
+		<filename>java.base/java/text/SimpleDateFormat.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
 		<name>java::util</name>
 		<filename>java.base/java/util/package-summary.html</filename>
 	</compound>
@@ -256,6 +266,10 @@
 		<filename>java.base/java/io/BufferedReader.html</filename>
 	</compound>
 	<compound kind="class">
+		<name>java::io::BufferedWriter</name>
+		<filename>java.base/java/io/BufferedWriter.html</filename>
+	</compound>
+	<compound kind="class">
 		<name>java::io::ByteArrayInputStream</name>
 		<filename>java.base/java/io/ByteArrayInputStream.html</filename>
 	</compound>
@@ -278,6 +292,10 @@
 	<compound kind="class">
 		<name>java::io::FileOutputStream</name>
 		<filename>java.base/java/io/FileOutputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileWriter</name>
+		<filename>java/io/FileWrite.html</filename>
 	</compound>
 	<compound kind="class">
 		<name>java::io::InputStream</name>

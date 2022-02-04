@@ -15,6 +15,10 @@
 		<name>android::content</name>
 		<filename>android/content/package-summary</filename>
 	</compound>
+	<compound kinkd="class">
+		<name>android::content::Context</name>
+		<filename>android/content/Context</filename>
+	</compound>
 	<compound kind="class">
 		<name>android::content::DialogInterface</name>
 		<filename>android/content/DialogInterface</filename>
@@ -59,8 +63,36 @@
 
 
 	<compound kind="namespace">
+		<name>android::text</name>
+		<filename>android/text/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::text::InputType</name>
+		<filename>android/text/InputType</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::util</name>
+		<filename>android/util/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::util::AttributeSet</name>
+		<filename>android/util/AttributeSet</filename>
+	</compound>
+
+
+	<compound kind="namespace">
 		<name>android::view</name>
 		<filename>android/view/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::KeyEvent</name>
+		<filename>android/view/KeyEvent</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::MotionEvent</name>
+		<filename>android/view/MotionEvent</filename>
 	</compound>
 	<compound kind="class">
 		<name>android::view::View</name>
@@ -69,8 +101,34 @@
 
 
 	<compound kind="namespace">
+		<name>android::view::inputmethod</name>
+		<filename>android/view/inputmethod/package-summary</filename>
+	</compound>
+	<compound>
+		<name>android::view::inputmethod::BaseInputConnection</name>
+		<filename>android/view/inputmethod/BaseInputConnection</filename>
+	</compound>
+	<compound>
+		<name>android::view::inputmethod::EditorInfo</name>
+		<filename>android/view/inputmethod/EditorInfo</filename>
+	</compound>
+	<compound>
+		<name>android::view::inputmethod::InputConnection</name>
+		<filename>android/view/inputmethod/InputConnection</filename>
+	</compound>
+	<compound>
+		<name>android::view::inputmethod::InputMethodManager</name>
+		<filename>android/view/inputmethod/InputMethodManager</filename>
+	</compound>
+
+
+	<compound kind="namespace">
 		<name>android::webkit</name>
 		<filename>android/webkit/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::JavascriptInterface</name>
+		<filename>android/webkit/JavascriptInterface</filename>
 	</compound>
 	<compound kind="class">
 		<name>android::webkit::WebSettings</name>
@@ -83,6 +141,16 @@
 	<compound kind="class">
 		<name>android::webkit::WebViewClient</name>
 		<filename>android/webkit/WebViewClient</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::widget</name>
+		<filename>android/widget/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::Toast</name>
+		<filename>android/widget/Toast</filename>
 	</compound>
 
 
