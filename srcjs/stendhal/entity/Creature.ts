@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,8 +9,31 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = window.marauroa = window.marauroa || {};
+import { RPEntity } from "./RPEntity";
 
-var Creature = require("../../../build/ts/entity/Creature").Creature;
+declare var marauroa: any;
 
-marauroa.rpobjectFactory["creature"] = Creature;
+export class Creature extends RPEntity {
+
+	override minimapStyle = "rgb(255,255,0)";
+	override spritePath = "entity";
+	override titleStyle = "#ffc8c8";
+
+	override onclick(_x: number, _y: number) {
+		var action = {
+				"type": "attack",
+				"target": "#" + this["id"]
+			};
+		marauroa.clientFramework.sendAction(action);
+	}
+
+	// Overrides the one in creature
+	override say(text: string) {
+		this.addSpeechBubble(text);
+	}
+
+	override getCursor(_x: number, _y: number) {
+		return "url(/data/sprites/cursor/attack.png) 1 3, auto";
+	}
+
+}
