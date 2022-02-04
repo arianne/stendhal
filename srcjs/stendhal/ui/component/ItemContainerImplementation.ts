@@ -179,7 +179,7 @@ export class ItemContainerImplementation {
 				return;
 			}
 
-			if (this.isRightClick(event)) {
+			if (this.isRightClick(event) || evt.type === "touchend") {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
@@ -207,7 +207,8 @@ export class ItemContainerImplementation {
 			// long touch
 			this.onLongTouchEnd(evt);
 		} else {
-			// short touch
+			// show context menu on short touches
+			this.timestampMouseDown = +new Date();
 			this.onMouseUp(evt);
 		}
 	}
