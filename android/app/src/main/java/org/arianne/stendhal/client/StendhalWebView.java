@@ -33,6 +33,7 @@ public class StendhalWebView {
 
 	private boolean testing = false;
 	private boolean gameActive = false;
+	private Boolean debugging;
 
 	private final AppCompatActivity mainActivity;
 	private WebView clientView;
@@ -42,12 +43,9 @@ public class StendhalWebView {
 		mainActivity = activity;
 
 		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
-
-		// make WebView debuggable for debug builds
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			if (debugEnabled()) {
-				clientView.setWebContentsDebuggingEnabled(true);
-			}
+		if (debugEnabled()) {
+			// make WebView debuggable for debug builds
+			clientView.setWebContentsDebuggingEnabled(true);
 		}
 
 		final WebSettings viewSettings = clientView.getSettings();
@@ -232,6 +230,16 @@ public class StendhalWebView {
 	 *     <code>true</code> if debug flag set.
 	 */
 	private boolean debugEnabled() {
-		return (mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+		if (debugging != null) {
+			return debugging;
+		}
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			debugging = (mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+		} else {
+			debugging = false;
+		}
+
+		return debugging;
 	}
 }
