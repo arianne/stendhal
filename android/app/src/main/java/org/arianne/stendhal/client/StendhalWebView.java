@@ -44,7 +44,18 @@ public class StendhalWebView {
 	public StendhalWebView(final AppCompatActivity activity) {
 		mainActivity = activity;
 
-		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
+		// FIXME: need to manually initialize WebView to override onCreateInputConnection
+		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView));
+		/*
+		clientView = new WebView(mainActivity) {
+			@Override
+			public InputConnection onCreateInputConnection(final EditorInfo outAttrs) {
+				outAttrs.inputType = InputType.TYPE_NULL;
+				return new BaseInputConnection(getView(), false);
+			}
+		};
+		*/
+
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
 			clientView.setWebContentsDebuggingEnabled(true);
