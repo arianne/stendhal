@@ -15,7 +15,7 @@ declare var stendhal: any;
 
 export class DomesticAnimal extends RPEntity {
 
-	override drawSpriteImage(ctx: CanvasRenderingContext2D, _ignored: any) {
+	override drawMain(ctx: CanvasRenderingContext2D) {
 		if (!this.imagePath && this["_rpclass"]) {
 			this["largeWeight"] = this["largeWeight"] | 20;
 			if (this["_rpclass"] == "sheep") {

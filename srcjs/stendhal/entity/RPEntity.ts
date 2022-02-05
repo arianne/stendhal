@@ -253,7 +253,14 @@ export class RPEntity extends ActiveEntity {
 			return;
 		}
 		this.drawCombat(ctx);
-		var filename;
+		this.drawMain(ctx);
+		this.drawAttack(ctx);
+		this.drawFloaters(ctx);
+		this.drawStatusIcons(ctx);
+	}
+
+	drawMain(ctx: CanvasRenderingContext2D) {
+		let filename;
 		if (typeof(this["outfit"]) != "undefined" || typeof(this["outfit_ext"]) != "undefined") {
 			this.drawMultipartOutfit(ctx);
 		} else {
@@ -262,12 +269,9 @@ export class RPEntity extends ActiveEntity {
 				filename = filename + "/" + this["subclass"];
 			}
 			filename = filename + ".png";
-			var image = stendhal.data.sprites.get(filename);
+			let image = stendhal.data.sprites.get(filename);
 			this.drawSpriteImage(ctx, image);
 		}
-		this.drawAttack(ctx);
-		this.drawFloaters(ctx);
-		this.drawStatusIcons(ctx);
 	}
 
 	drawStatusIcons(ctx: CanvasRenderingContext2D) {
