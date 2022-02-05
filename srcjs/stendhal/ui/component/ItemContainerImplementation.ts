@@ -27,6 +27,7 @@ export class ItemContainerImplementation {
 	private longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
+	private touchDrag = false;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -59,6 +60,12 @@ export class ItemContainerImplementation {
 			});
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
+			});
+			e.addEventListener("touchmove", (event: TouchEvent) => {
+				this.onTouchMove(event)
+			});
+			e.addEventListener("touchcancel", (event: TouchEvent) => {
+				this.onTouchCancel(event)
 			});
 			e.addEventListener("contextmenu", (event: MouseEvent) => {
 				this.onContextMenu(event)
@@ -166,7 +173,8 @@ export class ItemContainerImplementation {
 	}
 
 	private isLongTouch() {
-		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+		return (!this.touchDrag
+			&& this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
 	}
 
 	onMouseDown(event: MouseEvent|TouchEvent) {
@@ -196,7 +204,7 @@ export class ItemContainerImplementation {
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
 			//} else if (this.isDoubleClick(event)) {
-			} else { // some players might like single click
+			} else if (!this.touchDrag) { // some players might like single click
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
@@ -218,6 +226,15 @@ export class ItemContainerImplementation {
 		this.timestampTouchEnd = +new Date();
 		this.onMouseUp(evt);
 
+		this.touchDrag = false;
 	}
 
+	onTouchMove(evt: TouchEvent) {
+		this.touchDrag = true;
+	}
+
+	onTouchCancel(evt: TouchEvent) {
+		// DEBUG:
+		console.log(evt.type + " event");
+	}
 }
