@@ -27,8 +27,8 @@ export class ItemContainerImplementation {
 	private longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
-	private dragActive = false;
-	private touchDragData: DataTransfer|null = null;
+	private touchDragActive = false;
+	private dragData: DataTransfer|null = null;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -112,11 +112,11 @@ export class ItemContainerImplementation {
 			return;
 		}
 
+		// FIXME: touch events not picking up item
+
 		// long touches dispatch dragstart event same as mouse
 		// XXX: this may not be the case for all devices
-		if (this.touchDragData === null) {
-			this.touchDragData = event.dataTransfer;
-		}
+		this.dragData = event.dataTransfer;
 
 		let slotNumber = (event.target as HTMLElement).id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
@@ -158,12 +158,11 @@ export class ItemContainerImplementation {
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
-
-			this.dragActive = false;
-			this.touchDragData = null;
 		}
 		event.stopPropagation();
 		event.preventDefault();
+
+		this.dragData = null;
 	}
 
 	private onContextMenu(event: MouseEvent) {
@@ -213,7 +212,7 @@ export class ItemContainerImplementation {
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
 			//} else if (this.isDoubleClick(event)) {
-			} else if (!this.dragActive) { // some players might like single click
+			} else if (!this.touchDragActive) { // some players might like single click
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
@@ -222,25 +221,14 @@ export class ItemContainerImplementation {
 			}
 		}
 		document.getElementById("gamewindow")!.focus();
-	}
 
-	private getTouchDragData() {
-		// may only be necessary to use this.touchDragData directly
-		if (this.touchDragData === null) {
-			this.touchDragData = new DataTransfer();
-		}
-
-		return this.touchDragData;
+		this.dragData = null;
 	}
 
 	private dispatchEventOnTouchTarget(evt: TouchEvent, newEvent: Event) {
-		// FIXME: find correct target without iterating list?
-		for (let idx=1; idx < evt.targetTouches.length; idx++) {
-			// FIXME: do we need to get the element from target touch position?
-			const target = evt.targetTouches[idx].target;
-			if (target !== null) {
-				target.dispatchEvent(newEvent);
-			}
+		const target = stendhal.ui.html.extractPosition(evt).target;
+		if (target !== null && typeof target !== "undefined") {
+			target.dispatchEvent(newEvent);
 		}
 	}
 
@@ -252,22 +240,28 @@ export class ItemContainerImplementation {
 	}
 
 	onTouchEnd(evt: TouchEvent) {
-		if (!this.dragActive) {
+		if (!this.touchDragActive) {
 			this.timestampTouchEnd = +new Date();
 			this.onMouseUp(evt);
 		} else {
 			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("drop", {dataTransfer: this.getTouchDragData()}));
+				new DragEvent("drop", {dataTransfer: this.dragData}));
+			this.touchDragActive = false;
 		}
 	}
 
 	onTouchMove(evt: TouchEvent) {
-		if (this.dragActive) {
+		if (this.touchDragActive) {
 			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("dragover", {dataTransfer: this.getTouchDragData()}));
+				new DragEvent("dragover", {dataTransfer: this.dragData}));
+		} else if (this.dragData === null) {
+			// in case default touch didn't occur
+			this.dispatchEventOnTouchTarget(evt,
+				new DragEvent("dragstart", {dataTransfer: this.dragData}));
 		}
 
-		this.dragActive = true;
+		// the first move is used to pick up the item
+		this.touchDragActive = true;
 	}
 
 	onTouchCancel(evt: TouchEvent) {
