@@ -27,8 +27,8 @@ export class ItemContainerImplementation {
 	private longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
-	private touchDragActive = false;
-	private dragData: DataTransfer|null = null;
+	private dragActive = false;
+	private touchDragData: DataTransfer|null = null;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -112,6 +112,12 @@ export class ItemContainerImplementation {
 			return;
 		}
 
+		// long touches dispatch dragstart event same as mouse
+		// XXX: this may not be the case for all devices
+		if (this.touchDragData === null) {
+			this.touchDragData = event.dataTransfer;
+		}
+
 		let slotNumber = (event.target as HTMLElement).id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
 		if (item) {
@@ -152,6 +158,9 @@ export class ItemContainerImplementation {
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
+
+			this.dragActive = false;
+			this.touchDragData = null;
 		}
 		event.stopPropagation();
 		event.preventDefault();
@@ -174,8 +183,7 @@ export class ItemContainerImplementation {
 	}
 
 	private isLongTouch() {
-		return (!this.touchDragActive
-			&& this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
 	}
 
 	onMouseDown(event: MouseEvent|TouchEvent) {
@@ -205,7 +213,7 @@ export class ItemContainerImplementation {
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
 			//} else if (this.isDoubleClick(event)) {
-			} else if (!this.touchDragActive) { // some players might like single click
+			} else if (!this.dragActive) { // some players might like single click
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
@@ -217,11 +225,23 @@ export class ItemContainerImplementation {
 	}
 
 	private getTouchDragData() {
-		if (this.dragData === null) {
-			this.dragData = new DataTransfer();
+		// may only be necessary to use this.touchDragData directly
+		if (this.touchDragData === null) {
+			this.touchDragData = new DataTransfer();
 		}
 
-		return this.dragData;
+		return this.touchDragData;
+	}
+
+	private dispatchEventOnTouchTarget(evt: TouchEvent, newEvent: Event) {
+		// FIXME: find correct target without iterating list?
+		for (let idx=1; idx < evt.targetTouches.length; idx++) {
+			// FIXME: do we need to get the element from target touch position?
+			const target = evt.targetTouches[idx].target;
+			if (target !== null) {
+				target.dispatchEvent(newEvent);
+			}
+		}
 	}
 
 	onTouchStart(evt: TouchEvent) {
@@ -232,38 +252,22 @@ export class ItemContainerImplementation {
 	}
 
 	onTouchEnd(evt: TouchEvent) {
-		if (!this.touchDragActive) {
+		if (!this.dragActive) {
 			this.timestampTouchEnd = +new Date();
 			this.onMouseUp(evt);
 		} else {
-			this.touchDragActive = false;
-
-			const touch = evt.touches[0];
-			const eTarget = document.elementFromPoint(touch.pageX, touch.pageY);
-			if (eTarget !== null) {
-				eTarget.dispatchEvent(
-					new DragEvent("drop", {dataTransfer: this.getTouchDragData()}));
-			}
+			this.dispatchEventOnTouchTarget(evt,
+				new DragEvent("drop", {dataTransfer: this.getTouchDragData()}));
 		}
 	}
 
 	onTouchMove(evt: TouchEvent) {
-		const touch = evt.touches[0];
-		const eTarget = document.elementFromPoint(touch.pageX, touch.pageY);
-
-		if (!this.touchDragActive) {
-			this.touchDragActive = true;
-
-			if (eTarget !== null) {
-				eTarget.dispatchEvent(
-					new DragEvent("dragstart", {dataTransfer: this.getTouchDragData()}));
-			}
-		} else {
-			if (eTarget !== null) {
-				eTarget.dispatchEvent(
-					new DragEvent("dragover", {dataTransfer: this.getTouchDragData()}));
-			}
+		if (this.dragActive) {
+			this.dispatchEventOnTouchTarget(evt,
+				new DragEvent("dragover", {dataTransfer: this.getTouchDragData()}));
 		}
+
+		this.dragActive = true;
 	}
 
 	onTouchCancel(evt: TouchEvent) {
