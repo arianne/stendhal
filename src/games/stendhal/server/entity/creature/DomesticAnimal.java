@@ -48,10 +48,6 @@ public abstract class DomesticAnimal extends Creature {
 	 */
 	public DomesticAnimal() {
 		put("title_type", "friend");
-
-		// make pets passable so players don't get trapped
-		setResistance(75);
-
 		setPosition(0, 0);
 		setSize(1, 1);
 	}
@@ -104,6 +100,10 @@ public abstract class DomesticAnimal extends Creature {
 			if (takesPartInCombat() && getZone() != null) {
 				getZone().addToPlayersAndFriends(this);
 			}
+			// make pets passable so players don't get trapped
+			setResistance(75);
+		} else {
+			setResistance(100);
 		}
 	}
 
