@@ -15,8 +15,18 @@ var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
 stendhal.data.sprites = {
+
+	knownBrokenUrls: {},
+
 	get: function(filename) {
 		if (!filename) {
+			return {};
+		}
+		if (filename.indexOf("undefined") > -1) {
+			if (!stendhal.data.sprites.knownBrokenUrls[filename]) {
+				console.log("Broken image path: ", filename, new Error());
+			}
+			stendhal.data.sprites.knownBrokenUrls[filename] = true;
 			return {};
 		}
 		if (typeof(this[filename]) != "undefined") {
