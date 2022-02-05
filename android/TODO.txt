@@ -1,11 +1,14 @@
 
 TODO:
 - show input preview when typing
-- create dialog when back pressed to take screenshot or exit
 - hide soft keyboard when Enter pressed
 - scale page to fit inside view
 - fix being logged out when screen orientation changes
 - add option to connect to custom server in debug build at startup
+- create menu when back pressed:
+  - exit
+  - take screenshot
+  - set theme
 
 BUILD TODO:
 - script to download Android SDK
