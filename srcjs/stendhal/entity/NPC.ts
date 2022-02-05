@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,21 +9,20 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { RPEntity } from "./RPEntity";
 
-var marauroa = window.marauroa = window.marauroa || {};
+export class NPC extends RPEntity {
+	override minimapStyle = "rgb(0,0,255)";
+	override spritePath = "entity";
+	override titleStyle = "#c8c8ff";
 
-/**
- * NPC
- */
-marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
-	minimapStyle: "rgb(0,0,255)",
-	spritePath: "entity",
-	titleStyle: "#c8c8ff",
-	"hp": 100,
-	"base_hp": 100,
+	constructor() {
+		super();
+		this["hp"] = 100;
+		this["base_hp"] = 100;
+	}
 
-	drawTop: function(ctx) {
+	override drawTop(ctx: CanvasRenderingContext2D) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		if (typeof(this["no_hpbar"]) == "undefined") {
@@ -32,12 +31,10 @@ marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFacto
 		if (typeof(this["unnamed"]) == "undefined") {
 			this.drawTitle(ctx, localX, localY);
 		}
-	},
+	}
 
-	getCursor: function(x, y) {
+	override getCursor(_x: number, _y: number) {
 		return "url(/data/sprites/cursor/look.png) 1 3, auto";
 	}
 
-});
-
-marauroa.rpobjectFactory["training_dummy"] = marauroa.rpobjectFactory["npc"];
+}
