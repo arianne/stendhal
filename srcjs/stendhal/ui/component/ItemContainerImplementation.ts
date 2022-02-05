@@ -27,7 +27,8 @@ export class ItemContainerImplementation {
 	private longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
-	private touchDrag = false;
+	private touchDragActive = false;
+	private dragData: DataTransfer|null = null;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -173,7 +174,7 @@ export class ItemContainerImplementation {
 	}
 
 	private isLongTouch() {
-		return (!this.touchDrag
+		return (!this.touchDragActive
 			&& this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
 	}
 
@@ -204,7 +205,7 @@ export class ItemContainerImplementation {
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
 			//} else if (this.isDoubleClick(event)) {
-			} else if (!this.touchDrag) { // some players might like single click
+			} else if (!this.touchDragActive) { // some players might like single click
 				marauroa.clientFramework.sendAction({
 					type: "use",
 					"target_path": (event.target as any).dataItem.getIdPath(),
@@ -215,6 +216,14 @@ export class ItemContainerImplementation {
 		document.getElementById("gamewindow")!.focus();
 	}
 
+	private getTouchDragData() {
+		if (this.dragData === null) {
+			this.dragData = new DataTransfer();
+		}
+
+		return this.dragData;
+	}
+
 	onTouchStart(evt: TouchEvent) {
 		// FIXME: how to temporarily disable scrolling
 		//evt.preventDefault();
@@ -223,14 +232,38 @@ export class ItemContainerImplementation {
 	}
 
 	onTouchEnd(evt: TouchEvent) {
-		this.timestampTouchEnd = +new Date();
-		this.onMouseUp(evt);
+		if (!this.touchDragActive) {
+			this.timestampTouchEnd = +new Date();
+			this.onMouseUp(evt);
+		} else {
+			this.touchDragActive = false;
 
-		this.touchDrag = false;
+			const touch = evt.touches[0];
+			const eTarget = document.elementFromPoint(touch.pageX, touch.pageY);
+			if (eTarget !== null) {
+				eTarget.dispatchEvent(
+					new DragEvent("drop", {dataTransfer: this.getTouchDragData()}));
+			}
+		}
 	}
 
 	onTouchMove(evt: TouchEvent) {
-		this.touchDrag = true;
+		const touch = evt.touches[0];
+		const eTarget = document.elementFromPoint(touch.pageX, touch.pageY);
+
+		if (!this.touchDragActive) {
+			this.touchDragActive = true;
+
+			if (eTarget !== null) {
+				eTarget.dispatchEvent(
+					new DragEvent("dragstart", {dataTransfer: this.getTouchDragData()}));
+			}
+		} else {
+			if (eTarget !== null) {
+				eTarget.dispatchEvent(
+					new DragEvent("dragover", {dataTransfer: this.getTouchDragData()}));
+			}
+		}
 	}
 
 	onTouchCancel(evt: TouchEvent) {
