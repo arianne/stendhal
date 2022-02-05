@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,22 +9,28 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Entity } from "./Entity";
+import { RPEntity } from "./RPEntity";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+import { MenuItem} from "../action/MenuItem";
 
-/**
- * Player
- */
-marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
+import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
-	minimapShow: true,
-	minimapStyle: "rgb(255, 255, 255)",
-	dir: 3,
+import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
+import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
+import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
-	set: function(key, value) {
-		marauroa.rpobjectFactory["rpentity"].set.apply(this, arguments);
+declare var marauroa: any;
+
+export class Player extends RPEntity {
+	override minimapShow = true;
+	override minimapStyle = "rgb(255, 255, 255)";
+	override dir = 3;
+
+	override set(key: string, value: any) {
+		super.set(key, value);
 		if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
@@ -35,26 +41,26 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 
 		queueMicrotask( () => {
-			ui.get(UIComponentEnum.PlayerStats).update(key);
-			ui.get(UIComponentEnum.Keyring).update();
+			(ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent).update(key);
+			(ui.get(UIComponentEnum.Keyring) as ItemInventoryComponent).update();
 		});
-	},
+	}
 
 	/**
 	 * Is this player an admin?
 	 */
-	isAdmin: function() {
+	isAdmin() {
 		return (typeof(this["adminlevel"]) !== "undefined" && this["adminlevel"] > 600);
-	},
+	}
 
-	buildActions: function(list) {
-		marauroa.rpobjectFactory["rpentity"].buildActions.apply(this, arguments);
+	override buildActions(list: MenuItem[]) {
+		super.buildActions(list);
 		var playerName = this["_name"];
 		var isUnknown = (marauroa.me !== this) && ((marauroa.me["buddies"] == null) || !(playerName in marauroa.me["buddies"]));
 		if (isUnknown) {
 			list.push({
 				title: "Add to buddies",
-				action: function(entity) {
+				action: function(_entity: any) {
 					var action = {
 						"type": "addbuddy",
 						"zone": marauroa.currentZoneName,
@@ -68,7 +74,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		if (this.isIgnored()) {
 			list.push({
 				title: "Remove ignore",
-				action: function(entity) {
+				action: function(_entity: any) {
 					var action = {
 						"type": "unignore",
 						"zone": marauroa.currentZoneName,
@@ -80,7 +86,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		} else if (isUnknown) {
 			list.push({
 				title: "Ignore",
-				action: function(entity) {
+				action: function(_entity: any) {
 					var action = {
 						"type": "ignore",
 						"zone": marauroa.currentZoneName,
@@ -93,7 +99,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		if (marauroa.me === this) {
 			list.push({
 				title: "Set outfit",
-				action: function(entity) {
+				action: function(_entity: any) {
 					let outfitDialog = ui.get(UIComponentEnum.OutfitDialog);
 					if (!outfitDialog) {
 						outfitDialog = new OutfitDialog();
@@ -103,7 +109,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			});
 			list.push({
 				title: "Where",
-				action: function(entity) {
+				action: function(_entity: any) {
 					var action = {
 						"type": "where",
 						"target": playerName,
@@ -112,62 +118,62 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 				}
 			})
 		}
-	/*
-
+		/*
 		list.push({
 			title: "Trade",
 			type: "trade"
 		})
 		list.add(ActionType.INVITE.getRepresentation());
 		*/
-	},
+	}
 
-	isIgnored: function() {
+	isIgnored() {
 		if (!marauroa.me || !marauroa.me["!ignore"]) {
 			return false;
 		}
 		var temp = marauroa.me["!ignore"]._objects;
 		return temp.length > 0 && ("_" + this["_name"]) in temp[0];
-	},
+	}
 
-	draw: function(ctx) {
+	override draw(ctx: CanvasRenderingContext2D) {
 		if (this.isIgnored()) {
 			return;
 		}
-		marauroa.rpobjectFactory["rpentity"].draw.apply(this, arguments);
-	},
+		// TODO: grey out instead of hiding completely because they still cause a collision
+		super.draw(ctx);
+	}
 
-	getResistance: function() {
+	override getResistance() {
 		if (typeof(this["ghostmode"]) !== "undefined") {
 			return 0;
 		}
 		return this["resistance"];
-	},
+	}
 
 	/**
 	 * says a text
 	 */
-	say: function (text) {
+	override say(text: string) {
 		if (this.isIgnored()) {
 			return;
 		}
-		marauroa.rpobjectFactory["rpentity"].say.apply(this, arguments);
-	},
+		super.say(text);
+	}
 
 	/**
 	 * Can the player hear this chat message?
 	 */
-	isInHearingRange: function(entity) {
+	isInHearingRange(entity: Entity) {
 		return (this.isAdmin()
 			|| ((Math.abs(this["x"] - entity["x"]) < 15)
 				&& (Math.abs(this["y"] - entity["y"]) < 15)));
-	},
+	}
 
-	getCursor: function(x, y) {
-		if (this.isVisibleToAction()) {
+	override getCursor(_x: number, _y: number) {
+		if (this.isVisibleToAction(false)) {
 			return "url(/data/sprites/cursor/look.png) 1 3, auto";
 		}
 		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 
-});
+}
