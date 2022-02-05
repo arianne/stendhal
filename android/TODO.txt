@@ -5,6 +5,7 @@ TODO:
 - hide soft keyboard when Enter pressed
 - scale page to fit inside view
 - fix being logged out when screen orientation changes
+- add option to connect to custom server in debug build at startup
 
 BUILD TODO:
 - script to download Android SDK
