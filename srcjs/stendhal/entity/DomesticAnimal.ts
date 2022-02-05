@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,13 +9,21 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { RPEntity } from "./RPEntity";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+declare var stendhal: any;
 
-marauroa.rpobjectFactory["domesticanimal"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
-	drawSprite: function(ctx, filename) {
+export class DomesticAnimal extends RPEntity {
+
+	override drawSpriteImage(ctx: CanvasRenderingContext2D, _ignored: any) {
+		if (!this.imagePath && this["_rpclass"]) {
+			this["largeWeight"] = this["largeWeight"] | 20;
+			if (this["_rpclass"] == "sheep") {
+				this["largeWeight"] = 60;
+			}
+			this.imagePath = "/data/sprites/" + this["_rpclass"] + ".png";
+		}
+
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		var image = stendhal.data.sprites.get(this.imagePath);
@@ -38,28 +46,10 @@ marauroa.rpobjectFactory["domesticanimal"] = marauroa.util.fromProto(marauroa.rp
 			var drawY = (this["height"] * 32) - this["drawHeight"];
 			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
 		}
-	},
+	}
 
-	getCursor: function(x, y) {
+	override getCursor(_x: number, _y: number) {
 		return "url(/data/sprites/cursor/look.png) 1 3, auto";
 	}
 
-});
-
-marauroa.rpobjectFactory["sheep"] = marauroa.util.fromProto(marauroa.rpobjectFactory["domesticanimal"], {
-	imagePath: "/data/sprites/sheep.png",
-	largeWeight: 60
-});
-
-marauroa.rpobjectFactory["cat"] = marauroa.util.fromProto(marauroa.rpobjectFactory["domesticanimal"], {
-	imagePath: "/data/sprites/cat.png",
-	largeWeight: 20
-});
-
-marauroa.rpobjectFactory["baby_dragon"] = marauroa.util.fromProto(marauroa.rpobjectFactory["domesticanimal"], {
-	imagePath: "/data/sprites/baby_dragon.png",
-	largeWeight: 20,
-	// A default title that does not have an underscore. Named pets set their
-	// own title anyway
-	title: "baby dragon"
-});
+}
