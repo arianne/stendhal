@@ -23,6 +23,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -36,6 +37,7 @@ public class StendhalWebView {
 
 	private final AppCompatActivity mainActivity;
 	private WebView clientView;
+	private ImageView splash;
 	//private InputMethodManager imm;
 
 	//private String currentHTML;
@@ -61,8 +63,7 @@ public class StendhalWebView {
 		};
 		*/
 
-		clientView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-		clientView.setBackgroundResource(R.drawable.splash);
+		splash = (ImageView) mainActivity.findViewById(R.id.splash);
 
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
@@ -78,7 +79,7 @@ public class StendhalWebView {
 		viewSettings.setJavaScriptEnabled(true);
 
 		// keep elements in position in portrait mode
-		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);// <-- SINGLE_COLUMN deprecated
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
 
@@ -265,6 +266,9 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 	}
 
 	private void onSelectServer() {
+		// remove splash image
+		splash.setImageResource(android.R.color.transparent);
+
 		// initial page
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 
