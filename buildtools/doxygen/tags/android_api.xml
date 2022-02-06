@@ -39,6 +39,16 @@
 
 
 	<compound kind="namespace">
+		<name>android::content::res</name>
+		<filename>android/content/res/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::res::Configuration</name>
+		<filename>android/content/res/Configuration</filename>
+	</compound>
+
+
+	<compound kind="namespace">
 		<name>android::net</name>
 		<filename>android/net/package-summary</filename>
 	</compound>
@@ -85,6 +95,10 @@
 	<compound kind="namespace">
 		<name>android::view</name>
 		<filename>android/view/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::Gravity</name>
+		<filename>android/view/Gravity</filename>
 	</compound>
 	<compound kind="class">
 		<name>android::view::KeyEvent</name>
@@ -147,6 +161,18 @@
 	<compound kind="namespace">
 		<name>android::widget</name>
 		<filename>android/widget/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::FrameLayout</name>
+		<filename>android/widget/FrameLayout</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::ImageView</name>
+		<filename>android/widget/ImageView</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::LinearLayout</name>
+		<filename>android/widget/LinearLayout</filename>
 	</compound>
 	<compound kind="class">
 		<name>android::widget::Toast</name>
