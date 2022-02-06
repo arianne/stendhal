@@ -23,8 +23,16 @@ jobs:
           java-version: "16"
           distribution: 'adopt'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Install Android SDK 32
+        run: sdkmanager --install platforms\;android-32
+
       - name: Build APKs
-        run: ant -noinput -buildfile build.xml dist_android_client -Dgradle.params="assembleDebug assemblePrerelease"
+        run: >
+          ant -noinput -buildfile build.xml dist_android_client
+          -Dgradle.params="--no-daemon assembleDebug assemblePrerelease"
 
       - name: Publish
         uses: softprops/action-gh-release@v1
