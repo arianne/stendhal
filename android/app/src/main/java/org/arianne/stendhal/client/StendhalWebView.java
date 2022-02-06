@@ -53,6 +53,7 @@ public class StendhalWebView {
 
 		// FIXME: need to manually initialize WebView to override onCreateInputConnection
 		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
+		clientView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 		/*
 		clientView = new WebView(mainActivity) {
 			@Override
@@ -64,6 +65,7 @@ public class StendhalWebView {
 		*/
 
 		splash = (ImageView) mainActivity.findViewById(R.id.splash);
+		splash.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
