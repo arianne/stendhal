@@ -13,7 +13,7 @@ import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
-
+import { Nature } from "../util/Nature";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -599,26 +599,9 @@ export class RPEntity extends ActiveEntity {
 		};
 	}
 
-	onAttackPerformed(nature: string, ranged: boolean) {
+	onAttackPerformed(nature: number, ranged: boolean) {
 		if (ranged) {
-			var color;
-			switch (nature) {
-			case "0":
-			default:
-				color = "#c0c0c0";
-			break;
-			case "1":
-				color = "#ff6400";
-				break;
-			case "2":
-				color = "#8c8cff";
-				break;
-			case "3":
-				color = "#fff08c";
-				break;
-			case "4":
-				color = "#404040";
-			}
+			let color = Nature.VALUES[nature].color;
 			var tgt = this.getAttackTarget()!;
 			this.attackSprite = (function(color, targetX, targetY) {
 				return {
@@ -652,24 +635,7 @@ export class RPEntity extends ActiveEntity {
 				};
 			})(color, (tgt.x + tgt.width / 2) * 32, (tgt.y + tgt.height / 2) * 32);
 		} else {
-			var imagePath;
-			switch (nature) {
-			case "0":
-			default:
-				imagePath = "/data/sprites/combat/blade_strike_cut.png";
-			break;
-			case "1":
-				imagePath = "/data/sprites/combat/blade_strike_fire.png";
-				break;
-			case "2":
-				imagePath = "/data/sprites/combat/blade_strike_ice.png";
-				break;
-			case "3":
-				imagePath = "/data/sprites/combat/blade_strike_light.png";
-				break;
-			case "4":
-				imagePath = "/data/sprites/combat/blade_strike_dark.png";
-			}
+			let imagePath = Nature.VALUES[nature].imagePath;
 			this.attackSprite = (function(imagePath, _ranged, dir) {
 				return {
 					initTime: Date.now(),
