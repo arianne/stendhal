@@ -608,10 +608,30 @@
 
 		<property name="android.build" value="assembleDebug" />
 
+		<condition property="android.build_wout_rev">
+			<and>
+				<not>
+					<isset property="android.rev" />
+				</not>
+				<not>
+					<isset property="gradle.params" />
+				</not>
+			</and>
+		</condition>
+		<condition property="android.build_w_rev">
+			<and>
+				<isset property="android.rev" />
+				<not>
+					<isset property="gradle.params" />
+				</not>
+			</and>
+		</condition>
+
 		<exec unless:set="exclude.webview" failonerror="true"
 				executable="${gradlew}" dir="android/">
-			<arg unless:set="android.rev" value="${android.build}" />
-			<arg if:set="android.rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
+			<arg if:set="gradle.params" line="${gradle.params}" />
+			<arg if:set="android.build_wout_rev" value="${android.build}" />
+			<arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
 		</exec>
 	</target> <!-- client_android_build -->
 
