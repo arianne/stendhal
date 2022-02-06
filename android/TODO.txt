@@ -12,4 +12,3 @@ TODO:
 BUILD TODO:
 - script to download Android SDK
 - add 'android/app/build' to ant 'clean' target
-- create GitHub workflow to publish .apk packages on webview tag
