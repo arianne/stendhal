@@ -33,6 +33,7 @@ export class RPEntity extends ActiveEntity {
 	attackSprite: any = undefined; // TODO
 	attackResult: any = undefined; // TODO
 	dir = 3;
+	floaters: any[] = [];
 
 
 	override set(key: string, value: any) {
@@ -396,18 +397,16 @@ export class RPEntity extends ActiveEntity {
 	 * when the floater should be removed.
 	 */
 	drawFloaters(ctx: CanvasRenderingContext2D) {
-		if (this.hasOwnProperty("floaters")) {
-			var centerX = (this["_x"] + this["width"] / 2) * 32;
-			var topY = (this["_y"] + 1) * 32 - this["drawHeight"];
-			// Grab an unchanging copy
-			var currentFloaters = this.floaters;
-			for (var i = 0; i < currentFloaters.length; i++) {
-				var floater = currentFloaters[i];
-				if (floater.draw(ctx, centerX, topY)) {
-					// copy the array and remove the specific element from the copy
-					this.floaters = this.floaters.slice();
-					this.floaters.splice(this.floaters.indexOf(floater), 1);
-				}
+		var centerX = (this["_x"] + this["width"] / 2) * 32;
+		var topY = (this["_y"] + 1) * 32 - this["drawHeight"];
+		// Grab an unchanging copy
+		var currentFloaters = this.floaters;
+		for (var i = 0; i < currentFloaters.length; i++) {
+			var floater = currentFloaters[i];
+			if (floater.draw(ctx, centerX, topY)) {
+				// copy the array and remove the specific element from the copy
+				this.floaters = this.floaters.slice();
+				this.floaters.splice(this.floaters.indexOf(floater), 1);
 			}
 		}
 	}
@@ -561,9 +560,6 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	addFloater(message: string, color: string) {
-		if (!this.hasOwnProperty("floaters")) {
-			this.floaters = [];
-		}
 		var self = this;
 		this.floaters.push({
 			initTime: Date.now(),
