@@ -6,18 +6,26 @@ android {
 	compileSdk 32
 
 	def buildDate = new Date().format("yyyyMMdd")
-	if (project.hasProperty("android.rev") && project["android.rev"]) {
-		buildDate += "-" + project["android.rev"]
+
+	def appVer
+	if (project.hasProperty("android.ver") && project["android.ver"]) {
+		appVer = project["android.ver"]
+	} else {
+		appVer = "${buildDate}"
 	}
 
-	def outputName = "stendhal-webview-${buildDate}"
+	if (project.hasProperty("android.rev") && project["android.rev"]) {
+		appVer += "-" + project["android.rev"]
+	}
+
+	def outputName = "stendhal-webview-${appVer}"
 
 	defaultConfig {
 		applicationId "org.arianne.stendhal.client"
 		minSdk 21
 		targetSdk 32
 		versionCode 1
-		versionName "${buildDate}"
+		versionName "${appVer}"
 		setProperty("archivesBaseName", "${outputName}")
 		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
 
