@@ -993,7 +993,15 @@ stendhal.slashActionRepository = {
 	},
 
 	execute: function(line) {
-		var array = line.trim().split(" ");
+		line = line.trim();
+
+		// double slash is a special command, that should work without
+		// entering a space to separate it from the arguments.
+		if (line.startsWith("//") && !line.startsWith("// ")) {
+			line = "// " + line.substring(2);
+		}
+
+		var array = line.split(" ");
 
 		// clean whitespace
 		for (var i in array) {
