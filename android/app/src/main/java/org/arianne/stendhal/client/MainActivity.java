@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+	private StendhalWebView client;
 	private Menu menu;
 
 
@@ -28,13 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_main);
 
-		new StendhalWebView(this);
+		client = new StendhalWebView(this);
 		menu = new Menu(this);
 	}
 
 	@Override
 	public void onBackPressed() {
 		menu.toggleVisibility();
+	}
+
+	/**
+	 * Attempts to connect to client host.
+	 */
+	public void loadLogin() {
+		client.loadLogin();
 	}
 
 	/**

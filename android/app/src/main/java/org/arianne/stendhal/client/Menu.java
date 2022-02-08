@@ -16,6 +16,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toolbar;
 
@@ -25,12 +26,28 @@ public class Menu {
 	final Context ctx;
 	final Toolbar nav;
 
+	Button btn_login;
+	boolean loginLoaded = false;
+
 
 	public Menu(final Context ctx) {
 		this.ctx = ctx;
 
 		nav = (Toolbar) ((Activity) ctx).findViewById(R.id.menu_main);
-		nav.setVisibility(View.GONE);
+
+		nav.setTag(nav.getVisibility());
+		nav.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				if (nav.getVisibility() == View.VISIBLE) {
+					if (loginLoaded) {
+						btn_login.setVisibility(View.GONE);
+					} else {
+						btn_login.setVisibility(View.VISIBLE);
+					}
+				}
+			}
+		});
 
 		initButtonHandlers();
 	}
@@ -57,14 +74,26 @@ public class Menu {
 	private void initButtonHandlers() {
 		final MainActivity activity = (MainActivity) ctx;
 
+		btn_login = (Button) activity.findViewById(R.id.btn_login);
+		btn_login.setOnClickListener(new View.OnClickListener() {
+			public void onClick(final View v) {
+				nav.setVisibility(View.GONE);
+				activity.loadLogin();
+				// FIXME: need to determine if connection succeeded
+				loginLoaded = true;
+			}
+		});
+
 		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
 		btn_about.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
-				nav.setVisibility(View.GONE);
+				if (loginLoaded) {
+					nav.setVisibility(View.GONE);
+				}
 
 				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 				builder.setMessage("WebView client version: "
-					+ BuildConfig.VERSION_NAME + "\nServer version: unknown");
+					+ BuildConfig.VERSION_NAME + "\nServer version: unavailable");
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, final int id) {
 						dialog.cancel();
@@ -78,7 +107,10 @@ public class Menu {
 		final Button btn_quit = (Button) activity.findViewById(R.id.btn_quit);
 		btn_quit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
-				nav.setVisibility(View.GONE);
+				if (loginLoaded) {
+					nav.setVisibility(View.GONE);
+				}
+
 				activity.onRequestQuit();
 			}
 		});

@@ -105,13 +105,6 @@ public class StendhalWebView {
 		initWebViewClient();
 		initTouchHandler();
 		initKeyboardHandler();
-
-		if (debugEnabled()) {
-			// debug builds support choosing between main & test server
-			selectServer();
-		} else {
-			onSelectServer();
-		}
 	}
 
 
@@ -295,6 +288,18 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 			});
 
 			builder.create().show();
+		}
+	}
+
+	/**
+	 * Attempts to connect to client host.
+	 */
+	public void loadLogin() {
+		if (debugEnabled()) {
+			// debug builds support choosing between main & test server
+			selectServer();
+		} else {
+			onSelectServer();
 		}
 	}
 
