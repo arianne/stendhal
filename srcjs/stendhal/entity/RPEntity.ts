@@ -14,6 +14,7 @@ import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
+import { Floater } from "../sprite/Floater";
 import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
@@ -569,20 +570,7 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	addFloater(message: string, color: string) {
-		var self = this;
-		this.floaters.push({
-			initTime: Date.now(),
-			textOffset: null,
-			draw(ctx: CanvasRenderingContext2D, x: number, y: number) {
-				ctx.font = "14px Arial";
-				if (!this.textOffset) {
-					this.textOffset = ctx.measureText(message).width / 2;
-				}
-				var timeDiff = Date.now() - this.initTime;
-				self.drawOutlineText(ctx, message, color, x - this.textOffset, y - timeDiff / 50);
-				return (timeDiff > 2000);
-			}
-		});
+		this.floaters.push(new Floater(message, color));
 	}
 
 	/**
