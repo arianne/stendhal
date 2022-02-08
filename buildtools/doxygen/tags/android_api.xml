@@ -6,6 +6,10 @@
 		<filename>android/app/package-summary</filename>
 	</compound>
 	<compound kind="class">
+		<name>android::app::Activity</name>
+		<filename>android/app/Activity</filename>
+	</compound>
+	<compound kind="class">
 		<name>android::app::AlertDialog</name>
 		<filename>android/app/AlertDialog</filename>
 	</compound>
@@ -112,6 +116,10 @@
 		<name>android::view::View</name>
 		<filename>android/view/View</filename>
 	</compound>
+	<compound kind="class">
+		<name>android::view::ViewTreeObserver</name>
+		<filename>android/view/ViewTreeObserver</filename>
+	</compound>
 
 
 	<compound kind="namespace">
@@ -163,6 +171,10 @@
 		<filename>android/widget/package-summary</filename>
 	</compound>
 	<compound kind="class">
+		<name>android::widget::Button</name>
+		<filename>android/widget/Button</filename>
+	</compound>
+	<compound kind="class">
 		<name>android::widget::FrameLayout</name>
 		<filename>android/widget/FrameLayout</filename>
 	</compound>
@@ -177,6 +189,10 @@
 	<compound kind="class">
 		<name>android::widget::Toast</name>
 		<filename>android/widget/Toast</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::Toolbar</name>
+		<filename>android/widget/Toolbar</filename>
 	</compound>
 
 
