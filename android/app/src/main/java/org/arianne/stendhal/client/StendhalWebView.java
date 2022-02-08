@@ -11,7 +11,9 @@
  ***************************************************************************/
 package org.arianne.stendhal.client;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -35,7 +37,7 @@ public class StendhalWebView {
 	private boolean gameActive = false;
 	private Boolean debugging;
 
-	private final AppCompatActivity mainActivity;
+	private final Context ctx;
 	private WebView clientView;
 	private ImageView splash;
 	//private InputMethodManager imm;
@@ -48,8 +50,9 @@ public class StendhalWebView {
 	private int tapCount = 0;
 
 
-	public StendhalWebView(final AppCompatActivity activity) {
-		mainActivity = activity;
+	public StendhalWebView(final Context ctx) {
+		this.ctx = ctx;
+		final AppCompatActivity mainActivity = (AppCompatActivity) ctx;
 
 		// FIXME: need to manually initialize WebView to override onCreateInputConnection
 		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
@@ -119,7 +122,7 @@ public class StendhalWebView {
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 				if (!isInternalUrl(url)) {
 					// FIXME: should we ask for confirmation?
-					mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+					((Activity) ctx).startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 					return true;
 				}
 
@@ -143,7 +146,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 						executorService.schedule(new Runnable() {
 							@Override
 							public void run() {
-								DebugLog.notify(currentHTML, mainActivity);
+								DebugLog.notify(currentHTML, (Activity) ctx);
 							}
 						}, 800, TimeUnit.MILLISECONDS);
 					}
@@ -179,7 +182,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 	}
 
 	private void initKeyboardHandler() {
-		//imm = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+		//imm = (InputMethodManager) ((Activity) ctx).getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		clientView.setOnKeyListener(new View.OnKeyListener() {
 			@Override
@@ -243,7 +246,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 	 * Opens a message dialog for user to choose between main & test servers.
 	 */
 	private void selectServer() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+		final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 		builder.setMessage("Select a server");
 		builder.setCancelable(false);
 
@@ -280,7 +283,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 			DebugLog.writeLine("Connecting to main server");
 
 			// warn players that WebView client is in early development
-			final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+			final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 			builder.setMessage("CAUTION: This software is in early development and not recommended"
 				+ " for use on the main server. Proceed with caution.");
 			builder.setCancelable(false);
@@ -307,7 +310,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 		}
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			debugging = (mainActivity.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+			debugging = (((Activity) ctx).getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
 		} else {
 			debugging = false;
 		}
