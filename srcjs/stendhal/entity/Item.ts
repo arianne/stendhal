@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Entity } from "./Entity";
+import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
 
@@ -19,6 +20,7 @@ export class Item extends Entity {
 	override minimapShow = false;
 	override minimapStyle = "rgb(0,255,0)";
 	override zIndex = 7000;
+	private quantityTextSprite: TextSprite;
 
 	constructor() {
 		super();
@@ -26,6 +28,7 @@ export class Item extends Entity {
 			height: 32,
 			width: 32
 		};
+		this.quantityTextSprite = new TextSprite("", "white", "10px sans-serif");
 	}
 
 	override isVisibleToAction(_filter: boolean) {
@@ -51,6 +54,9 @@ export class Item extends Entity {
 			this.sprite.filename = "/data/sprites/items/"
 				+ this["class"] + "/" + this["subclass"] + ".png";
 		}
+		if (key === "quantity") {
+			this.quantityTextSprite = new TextSprite(this.formatQuantity(), "white", "10px sans-serif");
+		}
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {
@@ -60,9 +66,8 @@ export class Item extends Entity {
 	drawAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
 		if (this.sprite) {
 			this.drawSpriteAt(ctx, x, y);
-			var text = this.formatQuantity();
-			var textMetrics = ctx.measureText(text);
-			this.drawOutlineText(ctx, text, "white", x + (32 - textMetrics.width) / 2, y + 6);
+			let textMetrics = this.quantityTextSprite.getTextMetrics(ctx);
+			this.quantityTextSprite.draw(ctx, x + (32 - textMetrics.width), y + 6);
 		}
 	}
 

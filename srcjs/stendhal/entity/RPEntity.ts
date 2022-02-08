@@ -14,6 +14,7 @@ import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
+import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -489,10 +490,10 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		if (typeof(title) != "undefined") {
-			ctx.font = "14px Arial";
-			var textMetrics = ctx.measureText(title);
+			let titleTextSprite = new TextSprite(title, this.titleStyle, "14px sans-serif");
+			let textMetrics = titleTextSprite.getTextMetrics(ctx);
 			var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
-			this.drawOutlineText(ctx, title, this.titleStyle, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			titleTextSprite.draw(ctx, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	}
 
