@@ -12,7 +12,9 @@
 package org.arianne.stendhal.client;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toolbar;
@@ -54,6 +56,24 @@ public class Menu {
 	 */
 	private void initButtonHandlers() {
 		final MainActivity activity = (MainActivity) ctx;
+
+		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
+		btn_about.setOnClickListener(new View.OnClickListener() {
+			public void onClick(final View v) {
+				nav.setVisibility(View.GONE);
+
+				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
+				builder.setMessage("WebView client version: "
+					+ BuildConfig.VERSION_NAME + "\nServer version: unknown");
+				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog, final int id) {
+						dialog.cancel();
+					}
+				});
+
+				builder.create().show();
+			}
+		});
 
 		final Button btn_quit = (Button) activity.findViewById(R.id.btn_quit);
 		btn_quit.setOnClickListener(new View.OnClickListener() {
