@@ -34,6 +34,7 @@ export class RPEntity extends ActiveEntity {
 	attackSprite: any = undefined; // TODO
 	attackResult: any = undefined; // TODO
 	dir = 3;
+	titleTextSprite?: TextSprite;
 	floaters: any[] = [];
 
 
@@ -64,6 +65,8 @@ export class RPEntity extends ActiveEntity {
 			this.addFloater("Grumpy", "#ffff00");
 		} else if (key === "xp" && oldValue != undefined) {
 			this.onXPChanged(this[key] - oldValue);
+		} else if (["title", "name", "class", "type"].indexOf(key) >-1) {
+			this.createTitleTextSprite();
 		}
 	}
 
@@ -477,23 +480,28 @@ export class RPEntity extends ActiveEntity {
 		ctx.fillRect(drawX, drawY, this["drawWidth"] * hpRatio, HEALTH_BAR_HEIGHT - 2);
 	}
 
-	drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
-		var title = this.getTitle();
-		if (title == undefined) {
+	createTitleTextSprite() {
+		let title = this.getTitle();
+		if (!title) {
 			title = this["_name"];
-			if (title == undefined || title == "") {
+			if (!title) {
 				title = this["class"];
-				if (title == undefined) {
+				if (!title) {
 					title = this["type"];
 				}
 			}
 		}
 
-		if (typeof(title) != "undefined") {
-			let titleTextSprite = new TextSprite(title, this.titleStyle, "14px sans-serif");
-			let textMetrics = titleTextSprite.getTextMetrics(ctx);
+		if (title) {
+			this.titleTextSprite = new TextSprite(title, this.titleStyle, "14px sans-serif");
+		}
+	}
+
+	drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
+		if (this.titleTextSprite) {
+			let textMetrics = this.titleTextSprite.getTextMetrics(ctx);
 			var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
-			titleTextSprite.draw(ctx, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			this.titleTextSprite.draw(ctx, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	}
 
