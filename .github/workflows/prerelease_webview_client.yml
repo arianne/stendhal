@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: write
       packages: write
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout repository
@@ -29,10 +32,14 @@ jobs:
       - name: Install Android SDK 32
         run: sdkmanager --install platforms\;android-32
 
+      - name: Get version info
+        id: ver
+        run: echo "::set-output name=value::$(echo ${{ github.ref }} | sed -e 's/^.*webview-//')"
+
       - name: Build APKs
         run: >
           ant -noinput -buildfile build.xml dist_android_client
-          -Dgradle.params="--no-daemon assembleDebug assemblePrerelease"
+          -Dgradle.params="--no-daemon -Pandroid.ver=${{ steps.ver.outputs.value }} assembleDebug assemblePrerelease"
 
       - name: Publish
         uses: softprops/action-gh-release@v1
