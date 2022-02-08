@@ -188,6 +188,7 @@
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
 		<delete file="cobertura.ser" />
+		<delete dir="android/app/build/" />
 		<delete>
 					<fileset dir=".">
 						<include name="TEST-*.xml"/>
