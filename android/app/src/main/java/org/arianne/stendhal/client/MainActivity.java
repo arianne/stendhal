@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+	private Menu menu;
+
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,10 +29,18 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		new StendhalWebView(this);
+		menu = new Menu(this);
 	}
 
 	@Override
 	public void onBackPressed() {
+		menu.toggleVisibility();
+	}
+
+	/**
+	 * Opens a dialog confirm exiting activity.
+	 */
+	public void onRequestQuit() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Quit Stendhal?");
 
