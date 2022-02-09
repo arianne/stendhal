@@ -44,6 +44,12 @@ public class CachedActionManager {
 		cached = new LinkedList<>();
 	}
 
+	/**
+	 * Registers a new action.
+	 *
+	 * @param action
+	 *     Action to be run at end of server startup.
+	 */
 	public void register(final Runnable action) {
 		if (cached == null) {
 			logger.warn("Cannot cache new action after server startup");
