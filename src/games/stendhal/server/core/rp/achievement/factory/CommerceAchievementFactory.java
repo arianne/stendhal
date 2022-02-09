@@ -175,7 +175,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Mizuno", 0);
 			put("Rengard", 0);
 			put("Felina", 0);
-			put("Fidorea", 0);
 		}};
 
 
