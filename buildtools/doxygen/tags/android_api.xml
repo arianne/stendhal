@@ -53,12 +53,22 @@
 
 
 	<compound kind="namespace">
-		<name>android::net</name>
-		<filename>android/net/package-summary</filename>
+		<name>android::view</name>
+		<filename>android/view/package-summary</filename>
 	</compound>
 	<compound kind="class">
-		<name>android::net::Uri</name>
-		<filename>android/net/Uri</filename>
+		<name>android::view::Gravity</name>
+		<filename>android/view/Gravity</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::graphics::drawable</name>
+		<filename>android/graphics/drawable/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::graphics::drawable::Drawable</name>
+		<filename>android/graphics/drawable/Drawable</filename>
 	</compund>
 
 

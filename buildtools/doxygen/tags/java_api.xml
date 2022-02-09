@@ -294,8 +294,12 @@
 		<filename>java.base/java/io/FileOutputStream.html</filename>
 	</compound>
 	<compound kind="class">
+		<name>java::io::FileReader</name>
+		<filename>java/io/FileReader.html</filename>
+	</compound>
+	<compound kind="class">
 		<name>java::io::FileWriter</name>
-		<filename>java/io/FileWrite.html</filename>
+		<filename>java/io/FileWriter.html</filename>
 	</compound>
 	<compound kind="class">
 		<name>java::io::InputStream</name>
