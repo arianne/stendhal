@@ -66,27 +66,22 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-					boolean conditionsMet = true;
-
 					for (final String seller: MR.getSellersNames()) {
 						if (!player.has("npc_purchases", seller)) {
-							conditionsMet = false;
-							break;
+							return false;
 						} else {
 							final int amount = Integer.parseInt(player.get("npc_purchases", seller));
 							if (TRADE_ALL_AMOUNTS.containsKey(seller)) {
 								if (amount < TRADE_ALL_AMOUNTS.get(seller)) {
-									conditionsMet = false;
-									break;
+									return false;
 								}
 							} else if (amount < 1000) {
-								conditionsMet = false;
-								break;
+								return false;
 							}
 						}
 					}
 
-					return conditionsMet;
+					return true;
 				}
 			}));
 
