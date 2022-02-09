@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 		// initialize debug logging mechanism
 		DebugLog.init(getContext().getExternalFilesDir(null), this);
 
+		// initialize settings store
+		Settings.init(getExternalFilesDir(null));
+
 		menu = new Menu(this);
 		client = new StendhalWebView(this);
 	}
@@ -78,5 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
 		final AlertDialog confirmQuit = builder.create();
 		confirmQuit.show();
+	}
+
+	@Override
+	protected void onDestroy() {
+		// XXX: settings only get saved if app exited via menu
+		Settings.commitToFile();
+		super.onDestroy();
 	}
 }

@@ -53,7 +53,7 @@ android {
 
 	buildTypes.all { type ->
 		if (!type.name.equals("debug")) {
-			sourceSets[type.name].java { srcDirs "src/shared/java" }
+			sourceSets[type.name].java { srcDirs "src/shared/java/" }
 		}
 	}
 
@@ -70,10 +70,10 @@ android {
 }
 
 dependencies {
-
 	implementation 'androidx.appcompat:appcompat:1.4.1'
 	implementation 'com.google.android.material:material:1.4.0'
 	//testImplementation 'junit:junit:4.+'
 	//androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 	//androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+	implementation files('../../libs/marauroa-client-only.jar')
 }
