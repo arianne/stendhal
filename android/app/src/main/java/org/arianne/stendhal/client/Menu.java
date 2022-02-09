@@ -96,6 +96,13 @@ public class Menu {
 			}
 		});
 
+		final Button btn_settings = (Button) activity.findViewById(R.id.btn_settings);
+		btn_settings.setOnClickListener(new ClickListener() {
+			public void onClick(final View v) {
+				super.onClick(v);
+			}
+		});
+
 		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
 		btn_about.setOnClickListener(new ClickListener() {
 			public void onClick(final View v) {
