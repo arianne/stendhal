@@ -23,13 +23,20 @@ import android.widget.Toolbar;
 
 public class Menu {
 
-	final Context ctx;
-	final Toolbar nav;
+	private static Menu instance;
 
-	Button btn_login;
+	private final Context ctx;
+	private final Toolbar nav;
 
+	private Button btn_login;
+
+
+	public static Menu get() {
+		return instance;
+	}
 
 	public Menu(final Context ctx) {
+		instance = this;
 		this.ctx = ctx;
 
 		nav = (Toolbar) ((Activity) ctx).findViewById(R.id.menu_main);
