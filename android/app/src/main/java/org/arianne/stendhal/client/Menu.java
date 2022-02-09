@@ -93,11 +93,9 @@ public class Menu {
 		});
 
 		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
-		btn_about.setOnClickListener(new View.OnClickListener() {
+		btn_about.setOnClickListener(new ClickListener() {
 			public void onClick(final View v) {
-				if (loginLoaded) {
-					nav.setVisibility(View.GONE);
-				}
+				super.onClick(v);
 
 				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 				builder.setMessage("WebView client version: "
@@ -113,14 +111,19 @@ public class Menu {
 		});
 
 		final Button btn_quit = (Button) activity.findViewById(R.id.btn_quit);
-		btn_quit.setOnClickListener(new View.OnClickListener() {
+		btn_quit.setOnClickListener(new ClickListener() {
 			public void onClick(final View v) {
-				if (loginLoaded) {
-					nav.setVisibility(View.GONE);
-				}
-
+				super.onClick(v);
 				activity.onRequestQuit();
 			}
 		});
+	}
+
+	private class ClickListener implements View.OnClickListener {
+		public void onClick(final View v) {
+			if (!MainActivity.onInitialPage) {
+				nav.setVisibility(View.GONE);
+			}
+		}
 	}
 }
