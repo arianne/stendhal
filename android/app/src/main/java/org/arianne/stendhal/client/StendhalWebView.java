@@ -11,6 +11,8 @@
  ***************************************************************************/
 package org.arianne.stendhal.client;
 
+import static org.arianne.stendhal.client.DebugLog.DebugLevel;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +34,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class StendhalWebView {
 
 	// FIXME: page should be set to character select if focus is lost
+
+	private static DebugLog logger = DebugLog.get();
 
 	private boolean testing = false;
 	private boolean gameActive = false;
@@ -75,8 +79,8 @@ public class StendhalWebView {
 			clientView.setWebContentsDebuggingEnabled(true);
 
 			// initialize debug logging mechanism
+			// FIXME: this should be initialized in main activity
 			DebugLog.init(clientView.getContext().getExternalFilesDir(null), mainActivity);
-			DebugLog.writeLine("debugger initialized");
 		}
 
 		final WebSettings viewSettings = clientView.getSettings();
@@ -160,7 +164,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 							if (tapCount > 1) {
 								tapCount = 0;
 								if (timestampTouchUp - timestampTouchUpPrev <= doubleTapThreshold) {
-									DebugLog.writeLine("consumed double-tap event");
+									logger.debug("consumed double-tap event");
 									// disables double-tap zoom
 									// FIXME: need a workaround if double-taps should be used in game
 									return true;
@@ -273,9 +277,9 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
 
 		if (testing) {
-			DebugLog.writeLine("Connecting to test server");
+			logger.debug("Connecting to test server");
 		} else {
-			DebugLog.writeLine("Connecting to main server");
+			logger.debug("Connecting to main server");
 
 			// warn players that WebView client is in early development
 			final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
