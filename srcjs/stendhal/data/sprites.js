@@ -17,6 +17,7 @@ stendhal.data = stendhal.data || {};
 stendhal.data.sprites = {
 
 	knownBrokenUrls: {},
+	images: {},
 
 	get: function(filename) {
 		if (!filename) {
@@ -30,26 +31,26 @@ stendhal.data.sprites = {
 			return {};
 		}
 		if (typeof(this[filename]) != "undefined") {
-			this[filename].counter++;
-			return this[filename];
+			stendhal.data.sprites.images[filename].counter++;
+			return stendhal.data.sprites.images[filename];
 		}
 		var temp = new Image;
 		temp.counter = 0;
 		temp.src = filename;
-		this[filename] = temp;
+		stendhal.data.sprites.images[filename] = temp;
 		return temp;
 	},
 
 	getWithPromise: function(filename) {
 		return new Promise((resolve) => {
-			if (typeof(this[filename]) != "undefined") {
-				this[filename].counter++;
-				resolve(this[filename]);
+			if (typeof(stendhal.data.sprites.images[filename]) != "undefined") {
+				stendhal.data.sprites.images[filename].counter++;
+				resolve(stendhal.data.sprites.images[filename]);
 			}
 
 			const image = new Image();
 			image.counter = 0;
-			this[filename] = image;
+			stendhal.data.sprites.images[filename] = image;
 			image.onload = () => resolve(image);
 			image.src = filename;
 		});
@@ -58,13 +59,13 @@ stendhal.data.sprites = {
 	/** deletes all objects that have not been accessed since this method was called last time */
 	// TODO: call clean on map change
 	clean: function() {
-		for (var i in this) {
+		for (var i in stendhal.data.sprites.images) {
 			console.log(typeof(i));
 			if (typeof(i) == "Image") {
-				if (this[i].counter > 0) {
-					this[i].counter = 0;
+				if (stendhal.data.sprites.images[i].counter > 0) {
+					stendhal.data.sprites.images[i].counter--;
 				} else {
-					delete(this[i]);
+					delete(stendhal.data.sprites.images[i]);
 				}
 			}
 		}
@@ -107,18 +108,15 @@ stendhal.data.sprites = {
 	 * @param {number=} param
 	 */
 	getFiltered: function(fileName, filter, param) {
-		const img = this.get(fileName);
-		if (!img) {
-			return null;
-		}
+		const img = stendhal.data.sprites.get(fileName);
 		let filterFn;
 		if (typeof(filter) === "undefined"
 			|| !(filterFn = stendhal.data.sprites.filter[filter])
-			|| img.width === 0 || img.height === 0) {
+			|| !img.complete || img.width === 0 || img.height === 0) {
 			return img;
 		}
 		const filteredName = fileName + " " + filter + " " + param;
-		let filtered = this[filteredName];
+		let filtered = stendhal.data.sprites.images[filteredName];
 		if (typeof(filtered) === "undefined") {
 			const canvas = document.createElement("canvas");
 			canvas.width  = img.width;
@@ -129,7 +127,7 @@ stendhal.data.sprites = {
 			const data = imgData.data;
 			filterFn(data, param);
 			ctx.putImageData(imgData, 0, 0);
-			this[filteredName] = filtered = canvas;
+			stendhal.data.sprites.images[filteredName] = filtered = canvas;
 		}
 
 		return filtered;
@@ -141,16 +139,16 @@ stendhal.data.sprites = {
 	 * @param {number=} param
 	 */
 	getFilteredWithPromise: function(fileName, filter, param) {
-		const imgPromise = this.getWithPromise(fileName);
+		const imgPromise = stendhal.data.sprites.getWithPromise(fileName);
 		return imgPromise.then(function (img) {
 			let filterFn;
 			if (typeof(filter) === "undefined"
 				|| !(filterFn = stendhal.data.sprites.filter[filter])
-				|| img.width === 0 || img.height === 0) {
+				|| !img.complete || img.width === 0 || img.height === 0) {
 				return img;
 			}
 			const filteredName = fileName + " " + filter + " " + param;
-			let filtered = this[filteredName];
+			let filtered = stendhal.data.sprites.images[filteredName];
 			if (typeof(filtered) === "undefined") {
 				const canvas = document.createElement("canvas");
 				canvas.width  = img.width;
@@ -161,7 +159,7 @@ stendhal.data.sprites = {
 				const data = imgData.data;
 				filterFn(data, param);
 				ctx.putImageData(imgData, 0, 0);
-				this[filteredName] = filtered = canvas;
+				stendhal.data.sprites.images[filteredName] = filtered = canvas;
 			}
 
 			return filtered;
@@ -271,9 +269,9 @@ stendhal.data.sprites = {
 				}
 				tmp2 = 2 * l - tmp1;
 
-				var rf = this.hue2rgb(this.limitHue(h + 1/3), tmp2, tmp1);
-				var gf = this.hue2rgb(this.limitHue(h), tmp2, tmp1);
-				var bf = this.hue2rgb(this.limitHue(h - 1/3), tmp2, tmp1);
+				var rf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h + 1/3), tmp2, tmp1);
+				var gf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h), tmp2, tmp1);
+				var bf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h - 1/3), tmp2, tmp1);
 
 				r = Math.floor(255 * rf) & 0xff;
 				g = Math.floor(255 * gf) & 0xff;
