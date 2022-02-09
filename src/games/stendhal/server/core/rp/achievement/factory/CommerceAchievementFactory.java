@@ -11,19 +11,30 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import java.lang.Runnable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.achievement.Achievement;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.BoughtNumberOfCondition;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -32,11 +43,16 @@ import games.stendhal.server.entity.player.Player;
  */
 public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
+	private static final Logger logger = Logger.getLogger(CommerceAchievementFactory.class);
+
 	private static final MerchantsRegister MR = MerchantsRegister.get();
 
 	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
 	public static final int COUNT_HAPPY_HOUR = 100;
+
+	// default required amount to spend at a seller for "Community Supporter"
+	private static final int default_req_purchase = 1000;
 
 
 	@Override
@@ -58,14 +74,63 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			Achievement.MEDIUM_BASE_SCORE, false,
 			new HasSpentAmountAtSellers()));
 
+
+		// add responses to sellers so player has an idea of how much they need to spend
+		SingletonRepository.getCachedActionManager().register(new Runnable() {
+			public void run() {
+				logger.debug("Registering seller responses for Community Supporter achievement ...");
+				String csSellers = "";
+
+				final NPCList npcs = NPCList.get();
+				for (final String name: MR.getSellersNames()) {
+					final SpeakerNPC seller = npcs.get(name);
+					if (seller != null) {
+						Integer req_purchase = default_req_purchase;
+						if (HasSpentAmountAtSellers.TRADE_ALL_AMOUNTS.containsKey(name)) {
+							req_purchase = HasSpentAmountAtSellers.TRADE_ALL_AMOUNTS.get(name);
+							if (req_purchase.equals(0)) {
+								req_purchase = null;
+							}
+						}
+
+						if (req_purchase != null) {
+							seller.add(
+								ConversationStates.ATTENDING,
+								Arrays.asList("patron", "patronage"),
+								null,
+								ConversationStates.ATTENDING,
+								null,
+								new RespondToPurchaseAmountInquiry(req_purchase));
+
+							// add some info to "help" response
+							final String sHelp = seller.getReply("help");
+							if (sHelp != null && !sHelp.equals("")) {
+								seller.addHelp(sHelp + " Also, you can ask me about #patronage.");
+							} else {
+								seller.addHelp("You can ask me about #patronage.");
+							}
+
+							// logger output
+							if (csSellers.length() > 0) {
+								csSellers = csSellers + ", ";
+							}
+							csSellers = csSellers + name;
+						}
+					}
+				}
+
+				logger.debug("Community Supporter sellers: " + csSellers);
+			}
+		});
+
 		return achievements;
 	}
 
 
-	private class HasSpentAmountAtSellers implements ChatCondition {
+	private static class HasSpentAmountAtSellers implements ChatCondition {
 
 		// default value for sellers not included in this list is 1000
-		private final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
+		protected static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
 			put("Margaret", 500);
 			put("Ilisa", 4000);
 			put("Adena", 500);
@@ -124,13 +189,47 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 						if (amount < TRADE_ALL_AMOUNTS.get(seller)) {
 							return false;
 						}
-					} else if (amount < 1000) {
+					} else if (amount < default_req_purchase) {
 						return false;
 					}
 				}
 			}
 
 			return true;
+		}
+	}
+
+	private static class RespondToPurchaseAmountInquiry implements ChatAction {
+		private int req_purchase = 0;
+
+		protected RespondToPurchaseAmountInquiry(final int amount) {
+			req_purchase = amount;
+		}
+
+		public void fire(final Player player, final Sentence sentence, final EventRaiser seller) {
+			int spent = 0;
+			final String sellerName = seller.getName();
+			if (player.has("npc_purchases", sellerName)) {
+				spent = player.getInt("npc_purchases", sellerName);
+			}
+
+			if (spent == 0) {
+				seller.say("You haven't even purchased anything from me.");
+			} else if (spent >= req_purchase) {
+				seller.say("Thank you for supporting my shop! Adventurers like you keep this world afloat.");
+			} else {
+				final double per = (Double.valueOf(spent) / req_purchase) * 100;
+
+				if (per < 25) {
+					seller.say("You aren't much of a frequenter here.");
+				} else if (per < 50) {
+					seller.say("I see you have been coming around once in a while.");
+				} else if (per < 75) {
+					seller.say("You're getting to be a regular around here, aren't you?");
+				} else {
+					seller.say("Of course I remember you. How could I forget my favorite customer?");
+				}
+			}
 		}
 	}
 }
