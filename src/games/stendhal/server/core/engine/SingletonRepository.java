@@ -216,6 +216,16 @@ public class SingletonRepository {
 		SingletonRepository.entityManager = entityManager;
 	}
 
+	/**
+	 * Retrieves the CachedActionManager.
+	 *
+	 * @return
+	 *     CachedActionManager instance.
+	 */
+	public static CachedActionManager getCachedActionManager() {
+		return CachedActionManager.get();
+	}
+
 
 
 }

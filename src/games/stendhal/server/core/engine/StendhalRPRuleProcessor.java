@@ -165,6 +165,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/* initialize quests stored in cache */
 			questSystem.loadCachedQuests();
 
+			/* actions registered to be executed at end of server startup */
+			CachedActionManager.get().run();
+
 			final Configuration config = Configuration.getConfiguration();
 			try {
 				final String[] extensionsToLoad = config.get("server_extension").split(",");
