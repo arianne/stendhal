@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 		instance = this;
 		setContentView(R.layout.activity_main);
 
+		// initialize debug logging mechanism
+		DebugLog.init(getContext().getExternalFilesDir(null), this);
+
 		menu = new Menu(this);
 		client = new StendhalWebView(this);
 	}

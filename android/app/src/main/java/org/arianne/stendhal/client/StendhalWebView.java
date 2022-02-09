@@ -77,10 +77,6 @@ public class StendhalWebView {
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
 			clientView.setWebContentsDebuggingEnabled(true);
-
-			// initialize debug logging mechanism
-			// FIXME: this should be initialized in main activity
-			DebugLog.init(clientView.getContext().getExternalFilesDir(null), mainActivity);
 		}
 
 		final WebSettings viewSettings = clientView.getSettings();
