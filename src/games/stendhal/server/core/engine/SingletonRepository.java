@@ -48,10 +48,25 @@ import marauroa.server.db.TransactionPool;
  */
 public class SingletonRepository {
 
+	private static SingletonRepository instance;
+
+	public static SingletonRepository get() {
+		if (instance == null) {
+			new SingletonRepository();
+		}
+
+		return instance;
+	}
+
 	private static EntityManager entityManager;
 	private static Jail jailInstance;
 	private static GroupManager groupManager;
 	private static PlayerVsPlayerChallengeManager challengeManager;
+
+
+	public SingletonRepository () {
+		instance = this;
+	}
 
 	/**
 	 * @return the actual StendhalRPRuleProcessor instance

@@ -83,6 +83,12 @@ npc:setOutfit("body=0,head=0,hair=3,dress=5")
 npc:setOutfitColor("dress", Color.BLUE)
 ```
 
+## SingletonRepository
+
+The {@link game.stendhal.server.core.engine.SingletonRepository} static instance.
+
+Implemented as <code>singletons</code> object.
+
 ## CloneManager
 
 The {@link games.stendhal.server.entity.npc.CloneManager} static instance.

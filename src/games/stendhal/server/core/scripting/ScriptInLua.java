@@ -31,6 +31,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.lua.LuaActionHelper;
 import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
 import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
@@ -41,7 +42,6 @@ import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.LuaTableHelper;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
-import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -50,6 +50,8 @@ import games.stendhal.server.entity.player.Player;
 public class ScriptInLua extends ScriptingSandbox {
 
 	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
+
+	private static final SingletonRepository singletons = SingletonRepository.get();
 
 	private static ScriptInLua instance;
 	private static Globals globals;
@@ -156,7 +158,8 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("merchants", CoerceJavaToLua.coerce(LuaMerchantHelper.get()));
 		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
-		globals.set("clones", CoerceJavaToLua.coerce(CloneManager.get()));
+		globals.set("singletons", CoerceJavaToLua.coerce(singletons));
+		globals.set("clones", CoerceJavaToLua.coerce(singletons.getCloneManager()));
 
 		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));
