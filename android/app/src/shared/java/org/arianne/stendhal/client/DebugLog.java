@@ -22,10 +22,22 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DebugLog {
 
 	public static enum DebugLevel {
+		INFO,
+		WARN,
 		ERROR,
 		DEBUG
 	}
 
+	private static DebugLog instance;
+
+
+	public static DebugLog get() {
+		if (instance == null) {
+			instance = new DebugLog();
+		}
+
+		return instance;
+	}
 
 	public static void init(final File dir, final AppCompatActivity activity) {
 		// do nothing
@@ -36,6 +48,22 @@ public class DebugLog {
 	}
 
 	public static void writeLine(final String text, final DebugLevel level) {
+		// do nothing
+	}
+
+	public static void info(final String text) {
+		// do nothing
+	}
+
+	public static void warn(final String text) {
+		// do nothing
+	}
+
+	public static void error(final String text) {
+		// do nothing
+	}
+
+	public static void debug(final String text) {
 		// do nothing
 	}
 

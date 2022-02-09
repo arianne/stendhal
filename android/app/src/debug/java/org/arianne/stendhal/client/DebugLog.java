@@ -28,25 +28,44 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class DebugLog {
 
-	private static File dataDir;
+	private static File logsDir;
 
 	private static AppCompatActivity mainActivity;
 
 	public static enum DebugLevel {
+		INFO("INFO"),
+		WARN("WARN"),
 		ERROR("ERROR"),
 		DEBUG("DEBUG");
 
-		public final String label;
+		private final String label;
 
 		private DebugLevel(final String label) {
 			this.label = label;
 		}
+
+		public String getLabel() {
+			return label;
+		}
 	}
 
+	private static DebugLog instance;
+
+
+	public static DebugLog get() {
+		if (instance == null) {
+			instance = new DebugLog();
+		}
+
+		return instance;
+	}
 
 	public static void init(final File dir, final AppCompatActivity activity) {
-		dataDir = dir;
+		logsDir = new File(dir.getPath() + "/logs");
 		mainActivity = activity;
+
+		writeLine("\n  // -- debugging initialized -- //", null);
+		writeLine("logs directory: " + logsDir.getPath());
 	}
 
 	public static void writeLine(final String text) {
@@ -54,19 +73,22 @@ public class DebugLog {
 	}
 
 	public static void writeLine(String text, final DebugLevel level) {
-		if (dataDir == null) {
+		if (logsDir == null) {
 			System.err.println("ERROR: DebugLog not initialized. Call DebugLog.init.");
 			return;
 		}
 
-		if (!dataDir.exists()) {
-			dataDir.mkdirs();
+		if (!logsDir.exists()) {
+			logsDir.mkdirs();
 		}
 
-		text = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())
-			+ ": " + text + "\n";
+		if (level != null) {
+			text = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())
+				+ ": " + level.label + ": " + text;
+		}
+		text = text + "\n";
 
-		final String logFile = dataDir.getPath() + "/debug-"
+		final String logFile = logsDir.getPath() + "/debug-"
 			+ new SimpleDateFormat("yyyy.MM.dd").format(new Date()) + ".txt";
 
 		BufferedWriter buffer;
@@ -79,6 +101,22 @@ public class DebugLog {
 		} catch (final IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
+	}
+
+	public static void info(final String text) {
+		writeLine(text, DebugLevel.INFO);
+	}
+
+	public static void warn(final String text) {
+		writeLine(text, DebugLevel.WARN);
+	}
+
+	public static void error(final String text) {
+		writeLine(text, DebugLevel.ERROR);
+	}
+
+	public static void debug(final String text) {
+		writeLine(text, DebugLevel.DEBUG);
 	}
 
 	public static void notify(final String message) {
