@@ -48,9 +48,16 @@ public class MainActivity extends AppCompatActivity {
 			menu = new Menu(this);
 			client = new StendhalWebView(this);
 		} catch (final Exception e) {
-			DebugLog.error(e.getMessage());
+			e.printStackTrace();
+			DebugLog.error(e.toString());
+			DebugLog.error("// -- //");
+			for (final StackTraceElement ste: e.getStackTrace()) {
+				DebugLog.error(ste.toString());
+			}
+			DebugLog.error("// -- //");
 			Notifier.get().showPrompt(
-				"An unhandled exception has occurred: " + e.getMessage(),
+				"An unhandled exception has occurred: " + e.getMessage()
+				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html",
 				new Notifier.Action() {
 					protected void onCall() {
 						finish();
