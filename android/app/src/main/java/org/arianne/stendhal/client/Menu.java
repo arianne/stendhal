@@ -68,6 +68,14 @@ public class Menu {
 		}
 	}
 
+	public void show() {
+		nav.setVisibility(View.VISIBLE);
+	}
+
+	public void hide() {
+		nav.setVisibility(View.GONE);
+	}
+
 	/**
 	 * Sets actions when buttons are pressed.
 	 */
