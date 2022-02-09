@@ -27,6 +27,8 @@ public class CachedActionManager {
 
 	private static CachedActionManager instance;
 
+	private List<Runnable> cached;
+
 
 	/**
 	 * Singleton access method.
@@ -36,14 +38,11 @@ public class CachedActionManager {
 	 */
 	public static CachedActionManager get() {
 		if (instance == null) {
-			instance = new CachedActionManager();
+			new CachedActionManager();
 		}
 
 		return instance;
 	}
-
-
-	private List<Runnable> cached;
 
 	/**
 	 * Singleton constructor.
