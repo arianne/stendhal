@@ -39,6 +39,7 @@ public class StendhalWebView {
 	// FIXME: page should be set to character select if focus is lost
 
 	private static DebugLog logger = DebugLog.get();
+	private static Notifier notifier = Notifier.get();
 
 	private boolean testing = false;
 	private boolean gameActive = false;
@@ -56,8 +57,15 @@ public class StendhalWebView {
 	private long timestampTouchUpPrev = 0;
 	private int tapCount = 0;
 
+	private static StendhalWebView instance;
+
+
+	public static StendhalWebView get() {
+		return instance;
+	}
 
 	public StendhalWebView(final Context ctx) {
+		instance = this;
 		this.ctx = ctx;
 		final AppCompatActivity mainActivity = (AppCompatActivity) ctx;
 
@@ -308,19 +316,8 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 		} else {
 			logger.debug("Connecting to main server");
 
-			// warn players that WebView client is in early development
-			final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
-			builder.setMessage("CAUTION: This software is in early development and not recommended"
-				+ " for use on the main server. Proceed with caution.");
-			builder.setCancelable(false);
-
-			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				public void onClick(final DialogInterface dialog, final int id) {
-					dialog.cancel();
-				}
-			});
-
-			builder.create().show();
+			notifier.showMessage("CAUTION: This software is in early development and not recommended"
+				+ " for use on the main server. Proceed with caution.", false);
 		}
 
 		MainActivity.onInitialPage = false;
