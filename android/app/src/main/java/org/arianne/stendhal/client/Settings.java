@@ -120,6 +120,8 @@ public class Settings {
 			if (buffer != null) {
 				buffer.write(sb.toString());
 				buffer.close();
+
+				DebugLog.debug("settings written to file: " + settingsPath);
 			}
 		} catch (final IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
