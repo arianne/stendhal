@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -29,6 +30,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.File;
 
 
 public class StendhalWebView {
@@ -106,9 +109,37 @@ public class StendhalWebView {
 		initTouchHandler();
 		initKeyboardHandler();
 
-		MainActivity.onInitialPage = true;
+		loadInitialScreen();
 	}
 
+	/**
+	 * Shows initial splash screen.
+	 */
+	public void loadInitialScreen() {
+		final File custom_splash = new File(Settings.get("custom_splash"));
+		if (custom_splash.length() > 0 && custom_splash.exists()) {
+			splash.setImageURI(Uri.parse(custom_splash.getPath()));
+		} else {
+			splash.setImageResource(R.drawable.splash);
+		}
+
+		Object splash_source = splash.getDrawable();
+		if (splash_source != null) {
+			splash_source = ((Drawable) splash_source).toString();
+		} else {
+			splash_source = custom_splash.getPath();
+		}
+
+		if (((String) splash_source).length() > 0) {
+			logger.debug("splash set to: " + String.valueOf(splash_source));
+		}
+
+		clientView.loadUrl("about:blank");
+
+		final Menu m = Menu.get();
+		m.show();
+		MainActivity.onInitialPage = true;
+	}
 
 	private void initWebViewClient() {
 		clientView.setWebViewClient(new WebViewClient() {

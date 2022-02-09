@@ -13,7 +13,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:scaleType="centerCrop"
-		android:src="@drawable/splash"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 	/>
@@ -48,6 +47,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Login"
+				android:background="#00000000"
+			/>
+
+			<Button
+				android:id="@+id/btn_settings"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Settings"
 				android:background="#00000000"
 			/>
 
