@@ -62,7 +62,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		// TODO: WIP
 		achievements.add(createAchievement(
 			"commerce.buy.all", "Community Supporter", "Spend X amount of money around the world",
-			Achievement.EASY_BASE_SCORE, false,
+			Achievement.MEDIUM_BASE_SCORE, false,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
