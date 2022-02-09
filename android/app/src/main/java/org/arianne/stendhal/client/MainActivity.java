@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		// initialize debug logging mechanism
-		DebugLog.init(getContext().getExternalFilesDir(null), this);
+		DebugLog.init(getExternalFilesDir(null), this);
 
 		// initialize settings store
 		Settings.init(getExternalFilesDir(null));
