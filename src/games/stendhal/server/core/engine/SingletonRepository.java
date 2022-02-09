@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
+import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
@@ -226,6 +227,13 @@ public class SingletonRepository {
 		return CachedActionManager.get();
 	}
 
-
-
+	/**
+	 * Retrieves the CloneManager.
+	 *
+	 * @return
+	 *     CloneManager instance.
+	 */
+	public static CloneManager getCloneManager() {
+		return CloneManager.get();
+	}
 }
