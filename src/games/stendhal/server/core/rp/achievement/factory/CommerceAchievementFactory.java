@@ -38,12 +38,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
 	public static final int COUNT_HAPPY_HOUR = 100;
 
-	// TODO: this is a WIP
-	private final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
-		put("Margaret", 500);
-		put("Ilisa", 500);
-	}};
-
 
 	@Override
 	protected Category getCategory() {
@@ -63,28 +57,38 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"commerce.buy.all", "Community Supporter", "Spend X amount of money around the world",
 			Achievement.MEDIUM_BASE_SCORE, false,
-			new ChatCondition() {
-				@Override
-				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-					for (final String seller: MR.getSellersNames()) {
-						if (!player.has("npc_purchases", seller)) {
-							return false;
-						} else {
-							final int amount = Integer.parseInt(player.get("npc_purchases", seller));
-							if (TRADE_ALL_AMOUNTS.containsKey(seller)) {
-								if (amount < TRADE_ALL_AMOUNTS.get(seller)) {
-									return false;
-								}
-							} else if (amount < 1000) {
-								return false;
-							}
-						}
-					}
-
-					return true;
-				}
-			}));
+			new HasSpentAmountAtSellers()));
 
 		return achievements;
+	}
+
+
+	private class HasSpentAmountAtSellers implements ChatCondition {
+
+		// TODO: this is a WIP
+		private final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
+			put("Margaret", 500);
+			put("Ilisa", 500);
+		}};
+
+
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+			for (final String seller: MR.getSellersNames()) {
+				if (!player.has("npc_purchases", seller)) {
+					return false;
+				} else {
+					final int amount = Integer.parseInt(player.get("npc_purchases", seller));
+					if (TRADE_ALL_AMOUNTS.containsKey(seller)) {
+						if (amount < TRADE_ALL_AMOUNTS.get(seller)) {
+							return false;
+						}
+					} else if (amount < 1000) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
 	}
 }
