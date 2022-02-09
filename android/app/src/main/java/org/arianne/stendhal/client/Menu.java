@@ -29,6 +29,7 @@ public class Menu {
 	private final Toolbar nav;
 
 	private Button btn_login;
+	private Button btn_return;
 
 
 	public static Menu get() {
@@ -42,20 +43,19 @@ public class Menu {
 		nav = (Toolbar) ((Activity) ctx).findViewById(R.id.menu_main);
 
 		nav.setTag(nav.getVisibility());
-		nav.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+		nav.getViewTreeObserver().addOnGlobalLayoutListener(
+				new ViewTreeObserver.OnGlobalLayoutListener() {
 			@Override
 			public void onGlobalLayout() {
 				if (nav.getVisibility() == View.VISIBLE) {
-					if (!MainActivity.onInitialPage) {
-						btn_login.setVisibility(View.GONE);
-					} else {
-						btn_login.setVisibility(View.VISIBLE);
-					}
+					updateButtons();
 				}
 			}
 		});
 
 		initButtonHandlers();
+
+		DebugLog.debug("menu initialized");
 	}
 
 	public Toolbar getInternal() {
@@ -82,6 +82,16 @@ public class Menu {
 		nav.setVisibility(View.GONE);
 	}
 
+	private void updateButtons() {
+		if (MainActivity.get().onInitialPage) {
+			btn_login.setVisibility(View.VISIBLE);
+			btn_return.setVisibility(View.GONE);
+		} else {
+			btn_login.setVisibility(View.GONE);
+			btn_return.setVisibility(View.VISIBLE);
+		}
+	}
+
 	/**
 	 * Sets actions when buttons are pressed.
 	 */
@@ -93,6 +103,24 @@ public class Menu {
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 				activity.loadLogin();
+				updateButtons();
+			}
+		});
+
+		btn_return = (Button) activity.findViewById(R.id.btn_return);
+		btn_return.setOnClickListener(new View.OnClickListener() {
+			public void onClick(final View v) {
+				Notifier.get().showPrompt("Return to main page?",
+					new Notifier.Action() {
+						protected void onCall() {
+							StendhalWebView.get().loadInitialScreen();
+							updateButtons();
+						}
+					},
+					new Notifier.Action() {
+						protected void onCall() {/* do nothing */}
+					}
+				);
 			}
 		});
 
@@ -128,6 +156,8 @@ public class Menu {
 				activity.onRequestQuit();
 			}
 		});
+
+		updateButtons();
 	}
 
 	private class ClickListener implements View.OnClickListener {

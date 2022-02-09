@@ -90,15 +90,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		if (!onInitialPage) {
-			builder.setNeutralButton("Main Page", new DialogInterface.OnClickListener() {
-				public void onClick(final DialogInterface dialog, final int id) {
-					client.loadInitialScreen();
-					dialog.cancel();
-				}
-			});
-		}
-
 		final AlertDialog confirmQuit = builder.create();
 		confirmQuit.show();
 	}
