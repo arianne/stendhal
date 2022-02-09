@@ -43,7 +43,7 @@ public class CloneManager {
 	 */
 	public static CloneManager get() {
 		if (instance == null) {
-			instance = new CloneManager();
+			new CloneManager();
 		}
 
 		return instance;
@@ -60,6 +60,10 @@ public class CloneManager {
 	@Deprecated
 	public static CloneManager getInstance() {
 		return get();
+	}
+
+	public CloneManager() {
+		instance = this;
 	}
 
 	/**
