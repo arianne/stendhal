@@ -34,18 +34,29 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		instance = this;
-		setContentView(R.layout.activity_main);
+		try {
+			super.onCreate(savedInstanceState);
+			instance = this;
+			setContentView(R.layout.activity_main);
 
-		// initialize debug logging mechanism
-		DebugLog.init(getExternalFilesDir(null), this);
+			// initialize debug logging mechanism
+			DebugLog.init(getExternalFilesDir(null), this);
 
-		// initialize settings store
-		Settings.init(getExternalFilesDir(null));
+			// initialize settings store
+			Settings.init(getExternalFilesDir(null));
 
-		menu = new Menu(this);
-		client = new StendhalWebView(this);
+			menu = new Menu(this);
+			client = new StendhalWebView(this);
+		} catch (final Exception e) {
+			DebugLog.error(e.getMessage());
+			Notifier.get().showPrompt(
+				"An unhandled exception has occurred: " + e.getMessage(),
+				new Notifier.Action() {
+					protected void onCall() {
+						finish();
+					}
+				});
+		}
 	}
 
 	@Override
@@ -93,7 +104,16 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	@Override
+	public void finish() {
+		DebugLog.debug(MainActivity.class.getName() + ".finish() called");
+
+		super.finish();
+	}
+
+	@Override
 	protected void onDestroy() {
+		DebugLog.debug(MainActivity.class.getName() + ".onDestroy() called");
+
 		// XXX: settings only get saved if app exited via menu
 		Settings.commitToFile();
 		super.onDestroy();
