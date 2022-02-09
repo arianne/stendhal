@@ -19,14 +19,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+	private static MainActivity instance;
+
 	private StendhalWebView client;
 	private Menu menu;
 
+	// flag to check if we have left the initial page
+	public static boolean onInitialPage = true;
+
+
+	public static MainActivity get() {
+		return instance;
+	}
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		instance = this;
 		setContentView(R.layout.activity_main);
 
 		client = new StendhalWebView(this);

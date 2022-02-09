@@ -105,6 +105,8 @@ public class StendhalWebView {
 		initWebViewClient();
 		initTouchHandler();
 		initKeyboardHandler();
+
+		MainActivity.onInitialPage = true;
 	}
 
 
@@ -289,6 +291,8 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 
 			builder.create().show();
 		}
+
+		MainActivity.onInitialPage = false;
 	}
 
 	/**

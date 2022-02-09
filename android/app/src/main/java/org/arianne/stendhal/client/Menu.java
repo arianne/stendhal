@@ -27,7 +27,6 @@ public class Menu {
 	final Toolbar nav;
 
 	Button btn_login;
-	boolean loginLoaded = false;
 
 
 	public Menu(final Context ctx) {
@@ -40,7 +39,7 @@ public class Menu {
 			@Override
 			public void onGlobalLayout() {
 				if (nav.getVisibility() == View.VISIBLE) {
-					if (loginLoaded) {
+					if (!MainActivity.onInitialPage) {
 						btn_login.setVisibility(View.GONE);
 					} else {
 						btn_login.setVisibility(View.VISIBLE);
@@ -87,8 +86,6 @@ public class Menu {
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 				activity.loadLogin();
-				// FIXME: need to determine if connection succeeded
-				loginLoaded = true;
 			}
 		});
 
