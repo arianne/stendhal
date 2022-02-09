@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 		instance = this;
 		setContentView(R.layout.activity_main);
 
-		client = new StendhalWebView(this);
 		menu = new Menu(this);
+		client = new StendhalWebView(this);
 	}
 
 	@Override
