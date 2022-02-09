@@ -136,9 +136,16 @@ public class Menu {
 			public void onClick(final View v) {
 				super.onClick(v);
 
+				String server_ver = "unavailable";
+				if (!StendhalWebView.get().isGameActive()) {
+					server_ver = "not connected";
+				}
+
+				// FIXME: how to find server version if connected?
+
 				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 				builder.setMessage("WebView client version: "
-					+ BuildConfig.VERSION_NAME + "\nServer version: unavailable");
+					+ BuildConfig.VERSION_NAME + "\nServer version: " + server_ver);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, final int id) {
 						dialog.cancel();

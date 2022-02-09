@@ -335,6 +335,10 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 		}
 	}
 
+	public boolean isGameActive() {
+		return gameActive;
+	}
+
 	/**
 	 * Checks if this is a debug build.
 	 *
