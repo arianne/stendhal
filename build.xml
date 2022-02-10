@@ -680,7 +680,7 @@
 	</target>
 
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
-		<exec executable="doxygen">
+		<exec executable="doxygen" failonerror="true">
 			<arg value="./buildtools/doxygen/Doxyfile" />
 		</exec>
 
