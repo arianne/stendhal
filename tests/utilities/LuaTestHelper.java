@@ -39,7 +39,7 @@ public class LuaTestHelper {
 		world = MockStendlRPWorld.get();
 		mrp = MockStendhalRPRuleProcessor.get();
 		qs = StendhalQuestSystem.get();
-		luaEngine = new ScriptInLua(); // FIXME: why doesn't ScriptInLua.get() work?
+		luaEngine = ScriptInLua.get();
 		luaEngine.init();
 	}
 
