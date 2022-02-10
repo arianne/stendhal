@@ -1,12 +1,3 @@
-/**
- * The maps are setup here using things from the entity-packages.
- * The classes in this packages are called from the data/conf/zones/*.xml
- * configuration files.
- */
-package games.stendhal.server.maps;
-
-
-
 /* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
@@ -19,3 +10,10 @@ package games.stendhal.server.maps;
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+package games.stendhal.server.maps;
+
+/**
+ * The maps are setup here using things from the entity-packages.
+ * The classes in this packages are called from the data/conf/zones/
+ * configuration files.
+ */
