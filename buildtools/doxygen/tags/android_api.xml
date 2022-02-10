@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+
 <tagfile>
 
 	<compound kind="namespace">
@@ -19,7 +20,7 @@
 		<name>android::content</name>
 		<filename>android/content/package-summary</filename>
 	</compound>
-	<compound kinkd="class">
+	<compound kind="class">
 		<name>android::content::Context</name>
 		<filename>android/content/Context</filename>
 	</compound>
@@ -69,7 +70,7 @@
 	<compound kind="class">
 		<name>android::graphics::drawable::Drawable</name>
 		<filename>android/graphics/drawable/Drawable</filename>
-	</compund>
+	</compound>
 
 
 	<compound kind="namespace">
@@ -79,7 +80,7 @@
 	<compound kind="class">
 		<name>android::os::Build</name>
 		<filename>android/os/Build</filename>
-	</compund>
+	</compound>
 	<compound kind="class">
 		<name>android::os::Bundle</name>
 		<filename>android/os/Bundle</filename>
@@ -136,19 +137,19 @@
 		<name>android::view::inputmethod</name>
 		<filename>android/view/inputmethod/package-summary</filename>
 	</compound>
-	<compound>
+	<compound kind="class">
 		<name>android::view::inputmethod::BaseInputConnection</name>
 		<filename>android/view/inputmethod/BaseInputConnection</filename>
 	</compound>
-	<compound>
+	<compound kind="class">
 		<name>android::view::inputmethod::EditorInfo</name>
 		<filename>android/view/inputmethod/EditorInfo</filename>
 	</compound>
-	<compound>
+	<compound kind="class">
 		<name>android::view::inputmethod::InputConnection</name>
 		<filename>android/view/inputmethod/InputConnection</filename>
 	</compound>
-	<compound>
+	<compound kind="class">
 		<name>android::view::inputmethod::InputMethodManager</name>
 		<filename>android/view/inputmethod/InputMethodManager</filename>
 	</compound>

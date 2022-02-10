@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.9.3" doxygen_gitid="c0b9eafbfb53286ce31e75e2b6c976ee4d345473">
+
+<tagfile>
 
 	<compound kind="namespace">
 		<name>java::lang</name>
@@ -329,14 +330,12 @@
 		<name>java::io::PushbackInputStream</name>
 		<filename>java.base/java/io/PushbackInputStream.html</filename>
 	</compound>
-	<compound kind="class">
-		<name>java::io::</name>
-		<filename>java.base/java/io/.html</filename>
-	</compound>
+	<!-- !!! Doxygen does not like the name "java::io::Reader" name for some reason
 	<compound kind="class">
 		<name>java::io::Reader</name>
 		<filename>java.base/java/io/Reader.html</filename>
 	</compound>
+	-->
 	<compound kind="class">
 		<name>java::io::UnsupportedEncodingException</name>
 		<filename>java.base/java/io/UnsupportedEncodingException.html</filename>
