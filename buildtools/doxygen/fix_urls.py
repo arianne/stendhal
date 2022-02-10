@@ -10,10 +10,10 @@ import os, sys, codecs
 dir_root = os.path.normpath(os.path.join(os.path.dirname(__file__), "../../"))
 os.chdir(dir_root)
 
-suffix = ".htm"
-delim = "https://developer.android.com/reference/"
+suffix = ".html"
+delim = "https://docs.oracle.com/en/java/javase/16/docs/api/"
 
-print("Fixing external links for URLs: {}".format(delim))
+print("Checking malformed URLs to fix ...")
 
 updated_count = 0
 for ROOT, DIRS, FILES in os.walk("build/doxygen/html/"):
@@ -37,14 +37,14 @@ for ROOT, DIRS, FILES in os.walk("build/doxygen/html/"):
 				if delim in li:
 					tmp = li.split(delim)
 					if len(tmp) > 1 and suffix in tmp[1]:
-						before = tmp[0]
-						tmp = tmp[1].split(suffix)
-						after = ""
-						if len(tmp) > 1:
-							after = tmp[1]
-						url = "{}{}".format(delim, tmp[0])
+						pre = tmp[0]
+						mid = li[len(pre):].split("\">")[0]
+						aft = li[len(pre) + len(mid):]
 
-						li = "{}{}{}".format(before, url, after)
+						if not mid.endswith(suffix):
+							mid = "{}{}".format(mid, suffix)
+
+						li = "{}{}{}".format(pre, mid, aft)
 
 				new_lines.append(li)
 
@@ -59,4 +59,7 @@ for ROOT, DIRS, FILES in os.walk("build/doxygen/html/"):
 				print(" done")
 				updated_count = updated_count + 1
 
-print("\nJob done (updated {} files)".format(updated_count))
+if updated_count == 0:
+	print("\nNo malformed URLs found")
+else:
+	print("\nJob done (updated {} files)".format(updated_count))
