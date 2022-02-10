@@ -29,6 +29,7 @@ import games.stendhal.server.core.pathfinder.Node;
  */
 public class LuaTableHelper {
 
+	/** The singleton instance. */
 	private static LuaTableHelper instance;
 
 	private static final LuaArrayHelper arrayHelper = LuaArrayHelper.get();
@@ -46,6 +47,13 @@ public class LuaTableHelper {
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaTableHelper() {
+		// singleton
 	}
 
 	public void init(final LuaTable tableTable) {

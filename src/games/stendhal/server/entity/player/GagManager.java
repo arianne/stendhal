@@ -26,11 +26,11 @@ import games.stendhal.server.util.TimeUtil;
  */
 public class GagManager implements LoginListener {
 
-
 	private static final Logger logger = Logger.getLogger(GagManager.class);
 
 	/** The Singleton instance. */
 	private static GagManager instance;
+
 
 	/**
 	 * returns the GagManager object (Singleton Pattern).
@@ -41,10 +41,13 @@ public class GagManager implements LoginListener {
 		if (instance == null) {
 			instance = new GagManager();
 		}
+
 		return instance;
 	}
 
-	// singleton
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private GagManager() {
 		SingletonRepository.getLoginNotifier().addListener(this);
 	}

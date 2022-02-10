@@ -51,26 +51,22 @@ public class ScriptInLua extends ScriptingSandbox {
 
 	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
 
+	/** The singleton instance. */
+	private static ScriptInLua instance;
+
 	private static final SingletonRepository singletons = SingletonRepository.get();
 
-	private static ScriptInLua instance;
 	private static Globals globals;
 
 	private static String luaScript;
 
 
-	public ScriptInLua() {
-		super(null);
-
-		luaScript = null;
-	}
-
-	public ScriptInLua(final String filename) {
-		super(filename);
-
-		luaScript = filename;
-	}
-
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
 	public static ScriptInLua get() {
 		if (instance == null) {
 			instance = new ScriptInLua();
@@ -79,9 +75,29 @@ public class ScriptInLua extends ScriptingSandbox {
 		return instance;
 	}
 
+	/**
+	 * @deprecated
+	 *     Use @ref ScriptInLua.get().
+	 */
 	@Deprecated
 	public static ScriptInLua getInstance() {
 		return get();
+	}
+
+	ScriptInLua() {
+		super(null);
+
+		// assign singleton instance for safety
+		instance = this;
+		luaScript = null;
+	}
+
+	ScriptInLua(final String filename) {
+		super(filename);
+
+		// assign singleton instance for safety
+		instance = this;
+		luaScript = filename;
 	}
 
 	/**

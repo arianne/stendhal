@@ -24,13 +24,12 @@ import games.stendhal.server.entity.Entity;
  * @author hendrik
  */
 public class BankAccessorManager {
+
+	/** The singleton instance. */
 	private static BankAccessorManager instance;
+
 	private final HashMap<Banks, List<Entity>> accessors;
 
-	private BankAccessorManager() {
-		// hide constructor; Singleton pattern
-		accessors = new HashMap<Banks, List<Entity>>();
-	}
 
 	/**
 	 * Gets the BankAccessorManager.
@@ -41,7 +40,15 @@ public class BankAccessorManager {
 		if (instance == null) {
 			instance = new BankAccessorManager();
 		}
+
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private BankAccessorManager() {
+		accessors = new HashMap<Banks, List<Entity>>();
 	}
 
 	/**

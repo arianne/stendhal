@@ -76,17 +76,18 @@ import marauroa.server.game.rp.RPServerManager;
  */
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
+	/** The logger instance. */
+	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
+
+	/** The Singleton instance. */
+	protected static StendhalRPRuleProcessor instance;
+
 	/** only log the first exception while reading welcome URL. */
 	private static boolean firstWelcomeException = true;
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 	/** list of super admins read from admins.list. */
 	private static Map<String, String> adminNames;
 	/** welcome message unless overwritten by an URL */
 	private static String welcomeMessage = "Welcome to Stendhal. Need help? #https://stendhalgame.org/player-guide/ask-for-help.html - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
-
-	/** The Singleton instance. */
-	protected static StendhalRPRuleProcessor instance;
 
 	private RPServerManager rpman;
 
@@ -105,14 +106,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private LinkedList<marauroa.server.game.rp.GameEvent> gameEvents = new LinkedList<>();
 
-	/**
-	 * creates a new StendhalRPRuleProcessor
-	 */
-	protected StendhalRPRuleProcessor() {
-		onlinePlayers = new PlayerList();
-		playersRmText = new LinkedList<Player>();
-		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
-	}
 
 	/**
 	 * gets the singleton instance of StendhalRPRuleProcessor
@@ -128,7 +121,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				AfkTimeouter.create();
 			}
 		}
+
 		return instance;
+	}
+
+	/**
+	 * creates a new StendhalRPRuleProcessor
+	 */
+	protected StendhalRPRuleProcessor() {
+		onlinePlayers = new PlayerList();
+		playersRmText = new LinkedList<Player>();
+		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
 	}
 
 	/**

@@ -23,7 +23,11 @@ import java.util.Set;
  */
 public final class ShopList {
 
+	/** The singleton instance. */
 	private static ShopList instance;
+
+	private final Map<String, Map<String, Integer>> contents;
+
 
 	/**
 	 * Returns the Singleton instance.
@@ -37,8 +41,9 @@ public final class ShopList {
 		return instance;
 	}
 
-	private final Map<String, Map<String, Integer>> contents;
-
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private ShopList() {
 		contents = new HashMap<String, Map<String, Integer>>();
 	}

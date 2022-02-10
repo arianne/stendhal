@@ -25,6 +25,7 @@ public class CachedActionManager {
 
 	private static final Logger logger = Logger.getLogger(CachedActionManager.class);
 
+	/** The singleton instance. */
 	private static CachedActionManager instance;
 
 	private List<Runnable> cached;
@@ -38,7 +39,7 @@ public class CachedActionManager {
 	 */
 	public static CachedActionManager get() {
 		if (instance == null) {
-			new CachedActionManager();
+			instance = new CachedActionManager();
 		}
 
 		return instance;
@@ -48,7 +49,6 @@ public class CachedActionManager {
 	 * Singleton constructor.
 	 */
 	private CachedActionManager() {
-		instance = this;
 		cached = new LinkedList<>();
 	}
 

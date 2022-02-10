@@ -23,15 +23,24 @@ import marauroa.common.Pair;
 
 public class MerchantsRegister {
 
+	/** The singleton instance. */
 	private static MerchantsRegister instance;
 
 	private final List<Pair<String, BuyerBehaviour>> buyers;
 	private final List<Pair<String, SellerBehaviour>> sellers;
 
+
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
 	public static MerchantsRegister get() {
 		if (instance == null) {
-			new MerchantsRegister();
+			instance = new MerchantsRegister();
 		}
+
 		return instance;
 	}
 

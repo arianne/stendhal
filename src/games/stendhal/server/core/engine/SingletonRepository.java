@@ -48,15 +48,8 @@ import marauroa.server.db.TransactionPool;
  */
 public class SingletonRepository {
 
+	/** The singleton instance. */
 	private static SingletonRepository instance;
-
-	public static SingletonRepository get() {
-		if (instance == null) {
-			new SingletonRepository();
-		}
-
-		return instance;
-	}
 
 	private static EntityManager entityManager;
 	private static Jail jailInstance;
@@ -64,8 +57,25 @@ public class SingletonRepository {
 	private static PlayerVsPlayerChallengeManager challengeManager;
 
 
-	public SingletonRepository () {
-		instance = this;
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
+	public static SingletonRepository get() {
+		if (instance == null) {
+			instance = new SingletonRepository();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private SingletonRepository() {
+		// singleton
 	}
 
 	/**

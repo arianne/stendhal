@@ -30,6 +30,7 @@ public class CloneManager {
 
 	private static final Logger logger = Logger.getLogger(CloneManager.class);
 
+	/** The singleton instance. */
 	private static CloneManager instance;
 
 	private static final Map<String, List<String>> clonedList = new HashMap<>();
@@ -43,7 +44,7 @@ public class CloneManager {
 	 */
 	public static CloneManager get() {
 		if (instance == null) {
-			new CloneManager();
+			instance = new CloneManager();
 		}
 
 		return instance;
@@ -62,8 +63,11 @@ public class CloneManager {
 		return get();
 	}
 
-	public CloneManager() {
-		instance = this;
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private CloneManager() {
+		// singleton
 	}
 
 	/**

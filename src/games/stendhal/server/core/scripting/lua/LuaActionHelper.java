@@ -38,6 +38,7 @@ public class LuaActionHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
+	/** The singleton instance. */
 	private static LuaActionHelper instance;
 
 
@@ -53,6 +54,13 @@ public class LuaActionHelper {
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaActionHelper() {
+		// singleton
 	}
 
 	/**

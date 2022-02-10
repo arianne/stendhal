@@ -32,11 +32,15 @@ import marauroa.common.Pair;
  * Manager for zones with changing weather.
  */
 public class WeatherUpdater implements TurnListener {
-	/** The keyword used by the weather adjustments parser. */
-	public static final String WEATHER_KEYWORD = "varying";
 
 	/** Logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(WeatherUpdater.class);
+
+	/** The singleton instance. */
+	private static WeatherUpdater instance;
+
+	/** The keyword used by the weather adjustments parser. */
+	public static final String WEATHER_KEYWORD = "varying";
 	/** Weather attribute string. */
 	private static final String WEATHER = "weather";
 	/** Time between checking if the weather should be changed. Seconds. */
@@ -59,9 +63,6 @@ public class WeatherUpdater implements TurnListener {
 	 */
 	private static final double THUNDER_PREVALENCE = 5;
 
-	/** Singleton instance. */
-	private static final WeatherUpdater INSTANCE = new WeatherUpdater();
-
 	/** Data about managed zones. */
 	private final Collection<ZoneData> zones = new ArrayList<ZoneData>();
 
@@ -83,12 +84,6 @@ public class WeatherUpdater implements TurnListener {
 	 */
 	private final WeatherAttribute thunder = new WeatherAttribute((int) Math.round(200 / THUNDER_PREVALENCE - 1), "", "");
 
-	/**
-	 * Create a new WeaterUpdater instance. Do not use this.
-	 */
-	private WeatherUpdater() {
-		onTurnReached(0);
-	}
 
 	/**
 	 * Get the WeatherUpdater instance.
@@ -96,7 +91,20 @@ public class WeatherUpdater implements TurnListener {
 	 * @return singleton instance
 	 */
 	public static WeatherUpdater get() {
-		return INSTANCE;
+		if (instance == null) {
+			instance = new WeatherUpdater();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 *
+	 * Create a new WeaterUpdater instance. Do not use this.
+	 */
+	private WeatherUpdater() {
+		onTurnReached(0);
 	}
 
 	/**

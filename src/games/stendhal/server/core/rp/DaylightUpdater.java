@@ -11,22 +11,18 @@ import games.stendhal.server.core.events.TurnListener;
  * Manager for daylight colored zones.
  */
 public class DaylightUpdater implements TurnListener {
+
+	/** The singleton instance. */
+	private static DaylightUpdater instance;
+
 	/** Time between checking if the color should be changed. Seconds. */
 	private static final int CHECK_INTERVAL = 61;
-	/** Singleton instance. */
-	private static final DaylightUpdater instance = new DaylightUpdater();
 	/** Color corresponding to the current time. */
 	Integer currentColor;
 
 	/** Managed zones, and their attributes */
 	private final List<ZoneAttributes> zones = new ArrayList<ZoneAttributes>();
 
-	/**
-	 * Create a new Daylight instance. Do not use this.
-	 */
-	private DaylightUpdater() {
-		onTurnReached(0);
-	}
 
 	/**
 	 * Get the Daylight instance.
@@ -34,7 +30,20 @@ public class DaylightUpdater implements TurnListener {
 	 * @return singleton instance
 	 */
 	public static DaylightUpdater get() {
+		if (instance == null) {
+			instance = new DaylightUpdater();
+		}
+
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 *
+	 * Create a new Daylight instance. Do not use this.
+	 */
+	private DaylightUpdater() {
+		onTurnReached(0);
 	}
 
 	/**

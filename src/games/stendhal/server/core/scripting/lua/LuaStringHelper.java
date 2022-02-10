@@ -29,6 +29,7 @@ public class LuaStringHelper {
 
 	private static final LuaLogger logger = LuaLogger.get();
 
+	/** The singleton instance. */
 	private static LuaStringHelper instance;
 
 
@@ -44,6 +45,13 @@ public class LuaStringHelper {
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaStringHelper() {
+		// singleton
 	}
 
 	/**

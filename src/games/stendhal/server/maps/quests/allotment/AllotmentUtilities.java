@@ -18,6 +18,12 @@ import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
 
 public class AllotmentUtilities implements TurnListener {
+
+	/**
+	 * Singleton instance to return
+	 */
+	private static AllotmentUtilities instance;
+
 	/**
 	 * Name of the quest used for quest slot
 	 */
@@ -48,10 +54,6 @@ public class AllotmentUtilities implements TurnListener {
 	 */
 	private static String[] zones = { "0_semos_mountain_w2" };
 
-	/**
-	 * Singleton instance to return
-	 */
-	private static AllotmentUtilities instance = null;
 
 	/**
 	 * Singleton getter

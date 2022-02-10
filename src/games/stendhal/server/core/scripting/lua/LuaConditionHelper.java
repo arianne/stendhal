@@ -38,6 +38,7 @@ public class LuaConditionHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
+	/** The singleton instance. */
 	private static LuaConditionHelper instance;
 
 
@@ -53,6 +54,13 @@ public class LuaConditionHelper {
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaConditionHelper() {
+		// singleton
 	}
 
 	/**

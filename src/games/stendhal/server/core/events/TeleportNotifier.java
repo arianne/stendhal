@@ -28,15 +28,12 @@ public final class TeleportNotifier {
 
 	private static Logger logger = Logger.getLogger(TeleportNotifier.class);
 
-	/** The Singleton instance. */
-	private static final TeleportNotifier INSTANCE = new TeleportNotifier();
+	/** The singleton instance. */
+	private static TeleportNotifier instance;
 
 	/** listeners */
 	private final Set<TeleportListener> listeners = new HashSet<TeleportListener>();
 
-	private TeleportNotifier() {
-		// singleton
-	}
 
 	/**
 	 * Return the TeleportNotifier instance.
@@ -44,7 +41,18 @@ public final class TeleportNotifier {
 	 * @return TeleportNotifier the Singleton instance
 	 */
 	public static TeleportNotifier get() {
-		return INSTANCE;
+		if (instance == null) {
+			instance = new TeleportNotifier();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private TeleportNotifier() {
+		// singleton
 	}
 
 	/**
