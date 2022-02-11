@@ -13,6 +13,8 @@ dir_out = os.path.join(dir_build, "mkdocs")
 dir_stage = "{}_stage".format(dir_out)
 dir_javadocs = os.path.join(dir_build, "javadocs")
 
+os.chdir(dir_root)
+
 print("\nPreparing stage ...")
 
 # clean up old output directory
