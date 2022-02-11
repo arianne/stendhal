@@ -647,15 +647,21 @@
 	</target>
 
 	<target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
-		<javadoc packagenames="games.stendhal.*"
+		<condition property="include.marauroa" value="true">
+			<available file="../marauroa/src/" type="dir"/>
+		</condition>
+
+		<javadoc packagenames="games.stendhal.*,marauroa.*"
 		   defaultexcludes="yes"
 		   destdir="${docs}"
 		   author="true"
 		   encoding="UTF-8"
 		   version="true"
 		   use="true"
-		   windowtitle="Stendhal API Documentation Version: ${version}"
-		   sourcepath="${src}">
+		   windowtitle="Stendhal API Documentation Version: ${version}">
+			<!-- include marauroa source if available -->
+			<sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
+			<sourcepath path="${src}"/>
 			<classpath>
 				<pathelement path="${guava_jar}"/>
 				<pathelement path="${groovy_jar}"/>
@@ -671,6 +677,7 @@
 				<pathelement path="libs/pircbot.jar"/>
 				<pathelement path="${luaj_jar}"/>
 				<pathelement path="libs/json-simple-1.1.1.jar"/>
+				<pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
 			</classpath>
 		</javadoc>
 	</target>
