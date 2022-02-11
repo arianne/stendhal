@@ -679,6 +679,20 @@
 		<delete dir="${docs}" />
 	</target>
 
+	<target name="mkdocs" description="Generate HTML reference.">
+		<!-- call "docs" to include javadocs -->
+
+		<echo unless:true="${python.present}"
+			message="Python unavailable, cannot run mkdocs" />
+
+		<!--<antcall if:true="${python.present}" target="docs"/>-->
+		<exec if:true="${python.present}" failonerror="true"
+			executable="python" dir="./buildtools/mkdocs/">
+			<arg value="-u" />
+			<arg value="build.py" />
+		</exec>
+	</target> <!-- mkdocs -->
+
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
 		<exec executable="doxygen" failonerror="true">
 			<arg value="./buildtools/doxygen/Doxyfile" />
@@ -736,7 +750,7 @@
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
 			<fileset dir="doc">
-				<exclude name="scripting/"/>
+				<exclude name="mkdocs/"/>
 			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
@@ -780,7 +794,7 @@
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc">
-				<exclude name="scripting/"/>
+				<exclude name="mkdocs/"/>
 			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
@@ -806,7 +820,7 @@
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc">
-				<exclude name="scripting/"/>
+				<exclude name="mkdocs/"/>
 			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
@@ -874,9 +888,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/doc">
-			<fileset dir="doc">
-				<exclude name="scripting/"/>
-			</fileset>
+			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 

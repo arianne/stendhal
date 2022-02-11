@@ -1,5 +1,0 @@
-
-Scripting {#scripting}
-=========
-
-* @subpage lua
