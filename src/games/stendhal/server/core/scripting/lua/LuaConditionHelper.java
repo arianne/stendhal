@@ -116,11 +116,11 @@ public class LuaConditionHelper {
 				try {
 					return (ChatCondition) Class.forName(className).getDeclaredConstructor().newInstance();
 				} catch (final InvocationTargetException e2) {
-					// do nothing
+					logger.error(e2, e2);
 				} catch (final InstantiationException e2) {
-					// do nothing
+					logger.error(e2, e2);
 				} catch (final NoSuchMethodException e2) {
-					// do nothing
+					logger.error(e2, e2);
 				}
 			} else {
 				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
@@ -128,11 +128,11 @@ public class LuaConditionHelper {
 					try {
 						return (ChatCondition) con.newInstance(objects);
 					} catch (final InvocationTargetException e2) {
-						// do nothing
+						logger.error(e2, e2);
 					} catch (final InstantiationException e2) {
-						// do nothing
+						logger.error(e2, e2);
 					} catch (final IllegalArgumentException e2) {
-						// do nothing
+						logger.error(e2, e2);
 					}
 				}
 			}
