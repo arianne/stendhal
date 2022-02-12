@@ -19,6 +19,8 @@ Changelog
   - Determination: Increase trophy helmet to max defense (hard difficulty)
 - creature changes:
   - musth elephant def decreased
+- quest changes:
+  - magic cloak added to Kirdneh Museum quest
 
 *graphics*
 - touched up some entity, outfit, item, & corpse sprites
