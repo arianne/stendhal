@@ -643,4 +643,16 @@
 		<item name="vampirette entrails" price="20" />
 	</shop>
 
+	<!-- Deniran weapons shop -->
+	<shop name="deniranequipbuy" type="buys">
+		<item name="ugmash" price="1200" />
+		<item name="magic cloak" price="12000" />
+	</shop>
+
+	<shop name="deniranequipsell" type="sells">
+		<item name="shuriken" price="77" />
+		<item name="fire shuriken" price="99" />
+		<item name="wooden spear" price="110" />
+	</shop>
+
 </shops>
