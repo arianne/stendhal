@@ -288,7 +288,7 @@ public class Bootstrap {
 				}
                 System.err.println("Skipping unknown signature: " + keyStr + " from " + cert);
                 if (cert instanceof X509Certificate) {
-                	System.err.println("   " + ((X509Certificate) cert).getSubjectDN());
+                    System.err.println("   " + ((X509Certificate) cert).getSubjectX500Principal());
                 }
 
 			}
