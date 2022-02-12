@@ -95,7 +95,7 @@ public class ConfigurableFactoryHelper {
 			 */
 			if (ConfigurableFactory.class.isAssignableFrom(clazz)) {
 				try {
-					return (ConfigurableFactory) clazz.newInstance();
+					return (ConfigurableFactory) clazz.getDeclaredConstructor().newInstance();
 				} catch (final InstantiationException ex) {
 					throw new IllegalArgumentException(
 							"Class is not instantiatable: " + clazz.getName(),
@@ -103,6 +103,12 @@ public class ConfigurableFactoryHelper {
 				} catch (final IllegalAccessException ex) {
 					throw new IllegalArgumentException(
 							"Unable to access class: " + clazz.getName(), ex);
+				} catch (final NoSuchMethodException ex) {
+					throw new IllegalArgumentException("Method not found: "
+							+ clazz.getName(), ex);
+				} catch (final InvocationTargetException ex) {
+					throw new IllegalArgumentException("Invocation failure: "
+							+ clazz.getName(), ex);
 				}
 			}
 		} catch (final ClassNotFoundException ex) {
@@ -120,13 +126,19 @@ public class ConfigurableFactoryHelper {
 			 */
 			if (ConfigurableFactory.class.isAssignableFrom(clazz)) {
 				try {
-					return (ConfigurableFactory) clazz.newInstance();
+					return (ConfigurableFactory) clazz.getDeclaredConstructor().newInstance();
 				} catch (final InstantiationException ex) {
 					throw new IllegalArgumentException(
 							"Class is not instantiatable: " + className, ex);
 				} catch (final IllegalAccessException ex) {
 					throw new IllegalArgumentException(
 							"Unable to access class: " + className, ex);
+				} catch (final NoSuchMethodException ex) {
+					throw new IllegalArgumentException("Method not found: "
+							+ clazz.getName(), ex);
+				} catch (final InvocationTargetException ex) {
+					throw new IllegalArgumentException("Invocation failure: "
+							+ clazz.getName(), ex);
 				}
 			}
 
@@ -215,12 +227,18 @@ public class ConfigurableFactoryHelper {
 		@Override
 		public Object create(final ConfigurableFactoryContext ctx) {
 			try {
-				return clazz.newInstance();
+				return clazz.getDeclaredConstructor().newInstance();
 			} catch (final InstantiationException ex) {
 				throw new IllegalArgumentException(
 						"Class is not instantiatable: " + clazz.getName(), ex);
 			} catch (final IllegalAccessException ex) {
 				throw new IllegalArgumentException("Unable to access class: "
+						+ clazz.getName(), ex);
+			} catch (final NoSuchMethodException ex) {
+				throw new IllegalArgumentException("Method not found: "
+						+ clazz.getName(), ex);
+			} catch (final InvocationTargetException ex) {
+				throw new IllegalArgumentException("Invocation failure: "
 						+ clazz.getName(), ex);
 			}
 		}

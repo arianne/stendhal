@@ -33,7 +33,7 @@ class ClientRunner {
 
 			// get class and create an object of it
 			final Class<?> clazz = Class.forName("games.stendhal.client.update.Bootstrap");
-			final Object object = clazz.newInstance();
+			final Object object = clazz.getDeclaredConstructor().newInstance();
 
 			// get param values of boot method
 			final Object[] params = new Object[2];

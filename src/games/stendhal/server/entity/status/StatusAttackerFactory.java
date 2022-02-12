@@ -28,13 +28,17 @@ public class StatusAttackerFactory {
 
             Status status;
             try {
-                status = (Status) Class.forName(className).newInstance();
+                status = (Status) Class.forName(className).getDeclaredConstructor().newInstance();
                 return new StatusAttacker(status, probability);
             } catch (InstantiationException e) {
             	logger.error(e, e);
             } catch (IllegalAccessException e) {
             	logger.error(e, e);
             } catch (ClassNotFoundException e) {
+                logger.error(e, e);
+            } catch (final NoSuchMethodException e) {
+                logger.error(e, e);
+            } catch (final java.lang.reflect.InvocationTargetException e) {
                 logger.error(e, e);
             }
             return null;
