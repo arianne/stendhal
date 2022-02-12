@@ -71,7 +71,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 		achievements.add(createAchievement(
 			"commerce.buy.all", "Community Supporter", "Spend money around the world",
-			Achievement.MEDIUM_BASE_SCORE, false,
+			Achievement.MEDIUM_BASE_SCORE, true,
 			new HasSpentAmountAtSellers()));
 
 

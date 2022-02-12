@@ -83,7 +83,7 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 
 		achievements.add(createAchievement(
 			ID_HELM_MAX, "Determination", "Increase trophy helmet to max defense",
-			Achievement.HARD_BASE_SCORE, false,
+			Achievement.HARD_BASE_SCORE, true,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
