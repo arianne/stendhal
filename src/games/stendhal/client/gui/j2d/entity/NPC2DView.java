@@ -72,7 +72,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 
 		try {
 			final RPEntity npc = entity;
-			final int code = npc.getOutfit();
+			final int code = npc.getOldOutfitCode();
 			final String strcode = npc.getExtOutfit();
 
 			final OutfitColor color = OutfitColor.get(npc.getRPObject());
