@@ -39,7 +39,7 @@ public class ExecuteLua extends ScriptImpl {
 			return;
 		}
 
-		if (!ScriptInLua.getInstance().load(script.toString(), admin, null)) {
+		if (!ScriptInLua.get().load(script.toString(), admin, null)) {
 			admin.sendPrivateText(NotificationType.ERROR, "An error occured when trying to load Lua script: " + script.toString().replace("\\", "\\\\"));
 		}
 	}
