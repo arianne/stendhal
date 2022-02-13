@@ -111,11 +111,11 @@ public class LuaActionHelper {
 				try {
 					return (ChatAction) Class.forName(className).getDeclaredConstructor().newInstance();
 				} catch (final InvocationTargetException e2) {
-					logger.error(e2, e2);
+					// do nothing
 				} catch (final InstantiationException e2) {
-					logger.error(e2, e2);
+					// do nothing
 				} catch (final  NoSuchMethodException e2) {
-					logger.error(e2, e2);
+					// do nothing
 				}
 			} else {
 				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
@@ -123,11 +123,11 @@ public class LuaActionHelper {
 					try {
 						return (ChatAction) con.newInstance(objects);
 					} catch (final InvocationTargetException e2) {
-						logger.error(e2, e2);
+						// do nothing
 					} catch (final InstantiationException e2) {
-						logger.error(e2, e2);
+						// do nothing
 					} catch (final IllegalArgumentException e2) {
-						logger.error(e2, e2);
+						// do nothing
 					}
 				}
 			}
