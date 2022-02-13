@@ -12,12 +12,13 @@
 package games.stendhal.server.entity.npc.interaction;
 
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.util.Observable;
+import games.stendhal.server.util.Observer;
+
 
 /**
  * class for make one npc follower of other.

@@ -13,12 +13,12 @@ package games.stendhal.server.core.pathfinder;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.util.Observable;
+import games.stendhal.server.util.Observer;
 
 
 /**
