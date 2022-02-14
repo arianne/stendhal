@@ -99,3 +99,9 @@ Example usage:
 ```
 local myClone = clones:clone(orig)
 ```
+
+## Rand
+
+The {@link games.stendhal.common.Rand} random number generator.
+
+Implemented as <code>random</code> object.
