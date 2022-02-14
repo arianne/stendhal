@@ -28,6 +28,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -263,5 +264,45 @@ public class LuaConditionHelper {
 		logger.debug("LuaConditionHelper.andCondition deprecated. Use LuaConditionHelper.andC.");
 
 		return this.andC(conditionList);
+	}
+
+	/**
+	 * Helper method to create an OrCondition instance.
+	 *
+	 * @param conditionList
+	 *     LuaTable containing a list of conditions.
+	 * @return
+	 *     New OrCondition instance or <code>null</code> if failed.
+	 */
+	public OrCondition orC(final LuaTable conditionList) {
+		final List<ChatCondition> conditions = new LinkedList<>();
+
+		for (int idx=1; idx <= conditionList.length(); idx++) {
+			final LuaValue c = conditionList.get(idx);
+			if (c.isuserdata()) {
+				// parameter is ChatCondition instance
+				conditions.add((ChatCondition) c.checkuserdata());
+			} else if (c.isfunction()) {
+				// parameter is LuaFunction instance
+				conditions.add(create(c.checkfunction()));
+			} else {
+				// parameter is LuaTable instance
+				if (c.get(1).isstring()) {
+					// table with single condition
+					conditions.add(create(c.get(1).checkjstring(), c.get(2).checktable()));
+				} else {
+					// table with multiple conditions
+					conditions.add(andC(c.checktable()));
+				}
+			}
+		}
+
+		final int csize = conditions.size();
+		if (csize > 0) {
+			return new OrCondition(Arrays.copyOf(conditions.toArray(), csize, ChatCondition[].class));
+		}
+
+		logger.warn("failed to created OrCondition");
+		return null;
 	}
 }
