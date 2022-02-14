@@ -54,16 +54,25 @@ local hasRingCondition = conditions:create("PlayerHasInfostringItemWithHimCondit
 	"engagement ring",
 	ring_infostring,
 })
-
-local hasKeyringCondition = function(player, sentence, npc)
+local hasKeyringCondition = conditions:create(function(player, sentence, npc)
 	return player:hasFeature("keyring")
-end
+end)
+
+--[[ FIXME: conditions:create is struggling with constructors that take varargs
+local visitedAthorCondition = conditions:create("PlayerVisitedZonesCondition", {
+	"0_athor_island",
+})
+]]
+local visitedAthorCondition = luajava.newInstance(
+	"games.stendhal.server.entity.npc.condition.PlayerVisitedZonesCondition",
+	{"0_athor_island"})
 
 local check = {
 	canStart = conditions:andC({
 		conditions:create("QuestNotStartedCondition", {quest_slot}),
 		conditions:create("QuestNotCompletedCondition", {quest_slot}),
-		conditions:create(hasKeyringCondition),
+		hasKeyringCondition,
+		visitedAthorCondition,
 	}),
 	questActive = questActiveCondition,
 	questCompleted = conditions:create("QuestCompletedCondition", {quest_slot}),
@@ -121,7 +130,10 @@ local prepareRequestStep = function()
 		conditions:orC({
 			{
 				conditions:create("QuestNotStartedCondition", {quest_slot}),
-				conditions:notC(hasKeyringCondition),
+				conditions:orC({
+					conditions:notC(hasKeyringCondition),
+					conditions:notC(visitedAthorCondition),
+				}),
 			},
 			check.questCompleted,
 		}),
@@ -140,6 +152,19 @@ local prepareRequestStep = function()
 		ConversationStates.ATTENDING,
 		"I don't think you have the experience to help me. Maybe if you knew"
 			.. " more about keyrings.",
+		nil)
+
+	-- player has not visited Athor
+	ari:add(
+		ConversationStates.ATTENDING,
+		ConversationPhrases.QUEST_MESSAGES,
+		{
+			conditions:create("QuestNotStartedCondition", {quest_slot}),
+			conditions:notC(visitedAthorCondition),
+		},
+		ConversationStates.ATTENDING,
+		"I don't think you have the experience to help me. Maybe if you were"
+			.. " more familiar with Athor island.",
 		nil)
 
 	-- player has keyring & can start quest
