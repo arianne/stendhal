@@ -913,6 +913,17 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Checks if player has a feature.
+	 *
+	 * @param name
+	 *     The feature mnemonic.
+	 * @return <code>true</code> if the feature value is not <code>null</code>.
+	 */
+	public boolean hasFeature(final String name) {
+		return getFeature(name) != null;
+	}
+
+	/**
 	 * Get a client feature value.
 	 *
 	 * @param name
