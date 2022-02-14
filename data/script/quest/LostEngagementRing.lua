@@ -49,6 +49,8 @@ local ring_locations = {
 	{46, 106},
 }
 
+local questNotStartedCondition = conditions:create("QuestNotStartedCondition", {quest_slot})
+local questCompletedCondition = conditions:create("QuestCompletedCondition", {quest_slot})
 local questActiveCondition = conditions:create("QuestActiveCondition", {quest_slot})
 local hasRingCondition = conditions:create("PlayerHasInfostringItemWithHimCondition", {
 	"engagement ring",
@@ -67,18 +69,12 @@ local visitedAthorCondition = luajava.newInstance(
 	"games.stendhal.server.entity.npc.condition.PlayerVisitedZonesCondition",
 	{"0_athor_island"})
 
-local check = {
-	canStart = conditions:andC({
-		conditions:create("QuestNotStartedCondition", {quest_slot}),
-		conditions:create("QuestNotCompletedCondition", {quest_slot}),
-		hasKeyringCondition,
-		visitedAthorCondition,
-	}),
-	questActive = questActiveCondition,
-	questCompleted = conditions:create("QuestCompletedCondition", {quest_slot}),
-	canReward = hasRingCondition,
-	cannotReward = conditions:notC(hasRingCondition),
-}
+local canStartCondition = conditions:andC({
+	questNotStartedCondition,
+	conditions:notC(questCompletedCondition),
+	hasKeyringCondition,
+	visitedAthorCondition,
+})
 
 local setQuestAction = function(player, sentence, npc)
 	player:addKarma(karmaAcceptReward)
@@ -135,7 +131,7 @@ local prepareRequestStep = function()
 					conditions:notC(visitedAthorCondition),
 				}),
 			},
-			check.questCompleted,
+			questCompletedCondition,
 		}),
 		ConversationStates.ATTENDING,
 		"Hi there!",
@@ -171,7 +167,7 @@ local prepareRequestStep = function()
 	ari:add(
 		ConversationStates.IDLE,
 		ConversationPhrases.GREETING_MESSAGES,
-		check.canStart,
+		canStartCondition,
 		ConversationStates.ATTENDING,
 		"Hey! You look like an experienced adventurer. Perhaps you could help me with a #task.",
 		nil)
@@ -179,7 +175,7 @@ local prepareRequestStep = function()
 	ari:add(
 		ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
-		check.canStart,
+		canStartCondition,
 		ConversationStates.QUEST_OFFERED,
 		"I have lost my engagement ring, and I am too embarrassed to tell " .. bride_name .. ". Would you help me?",
 		nil)
@@ -188,7 +184,7 @@ local prepareRequestStep = function()
 	ari:add(
 		ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
-		check.questCompleted,
+		questCompletedCondition,
 		ConversationStates.ATTENDING,
 		"Thank you, but I have everything I need now.",
 		nil)
@@ -196,7 +192,7 @@ local prepareRequestStep = function()
 	ari:add(
 		ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
-		check.questActive,
+		questActiveCondition,
 		ConversationStates.ATTENDING,
 		"You are already helping me find my engagement ring.",
 		nil)
@@ -225,7 +221,7 @@ local prepareBringStep = function()
 	ari:add(
 		ConversationStates.IDLE,
 		ConversationPhrases.GREETING_MESSAGES,
-		check.questActive,
+		questActiveCondition,
 		ConversationStates.QUESTION_1,
 		"Did you find my ring? If there is something I can do to #help, please let me know.",
 		nil)
@@ -250,7 +246,7 @@ local prepareBringStep = function()
 	ari:add(
 		ConversationStates.QUESTION_1,
 		ConversationPhrases.YES_MESSAGES,
-		check.cannotReward,
+		conditions:notC(hasRingCondition),
 		ConversationStates.IDLE,
 		"You don't have my ring. Please, keep looking.",
 		nil)
@@ -258,7 +254,7 @@ local prepareBringStep = function()
 	ari:add(
 		ConversationStates.QUESTION_1,
 		ConversationPhrases.YES_MESSAGES,
-		check.canReward,
+		hasRingCondition,
 		ConversationStates.IDLE,
 		"Thank you so much! As a reward, I will give you this keyring. It is larger than the one you have.",
 		{
