@@ -111,47 +111,52 @@ public class LuaConditionHelper {
 		}
 
 		final boolean noArgs = objects == null || objects.length == 0;
+		Exception exc = new Exception("Unknown exception");
 
 		try {
 			if (noArgs) {
 				try {
 					return (ChatCondition) Class.forName(className).getDeclaredConstructor().newInstance();
 				} catch (final InvocationTargetException e2) {
-					// do nothing
+					exc = e2;
 				} catch (final InstantiationException e2) {
-					// do nothing
+					exc = e2;
 				} catch (final NoSuchMethodException e2) {
-					// do nothing
+					exc = e2;
 				}
 			} else {
 				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
 				for (final Constructor<?> con: constructors) {
 					try {
-						return (ChatCondition) con.newInstance(objects);
+						if (con.isVarArgs()) {
+							// FIXME: not working
+							return (ChatCondition) con.newInstance((Object) objects);
+						} else {
+							return (ChatCondition) con.newInstance(objects);
+						}
 					} catch (final InvocationTargetException e2) {
-						// do nothing
+						exc = e2;
 					} catch (final InstantiationException e2) {
-						// do nothing
+						exc = e2;
 					} catch (final IllegalArgumentException e2) {
-						// do nothing
+						exc = e2;
 					}
 				}
 			}
 		} catch (final ClassNotFoundException e1) {
-			logger.error(e1, e1);
+			exc = e1;
 		} catch (final IllegalAccessException e1) {
-			logger.error(e1, e1);
+			exc = e1;
 		}
 
 
-		// FIXME: should we thrown an exception here?
-
 		if (noArgs) {
-			logger.error("No default constructor for " + className);
+			logger.error("No default constructor for " + className, exc);
 		} else if (objects != null) {
-			logger.error("No constructor for " + className + " found for args: " + Arrays.toString(objects));
+			logger.error("No constructor for " + className + " found for args: "
+				+ Arrays.toString(objects), exc);
 		} else {
-			logger.error("Unknown instantiation error for " + className); // should not happen
+			logger.error("Unknown instantiation error for " + className, exc); // should not happen
 		}
 
 		return null;
