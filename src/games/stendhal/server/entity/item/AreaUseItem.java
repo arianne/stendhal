@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 - Stendhal                    *
+ *                   Copyright (C) 2003-2022 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,18 +15,22 @@ import java.util.Map;
 
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.mapstuff.area.ToolUseArea;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
 
 public class AreaUseItem extends Item {
 
+	protected String use_sound;
+
+
 	public AreaUseItem(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+
+		if (attributes.containsKey("use_sound")) {
+			use_sound = attributes.get("use_sound");
+		}
 	}
 
 	/**
@@ -40,28 +44,43 @@ public class AreaUseItem extends Item {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		// TODO: allow custom sound to be configured in items xml
-		final String item_name = getName();
-		if (item_name.equals("shovel")) {
-			user.addEvent(new SoundEvent("shovel_dig", SoundLayer.FIGHTING_NOISE));
+		if (use_sound != null) {
+			user.addEvent(new SoundEvent(use_sound, SoundLayer.FIGHTING_NOISE));
 			user.notifyWorldAboutChanges();
 		}
 
-		if (user instanceof Player) {
-			final Player player = (Player) user;
-			final StendhalRPZone zone = player.getZone();
+		return onUsedInArea(user);
+	}
 
-			boolean used = false;
-			for (final Entity areaEntity : zone.getEntitiesAt(player.getX(), player.getY())) {
-				if (areaEntity instanceof ToolUseArea) {
-					used = ((ToolUseArea) areaEntity).use(player, item_name);
-				}
-			}
+	/**
+	 * Inheriting classes can override this to determine action to execute
+	 * when item is used in correct area.
+	 *
+	 * @param user
+	 *     Entity using the item.
+	 * @param zone
+	 *     Zone the entity is currently in.
+	 * @param x
+	 *     X coordinate of entity's position.
+	 * @param y
+	 *     Y coordinate of entity's position.
+	 * @return
+	 *     <code>true</item> if item used successfully.
+	 */
+	protected boolean onUsedInArea(final RPEntity user, final StendhalRPZone zone, final int x, final int y) {
+		return true;
+	}
 
-			// FIXME: how to deal with multiple enties being used?
-			return used;
-		}
-
-		return false;
+	/**
+	 * Inheriting classes can override this to determine action to execute
+	 * when item is used in correct area.
+	 *
+	 * @param user
+	 *     Entity using the item.
+	 * @return
+	 *     <code>true</item> if item used successfully.
+	 */
+	protected boolean onUsedInArea(final RPEntity user) {
+		return onUsedInArea(user, user.getZone(), user.getX(), user.getY());
 	}
 }
