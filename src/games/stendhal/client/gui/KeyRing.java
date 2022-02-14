@@ -23,6 +23,10 @@ import games.stendhal.client.listener.FeatureChangeListener;
  */
 @SuppressWarnings("serial")
 class KeyRing extends SlotWindow implements FeatureChangeListener {
+
+	private boolean enabled = false;
+
+
 	/**
 	 * Create a key ring.
 	 */
@@ -48,6 +52,8 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 		 * Just ignore it. (And after keyrings are made to
 		 * real items, this whole file will be obsolete anyway).
 		 */
+
+		enabled = false;
 	}
 
 	//
@@ -64,11 +70,14 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 	public void featureDisabled(final String name) {
 		if (name.equals("keyring")) {
 			disableKeyring();
+			setVisible(false);
 		} else if (name.equals("keyring_ext")) {
+			setVisible(false);
+			setSlotsLayout(2, 4);
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					setSlotsLayout(2, 4);
+					setVisible(enabled);
 				}
 			});
 		}
@@ -85,6 +94,7 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 	@Override
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("keyring")) {
+			enabled = true;
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
@@ -94,12 +104,14 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 				}
 			});
 		} else if (name.equals("keyring_ext")) {
+			setVisible(false);
+			setSlotsLayout(3, 4);
+			// needs to be updated for new slots
+			setAcceptedTypes(EntityMap.getClass("item", null, null));
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					setSlotsLayout(3, 4);
-					// needs to be updated for new slots
-					setAcceptedTypes(EntityMap.getClass("item", null, null));
+					setVisible(enabled);
 				}
 			});
 		}
