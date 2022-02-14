@@ -38,6 +38,15 @@ public class Shovel extends AreaUseItem {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * Copy constructor.
+	 *
+	 * @param item Item to copy.
+	 */
+	public Shovel(final Shovel item) {
+		super(item);
+	}
+
 	@Override
 	protected boolean onUsedInArea(final RPEntity user, final StendhalRPZone zone, final int x, final int y) {
 		if (user instanceof Player) {

@@ -40,6 +40,7 @@ public class AreaUseItem extends Item {
 	 */
 	public AreaUseItem(final AreaUseItem item) {
 		super(item);
+		use_sound = item.use_sound;
 	}
 
 	@Override
