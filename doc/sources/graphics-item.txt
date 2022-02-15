@@ -377,7 +377,7 @@ liberty_helmet.*            David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 
 magic_chain_helmet.*        Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
-red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+red_helmet.*                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 studded_helmet.*            Ragewortt, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84013
