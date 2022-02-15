@@ -368,7 +368,7 @@ blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.o
 chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
 elvish_hat.png              Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
-enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+enhanced_golden_helmet.*    Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338
 golden_helmet.png           Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338, https://freesvg.org/knight-helmet-vector-image
 golden_horned_barbute.*     bogdanco, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/3666, https://freesvg.org/bogdanco-leonidas-helmet
 horned_helmet.*             Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
