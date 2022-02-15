@@ -475,7 +475,7 @@ dice.png                 Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 giant_heart.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/291622
 lemon.png                omero; CC BY-SA 3.0; Stendhal
 leather_thread.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
-marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+marbles.*                SpiderDave; CC0; https://opengameart.org/node/15250
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
 olive_oil.png            omero; CC BY-SA 3.0; Stendhal
