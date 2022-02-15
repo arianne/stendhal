@@ -13,13 +13,22 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -32,12 +41,15 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
 
 
@@ -290,7 +302,8 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationPhrases.OFFER_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"I buy black items, but I can only afford to pay you modest prices.",
+				"I buy black items, but I can only afford to pay you modest prices."
+					+ " I will also #replace your #lost swords... for a price.",
 				null);
 
 
@@ -300,6 +313,133 @@ public class UltimateCollector extends AbstractQuest {
 				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I'll buy black items from you when you have completed each #challenge I set you.", null);
+	}
+
+	private void replaceLRSwords() {
+		final SpeakerNPC npc = npcs.get("Balduin");
+		final Map<String, Integer> prices = SingletonRepository.getShopList().get("twohandswords");
+		final EntityManager em = SingletonRepository.getEntityManager();
+
+		class ReplaceSwordAction implements ChatAction {
+			private final String sword_name;
+
+			public ReplaceSwordAction(final String sword_name) {
+				this.sword_name = sword_name;
+			}
+
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				final int price = prices.get(sword_name);
+
+				player.drop("money", price);
+				raiser.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
+
+				final Item sword = em.getItem(sword_name);
+				sword.setBoundTo(player.getName());
+
+				player.equipOrPutOnGround(sword);
+				player.incBoughtForItem(sword_name, 1);
+				player.incCommerceTransaction(npc.getName(), price, false);
+
+				raiser.say("Here is your new " + sword_name + ". Be careful not to lose it"
+					+ " this time.... Or not. I don't mind getting paid.");
+			}
+		}
+
+
+		// NOTE: weapons collector 1 & 2 quests makes use of QUESTION_1 & QUESTION_3
+		//   states. So we must start with QUESTION_4 state.
+
+		// player lost a sword & wants to buy a new one
+		npc.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("lost", "replace"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_3,
+			"Which sword do you want to replace, the #left or the #right?",
+			null);
+
+		// player wants left sword
+
+		npc.add(
+			ConversationStates.QUESTION_3,
+			"left",
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_4,
+			"It will cost " + prices.get("l hand sword") + " to replace that sword. Do you want it?",
+			null);
+
+		npc.add(
+			ConversationStates.QUESTION_4,
+			ConversationPhrases.NO_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Alright. Is there anything else I can do for you?",
+			null);
+
+		// not enough money
+		npc.add(
+			ConversationStates.QUESTION_4,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				new QuestCompletedCondition(QUEST_SLOT),
+				new NotCondition(new PlayerHasItemWithHimCondition("money", prices.get("l hand sword")))
+			),
+			ConversationStates.ATTENDING,
+			"It seems you don't have enough money.",
+			null);
+
+		npc.add(
+			ConversationStates.QUESTION_4,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				new QuestCompletedCondition(QUEST_SLOT),
+				new PlayerHasItemWithHimCondition("money", prices.get("l hand sword"))
+			),
+			ConversationStates.ATTENDING,
+			null,
+			new ReplaceSwordAction("l hand sword"));
+
+		// player wants right sword
+
+		npc.add(
+			ConversationStates.QUESTION_3,
+			"right",
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_5,
+			"It will cost " + prices.get("r hand sword") + " to replace that sword. Do you want it?",
+			null);
+
+		npc.add(
+			ConversationStates.QUESTION_5,
+			ConversationPhrases.NO_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Alright. Is there anything else I can do for you?",
+			null);
+
+		// not enough money
+		npc.add(
+			ConversationStates.QUESTION_5,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				new QuestCompletedCondition(QUEST_SLOT),
+				new NotCondition(new PlayerHasItemWithHimCondition("money", prices.get("r hand sword")))
+			),
+			ConversationStates.ATTENDING,
+			"It seems you don't have enough money.",
+			null);
+
+		npc.add(
+			ConversationStates.QUESTION_5,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				new QuestCompletedCondition(QUEST_SLOT),
+				new PlayerHasItemWithHimCondition("money", prices.get("r hand sword"))
+			),
+			ConversationStates.ATTENDING,
+			null,
+			new ReplaceSwordAction("r hand sword"));
 	}
 
 
@@ -314,7 +454,7 @@ public class UltimateCollector extends AbstractQuest {
 		requestItem();
 		collectItem();
 		offerSteps();
-
+		replaceLRSwords();
 	}
 
 	@Override

@@ -21,6 +21,9 @@ Changelog
   - musth elephant def decreased
 - quest changes:
   - magic cloak added to Kirdneh Museum quest
+- new items:
+  - shovel
+- Balduin sells replacement l/r hand swords after Ultimate Collector
 
 *graphics*
 - touched up some entity, outfit, item, & corpse sprites

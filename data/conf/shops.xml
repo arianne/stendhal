@@ -655,4 +655,9 @@
 		<item name="wooden spear" price="110" />
 	</shop>
 
+	<shop name="twohandswords" type="sells">
+		<item name="l hand sword" price="250000" />
+		<item name="r hand sword" price="250000" />
+	</shop>
+
 </shops>
