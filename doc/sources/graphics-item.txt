@@ -372,7 +372,7 @@ enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 golden_helmet.png           Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338, https://freesvg.org/knight-helmet-vector-image
 golden_horned_barbute.*     bogdanco, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/3666, https://freesvg.org/bogdanco-leonidas-helmet
 horned_helmet.*             Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
-leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+leather_helmet.png          Ragewortt; OGA BY 3.0; https://opengameart.org/node/84013
 liberty_helmet.*            David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622
 magic_chain_helmet.*        Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -380,7 +380,7 @@ mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tiger
 red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
-studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+studded_helmet.*            Ragewortt, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84013
 xeno_helmet.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/herb/

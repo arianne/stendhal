@@ -985,6 +985,7 @@ The following people released their work to the public with a suitable license f
 * [Dennis Johansson (MrAuralization)](https://freesound.org/people/MrAuralization/)
 * [finn.appleton](https://freesound.org/people/finn.appleton/)
 * [SpiderDave](https://opengameart.org/users/spiderdave)
+* [Ragewortt](https://opengameart.org/users/ragewortt)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
