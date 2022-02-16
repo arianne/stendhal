@@ -130,7 +130,7 @@ chaos_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 cloak.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 dwarf_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 elf_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+elvish_cloak.png        sandcat01, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 golden_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 green_dragon_cloak.*    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 lich_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -367,7 +367,7 @@ black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.o
 blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
-elvish_hat.png              Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
+elvish_hat.png              sandcat01, Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 enhanced_golden_helmet.*    Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338
 golden_helmet.png           Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338, https://freesvg.org/knight-helmet-vector-image
 golden_horned_barbute.*     bogdanco, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/3666, https://freesvg.org/bogdanco-leonidas-helmet
