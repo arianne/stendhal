@@ -10,4 +10,12 @@
 		android:summary="Show on-screen directional pad."
 	/>
 
+	<CheckBoxPreference
+		android:defaultValue="true"
+		android:key="dpad_joy"
+		android:title="Joystick Style D-Pad"
+		android:summary="Use a joystick style directional pad."
+		android:enabled="false"
+	/>
+
 </PreferenceScreen>

@@ -23,6 +23,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+/**
+ * A directional pad on the screen.
+ *
+ * TODO: Option to use joystick style d-pad. Currently setting "dpad_joy"
+ *   is disabled in preferences manager.
+ */
 public class DPad {
 
 	private static DPad instance;
