@@ -130,8 +130,10 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	private static class HasSpentAmountAtSellers implements ChatCondition {
 
 		// default value for sellers not included in this list is 1000
+		// NOTE: maybe use an explicit list instead of setting default to 1000
+		//   as more NPCs will likely be added in the future.
 		protected static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
-			put("Margaret", 500);
+			put("Margaret", 1000);
 			put("Ilisa", 4000);
 			put("Adena", 500);
 			put("Coralia", 500);
@@ -141,28 +143,36 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Mrotho", 2500);
 			put("Karl", 50);
 			put("Philomena", 200);
-			put("Dr. Feelgood", 2000);
+			put("Dr. Feelgood", 8000);
 			put("Haizen", 10000);
 			put("Mirielle", 20000);
-			put("D J Smith", 2000);
-			put("Wanda", 10000);
-			put("Sarzina", 5000);
-			put("Xhiphin Zohos", 8000);
-			put("Orchiwald", 6000);
-			put("Sam", 300);
-			put("Hazel", 10000);
-			put("Erodel Bmud", 15000);
-			put("Kendra Mattori", 8000);
-			put("Diehelm Brui", 400);
+			put("D J Smith", 4000);
+			put("Wanda", 20000);
+			put("Sarzina", 17000);
+			put("Xhiphin Zohos", 12000);
+			put("Orchiwald", 9000);
+			put("Sam", 600);
+			put("Hazel", 16000);
+			put("Erodel Bmud", 20000);
+			put("Kendra Mattori", 16000);
+			put("Diehelm Brui", 1000);
 			put("Lorithien", 10000);
 			put("Jynath", 16000);
 			put("Ouchit", 400);
-			put("Xin Blanca", 800);
+			put("Xin Blanca", 190); // 1 of each item
 			put("Xoderos", 570); // 1 of each item
 			put("Barbarus", 400); // 1 pick
-			put("Jenny", 500);
+			put("Jenny", 1000);
 			//put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
 			put("Wrviliza", 200);
+			put("Sara Beth", 2500);
+			put("Laura", 2000);
+			put("Jimbo", 2000);
+			put("Old Mother Helena", 2500);
+			put("Aldrin", 2000);
+			put("Ruarhi", 2000);
+			put("Trillium", 2500);
+			put("Carmen", 2000);
 
 			// excluded
 			put("Gulimo", 0);
@@ -216,7 +226,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			if (spent == 0) {
 				seller.say("You haven't even purchased anything from me.");
 			} else if (spent >= req_purchase) {
-				seller.say("Thank you for supporting my shop! Adventurers like you keep this world afloat.");
+				seller.say("Thank you for supporting me! Adventurers like you keep this world afloat.");
 			} else {
 				final double per = (Double.valueOf(spent) / req_purchase) * 100;
 
