@@ -14,14 +14,17 @@ package org.arianne.stendhal.client;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 public class MainActivity extends AppCompatActivity {
 
 	private static MainActivity instance;
 
+	private ConstraintLayout layout;
 	private StendhalWebView client;
 	private Menu menu;
 
@@ -43,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
 			DebugLog.init(getExternalFilesDir(null), this);
 
 			setContentView(R.layout.activity_main);
+			layout = (ConstraintLayout) findViewById(R.id.content);
 			menu = new Menu(this);
 			client = new StendhalWebView(this);
+			layout.addView(DPad.get().getLayout()); // initialize d-pad
 		} catch (final Exception e) {
 			e.printStackTrace();
 			DebugLog.error(e.toString());
@@ -97,6 +102,20 @@ public class MainActivity extends AppCompatActivity {
 
 		final AlertDialog confirmQuit = builder.create();
 		confirmQuit.show();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		DPad.get().onRefreshView();
+	}
+
+	@Override
+	public void onConfigurationChanged(final Configuration config) {
+		super.onConfigurationChanged(config);
+
+		DPad.get().onRefreshView();
 	}
 
 	@Override

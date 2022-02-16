@@ -11,16 +11,28 @@
  ***************************************************************************/
 package org.arianne.stendhal.client;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class PreferencesActivity extends AppCompatActivity {
 
+	private static PreferencesActivity instance;
+
+
+	public static PreferencesActivity get() {
+		return instance;
+	}
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		instance = this;
+
 		setContentView(R.layout.activity_preferences);
 
 		if (findViewById(R.id.preferencesFrame) != null) {
@@ -28,15 +40,42 @@ public class PreferencesActivity extends AppCompatActivity {
 				return;
 			}
 
-			final PreferenceFragment frag = new PreferenceFragment() {
-				@Override
-				public void onCreate(final Bundle savedInstanceState) {
-					super.onCreate(savedInstanceState);
-					addPreferencesFromResource(R.xml.preferences);
-				}
-			};
+			getFragmentManager().beginTransaction().add(R.id.preferencesFrame,
+				new PFragment()).commit();
+		}
+	}
 
-			getFragmentManager().beginTransaction().add(R.id.preferencesFrame, frag).commit();
+	public static SharedPreferences getSharedPreferences() {
+		return PreferenceManager.getDefaultSharedPreferences(MainActivity.get());
+	}
+
+
+	private static class PFragment extends PreferenceFragment
+			implements OnSharedPreferenceChangeListener {
+
+		@Override
+		public void onCreate(final Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.preferences);
+		}
+
+		@Override
+		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
+			if (key.equals("show_dpad")) {
+				DPad.get().onRefreshView();
+			}
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+			getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+		}
+
+		@Override
+		public void onPause() {
+			getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+			super.onPause();
 		}
 	}
 }
