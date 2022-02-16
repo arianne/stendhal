@@ -48,6 +48,7 @@ stendhal.ui.keyhandler = {
 		if (code >= 37 && code <= 40) {
 			// if this is a repeated event, stop further processing
 			if (stendhal.ui.keyhandler.pressedKeys.indexOf(code) > -1) {
+				event.preventDefault(); // disable scrolling via arrow keys
 				return;
 			}
 			stendhal.ui.keyhandler.pressedKeys.push(code);
@@ -56,6 +57,7 @@ stendhal.ui.keyhandler = {
 			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
+			event.preventDefault(); // disable scrolling via arrow keys
 		} else {
 			// move focus to chat-input on keydown
 			// but don't do that for Ctrl+C, etc.
