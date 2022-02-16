@@ -143,7 +143,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Philomena", 200);
 			put("Dr. Feelgood", 2000);
 			put("Haizen", 10000);
-			put("Edward", 22000); // 1 scuba gear
 			put("Mirielle", 20000);
 			put("D J Smith", 2000);
 			put("Wanda", 10000);
@@ -162,7 +161,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Xoderos", 570); // 1 of each item
 			put("Barbarus", 400); // 1 pick
 			put("Jenny", 500);
-			put("Nishiya", 60); // 2 sheep
+			//put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
 			put("Wrviliza", 200);
 
 			// excluded
@@ -175,6 +174,8 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Mizuno", 0);
 			put("Rengard", 0);
 			put("Felina", 0);
+			put("Caroline", 0); // only sells during Minetown weeks
+			put("Edward", 0);
 		}};
 
 
