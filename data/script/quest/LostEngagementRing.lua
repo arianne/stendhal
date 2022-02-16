@@ -46,7 +46,7 @@ local ring_locations = {
 	{49, 30},
 	{123, 3},
 	{115, 122},
-	{46, 106},
+	{49, 106},
 }
 
 local questNotStartedCondition = conditions:create("QuestNotStartedCondition", {quest_slot})
