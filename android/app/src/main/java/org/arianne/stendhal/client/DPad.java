@@ -14,6 +14,8 @@ package org.arianne.stendhal.client;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.Display;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -38,6 +40,13 @@ public class DPad {
 	private final List<ArrowView> arrows;
 	private final ConstraintLayout layout;
 
+	private enum Dir {
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN;
+	}
+
 
 	public static DPad get() {
 		if (instance == null) {
@@ -54,10 +63,10 @@ public class DPad {
 		layout = new ConstraintLayout(ctx);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-		final ArrowView arrow_l = new ArrowView(ctx, R.drawable.dpad_arrow_left);
-		final ArrowView arrow_r = new ArrowView(ctx, R.drawable.dpad_arrow_right);
-		final ArrowView arrow_u = new ArrowView(ctx, R.drawable.dpad_arrow_up);
-		final ArrowView arrow_d = new ArrowView(ctx, R.drawable.dpad_arrow_down);
+		final ArrowView arrow_l = new ArrowView(ctx, R.drawable.dpad_arrow_left, Dir.LEFT);
+		final ArrowView arrow_r = new ArrowView(ctx, R.drawable.dpad_arrow_right, Dir.RIGHT);
+		final ArrowView arrow_u = new ArrowView(ctx, R.drawable.dpad_arrow_up, Dir.UP);
+		final ArrowView arrow_d = new ArrowView(ctx, R.drawable.dpad_arrow_down, Dir.DOWN);
 
 		arrows.add(arrow_l);
 		arrows.add(arrow_r);
@@ -116,11 +125,60 @@ public class DPad {
 
 
 	private static class ArrowView extends ImageView {
-		public ArrowView(final Context ctx, final int id) {
+
+		private final Dir dir;
+
+		private boolean keyDown = false;
+
+
+		public ArrowView(final Context ctx, final int id, final Dir dir) {
 			super(ctx);
+
+			this.dir = dir;
 
 			setBackgroundColor(android.graphics.Color.TRANSPARENT);
 			setImageResource(id);
+
+			setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(final View view, final MotionEvent event) {
+					final int action = event.getAction();
+
+					Integer newAction = null;
+					Integer keyCode = null;
+
+					if (action == MotionEvent.ACTION_DOWN && !keyDown) {
+						newAction = KeyEvent.ACTION_DOWN;
+						keyDown = true;
+					} else if (action == MotionEvent.ACTION_UP && keyDown) {
+						newAction = KeyEvent.ACTION_UP;
+						keyDown = false;
+					}
+
+					if (newAction != null) {
+
+						switch (dir) {
+							case LEFT:
+								keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
+								break;
+							case RIGHT:
+								keyCode = KeyEvent.KEYCODE_DPAD_RIGHT;
+								break;
+							case UP:
+								keyCode = KeyEvent.KEYCODE_DPAD_UP;
+								break;
+							case DOWN:
+								keyCode = KeyEvent.KEYCODE_DPAD_DOWN;
+								break;
+						}
+
+						MainActivity.get().dispatchKeyEvent(new KeyEvent(newAction, keyCode));
+						return true; // consume event
+					}
+
+					return false;
+				}
+			});
 		}
 	}
 }
