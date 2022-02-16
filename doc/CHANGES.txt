@@ -35,6 +35,8 @@ Changelog
 - Java client
   - updated Win32 executable (no longer requires registry configuration)
   - new icon
+  - channel tab blinking can be disabled in settings
+  - audio notification for personal messages can be enabled
 - Web client:
   - ported to TypeScript
   - floaters for xp & hp changes enabled
