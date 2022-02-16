@@ -7,6 +7,7 @@ TODO:
 - create menu when back pressed:
   - take screenshot
   - set theme
+- add option to have joystick style d-pad instead of arrows
 
 BUILD TODO:
 - script to download Android SDK

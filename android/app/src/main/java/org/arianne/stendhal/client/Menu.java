@@ -128,6 +128,8 @@ public class Menu {
 		btn_settings.setOnClickListener(new ClickListener() {
 			public void onClick(final View v) {
 				super.onClick(v);
+
+				((MainActivity) ctx).showSettings();
 			}
 		});
 

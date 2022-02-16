@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<CheckBoxPreference
+		android:defaultValue="false"
+		android:key="show_dpad"
+		android:title="Show D-Pad"
+		android:summary="Show on-screen directional pad."
+	/>
+
+</PreferenceScreen>

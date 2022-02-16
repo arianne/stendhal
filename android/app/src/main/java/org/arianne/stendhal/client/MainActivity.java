@@ -13,6 +13,7 @@ package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,14 +38,11 @@ public class MainActivity extends AppCompatActivity {
 		try {
 			super.onCreate(savedInstanceState);
 			instance = this;
-			setContentView(R.layout.activity_main);
 
 			// initialize debug logging mechanism
 			DebugLog.init(getExternalFilesDir(null), this);
 
-			// initialize settings store
-			Settings.init(getExternalFilesDir(null));
-
+			setContentView(R.layout.activity_main);
 			menu = new Menu(this);
 			client = new StendhalWebView(this);
 		} catch (final Exception e) {
@@ -112,8 +110,10 @@ public class MainActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		DebugLog.debug(MainActivity.class.getName() + ".onDestroy() called");
 
-		// XXX: settings only get saved if app exited via menu
-		Settings.commitToFile();
 		super.onDestroy();
+	}
+
+	public void showSettings() {
+		startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
 	}
 }
