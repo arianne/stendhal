@@ -91,19 +91,19 @@ public class DPad {
 	public void setPosition(final int x, final int y) {
 		ArrowView av = arrows.get(0);
 		av.setX(x);
-		av.setY(y + 40);
+		av.setY(y + 60);
 
 		av = arrows.get(1);
-		av.setX(x + 100);
-		av.setY(y + 40);
+		av.setX(x + 150);
+		av.setY(y + 60);
 
 		av = arrows.get(2);
-		av.setX(x + 40);
+		av.setX(x + 60);
 		av.setY(y);
 
 		av = arrows.get(3);
-		av.setX(x + 40);
-		av.setY(y + 100);
+		av.setX(x + 60);
+		av.setY(y + 150);
 	}
 
 	public void onRefreshView() {
