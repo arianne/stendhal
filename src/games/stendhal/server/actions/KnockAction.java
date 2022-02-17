@@ -23,6 +23,7 @@ import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.actions.validator.ExtractEntityValidator;
 import games.stendhal.server.actions.validator.ZoneNotChanged;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -81,20 +82,30 @@ public class KnockAction implements ActionListener {
 		final String message = player.getName() + " is outside knocking on the door!";
 		boolean knocked = false;
 
-		final List<String> zList = new ArrayList<>();
-		zList.add(houseportal.getDestinationZone());
-		zList.addAll(houseportal.getAssociatedZonesList());
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final List<StendhalRPZone> zList = new ArrayList<>();
 
-		// get the destination & associated zones of the portal - that is where to shout to
-		for (final String zoneName: zList) {
-			final StendhalRPZone zone =  SingletonRepository.getRPWorld().getZone(zoneName);
+		final StendhalRPZone mainZone = world.getZone(houseportal.getDestinationZone());
+		if (mainZone != null) {
+			zList.add(mainZone);
+			for (final String zoneName: mainZone.getAssociatedZonesList()) {
+				final StendhalRPZone subZone = world.getZone(zoneName);
+				if (subZone != null) {
+					zList.add(subZone);
+				}
+			}
+		}
+
+		// get the destination & associated zones - that is where to shout to
+		for (final StendhalRPZone zone: zList) {
 			if (zone != null) {
 				knocked = true;
 				for (final Player houseplayer : zone.getPlayers()) {
 					houseplayer.sendPrivateText(message);
 				}
 			} else {
-				logger.debug("Invalid associated zone for HousePortal: " + zoneName);
+				logger.debug("Invalid zone (" + zone.getName() + ") associated with "
+					+ mainZone.getName());
 			}
 		}
 
