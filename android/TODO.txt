@@ -10,6 +10,7 @@ TODO:
 - add option to have joystick style d-pad instead of arrows
 - spread out d-pad arrows & make bigger
 - add setting to customize d-pad position
+- fix taps counting as two touches
 
 BUILD TODO:
 - script to download Android SDK
