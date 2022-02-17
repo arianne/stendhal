@@ -87,6 +87,19 @@ public class XMLUtil {
 	}
 
 	/**
+	 * Retrieve first element found.
+	 */
+	public static Element getElement(final Element parent,
+			final String name) {
+		final List<Element> es = getElements(parent, name);
+		if (!es.isEmpty()) {
+			return es.get(0);
+		}
+
+		return null;
+	}
+
+	/**
 	 * Get the direct text content of an element.
 	 *
 	 * @param element

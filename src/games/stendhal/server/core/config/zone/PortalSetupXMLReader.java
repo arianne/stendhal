@@ -150,6 +150,11 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			}
 		}
 
+		final Element associated = XMLUtil.getElement(element, "associated");
+		if (associated != null) {
+			desc.setAssociatedZones(associated.getAttribute("zones"));
+		}
+
 		return desc;
 	}
 }
