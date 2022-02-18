@@ -96,11 +96,10 @@ public class SellerBehaviour extends MerchantBehaviour {
 		if (player.isEquipped("money", price)) {
 			if (player.equipToInventoryOnly(item)) {
 				player.drop("money", price);
+				updatePlayerTransactions(player, seller.getName(), res);
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(amount) + " your "
 						+ Grammar.plnoun(amount, chosenItemName) + "!");
-				player.incBoughtForItem(chosenItemName, amount);
-				player.incCommerceTransaction(seller.getName(), price, false);
 				return true;
 			} else {
 				seller.say("Sorry, but you cannot equip the "
@@ -120,5 +119,21 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	public Item getAskedItem(final String askedItem) {
 		return getAskedItem(askedItem, null);
+	}
+
+	/**
+	 * Updates stored information about Player-NPC commerce transactions.
+	 *
+	 * @param player
+	 *     Player to be updated.
+	 * @param merchant
+	 *     Name of merchant involved in transaction.
+	 * @param res
+	 *     Information about the transaction.
+	 */
+	protected void updatePlayerTransactions(final Player player, final String merchant,
+			final ItemParserResult res) {
+		player.incBoughtForItem(res.getChosenItemName(), res.getAmount());
+		player.incCommerceTransaction(merchant, getCharge(res, player), false);
 	}
 }

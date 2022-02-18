@@ -87,8 +87,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 								return false;
 							}
 							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
-							player.incBoughtForItem("cat", count);
-							player.incCommerceTransaction(seller.getName(), charge, false);
+							updatePlayerTransactions(player, seller.getName(), res);
 
 							final Cat cat = new Cat(player);
 
