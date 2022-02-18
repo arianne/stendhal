@@ -163,7 +163,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			put("Xoderos", 570); // 1 of each item
 			put("Barbarus", 400); // 1 pick
 			put("Jenny", 1000);
-			//put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
+			put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
 			put("Wrviliza", 200);
 			put("Sara Beth", 2500);
 			put("Laura", 2000);
