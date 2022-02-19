@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
 	private StendhalWebView client;
 	private Menu menu;
 
-	// flag to check if we have left the initial page
-	public static boolean onInitialPage = true;
-
 
 	public static MainActivity get() {
 		return instance;

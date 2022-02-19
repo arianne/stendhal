@@ -20,6 +20,8 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toolbar;
 
+import org.arianne.stendhal.client.StendhalWebView.PageId;
+
 
 public class Menu {
 
@@ -83,12 +85,14 @@ public class Menu {
 		nav.setVisibility(View.GONE);
 	}
 
-	private void updateButtons() {
+	public void updateButtons() {
+		final PageId page = StendhalWebView.getCurrentPageId();
+
 		btn_connect.setVisibility(View.GONE);
 		btn_title.setVisibility(View.GONE);
 		btn_reload.setVisibility(View.GONE);
 
-		if (MainActivity.get().onInitialPage) {
+		if (page == PageId.TITLE) {
 			btn_connect.setVisibility(View.VISIBLE);
 		} else {
 			btn_title.setVisibility(View.VISIBLE);
@@ -105,9 +109,7 @@ public class Menu {
 		btn_connect = (Button) activity.findViewById(R.id.btn_connect);
 		btn_connect.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
-				nav.setVisibility(View.GONE);
 				activity.loadLogin();
-				updateButtons();
 			}
 		});
 
@@ -150,7 +152,7 @@ public class Menu {
 				super.onClick(v);
 
 				String server_ver = "unavailable";
-				if (!StendhalWebView.get().isGameActive()) {
+				if (!(StendhalWebView.getCurrentPageId() == PageId.WEBCLIENT)) {
 					server_ver = "not connected";
 				}
 
@@ -182,7 +184,7 @@ public class Menu {
 
 	private class ClickListener implements View.OnClickListener {
 		public void onClick(final View v) {
-			if (!MainActivity.onInitialPage) {
+			if (StendhalWebView.getCurrentPageId() != PageId.TITLE) {
 				nav.setVisibility(View.GONE);
 			}
 		}

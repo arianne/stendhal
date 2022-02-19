@@ -39,7 +39,7 @@ public class StendhalWebView {
 	private static StendhalWebView instance;
 
 	private boolean testing = false;
-	private boolean gameActive = false;
+	private static PageId currentPage;
 	private Boolean debugging;
 	private final String defaultServer = "https://stendhalgame.org/";
 	private String clientUrlSuffix = "client";
@@ -56,6 +56,11 @@ public class StendhalWebView {
 	private long timestampTouchUpPrev = 0;
 	private int tapCount = 0;
 
+	public enum PageId {
+		TITLE,
+		WEBCLIENT,
+		OTHER;
+	}
 
 
 	public static StendhalWebView get() {
@@ -130,7 +135,7 @@ public class StendhalWebView {
 
 		loadUrl("about:blank");
 
-		MainActivity.onInitialPage = true;
+		currentPage = PageId.TITLE;
 		Menu.get().show();
 	}
 
@@ -146,7 +151,13 @@ public class StendhalWebView {
 				}
 
 				view.loadUrl(checkClientUrl(url));
-				gameActive = isClientUrl(clientView.getUrl());
+				if (isClientUrl(clientView.getUrl())) {
+					currentPage = PageId.WEBCLIENT;
+				} else {
+					currentPage = PageId.OTHER;
+				}
+				Menu.get().updateButtons();
+
 				return false;
 			}
 		});
@@ -157,7 +168,7 @@ public class StendhalWebView {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
 				/*
-				if (gameActive && event.getAction() == MotionEvent.ACTION_UP) {
+				if (isGameActive() && event.getAction() == MotionEvent.ACTION_UP) {
 loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
 					if (debugEnabled()) {
@@ -172,7 +183,7 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 				}
 				*/
 
-				if (gameActive) {
+				if (isGameActive()) {
 					switch (event.getAction()) {
 						case MotionEvent.ACTION_DOWN:
 							tapCount++;
@@ -332,7 +343,7 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 			}
 		}
 
-		MainActivity.onInitialPage = false;
+		currentPage = PageId.OTHER;
 	}
 
 	/**
@@ -347,8 +358,12 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 		}
 	}
 
-	public boolean isGameActive() {
-		return gameActive;
+	public static boolean isGameActive() {
+		return currentPage == PageId.WEBCLIENT;
+	}
+
+	public static PageId getCurrentPageId() {
+		return currentPage;
 	}
 
 	/**
