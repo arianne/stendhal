@@ -44,11 +44,14 @@ public class Notifier {
 		builder = new AlertDialog.Builder(MainActivity.get());
 	}
 
-	public void showMessage(final String msg, final boolean cancelable) {
+	public void showMessage(final String msg, final boolean cancelable, final String title) {
 		createDialog();
 
 		builder.setCancelable(cancelable);
 		builder.setMessage(msg);
+		if (title != null) {
+			builder.setTitle(title);
+		}
 		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
 				dialog.cancel();
@@ -58,8 +61,12 @@ public class Notifier {
 		showDialog();
 	}
 
+	public void showMessage(final String msg, final boolean cancelable) {
+		showMessage(msg, cancelable, null);
+	}
+
 	public void showMessage(final String msg) {
-		showMessage(msg, true);
+		showMessage(msg, true, null);
 	}
 
 	public void showPrompt(final String msg, final Action... actions) {
