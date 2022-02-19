@@ -28,7 +28,7 @@ public class Menu {
 	private final Context ctx;
 	private final Toolbar nav;
 
-	private Button btn_login;
+	private Button btn_connect;
 	private Button btn_return;
 
 
@@ -84,10 +84,10 @@ public class Menu {
 
 	private void updateButtons() {
 		if (MainActivity.get().onInitialPage) {
-			btn_login.setVisibility(View.VISIBLE);
+			btn_connect.setVisibility(View.VISIBLE);
 			btn_return.setVisibility(View.GONE);
 		} else {
-			btn_login.setVisibility(View.GONE);
+			btn_connect.setVisibility(View.GONE);
 			btn_return.setVisibility(View.VISIBLE);
 		}
 	}
@@ -98,8 +98,8 @@ public class Menu {
 	private void initButtonHandlers() {
 		final MainActivity activity = (MainActivity) ctx;
 
-		btn_login = (Button) activity.findViewById(R.id.btn_login);
-		btn_login.setOnClickListener(new View.OnClickListener() {
+		btn_connect = (Button) activity.findViewById(R.id.btn_connect);
+		btn_connect.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 				activity.loadLogin();
@@ -113,7 +113,7 @@ public class Menu {
 				Notifier.get().showPrompt("Return to main page?",
 					new Notifier.Action() {
 						protected void onCall() {
-							StendhalWebView.get().loadInitialScreen();
+							StendhalWebView.get().loadTitleScreen();
 							updateButtons();
 						}
 					},

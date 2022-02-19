@@ -112,13 +112,13 @@ public class StendhalWebView {
 		initTouchHandler();
 		initKeyboardHandler();
 
-		loadInitialScreen();
+		loadTitleScreen();
 	}
 
 	/**
 	 * Shows initial splash screen.
 	 */
-	public void loadInitialScreen() {
+	public void loadTitleScreen() {
 		splash.setImageResource(R.drawable.splash);
 
 		clientView.loadUrl("about:blank");
