@@ -12,6 +12,7 @@
 package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 
 
@@ -40,8 +41,12 @@ public class Notifier {
 		builder = null;
 	}
 
+	private void createDialog(final Context ctx) {
+		builder = new AlertDialog.Builder(ctx);
+	}
+
 	private void createDialog() {
-		builder = new AlertDialog.Builder(MainActivity.get());
+		createDialog(MainActivity.get());
 	}
 
 	public void showMessage(final String msg, final boolean cancelable, final String title) {
@@ -73,8 +78,8 @@ public class Notifier {
 		showMessage(msg, false, "Error");
 	}
 
-	public void showPrompt(final String msg, final Action... actions) {
-		createDialog();
+	public void showPrompt(final Context ctx, final String msg, final Action... actions) {
+		createDialog(ctx);
 
 		builder.setCancelable(false);
 		builder.setMessage(msg);
@@ -142,6 +147,10 @@ public class Notifier {
 		}
 
 		showDialog();
+	}
+
+	public void showPrompt(final String msg, final Action... actions) {
+		showPrompt(MainActivity.get(), msg, actions);
 	}
 
 	public static abstract class Action {
