@@ -14,6 +14,7 @@ package org.arianne.stendhal.client;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -142,13 +143,49 @@ public class PreferencesActivity extends AppCompatActivity {
 	}
 
 
-	private static class PFragment extends PreferenceFragment
+	public static class PFragment extends PreferenceFragment
 			implements OnSharedPreferenceChangeListener {
 
 		@Override
 		public void onCreate(final Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.preferences);
+
+			final PreferenceManager pm = getPreferenceManager();
+			final Preference reset = pm.findPreference("reset");
+			if (reset != null) {
+				reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+					public boolean onPreferenceClick(final Preference pref) {
+						Notifier.get().showPrompt(getActivity(), "Restore prefrences defaults?",
+							new Notifier.Action() {
+								protected void onCall() {
+									DebugLog.debug("restoring preferences default values");
+									restoreDefaults();
+								}
+							},
+							new Notifier.Action() {
+								protected void onCall() {
+									// do nothing
+								}
+							});
+
+						return true;
+					}
+				});
+			} else {
+				DebugLog.warn("preference \"reset\" not found");
+			}
+		}
+
+		private void restoreDefaults() {
+			final PreferenceManager pm = getPreferenceManager();
+			final SharedPreferences prefs = pm.getDefaultSharedPreferences(getActivity());
+			final SharedPreferences.Editor editor = prefs.edit();
+			editor.clear();
+			editor.commit();
+			pm.setDefaultValues(getActivity(), R.xml.preferences, true);
+			getPreferenceScreen().removeAll();
+			onCreate(null);
 		}
 
 		@Override

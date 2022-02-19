@@ -36,4 +36,10 @@
 		android:summary="Vertical offset of directional pad (from bottom)."
 	/>
 
+	<Preference
+		android:key="reset"
+		android:title="Restore Defaults"
+		android:summary="Restore all preferences default values."
+	/>
+
 </PreferenceScreen>

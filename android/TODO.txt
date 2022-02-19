@@ -14,7 +14,6 @@ TODO:
 - create activity for about information
 - add credits to about information
 - show confirmation prompt before reloading page
-- add option to reset default preferences
 
 BUILD TODO:
 - script to download Android SDK
