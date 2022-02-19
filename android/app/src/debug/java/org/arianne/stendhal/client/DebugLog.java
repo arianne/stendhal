@@ -13,14 +13,15 @@ package org.arianne.stendhal.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
@@ -104,18 +105,22 @@ public class DebugLog {
 	}
 
 	public static void info(final String text) {
+		Log.i("DebugLog", text);
 		writeLine(text, DebugLevel.INFO);
 	}
 
 	public static void warn(final String text) {
+		Log.w("DebugLog", text);
 		writeLine(text, DebugLevel.WARN);
 	}
 
 	public static void error(final String text) {
+		Log.e("DebugLog", text);
 		writeLine(text, DebugLevel.ERROR);
 	}
 
 	public static void debug(final String text) {
+		Log.d("DebugLog", text);
 		writeLine(text, DebugLevel.DEBUG);
 	}
 
