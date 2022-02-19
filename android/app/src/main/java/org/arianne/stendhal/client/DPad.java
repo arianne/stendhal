@@ -116,7 +116,7 @@ public class DPad {
 
 		setPosition(x, y);
 
-		if (PreferencesActivity.getSharedPreferences().getBoolean("show_dpad", false)) {
+		if (PreferencesActivity.get().getBoolean("show_dpad", false)) {
 			setVisibility(View.VISIBLE);
 		} else {
 			setVisibility(View.INVISIBLE);

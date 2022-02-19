@@ -45,8 +45,84 @@ public class PreferencesActivity extends AppCompatActivity {
 		}
 	}
 
+	/**
+	 * Retrieves preferences.
+	 *
+	 * @return
+	 *     <code>SharedPreferences</code> instance.
+	 */
 	public static SharedPreferences getSharedPreferences() {
 		return PreferenceManager.getDefaultSharedPreferences(MainActivity.get());
+	}
+
+	/**
+	 * Retrieves a string value from preferences.
+	 *
+	 * @param key
+	 *     Key to search for.
+	 * @param defVal
+	 *     Default value.
+	 * @return
+	 *     Value retrieved using <code>key</code>.
+	 */
+	public static String getString(final String key, final String defVal) {
+		return getSharedPreferences().getString(key, defVal);
+	}
+
+	/**
+	 * Retrieves a string value from preferences.
+	 *
+	 * @param key
+	 *     Key to search for.
+	 * @return
+	 *     Value retrieved using <code>key</code> (default: "").
+	 */
+	public static String getString(final String key) {
+		return getSharedPreferences().getString(key, "");
+	}
+
+	/**
+	 * Retrieves a boolean value from preferences.
+	 *
+	 * @param key
+	 *     Key to search for.
+	 * @param defVal
+	 *     Default value.
+	 * @return
+	 *     Value retrieved using <code>key</code>.
+	 */
+	public static boolean getBoolean(final String key, final boolean defVal) {
+		return getSharedPreferences().getBoolean(key, defVal);
+	}
+
+	/**
+	 * Retrieves an integer number value from preferences.
+	 *
+	 * @param key
+	 *     Key to search for.
+	 * @param defVal
+	 *     Default value.
+	 * @return
+	 *     Value retrieved using <code>key</code>.
+	 */
+	public static Integer getInt(final String key, final int defVal) {
+		// return getSharedPreferences().getInt(key, defValue);
+		try {
+			// SharedPreferences.getInt is returning string
+			final Object obj = getSharedPreferences().getString(key, String.valueOf(defVal));
+			if (obj instanceof String) {
+				DebugLog.debug("PreferencesActivity.getInt: casting string return value to integer");
+				return Integer.parseInt((String) obj);
+			} else {
+				DebugLog.debug("PreferencesActivity.getInt return value is integer");
+				return (Integer) obj;
+			}
+		} catch (final NumberFormatException e) {
+			final String errMsg = "An error occurred: " + e.getMessage();
+			DebugLog.error(errMsg + "\n" + e.getStackTrace());
+		}
+
+		return null;
 	}
 
 	@Override
