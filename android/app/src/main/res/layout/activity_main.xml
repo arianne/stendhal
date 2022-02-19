@@ -63,7 +63,7 @@
 				android:id="@+id/btn_reload"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Reload Page"
+				android:text="Reload"
 				android:background="#00000000"
 			/>
 
