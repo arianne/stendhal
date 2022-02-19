@@ -15,6 +15,7 @@
 		android:defaultValue="true"
 		android:title="Joystick Style D-Pad"
 		android:summary="Use a joystick style directional pad."
+		android:dependency="show_dpad"
 		android:enabled="false"
 	/>
 
