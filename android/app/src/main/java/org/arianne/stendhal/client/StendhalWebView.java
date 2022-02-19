@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -159,6 +160,20 @@ public class StendhalWebView {
 				Menu.get().updateButtons();
 
 				return false;
+			}
+
+			@Override
+			public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
+				DebugLog.debug("loading URL: " + url);
+
+				super.onPageStarted(view, url, favicon);
+			}
+
+			@Override
+			public void onPageFinished(final WebView view, final String url) {
+				super.onPageFinished(view, url);
+				// TODO: set page ID here
+				Menu.get().updateButtons();
 			}
 		});
 	}
