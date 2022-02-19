@@ -116,13 +116,17 @@ public class StendhalWebView {
 		loadTitleScreen();
 	}
 
+	private void loadUrl(final String url) {
+		clientView.loadUrl(url);
+	}
+
 	/**
 	 * Shows initial splash screen.
 	 */
 	public void loadTitleScreen() {
 		splash.setImageResource(R.drawable.splash);
 
-		clientView.loadUrl("about:blank");
+		loadUrl("about:blank");
 
 		final Menu m = Menu.get();
 		m.show();
@@ -153,7 +157,7 @@ public class StendhalWebView {
 			public boolean onTouch(final View view, final MotionEvent event) {
 				/*
 				if (gameActive && event.getAction() == MotionEvent.ACTION_UP) {
-clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
+loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
 					if (debugEnabled()) {
 						ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -289,7 +293,7 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 		splash.setImageResource(android.R.color.transparent);
 
 		// initial page
-		clientView.loadUrl("https://stendhalgame.org/account/mycharacters.html");
+		loadUrl("https://stendhalgame.org/account/mycharacters.html");
 
 		if (testing) {
 			logger.debug("Connecting to test server");
