@@ -111,12 +111,13 @@ public class DPad {
 		final Display disp = MainActivity.get().getWindowManager().getDefaultDisplay();
 		disp.getSize(size);
 
-		int x = 100;
-		int y = size.y - 300;
+		final PreferencesActivity prefs = PreferencesActivity.get();
+		final int x = prefs.getInt("dpad_offset_x", 100);
+		final int y = size.y - prefs.getInt("dpad_offset_y", 300);
 
 		setPosition(x, y);
 
-		if (PreferencesActivity.get().getBoolean("show_dpad", false)) {
+		if (prefs.getBoolean("show_dpad", false)) {
 			setVisibility(View.VISIBLE);
 		} else {
 			setVisibility(View.INVISIBLE);

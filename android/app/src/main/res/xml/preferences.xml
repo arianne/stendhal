@@ -18,4 +18,22 @@
 		android:enabled="false"
 	/>
 
+	<EditTextPreference
+		android:key="dpad_offset_x"
+		android:inputType="numberDecimal"
+		android:digits="0123456789"
+		android:defaultValue="100"
+		android:title="D-Pad Offset X"
+		android:summary="Horizontal offset of directional pad (from left)."
+	/>
+
+	<EditTextPreference
+		android:key="dpad_offset_y"
+		android:inputType="numberDecimal"
+		android:digits="0123456789"
+		android:defaultValue="300"
+		android:title="D-Pad Offset Y"
+		android:summary="Vertical offset of directional pad (from bottom)."
+	/>
+
 </PreferenceScreen>
