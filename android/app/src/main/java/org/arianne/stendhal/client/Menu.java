@@ -29,7 +29,7 @@ public class Menu {
 	private final Toolbar nav;
 
 	private Button btn_connect;
-	private Button btn_return;
+	private Button btn_title;
 
 
 	public static Menu get() {
@@ -85,10 +85,10 @@ public class Menu {
 	private void updateButtons() {
 		if (MainActivity.get().onInitialPage) {
 			btn_connect.setVisibility(View.VISIBLE);
-			btn_return.setVisibility(View.GONE);
+			btn_title.setVisibility(View.GONE);
 		} else {
 			btn_connect.setVisibility(View.GONE);
-			btn_return.setVisibility(View.VISIBLE);
+			btn_title.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -107,10 +107,10 @@ public class Menu {
 			}
 		});
 
-		btn_return = (Button) activity.findViewById(R.id.btn_return);
-		btn_return.setOnClickListener(new View.OnClickListener() {
+		btn_title = (Button) activity.findViewById(R.id.btn_title);
+		btn_title.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
-				Notifier.get().showPrompt("Return to main page?",
+				Notifier.get().showPrompt("Return to title screen?",
 					new Notifier.Action() {
 						protected void onCall() {
 							StendhalWebView.get().loadTitleScreen();
