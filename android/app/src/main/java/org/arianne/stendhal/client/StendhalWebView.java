@@ -164,10 +164,10 @@ public class StendhalWebView {
 	}
 
 	private void initTouchHandler() {
+		/*
 		clientView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
-				/*
 				if (isGameActive() && event.getAction() == MotionEvent.ACTION_UP) {
 loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
@@ -183,6 +183,7 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 				}
 				*/
 
+				/*
 				if (isGameActive()) {
 					switch (event.getAction()) {
 						case MotionEvent.ACTION_DOWN:
@@ -209,6 +210,7 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 				return false;
 			}
 		});
+		*/
 	}
 
 	private void initKeyboardHandler() {
