@@ -84,12 +84,13 @@ public class Menu {
 	}
 
 	private void updateButtons() {
+		btn_connect.setVisibility(View.GONE);
+		btn_title.setVisibility(View.GONE);
+		btn_reload.setVisibility(View.GONE);
+
 		if (MainActivity.get().onInitialPage) {
 			btn_connect.setVisibility(View.VISIBLE);
-			btn_title.setVisibility(View.GONE);
-			btn_reload.setVisibility(View.GONE);
 		} else {
-			btn_connect.setVisibility(View.GONE);
 			btn_title.setVisibility(View.VISIBLE);
 			btn_reload.setVisibility(View.VISIBLE);
 		}
