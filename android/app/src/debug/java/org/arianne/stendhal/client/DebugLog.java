@@ -145,4 +145,8 @@ public class DebugLog {
 
 		builder.create().show();
 	}
+
+	public static String getLogsDir() {
+		return logsDir.getPath();
+	}
 }

@@ -74,4 +74,8 @@ public class DebugLog {
 	public static void notify(final String message, final DebugLevel level) {
 		// do nothing
 	}
+
+	public static String getLogsDir() {
+		// do nothing
+	}
 }
