@@ -250,6 +250,11 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 	 *     <code>true</code> if url links to "client" or "testclient".
 	 */
 	private boolean isClientUrl(final String url) {
+		final String custom_client = PreferencesActivity.getString("client_url").trim();
+		if (!custom_client.equals("")) {
+			return url.contains(custom_client);
+		}
+
 		return url.contains("stendhalgame.org/client/")
 			|| url.contains("stendhalgame.org/testclient/");
 	}
