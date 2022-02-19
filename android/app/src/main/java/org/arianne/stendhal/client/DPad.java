@@ -63,10 +63,10 @@ public class DPad {
 		layout = new ConstraintLayout(ctx);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-		final ArrowView arrow_l = new ArrowView(ctx, R.drawable.dpad_arrow_left, Dir.LEFT);
-		final ArrowView arrow_r = new ArrowView(ctx, R.drawable.dpad_arrow_right, Dir.RIGHT);
-		final ArrowView arrow_u = new ArrowView(ctx, R.drawable.dpad_arrow_up, Dir.UP);
-		final ArrowView arrow_d = new ArrowView(ctx, R.drawable.dpad_arrow_down, Dir.DOWN);
+		final ArrowView arrow_l = new ArrowView(ctx, Dir.LEFT);
+		final ArrowView arrow_r = new ArrowView(ctx, Dir.RIGHT);
+		final ArrowView arrow_u = new ArrowView(ctx, Dir.UP);
+		final ArrowView arrow_d = new ArrowView(ctx, Dir.DOWN);
 
 		arrows.add(arrow_l);
 		arrows.add(arrow_r);
@@ -128,14 +128,35 @@ public class DPad {
 	private static class ArrowView extends ImageView {
 
 		private final Dir dir;
+		private final int id;
+		private final int id_active;
 
 		private boolean keyDown = false;
 
 
-		public ArrowView(final Context ctx, final int id, final Dir dir) {
+		public ArrowView(final Context ctx, final Dir dir) {
 			super(ctx);
 
 			this.dir = dir;
+
+			switch (dir) {
+				case LEFT:
+					id = R.drawable.dpad_arrow_left;
+					id_active = R.drawable.dpad_arrow_left_active;
+					break;
+				case RIGHT:
+					id = R.drawable.dpad_arrow_right;
+					id_active = R.drawable.dpad_arrow_right_active;
+					break;
+				case UP:
+					id = R.drawable.dpad_arrow_up;
+					id_active = R.drawable.dpad_arrow_up_active;
+					break;
+				default:
+					id = R.drawable.dpad_arrow_down;
+					id_active = R.drawable.dpad_arrow_down_active;
+					break;
+			}
 
 			setBackgroundColor(android.graphics.Color.TRANSPARENT);
 			setImageResource(id);
@@ -149,9 +170,11 @@ public class DPad {
 					Integer keyCode = null;
 
 					if (action == MotionEvent.ACTION_DOWN && !keyDown) {
+						setImageResource(id_active);
 						newAction = KeyEvent.ACTION_DOWN;
 						keyDown = true;
 					} else if (action == MotionEvent.ACTION_UP && keyDown) {
+						setImageResource(id);
 						newAction = KeyEvent.ACTION_UP;
 						keyDown = false;
 					}
