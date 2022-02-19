@@ -133,7 +133,19 @@ public class Menu {
 		btn_reload = (Button) activity.findViewById(R.id.btn_reload);
 		btn_reload.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
-				StendhalWebView.get().reload();
+				Notifier.get().showPrompt("Reload page?",
+					new Notifier.Action() {
+						@Override
+						protected void onCall() {
+							StendhalWebView.get().reload();
+						}
+					},
+					new Notifier.Action() {
+						@Override
+						protected void onCall() {
+							// do nothing
+						}
+				});
 			}
 		});
 

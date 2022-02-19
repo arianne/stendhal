@@ -3,7 +3,6 @@ TODO:
 - show input preview when typing
 - hide soft keyboard when Enter pressed
 - scale page to fit inside view
-- add option to connect to custom server in debug build at startup
 - create menu when back pressed:
   - take screenshot
   - set theme
@@ -13,7 +12,6 @@ TODO:
 - add title screen music
 - create activity for about information
 - add credits to about information
-- show confirmation prompt before reloading page
 
 BUILD TODO:
 - script to download Android SDK
