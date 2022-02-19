@@ -11,6 +11,11 @@ TODO:
 - spread out d-pad arrows & make bigger
 - add setting to customize d-pad position
 - fix taps counting as two touches
+- add menu button to refresh page
+- refresh menu buttons on leaving & returning to title screen
+- add title screen music
+- create activity for about information
+- add credits to about information
 
 BUILD TODO:
 - script to download Android SDK
