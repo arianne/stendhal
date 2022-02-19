@@ -49,6 +49,20 @@ public class PreferencesActivity extends AppCompatActivity {
 		return PreferenceManager.getDefaultSharedPreferences(MainActivity.get());
 	}
 
+	@Override
+	public void finish() {
+		DebugLog.debug(PreferencesActivity.class.getName() + ".finish() called");
+
+		super.finish();
+	}
+
+	@Override
+	protected void onDestroy() {
+		DebugLog.debug(PreferencesActivity.class.getName() + ".onDestroy() called");
+
+		super.onDestroy();
+	}
+
 
 	private static class PFragment extends PreferenceFragment
 			implements OnSharedPreferenceChangeListener {
