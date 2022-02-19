@@ -3,6 +3,13 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<EditTextPreference
+		android:key="client_url"
+		android:singleLine="true"
+		android:title="Client URL"
+		android:summary="Custom URL pointing to web client."
+	/>
+
 	<CheckBoxPreference
 		android:key="show_dpad"
 		android:defaultValue="false"

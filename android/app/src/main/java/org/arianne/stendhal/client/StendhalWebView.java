@@ -41,6 +41,8 @@ public class StendhalWebView {
 	private boolean testing = false;
 	private boolean gameActive = false;
 	private Boolean debugging;
+	private final String defaultServer = "https://stendhalgame.org/";
+	private String clientUrlSuffix = "client";
 
 	private final Context ctx;
 	private WebView clientView;
@@ -128,9 +130,8 @@ public class StendhalWebView {
 
 		loadUrl("about:blank");
 
-		final Menu m = Menu.get();
-		m.show();
 		MainActivity.onInitialPage = true;
+		Menu.get().show();
 	}
 
 	private void initWebViewClient() {
@@ -235,11 +236,12 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 	 */
 	private String checkClientUrl(String url) {
 		if (isClientUrl(url)) {
+			String replaceSuffix = "/testclient/";
 			if (testing) {
-				url = url.replace("/client/", "/testclient/");
-			} else {
-				url = url.replace("/testclient/", "/client/");
+				replaceSuffix = "/client/";
 			}
+
+			url = url.replace(replaceSuffix, "/" + clientUrlSuffix + "/");
 		}
 
 		return url;
@@ -254,10 +256,29 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 	 *     <code>true</code> if URL is under domain stendhalgame.org or localhost.
 	 */
 	private boolean isInternalUrl(final String url) {
-		final String stripped = url.replaceAll("^https://", "")
-			.replaceAll("^http://", "").replaceAll("^www\\.", "");
+		final String domain = getDomain(url);
+		final String cs = checkCustomServer();
 
-		return stripped.startsWith("stendhalgame.org") || stripped.startsWith("localhost");
+		if (cs != null) {
+			return domain.startsWith(getDomain(cs));
+		} else {
+			return domain.startsWith("stendhalgame.org") || domain.startsWith("localhost");
+		}
+	}
+
+	private String getDomain(final String url) {
+		return url.replaceAll("^https://", "").replaceAll("^http://", "")
+			.replaceAll("^www\\.", "");
+	}
+
+	private String checkCustomServer() {
+		final String cs = PreferencesActivity.getString("client_url", "").trim();
+
+		if (cs.equals("")) {
+			return null;
+		}
+
+		return cs;
 	}
 
 	/**
@@ -279,6 +300,7 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 		builder.setNegativeButton("Testing", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
 				testing = true;
+				clientUrlSuffix = "testclient";
 				dialog.cancel();
 				onSelectServer();
 			}
@@ -292,16 +314,23 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 		// remove splash image
 		splash.setImageResource(android.R.color.transparent);
 
-		// initial page
-		loadUrl("https://stendhalgame.org/account/mycharacters.html");
+		final String custom_page = checkCustomServer();
+		if (custom_page != null) {
+			logger.debug("Connecing to custom page: " + custom_page);
 
-		if (testing) {
-			logger.debug("Connecting to test server");
+			loadUrl(custom_page);
 		} else {
-			logger.debug("Connecting to main server");
+			// initial page
+			loadUrl(defaultServer + "account/mycharacters.html");
 
-			notifier.showMessage("CAUTION: This software is in early development and not recommended"
-				+ " for use on the main server. Proceed with caution.", false);
+			if (testing) {
+				logger.debug("Connecting to test server");
+			} else {
+				logger.debug("Connecting to main server");
+
+				notifier.showMessage("CAUTION: This software is in early development and not recommended"
+					+ " for use on the main server. Proceed with caution.", false);
+			}
 		}
 
 		MainActivity.onInitialPage = false;
