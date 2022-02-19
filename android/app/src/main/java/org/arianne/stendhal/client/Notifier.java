@@ -69,6 +69,10 @@ public class Notifier {
 		showMessage(msg, true, null);
 	}
 
+	public void showError(final String msg) {
+		showMessage(msg, false, "Error");
+	}
+
 	public void showPrompt(final String msg, final Action... actions) {
 		createDialog();
 

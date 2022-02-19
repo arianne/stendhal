@@ -120,6 +120,8 @@ public class PreferencesActivity extends AppCompatActivity {
 		} catch (final NumberFormatException e) {
 			final String errMsg = "An error occurred: " + e.getMessage();
 			DebugLog.error(errMsg + "\n" + e.getStackTrace());
+			Notifier.get().showError(errMsg + "\n\nSee " + DebugLog.getLogsDir()
+				+ " for more information.");
 		}
 
 		return null;
