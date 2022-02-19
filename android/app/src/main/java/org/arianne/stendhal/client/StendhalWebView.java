@@ -36,6 +36,8 @@ public class StendhalWebView {
 	private static DebugLog logger = DebugLog.get();
 	private static Notifier notifier = Notifier.get();
 
+	private static StendhalWebView instance;
+
 	private boolean testing = false;
 	private boolean gameActive = false;
 	private Boolean debugging;
@@ -52,7 +54,6 @@ public class StendhalWebView {
 	private long timestampTouchUpPrev = 0;
 	private int tapCount = 0;
 
-	private static StendhalWebView instance;
 
 
 	public static StendhalWebView get() {
@@ -316,6 +317,13 @@ clientView.loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.i
 
 	public boolean isGameActive() {
 		return gameActive;
+	}
+
+	/**
+	 * Reloads current page.
+	 */
+	public void reload() {
+		clientView.reload();
 	}
 
 	/**

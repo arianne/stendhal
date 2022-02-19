@@ -30,6 +30,7 @@ public class Menu {
 
 	private Button btn_connect;
 	private Button btn_title;
+	private Button btn_reload;
 
 
 	public static Menu get() {
@@ -86,9 +87,11 @@ public class Menu {
 		if (MainActivity.get().onInitialPage) {
 			btn_connect.setVisibility(View.VISIBLE);
 			btn_title.setVisibility(View.GONE);
+			btn_reload.setVisibility(View.GONE);
 		} else {
 			btn_connect.setVisibility(View.GONE);
 			btn_title.setVisibility(View.VISIBLE);
+			btn_reload.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -121,6 +124,13 @@ public class Menu {
 						protected void onCall() {/* do nothing */}
 					}
 				);
+			}
+		});
+
+		btn_reload = (Button) activity.findViewById(R.id.btn_reload);
+		btn_reload.setOnClickListener(new View.OnClickListener() {
+			public void onClick(final View v) {
+				StendhalWebView.get().reload();
 			}
 		});
 

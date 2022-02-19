@@ -60,6 +60,14 @@
 			/>
 
 			<Button
+				android:id="@+id/btn_reload"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Reload Page"
+				android:background="#00000000"
+			/>
+
+			<Button
 				android:id="@+id/btn_settings"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
