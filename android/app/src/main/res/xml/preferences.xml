@@ -5,7 +5,8 @@
 
 	<EditTextPreference
 		android:key="client_url"
-		android:singleLine="true"
+		android:inputType="text"
+		android:maxLines="1"
 		android:title="Client URL"
 		android:summary="Custom URL pointing to web client."
 	/>
