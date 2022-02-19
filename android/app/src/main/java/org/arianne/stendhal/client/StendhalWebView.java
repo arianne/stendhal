@@ -133,10 +133,7 @@ public class StendhalWebView {
 	 */
 	public void loadTitleScreen() {
 		splash.setImageResource(R.drawable.splash);
-
 		loadUrl("about:blank");
-
-		currentPage = PageId.TITLE;
 		Menu.get().show();
 	}
 
@@ -152,13 +149,6 @@ public class StendhalWebView {
 				}
 
 				view.loadUrl(checkClientUrl(url));
-				if (isClientUrl(clientView.getUrl())) {
-					currentPage = PageId.WEBCLIENT;
-				} else {
-					currentPage = PageId.OTHER;
-				}
-				Menu.get().updateButtons();
-
 				return false;
 			}
 
@@ -172,8 +162,17 @@ public class StendhalWebView {
 			@Override
 			public void onPageFinished(final WebView view, final String url) {
 				super.onPageFinished(view, url);
-				// TODO: set page ID here
+
+				if (isClientUrl(url)) {
+					currentPage = PageId.WEBCLIENT;
+				} else if (url.equals("") || url.equals("about:blank")) {
+					currentPage = PageId.TITLE;
+				} else {
+					currentPage = PageId.OTHER;
+				}
 				Menu.get().updateButtons();
+
+				DebugLog.debug("page id: " + currentPage);
 			}
 		});
 	}
