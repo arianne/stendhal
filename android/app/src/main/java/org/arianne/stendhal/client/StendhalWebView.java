@@ -287,7 +287,6 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 	private void selectServer() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 		builder.setMessage("Select a server");
-		builder.setCancelable(false);
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
