@@ -104,8 +104,7 @@ public class KnockAction implements ActionListener {
 					houseplayer.sendPrivateText(message);
 				}
 			} else {
-				logger.debug("Invalid zone (" + zone.getName() + ") associated with "
-					+ mainZone.getName());
+				logger.debug("Invalid zone associated with " + mainZone.getName());
 			}
 		}
 
