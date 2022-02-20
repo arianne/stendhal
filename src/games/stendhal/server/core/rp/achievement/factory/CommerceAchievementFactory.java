@@ -23,7 +23,6 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.achievement.Achievement;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.BoughtNumberOfCondition;
