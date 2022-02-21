@@ -382,7 +382,7 @@ public class StendhalWebView {
 	 * Attempts to connect to client host.
 	 */
 	public void loadLogin() {
-		if (debugEnabled()) {
+		if (debugEnabled() && PreferencesActivity.getString("client_url").trim().equals("")) {
 			// debug builds support choosing between main & test server
 			selectServer();
 		} else {
