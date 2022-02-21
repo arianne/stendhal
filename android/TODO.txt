@@ -15,6 +15,7 @@ TODO:
 - create activity for about information
 - add credits to about information
 - switch to Log4j for logging (maybe)
+- use center of d-pad for setting position
 
 BUILD TODO:
 - script to download Android SDK
