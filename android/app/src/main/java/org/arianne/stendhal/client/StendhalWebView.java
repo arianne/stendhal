@@ -30,6 +30,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
@@ -185,6 +186,16 @@ public class StendhalWebView {
 					currentPage = PageId.OTHER;
 				}
 				Menu.get().updateButtons();
+
+				// only show d-pad on client screen
+				final DPad pad = DPad.getCurrentPad();
+				if (pad != null && PreferencesActivity.getBoolean("show_dpad", false)) {
+					if (isGameActive()) {
+						pad.show();
+					} else {
+						pad.hide();
+					}
+				}
 
 				DebugLog.debug("page id: " + currentPage);
 			}

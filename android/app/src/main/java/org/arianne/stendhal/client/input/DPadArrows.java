@@ -37,7 +37,7 @@ import org.arianne.stendhal.client.R;
  * TODO: Option to use joystick style d-pad. Currently setting "dpad_joy"
  *   is disabled in preferences manager.
  */
-public class DPadArrows implements DPad {
+public class DPadArrows extends DPad {
 
 	private static DPadArrows instance;
 
@@ -75,6 +75,9 @@ public class DPadArrows implements DPad {
 		for (final ArrowView av: arrows) {
 			layout.addView(av);
 		}
+
+		// hidden by default
+		hide();
 	}
 
 	public ConstraintLayout getLayout() {
@@ -155,12 +158,6 @@ public class DPadArrows implements DPad {
 		final int y = size.y - prefs.getInt("dpad_offset_y", 300);
 
 		setPosition(x, y);
-
-		if (prefs.getBoolean("show_dpad", false) && !prefs.getBoolean("dpad_joy", true)) {
-			setVisibility(View.VISIBLE);
-		} else {
-			setVisibility(View.INVISIBLE);
-		}
 
 		if (isVisible()) {
 			DebugLog.debug("DPadArrows: pos (" + getX() + "," + getY() + "), size ("

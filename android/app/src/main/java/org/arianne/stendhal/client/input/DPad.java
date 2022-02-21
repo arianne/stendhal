@@ -11,12 +11,13 @@
  ***************************************************************************/
 package org.arianne.stendhal.client.input;
 
+import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import marauroa.common.Pair;
 
 
-public interface DPad {
+public abstract class DPad {
 
 	public static enum Dir {
 		NONE,
@@ -26,11 +27,22 @@ public interface DPad {
 		DOWN;
 	}
 
+	private static DPad currentPad = null;
+
+
 	public abstract ConstraintLayout getLayout();
 
 	public abstract void setVisibility(final int vis);
 
 	public abstract boolean isVisible();
+
+	public void show() {
+		setVisibility(View.VISIBLE);
+	}
+
+	public void hide() {
+		setVisibility(View.GONE);
+	}
 
 	public abstract void setPosition(final int x, final int y);
 
@@ -39,4 +51,12 @@ public interface DPad {
 	public abstract Pair<Integer, Integer> getSize();
 
 	public abstract void onRefreshView();
+
+	public static void setCurrentPad(final DPad pad) {
+		currentPad = pad;
+	}
+
+	public static DPad getCurrentPad() {
+		return currentPad;
+	}
 }

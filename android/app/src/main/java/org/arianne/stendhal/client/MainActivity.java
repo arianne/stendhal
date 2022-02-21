@@ -19,6 +19,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.input.DPadArrows;
 import org.arianne.stendhal.client.input.DPadJoy;
 
@@ -51,8 +52,17 @@ public class MainActivity extends AppCompatActivity {
 			client = new StendhalWebView(this);
 
 			// initialize d-pads
-			layout.addView(DPadArrows.get().getLayout());
-			layout.addView(DPadJoy.get().getLayout());
+			final DPad arrowPad = DPadArrows.get();
+			final DPad joyPad = DPadJoy.get();
+
+			if (PreferencesActivity.getBoolean("dpad_joy", true)) {
+				DPad.setCurrentPad(joyPad);
+			} else {
+				DPad.setCurrentPad(arrowPad);
+			}
+
+			layout.addView(arrowPad.getLayout());
+			layout.addView(joyPad.getLayout());
 		} catch (final Exception e) {
 			e.printStackTrace();
 			DebugLog.error(e.toString());
@@ -115,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
 		DPadJoy.get().onRefreshView();
 	}
 
+	/**
+	 * Updates direction pad position when screen orientation changes.
+	 */
 	@Override
 	public void onConfigurationChanged(final Configuration config) {
 		super.onConfigurationChanged(config);

@@ -21,6 +21,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.arianne.stendhal.client.input.DPad;
+import org.arianne.stendhal.client.input.DPadArrows;
+import org.arianne.stendhal.client.input.DPadJoy;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
@@ -243,7 +246,24 @@ public class PreferencesActivity extends AppCompatActivity {
 
 		@Override
 		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
-			// this is handled in MainActivity.onConfigurationChanged
+			if (key.equals("show_dpad") || key.equals("dpad_joy")) {
+				// reset all d-pads states to hidden
+				DPadArrows.get().hide();
+				DPadJoy.get().hide();
+
+				if (getBoolean("dpad_joy", true)) {
+					DPad.setCurrentPad(DPadJoy.get());
+				} else {
+					DPad.setCurrentPad(DPadArrows.get());
+				}
+
+				// restore visible state
+				final DPad currentPad = DPad.getCurrentPad();
+				if (currentPad != null && StendhalWebView.isGameActive() && getBoolean("show_dpad", false)) {
+					currentPad.show();
+					currentPad.onRefreshView();
+				}
+			}
 		}
 
 		@Override

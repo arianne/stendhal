@@ -30,7 +30,7 @@ import org.arianne.stendhal.client.PreferencesActivity;
 import org.arianne.stendhal.client.R;
 
 
-public class DPadJoy implements DPad {
+public class DPadJoy extends DPad {
 
 	private static DPadJoy instance;
 
@@ -56,6 +56,9 @@ public class DPadJoy implements DPad {
 
 		outerButton = new OuterButton(ctx);
 		outerButton.addToLayout();
+
+		// hidden by default
+		hide();
 	}
 
 	public ConstraintLayout getLayout() {
@@ -108,12 +111,6 @@ public class DPadJoy implements DPad {
 		final int y = size.y - prefs.getInt("dpad_offset_y", 300);
 
 		setPosition(x, y);
-
-		if (prefs.getBoolean("show_dpad", false) && prefs.getBoolean("dpad_joy", true)) {
-			setVisibility(View.VISIBLE);
-		} else {
-			setVisibility(View.INVISIBLE);
-		}
 
 		if (isVisible()) {
 			DebugLog.debug("DPadJoy: pos (" + getX() + "," + getY() + "), size ("
