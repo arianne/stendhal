@@ -21,10 +21,9 @@
 	<CheckBoxPreference
 		android:key="dpad_joy"
 		android:defaultValue="true"
-		android:title="Joystick Style D-Pad"
+		android:title="Joystick Style D-Pad (experimental)"
 		android:summary="Use a joystick style directional pad."
 		android:dependency="show_dpad"
-		android:enabled="false"
 	/>
 
 	<EditTextPreference

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.arianne.stendhal.client.input.DPadArrows;
+import org.arianne.stendhal.client.input.DPadJoy;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			menu = new Menu(this);
 			client = new StendhalWebView(this);
-			layout.addView(DPadArrows.get().getLayout()); // initialize d-pad
+
+			// initialize d-pads
+			layout.addView(DPadArrows.get().getLayout());
+			layout.addView(DPadJoy.get().getLayout());
 		} catch (final Exception e) {
 			e.printStackTrace();
 			DebugLog.error(e.toString());
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onResume();
 
 		DPadArrows.get().onRefreshView();
+		DPadJoy.get().onRefreshView();
 	}
 
 	@Override
@@ -115,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onConfigurationChanged(config);
 
 		DPadArrows.get().onRefreshView();
+		DPadJoy.get().onRefreshView();
 	}
 
 	@Override

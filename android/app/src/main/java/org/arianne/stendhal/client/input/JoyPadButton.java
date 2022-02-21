@@ -11,32 +11,27 @@
  ***************************************************************************/
 package org.arianne.stendhal.client.input;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import android.content.Context;
+//import android.view.View;
+import android.widget.ImageView;
 
-import marauroa.common.Pair;
 
+abstract class JoyPadButton extends ImageView {
 
-public interface DPad {
-
-	public static enum Dir {
-		NONE,
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN;
+	public JoyPadButton(final Context ctx) {
+		super(ctx);
 	}
 
-	public abstract ConstraintLayout getLayout();
+	protected float getCenterX() {
+		return getX() + (getWidth() / 2);
+	}
 
-	public abstract void setVisibility(final int vis);
+	protected float getCenterY() {
+		return getY() + (getHeight() / 2);
+	}
 
-	public abstract boolean isVisible();
-
-	public abstract void setPosition(final int x, final int y);
-
-	public abstract Pair<Integer, Integer> getPosition();
-
-	public abstract Pair<Integer, Integer> getSize();
-
-	public abstract void onRefreshView();
+	protected void centerOn(final JoyPadButton parent) {
+		super.setX(parent.getCenterX() - (getWidth() / 2));
+		super.setY(parent.getCenterY() - (getHeight() / 2));
+	}
 }

@@ -156,7 +156,7 @@ public class DPadArrows implements DPad {
 
 		setPosition(x, y);
 
-		if (prefs.getBoolean("show_dpad", false)) {
+		if (prefs.getBoolean("show_dpad", false) && !prefs.getBoolean("dpad_joy", true)) {
 			setVisibility(View.VISIBLE);
 		} else {
 			setVisibility(View.INVISIBLE);
