@@ -39,6 +39,7 @@ public class DPadJoy extends DPad {
 	private static ConstraintLayout layout;
 
 	private static OuterButton outerButton;
+	private static int sensitivity;
 
 
 	public static DPadJoy get() {
@@ -56,6 +57,8 @@ public class DPadJoy extends DPad {
 
 		outerButton = new OuterButton(ctx);
 		outerButton.addToLayout();
+
+		setSensitivity(PreferencesActivity.getInt("joypad_sensitivity", 25));
 
 		// hidden by default
 		hide();
@@ -99,6 +102,10 @@ public class DPadJoy extends DPad {
 
 	public Pair<Integer, Integer> getSize() {
 		return new Pair<Integer, Integer>(getWidth(), getHeight());
+	}
+
+	public void setSensitivity(final int value) {
+		sensitivity = value;
 	}
 
 	public void onRefreshView() {
@@ -219,8 +226,15 @@ public class DPadJoy extends DPad {
 			final float offsetX = outerX - innerX;
 			final float offsetY = outerY - innerY;
 
-			// horizontal directions take precedence
-			if (Math.abs(offsetX) >= Math.abs(offsetY)) {
+			final int absX = (int) Math.abs(offsetX);
+			final int absY = (int) Math.abs(offsetY);
+
+			if (absX < sensitivity && absY < sensitivity) {
+				return DPad.Dir.NONE;
+			}
+
+			// horizontal directions take precedence if they are the same as vertical
+			if (absX >= absY) {
 				if (innerX < outerX) {
 					return DPad.Dir.LEFT;
 				} else if (innerX > outerX) {

@@ -263,6 +263,8 @@ public class PreferencesActivity extends AppCompatActivity {
 					currentPad.show();
 					currentPad.onRefreshView();
 				}
+			} else if (key.equals("joypad_sensitivity")) {
+				DPadJoy.get().setSensitivity(getInt("joypad_sensitivity", 25));
 			}
 		}
 

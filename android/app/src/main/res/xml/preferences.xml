@@ -27,6 +27,16 @@
   />
 
   <EditTextPreference
+    android:key="joypad_sensitivity"
+    android:inputType="numberDecimal"
+    android:digits="0123456789"
+    android:defaultValue="25"
+    android:title="Joypad Sensitivity"
+    android:summary="Threshold, in pixels, at which joypad will dispatch move event (lower = more sensitive)."
+    android:dependency="dpad_joy"
+  />
+
+  <EditTextPreference
     android:key="dpad_offset_x"
     android:inputType="numberDecimal"
     android:digits="0123456789"
