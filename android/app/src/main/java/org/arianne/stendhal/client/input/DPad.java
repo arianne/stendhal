@@ -13,6 +13,8 @@ package org.arianne.stendhal.client.input;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import marauroa.common.Pair;
+
 
 public interface DPad {
 
@@ -28,6 +30,10 @@ public interface DPad {
 	public abstract void setVisibility(final int vis);
 
 	public abstract void setPosition(final int x, final int y);
+
+	public abstract Pair<Integer, Integer> getPosition();
+
+	public abstract Pair<Integer, Integer> getSize();
 
 	public abstract void onRefreshView();
 }

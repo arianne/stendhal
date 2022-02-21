@@ -24,6 +24,8 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.Pair;
+import org.arianne.stendhal.client.DebugLog;
 import org.arianne.stendhal.client.MainActivity;
 import org.arianne.stendhal.client.PreferencesActivity;
 import org.arianne.stendhal.client.R;
@@ -103,6 +105,36 @@ public class DPadArrows implements DPad {
 		av.setY(y + 150);
 	}
 
+	private int getX() {
+		return (int) arrows.get(0).getX();
+	}
+
+	private int getY() {
+		return (int) arrows.get(2).getY();
+	}
+
+	public Pair<Integer, Integer> getPosition() {
+		return new Pair<Integer, Integer>(getX(), getY());
+	}
+
+	private int getWidth() {
+		final ArrowView aRight = arrows.get(1);
+		final int absX = ((int) aRight.getX()) + aRight.getWidth();
+
+		return absX - getX();
+	}
+
+	private int getHeight() {
+		final ArrowView aDown = arrows.get(3);
+		final int absY = ((int) aDown.getY()) + aDown.getHeight();
+
+		return absY - getY();
+	}
+
+	public Pair<Integer, Integer> getSize() {
+		return new Pair<Integer, Integer>(getWidth(), getHeight());
+	}
+
 	public void onRefreshView() {
 		final Point size = new Point();
 		final Display disp = MainActivity.get().getWindowManager().getDefaultDisplay();
@@ -119,6 +151,13 @@ public class DPadArrows implements DPad {
 		} else {
 			setVisibility(View.INVISIBLE);
 		}
+
+		DebugLog.debug("DPadArrows: pos (" + getX() + "," + getY() + "), size ("
+			+ getWidth() + "," + getHeight() + ")");
+		DebugLog.debug("DPadArrows: left arrow: x (" + arrows.get(0).getX() + "), width ("
+			+ arrows.get(0).getWidth() + ")");
+		DebugLog.debug("DPadArrows: down arrow: y (" + arrows.get(3).getY() + "), height ("
+			+ arrows.get(3).getHeight() + ")");
 	}
 
 
