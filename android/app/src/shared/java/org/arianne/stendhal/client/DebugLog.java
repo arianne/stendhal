@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class DebugLog {
 
+	private static File logsDir;
+
 	public static enum DebugLevel {
 		INFO,
 		WARN,
@@ -40,7 +42,7 @@ public class DebugLog {
 	}
 
 	public static void init(final File dir, final AppCompatActivity activity) {
-		// do nothing
+		logsDir = new File(dir.getPath() + "/logs");
 	}
 
 	public static void writeLine(final String text) {
@@ -76,6 +78,6 @@ public class DebugLog {
 	}
 
 	public static String getLogsDir() {
-		// do nothing
+		return logsDir.getPath();
 	}
 }
