@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<EditTextPreference
-		android:key="client_url"
-		android:inputType="text"
-		android:maxLines="1"
-		android:title="Client URL"
-		android:summary="Custom URL pointing to web client."
-	/>
+  <EditTextPreference
+    android:key="client_url"
+    android:inputType="text"
+    android:maxLines="1"
+    android:title="Client URL"
+    android:summary="Custom URL pointing to web client."
+  />
 
-	<CheckBoxPreference
-		android:key="show_dpad"
-		android:defaultValue="false"
-		android:title="Show D-Pad"
-		android:summary="Show on-screen directional pad."
-	/>
+  <CheckBoxPreference
+    android:key="show_dpad"
+    android:defaultValue="false"
+    android:title="Show D-Pad"
+    android:summary="Show on-screen directional pad."
+  />
 
-	<CheckBoxPreference
-		android:key="dpad_joy"
-		android:defaultValue="true"
-		android:title="Joystick Style D-Pad (experimental)"
-		android:summary="Use a joystick style directional pad."
-		android:dependency="show_dpad"
-	/>
+  <CheckBoxPreference
+    android:key="dpad_joy"
+    android:defaultValue="true"
+    android:title="Joystick Style D-Pad (experimental)"
+    android:summary="Use a joystick style directional pad."
+    android:dependency="show_dpad"
+  />
 
-	<EditTextPreference
-		android:key="dpad_offset_x"
-		android:inputType="numberDecimal"
-		android:digits="0123456789"
-		android:defaultValue="100"
-		android:title="D-Pad Offset X"
-		android:summary="Horizontal offset of directional pad (from left)."
-	/>
+  <EditTextPreference
+    android:key="dpad_offset_x"
+    android:inputType="numberDecimal"
+    android:digits="0123456789"
+    android:defaultValue="100"
+    android:title="D-Pad Offset X"
+    android:summary="Horizontal offset of directional pad (from left)."
+  />
 
-	<EditTextPreference
-		android:key="dpad_offset_y"
-		android:inputType="numberDecimal"
-		android:digits="0123456789"
-		android:defaultValue="300"
-		android:title="D-Pad Offset Y"
-		android:summary="Vertical offset of directional pad (from bottom)."
-	/>
+  <EditTextPreference
+    android:key="dpad_offset_y"
+    android:inputType="numberDecimal"
+    android:digits="0123456789"
+    android:defaultValue="300"
+    android:title="D-Pad Offset Y"
+    android:summary="Vertical offset of directional pad (from bottom)."
+  />
 
-	<CheckBoxPreference
-		android:key="title_music"
-		android:defaultValue="true"
-		android:title="Title Music"
-		android:summary="Play title screen music."
-	/>
+  <CheckBoxPreference
+    android:key="title_music"
+    android:defaultValue="true"
+    android:title="Title Music"
+    android:summary="Play title screen music."
+  />
 
-	<ListPreference
-		android:key="song_list"
-		android:dependency="title_music"
-		android:title="Songs"
-		android:entries="@array/titleMusic"
-		android:entryValues="@array/titleMusicId"
-	/>
+  <ListPreference
+    android:key="song_list"
+    android:dependency="title_music"
+    android:title="Songs"
+    android:entries="@array/titleMusic"
+    android:entryValues="@array/titleMusicId"
+  />
 
-	<CheckBoxPreference
-		android:key="map_touches"
-		android:defaultValue="false"
-		android:title="Remap Touches (experimental)"
-		android:summary="Map touches to mouse click events."
-	/>
+  <CheckBoxPreference
+    android:key="map_touches"
+    android:defaultValue="false"
+    android:title="Remap Touches (experimental)"
+    android:summary="Map touches to mouse click events."
+  />
 
-	<Preference
-		android:key="reset"
-		android:title="Restore Defaults"
-		android:summary="Restore all preferences default values."
-	/>
+  <Preference
+    android:key="reset"
+    android:title="Restore Defaults"
+    android:summary="Restore all preferences default values."
+  />
 
 </PreferenceScreen>
