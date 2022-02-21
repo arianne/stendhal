@@ -23,6 +23,7 @@ import android.os.Build;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -142,6 +143,10 @@ public class StendhalWebView {
 	}
 
 	private void initWebViewClient() {
+		// XXX: not sure setting WebChromClient is doing anything, was recommended to
+		//      fix touchmove events not registering
+		clientView.setWebChromeClient(new WebChromeClient());
+
 		clientView.setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
