@@ -29,6 +29,8 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.arianne.stendhal.client.sound.MusicPlayer;
+
 
 public class StendhalWebView {
 
@@ -156,6 +158,8 @@ public class StendhalWebView {
 			public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
 				DebugLog.debug("loading URL: " + url);
 
+				MusicPlayer.stopMusic();
+
 				super.onPageStarted(view, url, favicon);
 			}
 
@@ -167,6 +171,9 @@ public class StendhalWebView {
 					currentPage = PageId.WEBCLIENT;
 				} else if (url.equals("") || url.equals("about:blank")) {
 					currentPage = PageId.TITLE;
+					if (PreferencesActivity.getBoolean("title_music", true)) {
+						playTitleMusic();
+					}
 				} else {
 					currentPage = PageId.OTHER;
 				}
@@ -183,7 +190,7 @@ public class StendhalWebView {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
 				if (isGameActive() && event.getAction() == MotionEvent.ACTION_UP) {
-loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
+					loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
 
 					if (debugEnabled()) {
 						ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -379,12 +386,46 @@ loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'<
 		}
 	}
 
+	public static boolean onTitleScreen() {
+		return currentPage == PageId.TITLE;
+	}
+
 	public static boolean isGameActive() {
 		return currentPage == PageId.WEBCLIENT;
 	}
 
 	public static PageId getCurrentPageId() {
 		return currentPage;
+	}
+
+	public static void playTitleMusic(String musicId) {
+		if (musicId == null) {
+			musicId = PreferencesActivity.getString("song_list");
+		}
+
+		int id = R.raw.title_01;
+		switch (musicId) {
+			case "title_02":
+				id = R.raw.title_02;
+				break;
+			case "title_03":
+				id = R.raw.title_03;
+				break;
+			case "title_04":
+				id = R.raw.title_04;
+				break;
+			case "title_05":
+				id = R.raw.title_05;
+				break;
+		}
+
+		DebugLog.debug("playing music: " + musicId);
+
+		MusicPlayer.playMusic(id, true);
+	}
+
+	public static void playTitleMusic() {
+		playTitleMusic(null);
 	}
 
 	/**

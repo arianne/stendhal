@@ -45,6 +45,21 @@
 		android:summary="Vertical offset of directional pad (from bottom)."
 	/>
 
+	<CheckBoxPreference
+		android:key="title_music"
+		android:defaultValue="true"
+		android:title="Title Music"
+		android:summary="Play title screen music."
+	/>
+
+	<ListPreference
+		android:key="song_list"
+		android:dependency="title_music"
+		android:title="Songs"
+		android:entries="@array/titleMusic"
+		android:entryValues="@array/titleMusicId"
+	/>
+
 	<Preference
 		android:key="reset"
 		android:title="Restore Defaults"

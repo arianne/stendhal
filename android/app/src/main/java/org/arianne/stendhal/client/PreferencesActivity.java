@@ -14,10 +14,14 @@ package org.arianne.stendhal.client;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
 public class PreferencesActivity extends AppCompatActivity {
@@ -151,7 +155,12 @@ public class PreferencesActivity extends AppCompatActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.preferences);
 
+			initListeners();
+		}
+
+		private void initListeners() {
 			final PreferenceManager pm = getPreferenceManager();
+
 			final Preference reset = pm.findPreference("reset");
 			if (reset != null) {
 				reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -174,6 +183,50 @@ public class PreferencesActivity extends AppCompatActivity {
 				});
 			} else {
 				DebugLog.warn("preference \"reset\" not found");
+			}
+
+			final CheckBoxPreference title_music = (CheckBoxPreference) pm.findPreference("title_music");
+			if (title_music != null) {
+				title_music.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					public boolean onPreferenceChange(final Preference pref, final Object obj) {
+						// set music state as soon as preference is changed
+						if (StendhalWebView.onTitleScreen()) {
+							if (!((Boolean) obj)) {
+								MusicPlayer.stopMusic();
+							} else if (!MusicPlayer.isPlaying()) {
+								StendhalWebView.playTitleMusic();
+							}
+						}
+
+						return true;
+					}
+				});
+			}
+
+			final ListPreference song_list = (ListPreference) pm.findPreference("song_list");
+			if (song_list != null) {
+				// FIXME: not working in .xml config
+				final String default_song = "title_01";
+				song_list.setDefaultValue(default_song);
+				if (song_list.getValue() == null) {
+					// FIXME: is this working?
+					song_list.setValue(default_song);
+				}
+
+				song_list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					public boolean onPreferenceChange(final Preference pref, final Object obj) {
+						// set music state as soon as preference is changed
+						if (StendhalWebView.onTitleScreen()) {
+							DebugLog.debug("changing title music preference: " + (String) obj);
+
+							if (title_music.isChecked()) {
+								StendhalWebView.playTitleMusic((String) obj);
+							}
+						}
+
+						return true;
+					}
+				});
 			}
 		}
 

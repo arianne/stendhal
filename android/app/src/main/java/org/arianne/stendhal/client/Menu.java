@@ -163,6 +163,8 @@ public class Menu {
 			public void onClick(final View v) {
 				super.onClick(v);
 
+				// TODO: create proper about activity
+
 				String server_ver = "unavailable";
 				if (!(StendhalWebView.getCurrentPageId() == PageId.WEBCLIENT)) {
 					server_ver = "not connected";
@@ -172,7 +174,14 @@ public class Menu {
 
 				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
 				builder.setMessage("WebView client version: "
-					+ BuildConfig.VERSION_NAME + "\nServer version: " + server_ver);
+					+ BuildConfig.VERSION_NAME + "\nServer version: " + server_ver
+					+ "\n\nTitle Music:"
+					+ "\n- \"Treasure Hunter\": Tad Miller (TAD)"
+					+ "\n- \"Woodland Fantasy\": Matthew Pablo http://www.matthewpablo.com/"
+					+ "\n- \"Land of Fearless\": Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov"
+					+ "\n- \"Medieval: Rejoicing\": RandomMind"
+					+ "\n- \"Medieval: The Old Tower Inn\": RandomMind");
+
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, final int id) {
 						dialog.cancel();
