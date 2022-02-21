@@ -58,6 +58,8 @@ public class StendhalWebView {
 	private long timestampTouchUp = 0;
 	private long timestampTouchUpPrev = 0;
 	private int tapCount = 0;
+	// denotes previous touch was remapped to mouse event
+	private boolean touchOverridden = false;
 
 	public enum PageId {
 		TITLE,
@@ -185,53 +187,55 @@ public class StendhalWebView {
 	}
 
 	private void initTouchHandler() {
-		/*
 		clientView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(final View view, final MotionEvent event) {
-				if (isGameActive() && event.getAction() == MotionEvent.ACTION_UP) {
-					loadUrl("javascript:window.JSI.fire('<html>'+document.activeElement.innerHTML+'</html>');");
-
-					if (debugEnabled()) {
-						ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-						executorService.schedule(new Runnable() {
-							@Override
-							public void run() {
-								DebugLog.notify(currentHTML, (Activity) ctx);
-							}
-						}, 800, TimeUnit.MILLISECONDS);
-					}
+				if (touchOverridden) {
+					// reset touch event state
+					touchOverridden = false;
+					return false;
 				}
-				*/
 
-				/*
-				if (isGameActive()) {
-					switch (event.getAction()) {
+				final MotionEvent.PointerProperties[] props = {new MotionEvent.PointerProperties()};
+				event.getPointerProperties(0, props[0]);
+
+				if (isGameActive() && PreferencesActivity.getBoolean("map_touches", false)
+						&& (props[0].toolType == MotionEvent.TOOL_TYPE_FINGER
+							|| props[0].toolType == MotionEvent.TOOL_TYPE_STYLUS)) {
+					Integer action = event.getAction();
+
+					/*
+					switch (action) {
 						case MotionEvent.ACTION_DOWN:
-							tapCount++;
+							action = MotionEvent.ACTION_BUTTON_PRESS;
 							break;
 						case MotionEvent.ACTION_UP:
-							timestampTouchUpPrev = timestampTouchUp;
-							timestampTouchUp = System.currentTimeMillis();
-
-							if (tapCount > 1) {
-								tapCount = 0;
-								if (timestampTouchUp - timestampTouchUpPrev <= doubleTapThreshold) {
-									logger.debug("consumed double-tap event");
-									// disables double-tap zoom
-									// FIXME: need a workaround if double-taps should be used in game
-									return true;
-								}
-							}
-
+							action = MotionEvent.ACTION_BUTTON_RELEASE;
 							break;
 					}
+					*/
+
+					DebugLog.debug("mapping touch to mouse event");
+
+					props[0].toolType = MotionEvent.TOOL_TYPE_MOUSE;
+
+					final MotionEvent.PointerCoords[] coords = {new MotionEvent.PointerCoords()};
+					event.getPointerCoords(0, coords[0]);
+
+					touchOverridden = true;
+
+					view.dispatchTouchEvent(MotionEvent.obtain(event.getDownTime(),
+						event.getEventTime(), event.getAction(), event.getPointerCount(), props,
+						coords, event.getMetaState(), MotionEvent.BUTTON_PRIMARY,
+						event.getXPrecision(), event.getYPrecision(), event.getDeviceId(),
+						event.getEdgeFlags(), event.getSource(), event.getFlags()));
+
+					return true; // consume old event
 				}
 
 				return false;
 			}
 		});
-		*/
 	}
 
 	private void initKeyboardHandler() {

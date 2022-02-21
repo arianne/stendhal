@@ -60,6 +60,13 @@
 		android:entryValues="@array/titleMusicId"
 	/>
 
+	<CheckBoxPreference
+		android:key="map_touches"
+		android:defaultValue="false"
+		android:title="Remap Touches (experimental)"
+		android:summary="Map touches to mouse click events."
+	/>
+
 	<Preference
 		android:key="reset"
 		android:title="Restore Defaults"
