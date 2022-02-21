@@ -392,6 +392,8 @@ public class StendhalWebView {
 		}
 
 		currentPage = PageId.OTHER;
+		// hide menu after exiting title screen
+		Menu.get().hide();
 	}
 
 	/**

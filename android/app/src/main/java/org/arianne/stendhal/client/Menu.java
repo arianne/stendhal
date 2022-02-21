@@ -116,6 +116,8 @@ public class Menu {
 		btn_title = (Button) activity.findViewById(R.id.btn_title);
 		btn_title.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
+				nav.setVisibility(View.GONE);
+
 				Notifier.get().showPrompt("Return to title screen?",
 					new Notifier.Action() {
 						protected void onCall() {
@@ -133,6 +135,8 @@ public class Menu {
 		btn_reload = (Button) activity.findViewById(R.id.btn_reload);
 		btn_reload.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
+				nav.setVisibility(View.GONE);
+
 				Notifier.get().showPrompt("Reload page?",
 					new Notifier.Action() {
 						@Override
@@ -205,7 +209,7 @@ public class Menu {
 
 	private class ClickListener implements View.OnClickListener {
 		public void onClick(final View v) {
-			if (StendhalWebView.getCurrentPageId() != PageId.TITLE) {
+			if (!StendhalWebView.onTitleScreen()) {
 				nav.setVisibility(View.GONE);
 			}
 		}
