@@ -21,7 +21,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.arianne.stendhal.client.input.DPadArrows;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
@@ -244,9 +243,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
 		@Override
 		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
-			if (key.equals("show_dpad")) {
-				DPadArrows.get().onRefreshView();
-			}
+			// this is handled in MainActivity.onConfigurationChanged
 		}
 
 		@Override
