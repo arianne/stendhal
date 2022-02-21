@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.arianne.stendhal.client.input;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -23,6 +23,10 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.arianne.stendhal.client.MainActivity;
+import org.arianne.stendhal.client.PreferencesActivity;
+import org.arianne.stendhal.client.R;
 
 
 /**

@@ -19,6 +19,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.arianne.stendhal.client.input.DPad;
+
 
 public class MainActivity extends AppCompatActivity {
 

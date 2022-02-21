@@ -21,6 +21,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
