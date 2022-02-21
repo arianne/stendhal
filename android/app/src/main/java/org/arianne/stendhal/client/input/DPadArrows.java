@@ -87,6 +87,16 @@ public class DPadArrows implements DPad {
 		}
 	}
 
+	public boolean isVisible() {
+		for (final ArrowView av: arrows) {
+			if (av.getVisibility() != View.VISIBLE) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public void setPosition(final int x, final int y) {
 		ArrowView av = arrows.get(0);
 		av.setX(x);
@@ -152,12 +162,14 @@ public class DPadArrows implements DPad {
 			setVisibility(View.INVISIBLE);
 		}
 
-		DebugLog.debug("DPadArrows: pos (" + getX() + "," + getY() + "), size ("
-			+ getWidth() + "," + getHeight() + ")");
-		DebugLog.debug("DPadArrows: left arrow: x (" + arrows.get(0).getX() + "), width ("
-			+ arrows.get(0).getWidth() + ")");
-		DebugLog.debug("DPadArrows: down arrow: y (" + arrows.get(3).getY() + "), height ("
-			+ arrows.get(3).getHeight() + ")");
+		if (isVisible()) {
+			DebugLog.debug("DPadArrows: pos (" + getX() + "," + getY() + "), size ("
+				+ getWidth() + "," + getHeight() + ")");
+			DebugLog.debug("DPadArrows: left arrow: x (" + arrows.get(0).getX() + "), width ("
+				+ arrows.get(0).getWidth() + ")");
+			DebugLog.debug("DPadArrows: down arrow: y (" + arrows.get(3).getY() + "), height ("
+				+ arrows.get(3).getHeight() + ")");
+		}
 	}
 
 

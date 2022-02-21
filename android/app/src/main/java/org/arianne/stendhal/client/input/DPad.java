@@ -29,6 +29,8 @@ public interface DPad {
 
 	public abstract void setVisibility(final int vis);
 
+	public abstract boolean isVisible();
+
 	public abstract void setPosition(final int x, final int y);
 
 	public abstract Pair<Integer, Integer> getPosition();
