@@ -16,6 +16,8 @@ TODO:
 - add credits to about information
 - switch to Log4j for logging (maybe)
 - use center of d-pad for setting position
+- d-pads need to be different sizes for different resolutions
+  - either use unique PNGs or convert to scalable SVGs
 
 BUILD TODO:
 - script to download Android SDK
