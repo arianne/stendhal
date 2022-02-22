@@ -264,6 +264,9 @@ export class ItemContainerImplementation {
 	private onTouchEnd(evt: TouchEvent) {
 		// ANDROID NOTE: "touchend" event also dispatches "mouseup"
 
+		// override default "mouseup" event
+		evt.preventDefault();
+
 		if (!this.touchDragActive) {
 			this.timestampTouchEnd = +new Date();
 			this.onMouseUp(evt);
