@@ -1117,7 +1117,7 @@
 			<arg value="srcjs/"/>
 			<arg value="data/"/>
 			<arg value="tiled/"/>
-			<arg value="java,xml,js,ts,xsd,lua,py"/>
+			<arg value="java,xml,js,ts,xsd,lua,py,css"/>
 		</java>
 	</target> <!-- cleanwhitespace -->
 
