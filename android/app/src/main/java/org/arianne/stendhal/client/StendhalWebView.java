@@ -30,6 +30,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
+//import .js.JSInterface;
 import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
