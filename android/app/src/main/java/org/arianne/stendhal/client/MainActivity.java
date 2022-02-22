@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 	private static MainActivity instance;
 
 	private ConstraintLayout layout;
-	private StendhalWebView client;
+	private ClientView client;
 	private Menu menu;
 
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 			setContentView(R.layout.activity_main);
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			menu = new Menu(this);
-			client = new StendhalWebView();
+			client = (ClientView) findViewById(R.id.clientWebView);
 
 			// initialize d-pads
 			final DPad arrowPad = DPadArrows.get();
@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
 			layout.addView(arrowPad.getLayout());
 			layout.addView(joyPad.getLayout());
+
+			client.loadTitleScreen();
 		} catch (final Exception e) {
 			e.printStackTrace();
 			DebugLog.error(e.toString());

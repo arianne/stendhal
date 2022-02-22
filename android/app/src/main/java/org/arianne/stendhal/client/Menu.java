@@ -84,7 +84,7 @@ public class Menu {
 	}
 
 	public void updateButtons() {
-		final PageId page = StendhalWebView.getCurrentPageId();
+		final PageId page = ClientView.getCurrentPageId();
 
 		btn_connect.setVisibility(View.GONE);
 		btn_title.setVisibility(View.GONE);
@@ -119,7 +119,7 @@ public class Menu {
 				Notifier.get().showPrompt("Return to title screen?",
 					new Notifier.Action() {
 						protected void onCall() {
-							StendhalWebView.get().loadTitleScreen();
+							ClientView.get().loadTitleScreen();
 							updateButtons();
 						}
 					},
@@ -139,7 +139,7 @@ public class Menu {
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {
-							StendhalWebView.get().reload();
+							ClientView.get().reload();
 						}
 					},
 					new Notifier.Action() {
@@ -168,7 +168,7 @@ public class Menu {
 				// TODO: create proper about activity
 
 				String server_ver = "unavailable";
-				if (!(StendhalWebView.getCurrentPageId() == PageId.WEBCLIENT)) {
+				if (!(ClientView.getCurrentPageId() == PageId.WEBCLIENT)) {
 					server_ver = "not connected";
 				}
 
@@ -207,7 +207,7 @@ public class Menu {
 
 	private class ClickListener implements View.OnClickListener {
 		public void onClick(final View v) {
-			if (!StendhalWebView.onTitleScreen()) {
+			if (!ClientView.onTitleScreen()) {
 				nav.setVisibility(View.GONE);
 			}
 		}

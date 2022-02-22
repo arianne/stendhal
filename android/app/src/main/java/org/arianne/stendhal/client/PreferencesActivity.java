@@ -193,11 +193,11 @@ public class PreferencesActivity extends AppCompatActivity {
 				title_music.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
-						if (StendhalWebView.onTitleScreen()) {
+						if (ClientView.onTitleScreen()) {
 							if (!((Boolean) obj)) {
 								MusicPlayer.stopMusic();
 							} else if (!MusicPlayer.isPlaying()) {
-								StendhalWebView.playTitleMusic();
+								ClientView.playTitleMusic();
 							}
 						}
 
@@ -219,11 +219,11 @@ public class PreferencesActivity extends AppCompatActivity {
 				song_list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
-						if (StendhalWebView.onTitleScreen()) {
+						if (ClientView.onTitleScreen()) {
 							DebugLog.debug("changing title music preference: " + (String) obj);
 
 							if (title_music.isChecked()) {
-								StendhalWebView.playTitleMusic((String) obj);
+								ClientView.playTitleMusic((String) obj);
 							}
 						}
 
@@ -259,7 +259,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
 				// restore visible state
 				final DPad currentPad = DPad.getCurrentPad();
-				if (currentPad != null && StendhalWebView.isGameActive() && getBoolean("show_dpad", false)) {
+				if (currentPad != null && ClientView.isGameActive() && getBoolean("show_dpad", false)) {
 					currentPad.show();
 					currentPad.onRefreshView();
 				}

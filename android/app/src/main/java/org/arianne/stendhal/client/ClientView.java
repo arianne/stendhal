@@ -41,6 +41,8 @@ import org.arianne.stendhal.client.sound.MusicPlayer;
 
 public class ClientView extends WebView {
 
+	private static ClientView instance;
+
 	private ImageView splash;
 
 	//private InputMethodManager imm;
@@ -55,6 +57,13 @@ public class ClientView extends WebView {
 	// denotes previous touch was remapped to mouse event
 	private boolean touchOverridden = false;
 
+
+	/**
+	 * Retrieves the static instance.
+	 */
+	public static ClientView get() {
+		return instance;
+	}
 
 	public ClientView(final Context ctx) {
 		super(ctx);
