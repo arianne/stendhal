@@ -37,6 +37,8 @@ stendhal.main = {
 	zoneFile: null,
 	loaded: false,
 
+	argv: URLSearchParams,
+
 	onDataMap: function(data) {
 		var zoneinfo = {};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
@@ -46,13 +48,53 @@ stendhal.main = {
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
 
+	initTheme: function() {
+		let theme = argv.get("theme");
+
+		switch (theme) {
+			case "wood":
+				// this is the default (panelwood003.jpg)
+				theme = null;
+				break;
+			case "wood2":
+				theme = "panelwood006.jpg";
+				break;
+			case "aubergine":
+				theme = "panel_aubergine_001.png";
+				break;
+			case "stone":
+				theme = "paneldrock048.jpg";
+				break;
+			case "metal":
+				theme = "panelmetal003.gif";
+				break;
+			case "brick":
+				theme = "panel_brick_brown_001.png";
+				break;
+			case "honeycomb":
+				theme = "panel_honeycomb_001.png";
+				break;
+			case "parquet":
+				theme = "panel_parquet_brown_001.png";
+				break;
+			case "tile":
+				theme = "panel_tile_aqua_001.png";
+				break;
+			default:
+				theme = null;
+				break;
+		}
+
+		if (theme != null && typeof(theme) !== "undefined" && theme !== "") {
+			const bg = document.querySelector(".background");
+			bg.style.setProperty("background", "url(/data/gui/" + theme + ")");
+		}
+	},
 
 	/**
 	 * register marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers: function() {
-		const argv = (new URL(document.location)).searchParams;
-
 		marauroa.clientFramework.onDisconnect = function(reason, error){
 			Chat.log("error", "Disconnected: " + error);
 		};
@@ -199,6 +241,8 @@ stendhal.main = {
 	 * starts the Stendhal web client and connects to the Stendhal server.
 	 */
 	startup: function() {
+		argv = (new URL(document.location)).searchParams;
+
 		stendhal.main.devWarning();
 
 		new DesktopUserInterfaceFactory().create();
@@ -206,6 +250,7 @@ stendhal.main = {
 		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		Chat.log("client", "Client loaded. Connecting...");
 
+		stendhal.main.initTheme();
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
