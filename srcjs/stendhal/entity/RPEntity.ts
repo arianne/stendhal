@@ -26,7 +26,7 @@ var HEALTH_BAR_HEIGHT = 6;
 
 
 export class RPEntity extends ActiveEntity {
-	
+
 	override zIndex = 8000;
 	drawY = 0;
 	spritePath = "";

@@ -75,7 +75,7 @@ export class Entity extends RPObject {
  	 * Map descriptive command names to the real commands
 	 */
 	actionAliasToAction(actionAlias: string) {
-		var actionAliases: { 
+		var actionAliases: {
 			[key: string]: any;
 		}  = {
 			"look_closely" : "use",
@@ -214,4 +214,3 @@ export class Entity extends RPObject {
 		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
 }
-

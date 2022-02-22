@@ -12,7 +12,7 @@
 import { Entity } from "./Entity";
 
 export class GameBoard extends Entity {
-	
+
 	override minimapShow = false;
 	override zIndex = 100;
 

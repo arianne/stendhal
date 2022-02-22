@@ -16,7 +16,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 export class Door extends Portal {
-	
+
 	override zIndex = 5000;
 
 	override draw(ctx: CanvasRenderingContext2D) {

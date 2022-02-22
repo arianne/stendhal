@@ -17,7 +17,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 export class Corpse extends Entity {
-	
+
 	override minimapShow = false;
 	override zIndex = 5500;
 	autoOpenedAlready = false;
