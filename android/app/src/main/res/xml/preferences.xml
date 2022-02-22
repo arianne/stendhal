@@ -9,6 +9,7 @@
     android:maxLines="1"
     android:title="Client URL"
     android:summary="Custom URL pointing to web client."
+    android:selectAllOnFocus="true"
   />
 
   <CheckBoxPreference
@@ -34,6 +35,7 @@
     android:title="Joypad Sensitivity"
     android:summary="Threshold, in pixels, at which joypad will dispatch move event (lower = more sensitive)."
     android:dependency="dpad_joy"
+    android:selectAllOnFocus="true"
   />
 
   <EditTextPreference
@@ -44,6 +46,7 @@
     android:title="D-Pad Offset X"
     android:summary="Horizontal offset of directional pad (from left)."
     android:dependency="show_dpad"
+    android:selectAllOnFocus="true"
   />
 
   <EditTextPreference
@@ -54,6 +57,7 @@
     android:title="D-Pad Offset Y"
     android:summary="Vertical offset of directional pad (from bottom)."
     android:dependency="show_dpad"
+    android:selectAllOnFocus="true"
   />
 
   <CheckBoxPreference
