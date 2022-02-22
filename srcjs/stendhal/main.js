@@ -51,6 +51,7 @@ stendhal.main = {
 	 * register marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers: function() {
+		const argv = (new URL(document.location)).searchParams;
 
 		marauroa.clientFramework.onDisconnect = function(reason, error){
 			Chat.log("error", "Disconnected: " + error);
@@ -69,17 +70,21 @@ stendhal.main = {
 		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
-			var name = null;
+			let name = null;
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
 			} else {
-				name = marauroa.util.first(characters)["a"]["name"];
-				var admin = 0;
-				for (var i in characters) {
-					if (characters.hasOwnProperty(i)) {
-						if (characters[i]["a"]["adminlevel"] > admin) {
-							admin = characters[i]["a"]["adminlevel"];
-							name = characters[i]["a"]["name"];
+				name = argv.get("char");
+
+				if (name == null || typeof(name) === "undefined" || name === "") {
+					name = marauroa.util.first(characters)["a"]["name"];
+					var admin = 0;
+					for (var i in characters) {
+						if (characters.hasOwnProperty(i)) {
+							if (characters[i]["a"]["adminlevel"] > admin) {
+								admin = characters[i]["a"]["adminlevel"];
+								name = characters[i]["a"]["name"];
+							}
 						}
 					}
 				}
