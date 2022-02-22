@@ -1108,20 +1108,36 @@
 	</target>
 
 	<target name="cleanwhitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+
 		<java classname="games.stendhal.tools.CleanWhitespace">
 			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${build_stendhaltools}" />
 			</classpath>
-			<arg value="src/"/>
-			<arg value="tests/"/>
-			<arg value="srcjs/"/>
-			<arg value="data/"/>
-			<arg value="tiled/"/>
-			<arg value="java,xml,js,ts,xsd,lua,py,css"/>
+			<arg value="src/" />
+			<arg value="tests/" />
+			<arg value="java,xml,lua" />
 		</java>
+
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}" />
+			</classpath>
+			<arg value="srcjs/" />
+			<arg value="js,ts,css" />
+		</java>
+
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}" />
+			</classpath>
+			<arg value="data/" />
+			<arg value="tiled/" />
+			<arg value="xml,xsd,lua,py" />
+		</java>
+
 	</target> <!-- cleanwhitespace -->
 
-  <target name="clean_whitespace" depends="cleanwhitespace" />
+	<target name="clean_whitespace" depends="cleanwhitespace" />
 
 	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
 	<target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
