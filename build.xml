@@ -1119,7 +1119,9 @@
 			<arg value="tiled/"/>
 			<arg value="java,xml,js,ts,xsd,lua,py"/>
 		</java>
-	</target>
+	</target> <!-- cleanwhitespace -->
+
+  <target name="clean_whitespace" depends="cleanwhitespace" />
 
 	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
 	<target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
