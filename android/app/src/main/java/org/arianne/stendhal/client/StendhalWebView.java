@@ -24,11 +24,8 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import androidx.appcompat.app.AppCompatActivity;
 
 //import .js.JSInterface;
 import org.arianne.stendhal.client.input.DPad;
@@ -51,8 +48,7 @@ public class StendhalWebView {
 	private String clientUrlSuffix = "client";
 
 	private final Context ctx;
-	private WebView clientView;
-	private ImageView splash;
+	private ClientView clientView;
 	//private InputMethodManager imm;
 
 	//private String currentHTML;
@@ -72,11 +68,9 @@ public class StendhalWebView {
 	public StendhalWebView(final Context ctx) {
 		instance = this;
 		this.ctx = ctx;
-		final AppCompatActivity mainActivity = (AppCompatActivity) ctx;
 
 		// FIXME: need to manually initialize WebView to override onCreateInputConnection
-		clientView = (WebView) mainActivity.findViewById(R.id.clientWebView);
-		clientView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+		clientView = (ClientView) MainActivity.get().findViewById(R.id.clientWebView);
 		/*
 		clientView = new WebView(mainActivity) {
 			@Override
@@ -87,27 +81,10 @@ public class StendhalWebView {
 		};
 		*/
 
-		splash = (ImageView) mainActivity.findViewById(R.id.splash);
-		splash.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
 			clientView.setWebContentsDebuggingEnabled(true);
 		}
-
-		final WebSettings viewSettings = clientView.getSettings();
-
-		viewSettings.setJavaScriptEnabled(true);
-
-		// keep elements in position in portrait mode
-		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);// <-- SINGLE_COLUMN deprecated
-		viewSettings.setLoadWithOverviewMode(true);
-		viewSettings.setUseWideViewPort(true);
-
-		// disable zoom
-		viewSettings.setSupportZoom(false);
-		viewSettings.setBuiltInZoomControls(false);
-		viewSettings.setDisplayZoomControls(false);
 
 		/*
 		clientView.addJavascriptInterface(new JSInterface() {
@@ -133,9 +110,7 @@ public class StendhalWebView {
 	 * Shows initial splash screen.
 	 */
 	public void loadTitleScreen() {
-		splash.setImageResource(R.drawable.splash);
-		loadUrl("about:blank");
-		Menu.get().show();
+		clientView.loadTitleScreen();
 	}
 
 	private void initWebViewClient() {
@@ -365,7 +340,7 @@ public class StendhalWebView {
 
 	private void onSelectServer() {
 		// remove splash image
-		splash.setImageResource(android.R.color.transparent);
+		clientView.setSplashResource(android.R.color.transparent);
 
 		final String custom_page = checkCustomServer();
 		if (custom_page != null) {
