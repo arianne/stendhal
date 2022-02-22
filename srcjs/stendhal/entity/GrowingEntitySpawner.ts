@@ -54,7 +54,17 @@ export class GrowingEntitySpawner extends Entity {
 	override draw(ctx: CanvasRenderingContext2D) {
 		var localX = this["x"] * 32;
 		var localY = this["y"] * 32;
-		var image = stendhal.data.sprites.get("/data/sprites/" + this["class"] + ".png");
+
+		// FIXME:
+		//   temporary fix, problem lies higher up
+		//   appears to only affect button_mushroom_grower
+		//   could be issue in marauroa
+		let class_name = this["class"];
+		if (class_name.includes(" ")) {
+			class_name = class_name.replace(" ", "_");
+		}
+
+		var image = stendhal.data.sprites.get("/data/sprites/" + class_name + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
 			var drawHeight = image.height / count;
