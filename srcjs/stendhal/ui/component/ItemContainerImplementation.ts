@@ -24,11 +24,18 @@ export class ItemContainerImplementation {
 	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
-	private longTouchDuration = 300;
-	private timestampTouchStart = 0;
-	private timestampTouchEnd = 0;
-	private touchDragActive = false;
 	private dragData: DataTransfer|null = null;
+
+	/* touch handling */
+
+	// duration indicating long touch
+	private longTouchDuration = 300;
+	// timestamp of touch start
+	private timestampTouchStart = 0;
+	// timestamp of touch end
+	private timestampTouchEnd = 0;
+	// indicates drag event using touch is active
+	private touchDragActive = false;
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -134,7 +141,7 @@ export class ItemContainerImplementation {
 
 	private onDragOver(event: DragEvent) {
 		event.preventDefault();
-		event.dataTransfer!.dropEffect = "move";
+		event.dataTransfer!.dropEffect = "move"; // FIXME: dropEffect is null for touch events
 		return false;
 	}
 
@@ -232,14 +239,31 @@ export class ItemContainerImplementation {
 		}
 	}
 
-	onTouchStart(evt: TouchEvent) {
-		// FIXME: how to temporarily disable scrolling
-		//evt.preventDefault();
-		this.onMouseDown(evt);
-		this.timestampTouchStart = this.timestampMouseDown;
+	/**
+	 * Event handler when touch event starts.
+	 *
+	 * @param evt
+	 *     The touch event.
+	 */
+	private onTouchStart(evt: TouchEvent) {
+		// ANDROID NOTE: "touchstart" event also dispatches "mousedown"
+		// don't override default "mousedown" event
+
+		//this.onMouseDown(evt);
+		//this.timestampTouchStart = this.timestampMouseDown;
+
+		this.timestampTouchStart = +new Date();
 	}
 
-	onTouchEnd(evt: TouchEvent) {
+	/**
+	 * Event handler when touch event ends.
+	 *
+	 * @param evt
+	 *     The touch event.
+	 */
+	private onTouchEnd(evt: TouchEvent) {
+		// ANDROID NOTE: "touchend" event also dispatches "mouseup"
+
 		if (!this.touchDragActive) {
 			this.timestampTouchEnd = +new Date();
 			this.onMouseUp(evt);
@@ -250,7 +274,13 @@ export class ItemContainerImplementation {
 		}
 	}
 
-	onTouchMove(evt: TouchEvent) {
+	/**
+	 * Event handler when touch drag occurs.
+	 *
+	 * @param evt
+	 *     The touch event.
+	 */
+	private onTouchMove(evt: TouchEvent) {
 		if (this.touchDragActive) {
 			this.dispatchEventOnTouchTarget(evt,
 				new DragEvent("dragover", {dataTransfer: this.dragData}));
@@ -264,8 +294,14 @@ export class ItemContainerImplementation {
 		this.touchDragActive = true;
 	}
 
-	onTouchCancel(evt: TouchEvent) {
+	/**
+	 * Event handler when touch event is cancelled.
+	 *
+	 * @param evt
+	 *     The touch event.
+	 */
+	private onTouchCancel(evt: TouchEvent) {
 		// DEBUG:
-		console.log(evt.type + " event");
+		console.log("onTouchCancel: " + evt.type);
 	}
 }
