@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 			setContentView(R.layout.activity_main);
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			menu = new Menu(this);
-			client = new StendhalWebView(this);
+			client = new StendhalWebView();
 
 			// initialize d-pads
 			final DPad arrowPad = DPadArrows.get();
