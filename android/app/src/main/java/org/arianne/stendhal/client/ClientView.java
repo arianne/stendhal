@@ -19,12 +19,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-//import android.text.InputType;
 import android.util.AttributeSet;
-//import android.view.inputmethod.BaseInputConnection;
-//import android.view.inputmethod.EditorInfo;
-//import android.view.inputmethod.InputMethodManager;
-//import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputConnection;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,8 +43,6 @@ public class ClientView extends WebView {
 	private static ClientView instance;
 
 	private ImageView splash;
-
-	//private InputMethodManager imm;
 
 	private final String defaultServer = "https://stendhalgame.org/";
 	private String clientUrlSuffix = "client";
@@ -111,7 +108,6 @@ public class ClientView extends WebView {
 
 		initWebViewClient();
 		initTouchHandler();
-		initKeyboardHandler();
 		initJSInterface();
 	}
 
@@ -225,18 +221,25 @@ public class ClientView extends WebView {
 		});
 	}
 
-	private void initKeyboardHandler() {
-		// FIXME: need to override onCreateInputConnection
-		//imm = (InputMethodManager) MainActivity.get().getSystemService(Context.INPUT_METHOD_SERVICE);
+	@Override
+	public InputConnection onCreateInputConnection(final EditorInfo outAttrs) {
+		// allows capturing soft keyboard events
+		return new BaseInputConnection(this, false);
+	}
 
-		setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(final View view, final int keyCode, final KeyEvent event) {
-				// FIXME: cannot catch soft keyboard events without overriding WebView.onCreateInputConnection
+	@Override
+	public boolean dispatchKeyEvent(final KeyEvent event) {
+		final boolean ret = super.dispatchKeyEvent(event);
 
-				return false;
-			}
-		});
+		// hide keyboard when "enter" pressed
+		if (isGameActive() && event.getAction() == KeyEvent.ACTION_UP
+				&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+			((InputMethodManager) MainActivity.get()
+				.getSystemService(Context.INPUT_METHOD_SERVICE))
+				.hideSoftInputFromWindow(this.getWindowToken(), 0);
+		}
+
+		return ret;
 	}
 
 	private void initJSInterface() {
@@ -249,14 +252,6 @@ public class ClientView extends WebView {
 		}, "JSI");
 		*/
 	}
-
-	/*
-	@Override
-	public InputConnection onCreateInputConnection(final EditorInfo outAttrs) {
-		outAttrs.inputType = InputType.TYPE_NULL;
-		return new BaseInputConnection(getView(), false);
-	}
-	*/
 
 	/**
 	 * Shows initial title screen.

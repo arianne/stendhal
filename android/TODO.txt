@@ -1,7 +1,6 @@
 
 TODO:
 - show input preview when typing
-- hide soft keyboard when Enter pressed
 - scale page to fit inside view
 - create menu when back pressed:
   - take screenshot
