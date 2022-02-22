@@ -284,13 +284,11 @@ export class ItemContainerImplementation {
 	 *     The touch event.
 	 */
 	private onTouchMove(evt: TouchEvent) {
+		evt.preventDefault();
+
 		if (this.touchDragActive) {
 			this.dispatchEventOnTouchTarget(evt,
 				new DragEvent("dragover", {dataTransfer: this.dragData}));
-		} else if (this.dragData === null) {
-			// in case default touch didn't occur
-			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("dragstart", {dataTransfer: this.dragData}));
 		}
 
 		// the first move is used to pick up the item
