@@ -43,6 +43,7 @@
     android:defaultValue="100"
     android:title="D-Pad Offset X"
     android:summary="Horizontal offset of directional pad (from left)."
+    android:dependency="show_dpad"
   />
 
   <EditTextPreference
@@ -52,6 +53,7 @@
     android:defaultValue="300"
     android:title="D-Pad Offset Y"
     android:summary="Vertical offset of directional pad (from bottom)."
+    android:dependency="show_dpad"
   />
 
   <CheckBoxPreference
