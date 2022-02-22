@@ -87,6 +87,8 @@ public class ClientView extends WebView {
 	}
 
 	private void onInit() {
+		instance = this;
+
 		setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
 		final WebSettings viewSettings = getSettings();
