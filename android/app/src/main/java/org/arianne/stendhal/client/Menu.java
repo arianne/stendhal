@@ -20,8 +20,6 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toolbar;
 
-import org.arianne.stendhal.client.StendhalWebView.PageId;
-
 
 public class Menu {
 

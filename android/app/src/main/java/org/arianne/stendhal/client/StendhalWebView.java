@@ -64,12 +64,6 @@ public class StendhalWebView {
 	// denotes previous touch was remapped to mouse event
 	private boolean touchOverridden = false;
 
-	public enum PageId {
-		TITLE,
-		WEBCLIENT,
-		OTHER;
-	}
-
 
 	public static StendhalWebView get() {
 		return instance;
