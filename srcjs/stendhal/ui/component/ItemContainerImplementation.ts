@@ -63,9 +63,12 @@ export class ItemContainerImplementation {
 			e.addEventListener("mouseup", (event: MouseEvent) => {
 				this.onMouseUp(event)
 			});
+			// let default "mousedown" handler handle "touchstart"
+			/*
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
 			});
+			*/
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});
@@ -195,12 +198,17 @@ export class ItemContainerImplementation {
 	onMouseDown(event: MouseEvent|TouchEvent) {
 		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
+		if (event.type === "touchstart") {
+			this.timestampTouchStart = this.timestampMouseDown;
+		}
 	}
 
 	onMouseUp(evt: MouseEvent|TouchEvent) {
+		/*
 		if (evt.type !== "touchend") {
 			evt.preventDefault();
 		}
+		*/
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			if (this.quickPickup) {
@@ -245,6 +253,7 @@ export class ItemContainerImplementation {
 	 * @param evt
 	 *     The touch event.
 	 */
+	/*
 	private onTouchStart(evt: TouchEvent) {
 		// ANDROID NOTE: "touchstart" event also dispatches "mousedown"
 		// don't override default "mousedown" event
@@ -254,6 +263,7 @@ export class ItemContainerImplementation {
 
 		this.timestampTouchStart = +new Date();
 	}
+	*/
 
 	/**
 	 * Event handler when touch event ends.
@@ -284,15 +294,18 @@ export class ItemContainerImplementation {
 	 *     The touch event.
 	 */
 	private onTouchMove(evt: TouchEvent) {
-		evt.preventDefault();
+		evt.preventDefault(); // FIXME: can't prevent scrolling?
 
 		if (this.touchDragActive) {
 			this.dispatchEventOnTouchTarget(evt,
 				new DragEvent("dragover", {dataTransfer: this.dragData}));
-		}
+		} else {
+			this.dispatchEventOnTouchTarget(evt,
+				new DragEvent("dragstart", {dataTransfer: this.dragData}));
 
-		// the first move is used to pick up the item
-		this.touchDragActive = true;
+			// the first move is used to pick up the item
+			this.touchDragActive = true;
+		}
 	}
 
 	/**
