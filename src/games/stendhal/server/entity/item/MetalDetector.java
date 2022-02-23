@@ -44,7 +44,7 @@ public class MetalDetector extends AreaUseItem {
 	 *
 	 * @param item Item to copy.
 	 */
-	public MetalDetector(final Shovel item) {
+	public MetalDetector(final MetalDetector item) {
 		super(item);
 	}
 
