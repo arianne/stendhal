@@ -15,6 +15,7 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -53,7 +54,15 @@ public class StartAction implements ChatAction {
 		final String msg = raiser.getName() + " shouts: A deathmatch has begun! Will "
 			+ player.getName() + " survive? Come and satisfy your thirst for violence.";
 
+		final StendhalRPRuleProcessor rp = SingletonRepository.getRuleProcessor();
+
 		// tell all players in game
-		SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, msg);
+		rp.tellAllPlayers(NotificationType.PRIVMSG, msg);
+
+		// notify IRC via postman
+		final Player postman = rp.getPlayer("postman");
+		if (postman != null) {
+			postman.sendPrivateText(msg);
+		}
 	}
 }
