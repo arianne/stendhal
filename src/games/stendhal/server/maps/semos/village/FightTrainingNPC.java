@@ -40,7 +40,8 @@ public class FightTrainingNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("jailedbarbariannpc");
+		npc.setOutfit("body=0,head=0,eyes=26,dress=36");
+		npc.setOutfitColor("dress", 0x4b5320);
 		npc.setDescription("You see Rochar-Zith, firmly standing there, gazing at the horizon.");
 		npc.setPosition(23, 30);
 		npc.initHP(100);
