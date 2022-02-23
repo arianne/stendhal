@@ -986,6 +986,7 @@ The following people released their work to the public with a suitable license f
 * [finn.appleton](https://freesound.org/people/finn.appleton/)
 * [SpiderDave](https://opengameart.org/users/spiderdave)
 * [Ragewortt](https://opengameart.org/users/ragewortt)
+* [pan14](https://freesound.org/people/pan14/)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->

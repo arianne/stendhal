@@ -115,6 +115,7 @@ liquid-fill-01.*          ericlichtenberg; CC0; https://freesound.org/people/eri
 loop-drag-slimy-1.*       altfuture; CC0; https://freesound.org/people/altfuture/sounds/174634/
 loop-grind-stone-1.*      j1987; CC0; https://freesound.org/people/j1987/sounds/95007/
 mermaid_song-[01-05].*    poots; CC BY 3.0; https://freesound.org/people/poots/sounds/123092/
+metal_detector_beep_*     pan14; CC0; https://freesound.org/s/263133/
 minimare-die.*            Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
 minimare-hiss.*           Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
 minimare-hurt.*           Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
