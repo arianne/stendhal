@@ -30,7 +30,7 @@ stendhal.data.sprites = {
 			stendhal.data.sprites.knownBrokenUrls[filename] = true;
 			return {};
 		}
-		if (typeof(this[filename]) != "undefined") {
+		if (stendhal.data.sprites.images[filename]) {
 			stendhal.data.sprites.images[filename].counter++;
 			return stendhal.data.sprites.images[filename];
 		}

@@ -20,7 +20,7 @@ stendhal.ui.equip = {
 	inventory: [],
 
 	update: function() {
-		for (var i in this.inventory) {
+		for (var i in stendhal.ui.equip.inventory) {
 			stendhal.ui.equip.inventory[i].update();
 		}
 	}
