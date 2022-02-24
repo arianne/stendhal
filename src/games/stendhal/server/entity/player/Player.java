@@ -2889,4 +2889,19 @@ public class Player extends DressedEntity implements UseListener {
 			this.stop();
 		}
 	}
+
+	/**
+	 * returns the maximum size of a slot
+	 *
+	 * @param slot name of slot
+	 * @return size, or -1 if no maximum is known
+	 */
+	public int getMaxSlotSize(String slot) {
+		String value = this.getFeature(slot);
+		if (value == null || value.equals("")) {
+			return -1;
+		}
+		String[] values = value.split(" ");
+		return Integer.parseInt(values[0]) * Integer.parseInt(values[1]);
+	}
 }

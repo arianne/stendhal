@@ -67,12 +67,11 @@ public class PlayerKeyringSlot extends PlayerSlot {
 	@Override
 	public boolean isFull() {
 		final SlotOwner owner = getOwner();
-		if (owner instanceof Player) {
-			if (((Player) owner).getFeature("keyring_ext") != null) {
-				return super.isFull();
-			}
+		if (!(owner instanceof Player)) {
+			return super.isFull();
 		}
 
-		return size() >= 8;
+		int maxSize = ((Player) owner).getMaxSlotSize("keyring");
+		return size() >= maxSize;
 	}
 }

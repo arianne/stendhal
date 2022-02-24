@@ -98,7 +98,7 @@ end
 
 local rewardAction = function(player, sentence, npc)
 	player:addKarma(karmaCompleteReward)
-	player:setFeature("keyring_ext", true)
+	player:setFeature("keyring", "3 4")
 
 	local slots = player:getQuest(quest_slot):split(";")
 	if #slots > 2 then

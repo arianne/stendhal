@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import marauroa.common.game.RPObject;
+import marauroa.server.game.rp.DebugInterface;
 
 public class StackableItem extends Item implements Stackable<StackableItem> {
 
@@ -111,6 +112,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			// set flag to false to prevent abuse by adding to a stackable in a corpse
 			// leading to a too high number awarded when looting
 			this.setFromCorpse(false);
+			DebugInterface.get().onRPOBjectInteraction(this, other);
 		}
 		return getQuantity();
 	}
