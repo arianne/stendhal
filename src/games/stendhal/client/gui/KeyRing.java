@@ -71,15 +71,6 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 		if (name.equals("keyring")) {
 			disableKeyring();
 			setVisible(false);
-		} else if (name.equals("keyring_ext")) {
-			setVisible(false);
-			setSlotsLayout(2, 4);
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					setVisible(enabled);
-				}
-			});
 		}
 	}
 
@@ -92,26 +83,22 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 	 *            Optional feature specific data.
 	 */
 	@Override
-	public void featureEnabled(final String name, final String value) {
+	public void featureEnabled(final String name, String value) {
 		if (name.equals("keyring")) {
+			if (value == "") {
+				value = "2 4";
+			}
 			enabled = true;
+			String[] values = value.split(" ");
+			setSlotsLayout(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+			// needs to be updated for new slots
+			setAcceptedTypes(EntityMap.getClass("item", null, null));
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
 					if(!isVisible()) {
 						setVisible(true);
 					}
-				}
-			});
-		} else if (name.equals("keyring_ext")) {
-			setVisible(false);
-			setSlotsLayout(3, 4);
-			// needs to be updated for new slots
-			setAcceptedTypes(EntityMap.getClass("item", null, null));
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					setVisible(enabled);
 				}
 			});
 		}
