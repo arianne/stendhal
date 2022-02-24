@@ -181,7 +181,7 @@ public class StendhalQuestSystem {
 		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
 		loadQuest(new TrapsForKlaas());
-		//loadQuest(new TutorialIsland());
+		loadQuest(new TutorialIsland());
 		loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
 		loadQuest(new WaterForXhiphin());
