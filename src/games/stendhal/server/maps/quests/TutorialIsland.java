@@ -27,7 +27,9 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -178,12 +180,25 @@ public class TutorialIsland extends AbstractQuest {
 		zone.add(tutor);
 		zone.placeObjectAtEntryPoint(player);
 
-		SingletonRepository.getTurnNotifier().notifyInTurns(10, new TurnListener() {
+		final TurnNotifier tn = SingletonRepository.getTurnNotifier();
+
+		tn.notifyInTurns(15, new TurnListener() {
 			@Override
 			public void onTurnReached(final int currentTurn) {
+				final Engine en = tutor.getEngine();
+
 				// don't interrupt if player already conversing
-				if (tutor.getEngine().getCurrentState() == ConversationStates.IDLE) {
+				if (en.getCurrentState() == ConversationStates.IDLE) {
 					tutor.say("Hey! " + pname + ", come say #hi.");
+
+					tn.notifyInTurns(10, new TurnListener() {
+						@Override
+						public void onTurnReached(final int currentTurn) {
+							if (en.getCurrentState() == ConversationStates.IDLE) {
+								tutor.say("I have something to tell you.");
+							}
+						}
+					});
 				}
 			}
 		});
