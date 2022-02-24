@@ -86,7 +86,8 @@ export class MiniMapComponent extends Component {
 	public draw() {
 		if (marauroa.currentZoneName === stendhal.data.map.currentZoneName
 			|| stendhal.data.map.currentZoneName === "int_vault"
-			|| stendhal.data.map.currentZoneName === "int_adventure_island") {
+			|| stendhal.data.map.currentZoneName === "int_adventure_island"
+			|| stendhal.data.map.currentZoneName === "tutorial_island") {
 
 			this.scale = 10;
 

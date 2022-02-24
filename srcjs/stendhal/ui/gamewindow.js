@@ -33,7 +33,8 @@ stendhal.ui.gamewindow = {
 		if (marauroa.me && document.visibilityState === "visible") {
 			if (marauroa.currentZoneName === stendhal.data.map.currentZoneName
 				|| stendhal.data.map.currentZoneName === "int_vault"
-				|| stendhal.data.map.currentZoneName === "int_adventure_island") {
+				|| stendhal.data.map.currentZoneName === "int_adventure_island"
+				|| stendhal.data.map.currentZoneName === "tutorial_island") {
 				var canvas = document.getElementById("gamewindow");
 				this.targetTileWidth = 32;
 				this.targetTileHeight = 32;
