@@ -23,7 +23,7 @@ export class ItemInventoryComponent extends Component {
 	protected itemContainerImplementation!: ItemContainerImplementation;
 	protected suffix;
 
-	constructor(object: any, slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
+	constructor(object: any, private slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
 		super("iteminventory-template");
 
 		ItemInventoryComponent.counter++;
@@ -34,11 +34,7 @@ export class ItemInventoryComponent extends Component {
 		}
 
 		// TODO: rewrite ItemContainerImplementation not to depend on unique ids (aka suffix)
-		let html = "";
-		for (let i = 0; i < sizeX * sizeY; i++) {
-			html += "<div id='" + slot + this.suffix + i + "' class='itemSlot'></div>";
-		}
-		this.componentElement.innerHTML = html;
+		this.setSize(sizeX, sizeY);
 
 		// ItemContainerImplementation uses document.getElementById, so our parent windows must be added to the DOM first.
 		queueMicrotask(() => {
@@ -47,6 +43,13 @@ export class ItemInventoryComponent extends Component {
 		});
 	}
 
+	setSize(sizeX: number, sizeY: number) {
+		let html = "";
+		for (let i = 0; i < sizeX * sizeY; i++) {
+			html += "<div id='" + this.slot + this.suffix + i + "' class='itemSlot'></div>";
+		}
+		this.componentElement.innerHTML = html;
+	}
 
 	update() {
 		this.itemContainerImplementation.update();
