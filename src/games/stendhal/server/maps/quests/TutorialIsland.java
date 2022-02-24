@@ -195,14 +195,14 @@ public class TutorialIsland extends AbstractQuest {
 			activeTutors.remove(pname);
 		}
 
-		// we get the NPC from the main list in case player already completed
-		// tutorial
-		final SpeakerNPC tutor = npcs.get(tutorBasename + "_" + pname);
-		final StendhalRPWorld world = SingletonRepository.getRPWorld();
-		final StendhalRPZone zone = world.getZone(pname + "_" + SLOT);
-
 		final String tname = tutorBasename + "_" + pname;
 		final String zname = pname + "_" + SLOT;
+
+		// we get the NPC from the main list in case player already completed
+		// tutorial
+		final SpeakerNPC tutor = npcs.get(tname);
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final StendhalRPZone zone = world.getZone(zname);
 
 		if (zone != null) {
 			if (tutor != null) {

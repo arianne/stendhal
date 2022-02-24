@@ -1906,6 +1906,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 					result.append(levelValue);
 				}
 			}
+		} else if (zoneName.endsWith("tutorial_island")) {
+			result.append("Tutorial Island");
 		} else {
 			// As of this writing (2014-01-15), the few zone names that do not
 			// match produce good results with this.
