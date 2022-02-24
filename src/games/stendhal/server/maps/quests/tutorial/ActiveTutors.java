@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.game.RPObject.ID;

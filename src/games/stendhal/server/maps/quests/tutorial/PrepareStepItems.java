@@ -11,14 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.tutorial;
 
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
-
 public class PrepareStepItems extends TutorialStep {
 
 	public void init(final String pname) {
-		final ChatCondition onItemsStep = new QuestInStateCondition(SLOT, 0, ST_ITEMS);
+		// TODO: final ChatCondition onItemsStep = new QuestInStateCondition(SLOT, 0, ST_ITEMS);
 	}
 }
