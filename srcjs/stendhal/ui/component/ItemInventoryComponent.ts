@@ -22,6 +22,7 @@ export class ItemInventoryComponent extends Component {
 	private static counter = 0;
 	protected itemContainerImplementation!: ItemContainerImplementation;
 	protected suffix;
+	private oldSizeX = 0;
 
 	constructor(object: any, private slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
 		super("iteminventory-template");
@@ -44,6 +45,10 @@ export class ItemInventoryComponent extends Component {
 	}
 
 	setSize(sizeX: number, sizeY: number) {
+		this.componentElement.classList.remove("inventorypopup_" + this.oldSizeX);
+		this.componentElement.classList.add("inventorypopup_" + sizeX);
+		this.oldSizeX = sizeX;
+
 		let html = "";
 		for (let i = 0; i < sizeX * sizeY; i++) {
 			html += "<div id='" + this.slot + this.suffix + i + "' class='itemSlot'></div>";
