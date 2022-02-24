@@ -144,7 +144,7 @@ public class TutorialIsland extends AbstractQuest {
 		tutor.setEntityClass("floattingladynpc");
 		tutor.setIdleDirection(Direction.DOWN);
 		tutor.setPosition(23, 8);
-		tutor.put("flying", ""); // animate sprite when idle
+		tutor.put("active_idle", ""); // animate sprite when idle
 		tutor.setDescription("You see a lovely young woman elegantly floating above the grass.");
 
 		tutor.addGoodbye("Just say #hi when you are ready to continue.");
