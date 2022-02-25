@@ -74,7 +74,7 @@ public class LuaTableHelper {
 			@Override
 			public LuaBoolean call(final LuaValue table, final LuaValue o) {
 				final List<Object> l = arrayHelper.toList((LuaTable) table);
-				if (l.contains(o.checkuserdata())) {
+				if (l.contains(o.touserdata())) {
 					return LuaBoolean.TRUE;
 				}
 
