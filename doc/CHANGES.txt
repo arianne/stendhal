@@ -14,6 +14,7 @@ Changelog
 - new sounds
   - vampirette_hiss: vampirette & vampire bride
 - emerald ring notifies player effects work in any character slot
+- metal detector item to find lost engagement ring
 - new achievements:
   - Community Supporter: Spend money around the world (medium difficulty)
   - Determination: Increase trophy helmet to max defense (hard difficulty)
@@ -24,10 +25,13 @@ Changelog
 - new items:
   - shovel
 - Balduin sells replacement l/r hand swords after Ultimate Collector
+- knocking on house doors can be heard on second floors
+- deathmatch area is non-PvP
+- Thanatos announces when a deathmatch begins
 
 *graphics*
 - touched up some entity, outfit, item, & corpse sprites
-- replaced some item sprites
+- replaced some entity & item sprites
 - some changes to client cursor theme
 
 *client*
@@ -40,6 +44,9 @@ Changelog
 - Web client:
   - ported to TypeScript
   - floaters for xp & hp changes enabled
+  - arrow keys don't scroll page
+  - character & theme can be set in query string (?char=<name>&theme=<theme>)
+  - fixed button mushroom grower sprite
 
 
 1.38
