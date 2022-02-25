@@ -76,13 +76,8 @@ public class LuaActionHelper {
 
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				final LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
-				final LuaValue luaSentence = CoerceJavaToLua.coerce(sentence);
-				final LuaValue luaNPC = CoerceJavaToLua.coerce(npc);
-
-				final LuaValue[] all = {luaPlayer, luaSentence, luaNPC};
-
-				lf.invoke(all);
+				lf.invoke(new LuaValue[] {CoerceJavaToLua.coerce(player),
+					CoerceJavaToLua.coerce(sentence), CoerceJavaToLua.coerce(npc)});
 			}
 		};
 	}
