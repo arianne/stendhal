@@ -285,8 +285,287 @@ local prepareBringStep = function()
 end
 
 
+-- set up metal detector lender
+
+-- we use a quest slot so player cannot borrow multiple metal detectors
+local lender_slot = "sawyer_metal_detector"
+local loanActive = conditions:create("QuestActiveCondition", {lender_slot})
+local lend_phrases = {"loan", "lend", "metal detector", "borrow"}
+
+-- items that Sawyer will take in exchange for his metal detector
+local collateral = {
+	-- sword
+	"black sword",
+	"chaos dagger",
+	"demon fire sword",
+	"golden blade",
+	"golden orc sword",
+	"hell dagger",
+	--"immortal sword",
+	"imperator sword",
+	"nihonto",
+	"orcish sword",
+	"royal dagger",
+	"soul dagger",
+	"xeno sword",
+
+	-- axe
+	"black halberd",
+	"black scythe",
+	"chaos axe",
+	"durin axe",
+	--"magic twoside axe",
+
+	-- club
+	"ice war hammer",
+	"vulcano hammer",
+
+	-- ranged
+	"mithril bow",
+
+	-- armor
+	"black armor",
+	"ice armor",
+	--"magic plate armor",
+	--"mainio armor",
+	"mithril armor",
+	"royal armor",
+
+	-- boots
+	--"black boots",
+	--"magic plate boots",
+	"mithril boots",
+	"royal boots",
+
+	-- cloak
+	--"black cloak",
+	"lich cloak",
+	--"magic cloak",
+	"mithril cloak",
+	"royal cloak",
+	"vampire cloak",
+
+	-- helmet
+	"black helmet",
+	"liberty helmet",
+	"magic chain helmet",
+	"mithril helmet",
+	"royal helmet",
+
+	-- legs
+	--"black legs",
+	--"jewelled legs",
+	--"magic plate legs",
+	"mithril legs",
+	"royal legs",
+
+	-- ring
+	"emerald ring",
+	"enhanced imperial ring",
+	"imperial ring",
+	"turtle shell ring",
+
+	-- shield
+	"black shield",
+	"ice shield",
+	--"magic plate shield",
+	"mithril shield",
+	"royal shield",
+	--"xeno shield",
+}
+
+local handleLendRequest = function(player, sentence, raiser)
+	local offer = sentence:getTrimmedText()
+
+	-- FIXME: using table.contains function breaks ChatAction.fire method created with actions:create
+
+	-- player ends conversation
+	--if not table.contains(arrays:toTable(ConversationPhrases.GOODBYE_MESSAGES), offer:lower()) then
+	for _, msg in ipairs(arrays:toTable(ConversationPhrases.GOODBYE_MESSAGES)) do
+		if offer:lower() == msg then
+			raiser:getEntity():endConversation()
+			return
+		end
+	end
+
+	-- player decides not to trade
+	-- FIXME: arrays:toTable does not parse ConversationPhrases.NO_MESSAGES correctly
+	for _, msg in ipairs({"no", "nope", "nothing", "none"}) do
+		if offer:lower() == msg then
+			raiser:say("Okay then. What else can I help you with?")
+			return
+		end
+	end
+
+	-- Sawyer will not accept offered item
+	--if not table.contains(collateral, offer) then
+	local accepted = false
+	for _, acceptable in ipairs(collateral) do
+		if offer == acceptable then
+			accepted = true
+			break
+		end
+	end
+
+	if not accepted then
+		raiser:say("Hmmm, I'm not interested in that. What else you got?")
+		raiser:setCurrentState(ConversationStates.QUESTION_1)
+		return;
+	end
+
+	-- player isn't carrying the item
+	if not player:isEquipped(offer) then
+		raiser:say("You're not even carrying one of those. Come on, what do you have?")
+		raiser:setCurrentState(ConversationStates.QUESTION_1)
+		return;
+	end
+
+	local trade_item = player:getFirstEquipped(offer)
+
+	-- handle items with infostring & bound items
+	local bound_to = trade_item:getBoundTo() or ""
+	local is = trade_item:getInfoString() or ""
+
+	local detector = entities:getItem("metal detector")
+
+	-- problem with metal detector item
+	if detector == nil then
+		raiser:say("Uh oh! It seems my metal detector is broken. Sorry pal. Maybe you"
+			.. " could contact #/support and get someone to fix it for me.")
+		return
+	end
+
+	local slot_state = offer .. ";" .. bound_to .. ";" .. is
+
+	detector:setInfoString("Sawyer;" .. slot_state)
+	detector:setBoundTo(player:getName())
+	detector:setUndroppableOnDeath(true)
+
+	player:setQuest(lender_slot, slot_state)
+	player:drop(trade_item)
+	player:equipOrPutOnGround(detector)
+
+	raiser:say("Okay, here you go. My metal detector for your " .. offer
+		.. ". Be careful with it. If it gets lost, you won't be able to"
+		.. " #return it and I will keep your " .. offer .. ". Anything"
+		.. " else I can help you with?")
+end
+
+local handleReturnRequest = function(player, sentence, raiser)
+	if not player:isEquipped("metal detector") then
+		raiser:say("You aren't even carryng a metal detector.")
+		return
+	end
+
+	local detector = player:getFirstEquipped("metal detector")
+	local detector_info = (detector:getInfoString() or ""):split(";")
+
+	-- Sawyer doesn't recognize the metal detector
+	if #detector_info == 0 or detector_info[1] ~= "Sawyer" then
+		raiser:say("This isn't mine. Take it back. I want MY metal detector.")
+		return
+	end
+
+	local item_name = detector_info[2]
+	local bound_to = detector_info[3]
+	local is = detector_info[4]
+
+	local item = entities:getItem(item_name)
+
+	-- problem with item
+	if item == nil then
+		raiser:say("Uh oh! It seems I have broken your " .. item_name .. "."
+			.. " Sorry pal. Maybe you could contact #/support and get someone"
+			.. " to fix it for me.")
+		return
+	end
+
+	if bound_to ~= "" then
+		item:setBoundTo(bound_to)
+	end
+
+	if is ~= "" then
+		item:setInfoString(is)
+	end
+
+	player:setQuest(lender_slot, nil)
+	player:drop(detector)
+	player:equipOrPutOnGround(item)
+
+	raiser:say("Okay. Here is your " .. item_name .. ". Good as new. Is there"
+		.. " anything else I can help you with?")
+end
+
+local prepareMetalDetectorLender = function()
+	local lender = entities:getNPC("Sawyer")
+	if lender == nil then
+		logger:error("Cannot set up metal detector lender Sawyer for Lost Engagement Ring quest")
+		return
+	end
+
+	lender:add(
+		ConversationStates.ATTENDING,
+		lend_phrases,
+		conditions:notC(loanActive),
+		ConversationStates.QUESTION_1,
+		"So, you want to borrow my metal detector? Well, I don't lend things out"
+			.. " without some form of collateral. What would you like to leave"
+			.. " behind?",
+		nil)
+
+	lender:add(
+		ConversationStates.ATTENDING,
+		lend_phrases,
+		loanActive,
+		ConversationStates.ATTENDING,
+		"I've already loaned you my metal detector.",
+		nil)
+
+	lender:add(
+		ConversationStates.QUESTION_1,
+		"",
+		conditions:notC(loanActive),
+		ConversationStates.ATTENDING,
+		nil,
+		handleLendRequest)
+
+	lender:add(
+		ConversationStates.ATTENDING,
+		"return",
+		conditions:notC(loanActive),
+		ConversationStates.ATTENDING,
+		"Return what? I'm not sure what you are talking about.",
+		nil)
+
+	lender:add(
+		ConversationStates.ATTENDING,
+		"return",
+		loanActive,
+		ConversationStates.QUESTION_1,
+		"You want to return my metal detector?",
+		nil)
+
+	lender:add(
+		ConversationStates.QUESTION_1,
+		ConversationPhrases.NO_MESSAGES,
+		loanActive,
+		ConversationStates.ATTENDING,
+		"Okay. What else can I help you with?",
+		nil)
+
+	lender:add(
+		ConversationStates.QUESTION_1,
+		ConversationPhrases.YES_MESSAGES,
+		loanActive,
+		ConversationStates.ATTENDING,
+		nil,
+		handleReturnRequest)
+end
+
+
 quests:create(quest_slot, "Lost Engagement Ring"):register(function()
 	prepareNPC()
 	prepareRequestStep()
 	prepareBringStep()
+	prepareMetalDetectorLender()
 end)
