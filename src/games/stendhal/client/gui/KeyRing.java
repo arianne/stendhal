@@ -85,7 +85,7 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 	@Override
 	public void featureEnabled(final String name, String value) {
 		if (name.equals("keyring")) {
-			if (value == "") {
+			if (value.equals("")) {
 				value = "2 4";
 			}
 			enabled = true;
