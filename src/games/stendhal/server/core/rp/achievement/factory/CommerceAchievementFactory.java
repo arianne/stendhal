@@ -27,7 +27,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.BoughtNumberOfCondition;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -44,14 +43,56 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 	private static final Logger logger = Logger.getLogger(CommerceAchievementFactory.class);
 
-	private static final MerchantsRegister MR = MerchantsRegister.get();
-
 	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
 	public static final int COUNT_HAPPY_HOUR = 100;
 
-	// default required amount to spend at a seller for "Community Supporter"
-	private static final int default_req_purchase = 1000;
+	// NPCs involved in "Community Supporter"
+	private static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
+		put("Adena", 500);
+		put("Akutagawa", 1000);
+		put("Aldrin", 2000);
+		put("Barbarus", 400); // 1 pick
+		put("Carmen", 2000);
+		put("Coralia", 500);
+		put("D J Smith", 4000);
+		put("Dale", 500);
+		put("Diehelm Brui", 1000);
+		put("Dr. Feelgood", 8000);
+		put("Erodel Bmud", 20000);
+		put("Fleur", 1000);
+		put("Haizen", 10000);
+		put("Hazel", 16000);
+		put("Ilisa", 4000);
+		put("Jenny", 1000);
+		put("Jimbo", 2000);
+		put("Jynath", 16000);
+		put("Karl", 50);
+		put("Kendra Mattori", 16000);
+		put("Laura", 2000);
+		put("Lorithien", 10000);
+		put("Margaret", 1000);
+		put("Mayor Chalmers", 10000);
+		put("Mia", 2000);
+		put("Mirielle", 20000);
+		put("Mrotho", 2500);
+		put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
+		put("Old Mother Helena", 2500);
+		put("Orchiwald", 9000);
+		put("Ouchit", 400);
+		put("Philomena", 200);
+		put("Ruarhi", 2000);
+		put("Sam", 600);
+		put("Sara Beth", 2500);
+		put("Sarzina", 17000);
+		put("Sue", 1000);
+		put("Trillium", 2500);
+		put("Wanda", 20000);
+		put("Wrviliza", 200);
+		put("Xhiphin Zohos", 12000);
+		put("Xin Blanca", 190); // 1 of each item
+		put("Xoderos", 570); // 1 of each item
+	}};
 
 
 	@Override
@@ -81,40 +122,33 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 				String csSellers = "";
 
 				final NPCList npcs = NPCList.get();
-				for (final String name: MR.getSellersNames()) {
+				for (final String name: TRADE_ALL_AMOUNTS.keySet()) {
 					final SpeakerNPC seller = npcs.get(name);
 					if (seller != null) {
-						Integer req_purchase = default_req_purchase;
-						if (HasSpentAmountAtSellers.TRADE_ALL_AMOUNTS.containsKey(name)) {
-							req_purchase = HasSpentAmountAtSellers.TRADE_ALL_AMOUNTS.get(name);
-							if (req_purchase.equals(0)) {
-								req_purchase = null;
-							}
+						seller.add(
+							ConversationStates.ATTENDING,
+							Arrays.asList("patron", "patronage"),
+							null,
+							ConversationStates.ATTENDING,
+							null,
+							new RespondToPurchaseAmountInquiry(TRADE_ALL_AMOUNTS.get(name)));
+
+						// add some info to "help" response
+						final String sHelp = seller.getReply("help");
+						if (sHelp != null && !sHelp.equals("")) {
+							seller.addHelp(sHelp + " Also, you can ask me about #patronage.");
+						} else {
+							seller.addHelp("You can ask me about #patronage.");
 						}
 
-						if (req_purchase != null) {
-							seller.add(
-								ConversationStates.ATTENDING,
-								Arrays.asList("patron", "patronage"),
-								null,
-								ConversationStates.ATTENDING,
-								null,
-								new RespondToPurchaseAmountInquiry(req_purchase));
-
-							// add some info to "help" response
-							final String sHelp = seller.getReply("help");
-							if (sHelp != null && !sHelp.equals("")) {
-								seller.addHelp(sHelp + " Also, you can ask me about #patronage.");
-							} else {
-								seller.addHelp("You can ask me about #patronage.");
-							}
-
-							// logger output
-							if (csSellers.length() > 0) {
-								csSellers = csSellers + ", ";
-							}
-							csSellers = csSellers + name;
+						// logger output
+						if (csSellers.length() > 0) {
+							csSellers = csSellers + ", ";
 						}
+						csSellers = csSellers + name;
+					} else {
+						logger.warn("Cannot set up NPC " + name
+							+ " for \"Community Supporter\" achievement");
 					}
 				}
 
@@ -128,79 +162,12 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 	private static class HasSpentAmountAtSellers implements ChatCondition {
 
-		// default value for sellers not included in this list is 1000
-		// NOTE: maybe use an explicit list instead of setting default to 1000
-		//   as more NPCs will likely be added in the future.
-		protected static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
-			put("Margaret", 1000);
-			put("Ilisa", 4000);
-			put("Adena", 500);
-			put("Coralia", 500);
-			put("Dale", 500);
-			put("Mayor Chalmers", 10000);
-			put("Mia", 2000);
-			put("Mrotho", 2500);
-			put("Karl", 50);
-			put("Philomena", 200);
-			put("Dr. Feelgood", 8000);
-			put("Haizen", 10000);
-			put("Mirielle", 20000);
-			put("D J Smith", 4000);
-			put("Wanda", 20000);
-			put("Sarzina", 17000);
-			put("Xhiphin Zohos", 12000);
-			put("Orchiwald", 9000);
-			put("Sam", 600);
-			put("Hazel", 16000);
-			put("Erodel Bmud", 20000);
-			put("Kendra Mattori", 16000);
-			put("Diehelm Brui", 1000);
-			put("Lorithien", 10000);
-			put("Jynath", 16000);
-			put("Ouchit", 400);
-			put("Xin Blanca", 190); // 1 of each item
-			put("Xoderos", 570); // 1 of each item
-			put("Barbarus", 400); // 1 pick
-			put("Jenny", 1000);
-			put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
-			put("Wrviliza", 200);
-			put("Sara Beth", 2500);
-			put("Laura", 2000);
-			put("Jimbo", 2000);
-			put("Old Mother Helena", 2500);
-			put("Aldrin", 2000);
-			put("Ruarhi", 2000);
-			put("Trillium", 2500);
-			put("Carmen", 2000);
-
-			// excluded
-			put("Gulimo", 0);
-			put("Hagnurk", 0);
-			put("Ognir", 0);
-			put("Mrs. Yeti", 0);
-			put("Wrvil", 0);
-			put("Zekiel", 0);
-			put("Mizuno", 0);
-			put("Rengard", 0);
-			put("Felina", 0);
-			put("Caroline", 0); // only sells during Minetown weeks
-			put("Edward", 0);
-		}};
-
-
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			for (final String seller: MR.getSellersNames()) {
-				if (!player.has("npc_purchases", seller)) {
+			for (final String name: TRADE_ALL_AMOUNTS.keySet()) {
+				if (!player.has("npc_purchases", name) || !(player.getInt("npc_purchases", name)
+						>= TRADE_ALL_AMOUNTS.get(name))) {
 					return false;
-				} else {
-					final int amount = Integer.parseInt(player.get("npc_purchases", seller));
-					if (TRADE_ALL_AMOUNTS.containsKey(seller)) {
-						if (amount < TRADE_ALL_AMOUNTS.get(seller)) {
-							return false;
-						}
-					} else if (amount < default_req_purchase) {
-						return false;
-					}
 				}
 			}
 
@@ -215,6 +182,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			req_purchase = amount;
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser seller) {
 			int spent = 0;
 			final String sellerName = seller.getName();
