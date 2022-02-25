@@ -415,9 +415,9 @@ public abstract class UpdateConverter {
 		transformVisitedSlot(object);
 
 		// port to 1.39: keyring size
-		String keyring = object.get("feature", "keyring");
+		String keyring = object.get("features", "keyring");
 		if (keyring != null && keyring.equals("")) {
-			object.put("feature",  "keyring", "2 4");
+			object.put("features", "keyring", "2 4");
 		}
 	}
 
