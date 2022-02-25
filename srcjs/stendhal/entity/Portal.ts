@@ -29,7 +29,7 @@ export class Portal extends Entity {
 				type: "use"
 			});
 			list.push({
-				title: "Kock",
+				title: "Knock",
 				type: "knock"
 			});
 
