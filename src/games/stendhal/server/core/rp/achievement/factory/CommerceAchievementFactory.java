@@ -223,7 +223,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			}
 
 			if (spent == 0) {
-				seller.say("You haven't even purchased anything from me.");
+				seller.say("I don't recognize you. Have you purchased from me before?");
 			} else if (spent >= req_purchase) {
 				seller.say("Thank you for supporting me! Adventurers like you keep this world afloat.");
 			} else {
