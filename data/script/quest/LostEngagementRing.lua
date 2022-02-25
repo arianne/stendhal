@@ -227,7 +227,8 @@ local prepareBringStep = function()
 		nil,
 		ConversationStates.IDLE,
 		"I may have dropped it while walking along the beach. If that is the case,"
-			.. " you may need something to dig in the sand.",
+			.. " you may need something to dig in the sand or something that can"
+			.. " detect metal. Maybe a local pawn shop has a tool you could use.",
 		nil)
 
 	ari:add(
