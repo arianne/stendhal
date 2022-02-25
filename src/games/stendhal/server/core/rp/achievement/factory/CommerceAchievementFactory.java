@@ -88,6 +88,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		put("Sue", 1000);
 		put("Trillium", 2500);
 		put("Wanda", 20000);
+		put("Wrvil", 300);
 		put("Wrviliza", 200);
 		put("Xhiphin Zohos", 12000);
 		put("Xin Blanca", 190); // 1 of each item
