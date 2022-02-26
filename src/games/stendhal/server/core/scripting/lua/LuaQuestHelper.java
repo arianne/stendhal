@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
@@ -387,8 +388,6 @@ public class LuaQuestHelper {
 
 		@Override
 		public String getName() {
-			//return questInfo.getName();
-
 			final StringBuilder sb = new StringBuilder();
 			final char[] name = getOriginalName().toCharArray();
 			boolean titleCase = true;
@@ -430,11 +429,11 @@ public class LuaQuestHelper {
 				return ret;
 			}
 
-			final LuaValue result = history.call();
+			final LuaValue result = history.call(CoerceJavaToLua.coerce(player));
 			if (result.istable()) {
-				for (final LuaValue lv: result.checktable().keys()) {
-					if (lv.isstring()) {
-						ret.add(lv.tojstring());
+				for (final LuaValue key: result.checktable().keys()) {
+					if (key.isstring()) {
+						ret.add(result.get(key.checkint()).tojstring());
 					}
 				}
 			}
@@ -449,11 +448,11 @@ public class LuaQuestHelper {
 			}
 
 			final List<String> ret = new LinkedList<>();
-			final LuaValue result = history.call();
+			final LuaValue result = history.call(CoerceJavaToLua.coerce(player));
 			if (result.istable()) {
-				for (final LuaValue lv: result.checktable().keys()) {
-					if (lv.isstring()) {
-						ret.add(lv.tojstring());
+				for (final LuaValue key: result.checktable().keys()) {
+					if (key.isstring()) {
+						ret.add(result.get(key.checkint()).tojstring());
 					}
 				}
 			}
