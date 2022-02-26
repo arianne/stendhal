@@ -71,23 +71,40 @@ local canStartCondition = conditions:andC({
 	visitedAthorCondition,
 })
 
+local chooseRingLocation = function()
+	return ring_locations[random:randUniform(1, 4)]
+end
+
 local setQuestAction = function(player, sentence, npc)
 	player:addKarma(karmaAcceptReward)
 
 	-- choose random location
-	local selected = random:randUniform(1, 4)
-
-	player:setQuest(quest_slot, 0, ring_locations[selected][1])
-	player:setQuest(quest_slot, 1, ring_locations[selected][2])
+	local selected = chooseRingLocation()
+	player:setQuest(quest_slot, 0, selected[1])
+	player:setQuest(quest_slot, 1, selected[2])
 end
 
 local resetQuestAction = function(player, sentence, npc)
 	if player:hasQuest(quest_slot) then
 		local slots = player:getQuest(quest_slot):split(";")
-		if slots[1] == "have_ring" then
-			-- FIXME: should have a failsafe here in case slot string is malformatted
-			player:setQuest(quest_slot, slots[2] .. ";" .. slots[3])
+		local x = slots[1]
+		local y = slots[2]
+
+		if not string.isNumber(x) then
+			x = slots[2]
+			y = slots[3]
 		end
+
+		if not string.isNumber(x) or not string.isNumber(y) then
+			logger:warn(quest_slot .. " quest: malformatted quest slot, setting"
+				.. " new ring coordinates")
+
+			local selected = chooseRingLocation()
+			x = selected[1]
+			y = selected[2]
+		end
+
+		player:setQuest(quest_slot, x .. ";" .. y)
 	end
 end
 
