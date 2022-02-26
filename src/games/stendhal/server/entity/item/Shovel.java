@@ -55,7 +55,7 @@ public class Shovel extends AreaUseItem {
 				if (player.hasQuest(ring_quest_slot)) {
 
 					final String[] slot = player.getQuest(ring_quest_slot).split(";");
-					if (slot.length > 1 && !slot[0].equals("have_ring") && !slot[0].equals("done")) {
+					if (slot.length > 1 && !slot[0].equals("found_ring") && !slot[0].equals("done")) {
 						try {
 							final int ringX = Integer.parseInt(slot[0]);
 							final int ringY = Integer.parseInt(slot[1]);
@@ -70,7 +70,7 @@ public class Shovel extends AreaUseItem {
 								player.sendPrivateText("You found a ring.");
 
 								// shift coordinates in case ring is lost & we need to access them again
-								player.setQuest(ring_quest_slot, "have_ring;" + slot[0] + ";" + slot[1]);
+								player.setQuest(ring_quest_slot, "found_ring;" + slot[0] + ";" + slot[1]);
 							} else if (nearRing(x, y, ringX, ringY)) {
 								player.sendPrivateText(
 									"You see footprints in the sand. Someone must have been here.");

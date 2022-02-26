@@ -57,7 +57,7 @@ public class MetalDetector extends AreaUseItem {
 				if (player.hasQuest(ring_quest_slot)) {
 
 					final String[] slot = player.getQuest(ring_quest_slot).split(";");
-					if (slot.length > 1 && !slot[0].equals("have_ring") && !slot[0].equals("done")) {
+					if (slot.length > 1 && !slot[0].equals("found_ring") && !slot[0].equals("done")) {
 						try {
 							if (detectRing(player, x, y, Integer.parseInt(slot[0]), Integer.parseInt(slot[1]))) {
 								final Item ring = em.getItem("engagement ring");
@@ -69,7 +69,7 @@ public class MetalDetector extends AreaUseItem {
 								player.sendPrivateText("You found a ring.");
 
 								// shift coordinates in case ring is lost & we need to access them again
-								player.setQuest(ring_quest_slot, "have_ring;" + slot[0] + ";" + slot[1]);
+								player.setQuest(ring_quest_slot, "found_ring;" + slot[0] + ";" + slot[1]);
 							}
 
 							// prevent default message to player
