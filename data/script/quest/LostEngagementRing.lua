@@ -576,7 +576,36 @@ local prepareMetalDetectorLender = function()
 end
 
 
-quests:create(quest_slot, "Lost Engagement Ring"):register(function()
+local quest = quests:create(quest_slot, "Lost Engagement Ring")
+
+quest:setHistoryFunction(function(player)
+	local history = {}
+
+	local state = player:getQuest(quest_slot, 0)
+	if state == "done" then
+		table.insert(history, "I found Ari's ring. Now he is ready to wed with Emma.")
+	elseif state == "found_ring" then
+		if player:isEquippedWithInfostring("engagement ring", ring_infostring) then
+			table.insert(history, "I have found Ari's ring and should bring it to him.")
+		else
+			table.insert(history, "I found Ari's ring, but I seem to have misplaced it."
+				.. " I should report to Ari that I <em>lost</em> it.")
+		end
+	else
+		table.insert(history, "Ari has lost his engagement ring while vacationing on Athor Island.")
+		if player:isEquipped("metal detector") then
+			table.insert(history, "I may be able to find it with this metal detector.")
+		elseif player:isEquipped("shovel") then
+			table.insert(history, "I may be able to find it with this shovel.")
+		else
+			table.insert(history, "I will need a tool to find it.")
+		end
+	end
+
+	return history
+end)
+
+quest:register(function()
 	prepareNPC()
 	prepareRequestStep()
 	prepareBringStep()
