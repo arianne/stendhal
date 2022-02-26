@@ -700,6 +700,7 @@ gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_needle.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+metal_detector.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/84600
 rotary_cutter.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
