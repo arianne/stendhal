@@ -78,6 +78,19 @@ if game:setZone(zone_name) then
 	end
 
 	sawyersShelf:returnMetalDetector()
+
+	-- add a note with info about using metal detector
+	local note = entities:create({
+		type = "Sign",
+		pos = {17, 6},
+		text = "Notes on using a metal detector:"
+			.. "\n- Press the \"Scan\" button to turn it on."
+			.. "\n- The device will beep if you are near something."
+			.. "\n- The closer you are, the faster it beeps.",
+		class = "../items/documents/paper",
+	})
+
+	game:add(note)
 else
 	logger:error("could not set zone: " .. zone_name)
 end
