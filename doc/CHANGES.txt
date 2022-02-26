@@ -7,6 +7,7 @@ Changelog
 
 *world*
 - Sawyer is showing off a shiny golden blade that he acquired
+- Sawyer loans out metal detector
 - new NPCs
   - Ari
   - Emeric
@@ -22,8 +23,10 @@ Changelog
   - musth elephant def decreased
 - quest changes:
   - magic cloak added to Kirdneh Museum quest
+- new quest: Lost Engagement Ring
 - new items:
   - shovel
+  - metal detector
 - Balduin sells replacement l/r hand swords after Ultimate Collector
 - knocking on house doors can be heard on second floors
 - deathmatch area is non-PvP
