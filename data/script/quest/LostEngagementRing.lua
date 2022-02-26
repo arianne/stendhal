@@ -576,7 +576,8 @@ local prepareMetalDetectorLender = function()
 end
 
 
-local quest = quests:create(quest_slot, "Lost Engagement Ring")
+local quest = quests:create(quest_slot, "Lost Engagement Ring",
+	"A couple to be married in Fado City needs help.")
 
 quest:setHistoryFunction(function(player)
 	local history = {}
