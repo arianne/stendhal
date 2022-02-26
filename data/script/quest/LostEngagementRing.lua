@@ -387,7 +387,54 @@ local collateral = {
 	--"xeno shield",
 }
 
-local handleLendRequest = function(player, sentence, raiser)
+local loanMetalDetector = function(player, lender, detector, offer, bound_to, info_s)
+	-- player walked away before receiving metal detector
+	if lender:getAttending() == nil then
+		lender:say("Where did you go? Oh well, guess I'll just put this back on the"
+			.. " shelf.")
+		sawyersShelf:returnMetalDetector(detector)
+		lender:setCurrentState(ConversationStates.IDLE)
+		return
+	end
+
+	-- problem with metal detector item
+	if detector == nil then
+		lender:say("Uh oh! It seems my metal detector is broken. Sorry pal. Maybe you"
+			.. " could contact #/support and get someone to fix it for me.")
+		lender:setCurrentState(ConversationStates.ATTENDING)
+		return
+	end
+
+	local traded = player:getFirstEquipped(offer)
+
+	if traded == nil then
+		lender:say("Ha! Though you could trick me?")
+		lender:setCurrentState(ConversationStates.ATTENDING)
+		return
+	end
+
+	-- handle items with infostring & bound items
+	local bound_to = traded:getBoundTo() or ""
+	local info_s = traded:getInfoString() or ""
+
+	local slot_state = offer .. ";" .. bound_to .. ";" .. info_s
+
+	detector:setInfoString("Sawyer;" .. slot_state)
+	detector:setBoundTo(player:getName())
+	detector:setUndroppableOnDeath(true)
+
+	player:setQuest(lender_slot, slot_state)
+	player:drop(traded)
+	player:equipOrPutOnGround(detector)
+
+	lender:say("Okay, here you go. My metal detector for your " .. offer
+		.. ". Be careful with it. If it gets lost, you won't be able to"
+		.. " #return it and I will keep your " .. offer .. ". Anything"
+		.. " else I can help you with?")
+	lender:setCurrentState(ConversationStates.ATTENDING)
+end
+
+local handleLendRequest = function(player, sentence, lender)
 	local offer = sentence:getTrimmedText()
 
 	-- FIXME: using table.contains function breaks ChatAction.fire method created with actions:create
@@ -396,7 +443,7 @@ local handleLendRequest = function(player, sentence, raiser)
 	--if not table.contains(arrays:toTable(ConversationPhrases.GOODBYE_MESSAGES), offer:lower()) then
 	for _, msg in ipairs(arrays:toTable(ConversationPhrases.GOODBYE_MESSAGES)) do
 		if offer:lower() == msg then
-			raiser:getEntity():endConversation()
+			lender:getEntity():endConversation()
 			return
 		end
 	end
@@ -405,7 +452,7 @@ local handleLendRequest = function(player, sentence, raiser)
 	-- FIXME: arrays:toTable does not parse ConversationPhrases.NO_MESSAGES correctly
 	for _, msg in ipairs({"no", "nope", "nothing", "none"}) do
 		if offer:lower() == msg then
-			raiser:say("Okay then. What else can I help you with?")
+			lender:say("Okay then. What else can I help you with?")
 			return
 		end
 	end
@@ -421,52 +468,46 @@ local handleLendRequest = function(player, sentence, raiser)
 	end
 
 	if not accepted then
-		raiser:say("Hmmm, I'm not interested in that. What else you got?")
-		raiser:setCurrentState(ConversationStates.QUESTION_1)
+		lender:say("Hmmm, I'm not interested in that. What else you got?")
+		lender:setCurrentState(ConversationStates.QUESTION_1)
 		return;
 	end
 
 	-- player isn't carrying the item
 	if not player:isEquipped(offer) then
-		raiser:say("You're not even carrying one of those. Come on, what do you have?")
-		raiser:setCurrentState(ConversationStates.QUESTION_1)
-		return;
-	end
-
-	local trade_item = player:getFirstEquipped(offer)
-
-	-- handle items with infostring & bound items
-	local bound_to = trade_item:getBoundTo() or ""
-	local is = trade_item:getInfoString() or ""
-
-	local detector = entities:getItem("metal detector")
-
-	-- problem with metal detector item
-	if detector == nil then
-		raiser:say("Uh oh! It seems my metal detector is broken. Sorry pal. Maybe you"
-			.. " could contact #/support and get someone to fix it for me.")
+		lender:say("You're not even carrying one of those. Come on, what do you have?")
+		lender:setCurrentState(ConversationStates.QUESTION_1)
 		return
 	end
 
-	local slot_state = offer .. ";" .. bound_to .. ";" .. is
+	local detector = sawyersShelf:getMetalDetector()
 
-	detector:setInfoString("Sawyer;" .. slot_state)
-	detector:setBoundTo(player:getName())
-	detector:setUndroppableOnDeath(true)
+	-- metal detector from shelf was already loaned out
+	if detector == nil then
+		lender:say("Hmmmm. I guess I forgot that I already loaned it out...")
+		lender:say("!me is thinking.")
+		lender:setCurrentState(ConversationStates.BUSY)
 
-	player:setQuest(lender_slot, slot_state)
-	player:drop(trade_item)
-	player:equipOrPutOnGround(detector)
+		game:runAfter(10, function()
+			lender:say("Oh! That's right, I keep a spare just in case.")
+			detector = sawyersShelf:getSpareMetalDetector()
 
-	raiser:say("Okay, here you go. My metal detector for your " .. offer
-		.. ". Be careful with it. If it gets lost, you won't be able to"
-		.. " #return it and I will keep your " .. offer .. ". Anything"
-		.. " else I can help you with?")
+			game:runAfter(5, function()
+				loanMetalDetector(player, lender, detector, offer,
+					bound_to, info_s)
+			end)
+		end)
+
+		return
+	end
+
+	-- metal detector from shelf
+	loanMetalDetector(player, lender, detector, offer, bound_to, info_s)
 end
 
-local handleReturnRequest = function(player, sentence, raiser)
+local handleReturnRequest = function(player, sentence, lender)
 	if not player:isEquipped("metal detector") then
-		raiser:say("You aren't even carryng a metal detector.")
+		lender:say("You aren't even carryng a metal detector.")
 		return
 	end
 
@@ -475,19 +516,19 @@ local handleReturnRequest = function(player, sentence, raiser)
 
 	-- Sawyer doesn't recognize the metal detector
 	if #detector_info == 0 or detector_info[1] ~= "Sawyer" then
-		raiser:say("This isn't mine. Take it back. I want MY metal detector.")
+		lender:say("This isn't mine. Take it back. I want MY metal detector.")
 		return
 	end
 
 	local item_name = detector_info[2]
 	local bound_to = detector_info[3]
-	local is = detector_info[4]
+	local info_s = detector_info[4]
 
 	local item = entities:getItem(item_name)
 
 	-- problem with item
 	if item == nil then
-		raiser:say("Uh oh! It seems I have broken your " .. item_name .. "."
+		lender:say("Uh oh! It seems I have broken your " .. item_name .. "."
 			.. " Sorry pal. Maybe you could contact #/support and get someone"
 			.. " to fix it for me.")
 		return
@@ -497,15 +538,16 @@ local handleReturnRequest = function(player, sentence, raiser)
 		item:setBoundTo(bound_to)
 	end
 
-	if is ~= "" then
-		item:setInfoString(is)
+	if info_s ~= "" then
+		item:setInfoString(info_s)
 	end
 
-	player:setQuest(lender_slot, nil)
 	player:drop(detector)
 	player:equipOrPutOnGround(item)
+	player:setQuest(lender_slot, nil)
 
-	raiser:say("Okay. Here is your " .. item_name .. ". Good as new. Is there"
+	sawyersShelf:returnMetalDetector(detector)
+	lender:say("Okay. Here is your " .. item_name .. ". Good as new. Is there"
 		.. " anything else I can help you with?")
 end
 
