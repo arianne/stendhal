@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 li.online {
   color: #0A0
 }
@@ -171,26 +175,31 @@ span.logi {
   width: 80px;
 }
 
+.inventorypopup_3 {
+  width: 120px;
+}
+
 .inventorypopup_5 {
   width: 200px;
 }
 
-.popupdiv {
+.popupdiv, .windowdiv {
   x-border: 1px solid #000;
   background-color: #FFF;
   box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
 }
 
-.popuptitle {
+.popuptitle, .windowtitlebar {
   cursor: default;
   padding: 3px;
+  border-bottom: 1px solid #777;
 }
 
-.popuptitleclose {
+.popuptitleclose, .windowtitleclose {
   float: right
 }
 
-#dropnumberdialogvalue {
+.quantityselectorvalue {
   width: 4em;
 }
 
@@ -228,19 +237,23 @@ span.logi {
   flex-direction: column;
 }
 
-#travellogitems {
+.travellogitems {
   float: left;
   width: 15em;
   margin-right: 2em;
 }
 
-#travellogdetails {
+.travellogdetails {
   color: #000;
   width: 40em;
 }
 
-#travellogdescription {
+.travellogdescription {
   font-style: italic
+}
+
+.imageviewer h3 {
+	margin: 0;
 }
 
 #portfolio {
@@ -280,7 +293,7 @@ span.logi {
 
 @keyframes progressbar {
 	from {
-		width: 0 
+		width: 0
 	}
 
 	to {

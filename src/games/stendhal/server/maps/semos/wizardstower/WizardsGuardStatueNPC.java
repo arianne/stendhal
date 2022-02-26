@@ -34,7 +34,7 @@ public class WizardsGuardStatueNPC implements ZoneConfigurator {
 	}
 
 	private void buildZekiel(final StendhalRPZone zone) {
-		final SpeakerNPC zekiel = CloneManager.getInstance().clone(new WizardsGuardStatueSpireNPC().getZekiel(), "Zekiel the guardian");
+		final SpeakerNPC zekiel = CloneManager.get().clone(new WizardsGuardStatueSpireNPC().getZekiel(), "Zekiel the guardian");
 
 		zekiel.addGreeting("Greetings Stranger! I am Zekiel the #guardian.");
 		zekiel.addHelp("I guess you want to explore this #tower. I am not just the #guardian, I am also here to receive visitors and accompany them through the practical #test.");

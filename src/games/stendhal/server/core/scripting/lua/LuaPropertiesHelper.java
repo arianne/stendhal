@@ -17,6 +17,7 @@ package games.stendhal.server.core.scripting.lua;
  */
 public class LuaPropertiesHelper {
 
+	/** The singleton instance. */
 	private static LuaPropertiesHelper instance;
 
 
@@ -32,6 +33,13 @@ public class LuaPropertiesHelper {
 		}
 
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaPropertiesHelper() {
+		// singleton
 	}
 
 	/**

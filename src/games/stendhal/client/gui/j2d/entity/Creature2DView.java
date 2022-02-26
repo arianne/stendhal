@@ -96,7 +96,7 @@ class Creature2DView extends RPEntity2DView<Creature> {
 	 */
 	@Override
 	protected String translate(final String name) {
-		return "data/sprites/monsters/" + name + ".png";
+		return "data/sprites/entity/" + name + ".png";
 	}
 
 	@Override

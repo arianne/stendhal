@@ -413,6 +413,12 @@ public abstract class UpdateConverter {
 
 		// port to 1.31: zone zones
 		transformVisitedSlot(object);
+
+		// port to 1.39: keyring size
+		String keyring = object.get("features", "keyring");
+		if (keyring != null && keyring.equals("")) {
+			object.put("features", "keyring", "2 4");
+		}
 	}
 
 

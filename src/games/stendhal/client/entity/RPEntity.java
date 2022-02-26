@@ -191,7 +191,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * The outfit code.
 	 */
 	private String outfit_ext;
-	private int outfit;
+	private int outfit_old;
 
 	private int baseHP;
 
@@ -416,13 +416,24 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 
 	/**
-	 * Get the outfit code.
+	 * Get the old outfit code.
 	 *
 	 * @return The outfit code.
 	 */
+	public int getOldOutfitCode() {
+		return outfit_old;
+	}
+
+	/**
+	 * Get the outfit code.
+	 *
+	 * @return The outfit code.
+	 * @deprecated
+	 *     Use {@link #getOldOutfitCode()}.
+	 */
 	@Deprecated
 	public int getOutfit() {
-		return outfit;
+		return getOldOutfitCode();
 	}
 
 	/**
@@ -1049,9 +1060,9 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		if (object.has("outfit")) {
-			outfit = object.getInt("outfit");
+			outfit_old = object.getInt("outfit");
 		} else {
-			outfit = OUTFIT_UNSET;
+			outfit_old = OUTFIT_UNSET;
 		}
 
 		/*
@@ -1210,7 +1221,7 @@ public abstract class RPEntity extends AudibleEntity {
 					fireChange(PROP_OUTFIT);
 				}
 				if (changes.has("outfit")) {
-					outfit = changes.getInt("outfit");
+					outfit_old = changes.getInt("outfit");
 				}
 
 				fireChange(PROP_OUTFIT);
@@ -1503,7 +1514,7 @@ public abstract class RPEntity extends AudibleEntity {
 				outfit_ext = null;
 			}
 			if (changes.has("outfit")) {
-				outfit = OUTFIT_UNSET;
+				outfit_old = OUTFIT_UNSET;
 				/*
 				outfitMouth = OUTFIT_UNSET;
 				outfitEyes = OUTFIT_UNSET;

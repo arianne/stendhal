@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -144,7 +145,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         npc.add(
             ConversationStates.ATTENDING, //initial state
             "reset", //trigger word
-            null, //chat condition
+            new SystemPropertyCondition("stendhal.testserver"), //chat condition
             ConversationStates.IDLE, //state after reset
             "reset complete", //reply to trigger word
             new MultipleActions(reset_brosoklelo), //reset actions

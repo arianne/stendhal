@@ -16,11 +16,15 @@
 local zone_name = "int_deniran_pawn_shop"
 
 if game:setZone(zone_name) then
-	local goldenBladeGrower = luajava.newInstance("games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint", "golden blade", 288000)
-	goldenBladeGrower:setPosition(19, 3)
+	local blade = entities:getItem("golden blade")
+	if blade ~= nil then
+		blade:setBoundTo("Sawyer")
+		blade:setPosition(19, 3)
 
-	game:add(goldenBladeGrower)
-	goldenBladeGrower:setToFullGrowth()
+		game:add(blade, false)
+	else
+		logger:error("Could not create golden blade for Deniran pawn shop shelf")
+	end
 else
 	logger:error("could not set zone: " .. zone_name)
 end

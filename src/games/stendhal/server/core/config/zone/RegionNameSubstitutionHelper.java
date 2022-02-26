@@ -22,9 +22,24 @@ import java.util.Map;
  */
 public class RegionNameSubstitutionHelper {
 
+	/** The singleton instance. */
 	private static RegionNameSubstitutionHelper instance;
 
 	private final Map<String, String> replacements = new HashMap<String, String>();
+
+
+	/**
+	 * Singleton access method
+	 *
+	 * @return the singleton instance
+	 */
+	public static RegionNameSubstitutionHelper get() {
+		if(instance == null) {
+			instance = new RegionNameSubstitutionHelper();
+		}
+
+		return instance;
+	}
 
 	private RegionNameSubstitutionHelper() {
 		replacements.put("magic", "magic city");
@@ -59,17 +74,4 @@ public class RegionNameSubstitutionHelper {
 	public String getDefaultRegion() {
 		return "no_region";
 	}
-
-	/**
-	 * Singleton access method
-	 *
-	 * @return the singleton instance
-	 */
-	public static RegionNameSubstitutionHelper get() {
-		if(instance == null) {
-			instance = new RegionNameSubstitutionHelper();
-		}
-		return instance;
-	}
-
 }

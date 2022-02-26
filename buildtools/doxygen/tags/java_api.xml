@@ -1,0 +1,722 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+
+<tagfile>
+
+	<compound kind="namespace">
+		<name>java::lang</name>
+		<filename>java.base/java/lang/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Boolean</name>
+		<filename>java.base/java/lang/Boolean.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Class</name>
+		<filename>java.base/java/lang/Class.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Double</name>
+		<filename>java.base/java/lang/Double.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Exception</name>
+		<filename>java.base/java/lang/Exception.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Float</name>
+		<filename>java.base/java/lang/Float.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Integer</name>
+		<filename>java.base/java/lang/Integer.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Long</name>
+		<filename>java.base/java/lang/Long.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Object</name>
+		<filename>java.base/java/lang/Object.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::String</name>
+		<filename>java.base/java/lang/String.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::StringBuilder</name>
+		<filename>java.base/java/lang/StringBuilder.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::System</name>
+		<filename>java.base/java/lang/System.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::Throwable</name>
+		<filename>java.base/java/lang/Throwable.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::lang::management</name>
+		<filename>java.base/java/lang/management/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::management::ManagementFactory</name>
+		<filename>java.base/java/lang/management/ManagementFactory.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::lang::reflect</name>
+		<filename>java.base/java/lang/reflect/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::reflect::Constructor</name>
+		<filename>java.base/java/lang/reflect/Constructor.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::lang::reflect::InvocationTargetException</name>
+		<filename>java.base/java/lang/reflect/InvocationTargetException.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::text</name>
+		<filename>java.base/java/text/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::text::SimpleDateFormat</name>
+		<filename>java.base/java/text/SimpleDateFormat.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::util</name>
+		<filename>java.base/java/util/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Arrays</name>
+		<filename>java.base/java/util/Arrays.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::ArrayList</name>
+		<filename>java.base/java/util/ArrayList.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Calendar</name>
+		<filename>java.base/java/util/Calendar.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Collection</name>
+		<filename>java.base/java/util/Collection.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Collections</name>
+		<filename>java.base/java/util/Collections.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::ConcurrentModificationException</name>
+		<filename>java.base/java/util/ConcurrentModificationException.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Date</name>
+		<filename>java.base/java/util/Date.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Enumeration</name>
+		<filename>java.base/java/util/Enumeration.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::GregorianCalendar</name>
+		<filename>java.base/java/util/GregorianCalendar.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::HashMap</name>
+		<filename>java.base/java/util/HashMap.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::HashSet</name>
+		<filename>java.base/java/util/HashSet.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Iterable</name>
+		<filename>java.base/java/util/Iterable.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Iterator</name>
+		<filename>java.base/java/util/Iterator.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::LinkedHashMap</name>
+		<filename>java.base/java/util/LinkedHashMap.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::LinkedList</name>
+		<filename>java.base/java/util/LinkedList.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::List</name>
+		<filename>java.base/java/util/List.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Locale</name>
+		<filename>java.base/java/util/Locale.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Map</name>
+		<filename>java.base/java/util/Map.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Map::Entry</name>
+		<filename>java.base/java/util/Map/Entry.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Properties</name>
+		<filename>java.base/java/util/Properties.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Random</name>
+		<filename>java.base/java/util/Random.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::ResourceBundle</name>
+		<filename>java.base/java/util/ResourceBundle.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Set</name>
+		<filename>java.base/java/util/Set.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::StringTokenizer</name>
+		<filename>java.base/java/util/StringTokenizer.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Timer</name>
+		<filename>java.base/java/util/Timer.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::TimerTask</name>
+		<filename>java.base/java/util/TimerTask.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::Vector</name>
+		<filename>java.base/java/util/Vector.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::util::concurrent</name>
+		<filename>java.base/java/util/concurrent/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::concurrent::BlockingQueue</name>
+		<filename>java.base/java/util/concurrent/BlockingQueue.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::concurrent::ConcurrentHashMap</name>
+		<filename>java.base/java/util/concurrent/ConcurrentHashMap.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::concurrent::LinkedBlockingQueue</name>
+		<filename>java.base/java/util/concurrent/LinkedBlockingQueue.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::concurrent::TimeUnit</name>
+		<filename>java.base/java/util/concurrent/TimeUnit.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::util::regex</name>
+		<filename>java.base/java/util/regex/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::regex::Matcher</name>
+		<filename>java.base/java/util/regex/Matcher.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::regex::Pattern</name>
+		<filename>java.base/java/util/regex/Pattern.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::util::zip</name>
+		<filename>java.base/java/util/zip/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::zip::DeflaterOutputStream</name>
+		<filename>java.base/java/util/zip/DeflaterOutputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::zip::Inflater</name>
+		<filename>java.base/java/util/zip/Inflater.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::util::zip::InflaterInputStream</name>
+		<filename>java.base/java/util/zip/InflaterInputStream.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::io</name>
+		<filename>java.base/java/io/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::BufferedReader</name>
+		<filename>java.base/java/io/BufferedReader.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::BufferedWriter</name>
+		<filename>java.base/java/io/BufferedWriter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::ByteArrayInputStream</name>
+		<filename>java.base/java/io/ByteArrayInputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::ByteArrayOutputStream</name>
+		<filename>java.base/java/io/ByteArrayOutputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::File</name>
+		<filename>java.base/java/io/File.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileInputStream</name>
+		<filename>java.base/java/io/FileInputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileNotFoundException</name>
+		<filename>java.base/java/io/FileNotFoundException.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileOutputStream</name>
+		<filename>java.base/java/io/FileOutputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileReader</name>
+		<filename>java/io/FileReader.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::FileWriter</name>
+		<filename>java/io/FileWriter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::InputStream</name>
+		<filename>java.base/java/io/InputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::InputStreamReader</name>
+		<filename>java.base/java/io/InputStreamReader.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::IOException</name>
+		<filename>java.base/java/io/IOException.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::OutputStream</name>
+		<filename>java.base/java/io/OutputStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::PrintStream</name>
+		<filename>java.base/java/io/PrintStream.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::PrintWriter</name>
+		<filename>java.base/java/io/PrintWriter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::io::PushbackInputStream</name>
+		<filename>java.base/java/io/PushbackInputStream.html</filename>
+	</compound>
+	<!-- !!! Doxygen does not like the name "java::io::Reader" name for some reason
+	<compound kind="class">
+		<name>java::io::Reader</name>
+		<filename>java.base/java/io/Reader.html</filename>
+	</compound>
+	-->
+	<compound kind="class">
+		<name>java::io::UnsupportedEncodingException</name>
+		<filename>java.base/java/io/UnsupportedEncodingException.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::awt</name>
+		<filename>java.desktop/java/awt/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Adjustable</name>
+		<filename>java.base/java/awt/Adjustable.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::AlphaComposite</name>
+		<filename>java.desktop/java/awt/AlphaComposite.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::AWTEvent</name>
+		<filename>java.base/java/awt/AWTEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::BasicStroke</name>
+		<filename>java.base/java/awt/BasicStroke.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::BorderLayout</name>
+		<filename>java.base/java/awt/BorderLayout.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Color</name>
+		<filename>java.desktop/java/awt/Color.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Component</name>
+		<filename>java.base/java/awt/Component.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Composite</name>
+		<filename>java.base/java/awt/Composite.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::CompositeContext</name>
+		<filename>java.base/java/awt/CompositeContext.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Container</name>
+		<filename>java.base/java/awt/Container.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::ContainerOrderFocusTraversalPolicy</name>
+		<filename>java.base/java/awt/ContainerOrderFocusTraversalPolicy.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Cursor</name>
+		<filename>java.base/java/awt/Cursor.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Dimension</name>
+		<filename>java.base/java/awt/Dimension.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Font</name>
+		<filename>java.base/java/awt/Font.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::FontFormatException</name>
+		<filename>java.base/java/awt/FontFormatException.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::FontMetrics</name>
+		<filename>java.base/java/awt/FontMetrics.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Frame</name>
+		<filename>java.base/java/awt/Frame.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GradientPaint</name>
+		<filename>java.base/java/awt/GradientPaint.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Graphics</name>
+		<filename>java.base/java/awt/Graphics.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Graphics2D</name>
+		<filename>java.desktop/java/awt/Graphics2D.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GraphicsConfiguration</name>
+		<filename>java.base/java/awt/GraphicsConfiguration.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GraphicsEnvironment</name>
+		<filename>java.base/java/awt/GraphicsEnvironment.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GridBagConstraints</name>
+		<filename>java.base/java/awt/GridBagConstraints.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GridBagLayout</name>
+		<filename>java.base/java/awt/GridBagLayout.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::GridLayout</name>
+		<filename>java.base/java/awt/GridLayout.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::HeadlessException</name>
+		<filename>java.base/java/awt/HeadlessException.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Image</name>
+		<filename>java.base/java/awt/Image.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Insets</name>
+		<filename>java.base/java/awt/Insets.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::KeyboardFocusManager</name>
+		<filename>java.base/java/awt/KeyboardFocusManager.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::LayoutManager</name>
+		<filename>java.base/java/awt/LayoutManager.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::LayoutManager2</name>
+		<filename>java.base/java/awt/LayoutManager2.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::LinearGradientPaint</name>
+		<filename>java.base/java/awt/LinearGradientPaint.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::MouseInfo</name>
+		<filename>java.base/java/awt/MouseInfo.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Paint</name>
+		<filename>java.base/java/awt/Paint.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Point</name>
+		<filename>java.desktop/java/awt/Point.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::PointerInfo</name>
+		<filename>java.base/java/awt/PointerInfo.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Polygon</name>
+		<filename>java.base/java/awt/Polygon.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Rectangle</name>
+		<filename>java.desktop/java/awt/Rectangle.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::RenderingHints</name>
+		<filename>java.base/java/awt/RenderingHints.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Shape</name>
+		<filename>java.base/java/awt/Shape.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Stroke</name>
+		<filename>java.base/java/awt/Stroke.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Toolkit</name>
+		<filename>java.base/java/awt/Toolkit.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Transparency</name>
+		<filename>java.base/java/awt/Transparency.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::Window</name>
+		<filename>java.base/java/awt/Window.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::awt::event</name>
+		<filename>java.base/java/awt/event/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ActionEvent</name>
+		<filename>java.base/java/awt/event/ActionEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ActionListener</name>
+		<filename>java.base/java/awt/event/ActionListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::AdjustmentEvent</name>
+		<filename>java.base/java/awt/event/AdjustmentEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::AdjustmentListener</name>
+		<filename>java.base/java/awt/event/AdjustmentListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::AWTEventListener</name>
+		<filename>java.base/java/awt/event/AWTEventListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ComponentAdapter</name>
+		<filename>java.base/java/awt/event/ComponentAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ComponentEvent</name>
+		<filename>java.base/java/awt/event/ComponentEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ComponentListener</name>
+		<filename>java.base/java/awt/event/ComponentListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::FocusAdapter</name>
+		<filename>java.base/java/awt/event/FocusAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::FocusEvent</name>
+		<filename>java.base/java/awt/event/FocusEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::FocusListener</name>
+		<filename>java.base/java/awt/event/FocusListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::HierarchyBoundsListener</name>
+		<filename>java.base/java/awt/event/HierarchyBoundsListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::HierarchyEvent</name>
+		<filename>java.base/java/awt/event/HierarchyEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::InputEvent</name>
+		<filename>java.base/java/awt/event/InputEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ItemEvent</name>
+		<filename>java.base/java/awt/event/ItemEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::ItemListener</name>
+		<filename>java.base/java/awt/event/ItemListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::KeyAdapter</name>
+		<filename>java.base/java/awt/event/KeyAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::KeyEvent</name>
+		<filename>java.base/java/awt/event/KeyEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::KeyListener</name>
+		<filename>java.base/java/awt/event/KeyListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseAdapter</name>
+		<filename>java.base/java/awt/event/MouseAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseEvent</name>
+		<filename>java.base/java/awt/event/MouseEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseListener</name>
+		<filename>java.base/java/awt/event/MouseListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseMotionAdapter</name>
+		<filename>java.base/java/awt/event/MouseMotionAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseMotionListener</name>
+		<filename>java.base/java/awt/event/MouseMotionListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseWheelEvent</name>
+		<filename>java.base/java/awt/event/MouseWheelEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::MouseWheelListener</name>
+		<filename>java.base/java/awt/event/MouseWheelListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::WindowAdapter</name>
+		<filename>java.base/java/awt/event/WindowAdapter.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::WindowEvent</name>
+		<filename>java.base/java/awt/event/WindowEvent.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::WindowListener</name>
+		<filename>java.base/java/awt/event/WindowListener.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::event::WindowStateListener</name>
+		<filename>java.base/java/awt/event/WindowStateListener.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::awt::font</name>
+		<filename>java.base/java/awt/font/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::font::LineMetrics</name>
+		<filename>java.base/java/awt/font/LineMetrics.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::font::TextAttribute</name>
+		<filename>java.base/java/awt/font/TextAttribute.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::awt::geom</name>
+		<filename>java.base/java/awt/geom/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::geom::AffineTransform</name>
+		<filename>java.base/java/awt/geom/AffineTransform.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::geom::Point2D</name>
+		<filename>java.base/java/awt/geom/Point2D.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::geom::Rectangle2D</name>
+		<filename>java.desktop/java/awt/geom/Rectangle2D.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>java::awt::image</name>
+		<filename>java.base/java/awt/image/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::BufferedImage</name>
+		<filename>java.base/java/awt/image/BufferedImage.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::ColorModel</name>
+		<filename>java.base/java/awt/image/ColorModel.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::DataBuffer</name>
+		<filename>java.base/java/awt/image/DataBuffer.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::DataBufferByte</name>
+		<filename>java.base/java/awt/image/DataBufferByte.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::Raster</name>
+		<filename>java.base/java/awt/image/Raster.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::RescaleOp</name>
+		<filename>java.base/java/awt/image/RescaleOp.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::VolatileImage</name>
+		<filename>java.base/java/awt/image/VolatileImage.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>java::awt::image::WritableRaster</name>
+		<filename>java.base/java/awt/image/WritableRaster.html</filename>
+	</compound>
+
+</tagfile>

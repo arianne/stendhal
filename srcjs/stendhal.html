@@ -20,6 +20,10 @@
 
 	<body id="body" class="background">
 	<div id="client">
+
+		<div id="topPanel"></div>
+
+
 		<div id="leftColumn" class="unselectable">
 			<canvas id="minimap" width="128" height="128"></canvas>
 			<div id="zoneinfo"></div>
@@ -49,49 +53,12 @@
 				</div>
 			</div>
 
-			<div id="bag">
-				<div id="bag0" class="itemSlot"></div>
-				<div id="bag1" class="itemSlot"></div>
-				<div id="bag2" class="itemSlot"></div>
-				<div id="bag3" class="itemSlot"></div>
-				<div id="bag4" class="itemSlot"></div>
-				<div id="bag5" class="itemSlot"></div>
-				<div id="bag6" class="itemSlot"></div>
-				<div id="bag7" class="itemSlot"></div>
-				<div id="bag8" class="itemSlot"></div>
-				<div id="bag9" class="itemSlot"></div>
-				<div id="bag10" class="itemSlot"></div>
-				<div id="bag11" class="itemSlot"></div>
-			</div>
-
-			<div id="keyring">
-				<div id="keyring0" class="itemSlot"></div>
-				<div id="keyring1" class="itemSlot"></div>
-				<div id="keyring2" class="itemSlot"></div>
-				<div id="keyring3" class="itemSlot"></div>
-				<div id="keyring4" class="itemSlot"></div>
-				<div id="keyring5" class="itemSlot"></div>
-				<div id="keyring6" class="itemSlot"></div>
-				<div id="keyring7" class="itemSlot"></div>
-			</div>
-
-			<!-- If you want to add more slots or remove some, you must just add/remove div blocks, like that.
-				Do not forget change number of slots in /stendhal/ui/itemcontainer.js! -->
-			<div id="portfolio">
-				<div id="portfolio0" class="itemSlot"></div>
-				<div id="portfolio1" class="itemSlot"></div>
-				<div id="portfolio2" class="itemSlot"></div>
-				<div id="portfolio3" class="itemSlot"></div>
-				<div id="portfolio4" class="itemSlot"></div>
-				<div id="portfolio5" class="itemSlot"></div>
-				<div id="portfolio6" class="itemSlot"></div>
-				<div id="portfolio7" class="itemSlot"></div>
-				<div id="portfolio8" class="itemSlot"></div>
-			</div>
 		</div>
 
-		<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
-		<div id="chat"></div>
+		<div id="bottomPanel">
+			<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+			<div id="chat"></div>
+		</div>
 
 		<div id="popupcontainer"></div>
 		</div>
@@ -100,6 +67,171 @@
 			Cross world teleport initiated. Please hold tight.
 			<div class="progressbar"><div class="progressbarvalue">&nbsp;</div></div>
 		</div>
+
+		<template id="empty-template">
+		</template>
+
+		<template id="window-template">
+			<div class="windowdiv">
+				<div class='windowtitlebar background'>
+					<div class='windowtitleclose'>X</div>
+					<span class="windowtitle"></span>
+				</div>
+				<div class="windowcontent"></div>
+			</div>
+		</template>
+
+		<template id="iteminventory-template">
+			<div class="inventorypopup">
+			</div>
+		</template>
+
+		<template id="applicationmenudialog-template">
+			<div class="actionmenu">
+			</div>
+		</template>
+
+		<template id="contextmenu-template">
+			<div class="contextmenu actionmenu">
+			</div>
+		</template>
+
+		<template id="dropquantityselectordialog-template">
+			<div>
+				<input type="number" min="0" value="1" class="quantityselectorvalue">
+				<button class="quantityselectorbutton">Drop</button>
+			</div>
+		</template>
+
+		<template id="imageviewer-template">
+			<div class="imageviewer background">
+				<h3></h3>
+				<img>
+			</div>
+		</template>
+
+		<template id="travellogdialog-template">
+			<div class="tavellogpopup">
+				<div class="tavellogtabpanel">
+
+				</div>
+				<div>
+					<select class="travellogitems" size="20"></select>
+					<div class="travellogdetails"></div>
+				</div>
+			</div>
+		</template>
+
+		<template id="showfloatingwindow-template">
+			<button></button>
+		</template>
+
+		<template id="outfitdialog-template">
+			<div class="background">
+			<div class="horizontalgroup">
+
+				<!-- part selectors -->
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhair">&lt;</button>
+				<canvas id="setoutfithaircanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthair">&gt;</button>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitpreveyes">&lt;</button>
+				<canvas id="setoutfiteyescanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexteyes">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevmouth">&lt;</button>
+				<canvas id="setoutfitmouthcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextmouth">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhead">&lt;</button>
+				<canvas id="setoutfitheadcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthead">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevbody">&lt;</button>
+				<canvas id="setoutfitbodycanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextbody">&gt;</button><br>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevdress">&lt;</button>
+				<canvas id="setoutfitdresscanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextdress">&gt;</button>
+				</div>
+				</div>
+
+				<!-- color selectors -->
+				<div class="verticalgroup">
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfithaircolortoggle">
+				<label for="setoutfithaircolortoggle">Hair color</label>
+				</div>
+				<canvas id="setoutfithaircolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfithaircolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfiteyescolortoggle">
+				<label for="setoutfiteyescolortoggle">Eyes color</label>
+				</div>
+				<canvas id="setoutfiteyescolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfiteyescolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfitskincolortoggle">
+				<label for="setoutfitskincolortoggle">Skin color</label>
+				</div>
+				<canvas id="setoutfitskincolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfitskincolorgradient" width="80" height="10"></canvas>
+				</div>
+
+				<div class="verticalgroup">
+				<div class="horizontalgroup">
+				<input type="checkbox" id="setoutfitdresscolortoggle">
+				<label for="setoutfitdresscolortoggle">Dress color</label>
+				</div>
+				<canvas id="setoutfitdresscolorcanvas" width="80" height="52"></canvas>
+				<canvas id="setoutfitdresscolorgradient" width="80" height="10"></canvas>
+				</div>
+				</div>
+
+				<!-- hat & mask part selectors -->
+				<div class="verticalgroup"> 
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevhat">&lt;</button>
+				<canvas id="setoutfithatcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnexthat">&gt;</button>
+				</div>
+
+				<div class="horizontalgroup">
+				<button type="button" id="setoutfitprevmask">&lt;</button>
+				<canvas id="setoutfitmaskcanvas" width="48" height="64"></canvas>
+				<button type="button" id="setoutfitnextmask">&gt;</button>
+				</div>
+
+				</div>
+
+				<!-- horizontal group -->
+				<div><canvas id="setoutfitcompositecanvas" width="48" height="64"></canvas></div>
+			</div>
+			<div align="right"><button type="button" id="setoutfitcancel">Cancel</button>
+			<button type="button" id="setoutfitapply">Change Outfit</button></div>
+			</div>
+		</template>
 
 		<script type="text/javascript" src="stendhal-compiled.js"></script>
 	</body>

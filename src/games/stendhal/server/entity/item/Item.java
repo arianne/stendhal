@@ -248,6 +248,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// name of itemset
 		entity.addAttribute("itemset", Type.STRING);
+
+		// sound played when item is used
+		entity.addAttribute("use_sound", Type.STRING, Definition.VOLATILE);
 	}
 
 

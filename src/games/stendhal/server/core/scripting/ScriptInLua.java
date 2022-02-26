@@ -31,15 +31,9 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.scripting.lua.LuaActionHelper;
-import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
-import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
-import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
-import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
-import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
-import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
-import games.stendhal.server.core.scripting.lua.LuaStringHelper;
-import games.stendhal.server.core.scripting.lua.LuaTableHelper;
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.scripting.lua.*;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 
@@ -50,30 +44,53 @@ public class ScriptInLua extends ScriptingSandbox {
 
 	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
 
+	/** The singleton instance. */
 	private static ScriptInLua instance;
+
+	private static final SingletonRepository singletons = SingletonRepository.get();
+
 	private static Globals globals;
 
 	private static String luaScript;
 
 
-	public ScriptInLua() {
-		super(null);
-
-		luaScript = null;
-	}
-
-	public ScriptInLua(final String filename) {
-		super(filename);
-
-		luaScript = filename;
-	}
-
-	public static ScriptInLua getInstance() {
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
+	public static ScriptInLua get() {
 		if (instance == null) {
 			instance = new ScriptInLua();
 		}
 
 		return instance;
+	}
+
+	/**
+	 * @deprecated
+	 *     Use @ref ScriptInLua.get().
+	 */
+	@Deprecated
+	public static ScriptInLua getInstance() {
+		return get();
+	}
+
+	ScriptInLua() {
+		super(null);
+
+		// assign singleton instance for safety
+		instance = this;
+		luaScript = null;
+	}
+
+	ScriptInLua(final String filename) {
+		super(filename);
+
+		// assign singleton instance for safety
+		instance = this;
+		luaScript = filename;
 	}
 
 	/**
@@ -140,7 +157,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		globals.set("game", CoerceJavaToLua.coerce(getInstance()));
+		globals.set("game", CoerceJavaToLua.coerce(get()));
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(LuaPropertiesHelper.get()));
@@ -150,6 +167,9 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("merchants", CoerceJavaToLua.coerce(LuaMerchantHelper.get()));
 		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
+		globals.set("singletons", CoerceJavaToLua.coerce(singletons));
+		globals.set("clones", CoerceJavaToLua.coerce(singletons.getCloneManager()));
+		globals.set("random", CoerceJavaToLua.coerce(new Rand()));
 
 		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));
@@ -264,7 +284,7 @@ public class ScriptInLua extends ScriptingSandbox {
 			return instance;
 		}
 
-		public void info(String message) {
+		private void formatMessage(String message) {
 			message = message.trim();
 
 			if (luaScript == null) {
@@ -272,36 +292,30 @@ public class ScriptInLua extends ScriptingSandbox {
 			} else {
 				message = "(" + luaScript + ") " + message;
 			}
+		}
 
+		public void info(String message) {
+			formatMessage(message);
 			logger.info(message);
 		}
 
 		public void warn(String message) {
-			message = message.trim();
-
-			if (luaScript == null) {
-				message = "(unknown source) " + message;
-			} else {
-				message = "(" + luaScript + ") " + message;
-			}
-
+			formatMessage(message);
 			logger.warn(message);
 		}
 
 		public void error(String message) {
-			message = message.trim();
-
-			if (luaScript == null) {
-				message = "(unknown source) " + message;
-			} else {
-				message = "(" + luaScript + ") " + message;
-			}
-
+			formatMessage(message);
 			logger.error(message);
 		}
 
 		public void error(final Object obj, final Throwable throwable) {
 			logger.error(obj, throwable);
+		}
+
+		public void debug(String message) {
+			formatMessage(message);
+			logger.debug(message);
 		}
 	}
 }

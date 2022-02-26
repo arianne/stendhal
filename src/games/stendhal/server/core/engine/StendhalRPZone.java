@@ -162,6 +162,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/** User representable name of the zone. */
 	private final String readableName;
 
+	/** Zones that some event types propagate to from this one. */
+	private String associatedZones;
+
 	/** Facing directions for portals. */
 	private final int UP_FN = 8;
 	private final int UP_FE = 9;
@@ -1903,6 +1906,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 					result.append(levelValue);
 				}
 			}
+		} else if (zoneName.endsWith("tutorial_island")) {
+			result.append("Tutorial Island");
 		} else {
 			// As of this writing (2014-01-15), the few zone names that do not
 			// match produce good results with this.
@@ -1941,5 +1946,33 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public ZoneAttributes getAttributes() {
 		return attributes;
+	}
+
+	/**
+	 * Sets other zones that should receive certain events such as knocking on door.
+	 *
+	 * @param zones
+	 *     Comma-separated string of zone names.
+	 */
+	public void setAssociatedZones(final String zones) {
+		associatedZones = zones;
+	}
+
+	/**
+	 * Gets other zones that should receive certain events such as knocking on door.
+	 */
+	public String getAssociatedZones() {
+		return associatedZones;
+	}
+
+	/**
+	 * Gets other zones that should receive certain events such as knocking on door.
+	 */
+	public List<String> getAssociatedZonesList() {
+		if (associatedZones == null) {
+			return new ArrayList<>();
+		}
+
+		return Arrays.asList(getAssociatedZones().split(","));
 	}
 }

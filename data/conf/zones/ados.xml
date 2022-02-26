@@ -3409,6 +3409,9 @@ My fee:
       <parameter name="height">1</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_50_1" />
+
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_50" />
@@ -3459,6 +3462,9 @@ My fee:
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_51_1" />
 
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
@@ -3512,6 +3518,9 @@ My fee:
       <parameter name="height">2</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_52_1" />
+
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_52"/>
@@ -3553,6 +3562,9 @@ My fee:
       <parameter name="height">1</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_53_1" />
+
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_53" />
@@ -3586,6 +3598,9 @@ My fee:
       <parameter name="width">2</parameter>
       <parameter name="height">2</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_54_1" />
 
     <!-- Portals -->
     <portal x="9" y="14" ref="in_left">
@@ -3636,6 +3651,9 @@ My fee:
       <parameter name="width">2</parameter>
       <parameter name="height">2</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_55_1" />
 
     <!-- Portals -->
     <portal x="9" y="14" ref="in_left">
@@ -3691,6 +3709,9 @@ My fee:
       <parameter name="height">2</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_56_1" />
+
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_56" />
     </portal>
@@ -3734,6 +3755,9 @@ My fee:
       <parameter name="height">2</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_57_1" />
+
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_57" />
     </portal>
@@ -3769,6 +3793,9 @@ My fee:
       <parameter name="x">11</parameter>
       <parameter name="y">13</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_58_1" />
 
     <!-- Interactive sounds -->
     <entity x="2" y="9">
@@ -3833,6 +3860,9 @@ My fee:
       <parameter name="height">1</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_59_1" />
+
     <!-- Interactive sounds -->
     <entity x="6" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
@@ -3892,6 +3922,9 @@ My fee:
       <parameter name="height">1</parameter>
     </configurator>
 
+    <!-- second floor -->
+    <associated zones="int_ados_house_60_1" />
+
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
       <destination zone="0_ados_city_n" ref="house_60"/>
@@ -3943,6 +3976,9 @@ My fee:
       <parameter name="x">5</parameter>
       <parameter name="y">2</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_61_1" />
 
     <!-- Portals -->
     <portal x="7" y="14" ref="in">
@@ -4007,6 +4043,9 @@ My fee:
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_ados_house_62_1" />
 
     <!-- Portals -->
     <portal x="7" y="14" ref="in">

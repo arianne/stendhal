@@ -135,6 +135,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 							seller.say("Wroff! Here "
 									+ Grammar.isare(amount) + " your "
 									+ Grammar.plnoun(amount, chosenItemName) + "!");
+							updatePlayerTransactions(player, seller.getName(), res);
 							return true;
                         } else {
                             seller.say("Wruff.. You cannot carry any "

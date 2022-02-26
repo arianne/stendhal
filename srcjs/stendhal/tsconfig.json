@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"lib": ["dom", "es2015"],
+		"module": "commonjs",
+		"noImplicitOverride": true,
+		"outDir": "../../build/ts",
+		"rootDir": ".",
+		"sourceMap": true,
+		"strict": true,
+		"target": "es6"
+	}
+}

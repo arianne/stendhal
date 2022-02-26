@@ -36,7 +36,7 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.io.BaseEncoding;
 
-/** Finds duplicate, empty and placeholder tiles in tiled/tileset/**. */
+/** Finds duplicate, empty and placeholder tiles in tiled/tileset/ */
 public class DuplicateTileFinder {
 	/** Tile size. */
 	private static final int SIZE = 32;

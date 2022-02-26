@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,6 +22,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.slot.Slots;
+import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -61,6 +65,7 @@ public class HousePortal extends AccessCheckingPortal {
 			entity.addAttribute(DESTINATION_ZONE, Type.STRING);
 			entity.addAttribute(DESTINATION_ID, Type.STRING);
 			entity.addAttribute(PORTAL_REFERENCE, Type.STRING);
+			entity.addAttribute("associated_zones", Type.STRING, Definition.VOLATILE);
 		}
 	}
 
@@ -304,5 +309,29 @@ public class HousePortal extends AccessCheckingPortal {
 		if (zone != null) {
 			zone.storeToDatabase();
 		}
+	}
+
+	/**
+	 * Sets other zones that should hear knocking on door.
+	 *
+	 * @param zones
+	 *     Comma-separated string of zone names.
+	 */
+	public void setAssociatedZones(final String zones) {
+		put("associated_zones", zones);
+	}
+
+	/**
+	 * Gets other zones that should hear knocking on door.
+	 */
+	public String getAssociatedZones() {
+		return get("associated_zones");
+	}
+
+	/**
+	 * Gets other zones that should hear knocking on door.
+	 */
+	public List<String> getAssociatedZonesList() {
+		return Arrays.asList(getAssociatedZones().split(","));
 	}
 }

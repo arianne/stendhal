@@ -25,6 +25,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="vampirette_hiss-01"/>
+      </says>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="human"/>
@@ -57,6 +60,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="vampirette_hiss-01"/>
+      </says>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.8"/>
       <profile name="human"/>

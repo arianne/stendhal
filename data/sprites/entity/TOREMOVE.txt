@@ -1,0 +1,12 @@
+The following images can be removed after 1.39 release:
+
+./
+- chaos_sorcerornpc.png
+- chessplayernpc.png
+- chieffalatheennpc.png
+- deniran_stormtrooper.png
+- dwarf_guardiannpc.png
+- koboldbarregularnpc.png
+- koboldnpc.png
+- yetifemalenpc.png
+- yetimalenpc.png

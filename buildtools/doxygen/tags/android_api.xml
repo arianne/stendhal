@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+
+<tagfile>
+
+	<compound kind="namespace">
+		<name>android::app</name>
+		<filename>android/app/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::app::Activity</name>
+		<filename>android/app/Activity</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::app::AlertDialog</name>
+		<filename>android/app/AlertDialog</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::content</name>
+		<filename>android/content/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::Context</name>
+		<filename>android/content/Context</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::DialogInterface</name>
+		<filename>android/content/DialogInterface</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::Intent</name>
+		<filename>android/content/Intent</filename>
+	</compound>
+
+	<compound kind="namespace">
+		<name>android::content::pm</name>
+		<filename>android/content/pm/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::pm::ApplicationInfo</name>
+		<filename>android/content/pm/ApplicationInfo</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::content::res</name>
+		<filename>android/content/res/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::content::res::Configuration</name>
+		<filename>android/content/res/Configuration</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::view</name>
+		<filename>android/view/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::Gravity</name>
+		<filename>android/view/Gravity</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::graphics::drawable</name>
+		<filename>android/graphics/drawable/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::graphics::drawable::Drawable</name>
+		<filename>android/graphics/drawable/Drawable</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::os</name>
+		<filename>android/os/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::os::Build</name>
+		<filename>android/os/Build</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::os::Bundle</name>
+		<filename>android/os/Bundle</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::text</name>
+		<filename>android/text/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::text::InputType</name>
+		<filename>android/text/InputType</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::util</name>
+		<filename>android/util/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::util::AttributeSet</name>
+		<filename>android/util/AttributeSet</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::view</name>
+		<filename>android/view/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::Gravity</name>
+		<filename>android/view/Gravity</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::KeyEvent</name>
+		<filename>android/view/KeyEvent</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::MotionEvent</name>
+		<filename>android/view/MotionEvent</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::View</name>
+		<filename>android/view/View</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::ViewTreeObserver</name>
+		<filename>android/view/ViewTreeObserver</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::view::inputmethod</name>
+		<filename>android/view/inputmethod/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::inputmethod::BaseInputConnection</name>
+		<filename>android/view/inputmethod/BaseInputConnection</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::inputmethod::EditorInfo</name>
+		<filename>android/view/inputmethod/EditorInfo</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::inputmethod::InputConnection</name>
+		<filename>android/view/inputmethod/InputConnection</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::view::inputmethod::InputMethodManager</name>
+		<filename>android/view/inputmethod/InputMethodManager</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::webkit</name>
+		<filename>android/webkit/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::JavascriptInterface</name>
+		<filename>android/webkit/JavascriptInterface</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebSettings</name>
+		<filename>android/webkit/WebSettings</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebView</name>
+		<filename>android/webkit/WebView</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::webkit::WebViewClient</name>
+		<filename>android/webkit/WebViewClient</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>android::widget</name>
+		<filename>android/widget/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::Button</name>
+		<filename>android/widget/Button</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::FrameLayout</name>
+		<filename>android/widget/FrameLayout</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::ImageView</name>
+		<filename>android/widget/ImageView</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::LinearLayout</name>
+		<filename>android/widget/LinearLayout</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::Toast</name>
+		<filename>android/widget/Toast</filename>
+	</compound>
+	<compound kind="class">
+		<name>android::widget::Toolbar</name>
+		<filename>android/widget/Toolbar</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>androidx::appcompat::app</name>
+		<filename>androidx/appcompat/app/package-summary</filename>
+	</compound>
+	<compound kind="class">
+		<name>androidx::appcompat::app::AppCompatActivity</name>
+		<filename>androidx/appcompat/app/AppCompatActivity</filename>
+	</compound>
+
+</tagfile>

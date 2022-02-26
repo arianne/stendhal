@@ -39,7 +39,6 @@ import marauroa.common.net.InputSerializer;
 public class Zone {
 	/** Logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Zone.class);
-
 	/**
 	 * The name of the setting that controls whether the weather layer should
 	 * be drawn.
@@ -292,7 +291,6 @@ public class Zone {
 		} else if (colorMode != null) {
 			LOGGER.warn("Unknown blend mode: '" + colorMode + "'");
 		}
-
 		return null;
 	}
 

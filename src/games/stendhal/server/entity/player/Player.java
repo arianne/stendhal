@@ -913,6 +913,17 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Checks if player has a feature.
+	 *
+	 * @param name
+	 *     The feature mnemonic.
+	 * @return <code>true</code> if the feature value is not <code>null</code>.
+	 */
+	public boolean hasFeature(final String name) {
+		return getFeature(name) != null;
+	}
+
+	/**
 	 * Get a client feature value.
 	 *
 	 * @param name
@@ -2552,6 +2563,57 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Stores information about amount of money used & gained in NPC transactions.
+	 *
+	 * @param npcName
+	 *     Name of NPC with whom transactions is being done.
+	 * @param price
+	 *     Amount of money exchanged.
+	 * @param soldToNPC
+	 *     <code>true</code> means player is selling to NPC, <code>false</code> player is buying from.
+	 */
+	public void incCommerceTransaction(final String npcName, final int price, final boolean soldToNPC) {
+		int curAmount = 0;
+		if (soldToNPC) {
+			if (has("npc_sales", npcName)) {
+				curAmount = Integer.parseInt(get("npc_sales", npcName));
+			}
+		} else {
+			if (has("npc_purchases", npcName)) {
+				curAmount = Integer.parseInt(get("npc_purchases", npcName));
+			}
+		}
+
+		if (soldToNPC) {
+			put("npc_sales", npcName, curAmount + price);
+		} else {
+			put("npc_purchases", npcName, curAmount + price);
+		}
+
+		AchievementNotifier.get().onTrade(this);
+	}
+
+	public int getCommerceTransactionAmount(final String npcName, final boolean soldToNPC) {
+		int amount = 0;
+
+		try {
+			if (soldToNPC) {
+				if (has("npc_sales", npcName)) {
+					amount = Integer.parseInt(get("npc_sales", npcName));
+				}
+			} else {
+				if (has("npc_purchases", npcName)) {
+					amount = Integer.parseInt(get("npc_purchases", npcName));
+				}
+			}
+		} catch (final NumberFormatException e) {
+			logger.error(e, e);
+		}
+
+		return amount;
+	}
+
+	/**
 	 * Gets the recorded item stored in a substate of quest slot
 	 *
 	 * @param questname
@@ -2826,5 +2888,20 @@ public class Player extends DressedEntity implements UseListener {
 
 			this.stop();
 		}
+	}
+
+	/**
+	 * returns the maximum size of a slot
+	 *
+	 * @param slot name of slot
+	 * @return size, or -1 if no maximum is known
+	 */
+	public int getMaxSlotSize(String slot) {
+		String value = this.getFeature(slot);
+		if (value == null || value.equals("")) {
+			return -1;
+		}
+		String[] values = value.split(" ");
+		return Integer.parseInt(values[0]) * Integer.parseInt(values[1]);
 	}
 }

@@ -1,0 +1,34 @@
+{
+  "name": "stendhal",
+  "version": "1.0.0",
+  "description": "Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel. ",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/arianne/stendhal.git"
+  },
+  "keywords": [
+    "game",
+    "java",
+    "rpg",
+    "mmorpg",
+    "game-server"
+  ],
+  "author": "Arianne Project",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/arianne/stendhal/issues"
+  },
+  "homepage": "https://arianne-project.org",
+  "private": true,
+  "dependencies": {
+    "typescript": "^4.5.3"
+  }
+}

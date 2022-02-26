@@ -16,9 +16,11 @@ import java.util.List;
 
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.maps.quests.IQuest;
@@ -30,12 +32,15 @@ import games.stendhal.server.maps.quests.SimpleQuestCreator;
  */
 public class LuaQuestHelper {
 
+	private static LuaLogger logger = LuaLogger.get();
+
+	/** The singleton instance. */
+	private static LuaQuestHelper instance;
+
 	private static StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 
 	// expose SimpleQuestCreator to Lua
 	public static final SimpleQuestCreator simple = SimpleQuestCreator.getInstance();
-
-	private static LuaQuestHelper instance;
 
 
 	/**
@@ -53,10 +58,17 @@ public class LuaQuestHelper {
 	}
 
 	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaQuestHelper() {
+		// singleton
+	}
+
+	/**
 	 * Creates a new quest instance.
 	 *
 	 * @return
-	 * 		New LuaQuest instance.
+	 *     New LuaQuest instance.
 	 */
 	public LuaQuest create() {
 		return new LuaQuest();
@@ -65,17 +77,45 @@ public class LuaQuestHelper {
 	/**
 	 * Creates a new quest instance.
 	 *
-	 * @param name
-	 * 		The quest name.
 	 * @param slotName
-	 * 		The slot identifier.
-	 * @param minLevel
-	 * 		Recommended minimum level.
+	 *     The slot identifier.
 	 * @return
-	 * 		New LuaQuest instance.
+	 *     New LuaQuest instance.
+	 */
+	public LuaQuest create(final String slotName) {
+		return new LuaQuest(slotName);
+	}
+
+	/**
+	 * Creates a new quest instance.
+	 *
+	 * @param name
+	 *     The quest name.
+	 * @param slotName
+	 *     The slot identifier.
+	 * @param minLevel
+	 *     Recommended minimum level.
+	 * @return
+	 *     New LuaQuest instance.
 	 */
 	public LuaQuest create(final String slotName, final String name) {
 		return new LuaQuest(slotName, name);
+	}
+
+	/**
+	 * Creates a new quest instance.
+	 *
+	 * @param slotName
+	 *     The slot identifier.
+	 * @param name
+	 *     Reader friendly name.
+	 * @param desc
+	 *     Quest description.
+	 * @return
+	 *     New LuaQuest instance.
+	 */
+	public LuaQuest create(final String slotName, final String name, final String desc) {
+		return new LuaQuest(slotName, name, desc);
 	}
 
 	/**
@@ -103,17 +143,25 @@ public class LuaQuestHelper {
 	 *
 	 * @param quest
 	 * 		Quest to be cached.
+	 * @deprecated
+	 *     Use {@link LuaQuest.register}.
 	 */
+	@Deprecated
 	public void cache(final IQuest quest) {
+		logger.debug("LuaQuestHelper.cache deprecated. Use LuaQuest.register.");
+
 		questSystem.cacheQuest(quest);
 	}
 
 	/**
-	 * Caches a quest fro loading at startup.
+	 * Caches a quest for loading at startup.
 	 *
 	 * @param quest
 	 * 		Quest to be cached.
+	 * @deprecated
+	 *     Use {@link LuaQuest.register}.
 	 */
+	@Deprecated
 	public void register(final IQuest quest) {
 		cache(quest);
 	}
@@ -282,7 +330,9 @@ public class LuaQuestHelper {
 	 * Class to aid with quest manipulation in Lua.
 	 */
 	@SuppressWarnings("unused")
-	private class LuaQuest extends AbstractQuest {
+	private static class LuaQuest extends AbstractQuest {
+
+		private static LuaLogger logger = LuaLogger.get();
 
 		private String slotName = null;
 		private int minLevel = 0;
@@ -290,43 +340,100 @@ public class LuaQuestHelper {
 		private String npcName = null;
 		private boolean visible = true;
 
-		private LuaFunction add = null;
-		private LuaFunction remove = null;
-		private LuaFunction history = null;
-		private LuaFunction formattedHistory = null;
-		private LuaFunction startedCheck = null;
-		private LuaFunction repeatableCheck = null;
-		private LuaFunction completedCheck = null;
+		/**
+		 * Function executed when
+		 * {@link StendhalQuestSystem.loadQuest}
+		 * is called.
+		 */
+		public LuaFunction init = null;
+		public LuaFunction remove = null;
+		public LuaFunction history = null;
+		public LuaFunction formattedHistory = null;
+		public LuaFunction startedCheck = null;
+		public LuaFunction repeatableCheck = null;
+		public LuaFunction completedCheck = null;
 
 
+		/**
+		 * Creates a new quest.
+		 */
 		private LuaQuest() {
-			questInfo.setSuggestedMinLevel(minLevel);
-			questInfo.setRepeatable(false);
+			init();
 		}
 
 		/**
+		 * Creates a new quest.
 		 *
-		 * @param name
-		 * 		The quest name.
 		 * @param slotName
-		 * 		The slot identifier.
-		 * @param minLevel
-		 * 		Recommended minimum level.
+		 *     The slot identifier.
+		 */
+		private LuaQuest(final String slotName) {
+			setSlotName(slotName);
+
+			init();
+		}
+
+		/**
+		 * Creates a new quest.
+		 *
+		 * @param slotName
+		 *     The slot identifier.
+		 * @param name
+		 *     Reader friendly name.
 		 */
 		private LuaQuest(final String slotName, final String name) {
 			setSlotName(slotName);
 			setName(name);
+
+			init();
+		}
+
+		/**
+		 * Creates a new quest.
+		 *
+		 * @param slotName
+		 *     The slot identifier.
+		 * @param name
+		 *     Reader friendly name.
+		 * @param desc
+		 *     Quest description.
+		 */
+		private LuaQuest(final String slotName, final String name, final String desc) {
+			setSlotName(slotName);
+			setName(name);
+			setDescription(desc);
+
+			init();
+		}
+
+		/**
+		 * Initializes default QuestInfo attributes.
+		 */
+		private void init() {
 			questInfo.setSuggestedMinLevel(minLevel);
 			questInfo.setRepeatable(false);
 		}
 
 		/**
-		 * This must be called in order for the quest to be added to game.
+		 * Registers quest to be added to world.
+		 *
+		 * {@link LuaQuest.init} must be set before this is called.
 		 *
 		 * (alternatively call questSystem:cacheQuest(LuaQuest))
 		 */
 		public void register() {
 			StendhalQuestSystem.get().cacheQuest(this);
+		}
+
+		/**
+		 * Registers quest to be added to world.
+		 *
+		 * @param func
+		 *     Function to execute when {@link StendhalQuestSystem.loadQuest} is called.
+		 */
+		public void register(final LuaFunction func) {
+			this.init = func;
+			register();
 		}
 
 		/**
@@ -348,8 +455,6 @@ public class LuaQuestHelper {
 
 		@Override
 		public String getName() {
-			//return questInfo.getName();
-
 			final StringBuilder sb = new StringBuilder();
 			final char[] name = getOriginalName().toCharArray();
 			boolean titleCase = true;
@@ -391,11 +496,11 @@ public class LuaQuestHelper {
 				return ret;
 			}
 
-			final LuaValue result = history.call();
+			final LuaValue result = history.call(CoerceJavaToLua.coerce(player));
 			if (result.istable()) {
-				for (final LuaValue lv: result.checktable().keys()) {
-					if (lv.isstring()) {
-						ret.add(lv.tojstring());
+				for (final LuaValue key: result.checktable().keys()) {
+					if (key.isstring()) {
+						ret.add(result.get(key.checkint()).tojstring());
 					}
 				}
 			}
@@ -410,11 +515,11 @@ public class LuaQuestHelper {
 			}
 
 			final List<String> ret = new LinkedList<>();
-			final LuaValue result = history.call();
+			final LuaValue result = history.call(CoerceJavaToLua.coerce(player));
 			if (result.istable()) {
-				for (final LuaValue lv: result.checktable().keys()) {
-					if (lv.isstring()) {
-						ret.add(lv.tojstring());
+				for (final LuaValue key: result.checktable().keys()) {
+					if (key.isstring()) {
+						ret.add(result.get(key.checkint()).tojstring());
 					}
 				}
 			}
@@ -453,8 +558,10 @@ public class LuaQuestHelper {
 
 		@Override
 		public void addToWorld() {
-			if (add != null) {
-				add.invoke(); // or should this be add.call()?
+			if (init != null) {
+				init.invoke(); // or should this be init.call()?
+			} else {
+				logger.warn("LuaQuest.init not set. Quest will not work.");
 			}
 		}
 
@@ -574,21 +681,32 @@ public class LuaQuestHelper {
 		/**
 		 * Sets the function for adding the quest to the game.
 		 *
-		 * @param addFunction
+		 * @param func
 		 * 		Function to invoke when addToWorld() is called.
+		 *
+		 * @deprecated
+		 *     Set LuaQuest.init directly.
 		 */
-		public void setAddFunction(final LuaFunction add) {
-			this.add = add;
+		@Deprecated
+		public void setAddFunction(final LuaFunction func) {
+			logger.debug("LuaQuest.setAddFunction deprecated. Set LuaQuest.init directly.");
+
+			this.init = func;
 		}
 
 		/**
 		 * Sets the function for removing the quest from the game.
 		 *
-		 * @param remove
+		 * @param func
 		 * 		Function to invoke when removeFromWorld() is called.
+		 * @deprecated
+		 *     Set LuaQuest.remove directly.
 		 */
-		public void setRemoveFunction(final LuaFunction remove) {
-			this.remove = remove;
+		@Deprecated
+		public void setRemoveFunction(final LuaFunction func) {
+			logger.debug("LuaQuest.setRemoveFunction deprected. Set LuaQuest.remove directly.");
+
+			this.remove = func;
 		}
 
 		/**

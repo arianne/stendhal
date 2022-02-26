@@ -21,6 +21,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
@@ -38,6 +39,7 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_HELPER_25 = "deathmatch.helper.0025";
 	public static final String ID_HELPER_50 = "deathmatch.helper.0050";
 	public static final String ID_HELPER_100 = "deathmatch.helper.0100";
+	public static final String ID_HELM_MAX = "deathmatch.helmet.0124";
 
 
 	@Override
@@ -78,6 +80,22 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 				ID_HELPER_100, "Deathmatch Convoy", "Aid other players in 100 rounds of deathmatch",
 				Achievement.MEDIUM_BASE_SCORE, false,
 				new HasHelpedNumberOfTimes(100)));
+
+		achievements.add(createAchievement(
+			ID_HELM_MAX, "Determination", "Increase trophy helmet to max defense",
+			Achievement.HARD_BASE_SCORE, true,
+			new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					for (final Item helm: player.getAllEquipped("trophy helmet")) {
+						if (helm.getDefense() > 123) {
+							return true;
+						}
+					}
+
+					return false;
+				}
+			}));
 
 		return achievements;
 	}

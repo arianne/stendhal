@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.MSG_BLINK;
+import static games.stendhal.client.gui.settings.SettingsProperties.MSG_SOUND;
+
 import java.awt.Color;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
@@ -27,11 +30,17 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.facade.InfiniteAudibleArea;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundFileType;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
+
 
 class ChatLogArea {
 	/** Background color of the private chat tab. Light blue. */
@@ -151,14 +160,27 @@ class ChatLogArea {
 	}
 
 	private void setupHiddenChannelMessageHandling(BitSet changedChannels) {
+		final WtWindowManager wm = WtWindowManager.getInstance();
+
 		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
 			@Override
 			public void channelModified(int index) {
+				if (index == 1 && wm.getPropertyBoolean(MSG_SOUND, true)) {
+					// play notification
+					final String sndFile = "ui/notify_up.ogg";
+					if (this.getClass().getResource("/data/sounds/" + sndFile) != null) {
+						final SoundGroup group = ClientSingletonRepository.getSound()
+							.getGroup(SoundLayer.USER_INTERFACE.groupName);
+						group.loadSound(MSG_SOUND, sndFile, SoundFileType.OGG, false);
+						group.play(MSG_SOUND, 0, new InfiniteAudibleArea(), null, false, true);
+					}
+				}
+
 				// Mark the tab as modified so that the user can see there's
 				// new text
 				if (!changedChannels.get(index)) {
 					changedChannels.set(index);
-					if (!animator.isRunning()) {
+					if (!animator.isRunning() && wm.getPropertyBoolean(MSG_BLINK, true)) {
 						animator.start();
 					}
 				}

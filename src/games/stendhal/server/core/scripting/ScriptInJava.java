@@ -67,7 +67,7 @@ public class ScriptInJava extends ScriptingSandbox {
 		final ClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
 		// load class through new loader
 		final Class< ? > aClass = loader.loadClass(classname);
-		script = (Script) aClass.newInstance();
+		script = (Script) aClass.getDeclaredConstructor().newInstance();
 	}
 
 	/**

@@ -10,6 +10,9 @@
  ***************************************************************************/
 "use strict";
 
+var CombinedTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").CombinedTilesetRenderingStrategy;
+var IndividualTilesetRenderingStrategy = require("../../../build/ts/landscape/IndividualTilesetRenderingStrategy").IndividualTilesetRenderingStrategy;
+
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
@@ -99,6 +102,7 @@ stendhal.data.map = {
 	tileHeight : 32,
 	zoom : 100,
 
+	tilesetFilenames: [],
 	aImages : -1,
 	layerNames : -1,
 	layers : -1,
@@ -107,6 +111,11 @@ stendhal.data.map = {
 	drawingError : false,
 	targetTileWidth : 0,
 	targetTileHeight : 0,
+
+	layerGroups: [
+		["0_floor", "1_terrain", "2_object"],
+		["3_roof", "4_roof_add"]
+	],
 
 
 	/**
@@ -140,6 +149,9 @@ stendhal.data.map = {
 		stendhal.data.map.decodeMapLayer(content, "4_roof_add");
 		stendhal.data.map.protection = stendhal.data.map.decodeMapLayer(content, "protection");
 		stendhal.data.map.collisionData = stendhal.data.map.decodeMapLayer(content, "collision");
+		stendhal.data.map.layerGroupIndexes = stendhal.data.map.mapLayerGroup();
+
+		stendhal.data.map.strategy.onMapLoaded(stendhal.data.map);
 	},
 
 	decodeTileset: function(content, name) {
@@ -147,7 +159,7 @@ stendhal.data.map = {
 		var deserializer = marauroa.Deserializer.fromBase64(layerData);
 		var amount = deserializer.readInt();
 
-		var images = [];
+		stendhal.data.map.tilesetFilenames = [];
 		for (var i = 0; i < amount; i++) {
 			var name = deserializer.readString();
 			var source = deserializer.readString();
@@ -157,7 +169,7 @@ stendhal.data.map = {
 			// This is not input validation. It just rewrites a path used by the
 			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
-			images.push(filename);
+			stendhal.data.map.tilesetFilenames.push(filename);
 			stendhal.data.map.firstgids.push(firstgid);
 		}
 
@@ -171,10 +183,7 @@ stendhal.data.map = {
 			lastStart = stendhal.data.map.firstgids[pos];
 		}
 
-		new ImagePreloader(images, function() {
-			var body = document.getElementById("body");
-			body.style.cursor = "auto";
-		});
+		stendhal.data.map.strategy.onTilesetLoaded();
 	},
 
 	decodeMapLayer: function(content, name) {
@@ -190,10 +199,7 @@ stendhal.data.map = {
 
 		var layer = [];
 		for (var i = 0; i < stendhal.data.map.zoneSizeX * stendhal.data.map.zoneSizeY * 4 - 3; i=i+4) {
-			var tileId = (layerRaw.getUint8(i) >>> 0)
-				+ (layerRaw.getUint8(i + 1) << 8)
-				+ (layerRaw.getUint8(i + 2) << 16)
-				+ (layerRaw.getUint8(i + 3) << 24);
+			var tileId = layerRaw.getUint32(i, true);
 			layer.push(tileId);
 		}
 
@@ -209,5 +215,28 @@ stendhal.data.map = {
 
 	isProtected: function(x, y) {
 		return this.protection[y * stendhal.data.map.zoneSizeX + x] != 0;
+	},
+
+	mapLayerGroup() {
+		let res = [];
+		for (let layers of stendhal.data.map.layerGroups) {
+			let group = [];
+			for (let layer of layers) {
+				let index = stendhal.data.map.layerNames.indexOf(layer);
+				if (index > - 1) {
+					group.push(index);
+				}
+			}
+			if (group) {
+				res.push(group);
+			}
+		}
+		return res;
 	}
+};
+
+if (window.location.search.indexOf("old") > -1) {
+	stendhal.data.map.strategy = new IndividualTilesetRenderingStrategy();
+} else {
+	stendhal.data.map.strategy = new CombinedTilesetRenderingStrategy();
 };

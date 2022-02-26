@@ -14,6 +14,10 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
+var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
+var ui = require("../../build/ts/ui/UI").ui;
+var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -32,19 +36,12 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 		} else {
 			target.onMissed(entity);
 		}
-		entity.onAttackPerformed(this["type"], this.hasOwnProperty("ranged"));
+		entity.onAttackPerformed(parseInt(this["type"], 10), this.hasOwnProperty("ranged"));
 	}
 });
 
 
-marauroa.rpeventFactory["examine"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		if (rpobject !== marauroa.me) {
-			return;
-		}
-		new stendhal.ui.ImageViewer(this["title"], this["caption"], this["path"]);
-	}
-});
+marauroa.rpeventFactory["examine"] = new ExamineEvent();
 
 
 marauroa.rpeventFactory["global_visual_effect"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
@@ -70,11 +67,11 @@ marauroa.rpeventFactory["group_invite_event"] = marauroa.util.fromProto(marauroa
 			return;
 		}
 		if (this["expire"]) {
-			stendhal.ui.chatLog.addLine("normal", "Your group invite by " + this["leader"] + " has expired.");
+			Chat.log("normal", "Your group invite by " + this["leader"] + " has expired.");
 		} else {
-			stendhal.ui.chatLog.addLine("normal", "Your have been invited by " + this["leader"] + " to join a group.");
-			stendhal.ui.chatLog.addLine("normal", "To join, type: /group join " + this["leader"]);
-			stendhal.ui.chatLog.addLine("normal", "To leave the group at any time, type: /group part " + this["leader"]);
+			Chat.log("normal", "Your have been invited by " + this["leader"] + " to join a group.");
+			Chat.log("normal", "To join, type: /group join " + this["leader"]);
+			Chat.log("normal", "To leave the group at any time, type: /group part " + this["leader"]);
 		}
 	}
 });
@@ -104,26 +101,12 @@ marauroa.rpeventFactory["player_logged_out"] = marauroa.util.fromProto(marauroa.
 
 marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		stendhal.ui.chatLog.addLine(this["texttype"].toLowerCase(), this["text"]);
+		Chat.log(this["texttype"].toLowerCase(), this["text"]);
 	}
 });
 
 
-marauroa.rpeventFactory["progress_status_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		var progressType = this["progress_type"];
-		var dataItems = this["data"].substring(1, this["data"].length - 1).split(/\t/);
-
-		if (!this["progress_type"]) {
-			stendhal.ui.travellog.open(dataItems);
-		} else if (!this["item"]) {
-			stendhal.ui.travellog.progressTypeData(progressType, dataItems);
-		} else {
-			stendhal.ui.travellog.itemData(progressType, this["item"], this["description"], dataItems);
-		}
-	}
-});
-
+marauroa.rpeventFactory["progress_status_event"] = new ProgressStatusEvent();
 
 marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
@@ -135,18 +118,18 @@ marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauro
 marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		if (this.hasOwnProperty("title")) {
-			stendhal.ui.chatLog.addLine("normal", this["title"]);
+			Chat.log("normal", this["title"]);
 		}
 		if (this.hasOwnProperty("caption")) {
-			stendhal.ui.chatLog.addLine("normal", this["caption"]);
+			Chat.log("normal", this["caption"]);
 		}
 		if (this.hasOwnProperty("content")) {
-			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
+			Chat.log("normal", "Item\t-\tPrice\t-\tDescription");
 			for (var obj in this["content"]) {
 				if (this["content"].hasOwnProperty(obj)) {
 					var slotObj = this["content"][obj];
 					var data = this["content"][obj]["a"];
-					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
+					Chat.log("normal", data["subclass"] + "\t"
 							+ data["price"] + "\t" + data["description_info"]);
 				}
 			}
@@ -230,9 +213,9 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 		header[2] = "------------------";
 
 		// FIXME: hack until a proper window is implemented
-		stendhal.ui.chatLog.addLine("normal", title + ":");
+		Chat.log("normal", title + ":");
 		for (h of header) {
-			stendhal.ui.chatLog.addLine("normal", h);
+			Chat.log("normal", h);
 		}
 
 		const enemies = this["enemies"].split(";");
@@ -249,7 +232,7 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 			}
 
 			// FIXME: hack until a proper window is implemented
-			stendhal.ui.chatLog.addLine("normal", name + ":   solo [" + solo + "], shared [" + shared + "]");
+			Chat.log("normal", name + ":   solo [" + solo + "], shared [" + shared + "]");
 		}
 	}
 });

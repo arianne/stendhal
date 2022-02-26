@@ -23,15 +23,24 @@ import marauroa.common.Pair;
 
 public class MerchantsRegister {
 
+	/** The singleton instance. */
 	private static MerchantsRegister instance;
 
 	private final List<Pair<String, BuyerBehaviour>> buyers;
 	private final List<Pair<String, SellerBehaviour>> sellers;
 
+
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
 	public static MerchantsRegister get() {
 		if (instance == null) {
-			new MerchantsRegister();
+			instance = new MerchantsRegister();
 		}
+
 		return instance;
 	}
 
@@ -74,4 +83,35 @@ public class MerchantsRegister {
 		return sellers;
 	}
 
+	/**
+	 * Retrieves list of NPC names registered as buyers.
+	 *
+	 * @return
+	 *     Buyers names.
+	 */
+	public List<String> getBuyersNames() {
+		final List<String> names = new LinkedList<>();
+
+		for (final Pair<String, BuyerBehaviour> p: buyers) {
+			names.add(p.first());
+		}
+
+		return names;
+	}
+
+	/**
+	 * Retrieves list of NPC names registered as sellers.
+	 *
+	 * @return
+	 *     Sellers names.
+	 */
+	public List<String> getSellersNames() {
+		final List<String> names = new LinkedList<>();
+
+		for (final Pair<String, SellerBehaviour> p: sellers) {
+			names.add(p.first());
+		}
+
+		return names;
+	}
 }

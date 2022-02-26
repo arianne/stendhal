@@ -19,7 +19,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
@@ -58,6 +57,7 @@ import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusAttackerFactory;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
+import games.stendhal.server.util.Observer;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;

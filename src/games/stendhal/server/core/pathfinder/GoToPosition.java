@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   Copyright (C) 2003-2022 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,11 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.pathfinder;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import games.stendhal.server.entity.GuidedEntity;
 import games.stendhal.server.entity.Registrator;
+import games.stendhal.server.util.Observable;
+import games.stendhal.server.util.Observer;
 
 
 /**

@@ -15,6 +15,9 @@
 	<condition property="exe.ext" value=".exe" else="">
 		<equals arg1="${os.win}" arg2="true"/>
 	</condition>
+	<condition property="executable.npm" value="npm.cmd" else="npm">
+		<equals arg1="${os.win}" arg2="true" />
+	</condition>
 
 	<!-- check for some executables -->
 	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
@@ -41,8 +44,6 @@
 
 	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
 	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
-
-	<property name="build_client" value="${buildroot}/build_client"/>
 
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
@@ -73,10 +74,44 @@
 			<available file="${build-archive}/stendhal-${version.old}.zip"/>
 		</not>
 	</condition>
+	<condition property="exclude.webclient" value="true">
+		<not>
+			<available file="${executable.npm}" filepath="${env.PATH}"/>
+		</not>
+	</condition>
+
+	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
+	<condition property="executable.suffix" value=".cmd">
+		<os family="windows" />
+	</condition>
+	<property name="executable.suffix" value="" />
 
 	<tstamp>
 		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 	</tstamp>
+
+	<condition property="doxygen.fix_urls" value="true">
+		<and>
+			<equals arg1="${python.present}" arg2="true"/>
+			<available file="buildtools/doxygen/fix_urls.py"/>
+		</and>
+	</condition>
+
+	<!-- Android properties -->
+
+	<condition property="exclude.webview" value="true">
+		<and>
+			<not>
+				<isset property="env.ANDROID_SDK_ROOT" />
+			</not>
+			<not>
+				<available file="${user.dir}/android/local.properties" />
+			</not>
+		</and>
+	</condition>
+
+	<!-- END: Android properties -->
+
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -97,6 +132,10 @@
 		<replaceregexp file="runserver.sh"
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
+			byline="true"/>
+		<replaceregexp file="buildtools/doxygen/Doxyfile"
+			match="^PROJECT_NUMBER .*$"
+			replace="PROJECT_NUMBER         = ${version}"
 			byline="true"/>
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
@@ -145,25 +184,11 @@
 	</target>
 
 	<target name="clean">
-		<delete dir="${lib}" />
-		<delete dir="${build_client}" />
-		<delete dir="${buildroot}/build_client_data" />
-		<delete dir="${build}/build_client_music_data"/>
-		<delete dir="${build}/build_client_sound_data"/>
-		<delete dir="${build_server}" />
-		<delete dir="${build_server_maps}" />
-		<delete dir="${build_server_script}" />
-		<delete dir="${build_server_mods}" />
-		<delete dir="${buildroot}/build_server_quests" />
-		<delete dir="${buildroot}/build_server_xmlconf" />
-		<delete dir="${build_tests}" />
-		<delete dir="${buildroot}/build_stendhaltools" />
-		<delete dir="${buildroot}/build_stendhaltextclient" />
-		<delete dir="${buildroot}/buildbot" />
-		<delete dir="${build_tests_report}" />
+		<delete dir="${buildroot}" />
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
 		<delete file="cobertura.ser" />
+		<delete dir="android/app/build/" />
 		<delete>
 					<fileset dir=".">
 						<include name="TEST-*.xml"/>
@@ -511,7 +536,7 @@
 				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
-				<exclude name="templates/" />
+				<exclude name="entity/templates/" />
 				<exclude name="placeholder-*.png" />
 				<exclude name="cursor/*.svg" />
 			</fileset>
@@ -540,6 +565,7 @@
 				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
+				<exclude name="**/*.svg" />
 			</fileset>
 		</copy>
 
@@ -568,6 +594,49 @@
 
 	</target>
 
+	<target name="client_android_build">
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+		<echo
+			unless:set="exclude.webview"
+			message="Building Android WebView client." />
+
+		<condition property="gradlew" value="${user.dir}/android/gradlew.bat">
+			<os family="windows" />
+		</condition>
+		<property name="gradlew" value="${user.dir}/android/gradlew" />
+
+		<property name="android.build" value="assembleDebug" />
+
+		<condition property="android.build_wout_rev">
+			<and>
+				<not>
+					<isset property="android.rev" />
+				</not>
+				<not>
+					<isset property="gradle.params" />
+				</not>
+			</and>
+		</condition>
+		<condition property="android.build_w_rev">
+			<and>
+				<isset property="android.rev" />
+				<not>
+					<isset property="gradle.params" />
+				</not>
+			</and>
+		</condition>
+
+		<exec unless:set="exclude.webview" failonerror="true"
+				executable="${gradlew}" dir="android/">
+			<arg if:set="gradle.params" line="${gradle.params}" />
+			<arg if:set="android.build_wout_rev" value="${android.build}" />
+			<arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
+		</exec>
+	</target> <!-- client_android_build -->
+
+	<target name="build_android_client" depends="client_android_build" />
 
 	<target name="signjar" unless="exclude.signing">
 		<signjar
@@ -577,16 +646,22 @@
 			jar="${lib}/${client_starter_jarname}" />
 	</target>
 
-	<target name="docs" description="Build javadocs for fixedStendhal">
-		<javadoc packagenames="games.stendhal.*"
+	<target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
+		<condition property="include.marauroa" value="true">
+			<available file="../marauroa/src/" type="dir"/>
+		</condition>
+
+		<javadoc packagenames="games.stendhal.*,marauroa.*"
 		   defaultexcludes="yes"
 		   destdir="${docs}"
 		   author="true"
 		   encoding="UTF-8"
 		   version="true"
 		   use="true"
-		   windowtitle="Stendhal API Documentation Version: ${version}"
-		   sourcepath="${src}">
+		   windowtitle="Stendhal API Documentation Version: ${version}">
+			<!-- include marauroa source if available -->
+			<sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
+			<sourcepath path="${src}"/>
 			<classpath>
 				<pathelement path="${guava_jar}"/>
 				<pathelement path="${groovy_jar}"/>
@@ -600,14 +675,51 @@
 				<pathelement path="libs/ant.jar"/>
 				<pathelement path="libs/jcurses.jar"/>
 				<pathelement path="libs/pircbot.jar"/>
+				<pathelement path="${luaj_jar}"/>
+				<pathelement path="libs/json-simple-1.1.1.jar"/>
+				<pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
 			</classpath>
 		</javadoc>
+	</target>
+
+	<target name="clean_docs" description="Delete javadoc generated HTML API reference.">
+		<delete dir="${docs}" />
+	</target>
+
+	<target name="mkdocs" description="Generate HTML reference.">
+		<!-- call "docs" to include javadocs -->
+
+		<echo unless:true="${python.present}"
+			message="Python unavailable, cannot run mkdocs" />
+
+		<!--<antcall if:true="${python.present}" target="docs"/>-->
+		<exec if:true="${python.present}" failonerror="true"
+			executable="python" dir="./buildtools/mkdocs/">
+			<arg value="-u" />
+			<arg value="build.py" />
+		</exec>
+	</target> <!-- mkdocs -->
+
+	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
+		<exec executable="doxygen" failonerror="true">
+			<arg value="./buildtools/doxygen/Doxyfile" />
+		</exec>
+
+		<!-- Doxygen 1.9.3 has some issues with tags files URLs -->
+		<exec if:set="doxygen.fix_urls" executable="python">
+			<arg value="./buildtools/doxygen/fix_urls.py"/>
+		</exec>
+	</target>
+
+	<target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
+		<delete dir="${buildroot}/doxygen" />
 	</target>
 
 	<target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
 
 	<target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
+
+	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_client_android"/>
 
 	<target name="dist_server_binary" depends="server_build, compilejs">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -644,7 +756,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="mkdocs/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
@@ -686,7 +800,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="mkdocs/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
@@ -710,7 +826,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
+			<fileset dir="doc">
+				<exclude name="mkdocs/"/>
+			</fileset>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
@@ -720,6 +838,21 @@
 		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
+
+	<target name="dist_client_android">
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+
+		<antcall unless:set="exclude.webview" target="client_android_build" />
+		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
+			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
+				<include name="**/*.apk" />
+			</fileset>
+		</copy>
+	</target> <!-- dist_client_android -->
+
+	<target name="dist_android_client" depends="dist_client_android" />
 
 	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
@@ -975,18 +1108,37 @@
 	</target>
 
 	<target name="cleanwhitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+
 		<java classname="games.stendhal.tools.CleanWhitespace">
 			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${build_stendhaltools}" />
 			</classpath>
-			<arg value="src/"/>
-			<arg value="tests/"/>
-			<arg value="srcjs/"/>
-			<arg value="data/"/>
-			<arg value="tiled/"/>
-			<arg value="java,xml,js,xsd,lua,py"/>
+			<arg value="src/" />
+			<arg value="tests/" />
+			<arg value="android/app/src/" />
+			<arg value="java,xml,lua" />
 		</java>
-	</target>
+
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}" />
+			</classpath>
+			<arg value="srcjs/" />
+			<arg value="js,ts,css" />
+		</java>
+
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}" />
+			</classpath>
+			<arg value="data/" />
+			<arg value="tiled/" />
+			<arg value="xml,xsd,lua,py" />
+		</java>
+
+	</target> <!-- cleanwhitespace -->
+
+	<target name="clean_whitespace" depends="cleanwhitespace" />
 
 	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
 	<target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
@@ -1246,7 +1398,13 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</schemavalidate>
 	</target>
 
-	<target name="compilejs" depends="js-prepare, js-invoke-compiler" />
+	<target name="compilejs">
+		<antcall target="js-prepare" unless:set="exclude.webclient" />
+		<antcall target="js-invoke-compiler" unless:set="exclude.webclient" />
+
+		<echo if:set="exclude.webclient" level="warning"
+			message="WARNING: Node.js is not installed, skipping web client build." />
+	</target>
 
 	<target name="js-prepare-marauroa">
 		<mkdir dir="build/js" />
@@ -1271,9 +1429,20 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</echo>
 	</target>
 
-	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build" />
+	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build, js-prepare-node" />
+
+	<target name="js-prepare-node">
+		<exec executable="npm${executable.suffix}" failonerror="true">
+			<arg value="install" />
+			<arg value="--no-save" />
+		</exec>
+	</target>
 
 	<target name="js-invoke-compiler">
+		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
+			<arg value="tsc" />
+		</exec>
+
 		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content" />
 
 		<property name="js-files-license"  value="srcjs/stendhal/license.js" />
@@ -1283,19 +1452,20 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-lib2"     value="" />
 		<property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/group.js srcjs/stendhal/data/map.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js" />
 		<property name="js-files-data2"    value="" />
-		<property name="js-files-entity1"  value="srcjs/stendhal/entity/entity.js srcjs/stendhal/entity/unknown.js srcjs/stendhal/entity/blood.js srcjs/stendhal/entity/corpse.js" />
-		<property name="js-files-entity2"  value="srcjs/stendhal/entity/chest.js srcjs/stendhal/entity/food.js srcjs/stendhal/entity/gate.js srcjs/stendhal/entity/invisibleentity.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/portal.js" />
-		<property name="js-files-entity3"  value="srcjs/stendhal/entity/activeentity.js srcjs/stendhal/entity/gameboard.js srcjs/stendhal/entity/rpentity.js srcjs/stendhal/entity/player.js srcjs/stendhal/entity/creature.js" />
-		<property name="js-files-entity4"  value="srcjs/stendhal/entity/domesticanimal.js srcjs/stendhal/entity/npc.js srcjs/stendhal/entity/sign.js srcjs/stendhal/entity/growingspawner.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/door.js" />
-		<property name="js-files-entity5"  value="srcjs/stendhal/entity/useableentity.js srcjs/stendhal/entity/visibleentity.js srcjs/stendhal/entity/walkblocker.js srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" />
+		<property name="js-files-entity1"  value="" />
+		<property name="js-files-entity2"  value="" />
+		<property name="js-files-entity3"  value="" />
+		<property name="js-files-entity4"  value="" />
+		<property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" />
 		<property name="js-files-entity6"  value="" />
-		<property name="js-files-ui1"      value="srcjs/stendhal/ui/setdragimage-ie.js srcjs/stendhal/ui/buddylist.js srcjs/stendhal/ui/chatlog.js srcjs/stendhal/ui/gamewindow.js" />
-		<property name="js-files-ui2"      value="srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js srcjs/stendhal/ui/keyhandler.js srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
+		<property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js" />
+		<property name="js-files-ui2"      value="srcjs/stendhal/ui/html.js srcjs/stendhal/ui/keyhandler.js srcjs/stendhal/ui/sound.js" />
 		<property name="js-files-ui3"      value="" />
 		<property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
-		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/menu.js srcjs/stendhal/ui/outfitdialog.js srcjs/stendhal/ui/travellog.js srcjs/stendhal/ui/settings.js" />
+		<property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/settings.js" />
 		<property name="js-files-main2"    value="srcjs/stendhal/main.js" />
 		<property name="js-files-main3"    value="" />
+		<property name="js-files-ts"       value="build/ts/**/*.js" />
 
 
 		<java jar="buildtools/closure-compiler/compiler.jar"
@@ -1308,6 +1478,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg value="ADVANCED" />
 			<arg line="${js-debug}" />
 			<arg value="--jscomp_off=checkVars" />
+			<arg value="--process_common_js_modules" />
+			<arg value="--module_resolution=node" />
 
 			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
 
@@ -1331,6 +1503,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg line="${js-files-ui4}" />
 			<arg line="${js-files-main2}" />
 			<arg line="${js-files-main3}" />
+			<arg line="${js-files-ts}" />
 		</java>
 
 		<echo file="srcjs/stendhal-compiled.js" append="true">

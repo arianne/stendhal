@@ -164,7 +164,7 @@ public class UpdateConverterTest {
 		assertNull("Sanity check", player.getFeature("keyring"));
 
 		// The actual update checks
-		player.setFeature("keyring", true);
+		player.setFeature("keyring", "2 4");
 		assertNotNull("Sanity check", player.getFeature("keyring"));
 		Item key = ItemTestHelper.createItem("dungeon silver key");
 		player.equip("keyring", key);

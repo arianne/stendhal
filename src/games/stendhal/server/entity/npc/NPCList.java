@@ -24,14 +24,14 @@ import org.apache.log4j.Logger;
  * This Singleton should contain all NPCs in the Stendhal world that are unique.
  */
 public class NPCList implements Iterable<SpeakerNPC> {
+
 	private static Logger logger = Logger.getLogger(NPCList.class);
 
-	/**
-	 * The Singleton instance.
-	 */
+	/** The singleton instance. */
 	private static NPCList instance;
 
 	private final Map<String, SpeakerNPC> contents;
+
 
 	/**
 	 * Returns the Singleton instance.
@@ -40,8 +40,9 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 */
 	public static NPCList get() {
 		if (instance == null) {
-			new NPCList();
+			instance = new NPCList();
 		}
+
 		return instance;
 	}
 

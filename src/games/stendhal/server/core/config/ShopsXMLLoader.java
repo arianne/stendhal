@@ -36,15 +36,22 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private final static Logger logger = Logger.getLogger(ShopsXMLLoader.class);
 
-	private final static ShopList shops = ShopList.get();
-
+	/** The singleton instance. */
 	private static ShopsXMLLoader instance;
+
+	private final static ShopList shops = ShopList.get();
 
 	private String shopName;
 	private Map<String, Integer> items;
 	private boolean seller = true;
 
 
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
 	public static ShopsXMLLoader get() {
 		if (instance == null) {
 			instance = new ShopsXMLLoader();
@@ -52,6 +59,11 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 		return instance;
 	}
+
+	/**
+	 * Private singleton constructor.
+	 */
+	private ShopsXMLLoader() {}
 
 	public void init() {
 		final String xml = "/data/conf/shops.xml";

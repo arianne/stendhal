@@ -32,8 +32,12 @@ import marauroa.common.game.IRPZone.ID;
 import marauroa.server.game.rp.RPWorld;
 
 public class StendhalRPWorld extends RPWorld {
-	/** the logger instance. */
+
+	/** The logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPWorld.class);
+
+	/** The singleton instance. */
+	protected static StendhalRPWorld instance;
 
 	public final static String MAPS_FOLDER;
 
@@ -54,11 +58,25 @@ public class StendhalRPWorld extends RPWorld {
 
 	private final RPClassGenerator genRPClass = new RPClassGenerator();
 
-	/** The Singleton instance. */
-	protected static StendhalRPWorld instance;
-
 	private final Map<String, Set<StendhalRPZone>> regionMap = new HashMap<String, Set<StendhalRPZone>>();
 
+
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
+	public static StendhalRPWorld get() {
+		synchronized(StendhalRPWorld.class) {
+			if (instance == null) {
+				instance = new StendhalRPWorld();
+				instance.initialize();
+			}
+		}
+
+		return instance;
+	}
 
 	protected StendhalRPWorld() {
 		super();
@@ -84,18 +102,6 @@ public class StendhalRPWorld extends RPWorld {
 	}
 
 
-	public static StendhalRPWorld get() {
-		synchronized(StendhalRPWorld.class) {
-			if (instance == null) {
-				instance = new StendhalRPWorld();
-				instance.initialize();
-			}
-		}
-
-		return instance;
-	}
-
-
 	@Override
 	protected void initialize() {
 		super.initialize();
@@ -110,7 +116,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * Groovy bug has been resolved.
 	 *
 	 * @return StendhalRPWorld
-	 * @deprecated use StendhalRPWorld.get()
+	 * @deprecated use {@link #get()}.
 	 */
 	@Deprecated
 	public static StendhalRPWorld getInstance() {
@@ -149,6 +155,12 @@ public class StendhalRPWorld extends RPWorld {
 			SingletonRepository.getAchievementNotifier().initialize();
 			SingletonRepository.getGagManager();
 			SingletonRepository.getJail();
+			/*
+			if (System.getProperty("stendhal.testserver") != null) {
+				SingletonRepository.getLoginNotifier().addListener(TutorialRunner.get());
+				SingletonRepository.getLogoutNotifier().addListener(TutorialRunner.get());
+			}
+			*/
 		} catch (final Exception e) {
 			logger.error("Error on Init the server.", e);
 		}

@@ -38,6 +38,7 @@ public class LuaActionHelper {
 
 	private static LuaLogger logger = LuaLogger.get();
 
+	/** The singleton instance. */
 	private static LuaActionHelper instance;
 
 
@@ -56,6 +57,13 @@ public class LuaActionHelper {
 	}
 
 	/**
+	 * Hidden singleton constructor.
+	 */
+	private LuaActionHelper() {
+		// singleton
+	}
+
+	/**
 	 * Creates a custom ChatAction.
 	 *
 	 * @param lf
@@ -68,13 +76,8 @@ public class LuaActionHelper {
 
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				final LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
-				final LuaValue luaSentence = CoerceJavaToLua.coerce(sentence);
-				final LuaValue luaNPC = CoerceJavaToLua.coerce(npc);
-
-				final LuaValue[] all = {luaPlayer, luaSentence, luaNPC};
-
-				lf.invoke(all);
+				lf.invoke(new LuaValue[] {CoerceJavaToLua.coerce(player),
+					CoerceJavaToLua.coerce(sentence), CoerceJavaToLua.coerce(npc)});
 			}
 		};
 	}
@@ -97,43 +100,52 @@ public class LuaActionHelper {
 		}
 
 		final boolean noArgs = objects == null || objects.length == 0;
+		Exception exc = new Exception("Unknown exception");
 
 		try {
 			if (noArgs) {
 				try {
-					return (ChatAction) Class.forName(className).newInstance();
+					return (ChatAction) Class.forName(className).getDeclaredConstructor().newInstance();
+				} catch (final InvocationTargetException e2) {
+					exc = e2;
 				} catch (final InstantiationException e2) {
-					// do nothing
+					exc = e2;
+				} catch (final NoSuchMethodException e2) {
+					exc = e2;
 				}
 			} else {
 				final Constructor<?>[] constructors = Class.forName(className).getConstructors();
 				for (final Constructor<?> con: constructors) {
 					try {
-						return (ChatAction) con.newInstance(objects);
+						if (con.isVarArgs()) {
+							// FIXME: not working
+							return (ChatAction) con.newInstance((Object) objects);
+						} else {
+							return (ChatAction) con.newInstance(objects);
+						}
 					} catch (final InvocationTargetException e2) {
-						// do nothing
+						exc = e2;
 					} catch (final InstantiationException e2) {
-						// do nothing
+						exc = e2;
 					} catch (final IllegalArgumentException e2) {
-						// do nothing
+						exc = e2;
 					}
 				}
 			}
 		} catch (final ClassNotFoundException e1) {
-			logger.error(e1, e1);
+			exc = e1;
 		} catch (final IllegalAccessException e1) {
-			logger.error(e1, e1);
+			exc = e1;
 		}
 
 
-		// FIXME: should we thrown an exception here?
-
 		if (noArgs) {
-			logger.error("No default constructor for " + className);
+			logger.error("No default constructor for " + className, exc);
 		} else if (objects != null) {
-			logger.error("No constructor for " + className + " found for args: " + Arrays.toString(objects));
+			logger.error("No constructor for " + className + " found for args: "
+				+ Arrays.toString(objects), exc);
 		} else {
-			logger.error("Unknown instantiation error for " + className); // should not happen
+			logger.error("Unknown instantiation error for " + className, exc); // should not happen
 		}
 
 		return null;

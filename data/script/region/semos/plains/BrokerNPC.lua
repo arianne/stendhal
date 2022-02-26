@@ -15,11 +15,6 @@
 
 -- an accessible NPC for low levels that purchases misc. items for a lower price
 
--- enabled on test server only
-if not properties:enabled("stendhal.testserver") then
-	do return end
-end
-
 
 local zone_name = "0_semos_plains_n"
 

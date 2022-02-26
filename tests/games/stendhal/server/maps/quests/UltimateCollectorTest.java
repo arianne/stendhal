@@ -16,6 +16,8 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.oneOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
@@ -27,6 +29,8 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -240,7 +244,10 @@ public class UltimateCollectorTest {
 		assertTrue(player.isQuestCompleted("ultimate_collector"));
 
 		en.step(player, "deal");
-		assertEquals("I buy black items, but I can only afford to pay you modest prices.", getReply(npc));
+		assertEquals(
+			"I buy black items, but I can only afford to pay you modest prices."
+				+ " I will also #replace your #lost swords... for a price.",
+			getReply(npc));
 
 		PlayerTestHelper.equipWithItem(player, "black armor");
 		en.step(player, "sell black armor");
@@ -252,5 +259,108 @@ public class UltimateCollectorTest {
 
 		// -----------------------------------------------
 
+		testReplaceSwords();
+	}
+
+	private void testReplaceSwords() {
+		assertEquals("done", player.getQuest("ultimate_collector", 0));
+		assertFalse(player.isEquipped("l hand sword"));
+		assertFalse(player.isEquipped("r hand sword"));
+		player.drop("money", player.getNumberOfEquipped("money"));
+		assertEquals(0, player.getNumberOfEquipped("money"));
+
+		en.step(player, "hi");
+		en.step(player, "replace");
+		assertEquals(ConversationStates.QUESTION_3, en.getCurrentState());
+		assertEquals(
+			"Which sword do you want to replace, the #left or the #right?",
+			getReply(npc));
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		en.step(player, "hi");
+		en.step(player, "lost");
+		assertEquals(ConversationStates.QUESTION_3, en.getCurrentState());
+		assertEquals(
+			"Which sword do you want to replace, the #left or the #right?",
+			getReply(npc));
+		en.step(player, "left");
+		assertEquals(ConversationStates.QUESTION_4, en.getCurrentState());
+		assertEquals(
+			"It will cost 250000 to replace that sword. Do you want it?",
+			getReply(npc));
+		en.step(player, "no");
+		assertEquals(
+			"Alright. Is there anything else I can do for you?",
+			getReply(npc));
+		en.step(player, "lost");
+		en.step(player, "left");
+		en.step(player, "yes");
+		assertEquals(
+			"It seems you don't have enough money.",
+			getReply(npc));
+		en.step(player, "bye");
+
+		en.step(player, "hi");
+		en.step(player, "lost");
+		en.step(player, "right");
+		assertEquals(ConversationStates.QUESTION_5, en.getCurrentState());
+		assertEquals(
+			"It will cost 250000 to replace that sword. Do you want it?",
+			getReply(npc));
+		en.step(player, "no");
+		assertEquals(
+			"Alright. Is there anything else I can do for you?",
+			getReply(npc));
+		en.step(player, "lost");
+		en.step(player, "left");
+		en.step(player, "yes");
+		assertEquals(
+			"It seems you don't have enough money.",
+			getReply(npc));
+		en.step(player, "bye");
+
+		PlayerTestHelper.equipWithMoney(player, 500000);
+		assertEquals(500000, player.getNumberOfEquipped("money"));
+
+		en.step(player, "hi");
+		en.step(player, "lost");
+		en.step(player, "left");
+		en.step(player, "yes");
+		assertEquals(
+			"Here is your new l hand sword. Be careful not to lose it"
+				+ " this time.... Or not. I don't mind getting paid.",
+			getReply(npc));
+
+		assertEquals(1, player.getNumberOfEquipped("l hand sword"));
+		assertEquals(250000, player.getNumberOfEquipped("money"));
+
+		en.step(player, "lost");
+		en.step(player, "right");
+		en.step(player, "yes");
+		assertEquals(
+			"Here is your new r hand sword. Be careful not to lose it"
+				+ " this time.... Or not. I don't mind getting paid.",
+			getReply(npc));
+
+		assertEquals(1, player.getNumberOfEquipped("r hand sword"));
+		assertEquals(0, player.getNumberOfEquipped("money"));
+
+		en.step(player, "bye");
+
+		final Item lsword = player.getFirstEquipped("l hand sword");
+		final Item rsword = player.getFirstEquipped("r hand sword");
+
+		assertNotNull(lsword);
+		assertNotNull(rsword);
+		assertEquals(player.getName(), lsword.getBoundTo());
+		assertEquals(player.getName(), rsword.getBoundTo());
+
+		assertEquals(1, player.getQuantityOfBoughtItems("l hand sword"));
+		assertEquals(1, player.getQuantityOfBoughtItems("r hand sword"));
+		assertEquals("Balduin", npc.getName());
+		assertEquals(500000, player.getCommerceTransactionAmount(
+			npc.getName(),
+			false));
 	}
 }

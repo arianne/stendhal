@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+
+<tagfile>
+
+	<compound kind="namespace">
+		<name>org::apache::log4j</name>
+		<filename>org/apache/log4j/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::Logger</name>
+		<filename>org/apache/log4j/Logger.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::Appender</name>
+		<filename>org/apache/log4j/Appender.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::PropertyConfigurator</name>
+		<filename>org/apache/log4j/PropertyConfigurator.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::Level</name>
+		<filename>org/apache/log4j/Level.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::Priority</name>
+		<filename>org/apache/log4j/Priority.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::NDC</name>
+		<filename>org/apache/log4j/NDC.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::MDC</name>
+		<filename>org/apache/log4j/MDC.html</filename>
+	</compound>
+
+
+	<compound kind="namespace">
+		<name>org::apache::log4j::spi</name>
+		<filename>org/apache/log4j/spi/package-summary.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::spi::LoggerRepository</name>
+		<filename>org/apache/log4j/spi/LoggerRepository.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::apache::log4j::spi::LoggingEvent</name>
+		<filename>org/apache/log4j/spi/LoggingEvent.html</filename>
+	</compound>
+
+</tagfile>

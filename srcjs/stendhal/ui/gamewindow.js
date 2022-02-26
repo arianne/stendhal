@@ -11,9 +11,11 @@
 
 "use strict";
 
+
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
+
 
 /**
  * game window aka world view
@@ -31,7 +33,8 @@ stendhal.ui.gamewindow = {
 		if (marauroa.me && document.visibilityState === "visible") {
 			if (marauroa.currentZoneName === stendhal.data.map.currentZoneName
 				|| stendhal.data.map.currentZoneName === "int_vault"
-				|| stendhal.data.map.currentZoneName === "int_adventure_island") {
+				|| stendhal.data.map.currentZoneName === "int_adventure_island"
+				|| stendhal.data.map.currentZoneName === "tutorial_island") {
 				var canvas = document.getElementById("gamewindow");
 				this.targetTileWidth = 32;
 				this.targetTileHeight = 32;
@@ -46,16 +49,7 @@ stendhal.ui.gamewindow = {
 				var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
-				for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
-					var name = stendhal.data.map.layerNames[drawingLayer];
-					if (name !== "protection" && name !== "collision" && name !== "objects"
-						&& name !== "blend_ground" && name !== "blend_roof") {
-						this.paintLayer(canvas, drawingLayer, tileOffsetX, tileOffsetY);
-					}
-					if (name === "2_object") {
-						this.drawEntities();
-					}
-				}
+				stendhal.data.map.strategy.render(canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.drawEntitiesTop();
 				this.drawTextSprites();
@@ -67,84 +61,6 @@ stendhal.ui.gamewindow = {
 
 	},
 
-	paintLayer: function(canvas, drawingLayer, tileOffsetX, tileOffsetY) {
-		const layer = stendhal.data.map.layers[drawingLayer];
-		const yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
-		const xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
-
-		for (let y = tileOffsetY; y < yMax; y++) {
-			for (let x = tileOffsetX; x < xMax; x++) {
-				let gid = layer[y * stendhal.data.map.zoneSizeX + x];
-				const flip = gid & 0xE0000000;
-				gid &= 0x1FFFFFFF;
-
-				if (gid > 0) {
-					const tileset = stendhal.data.map.getTilesetForGid(gid);
-					const base = stendhal.data.map.firstgids[tileset];
-					const idx = gid - base;
-
-					try {
-						if (stendhal.data.map.aImages[tileset].height > 0) {
-							this.drawTile(stendhal.data.map.aImages[tileset], idx, x, y, flip);
-						}
-					} catch (e) {
-						console.error(e);
-						this.drawingError = true;
-					}
-				}
-			}
-		}
-	},
-
-	drawTile: function(tileset, idx, x, y, flip = 0) {
-		const tilesetWidth = tileset.width;
-		const tilesPerRow = Math.floor(tilesetWidth / stendhal.data.map.tileWidth);
-		const pixelX = x * this.targetTileWidth;
-		const pixelY = y * this.targetTileHeight;
-
-		if (flip === 0) {
-			this.ctx.drawImage(tileset,
-					(idx % tilesPerRow) * stendhal.data.map.tileWidth,
-					Math.floor(idx / tilesPerRow) * stendhal.data.map.tileHeight,
-					stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
-					pixelX, pixelY,
-					this.targetTileWidth, this.targetTileHeight);
-		} else {
-			const ctx = this.ctx;
-			ctx.translate(pixelX, pixelY);
-			// an ugly hack to restore the previous transformation matrix
-			const restore = [[1, 0, 0, 1, -pixelX, -pixelY]];
-
-			if ((flip & 0x80000000) !== 0) {
-				// flip horizontally
-				ctx.transform(-1, 0, 0, 1, 0, 0);
-				ctx.translate(-this.targetTileWidth, 0);
-
-				restore.push([-1, 0, 0, 1, 0, 0]);
-				restore.push([1, 0, 0, 1, this.targetTileWidth, 0]);
-			}
-			if ((flip & 0x40000000) !== 0) {
-				// flip vertically
-				ctx.transform(1, 0, 0, -1, 0, 0);
-				ctx.translate(0, -this.targetTileWidth);
-
-				restore.push([1, 0, 0, -1, 0, 0]);
-				restore.push([1, 0, 0, 1, 0, this.targetTileHeight]);
-			}
-			if ((flip & 0x20000000) !== 0) {
-				// Coordinate swap
-				ctx.transform(0, 1, 1, 0, 0, 0);
-				restore.push([0, 1, 1, 0, 0, 0]);
-			}
-
-			this.drawTile(tileset, idx, 0, 0);
-
-			restore.reverse();
-			for (const args of restore) {
-				ctx.transform.apply(ctx, args);
-			}
-		}
-	},
 
 	drawEntities: function() {
 		var currentTime = new Date().getTime();
@@ -248,7 +164,7 @@ stendhal.ui.gamewindow = {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					new stendhal.ui.Menu(entity, pos.pageX - 50, pos.pageY - 5);
+					ui.createSingletonFloatingWindow("Action", new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5);
 				}
 			} else {
 				entity.onclick(pos.offsetX, pos.offsetY);
@@ -338,7 +254,7 @@ stendhal.ui.gamewindow = {
 
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
-				new stendhal.ui.DropNumberDialog(action, pos.pageX - 50, pos.pageY - 25);
+				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action), pos.pageX - 50, pos.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}

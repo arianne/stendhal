@@ -2,6 +2,7 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
 	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
 	xmlns:Q1="stendhal">
+
 	<complexType name="zone">
 		<annotation>
 			<documentation>
@@ -21,6 +22,8 @@
 					maxOccurs="unbounded"/>
 				<element name="entity" type="Q1:entity" minOccurs="0"
 					maxOccurs="unbounded" />
+				<element name="associated" type="Q1:associatedZones" minOccurs="0"
+					maxOccurs="1" />
 			</choice>
 		</sequence>
 		<attribute name="name" type="string" />
@@ -72,6 +75,8 @@
 				minOccurs="0" maxOccurs="1"/>
 			<element name="attribute" type="Q1:attributeType"
 			    minOccurs="0" maxOccurs="unbounded"/>
+			<element name="associated" type="Q1:associatedZones"
+				minOccurs="0" maxOccurs="1"/>
 		</sequence>
 		<attribute name="x" type="int"></attribute>
 		<attribute name="y" type="int"></attribute>
@@ -166,5 +171,9 @@
 				<attribute name="name" type="string"></attribute>
 			</extension>
 		</simpleContent>
+	</complexType>
+
+	<complexType name="associatedZones">
+		<attribute name="zones" type="string" use="required" />
 	</complexType>
 </schema>

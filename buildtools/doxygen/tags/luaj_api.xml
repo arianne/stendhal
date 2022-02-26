@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+
+<tagfile>
+
+	<compound kind="namespace">
+		<name>org::luaj::vm2</name>
+		<filename>org/luaj/vm2/package-tree.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaValue</name>
+		<filename>org/luaj/vm2/LuaValue.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaTable</name>
+		<filename>org/luaj/vm2/LuaTable.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaString</name>
+		<filename>org/luaj/vm2/LuaString.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaNumber</name>
+		<filename>org/luaj/vm2/LuaNumber.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaInteger</name>
+		<filename>org/luaj/vm2/LuaInteger.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaDouble</name>
+		<filename>org/luaj/vm2/LuaDouble.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaBoolean</name>
+		<filename>org/luaj/vm2/LuaBoolean.html</filename>
+	</compound>
+	<compound kind="class">
+		<name>org::luaj::vm2::LuaFunction</name>
+		<filename>org/luaj/vm2/LuaFunction.html</filename>
+	</compound>
+
+</tagfile>

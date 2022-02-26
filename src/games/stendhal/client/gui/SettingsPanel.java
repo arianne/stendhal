@@ -44,7 +44,8 @@ import games.stendhal.client.gui.styled.StyleUtil;
  */
 class SettingsPanel extends JButton {
 	/** Extra padding for
-	/** Empty space above and below the separators in the popup menu */
+	 *  empty space above and below the separators in the popup menu
+	 */
 	private static final int SEPARATOR_MARGIN = 8;
 
 	/**

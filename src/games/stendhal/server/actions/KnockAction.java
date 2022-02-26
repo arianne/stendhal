@@ -13,11 +13,17 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.KNOCK;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.actions.validator.ActionData;
 import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.actions.validator.ExtractEntityValidator;
 import games.stendhal.server.actions.validator.ZoneNotChanged;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -31,6 +37,9 @@ import marauroa.common.game.RPAction;
  * @author kymara
  */
 public class KnockAction implements ActionListener {
+
+	private static final Logger logger = Logger.getLogger(KnockAction.class);
+
 	private static final ActionValidation VALIDATION = new ActionValidation();
 	static {
 		VALIDATION.add(new ZoneNotChanged());
@@ -70,14 +79,36 @@ public class KnockAction implements ActionListener {
 	 * @param houseportal HousePortal which was knocked
 	 */
 	private void knock(final Player player, final HousePortal houseportal) {
-		String message = player.getName() + " is outside knocking on the door!";
+		final String message = player.getName() + " is outside knocking on the door!";
+		boolean knocked = false;
 
-		// get the destination zone of the portal - that is where to shout to
-		final StendhalRPZone zone =  SingletonRepository.getRPWorld().getZone(houseportal.getDestinationZone());
-		if (zone != null) {
-			for (Player houseplayer : zone.getPlayers()) {
-				houseplayer.sendPrivateText(message);
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		final List<StendhalRPZone> zList = new ArrayList<>();
+
+		final StendhalRPZone mainZone = world.getZone(houseportal.getDestinationZone());
+		if (mainZone != null) {
+			zList.add(mainZone);
+			for (final String zoneName: mainZone.getAssociatedZonesList()) {
+				final StendhalRPZone subZone = world.getZone(zoneName);
+				if (subZone != null) {
+					zList.add(subZone);
+				}
 			}
+		}
+
+		// get the destination & associated zones - that is where to shout to
+		for (final StendhalRPZone zone: zList) {
+			if (zone != null) {
+				knocked = true;
+				for (final Player houseplayer : zone.getPlayers()) {
+					houseplayer.sendPrivateText(message);
+				}
+			} else {
+				logger.debug("Invalid zone associated with " + mainZone.getName());
+			}
+		}
+
+		if (knocked) {
 			player.sendPrivateText("rat a tat-tat, you knocked on the door! Hope someone is home ...");
 		} else {
 			// should not happen

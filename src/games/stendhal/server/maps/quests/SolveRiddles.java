@@ -303,7 +303,7 @@ public class SolveRiddles extends AbstractQuest {
 				false);
 		setRiddle("Grim Reaper");
 		// Reaper clone in the pit
-		setRiddle("Grim\u00A0Reaper");
+		setRiddle("Grim Reaper clone");
 	}
 
 	@Override

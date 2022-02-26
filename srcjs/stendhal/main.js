@@ -14,10 +14,30 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var Chat = require("../../build/ts/util/Chat").Chat;
+
+var ui = require("../../build/ts/ui/UI").ui;
+var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
+
+var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
+
+var ChatLogComponent = require("../../build/ts/ui/component/ChatLogComponent").ChatLogComponent;
+var ItemInventoryComponent = require("../../build/ts/ui/component/ItemInventoryComponent").ItemInventoryComponent;
+
+var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
+var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;
+var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
+var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
+var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
+
+
 stendhal.main = {
 	errorCounter: 0,
 	zoneFile: null,
 	loaded: false,
+
+	argv: URLSearchParams,
 
 	onDataMap: function(data) {
 		var zoneinfo = {};
@@ -28,14 +48,55 @@ stendhal.main = {
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
 
+	initTheme: function() {
+		let theme = argv.get("theme");
+
+		switch (theme) {
+			case "wood":
+				// this is the default (panelwood003.jpg)
+				theme = null;
+				break;
+			case "wood2":
+				theme = "panelwood006.jpg";
+				break;
+			case "aubergine":
+				theme = "panel_aubergine_001.png";
+				break;
+			case "stone":
+				theme = "paneldrock048.jpg";
+				break;
+			case "metal":
+				theme = "panelmetal003.gif";
+				break;
+			case "brick":
+				theme = "panel_brick_brown_001.png";
+				break;
+			case "honeycomb":
+				theme = "panel_honeycomb_001.png";
+				break;
+			case "parquet":
+				theme = "panel_parquet_brown_001.png";
+				break;
+			case "tile":
+				theme = "panel_tile_aqua_001.png";
+				break;
+			default:
+				theme = null;
+				break;
+		}
+
+		if (theme != null && typeof(theme) !== "undefined" && theme !== "") {
+			const bg = document.querySelector(".background");
+			bg.style.setProperty("background", "url(/data/gui/" + theme + ")");
+		}
+	},
 
 	/**
 	 * register marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers: function() {
-
 		marauroa.clientFramework.onDisconnect = function(reason, error){
-			stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
+			Chat.log("error", "Disconnected: " + error);
 		};
 
 		marauroa.clientFramework.onLoginRequired = function() {
@@ -51,17 +112,21 @@ stendhal.main = {
 		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
-			var name = null;
+			let name = null;
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
 			} else {
-				name = marauroa.util.first(characters)["a"]["name"];
-				var admin = 0;
-				for (var i in characters) {
-					if (characters.hasOwnProperty(i)) {
-						if (characters[i]["a"]["adminlevel"] > admin) {
-							admin = characters[i]["a"]["adminlevel"];
-							name = characters[i]["a"]["name"];
+				name = argv.get("char");
+
+				if (name == null || typeof(name) === "undefined" || name === "") {
+					name = marauroa.util.first(characters)["a"]["name"];
+					var admin = 0;
+					for (var i in characters) {
+						if (characters.hasOwnProperty(i)) {
+							if (characters[i]["a"]["adminlevel"] > admin) {
+								admin = characters[i]["a"]["adminlevel"];
+								name = characters[i]["a"]["name"];
+							}
 						}
 					}
 				}
@@ -69,7 +134,7 @@ stendhal.main = {
 			marauroa.clientFramework.chooseCharacter(name);
 			var body = document.getElementById("body")
 			body.style.cursor = "auto";
-			stendhal.ui.chatLog.addLine("client", "Loading world...");
+			Chat.log("client", "Loading world...");
 		};
 
 
@@ -101,10 +166,10 @@ stendhal.main = {
 		if (document.getElementById("gamewindow")) {
 			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 				stendhal.zone.sortEntities();
-				stendhal.ui.minimap.draw();
-				stendhal.ui.buddyList.update();
+				ui.get(UIComponentEnum.MiniMap).draw();
+				ui.get(UIComponentEnum.BuddyList).update();
 				stendhal.ui.equip.update();
-				stendhal.ui.stats.update();
+				ui.get(UIComponentEnum.PlayerEquipment).update();
 				if (!stendhal.main.loaded) {
 					stendhal.main.loaded = true;
 					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
@@ -152,33 +217,23 @@ stendhal.main = {
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 
-		var minimap = document.getElementById("minimap");
-		minimap.addEventListener("click", stendhal.ui.minimap.onClick);
-		minimap.addEventListener("dblclick", stendhal.ui.minimap.onClick);
-
-		var buddyList = document.getElementById("buddyList");
-		buddyList.addEventListener("mouseup", stendhal.ui.buddyList.onMouseUp);
-		buddyList.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
-
 		var menubutton = document.getElementById("menubutton");
-		menubutton.addEventListener("click", stendhal.ui.menu.onOpenAppMenu);
+		menubutton.addEventListener("click", (event) => {
+			ui.createSingletonFloatingWindow("Menu", new ApplicationMenuDialog(), 150, event.pageY + 20)
+		});
 
 		var soundbutton = document.getElementById("soundbutton");
 		soundbutton.addEventListener("click", stendhal.main.toggleSound);
 		// update button state
 		stendhal.main.onSoundToggled();
-
-		var chatinput = document.getElementById("chatinput");
-		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
-		chatinput.addEventListener("keypress", stendhal.ui.chatinput.onKeyPress);
 	},
 
 	devWarning: function() {
 		console.log("%c ", "padding: 30px; background: url(" + window.location.protocol + "://" + window.location.host + "/images/buttons/devtools-warning.png) no-repeat; color: #AF0");
-		console.log("%cIf someone told you, to copy and paste something here, it's a scam and will give them access to your account.", "color:#A00; background-color:#FFF");
+		console.log("%cIf someone told you, to copy and paste something here, it's a scam and will give them access to your account.", "color:#A00; background-color:#FFF; font-size:150%");
 		console.log("If you are a developer and curious about Stendhal, have a look at https://stendhalgame.org/development/introduction.html to get the source code. And perhaps, contribute a feature or a bugfix. ");
-		console.log("");
-		console.log("");
+		console.log(" ");
+		console.log(" ");
 		window["eval"] = undefined;
 	},
 
@@ -186,11 +241,16 @@ stendhal.main = {
 	 * starts the Stendhal web client and connects to the Stendhal server.
 	 */
 	startup: function() {
+		argv = (new URL(document.location)).searchParams;
+
 		stendhal.main.devWarning();
 
-		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
-		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
+		new DesktopUserInterfaceFactory().create();
 
+		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
+		Chat.log("client", "Client loaded. Connecting...");
+
+		stendhal.main.initTheme();
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);

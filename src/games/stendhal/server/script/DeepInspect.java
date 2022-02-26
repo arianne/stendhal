@@ -262,6 +262,37 @@ public class DeepInspect extends ScriptImpl {
 			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
+
+			// commerce: money spent & gained
+			sb.append("\nPurchases from NPCs:\n");
+			Map<String, String> commerceInfo = player.getMap("npc_purchases");
+			boolean addedCInfo = false;
+			if (commerceInfo != null) {
+				for (final String npcName: commerceInfo.keySet()) {
+					if (!addedCInfo) {
+						sb.append("    ");
+						addedCInfo = true;
+					}
+					sb.append("[" + npcName + ":" + commerceInfo.get(npcName) + "]");
+				}
+			}
+
+			sb.append("\n\nSales to NPCs:\n");
+			commerceInfo = player.getMap("npc_sales");
+			addedCInfo = false;
+			if (commerceInfo != null) {
+				for (final String npcName: commerceInfo.keySet()) {
+					if (!addedCInfo) {
+						sb.append("    ");
+						addedCInfo = true;
+					}
+					sb.append("[" + npcName + ":" + commerceInfo.get(npcName) + "]");
+				}
+			}
+
+			sb.append("\n");
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
 		}
 	}
 }

@@ -148,7 +148,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			ZoneInfo info = ZoneInfo.get();
 
 			final String strcode = entity.getExtOutfit();
-			final int code = entity.getOutfit();
+			final int code = entity.getOldOutfitCode();
 
 			if (strcode == null) {
 				final int body = code % 100;

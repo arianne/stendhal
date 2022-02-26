@@ -1102,6 +1102,10 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_kirdneh_house_42_1" />
+
     <entity x="6" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
@@ -1533,6 +1537,10 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
+
+    <!-- second floor -->
+    <associated zones="int_kirdneh_house_48_1" />
+
     <entity x="2" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>

@@ -73,18 +73,21 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 					@Override
 					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
-						if (res.getAmount() > 1) {
+						final int count = res.getAmount();
+						if (count > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
 						} else if (player.hasPet()) {
 							say("Well, why don't you make sure you can look after that pet you already have first?");
 							return false;
 						} else {
-							if (!player.drop("money", getCharge(res, player))) {
+							final int charge = getCharge(res, player);
+							if (!player.drop("money", charge)) {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}
 							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
+							updatePlayerTransactions(player, seller.getName(), res);
 
 							final Cat cat = new Cat(player);
 

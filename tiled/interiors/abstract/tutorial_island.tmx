@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+  <image source="../../tileset/ground/ground.png" width="96" height="352"/>
+ </tileset>
+ <tileset firstgid="34" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="35" name="mud_patch" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/ground/mud_patch.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="39" name="grass_corners" tilewidth="32" tileheight="32" tilecount="24" columns="6">
+  <image source="../../tileset/ground/grass_corners.png" width="192" height="128"/>
+ </tileset>
+ <tileset firstgid="63" name="grass_edges" tilewidth="32" tileheight="32" tilecount="36" columns="12">
+  <image source="../../tileset/ground/grass_edges.png" width="384" height="96"/>
+ </tileset>
+ <tileset firstgid="99" name="tall_grass" tilewidth="32" tileheight="32" tilecount="15" columns="5">
+  <image source="../../tileset/ground/tall_grass.png" width="160" height="96"/>
+ </tileset>
+ <tileset firstgid="114" name="pebbles" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+  <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
+ </tileset>
+ <tileset firstgid="117" name="large_pebble" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/ground/rock/large_pebble.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="119" name="bush/various_small" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/plant/bush/various_small.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="128" name="bush/blue_green" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/plant/bush/blue_green.png" width="32" height="32"/>
+ </tileset>
+ <layer id="1" name="0_floor" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1TESgCAMBMCMpd8QeKdPt3UsxEQuOYYU15LlQNlFZM9kMktlM4bNgzZqZxeR08s3srPRXi+b1Tijr5H7mDpczdcG/3e+zCyBHXqea711y+hjuYPpm8OH3AfCp3H23sho36j+LOsx+qK+D3ZfhFFj6/kquU+TA2BDn/FzfasPYfxjQVuRNq3Rw/JmjJyfyXjkAjX5Kfg=
+  </data>
+ </layer>
+ <layer id="2" name="1_terrain" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl88OgjAMxnkpveiBoGfjGX0GDwLR4x7NR3PFLVbCtrZ0kBh+yYJ/sP32dXSzKFZWVjTZ23H5DHMZfx38fpdBz+6bp79eBTGMu9ZFPz8TvpOO9ymmpxXEPcnk/ACeSXyiAB7i2nNrDr7l0jYG6OVoPOcSEoFT85PS+uXA0Ufx7yEVEoBTYzuXl3L6H7pwXhJLrD9Aoq+ZcS1Se3fu+iZyJ1mqvoDVV6buWVhfkq0dR0ZMzV7DfUaeirmJeV/E+2bjjp5ZjR5Y2XH4DMNZB5hnoI9o6MMxYK1O0RmLHSJ1vnLnt/4M5/dMPJ+7UBtA7H8lNd7VnTNrpX2G0v/m3j9wf5ran5vId52Chzn68xiPgNbY/KAvbIjxsYdmpjOM9hlaE453gEaNY1Qu/s29l/wnlmpsA+vBuM+9V3YYtw9BrtHfUDT6GBp+cuvIgesn3qen+kQFa6wGuYdacvmUwtd8qfwr/8MbPZZFbQ==
+  </data>
+ </layer>
+ <layer id="3" name="2_object" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzqENAAAIwDAeJvzvMPwAJK2ZXQQAAAAA8FFOa/UC4KYGgLQA3Q==
+  </data>
+ </layer>
+ <layer id="6" name="3_roof" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzrENACAQxDB2BSRg/wG4BSiovrGl9GkNAAAAAGr0NNKsHnlYaadTPQLAtwulggJo
+  </data>
+ </layer>
+ <layer id="7" name="objects" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="collision" width="40" height="40" opacity="0.3">
+  <data encoding="base64" compression="zlib">
+   eJzt00sKACEMA9Cepfc/5GxFcPCT1IAphHHlvFbNiEjHcaDZLTVP62IYGaVsQ3mryz4tH6MHlfmN9lfxjUrdFxMu+/7rRR+yH/U38oqP1QPCx5w1+mzRRuW7FxOuG77s1iwfoq+q+Z30uGqsOu8V2403oujL5rsThuXEU2Fl2HaNTMuM8cb/HacqH7R2bD8=
+  </data>
+ </layer>
+ <layer id="5" name="protection" width="40" height="40" opacity="0.3">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+</map>

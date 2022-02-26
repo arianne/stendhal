@@ -82,7 +82,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 * Create instance
 		 */
 		try {
-			obj = clazz.newInstance();
+			obj = clazz.getDeclaredConstructor().newInstance();
 		} catch (final InstantiationException ex) {
 			LOGGER.error("Error creating zone configurator: " + classNameTemp,
 					ex);
@@ -90,6 +90,16 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 			return;
 		} catch (final IllegalAccessException ex) {
 			LOGGER.error("Error accessing zone configurator: " + classNameTemp,
+					ex);
+
+			return;
+		} catch (final NoSuchMethodException ex) {
+			LOGGER.error("Error creating zone configurator: " + classNameTemp,
+					ex);
+
+			return;
+		} catch (final java.lang.reflect.InvocationTargetException ex) {
+			LOGGER.error("Error creating zone configurator: " + classNameTemp,
 					ex);
 
 			return;

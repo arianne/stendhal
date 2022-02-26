@@ -64,7 +64,7 @@ axe.png                      David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+black_scythe.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210
 chaos_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
 golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -130,7 +130,7 @@ chaos_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 cloak.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 dwarf_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 elf_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+elvish_cloak.png        sandcat01, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 golden_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 green_dragon_cloak.*    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 lich_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -211,7 +211,7 @@ unsealed_envelope.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 data/sprites/items/drink/
 
 antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-beer.png                       Open Clipart Library, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha, http://www.clker.com/clipart-16755.html
+beer.png                       Open Clipart Library, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, http://www.clker.com/clipart-16755.html
 cobra_venom.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
@@ -252,8 +252,8 @@ zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
 
-apple_mauve.png          tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
-apple_red.png            tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798 (duplicate: ./apple_special/apple_red.png)
+apple.png                Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
+apple_special/*          Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
 applepie.png             omero; CC BY-SA 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
@@ -328,10 +328,6 @@ unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
 watermelon.png           RedQueen; OGA BY 3.0; Stendhal
 
-data/sprites/items/food/apple_special/
-
-apple_*  tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
-
 data/sprites/items/grower/
 
 arandula_grower.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
@@ -366,26 +362,26 @@ zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
 
-aventail.*                  Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
+aventail.png                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210
 black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
-elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
-enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+elvish_hat.png              sandcat01, Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
+enhanced_golden_helmet.*    Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338
 golden_helmet.png           Chrisdesign, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/4338, https://freesvg.org/knight-helmet-vector-image
 golden_horned_barbute.*     bogdanco, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/3666, https://freesvg.org/bogdanco-leonidas-helmet
 horned_helmet.*             Gribba, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/169354, https://freesvg.org/vector-image-of-nasal-helmet
-leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+leather_helmet.png          Ragewortt; OGA BY 3.0; https://opengameart.org/node/84013
 liberty_helmet.*            David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622
 magic_chain_helmet.*        Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
-red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+red_helmet.*                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+robins_hat.*                bluecarrot16 Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/130086
 shadow_helmet.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
-studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-xeno_helmet.*               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://github.com/crawl/tiles
+studded_helmet.*            Ragewortt, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84013
+xeno_helmet.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/herb/
 
@@ -462,7 +458,7 @@ magic_plate_legs.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mainio_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
-shadow_legs.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+shadow_legs.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.*            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 xeno_legs.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -479,7 +475,7 @@ dice.png                 Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 giant_heart.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/291622
 lemon.png                omero; CC BY-SA 3.0; Stendhal
 leather_thread.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
-marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+marbles.*                SpiderDave; CC0; https://opengameart.org/node/15250
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
 olive_oil.png            omero; CC BY-SA 3.0; Stendhal

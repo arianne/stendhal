@@ -200,7 +200,7 @@ public class OutfitStore {
 			}
 		}
 
-		String ref = OUTFITS + "/" + layer + "/" + layer + "_" + getSpriteSuffix(index);
+		String ref = OUTFITS + "/" + layer + "/" + getSpriteSuffix(index);
 		if (layer.equals("body") && WtWindowManager.getInstance().getPropertyBoolean("gamescreen.nonude", true)) {
 			final URL nonudeURL = DataLoader.getResource(ref + "-nonude.png");
 			if (nonudeURL != null) {

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="General">
+
+    <EditTextPreference
+      android:key="client_url"
+      android:inputType="text"
+      android:maxLines="1"
+      android:title="Client URL"
+      android:summary="Custom URL pointing to web client."
+      android:selectAllOnFocus="true"
+    />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="Input">
+
+    <CheckBoxPreference
+      android:key="show_dpad"
+      android:defaultValue="false"
+      android:title="Show D-Pad"
+      android:summary="Show on-screen directional pad."
+    />
+
+    <CheckBoxPreference
+      android:key="dpad_joy"
+      android:defaultValue="true"
+      android:title="Joystick Style D-Pad (experimental)"
+      android:summary="Use a joystick style directional pad."
+      android:dependency="show_dpad"
+    />
+
+    <EditTextPreference
+      android:key="joypad_sensitivity"
+      android:inputType="numberDecimal"
+      android:digits="0123456789"
+      android:defaultValue="25"
+      android:title="Joypad Sensitivity"
+      android:summary="Threshold, in pixels, at which joypad will dispatch move event (lower = more sensitive)."
+      android:dependency="dpad_joy"
+      android:selectAllOnFocus="true"
+    />
+
+    <EditTextPreference
+      android:key="dpad_offset_x"
+      android:inputType="numberDecimal"
+      android:digits="0123456789"
+      android:defaultValue="100"
+      android:title="D-Pad Offset X"
+      android:summary="Horizontal offset of directional pad (from left)."
+      android:dependency="show_dpad"
+      android:selectAllOnFocus="true"
+    />
+
+    <EditTextPreference
+      android:key="dpad_offset_y"
+      android:inputType="numberDecimal"
+      android:digits="0123456789"
+      android:defaultValue="300"
+      android:title="D-Pad Offset Y"
+      android:summary="Vertical offset of directional pad (from bottom)."
+      android:dependency="show_dpad"
+      android:selectAllOnFocus="true"
+    />
+
+    <CheckBoxPreference
+      android:key="map_touches"
+      android:defaultValue="false"
+      android:title="Remap Touches (experimental)"
+      android:summary="Map touches to mouse click events."
+    />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="Audio">
+
+    <CheckBoxPreference
+      android:key="title_music"
+      android:defaultValue="true"
+      android:title="Title Music"
+      android:summary="Play title screen music."
+    />
+
+    <ListPreference
+      android:key="song_list"
+      android:dependency="title_music"
+      android:title="Songs"
+      android:entries="@array/titleMusic"
+      android:entryValues="@array/titleMusicId"
+    />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="Meta">
+
+    <Preference
+      android:key="reset"
+      android:title="Restore Defaults"
+      android:summary="Restore all preferences default values."
+    />
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

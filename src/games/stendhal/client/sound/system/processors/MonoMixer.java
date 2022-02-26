@@ -62,6 +62,7 @@ public class MonoMixer extends SignalProcessor
             data[i] = (float)(sum - combined + product);
         }
 
-        super.propagate(data, samples, 1, rate);//*/
+        super.propagate(data, samples, 1, rate);
+		*/
     }
 }

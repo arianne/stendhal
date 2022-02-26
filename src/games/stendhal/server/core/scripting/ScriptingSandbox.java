@@ -93,12 +93,21 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	public void add(final RPObject object) {
+	public void add(final RPObject object, final Boolean expire) {
 		if (zone != null) {
-			zone.add(object);
+			if (expire == null) {
+				zone.add(object);
+			} else {
+				zone.add(object, expire);
+			}
+
 			loadedRPObjects.put(object, null);
 			logger.debug(filename + " added object: " + object);
 		}
+	}
+
+	public void add(final RPObject object) {
+		add(object, null);
 	}
 
 	public Creature[] getCreatures() {

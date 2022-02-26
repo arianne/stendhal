@@ -1,13 +1,24 @@
+/***************************************************************************
+ *                   Copyright (C) 2003-2022 - Arianne                     *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.interaction;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.util.Observable;
+import games.stendhal.server.util.Observer;
 
 
 /**

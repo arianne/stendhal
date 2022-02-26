@@ -295,6 +295,8 @@ public class Outfit {
 	 *            The index of the dress style, or null
 	 * @param body
 	 *            The index of the body style, or null
+	 * @deprecated
+	 *     Use {@link #Outfit(String)} or {@link #Outfit(Integer...)}.
 	 */
 	@Deprecated
 	public Outfit(final Integer detail, Integer hair, Integer head,

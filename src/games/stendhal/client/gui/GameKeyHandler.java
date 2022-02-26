@@ -352,7 +352,7 @@ class GameKeyHandler implements KeyListener {
 		final RPObject player = client.getPlayer();
 
 		// Flush direction states only if player does not have path & is not using auto-walk.
-		if (!player.has(AUTOWALK) && !player.has(PATHSET)) {
+		if (player != null && !player.has(AUTOWALK) && !player.has(PATHSET)) {
 			// If player is moving when client loses focus, direction must be flushed. Otherwise user will
 			// will have to press the direction key (of the direction character was facing when client
 			// lost focus) in order to resume movement.

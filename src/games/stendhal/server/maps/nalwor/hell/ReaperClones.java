@@ -16,6 +16,7 @@ import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 public class ReaperClones implements ZoneConfigurator {
@@ -26,11 +27,18 @@ public class ReaperClones implements ZoneConfigurator {
 	}
 
 	private void buildNPCS(final StendhalRPZone zone) {
-		SpeakerNPC npc = ReaperNPC.createNPC("Grim\u00A0Reaper");
+		final CloneManager cm = CloneManager.get();
+
+		SpeakerNPC npc = ReaperNPC.createNPC("Grim Reaper clone");
+		npc.setTitle("Grim Reaper");
 		npc.setPosition(5, 7);
 		zone.add(npc);
-		npc = Reaper2NPC.createNPC("repaeR\u00A0mirG");
+		// NOTE: when using name to register, must be called after added to zone
+		cm.registerAsClone("Grim Reaper", npc.getName());
+		npc = Reaper2NPC.createNPC("repaeR mirG clone");
+		npc.setTitle("repaeR mirG");
 		npc.setPosition(10, 7);
 		zone.add(npc);
+		cm.registerAsClone("repaeR mirG", npc.getName());
 	}
 }

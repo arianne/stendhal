@@ -180,7 +180,7 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	private void processFeaturesAdded(final Map<String, String> changes) {
 		for (final Entry<String, String> entry : changes.entrySet()) {
-			if (!features.containsKey(entry.getKey())) {
+			if (!features.containsKey(entry.getKey()) || !features.get(entry.getKey()).equals(entry.getValue())) {
 				features.put(entry.getKey(), entry.getValue());
 				fireFeatureEnabled(entry.getKey(), entry.getValue());
 			}

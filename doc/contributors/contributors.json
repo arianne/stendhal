@@ -1328,7 +1328,7 @@
 		},
 		{
 			"name": "athanasi",
-			"aliases": ["athana", "athanas"], 
+			"aliases": ["athana", "athanas"],
 			"fullname": "Athana",
 			"email": "",
 			"link": "https://sourceforge.net/u/athanasi/profile",
@@ -3591,9 +3591,1135 @@
 			"country": "Germany",
 			"contributions": [
 				{
-					"type": "graphics",
+					"type": "graphics"
 				}
 			]
+		},
+	],
+	"other": [
+		{
+			"name": "Cabbit",
+			"fullname": "Svetlana Kushnariova",
+			"link": "https://opengameart.org/users/cabbit"
+		},
+		{
+			"name": "diamonddmgirl",
+			"link": "https://opengameart.org/users/diamonddmgirl"
+		},
+		{
+			"fullname": "David E. Gervais",
+			"link": "http://pousse.rapiere.free.fr/tome/"
+		},
+		{
+			"name": "Dungeon Crawl Stone Soup",
+			"link": "https://crawl.develz.org/"
+		},
+		{
+			"name": "Reemax",
+			"fullname": "Tuomo Untinen",
+			"link": "https://opengameart.org/users/reemax"
+		},
+		{
+			"name": "Redshrike",
+			"fullname": "Stephen Challener",
+			"link": "https://opengameart.org/users/redshrike"
+		},
+		{
+			"name": "Sharm",
+			"fullname": "Lanea Zimmerman",
+			"link": "https://opengameart.org/users/sharm"
+		},
+		{
+			"name": "HughSpectrum",
+			"fullname": "Daniel Armstrong",
+			"link": "https://opengameart.org/users/hughspectrum"
+		},
+		{
+			"name": "bluecarrot16",
+			"link": "https://opengameart.org/users/bluecarrot16"
+		},
+		{
+			"fullname": "William Thompson",
+			"link": "https://opengameart.org/users/williamthompsonj"
+		},
+		{
+			"name": "Johann C",
+			"link": "https://opengameart.org/users/johann-c"
+		},
+		{
+			"name": "bagzie",
+			"link": "https://opengameart.org/users/bagzie"
+		},
+		{
+			"name": "ScratchIO",
+			"link": "https://opengameart.org/users/scratchio"
+		},
+		{
+			"name": "daneeklu",
+			"fullname": "Daniel Eddeland",
+			"link": "https://opengameart.org/users/daneeklu"
+		},
+		{
+			"name": "ienze",
+			"fullname": "Dominik Gmiterko",
+			"link": "https://opengameart.org/users/ienze"
+		},
+		{
+			"name": "Calciumtrice",
+			"link": "https://opengameart.org/users/calciumtrice"
+		},
+		{
+			"name": "lawnjelly",
+			"link": "https://opengameart.org/users/lawnjelly"
+		},
+		{
+			"name": "patvanmackelberg",
+			"link": "https://opengameart.org/users/patvanmackelberg"
+		},
+		{
+			"name": "Code Inferno Games",
+			"link": "http://codeinferno.com/"
+		},
+		{
+			"name": "ZaPaper",
+			"link": "https://opengameart.org/users/zapaper"
+		},
+		{
+			"name": "Ouren",
+			"fullname": "Wolfgang Wozniak",
+			"link": "https://opengameart.org/users/ouren"
+		},
+		{
+			"name": "Shepardskin",
+			"link": "https://opengameart.org/users/shepardskin"
+		},
+		{
+			"fullname": "Kelvin Shadewing",
+			"link": "https://opengameart.org/users/kelvin-shadewing"
+		},
+		{
+			"name": "Enquest",
+			"fullname": "Onno Timmerman",
+			"link": "https://opengameart.org/users/enquest"
+		},
+		{
+			"name": "Nila122",
+			"link": "https://opengameart.org/users/nila122"
+		},
+		{
+			"name": "Buch",
+			"fullname": "Michele Bucelli",
+			"link": "https://opengameart.org/users/buch"
+		},
+		{
+			"name": "isaiah658",
+			"link": "https://opengameart.org/users/isaiah658"
+		},
+		{
+			"name": "IndigoFenix",
+			"link": "https://opengameart.org/users/indigofenix"
+		},
+		{
+			"name": "LordNeo",
+			"link": "https://opengameart.org/users/lordneo"
+		},
+		{
+			"name": "SCaydi",
+			"link": "https://opengameart.org/users/scaydi"
+		},
+		{
+			"name": "BizmasterStudios",
+			"fullname": "Michael Williams",
+			"link": "https://opengameart.org/users/bizmasterstudios"
+		},
+		{
+			"name": "Eldiran",
+			"link": "https://opengameart.org/users/eldiran"
+		},
+		{
+			"name": "Kevin O'Ryan",
+			"fullname": "Kevin Smith",
+			"aliases": ["TKZ Productions"],
+			"link": "https://opengameart.org/users/kevin-oryan"
+		},
+		{
+			"name": "Tracy",
+			"link": "https://opengameart.org/users/tracy"
+		},
+		{
+			"name": "Fabzy",
+			"link": "https://opengameart.org/users/fabzy"
+		},
+		{
+			"name": "Kemono",
+			"link": "https://opengameart.org/users/kemono"
+		},
+		{
+			"name": "CharlesGabriel",
+			"fullname": "Charles Sanchez",
+			"aliases": ["CharlesGabriel", "Antifarea"],
+			"link": "https://opengameart.org/users/charlesgabriel"
+		},
+		{
+			"name": "yolkati",
+			"link": "https://opengameart.org/users/yolkati"
+		},
+		{
+			"name": "wulax",
+			"link": "https://opengameart.org/users/wulax"
+		},
+		{
+			"name": "Hernandack",
+			"link": "https://opengameart.org/users/hernandack"
+		},
+		{
+			"name": "Ba&#x15d;to",
+			"fullname": "Sebastian Riedel",
+			"link": "https://opengameart.org/users/ba%C5%9Dto",
+		},
+		{
+			"name": "Jastiv",
+			"fullname": "Lori Angela Nagel",
+			"link": "https://opengameart.org/users/jastiv"
+		},
+		{
+			"name": "artisticdude",
+			"link": "https://opengameart.org/users/artisticdude"
+		},
+		{
+			"fullname": "Clint Bellanger",
+			"link": "https://opengameart.org/users/clint-bellanger"
+		},
+		{
+			"fullname": "Justin Nichol",
+			"link": "https://opengameart.org/users/justin-nichol"
+		},
+		{
+			"name": "amaranthia",
+			"fullname": "Katherine Fitch",
+			"link": "https://opengameart.org/users/amaranthia"
+		},
+		{
+			"name": "Openclipart Library",
+			"link": "https://openclipart.org/"
+		},
+		{
+			"name": "7Soul1",
+			"fullname": "Henrique Lazarini",
+			"link": "https://www.deviantart.com/7soul1"
+		},
+		{
+			"name": "thekingphoenix",
+			"link": "https://opengameart.org/users/thekingphoenix"
+		},
+		{
+			"fullname": "Mandi Paugh",
+			"link": "https://opengameart.org/node/18"
+		},
+		{
+			"name": "Sollision",
+			"link": "https://opengameart.org/users/sollision"
+		},
+		{
+			"fullname": "Silveira Neto",
+			"link": "http://silveiraneto.net/"
+		},
+		{
+			"fullname": "Joe White",
+			"link": "https://opengameart.org/users/joe-white"
+		},
+		{
+			"name": "Yamilian",
+			"link": "https://opengameart.org/users/yamilian"
+		},
+		{
+			"name": "BlueVortexGames",
+			"fullname": "Cobra Hubbard",
+			"link": "https://opengameart.org/users/bluevortexgames"
+		},
+		{
+			"name": "Crisisworks",
+			"link": "https://opengameart.org/users/crisisworks"
+		},
+		{
+			"name": "practicing01",
+			"link": "https://opengameart.org/users/practicing01"
+		},
+		{
+			"name": "Angry Amish",
+			"link": "https://opengameart.org/users/angry-amish"
+		},
+		{
+			"fullname": "Casper Nilsson",
+		},
+		{
+			"name": "zoli111",
+			"link": "https://gitlab.com/zoli111/"
+		},
+		{
+			"name": "qubodup",
+			"fullname": "Iwan Gabovitch",
+			"link": "https://opengameart.org/users/qubodup"
+		},
+		{
+			"name": "strawheart"
+		},
+		{
+			"name": "Glitch",
+			"link": "https://www.glitchthegame.com/"
+		},
+		{
+			"name": "PancInteractive",
+			"fullname": "Alex Jackson",
+			"link": "https://opengameart.org/users/pancinteractive"
+		},
+		{
+			"name": "Cethiel",
+			"link": "https://opengameart.org/users/cethiel"
+		},
+		{
+			"name": "Rawdanitsu",
+			"link": "https://opengameart.org/users/rawdanitsu"
+		},
+		{
+			"name": "One Man Army",
+			"link": "https://opengameart.org/users/one-man-army"
+		},
+		{
+			"name": "Master484",
+			"fullname": "Vesa Vanhatupa",
+			"link": "https://opengameart.org/users/master484"
+		},
+		{
+			"name": "devurandom",
+			"link": "https://opengameart.org/users/devurandom"
+		},
+		{
+			"name": "DezrasDragons",
+			"link": "https://opengameart.org/users/dezrasdragons"
+		},
+		{
+			"name": "etcgood1",
+			"link": "https://opengameart.org/users/etcgood1"
+		},
+		{
+			"name": "SdiviHall",
+			"fullname": "Sdivi Lee Hall",
+			"aliases": ["triceratops"],
+			"email": "everyporkchop@gmail.com",
+			"link": "https://opengameart.org/users/sdivihall"
+		},
+		{
+			"name": "Danimal",
+			"link": "https://opengameart.org/users/danimal"
+		},
+		{
+			"name": "superjoe",
+			"fullname": "Andrew Kelley",
+			"link": "https://opengameart.org/users/superjoe"
+		},
+		{
+			"name": "devnewton",
+			"fullname": "Dave Newton",
+			"link": "https://opengameart.org/users/devnewton"
+		},
+		{
+			"name": "Bleed",
+			"fullname": "Remos Turcuman",
+			"link": "https://opengameart.org/users/bleed"
+		},
+		{
+			"name": "NaRNeRZz",
+			"aliases": ["Libz0rzz"],
+			"link": "https://opengameart.org/users/narnerzz"
+		},
+		{
+			"name": "Mumu",
+			"fulname": "Robert C.",
+			"link": "https://opengameart.org/users/mumu"
+		},
+		{
+			"fullname": "Daniel Cook",
+			"link": "https://lostgarden.home.blog/2006/07/08/more-free-game-graphics/"
+		},
+		{
+			"name": "Jetrel",
+			"link": "https://opengameart.org/users/jetrel"
+		},
+		{
+			"name": "Bertram",
+			"link": "https://opengameart.org/users/bertram"
+		},
+		{
+			"name": "Hyptosis",
+			"link": "https://opengameart.org/users/hyptosis"
+		},
+		{
+			"name": "Zabin",
+			"fullname": "Zachariah Husiar",
+			"link": "https://opengameart.org/users/zabin"
+		},
+		{
+			"fullname": "Ivan Voirol",
+			"link": "https://opengameart.org/users/ivan-voirol"
+		},
+		{
+			"name": "Roots",
+			"fullname": "Tyler Olsen",
+			"link": "https://opengameart.org/users/roots"
+		},
+		{
+			"name": "extradave",
+			"link": "https://opengameart.org/users/extradave"
+		},
+		{
+			"name": "mold",
+			"link": "https://opengameart.org/users/mold"
+		},
+		{
+			"name": "Bonsaiheldin",
+			"link": "https://nora.la/"
+		},
+		{
+			"name": "F0x0ne",
+			"link": "https://opengameart.org/users/f0x0ne"
+		},
+		{
+			"name": "ETTiNGRiNDER",
+			"link": "https://opengameart.org/users/ettingrinder"
+		},
+		{
+			"name": "n4",
+			"link": "https://opengameart.org/users/n4"
+		},
+		{
+			"name": "rubberduck",
+			"link": "https://opengameart.org/users/rubberduck"
+		},
+		{
+			"name": "Moosader",
+			"fullname": "Rachel J Morris",
+			"link": "https://www.deviantart.com/moosader"
+		},
+		{
+			"name": "RayaneFLX",
+			"fullname": "Rayane F&#xe9;lix",
+			"link": "https://opengameart.org/users/rayaneflx"
+		},
+		{
+			"fullname": "Leonard Pabin",
+			"link": "https://opengameart.org/users/leonard-pabin"
+		},
+		{
+			"name": "MELLE",
+			"link": "https://opengameart.org/users/melle"
+		},
+		{
+			"name": "XenosNS",
+			"link": "https://opengameart.org/users/xenosns"
+		},
+		{
+			"name": "DkuCook",
+			"link": "https://opengameart.org/users/dkucook"
+		},
+		{
+			"name": "Ogrebane",
+			"link": "https://opengameart.org/users/ogrebane"
+		},
+		{
+			"name": "compmend",
+			"link": "https://opengameart.org/users/compmend"
+		},
+		{
+			"fullname": "Viktor Hahn",
+			"email": "Viktor.Hahn@web.de",
+			"link": "https://opengameart.org/users/unnamed"
+		},
+		{
+			"name": "Chrisdesign",
+			"fullname": "Chris Fiedler",
+			"link": "https://chrisdesign.wordpress.com/"
+		},
+		{
+			"name": "Varkalandar",
+			"fullname": "Hansj&#xf6;rg Malthaner",
+			"link": "https://opengameart.org/users/varkalandar"
+		},
+		{
+			"name": "Curt",
+			"link": "https://opengameart.org/users/curt"
+		},
+		{
+			"name": "RedVoxel",
+			"aliases": ["Red_Voxel"],
+			"link": "https://red-voxel.itch.io/"
+		},
+		{
+			"name": "TheraHedwig",
+			"fullname": "Wolthera van H&#xf6;vell tot Westerflier",
+			"link": "https://opengameart.org/users/therahedwig"
+		},
+		{
+			"fullname": "Barbara Rivera",
+			"link": "https://opengameart.org/content/concept-art-for-lpc-entry"
+		},
+		{
+			"name": "Nemisys",
+			"fullname": "Carlo Enrico Victoria",
+			"link": "https://opengameart.org/users/nemisys"
+		},
+		{
+			"name": "StumpyStrust",
+			"link": "https://opengameart.org/users/stumpystrust"
+		},
+		{
+			"name": "Xenodora",
+			"link": "https://opengameart.org/users/xenodora"
+		},
+		{
+			"name": "Yar",
+			"link": "https://opengameart.org/users/yar"
+		},
+		{
+			"name": "Syrsly",
+			"fullname": "Josh Maines",
+			"aliases": ["Tap"],
+			"link": "https://opengameart.org/users/syrsly"
+		},
+		{
+			"name": "NoLogoGames",
+			"link": "https://opengameart.org/users/nologogames"
+		},
+		{
+			"name": "formconstant",
+			"link": "https://opengameart.org/users/formconstant"
+		},
+		{
+			"name": "b_o"
+		},
+		{
+			"name": "Andrettin",
+			"link": "https://opengameart.org/users/andrettin"
+		},
+		{
+			"name": "airockstar",
+			"fullname": "Otha Dalton",
+			"link": "https://opengameart.org/users/airockstar"
+		},
+		{
+			"name": "surt",
+			"fullname": "Carl Olsson",
+			"link": "https://opengameart.org/users/surt"
+		},
+		{
+			"name": "Natalie",
+			"link": "https://soundbible.com/253-Church-Bells-Ringing.html"
+		},
+		{
+			"fullname": "Adam Webb",
+			"link": "https://soundbible.com/1883-Scary-Demon-Haunting.html"
+		},
+		{
+			"name": "Stephan",
+			"link": "https://soundbible.com/1664-Restaurant-Ambiance.html"
+		},
+		{
+			"name": "MarleneAyni",
+			"link": "https://freesound.org/people/MarleneAyni/"
+		},
+		{
+			"name": "Tozan",
+			"link": "https://opengameart.org/users/tozan"
+		},
+		{
+			"fullname": "Alexandr Zhelanov",
+			"link": "https://soundcloud.com/alexandr-zhelanov"
+		},
+		{
+			"name": "Leerie",
+			"link": "https://opengameart.org/users/leerie"
+		},
+		{
+			"name": "ONE ABE",
+			"fullname": "Aron Ben Elal",
+			"aliases": ["iamoneabe"],
+			"link": "https://opengameart.org/users/iamoneabe"
+		},
+		{
+			"name": "TAD",
+			"fullname": "Tad Miller",
+			"link": "https://opengameart.org/users/tad"
+		},
+		{
+			"name": "RandomMind",
+			"link": "https://opengameart.org/users/randommind"
+		},
+		{
+			"fullname": "Angus Macnaughton",
+			"link": "https://opengameart.org/users/amacnaughton"
+		},
+		{
+			"fullname": "Matthew Pablo",
+			"link": "https://matthewpablo.com/"
+		},
+		{
+			"name": "InspectorJ",
+			"fullname": "Jonathan Shaw",
+			"link": "https://www.jshaw.co.uk/"
+		},
+		{
+			"name": "Bendzer",
+			"link": "https://opengameart.org/users/bendzer"
+		},
+		{
+			"name": "Pro Sensory",
+			"fullname": "Alex McCulloch",
+			"link": "https://opengameart.org/users/pro-sensory"
+		},
+		{
+			"name": "LarsG",
+			"link": "https://opengameart.org/users/larsg"
+		},
+		{
+			"name": "Geomancer",
+			"link": "https://opengameart.org/users/geomancer"
+		},
+		{
+			"name": "You're Perfect Studio",
+			"link": "https://opengameart.org/users/youre-perfect-studio"
+		},
+		{
+			"name": "U.S. Fish and Wildlife Service",
+			"link": "https://fws.gov/"
+		},
+		{
+			"name": "Nic3_one",
+			"link": "https://freesound.org/people/Nic3_one/"
+		},
+		{
+			"name": "CGEffex",
+			"link": "https://freesound.org/people/CGEffex/"
+		},
+		{
+			"fullname": "F&#233;lix Blume",
+			"link": "https://freesound.org/people/felix.blume/"
+		},
+		{
+			"name": "cylon8472",
+			"link": "https://freesound.org/people/cylon8472/"
+		},
+		{
+			"name": "polymorpheva",
+			"link": "https://freesound.org/people/polymorpheva/"
+		},
+		{
+			"name": "tylerandbergsd",
+			"link": "https://freesound.org/people/tylerandbergsd/"
+		},
+		{
+			"name": "straget",
+			"fullname": "Samuel Str&#229;gefors",
+			"link": "https://freesound.org/people/straget/"
+		},
+		{
+			"name": "winsx87",
+			"link": "https://freesound.org/people/winsx87/"
+		},
+		{
+			"name": "dauser",
+			"link": "https://freesound.org/people/dauser/"
+		},
+		{
+			"name": "Benboncan",
+			"link": "https://freesound.org/people/Benboncan/"
+		},
+		{
+			"name": "Belhene",
+			"link": "https://freesound.org/people/Belhene/"
+		},
+		{
+			"name": "www.bonson.ca",
+			"link": "https://www.bonson.ca/"
+		},
+		{
+			"name": "Rudmer_Rotteveel",
+			"link": "https://freesound.org/people/Rudmer_Rotteveel/"
+		},
+		{
+			"name": "Barbamiz",
+			"link": "https://freesound.org/people/Barbamiz/"
+		},
+		{
+			"name": "alienistcog",
+			"link": "https://freesound.org/people/alienistcog/"
+		},
+		{
+			"name": "lostchocolatelab",
+			"link": "https://freesound.org/people/lostchocolatelab/"
+		},
+		{
+			"name": "satrebor",
+			"link": "https://freesound.org/people/satrebor/"
+		},
+		{
+			"name": "monotraum",
+			"fullname": "Roland St&#228;hle",
+			"link": "https://www.berlinmusik.net/"
+		},
+		{
+			"name": "fryzu82",
+			"link": "https://freesound.org/people/fryzu82/"
+		},
+		{
+			"name": "joedeshon",
+			"fullname": "Joe DeShon",
+			"link": "https://themindofjoe.blogspot.com/",
+			"link_alt": "https://freesound.org/people/joedeshon/"
+		},
+		{
+			"name": "FrostyFrost",
+			"link": "https://freesound.org/people/FrostyFrost/"
+		},
+		{
+			"name": "Eelke",
+			"link": "https://freesound.org/people/Eelke/"
+		},
+		{
+			"name": "FunnyMan374",
+			"link": "https://freesound.org/people/FunnyMan374/"
+		},
+		{
+			"name": "HUMANOISEMAKER",
+			"aliases": ["cloudyeyetavern"],
+			"link": "https://freesound.org/people/HUMANOISEMAKER/",
+			"link_alt": "https://freesound.org/people/cloudyeyetavern/"
+		},
+		{
+			"name": "Department64",
+			"link": "http://department64.com/",
+			"link_alt": "https://freesound.org/people/Department64/"
+		},
+		{
+			"name": "dersuperanton",
+			"fullname": "Anton Porsche",
+			"link": "https://www.antonporsche.de/",
+			"link_alt": "https://freesound.org/people/dersuperanton/"
+		},
+		{
+			"name": "AP3850",
+			"link": "https://freesound.org/people/AP3850/"
+		},
+		{
+			"name": "thanvannispen",
+			"fullname": "Than van Nispen",
+			"link": "http://than.fm/",
+			"link_alt": "https://freesound.org/people/thanvannispen/"
+		},
+		{
+			"name": "pandaplague",
+			"link": "https://freesound.org/people/pandaplague/"
+		},
+		{
+			"name": "UncleSigmund",
+			"link": "https://freesound.org/people/UncleSigmund/"
+		},
+		{
+			"fullname": "Lisa Redfern",
+			"link": "https://soundbible.com/2034-Growling-Snarling-Dogs.html"
+		},
+		{
+			"name": "nfrae",
+			"link": "https://freesound.org/people/nfrae/"
+		},
+		{
+			"name": "vataaa",
+			"link": "https://freesound.org/people/vataaa/"
+		},
+		{
+			"name": "vibe_crc",
+			"link": "https://freesound.org/people/vibe_crc/"
+		},
+		{
+			"name": "j1987",
+			"link": "https://freesound.org/people/j1987/"
+		},
+		{
+			"name": "lazr2012",
+			"link": "https://freesound.org/people/lazr2012/"
+		},
+		{
+			"name": "JarAxe",
+			"fullname": "Inge Jard Gr&#248;n&#229;s",
+			"link": "https://freesound.org/people/JarAxe/"
+		},
+		{
+			"name": "HorrorAudio",
+			"link": "https://freesound.org/people/HorrorAudio/"
+		},
+		{
+			"name": "Zabuhailo",
+			"link": "https://freesound.org/people/Zabuhailo/"
+		},
+		{
+			"name": "Deganoth",
+			"fullname": "Oliver Deegan",
+			"link": "https://oliverdeegan.wordpress.com/",
+			"link_alt": "https://freesound.org/people/Deganoth/"
+		},
+		{
+			"name": "Ch0cchi",
+			"link": "https://freesound.org/people/Ch0cchi/"
+		},
+		{
+			"name": "martinimeniscus",
+			"link": "https://freesound.org/people/martinimeniscus/"
+		},
+		{
+			"name": "spookymodem",
+			"link": "https://freesound.org/people/spookymodem/"
+		},
+		{
+			"name": "ohnobones",
+			"link": "https://freesound.org/people/ohnobones/"
+		},
+		{
+			"name": "SmallQuadruped",
+			"link": "https://freesound.org/people/SmallQuadruped/"
+		},
+		{
+			"fullname": "Nicole Marie T",
+			"link": "https://opengameart.org/users/nicole-marie-t"
+		},
+		{
+			"name": "ceoux",
+			"link": "https://freesound.org/people/ceoux/",
+		},
+		{
+			"name": "columbia23",
+			"link": "https://freesound.org/people/columbia23/",
+		},
+		{
+			"name": "renatalmar",
+			"link": "https://freesound.org/people/renatalmar/"
+		},
+		{
+			"name": "canucklovingbrit",
+			"link": "https://freesound.org/people/canucklovingbrit/"
+		},
+		{
+			"name": "Andune",
+			"fullname": "Floyd Andune",
+			"link": "https://freesound.org/people/Andune/"
+		},
+		{
+			"name": "foxen10",
+			"link": "https://freesound.org/people/foxen10/"
+		},
+		{
+			"name": "scorpion67890",
+			"link": "https://freesound.org/people/scorpion67890/"
+		},
+		{
+			"name": "guinefurrie",
+			"link": "https://freesound.org/people/guinefurrie/"
+		},
+		{
+			"name": "videog",
+			"link": "https://freesound.org/people/videog/"
+		},
+		{
+			"name": "apolloaiello",
+			"link": "https://freesound.org/people/apolloaiello/"
+		},
+		{
+			"name": "Bob H",
+			"link": "https://www.youtube.com/channel/UCK20Rn3Z7sryqvA9Kmj4Rpw",
+		},
+		{
+			"name": "cognito perceptu",
+			"link": "https://soundcloud.com/the-tailored-jitbag",
+			"link_alt": "https://freesound.org/people/cognito%20perceptu/"
+		},
+		{
+			"name": "poots",
+			"link": "https://freesound.org/people/poots/",
+		},
+		{
+			"name": "klankbeeld",
+			"link": "https://freesound.org/people/klankbeeld/"
+		},
+		{
+			"name": "ShadowFlayer",
+			"link": "https://freesound.org/people/ShadowFlayer/"
+		},
+		{
+			"name": "Info-farmer",
+			"fullname": "LOGANATHAN . R.",
+			"link": "https://commons.wikimedia.org/wiki/User:Info-farmer"
+		},
+		{
+			"name": "Bidone",
+			"link": "https://freesound.org/people/Bidone/"
+		},
+		{
+			"name": "ericlichtenberg",
+			"link": "https://freesound.org/people/ericlichtenberg/"
+		},
+		{
+			"name": "altfuture",
+			"link": "https://freesound.org/people/altfuture/"
+		},
+		{
+			"name": "m160",
+			"link": "https://freesound.org/people/m160/"
+		},
+		{
+			"name": "dleigh",
+			"link": "https://freesound.org/people/dleigh/"
+		},
+		{
+			"name": "peridactyloptrix",
+			"link": "https://freesound.org/people/peridactyloptrix/"
+		},
+		{
+			"name": "DSISStudios",
+			"link": "https://freesound.org/people/DSISStudios/"
+		},
+		{
+			"name": "noahpardo",
+			"link": "https://freesound.org/people/noahpardo/"
+		},
+		{
+			"name": "Tim Kahn",
+			"link": "https://freesound.org/people/tim.kahn/"
+		},
+		{
+			"fullname": "Tim Starling",
+			"link": "https://en.wikipedia.org/wiki/User:Tim_Starling"
+		},
+		{
+			"name": "yottasounds",
+			"fullname": "Michael Beck",
+			"link": "https://freesound.org/people/yottasounds/"
+		},
+		{
+			"name": "MediaCollege.com",
+			"link": "https://www.mediacollege.com/"
+		},
+		{
+			"name": "moffet",
+			"link": "https://freesound.org/people/moffet/"
+		},
+		{
+			"name": "SieuAmThanh",
+			"aliases": ["SieuTuDo", "SieuDoTia"],
+			"link": "https://freesound.org/people/SieuAmThanh/"
+		},
+		{
+			"name": "toefur",
+			"link": "https://freesound.org/people/toefur/"
+		},
+		{
+			"name": "shyguy014",
+			"link": "https://freesound.org/people/shyguy014/"
+		},
+		{
+			"name": "JoseAgudelo",
+			"link": "https://freesound.org/people/JoseAgudelo/"
+		},
+		{
+			"name": "JoelAudio",
+			"fullname": "Joel Azzopardi",
+			"link": "https://freesound.org/people/JoelAudio/"
+		},
+		{
+			"name": "frasbr",
+			"link": "https://freesound.org/people/frasbr/"
+		},
+		{
+			"name": "ibm5155",
+			"link": "https://freesound.org/people/ibm5155/"
+		},
+		{
+			"name": "Loge the 60th",
+			"link": "https://soundbible.com/1758-Door-Entry-Notification.html"
+		},
+		{
+			"name": "ALLANZ10D",
+			"fullname": "Allan K Zepeda",
+			"aliases": ["AKZ Sounds"],
+			"link": "https://freesound.org/people/ALLANZ10D/"
+		},
+		{
+			"name": "Sacha Rush",
+			"aliases": ["The-Sacha-Rush", "Free-Rush"],
+			"link": "https://freesound.org/people/The-Sacha-Rush/"
+		},
+		{
+			"name": "NeoPhyTe",
+			"link": "https://soundbible.com/1627-Female-Scream-Horror.html"
+		},
+		{
+			"name": "andersmmg",
+			"link": "https://freesound.org/people/andersmmg/"
+		},
+		{
+			"name": "Nanakisan",
+			"link": "https://freesound.org/people/Nanakisan/"
+		},
+		{
+			"name": "7h3_lark",
+			"link": "https://freesound.org/people/7h3_lark/"
+		},
+		{
+			"name": "mrjingles",
+			"fullname": "Jim Welch",
+			"link": "https://freesound.org/people/mrjingles/"
+		},
+		{
+			"name": "schots",
+			"link": "https://freesound.org/people/schots/"
+		},
+		{
+			"name": "KevanGC",
+			"link": "https://soundbible.com/1657-Toilet-Flushing.html"
+		},
+		{
+			"name": "FuriousGinger",
+			"link": "https://freesound.org/people/FuriousGinger/"
+		},
+		{
+			"name": "-sihiL",
+			"link": "https://freesound.org/people/-sihiL/"
+		},
+		{
+			"name": "ArriGD",
+			"link": "https://freesound.org/people/ArriGD/"
+		},
+		{
+			"name": "pyro13djt",
+			"fullname": "Dorothy Jean Thompson",
+			"link": "https://freesound.org/people/pyro13djt/",
+			"link_alt": "https://soundcloud.com/jean-thompson-494638792"
+		},
+		{
+			"name": "pawsound",
+			"link": "https://freesound.org/people/pawsound/"
+		},
+		{
+			"name": "ketamineface",
+			"link": "https://freesound.org/people/ketamineface/",
+			"link_alt": "https://soundcloud.com/ketamineface"
+		},
+		{
+			"name": "NaturesTemper",
+			"link": "https://freesound.org/people/NaturesTemper/"
+		},
+		{
+			"name": "dave.des",
+			"link": "https://freesound.org/people/dave.des/"
+		},
+		{
+			"name": "newagesoup",
+			"link": "https://freesound.org/people/newagesoup/",
+			"link_alt": "https://soundcloud.com/newagesoup"
+		},
+		{
+			"name": "y89312",
+			"link": "https://freesound.org/people/y89312/"
+		},
+		{
+			"name": "killyourpepe",
+			"link": "https://freesound.org/people/killyourpepe/"
+		},
+		{
+			"name": "LittleRainySeasons",
+			"link": "https://freesound.org/people/LittleRainySeasons/"
+		},
+		{
+			"name": "shadoWisp",
+			"link": "https://freesound.org/people/shadoWisp/"
+		},
+		{
+			"name": "esperar",
+			"link": "https://freesound.org/people/esperar/"
+		},
+		{
+			"name": "wobbleboxx",
+			"link": "https://opengameart.org/users/wobbleboxx"
+		},
+		{
+			"name": "Adam_N",
+			"link": "https://freesound.org/people/Adam_N/"
+		},
+		{
+			"fullname": "&#199;a&#287;an &#199;elik",
+			"link": "https://freesound.org/people/CaganCelik/"
+		},
+		{
+			"name": "dingo1",
+			"fullname": "Marcus Dellicompagni",
+			"link": "https://freesound.org/people/dingo1/"
+		},
+		{
+			"name": "Zepp2010",
+			"link": "https://freesound.org/people/Zepp2010/"
+		},
+		{
+			"name": "klangfabrik",
+			"fullname": "Pete Chapman",
+			"link": "https://freesound.org/people/klangfabrik/"
+		},
+		{
+			"name": "vonz",
+			"link": "https://freesound.org/people/vonz/"
+		},
+		{
+			"fullname": "Andy Gardner",
+			"link": "https://freesound.org/people/Andy_Gardner/"
+		},
+		{
+			"name": "sphion",
+			"link": "http://sphion.com/",
+			"link_alt": "https://freesound.org/people/sphion/"
+		},
+		{
+			"fullname": "Dave Welsh",
+			"link": "https://freesound.org/people/Dave%20Welsh/"
+		},
+		{
+			"name": "Xythe",
+			"link": "https://freesound.org/people/Xythe/",
+			"link_alt": "https://soundcloud.com/mutkanto"
+		},
+		{
+			"name": "Yoyodaman234",
+			"link": "https://freesound.org/people/Yoyodaman234/"
+		},
+		{
+			"name": "stewdio2003",
+			"link": "https://freesound.org/people/stewdio2003/"
+		},
+		{
+			"name": "MrAuralization",
+			"fullname": "Dennis Johansson",
+			"link": "https://freesound.org/people/MrAuralization/"
+		},
+		{
+			"name": "finn.appleton",
+			"link": "https://freesound.org/people/finn.appleton/"
+		},
+		{
+			"name": "SpiderDave",
+			"link": "https://opengameart.org/users/spiderdave"
+		},
+		{
+			"name": "Ragewortt",
+			"link": "https://opengameart.org/users/ragewortt"
+		},
+		{
+			"name": "pan14",
+			"link": "https://freesound.org/people/pan14/"
 		}
 	]
 }

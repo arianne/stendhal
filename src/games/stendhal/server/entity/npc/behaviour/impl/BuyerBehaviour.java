@@ -60,8 +60,8 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 		if (player.drop(res.getChosenItemName(), res.getAmount())) {
 			payPlayer(res, player);
+			updatePlayerTransactions(player, seller.getName(), res);
 			seller.say("Thanks! Here is your money.");
-			player.incSoldForItem(res.getChosenItemName(), res.getAmount());
 			return true;
 		} else {
 			StringBuilder stringBuilder = new StringBuilder();
@@ -78,5 +78,21 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			seller.say(stringBuilder.toString());
 			return false;
 		}
+	}
+
+	/**
+	 * Updates stored information about Player-NPC commerce transactions.
+	 *
+	 * @param player
+	 *     Player to be updated.
+	 * @param merchant
+	 *     Name of merchant involved in transaction.
+	 * @param res
+	 *     Information about the transaction.
+	 */
+	protected void updatePlayerTransactions(final Player player, final String merchant,
+			final ItemParserResult res) {
+		player.incSoldForItem(res.getChosenItemName(), res.getAmount());
+		player.incCommerceTransaction(merchant, getCharge(res, player), true);
 	}
 }

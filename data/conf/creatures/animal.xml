@@ -800,7 +800,7 @@
     <description>You see a musth elephant. It is highly aggressive and unpredictable.</description>
     <attributes>
       <atk value="218"/>
-      <def value="219"/>
+      <def value="114"/>
       <hp value="2250"/>
       <speed value="0.8"/>
       <size value="3,2"/>

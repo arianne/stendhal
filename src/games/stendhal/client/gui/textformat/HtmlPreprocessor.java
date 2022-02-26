@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Pre-processes custom HTML tags, such as @{code &lt;tally/&gt;}.
+ * Pre-processes custom HTML tags, such as {@code &lt;tally/&gt;}.
  */
 public class HtmlPreprocessor {
 

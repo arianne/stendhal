@@ -68,7 +68,7 @@ public class EntityFactory {
 					return null;
 			}
 
-			final IEntity en = entityClass.newInstance();
+			final IEntity en = entityClass.getDeclaredConstructor().newInstance();
 			en.initialize(object);
 			if (en instanceof Entity) {
 				EventDispatcher.dispatchEvents(object, (Entity) en);

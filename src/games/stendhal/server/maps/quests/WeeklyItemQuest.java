@@ -245,6 +245,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addHard("xeno boots", 1);
 
 		// cloak (hard difficulty)
+		addHard("magic cloak", 1);
 		addHard("mainio cloak", 1);
 		addHard("xeno cloak", 1);
 

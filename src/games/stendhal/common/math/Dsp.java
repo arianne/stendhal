@@ -61,7 +61,8 @@ public class Dsp {
             float B = samples[sOffset + i];
 
             result[rOffset + i] = A + B - A * B;
-        }//*/
+        }
+		*/
 	}
 
 	public static void blendAudioData(float[] result, int rOffset,

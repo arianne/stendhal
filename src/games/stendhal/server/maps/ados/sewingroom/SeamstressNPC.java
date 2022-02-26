@@ -78,7 +78,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 		zone.add(seamstress);
 
 		// initialize clone to be placed in twilight zone
-		clone = CloneManager.getInstance().clone(seamstress, "twilight_ida");
+		clone = CloneManager.get().clone(seamstress, "twilight_ida");
 	}
 
 	/**

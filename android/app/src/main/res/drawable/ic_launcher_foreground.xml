@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:width="108dp"
+	android:height="108dp"
+	android:viewportWidth="108"
+	android:viewportHeight="108"
+	android:tint="#000000">
+
+	<group android:scaleX="0.4646"
+		android:scaleY="0.4646"
+		android:translateX="28.9116"
+		android:translateY="28.9116">
+
+		<group android:translateY="141.67969">
+		</group>
+	</group>
+</vector>

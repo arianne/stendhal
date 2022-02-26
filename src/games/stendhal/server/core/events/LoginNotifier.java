@@ -27,18 +27,14 @@ import games.stendhal.server.entity.player.Player;
  */
 public final class LoginNotifier {
 
-	/** The Singleton instance. */
-	private static final LoginNotifier instance = new LoginNotifier();
+	/** The singleton instance. */
+	private static LoginNotifier instance;
 
 	/**
 	 * Holds a list of all registered LoginListeners.
 	 */
 	private final List<LoginListener> loginListeners;
 
-	// singleton
-	private LoginNotifier() {
-		loginListeners = new ArrayList<LoginListener>();
-	}
 
 	/**
 	 * Returns the LoginNotifier instance.
@@ -46,7 +42,18 @@ public final class LoginNotifier {
 	 * @return LoginNotifier the Singleton instance
 	 */
 	public static LoginNotifier get() {
+		if (instance == null) {
+			instance = new LoginNotifier();
+		}
+
 		return instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private LoginNotifier() {
+		loginListeners = new ArrayList<LoginListener>();
 	}
 
 	/**

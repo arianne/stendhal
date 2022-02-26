@@ -46,6 +46,12 @@ stendhal.ui.keyhandler = {
 		var code = stendhal.ui.html.extractKeyCode(event);
 
 		if (code >= 37 && code <= 40) {
+
+			// disable scrolling via arrow keys
+			if (event.target.tagName === "BODY" || event.target.tagName === "CANVAS") {
+				event.preventDefault();
+			}
+
 			// if this is a repeated event, stop further processing
 			if (stendhal.ui.keyhandler.pressedKeys.indexOf(code) > -1) {
 				return;

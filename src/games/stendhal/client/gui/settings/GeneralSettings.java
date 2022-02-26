@@ -13,6 +13,8 @@ package games.stendhal.client.gui.settings;
 
 import static games.stendhal.client.gui.settings.SettingsProperties.DOUBLE_TAP_AUTOWALK_PROPERTY;
 import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
+import static games.stendhal.client.gui.settings.SettingsProperties.MSG_BLINK;
+import static games.stendhal.client.gui.settings.SettingsProperties.MSG_SOUND;
 import static games.stendhal.common.Constants.KARMA_SETTINGS;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
@@ -111,6 +113,13 @@ class GeneralSettings {
 		});
 		page.add(moveContinuousToggle);
 
+		final JCheckBox msgBlinkToggle = SettingsComponentFactory.createSettingsToggle(
+			MSG_BLINK, true, "Blink on channel message", "Chat channel tab blinks on message when not focused");
+		page.add(msgBlinkToggle);
+
+		final JCheckBox msgSoundToggle = SettingsComponentFactory.createSettingsToggle(
+			MSG_SOUND, true, "Personal message audio notification", "Play sound for personal messages channel when not focused");
+		page.add(msgSoundToggle);
 
 		if (System.getProperty("stendhal.karmaconfig") != null) {
 			// combat karma

@@ -1,0 +1,79 @@
+plugins {
+	id 'com.android.application'
+}
+
+android {
+	compileSdk 32
+
+	def buildDate = new Date().format("yyyyMMdd")
+
+	def appVer
+	if (project.hasProperty("android.ver") && project["android.ver"]) {
+		appVer = project["android.ver"]
+	} else {
+		appVer = "${buildDate}"
+	}
+
+	if (project.hasProperty("android.rev") && project["android.rev"]) {
+		appVer += "-" + project["android.rev"]
+	}
+
+	def outputName = "stendhal-webview-${appVer}"
+
+	defaultConfig {
+		applicationId "org.arianne.stendhal.client"
+		minSdk 21
+		targetSdk 32
+		versionCode 1
+		versionName "${appVer}"
+		setProperty("archivesBaseName", "${outputName}")
+		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
+
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		targetSdkVersion 32
+		minSdkVersion 21
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+
+		prerelease {
+			versionNameSuffix "-pre"
+			signingConfig signingConfigs.debug
+		}
+
+		debug {
+			applicationIdSuffix ".debug"
+			versionNameSuffix "-debug"
+		}
+	}
+
+	buildTypes.all { type ->
+		if (!type.name.equals("debug")) {
+			sourceSets[type.name].java { srcDirs "src/shared/java/" }
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	compileSdkVersion 32
+	buildToolsVersion '32.0.0'
+
+	lintOptions {
+		abortOnError false
+	}
+}
+
+dependencies {
+	implementation 'androidx.appcompat:appcompat:1.4.1'
+	implementation 'com.google.android.material:material:1.4.0'
+	//testImplementation 'junit:junit:4.+'
+	//androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+	//androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+	implementation files('../../libs/marauroa-client-only.jar')
+}

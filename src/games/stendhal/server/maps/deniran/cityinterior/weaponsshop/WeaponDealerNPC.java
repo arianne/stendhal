@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.weaponsshop;
 
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -56,29 +55,11 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 			}
 		};
 
-		// buys
-		final Map<String, Integer> pricesBuy = new LinkedHashMap<String, Integer>() {{
-			put("ugmash", 1200);
-			put("magic cloak", 12000);
-		}};
-		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy), false);
-
-		// sells
-		final Map<String, Integer> pricesSell = new LinkedHashMap<String, Integer>() {{
-			put("shuriken", 77);
-			put("fire shuriken", 99);
-			put("wooden spear", 110);
-		}};
-		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell), false);
-
-		// add shops to the general shop list
 		final ShopList shops = ShopList.get();
-		for (final String key: pricesBuy.keySet()) {
-			shops.add("deniranequipbuy", key, pricesBuy.get(key));
-		}
-		for (final String key: pricesSell.keySet()) {
-			shops.add("deniranequipsell", key, pricesSell.get(key));
-		}
+		final Map<String, Integer> pricesBuy = shops.get("deniranequipbuy");
+		final Map<String, Integer> pricesSell = shops.get("deniranequipsell");
+		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy), false);
+		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell), false);
 
 		npc.setPosition(11, 5);
 		npc.setEntityClass("wellroundedguynpc");

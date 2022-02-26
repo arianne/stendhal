@@ -22,16 +22,25 @@ import marauroa.common.Pair;
 
 public class ServicersRegister {
 
+	/** The singleton instance. */
 	private static ServicersRegister instance;
 
 	private final List<Pair<String, HealerBehaviour>> healers;
 	private final List<Pair<String, OutfitChangerBehaviour>> outfitChangers;
 	private final List<Pair<String, RepairerBehaviour>> repairers;
 
+
+	/**
+	 * Singleton access method.
+	 *
+	 * @return
+	 *     The static instance.
+	 */
 	public static ServicersRegister get() {
 		if (instance == null) {
-			new ServicersRegister();
+			instance = new ServicersRegister();
 		}
+
 		return instance;
 	}
 
