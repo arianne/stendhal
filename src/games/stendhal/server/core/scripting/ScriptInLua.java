@@ -33,6 +33,7 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.lua.*;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
@@ -259,6 +260,24 @@ public class ScriptInLua extends ScriptingSandbox {
 	 */
 	public void setMusic(final String filename) {
 		setMusic(filename, new LuaTable());
+	}
+
+	/**
+	 * Executes a function after a specified number of turns.
+	 *
+	 * FIXME: how to invoke with parameters
+	 *
+	 * @param turns
+	 *     Number of turns to wait.
+	 * @param func
+	 *     The function to be executed.
+	 */
+	public void runAfter(final int turns, final LuaFunction func) {
+		SingletonRepository.getTurnNotifier().notifyInTurns(turns, new TurnListener() {
+			public void onTurnReached(final int currentTurn) {
+				func.call();
+			}
+		});
 	}
 
 
