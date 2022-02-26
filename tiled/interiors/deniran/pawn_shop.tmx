@@ -190,7 +190,7 @@
  </layer>
  <layer id="2" name="1_terrain" width="22" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgwA40gFiLDKwNxDo4zAQBIyA2BmITErEpEJvhMRcGpjIyMBxlgrDnMULoBYwI+flAdiGU7cVEhIFI5hICMHM3EaEWBqaTYO5mEsydCVUbBPXjDyD/J5p+csxFB3+Bev/hMHcLCeYSE2Ywc6NIiDdi/FYKxEVQTI652lD3iAJpMSxuIyU9kBIXpKhFj4uVQP4qIF6NxQxSzH2LpnYNkL8WiNdhMYOY9OBCvNVwoENCeiAXgMpDTQbM8s4GiG2BmAPoBk4i3TENKRxwlYduQOyORe9FJL1cQPu4keychiN81zKiYlDcfEJTewmJzwM0kxfJ3BkUlA/4wCw85sLSJ640ig+8w6N+PZK5G9DUXQXyr6GJFaFhXGANWvgSAoWElZAFiDF3FSMmRg7jk2jub2eCmBsPpBOA2B4pbdgDsQPlzoYDWH7yBGIvKpoLy08AKA9z8PAIAAA=
+   H4sIAAAAAAAACmNgwA40gFiLDKwNxDo4zAQBIyA2BmITErEpEJvhMRcGpjIyMBxlgrDnMULoBYwI+flAdiGU7cVEhIFI5hICMHM3EaEWBqaTYO5mEsydCVUbBPXjDyD/J5p+csxFB3+Bev/hMHcLCeYSE2aFhJVgAGL8VgrERVBMjrna0DAWBdJiWNIUKemBlLggRS16XKwE8lcB8WosZpBi7ls0tWuA/LVAvA6LGcSkBxfirYYDHRLyMbkAVB5qMmCWdzZAbAvEHEA3cBLpjmlI4YCrPHQDYncsei8i6eUC2seNZOc0HOG7lhEVg+LmE5raS0h8HqCZvEjmzqCgfMAHZuExF5Y+caVRfOAdHvXrkczdgKbuKpB/DU2sCA3jAmvQwpcQIKcsIwYQY+4qRkyMHMYnoewoaBpoZ4KYGw+kE4DYHilt2AOxA3WcDgaw/OQJxF5UNBeWnwCIvni/8AgAAA==
   </data>
  </layer>
  <layer id="3" name="2_object" width="22" height="26">
@@ -200,7 +200,7 @@
  </layer>
  <layer id="4" name="3_roof" width="22" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGBgwmXGALB6kwJ8JQn8GhssXOodNGBNtzI2gkbnkAlWoe/iBtMAgcxshkDTE3DtYARswHNmJDMspROTD0zTKq2eh5r6msvnnh0G5exnohytDyB/HaeTWE2jmtkDTdQyQjh0tL7ACAHcB+lbwCAAA
+   H4sIAAAAAAAACmNgGBgwmXGALB6kwJ8JQn8GhsuX0bChCVCFhjE/kBZgGli3kAqShph7BytgA4YjO5FhOYWIfHiaRnn1LNTc11Q2//wwKFsuA/1wZQj54zjUrWFUzsMnoOZGQM1tgdIxQDp2tLzACgAsSKe48AgAAA==
   </data>
  </layer>
  <layer id="5" name="4_roof_add" width="22" height="26">
@@ -215,7 +215,7 @@
  </layer>
  <layer id="7" name="collision" width="22" height="26" visible="0" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACt2TwQoAIAhD/XH/vWuIqG1K0UDCQ89hS0VEP6tMup2/c+1dllvRi3vIuEzOoh1P+O3gRvNuchFN7BZhn/wPlGdz5/Ws1yqXVcRlZqHcLM+dfitzECH+vfdGGa/XAgFOUWvwCAAA
+   H4sIAAAAAAAACt2TwQoAIAhD/XH/vWuIqG1K4EA89RxLVUR0WWXSq2/n2rcst6LpHLo9s3sWZYzwq2K40byfXEQT2SLsl/tAed4NdHutcllFXGYWys32udNvZQ4ixL/337ZvqQNSEZ1C8AgAAA==
   </data>
  </layer>
  <layer id="8" name="protection" width="22" height="26" visible="0" opacity="0.3">
