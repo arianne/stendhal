@@ -96,7 +96,7 @@ public class RingOfLife extends Item {
 	@Override
 	public boolean onEquipped(final RPEntity entity, final String slot) {
 		if (slot.equals("finger") && entity instanceof Player) {
-			((Player) entity).sendPrivateText(NotificationType.INFORMATION,
+			((Player) entity).sendPrivateText(
 				"The aura of the ring is unchanged as you slide it on your finger."
 				+ " You realize that even carrying it in your bag or on your keyring"
 				+ " you will be under its influence.");
