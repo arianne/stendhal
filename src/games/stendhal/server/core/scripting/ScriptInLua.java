@@ -33,15 +33,7 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.lua.LuaActionHelper;
-import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
-import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
-import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
-import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
-import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
-import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
-import games.stendhal.server.core.scripting.lua.LuaStringHelper;
-import games.stendhal.server.core.scripting.lua.LuaTableHelper;
+import games.stendhal.server.core.scripting.lua.*;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 
