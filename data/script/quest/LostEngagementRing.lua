@@ -399,8 +399,8 @@ local loanMetalDetector = function(player, lender, detector, offer, bound_to, in
 
 	-- problem with metal detector item
 	if detector == nil then
-		lender:say("Uh oh! It seems my metal detector is broken. Sorry pal. Maybe you"
-			.. " could contact #/support and get someone to fix it for me.")
+		lender:say("Uh oh! It seems my metal detector is broken. Sorry pal. Please open"
+			.. " a bug report https://stendhalgame.org/development/bug.html")
 		lender:setCurrentState(ConversationStates.ATTENDING)
 		return
 	end
