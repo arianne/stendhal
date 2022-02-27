@@ -21,6 +21,8 @@ declare var stendhal: any;
  * a container for items like a bag or corpse
  */
 export class ItemContainerImplementation {
+	private doubleClickMode = stendhal.item_clickmode === "double";
+
 	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
@@ -223,13 +225,14 @@ export class ItemContainerImplementation {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
-			//} else if (this.isDoubleClick(event)) {
-			} else if (!this.touchDragActive) { // some players might like single click
-				marauroa.clientFramework.sendAction({
-					type: "use",
-					"target_path": (event.target as any).dataItem.getIdPath(),
-					"zone": marauroa.currentZoneName
-				});
+			} else if (!this.touchDragActive) {
+				if (!this.doubleClickMode || this.isDoubleClick(event)) {
+					marauroa.clientFramework.sendAction({
+						type: "use",
+						"target_path": (event.target as any).dataItem.getIdPath(),
+						"zone": marauroa.currentZoneName
+					});
+				}
 			}
 		}
 		document.getElementById("gamewindow")!.focus();

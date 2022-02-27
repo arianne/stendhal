@@ -255,6 +255,9 @@ stendhal.main = {
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
 
+		// workaround until we have proper settings (doesn't work with touch screens)
+		stendhal.item_clickmode = argv.get("item_clickmode") || "single";
+
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
