@@ -68,14 +68,13 @@ export class ItemContainerImplementation {
 			e.addEventListener("mouseup", (event: MouseEvent) => {
 				this.onMouseUp(event)
 			});
-			// disable direct touch handling
-			/*
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
 			});
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});
+			/*
 			e.addEventListener("touchmove", (event: TouchEvent) => {
 				this.onTouchMove(event)
 			});
@@ -203,17 +202,10 @@ export class ItemContainerImplementation {
 	onMouseDown(event: MouseEvent|TouchEvent) {
 		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
-		if (event.type === "touchstart") {
-			this.timestampTouchStart = this.timestampMouseDown;
-		}
 	}
 
 	onMouseUp(evt: MouseEvent|TouchEvent) {
-		/*
-		if (evt.type !== "touchend") {
-			evt.preventDefault();
-		}
-		*/
+		evt.preventDefault();
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			if (this.quickPickup) {
@@ -258,17 +250,11 @@ export class ItemContainerImplementation {
 	 * @param evt
 	 *     The touch event.
 	 */
-	/*
 	private onTouchStart(evt: TouchEvent) {
-		// ANDROID NOTE: "touchstart" event also dispatches "mousedown"
-		// don't override default "mousedown" event
-
-		//this.onMouseDown(evt);
-		//this.timestampTouchStart = this.timestampMouseDown;
-
+		// disable default "mousedown" event
+		evt.preventDefault();
 		this.timestampTouchStart = +new Date();
 	}
-	*/
 
 	/**
 	 * Event handler when touch event ends.
@@ -277,11 +263,13 @@ export class ItemContainerImplementation {
 	 *     The touch event.
 	 */
 	private onTouchEnd(evt: TouchEvent) {
-		// ANDROID NOTE: "touchend" event also dispatches "mouseup"
-
-		// override default "mouseup" event
+		// disable default "mouseup" event
 		evt.preventDefault();
 
+		this.timestampTouchEnd = +new Date();
+		this.onMouseUp(evt);
+
+		/*
 		if (!this.touchDragActive) {
 			this.timestampTouchEnd = +new Date();
 			this.onMouseUp(evt);
@@ -290,6 +278,7 @@ export class ItemContainerImplementation {
 				new DragEvent("drop", {dataTransfer: this.dragData}));
 			this.touchDragActive = false;
 		}
+		*/
 	}
 
 	/**
