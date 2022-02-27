@@ -48,8 +48,20 @@ stendhal.main = {
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
 
+	initSettings: function() {
+		// in case settings are implemented somewhere else
+		if (stendhal.settings == null || typeof(stendhal.settings) === "undefinded") {
+			stendhal.settings = {};
+		}
+
+		// until we have proper settings storage, we can use query strings for some values
+
+		stendhal.settings.theme = argv.get("theme");
+		stendhal.settings.itemDoubleClick = argv.get("item_clickmode") == "double";
+	},
+
 	initTheme: function() {
-		let theme = argv.get("theme");
+		let theme = stendhal.settings.theme;
 
 		switch (theme) {
 			case "wood":
@@ -250,13 +262,11 @@ stendhal.main = {
 		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		Chat.log("client", "Client loaded. Connecting...");
 
+		stendhal.main.initSettings();
 		stendhal.main.initTheme();
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
-
-		// workaround until we have proper settings (doesn't work with touch screens)
-		stendhal.item_clickmode = argv.get("item_clickmode") || "single";
 
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
