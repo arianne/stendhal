@@ -81,7 +81,7 @@ public class MetalDetector extends AreaUseItem {
 				}
 			}
 
-			player.sendPrivateText("It doesn't seem to detect anything.");
+			player.sendPrivateText("It doesn't detect anything.");
 		}
 
 		return true;
@@ -124,7 +124,7 @@ public class MetalDetector extends AreaUseItem {
 			player.sendPrivateText("It faintly detects something.");
 			beeps = "metal_detector_beep_x1";
 		} else {
-			player.sendPrivateText("It doesn't seem to detect anything.");
+			player.sendPrivateText("It doesn't detect anything.");
 		}
 
 		if (beeps != null) {
