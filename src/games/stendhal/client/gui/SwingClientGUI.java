@@ -106,7 +106,7 @@ class SwingClientGUI implements J2DClientGUI {
 	/** the Character panel. */
 	private Character character;
 	/** the inventory. */
-	private SlotWindow inventory;
+	private Bag inventory;
 	/** the Key ring panel. */
 	private KeyRing keyring;
 	//private Portfolio portfolio;
@@ -234,10 +234,10 @@ class SwingClientGUI implements J2DClientGUI {
 		containerPanel.addRepaintable(character);
 
 		// Create the bag window
-		inventory = new SlotWindow("bag", 3, 4);
+		inventory = new Bag();
 		inventory.setAcceptedTypes(EntityMap.getClass("item", null, null));
-		inventory.setCloseable(false);
 		containerPanel.addRepaintable(inventory);
+		userContext.addFeatureChangeListener(inventory);
 
 		keyring = new KeyRing();
 		// keyring's types are more limited, but it's simpler to let the server
