@@ -47,7 +47,7 @@ export class ItemContainerImplementation {
 	constructor(private slot: string, private size: number, private object: any, private suffix: string, private quickPickup: boolean, private defaultImage?: string) {
 		this.init(size);
 	}
-	
+
 	public init(size: number) {
 		this.size = size;
 		for (let i = 0; i < size; i++) {
@@ -68,12 +68,11 @@ export class ItemContainerImplementation {
 			e.addEventListener("mouseup", (event: MouseEvent) => {
 				this.onMouseUp(event)
 			});
-			// let default "mousedown" handler handle "touchstart"
+			// disable direct touch handling
 			/*
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
 			});
-			*/
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});
@@ -83,6 +82,7 @@ export class ItemContainerImplementation {
 			e.addEventListener("touchcancel", (event: TouchEvent) => {
 				this.onTouchCancel(event)
 			});
+			*/
 			e.addEventListener("contextmenu", (event: MouseEvent) => {
 				this.onContextMenu(event)
 			});
