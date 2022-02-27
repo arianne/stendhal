@@ -41,11 +41,18 @@ export class FloatingWindow extends Component {
 		this.componentElement.querySelector(".windowtitlebar")!.addEventListener("mousedown", (event) => {
 			this.onMouseDown(event as MouseEvent)
 		});
+		this.componentElement.querySelector(".windowtitlebar")!.addEventListener("touchstart", (event) => {
+			this.onTouchStart(event as TouchEvent)
+		});
 		this.componentElement.querySelector(".windowtitleclose")!.addEventListener("click", (event) => {
 			this.onClose(event);
 		});
 		this.onMouseMovedDuringDragListener = (event: Event) => {
-			this.onMouseMovedDuringDrag(event as MouseEvent);
+			if (event.type === "mousemove") {
+				this.onMouseMovedDuringDrag(event as MouseEvent);
+			} else {
+				this.onTouchMovedDuringDrag(event as TouchEvent);
+			}
 		}
 		this.onMouseUpDuringDragListener = () => {
 			this.onMouseUpDuringDrag();
@@ -84,10 +91,24 @@ export class FloatingWindow extends Component {
 	private onMouseDown(event: MouseEvent) {
 		window.addEventListener("mousemove", this.onMouseMovedDuringDragListener, true);
 		window.addEventListener("mouseup", this.onMouseUpDuringDragListener, true);
+		window.addEventListener("touchmove", this.onMouseMovedDuringDragListener, true);
+		window.addEventListener("touchend", this.onMouseUpDuringDragListener, true);
+
 		event.preventDefault();
 		let box = this.componentElement.getBoundingClientRect();
 		this.offsetX = event.clientX - box.left - window.pageXOffset;
 		this.offsetY = event.clientY - box.top - window.pageYOffset;
+	}
+
+	private onTouchStart(event: TouchEvent) {
+		const firstT = event.changedTouches[0];
+		const simulated = new MouseEvent("mousedown", {
+			screenX: firstT.screenX, screenY: firstT.screenY,
+			clientX: firstT.clientX, clientY: firstT.clientY
+		})
+		firstT.target.dispatchEvent(simulated);
+
+		event.preventDefault();
 	}
 
 	/**
@@ -98,11 +119,25 @@ export class FloatingWindow extends Component {
 		this.componentElement.style.top = event.clientY - this.offsetY + 'px';
 	}
 
+	private onTouchMovedDuringDrag(event: TouchEvent) {
+		const firstT = event.changedTouches[0];
+		const simulated = new MouseEvent("mousemove", {
+			screenX: firstT.screenX, screenY: firstT.screenY,
+			clientX: firstT.clientX, clientY: firstT.clientY
+		})
+		firstT.target.dispatchEvent(simulated);
+
+		// FIXME: how to disable scrolling
+		event.preventDefault();
+	}
+
 	/**
 	 * deregister global event listeners used for dragging popup window
 	 */
 	private onMouseUpDuringDrag() {
 		window.removeEventListener("mousemove", this.onMouseMovedDuringDragListener, true);
 		window.removeEventListener("mouseup", this.onMouseUpDuringDragListener, true);
+		window.removeEventListener("touchmove", this.onMouseMovedDuringDragListener, true);
+		window.removeEventListener("touchend", this.onMouseUpDuringDragListener, true);
 	}
 }
