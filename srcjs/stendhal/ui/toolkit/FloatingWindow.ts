@@ -128,7 +128,7 @@ export class FloatingWindow extends Component {
 		firstT.target.dispatchEvent(simulated);
 
 		// FIXME: how to disable scrolling
-		event.preventDefault();
+		//event.preventDefault();
 	}
 
 	/**
