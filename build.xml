@@ -686,7 +686,7 @@
 		<delete dir="${docs}" />
 	</target>
 
-	<target name="mkdocs" description="Generate HTML reference.">
+	<target name="mkdocs" description="Generate HTML reference." depends="clean_mkdocs">
 		<!-- call "docs" to include javadocs -->
 
 		<echo unless:true="${python.present}"
@@ -699,6 +699,10 @@
 			<arg value="build.py" />
 		</exec>
 	</target> <!-- mkdocs -->
+
+	<target name="clean_mkdocs">
+		<delete dir="${buildroot}/mkdocs/" />
+	</target>
 
 	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
 		<exec executable="doxygen" failonerror="true">
