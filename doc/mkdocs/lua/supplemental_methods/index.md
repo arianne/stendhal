@@ -1,8 +1,9 @@
 
-Supplemental Methods {#lua_supplemental}
+Supplemental Methods
 ====================
 
 Contents:
-- @subpage lua_strings
-- @subpage lua_tables
-- @subpage lua_arrays
+
+- [strings](strings.md)
+- [tables](tables.md)
+- [arrays](arrays.md)

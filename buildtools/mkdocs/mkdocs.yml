@@ -1,8 +1,7 @@
 site_name: Stendhal Reference Documentation
 site_description: A fun, friendly, & free multiplayer online adventure game.
-copyright: Copyright (C) 2003-2022 Arianne
+copyright: Copyright © 2003-2022 Arianne
 site_url: https://stendhalgame.org/
-repo_url: https://github.com/arianne/stendhal/
 nav:
   - Readme: README.md
   - Java: javadocs/

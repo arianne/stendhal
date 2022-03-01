@@ -1,12 +1,9 @@
 
-luajava {#lua_luajava}
-=======
-
 [TOC]
 
 ## Introduction
 
-This is an object of the LuajavaLib library. It can be used to coerce Java static objects to Lua or create new Java object instances.
+`luajava` is an object of the LuajavaLib library. It can be used to coerce Java static objects to Lua or create new Java object instances.
 
 Example of exposing a static object & enums to Lua:
 ```

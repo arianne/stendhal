@@ -1,22 +1,23 @@
 
-Lua {#lua}
+Lua
 ===
 
 Contents:
-- @subpage lua_intro
-- @subpage lua_objects
-  - @subpage lua_luajava
-  - @subpage lua_logger
-  - @subpage lua_properties
-  - @subpage lua_game
-  - @subpage lua_entities
-  - @subpage lua_quests
-  - @subpage lua_conditions
-  - @subpage lua_actions
-  - @subpage lua_merchants
-  - @subpage lua_grammar
-- @subpage lua_exposed_classes
-- @subpage lua_supplemental
-  - @subpage lua_strings
-  - @subpage lua_tables
-  - @subpage lua_arrays
+
+- [Introduction](intro.md)
+- [Objects](objects/)
+    - [luajava](objects/luajava.md)
+    - [logger](objects/logger.md)
+    - [properties](objects/properties.md)
+    - [game](objects/game.md)
+    - [entities](objects/entities.md)
+    - [quests](objects/quests.md)
+    - [conditions](objects/conditions.md)
+    - [actions](objects/actions.md)
+    - [merchants](objects/merchants.md)
+    - [grammar](objects/grammar.md)
+- [Static Classes & Enumerations](exposed_classes/)
+- [Supplemental Methods](supplemental_methods/)
+    - [strings](supplemental_methods/strings.md)
+    - [tables](supplemental_methods/tables.md)
+    - [arrays](supplemental_methods/arrays.md)

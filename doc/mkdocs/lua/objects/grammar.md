@@ -1,7 +1,4 @@
 
-grammar {#lua_grammar}
-=======
-
 [TOC]
 
 ## Introduction

@@ -1,15 +1,16 @@
 
-Objects {#lua_objects}
+Objects
 =======
 
 Contents:
-- @subpage lua_luajava
-- @subpage lua_logger
-- @subpage lua_properties
-- @subpage lua_game
-- @subpage lua_entities
-- @subpage lua_quests
-- @subpage lua_conditions
-- @subpage lua_actions
-- @subpage lua_merchants
-- @subpage lua_grammar
+
+- [luajava](luajava.md)
+- [logger](logger.md)
+- [properties](properties.md)
+- [game](game.md)
+- [entities](entities.md)
+- [quests](quests.md)
+- [conditions](conditions.md)
+- [actions](actions.md)
+- [merchants](merchants.md)
+- [grammar](grammar.md)

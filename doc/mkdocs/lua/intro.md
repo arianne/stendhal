@@ -1,5 +1,5 @@
 
-Introduction {#lua_intro}
+Introduction
 ============
 
 [TOC]

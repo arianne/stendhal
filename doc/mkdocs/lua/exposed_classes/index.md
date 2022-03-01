@@ -1,5 +1,5 @@
 
-Static Classes & Enumerations {#lua_exposed_classes}
+Static Classes & Enumerations
 =============================
 
 [TOC]
