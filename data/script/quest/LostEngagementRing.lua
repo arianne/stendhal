@@ -31,6 +31,7 @@ local quest_slot = "lost_engagement_ring"
 local ari
 local bride_name = "Emma"
 
+local minLevel = 50
 local karmaAcceptReward = 15
 local karmaCompleteReward = 50
 
@@ -54,6 +55,7 @@ local hasRingCondition = conditions:create("PlayerHasInfostringItemWithHimCondit
 local hasKeyringCondition = conditions:create(function(player, sentence, npc)
 	return player:hasFeature("keyring")
 end)
+local minLevelCondition = conditions:create("LevelGreaterThanCondition", {minLevel - 1})
 
 --[[ FIXME: conditions:create is struggling with constructors that take varargs
 local visitedAthorCondition = conditions:create("PlayerVisitedZonesCondition", {
@@ -69,6 +71,7 @@ local canStartCondition = conditions:andC({
 	conditions:notC(questCompletedCondition),
 	hasKeyringCondition,
 	visitedAthorCondition,
+	minLevelCondition,
 })
 
 local chooseRingLocation = function()
@@ -137,10 +140,11 @@ local prepareRequestStep = function()
 		ConversationPhrases.GREETING_MESSAGES,
 		conditions:orC({
 			{
-				conditions:create("QuestNotStartedCondition", {quest_slot}),
+				questNotStartedCondition,
 				conditions:orC({
 					conditions:notC(hasKeyringCondition),
 					conditions:notC(visitedAthorCondition),
+					conditions:notC(minLevelCondition),
 				}),
 			},
 			questCompletedCondition,
@@ -149,12 +153,25 @@ local prepareRequestStep = function()
 		"Hi there!",
 		nil)
 
+	-- player doesn't meet minimum level requirement
+	ari:add(
+		ConversationStates.ATTENDING,
+		ConversationPhrases.QUEST_MESSAGES,
+		{
+			questNotStartedCondition,
+			conditions:notC(minLevelCondition),
+		},
+		ConversationStates.ATTENDING,
+		"I don't think you have the experience to help me. Come back when"
+			.. " you are stronger.",
+		nil)
+
 	-- player does not have keyring
 	ari:add(
 		ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
 		{
-			conditions:create("QuestNotStartedCondition", {quest_slot}),
+			questNotStartedCondition,
 			conditions:notC(hasKeyringCondition),
 		},
 		ConversationStates.ATTENDING,
@@ -167,7 +184,7 @@ local prepareRequestStep = function()
 		ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
 		{
-			conditions:create("QuestNotStartedCondition", {quest_slot}),
+			questNotStartedCondition,
 			conditions:notC(visitedAthorCondition),
 		},
 		ConversationStates.ATTENDING,
@@ -620,6 +637,7 @@ end
 
 local quest = quests:create(quest_slot, "Lost Engagement Ring",
 	"A couple to be married in Fado City needs help.")
+quest:setMinLevel(minLevel)
 
 quest:setHistoryFunction(function(player)
 	local history = {}
