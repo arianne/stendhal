@@ -82,6 +82,11 @@ public class CleanAthorsUnderground extends AbstractQuest {
 
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 70; // level of blue dragon
+	}
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("John");
 
