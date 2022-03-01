@@ -85,6 +85,11 @@ public class KillMonks extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 27; // level of monk
+	}
+
 	public KillMonks() {
 		super();
 

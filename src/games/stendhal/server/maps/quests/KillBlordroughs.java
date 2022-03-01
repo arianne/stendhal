@@ -102,6 +102,11 @@ public class KillBlordroughs extends AbstractQuest {
 		return instance;
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 114; // level of weakest blordrough
+	}
+
 	/**
 	 * function returns list of blordrough creatures.
 	 * @return - list of blordrough creatures
