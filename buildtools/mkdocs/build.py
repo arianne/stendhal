@@ -27,6 +27,10 @@ shutil.copytree(dir_docs, dir_stage)
 shutil.copy("README.md", dir_stage)
 shutil.copy("LICENSE.txt", dir_stage)
 
+dir_img = os.path.join(dir_stage, "img")
+os.makedirs(dir_img)
+shutil.copy(os.path.join(dir_mkdocs, "favicon.ico"), dir_img)
+
 if os.path.isdir(dir_javadocs):
 	print("\nCopying javadocs ...")
 	shutil.copytree(dir_javadocs, os.path.join(dir_stage, "javadocs"))
