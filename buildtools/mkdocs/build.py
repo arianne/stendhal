@@ -5,6 +5,7 @@ import os, shutil
 from mkdocs.commands import build
 from mkdocs.config.base import load_config
 
+
 dir_mkdocs = os.path.dirname(__file__)
 dir_root = os.path.normpath(os.path.join(dir_mkdocs, "../../"))
 dir_docs = os.path.normpath(os.path.join(dir_root, "doc/mkdocs"))
@@ -33,7 +34,7 @@ shutil.copy(os.path.join(dir_mkdocs, "favicon.ico"), dir_img)
 
 if os.path.isdir(dir_javadocs):
 	print("\nCopying javadocs ...")
-	shutil.copytree(dir_javadocs, os.path.join(dir_stage, "javadocs"))
+	shutil.copytree(dir_javadocs, os.path.join(dir_stage, "java"))
 
 os.chdir(dir_mkdocs)
 

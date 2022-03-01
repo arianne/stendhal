@@ -4,6 +4,6 @@ copyright: Copyright © 2003-2022 Arianne
 site_url: https://stendhalgame.org/
 nav:
   - Readme: README.md
-  - Java: javadocs/
+  - Java: java/
   - Lua: lua/
   - Stendhal Homepage: https://stendhalgame.org/
