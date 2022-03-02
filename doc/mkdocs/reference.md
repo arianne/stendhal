@@ -1,5 +1,5 @@
 
 # Stendhal Reference
 
-- [Java](../javadocs)
+- [Java](../java)
 - [Lua Scripting](../lua)
