@@ -107,10 +107,13 @@ public class MetalDetector extends AreaUseItem {
 		final int distanceX = Math.abs(rx - px);
 		final int distanceY = Math.abs(ry - py);
 
+		boolean ring_found = false;
 		String beeps = null;
+
 		if (distanceX == 0 && distanceY == 0) {
 			// player is standing on ring.
-			return true;
+			beeps = "metal_detector_beep_x4";
+			ring_found = true;
 		} else if (distanceX < 6 && distanceY < 6) {
 			// player within 5 steps
 			player.sendPrivateText("It is getting louder, something is very close.");
@@ -132,6 +135,6 @@ public class MetalDetector extends AreaUseItem {
 			player.notifyWorldAboutChanges();
 		}
 
-		return false;
+		return ring_found;
 	}
 }
