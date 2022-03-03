@@ -641,6 +641,8 @@ end
 local quest = quests:create(quest_slot, "Lost Engagement Ring",
 	"A couple to be married in Fado City needs help.")
 quest:setMinLevel(minLevel)
+quest:setRegion(Region.FADO_CITY)
+quest:setNPCName("Ari")
 
 quest:setHistoryFunction(function(player)
 	local history = {}
