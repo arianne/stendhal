@@ -113,7 +113,7 @@ public class MetalDetector extends AreaUseItem {
 			return true;
 		} else if (distanceX < 6 && distanceY < 6) {
 			// player within 5 steps
-			player.sendPrivateText("You see footprints in the sand. Someone must have been here.");
+			player.sendPrivateText("It is getting louder, something is very close.");
 			beeps = "metal_detector_beep_x3";
 		} else if (distanceX < 11 && distanceY < 11) {
 			// player within 10 steps
