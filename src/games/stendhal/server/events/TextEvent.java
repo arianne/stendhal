@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
+import games.stendhal.common.constants.VoiceRange;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -32,15 +33,32 @@ public class TextEvent extends RPEvent {
 	public static void generateRPClass() {
 		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TEXT, Type.LONG_STRING);
+		rpclass.addAttribute("range", Type.INT);
 	}
 
 	/**
 	 * Creates a new text event.
 	 *
-	 * @param text Text
+	 * @param text
+	 *     Message contents.
 	 */
 	public TextEvent(final String text) {
 		super(RPCLASS_NAME);
 		put(TEXT, text);
+		put("range", VoiceRange.NORMAL.getValue());
+	}
+
+	/**
+	 * Creates a new text event.
+	 *
+	 * @param range
+	 *     Range at which message can be heard.
+	 * @param text
+	 *     Message contents.
+	 */
+	public TextEvent(final VoiceRange range, final String text) {
+		super(RPCLASS_NAME);
+		put(TEXT, text);
+		put("range", range.getValue());
 	}
 }
