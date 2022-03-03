@@ -87,7 +87,7 @@ if game:setZone(zone_name) then
 			.. "\n- Press the \"Scan\" button to turn it on."
 			.. "\n- The device will beep if you are near something."
 			.. "\n- The closer you are, the faster it beeps.",
-		class = "../items/documents/paper",
+		class = "paper",
 	})
 
 	game:add(note)
