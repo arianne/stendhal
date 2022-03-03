@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,7 +56,7 @@ public class DataLoader {
 	 *         adequate privileges to get the resource.
 	 */
 	public static URL getResource(String name) {
-		String slashlessName = stripLeadingSlash(name);
+		String slashlessName = normalizeFilenames(name);
 		File file = contentFilenameMapping.get(slashlessName);
 		if (file != null) {
 			try {
@@ -84,7 +85,7 @@ public class DataLoader {
 	 * @since 1.1
 	 */
 	public static InputStream getResourceAsStream(String name) {
-		String slashlessName = stripLeadingSlash(name);
+		String slashlessName = normalizeFilenames(name);
 		ZipFile file = contentZipFilesMapping.get(slashlessName);
 		if (file != null) {
 			ZipEntry entry = file.getEntry(slashlessName);
@@ -98,12 +99,13 @@ public class DataLoader {
 	}
 
 	/**
-	 * removes a leading slash
+	 * removes a leading slash and normalize parent references
 	 *
 	 * @param name filename with or without leading slash
 	 * @return filename without leading slash
 	 */
-	private static String stripLeadingSlash(String name) {
+	private static String normalizeFilenames(String name) {
+		name = Paths.get(name).normalize().toString();
 		if (name.length() < 1 || name.charAt(0) != '/') {
 			return name;
 		}
@@ -131,7 +133,7 @@ public class DataLoader {
 			while (entries.hasMoreElements()) {
 				ZipEntry entry = entries.nextElement();
 				if (!entry.isDirectory()) {
-					String name = stripLeadingSlash(entry.getName());
+					String name = normalizeFilenames(entry.getName());
 					contentFilenameMapping.put(name, file);
 					contentZipFilesMapping.put(name, zipFile);
 				}
