@@ -320,7 +320,7 @@ end
 -- we use a quest slot so player cannot borrow multiple metal detectors
 local lender_slot = "sawyer_metal_detector"
 local loanActive = conditions:create("QuestActiveCondition", {lender_slot})
-local lend_phrases = {"loan", "lend", "metal detector", "borrow"}
+local lend_phrases = {"loan", "lend", "metal detector", "borrow", "loaning", "lending", "borrowing"}
 
 -- items that Sawyer will take in exchange for his metal detector
 local collateral = {
@@ -575,6 +575,9 @@ local prepareMetalDetectorLender = function()
 		return
 	end
 
+	-- hint to players that they can borrow metal detector
+	lender:addOffer("I also have some items that I don't mind #loaning out.")
+
 	lender:add(
 		ConversationStates.ATTENDING,
 		lend_phrases,
@@ -590,7 +593,7 @@ local prepareMetalDetectorLender = function()
 		lend_phrases,
 		loanActive,
 		ConversationStates.ATTENDING,
-		"I've already loaned you my metal detector.",
+		"I've already loaned you my metal detector. You can #return it whenever you like.",
 		nil)
 
 	lender:add(
@@ -606,7 +609,7 @@ local prepareMetalDetectorLender = function()
 		"return",
 		conditions:notC(loanActive),
 		ConversationStates.ATTENDING,
-		"Return what? I'm not sure what you are talking about.",
+		"Return what? I haven't loaned anything to you.",
 		nil)
 
 	lender:add(
