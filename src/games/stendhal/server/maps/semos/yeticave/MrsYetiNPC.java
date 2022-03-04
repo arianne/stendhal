@@ -89,7 +89,7 @@ public class MrsYetiNPC implements ZoneConfigurator {
 			}
 		};
 
-		yetifemale.setEntityClass("mythical_being/yeti_female");
+		yetifemale.setEntityClass("yetifemalenpc");
 		yetifemale.setDescription("You see Mrs. Yeti, a white hairy lady with huge feet!");
 		yetifemale.setPosition(102, 19);
 		yetifemale.setCollisionAction(CollisionAction.STOP);

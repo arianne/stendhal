@@ -13,7 +13,7 @@ import { RPEntity } from "./RPEntity";
 
 export class NPC extends RPEntity {
 	override minimapStyle = "rgb(0,0,255)";
-	override spritePath = "entity";
+	override spritePath = "npc";
 	override titleStyle = "#c8c8ff";
 
 	constructor() {

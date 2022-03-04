@@ -49,7 +49,7 @@ public class BridgePostNPC implements ZoneConfigurator {
 		};
 		npc.setDirection(Direction.UP);
 		npc.setPosition(65, 25);
-		npc.setEntityClass("human/deniran_stormtrooper");
+		npc.setEntityClass("../monsters/human/deniran_stormtrooper");
 		npc.setDescription("You see a soldier guarding the bridge.");
 		zone.add(npc);
 	}

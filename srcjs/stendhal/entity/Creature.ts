@@ -16,7 +16,7 @@ declare var marauroa: any;
 export class Creature extends RPEntity {
 
 	override minimapStyle = "rgb(255,255,0)";
-	override spritePath = "entity";
+	override spritePath = "monsters";
 	override titleStyle = "#ffc8c8";
 
 	override onclick(_x: number, _y: number) {
