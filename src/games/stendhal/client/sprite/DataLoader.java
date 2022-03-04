@@ -104,8 +104,8 @@ public class DataLoader {
 	 * @param name filename with or without leading slash
 	 * @return filename without leading slash
 	 */
-	private static String normalizeFilenames(String name) {
-		name = Paths.get(name).normalize().toString();
+	static String normalizeFilenames(String name) {
+		name = Paths.get(name).normalize().toString().replace('\\', '/');
 		if (name.length() < 1 || name.charAt(0) != '/') {
 			return name;
 		}
