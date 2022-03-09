@@ -13,6 +13,7 @@ package games.stendhal.common.grammar;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +31,10 @@ public class Grammar {
 
 	// static instance
 	private static Grammar instance;
+
+	// nouns beginning with hard "u" sound
+	// TODO: parse this list from an external text file
+	private static final List<String> hard_u_nouns = Arrays.asList();
 
 
 	public static Grammar get() {
@@ -285,7 +290,8 @@ public class Grammar {
 		}
 
 
-		if ("eu".equals(lowerCaseString.substring(0, 2))){
+		if ("eu".equals(lowerCaseString.substring(0, 2))
+				|| (initial == 'u' && startsWithHardU(lowerCaseString))) {
 			return "a ";
 		}
 		if (isVowel(initial)) {
@@ -296,6 +302,24 @@ public class Grammar {
 		}
 
 		return "a ";
+	}
+
+	/**
+	 * Compares word against a hard-coded static list of nouns that
+	 * begin with a hard "u" sound.
+	 *
+	 * @param lowerCaseString
+	 *     String to be checked.
+	 * @return
+	 *     <code>true</code> if the first word is found in the list.
+	 */
+	private static boolean startsWithHardU(String lowerCaseString) {
+		// only concerned with first word
+		if (lowerCaseString.contains(" ")) {
+			lowerCaseString = lowerCaseString.split(" ")[0];
+		}
+
+		return hard_u_nouns.contains(lowerCaseString);
 	}
 
 	/**
