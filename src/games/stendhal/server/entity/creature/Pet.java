@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2106 - Marauroa                    *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -233,7 +233,7 @@ public abstract class Pet extends DomesticAnimal {
 		super.logic();
 
 		if (!isEnemyNear(getPerceptionRange()) && (owner == null)) {
-			// if noone near and noone owns us ....
+			// if no one near and no one owns us ....
 			stop();
 			notifyWorldAboutChanges();
 			return;

@@ -1294,7 +1294,6 @@ nnyddion	SUB-NAM
 no-one	SUB
 nomad	SUB
 nomyr	SUB-NAM
-noone	SUB
 nuggetcutter	SUB-NAM
 nymph	SUB
 ognir	SUB-NAM
