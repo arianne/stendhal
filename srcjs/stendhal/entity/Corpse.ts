@@ -29,8 +29,7 @@ export class Corpse extends Entity {
 		if (stendhal.config.gamescreen.blood && (key === "image")) {
 			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
 		} else if (!stendhal.config.gamescreen.blood && (key === "harmless_image")) {
-			// FIXME: corpses not visible if blood disabled
-			this.sprite.fFilename = "/data/sprites/corpse/" + value + ".png";
+			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
 		}
 	}
 
