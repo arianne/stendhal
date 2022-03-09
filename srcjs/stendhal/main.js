@@ -57,7 +57,7 @@ stendhal.main = {
 		// until we have proper settings storage, we can use query strings for some values
 
 		stendhal.settings.theme = argv.get("theme");
-		stendhal.settings.itemDoubleClick = argv.get("item_clickmode") == "double";
+		stendhal.settings.itemDoubleClick = argv.get("item_doubleclick") != null;
 	},
 
 	initTheme: function() {
