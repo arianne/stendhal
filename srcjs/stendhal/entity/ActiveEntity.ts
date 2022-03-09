@@ -222,6 +222,10 @@ export class ActiveEntity extends Entity {
 	 * Check if the entity collides with the collision map.
 	 */
 	collidesMap(): boolean {
+		if (this.ignoresCollision()) {
+			return false;
+		}
+
 		var startX = Math.floor(this["_x"]);
 		var startY = Math.floor(this["_y"]);
 		var endX = Math.ceil(this["_x"] + this["width"]);
@@ -236,6 +240,13 @@ export class ActiveEntity extends Entity {
 		return false;
 	}
 
+	/**
+	 * Checks if flag to ignore collision tiles or ghostmode is set.
+	 */
+	private ignoresCollision(): boolean {
+		return typeof(this["ignore_collision"]) !== "undefined"
+			|| typeof(this["ghostmode"]) !== "undefined";
+	}
 
 	/**
 	 * Check if the entity with another entity;
