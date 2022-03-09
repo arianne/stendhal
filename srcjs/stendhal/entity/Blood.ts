@@ -11,6 +11,8 @@
 
 import { Entity } from "./Entity";
 
+declare var stendhal: any;
+
 export class Blood extends Entity {
 
 	override minimapShow = false;
@@ -38,4 +40,11 @@ export class Blood extends Entity {
 		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 
+	override drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
+		if (!stendhal.config.gamescreen.blood) {
+			return;
+		}
+
+		super.drawSpriteAt(ctx, x, y);
+	}
 }
