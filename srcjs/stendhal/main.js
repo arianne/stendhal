@@ -58,6 +58,8 @@ stendhal.main = {
 
 		stendhal.settings.theme = argv.get("theme");
 		stendhal.settings.itemDoubleClick = argv.get("item_doubleclick") != null;
+
+		stendhal.config.init(argv);
 	},
 
 	initTheme: function() {
