@@ -46,6 +46,15 @@ export class Player extends RPEntity {
 		});
 	}
 
+	override createTitleTextSprite() {
+		// HACK: titleStyle should be overridden when player is created
+		if (this.isAdmin()) {
+			this.titleStyle = "#FFFF00";
+		}
+
+		super.createTitleTextSprite();
+	}
+
 	/**
 	 * Is this player an admin?
 	 */
