@@ -865,7 +865,7 @@ treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
-trout	OBJ-FOO-ANI	trouts
+trout	OBJ-FOO-ANI	trout
 trunk	OBJ	trunks
 trust	OBJ	trusts
 tuna	OBJ-FOO	tunas
