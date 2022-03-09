@@ -34,7 +34,7 @@ public class Grammar {
 
 	// nouns beginning with hard "u" sound
 	// TODO: parse this list from an external text file
-	private static final List<String> hard_u_nouns = Arrays.asList();
+	private static final List<String> hard_u_nouns = Arrays.asList("unicorn");
 
 
 	public static Grammar get() {
