@@ -658,7 +658,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			 * XXX: would it be better to use an opaque image & set transparency here?
 			 */
 
-			// custom shadows are created from images with "shadow-" prefix
+			// custom shadows are created from with attribute set in .xml config
 			String custom_shadow = entity.getShadowStyle();
 			if (custom_shadow == null && !(entity instanceof Player)) {
 				final String clazz = entity.getEntityClass();
@@ -695,7 +695,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 			final int w_sprite = sprite.getWidth() / 3;
 			final int h_sprite = sprite.getHeight() / 4;
-			final String standard_shadow = "data/sprites/shadow/shadow-" + Integer.toString(w_sprite) + "x" + Integer.toString(h_sprite) + ".png";
+			final String standard_shadow = "data/sprites/shadow/" + Integer.toString(w_sprite) + "x" + Integer.toString(h_sprite) + ".png";
 
 			// check if corresponding standard shadow image exists
 			if (DataLoader.getResource(standard_shadow) != null) {

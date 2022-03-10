@@ -1614,6 +1614,6 @@ public abstract class RPEntity extends AudibleEntity {
 			return null;
 		}
 
-		return "data/sprites/shadow/shadow-" + shadowStyle + ".png";
+		return "data/sprites/shadow/" + shadowStyle + ".png";
 	}
 }
