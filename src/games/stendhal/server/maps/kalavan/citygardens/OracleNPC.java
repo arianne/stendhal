@@ -93,7 +93,7 @@ public class OracleNPC implements ZoneConfigurator {
 		npc.setPosition(22,111);
 		npc.setDescription("You see Lobelia. She's gazing intently at the flowerbeds around her.");
 		npc.setEntityClass("oracle4npc");
-		npc.setShadowStyle("floating");
+		npc.setShadowStyle("48x64_floating");
 		zone.add(npc);
 	}
 }

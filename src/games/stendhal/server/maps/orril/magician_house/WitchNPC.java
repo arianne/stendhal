@@ -113,7 +113,7 @@ public class WitchNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("witchnpc");
-		npc.setShadowStyle("floating");
+		npc.setShadowStyle("48x64_floating");
 		npc.setPosition(24, 7);
 		npc.initHP(100);
 		npc.setDescription("You see Jynath, the witch. She is riding on a broom.");
