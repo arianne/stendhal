@@ -24,5 +24,6 @@ stendhal.config = {
 
 	init: function(args) {
 		this.gamescreen.blood = args.get("noblood") == null;
+		this.gamescreen.shadows = args.get("noshadows") == null;
 	}
 };
