@@ -27,11 +27,8 @@ import java.util.Map;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.NPC;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.entity.TextIndicator;
@@ -658,28 +655,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			 * XXX: would it be better to use an opaque image & set transparency here?
 			 */
 
-			// custom shadows are created from with attribute set in .xml config
-			String custom_shadow = entity.getShadowStyle();
-			if (custom_shadow == null && !(entity instanceof Player)) {
-				final String clazz = entity.getEntityClass();
-				final String subclazz = entity.getEntitySubclass();
-
-				custom_shadow = "data/sprites/";
-				if (entity instanceof Creature) {
-					custom_shadow += "monsters/";
-				} else if (entity instanceof NPC) {
-					custom_shadow += "npc/";
-				}
-
-				if (subclazz == null && clazz != null) {
-					custom_shadow += clazz;
-				} else if (subclazz != null && clazz != null) {
-					custom_shadow += clazz + "/" + subclazz;
-				}
-
-				custom_shadow += "-shadow.png";
-			}
-
+			// custom shadows are created with attribute set in .xml config
+			final String custom_shadow = entity.getShadowStyle();
 			final ImageSprite shadowed;
 			final Graphics g;
 
