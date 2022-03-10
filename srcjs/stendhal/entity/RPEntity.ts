@@ -180,6 +180,13 @@ export class RPEntity extends ActiveEntity {
 		});
 	}
 
+	/**
+	 * Checks if the entity should cast a shadow.
+	 */
+	public castsShadow(): boolean {
+		return typeof(this["no_shadow"]) === "undefined";
+	}
+
 	drawMultipartOutfit(ctx: CanvasRenderingContext2D) {
 		// layers in draw order
 		var layers = [];
@@ -202,6 +209,17 @@ export class RPEntity extends ActiveEntity {
 			outfit["head"] = Math.floor(this["outfit"]/10000) % 100;
 			outfit["hair"] = Math.floor(this["outfit"]/1000000) % 100;
 			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
+		}
+
+		if (stendhal.config.gamescreen.shadows && this.castsShadow()) {
+			// dressed entities should use 48x64 sprites
+			// FIXME: this will not display correctly for horse outfit
+			const shadow = stendhal.data.sprites.getShadow("48x64");
+
+			if (typeof(shadow) !== "undefined") {
+				// draw shadow below other layers
+				this.drawSpriteImage(ctx, shadow);
+			}
 		}
 
 		for (const layer of layers) {
@@ -274,8 +292,26 @@ export class RPEntity extends ActiveEntity {
 			if (typeof(this["subclass"]) != "undefined") {
 				filename = filename + "/" + this["subclass"];
 			}
+
 			filename = filename + ".png";
 			let image = stendhal.data.sprites.get(filename);
+
+			if (stendhal.config.gamescreen.shadows && this.castsShadow()) {
+				// check for configured shadow style
+				let shadow_style = this["shadow_style"];
+				if (typeof(shadow_style) === "undefined") {
+					// default to sprite dimensions
+					shadow_style = (image.width / 3) + "x" + (image.height / 4);
+				}
+
+				const shadow = stendhal.data.sprites.getShadow(shadow_style);
+
+				// draw shadow first
+				if (typeof(shadow) !== "undefined") {
+					this.drawSpriteImage(ctx, shadow);
+				}
+			}
+
 			this.drawSpriteImage(ctx, image);
 		}
 	}

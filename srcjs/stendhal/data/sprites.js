@@ -18,6 +18,25 @@ stendhal.data.sprites = {
 
 	knownBrokenUrls: {},
 	images: {},
+	knownShadows: {
+		"128x96": true,
+		"144x128": true,
+		"168x224": true,
+		"192x192": true,
+		"192x256": true,
+		"24x32": true,
+		"320x440": true,
+		"32x32": true,
+		"48x64": true,
+		"48x64_floating": true,
+		"64x48": true,
+		"64x64": true,
+		"64x85": true,
+		"81x96": true,
+		"96x128": true,
+		"96x96": true,
+		"ent": true
+	},
 
 	get: function(filename) {
 		if (!filename) {
@@ -313,6 +332,24 @@ stendhal.data.sprites = {
 			}
 			return res;
 		}
+	},
+
+	/**
+	 * Retrieves a shadow sprite if the style is available.
+	 *
+	 * @param shadowStyle
+	 *     Style of shadow to get from cache.
+	 * @return
+	 *     Image sprite or <code>undefined</code>.
+	 */
+	getShadow: function(shadowStyle) {
+		if (this.knownShadows[shadowStyle]) {
+			const img = new Image();
+			img.src = "/data/sprites/shadow/" + shadowStyle + ".png";
+			return img;
+		}
+
+		return undefined;
 	},
 }
 
