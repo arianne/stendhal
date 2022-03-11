@@ -106,6 +106,18 @@ export class Player extends RPEntity {
 			});
 		}
 		if (marauroa.me === this) {
+			let walk_label = "Walk";
+			if (!this.stopped()) {
+				walk_label = "Stop";
+			}
+
+			list.push({
+				title: walk_label,
+				action: function(_entity: any) {
+					marauroa.clientFramework.sendAction({"type": "walk"});
+				}
+			});
+
 			list.push({
 				title: "Set outfit",
 				action: function(_entity: any) {
@@ -125,7 +137,7 @@ export class Player extends RPEntity {
 					};
 					marauroa.clientFramework.sendAction(action);
 				}
-			})
+			});
 		}
 		/*
 		list.push({
