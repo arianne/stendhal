@@ -12,6 +12,8 @@ Changelog
   - blood can be disabled
   - item double-click mode can be enabled with "item_doubleclick" query string
   - mouse wheel changes facing direction
+  - "walk" option added to player context menu
+  - autowalk can be stopped with corresponding direction key
 
 
 1.39
