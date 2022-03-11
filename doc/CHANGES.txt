@@ -3,6 +3,16 @@ Changelog
 ---------
 
 
+1.40
+
+*client*
+- Web client:
+  - shadows are drawn
+  - shadows can be disabled
+  - blood can be disabled
+  - item double-click mode can be enabled with "item_doubleclick" query string
+
+
 1.39
 
 *world*
