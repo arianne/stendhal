@@ -203,6 +203,40 @@ stendhal.ui.gamewindow = {
 		document.getElementById("gamewindow").style.cursor = entity.getCursor(x, y);
 	},
 
+	/**
+	 * Changes character facing direction dependent on direction
+	 * of wheel scroll.
+	 */
+	onMouseWheel: function(e) {
+		if (marauroa.me) {
+			e.preventDefault();
+
+			// previous event may have changed type to string
+			const currentDir = parseInt(marauroa.me["dir"]);
+			let newDir = null;
+
+			if (typeof(currentDir) === "number") {
+				if (e.deltaY >= 100) {
+					// clockwise
+					newDir = currentDir + 1;
+					if (newDir > 4) {
+						newDir = 1;
+					}
+				} else if (e.deltaY <= -100) {
+					// counter-clockwise
+					newDir = currentDir - 1;
+					if (newDir < 1) {
+						newDir = 4;
+					}
+				}
+			}
+
+			if (newDir != null) {
+				marauroa.clientFramework.sendAction({"type": "face", "dir": ""+newDir});
+			}
+		}
+	},
+
 	// ***************** Drag and drop ******************
 	onDragStart: function(e) {
 		var pos = stendhal.ui.html.extractPosition(e);

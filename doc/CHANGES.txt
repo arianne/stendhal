@@ -11,6 +11,7 @@ Changelog
   - shadows can be disabled
   - blood can be disabled
   - item double-click mode can be enabled with "item_doubleclick" query string
+  - mouse wheel changes facing direction
 
 
 1.39

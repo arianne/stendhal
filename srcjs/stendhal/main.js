@@ -230,6 +230,7 @@ stendhal.main = {
 		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
+		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel);
 
 		var menubutton = document.getElementById("menubutton");
 		menubutton.addEventListener("click", (event) => {
