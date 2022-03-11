@@ -386,6 +386,7 @@ stendhal.data.sprites.filter['trueColor'] = function(data, color) {
 	}
 }
 
+// alternatives for known images that may be considered violent or mature
 stendhal.data.sprites.knownSafeSprites = {
 	"/data/sprites/monsters/huge_animal/thing": true,
 	"/data/sprites/monsters/mutant/imperial_mutant": true,

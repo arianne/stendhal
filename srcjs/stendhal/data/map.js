@@ -169,7 +169,14 @@ stendhal.data.map = {
 			// This is not input validation. It just rewrites a path used by the
 			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
-			stendhal.data.map.tilesetFilenames.push(filename);
+
+			const baseFilename = filename.replace(/\.png$/, "");
+			if (!stendhal.config.gamescreen.blood && this.hasSafeTileset(baseFilename)) {
+				stendhal.data.map.tilesetFilenames.push(baseFilename + "-safe.png");
+			} else {
+				stendhal.data.map.tilesetFilenames.push(filename);
+			}
+
 			stendhal.data.map.firstgids.push(firstgid);
 		}
 
@@ -232,8 +239,29 @@ stendhal.data.map = {
 			}
 		}
 		return res;
+	},
+
+	/**
+	 * Checks if there is an alternative "safe" tileset image available.
+	 *
+	 * @param filename
+	 *     The tileset image base file path.
+	 * @return
+	 *     <code>true</code> if a known safe image is available.
+	 */
+	hasSafeTileset: function(filename) {
+		return this.knownSafeTilesets[filename] == true;
 	}
 };
+
+// alternatives for known images that may be considered violent or mature
+stendhal.data.map.knownSafeTilesets = {
+	"/tileset/item/armor/bloodied_small_axe": true,
+	"/tileset/item/blood/floor_stain": true,
+	"/tileset/item/blood/floor_stains_2": true,
+	"/tileset/item/blood/nsew_stains": true,
+	"/tileset/item/blood/small_stains": true
+}
 
 if (window.location.search.indexOf("old") > -1) {
 	stendhal.data.map.strategy = new IndividualTilesetRenderingStrategy();
