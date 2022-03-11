@@ -19,7 +19,9 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 public class KingNPC implements ZoneConfigurator {
@@ -54,6 +56,11 @@ public class KingNPC implements ZoneConfigurator {
 	}
 
 	private void buildShops(final SpeakerNPC npc) {
-		new SellerAdder().addSeller(npc, new SellerBehaviour(ShopList.get().get("denirankingsell")));
+		final ShopList shops = ShopList.get();
+		new SellerAdder().addSeller(npc, new SellerBehaviour(shops.get("denirankingsell")));
+		// currently enabled on test server only
+		if (System.getProperty("stendhal.testserver") != null) {
+			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shops.get("denirankingbuy")));
+		}
 	}
 }

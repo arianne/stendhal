@@ -611,6 +611,16 @@
 		<item name="deniran city scroll" price="800" />
 	</shop>
 
+  <shop name="denirankingbuy" type="buys">
+    <item name="royal boots" price="8000" />
+    <item name="royal helmet" price="13000" />
+    <item name="royal dagger" price="100000" />
+    <item name="royal cloak" price="18000" />
+    <item name="royal legs" price="38000" />
+    <item name="royal armor" price="58000" />
+    <item name="royal shield" price="73000" />
+  </shop>
+
 	<!-- Wanda: Deniran Potions Shop -->
 	<shop name="deniranpotionsbuy" type="buys">
 		<item name="mandragora" price="300" />
