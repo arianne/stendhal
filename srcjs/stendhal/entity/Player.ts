@@ -197,4 +197,7 @@ export class Player extends RPEntity {
 		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 
+	public autoWalkEnabled(): boolean {
+		return typeof(this["autowalk"]) !== "undefined";
+	}
 }
