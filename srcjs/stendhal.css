@@ -25,7 +25,6 @@ li.offline {
 }
 
 #buddyList ul {
-  cursor: default;
   list-style-type: none;
   margin: 0;
   padding: 0.1em;
@@ -89,7 +88,6 @@ div.quickPickup div.itemSlot {
 
 #stats {
   border: 1px solid black;
-  cursor: default;
   width: 128px;
   float: left;
   font-size: 0.8em;
@@ -190,7 +188,6 @@ span.logi {
 }
 
 .popuptitle, .windowtitlebar {
-  cursor: default;
   padding: 3px;
   border-bottom: 1px solid #777;
 }

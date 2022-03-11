@@ -219,6 +219,8 @@ stendhal.main = {
 		document.addEventListener("keyup", stendhal.ui.keyhandler.onKeyUp);
 		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
+		document.getElementById("body").addEventListener("mouseenter", stendhal.main.onMouseEnter);
+
 		var gamewindow = document.getElementById("gamewindow");
 		gamewindow.setAttribute("draggable", true);
 		gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
@@ -306,6 +308,11 @@ stendhal.main = {
 
 	preventContextMenu: function(event) {
 		event.preventDefault();
+	},
+
+	onMouseEnter: function(e) {
+		// use Stendhal's built-in cursor for entire page
+		e.target.style.cursor = "url(/data/sprites/cursor/normal.png) 1 3, auto";
 	}
 }
 
