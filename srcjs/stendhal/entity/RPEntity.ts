@@ -293,7 +293,13 @@ export class RPEntity extends ActiveEntity {
 				filename = filename + "/" + this["subclass"];
 			}
 
-			filename = filename + ".png";
+			// check for safe image
+			if (!stendhal.config.gamescreen.blood && stendhal.data.sprites.hasSafeImage(filename)) {
+				filename = filename + "-safe.png";
+			} else {
+				filename = filename + ".png";
+			}
+
 			let image = stendhal.data.sprites.get(filename);
 
 			if (stendhal.config.gamescreen.shadows && this.castsShadow()) {

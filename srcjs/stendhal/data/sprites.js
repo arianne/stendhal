@@ -351,6 +351,18 @@ stendhal.data.sprites = {
 
 		return undefined;
 	},
+
+	/**
+	 * Checks if there is a "safe" image available for sprite.
+	 *
+	 * @param filename
+	 *     The sprite image base file path.
+	 * @return
+	 *     <code>true</code> if a known safe image is available.
+	 */
+	hasSafeImage: function(filename) {
+		return this.knownSafeSprites[filename] == true;
+	}
 }
 
 // *** Image filters. Prevent the closure compiler from mangling the names. ***
@@ -372,4 +384,11 @@ stendhal.data.sprites.filter['trueColor'] = function(data, color) {
 		data[i+1] = resultRgb[1];
 		data[i+2] = resultRgb[2];
 	}
+}
+
+stendhal.data.sprites.knownSafeSprites = {
+	"/data/sprites/monsters/huge_animal/thing": true,
+	"/data/sprites/monsters/mutant/imperial_mutant": true,
+	"/data/sprites/monsters/undead/bloody_zombie": true,
+	"/data/sprites/npc/deadmannpc": true
 }
