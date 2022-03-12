@@ -126,6 +126,12 @@ stendhal.ui.gamewindow = {
 		var startY;
 
 		function _onMouseDown(e) {
+			// close action menu if open
+			if (stendhal.ui.actionContextMenu.isOpen() && !this.isRightClick(e)) {
+				stendhal.ui.actionContextMenu.close();
+				return;
+			}
+
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
@@ -164,7 +170,8 @@ stendhal.ui.gamewindow = {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					ui.createSingletonFloatingWindow("Action", new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5);
+					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
+						new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5));
 				}
 			} else {
 				entity.onclick(pos.offsetX, pos.offsetY);
@@ -301,4 +308,34 @@ stendhal.ui.gamewindow = {
 		e.preventDefault();
 	}
 
+};
+
+
+/**
+ * Representation of the entity action context menu.
+ */
+stendhal.ui.actionContextMenu = {
+	content: null,
+
+	/**
+	 * Sets the action context menu window.
+	 */
+	set: function(c) {
+		this.content = c;
+	},
+
+	/**
+	 * Checks if the action context menu is open.
+	 */
+	isOpen: function() {
+		return this.content != null && this.content.isOpen();
+	},
+
+	/**
+	 * Closes the action context menu & resets it to <code>null</code>.
+	 */
+	close: function() {
+		this.content.close();
+		this.content = null;
+	},
 };

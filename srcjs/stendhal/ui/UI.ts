@@ -17,7 +17,7 @@ class UI {
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
 
 	public createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
-		new SingletonFloatingWindow(title, contentComponent, x, y);
+		return new SingletonFloatingWindow(title, contentComponent, x, y);
 	}
 
 	public registerComponent(key: UIComponentEnum, component: Component) {

@@ -9,12 +9,13 @@ Changelog
 - floaters are drawn above roof layers
 - Web client:
   - shadows are drawn
-  - shadows can be disabled
-  - blood can be disabled
-  - item double-click mode can be enabled with "item_doubleclick" query string
+  - shadows can be disabled ("noshadows" query string)
+  - blood can be disabled ("noblood" query string)
+  - item double-click mode can be enabled ("item_doubleclick" query string)
   - mouse wheel changes facing direction
   - "walk" option added to player context menu
   - autowalk can be stopped with corresponding direction key
+  - action context menu closes when game screen clicked
 
 
 1.39
