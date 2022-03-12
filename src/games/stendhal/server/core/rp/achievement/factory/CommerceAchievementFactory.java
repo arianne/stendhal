@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2003-2022 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -103,15 +102,17 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 	@Override
 	public Collection<Achievement> createAchievements() {
-		final List<Achievement> achievements = new LinkedList<Achievement>();
+		final LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 
 		achievements.add(createAchievement(
-			ID_HAPPY_HOUR, "It's Happy Hour Somewhere", "Purchase 100 bottles of beer & 100 glasses of wine",
+			ID_HAPPY_HOUR, "It's Happy Hour Somewhere",
+			"Purchase 100 bottles of beer & 100 glasses of wine",
 			Achievement.EASY_BASE_SCORE, true,
 			new BoughtNumberOfCondition(COUNT_HAPPY_HOUR, ITEMS_HAPPY_HOUR)));
 
 		achievements.add(createAchievement(
-			"commerce.buy.all", "Community Supporter", "Spend money around the world",
+			"commerce.buy.all", "Community Supporter",
+			"Spend money around the world",
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new HasSpentAmountAtSellers()));
 

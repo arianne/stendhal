@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2003-2022 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,7 +13,6 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -49,40 +48,49 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 
 	@Override
 	public Collection<Achievement> createAchievements() {
-		final List<Achievement> achievements = new LinkedList<Achievement>();
+		final LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 
 		/*
 		// Ados Deathmatch
 		// disabled. Currently the wrong index is being checked (it would be index 6)
-		// and as per bug report https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111 the count is not saved anyway
+		// and as per bug report:
+		//     https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111
+		// the count is not saved anyway
 		achievements.add(createAchievement(
-				"quest.special.dm.025", "Gladiator", "Fight 25 Deathmatches",
-				Achievement.HARD_BASE_SCORE, true,
-				new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
+			"quest.special.dm.025", "Gladiator",
+			"Fight 25 Deathmatches",
+			Achievement.HARD_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
 		*/
 
 		achievements.add(createAchievement(
-				"quest.deathmatch", "Deathmatch Hero", "Earn 100,000 points in deathmatch",
-				Achievement.MEDIUM_BASE_SCORE, true,
-				new QuestStateGreaterThanCondition("deathmatch_score", 0, 100000)));
+			"quest.deathmatch", "Deathmatch Hero",
+			"Earn 100,000 points in deathmatch",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition(
+				"deathmatch_score", 0, 100000)));
 
 		achievements.add(createAchievement(
-				ID_HELPER_25, "Deathmatch Helper", "Aid other players in 25 rounds of deathmatch",
-				Achievement.EASY_BASE_SCORE, true,
-				new HasHelpedNumberOfTimes(25)));
+			ID_HELPER_25, "Deathmatch Helper",
+			"Aid other players in 25 rounds of deathmatch",
+			Achievement.EASY_BASE_SCORE, true,
+			new HasHelpedNumberOfTimes(25)));
 
 		achievements.add(createAchievement(
-				ID_HELPER_50, "Deathmatch Companion", "Aid other players in 50 rounds of deathmatch",
-				Achievement.EASY_BASE_SCORE, true,
-				new HasHelpedNumberOfTimes(50)));
+			ID_HELPER_50, "Deathmatch Companion",
+			"Aid other players in 50 rounds of deathmatch",
+			Achievement.EASY_BASE_SCORE, true,
+			new HasHelpedNumberOfTimes(50)));
 
 		achievements.add(createAchievement(
-				ID_HELPER_100, "Deathmatch Convoy", "Aid other players in 100 rounds of deathmatch",
-				Achievement.MEDIUM_BASE_SCORE, false,
-				new HasHelpedNumberOfTimes(100)));
+			ID_HELPER_100, "Deathmatch Convoy",
+			"Aid other players in 100 rounds of deathmatch",
+			Achievement.MEDIUM_BASE_SCORE, false,
+			new HasHelpedNumberOfTimes(100)));
 
 		achievements.add(createAchievement(
-			ID_HELM_MAX, "Determination", "Increase trophy helmet to max defense",
+			ID_HELM_MAX, "Determination",
+			"Increase trophy helmet to max defense",
 			Achievement.HARD_BASE_SCORE, true,
 			new ChatCondition() {
 				@Override

@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.KillBlordroughs;
 
+
 /**
  * Factory for KillBlordroughsAchievement
  */
@@ -39,6 +40,7 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 	public static final int COUNT_DICTATOR = 100;
 	public static final String ID_DICTATOR = "quest.special.kill_blordroughs.0100";
 
+
 	@Override
 	protected Category getCategory() {
 		return Category.QUEST_KILL_BLORDROUGHS;
@@ -49,24 +51,28 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 		final LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 
 		achievements.add(createAchievement(
-				ID_LACKEY, "Imperialist Lackey", "Finish Kill Blordroughs quest 5 times",
-				Achievement.MEDIUM_BASE_SCORE, true,
-				new CompletedCountCondition(COUNT_LACKEY)));
+			ID_LACKEY, "Imperialist Lackey",
+			"Finish Kill Blordroughs quest 5 times",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new CompletedCountCondition(COUNT_LACKEY)));
 
 		achievements.add(createAchievement(
-				ID_SOLDIER, "Imperialist Soldier", "Finish Kill Blordroughs quest 25 times",
-				Achievement.HARD_BASE_SCORE, true,
-				new CompletedCountCondition(COUNT_SOLDIER)));
+			ID_SOLDIER, "Imperialist Soldier",
+			"Finish Kill Blordroughs quest 25 times",
+			Achievement.HARD_BASE_SCORE, true,
+			new CompletedCountCondition(COUNT_SOLDIER)));
 
 		achievements.add(createAchievement(
-				ID_DOMINATOR, "Imperialist Dominator", "Finish Kill Blordroughs quest 50 times",
-				Achievement.HARD_BASE_SCORE, true,
-				new CompletedCountCondition(COUNT_DOMINATOR)));
+			ID_DOMINATOR, "Imperialist Dominator",
+			"Finish Kill Blordroughs quest 50 times",
+			Achievement.HARD_BASE_SCORE, true,
+			new CompletedCountCondition(COUNT_DOMINATOR)));
 
 		achievements.add(createAchievement(
-				ID_DICTATOR, "Imperialist Dictator", "Finish Kill Blordroughs quest 100 times",
-				Achievement.HARD_BASE_SCORE, true,
-				new CompletedCountCondition(COUNT_DICTATOR)));
+			ID_DICTATOR, "Imperialist Dictator",
+			"Finish Kill Blordroughs quest 100 times",
+			Achievement.HARD_BASE_SCORE, true,
+			new CompletedCountCondition(COUNT_DICTATOR)));
 
 		return achievements;
 	}
