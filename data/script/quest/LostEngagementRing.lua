@@ -425,7 +425,7 @@ local loanMetalDetector = function(player, lender, detector, offer, bound_to, in
 	local traded = player:getFirstEquipped(offer)
 
 	if traded == nil then
-		lender:say("Ha! Though you could trick me?")
+		lender:say("Ha! Thought you could trick me?")
 		lender:setCurrentState(ConversationStates.ATTENDING)
 		return
 	end
