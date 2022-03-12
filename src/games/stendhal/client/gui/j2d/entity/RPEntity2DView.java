@@ -835,8 +835,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			g2d.setColor(Color.cyan);
 			g2d.drawRect(x, y, width, height);
 		}
-
-		drawFloaters(g2d, x, y, width);
 	}
 
 	/**
@@ -857,6 +855,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	@Override
 	protected void drawTop(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
+		drawFloaters(g2d, x, y, width);
 		drawStatusBar(g2d, x, y + statusBarYOffset, width);
 	}
 

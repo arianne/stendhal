@@ -6,6 +6,7 @@ Changelog
 1.40
 
 *client*
+- floaters are drawn above roof layers
 - Web client:
   - shadows are drawn
   - shadows can be disabled

@@ -279,7 +279,6 @@ export class RPEntity extends ActiveEntity {
 		this.drawCombat(ctx);
 		this.drawMain(ctx);
 		this.drawAttack(ctx);
-		this.drawFloaters(ctx);
 		this.drawStatusIcons(ctx);
 	}
 
@@ -498,6 +497,7 @@ export class RPEntity extends ActiveEntity {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 
+		this.drawFloaters(ctx);
 		this.drawHealthBar(ctx, localX, localY);
 		this.drawTitle(ctx, localX, localY);
 	}
