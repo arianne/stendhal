@@ -27,10 +27,4 @@ public final class Constants {
 			"pouch", "bag", "keyring", "portfolio", "back", "belt", "head", "rhand", "lhand", "armor", "finger", "cloak",
 			"legs", "feet"
 	};
-
-	/**
-	 * Modes that can be used for setting combat karma.
-	 */
-	public final static List<String> KARMA_SETTINGS = Arrays.asList(
-			"never", "normal", "always");
 }

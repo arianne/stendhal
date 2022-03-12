@@ -124,7 +124,6 @@ public class CommandCenter {
 		RemoveDetailAction.register();
 		ReorderAction.register();
 		SentenceAction.register();
-		SetCombatKarmaAction.register();
 		StoreMessageAction.register();
 		StopAction.register();
 		TradeAction.register();

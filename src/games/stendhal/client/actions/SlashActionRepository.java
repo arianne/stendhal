@@ -16,7 +16,6 @@ import static games.stendhal.common.constants.Actions.ALTERKILL;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
 import static games.stendhal.common.constants.Actions.INSPECTQUEST;
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
-import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -132,8 +131,6 @@ public class SlashActionRepository {
 		// PvP challenge actions
 		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
-
-		actions.put(COMBAT_KARMA, new SetCombatKarmaAction());
 
 		// allows players to remove the detail layer manually
 		actions.put(REMOVEDETAIL, new RemoveDetailAction());

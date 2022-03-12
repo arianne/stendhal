@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import static games.stendhal.common.Constants.KARMA_SETTINGS;
-import static games.stendhal.common.constants.General.COMBAT_KARMA;
-
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -579,23 +576,8 @@ public abstract class RPEntity extends GuidedEntity {
 		 */
 		final int levelDifferenceToNotNeedKarmaDefending = (int) (IGNORE_KARMA_MULTIPLIER * defender.getLevel());
 
-		// this attribute determines how karma is used in combat
-		String karmaMode = null;
-		if (defender.has(COMBAT_KARMA)) {
-			karmaMode = defender.get(COMBAT_KARMA);
-		}
-
-		boolean useKarma = false;
-		if (karmaMode == null || karmaMode.equals(KARMA_SETTINGS.get(1))) {
-			if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
-				useKarma = true;
-			}
-		} else if (karmaMode.equals(KARMA_SETTINGS.get(2))) {
-			useKarma = true;
-		}
-
 		// using karma here decreases damage done by enemy
-		if (useKarma) {
+		if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
 		}
 
@@ -647,22 +629,8 @@ public abstract class RPEntity extends GuidedEntity {
 		 */
 		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER * getLevel());
 
-		karmaMode = null;
-		if (this.has(COMBAT_KARMA)) {
-			karmaMode = this.get(COMBAT_KARMA);
-		}
-
-		useKarma = false;
-		if (karmaMode == null || karmaMode.equals(KARMA_SETTINGS.get(1))) {
-			if (!(effectiveAttackerLevel - levelDifferenceToNotNeedKarmaAttacking > effectiveDefenderLevel)) {
-				useKarma = true;
-			}
-		} else if (karmaMode.equals(KARMA_SETTINGS.get(2))) {
-			useKarma = true;
-		}
-
 		// using karma here increases damage to enemy
-		if (useKarma) {
+		if (!(effectiveAttackerLevel - levelDifferenceToNotNeedKarmaAttacking > effectiveDefenderLevel)) {
 			attack += attack * useKarma(0.1);
 		}
 
@@ -3080,22 +3048,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		 */
 		final int levelDifferenceToNotNeedKarmaAttacking = (int) (IGNORE_KARMA_MULTIPLIER * getLevel());
 
-		String karmaMode = null;
-		if (this.has(COMBAT_KARMA)) {
-			karmaMode = this.get(COMBAT_KARMA);
-		}
-
-		boolean useKarma = false;
-		if (karmaMode == null || karmaMode.equals(KARMA_SETTINGS.get(1))) {
-			if (!(getLevel() - levelDifferenceToNotNeedKarmaAttacking > defender.getLevel())) {
-				useKarma = true;
-			}
-		} else if (karmaMode.equals(KARMA_SETTINGS.get(2))) {
-			useKarma = true;
-		}
-
 		// using karma here increases chance to hit enemy
-		if (useKarma) {
+		if (!(getLevel() - levelDifferenceToNotNeedKarmaAttacking > defender.getLevel())) {
 			final double karmaMultiplier = this.useKarma(0.1);
 			// the karma effect must be cast to an integer to affect the roll
 			// but in most cases this means the karma use was lost. so multiply by 2 to
