@@ -2289,14 +2289,27 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
-	 * Checks if the player has visited the given zone
+	 * Checks if the player has visited the given zone.
+	 *
+	 * @param zoneName
+	 *     String name of the zone to check for.
+	 * @return
+	 *     <code>true</code> if player visited the zone.
+	 */
+	public boolean hasVisitedZone(final String zoneName) {
+		return getKeyedSlot("!visited", zoneName) != null;
+	}
+
+	/**
+	 * Checks if the player has visited the given zone.
 	 *
 	 * @param zone
-	 *            the zone to check for
-	 * @return true if player visited the zone
+	 *     The zone to check for.
+	 * @return
+	 *     <code>true</code> if player visited the zone.
 	 */
-	public boolean hasVisitedZone(StendhalRPZone zone) {
-		return null != getKeyedSlot("!visited", zone.getName());
+	public boolean hasVisitedZone(final StendhalRPZone zone) {
+		return hasVisitedZone(zone.getName());
 	}
 
 	/**
