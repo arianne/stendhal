@@ -145,7 +145,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 						new PlayerHasKilledNumberOfCreaturesCondition("elephant", 50))));
 
 		fightingAchievements.add(createAchievement(
-				ID_ENTS, "Wood Cutter", "Kill 10 ents, 10 entwifes and 10 old ents",
+				ID_ENTS, "Wood Cutter", "Kill 10 ents, 10 entwives and 10 old ents",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasKilledNumberOfCreaturesCondition(10, "ent", "entwife", "old ent")));
 
