@@ -219,7 +219,7 @@ stendhal.ui.gamewindow = {
 			e.preventDefault();
 
 			// previous event may have changed type to string
-			const currentDir = parseInt(marauroa.me["dir"]);
+			const currentDir = parseInt(marauroa.me["dir"], 10);
 			let newDir = null;
 
 			if (typeof(currentDir) === "number") {

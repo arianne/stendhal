@@ -65,7 +65,7 @@ stendhal.ui.keyhandler = {
 
 			// stop walking if keypress in direction of current movement
 			if (marauroa.me && marauroa.me.autoWalkEnabled()) {
-				if (parseInt(marauroa.me["dir"]) === dir) {
+				if (parseInt(marauroa.me["dir"], 10) === dir) {
 					marauroa.clientFramework.sendAction({"type": "walk"});
 				}
 			}
