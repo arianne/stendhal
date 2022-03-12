@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -132,9 +132,10 @@ public class KillBlordroughsTest {
 		en.step(player, "yes");
 		assertEquals("Huh! Well, I would give you a #quest then...", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
-				"They really annoying us. Kill at least 100 of any blordrough warriors "+
-				"and you will get reward.", getReply(npc));
+		assertEquals("Ados army needs help in battles with #Blordrough warriors."
+			+ " They really annoy us. Kill at least 100 of any blordrough warriors"
+			+ " and you will get a reward.",
+			getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 
@@ -144,7 +145,9 @@ public class KillBlordroughsTest {
 		en.step(player, "quest");
 		assertEquals("You have to kill #blordroughs, remember?", getReply(npc));
 		en.step(player, "blordrough");
-		assertEquals("Ados army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.", getReply(npc));
+		assertEquals("Ados army has great losses in battles with Blordrough soldiers."
+			+ " They are coming from the side of Ados tunnels.",
+			getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 	}
@@ -155,9 +158,10 @@ public class KillBlordroughsTest {
 		en.step(player, "hi");
 		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
-				"They really annoying us. Kill at least 100 of any blordrough warriors "+
-				"and you will get reward.", getReply(npc));
+		assertEquals("Ados army needs help in battles with #Blordrough warriors."
+			+ " They really annoy us. Kill at least 100 of any blordrough warriors"
+			+ " and you will get a reward.",
+			getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 
@@ -178,7 +182,9 @@ public class KillBlordroughsTest {
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
-		assertEquals("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight our army again.", getReply(npc));
+		assertEquals("Good work! Take this money. And if you need an assassin job again,"
+			+ " ask me in one week. I think they will try to fight our army again.",
+			getReply(npc));
         assertEquals(tempxp, player.getXP()-500000);
         assertEquals(tempmoneys, player.getEquippedItemClass("bag", "money").getQuantity()-50000);
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
@@ -194,9 +200,10 @@ public class KillBlordroughsTest {
 		en.step(player, "hi");
 		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
-				"They really annoying us. Kill at least 100 of any blordrough warriors "+
-				"and you will get reward.", getReply(npc));
+		assertEquals("Ados army needs help in battles with #Blordrough warriors."
+			+ " They really annoy us. Kill at least 100 of any blordrough warriors"
+			+ " and you will get a reward.",
+			getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 		// killing 351 creature
@@ -206,9 +213,9 @@ public class KillBlordroughsTest {
 		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
-		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra "+
-				Grammar.plnoun(killed-quest.killsnumber, "soldier")+
-				"! Take this moneys, and remember, i may wish you to do this job again in one week!",
+		assertEquals("Pretty good! You killed " + (killed-quest.killsnumber) + " extra "
+			+ Grammar.plnoun(killed-quest.killsnumber, "soldier") + "! Take this money,"
+			+ " and remember, I may wish you to do this job again in one week!",
 				getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
 		en.step(player, "bye");

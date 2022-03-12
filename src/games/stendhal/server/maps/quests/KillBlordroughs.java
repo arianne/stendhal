@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -342,18 +342,18 @@ public class KillBlordroughs extends AbstractQuest {
 				}
 				if(killed == killsnumber) {
 					// player killed no more no less then needed soldiers
-					npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight our army again.");
+					npc.say("Good work! Take this money. And if you need an assassin job again, ask me in one week. I think they will try to fight our army again.");
 				} else {
 					// player killed more then needed soldiers
 					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
-							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
+							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this money, and remember, I may wish you to do this job again in one week!");
 				}
 				rewardPlayer(player, killed);
 			} else {
 				final Long currtime = System.currentTimeMillis();
 				if (questCanBeGiven(player, currtime)) {
 					// will give quest to player.
-					npc.say("Ados army need help in battles with #Blordrough warriors. They really annoying us. Kill at least 100 of any blordrough warriors and you will get reward.");
+					npc.say("Ados army needs help in battles with #Blordrough warriors. They really annoy us. Kill at least 100 of any blordrough warriors and you will get a reward.");
 					writeQuestRecord(player);
 				} else {
 					npc.say(getNPCTextReply(player, currtime));
@@ -391,7 +391,7 @@ public class KillBlordroughs extends AbstractQuest {
 				Arrays.asList("Blordrough","blordrough","blordroughs"),
 				null,
 				ConversationStates.ATTENDING,
-				"Ados army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.",
+				"Ados army has great losses in battles with Blordrough soldiers. They are coming from the side of Ados tunnels.",
 				null);
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -433,9 +433,9 @@ public class KillBlordroughs extends AbstractQuest {
 		res.add("I have met Mrotho in Ados barracks.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.contains("done")) {
-			res.add("I killed blordroughs and get reward from " + QUEST_NPC);
+			res.add("I killed blordroughs and got a reward from " + QUEST_NPC);
 		} else {
-			res.add("I killed " + Integer.toString(getKilledCreaturesNumber(player)) + " blordroughs (need " + Integer.toString(killsnumber) + ").");
+			res.add("I have killed " + Integer.toString(getKilledCreaturesNumber(player)) + " blordroughs (need " + Integer.toString(killsnumber) + ").");
 		}
 
 		if (completedCount > 0) {
