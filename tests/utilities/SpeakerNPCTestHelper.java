@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@
 package utilities;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.constants.Events;
@@ -69,6 +70,28 @@ public abstract class SpeakerNPCTestHelper {
 	 */
 	public static List<String> getReplies(final SpeakerNPC npc) {
 		final List<String> replies = new ArrayList<>();
+
+		for (final RPEvent event : npc.events()) {
+			if (event.getName().equals(Events.PUBLIC_TEXT)) {
+				replies.add(event.get("text"));
+			}
+		}
+
+		npc.clearEvents();
+
+		return replies;
+	}
+
+	/**
+	 * Query the events for public visible text messages in order of appearance.
+	 *
+	 * @param npc
+	 * 		The entity who's events should be checked.
+	 * @return
+	 * 		List of text messages.
+	 */
+	public static List<String> getOrderedReplies(final SpeakerNPC npc) {
+		final List<String> replies = new LinkedList<>();
 
 		for (final RPEvent event : npc.events()) {
 			if (event.getName().equals(Events.PUBLIC_TEXT)) {
