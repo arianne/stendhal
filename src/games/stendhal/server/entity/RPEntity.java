@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -77,7 +77,7 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
-public abstract class RPEntity extends GuidedEntity {
+public abstract class RPEntity extends CombatEntity {
 	/**
 	 * The title attribute name.
 	 */

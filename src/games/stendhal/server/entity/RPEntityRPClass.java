@@ -31,7 +31,7 @@ public class RPEntityRPClass {
     public static void generateRPClass(String ATTR_TITLE) {
         final RPClass entity = new RPClass("rpentity");
 
-        entity.isA("active_entity");
+        entity.isA(CombatEntity.RPCLASS_NAME);
         entity.addAttribute("name", Type.STRING);
         entity.addAttribute(ATTR_TITLE, Type.STRING);
         entity.addAttribute("level", Type.SHORT);
