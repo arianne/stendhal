@@ -284,16 +284,29 @@ local prepareBringStep = function()
 		"You don't have my ring. Please, keep looking.",
 		nil)
 
+	local finishMessage = "Thank you so much! As a reward, I will give you this keyring."
+		.. " It is larger than the one you have."
+	local finishAction = {
+		actions:create("DropInfostringItemAction", {"engagement ring", ring_infostring}),
+		actions:create(rewardAction),
+	}
+
 	ari:add(
 		ConversationStates.QUESTION_1,
 		ConversationPhrases.YES_MESSAGES,
 		hasRingCondition,
 		ConversationStates.IDLE,
-		"Thank you so much! As a reward, I will give you this keyring. It is larger than the one you have.",
-		{
-			actions:create("DropInfostringItemAction", {"engagement ring", ring_infostring}),
-			actions:create(rewardAction),
-		})
+		finishMessage,
+		finishAction)
+
+	-- compatibility so players can say "done"
+	ari:add(
+		ConversationStates.QUESTION_1,
+		ConversationPhrases.FINISH_MESSAGES,
+		hasRingCondition,
+		ConversationStates.IDLE,
+		finishMessage,
+		finishAction)
 
 	-- player reports that ring was misplaced
 
