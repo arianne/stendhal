@@ -159,14 +159,26 @@ export class FloatingWindow extends Component {
 		let newX = rect.left;
 		let newY = rect.top;
 
+		const viewW = document.documentElement.clientWidth;
+		const viewH = document.documentElement.clientHeight;
+
 		// keep dialog within view bounds
 		if (newX < 0) {
 			newX = 0;
 			this.componentElement.style.left = "0px";
 		}
+		if (rect.right > viewW) {
+			newX = viewW - rect.width;
+			this.componentElement.style.left = newX + "px";
+		}
 		if (newY < 0) {
 			newY = 0;
 			this.componentElement.style.top = "0px";
+		}
+		if (rect.bottom > viewH) {
+			// FIXME: need to get scroll offset
+			newY = viewH - rect.height;
+			this.componentElement.style.top = newY + "px";
 		}
 
 		// FIXME: need to check bounds of view width & height
