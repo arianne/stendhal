@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,7 @@ import games.stendhal.client.PerceptionListenerImpl;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -46,6 +47,7 @@ import marauroa.client.TimeoutException;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InvalidVersionException;
+
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient implements UserInterface {
@@ -332,6 +334,12 @@ public class j2DClient implements UserInterface {
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		gui.addGameScreenText(x, y, text, type, isTalking);
+	}
+
+	@Override
+	public void addGameScreenText(final Entity entity, final String text,
+			final NotificationType type, final boolean isTalking) {
+		gui.addGameScreenText(entity, text, type, isTalking);
 	}
 
 	@Override

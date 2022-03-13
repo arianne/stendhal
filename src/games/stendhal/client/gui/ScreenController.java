@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.awt.Color;
 import javax.swing.SwingUtilities;
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.j2d.BackgroundPainter;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.listener.PositionChangeListener;
@@ -44,6 +45,7 @@ class ScreenController implements PositionChangeListener {
 	private final GameScreen screen;
 	private TextBoxFactory textBoxFactory;
 
+
 	/**
 	 * Create a new ScreenController.
 	 *
@@ -52,6 +54,7 @@ class ScreenController implements PositionChangeListener {
 	ScreenController(GameScreen screen) {
 		this.screen = screen;
 	}
+
 	/**
 	 * Adds a text bubble at a give position of the specified type. For
 	 * non-talking boxes the coordinates are ignored, and the box is attached
@@ -83,6 +86,30 @@ class ScreenController implements PositionChangeListener {
 				@Override
 				public void run() {
 					screen.addTextBox(sprite, x, y, textLength);
+				}
+			});
+		}
+	}
+
+	void addText(final Entity entity, final String text, final NotificationType type,
+			final boolean isTalking) {
+		// createTextBox is thread safe, the rest is not
+		final Sprite sprite = createTextBox(text, type, isTalking);
+		final int textLength = text.length();
+
+		if (!isTalking) {
+			final int priority = getPriority(type);
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					screen.addStaticText(sprite, textLength, priority);
+				}
+			});
+		} else {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					screen.addTextBox(sprite, entity, textLength);
 				}
 			});
 		}

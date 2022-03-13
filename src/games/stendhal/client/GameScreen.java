@@ -40,6 +40,7 @@ import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.entity.Corpse;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.DropTarget;
@@ -786,9 +787,26 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		sy = keepSpriteOnMapY(sprite, sy);
 		sy = findFreeTextBoxPosition(sprite, sx, sy);
 
-		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
-				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
-						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
+		texts.add(new RemovableSprite(sprite, sx, sy,
+			Math.max(
+				RemovableSprite.STANDARD_PERSISTENCE_TIME,
+				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
+	}
+
+	/**
+	 * Adds a text bubble that follows an entity.
+	 *
+	 * @param sprite
+	 * @param entity
+	 *     Entity to follow.
+	 * @param textLength
+	 *     Length of the text in characters.
+	 */
+	public void addTextBox(final Sprite sprite, final Entity entity, final int textLength) {
+		texts.add(new RemovableSprite(sprite, entity,
+			Math.max(
+				RemovableSprite.STANDARD_PERSISTENCE_TIME,
+				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
 	}
 
 	/**

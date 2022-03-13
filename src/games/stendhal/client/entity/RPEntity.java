@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Marauroa                    *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -255,12 +255,15 @@ public abstract class RPEntity extends AudibleEntity {
 	private boolean castShadow = true;
 	private String shadowStyle;
 
+	private static final boolean testclient = System.getProperty("stendhal.testclient") != null;
+
 	/** Possible attack results. */
 	public enum Resolution {
 		HIT,
 		BLOCKED,
 		MISSED;
 	}
+
 
 	/** Creates a new game entity. */
 	RPEntity() {
@@ -954,9 +957,14 @@ public abstract class RPEntity extends AudibleEntity {
 
 			text = trimText(text);
 
-			ClientSingletonRepository.getUserInterface().addGameScreenText(
-					getX() + getWidth(), getY(), text,
-					NotificationType.NORMAL, true);
+			if (!testclient) {
+				ClientSingletonRepository.getUserInterface().addGameScreenText(
+						getX() + getWidth(), getY(), text,
+						NotificationType.NORMAL, true);
+			} else {
+				ClientSingletonRepository.getUserInterface().addGameScreenText(
+					this, text, NotificationType.NORMAL, true);
+			}
 		}
 	}
 
