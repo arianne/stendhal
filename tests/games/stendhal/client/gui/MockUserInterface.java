@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
@@ -50,6 +51,10 @@ public class MockUserInterface implements UserInterface {
 			NotificationType type, boolean isTalking) {
 		// do nothing
 	}
+
+	@Override
+	public void addGameScreenText(final Entity entity, final String text,
+		final NotificationType type, final boolean isTalking) {}
 
 	@Override
 	public SoundSystemFacade getSoundSystemFacade() {

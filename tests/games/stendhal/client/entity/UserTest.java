@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
@@ -66,8 +67,12 @@ public class UserTest {
 			}
 
 			@Override
-			public void addGameScreenText(double x, double y, String text, NotificationType type, boolean isTalking) {
-			}
+			public void addGameScreenText(double x, double y, String text,
+				NotificationType type, boolean isTalking) {}
+
+			@Override
+			public void addGameScreenText(final Entity entity, final String text,
+				final NotificationType type, final boolean isTalking) {}
 
 			@Override
 			public SoundSystemFacade getSoundSystemFacade() {

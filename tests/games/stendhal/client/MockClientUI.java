@@ -18,6 +18,7 @@ import java.util.Collections;
 
 import javax.swing.JFrame;
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.J2DClientGUI;
 import games.stendhal.client.gui.j2DClient;
@@ -47,6 +48,10 @@ public class MockClientUI extends j2DClient {
 			@Override
 			public void addGameScreenText(double x, double y, String text,
 					NotificationType type, boolean isTalking) {}
+
+			@Override
+			public void addGameScreenText(final Entity entity, final String text,
+					final NotificationType type, final boolean isTalking) {}
 
 			@Override
 			public void afterPainting() {}
