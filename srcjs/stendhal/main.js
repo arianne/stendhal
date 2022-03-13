@@ -37,8 +37,6 @@ stendhal.main = {
 	zoneFile: null,
 	loaded: false,
 
-	argv: URLSearchParams,
-
 	onDataMap: function(data) {
 		var zoneinfo = {};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
@@ -46,19 +44,6 @@ stendhal.main = {
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
-	},
-
-	initSettings: function() {
-		// in case settings are implemented somewhere else
-		if (stendhal.settings == null || typeof(stendhal.settings) === "undefinded") {
-			stendhal.settings = {};
-		}
-
-		// until we have proper settings storage, we can use query strings for some values
-
-		stendhal.settings.itemDoubleClick = argv.get("item_doubleclick") != null;
-
-		stendhal.config.init(argv);
 	},
 
 	initTheme: function() {
@@ -132,7 +117,7 @@ stendhal.main = {
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
 			} else {
-				name = argv.get("char");
+				name = stendhal.config.character;
 
 				if (name == null || typeof(name) === "undefined" || name === "") {
 					name = marauroa.util.first(characters)["a"]["name"];
@@ -260,8 +245,6 @@ stendhal.main = {
 	 * starts the Stendhal web client and connects to the Stendhal server.
 	 */
 	startup: function() {
-		argv = (new URL(document.location)).searchParams;
-
 		stendhal.main.devWarning();
 
 		new DesktopUserInterfaceFactory().create();
@@ -269,7 +252,7 @@ stendhal.main = {
 		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		Chat.log("client", "Client loaded. Connecting...");
 
-		stendhal.main.initSettings();
+		stendhal.config.init(new URL(document.location).searchParams);
 		stendhal.main.initTheme();
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
