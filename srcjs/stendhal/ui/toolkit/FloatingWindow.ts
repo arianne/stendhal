@@ -30,18 +30,25 @@ export class FloatingWindow extends Component {
 		this.componentElement.style.position = "absolute";
 		this.componentElement.style.left = x + "px";
 		this.componentElement.style.top = y + "px";
+
+		const titleBar = <HTMLElement> this.componentElement.querySelector(".windowtitlebar")!;
+
+		// apply theme
+		titleBar.style.setProperty("background",
+			"url(/data/gui/" + stendhal.config.theme + ")");
+
 		if (title) {
 			this.componentElement.querySelector(".windowtitle")!.textContent = title;
 		} else {
-			this.componentElement.querySelector(".windowtitlebar")!.classList.add("hidden");
+			titleBar.classList.add("hidden");
 		}
 		this.componentElement.querySelector(".windowcontent")!.append(contentComponent.componentElement);
 
 		// register and prepare event listeners
-		this.componentElement.querySelector(".windowtitlebar")!.addEventListener("mousedown", (event) => {
+		titleBar.addEventListener("mousedown", (event) => {
 			this.onMouseDown(event as MouseEvent)
 		});
-		this.componentElement.querySelector(".windowtitlebar")!.addEventListener("touchstart", (event) => {
+		titleBar.addEventListener("touchstart", (event) => {
 			this.onTouchStart(event as TouchEvent)
 		});
 		this.componentElement.querySelector(".windowtitleclose")!.addEventListener("click", (event) => {

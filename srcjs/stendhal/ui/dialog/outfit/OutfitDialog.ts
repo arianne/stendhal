@@ -58,7 +58,11 @@ export class OutfitDialog extends Component {
 			this.createDialog();
 		});
 
+		// apply theme
+		this.componentElement.style.setProperty("background",
+			"url(/data/gui/" + stendhal.config.theme + ")");
 	}
+
 	private createDialog() {
 		let outfit = marauroa.me["outfit_ext_orig"];
 		if (outfit === undefined) {

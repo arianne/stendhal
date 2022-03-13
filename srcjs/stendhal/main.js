@@ -56,14 +56,13 @@ stendhal.main = {
 
 		// until we have proper settings storage, we can use query strings for some values
 
-		stendhal.settings.theme = argv.get("theme");
 		stendhal.settings.itemDoubleClick = argv.get("item_doubleclick") != null;
 
 		stendhal.config.init(argv);
 	},
 
 	initTheme: function() {
-		let theme = stendhal.settings.theme;
+		let theme = stendhal.config.theme;
 
 		switch (theme) {
 			case "wood":
@@ -103,6 +102,9 @@ stendhal.main = {
 			const bg = document.querySelector(".background");
 			bg.style.setProperty("background", "url(/data/gui/" + theme + ")");
 		}
+
+		// store theme image in config
+		stendhal.config.theme = theme || "panelwood003.jpg";
 	},
 
 	/**
