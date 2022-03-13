@@ -23,8 +23,12 @@ export class FloatingWindow extends Component {
 	private offsetX = 0;
 	private offsetY = 0;
 
+	private content: Component;
+
 	constructor(title: string, protected contentComponent: Component, x: number, y: number) {
 		super("window-template");
+
+		this.content = contentComponent;
 
 		// create HTML code for window
 		this.componentElement.style.position = "absolute";
@@ -124,6 +128,8 @@ export class FloatingWindow extends Component {
 	private onMouseMovedDuringDrag(event: MouseEvent) {
 		this.componentElement.style.left = event.clientX - this.offsetX + 'px';
 		this.componentElement.style.top = event.clientY - this.offsetY + 'px';
+
+		this.onMoved();
 	}
 
 	private onTouchMovedDuringDrag(event: TouchEvent) {
@@ -146,5 +152,30 @@ export class FloatingWindow extends Component {
 		window.removeEventListener("mouseup", this.onMouseUpDuringDragListener, true);
 		window.removeEventListener("touchmove", this.onMouseMovedDuringDragListener, true);
 		window.removeEventListener("touchend", this.onMouseUpDuringDragListener, true);
+	}
+
+	public override onMoved() {
+		const rect = this.componentElement.getBoundingClientRect();
+		let newX = rect.left;
+		let newY = rect.top;
+
+		// keep dialog within view bounds
+		if (newX < 0) {
+			newX = 0;
+			this.componentElement.style.left = "0px";
+		}
+		if (newY < 0) {
+			newY = 0;
+			this.componentElement.style.top = "0px";
+		}
+
+		// FIXME: need to check bounds of view width & height
+
+		if (this.content.configId != null) {
+			// FIXME: position not saved for child
+			stendhal.config.windowstates[this.content.configId] = {x: newX, y: newY};
+		}
+
+		this.content.onMoved();
 	}
 }

@@ -13,6 +13,7 @@ export abstract class Component {
 
 	readonly componentElement!: HTMLElement;
 	public parentComponent?: Component;
+	public configId?: string;
 
 	constructor(id: string) {
 		let element = document.getElementById(id);
@@ -29,6 +30,10 @@ export abstract class Component {
 	}
 
 	public onParentClose() {
+		// do nothing
+	};
+
+	public onMoved() {
 		// do nothing
 	};
 }
