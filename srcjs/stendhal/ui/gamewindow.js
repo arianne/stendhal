@@ -128,7 +128,7 @@ stendhal.ui.gamewindow = {
 		function _onMouseDown(e) {
 			// close action menu if open
 			if (stendhal.ui.actionContextMenu.isOpen() && !this.isRightClick(e)) {
-				stendhal.ui.actionContextMenu.close();
+				stendhal.ui.actionContextMenu.close(true);
 				return;
 			}
 
@@ -312,30 +312,78 @@ stendhal.ui.gamewindow = {
 
 
 /**
- * Representation of the entity action context menu.
+ * Representation of an internal dialog window.
  */
-stendhal.ui.actionContextMenu = {
+stendhal.ui.dialogHandler = {
 	content: null,
 
 	/**
-	 * Sets the action context menu window.
+	 * Makes a copy.
+	 *
+	 * @return
+	 *     New stendhal.ui.dialogHandler.
+	 */
+	copy: function() {
+		let newObject = Object.assign({}, stendhal.ui.dialogHandler);
+		// remove copying functionality
+		delete newObject.copy;
+
+		return newObject;
+	},
+
+	/**
+	 * Sets the dialog window content.
+	 *
+	 * @param c
+	 *     The FloatingWindow instance to be set.
 	 */
 	set: function(c) {
+		if (!(c instanceof FloatingWindow)) {
+			console.error("cannot set dialogHandler content to \""
+				+ typeof(c) + "\", must be FloatingWindow instance");
+			return;
+		}
+
 		this.content = c;
 	},
 
 	/**
+	 * Sets the content to <code>null</code>.
+	 */
+	unset: function() {
+		this.content = null;
+	},
+
+	/**
+	 * Retrieves the window.
+	 *
+	 * @return
+	 *     FloatingWindow instance or <code>null</code> if not set.
+	 */
+	get: function() {
+		return this.content;
+	},
+
+	/**
 	 * Checks if the action context menu is open.
+	 *
+	 * @return
+	 *     The FloatingWindow open state.
 	 */
 	isOpen: function() {
 		return this.content != null && this.content.isOpen();
 	},
 
 	/**
-	 * Closes the action context menu & resets it to <code>null</code>.
+	 * Closes the dialog window.
+	 *
+	 * @param unset
+	 *     If <code>true</code>, resets content to <code>null</code>.
 	 */
-	close: function() {
+	close: function(unset=false) {
 		this.content.close();
-		this.content = null;
+		if (unset) {
+			this.content = null;
+		}
 	},
 };

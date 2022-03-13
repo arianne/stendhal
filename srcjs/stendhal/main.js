@@ -275,6 +275,12 @@ stendhal.main = {
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
 
+		if (stendhal.ui.dialogHandler) {
+			stendhal.ui.actionContextMenu = stendhal.ui.dialogHandler.copy();
+		} else {
+			console.error("stendhal.ui.dialogHandler not found, some dialogs may not function");
+		}
+
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
