@@ -150,12 +150,14 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	addSpeechBubble(text: string) {
-		var x = this["_x"] * 32 + 32;
-		var y = this["_y"] * 32 - 16;
 		stendhal.ui.gamewindow.addTextSprite({
 			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
 			timeStamp: Date.now(),
+			entity: this,
 			draw: function(ctx: CanvasRenderingContext2D) {
+				var x = this.entity["_x"] * 32 + 32;
+				var y = this.entity["_y"] * 32 - 16;
+
 				ctx.lineWidth = 2;
 				ctx.font = "14px Arial";
 				ctx.fillStyle = '#ffffff';
