@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2018 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2022 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -129,7 +129,7 @@ class SwingClientGUI implements J2DClientGUI {
 		pane.setLayout(new FreePlacementLayout());
 
 		// Create the main game screen
-		screen = new GameScreen(client);
+		screen = GameScreen.get(client);
 		GameScreen.setDefaultScreen(screen);
 		screenController = new ScreenController(screen);
 		pane.addComponentListener(new GameScreenResizer(screen));

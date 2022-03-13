@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,9 +99,6 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	private static final int OFFLINE_MARGIN = 10;
 
 	private static final Sprite offlineIcon;
-
-	/** the singleton instance. */
-	private static GameScreen screen;
 
 	/**
 	 * Static game layers.
@@ -203,13 +200,43 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	private AchievementBoxFactory achievementBoxFactory;
 
+	/** the singleton instance. */
+	private static GameScreen screen;
+
+
+	/**
+	 * Retrieves the singleton instance.
+	 *
+	 * @param client
+	 *     The client.
+	 * @return
+	 *     The GameScreen object.
+	 */
+	public static GameScreen get(final StendhalClient client) {
+		if (screen == null) {
+			screen = new GameScreen(client);
+		}
+
+		return screen;
+	}
+
+	/**
+	 * Retrieves the singleton instance.
+	 *
+	 * @return
+	 *     The GameScreen object.
+	 */
+	public static GameScreen get() {
+		return screen;
+	}
+
 	/**
 	 * Create a game screen.
 	 *
 	 * @param client
 	 *            The client.
 	 */
-	public GameScreen(final StendhalClient client) {
+	private GameScreen(final StendhalClient client) {
 		setSize(stendhal.getDisplaySize());
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -321,11 +348,6 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 */
 	public static void setDefaultScreen(final GameScreen screen) {
 		GameScreen.screen = screen;
-	}
-
-	/** @return the GameScreen object. */
-	public static GameScreen get() {
-		return screen;
 	}
 
 	/** @return screen width in world units. */
@@ -747,9 +769,12 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * Adds a text bubble at a give position.
 	 *
 	 * @param sprite
-	 * @param x x coordinate
-	 * @param y y coordinate
-	 * @param textLength length of the text in characters
+	 * @param x
+	 *     X coordinate.
+	 * @param y
+	 *     Y coordinate.
+	 * @param textLength
+	 *     Length of the text in characters.
 	 */
 	public void addTextBox(Sprite sprite, double x, double y, int textLength) {
 		int sx = convertWorldXToScaledScreen(x);
