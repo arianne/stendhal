@@ -297,3 +297,11 @@ span.logi {
 		width: 100%;
 	}
 }
+
+.settings {
+  padding: 10px;
+}
+
+.setlabel {
+  float: right;
+}

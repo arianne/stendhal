@@ -29,5 +29,10 @@ stendhal.config = {
 		this.character = args.get("char");
 		this.theme = args.get("theme") || "wood";
 		this.itemDoubleClick = args.get("item_doubleclick") != null;
+
+		// store window information for this session
+		this.windowstates = {
+			settings: {x: 20, y: 20}
+		};
 	}
 };

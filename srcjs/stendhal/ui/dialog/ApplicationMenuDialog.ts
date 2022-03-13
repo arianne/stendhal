@@ -33,21 +33,21 @@ export class ApplicationMenuDialog extends Component {
 					}
 				]
 			},
-/*
 			{
 				title: "Tools",
 				children: [
+					/*
 					{
 						title: "Take Screenshot",
 						action: "takescreenshot",
 					},
+					*/
 					{
 						title: "Settings",
 						action: "settings",
 					}
 				]
 			},
-*/
 			{
 				title: "Commands",
 				children: [
