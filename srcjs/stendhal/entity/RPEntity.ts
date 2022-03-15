@@ -38,6 +38,11 @@ export class RPEntity extends ActiveEntity {
 	titleTextSprite?: TextSprite;
 	floaters: any[] = [];
 
+	/** space to be left at the beginning and end of line in pixels. */
+	//private margin_width = 3;
+	/** the diameter of the arc of the rounded bubble corners. */
+	//private arc_diameter = 2 * this.margin_width + 2;
+
 
 	override set(key: string, value: any) {
 		// Ugly hack to detect changes. The old value is no
@@ -164,22 +169,78 @@ export class RPEntity extends ActiveEntity {
 				// get width of text
 				var width = ctx.measureText(this.realText).width + 8;
 				ctx.strokeStyle = "#000000";
-				ctx.strokeRect(x, y - 15, width, 20);
-				ctx.fillRect(x, y - 15, width, 20);
 
-				ctx.beginPath();
-				ctx.moveTo(x, y);
-				ctx.lineTo(x - 5, y + 8);
-				ctx.lineTo(x + 1, y + 5);
-				ctx.stroke();
-				ctx.closePath();
-				ctx.fill();
+				//this.entity.fillRect(ctx, x, y, width, 20);
+				this.entity.fillRoundRect(ctx, x, y - 15, width, 20);
 
 				ctx.fillStyle = "#000000";
 				ctx.fillText(this.realText, x + 4, y);
 				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
 			}
 		});
+	}
+
+	/**
+	 * Draws a rectangle.
+	 *
+	 * @param ctx
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	private fillRect(ctx: CanvasRenderingContext2D, x: number, y: number,
+			width: number, height: number) {
+		ctx.strokeRect(x, y - 15, width, height);
+		ctx.fillRect(x, y - 15, width, height);
+
+		ctx.beginPath();
+		ctx.moveTo(x, y);
+
+		// tail
+		ctx.lineTo(x - 5, y + 8);
+		ctx.lineTo(x + 1, y + 5);
+
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fill();
+	}
+
+	/**
+	 * Draws a rectangle with rounded edges.
+	 *
+	 * Source: https://stackoverflow.com/a/3368118/4677917
+	 *
+	 * @param ctx
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	private fillRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number,
+			width: number, height: number) {
+		//const arc = this.arc_diameter;
+		const arc = 3;
+
+		ctx.beginPath();
+		ctx.moveTo(x + arc, y);
+		ctx.lineTo(x + width - arc, y);
+		ctx.quadraticCurveTo(x + width, y, x + width, y + arc);
+		ctx.lineTo(x + width, y + height - arc);
+		ctx.quadraticCurveTo(x + width, y + height, x + width - arc, y + height);
+		ctx.lineTo(x + 8, y + height);
+
+		// tail
+		ctx.lineTo(x - 3, y + height + 5);
+		ctx.lineTo(x + 2, y + height);
+
+		ctx.lineTo(x + arc, y + height);
+		ctx.quadraticCurveTo(x, y + height, x, y + height - arc);
+		ctx.lineTo(x, y + arc);
+		ctx.quadraticCurveTo(x, y, x + arc, y);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fill();
 	}
 
 	/**
