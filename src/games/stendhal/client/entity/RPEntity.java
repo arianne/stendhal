@@ -957,7 +957,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 			text = trimText(text);
 
-			if (!testclient) {
+			if (testclient) {
 				// add stationary speech bubble
 				ClientSingletonRepository.getScreenController().addText(
 					getX() + getWidth(), getY(), text,
