@@ -17,6 +17,7 @@ import java.awt.Rectangle;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.GameScreenSpriteHelper;
 
 
 /**
@@ -44,6 +45,8 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	/** Importance of the message to keep it above others. */
 	private int priority;
 
+	private static GameScreenSpriteHelper gsHelper;
+
 
 	/**
 	 * Creates a new text object.
@@ -59,6 +62,8 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public RemovableSprite(final Sprite sprite, final int x, final int y,
 			final long persistTime) {
+		gsHelper = GameScreenSpriteHelper.get();
+
 		this.sprite = sprite;
 		this.x = x;
 		this.y = y;
@@ -78,6 +83,8 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public RemovableSprite(final Sprite sprite, final Entity entity,
 			final long persistTime) {
+		gsHelper = GameScreenSpriteHelper.get();
+
 		this.sprite = sprite;
 		this.owner = entity;
 
@@ -106,11 +113,32 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public void draw(final Graphics g) {
 		if (owner != null) {
-			sprite.draw(g, (int) owner.getX(), (int) owner.getY());
+			drawAttached(g);
 			return;
 		}
 
 		sprite.draw(g, x, y);
+	}
+
+	/**
+	 * Draw the contained sprite following entity.
+	 *
+	 * @param g
+	 *     Graphics.
+	 */
+	private void drawAttached(final Graphics g) {
+		int sx = gsHelper.convertWorldXToScaledScreen(owner.getX() + owner.getWidth());
+		int sy = gsHelper.convertWorldYToScaledScreen(owner.getY());
+
+		// Point alignment: left, bottom
+		sy -= sprite.getHeight();
+
+		sx = gsHelper.keepSpriteOnMapX(sprite, sx);
+		sy = gsHelper.keepSpriteOnMapY(sprite, sy);
+		// FIXME: not working to place a new bubble below previous one
+		sy = gsHelper.findFreeTextBoxPosition(sprite, sx, sy);
+
+		sprite.draw(g, sx, sy);
 	}
 
 	/**

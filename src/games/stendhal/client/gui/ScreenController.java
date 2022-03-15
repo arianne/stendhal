@@ -87,15 +87,40 @@ public class ScreenController implements PositionChangeListener {
 	}
 
 	/**
-	 * Adds a text bubble at a give position of the specified type. For
+	 * Adds a stationary text bubble that does not follow any entity.
+	 *
+	 * @param sprite
+	 *     Text sprite to be drawn.
+	 * @param textLength
+	 *     Text length.
+	 * @param priority
+	 *     The importance of a message to keep it above others.
+	 */
+	private void addStationaryText(final Sprite sprite, final int textLength,
+			final int priority) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				screen.addStationaryText(sprite, textLength, priority);
+			}
+		});
+	}
+
+	/**
+	 * Adds a text bubble at a given position of the specified type. For
 	 * non-talking boxes the coordinates are ignored, and the box is attached
 	 * to the bottom of the screen.
 	 *
-	 * @param x The screen X coordinate.
-	 * @param y The screen Y coordinate.
-	 * @param text The textual content
-	 * @param type The notificationType
-	 * @param isTalking Is it a talking text bubble
+	 * @param x
+	 *     The screen X coordinate.
+	 * @param y
+	 *     The screen Y coordinate.
+	 * @param text
+	 *     The text to be displayed.
+	 * @param type
+	 *     The notification type.
+	 * @param isTalking
+	 *     <code>true</code> if the text is related to an entity that is talking.
 	 * @see games.stendhal.common.NotificationType
 	 */
 	public void addText(final double x, final double y, final String text, final NotificationType type,
@@ -105,13 +130,7 @@ public class ScreenController implements PositionChangeListener {
 		final int textLength = text.length();
 
 		if (!isTalking) {
-			final int priority = getPriority(type);
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					screen.addStaticText(sprite, textLength, priority);
-				}
-			});
+			addStationaryText(sprite, textLength, getPriority(type));
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
@@ -122,6 +141,20 @@ public class ScreenController implements PositionChangeListener {
 		}
 	}
 
+	/**
+	 * Adds a text bubble of the specified type that follows an entity. For
+	 * non-talking boxes entity is ignored, and the box is attached to the
+	 * bottom of the screen.
+	 *
+	 * @param entity
+	 *     The entity to which the text follows.
+	 * @param text
+	 *     The text to be displayed.
+	 * @param type
+	 *     The notification type.
+	 * @param isTalking
+	 *     <code>true</code> if the text is related to an entity that is talking.
+	 */
 	public void addText(final Entity entity, final String text, final NotificationType type,
 			final boolean isTalking) {
 		// createTextBox is thread safe, the rest is not
@@ -129,13 +162,7 @@ public class ScreenController implements PositionChangeListener {
 		final int textLength = text.length();
 
 		if (!isTalking) {
-			final int priority = getPriority(type);
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					screen.addStaticText(sprite, textLength, priority);
-				}
-			});
+			addStationaryText(sprite, textLength, getPriority(type));
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override

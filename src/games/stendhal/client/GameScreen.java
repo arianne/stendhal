@@ -110,20 +110,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
 
-	/** Actual width of the world in world units. */
-	private int ww;
-	/** Actual height of the world in world units. */
-	private int wh;
-
 	/**
 	 * The ground layer.
 	 */
 	private final GroundContainer ground;
-
-	/**
-	 * The text bubbles.
-	 */
-	private final List<RemovableSprite> texts;
 
 	/**
 	 * Text boxes that are anchored to the screen coordinates.
@@ -162,24 +152,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	private int dvy;
 
 	/**
-	 * The current screen view X.
-	 */
-	private int svx;
-
-	/**
-	 * The current screen view Y.
-	 */
-	private int svy;
-
-	/**
 	 * Current panning speed.
 	 */
 	private int speed;
 
-	/**
-	 * Scaling factor of the screen.
-	 */
-	private double scale = 1.0;
 	/**
 	 * Flag for telling if the screen should be scaled if it's not of the
 	 * default size.
@@ -203,6 +179,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	/** the singleton instance. */
 	private static GameScreen screen;
+
+	private static GameScreenSpriteHelper gsHelper;
 
 
 	/**
@@ -238,6 +216,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 *            The client.
 	 */
 	private GameScreen(final StendhalClient client) {
+		gsHelper = GameScreenSpriteHelper.get();
+
 		setSize(stendhal.getDisplaySize());
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -253,15 +233,15 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 		x = 0;
 		y = 0;
-		svx = -sw / 2;
-		svy = -sh / 2;
+		gsHelper.setScreenViewX(-sw / 2);
+		gsHelper.setScreenViewY(-sh / 2);
 		dvx = 0;
 		dvy = 0;
 
 		speed = 0;
 
 		// Drawing is done in EDT
-		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
+		gsHelper.setTexts(Collections.synchronizedList(new LinkedList<RemovableSprite>()));
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 
 		// create ground
@@ -293,7 +273,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 			double xScale = sw / screenSize.getWidth();
 			double yScale = sh / screenSize.getHeight();
 			// Scale by the dimension that needs more scaling
-			scale = Math.max(xScale, yScale);
+			final double scale = Math.max(xScale, yScale);
+			gsHelper.setScale(scale);
 			if (Math.abs(scale - 1.0) > 0.0001) {
 				useTripleBuffer = true;
 			} else {
@@ -321,7 +302,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	public void setUseScaling(boolean useScaling) {
 		this.useScaling = useScaling;
 		if (!useScaling) {
-			scale = 1.0;
+			gsHelper.setScale(1.0);
 			useTripleBuffer = false;
 			buffer = null;
 		} else {
@@ -353,12 +334,12 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	/** @return screen width in world units. */
 	private int getViewWidth() {
-		return (int) Math.ceil(sw / (SIZE_UNIT_PIXELS * scale));
+		return (int) Math.ceil(sw / (SIZE_UNIT_PIXELS * gsHelper.getScale()));
 	}
 
 	/** @return screen height in world units .*/
 	private int getViewHeight() {
-		return (int) Math.ceil(sh / (SIZE_UNIT_PIXELS * scale));
+		return (int) Math.ceil(sh / (SIZE_UNIT_PIXELS * gsHelper.getScale()));
 	}
 
 	@Override
@@ -418,8 +399,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 			return;
 		}
 
-		final int sx = convertWorldXToScaledScreen(x) - getScreenViewX() + SIZE_UNIT_PIXELS / 2;
-		final int sy = convertWorldYToScaledScreen(y) - getScreenViewY() + SIZE_UNIT_PIXELS / 2;
+		final int sx = gsHelper.convertWorldXToScaledScreen(x)
+			- gsHelper.getScreenViewX() + SIZE_UNIT_PIXELS / 2;
+		final int sy = gsHelper.convertWorldYToScaledScreen(y)
+			- gsHelper.getScreenViewY() + SIZE_UNIT_PIXELS / 2;
 
 		if ((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
@@ -447,10 +430,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 				/*
 				 * Adjust view
 				 */
-				svx += dx;
+				gsHelper.setScreenViewX(gsHelper.getScreenViewX() + dx);
 				dvx -= dx;
 
-				svy += dy;
+				gsHelper.setScreenViewY(gsHelper.getScreenViewY() + dy);
 				dvy -= dy;
 			}
 		}
@@ -505,6 +488,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * @param y preferred y of center, if the map is large enough
 	 */
 	private void calculateView(int x, int y) {
+		final double scale = gsHelper.getScale();
+
 		// Coordinates for a screen centered on player
 		int cvx = (int) ((x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2) / scale);
 		int cvy = (int) ((y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2) / scale);
@@ -512,21 +497,21 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		/*
 		 * Keep the world within the screen view
 		 */
-		final int maxX = (int) (ww * SIZE_UNIT_PIXELS - sw / scale);
+		final int maxX = (int) (gsHelper.getWorldWidth() * SIZE_UNIT_PIXELS - sw / scale);
 		cvx = MathHelper.clamp(cvx, 0, maxX);
 
-		final int maxY = (int) (wh * SIZE_UNIT_PIXELS - sh / scale);
+		final int maxY = (int) (gsHelper.getWorldHeight() * SIZE_UNIT_PIXELS - sh / scale);
 		cvy = MathHelper.clamp(cvy, 0, maxY);
 
 		// Differences from center
-		dvx = cvx - svx;
-		dvy = cvy - svy;
+		dvx = cvx - gsHelper.getScreenViewX();
+		dvy = cvy - gsHelper.getScreenViewY();
 	}
 
 	@Override
 	public void center() {
-		svx += dvx;
-		svy += dvy;
+		gsHelper.setScreenViewX(gsHelper.getScreenViewX() + dvx);
+		gsHelper.setScreenViewY(gsHelper.getScreenViewY() + dvy);
 
 		dvx = 0;
 		dvy = 0;
@@ -574,13 +559,14 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		Rectangle clip = graphics.getClipBounds();
 		boolean fullRedraw = (clip.width == sw && clip.height == sh);
 
-		int xAdjust = -getScreenViewX();
-		int yAdjust = -getScreenViewY();
+		int xAdjust = -gsHelper.getScreenViewX();
+		int yAdjust = -gsHelper.getScreenViewY();
 
 		if (useTripleBuffer) {
 			/*
 			 * Do the scaling in one pass to avoid artifacts at tile borders.
 			 */
+			final double scale = gsHelper.getScale();
 			graphics.scale(scale, scale);
 			graphics.translate(xAdjust, yAdjust);
 			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -699,8 +685,9 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		 * Text objects know their original placement relative to the screen,
 		 * not to the map. Pass them a shifted coordinate system.
 		 */
-		g2d.translate(-getScreenViewX(), -getScreenViewY());
+		g2d.translate(-gsHelper.getScreenViewX(), -gsHelper.getScreenViewY());
 
+		final List<RemovableSprite> texts = gsHelper.getTexts();
 		synchronized (texts) {
 			Iterator<RemovableSprite> it = texts.iterator();
 			while (it.hasNext()) {
@@ -714,7 +701,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		}
 
 		// Restore the coordinates
-		g2d.translate(getScreenViewX(), getScreenViewY());
+		g2d.translate(gsHelper.getScreenViewX(), gsHelper.getScreenViewY());
 		// These are anchored to the screen, so they can use the usual proper
 		// coordinates.
 		synchronized (staticSprites) {
@@ -736,7 +723,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * @return The X coordinate of the left side.
 	 */
 	private double getViewX() {
-		return (double) getScreenViewX() / SIZE_UNIT_PIXELS;
+		return (double) gsHelper.getScreenViewX() / SIZE_UNIT_PIXELS;
 	}
 
 	/**
@@ -745,7 +732,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * @return The Y coordinate of the left side.
 	 */
 	private double getViewY() {
-		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
+		return (double) gsHelper.getScreenViewY() / SIZE_UNIT_PIXELS;
 	}
 
 	/**
@@ -755,8 +742,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * @param height The height width.
 	 */
 	private void setMaxWorldSize(final double width, final double height) {
-		ww = (int) width;
-		wh = (int) height;
+		gsHelper.setWorldWidth((int) width);
+		gsHelper.setWorldHeight((int) height);
 		calculateView(x, y);
 		center();
 	}
@@ -778,16 +765,16 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 *     Length of the text in characters.
 	 */
 	public void addTextBox(Sprite sprite, double x, double y, int textLength) {
-		int sx = convertWorldXToScaledScreen(x);
-		int sy = convertWorldYToScaledScreen(y);
+		int sx = gsHelper.convertWorldXToScaledScreen(x);
+		int sy = gsHelper.convertWorldYToScaledScreen(y);
 		// Point alignment: left, bottom
 		sy -= sprite.getHeight();
 
-		sx = keepSpriteOnMapX(sprite, sx);
-		sy = keepSpriteOnMapY(sprite, sy);
-		sy = findFreeTextBoxPosition(sprite, sx, sy);
+		sx = gsHelper.keepSpriteOnMapX(sprite, sx);
+		sy = gsHelper.keepSpriteOnMapY(sprite, sy);
+		sy = gsHelper.findFreeTextBoxPosition(sprite, sx, sy);
 
-		texts.add(new RemovableSprite(sprite, sx, sy,
+		gsHelper.addText(new RemovableSprite(sprite, sx, sy,
 			Math.max(
 				RemovableSprite.STANDARD_PERSISTENCE_TIME,
 				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
@@ -803,87 +790,15 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 *     Length of the text in characters.
 	 */
 	public void addTextBox(final Sprite sprite, final Entity entity, final int textLength) {
-		texts.add(new RemovableSprite(sprite, entity,
+		gsHelper.addText(new RemovableSprite(sprite, entity,
 			Math.max(
 				RemovableSprite.STANDARD_PERSISTENCE_TIME,
 				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
 	}
 
-	/**
-	 * Adjust the position of boxes placed at the same point to make it
-	 * clear for the player there are more than one.
-	 */
-	private int findFreeTextBoxPosition(Sprite sprite, int x, int sy) {
-		boolean found = true;
-		int tries = 0;
-
-		while (found) {
-			found = false;
-
-			synchronized (texts) {
-				for (final RemovableSprite item : texts) {
-					if ((item.getX() == x) && (item.getY() == sy)) {
-						found = true;
-						sy += SIZE_UNIT_PIXELS / 2;
-						sy = keepSpriteOnMapY(sprite, sy);
-						break;
-					}
-				}
-			}
-
-			tries++;
-			// give up, if no location found in a reasonable amount of tries
-			if (tries > 20) {
-				break;
-			}
-		}
-		return sy;
-	}
-
-	/**
-	 * Try to keep a sprite on the map. Adjust the Y coordinate.
-	 *
-	 * @param sprite sprite to keep on the map
-	 * @param sy suggested Y coordinate on screen
-	 * @return new Y coordinate
-	 */
-	private int keepSpriteOnMapY(Sprite sprite, int sy) {
-		sy = Math.max(sy, 0);
-		/*
-		 * Allow placing beyond the map, but only if the area is on the screen.
-		 * Do not try to adjust the coordinates if the world size is not known
-		 * yet (as in immediately after a zone change)
-		 */
-		if (wh != 0) {
-			sy = Math.min(sy, Math.max(getHeight() + svy,
-					convertWorldYToScaledScreen(wh)) - sprite.getHeight());
-		}
-		return sy;
-	}
-
-	/**
-	 * Try to keep a sprite on the map. Adjust the X coordinate.
-	 *
-	 * @param sprite sprite to keep on the map
-	 * @param sx suggested X coordinate on screen
-	 * @return new X coordinate
-	 */
-	private int keepSpriteOnMapX(Sprite sprite, int sx) {
-		sx = Math.max(sx, 0);
-		/*
-		 * Allow placing beyond the map, but only if the area is on the screen.
-		 * Do not try to adjust the coordinates if the world size is not known
-		 * yet (as in immediately after a zone change)
-		 */
-		if (ww != 0) {
-			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldXToScaledScreen(ww)) - sprite.getWidth());
-		}
-		return sx;
-	}
-
 	@Override
 	public void removeText(final RemovableSprite entity) {
-		texts.remove(entity);
+		gsHelper.removeText(entity);
 		staticSprites.remove(entity);
 	}
 
@@ -892,27 +807,27 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 */
 	private void removeAllObjects() {
 		logger.debug("CLEANING screen object list");
-		texts.clear();
+		gsHelper.clearTexts();
 		// staticSprites contents are not zone specific, so don't clear those
 	}
 
 	@Override
 	public void clearTexts() {
-		texts.clear();
+		gsHelper.clearTexts();
 		staticSprites.clear();
 	}
 
 	@Override
 	public EntityView<?> getEntityViewAt(final double x, final double y) {
-		final int sx = convertWorldToPixelUnits(x);
-		final int sy = convertWorldToPixelUnits(y);
+		final int sx = gsHelper.convertWorldToPixelUnits(x);
+		final int sy = gsHelper.convertWorldToPixelUnits(y);
 		return viewManager.getEntityViewAt(x, y, sx, sy);
 	}
 
 	@Override
 	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
-		final int sx = convertWorldToPixelUnits(x);
-		final int sy = convertWorldToPixelUnits(y);
+		final int sx = gsHelper.convertWorldToPixelUnits(x);
+		final int sy = gsHelper.convertWorldToPixelUnits(y);
 		return viewManager.getMovableEntityViewAt(x, y, sx, sy);
 	}
 
@@ -932,8 +847,9 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 			}
 		}
 		// map pixel coordinates
-		final int tx = x + svx;
-		final int ty = y + svy;
+		final int tx = x + gsHelper.getScreenViewX();
+		final int ty = y + gsHelper.getScreenViewY();
+		final List<RemovableSprite> texts = gsHelper.getTexts();
 		synchronized (texts) {
 			final ListIterator<RemovableSprite> it = texts.listIterator(texts.size());
 
@@ -949,39 +865,6 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		return null;
 	}
 
-	/**
-	 * Convert a world x coordinate to <em>raw</em> (native resolution)
-	 * screen x coordinate.
-	 *
-	 * @param x world x coordinate
-	 * @return pixel x coordinate on the screen
-	 */
-	private int convertWorldXToScaledScreen(double x) {
-		return (int) (convertWorldToPixelUnits(x - svx / (double) SIZE_UNIT_PIXELS) * scale) + svx;
-	}
-
-	/**
-	 * Convert a world y coordinate to <em>raw</em> (native resolution)
-	 * screen y coordinate.
-	 *
-	 * @param y world y coordinate
-	 * @return pixel y coordinate on the screen
-	 */
-	private int convertWorldYToScaledScreen(double y) {
-		return (int) (convertWorldToPixelUnits(y - svy / (double) SIZE_UNIT_PIXELS) * scale) + svy;
-	}
-
-	/**
-	 * Convert a world unit value to pixel units.
-	 *
-	 * @param w World value.
-	 *
-	 * @return A screen value (in pixels).
-	 */
-	private int convertWorldToPixelUnits(final double w) {
-		return (int) (w * SIZE_UNIT_PIXELS);
-	}
-
 	@Override
 	public Point2D convertScreenViewToWorld(final Point p) {
 		return convertScreenViewToWorld(p.x, p.y);
@@ -989,26 +872,9 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	@Override
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
-		return new Point.Double(((x / scale) + getScreenViewX()) / SIZE_UNIT_PIXELS,
-				((y / scale) + getScreenViewY()) / SIZE_UNIT_PIXELS);
-	}
-
-	/**
-	 * Get the view X screen coordinate.
-	 *
-	 * @return The X coordinate of the left side.
-	 */
-	private int getScreenViewX() {
-		return svx;
-	}
-
-	/**
-	 * Get the view Y screen coordinate.
-	 *
-	 * @return The Y coordinate of the left side.
-	 */
-	private int getScreenViewY() {
-		return svy;
+		final double scale = gsHelper.getScale();
+		return new Point.Double(((x / scale) + gsHelper.getScreenViewX()) / SIZE_UNIT_PIXELS,
+				((y / scale) + gsHelper.getScreenViewY()) / SIZE_UNIT_PIXELS);
 	}
 
 	@Override
