@@ -903,7 +903,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 		// Scene settings messages should not disturb playing, just create some atmosphere
 		if (type != NotificationType.SCENE_SETTING) {
-			ClientSingletonRepository.getUserInterface().addGameScreenText(
+			ClientSingletonRepository.getScreenController().addText(
 					getX() + (getWidth() / 2.0), getY(),
 					text.replace("|", ""), type, false);
 		}
@@ -958,11 +958,13 @@ public abstract class RPEntity extends AudibleEntity {
 			text = trimText(text);
 
 			if (!testclient) {
-				ClientSingletonRepository.getUserInterface().addGameScreenText(
-						getX() + getWidth(), getY(), text,
-						NotificationType.NORMAL, true);
+				// add stationary speech bubble
+				ClientSingletonRepository.getScreenController().addText(
+					getX() + getWidth(), getY(), text,
+					NotificationType.NORMAL, true);
 			} else {
-				ClientSingletonRepository.getUserInterface().addGameScreenText(
+				// add speech bubble that follows entity
+				ClientSingletonRepository.getScreenController().addText(
 					this, text, NotificationType.NORMAL, true);
 			}
 		}
@@ -1489,7 +1491,7 @@ public abstract class RPEntity extends AudibleEntity {
 			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
 					NotificationType.SIGNIFICANT_POSITIVE));
 
-			ClientSingletonRepository.getUserInterface().addGameScreenText(
+			ClientSingletonRepository.getScreenController().addText(
 					getX() + (getWidth() / 2.0), getY(),
 					text, NotificationType.SIGNIFICANT_POSITIVE, false);
 		}

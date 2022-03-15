@@ -611,12 +611,14 @@ class SwingClientGUI implements J2DClientGUI {
 		screen.addAchievementBox(title, description, category);
 	}
 
+	@Deprecated
 	@Override
 	public void addGameScreenText(double x, double y, String text,
 			NotificationType type, boolean isTalking) {
 		screenController.addText(x, y, text, type, isTalking);
 	}
 
+	@Deprecated
 	@Override
 	public void addGameScreenText(final Entity entity, final String text,
 			final NotificationType type, final boolean isTalking) {
