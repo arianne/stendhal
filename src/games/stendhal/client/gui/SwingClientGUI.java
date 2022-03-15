@@ -132,7 +132,8 @@ class SwingClientGUI implements J2DClientGUI {
 		// Create the main game screen
 		screen = GameScreen.get(client);
 		GameScreen.setDefaultScreen(screen);
-		screenController = new ScreenController(screen);
+		// initialize the screen controller
+		screenController = ScreenController.get(screen);
 		pane.addComponentListener(new GameScreenResizer(screen));
 
 		// ... and put it on the ground layer of the pane

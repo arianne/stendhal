@@ -28,6 +28,10 @@ import games.stendhal.common.NotificationType;
  * screen.
  */
 public class ScreenController implements PositionChangeListener {
+
+	/** Singleton instance. */
+	private static ScreenController instance;
+
 	/** The maximum width of text in text boxes, speech bubbles and similar. */
 	private static final int BUBBLE_TEXT_WIDTH = 240;
 
@@ -47,11 +51,38 @@ public class ScreenController implements PositionChangeListener {
 
 
 	/**
+	 * Retreives the static singleton instance.
+	 *
+	 * @param screen
+	 *     Controlled screen.
+	 * @return
+	 *     ScreenController instance.
+	 */
+	public static ScreenController get(final GameScreen screen) {
+		if (instance == null) {
+			instance = new ScreenController(screen);
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Retreives the static singleton instance.
+	 *
+	 * @return
+	 *     ScreenController instance.
+	 */
+	public static ScreenController get() {
+		return instance;
+	}
+
+	/**
 	 * Create a new ScreenController.
 	 *
-	 * @param screen controlled screen
+	 * @param screen
+	 *     Controlled screen.
 	 */
-	ScreenController(GameScreen screen) {
+	private ScreenController(final GameScreen screen) {
 		this.screen = screen;
 	}
 
