@@ -27,7 +27,7 @@ import games.stendhal.common.NotificationType;
  * A controller for isolating the out-of event dispatch thread calls to the game
  * screen.
  */
-class ScreenController implements PositionChangeListener {
+public class ScreenController implements PositionChangeListener {
 	/** The maximum width of text in text boxes, speech bubbles and similar. */
 	private static final int BUBBLE_TEXT_WIDTH = 240;
 
@@ -67,7 +67,7 @@ class ScreenController implements PositionChangeListener {
 	 * @param isTalking Is it a talking text bubble
 	 * @see games.stendhal.common.NotificationType
 	 */
-	void addText(final double x, final double y, final String text, final NotificationType type,
+	public void addText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		// createTextBox is thread safe, the rest is not
 		final Sprite sprite = createTextBox(text, type, isTalking);
@@ -91,7 +91,7 @@ class ScreenController implements PositionChangeListener {
 		}
 	}
 
-	void addText(final Entity entity, final String text, final NotificationType type,
+	public void addText(final Entity entity, final String text, final NotificationType type,
 			final boolean isTalking) {
 		// createTextBox is thread safe, the rest is not
 		final Sprite sprite = createTextBox(text, type, isTalking);
