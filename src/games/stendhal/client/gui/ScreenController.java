@@ -96,12 +96,12 @@ public class ScreenController implements PositionChangeListener {
 	 * @param priority
 	 *     The importance of a message to keep it above others.
 	 */
-	private void addStationaryText(final Sprite sprite, final int textLength,
+	private void addStaticText(final Sprite sprite, final int textLength,
 			final int priority) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				screen.addStationaryText(sprite, textLength, priority);
+				screen.addStaticText(sprite, textLength, priority);
 			}
 		});
 	}
@@ -130,7 +130,7 @@ public class ScreenController implements PositionChangeListener {
 		final int textLength = text.length();
 
 		if (!isTalking) {
-			addStationaryText(sprite, textLength, getPriority(type));
+			addStaticText(sprite, textLength, getPriority(type));
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
@@ -162,7 +162,7 @@ public class ScreenController implements PositionChangeListener {
 		final int textLength = text.length();
 
 		if (!isTalking) {
-			addStationaryText(sprite, textLength, getPriority(type));
+			addStaticText(sprite, textLength, getPriority(type));
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
