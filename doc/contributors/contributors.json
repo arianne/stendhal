@@ -131,10 +131,10 @@
 					"type": "code"
 				},
 				{
-					"type": "content",
+					"type": "content"
 				},
 				{
-					"type": "doc",
+					"type": "doc"
 				},
 				{
 					"type": "graphics"
@@ -3594,7 +3594,7 @@
 					"type": "graphics"
 				}
 			]
-		},
+		}
 	],
 	"other": [
 		{
@@ -3775,7 +3775,7 @@
 		{
 			"name": "Ba&#x15d;to",
 			"fullname": "Sebastian Riedel",
-			"link": "https://opengameart.org/users/ba%C5%9Dto",
+			"link": "https://opengameart.org/users/ba%C5%9Dto"
 		},
 		{
 			"name": "Jastiv",
@@ -3850,7 +3850,7 @@
 			"link": "https://opengameart.org/users/angry-amish"
 		},
 		{
-			"fullname": "Casper Nilsson",
+			"fullname": "Casper Nilsson"
 		},
 		{
 			"name": "zoli111",
@@ -4392,11 +4392,11 @@
 		},
 		{
 			"name": "ceoux",
-			"link": "https://freesound.org/people/ceoux/",
+			"link": "https://freesound.org/people/ceoux/"
 		},
 		{
 			"name": "columbia23",
-			"link": "https://freesound.org/people/columbia23/",
+			"link": "https://freesound.org/people/columbia23/"
 		},
 		{
 			"name": "renatalmar",
@@ -4433,7 +4433,7 @@
 		},
 		{
 			"name": "Bob H",
-			"link": "https://www.youtube.com/channel/UCK20Rn3Z7sryqvA9Kmj4Rpw",
+			"link": "https://www.youtube.com/channel/UCK20Rn3Z7sryqvA9Kmj4Rpw"
 		},
 		{
 			"name": "cognito perceptu",
@@ -4442,7 +4442,7 @@
 		},
 		{
 			"name": "poots",
-			"link": "https://freesound.org/people/poots/",
+			"link": "https://freesound.org/people/poots/"
 		},
 		{
 			"name": "klankbeeld",
