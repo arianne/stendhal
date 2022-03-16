@@ -13,7 +13,6 @@ package games.stendhal.server.util;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 
 /**
@@ -25,6 +24,7 @@ import java.util.Set;
 public class Observable extends java.util.Observable {
 
 	/** Tracks whether this object has changed. */
+	@SuppressWarnings("unused")
 	private boolean changed = false;
 
 	private LinkedHashSet<Observer> observers;
@@ -38,6 +38,7 @@ public class Observable extends java.util.Observable {
 	 * Function was moved from protected (in java.util.Observable)
 	 * to public zone.
 	 */
+	@SuppressWarnings("deprecation")
 	public void setChanges() {
 		setChanged();
 	}
@@ -54,20 +55,21 @@ public class Observable extends java.util.Observable {
 		observers.remove(o);
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public void notifyObservers(final Object obj) {
 		if (!hasChanged()) {
 			return;
 		}
 
-		Set s;
+		LinkedHashSet<Observer> s;
 		synchronized (this) {
-			s = (Set) observers.clone();
+			s = (LinkedHashSet<Observer>) observers.clone();
 		}
 		int i = s.size();
-		Iterator iter = s.iterator();
+		Iterator<Observer> iter = s.iterator();
 		while (--i >= 0) {
-			((Observer) iter.next()).update(this, obj);
+			iter.next().update(this, obj);
 		}
 
 		clearChanged();
