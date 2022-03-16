@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Constants about slots
  */

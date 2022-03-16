@@ -23,12 +23,9 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.actions.MoveContinuousAction;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -37,7 +34,6 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.SettingChangeListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import marauroa.common.game.RPObject;
 
 /**
  * Page for general settings.
