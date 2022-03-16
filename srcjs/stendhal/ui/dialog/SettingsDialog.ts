@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { FloatingWindow } from "../toolkit/FloatingWindow";
 import { Component } from "../toolkit/Component";
 
 declare let stendhal: any;
@@ -17,6 +18,9 @@ declare let stendhal: any;
 export class SettingsDialog extends Component {
 
 	public override configId = "settings";
+
+	private frame: FloatingWindow|null = null;
+
 
 	constructor() {
 		super("settingsdialog-template");
@@ -40,9 +44,33 @@ export class SettingsDialog extends Component {
 		chk_dblclick.checked = stendhal.config.itemDoubleClick;
 		this.addGeneralCheckListener(chk_dblclick);
 
+		const btn_accept = this.getButton("config_accept")!;
+		const btn_cancel = this.getButton("config_cancel")!;
+
+		btn_accept.addEventListener("click", (e: Event) => {
+			// TODO:
+
+			if (this.frame != null) {
+				this.frame.close();
+			}
+		});
+
+		btn_cancel.addEventListener("click", (e: Event) => {
+			if (this.frame != null) {
+				this.frame.close();
+			}
+		});
+
 		// apply theme
 		this.componentElement.style.setProperty("background",
 			"url(/data/gui/" + stendhal.config.theme + ")");
+	}
+
+	/**
+	 * Sets the closable dialog frame.
+	 */
+	public setFrame(frame: FloatingWindow) {
+		this.frame = frame;
 	}
 
 	/**
@@ -105,6 +133,19 @@ export class SettingsDialog extends Component {
 	}
 
 	/**
+	 * Retrieves a button element.
+	 *
+	 * @param id
+	 *     Identifier of element to retrieve.
+	 * @return
+	 *     HTMLButtonElement.
+	 */
+	private getButton(id: string): HTMLButtonElement {
+		return <HTMLButtonElement> this.componentElement.querySelector(
+			"button[id=" + id + "]");
+	}
+
+	/**
 	 * Updates window state for this session.
 	 */
 	public override onMoved() {
@@ -134,6 +175,7 @@ export class SettingsDialog extends Component {
 }
 
 
+// XXX: this is probably unnecessary
 class CheckBox extends HTMLInputElement {
 	public setting: string = "";
 }

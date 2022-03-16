@@ -302,6 +302,12 @@ span.logi {
   padding: 10px;
 }
 
-.setlabel {
-  float: right;
+.dialogbuttons {
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.checksetting {
+  margin-left: 0px;
+  margin-right: auto;
 }
