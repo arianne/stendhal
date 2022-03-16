@@ -61,10 +61,6 @@ public class ActiveTutors {
 
 		tutors.remove(key);
 
-		if (npc == null) {
-			return false;
-		}
-
 		final StendhalRPZone zone = npc.getZone();
 		if (zone != null) {
 			zone.remove(npc);

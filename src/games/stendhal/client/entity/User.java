@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2018 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2022 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,26 +11,20 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
-import static games.stendhal.common.constants.General.PATHSET;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -43,7 +37,6 @@ import marauroa.common.game.RPSlot;
  */
 public class User extends Player {
 	private static final StaticUserProxy NO_USER = new NoUserProxy();
-	private static final Logger logger = Logger.getLogger(User.class);
 	private static final String IGNORE_SLOT = "!ignore";
 
 	private static String groupLootmode;
@@ -331,38 +324,38 @@ public class User extends Player {
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		/* TODO: Remove condition when walking bug fix is finished. */
-		if (false) { // DISABLED
-			if (!this.stopped()) {
-				boolean shouldStop = true;
-				String debugString = "Stopped on:";
+		/* TODO: enable when walking bug fix is finished. */
+		/*
+		if (!this.stopped()) {
+			boolean shouldStop = true;
+			String debugString = "Stopped on:";
 
-				if (StendhalClient.get().directionKeyIsPressed()) {
-					shouldStop = false;
-				} else {
-					debugString += " !directionKeyIsPressed()";
-				}
-				if (object.has(AUTOWALK)) {
-					shouldStop = false;
-				} else {
-					debugString += " !has(AUTOWALK)";
-				}
-				if (object.has(PATHSET)) {
-					shouldStop = false;
-				} else {
-					debugString += " !has(PATHSET)";
-				}
+			if (StendhalClient.get().directionKeyIsPressed()) {
+				shouldStop = false;
+			} else {
+				debugString += " !directionKeyIsPressed()";
+			}
+			if (object.has(AUTOWALK)) {
+				shouldStop = false;
+			} else {
+				debugString += " !has(AUTOWALK)";
+			}
+			if (object.has(PATHSET)) {
+				shouldStop = false;
+			} else {
+				debugString += " !has(PATHSET)";
+			}
 
-				if (shouldStop) {
-					/* Stop the character's movement. */
-					this.stopMovement();
+			if (shouldStop) {
+				// Stop the character's movement.
+				this.stopMovement();
 
-					if (logger.isDebugEnabled() || Testing.DEBUG) {
-						logger.info(debugString);
-					}
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.info(debugString);
 				}
 			}
 		}
+		*/
 
 		super.onChangedAdded(object, changes);
 
