@@ -55,6 +55,11 @@ public class Observable extends java.util.Observable {
 		observers.remove(o);
 	}
 
+	@Override
+	public synchronized void deleteObservers() {
+        observers.clear();
+	}
+
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public void notifyObservers(final Object obj) {
@@ -73,5 +78,10 @@ public class Observable extends java.util.Observable {
 		}
 
 		clearChanged();
+	}
+
+	@Override
+	public void notifyObservers() {
+        notifyObservers(null);
 	}
 }
