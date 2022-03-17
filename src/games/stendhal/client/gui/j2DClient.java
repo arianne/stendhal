@@ -330,14 +330,14 @@ public class j2DClient implements UserInterface {
 		channelManager.addEventLine(line);
 	}
 
-	@Deprecated
+	@Deprecated(since="1.40")
 	@Override
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		gui.addGameScreenText(x, y, text, type, isTalking);
 	}
 
-	@Deprecated
+	@Deprecated(since="1.40")
 	@Override
 	public void addGameScreenText(final Entity entity, final String text,
 			final NotificationType type, final boolean isTalking) {

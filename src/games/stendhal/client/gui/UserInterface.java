@@ -39,7 +39,7 @@ public interface UserInterface {
 	 * @param type type of text
 	 * @param isTalking chat?
 	 */
-	@Deprecated
+	@Deprecated(since="1.40")
 	public void addGameScreenText(final double x, final double y,
 			final String text, final NotificationType type,
 			final boolean isTalking);
@@ -56,7 +56,7 @@ public interface UserInterface {
 	 * @param isTalking
 	 *     Chat?
 	 */
-	@Deprecated
+	@Deprecated(since="1.40")
 	public void addGameScreenText(final Entity entity,
 			final String text, final NotificationType type,
 			final boolean isTalking);
