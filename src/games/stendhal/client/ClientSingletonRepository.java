@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.ScreenController;
+import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import marauroa.client.ClientFramework;
 

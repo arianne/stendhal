@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
-import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +24,8 @@ import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
-import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;

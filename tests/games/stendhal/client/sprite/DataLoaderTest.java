@@ -11,11 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
 
 public class DataLoaderTest {
 

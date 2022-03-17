@@ -11,12 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import org.apache.log4j.Logger;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.IRPZone;
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -24,11 +23,22 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.tutorial.*;
+import games.stendhal.server.maps.quests.tutorial.ActiveTutors;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepChat;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepCombat;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepFinal;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepItems;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepNPCs;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepOffer;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepPets;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepQuests;
+import games.stendhal.server.maps.quests.tutorial.PrepareStepRules;
+import games.stendhal.server.maps.quests.tutorial.TutorialStep;
+import marauroa.common.game.IRPZone;
 
 
 /**

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2022 - Arianne                          *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,10 +18,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.GameEvent;
