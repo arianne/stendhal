@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import org.apache.log4j.Logger;
-
 
 /**
  * A base class for status effects
@@ -20,7 +18,6 @@ import org.apache.log4j.Logger;
  * @author AntumDeluge
  */
 public abstract class Status implements Cloneable {
-	private static Logger logger = Logger.getLogger(Status.class);
 
 	/** The name of the status effect */
 	private String name;

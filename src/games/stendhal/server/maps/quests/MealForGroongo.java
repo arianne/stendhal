@@ -20,8 +20,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -108,7 +106,7 @@ import marauroa.common.Pair;
 
 public class MealForGroongo extends AbstractQuest {
 
-    private static Logger logger = Logger.getLogger(MealForGroongo.class);
+    //private static Logger logger = Logger.getLogger(MealForGroongo.class);
 
     /**
      * QUEST_SLOT = "meal_for_groongo"

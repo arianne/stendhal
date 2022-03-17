@@ -18,8 +18,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -116,8 +114,6 @@ import games.stendhal.server.maps.Region;
  */
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
-
-	private static Logger logger = Logger.getLogger(AdMemoriaInPortfolio.class);
 
 	private static final int APPLE_AMOUNT = 1;
 	private static final String QUEST_SLOT = "admemoriainportfolio";

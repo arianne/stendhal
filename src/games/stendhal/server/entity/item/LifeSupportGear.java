@@ -13,8 +13,6 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -30,7 +28,6 @@ import marauroa.common.game.RPObject;
  * an item to survive in some environments (e. g. scuba gear)
  */
 public class LifeSupportGear extends Item {
-	private final Logger logger = Logger.getLogger(LifeSupportGear.class);
 
 	/**
 	 * copy constructor
