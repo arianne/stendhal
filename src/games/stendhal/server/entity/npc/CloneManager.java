@@ -120,9 +120,11 @@ public class CloneManager {
 	 * @return
 	 *     <code>true</code> if name registration succeeded.
 	 */
+	/*
 	private boolean register(final String origName) {
 		return register(origName, null);
 	}
+	*/
 
 	/**
 	 * Removes a clone name from registry.

@@ -95,6 +95,7 @@ public class TutorialIsland extends AbstractQuest {
 	private static ActiveTutors activeTutors;
 
 	// the quest states
+	/*
 	private static final String ST_RULES = "rules";
 	private static final String ST_NPCS = "npcs";
 	private static final String ST_CHAT = "chat";
@@ -103,6 +104,7 @@ public class TutorialIsland extends AbstractQuest {
 	private static final String ST_QUESTS = "quests";
 	private static final String ST_PETS = "pets";
 	private static final String ST_FINAL = "final";
+	*/
 
 
 	@Override

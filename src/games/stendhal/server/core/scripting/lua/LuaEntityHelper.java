@@ -66,7 +66,6 @@ public class LuaEntityHelper {
 
 	private static final LuaConditionHelper conditionHelper = LuaConditionHelper.get();
 	private static final LuaActionHelper actionHelper = LuaActionHelper.get();
-	private static final LuaTableHelper tableHelper = LuaTableHelper.get();
 
 
 	/**
@@ -231,10 +230,6 @@ public class LuaEntityHelper {
 			}
 
 			npc.setPath(tableToPath((LuaTable) l_path.get("nodes"), loop));
-			/*
-			npc.setPath(tableHelper.pairsToNodes(
-				new FixedPath(l_path.get("nodes").checktable())), loop);
-			*/
 
 			final LuaValue l_retrace = l_path.get("retrace");
 			if (!l_retrace.isnil() && l_retrace.checkboolean()) {
@@ -1016,6 +1011,7 @@ public class LuaEntityHelper {
 			}
 		}
 
+		@SuppressWarnings("unused")
 		public void setIgnorePlayers(final boolean ignore) {
 			ignorePlayers = ignore;
 		}
