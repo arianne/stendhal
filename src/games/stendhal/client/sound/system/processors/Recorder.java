@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
+import games.stendhal.client.sound.Field;
 import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.common.memory.Field;
 
 /**
  * Recorder can be used to record sound signals in memory.

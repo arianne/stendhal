@@ -17,8 +17,8 @@ import java.io.InputStream;
 
 import javax.sound.sampled.AudioFormat;
 
+import games.stendhal.client.sound.Field;
 import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.common.memory.Field;
 
 /**
  *

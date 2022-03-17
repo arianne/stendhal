@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
-import games.stendhal.common.memory.Field;
-
 /**
  * Signal processing algorithms.
  *

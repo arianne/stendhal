@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
+import games.stendhal.client.sound.Field;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.common.math.Algebra;
-import games.stendhal.common.memory.Field;
 
 /**
  * Signal processor to handle directed sound.

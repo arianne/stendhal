@@ -24,8 +24,8 @@ import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
 
+import games.stendhal.client.sound.Field;
 import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.common.memory.Field;
 /**
  *
  * @author silvio

@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common.memory;
+package games.stendhal.client.sound;
 
 import java.lang.reflect.Array;
 
