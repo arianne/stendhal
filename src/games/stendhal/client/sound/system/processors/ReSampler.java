@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
+import games.stendhal.client.sound.Dsp;
 import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.common.math.Dsp;
 
 /**
  * Sound processor stage to re-sample audio signals using another sample rate.

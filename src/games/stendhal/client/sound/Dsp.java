@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common.math;
+package games.stendhal.client.sound;
 
 import games.stendhal.common.memory.Field;
 
