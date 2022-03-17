@@ -21,10 +21,9 @@ import java.util.LinkedHashSet;
  *
  * Source: https://developer.classpath.org/doc/java/util/Observable-source.html
  */
-public class Observable extends java.util.Observable {
+public class Observable {
 
 	/** Tracks whether this object has changed. */
-	@SuppressWarnings("unused")
 	private boolean changed = false;
 
 	private LinkedHashSet<Observer> observers;
@@ -38,9 +37,8 @@ public class Observable extends java.util.Observable {
 	 * Function was moved from protected (in java.util.Observable)
 	 * to public zone.
 	 */
-	@SuppressWarnings("deprecation")
 	public void setChanges() {
-		setChanged();
+		changed = true;
 	}
 
 	public void addObserver(final Observer o) {
@@ -55,15 +53,13 @@ public class Observable extends java.util.Observable {
 		observers.remove(o);
 	}
 
-	@Override
 	public synchronized void deleteObservers() {
         observers.clear();
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Override
+	@SuppressWarnings({ "unchecked" })
 	public void notifyObservers(final Object obj) {
-		if (!hasChanged()) {
+		if (!changed) {
 			return;
 		}
 
@@ -77,10 +73,9 @@ public class Observable extends java.util.Observable {
 			iter.next().update(this, obj);
 		}
 
-		clearChanged();
+		changed = false;
 	}
 
-	@Override
 	public void notifyObservers() {
         notifyObservers(null);
 	}
