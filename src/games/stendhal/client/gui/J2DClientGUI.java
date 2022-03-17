@@ -27,10 +27,10 @@ import marauroa.common.game.RPObject;
 public interface J2DClientGUI {
 	void addDialog(Component dialog);
 	void addAchievementBox(String title, String description, String category);
-	@Deprecated(since="1.40")
+	@Deprecated
 	void addGameScreenText(double x, double y, String text, NotificationType type,
 		boolean isTalking);
-	@Deprecated(since="1.40")
+	@Deprecated
 	void addGameScreenText(final Entity entity, final String text,
 		final NotificationType type, final boolean isTalking);
 	void afterPainting();
