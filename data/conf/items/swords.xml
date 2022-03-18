@@ -836,6 +836,7 @@
     <attributes>
       <atk value="0"/>
       <rate value="1"/>
+      <autobind value=""/>
       <durability value="800"/>
       <min_level condition="stendhal.testserver" value="10"/>
     </attributes>

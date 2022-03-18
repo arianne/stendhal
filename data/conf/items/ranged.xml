@@ -142,6 +142,7 @@
       <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
+      <autobind value=""/>
       <durability value="800" />
 			<min_level value="0"/>
     </attributes>
@@ -166,6 +167,7 @@
       <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
+      <autobind value=""/>
       <durability value="1400" />
 			<min_level value="0"/>
     </attributes>
@@ -190,6 +192,7 @@
       <ratk value="0" condition="testing.combat"/>
       <range value="3" />
       <rate value="1" />
+      <autobind value=""/>
       <durability value="3600" />
 			<min_level value="0"/>
     </attributes>
