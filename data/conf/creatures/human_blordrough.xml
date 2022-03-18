@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="blordrough quartermaster">
-    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
+    <type class="human_blordrough" subclass="quartermaster" tileid="human_armored.png:0"/>
     <description>You see a man who gave up his life as a puppet of the Blordrough army, all for the love of dragons. He is wonderfully happy.</description>
     <attributes>
       <atk value="727"/>
@@ -38,7 +38,7 @@
   </creature>
 
   <creature name="blordrough corporal">
-    <type class="human" subclass="armored_leader" tileid="human_armored.png:1"/>
+    <type class="human_blordrough" subclass="corporal" tileid="human_armored.png:1"/>
     <description>You see a man who feels his past indicates how he should be treated now but desperately wishes to exercise his intelect in a game of chess.</description>
     <attributes>
       <atk value="842"/>
@@ -77,7 +77,7 @@
   </creature>
 
   <creature name="blordrough storm trooper">
-    <type class="human" subclass="super_human" tileid="human_armored.png:2"/>
+    <type class="human_blordrough" subclass="storm_trooper" tileid="human_armored.png:2"/>
     <description>You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni.  Now, his main concern is keeping his house clean and tidy.</description>
     <attributes>
       <atk value="921"/>
@@ -112,7 +112,7 @@
   </creature>
 
   <creature name="blordrough soldier">
-    <type class="human" subclass="armored_soldier" tileid="human_armored.png:3"/>
+    <type class="human_blordrough" subclass="soldier" tileid="human_armored.png:3"/>
     <description>You see a man who is fast and strong.</description>
     <attributes>
       <atk value="670"/>
@@ -147,7 +147,7 @@
   </creature>
 
   <creature name="blordrough elite">
-    <type class="human" subclass="armored_elite" tileid="human_armored.png:4"/>
+    <type class="human_blordrough" subclass="elite" tileid="human_armored.png:4"/>
     <description>You see a man who is aging, but he knows how to fight.</description>
     <attributes>
       <atk value="665"/>
@@ -182,7 +182,7 @@
   </creature>
 
   <creature name="blordrough infantry">
-    <type class="human" subclass="armored_infantry" tileid="human_armored.png:5"/>
+    <type class="human_blordrough" subclass="infantry" tileid="human_armored.png:5"/>
     <description>You see a man who has flaming red hair and red beady eyes.</description>
     <attributes>
       <atk value="693"/>
@@ -217,7 +217,7 @@
   </creature>
 
   <creature name="blordrough captain">
-    <type class="human" subclass="armored_captain" tileid="human_armored.png:6"/>
+    <type class="human_blordrough" subclass="captain" tileid="human_armored.png:6"/>
     <description>You see a seasoned warrior.</description>
     <attributes>
       <atk value="685"/>
@@ -252,7 +252,7 @@
   </creature>
 
   <creature name="blordrough general">
-    <type class="human" subclass="armored_general" tileid="human_armored.png:7"/>
+    <type class="human_blordrough" subclass="general" tileid="human_armored.png:7"/>
     <description>You see a lean, mean, fighting machine.</description>
     <attributes>
       <atk value="727"/>
