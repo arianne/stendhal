@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
-
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: regular -->
 
@@ -19,7 +18,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
-    <corpse name="tiny_humanoid" harmless="gnome" />
+    <corpse name="tiny_humanoid" harmless="gnome"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="minor potion" quantity="[1,1]" probability="5.0"/>
@@ -53,7 +52,7 @@
     <level value="2"/>
     <experience value="20"/>
     <respawn value="900"/>
-    <corpse name="tiny_humanoid" harmless="gnome" />
+    <corpse name="tiny_humanoid" harmless="gnome"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="minor potion" quantity="[1,1]" probability="2.5"/>
@@ -76,7 +75,6 @@
 
   <!-- END: regular -->
 
-
   <!-- START: militant -->
 
   <creature name="infantry gnome">
@@ -92,7 +90,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
-    <corpse name="tiny_humanoid" harmless="gnome_military" />
+    <corpse name="tiny_humanoid" harmless="gnome_military"/>
     <drops>
       <item value="money" quantity="[4,10]" probability="70.0"/>
       <item value="carrot" quantity="[2,10]" probability="20.0"/>
@@ -126,7 +124,7 @@
     <level value="5"/>
     <experience value="55"/>
     <respawn value="1200"/>
-    <corpse name="tiny_humanoid" harmless="gnome_military" />
+    <corpse name="tiny_humanoid" harmless="gnome_military"/>
     <drops>
       <item value="money" quantity="[6,14]" probability="70.0"/>
       <item value="chain boots" quantity="[1,1]" probability="15.0"/>
@@ -138,7 +136,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Ready! Aim! Runnnnnnnnnnn"/>
-        <sound value="pig-squeal-01" />
+        <sound value="pig-squeal-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -148,7 +146,6 @@
   </creature>
 
   <!-- END: militant -->
-
 
   <!-- START: giant -->
 
@@ -205,6 +202,5 @@
   </creature>
 
   <!-- END: giant -->
-
 
 </creatures>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="chick">
     <type class="fowl" subclass="chick" tileid="fowl.png:0"/>
@@ -16,7 +16,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
-    <corpse name="small_winged" harmless="feathered" />
+    <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,1]" probability="70.0"/>
     </drops>
@@ -26,8 +26,8 @@
       <says>
         <noise state="idle follow fight" value="peep peep"/>
         <noise state="idle follow fight" value="peep peep peep"/>
-        <sound value="chicken-chick-1" />
-        <sound value="chicken-chick-2" />
+        <sound value="chicken-chick-1"/>
+        <sound value="chicken-chick-2"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -48,7 +48,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
-	<corpse name="small_winged" harmless="feathered" />
+  <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -81,7 +81,7 @@
     <level value="3"/>
     <experience value="30"/>
     <respawn value="900"/>
-    <corpse name="small_winged" harmless="feathered" />
+    <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,3]" probability="60.0"/>
       <item value="spinach" quantity="[1,1]" probability="20.0"/>
@@ -112,7 +112,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
-    <corpse name="small_winged" harmless="feathered" />
+    <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="70.0"/>
     </drops>
@@ -155,8 +155,8 @@
       <says>
         <noise state="idle follow fight" value="Oou! Oou!"/>
         <noise state="idle follow fight" value="*flap* *flap*"/>
-        <sound value="penguin-1" />
-        <sound value="penguin-2" />
+        <sound value="penguin-1"/>
+        <sound value="penguin-2"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -177,7 +177,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
-    <corpse name="small_winged" harmless="feathered" />
+    <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="40.0"/>
     </drops>
@@ -185,8 +185,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="bird-pigeon-1" />
-        <sound value="bird-pigeon-flap-1" />
+        <sound value="bird-pigeon-1"/>
+        <sound value="bird-pigeon-flap-1"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>

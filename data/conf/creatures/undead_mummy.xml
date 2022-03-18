@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="mummy">
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
@@ -26,8 +26,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="undead-5" />
-        <sound value="undead-06" />
+        <sound value="undead-5"/>
+        <sound value="undead-06"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -60,8 +60,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="undead-5" />
-        <sound value="undead-06" />
+        <sound value="undead-5"/>
+        <sound value="undead-06"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

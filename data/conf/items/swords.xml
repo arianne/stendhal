@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../equipment.xsd">
 
   <item name="assassin dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
@@ -8,7 +10,7 @@
     <attributes>
       <atk value="6"/>
       <rate value="2"/>
-	  <min_level value="50"/>
+    <min_level value="50"/>
     </attributes>
     <weight value="0.2"/>
     <value value="5400"/>
@@ -125,7 +127,7 @@
      <slot name="bag"/>
       <slot name="trade"/>
      <slot name="lhand"/>
-	 <slot name="rhand"/>
+   <slot name="rhand"/>
   </equipable>
  </item>
 
@@ -469,7 +471,7 @@
     <attributes>
       <atk value="35"/>
       <rate value="6"/>
-	  <min_level condition="stendhal.testserver" value="150"/>
+    <min_level condition="stendhal.testserver" value="150"/>
       <min_level condition="!stendhal.testserver" value="80"/>
     </attributes>
     <weight value="9.0"/>
@@ -555,7 +557,7 @@
     <attributes>
       <atk value="2"/>
       <rate value="1"/>
-	  <min_level value="50"/>
+    <min_level value="50"/>
     </attributes>
     <weight value="0.1"/>
     <value value="6250"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: goblin -->
 
@@ -33,10 +34,10 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="Umm! Tasty meat." />
-        <sound value="goblin-01" />
-        <sound value="goblin-burp-01" />
-        <sound value="goblin-laugh-01" />
+        <noise state="idle follow fight" value="Umm! Tasty meat."/>
+        <sound value="goblin-01"/>
+        <sound value="goblin-burp-01"/>
+        <sound value="goblin-laugh-01"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -73,10 +74,10 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="Breakfast time!" />
-        <sound value="goblin-01" />
-        <sound value="goblin-burp-01" />
-        <sound value="goblin-laugh-01" />
+        <noise state="idle follow fight" value="Breakfast time!"/>
+        <sound value="goblin-01"/>
+        <sound value="goblin-burp-01"/>
+        <sound value="goblin-laugh-01"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -115,9 +116,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="goblin-01" />
-        <sound value="goblin-burp-01" />
-        <sound value="goblin-laugh-01" />
+        <sound value="goblin-01"/>
+        <sound value="goblin-burp-01"/>
+        <sound value="goblin-laugh-01"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>

@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <spells xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../spells.xsd ">
-	<spell name="heal">
-		<implementation class-name="games.stendhal.server.entity.spell.HealingSpell"/>
-		<nature value="light"/>
-		<attributes>
-			<mana value="5" />
-			<cooldown value="3" />
-			<minimum-level value="10" />
-			<range value="10" />
-			<atk value="0" />
-			<def value="0" />
-			<amount value="100" />
-			<regen  value="100" />
-			<rate  value="1" />
-			<lifesteal value="0" />
-			<modifier value="0.5" />
-		</attributes>
-	</spell>
-	<spell name="shield">
-		<implementation class-name="games.stendhal.server.entity.spell.ModifyDefSpell"/>
-		<nature value="light"/>
-		<attributes>
-			<mana value="5" />
-			<cooldown value="3" />
-			<minimum-level value="0" />
-			<range value="10" />
-			<atk value="0" />
-			<def value="0" />
-			<amount value="180" />
-			<regen  value="0" />
-			<rate  value="0" />
-			<lifesteal value="0" />
-			<modifier value="0.3" />
-		</attributes>
-	</spell>
+    xsi:schemaLocation="stendhal ../spells.xsd">
+
+  <spell name="heal">
+    <implementation class-name="games.stendhal.server.entity.spell.HealingSpell"/>
+    <nature value="light"/>
+    <attributes>
+      <mana value="5"/>
+      <cooldown value="3"/>
+      <minimum-level value="10"/>
+      <range value="10"/>
+      <atk value="0"/>
+      <def value="0"/>
+      <amount value="100"/>
+      <regen  value="100"/>
+      <rate  value="1"/>
+      <lifesteal value="0"/>
+      <modifier value="0.5"/>
+    </attributes>
+  </spell>
+
+  <spell name="shield">
+    <implementation class-name="games.stendhal.server.entity.spell.ModifyDefSpell"/>
+    <nature value="light"/>
+    <attributes>
+      <mana value="5"/>
+      <cooldown value="3"/>
+      <minimum-level value="0"/>
+      <range value="10"/>
+      <atk value="0"/>
+      <def value="0"/>
+      <amount value="180"/>
+      <regen  value="0"/>
+      <rate  value="0"/>
+      <lifesteal value="0"/>
+      <modifier value="0.3"/>
+    </attributes>
+  </spell>
+
 </spells>

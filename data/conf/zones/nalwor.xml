@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="stendhal ../zones.xsd ">
+    xsi:schemaLocation="stendhal ../zones.xsd">
+
   <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
@@ -41,7 +43,7 @@
 
     <!-- Archery Range -->
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" condition="testing.combat" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" condition="testing.combat"/>
 
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
       <parameter name="x">96</parameter>
@@ -60,11 +62,11 @@
     </entity>
 
     <!-- Dojo -->
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.Dojo"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.DojoSellerNPC"/>
     <!-- sign indicating direction to assassins' dojo -->
     <entity x="97" y="116">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">🡄 This way to Assassins' Dojo</attribute>
     </entity>
 
@@ -74,7 +76,7 @@
     file="Level 0/nalwor/forest_ne.tmx">
 
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.forest.RedCrystalNPC" />
+      class-name="games.stendhal.server.maps.nalwor.forest.RedCrystalNPC"/>
 
     <attributes>
       <parameter name="color_method">time</parameter>
@@ -91,22 +93,22 @@
 
 
     <portal x="51" y="83" ref="hqleftdoorin">
-      <destination zone="int_nalwor_assassinhq_0" ref="hqleftdoor" />
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-        <parameter name="key">assassins id</parameter>
-        <parameter name="rejected">You must have an assassins ID before	you can enter.</parameter>
-      </implementation>
-      <attribute name="move.continuous" />
-    </portal>
-    <portal x="57" y="83" ref="hqrightdoorin">
-      <destination zone="int_nalwor_assassinhq_0" ref="hqrightdoor" />
+      <destination zone="int_nalwor_assassinhq_0" ref="hqleftdoor"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
         <parameter name="key">assassins id</parameter>
         <parameter name="rejected">You must have an assassins ID before you can enter.</parameter>
       </implementation>
-      <attribute name="move.continuous" />
+      <attribute name="move.continuous"/>
+    </portal>
+    <portal x="57" y="83" ref="hqrightdoorin">
+      <destination zone="int_nalwor_assassinhq_0" ref="hqrightdoor"/>
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">assassins id</parameter>
+        <parameter name="rejected">You must have an assassins ID before you can enter.</parameter>
+      </implementation>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
@@ -133,7 +135,7 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
-    <configurator class-name="games.stendhal.server.maps.nalwor.forest.OracleNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.OracleNPC"/>
     <entity x="1" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -144,55 +146,55 @@
 
 
     <portal x="84" y="92" ref="outside_entrance">
-      <destination zone="0_nalwor_forest_w" ref="inside_exit" />
+      <destination zone="0_nalwor_forest_w" ref="inside_exit"/>
     </portal>
 
     <portal x="87" y="92" ref="outside_exit">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
 
     <portal x="114" y="91" ref="inside_entrance">
-      <destination zone="0_nalwor_forest_w" ref="outside_exit" />
+      <destination zone="0_nalwor_forest_w" ref="outside_exit"/>
     </portal>
 
     <portal x="117" y="91" ref="inside_exit">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_pottery" file="interiors/nalwor/pottery.tmx">
     <portal x="10" y="18" ref="entrance_left">
-      <destination zone="0_nalwor_city" ref="pottery_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="pottery_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="11" y="18" ref="entrance_right">
-      <destination zone="0_nalwor_city" ref="pottery_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="pottery_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_library" file="interiors/nalwor/library.tmx">
     <portal x="14" y="28" ref="entrance_left">
-      <destination zone="0_nalwor_city" ref="library_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="library_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="15" y="28" ref="entrance_right">
-      <destination zone="0_nalwor_city" ref="library_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="library_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="21" y="2" ref="upstairs">
-      <destination zone="int_nalwor_library_1" ref="downstairs" />
+      <destination zone="int_nalwor_library_1" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_library_1" file="interiors/nalwor/library_1.tmx">
     <portal x="21" y="2" ref="downstairs">
-      <destination zone="int_nalwor_library" ref="upstairs" />
+      <destination zone="int_nalwor_library" ref="upstairs"/>
     </portal>
     <entity x="14" y="3">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">
 WORLDS FUNNIEST JOKES
 
@@ -210,11 +212,11 @@ There's no future in time travel.
 
 ...
 continued on next page
-      	</attribute>
+        </attribute>
       <attribute name="class">transparent</attribute>
     </entity>
     <entity x="15" y="3">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">
 Artificial intelligence is no match for
 natural stupidity.
@@ -226,18 +228,18 @@ just like everyone else.
 
 Half the people in the world are
 below average.
-      	</attribute>
+        </attribute>
       <attribute name="class">transparent</attribute>
     </entity>
   </zone>
 
   <zone name="int_nalwor_weaponshop" file="interiors/nalwor/weaponshop.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.weaponshop.BuyerNPC" />
+      class-name="games.stendhal.server.maps.nalwor.weaponshop.BuyerNPC"/>
 
     <portal x="3" y="11" ref="entrance">
-      <destination zone="0_nalwor_city" ref="weaponshop_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <entity x="3" y="1">
@@ -257,51 +259,51 @@ below average.
 
     <!-- NPCs -->
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC" />
+      class-name="games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC"/>
 
     <!-- Portals -->
     <portal x="7" y="23" ref="entrance">
-      <destination zone="0_nalwor_city" ref="flowershop_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="flowershop_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_nalwor_prison" file="interiors/nalwor/jail.tmx">
     <portal x="6" y="18" ref="entrance">
-      <destination zone="0_nalwor_city" ref="jail_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="jail_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_inn" file="interiors/nalwor/inn.tmx">
     <portal x="3" y="15" ref="entrance_left">
-      <destination zone="0_nalwor_city" ref="inn_entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="inn_entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="31" y="15" ref="entrance_right">
-      <destination zone="0_nalwor_city" ref="inn_entrance_right" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="inn_entrance_right"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="2" y="2" ref="upstairs">
-      <destination zone="int_nalwor_inn_1" ref="downstairs" />
+      <destination zone="int_nalwor_inn_1" ref="downstairs"/>
     </portal>
     <portal x="10" y="2" ref="downstairs">
-      <destination zone="int_nalwor_inn_basement" ref="upstairs" />
+      <destination zone="int_nalwor_inn_basement" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_inn_1" file="interiors/nalwor/inn_1.tmx">
     <portal x="2" y="2" ref="downstairs">
-      <destination zone="int_nalwor_inn" ref="upstairs" />
+      <destination zone="int_nalwor_inn" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_inn_basement" file="interiors/nalwor/inn_basement.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.basement.ArcheryDealerNPC" />
+      class-name="games.stendhal.server.maps.nalwor.basement.ArcheryDealerNPC"/>
     <portal x="5" y="2" ref="upstairs">
-      <destination zone="int_nalwor_inn" ref="downstairs" />
+      <destination zone="int_nalwor_inn" ref="downstairs"/>
     </portal>
 
     <entity x="15" y="0">
@@ -319,16 +321,16 @@ below average.
   </zone>
 
   <zone name="int_nalwor_postoffice" file="interiors/nalwor/postoffice.tmx">
-    <configurator class-name="games.stendhal.server.maps.nalwor.postoffice.PostNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.postoffice.PostNPC"/>
     <portal x="3" y="10" ref="entrance">
-      <destination zone="0_nalwor_city" ref="postoffice_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_royal_hall" file="interiors/nalwor/royal.tmx">
     <entity x="13" y="0">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
     </entity>
     <!-- ticking clock sound effect -->
     <entity x="13" y="0">
@@ -353,44 +355,44 @@ below average.
     </entity>
 
     <portal x="7" y="29" ref="entrance">
-      <destination zone="0_nalwor_city" ref="royal_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="royal_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="8" y="29" ref="entrance">
-      <destination zone="0_nalwor_city" ref="royal_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="royal_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="9" y="29" ref="entrance">
-      <destination zone="0_nalwor_city" ref="royal_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="royal_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="43" y="2" ref="upstairs">
-      <destination zone="int_nalwor_royal_hall_1" ref="downstairs" />
+      <destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
     </portal>
     <portal x="34" y="23" ref="secret_entrance_1">
-      <destination zone="int_nalwor_secret_room" ref="exit_1" />
+      <destination zone="int_nalwor_secret_room" ref="exit_1"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
         <parameter name="quest">kill_dark_elves</parameter>
         <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
       </implementation>
-      <attribute name="move.continuous" />
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="34" y="24" ref="secret_entrance_2">
-      <destination zone="int_nalwor_secret_room" ref="exit_2" />
+      <destination zone="int_nalwor_secret_room" ref="exit_2"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
         <parameter name="quest">kill_dark_elves</parameter>
         <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
       </implementation>
-      <attribute name="move.continuous" />
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_royal_hall_1" file="interiors/nalwor/royal_2ndfloor.tmx">
-    <configurator class-name="games.stendhal.server.maps.nalwor.royal.MayorNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.royal.MayorNPC"/>
     <entity x="38" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
     </entity>
     <!-- ticking clock sound effect -->
     <entity x="38" y="16">
@@ -415,46 +417,46 @@ below average.
     </entity>
 
     <portal x="43" y="2" ref="downstairs">
-      <destination zone="int_nalwor_royal_hall" ref="upstairs" />
+      <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_secret_room" file="interiors/nalwor/secret_torture_room.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.secretroom.DarkElvesCreatures" />
+      class-name="games.stendhal.server.maps.nalwor.secretroom.DarkElvesCreatures"/>
     <portal x="38" y="7" ref="exit_1">
-      <destination zone="int_nalwor_royal_hall" ref="secret_entrance_1" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_royal_hall" ref="secret_entrance_1"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="38" y="8" ref="exit_2">
-      <destination zone="int_nalwor_royal_hall" ref="secret_entrance_2" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_royal_hall" ref="secret_entrance_2"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="3" y="5" ref="downstairs">
-      <destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs" />
+      <destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house1" file="interiors/nalwor/house1.tmx">
     <portal x="7" y="14" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house1_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house1_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="7" y="3" ref="downstairs">
-      <destination zone="int_nalwor_house1_basement" ref="upstairs" />
+      <destination zone="int_nalwor_house1_basement" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house1_basement" file="interiors/nalwor/house1_basement.tmx">
     <portal x="3" y="1" ref="upstairs">
-      <destination zone="int_nalwor_house1" ref="downstairs" />
+      <destination zone="int_nalwor_house1" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house2" file="interiors/nalwor/house2.tmx">
     <portal x="8" y="18" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house2_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house2_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <!-- Piano -->
@@ -474,27 +476,27 @@ below average.
 
   <zone name="int_nalwor_house3" file="interiors/nalwor/house3.tmx">
     <portal x="14" y="18" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house3_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house3_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house4" file="interiors/nalwor/house4.tmx">
     <portal x="12" y="18" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house4_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house4_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="2" y="2" ref="upstairs">
-      <destination zone="int_nalwor_house4_1" ref="downstairs" />
+      <destination zone="int_nalwor_house4_1" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house4_1" file="interiors/nalwor/house4_1.tmx">
     <portal x="2" y="3" ref="downstairs">
-      <destination zone="int_nalwor_house4" ref="upstairs" />
+      <destination zone="int_nalwor_house4" ref="upstairs"/>
     </portal>
     <portal x="12" y="6" ref="upstairs">
-      <destination zone="int_nalwor_house4_2" ref="downstairs" />
+      <destination zone="int_nalwor_house4_2" ref="downstairs"/>
     </portal>
 
     <!-- Piano -->
@@ -512,15 +514,15 @@ below average.
 
   <zone name="int_nalwor_house4_2" file="interiors/nalwor/house4_2.tmx">
     <portal x="2" y="2" ref="downstairs">
-      <destination zone="int_nalwor_house4_1" ref="upstairs" />
+      <destination zone="int_nalwor_house4_1" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_assassinhq_cellar" file="interiors/nalwor/assassinhq_cellar.tmx">
     <!-- <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.KaryoNPC"
-      /> -->
+     /> -->
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC" />
+      class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC"/>
 
     <entity x="23" y="1">
       <implementation
@@ -534,11 +536,11 @@ below average.
       <attribute name="class">blackboard</attribute>
     </entity>
     <portal x="6" y="0" ref="hqcellardown">
-      <destination zone="-1_nalwor_caves_e" ref="crawlyhole1" />
-      <attribute name="move.continuous" />
+      <destination zone="-1_nalwor_caves_e" ref="crawlyhole1"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="24" y="11" ref="hqcellarup">
-      <destination zone="int_nalwor_assassinhq_0" ref="hq0down" />
+      <destination zone="int_nalwor_assassinhq_0" ref="hq0down"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
         <parameter name="key">assassins id</parameter>
@@ -549,7 +551,7 @@ below average.
 
   <zone name="int_nalwor_assassinhq_0" file="interiors/nalwor/assassinhq_0.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.assassinhq.PrincipalNPC" />
+      class-name="games.stendhal.server.maps.nalwor.assassinhq.PrincipalNPC"/>
     <entity x="3" y="10">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -561,45 +563,45 @@ below average.
       <attribute name="class">blackboard</attribute>
     </entity>
     <portal x="24" y="11" ref="hq0up">
-      <destination zone="int_nalwor_assassinhq_1" ref="hq1down" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_assassinhq_1" ref="hq1down"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="23" y="11" ref="hq0down">
-      <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellarup" />
+      <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellarup"/>
     </portal>
     <portal x="7" y="20" ref="hqleftdoor">
-      <destination zone="0_nalwor_forest_ne" ref="hqleftdoorin" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_forest_ne" ref="hqleftdoorin"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="24" y="20" ref="hqrightdoor">
-      <destination zone="0_nalwor_forest_ne" ref="hqrightdoorin" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_forest_ne" ref="hqrightdoorin"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_assassinhq_1" file="interiors/nalwor/assassinhq_1.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC" />
+      class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC"/>
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.assassinhq.SchoolMarmNPC" />
+      class-name="games.stendhal.server.maps.nalwor.assassinhq.SchoolMarmNPC"/>
     <!-- this portal commented out until we can add upper floors of assassinhq
       <portal x="24" y="11" ref="hq1up"> <destination zone="int_nalwor_assassinhq_2"
       ref="hq2down"/> </portal> -->
     <portal x="23" y="11" ref="hq1down">
-      <destination zone="int_nalwor_assassinhq_0" ref="hq0up" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_assassinhq_0" ref="hq0up"/>
+      <attribute name="move.continuous"/>
     </portal>
     <entity x="10" y="4">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">
-				--- Grocery List: ---
+        --- Grocery List: ---
 
-				buy 100 empty scroll
-			</attribute>
+        buy 100 empty scroll
+      </attribute>
       <attribute name="class">transparent</attribute>
     </entity>
     <entity x="26" y="0">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
     </entity>
     <!-- ticking clock sound effect -->
     <entity x="26" y="0">
@@ -623,9 +625,9 @@ below average.
     <portal x="23" y="11" ref="hq4down"> <destination zone="int_nalwor_assassinhq_3"
     ref="hq3up"/> </portal> </zone> -->
   <zone name="int_nalwor_bank" file="interiors/nalwor/bank.tmx">
-    <configurator class-name="games.stendhal.server.maps.nalwor.bank.BankNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.bank.BankNPC"/>
     <entity x="17" y="27">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
     </entity>
     <!-- ticking clock sound effect -->
     <entity x="17" y="27">
@@ -637,35 +639,35 @@ below average.
       </implementation>
     </entity>
     <portal x="6" y="38" ref="entrance_left">
-      <destination zone="0_nalwor_city" ref="bank_entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="bank_entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="26" y="38" ref="entrance_right">
-      <destination zone="0_nalwor_city" ref="bank_entrance_right" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="bank_entrance_right"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="11" y="11" ref="upstairs">
-      <destination zone="int_nalwor_bank_1" ref="downstairs" />
+      <destination zone="int_nalwor_bank_1" ref="downstairs"/>
     </portal>
     <portal x="14" y="21" ref="customer_room_entrance">
-      <destination zone="int_nalwor_bank" ref="customer_room_exit" />
+      <destination zone="int_nalwor_bank" ref="customer_room_exit"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
         <parameter name="key">nalwor bank key</parameter>
         <parameter name="rejected">The door is locked.</parameter>
       </implementation>
-      <attribute name="move.continuous" />
+      <attribute name="move.continuous"/>
     </portal>
     <!-- seems strange to lock it from the inside? Else, a player will leave
       their key in the nalwor bank chest -->
     <portal x="17" y="21" ref="customer_room_exit">
-      <destination zone="int_nalwor_bank" ref="customer_room_entrance" />
+      <destination zone="int_nalwor_bank" ref="customer_room_entrance"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
         <parameter name="key">nalwor bank key</parameter>
         <parameter name="rejected">The door is locked.</parameter>
       </implementation>
-      <attribute name="move.continuous" />
+      <attribute name="move.continuous"/>
     </portal>
     <entity x="18" y="17">
       <implementation
@@ -729,94 +731,94 @@ below average.
 
   <zone name="int_nalwor_bank_1" file="interiors/nalwor/bank_1.tmx">
     <portal x="11" y="11" ref="downstairs">
-      <destination zone="int_nalwor_bank" ref="upstairs" />
+      <destination zone="int_nalwor_bank" ref="upstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_0" file="interiors/nalwor/tower_0.tmx">
     <portal x="9" y="18" ref="entrance">
-      <destination zone="0_nalwor_city" ref="tower_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="tower_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="16" y="2" ref="upstairs">
-      <destination zone="int_nalwor_tower_1" ref="downstairs" />
+      <destination zone="int_nalwor_tower_1" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_1" file="interiors/nalwor/tower_1.tmx">
     <portal x="16" y="2" ref="downstairs">
-      <destination zone="int_nalwor_tower_0" ref="upstairs" />
+      <destination zone="int_nalwor_tower_0" ref="upstairs"/>
     </portal>
     <portal x="2" y="16" ref="upstairs">
-      <destination zone="int_nalwor_tower_2" ref="downstairs" />
+      <destination zone="int_nalwor_tower_2" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_2" file="interiors/nalwor/tower_2.tmx">
     <portal x="2" y="16" ref="downstairs">
-      <destination zone="int_nalwor_tower_1" ref="upstairs" />
+      <destination zone="int_nalwor_tower_1" ref="upstairs"/>
     </portal>
     <portal x="17" y="13" ref="upstairs">
-      <destination zone="int_nalwor_tower_3" ref="downstairs" />
+      <destination zone="int_nalwor_tower_3" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_3" file="interiors/nalwor/tower_3.tmx">
     <portal x="17" y="14" ref="downstairs">
-      <destination zone="int_nalwor_tower_2" ref="upstairs" />
+      <destination zone="int_nalwor_tower_2" ref="upstairs"/>
     </portal>
     <portal x="2" y="4" ref="upstairs">
-      <destination zone="int_nalwor_tower_4" ref="downstairs" />
+      <destination zone="int_nalwor_tower_4" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_4" file="interiors/nalwor/tower_4.tmx">
     <portal x="2" y="4" ref="downstairs">
-      <destination zone="int_nalwor_tower_3" ref="upstairs" />
+      <destination zone="int_nalwor_tower_3" ref="upstairs"/>
     </portal>
     <portal x="11" y="17" ref="upstairs">
-      <destination zone="int_nalwor_tower_5" ref="downstairs" />
+      <destination zone="int_nalwor_tower_5" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_5" file="interiors/nalwor/tower_5.tmx">
     <portal x="11" y="17" ref="downstairs">
-      <destination zone="int_nalwor_tower_4" ref="upstairs" />
+      <destination zone="int_nalwor_tower_4" ref="upstairs"/>
     </portal>
     <portal x="17" y="4" ref="upstairs">
-      <destination zone="int_nalwor_tower_6" ref="downstairs" />
+      <destination zone="int_nalwor_tower_6" ref="downstairs"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_tower_6" file="interiors/nalwor/tower_6.tmx">
-    <configurator class-name="games.stendhal.server.maps.nalwor.tower.PrincessNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.tower.PrincessNPC"/>
     <portal x="17" y="4" ref="downstairs">
-      <destination zone="int_nalwor_tower_5" ref="upstairs" />
+      <destination zone="int_nalwor_tower_5" ref="upstairs"/>
     </portal>
   </zone>
   <zone name="int_nalwor_house_67" file="interiors/abstract/house_000.tmx">
     <portal x="7" y="14" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house_67_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house_67_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
   <zone name="int_nalwor_house_68" file="interiors/abstract/house_000.tmx">
     <portal x="7" y="14" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house_68_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house_68_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
   <zone name="int_nalwor_house_69" file="interiors/abstract/house_000.tmx">
     <portal x="7" y="14" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house_69_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house_69_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
   <zone name="int_nalwor_house_70" file="interiors/abstract/house_000.tmx">
     <portal x="7" y="14" ref="entrance">
-      <destination zone="0_nalwor_city" ref="house_70_entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="0_nalwor_city" ref="house_70_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
@@ -835,7 +837,7 @@ below average.
       </implementation>
     </entity>
 
-    <configurator class-name="games.stendhal.server.maps.nalwor.city.GuessKillsNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.city.GuessKillsNPC"/>
 
     <point-of-interest x="51" y="22">
       <name>Nalwor Drow Tunnels 1</name>
@@ -855,48 +857,48 @@ below average.
 
 
     <portal x="73" y="82" ref="house_70_entrance">
-      <destination zone="int_nalwor_house_70" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house_70" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="67" y="82" ref="house_69_entrance">
-      <destination zone="int_nalwor_house_69" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house_69" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="57" y="82" ref="house_68_entrance">
-      <destination zone="int_nalwor_house_68" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house_68" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="42" y="82" ref="house_67_entrance">
-      <destination zone="int_nalwor_house_67" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house_67" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <portal x="73" y="93" ref="pottery_entrance">
-      <destination zone="int_nalwor_pottery" ref="entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_pottery" ref="entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="73" y="106" ref="library_entrance">
-      <destination zone="int_nalwor_library" ref="entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_library" ref="entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="88" y="106" ref="jail_entrance">
-      <destination zone="int_nalwor_prison" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_prison" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="38" y="106" ref="inn_entrance_left">
-      <destination zone="int_nalwor_inn" ref="entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_inn" ref="entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="46" y="106" ref="inn_entrance_right">
-      <destination zone="int_nalwor_inn" ref="entrance_right" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_inn" ref="entrance_right"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="38" y="90" ref="postoffice_entrance">
-      <destination zone="int_nalwor_postoffice" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_postoffice" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <point-of-interest x="53" y="89">
@@ -908,40 +910,40 @@ below average.
     </point-of-interest>
 
     <portal x="48" y="82" ref="flowershop_entrance">
-      <destination zone="int_nalwor_flowershop" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_flowershop" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="59" y="106" ref="weaponshop_entrance">
-      <destination zone="int_nalwor_weaponshop" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_weaponshop" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="38" y="59" ref="royal_entrance">
-      <destination zone="int_nalwor_royal_hall" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_royal_hall" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="36" y="82" ref="house1_entrance">
-      <destination zone="int_nalwor_house1" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house1" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="79" y="82" ref="house2_entrance">
-      <destination zone="int_nalwor_house2" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house2" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="59" y="96" ref="house3_entrance">
-      <destination zone="int_nalwor_house3" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house3" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="62" y="85" ref="tower_entrance">
-      <destination zone="int_nalwor_tower_0" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_tower_0" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="84" y="82" ref="house4_entrance">
-      <destination zone="int_nalwor_house4" ref="entrance" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_house4" ref="entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
     <portal x="79" y="70" ref="bank_entrance_left">
-      <destination zone="int_nalwor_bank" ref="entrance_left" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_bank" ref="entrance_left"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <point-of-interest x="79" y="70">
@@ -953,8 +955,8 @@ below average.
     </point-of-interest>
 
     <portal x="84" y="70" ref="bank_entrance_right">
-      <destination zone="int_nalwor_bank" ref="entrance_right" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_bank" ref="entrance_right"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <point-of-interest x="84" y="70">
@@ -995,7 +997,7 @@ below average.
     </entity>
 
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.river.PinkCrystalNPC" />
+      class-name="games.stendhal.server.maps.nalwor.river.PinkCrystalNPC"/>
 
     <attributes>
       <parameter name="color_method">time</parameter>
@@ -1004,7 +1006,7 @@ below average.
 
     <entity x="87" y="83">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
+        class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource"/>
     </entity>
 
     <entity x="87" y="83">
@@ -1113,175 +1115,175 @@ below average.
   <zone name="-1_nalwor_caves_w" level="-1" x="500128" y="500128"
     file="Level -1/nalwor/caves_w.tmx">
     <portal x="47" y="28" ref="hell1">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="48" y="28" ref="hell2">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="49" y="28" ref="hell3">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="50" y="28" ref="hell4">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="51" y="27" ref="hell5">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="52" y="27" ref="hell6">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="53" y="27" ref="hell7">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="54" y="27" ref="hell8">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="55" y="27" ref="hell9">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="56" y="26" ref="hell10">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="57" y="26" ref="hel11">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="58" y="26" ref="hell12">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="59" y="26" ref="hell13">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="60" y="25" ref="hell14">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="61" y="25" ref="hell15">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="62" y="24" ref="hell16">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="63" y="24" ref="hell17">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="64" y="24" ref="hell18">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
     <portal x="65" y="23" ref="hell19">
-      <destination zone="hell" ref="start" />
+      <destination zone="hell" ref="start"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
         <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
-      <attribute name="hidden" />
+      <attribute name="hidden"/>
     </portal>
   </zone>
 
@@ -1292,10 +1294,10 @@ below average.
   <zone name="-1_nalwor_caves_e" level="-1" x="500384" y="500128"
     file="Level -1/nalwor/caves_e.tmx">
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.tunnel.DiscipleAssassinCreature" />
+      class-name="games.stendhal.server.maps.nalwor.tunnel.DiscipleAssassinCreature"/>
     <portal x="61" y="80" ref="crawlyhole1">
-      <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellardown" />
-      <attribute name="move.continuous" />
+      <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellardown"/>
+      <attribute name="move.continuous"/>
     </portal>
   </zone>
 
@@ -1308,7 +1310,7 @@ below average.
       <parameter name="blend_method">bleach</parameter>
     </attributes>
     <portal x="65" y="66" ref="downstairs">
-      <destination zone="-2_nalwor_drows_tunnel_nw" ref="upstairs" />
+      <destination zone="-2_nalwor_drows_tunnel_nw" ref="upstairs"/>
     </portal>
   </zone>
 
@@ -1321,11 +1323,11 @@ below average.
       <parameter name="blend_method">bleach</parameter>
     </attributes>
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature" />
+      class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature"/>
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.tunnel.DrowCreatures" />
+      class-name="games.stendhal.server.maps.nalwor.tunnel.DrowCreatures"/>
     <portal x="40" y="68" ref="upstairs">
-      <destination zone="int_nalwor_secret_room" ref="downstairs" />
+      <destination zone="int_nalwor_secret_room" ref="downstairs"/>
     </portal>
   </zone>
 
@@ -1359,7 +1361,7 @@ below average.
   <zone name="-2_nalwor_drows_tunnel_nw" level="-2" x="500192" y="500224"
     file="Level -2/nalwor/drows_tunnel_nw.tmx">
     <portal x="12" y="124" ref="upstairs">
-      <destination zone="-1_nalwor_drows_tunnel_nw" ref="downstairs" />
+      <destination zone="-1_nalwor_drows_tunnel_nw" ref="downstairs"/>
     </portal>
   </zone>
 
@@ -1369,16 +1371,16 @@ below average.
       <parameter name="color_method">softlight</parameter>
       <parameter name="color">#882200</parameter>
     </attributes>
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
     <configurator
-      class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.hell.Reaper2NPC" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.hell.CaptiveNPC" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.hell.HellTimer" />
+      class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.Reaper2NPC"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.CaptiveNPC"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.HellTimer"/>
     <portal x="9" y="9" ref="start">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
     <entity x="0" y="0">
       <implementation
@@ -1397,8 +1399,8 @@ below average.
   </zone>
 
   <zone name="int_hell_pit" file="interiors/nalwor/hell_pit.tmx">
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
-    <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperClones" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperClones"/>
     <attributes>
       <parameter name="color_method">softlight</parameter>
       <parameter name="color">#882200</parameter>
@@ -1412,7 +1414,7 @@ below average.
       </implementation>
     </entity>
     <entity x="6" y="2">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">Starkad was here!</attribute>
       <attribute name="class">transparent</attribute>
     </entity>

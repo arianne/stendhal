@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="spider">
     <type class="spider" subclass="spider" tileid="spider.png:0"/>
@@ -15,7 +16,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
-    <corpse name="small_boneless" harmless="spiderweb" />
+    <corpse name="small_boneless" harmless="spiderweb"/>
     <drops>
     </drops>
     <equips>
@@ -39,7 +40,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
-    <corpse name="small_boneless" harmless="spiderweb" />
+    <corpse name="small_boneless" harmless="spiderweb"/>
     <drops>
       <item value="greater poison" quantity="[1,1]" probability="10.0"/>
     </drops>

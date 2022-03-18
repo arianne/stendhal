@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: beholder -->
 
@@ -108,8 +109,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-grind-stone-1" />
-        <sound value="gargoyle-01" />
+        <sound value="loop-grind-stone-1"/>
+        <sound value="gargoyle-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -138,8 +139,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-grind-stone-1" />
-        <sound value="gargoyle-01" />
+        <sound value="loop-grind-stone-1"/>
+        <sound value="gargoyle-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -170,8 +171,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-grind-stone-1" />
-        <sound value="gargoyle-01" />
+        <sound value="loop-grind-stone-1"/>
+        <sound value="gargoyle-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -203,8 +204,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-grind-stone-1" />
-        <sound value="gargoyle-01" />
+        <sound value="loop-grind-stone-1"/>
+        <sound value="gargoyle-01"/>
       </says>
       <profile name="poisonous" params="15,poison"/>
       <profile name="brave"/>
@@ -233,11 +234,11 @@
     <respawn value="1200"/>
     <corpse name="animal"/>
     <drops>
-      <item value="money" quantity="[45,85]" probability="50.0" />
-      <item value="broadsword" quantity="[1,1]" probability="4.0" />
-      <item value="dagger" quantity="[1,1]" probability="3.5" />
-      <item value="golden legs" quantity="[1,1]" probability="0.5" />
-      <item value="golden chainmail" quantity="[1,1]" probability="7.0" />
+      <item value="money" quantity="[45,85]" probability="50.0"/>
+      <item value="broadsword" quantity="[1,1]" probability="4.0"/>
+      <item value="dagger" quantity="[1,1]" probability="3.5"/>
+      <item value="golden legs" quantity="[1,1]" probability="0.5"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="7.0"/>
     </drops>
     <equips>
     </equips>
@@ -245,7 +246,7 @@
       <says>
       </says>
       <profile name="brave"/>
-      <profile name="non-offensive" />
+      <profile name="non-offensive"/>
       <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
     </ai>
   </creature>

@@ -1,1665 +1,1665 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zones xmlns="stendhal"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
 
-	<!-- ** Load zones. Written from left to right and from top to bottom. **
-		Please respect it! -->
+<zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../zones.xsd">
 
-	<!-- Ground level -->
+  <!-- ** Load zones. Written from left to right and from top to bottom. **
+    Please respect it! -->
 
-	<zone name="0_deniran_forest_n2_w" level="0" x="499104" y="499744"
-	    file="Level 0/deniran/forest_n2_w.tmx">
+  <!-- Ground level -->
 
-	    <attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_deniran_forest_n2_w" level="0" x="499104" y="499744"
+      file="Level 0/deniran/forest_n2_w.tmx">
 
-	</zone>
+      <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-
-	<zone name="0_deniran_forest_nw" level="0" x="499104" y="499872"
-		file="Level 0/deniran/forest_nw.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_city_w" level="0" x="499104" y="500000"
-		file="Level 0/deniran/city_w.tmx">
+  <zone name="0_deniran_forest_nw" level="0" x="499104" y="499872"
+    file="Level 0/deniran/forest_nw.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-		<portal x="47" y="33" ref="deniran_tiny_house_entrance">
-			<destination zone="int_deniran_tiny_house" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+  </zone>
 
 
-		<portal x="50" y="102" ref="deniran_weapons_shop_entrance">
-			<destination zone="int_deniran_weapons_shop" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+  <zone name="0_deniran_city_w" level="0" x="499104" y="500000"
+    file="Level 0/deniran/city_w.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-
-	<zone name="0_deniran_city_sw" level="0" x="499104" y="500128"
-		file="Level 0/deniran/city_sw.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
- 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.OldFartNPC" />
-
-		<portal x="55" y="9" ref="deniran_inn_entrance">
-			<destination zone="int_deniran_inn" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<entity x="41" y="6">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-				<parameter name="width">11</parameter>
-				<parameter name="height">11</parameter>
-				<parameter name="enterMessage">Here's an unpleasant smell in the air. Is it a kind of magic?</parameter>
-				<parameter name="warnPlayer">true</parameter>
-			</implementation>
-		</entity>
-
-	</zone>
+    <portal x="47" y="33" ref="deniran_tiny_house_entrance">
+      <destination zone="int_deniran_tiny_house" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
 
-	<zone name="0_deniran_river_sw" level="0" x="499104" y="500256"
-		file="Level 0/deniran/river_sw.tmx" accessible="false">
+    <portal x="50" y="102" ref="deniran_weapons_shop_entrance">
+      <destination zone="int_deniran_weapons_shop" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_forest_n2" level="0" x="499232" y="499744"
-	    file="Level 0/deniran/forest_n2.tmx">
+  <zone name="0_deniran_city_sw" level="0" x="499104" y="500128"
+    file="Level 0/deniran/city_sw.tmx">
 
-	    <attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	</zone>
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.OldFartNPC"/>
 
+    <portal x="55" y="9" ref="deniran_inn_entrance">
+      <destination zone="int_deniran_inn" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-	<zone name="0_deniran_forest_n" level="0" x="499232" y="499872"
-		file="Level 0/deniran/forest_n.tmx">
+    <entity x="41" y="6">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">11</parameter>
+        <parameter name="height">11</parameter>
+        <parameter name="enterMessage">Here's an unpleasant smell in the air. Is it a kind of magic?</parameter>
+        <parameter name="warnPlayer">true</parameter>
+      </implementation>
+    </entity>
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
-
-
-	<zone name="0_deniran_city" level="0" x="499232" y="500000"
-		file="Level 0/deniran/city.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-		<entity x="54" y="68">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Deniran Bank!</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">1</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
-
-		<portal x="54" y="69" ref="deniran_bank_blue_roof_entrance">
-			<destination zone="int_deniran_bank_blue_roof" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="95" y="115" ref="deniran_castle_entrance_left">
-			<destination zone="int_deniran_castle" ref="entrance_left" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="96" y="115" ref="deniran_castle_entrance_right">
-			<destination zone="int_deniran_castle" ref="entrance_right" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="28" y="19" ref="deniran_grocery_store_entrance">
-			<destination zone="int_deniran_grocery_store" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="52" y="50" ref="deniran_bakery_entrance">
-			<destination zone="int_deniran_bakery" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="97" y="20" ref="deniran_library_entrance">
-			<destination zone="int_deniran_library" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<portal x="119" y="41" ref="pawn_shop">
-			<destination zone="int_deniran_pawn_shop" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_city_s" level="0" x="499232" y="500128"
-		file="Level 0/deniran/city_s.tmx">
+  <zone name="0_deniran_river_sw" level="0" x="499104" y="500256"
+    file="Level 0/deniran/river_sw.tmx" accessible="false">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC" />
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_river_s" level="0" x="499232" y="500256"
-		file="Level 0/deniran/river_s.tmx">
+  <zone name="0_deniran_forest_n2" level="0" x="499232" y="499744"
+      file="Level 0/deniran/forest_n2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+      <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-        <configurator class-name="games.stendhal.server.maps.deniran.river.BridgePostNPC" />
-        <configurator class-name="games.stendhal.server.maps.deniran.river.PortManagerNPC" />
+  </zone>
 
-		<entity x="63" y="26">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see an improvised barrier blocking access to the bridge.</attribute>
-			<attribute name="width">5</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
+
+  <zone name="0_deniran_forest_n" level="0" x="499232" y="499872"
+    file="Level 0/deniran/forest_n.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+  </zone>
+
+
+  <zone name="0_deniran_city" level="0" x="499232" y="500000"
+    file="Level 0/deniran/city.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+    <entity x="54" y="68">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">Welcome to Deniran Bank!</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+
+    <portal x="54" y="69" ref="deniran_bank_blue_roof_entrance">
+      <destination zone="int_deniran_bank_blue_roof" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="95" y="115" ref="deniran_castle_entrance_left">
+      <destination zone="int_deniran_castle" ref="entrance_left"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="96" y="115" ref="deniran_castle_entrance_right">
+      <destination zone="int_deniran_castle" ref="entrance_right"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="28" y="19" ref="deniran_grocery_store_entrance">
+      <destination zone="int_deniran_grocery_store" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="52" y="50" ref="deniran_bakery_entrance">
+      <destination zone="int_deniran_bakery" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="97" y="20" ref="deniran_library_entrance">
+      <destination zone="int_deniran_library" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="119" y="41" ref="pawn_shop">
+      <destination zone="int_deniran_pawn_shop" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+
+  <zone name="0_deniran_city_s" level="0" x="499232" y="500128"
+    file="Level 0/deniran/city_s.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC"/>
+
+  </zone>
+
+
+  <zone name="0_deniran_river_s" level="0" x="499232" y="500256"
+    file="Level 0/deniran/river_s.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+        <configurator class-name="games.stendhal.server.maps.deniran.river.BridgePostNPC"/>
+        <configurator class-name="games.stendhal.server.maps.deniran.river.PortManagerNPC"/>
+
+    <entity x="63" y="26">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+      <attribute name="description">You see an improvised barrier blocking access to the bridge.</attribute>
+      <attribute name="width">5</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
 
 
 <!--
-        <configurator class-name="games.stendhal.server.maps.deniran.river.AdosArmy" />
-        <configurator class-name="games.stendhal.server.maps.deniran.river.DeniranArmy" />
+        <configurator class-name="games.stendhal.server.maps.deniran.river.AdosArmy"/>
+        <configurator class-name="games.stendhal.server.maps.deniran.river.DeniranArmy"/>
  -->
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_forest_n2_e" level="0" x="499360" y="499744"
-		file="Level 0/deniran/forest_n2_e.tmx">
+  <zone name="0_deniran_forest_n2_e" level="0" x="499360" y="499744"
+    file="Level 0/deniran/forest_n2_e.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	</zone>
-
-
-	<zone name="0_deniran_forest_ne" level="0" x="499360" y="499872"
-		file="Level 0/deniran/forest_ne.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_city_e" level="0" x="499360" y="500000"
-		file="Level 0/deniran/city_e.tmx">
+  <zone name="0_deniran_forest_ne" level="0" x="499360" y="499872"
+    file="Level 0/deniran/forest_ne.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+  </zone>
 
 
-		<portal x="101" y="61" ref="deniran_dress_shop_entrance">
-			<destination zone="int_deniran_dress_shop" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+  <zone name="0_deniran_city_e" level="0" x="499360" y="500000"
+    file="Level 0/deniran/city_e.tmx">
 
-		<!-- NPCs -->
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+
+    <portal x="101" y="61" ref="deniran_dress_shop_entrance">
+      <destination zone="int_deniran_dress_shop" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- NPCs -->
         <!--
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketGrocerySellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketGrocerySellerNPC"/>
         -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranOldWitchHealerNPC" />
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranOldWitchHealerNPC"/>
 
-	</zone>
-
-
-	<zone name="0_deniran_city_se" level="0" x="499360" y="500128"
-		file="Level 0/deniran/city_se.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_river_se" level="0" x="499360" y="500256"
-		file="Level 0/deniran/river_se.tmx">
+  <zone name="0_deniran_city_se" level="0" x="499360" y="500128"
+    file="Level 0/deniran/city_se.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-		<portal x="91" y="8" ref="psychic_entrance">
-			<destination zone="int_deniran_psychic_parlor" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- NPCs -->
-		<!--
-		<configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC" />
- 		-->
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_forest_n2_e2" level="0" x="499488" y="499744"
-		file="Level 0/deniran/forest_n2_e2.tmx">
+  <zone name="0_deniran_river_se" level="0" x="499360" y="500256"
+    file="Level 0/deniran/river_se.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	</zone>
+    <portal x="91" y="8" ref="psychic_entrance">
+      <destination zone="int_deniran_psychic_parlor" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
+    <!-- NPCs -->
+    <!--
+    <configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC"/>
+    -->
 
-	<zone name="0_deniran_forest_n_e2" level="0" x="499488" y="499872"
-		file="Level 0/deniran/forest_n_e2.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
-
-
-	<zone name="0_deniran_city_e2" level="0" x="499488" y="500000"
-		file="Level 0/deniran/city_e2.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-		<portal x="78" y="23" ref="deniran_potions_shop_entrance">
-			<destination zone="int_deniran_potions_shop" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_city_s_e2" level="0" x="499488" y="500128"
-		file="Level 0/deniran/city_s_e2.tmx">
+  <zone name="0_deniran_forest_n2_e2" level="0" x="499488" y="499744"
+    file="Level 0/deniran/forest_n2_e2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.MuseumCashierNPC" />
+  </zone>
 
-		<!-- portals -->
-		<portal x="78" y="65" ref="tannery_entrance">
-			<destination zone="int_deniran_tannery" ref="entrance" />
-			<attribute name="move.continuous" />
-			<!--<attribute name="resistance">0</attribute>-->
-		</portal>
 
-		<portal x="26" y="45" ref="deniran_museum_entrance">
-			<destination zone="int_deniran_museum" ref="entrance" />
-			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-				<parameter name="condition">new QuestActiveCondition("museum_entrance_fee")</parameter>
-				<parameter name="action">new SetQuestAction("museum_entrance_fee", null)</parameter>
-				<parameter name="rejected">The door is locked. Maybe that boy knows how to get in.</parameter>
-			</implementation>
-			<attribute name="move.continuous" />
-		</portal>
+  <zone name="0_deniran_forest_n_e2" level="0" x="499488" y="499872"
+    file="Level 0/deniran/forest_n_e2.tmx">
 
-		<entity x="28" y="46">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">DENIRAN AIR AND SPACE MUSEUM
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+  </zone>
+
+
+  <zone name="0_deniran_city_e2" level="0" x="499488" y="500000"
+    file="Level 0/deniran/city_e2.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+    <portal x="78" y="23" ref="deniran_potions_shop_entrance">
+      <destination zone="int_deniran_potions_shop" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+
+  <zone name="0_deniran_city_s_e2" level="0" x="499488" y="500128"
+    file="Level 0/deniran/city_s_e2.tmx">
+
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.MuseumCashierNPC"/>
+
+    <!-- portals -->
+    <portal x="78" y="65" ref="tannery_entrance">
+      <destination zone="int_deniran_tannery" ref="entrance"/>
+      <attribute name="move.continuous"/>
+      <!--<attribute name="resistance">0</attribute>-->
+    </portal>
+
+    <portal x="26" y="45" ref="deniran_museum_entrance">
+      <destination zone="int_deniran_museum" ref="entrance"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+        <parameter name="condition">new QuestActiveCondition("museum_entrance_fee")</parameter>
+        <parameter name="action">new SetQuestAction("museum_entrance_fee", null)</parameter>
+        <parameter name="rejected">The door is locked. Maybe that boy knows how to get in.</parameter>
+      </implementation>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <entity x="28" y="46">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">DENIRAN AIR AND SPACE MUSEUM
 
 Entrance fee is 10 money</attribute>
-		</entity>
+    </entity>
 
-	</zone>
+  </zone>
 
 
-	<zone name="0_deniran_river_s_e2" level="0" x="499488" y="500256"
-		file="Level 0/deniran/river_s_e2.tmx">
+  <zone name="0_deniran_river_s_e2" level="0" x="499488" y="500256"
+    file="Level 0/deniran/river_s_e2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	</zone>
+  </zone>
 
-	<!--  Level -1 -->
+  <!--  Level -1 -->
 
-	<zone name="-1_deniran_lost_caves_n2_w" level="-1" x="499104" y="499744"
-		file="Level -1/deniran/lost_caves_n2_w.tmx">
+  <zone name="-1_deniran_lost_caves_n2_w" level="-1" x="499104" y="499744"
+    file="Level -1/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_lost_caves_nw" level="-1" x="499104" y="499872"
-		file="Level -1/deniran/lost_caves_nw.tmx">
+  <zone name="-1_deniran_lost_caves_nw" level="-1" x="499104" y="499872"
+    file="Level -1/deniran/lost_caves_nw.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_w" level="-1" x="499104" y="500000"
-		file="Level -1/deniran/caves_w.tmx">
+  <zone name="-1_deniran_caves_w" level="-1" x="499104" y="500000"
+    file="Level -1/deniran/caves_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_sw" level="-1" x="499104" y="500128"
-		file="Level -1/deniran/caves_sw.tmx">
+  <zone name="-1_deniran_caves_sw" level="-1" x="499104" y="500128"
+    file="Level -1/deniran/caves_sw.tmx">
 
-	</zone>
+  </zone>
 
 
 
-	<zone name="-1_deniran_lost_caves_n2" level="-1" x="499232" y="499744"
-		file="Level -1/deniran/lost_caves_n2.tmx">
+  <zone name="-1_deniran_lost_caves_n2" level="-1" x="499232" y="499744"
+    file="Level -1/deniran/lost_caves_n2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_lost_caves_n" level="-1" x="499232" y="499872"
-		file="Level -1/deniran/lost_caves_n.tmx">
+  <zone name="-1_deniran_lost_caves_n" level="-1" x="499232" y="499872"
+    file="Level -1/deniran/lost_caves_n.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves" level="-1" x="499232" y="500000"
-		file="Level -1/deniran/caves.tmx">
+  <zone name="-1_deniran_caves" level="-1" x="499232" y="500000"
+    file="Level -1/deniran/caves.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_s" level="-1" x="499232" y="500128"
-		file="Level -1/deniran/caves_s.tmx">
+  <zone name="-1_deniran_caves_s" level="-1" x="499232" y="500128"
+    file="Level -1/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-1_deniran_lost_caves_n2_e" level="-1" x="499360" y="499744"
-		file="Level -1/deniran/lost_caves_n2_e.tmx">
+  <zone name="-1_deniran_lost_caves_n2_e" level="-1" x="499360" y="499744"
+    file="Level -1/deniran/lost_caves_n2_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_lost_caves_ne" level="-1" x="499360" y="499872"
-		file="Level -1/deniran/lost_caves_ne.tmx">
+  <zone name="-1_deniran_lost_caves_ne" level="-1" x="499360" y="499872"
+    file="Level -1/deniran/lost_caves_ne.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_e" level="-1" x="499360" y="500000"
-		file="Level -1/deniran/caves_e.tmx">
+  <zone name="-1_deniran_caves_e" level="-1" x="499360" y="500000"
+    file="Level -1/deniran/caves_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_se" level="-1" x="499360" y="500128"
-		file="Level -1/deniran/caves_se.tmx">
+  <zone name="-1_deniran_caves_se" level="-1" x="499360" y="500128"
+    file="Level -1/deniran/caves_se.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-1_deniran_lost_caves_n2_e2" level="-1" x="499488" y="499744"
-		file="Level -1/deniran/lost_caves_n2_e2.tmx">
+  <zone name="-1_deniran_lost_caves_n2_e2" level="-1" x="499488" y="499744"
+    file="Level -1/deniran/lost_caves_n2_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_lost_caves_n_e2" level="-1" x="499488" y="499872"
-		file="Level -1/deniran/lost_caves_n_e2.tmx">
+  <zone name="-1_deniran_lost_caves_n_e2" level="-1" x="499488" y="499872"
+    file="Level -1/deniran/lost_caves_n_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_e2" level="-1" x="499488" y="500000"
-		file="Level -1/deniran/caves_e2.tmx">
+  <zone name="-1_deniran_caves_e2" level="-1" x="499488" y="500000"
+    file="Level -1/deniran/caves_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-1_deniran_caves_s_e2" level="-1" x="499488" y="500128"
-		file="Level -1/deniran/caves_s_e2.tmx">
+  <zone name="-1_deniran_caves_s_e2" level="-1" x="499488" y="500128"
+    file="Level -1/deniran/caves_s_e2.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<!--  Level -2 -->
+  <!--  Level -2 -->
 
-	<zone name="-2_deniran_lost_caves_n2_w" level="-2" x="499104" y="499744"
-		file="Level -2/deniran/lost_caves_n2_w.tmx">
+  <zone name="-2_deniran_lost_caves_n2_w" level="-2" x="499104" y="499744"
+    file="Level -2/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_lost_caves_nw" level="-2" x="499104" y="499872"
-		file="Level -2/deniran/lost_caves_nw.tmx">
+  <zone name="-2_deniran_lost_caves_nw" level="-2" x="499104" y="499872"
+    file="Level -2/deniran/lost_caves_nw.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_w" level="-2" x="499104" y="500000"
-		file="Level -2/deniran/caves_w.tmx">
+  <zone name="-2_deniran_caves_w" level="-2" x="499104" y="500000"
+    file="Level -2/deniran/caves_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_sw" level="-2" x="499104" y="500128"
-		file="Level -2/deniran/caves_sw.tmx">
+  <zone name="-2_deniran_caves_sw" level="-2" x="499104" y="500128"
+    file="Level -2/deniran/caves_sw.tmx">
 
-	</zone>
+  </zone>
 
 
 
-	<zone name="-2_deniran_lost_caves_n2" level="-2" x="499232" y="499744"
-		file="Level -2/deniran/lost_caves_n2.tmx">
+  <zone name="-2_deniran_lost_caves_n2" level="-2" x="499232" y="499744"
+    file="Level -2/deniran/lost_caves_n2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_lost_caves_n" level="-2" x="499232" y="499872"
-		file="Level -2/deniran/lost_caves_n.tmx">
+  <zone name="-2_deniran_lost_caves_n" level="-2" x="499232" y="499872"
+    file="Level -2/deniran/lost_caves_n.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves" level="-2" x="499232" y="500000"
-		file="Level -2/deniran/caves.tmx">
+  <zone name="-2_deniran_caves" level="-2" x="499232" y="500000"
+    file="Level -2/deniran/caves.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_s" level="-2" x="499232" y="500128"
-		file="Level -2/deniran/caves_s.tmx">
+  <zone name="-2_deniran_caves_s" level="-2" x="499232" y="500128"
+    file="Level -2/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-2_deniran_lost_caves_n2_e" level="-2" x="499360" y="499744"
-		file="Level -2/deniran/lost_caves_n2_e.tmx">
+  <zone name="-2_deniran_lost_caves_n2_e" level="-2" x="499360" y="499744"
+    file="Level -2/deniran/lost_caves_n2_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_lost_caves_ne" level="-2" x="499360" y="499872"
-		file="Level -2/deniran/lost_caves_ne.tmx">
+  <zone name="-2_deniran_lost_caves_ne" level="-2" x="499360" y="499872"
+    file="Level -2/deniran/lost_caves_ne.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_e" level="-2" x="499360" y="500000"
-		file="Level -2/deniran/caves_e.tmx">
+  <zone name="-2_deniran_caves_e" level="-2" x="499360" y="500000"
+    file="Level -2/deniran/caves_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_se" level="-2" x="499360" y="500128"
-		file="Level -2/deniran/caves_se.tmx">
+  <zone name="-2_deniran_caves_se" level="-2" x="499360" y="500128"
+    file="Level -2/deniran/caves_se.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-2_deniran_lost_caves_n2_e2" level="-2" x="499488" y="499744"
-		file="Level -2/deniran/lost_caves_n2_e2.tmx">
+  <zone name="-2_deniran_lost_caves_n2_e2" level="-2" x="499488" y="499744"
+    file="Level -2/deniran/lost_caves_n2_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_lost_caves_n_e2" level="-2" x="499488" y="499872"
-		file="Level -2/deniran/lost_caves_n_e2.tmx">
+  <zone name="-2_deniran_lost_caves_n_e2" level="-2" x="499488" y="499872"
+    file="Level -2/deniran/lost_caves_n_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_e2" level="-2" x="499488" y="500000"
-		file="Level -2/deniran/caves_e2.tmx">
+  <zone name="-2_deniran_caves_e2" level="-2" x="499488" y="500000"
+    file="Level -2/deniran/caves_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-2_deniran_caves_s_e2" level="-2" x="499488" y="500128"
-		file="Level -2/deniran/caves_s_e2.tmx">
+  <zone name="-2_deniran_caves_s_e2" level="-2" x="499488" y="500128"
+    file="Level -2/deniran/caves_s_e2.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<!--  Level -3 -->
+  <!--  Level -3 -->
 
-	<zone name="-3_deniran_lost_caves_n2_w" level="-3" x="499104" y="499744"
-		file="Level -3/deniran/lost_caves_n2_w.tmx">
+  <zone name="-3_deniran_lost_caves_n2_w" level="-3" x="499104" y="499744"
+    file="Level -3/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_lost_caves_nw" level="-3" x="499104" y="499872"
-		file="Level -3/deniran/lost_caves_nw.tmx">
+  <zone name="-3_deniran_lost_caves_nw" level="-3" x="499104" y="499872"
+    file="Level -3/deniran/lost_caves_nw.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_w" level="-3" x="499104" y="500000"
-		file="Level -3/deniran/caves_w.tmx">
+  <zone name="-3_deniran_caves_w" level="-3" x="499104" y="500000"
+    file="Level -3/deniran/caves_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_sw" level="-3" x="499104" y="500128"
-		file="Level -3/deniran/caves_sw.tmx">
+  <zone name="-3_deniran_caves_sw" level="-3" x="499104" y="500128"
+    file="Level -3/deniran/caves_sw.tmx">
 
-	</zone>
+  </zone>
 
 
 
-	<zone name="-3_deniran_lost_caves_n2" level="-3" x="499232" y="499744"
-		file="Level -3/deniran/lost_caves_n2.tmx">
+  <zone name="-3_deniran_lost_caves_n2" level="-3" x="499232" y="499744"
+    file="Level -3/deniran/lost_caves_n2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_lost_caves_n" level="-3" x="499232" y="499872"
-		file="Level -3/deniran/lost_caves_n.tmx">
+  <zone name="-3_deniran_lost_caves_n" level="-3" x="499232" y="499872"
+    file="Level -3/deniran/lost_caves_n.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves" level="-3" x="499232" y="500000"
-		file="Level -3/deniran/caves.tmx">
+  <zone name="-3_deniran_caves" level="-3" x="499232" y="500000"
+    file="Level -3/deniran/caves.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_s" level="-3" x="499232" y="500128"
-		file="Level -3/deniran/caves_s.tmx">
+  <zone name="-3_deniran_caves_s" level="-3" x="499232" y="500128"
+    file="Level -3/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-3_deniran_lost_caves_n2_e" level="-3" x="499360" y="499744"
-		file="Level -3/deniran/lost_caves_n2_e.tmx">
+  <zone name="-3_deniran_lost_caves_n2_e" level="-3" x="499360" y="499744"
+    file="Level -3/deniran/lost_caves_n2_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_lost_caves_ne" level="-3" x="499360" y="499872"
-		file="Level -3/deniran/lost_caves_ne.tmx">
+  <zone name="-3_deniran_lost_caves_ne" level="-3" x="499360" y="499872"
+    file="Level -3/deniran/lost_caves_ne.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_e" level="-3" x="499360" y="500000"
-		file="Level -3/deniran/caves_e.tmx">
+  <zone name="-3_deniran_caves_e" level="-3" x="499360" y="500000"
+    file="Level -3/deniran/caves_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_se" level="-3" x="499360" y="500128"
-		file="Level -3/deniran/caves_se.tmx">
+  <zone name="-3_deniran_caves_se" level="-3" x="499360" y="500128"
+    file="Level -3/deniran/caves_se.tmx">
 
-	</zone>
+  </zone>
 
 
 
 
-	<zone name="-3_deniran_lost_caves_n2_e2" level="-3" x="499488" y="499744"
-		file="Level -3/deniran/lost_caves_n2_e2.tmx">
+  <zone name="-3_deniran_lost_caves_n2_e2" level="-3" x="499488" y="499744"
+    file="Level -3/deniran/lost_caves_n2_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_lost_caves_n_e2" level="-3" x="499488" y="499872"
-		file="Level -3/deniran/lost_caves_n_e2.tmx">
+  <zone name="-3_deniran_lost_caves_n_e2" level="-3" x="499488" y="499872"
+    file="Level -3/deniran/lost_caves_n_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_e2" level="-3" x="499488" y="500000"
-		file="Level -3/deniran/caves_e2.tmx">
+  <zone name="-3_deniran_caves_e2" level="-3" x="499488" y="500000"
+    file="Level -3/deniran/caves_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-3_deniran_caves_s_e2" level="-3" x="499488" y="500128"
-		file="Level -3/deniran/caves_s_e2.tmx">
+  <zone name="-3_deniran_caves_s_e2" level="-3" x="499488" y="500128"
+    file="Level -3/deniran/caves_s_e2.tmx">
 
-	</zone>
+  </zone>
 
 
 <!--  Level -4 -->
 
-	<zone name="-4_deniran_lost_caves_n2_w" level="-4" x="499104" y="499744"
-		file="Level -4/deniran/lost_caves_n2_w.tmx">
+  <zone name="-4_deniran_lost_caves_n2_w" level="-4" x="499104" y="499744"
+    file="Level -4/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
-
-
-	<zone name="-4_deniran_lost_caves_nw" level="-4" x="499104" y="499872"
-		file="Level -4/deniran/lost_caves_nw.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-4_deniran_caves_w" level="-4" x="499104" y="500000"
-		file="Level -4/deniran/caves_w.tmx">
+  <zone name="-4_deniran_lost_caves_nw" level="-4" x="499104" y="499872"
+    file="Level -4/deniran/lost_caves_nw.tmx">
 
-	</zone>
-
-
-	<zone name="-4_deniran_caves_sw" level="-4" x="499104" y="500128"
-		file="Level -4/deniran/caves_sw.tmx">
-
-	</zone>
+  </zone>
 
 
+  <zone name="-4_deniran_caves_w" level="-4" x="499104" y="500000"
+    file="Level -4/deniran/caves_w.tmx">
 
-	<zone name="-4_deniran_lost_caves_n2" level="-4" x="499232" y="499744"
-		file="Level -4/deniran/lost_caves_n2.tmx">
-
-	</zone>
-
-
-	<zone name="-4_deniran_lost_caves_n" level="-4" x="499232" y="499872"
-		file="Level -4/deniran/lost_caves_n.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-4_deniran_caves" level="-4" x="499232" y="500000"
-		file="Level -4/deniran/caves.tmx">
+  <zone name="-4_deniran_caves_sw" level="-4" x="499104" y="500128"
+    file="Level -4/deniran/caves_sw.tmx">
 
-	</zone>
-
-
-	<zone name="-4_deniran_caves_s" level="-4" x="499232" y="500128"
-		file="Level -4/deniran/caves_s.tmx">
-
-	</zone>
+  </zone>
 
 
 
-	<zone name="-4_deniran_lost_caves_n2_e" level="-4" x="499360" y="499744"
-		file="Level -4/deniran/lost_caves_n2_e.tmx">
+  <zone name="-4_deniran_lost_caves_n2" level="-4" x="499232" y="499744"
+    file="Level -4/deniran/lost_caves_n2.tmx">
 
-	</zone>
-
-
-	<zone name="-4_deniran_lost_caves_ne" level="-4" x="499360" y="499872"
-		file="Level -4/deniran/lost_caves_ne.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-4_deniran_caves_e" level="-4" x="499360" y="500000"
-		file="Level -4/deniran/caves_e.tmx">
+  <zone name="-4_deniran_lost_caves_n" level="-4" x="499232" y="499872"
+    file="Level -4/deniran/lost_caves_n.tmx">
 
-	</zone>
-
-
-	<zone name="-4_deniran_caves_se" level="-4" x="499360" y="500128"
-		file="Level -4/deniran/caves_se.tmx">
-
-	</zone>
+  </zone>
 
 
+  <zone name="-4_deniran_caves" level="-4" x="499232" y="500000"
+    file="Level -4/deniran/caves.tmx">
 
-	<zone name="-4_deniran_lost_caves_n2_e2" level="-4" x="499488" y="499744"
-		file="Level -4/deniran/lost_caves_n2_e2.tmx">
-
-	</zone>
-
-
-	<zone name="-4_deniran_lost_caves_n_e2" level="-4" x="499488" y="499872"
-		file="Level -4/deniran/lost_caves_n_e2.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-4_deniran_caves_e2" level="-4" x="499488" y="500000"
-		file="Level -4/deniran/caves_e2.tmx">
+  <zone name="-4_deniran_caves_s" level="-4" x="499232" y="500128"
+    file="Level -4/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-4_deniran_caves_s_e2" level="-4" x="499488" y="500128"
-		file="Level -4/deniran/caves_s_e2.tmx">
 
-	</zone>
+  <zone name="-4_deniran_lost_caves_n2_e" level="-4" x="499360" y="499744"
+    file="Level -4/deniran/lost_caves_n2_e.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_lost_caves_ne" level="-4" x="499360" y="499872"
+    file="Level -4/deniran/lost_caves_ne.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_caves_e" level="-4" x="499360" y="500000"
+    file="Level -4/deniran/caves_e.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_caves_se" level="-4" x="499360" y="500128"
+    file="Level -4/deniran/caves_se.tmx">
+
+  </zone>
+
+
+
+  <zone name="-4_deniran_lost_caves_n2_e2" level="-4" x="499488" y="499744"
+    file="Level -4/deniran/lost_caves_n2_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_lost_caves_n_e2" level="-4" x="499488" y="499872"
+    file="Level -4/deniran/lost_caves_n_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_caves_e2" level="-4" x="499488" y="500000"
+    file="Level -4/deniran/caves_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-4_deniran_caves_s_e2" level="-4" x="499488" y="500128"
+    file="Level -4/deniran/caves_s_e2.tmx">
+
+  </zone>
 
 
 <!--  Level -5 -->
 
         <zone name="-5_deniran_lost_caves_n2_w" level="-5" x="499104" y="499744"
-		file="Level -5/deniran/lost_caves_n2_w.tmx">
+    file="Level -5/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_lost_caves_nw" level="-5" x="499104" y="499872"
-		file="Level -5/deniran/lost_caves_nw.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_caves_w" level="-5" x="499104" y="500000"
-		file="Level -5/deniran/caves_w.tmx">
+  <zone name="-5_deniran_lost_caves_nw" level="-5" x="499104" y="499872"
+    file="Level -5/deniran/lost_caves_nw.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_caves_sw" level="-5" x="499104" y="500128"
-		file="Level -5/deniran/caves_sw.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_lost_caves_n2" level="-5" x="499232" y="499744"
-		file="Level -5/deniran/lost_caves_n2.tmx">
+  <zone name="-5_deniran_caves_w" level="-5" x="499104" y="500000"
+    file="Level -5/deniran/caves_w.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_lost_caves_n" level="-5" x="499232" y="499872"
-		file="Level -5/deniran/lost_caves_n.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_caves" level="-5" x="499232" y="500000"
-		file="Level -5/deniran/caves.tmx">
+  <zone name="-5_deniran_caves_sw" level="-5" x="499104" y="500128"
+    file="Level -5/deniran/caves_sw.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_caves_s" level="-5" x="499232" y="500128"
-		file="Level -5/deniran/caves_s.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_lost_caves_n2_e" level="-5" x="499360" y="499744"
-		file="Level -5/deniran/lost_caves_n2_e.tmx">
+  <zone name="-5_deniran_lost_caves_n2" level="-5" x="499232" y="499744"
+    file="Level -5/deniran/lost_caves_n2.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_lost_caves_ne" level="-5" x="499360" y="499872"
-		file="Level -5/deniran/lost_caves_ne.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_caves_e" level="-5" x="499360" y="500000"
-		file="Level -5/deniran/caves_e.tmx">
+  <zone name="-5_deniran_lost_caves_n" level="-5" x="499232" y="499872"
+    file="Level -5/deniran/lost_caves_n.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_caves_se" level="-5" x="499360" y="500128"
-		file="Level -5/deniran/caves_se.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_lost_caves_n2_e2" level="-5" x="499488" y="499744"
-		file="Level -5/deniran/lost_caves_n2_e2.tmx">
+  <zone name="-5_deniran_caves" level="-5" x="499232" y="500000"
+    file="Level -5/deniran/caves.tmx">
 
-	</zone>
-
-
-	<zone name="-5_deniran_lost_caves_n_e2" level="-5" x="499488" y="499872"
-		file="Level -5/deniran/lost_caves_n_e2.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_caves_e2" level="-5" x="499488" y="500000"
-		file="Level -5/deniran/caves_e2.tmx">
+  <zone name="-5_deniran_caves_s" level="-5" x="499232" y="500128"
+    file="Level -5/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-5_deniran_caves_s_e2" level="-5" x="499488" y="500128"
-		file="Level -5/deniran/caves_s_e2.tmx">
+  <zone name="-5_deniran_lost_caves_n2_e" level="-5" x="499360" y="499744"
+    file="Level -5/deniran/lost_caves_n2_e.tmx">
 
-	</zone>
+  </zone>
+
+
+  <zone name="-5_deniran_lost_caves_ne" level="-5" x="499360" y="499872"
+    file="Level -5/deniran/lost_caves_ne.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_caves_e" level="-5" x="499360" y="500000"
+    file="Level -5/deniran/caves_e.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_caves_se" level="-5" x="499360" y="500128"
+    file="Level -5/deniran/caves_se.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_lost_caves_n2_e2" level="-5" x="499488" y="499744"
+    file="Level -5/deniran/lost_caves_n2_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_lost_caves_n_e2" level="-5" x="499488" y="499872"
+    file="Level -5/deniran/lost_caves_n_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_caves_e2" level="-5" x="499488" y="500000"
+    file="Level -5/deniran/caves_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-5_deniran_caves_s_e2" level="-5" x="499488" y="500128"
+    file="Level -5/deniran/caves_s_e2.tmx">
+
+  </zone>
 
 
 <!--  Level -6 -->
 
     <zone name="-6_deniran_lost_caves_n2_w" level="-6" x="499104" y="499744"
-		file="Level -6/deniran/lost_caves_n2_w.tmx">
+    file="Level -6/deniran/lost_caves_n2_w.tmx">
 
-	</zone>
-
-
-	<zone name="-6_deniran_lost_caves_nw" level="-6" x="499104" y="499872"
-		file="Level -6/deniran/lost_caves_nw.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-6_deniran_caves_w" level="-6" x="499104" y="500000"
-		file="Level -6/deniran/caves_w.tmx">
+  <zone name="-6_deniran_lost_caves_nw" level="-6" x="499104" y="499872"
+    file="Level -6/deniran/lost_caves_nw.tmx">
 
-	</zone>
-
-
-	<zone name="-6_deniran_caves_sw" level="-6" x="499104" y="500128"
-		file="Level -6/deniran/caves_sw.tmx">
-
-	</zone>
+  </zone>
 
 
+  <zone name="-6_deniran_caves_w" level="-6" x="499104" y="500000"
+    file="Level -6/deniran/caves_w.tmx">
 
-	<zone name="-6_deniran_lost_caves_n2" level="-6" x="499232" y="499744"
-		file="Level -6/deniran/lost_caves_n2.tmx">
-
-	</zone>
-
-
-	<zone name="-6_deniran_lost_caves_n" level="-6" x="499232" y="499872"
-		file="Level -6/deniran/lost_caves_n.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-6_deniran_caves" level="-6" x="499232" y="500000"
-		file="Level -6/deniran/caves.tmx">
+  <zone name="-6_deniran_caves_sw" level="-6" x="499104" y="500128"
+    file="Level -6/deniran/caves_sw.tmx">
 
-	</zone>
-
-
-	<zone name="-6_deniran_caves_s" level="-6" x="499232" y="500128"
-		file="Level -6/deniran/caves_s.tmx">
-
-	</zone>
+  </zone>
 
 
 
-	<zone name="-6_deniran_lost_caves_n2_e" level="-6" x="499360" y="499744"
-		file="Level -6/deniran/lost_caves_n2_e.tmx">
+  <zone name="-6_deniran_lost_caves_n2" level="-6" x="499232" y="499744"
+    file="Level -6/deniran/lost_caves_n2.tmx">
 
-	</zone>
-
-
-	<zone name="-6_deniran_lost_caves_ne" level="-6" x="499360" y="499872"
-		file="Level -6/deniran/lost_caves_ne.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-6_deniran_caves_e" level="-6" x="499360" y="500000"
-		file="Level -6/deniran/caves_e.tmx">
+  <zone name="-6_deniran_lost_caves_n" level="-6" x="499232" y="499872"
+    file="Level -6/deniran/lost_caves_n.tmx">
 
-	</zone>
-
-
-	<zone name="-6_deniran_caves_se" level="-6" x="499360" y="500128"
-		file="Level -6/deniran/caves_se.tmx">
-
-	</zone>
+  </zone>
 
 
+  <zone name="-6_deniran_caves" level="-6" x="499232" y="500000"
+    file="Level -6/deniran/caves.tmx">
 
-	<zone name="-6_deniran_lost_caves_n2_e2" level="-6" x="499488" y="499744"
-		file="Level -6/deniran/lost_caves_n2_e2.tmx">
-
-	</zone>
-
-
-	<zone name="-6_deniran_lost_caves_n_e2" level="-6" x="499488" y="499872"
-		file="Level -6/deniran/lost_caves_n_e2.tmx">
-
-	</zone>
+  </zone>
 
 
-	<zone name="-6_deniran_caves_e2" level="-6" x="499488" y="500000"
-		file="Level -6/deniran/caves_e2.tmx">
+  <zone name="-6_deniran_caves_s" level="-6" x="499232" y="500128"
+    file="Level -6/deniran/caves_s.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-6_deniran_caves_s_e2" level="-6" x="499488" y="500128"
-		file="Level -6/deniran/caves_s_e2.tmx">
 
-	</zone>
+  <zone name="-6_deniran_lost_caves_n2_e" level="-6" x="499360" y="499744"
+    file="Level -6/deniran/lost_caves_n2_e.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_lost_caves_ne" level="-6" x="499360" y="499872"
+    file="Level -6/deniran/lost_caves_ne.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_caves_e" level="-6" x="499360" y="500000"
+    file="Level -6/deniran/caves_e.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_caves_se" level="-6" x="499360" y="500128"
+    file="Level -6/deniran/caves_se.tmx">
+
+  </zone>
+
+
+
+  <zone name="-6_deniran_lost_caves_n2_e2" level="-6" x="499488" y="499744"
+    file="Level -6/deniran/lost_caves_n2_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_lost_caves_n_e2" level="-6" x="499488" y="499872"
+    file="Level -6/deniran/lost_caves_n_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_caves_e2" level="-6" x="499488" y="500000"
+    file="Level -6/deniran/caves_e2.tmx">
+
+  </zone>
+
+
+  <zone name="-6_deniran_caves_s_e2" level="-6" x="499488" y="500128"
+    file="Level -6/deniran/caves_s_e2.tmx">
+
+  </zone>
 
 
 <!--  Level -7 -->
 
 
     <zone name="-7_deniran_atlantis_n2_w" level="-7" x="499104" y="499744"
-		file="Level -7/deniran/atlantis_n2_w.tmx">
+    file="Level -7/deniran/atlantis_n2_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_nw" level="-7" x="499104" y="499872"
-		file="Level -7/deniran/atlantis_nw.tmx">
+  <zone name="-7_deniran_atlantis_nw" level="-7" x="499104" y="499872"
+    file="Level -7/deniran/atlantis_nw.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_w" level="-7" x="499104" y="500000"
-		file="Level -7/deniran/atlantis_w.tmx">
+  <zone name="-7_deniran_atlantis_w" level="-7" x="499104" y="500000"
+    file="Level -7/deniran/atlantis_w.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_sw" level="-7" x="499104" y="500128"
-		file="Level -7/deniran/atlantis_sw.tmx">
-	</zone>
+  <zone name="-7_deniran_atlantis_sw" level="-7" x="499104" y="500128"
+    file="Level -7/deniran/atlantis_sw.tmx">
+  </zone>
 
 
 
-	<zone name="-7_deniran_atlantis_n2" level="-7" x="499232" y="499744"
-		file="Level -7/deniran/atlantis_n2.tmx">
+  <zone name="-7_deniran_atlantis_n2" level="-7" x="499232" y="499744"
+    file="Level -7/deniran/atlantis_n2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_n" level="-7" x="499232" y="499872"
-		file="Level -7/deniran/atlantis_n.tmx">
+  <zone name="-7_deniran_atlantis_n" level="-7" x="499232" y="499872"
+    file="Level -7/deniran/atlantis_n.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis" level="-7" x="499232" y="500000"
-		file="Level -7/deniran/atlantis.tmx">
+  <zone name="-7_deniran_atlantis" level="-7" x="499232" y="500000"
+    file="Level -7/deniran/atlantis.tmx">
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.atlantis.cityoutside.GreeterNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.atlantis.cityoutside.GreeterNPC"/>
 
-		<portal x="104" y="41" ref="potions_shop">
-			<destination zone="int_atlantis_potions_shop" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-		<entity x="104" y="39">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Potions Shop</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
+    <portal x="104" y="41" ref="potions_shop">
+      <destination zone="int_atlantis_potions_shop" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+    <entity x="104" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">Potions Shop</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
 
-		<portal x="18" y="73" ref="home_1">
-			<destination zone="int_atlantis_home_1" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="18" y="73" ref="home_1">
+      <destination zone="int_atlantis_home_1" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="93" y="28" ref="home_2">
-			<destination zone="int_atlantis_home_2" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="93" y="28" ref="home_2">
+      <destination zone="int_atlantis_home_2" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="103" y="85" ref="home_3">
-			<destination zone="int_atlantis_home_3" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="103" y="85" ref="home_3">
+      <destination zone="int_atlantis_home_3" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="31" y="35" ref="home_4">
-			<destination zone="int_atlantis_home_4" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="31" y="35" ref="home_4">
+      <destination zone="int_atlantis_home_4" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="62" y="17" ref="home_5">
-			<destination zone="int_atlantis_home_5" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="62" y="17" ref="home_5">
+      <destination zone="int_atlantis_home_5" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="47" y="106" ref="home_6">
-			<destination zone="int_atlantis_home_6" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="47" y="106" ref="home_6">
+      <destination zone="int_atlantis_home_6" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="119" y="16" ref="home_7">
-			<destination zone="int_atlantis_home_7" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="119" y="16" ref="home_7">
+      <destination zone="int_atlantis_home_7" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="123" y="94" ref="home_8">
-			<destination zone="int_atlantis_home_8" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="123" y="94" ref="home_8">
+      <destination zone="int_atlantis_home_8" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="114" y="124" ref="home_9">
-			<destination zone="int_atlantis_home_9" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="114" y="124" ref="home_9">
+      <destination zone="int_atlantis_home_9" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="6" y="121" ref="home_10">
-			<destination zone="int_atlantis_home_10" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="6" y="121" ref="home_10">
+      <destination zone="int_atlantis_home_10" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="4" y="99" ref="home_11">
-			<destination zone="int_atlantis_home_11" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="4" y="99" ref="home_11">
+      <destination zone="int_atlantis_home_11" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="18" y="56" ref="home_12">
-			<destination zone="int_atlantis_home_12" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="18" y="56" ref="home_12">
+      <destination zone="int_atlantis_home_12" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="4" y="29" ref="home_13">
-			<destination zone="int_atlantis_home_13" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="4" y="29" ref="home_13">
+      <destination zone="int_atlantis_home_13" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="6" y="6" ref="home_14">
-			<destination zone="int_atlantis_home_14" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="6" y="6" ref="home_14">
+      <destination zone="int_atlantis_home_14" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="15" y="8" ref="home_15">
-			<destination zone="int_atlantis_home_15" ref="entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="15" y="8" ref="home_15">
+      <destination zone="int_atlantis_home_15" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_s" level="-7" x="499232" y="500128"
-		file="Level -7/deniran/atlantis_s.tmx">
+  <zone name="-7_deniran_atlantis_s" level="-7" x="499232" y="500128"
+    file="Level -7/deniran/atlantis_s.tmx">
 
-	</zone>
+  </zone>
 
 
 
-	<zone name="-7_deniran_atlantis_n2_e" level="-7" x="499360" y="499744"
-		file="Level -7/deniran/atlantis_n2_e.tmx">
+  <zone name="-7_deniran_atlantis_n2_e" level="-7" x="499360" y="499744"
+    file="Level -7/deniran/atlantis_n2_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_ne" level="-7" x="499360" y="499872"
-		file="Level -7/deniran/atlantis_ne.tmx">
+  <zone name="-7_deniran_atlantis_ne" level="-7" x="499360" y="499872"
+    file="Level -7/deniran/atlantis_ne.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_e" level="-7" x="499360" y="500000"
-		file="Level -7/deniran/atlantis_e.tmx">
+  <zone name="-7_deniran_atlantis_e" level="-7" x="499360" y="500000"
+    file="Level -7/deniran/atlantis_e.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_se" level="-7" x="499360" y="500128"
-		file="Level -7/deniran/atlantis_se.tmx">
+  <zone name="-7_deniran_atlantis_se" level="-7" x="499360" y="500128"
+    file="Level -7/deniran/atlantis_se.tmx">
 
-	</zone>
+  </zone>
 
 
 
-	<zone name="-7_deniran_atlantis_mtn_n2_e2" level="-7" x="499488" y="499744"
-		file="Level -7/deniran/atlantis_mtn_n2_e2.tmx">
+  <zone name="-7_deniran_atlantis_mtn_n2_e2" level="-7" x="499488" y="499744"
+    file="Level -7/deniran/atlantis_mtn_n2_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_n_e2" level="-7" x="499488" y="499872"
-		file="Level -7/deniran/atlantis_mtn_n_e2.tmx">
+  <zone name="-7_deniran_atlantis_mtn_n_e2" level="-7" x="499488" y="499872"
+    file="Level -7/deniran/atlantis_mtn_n_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_e2" level="-7" x="499488" y="500000"
-		file="Level -7/deniran/atlantis_mtn_e2.tmx">
+  <zone name="-7_deniran_atlantis_mtn_e2" level="-7" x="499488" y="500000"
+    file="Level -7/deniran/atlantis_mtn_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<zone name="-7_deniran_atlantis_mtn_s_e2" level="-7" x="499488" y="500128"
-		file="Level -7/deniran/atlantis_mtn_s_e2.tmx">
+  <zone name="-7_deniran_atlantis_mtn_s_e2" level="-7" x="499488" y="500128"
+    file="Level -7/deniran/atlantis_mtn_s_e2.tmx">
 
-	</zone>
+  </zone>
 
 
-	<!-- interiors -->
+  <!-- interiors -->
 
-	<zone name="int_deniran_tiny_house" file="interiors/deniran/tiny_house.tmx">
+  <zone name="int_deniran_tiny_house" file="interiors/deniran/tiny_house.tmx">
 
-		<portal x="3" y="6" ref="entrance">
-			<destination zone="0_deniran_city_w" ref="deniran_tiny_house_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="3" y="6" ref="entrance">
+      <destination zone="0_deniran_city_w" ref="deniran_tiny_house_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tinyhouse.WizardNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tinyhouse.WizardNPC"/>
 
-	</zone>
+  </zone>
 
 
-	<zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
+  <zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
 
-		<portal x="17" y="18" ref="entrance">
-			<destination zone="0_deniran_city_w" ref="deniran_weapons_shop_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="17" y="18" ref="entrance">
+      <destination zone="0_deniran_city_w" ref="deniran_weapons_shop_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.weaponsshop.WeaponDealerNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.weaponsshop.WeaponDealerNPC"/>
 
-	</zone>
+  </zone>
 
 
-	<zone name="int_deniran_bank_blue_roof" file="interiors/deniran/bank_blue_roof.tmx">
+  <zone name="int_deniran_bank_blue_roof" file="interiors/deniran/bank_blue_roof.tmx">
 
-		<portal x="15" y="14" ref="entrance">
-			<destination zone="0_deniran_city" ref="deniran_bank_blue_roof_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="15" y="14" ref="entrance">
+      <destination zone="0_deniran_city" ref="deniran_bank_blue_roof_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<entity x="14" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-				<parameter name="slot">bank_deniran</parameter>
-			</implementation>
-		</entity>
+    <entity x="14" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_deniran</parameter>
+      </implementation>
+    </entity>
 
-		<entity x="15" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a conveniently placed table.</attribute>
-		</entity>
+    <entity x="15" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+      <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
-		<entity x="14" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-				<parameter name="width">2</parameter>
-				<parameter name="height">3</parameter>
-			</implementation>
-		</entity>
+    <entity x="14" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">3</parameter>
+      </implementation>
+    </entity>
 
 
-		<entity x="17" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a conveniently placed table.</attribute>
-		</entity>
+    <entity x="17" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+      <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
-		<entity x="18" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest" />
-		</entity>
+    <entity x="18" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
+    </entity>
 
-		<entity x="17" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-				<parameter name="width">2</parameter>
-				<parameter name="height">3</parameter>
-			</implementation>
-		</entity>
+    <entity x="17" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">3</parameter>
+      </implementation>
+    </entity>
 
 
-		<entity x="25" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-				<parameter name="slot">bank_deniran</parameter>
-			</implementation>
-		</entity>
+    <entity x="25" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_deniran</parameter>
+      </implementation>
+    </entity>
 
-		<entity x="26" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a conveniently placed table.</attribute>
-		</entity>
+    <entity x="26" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+      <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
-		<entity x="25" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-				<parameter name="width">2</parameter>
-				<parameter name="height">3</parameter>
-			</implementation>
-		</entity>
+    <entity x="25" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">3</parameter>
+      </implementation>
+    </entity>
 
 
-		<entity x="28" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a conveniently placed table.</attribute>
-		</entity>
+    <entity x="28" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+      <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
-		<entity x="29" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest" />
-		</entity>
+    <entity x="29" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
+    </entity>
 
-		<entity x="28" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-				<parameter name="width">2</parameter>
-				<parameter name="height">3</parameter>
-			</implementation>
-		</entity>
+    <entity x="28" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">3</parameter>
+      </implementation>
+    </entity>
 
-	</zone>
+  </zone>
 
 
-	<zone name="int_deniran_castle" file="interiors/deniran/castle.tmx">
+  <zone name="int_deniran_castle" file="interiors/deniran/castle.tmx">
 
-		<portal x="15" y="22" ref="entrance_left">
-			<destination zone="0_deniran_city" ref="deniran_castle_entrance_left" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="15" y="22" ref="entrance_left">
+      <destination zone="0_deniran_city" ref="deniran_castle_entrance_left"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="16" y="22" ref="entrance_right">
-			<destination zone="0_deniran_city" ref="deniran_castle_entrance_right" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="16" y="22" ref="entrance_right">
+      <destination zone="0_deniran_city" ref="deniran_castle_entrance_right"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.castle.KingNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.castle.KingNPC"/>
 
-	</zone>
+  </zone>
 
 
     <zone name="int_deniran_bakery" file="interiors/deniran/bakery.tmx">
 
-		<portal x="15" y="12" ref="entrance">
-			<destination zone="0_deniran_city" ref="deniran_bakery_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="15" y="12" ref="entrance">
+      <destination zone="0_deniran_city" ref="deniran_bakery_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ChefNPC" />
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ShopAssistantNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ChefNPC"/>
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ShopAssistantNPC"/>
 
-	</zone>
+  </zone>
 
 
     <zone name="int_deniran_grocery_store" file="interiors/deniran/grocery_store.tmx">
 
-		<portal x="17" y="28" ref="entrance">
-			<destination zone="0_deniran_city" ref="deniran_grocery_store_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="17" y="28" ref="entrance">
+      <destination zone="0_deniran_city" ref="deniran_grocery_store_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-	</zone>
+  </zone>
 
 
-	<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
+  <zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.dressshop.OutfitLenderNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.dressshop.OutfitLenderNPC"/>
 
-		<portal x="13" y="18" ref="entrance">
-			<destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="13" y="18" ref="entrance">
+      <destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-	</zone>
+  </zone>
 
-	<zone name="int_deniran_potions_shop" file="interiors/deniran/potions_shop.tmx">
+  <zone name="int_deniran_potions_shop" file="interiors/deniran/potions_shop.tmx">
 
-		<portal x="6" y="14" ref="entrance">
-			<destination zone="0_deniran_city_e2" ref="deniran_potions_shop_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="6" y="14" ref="entrance">
+      <destination zone="0_deniran_city_e2" ref="deniran_potions_shop_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.PotionsDealerNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.PotionsDealerNPC"/>
 
-	</zone>
+  </zone>
 
-	<zone name="int_deniran_library" file="interiors/deniran/library.tmx">
+  <zone name="int_deniran_library" file="interiors/deniran/library.tmx">
 
-		<portal x="10" y="28" ref="entrance">
-			<destination zone="0_deniran_city" ref="deniran_library_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="10" y="28" ref="entrance">
+      <destination zone="0_deniran_city" ref="deniran_library_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.library.LibrarianNPC" />
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.library.LibrarianNPC"/>
 
-	</zone>
+  </zone>
 
 
-	<zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
+  <zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
 
-		<portal x="14" y="18" ref="entrance">
-			<destination zone="0_deniran_city_sw" ref="deniran_inn_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
+    <portal x="14" y="18" ref="entrance">
+      <destination zone="0_deniran_city_sw" ref="deniran_inn_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
-		<portal x="14" y="9" ref="downstairs">
-			<destination zone="int_deniran_inn_1" ref="upstairs" />
-		</portal>
-	</zone>
+    <portal x="14" y="9" ref="downstairs">
+      <destination zone="int_deniran_inn_1" ref="upstairs"/>
+    </portal>
+  </zone>
 
-	<zone name="int_deniran_inn_1" file="interiors/deniran/inn_1.tmx">
-
-		<portal x="14" y="9" ref="upstairs">
-			<destination zone="int_deniran_inn" ref="downstairs" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_deniran_tannery" file="interiors/deniran/tannery.tmx">
-
-		<portal x="17" y="18" ref="entrance">
-			<destination zone="0_deniran_city_s_e2" ref="tannery_entrance" />
-			<attribute name="move.continuous" />
-			<!--<attribute name="resistance">0</attribute>-->
-		</portal>
-
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tannery.TannerNPC"/>
-
-		<entity x="24" y="9">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Making leather thread: Simply use a rotary cutter to slice a pelt into thin strips (note to self: be sure to thank Erna for lending me her rotary cutter the last time I misplaced mine).</attribute>
-			<attribute name="class">book_red</attribute>
-		</entity>
-
-	</zone>
-
-	<zone name="int_deniran_museum" file="interiors/deniran/museum.tmx">
-
-		<portal x="15" y="14" ref="entrance">
-			<destination zone="0_deniran_city_s_e2" ref="deniran_museum_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<entity x="0" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-				<parameter name="coversZone">true</parameter>
-				<parameter name="enterMessage">WOW, so much air and space. Isn't this amazing?</parameter>
-				<parameter name="warnPlayer">true</parameter>
-			</implementation>
-		</entity>
-
-		<entity x="2" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-				<parameter name="width">21</parameter>
-				<parameter name="height">12</parameter>
-				<parameter name="leaveMessage">Wasn't that a really impressive experience?</parameter>
-				<parameter name="warnPlayer">true</parameter>
-			</implementation>
-		</entity>
-
-	</zone>
-
-	<zone name="int_deniran_psychic_parlor" file="interiors/deniran/psychic_parlor.tmx">
-
-		<portal x="10" y="22" ref="entrance">
-			<destination zone="0_deniran_river_se" ref="psychic_entrance" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.psychicparlor.PsychicNPC" />
-
-	</zone>
-
-	<zone name="int_deniran_pawn_shop" file="interiors/deniran/pawn_shop.tmx">
-
-		<portal x="6" y="13" ref="entrance">
-			<destination zone="0_deniran_city" ref="pawn_shop" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- clock -->
-		<entity x="19" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-			<attribute name="height">2</attribute>
-		</entity>
-		<entity x="19" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-				<parameter name="sound">clock-1</parameter>
-				<parameter name="radius">15</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
-
-		<!-- interactive sounds -->
-		<entity x="6" y="21">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-				<parameter name="sound">guitar-1</parameter>
-				<parameter name="radius">40</parameter>
-			</implementation>
-			<attribute name="description">You see a guitar. Play a few chords.</attribute>
-		</entity>
-		<entity x="12" y="5">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-				<parameter name="sound">piano-01</parameter>
-				<parameter name="radius">40</parameter>
-			</implementation>
-			<attribute name="width">2</attribute>
-			<attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-		</entity>
-		<entity x="15" y="16">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-				<parameter name="sound">rubber_toy-01</parameter>
-				<parameter name="radius">40</parameter>
-			</implementation>
-			<attribute name="description">You see a rubber ducky. Squeeze it!</attribute>
-		</entity>
-		<entity x="8" y="3">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-				<parameter name="sound">toy_train-01</parameter>
-				<parameter name="radius">40</parameter>
-			</implementation>
-			<attribute name="description">You see a toy train. Toot toot!</attribute>
-		</entity>
-
-	</zone>
-
-	<zone name="int_atlantis_potions_shop" file="interiors/atlantis/potions_shop.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="potions_shop" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.atlantis.cityinside.PotionsDealerNPC" />
-
-	</zone>
-
-	<zone name="int_atlantis_home_1" file="interiors/atlantis/home_1.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_1" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_2" file="interiors/atlantis/home_2.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_2" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_3" file="interiors/atlantis/home_3.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_3" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_4" file="interiors/atlantis/home_4.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_4" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- interactive objects -->
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-			<attribute name="height">2</attribute>
-		</entity>
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-				<parameter name="sound">clock-1</parameter>
-				<parameter name="radius">15</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
-
-	</zone>
-
-	<zone name="int_atlantis_home_5" file="interiors/atlantis/home_5.tmx">
-
-		<portal x="8" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_5" />
-			<attribute name="move.continuous" />
-		</portal>
-
-		<!-- interactive objects -->
-		<entity x="11" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-			<attribute name="height">2</attribute>
-		</entity>
-		<entity x="11" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-				<parameter name="sound">clock-1</parameter>
-				<parameter name="radius">15</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
-
-	</zone>
-
-	<zone name="int_atlantis_home_6" file="interiors/atlantis/home_6.tmx">
-
-		<portal x="8" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_6" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_7" file="interiors/atlantis/home_7.tmx">
-
-		<portal x="25" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_7" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_8" file="interiors/atlantis/home_8.tmx">
-
-		<portal x="8" y="38" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_8" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_9" file="interiors/atlantis/home_9.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_9" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_10" file="interiors/atlantis/home_10.tmx">
-
-		<portal x="8" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_10" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_11" file="interiors/atlantis/home_11.tmx">
-
-		<portal x="8" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_11" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_12" file="interiors/atlantis/home_12.tmx">
-
-		<portal x="8" y="32" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_12" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_13" file="interiors/atlantis/home_13.tmx">
-
-		<portal x="8" y="38" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_13" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_14" file="interiors/atlantis/home_14.tmx">
-
-		<portal x="8" y="18" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_14" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
-
-	<zone name="int_atlantis_home_15" file="interiors/atlantis/home_15.tmx">
-
-		<portal x="8" y="14" ref="entrance">
-			<destination zone="-7_deniran_atlantis" ref="home_15" />
-			<attribute name="move.continuous" />
-		</portal>
-
-	</zone>
+  <zone name="int_deniran_inn_1" file="interiors/deniran/inn_1.tmx">
+
+    <portal x="14" y="9" ref="upstairs">
+      <destination zone="int_deniran_inn" ref="downstairs"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_deniran_tannery" file="interiors/deniran/tannery.tmx">
+
+    <portal x="17" y="18" ref="entrance">
+      <destination zone="0_deniran_city_s_e2" ref="tannery_entrance"/>
+      <attribute name="move.continuous"/>
+      <!--<attribute name="resistance">0</attribute>-->
+    </portal>
+
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tannery.TannerNPC"/>
+
+    <entity x="24" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">Making leather thread: Simply use a rotary cutter to slice a pelt into thin strips (note to self: be sure to thank Erna for lending me her rotary cutter the last time I misplaced mine).</attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_deniran_museum" file="interiors/deniran/museum.tmx">
+
+    <portal x="15" y="14" ref="entrance">
+      <destination zone="0_deniran_city_s_e2" ref="deniran_museum_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="coversZone">true</parameter>
+        <parameter name="enterMessage">WOW, so much air and space. Isn't this amazing?</parameter>
+        <parameter name="warnPlayer">true</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">21</parameter>
+        <parameter name="height">12</parameter>
+        <parameter name="leaveMessage">Wasn't that a really impressive experience?</parameter>
+        <parameter name="warnPlayer">true</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_deniran_psychic_parlor" file="interiors/deniran/psychic_parlor.tmx">
+
+    <portal x="10" y="22" ref="entrance">
+      <destination zone="0_deniran_river_se" ref="psychic_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.psychicparlor.PsychicNPC"/>
+
+  </zone>
+
+  <zone name="int_deniran_pawn_shop" file="interiors/deniran/pawn_shop.tmx">
+
+    <portal x="6" y="13" ref="entrance">
+      <destination zone="0_deniran_city" ref="pawn_shop"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- clock -->
+    <entity x="19" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+      <attribute name="height">2</attribute>
+    </entity>
+    <entity x="19" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- interactive sounds -->
+    <entity x="6" y="21">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">guitar-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a guitar. Play a few chords.</attribute>
+    </entity>
+    <entity x="12" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-01</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+    <entity x="15" y="16">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">rubber_toy-01</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a rubber ducky. Squeeze it!</attribute>
+    </entity>
+    <entity x="8" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toy_train-01</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toy train. Toot toot!</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_atlantis_potions_shop" file="interiors/atlantis/potions_shop.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="potions_shop"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.atlantis.cityinside.PotionsDealerNPC"/>
+
+  </zone>
+
+  <zone name="int_atlantis_home_1" file="interiors/atlantis/home_1.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_1"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_2" file="interiors/atlantis/home_2.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_2"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_3" file="interiors/atlantis/home_3.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_3"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_4" file="interiors/atlantis/home_4.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_4"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- interactive objects -->
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+      <attribute name="height">2</attribute>
+    </entity>
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_atlantis_home_5" file="interiors/atlantis/home_5.tmx">
+
+    <portal x="8" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_5"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <!-- interactive objects -->
+    <entity x="11" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+      <attribute name="height">2</attribute>
+    </entity>
+    <entity x="11" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_atlantis_home_6" file="interiors/atlantis/home_6.tmx">
+
+    <portal x="8" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_6"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_7" file="interiors/atlantis/home_7.tmx">
+
+    <portal x="25" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_7"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_8" file="interiors/atlantis/home_8.tmx">
+
+    <portal x="8" y="38" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_8"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_9" file="interiors/atlantis/home_9.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_9"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_10" file="interiors/atlantis/home_10.tmx">
+
+    <portal x="8" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_10"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_11" file="interiors/atlantis/home_11.tmx">
+
+    <portal x="8" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_11"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_12" file="interiors/atlantis/home_12.tmx">
+
+    <portal x="8" y="32" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_12"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_13" file="interiors/atlantis/home_13.tmx">
+
+    <portal x="8" y="38" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_13"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_14" file="interiors/atlantis/home_14.tmx">
+
+    <portal x="8" y="18" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_14"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
+
+  <zone name="int_atlantis_home_15" file="interiors/atlantis/home_15.tmx">
+
+    <portal x="8" y="14" ref="entrance">
+      <destination zone="-7_deniran_atlantis" ref="home_15"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
 
 </zones>

@@ -1,68 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
-	xmlns:tns="http://www.example.org/spells" elementFormDefault="qualified"
-	xmlns:Q3="stendhal">
+    xmlns:tns="http://www.example.org/spells" elementFormDefault="qualified"
+    xmlns:Q3="stendhal">
 
-	<element name="spells" type="Q3:Spells" />
+  <element name="spells" type="Q3:Spells"/>
 
-	<complexType name="Spells" >
-		<sequence>
-			<element name="spell" type="Q3:Spell" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
+  <complexType name="Spells">
+    <sequence>
+      <element name="spell" type="Q3:Spell" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
 
-	<complexType name="Spell">
-		<sequence>
-			<element name="implementation" type="Q3:Implementation" />
-			<element name="nature" type="Q3:nature" />
-			<element name="attributes" type="Q3:Attributes" />
-		</sequence>
-		<attribute name="name" type="string" use="required"/>
-	</complexType>
+  <complexType name="Spell">
+    <sequence>
+      <element name="implementation" type="Q3:Implementation"/>
+      <element name="nature" type="Q3:nature"/>
+      <element name="attributes" type="Q3:Attributes"/>
+    </sequence>
+    <attribute name="name" type="string" use="required"/>
+  </complexType>
 
-	<complexType name="Implementation">
-    	<attribute name="class-name" type="string"></attribute>
-    </complexType>
+  <complexType name="Implementation">
+    <attribute name="class-name" type="string"></attribute>
+  </complexType>
 
-    <complexType name="Attributes">
-    	<sequence>
-    		<element name="mana" type="Q3:attribute-integer" />
-    		<element name="cooldown" type="Q3:attribute-integer" />
-    		<element name="minimum-level" type="Q3:attribute-integer" />
-    		<element name="range" type="Q3:attribute-integer" minOccurs="0"/>
-    		<element name="atk" type="Q3:attribute-integer" minOccurs="0" />
-    		<element name="def" type="Q3:attribute-integer" minOccurs="0" />
-    		<element name="amount" type="Q3:attribute-integer" minOccurs="0" />
-    		<element name="regen" type="Q3:attribute-integer" minOccurs="0" />
-    		<element name="rate" type="Q3:attribute-integer" minOccurs="0" />
-    		<element name="lifesteal" type="Q3:attribute-float" minOccurs="0" />
-    		<element name="modifier" type="Q3:attribute-float" minOccurs="0"/>
-    	</sequence>
-    </complexType>
+  <complexType name="Attributes">
+    <sequence>
+      <element name="mana" type="Q3:attribute-integer"/>
+      <element name="cooldown" type="Q3:attribute-integer"/>
+      <element name="minimum-level" type="Q3:attribute-integer"/>
+      <element name="range" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="atk" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="def" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="amount" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="regen" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="rate" type="Q3:attribute-integer" minOccurs="0"/>
+      <element name="lifesteal" type="Q3:attribute-float" minOccurs="0"/>
+      <element name="modifier" type="Q3:attribute-float" minOccurs="0"/>
+    </sequence>
+  </complexType>
 
-    <complexType name="nature">
-    	<attribute name="value" type="Q3:nature-attribute" />
-    </complexType>
+  <complexType name="nature">
+    <attribute name="value" type="Q3:nature-attribute"/>
+  </complexType>
 
-    <simpleType name="nature-attribute">
-    	<restriction base="string">
-    		<enumeration value="dark" />
-    		<enumeration value="light" />
-    		<enumeration value="fire" />
-    		<enumeration value="ice" />
-    	</restriction>
-    </simpleType>
+  <simpleType name="nature-attribute">
+    <restriction base="string">
+      <enumeration value="dark"/>
+      <enumeration value="light"/>
+      <enumeration value="fire"/>
+      <enumeration value="ice"/>
+    </restriction>
+  </simpleType>
 
-    <complexType name="attribute-string">
-    	<attribute name="value" type="string" />
-    </complexType>
+  <complexType name="attribute-string">
+    <attribute name="value" type="string"/>
+  </complexType>
 
-    <complexType name="attribute-integer">
-    	<attribute name="value" type="integer" />
-    </complexType>
+  <complexType name="attribute-integer">
+    <attribute name="value" type="integer"/>
+  </complexType>
 
-    <complexType name="attribute-float">
-    	<attribute name="value" type="float" />
-    </complexType>
+  <complexType name="attribute-float">
+    <attribute name="value" type="float"/>
+  </complexType>
 
 </schema>

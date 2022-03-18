@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd">
+
   <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
@@ -134,77 +137,77 @@
 
 <!-- disabled
   <item name="auto crossbow" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow" tileid="-1" />
+    <type class="ranged" subclass="auto_crossbow" tileid="-1"/>
     <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
+    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
-      <range value="3" />
-      <rate value="1" />
+      <range value="3"/>
+      <rate value="1"/>
       <autobind value=""/>
-      <durability value="800" />
+      <durability value="800"/>
       <min_level value="20"/>
     </attributes>
-    <weight value="0.5" />
-    <value value="17280" />
+    <weight value="0.5"/>
+    <value value="17280"/>
     <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
   <item name="auto crossbow A" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow_a" tileid="-1" />
+    <type class="ranged" subclass="auto_crossbow_a" tileid="-1"/>
     <description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
+    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
-      <range value="3" />
-      <rate value="1" />
+      <range value="3"/>
+      <rate value="1"/>
       <autobind value=""/>
-      <durability value="1400" />
+      <durability value="1400"/>
       <min_level value="20"/>
     </attributes>
-    <weight value="0.5" />
-    <value value="17280" />
+    <weight value="0.5"/>
+    <value value="17280"/>
     <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
   <item name="auto crossbow A+" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow_aa" tileid="-1" />
+    <type class="ranged" subclass="auto_crossbow_aa" tileid="-1"/>
     <description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem" />
+    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
-      <range value="3" />
-      <rate value="1" />
+      <range value="3"/>
+      <rate value="1"/>
       <autobind value=""/>
-      <durability value="3600" />
+      <durability value="3600"/>
       <min_level value="20"/>
     </attributes>
-    <weight value="0.5" />
-    <value value="17280" />
+    <weight value="0.5"/>
+    <value value="17280"/>
     <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 -->

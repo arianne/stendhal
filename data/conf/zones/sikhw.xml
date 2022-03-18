@@ -1,192 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zones xmlns="stendhal"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
 
-	<!-- ** Load zones. Written from left to right and from top to bottom. **
-		Please respect it! -->
+<zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../zones.xsd">
 
-	<!-- Ground level -->
+  <!-- ** Load zones. Written from left to right and from top to bottom. **
+    Please respect it! -->
 
-	<zone name="0_sikhw_desert_n_w2" level="0" x="499104" y="500384"
-	    file="Level 0/sikhw/desert_n_w2.tmx">
+  <!-- Ground level -->
 
-	    <attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_n_w2" level="0" x="499104" y="500384"
+      file="Level 0/sikhw/desert_n_w2.tmx">
 
-	</zone>
+      <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_w2" level="0" x="499104" y="500512"
-		file="Level 0/sikhw/desert_w2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_w2" level="0" x="499104" y="500512"
+    file="Level 0/sikhw/desert_w2.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_s_w2" level="0" x="499104" y="500640"
-		file="Level 0/sikhw/desert_s_w2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s_w2" level="0" x="499104" y="500640"
+    file="Level 0/sikhw/desert_s_w2.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_s2_w2" level="0" x="499104" y="500768"
-		file="Level 0/sikhw/desert_s2_w2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s2_w2" level="0" x="499104" y="500768"
+    file="Level 0/sikhw/desert_s2_w2.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<!--   -->
 
-	<zone name="0_sikhw_desert_nw" level="0" x="499232" y="500384"
-		file="Level 0/sikhw/desert_nw.tmx">
+  <!--   -->
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_nw" level="0" x="499232" y="500384"
+    file="Level 0/sikhw/desert_nw.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_w" level="0" x="499232" y="500512"
-	    file="Level 0/sikhw/desert_w.tmx">
 
-	    <attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_w" level="0" x="499232" y="500512"
+      file="Level 0/sikhw/desert_w.tmx">
 
-	</zone>
+      <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_sw" level="0" x="499232" y="500640"
-		file="Level 0/sikhw/desert_sw.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_sw" level="0" x="499232" y="500640"
+    file="Level 0/sikhw/desert_sw.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_s2_w" level="0" x="499232" y="500768"
-		file="Level 0/sikhw/desert_s2_w.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s2_w" level="0" x="499232" y="500768"
+    file="Level 0/sikhw/desert_s2_w.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<!--   -->
 
-	<zone name="0_sikhw_desert_n" level="0" x="499360" y="500384"
-		file="Level 0/sikhw/desert_n.tmx">
+  <!--   -->
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_n" level="0" x="499360" y="500384"
+    file="Level 0/sikhw/desert_n.tmx">
 
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	</zone>
 
+  </zone>
 
-	<zone name="0_sikhw_city" level="0" x="499360" y="500512"
-		file="Level 0/sikhw/city.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_city" level="0" x="499360" y="500512"
+    file="Level 0/sikhw/city.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_s" level="0" x="499360" y="500640"
-		file="Level 0/sikhw/desert_s.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s" level="0" x="499360" y="500640"
+    file="Level 0/sikhw/desert_s.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_s2" level="0" x="499360" y="500768"
-		file="Level 0/sikhw/desert_s2.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s2" level="0" x="499360" y="500768"
+    file="Level 0/sikhw/desert_s2.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<!--   -->
 
-	<zone name="0_sikhw_desert_ne" level="0" x="499488" y="500384"
-		file="Level 0/sikhw/desert_ne.tmx">
+  <!--   -->
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_ne" level="0" x="499488" y="500384"
+    file="Level 0/sikhw/desert_ne.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_e" level="0" x="499488" y="500512"
-		file="Level 0/sikhw/desert_e.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_e" level="0" x="499488" y="500512"
+    file="Level 0/sikhw/desert_e.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
+  </zone>
 
-	<zone name="0_sikhw_desert_se" level="0" x="499488" y="500640"
-		file="Level 0/sikhw/desert_se.tmx">
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_se" level="0" x="499488" y="500640"
+    file="Level 0/sikhw/desert_se.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
 
-	<zone name="0_sikhw_desert_s2_e" level="0" x="499488" y="500768"
-		file="Level 0/sikhw/desert_s2_e.tmx">
+  </zone>
 
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
+  <zone name="0_sikhw_desert_s2_e" level="0" x="499488" y="500768"
+    file="Level 0/sikhw/desert_s2_e.tmx">
 
-	</zone>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
+    </attributes>
+
+  </zone>
 
 </zones>

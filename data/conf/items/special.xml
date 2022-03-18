@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd">
+
   <item name="lucky charm">
     <type class="special" subclass="lucky_charm" tileid="-1"/>
     <description>You see a lucky charm. Some believe that it helps their karma in some way, but others think that is superstition.</description>
@@ -22,8 +25,7 @@
     </equipable>
   </item>
 
-
-   <item name="mithril clasp">
+  <item name="mithril clasp">
     <type class="special" subclass="mithril_clasp" tileid="-1"/>
     <description>You see a clasp made from mithril, it would provide the fastening for a cloak.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>

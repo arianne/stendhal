@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="stendhal ../zones.xsd ">
+    xsi:schemaLocation="stendhal ../zones.xsd">
+
   <!--
     ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it!
   -->
 
- <!--  Level 6 -->
+  <!--  Level 6 -->
 
 
- <!--  Level 5 -->
+  <!--  Level 5 -->
 
 
- <!--  Level 4 -->
+  <!--  Level 4 -->
 
 
- <!--  Level 3 -->
+  <!--  Level 3 -->
 
 
- <!--  Level 2 -->
+  <!--  Level 2 -->
 
 
- <!--  Level 1 -->
+  <!--  Level 1 -->
 
 
- <!--  Ground level -->
+  <!--  Ground level -->
   <zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
-    <configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC" />
+    <configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC"/>
 
     <!-- Clock -->
     <entity x="16" y="1">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
     </entity>
 
     <entity x="16" y="1">
@@ -43,20 +45,20 @@
 
     <!-- Portals -->
     <portal x="10" y="18" ref="out">
-      <destination zone="0_amazon_island_ne" ref="in" />
-      <attribute name="move.continuous" />
+      <destination zone="0_amazon_island_ne" ref="in"/>
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_amazon_prison_hut" file="interiors/amazon/prison_hut.tmx">
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC" />
+    <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC"/>
 
     <!-- Portals -->
     <portal x="7" y="14" ref="out">
-      <destination zone="0_amazon_island_sw" ref="in" />
-      <attribute name="move.continuous" />
+      <destination zone="0_amazon_island_sw" ref="in"/>
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>
@@ -69,8 +71,8 @@
 
     <entity x="43" y="90">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	  <parameter name="species">red lionfish</parameter>
-    	</implementation>
+        <parameter name="species">red lionfish</parameter>
+      </implementation>
     </entity>
 
     <entity x="93" y="19">
@@ -96,7 +98,7 @@
     </attributes>
 
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC" />
+    <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC"/>
 
     <entity x="11" y="81">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -116,8 +118,8 @@
 
     <!-- Portals -->
     <portal x="48" y="98" ref="in">
-      <destination zone="int_amazon_princess_hut" ref="out" />
-      <attribute name="move.continuous" />
+      <destination zone="int_amazon_princess_hut" ref="out"/>
+      <attribute name="move.continuous"/>
     </portal>
 
     <point-of-interest x="60" y="105">
@@ -143,8 +145,8 @@
 
     <!-- Portals -->
     <portal x="64" y="26" ref="in">
-      <destination zone="int_amazon_prison_hut" ref="out" />
-      <attribute name="move.continuous" />
+      <destination zone="int_amazon_prison_hut" ref="out"/>
+      <attribute name="move.continuous"/>
     </portal>
 
   </zone>
@@ -164,7 +166,7 @@
   </zone>
 
 
- <!--  Level -1 -->
+  <!--  Level -1 -->
 
 
   <zone name="-1_amazon_caves" level="-1" x="501152" y="499744" file="Level -1/amazon/caves.tmx">
@@ -177,21 +179,21 @@
   </zone>
 
 
- <!--  Level -2 -->
+  <!--  Level -2 -->
 
 
- <!--  Level -3 -->
+  <!--  Level -3 -->
 
 
- <!--  Level -4 -->
+  <!--  Level -4 -->
 
 
- <!--  Level -5 -->
+  <!--  Level -5 -->
 
 
- <!--  Level -6 -->
+  <!--  Level -6 -->
 
 
- <!--  Level -7 -->
+  <!--  Level -7 -->
 
 </zones>

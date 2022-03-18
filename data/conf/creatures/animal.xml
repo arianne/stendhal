@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
-
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: crustacean -->
 
@@ -28,8 +27,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="click-clack-click"/>
-        <sound value="click-clack-1" />
-        <sound value="click-1" />
+        <sound value="click-clack-1"/>
+        <sound value="click-1"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -38,7 +37,6 @@
   </creature>
 
   <!-- END: crustacean -->
-
 
   <!-- START: cervidae -->
 
@@ -102,7 +100,6 @@
 
   <!-- END: cervidae -->
 
-
   <!-- START: bat -->
 
   <creature name="bat">
@@ -118,7 +115,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
-   	<corpse name="small_winged" harmless="winged_bat" />
+    <corpse name="small_winged" harmless="winged_bat"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -126,9 +123,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="bat-1" />
-        <sound value="bat-2" />
-        <sound value="bat-3" />
+        <sound value="bat-1"/>
+        <sound value="bat-2"/>
+        <sound value="bat-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -151,7 +148,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
-    <corpse name="small_winged" harmless="winged_bat" />
+    <corpse name="small_winged" harmless="winged_bat"/>
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="bat entrails" quantity="[1,1]" probability="60.0"/>
@@ -160,9 +157,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="bat-1" />
-        <sound value="bat-2" />
-        <sound value="bat-3" />
+        <sound value="bat-1"/>
+        <sound value="bat-2"/>
+        <sound value="bat-3"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -185,7 +182,7 @@
     <level value="150"/>
     <experience value="33501"/>
     <respawn value="12000"/> <!-- 60 minutes -->
-   	<corpse name="winged_2x2"/>
+    <corpse name="winged_2x2"/>
     <drops>
       <item value="ham" quantity="[3,5]" probability="5.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -194,9 +191,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="bat-1" />
-        <sound value="bat-2" />
-        <sound value="bat-3" />
+        <sound value="bat-1"/>
+        <sound value="bat-2"/>
+        <sound value="bat-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -219,7 +216,7 @@
     <level value="154"/>
     <experience value="37090"/>
     <respawn value="12000"/> <!-- 60 minutes -->
-   	<corpse name="winged_2x2"/>
+    <corpse name="winged_2x2"/>
     <drops>
       <item value="ham" quantity="[5,8]" probability="5.0"/>
       <item value="greater potion" quantity="[2,4]" probability="30.0"/>
@@ -230,9 +227,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="bat-1" />
-        <sound value="bat-2" />
-        <sound value="bat-3" />
+        <sound value="bat-1"/>
+        <sound value="bat-2"/>
+        <sound value="bat-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -243,7 +240,6 @@
   </creature>
 
   <!-- END: bat -->
-
 
   <!-- START: suidae -->
 
@@ -272,7 +268,7 @@
         <noise state="idle follow fight" value="oink"/>
         <noise state="idle follow fight" value="oink oink"/>
         <noise state="idle follow fight" value="shnuffle"/>
-        <sound value="pig-squeal-01" />
+        <sound value="pig-squeal-01"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -313,7 +309,6 @@
 
   <!-- END: suidae -->
 
-
   <!-- START: bovinae -->
 
   <creature name="bull">
@@ -338,7 +333,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="MOOOOO!!!"/>
-        <sound value="cow-2" />
+        <sound value="cow-2"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -369,15 +364,14 @@
       <says>
         <noise state="idle follow fight" value="Moooo       moooo           mooooooo"/>
         <noise state="idle follow fight" value="mooooo"/>
-        <sound value="cow-1" />
-        <sound value="cowbell-1" />
+        <sound value="cow-1"/>
+        <sound value="cowbell-1"/>
       </says>
       <profile name="animal"/>
     </ai>
   </creature>
 
   <!-- END: bovinae -->
-
 
   <!-- START: capra & ovis -->
 
@@ -402,8 +396,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="goat-1" />
-        <sound value="goat-2" />
+        <sound value="goat-1"/>
+        <sound value="goat-2"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -433,10 +427,10 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Baaaaaa"/>
-        <sound value="sheep-01" />
-        <sound value="sheep-02" />
-        <sound value="sheep-03" />
-        <sound value="sheep-04" />
+        <sound value="sheep-01"/>
+        <sound value="sheep-02"/>
+        <sound value="sheep-03"/>
+        <sound value="sheep-04"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -444,7 +438,6 @@
   </creature>
 
   <!-- END: capra & ovis -->
-
 
   <!-- START: equidae -->
 
@@ -512,7 +505,6 @@
 
   <!-- END: equidae -->
 
-
   <!-- START: primate -->
 
   <creature name="monkey">
@@ -541,9 +533,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
-        <sound value="monkey-1" />
-        <sound value="monkey-2" />
-        <sound value="monkey-3" />
+        <sound value="monkey-1"/>
+        <sound value="monkey-2"/>
+        <sound value="monkey-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -553,12 +545,11 @@
 
   <!-- END: primate -->
 
-
   <!-- START: canine -->
 
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
-	<description>You see a fox, it becomes extinct!</description>
+    <description>You see a fox, it becomes extinct!</description>
     <attributes>
       <atk value="55"/>
       <def value="8"/>
@@ -585,7 +576,7 @@
 
   <creature name="wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:20"/>
-	<description>You see a wolf. It is wild and very hungry!</description>
+  <description>You see a wolf. It is wild and very hungry!</description>
     <attributes>
       <atk value="46"/>
       <def value="9"/>
@@ -619,7 +610,7 @@
 
   <creature name="big bad wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-	<description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
+  <description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
     <attributes>
       <atk value="46"/>
       <def value="9"/>
@@ -654,7 +645,6 @@
   </creature>
 
   <!-- END: canine -->
-
 
   <!-- START: feline -->
 
@@ -713,12 +703,12 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Miiiiaaauuu!"/>
-        <sound value="tiger-roar-01" />
-        <sound value="tiger-roar-02" />
-        <sound value="tiger-snarl-01" />
-        <sound value="tiger-snarl-02" />
-        <sound value="tiger-snarl-03" />
-        <sound value="tiger-snarl-04" />
+        <sound value="tiger-roar-01"/>
+        <sound value="tiger-roar-02"/>
+        <sound value="tiger-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-03"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -727,7 +717,6 @@
   </creature>
 
   <!-- END: feline -->
-
 
   <!-- START: pachyderm -->
 
@@ -754,8 +743,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
-        <sound value="elephant-1" />
-        <sound value="elephant-2" />
+        <sound value="elephant-1"/>
+        <sound value="elephant-2"/>
       </says>
       <profile name="animal"/>
       <profile name="coward"/>
@@ -786,8 +775,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
-        <sound value="elephant-1" />
-        <sound value="elephant-2" />
+        <sound value="elephant-1"/>
+        <sound value="elephant-2"/>
       </says>
       <profile name="offensive"/>
       <profile name="animal"/>
@@ -818,8 +807,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
-        <sound value="elephant-1" />
-        <sound value="elephant-2" />
+        <sound value="elephant-1"/>
+        <sound value="elephant-2"/>
       </says>
       <profile name="offensive"/>
       <profile name="animal"/>
@@ -848,8 +837,8 @@
     </drops>
     <ai>
       <says>
-        <sound value="elephant-1" />
-        <sound value="elephant-2" />
+        <sound value="elephant-1"/>
+        <sound value="elephant-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -858,7 +847,6 @@
   </creature>
 
   <!-- END: pachyderm -->
-
 
   <!-- START: ursidae -->
 
@@ -1026,6 +1014,5 @@
   </creature>
 
   <!-- END: ursidae -->
-
 
 </creatures>

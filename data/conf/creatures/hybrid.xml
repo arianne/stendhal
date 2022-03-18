@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: arachnid -->
 
@@ -22,7 +23,7 @@
       <item value="money" quantity="[2000,10000]" probability="80.0"/>
       <item value="silk gland" quantity="[1,3]" probability="20.0"/>
       <item value="mega poison" quantity="[1,2]" probability="10.0"/>
-      <item value="medicinal ring" quantity="[1,1]" probability="1.0" />
+      <item value="medicinal ring" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
       <slot name="rhand" item="dark dagger"/>
@@ -67,8 +68,8 @@
     </equips>
     <ai>
       <says>
-	    <sound value="mutant-frog-1" />
-	    <sound value="mutant-frog-2" />
+      <sound value="mutant-frog-1"/>
+      <sound value="mutant-frog-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -102,8 +103,8 @@
     </equips>
     <ai>
       <says>
-	    <sound value="mutant-frog-1" />
-	    <sound value="mutant-frog-2" />
+      <sound value="mutant-frog-1"/>
+      <sound value="mutant-frog-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -137,8 +138,8 @@
     </equips>
     <ai>
       <says>
-	    <sound value="mutant-frog-1" />
-	    <sound value="mutant-frog-2" />
+      <sound value="mutant-frog-1"/>
+      <sound value="mutant-frog-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -175,9 +176,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="You will never find the way out!"/>
-        <sound value="monster-11" />
-        <sound value="monster-12" />
-        <sound value="monster-14" />
+        <sound value="monster-11"/>
+        <sound value="monster-12"/>
+        <sound value="monster-14"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -213,9 +214,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="I am the king of this area!"/>
-        <sound value="monster-1" />
-        <sound value="monster-2" />
-        <sound value="monster-16" />
+        <sound value="monster-1"/>
+        <sound value="monster-2"/>
+        <sound value="monster-16"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -244,19 +245,19 @@
     <respawn value="2400"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="medicinal ring" quantity="[1,1]" probability="0.5" />
+      <item value="medicinal ring" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2" />
-        <sound value="rattlesnake-1" />
-        <sound value="naga_hiss-01" />
-        <sound value="naga_hiss-02" />
-        <sound value="naga_hiss-03" />
-        <sound value="naga_hiss-04" />
-        <sound value="naga_hiss-05" />
+        <sound value="scream-fem-2"/>
+        <sound value="rattlesnake-1"/>
+        <sound value="naga_hiss-01"/>
+        <sound value="naga_hiss-02"/>
+        <sound value="naga_hiss-03"/>
+        <sound value="naga_hiss-04"/>
+        <sound value="naga_hiss-05"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -288,13 +289,13 @@
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2" />
-        <sound value="rattlesnake-1" />
-        <sound value="naga_hiss-01" />
-        <sound value="naga_hiss-02" />
-        <sound value="naga_hiss-03" />
-        <sound value="naga_hiss-04" />
-        <sound value="naga_hiss-05" />
+        <sound value="scream-fem-2"/>
+        <sound value="rattlesnake-1"/>
+        <sound value="naga_hiss-01"/>
+        <sound value="naga_hiss-02"/>
+        <sound value="naga_hiss-03"/>
+        <sound value="naga_hiss-04"/>
+        <sound value="naga_hiss-05"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -328,13 +329,13 @@
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2" />
-        <sound value="rattlesnake-1" />
-        <sound value="naga_hiss-01" />
-        <sound value="naga_hiss-02" />
-        <sound value="naga_hiss-03" />
-        <sound value="naga_hiss-04" />
-        <sound value="naga_hiss-05" />
+        <sound value="scream-fem-2"/>
+        <sound value="rattlesnake-1"/>
+        <sound value="naga_hiss-01"/>
+        <sound value="naga_hiss-02"/>
+        <sound value="naga_hiss-03"/>
+        <sound value="naga_hiss-04"/>
+        <sound value="naga_hiss-05"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -359,15 +360,15 @@
     <respawn value="3400"/>
     <corpse name="humanoid_2x2"/>
     <drops>
-      <item value="medicinal ring" quantity="[1,1]" probability="1.5" />
+      <item value="medicinal ring" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="rattlesnake-1" />
-        <sound value="lamia_hiss-01" />
-        <sound value="lamia_hiss-02" />
+        <sound value="rattlesnake-1"/>
+        <sound value="lamia_hiss-01"/>
+        <sound value="lamia_hiss-02"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -652,13 +653,13 @@
     <respawn value="3000"/>
     <corpse name="humanoid_2x2"/>
     <drops>
-      <item value="xeno shield" quantity="[1,1]" probability="1.0" />
-      <item value="xeno cloak" quantity="[1,1]" probability="1.5" />
-      <item value="xeno boots" quantity="[1,1]" probability="2.5" />
-      <item value="xeno sword" quantity="[1,1]" probability="0.5" />
-      <item value="xeno armor" quantity="[1,1]" probability="1.5" />
-      <item value="xeno legs" quantity="[1,1]" probability="1.5" />
-      <item value="xeno helmet" quantity="[1,1]" probability="1.5" />
+      <item value="xeno shield" quantity="[1,1]" probability="1.0"/>
+      <item value="xeno cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno boots" quantity="[1,1]" probability="2.5"/>
+      <item value="xeno sword" quantity="[1,1]" probability="0.5"/>
+      <item value="xeno armor" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno legs" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno helmet" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>

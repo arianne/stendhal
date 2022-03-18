@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd">
 
 <!-- disabled
   <item name="backpack" condition="stendhal.testserver">
@@ -8,8 +10,8 @@
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="bag"/>
-      <undroppableondeath value="1" />
-      <autobind value="1" />
+      <undroppableondeath value="1"/>
+      <autobind value="1"/>
       <slot_size value="15"/>
     </attributes>
     <weight value="1.0"/>
@@ -54,7 +56,7 @@
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="portfolio"/>
-      <undroppableondeath value="1" />
+      <undroppableondeath value="1"/>
       <autobind value="1"/>
       <slot_size value="9"/>
     </attributes>

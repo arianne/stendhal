@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="stendhal ../zones.xsd ">
+    xsi:schemaLocation="stendhal ../zones.xsd">
+
   <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
@@ -14,7 +16,7 @@
 
     <!--Don't allow teleporting in as we don't want marked scrolls made or
       ring abused -->
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 
     <entity x="1" y="1">
       <implementation
@@ -32,13 +34,13 @@
       </implementation>
     </entity>
     <portal x="29" y="6" ref="exit1">
-      <destination zone="6_kikareukin_islands" ref="cloud_exit1" />
+      <destination zone="6_kikareukin_islands" ref="cloud_exit1"/>
     </portal>
     <portal x="9" y="47" ref="exit2">
-      <destination zone="6_kikareukin_islands" ref="cloud_exit2" />
+      <destination zone="6_kikareukin_islands" ref="cloud_exit2"/>
     </portal>
     <portal x="51" y="18" ref="exit3">
-      <destination zone="6_kikareukin_islands" ref="cloud_exit3" />
+      <destination zone="6_kikareukin_islands" ref="cloud_exit3"/>
     </portal>
   </zone>
 
@@ -52,7 +54,7 @@
     </attributes>
 
     <configurator
-      class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener" />
+      class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener"/>
 
     <entity x="1" y="1">
       <implementation
@@ -70,19 +72,19 @@
       </implementation>
     </entity>
     <portal x="66" y="63" ref="exit">
-      <destination zone="0_semos_mountain_n2_w3" ref="kikareukin_exit" />
+      <destination zone="0_semos_mountain_n2_w3" ref="kikareukin_exit"/>
     </portal>
     <portal x="25" y="8" ref="cloud_exit1">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
     <portal x="6" y="110" ref="cloud_exit2">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
     <portal x="93" y="9" ref="cloud_exit3">
       <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
   </zone>
 
@@ -175,7 +177,7 @@
     </entity>
 
     <portal x="16" y="96" ref="entrance">
-      <destination zone="0_semos_mountain_n_w4" ref="kikareukin_entrance" />
+      <destination zone="0_semos_mountain_n_w4" ref="kikareukin_entrance"/>
     </portal>
   </zone>
 

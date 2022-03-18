@@ -1,112 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
-	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
-	xmlns:Q1="stendhal">
+    xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+    xmlns:Q1="stendhal">
 
-	<element name="items" type="Q1:itemGroup"></element>
+  <element name="items" type="Q1:itemGroup"></element>
 
-	<complexType name="itemGroup">
-		<sequence>
-			<element name="item" type="Q1:itemType" minOccurs="0"
-				maxOccurs="unbounded"></element>
-		</sequence>
-	</complexType>
+  <complexType name="itemGroup">
+    <sequence>
+      <element name="item" type="Q1:itemType" minOccurs="0"
+        maxOccurs="unbounded"></element>
+    </sequence>
+  </complexType>
 
-	<complexType name="itemType">
-		<sequence>
-			<element name="type" type="Q1:typeType" />
-			<element name="description" type="string"></element>
-			<element name="implementation" type="Q1:implementation"></element>
-			<element name="behavior" type="Q1:behavior" minOccurs="0" maxOccurs="1"></element>
-			<element name="attributes" type="Q1:attributes"></element>
-			<element name="weight" type="Q1:attribute" minOccurs="0" maxOccurs="1" />
-			<element name="value" type="Q1:attribute" minOccurs="0" maxOccurs="1" />
-			<element name="preview" type="string" minOccurs="0" maxOccurs="1" />
-			<element name="damage" type="Q1:damage" minOccurs="0"></element>
-			<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
-			<element name="equipable" type="Q1:equipable"></element>
-		</sequence>
-		<attribute name="name" type="string" use="required"></attribute>
-	</complexType>
+  <complexType name="itemType">
+    <sequence>
+      <element name="type" type="Q1:typeType"/>
+      <element name="description" type="string"></element>
+      <element name="implementation" type="Q1:implementation"></element>
+      <element name="behavior" type="Q1:behavior" minOccurs="0" maxOccurs="1"></element>
+      <element name="attributes" type="Q1:attributes"></element>
+      <element name="weight" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+      <element name="value" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+      <element name="preview" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="damage" type="Q1:damage" minOccurs="0"></element>
+      <element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="equipable" type="Q1:equipable"></element>
+    </sequence>
+    <attribute name="name" type="string" use="required"></attribute>
+  </complexType>
 
-	<complexType name="typeType">
-		<attribute name="class" type="string"></attribute>
-		<attribute name="subclass" type="string"></attribute>
-		<attribute name="tileid" type="int"></attribute>
-	</complexType>
+  <complexType name="typeType">
+    <attribute name="class" type="string"></attribute>
+    <attribute name="subclass" type="string"></attribute>
+    <attribute name="tileid" type="int"></attribute>
+  </complexType>
 
-	<complexType name="implementation">
-		<attribute name="class-name" type="string"></attribute>
-	</complexType>
+  <complexType name="implementation">
+    <attribute name="class-name" type="string"></attribute>
+  </complexType>
 
-	<complexType name="behavior">
-		<sequence>
-			<element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-		<attribute name="class-name" type="string"/>
-	</complexType>
+  <complexType name="behavior">
+    <sequence>
+      <element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="class-name" type="string"/>
+  </complexType>
 
-	<complexType name="pair">
-		<attribute name="name" type="string"/>
-		<attribute name="value" type="string"/>
-	</complexType>
+  <complexType name="pair">
+    <attribute name="name" type="string"/>
+    <attribute name="value" type="string"/>
+  </complexType>
 
-	<complexType name="attributes">
-		<sequence>
-			<element name="infostring" type="Q1:attribute" minOccurs="0"/>
-			<element name="atk" type="Q1:attribute" minOccurs="0"/>
-			<element name="def" type="Q1:attribute" minOccurs="0"/>
-			<element name="ratk" type="Q1:attribute" minOccurs="0"/>
-			<element name="immunization" type="Q1:attribute" minOccurs="0"/>
-			<element name="amount" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="frequency" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="range" type="Q1:attribute" minOccurs="0"/>
-			<element name="quantity" type="Q1:attribute" minOccurs="0"/>
-			<element name="max_quantity" type="Q1:attribute" minOccurs="0"/>
-			<element name="regen" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="rate" type="Q1:attribute" minOccurs="0"/>
-			<element name="lifesteal" type="Q1:attribute" minOccurs="0"/>
-			<element name="persistent" type="Q1:attribute" minOccurs="0"/>
-			<element name="life_support" type="Q1:attribute" minOccurs="0"/>
-			<element name="slot_name" type="Q1:attribute" minOccurs="0"/>
-			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"/>
-			<element name="autobind" type="Q1:attribute" minOccurs="0"/>
-			<element name="slot_size" type="Q1:attribute" minOccurs="0"/>
-			<element name="menu" type="Q1:attribute" minOccurs="0"/>
-			<element name="durability" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
-			<element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded" />
-			<element name="itemset" type="Q1:attribute" minOccurs="0"/>
-			<element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
+  <complexType name="attributes">
+    <sequence>
+      <element name="infostring" type="Q1:attribute" minOccurs="0"/>
+      <element name="atk" type="Q1:attribute" minOccurs="0"/>
+      <element name="def" type="Q1:attribute" minOccurs="0"/>
+      <element name="ratk" type="Q1:attribute" minOccurs="0"/>
+      <element name="immunization" type="Q1:attribute" minOccurs="0"/>
+      <element name="amount" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="frequency" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="range" type="Q1:attribute" minOccurs="0"/>
+      <element name="quantity" type="Q1:attribute" minOccurs="0"/>
+      <element name="max_quantity" type="Q1:attribute" minOccurs="0"/>
+      <element name="regen" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="rate" type="Q1:attribute" minOccurs="0"/>
+      <element name="lifesteal" type="Q1:attribute" minOccurs="0"/>
+      <element name="persistent" type="Q1:attribute" minOccurs="0"/>
+      <element name="life_support" type="Q1:attribute" minOccurs="0"/>
+      <element name="slot_name" type="Q1:attribute" minOccurs="0"/>
+      <element name="undroppableondeath" type="Q1:attribute" minOccurs="0"/>
+      <element name="autobind" type="Q1:attribute" minOccurs="0"/>
+      <element name="slot_size" type="Q1:attribute" minOccurs="0"/>
+      <element name="menu" type="Q1:attribute" minOccurs="0"/>
+      <element name="durability" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+      <element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="itemset" type="Q1:attribute" minOccurs="0"/>
+      <element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+    </sequence>
+  </complexType>
 
-	<complexType name="attribute">
-		<attribute name="value" type="string"></attribute>
-		<attribute name="condition" type="string"/>
-	</complexType>
+  <complexType name="attribute">
+    <attribute name="value" type="string"></attribute>
+    <attribute name="condition" type="string"/>
+  </complexType>
 
-	<complexType name="equipable">
-		<sequence>
-			<element name="slot" type="Q1:slot" minOccurs="0" maxOccurs="unbounded"></element>
-		</sequence>
-	</complexType>
+  <complexType name="equipable">
+    <sequence>
+      <element name="slot" type="Q1:slot" minOccurs="0" maxOccurs="unbounded"></element>
+    </sequence>
+  </complexType>
 
-	<complexType name="slot">
-		<attribute name="name" type="string"></attribute>
-	</complexType>
+  <complexType name="slot">
+    <attribute name="name" type="string"></attribute>
+  </complexType>
 
-	<complexType name="damage">
-		<attribute name="type" type="string" />
-	</complexType>
+  <complexType name="damage">
+    <attribute name="type" type="string"/>
+  </complexType>
 
-	<complexType name="susceptibility">
-		<attribute name="type" type="string" />
-		<attribute name="value" type="decimal" />
-	</complexType>
+  <complexType name="susceptibility">
+    <attribute name="type" type="string"/>
+    <attribute name="value" type="decimal"/>
+  </complexType>
 
-	<complexType name="stresist">
-		<attribute name="type" type="string" />
-		<attribute name="value" type="decimal" />
-		<attribute name="slots" type="string" />
-	</complexType>
+  <complexType name="stresist">
+    <attribute name="type" type="string"/>
+    <attribute name="value" type="decimal"/>
+    <attribute name="slots" type="string"/>
+  </complexType>
 
 </schema>

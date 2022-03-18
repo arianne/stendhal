@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../equipment.xsd">
 
   <!-- START: Status Protection -->
 
@@ -50,7 +52,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="poisoned" value="0.75"/>
-			<min_level value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>

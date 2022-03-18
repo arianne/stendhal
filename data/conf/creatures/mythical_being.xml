@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
-
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: mermaid -->
 
@@ -214,7 +213,6 @@
 
   <!-- END: mermaid -->
 
-
   <!-- START: unicorn -->
 
   <creature name="unicorn">
@@ -331,7 +329,6 @@
   </creature>
 
   <!-- END: unicorn -->
-
 
   <!-- START: pegasus -->
 
@@ -473,7 +470,6 @@
 
   <!-- END: pegasus -->
 
-
   <!-- START: centaur -->
 
   <creature name="centaur">
@@ -600,6 +596,5 @@
   </creature>
 
   <!-- END: centaur -->
-
 
 </creatures>

@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <spells xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../spells.xsd ">
-	<spell name="freeze">
-		<implementation class-name="games.stendhal.server.entity.spell.SlowDownSpell"/>
-		<nature value="ice"/>
-		<attributes>
-			<mana value="5" />
-			<cooldown value="1" />
-			<minimum-level value="0" />
-			<range value="10" />
-			<atk value="10" />
-			<def value="0" />
-			<amount value="30" />
-			<regen  value="0" />
-			<rate  value="0" />
-			<lifesteal value="0" />
-			<modifier value="-0.25" />
-		</attributes>
-	</spell>
+    xsi:schemaLocation="stendhal ../spells.xsd">
+
+  <spell name="freeze">
+    <implementation class-name="games.stendhal.server.entity.spell.SlowDownSpell"/>
+    <nature value="ice"/>
+    <attributes>
+      <mana value="5"/>
+      <cooldown value="1"/>
+      <minimum-level value="0"/>
+      <range value="10"/>
+      <atk value="10"/>
+      <def value="0"/>
+      <amount value="30"/>
+      <regen  value="0"/>
+      <rate  value="0"/>
+      <lifesteal value="0"/>
+      <modifier value="-0.25"/>
+    </attributes>
+  </spell>
+
 </spells>

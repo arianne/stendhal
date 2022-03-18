@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
@@ -110,8 +110,8 @@
       <item value="wooden bow" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
-      <slot name="lhand" item="wooden arrow" quantity="10000" />
-      <slot name="rhand" item="wooden bow" quantity="1" />
+      <slot name="lhand" item="wooden arrow" quantity="10000"/>
+      <slot name="rhand" item="wooden bow" quantity="1"/>
     </equips>
     <ai>
       <says>

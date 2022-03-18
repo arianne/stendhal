@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<riddles>
-<comment>These are riddles for a quest in stendhal by the Grim Reaper in Hell.</comment>
-<entry key="To answer this riddle, repeat - three blind mice, three blind mice">three blind mice, three blind mice</entry>
-<entry key="What type of animal is pink and the flesh makes pork and bacon?">pig</entry>
-<entry key="What number comes after 9?">10</entry>
 
-<entry key="How many months there is in a year?">12</entry>
-<!-- the parser knows twelve, but not dozen -->
-<entry key="How many months there is in a year?">dozen</entry>
+<riddles>
+
+  <comment>These are riddles for a quest in stendhal by the Grim Reaper in Hell.</comment>
+  <entry key="To answer this riddle, repeat - three blind mice, three blind mice">three blind mice, three blind mice</entry>
+  <entry key="What type of animal is pink and the flesh makes pork and bacon?">pig</entry>
+  <entry key="What number comes after 9?">10</entry>
+  <entry key="How many months there is in a year?">12</entry>
+  <!-- the parser knows twelve, but not dozen -->
+  <entry key="How many months there is in a year?">dozen</entry>
+
 </riddles>

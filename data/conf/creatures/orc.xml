@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: orc -->
 
@@ -29,9 +30,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -60,13 +61,13 @@
       <item value="minor potion" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
-      <slot name="lhand" item="wooden spear" quantity="10000" />
+      <slot name="lhand" item="wooden spear" quantity="10000"/>
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -101,9 +102,9 @@
     </equips>
     <ai>
     <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
     </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -136,9 +137,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -174,9 +175,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -215,9 +216,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -249,9 +250,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -285,9 +286,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -321,9 +322,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="orc-snarl-01" />
-      	<sound value="tiger-snarl-02" />
-      	<sound value="tiger-snarl-04" />
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: chaos -->
 
@@ -35,7 +36,7 @@
       <says>
         <noise state="idle follow fight" value="Wheee!!"/>
         <noise state="idle follow fight" value="It's fun up here!"/>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -76,7 +77,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Charrrrrrrrge!"/>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -117,14 +118,14 @@
     </equips>
     <ai>
       <says>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-   	  <profile name="attack weakest"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -155,7 +156,7 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -197,7 +198,7 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -236,7 +237,7 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
+        <sound value="roar-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -277,8 +278,8 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-dragon-1" />
-        <sound value="roar-dragon-2" />
+        <sound value="roar-dragon-1"/>
+        <sound value="roar-dragon-2"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -323,9 +324,9 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
-        <sound value="roar-dragon-1" />
-        <sound value="wings-flap-large-1" />
+        <sound value="roar-large-1"/>
+        <sound value="roar-dragon-1"/>
+        <sound value="wings-flap-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -366,8 +367,8 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
-        <sound value="wings-flap-large-1" />
+        <sound value="roar-large-1"/>
+        <sound value="wings-flap-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -406,8 +407,8 @@
     </abilities>
     <ai>
       <says>
-        <sound value="roar-large-1" />
-        <sound value="wings-flap-large-1" />
+        <sound value="roar-large-1"/>
+        <sound value="wings-flap-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

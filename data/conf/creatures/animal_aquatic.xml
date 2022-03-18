@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: cephalopod -->
 
   <creature name="kraken">
-	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
-	<description>From the depths of the sea rises a Kraken!</description>
-	<attributes>
-	<atk value="887"/>
-	<def value="114"/>
-	<hp value="1935"/>
-	<speed value="1"/>
-	<size value="3,2"/>
-	</attributes>
-	<level value="155"/>
-	<experience value="38830"/>
+  <type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
+  <description>From the depths of the sea rises a Kraken!</description>
+  <attributes>
+  <atk value="887"/>
+  <def value="114"/>
+  <hp value="1935"/>
+  <speed value="1"/>
+  <size value="3,2"/>
+  </attributes>
+  <level value="155"/>
+  <experience value="38830"/>
     <respawn value="5400"/>
     <corpse name="animal_2x2"/>
     <drops>
@@ -41,17 +41,17 @@
   </creature>
 
   <creature name="neo kraken">
-	<type class="huge_animal" subclass="kraken_neo" tileid="huge_animal.png:0"/>
-	<description></description>
-	<attributes>
-	  <atk value="992"/>
-	  <def value="122"/>
-	  <hp value="3000"/>
-	  <speed value="1"/>
-	  <size value="3,2"/>
-	</attributes>
-	<level value="180"/>
-	<experience value="57400"/>
+    <type class="huge_animal" subclass="kraken_neo" tileid="huge_animal.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="992"/>
+      <def value="122"/>
+      <hp value="3000"/>
+      <speed value="1"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="180"/>
+    <experience value="57400"/>
     <respawn value="18600"/> <!-- 93 minutes -->
     <corpse name="animal_2x2"/>
     <drops>
@@ -90,7 +90,7 @@
       <size value="2,2"/>
     </attributes>
     <level value="39"/>
-    <experience value="1500" />
+    <experience value="1500"/>
     <respawn value="1230"/>
     <corpse name="shark_2x2" harmless="shark_2x2"/>
     <drops>
@@ -113,7 +113,7 @@
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
    </ai>
- </creature>
+  </creature>
 
   <!-- END: fish -->
 

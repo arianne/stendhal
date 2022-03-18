@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../equipment.xsd ">
-	<!-- Weapons that can be given to creatures to adjust their rate of attack,
-	without giving them a visible weapon. These should never be seen as actual
-	items in the game. -->
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../equipment.xsd">
+
+  <!-- Weapons that can be given to creatures to adjust their rate of attack,
+  without giving them a visible weapon. These should never be seen as actual
+  items in the game. -->
 
   <item name="dummy_ranged">
     <type class="ranged" subclass="dummy_ranged" tileid="-1"/>

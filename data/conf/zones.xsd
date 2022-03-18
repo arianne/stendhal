@@ -1,179 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
-	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
-	xmlns:Q1="stendhal">
+    xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+    xmlns:Q1="stendhal">
 
-	<complexType name="zone">
-		<annotation>
-			<documentation>
-				a zone can have 0 to many configurators
-			</documentation>
-		</annotation>
-		<sequence>
-			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
-			<choice minOccurs="0" maxOccurs="unbounded">
-				<element name="attributes" type="Q1:attributeGroup"
-					minOccurs="0" maxOccurs="unbounded"/>
-				<element name="configurator" type="Q1:configurator"
-					minOccurs="0" maxOccurs="unbounded"/>
-				<element name="point-of-interest" type="Q1:point-of-interest" minOccurs="0"
-					maxOccurs="unbounded"/>
-				<element name="portal" type="Q1:portal" minOccurs="0"
-					maxOccurs="unbounded"/>
-				<element name="entity" type="Q1:entity" minOccurs="0"
-					maxOccurs="unbounded" />
-				<element name="associated" type="Q1:associatedZones" minOccurs="0"
-					maxOccurs="1" />
-			</choice>
-		</sequence>
-		<attribute name="name" type="string" />
-		<attribute name="x" type="int" use="optional" />
-		<attribute name="y" type="int" use="optional" />
-		<attribute name="accessible" type="boolean" use="optional" default="true" />
-		<attribute name="level" type="int" use="optional" />
-		<attribute name="file" type="string" use="required" />
-	</complexType>
+  <complexType name="zone">
+    <annotation>
+      <documentation>
+        a zone can have 0 to many configurators
+      </documentation>
+    </annotation>
+    <sequence>
+      <element name="title" type="string" minOccurs="0" maxOccurs="1"/>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="attributes" type="Q1:attributeGroup"
+          minOccurs="0" maxOccurs="unbounded"/>
+        <element name="configurator" type="Q1:configurator"
+          minOccurs="0" maxOccurs="unbounded"/>
+        <element name="point-of-interest" type="Q1:point-of-interest" minOccurs="0"
+          maxOccurs="unbounded"/>
+        <element name="portal" type="Q1:portal" minOccurs="0"
+          maxOccurs="unbounded"/>
+        <element name="entity" type="Q1:entity" minOccurs="0"
+          maxOccurs="unbounded"/>
+        <element name="associated" type="Q1:associatedZones" minOccurs="0"
+          maxOccurs="1"/>
+      </choice>
+    </sequence>
+    <attribute name="name" type="string"/>
+    <attribute name="x" type="int" use="optional"/>
+    <attribute name="y" type="int" use="optional"/>
+    <attribute name="accessible" type="boolean" use="optional" default="true"/>
+    <attribute name="level" type="int" use="optional"/>
+    <attribute name="file" type="string" use="required"/>
+  </complexType>
 
-	<complexType name="zones">
-		<sequence>
-			<element name="zone" type="Q1:zone" maxOccurs="unbounded"
-				minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
+  <complexType name="zones">
+    <sequence>
+      <element name="zone" type="Q1:zone" maxOccurs="unbounded"
+        minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
 
-	<element name="zones" type="Q1:zones"></element>
+  <element name="zones" type="Q1:zones"></element>
 
-	<complexType name="point-of-interest">
-		<sequence minOccurs="1" maxOccurs="1">
-			<element name="name" type="string" minOccurs="1" maxOccurs="1" />
-			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
-			<element name="type" type="string" minOccurs="1" maxOccurs="1" />
-			<element name="description" type="string" minOccurs="0" maxOccurs="1" />
-			<element name="url" type="string" minOccurs="0" maxOccurs="1" />
-		</sequence>
-		<attribute name="x" type="int"></attribute>
-		<attribute name="y" type="int"></attribute>
-		<attribute name="condition" type="string" use="optional"></attribute>
-	</complexType>
+  <complexType name="point-of-interest">
+    <sequence minOccurs="1" maxOccurs="1">
+      <element name="name" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="title" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="type" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="description" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="url" type="string" minOccurs="0" maxOccurs="1"/>
+    </sequence>
+    <attribute name="x" type="int"></attribute>
+    <attribute name="y" type="int"></attribute>
+    <attribute name="condition" type="string" use="optional"></attribute>
+  </complexType>
 
-	<complexType name="attributeGroup">
-		<sequence>
-			<element name="parameter" type="Q1:parameterType" minOccurs="1"
-				maxOccurs="unbounded">
-			</element>
-		</sequence>
-		<attribute name="condition" type="string" use="optional"></attribute>
-	</complexType>
+  <complexType name="attributeGroup">
+    <sequence>
+      <element name="parameter" type="Q1:parameterType" minOccurs="1"
+        maxOccurs="unbounded">
+      </element>
+    </sequence>
+    <attribute name="condition" type="string" use="optional"></attribute>
+  </complexType>
 
-	<complexType name="portal">
-		<sequence minOccurs="1" maxOccurs="1">
-			<element name="destination" type="Q1:destination" minOccurs="0"
-				maxOccurs="1">
-			</element>
-			<element name="implementation" type="Q1:implementation"
-				minOccurs="0" maxOccurs="1"/>
-			<element name="attribute" type="Q1:attributeType"
-			    minOccurs="0" maxOccurs="unbounded"/>
-			<element name="associated" type="Q1:associatedZones"
-				minOccurs="0" maxOccurs="1"/>
-		</sequence>
-		<attribute name="x" type="int"></attribute>
-		<attribute name="y" type="int"></attribute>
-		<attribute name="ref" type="string"></attribute>
-		<attribute name="replacing" type="boolean"></attribute>
-		<attribute name="condition" type="string"></attribute>
-	</complexType>
-	<complexType name="configurator">
-		<sequence>
-			<element name="parameter" type="Q1:parameterType" minOccurs="0"
-				maxOccurs="unbounded"></element>
-		</sequence>
-		<attribute name="class-name" type="string"></attribute>
-		<attribute name="condition" type="string" use="optional"></attribute>
-	</complexType>
+  <complexType name="portal">
+    <sequence minOccurs="1" maxOccurs="1">
+      <element name="destination" type="Q1:destination" minOccurs="0"
+        maxOccurs="1">
+      </element>
+      <element name="implementation" type="Q1:implementation"
+        minOccurs="0" maxOccurs="1"/>
+      <element name="attribute" type="Q1:attributeType"
+          minOccurs="0" maxOccurs="unbounded"/>
+      <element name="associated" type="Q1:associatedZones"
+        minOccurs="0" maxOccurs="1"/>
+    </sequence>
+    <attribute name="x" type="int"></attribute>
+    <attribute name="y" type="int"></attribute>
+    <attribute name="ref" type="string"></attribute>
+    <attribute name="replacing" type="boolean"></attribute>
+    <attribute name="condition" type="string"></attribute>
+  </complexType>
+  <complexType name="configurator">
+    <sequence>
+      <element name="parameter" type="Q1:parameterType" minOccurs="0"
+        maxOccurs="unbounded"></element>
+    </sequence>
+    <attribute name="class-name" type="string"></attribute>
+    <attribute name="condition" type="string" use="optional"></attribute>
+  </complexType>
 
-	<complexType name="destination">
-		<sequence></sequence>
-		<attribute name="zone" type="string"></attribute>
-		<attribute name="ref" type="string"></attribute>
-	</complexType>
+  <complexType name="destination">
+    <sequence></sequence>
+    <attribute name="zone" type="string"></attribute>
+    <attribute name="ref" type="string"></attribute>
+  </complexType>
 
-	<complexType name="parameterType">
-		<simpleContent>
-			<extension base="string">
-				<attribute name="name" type="string"></attribute>
-				<attribute name="condition" type="string" use="optional"></attribute>
-			</extension>
-		</simpleContent>
-	</complexType>
+  <complexType name="parameterType">
+    <simpleContent>
+      <extension base="string">
+        <attribute name="name" type="string"></attribute>
+        <attribute name="condition" type="string" use="optional"></attribute>
+      </extension>
+    </simpleContent>
+  </complexType>
 
-	<complexType name="ConfiguratorGroup">
-		<sequence>
-			<element name="configurator" type="Q1:configurator"
-				minOccurs="0" maxOccurs="unbounded"></element>
-		</sequence>
-		<attribute name="condition" type="string" use="optional"></attribute>
-	</complexType>
-
-
-	<complexType name="portals">
-		<sequence>
-			<element name="portal" type="Q1:portal" minOccurs="0"
-				maxOccurs="unbounded"></element>
-		</sequence>
-	</complexType>
+  <complexType name="ConfiguratorGroup">
+    <sequence>
+      <element name="configurator" type="Q1:configurator"
+        minOccurs="0" maxOccurs="unbounded"></element>
+    </sequence>
+    <attribute name="condition" type="string" use="optional"></attribute>
+  </complexType>
 
 
-	<complexType name="implementation">
-		<sequence>
-			<element name="attribute" type="Q1:attributeType" minOccurs="0" />
-			<element name="parameter" type="Q1:parameterType" minOccurs="0"
-				maxOccurs="unbounded"></element>
-		</sequence>
-		<attribute name="class-name" type="string"></attribute>
-	</complexType>
+  <complexType name="portals">
+    <sequence>
+      <element name="portal" type="Q1:portal" minOccurs="0"
+        maxOccurs="unbounded"></element>
+    </sequence>
+  </complexType>
 
-	<complexType name="port">
-		<attribute name="name" type="string" use="required"></attribute>
-		<attribute name="expression" type="string" use="optional"></attribute>
-	</complexType>
 
-	<complexType name="connector">
-		<sequence>
-			<element name="port" type="Q1:port"
-				minOccurs="0" maxOccurs="unbounded">
-			</element>
-		</sequence>
-		<attribute name="name" type="string" use="required"></attribute>
-	</complexType>
+  <complexType name="implementation">
+    <sequence>
+      <element name="attribute" type="Q1:attributeType" minOccurs="0"/>
+      <element name="parameter" type="Q1:parameterType" minOccurs="0"
+        maxOccurs="unbounded"></element>
+    </sequence>
+    <attribute name="class-name" type="string"></attribute>
+  </complexType>
 
-	<complexType name="entity">
-		<sequence>
-			<element name="implementation" type="Q1:implementation"
-				minOccurs="1" maxOccurs="1">
-			</element>
-			<element name="connector" type="Q1:connector"
-				minOccurs="0" maxOccurs="1">
-			</element>
-			<element name="attribute" type="Q1:attributeType"
-				minOccurs="0" maxOccurs="unbounded">
-			</element>
-		</sequence>
-		<attribute name="x" type="int"></attribute>
-		<attribute name="y" type="int"></attribute>
-		<attribute name="condition" type="string" use="optional"></attribute>
-	</complexType>
+  <complexType name="port">
+    <attribute name="name" type="string" use="required"></attribute>
+    <attribute name="expression" type="string" use="optional"></attribute>
+  </complexType>
 
-	<complexType name="attributeType">
-		<simpleContent>
-			<extension base="string">
-				<attribute name="name" type="string"></attribute>
-			</extension>
-		</simpleContent>
-	</complexType>
+  <complexType name="connector">
+    <sequence>
+      <element name="port" type="Q1:port"
+        minOccurs="0" maxOccurs="unbounded">
+      </element>
+    </sequence>
+    <attribute name="name" type="string" use="required"></attribute>
+  </complexType>
 
-	<complexType name="associatedZones">
-		<attribute name="zones" type="string" use="required" />
-	</complexType>
+  <complexType name="entity">
+    <sequence>
+      <element name="implementation" type="Q1:implementation"
+        minOccurs="1" maxOccurs="1">
+      </element>
+      <element name="connector" type="Q1:connector"
+        minOccurs="0" maxOccurs="1">
+      </element>
+      <element name="attribute" type="Q1:attributeType"
+        minOccurs="0" maxOccurs="unbounded">
+      </element>
+    </sequence>
+    <attribute name="x" type="int"></attribute>
+    <attribute name="y" type="int"></attribute>
+    <attribute name="condition" type="string" use="optional"></attribute>
+  </complexType>
+
+  <complexType name="attributeType">
+    <simpleContent>
+      <extension base="string">
+        <attribute name="name" type="string"></attribute>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <complexType name="associatedZones">
+    <attribute name="zones" type="string" use="required"></attribute>
+  </complexType>
+
 </schema>

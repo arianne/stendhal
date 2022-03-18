@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: aruthon -->
 
@@ -26,8 +27,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="robot-1" />
-        <sound value="robot-3" />
+        <sound value="robot-1"/>
+        <sound value="robot-3"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -62,9 +63,9 @@
     </abilities>
     <ai>
       <says>
-        <sound value="minimare-die" />
-        <sound value="minimare-hiss" />
-        <sound value="minimare-hurt" />
+        <sound value="minimare-die"/>
+        <sound value="minimare-hiss"/>
+        <sound value="minimare-hurt"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -90,7 +91,7 @@
     <level value="9"/>
     <experience value="90"/>
     <respawn value="1200"/>
-    <corpse name="tiny_humanoid" harmless="leprechaun_green" />
+    <corpse name="tiny_humanoid" harmless="leprechaun_green"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="30.0"/>
       <item value="sandwich" quantity="[1,1]" probability="2.0"/>
@@ -149,7 +150,7 @@
     <level value="12"/>
     <experience value="130"/>
     <respawn value="1210"/>
-    <corpse name="tiny_humanoid" harmless="leprechaun_purple" />
+    <corpse name="tiny_humanoid" harmless="leprechaun_purple"/>
     <drops>
       <item value="money" quantity="[30,100]" probability="50.0"/>
       <item value="beer" quantity="[2,5]" probability="10.0"/>

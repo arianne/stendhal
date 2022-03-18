@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
-
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <!-- START: cyclops -->
 
@@ -34,9 +33,9 @@
       <says>
         <sound value="cyclops-scream-01"/>
         <sound value="cyclops-yell-01"/>
-      	<sound value="cyclops-laugh-01"/>
-      	<sound value="cyclops-laugh-02"/>
-      	<sound value="cyclops-grunt-01"/>
+        <sound value="cyclops-laugh-01"/>
+        <sound value="cyclops-laugh-02"/>
+        <sound value="cyclops-grunt-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -46,7 +45,6 @@
   </creature>
 
   <!-- END: cyclops -->
-
 
   <!-- START: troll -->
 
@@ -147,9 +145,9 @@
       <says>
         <noise state="idle follow fight" value="Uggga yggga arghhhhh"/>
         <noise state="idle follow fight" value="Ooggga UGGga arhhh"/>
-        <sound value="growl-large-3" />
-        <sound value="grunt-large-1" />
-        <sound value="grunt-large-2" />
+        <sound value="growl-large-3"/>
+        <sound value="grunt-large-1"/>
+        <sound value="grunt-large-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -158,6 +156,5 @@
   </creature>
 
   <!-- END: troll -->
-
 
 </creatures>

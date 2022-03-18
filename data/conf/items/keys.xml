@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd">
 
   <item name="dungeon silver key">
     <type class="key" subclass="silver" tileid="-1"/>
     <description>You see a silver dungeon key. Use it only if you are brave.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-    	<autobind value=""/>
+      <autobind value=""/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -24,7 +26,7 @@
     <description>You see a golden lich key. It will open the door to terrible things.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-    	<autobind value=""/>
+      <autobind value=""/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -196,7 +198,7 @@
 <!--  <item name="fado hotel key 001">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #001 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -213,7 +215,7 @@
   <item name="fado hotel key 002">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #002 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -230,7 +232,7 @@
   <item name="fado hotel key 003">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #003 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -247,7 +249,7 @@
   <item name="fado hotel key 004">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #004 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -264,7 +266,7 @@
   <item name="fado hotel key 005">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #005 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -281,7 +283,7 @@
   <item name="fado hotel key 006">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #006 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -298,7 +300,7 @@
   <item name="fado hotel key 007">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #007 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -315,7 +317,7 @@
   <item name="fado hotel key 008">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #008 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -345,4 +347,5 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+
 </items>

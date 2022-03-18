@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="stendhal ../zones.xsd ">
+    xsi:schemaLocation="stendhal ../zones.xsd">
 
   <zone name="int_afterlife" file="interiors/abstract/afterlife.tmx">
     <attributes>
@@ -9,33 +9,33 @@
       <parameter name="color">#008888</parameter>
     </attributes>
     <portal x="30" y="6" ref="exit_left">
-      <destination zone="int_semos_temple" ref="restart_life" />
+      <destination zone="int_semos_temple" ref="restart_life"/>
     </portal>
 
     <portal x="31" y="6" ref="exit_center">
-      <destination zone="int_semos_temple" ref="restart_life" />
+      <destination zone="int_semos_temple" ref="restart_life"/>
     </portal>
 
     <portal x="32" y="6" ref="exit_right">
-      <destination zone="int_semos_temple" ref="restart_life" />
+      <destination zone="int_semos_temple" ref="restart_life"/>
     </portal>
 
     <entity x="29" y="22">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">
 You are a ghost in the afterlife.
 
 Walk on, and you will be returned to the land of the living...
-			</attribute>
+      </attribute>
     </entity>
 
     <entity x="33" y="22">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">
 You are a ghost in the afterlife.
 
 Walk on, and you will be returned to the land of the living...
-				</attribute>
+        </attribute>
     </entity>
   </zone>
 
@@ -43,11 +43,11 @@ Walk on, and you will be returned to the land of the living...
     accessible="false">
 
     <entity x="8" y="5">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.block.BlockTarget" />
-	  <connector name="floorbutton1" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.block.BlockTarget"/>
+    <connector name="floorbutton1"/>
       <attribute name="description">
         You see a plain point on the ground. Something heavy stood here before.
-	  </attribute>
+    </attribute>
     </entity>
 
     <entity x="11" y="5">
@@ -57,7 +57,7 @@ Walk on, and you will be returned to the land of the living...
       </implementation>
       <attribute name="description">
         You see a heavy cart.
-	  </attribute>
+    </attribute>
     </entity>
 
     <entity x="4" y="12">
@@ -69,22 +69,22 @@ Walk on, and you will be returned to the land of the living...
         <parameter name="message">This gate seems to be linked to an opening mechanism.</parameter>
       </implementation>
       <connector name="gate1">
-      	<port name="active" expression="floorbutton1.active" />
+        <port name="active" expression="floorbutton1.active"/>
       </connector>
-	</entity>
+  </entity>
 
   </zone>
 
   <zone name="int_abstract_server_down" file="interiors/abstract/server_down.tmx"
     accessible="false">
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
     <configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
       <parameter name="message">You should keep your items safe for now.</parameter>
     </configurator>
 
     <!-- Note: This portal is defined in ServerDown, too. -->
     <portal x="15" y="28" ref="exit">
-      <destination zone="0_semos_city" ref="townhall_entrance" />
+      <destination zone="0_semos_city" ref="townhall_entrance"/>
     </portal>
 
     <entity x="0" y="0">
@@ -97,12 +97,12 @@ Walk on, and you will be returned to the land of the living...
   </zone>
 
   <zone name="int_abstract_admin_investigation" file="interiors/abstract/admin_investigation.tmx">
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
     <portal x="6" y="10" ref="entrance1">
-      <destination zone="int_semos_temple" ref="restart_life" />
+      <destination zone="int_semos_temple" ref="restart_life"/>
     </portal>
     <portal x="19" y="10" ref="entrance2">
-      <destination zone="int_semos_temple" ref="restart_life" />
+      <destination zone="int_semos_temple" ref="restart_life"/>
     </portal>
 
     <entity x="16" y="2">
@@ -183,10 +183,10 @@ Walk on, and you will be returned to the land of the living...
   <zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx"
     accessible="false">
 
-    <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
+    <configurator class-name="games.stendhal.server.maps.FeaturesTestArea"/>
 
     <portal x="50" y="10" ref="locked_outside">
-      <destination zone="int_pathfinding" ref="locked_inside" />
+      <destination zone="int_pathfinding" ref="locked_inside"/>
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
         <parameter name="class">skulldoor_s</parameter>
@@ -196,7 +196,7 @@ Walk on, and you will be returned to the land of the living...
     </portal>
 
     <portal x="50" y="12" ref="locked_inside">
-      <destination zone="int_pathfinding" ref="locked_outside" />
+      <destination zone="int_pathfinding" ref="locked_outside"/>
       <attribute name="move.continuous"/>
     </portal>
 

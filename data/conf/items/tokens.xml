@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd">
 
   <item name="arrow game token">
     <type class="token" subclass="darkyellow_round_token" tileid="-1"/>
@@ -39,4 +41,5 @@
       <slot name="ground"/>
     </equipable>
   </item>
+
 </items>

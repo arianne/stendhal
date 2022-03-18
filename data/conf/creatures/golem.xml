@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="dwarf golem">
     <type class="golem" subclass="dwarf_golem" tileid="golem.png:3"/>
@@ -22,7 +22,7 @@
       <item value="stone armor" quantity="[1,1]" probability="2.0"/>
       <item value="durin axe" quantity="[1,1]" probability="0.25"/>
       <item value="magic twoside axe" quantity="[1,1]" probability="1.0"/>
-      <item value="dwarvish legs" quantity="[1,1]" probability="1.5" />
+      <item value="dwarvish legs" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -47,7 +47,7 @@
     <level value="45"/>
     <experience value="1360"/>
     <respawn value="1620"/>
-    <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
+    <corpse name="puddle_light_blue" harmless="puddle_light_blue"/>
     <drops>
       <item value="snowball" quantity="[1,4]" probability="75"/>
       <item value="ice sword" quantity="[1,1]" probability="0.05"/>
@@ -82,7 +82,7 @@
     <level value="32"/>
     <experience value="640"/>
     <respawn value="1380"/>
-    <corpse name="rock" harmless="rock" />
+    <corpse name="rock" harmless="rock"/>
     <drops>
       <item value="stone cloak" quantity="[1,1]" probability="2.5"/>
       <item value="stone boots" quantity="[1,1]" probability="0.5"/>
@@ -95,7 +95,7 @@
     </abilities>
     <ai>
       <says>
-        <sound value="loop-grind-stone-1" />
+        <sound value="loop-grind-stone-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -118,7 +118,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
-    <corpse name="wooden" harmless="wooden" />
+    <corpse name="wooden" harmless="wooden"/>
     <drops>
       <item value="wood" quantity="[1,2]" probability="15.0"/>
     </drops>
