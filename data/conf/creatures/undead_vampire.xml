@@ -96,6 +96,7 @@
     </equips>
     <ai>
       <says>
+        <text state="idle follow fight" value="I vant to drink your blood!"/>
         <sound value="laugh-evil-04"/>
       </says>
       <profile name="offensive"/>
