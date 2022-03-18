@@ -100,7 +100,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="They're always after my Lucky Charms!!"/>
+        <noise state="idle follow fight" value="They're always after me Lucky Charms!!"/>
         <noise state="idle follow fight" value="Clovers and rainbows... stars and horseshoes..."/>
       </says>
       <profile name="brave"/>
