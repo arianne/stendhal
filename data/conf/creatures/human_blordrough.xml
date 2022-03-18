@@ -173,7 +173,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="You are messing with the wrong man."/>
-        <noise state="idle follow fight" value="losing is for losers."/>
+        <noise state="idle follow fight" value="Losing is for losers."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -208,7 +208,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="You just opened a can of worms."/>
-        <noise state="idle follow fight" value="Now its time to go fishing."/>
+        <noise state="idle follow fight" value="Now it's time to go fishing."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>

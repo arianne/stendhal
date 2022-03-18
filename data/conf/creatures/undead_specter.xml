@@ -60,7 +60,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Judgement is coming!"/>
-        <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
+        <noise state="idle follow fight" value="Uuuuhhhhh! I'm gonna get you!"/>
         <sound value="laugh-evil-02"/>
       </says>
       <profile name="offensive"/>
@@ -182,7 +182,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="My unnatural state should evoke fear in you ..."/>
+        <noise state="idle follow fight" value="My unnatural state should evoke fear in you..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

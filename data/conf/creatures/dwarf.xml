@@ -206,7 +206,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="Dwarves are the enemy ... but we kill all who cross our path!"/>
+        <noise state="idle follow fight" value="Dwarves are the enemy... but we kill all who cross our path!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
