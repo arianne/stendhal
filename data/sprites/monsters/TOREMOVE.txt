@@ -1,0 +1,11 @@
+The following images can be removed after version 1.40 release:
+
+human/
+- armored_captain
+- armored_elite
+- armored_general
+- armored_infantry
+- armored_leader
+- armored_soldier
+- armored_warrior
+- super_human
