@@ -302,7 +302,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 		} else if (ai && qName.equals("says")) {
 			says = true;
 		} else if (says) {
-			if (qName.equals("noise")) {
+			if (qName.equals("text") || qName.equals("noise")) {
 				final String states = attrs.getValue("state");
 				final String value = attrs.getValue("value");
 				final List<String> keys=Arrays.asList(states.split(" "));

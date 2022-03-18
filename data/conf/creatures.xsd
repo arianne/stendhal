@@ -117,7 +117,9 @@
 
 	<xsd:complexType name="Says">
 		<xsd:sequence>
-			<xsd:element name="noise" type="Q2:Noise" minOccurs="0"
+			<xsd:element name="noise" type="Q2:Text" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xsd:element name="text" type="Q2:Text" minOccurs="0"
 				maxOccurs="unbounded" />
 			<xsd:element name="sound" type="Q2:Sound" minOccurs="0"
 				maxOccurs="unbounded" />
@@ -128,7 +130,7 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="Noise">
+	<xsd:complexType name="Text">
 		<xsd:attribute name="value" type="xsd:string" />
 		<xsd:attribute name="state" type="xsd:string"></xsd:attribute>
 	</xsd:complexType>
