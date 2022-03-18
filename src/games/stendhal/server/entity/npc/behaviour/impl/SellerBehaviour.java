@@ -112,8 +112,13 @@ public class SellerBehaviour extends MerchantBehaviour {
 		}
 	}
 
-	public Item getAskedItem(final String askedItem, @SuppressWarnings("unused") final Player player) {
+	public Item getAskedItem(final String askedItem, final Player player) {
 		final Item item = SingletonRepository.getEntityManager().getItem(askedItem);
+		if (item != null && item.has("autobind")) {
+			// respect autobind attrubute
+			item.setBoundTo(player.getName());
+		}
+
 		return item;
 	}
 
