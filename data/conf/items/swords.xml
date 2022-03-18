@@ -838,7 +838,7 @@
       <rate value="1"/>
       <autobind value=""/>
       <durability value="800"/>
-      <min_level condition="stendhal.testserver" value="10"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>

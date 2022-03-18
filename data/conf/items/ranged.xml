@@ -144,7 +144,7 @@
       <rate value="1" />
       <autobind value=""/>
       <durability value="800" />
-			<min_level value="0"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -169,7 +169,7 @@
       <rate value="1" />
       <autobind value=""/>
       <durability value="1400" />
-			<min_level value="0"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
@@ -194,7 +194,7 @@
       <rate value="1" />
       <autobind value=""/>
       <durability value="3600" />
-			<min_level value="0"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="0.5" />
     <value value="17280" />
