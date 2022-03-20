@@ -1,0 +1,3 @@
+The following images can be removed after version 1.40 release:
+
+- stormtooopernpc
