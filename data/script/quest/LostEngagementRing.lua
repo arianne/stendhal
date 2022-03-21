@@ -406,7 +406,7 @@ local collateral = {
 	"royal legs",
 
 	-- ring
-	"emerald ring",
+	--"emerald ring",
 	"enhanced imperial ring",
 	"imperial ring",
 	"turtle shell ring",
