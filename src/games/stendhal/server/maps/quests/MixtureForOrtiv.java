@@ -207,7 +207,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 
 		ChatAction completeAction = new  MultipleActions(
 				new SetQuestAction(QUEST_SLOT, "done"),
-				new SayTextAction("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them."),
+				new SayTextAction("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits coming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them."),
 				new IncreaseXPAction(5000),
 				new IncreaseKarmaAction(25),
 				new EquipItemAction("assassin dagger", 1 ,true)
