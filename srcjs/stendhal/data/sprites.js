@@ -27,6 +27,7 @@ stendhal.data.sprites = {
 		"24x32": true,
 		"320x440": true,
 		"32x32": true,
+		"32x48": true,
 		"48x64": true,
 		"48x64_floating": true,
 		"64x48": true,
