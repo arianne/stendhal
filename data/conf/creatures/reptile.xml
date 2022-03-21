@@ -216,7 +216,7 @@
   </creature>
 
   <creature name="turtle">
-    <type class="reptile" subclass="turtle" tileid="reptile.png:6"/>
+    <type class="reptile" subclass="turtle" shadow="32x48_long" tileid="reptile.png:6"/>
     <description></description>
     <attributes>
       <atk value="99"/>
