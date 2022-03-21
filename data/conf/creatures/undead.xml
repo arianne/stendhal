@@ -80,7 +80,7 @@
   </creature>
 
   <creature name="necrosophia">
-    <type class="hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
+    <type class="hybrid" subclass="necrosophia" shadow="192x192_float" tileid="hybrid.png:7"/>
     <description>You see Necrosophia. She is a mighty beast, she will burn you with fire while you are disoriented by the rainbow beans.</description>
     <attributes>
       <atk value="1292"/>
