@@ -20,6 +20,7 @@ stendhal.data.sprites = {
 	images: {},
 	knownShadows: {
 		"128x96": true,
+		"128x170": true,
 		"144x128": true,
 		"168x224": true,
 		"192x192": true,
