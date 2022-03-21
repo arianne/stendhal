@@ -117,7 +117,7 @@ public class OracleNPC implements ZoneConfigurator {
 		npc.setPosition(62, 86);
 		npc.setDescription("You see Calla. She smells faintly of lilies.");
 		npc.setEntityClass("oracle2npc");
-		npc.setShadowStyle("48x64_floating");
+		npc.setShadowStyle("48x64_float");
 		zone.add(npc);
 	}
 }

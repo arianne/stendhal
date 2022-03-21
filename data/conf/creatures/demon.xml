@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd">
 
   <creature name="violet avenger">
-    <type class="hybrid" subclass="violet_avenger" shadow="48x64_floating" tileid="hybrid.png:8"/>
+    <type class="hybrid" subclass="violet_avenger" shadow="48x64_float" tileid="hybrid.png:8"/>
     <description></description>
     <attributes>
       <atk value="368"/>
@@ -31,7 +31,7 @@
   </creature>
 
   <creature name="devil queen">
-    <type class="undead" subclass="devil_queen" shadow="48x64_floating" tileid="undead.png:4"/>
+    <type class="undead" subclass="devil_queen" shadow="48x64_float" tileid="undead.png:4"/>
     <description></description>
     <attributes>
       <atk value="423"/>

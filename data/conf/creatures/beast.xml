@@ -59,7 +59,7 @@
   </creature>
 
   <creature name="elder beholder">
-    <type class="beholder" subclass="elder_beholder" shadow="48x64_floating" tileid="beholder.png:1"/>
+    <type class="beholder" subclass="elder_beholder" shadow="48x64_float" tileid="beholder.png:1"/>
     <description>You see an elder beholder, his nasty eye will scare you.</description>
     <attributes>
       <atk value="172"/>
@@ -285,7 +285,7 @@
   <!-- START: mutant -->
 
   <creature name="googon">
-    <type class="hybrid" subclass="googon" shadow="48x64_floating" tileid="hybrid.png:10"/>
+    <type class="hybrid" subclass="googon" shadow="48x64_float" tileid="hybrid.png:10"/>
     <description>You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.</description>
     <attributes>
       <atk value="430"/>

@@ -94,7 +94,7 @@ public class OracleNPC implements ZoneConfigurator {
 		npc.setPosition(2, 29);
 		npc.setDescription("You see Periwinkle. She looks dreamy and distracted.");
 		npc.setEntityClass("oracle1npc");
-		npc.setShadowStyle("48x64_floating");
+		npc.setShadowStyle("48x64_float");
 		zone.add(npc);
 	}
 }
