@@ -133,7 +133,7 @@
   <!-- START: fire -->
 
   <creature name="fire elemental">
-    <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
+    <type class="elemental" subclass="fire_elemental" shadow="none" tileid="elemental.png:2"/>
     <description>You see a fire elemental and hardly can stand the heat.</description>
     <attributes>
       <atk value="411"/>

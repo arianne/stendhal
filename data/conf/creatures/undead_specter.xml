@@ -162,7 +162,7 @@
   </creature>
 
   <creature name="invisible man">
-    <type class="undead" subclass="invisible_man" tileid="undead_specter.png:1"/>
+    <type class="undead" subclass="invisible_man" shadow="none" tileid="undead_specter.png:1"/>
     <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
     <attributes>
       <atk value="367"/>
