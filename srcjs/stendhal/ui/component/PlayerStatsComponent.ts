@@ -19,9 +19,24 @@ declare var marauroa: any;
 export class PlayerStatsComponent extends Component {
 
 	private readonly keys = ["hp", "base_hp", "atk", "atk_item", "atk_xp", "def", "def_item", "def_xp", "xp", "level"];
+	private LEVELS = 598;
+	private xp;
 
 	constructor() {
 		super("stats");
+
+		this.xp = [];
+		this.xp[0] = 0;
+		this.xp[1] = 50;
+		this.xp[2] = 100;
+		this.xp[3] = 200;
+		this.xp[4] = 400;
+		this.xp[5] = 800;
+
+		for (let i = 5; i < this.LEVELS; i++) {
+			const exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
+			this.xp[i + 1] = exp;
+		}
 	}
 
 	update(key: string) {
@@ -29,12 +44,31 @@ export class PlayerStatsComponent extends Component {
 			return;
 		}
 		let object = marauroa.me;
+
+		const atk = object["atk"];
+		const atkXP = object["atk_xp"];
+		const def = object["def"];
+		const defXP = object["def_xp"];
+		const atkTNL = this.getTNL(atk, atkXP);
+		const defTNL = this.getTNL(def, defXP);
+
 		this.componentElement.innerText =
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
-			+ "ATK: " + object["atk"] + " x " + object["atk_item"] + "\r\n"
-			+ "DEF: " + object["def"] + " x " + object["def_item"] + "\r\n"
+			+ "ATK: " + atk + " x " + object["atk_item"] + "\r\n  (" + atkTNL + ")\r\n"
+			+ "DEF: " + def + " x " + object["def_item"] + "\r\n  (" + defTNL + ")\r\n"
 			+ "XP: " + object["xp"] + "\r\n"
 			+ "Level: " + object["level"];
 	}
 
+	private getTNL(lvl: number, xp: number): number {
+		return this.getXP(lvl - 9) - xp;
+	}
+
+	private getXP(lvl: number): number {
+		if ((lvl >= 0) && (lvl < this.xp.length)) {
+			return this.xp[lvl];
+		}
+
+		return -1;
+	}
 }
