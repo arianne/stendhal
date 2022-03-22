@@ -311,3 +311,18 @@ span.logi {
   margin-left: 0px;
   margin-right: auto;
 }
+
+.vgroupcol {
+  margin-bottom:auto;
+  margin-top:0px;
+}
+
+.vgroupcolr {
+  margin-bottom: auto;
+  margin-top: 0px;
+  padding-left: 15px;
+}
+
+.btnleft {
+  margin-right: 5px;
+}
