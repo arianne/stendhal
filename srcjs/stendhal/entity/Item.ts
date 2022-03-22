@@ -75,17 +75,7 @@ export class Item extends Entity {
 				this.sprite.offsetY = 0;
 			}
 		} else if (this.isAnimated()) {
-			const currentTimeStamp = +new Date();
-
-			if (this.frameTimeStamp == 0) {
-				this.frameTimeStamp = currentTimeStamp;
-				this.sprite.offsetX = 0;
-				this.sprite.offsetY = 0;
-			} else if (currentTimeStamp - this.frameTimeStamp >= 100) {
-				// FIXME: need proper FPS limit
-				this.setXFrameIndex(this.getXFrameIndex() + 1);
-				this.frameTimeStamp = currentTimeStamp;
-			}
+			this.stepAnimation();
 		}
 
 		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
@@ -96,6 +86,19 @@ export class Item extends Entity {
 			this.drawSpriteAt(ctx, x, y);
 			let textMetrics = this.quantityTextSprite.getTextMetrics(ctx);
 			this.quantityTextSprite.draw(ctx, x + (32 - textMetrics.width), y + 6);
+		}
+	}
+
+	public stepAnimation() {
+		const currentTimeStamp = +new Date();
+		if (this.frameTimeStamp == 0) {
+			this.frameTimeStamp = currentTimeStamp;
+			this.sprite.offsetX = 0;
+			this.sprite.offsetY = 0;
+		} else if (currentTimeStamp - this.frameTimeStamp >= 100) {
+			// FIXME: need proper FPS limit
+			this.setXFrameIndex(this.getXFrameIndex() + 1);
+			this.frameTimeStamp = currentTimeStamp;
 		}
 	}
 

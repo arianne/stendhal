@@ -107,11 +107,16 @@ export class ItemContainerImplementation {
 				let xOffset = 0;
 				let yOffset = 0;
 				if (item["name"] === "emerald ring" && item["amount"] == 0) {
-					yOffset = 32;
+					yOffset = -32;
+				} else if (item.isAnimated()) {
+					// FIXME: animation is slow & does not start until item is removed &
+					// picked up from ground
+					item.stepAnimation();
+					xOffset = -(item.getXFrameIndex() * 32);
 				}
 
-				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png " + ")";
-				e.style.backgroundPosition = xOffset + "px -" + yOffset + "px";
+				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png)";
+				e.style.backgroundPosition = xOffset + "px " + yOffset + "px";
 				e.textContent = o.formatQuantity();
 				(e as any).dataItem = o;
 				cnt++;
