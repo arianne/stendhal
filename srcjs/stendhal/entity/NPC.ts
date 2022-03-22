@@ -26,10 +26,10 @@ export class NPC extends RPEntity {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		if (typeof(this["no_hpbar"]) == "undefined") {
-			this.drawHealthBar(ctx, localX, localY);
+			this.drawHealthBar(ctx, localX, localY + this.statusBarYOffset);
 		}
 		if (typeof(this["unnamed"]) == "undefined") {
-			this.drawTitle(ctx, localX, localY);
+			this.drawTitle(ctx, localX, localY + this.statusBarYOffset);
 		}
 	}
 

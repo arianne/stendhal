@@ -37,6 +37,7 @@ export class RPEntity extends ActiveEntity {
 	dir = 3;
 	titleTextSprite?: TextSprite;
 	floaters: any[] = [];
+	protected statusBarYOffset: number = 0;
 
 	/** space to be left at the beginning and end of line in pixels. */
 	//private margin_width = 3;
@@ -333,6 +334,24 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	/**
+	 * Sets the offset to keep text & health bar on screen when sprite
+	 * extends past top edge.
+	 */
+	public setStatusBarOffset() {
+		const screenOffsetY = stendhal.ui.gamewindow.offsetY;
+		const entityBottom = (this["_y"] * 32) + (this["height"] * 32);
+		// FIXME: how to get text height dynamically?
+		const entityTop = entityBottom - this["drawHeight"]
+				- HEALTH_BAR_HEIGHT - 26;
+
+		if (screenOffsetY > entityTop && screenOffsetY < entityBottom) {
+			this.statusBarYOffset = screenOffsetY - entityTop;
+		} else {
+			this.statusBarYOffset = 0;
+		}
+	}
+
+	/**
 	 * draw RPEntities
 	 */
 	override draw(ctx: CanvasRenderingContext2D) {
@@ -559,10 +578,9 @@ export class RPEntity extends ActiveEntity {
 	drawTop(ctx: CanvasRenderingContext2D) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-
 		this.drawFloaters(ctx);
-		this.drawHealthBar(ctx, localX, localY);
-		this.drawTitle(ctx, localX, localY);
+		this.drawHealthBar(ctx, localX, localY + this.statusBarYOffset);
+		this.drawTitle(ctx, localX, localY + this.statusBarYOffset);
 	}
 
 	drawHealthBar(ctx: CanvasRenderingContext2D, x: number, y: number) {

@@ -78,8 +78,12 @@ stendhal.ui.gamewindow = {
 	drawEntitiesTop: function() {
 		var i;
 		for (i in stendhal.zone.entities) {
-			if (typeof(stendhal.zone.entities[i].drawTop) != "undefined") {
-				stendhal.zone.entities[i].drawTop(this.ctx);
+			const entity = stendhal.zone.entities[i];
+			if (typeof(entity.setStatusBarOffset) !== "undefined") {
+				entity.setStatusBarOffset();
+			}
+			if (typeof(entity.drawTop) != "undefined") {
+				entity.drawTop(this.ctx);
 			}
 		}
 	},
