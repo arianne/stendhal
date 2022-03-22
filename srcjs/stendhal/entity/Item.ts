@@ -60,6 +60,15 @@ export class Item extends Entity {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {
+		if (this["name"] === "emerald ring") {
+			// FIXME: can we put breakable item in its own class?
+			if (this["amount"] == 0) {
+				this.sprite.offsetY = 32;
+			} else {
+				this.sprite.offsetY = 0;
+			}
+		}
+
 		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
 	}
 

@@ -13,6 +13,7 @@ import { ui } from "../UI";
 
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
+import { Item } from "../../entity/Item";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -100,7 +101,17 @@ export class ItemContainerImplementation {
 			for (let i = 0; i < myobject[this.slot].count(); i++) {
 				let o = myobject[this.slot].getByIndex(i);
 				let e = document.getElementById(this.slot + this.suffix + cnt)!;
+
+				const item = <Item> o;
+				const subclass = o["subclass"];
+				let xOffset = 0;
+				let yOffset = 0;
+				if (item["name"] === "emerald ring" && item["amount"] == 0) {
+					yOffset = 32;
+				}
+
 				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png " + ")";
+				e.style.backgroundPosition = xOffset + "px -" + yOffset + "px";
 				e.textContent = o.formatQuantity();
 				(e as any).dataItem = o;
 				cnt++;
