@@ -55,6 +55,23 @@ export class Corpse extends Entity {
 		return slot;
 	}
 
+	override draw(ctx: CanvasRenderingContext2D) {
+		super.draw(ctx);
+
+		this.checkDistance();
+	}
+
+	private checkDistance() {
+		if (marauroa.me) {
+			const xDist = Math.abs(this["x"] - marauroa.me["x"]);
+			const yDist = Math.abs(this["y"] - marauroa.me["y"]);
+
+			if (xDist > 4 || yDist > 4) {
+				this.destroy();
+			}
+		}
+	}
+
 	override isVisibleToAction(_filter: boolean) {
 		return true;
 	}

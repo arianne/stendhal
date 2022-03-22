@@ -86,6 +86,30 @@ export class Chest extends Entity {
 		}
 	}
 
+	closeInventoryWindow() {
+		if (this.inventory && this.inventory.isOpen()) {
+			this.inventory.close();
+			this.inventory = undefined;
+		}
+	}
+
+	override draw(ctx: CanvasRenderingContext2D) {
+		super.draw(ctx);
+
+		this.checkDistance();
+	}
+
+	private checkDistance() {
+		if (marauroa.me) {
+			const xDist = Math.abs(this["x"] - marauroa.me["x"]);
+			const yDist = Math.abs(this["y"] - marauroa.me["y"]);
+
+			if (xDist > 4 || yDist > 4) {
+				this.closeInventoryWindow();
+			}
+		}
+	}
+
 	override getCursor(_x: number, _y: number) {
 		return "url(/data/sprites/cursor/bag.png) 1 3, auto";
 	}
