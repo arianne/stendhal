@@ -13,6 +13,7 @@ import { Entity } from "./Entity";
 import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 
 export class Item extends Entity {
@@ -21,6 +22,12 @@ export class Item extends Entity {
 	override minimapStyle = "rgb(0,255,0)";
 	override zIndex = 7000;
 	private quantityTextSprite: TextSprite;
+
+	// animation
+	private frameTimeStamp = 0;
+	private animated: boolean|null = null;
+	private xFrames: number|null = null;
+	private yFrames: number|null = null;
 
 	constructor() {
 		super();
@@ -67,6 +74,18 @@ export class Item extends Entity {
 			} else {
 				this.sprite.offsetY = 0;
 			}
+		} else if (this.isAnimated()) {
+			const currentTimeStamp = +new Date();
+
+			if (this.frameTimeStamp == 0) {
+				this.frameTimeStamp = currentTimeStamp;
+				this.sprite.offsetX = 0;
+				this.sprite.offsetY = 0;
+			} else if (currentTimeStamp - this.frameTimeStamp >= 100) {
+				// FIXME: need proper FPS limit
+				this.setXFrameIndex(this.getXFrameIndex() + 1);
+				this.frameTimeStamp = currentTimeStamp;
+			}
 		}
 
 		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
@@ -97,4 +116,48 @@ export class Item extends Entity {
 		return "url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto";
 	}
 
+	public isAnimated(): boolean {
+		if (this.animated == null) {
+			// store animation state
+			this.animated = (stendhal.data.sprites.get(this.sprite.filename).width / 32) > 1;
+		}
+
+		return this.animated;
+	}
+
+	private setXFrameIndex(idx: number) {
+		if (this.xFrames == null) {
+			const img = stendhal.data.sprites.get(this.sprite.filename);
+			this.xFrames = img.width / 32;
+		}
+
+		if (idx >= this.xFrames) {
+			// restart
+			idx = 0;
+		}
+
+		this.sprite.offsetX = idx * 32;
+	}
+
+	private setYFrameIndex(idx: number) {
+		if (this.yFrames == null) {
+			const img = stendhal.data.sprites.get(this.sprite.filename);
+			this.yFrames = img.height / 32;
+		}
+
+		if (idx >= this.yFrames) {
+			// restart
+			idx = 0;
+		}
+
+		this.sprite.offsetY = idx * 32;
+	}
+
+	public getXFrameIndex(): number {
+		return (this.sprite.offsetX || 0) / 32;
+	}
+
+	public getYFrameIndex(): number {
+		return (this.sprite.offsetY || 0) / 32;
+	}
 }
