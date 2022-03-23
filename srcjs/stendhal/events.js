@@ -16,6 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
 var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
+var SoundId = require("../../build/ts/util/SoundId").SoundId;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
@@ -147,7 +148,13 @@ marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeven
 		}
 		var radius = parseInt(this["radius"], 10);
 
-		stendhal.ui.sound.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], this["sound"], volume);
+		let sound = this["sound"];
+		const sound_id = this["sound_id"];
+		if (sound_id) {
+			sound = SoundId[sound_id];
+		}
+
+		stendhal.ui.sound.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
 	}
 });
 
