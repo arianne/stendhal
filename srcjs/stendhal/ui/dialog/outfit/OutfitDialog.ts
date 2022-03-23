@@ -57,10 +57,6 @@ export class OutfitDialog extends DialogContentComponent {
 		queueMicrotask( () => {
 			this.createDialog();
 		});
-
-		// apply theme
-		this.componentElement.style.setProperty("background",
-			"url(/data/gui/" + stendhal.config.theme + ")");
 	}
 
 	public override getConfigId(): string {

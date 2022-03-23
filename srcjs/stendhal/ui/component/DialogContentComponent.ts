@@ -22,6 +22,7 @@ export abstract class DialogContentComponent extends Component {
 
 	constructor(id: string) {
 		super(id);
+		this.applyTheme();
 	}
 
 	abstract getConfigId(): string;

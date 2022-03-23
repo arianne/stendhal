@@ -54,10 +54,6 @@ export class SettingsDialog extends DialogContentComponent {
 				this.frame.close();
 			}
 		});
-
-		// apply theme
-		this.componentElement.style.setProperty("background",
-			"url(/data/gui/" + stendhal.config.theme + ")");
 	}
 
 	public override getConfigId(): string {

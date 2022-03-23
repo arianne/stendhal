@@ -36,5 +36,10 @@ stendhal.config = {
 		this.dialogstates["settings"] = {x: 20, y: 20};
 		this.dialogstates["travellog"] = {x: 160, y: 50};
 		this.dialogstates["outfit"] = {x: 300, y: 50};
+	},
+
+	applyTheme: function(element) {
+		element.style.setProperty("background",
+				"url(/data/gui/" + this.theme + ")");
 	}
 };

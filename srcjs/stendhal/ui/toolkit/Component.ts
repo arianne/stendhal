@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+declare let stendhal: any;
+
+
 export abstract class Component {
 
 	readonly componentElement!: HTMLElement;
@@ -27,6 +30,10 @@ export abstract class Component {
 		}
 
 		this.componentElement = element;
+	}
+
+	protected applyTheme() {
+		stendhal.config.applyTheme(this.componentElement);
 	}
 
 	public onParentClose() {
