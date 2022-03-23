@@ -33,7 +33,7 @@ export abstract class Component {
 	}
 
 	protected applyTheme() {
-		stendhal.config.applyTheme(this.componentElement);
+		stendhal.config.theme.apply(this.componentElement);
 	}
 
 	public onParentClose() {

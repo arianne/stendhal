@@ -39,7 +39,7 @@ export class FloatingWindow extends Component {
 		const titleBar = <HTMLElement> this.componentElement.querySelector(".windowtitlebar")!;
 
 		// apply theme
-		stendhal.config.applyTheme(titleBar);
+		stendhal.config.theme.apply(titleBar);
 
 		if (title) {
 			this.componentElement.querySelector(".windowtitle")!.textContent = title;

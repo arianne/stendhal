@@ -27,8 +27,13 @@ stendhal.config = {
 		this.gamescreen.shadows = args.get("noshadows") == null;
 
 		this.character = args.get("char");
-		this.theme = args.get("theme") || "wood";
 		this.itemDoubleClick = args.get("item_doubleclick") != null;
+
+		// initialize custom theme
+		const tmp = args.get("theme");
+		if (tmp != null) {
+			this.theme.set(tmp);
+		}
 
 		// store window information for this session
 		this.dialogstates = {};
@@ -38,8 +43,76 @@ stendhal.config = {
 		this.dialogstates["outfit"] = {x: 300, y: 50};
 	},
 
-	applyTheme: function(element) {
-		element.style.setProperty("background",
-				"url(/data/gui/" + this.theme + ")");
-	}
+	theme: {
+		/** Currently active theme ID. */
+		current: "wood",
+
+		/**
+		 * Theme backgrounds indexed by ID.
+		 */
+		index: {
+			"aubergine": "panel_aubergine_001.png",
+			"brick": "panel_brick_brown_001.png",
+			"honeycomb": "panel_honeycomb_001.png",
+			"metal": "panelmetal003.gif",
+			"parquet": "panel_parquet_brown_001.png",
+			"stone": "paneldrock048.jpg",
+			"tile": "panel_tile_aqua_001.png",
+			"wood": "panelwood003.jpg",
+			"wood2": "panelwood006.jpg"
+		},
+
+		/**
+		 * Themes that should use light text.
+		 */
+		dark: {
+			"aubergine": true,
+			"brick": true,
+			"metal": true,
+			"parquet": true,
+			"stone": true,
+			"tile": true,
+			"wood": true,
+			"wood2": true
+		},
+
+		/**
+		 * Sets the current theme.
+		 *
+		 * @param id
+		 *     String identifier for theme.
+		 */
+		set: function(id) {
+			if (this.index[id]) {
+				this.current = id;
+			}
+		},
+
+		/**
+		 * Applies current theme to an element.
+		 *
+		 * @param element
+		 *     Element to be updated.
+		 * @param children
+		 *     If <code>true</code>, theme will be applied to children elements
+		 *     (default: <code>false</code>).
+		 */
+		apply: function(element, children=false) {
+			element.style.setProperty("background",
+					"url(/data/gui/" + this.index[this.current] + ")");
+
+			// make texts readable with dark & light themes
+			let color = "#000000";
+			if (this.dark[this.current]) {
+				color = "#ffffff";
+			}
+			element.style.setProperty("color", color);
+
+			if (children && element.children) {
+				for (let idx = 0; idx < element.children.length; idx++) {
+					this.apply(element.children[idx]);
+				}
+			}
+		}
+	},
 };

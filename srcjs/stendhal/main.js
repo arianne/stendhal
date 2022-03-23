@@ -46,52 +46,6 @@ stendhal.main = {
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
 
-	initTheme: function() {
-		let theme = stendhal.config.theme;
-
-		switch (theme) {
-			case "wood":
-				// this is the default (panelwood003.jpg)
-				theme = null;
-				break;
-			case "wood2":
-				theme = "panelwood006.jpg";
-				break;
-			case "aubergine":
-				theme = "panel_aubergine_001.png";
-				break;
-			case "stone":
-				theme = "paneldrock048.jpg";
-				break;
-			case "metal":
-				theme = "panelmetal003.gif";
-				break;
-			case "brick":
-				theme = "panel_brick_brown_001.png";
-				break;
-			case "honeycomb":
-				theme = "panel_honeycomb_001.png";
-				break;
-			case "parquet":
-				theme = "panel_parquet_brown_001.png";
-				break;
-			case "tile":
-				theme = "panel_tile_aqua_001.png";
-				break;
-			default:
-				theme = null;
-				break;
-		}
-
-		if (theme != null && typeof(theme) !== "undefined" && theme !== "") {
-			const bg = document.querySelector(".background");
-			bg.style.setProperty("background", "url(/data/gui/" + theme + ")");
-		}
-
-		// store theme image in config
-		stendhal.config.theme = theme || "panelwood003.jpg";
-	},
-
 	/**
 	 * register marauroa event handlers.
 	 */
@@ -257,7 +211,8 @@ stendhal.main = {
 		Chat.log("client", "Client loaded. Connecting...");
 
 		stendhal.config.init(new URL(document.location).searchParams);
-		stendhal.main.initTheme();
+		stendhal.config.theme.apply(document.querySelector(".background"));
+
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
