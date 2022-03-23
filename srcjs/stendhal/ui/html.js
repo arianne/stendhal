@@ -18,8 +18,15 @@ stendhal.ui = stendhal.ui || {};
  * HTML code manipulation.
  */
 stendhal.ui.html = {
-	esc: function(msg){
-		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, "<br>");
+	esc: function(msg, filter=[]){
+		msg = msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, "<br>");
+		// restore filtered tags
+		for (const tag of filter) {
+			msg = msg.replace("&lt;" + tag + "&gt;", "<" + tag + ">")
+					.replace("&lt;/" + tag + "&gt;", "</" + tag + ">");
+		}
+
+		return msg;
 	},
 
 	extractKeyCode: function(event) {
