@@ -223,7 +223,11 @@ stendhal.main = {
 
 		var menubutton = document.getElementById("menubutton");
 		menubutton.addEventListener("click", (event) => {
-			ui.createSingletonFloatingWindow("Menu", new ApplicationMenuDialog(), 150, event.pageY + 20)
+			const dialogState = stendhal.config.dialogstates["menu"];
+			const menuContent = new ApplicationMenuDialog();
+			const menuFrame = ui.createSingletonFloatingWindow(
+					"Menu", menuContent, dialogState.x, dialogState.y);
+			menuContent.setFrame(menuFrame);
 		});
 
 		var soundbutton = document.getElementById("soundbutton");

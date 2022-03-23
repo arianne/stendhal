@@ -9,11 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
+import { DialogContentComponent } from "../component/DialogContentComponent";
 
 declare var stendhal: any;
 
-export class ApplicationMenuDialog extends Component {
+export class ApplicationMenuDialog extends DialogContentComponent {
 
 	private actions = [
 			{
@@ -114,8 +114,15 @@ export class ApplicationMenuDialog extends Component {
 		});
 	}
 
+	public override getConfigId(): string {
+		return "menu";
+	}
 
 	private onClick(event: Event) {
+		/* FIXME: session position is erases because "settings" button
+		 *        causes "close" to be called multiple times.
+		 */
+
 		var cmd = (event.target as HTMLInputElement).id?.substring(11);
 		if (cmd) {
 			stendhal.slashActionRepository.execute("/" + cmd);

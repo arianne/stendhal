@@ -32,6 +32,7 @@ stendhal.config = {
 
 		// store window information for this session
 		this.dialogstates = {};
+		this.dialogstates["menu"] = {x: 150, y: 20};
 		this.dialogstates["settings"] = {x: 20, y: 20};
 	}
 };
