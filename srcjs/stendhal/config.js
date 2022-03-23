@@ -96,8 +96,11 @@ stendhal.config = {
 		 * @param children
 		 *     If <code>true</code>, theme will be applied to children elements
 		 *     (default: <code>false</code>).
+		 * @param recurse
+		 *     If <code>true</code>, applies to all children recursively (default:
+		 *     <code>false</code>).
 		 */
-		apply: function(element, children=false) {
+		apply: function(element, children=false, recurse=false) {
 			element.style.setProperty("background",
 					"url(/data/gui/" + this.index[this.current] + ")");
 
@@ -110,7 +113,7 @@ stendhal.config = {
 
 			if (children && element.children) {
 				for (let idx = 0; idx < element.children.length; idx++) {
-					this.apply(element.children[idx]);
+					this.apply(element.children[idx], recurse, recurse);
 				}
 			}
 		}
