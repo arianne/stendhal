@@ -382,7 +382,7 @@ export class RPEntity extends ActiveEntity {
 			// FIXME: this will not display correctly for horse outfit
 			const shadow = stendhal.data.sprites.getShadow("48x64");
 
-			if (typeof(shadow) !== "undefined") {
+			if (shadow && shadow.complete && shadow.height) {
 				// draw shadow below other layers
 				this.drawSpriteImage(ctx, shadow);
 			}
