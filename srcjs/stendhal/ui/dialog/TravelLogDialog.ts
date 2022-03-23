@@ -63,6 +63,9 @@ export class TravelLogDialog extends DialogContentComponent {
 
 
 	private onProgressTypeButtonClick(event: Event) {
+		// clear details when changing category
+		this.refreshDetails();
+
 		this.currentProgressType = (event.target as HTMLElement).id;
 		var action = {
 			"type":           "progressstatus",
@@ -116,6 +119,11 @@ export class TravelLogDialog extends DialogContentComponent {
 			html += "<li>" + dataItems[i];
 		}
 		html += "</ul>";
+
+		this.refreshDetails(html);
+	}
+
+	private refreshDetails(html: string="") {
 		this.componentElement.querySelector(".travellogdetails")!.innerHTML = html;
 	}
 
