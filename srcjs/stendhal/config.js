@@ -14,15 +14,13 @@
 var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.config = {
-	sound: {
-		play: false
-	},
-
-	gamescreen: {
-		blood: true
-	},
 
 	init: function(args) {
+		this.sound = {
+			play: false
+		};
+
+		this.gamescreen = {};
 		this.gamescreen.blood = args.get("noblood") == null;
 		this.gamescreen.shadows = args.get("noshadows") == null;
 
