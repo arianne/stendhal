@@ -12,6 +12,7 @@
 import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
+import { NotificationType } from "../util/NotificationType";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
@@ -155,6 +156,12 @@ export class RPEntity extends ActiveEntity {
 		}
 	}
 
+	/**
+	 * Displays a speech bubble attached to an entity.
+	 *
+	 * @param text
+	 *     Text to display.
+	 */
 	addSpeechBubble(text: string) {
 		stendhal.ui.gamewindow.addTextSprite({
 			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
@@ -171,12 +178,92 @@ export class RPEntity extends ActiveEntity {
 				var width = ctx.measureText(this.realText).width + 8;
 				ctx.strokeStyle = "#000000";
 
-				//this.entity.fillRect(ctx, x, y, width, 20);
 				this.entity.fillRoundRect(ctx, x, y - 15, width, 20);
 
 				ctx.fillStyle = "#000000";
 				ctx.fillText(this.realText, x + 4, y);
 				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
+			}
+		});
+	}
+
+	/**
+	 * Displays a notification at the bottom of the game screen.
+	 *
+	 * FIXME: clicking should remove sprite
+	 *
+	 * @param mtype
+	 *     Message type.
+	 * @param text
+	 *     Text to display.
+	 */
+	addNotificationBubble(mtype: string, text: string) {
+		// line wrap
+		const ccount = 30;
+		const tlen = text.length;
+		const lines: string[] = [];
+
+		const whitespace = [" ", "\t"];
+
+		let idx = 0;
+		let curline = "";
+		for (const c of text) {
+			if ((whitespace.indexOf(c) >= 0 && curline.length >= ccount)
+					|| idx + 1 == tlen) {
+				lines.push(curline.trim());
+				curline = "";
+			} else {
+				curline += c;
+			}
+
+			idx++;
+		}
+
+		const lcount = lines.length;
+
+		stendhal.ui.gamewindow.addTextSprite({
+			timeStamp: Date.now(),
+			entity: this,
+			lmargin: 4,
+			draw: function(ctx: CanvasRenderingContext2D) {
+				const screenArea = document.getElementById("gamewindow")!.getBoundingClientRect();
+				const screenTop = stendhal.ui.gamewindow.offsetY;
+				const screenBottom = screenTop + screenArea.height;
+				const screenLeft = stendhal.ui.gamewindow.offsetX;
+				const screenCenterX = screenLeft + (screenArea.width / 2);
+
+				let longest = "";
+				for (let li = 0; li < lines.length; li++) {
+					if (lines[li].length > longest.length) {
+						longest = lines[li];
+					}
+				}
+
+				// get width & height of text
+				const fontsize = 14;
+				const lheight = fontsize + 6;
+				const meas = ctx.measureText(longest);
+				const width = meas.width + (this.lmargin * 2);
+				const height = lcount * lheight;
+
+				const x = screenCenterX - (width / 2);
+				// FIXME: doesn't reach bottom of game window
+				const y = screenBottom - height;
+
+				ctx.lineWidth = 2;
+				ctx.font = fontsize + "px sans-serif";
+				ctx.fillStyle = "#ffffff";
+				ctx.strokeStyle = "#000000";
+				this.entity.fillRect(ctx, x, y, width, height);
+				ctx.fillStyle = NotificationType[mtype] || "#000000";
+
+				let sy = y;
+				for (let li = 0; li < lines.length; li++) {
+					ctx.fillText(lines[li], x + this.lmargin, sy);
+					sy += lheight;
+				}
+
+				return Date.now() > this.timeStamp + 2000 + 20 * text.length;
 			}
 		});
 	}
@@ -191,7 +278,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param height
 	 */
 	private fillRect(ctx: CanvasRenderingContext2D, x: number, y: number,
-			width: number, height: number) {
+			width: number, height: number, tail: boolean = false) {
 		ctx.strokeRect(x, y - 15, width, height);
 		ctx.fillRect(x, y - 15, width, height);
 
@@ -199,8 +286,10 @@ export class RPEntity extends ActiveEntity {
 		ctx.moveTo(x, y);
 
 		// tail
-		ctx.lineTo(x - 5, y + 8);
-		ctx.lineTo(x + 1, y + 5);
+		if (tail) {
+			ctx.lineTo(x - 5, y + 8);
+			ctx.lineTo(x + 1, y + 5);
+		}
 
 		ctx.stroke();
 		ctx.closePath();

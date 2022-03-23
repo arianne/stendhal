@@ -13,6 +13,11 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
+declare let marauroa: any;
+
+const headless_types = ["normal", "regular"];
+
+
 /**
  * chat logger
  */
@@ -26,6 +31,10 @@ export class Chat {
 	 */
 	public static log(type: string, message: string) {
 		(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).addLine(type, message);
+
+		if (marauroa.me && !(headless_types.indexOf(type) >= 0)) {
+			marauroa.me.addNotificationBubble(type, message);
+		}
 	}
 
 }
