@@ -205,13 +205,13 @@ stendhal.main = {
 	startup: function() {
 		stendhal.main.devWarning();
 
+		stendhal.config.init(new URL(document.location).searchParams);
+		stendhal.config.theme.apply(document.querySelector(".background"));
+
 		new DesktopUserInterfaceFactory().create();
 
 		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		Chat.log("client", "Client loaded. Connecting...");
-
-		stendhal.config.init(new URL(document.location).searchParams);
-		stendhal.config.theme.apply(document.querySelector(".background"));
 
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
