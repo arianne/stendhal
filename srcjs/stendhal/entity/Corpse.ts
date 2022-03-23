@@ -93,9 +93,13 @@ export class Corpse extends Entity {
 				}
 			}
 
-			this.inventory = new FloatingWindow("Corpse",
-				new ItemInventoryComponent(this, "content", content_row, content_col, true, undefined),
-				160, 370);
+			const dstate = stendhal.config.dialogstates["corpse"];
+			const invComponent = new ItemInventoryComponent(this,
+					"content", content_row, content_col, true, undefined);
+			invComponent.setConfigId("corpse");
+
+			this.inventory = new FloatingWindow("Corpse", invComponent,
+					dstate.x, dstate.y);
 		}
 	}
 

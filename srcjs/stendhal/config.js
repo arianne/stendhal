@@ -41,6 +41,8 @@ stendhal.config = {
 		this.dialogstates["settings"] = {x: 20, y: 20};
 		this.dialogstates["travellog"] = {x: 160, y: 50};
 		this.dialogstates["outfit"] = {x: 300, y: 50};
+		this.dialogstates["chest"] = {x: 160, y: 370};
+		this.dialogstates["corpse"] = {x: 160, y: 370};
 	},
 
 	theme: {

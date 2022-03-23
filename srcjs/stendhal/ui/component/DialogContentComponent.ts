@@ -18,6 +18,7 @@ declare let stendhal: any;
 export abstract class DialogContentComponent extends Component {
 
 	protected frame?: FloatingWindow;
+	private cid?: string;
 
 
 	constructor(id: string) {
@@ -25,7 +26,13 @@ export abstract class DialogContentComponent extends Component {
 		this.applyTheme();
 	}
 
-	abstract getConfigId(): string;
+	public setConfigId(cid: string) {
+		this.cid = cid;
+	}
+
+	public getConfigId(): string {
+		return this.cid || "";
+	}
 
 	public updateConfig(newX: number, newY: number) {
 		const cid = this.getConfigId();

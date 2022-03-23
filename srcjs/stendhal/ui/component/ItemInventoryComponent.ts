@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
+import { DialogContentComponent } from "./DialogContentComponent";
 import { ItemContainerImplementation } from "./ItemContainerImplementation";
 
 declare var stendhal: any;
@@ -17,7 +17,7 @@ declare var stendhal: any;
 /**
  * handles an item inventory
  */
-export class ItemInventoryComponent extends Component {
+export class ItemInventoryComponent extends DialogContentComponent {
 
 	private static counter = 0;
 	protected itemContainerImplementation!: ItemContainerImplementation;

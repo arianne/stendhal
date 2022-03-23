@@ -15,6 +15,8 @@ import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { Entity } from "./Entity";
 
 declare var marauroa: any;
+declare var stendhal: any;
+
 
 let OPEN_SPRITE = {
 	filename: "/data/sprites/chest.png",
@@ -80,9 +82,13 @@ export class Chest extends Entity {
 
 	openInventoryWindow() {
 		if (!this.inventory || !this.inventory.isOpen()) {
-			this.inventory = new FloatingWindow("Chest",
-				new ItemInventoryComponent(this, "content", 5, 6, false, undefined),
-				160, 370);
+			const dstate = stendhal.config.dialogstates["chest"];
+			const invComponent = new ItemInventoryComponent(this,
+					"content", 5, 6, false, undefined);
+			invComponent.setConfigId("chest");
+
+			this.inventory = new FloatingWindow("Chest", invComponent,
+					dstate.x, dstate.y);
 		}
 	}
 
