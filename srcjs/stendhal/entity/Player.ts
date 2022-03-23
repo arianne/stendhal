@@ -23,6 +23,8 @@ import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
 import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
 declare var marauroa: any;
+declare var stendhal: any;
+
 
 export class Player extends RPEntity {
 	override minimapShow = true;
@@ -123,8 +125,9 @@ export class Player extends RPEntity {
 				action: function(_entity: any) {
 					let outfitDialog = ui.get(UIComponentEnum.OutfitDialog);
 					if (!outfitDialog) {
+						const dstate = stendhal.config.dialogstates["outfit"];
 						outfitDialog = new OutfitDialog();
-						new FloatingWindow("Choose outfit", outfitDialog, 300, 50);
+						new FloatingWindow("Choose outfit", outfitDialog, dstate.x, dstate.y);
 					}
 				}
 			});

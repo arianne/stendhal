@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../../toolkit/Component";
+import { DialogContentComponent } from "../../component/DialogContentComponent";
 import { ui } from "../../UI";
 import { UIComponentEnum } from "../../UIComponentEnum";
 
@@ -17,9 +17,9 @@ import { OutfitPartSelector } from "./OutfitPartSelector";
 import { OutfitColorSelector } from "./OutfitColorSelector";
 import { OutfitPaletteColorSelector } from "./OutfitPaletteColorSelector";
 
-
 declare var marauroa: any;
 declare var stendhal: any;
+
 
 stendhal.ui.outfitCount = {
 	"hat": 14,
@@ -35,7 +35,7 @@ stendhal.ui.outfitCount = {
 /**
  * a dialog to choose an outfit from
  */
-export class OutfitDialog extends Component {
+export class OutfitDialog extends DialogContentComponent {
 	private hatSelector!: OutfitPartSelector;
 	private hairSelector!: OutfitPartSelector;
 	private maskSelector!: OutfitPartSelector;
@@ -61,6 +61,10 @@ export class OutfitDialog extends Component {
 		// apply theme
 		this.componentElement.style.setProperty("background",
 			"url(/data/gui/" + stendhal.config.theme + ")");
+	}
+
+	public override getConfigId(): string {
+		return "outfit";
 	}
 
 	private createDialog() {
