@@ -19,13 +19,13 @@ declare var marauroa: any;
 export class PlayerStatsComponent extends Component {
 
 	private readonly keys = ["hp", "base_hp", "atk", "atk_item", "atk_xp", "def", "def_item", "def_xp", "xp", "level"];
-	private LEVELS = 598;
+	private readonly LEVELS = 598;
 	private xp;
 
 	constructor() {
 		super("stats");
 
-		this.xp = [];
+		this.xp = [this.LEVELS + 1];
 		this.xp[0] = 0;
 		this.xp[1] = 50;
 		this.xp[2] = 100;
@@ -43,24 +43,35 @@ export class PlayerStatsComponent extends Component {
 		if (this.keys.indexOf(key) < -1) {
 			return;
 		}
-		let object = marauroa.me;
+		const object = marauroa.me;
 
 		const atk = object["atk"];
 		const atkXP = object["atk_xp"];
 		const def = object["def"];
 		const defXP = object["def_xp"];
-		const atkTNL = this.getTNL(atk, atkXP);
-		const defTNL = this.getTNL(def, defXP);
+		const atkTNL = this.getAtkDefTNL(atk, atkXP);
+		const defTNL = this.getAtkDefTNL(def, defXP);
+		const lvl = object["level"];
+		const xp = object["xp"];
+		// show dash for max level
+		let xpTNL: number|string = "-";
+		if (lvl < this.getMaxLevel()) {
+			xpTNL = this.getTNL(lvl, xp);
+		}
 
 		this.componentElement.innerText =
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
 			+ "ATK: " + atk + " x " + object["atk_item"] + "\r\n  (" + atkTNL + ")\r\n"
 			+ "DEF: " + def + " x " + object["def_item"] + "\r\n  (" + defTNL + ")\r\n"
-			+ "XP: " + object["xp"] + "\r\n"
-			+ "Level: " + object["level"];
+			+ "XP: " + xp + "\r\n"
+			+ "Level: " + lvl + "\r\n  (" + xpTNL + ")";
 	}
 
 	private getTNL(lvl: number, xp: number): number {
+		return this.getXP(lvl + 1) - xp;
+	}
+
+	private getAtkDefTNL(lvl: number, xp: number): number {
 		return this.getXP(lvl - 9) - xp;
 	}
 
@@ -70,5 +81,9 @@ export class PlayerStatsComponent extends Component {
 		}
 
 		return -1;
+	}
+
+	private getMaxLevel(): number {
+		return this.LEVELS - 1;
 	}
 }
