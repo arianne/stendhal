@@ -15,7 +15,7 @@ import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
 declare let marauroa: any;
 
-const headless_types = ["normal", "regular"];
+const headless_types = ["normal", "regular", "privmsg", "significant_positive"];
 
 
 /**
