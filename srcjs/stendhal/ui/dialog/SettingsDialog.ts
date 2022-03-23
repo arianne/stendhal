@@ -9,18 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { FloatingWindow } from "../toolkit/FloatingWindow";
-import { Component } from "../toolkit/Component";
+import { DialogContentComponent } from "../component/DialogContentComponent";
 
 declare let stendhal: any;
 
 
-export class SettingsDialog extends Component {
-
-	public override configId = "settings";
-
-	private frame: FloatingWindow|null = null;
-
+export class SettingsDialog extends DialogContentComponent {
 
 	constructor() {
 		super("settingsdialog-template");
@@ -66,11 +60,8 @@ export class SettingsDialog extends Component {
 			"url(/data/gui/" + stendhal.config.theme + ")");
 	}
 
-	/**
-	 * Sets the closable dialog frame.
-	 */
-	public setFrame(frame: FloatingWindow) {
-		this.frame = frame;
+	public override getConfigId(): string {
+		return "settings";
 	}
 
 	/**

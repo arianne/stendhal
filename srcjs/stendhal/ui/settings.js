@@ -21,11 +21,13 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.settings = {
 
 	onOpenSettingsMenu: function(e) {
+		const wstate = stendhal.config.dialogstates["settings"];
+		const offset = stendhal.ui.getPageOffset();
+
 		const content = new SettingsDialog();
 		const dialog = ui.createSingletonFloatingWindow(
 			"Settings", content,
-			stendhal.config.windowstates.settings.x,
-			stendhal.config.windowstates.settings.y);
+			wstate.x - offset.x, wstate.y - offset.y);
 
 		content.setFrame(dialog);
 	}

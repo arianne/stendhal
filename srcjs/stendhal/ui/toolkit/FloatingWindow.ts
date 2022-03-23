@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "./Component";
+import { DialogContentComponent } from "../component/DialogContentComponent";
 
 declare var stendhal: any;
 
@@ -80,6 +81,12 @@ export class FloatingWindow extends Component {
 
 
 	public close() {
+		// store session position
+		const storepos = this.checkPos();
+		if (this.content instanceof DialogContentComponent) {
+			(<DialogContentComponent> this.content).updateConfig(storepos.x, storepos.y);
+		}
+
 		stendhal.ui.sound.playGlobalizedEffect(this.closeSound);
 		this.componentElement.remove();
 		this.contentComponent.onParentClose();
@@ -154,40 +161,38 @@ export class FloatingWindow extends Component {
 		window.removeEventListener("touchend", this.onMouseUpDuringDragListener, true);
 	}
 
-	public override onMoved() {
-		const rect = this.componentElement.getBoundingClientRect();
-		let newX = rect.left;
-		let newY = rect.top;
+	private checkPos() {
+		if (this.content) {
+			this.content.onMoved();
+		}
 
-		const viewW = document.documentElement.clientWidth;
-		const viewH = document.documentElement.clientHeight;
+		const dialogArea = this.componentElement.getBoundingClientRect();
+		const clientArea = document.documentElement.getBoundingClientRect();
 
-		// keep dialog within view bounds
+		const offset = stendhal.ui.getPageOffset();
+
+		let newX = dialogArea.x;
+		let newY = dialogArea.y;
+
 		if (newX < 0) {
 			newX = 0;
 			this.componentElement.style.left = "0px";
-		}
-		if (rect.right > viewW) {
-			newX = viewW - rect.width;
+		} else if (dialogArea.x + dialogArea.width > clientArea.right + offset.x) {
+			newX = clientArea.right - dialogArea.width;
 			this.componentElement.style.left = newX + "px";
 		}
 		if (newY < 0) {
 			newY = 0;
 			this.componentElement.style.top = "0px";
-		}
-		if (rect.bottom > viewH) {
-			// FIXME: need to get scroll offset
-			newY = viewH - rect.height;
+		} else if (dialogArea.y + dialogArea.height > clientArea.bottom + offset.y) {
+			newY = clientArea.y + clientArea.height - dialogArea.height;
 			this.componentElement.style.top = newY + "px";
 		}
 
-		// FIXME: need to check bounds of view width & height
+		return {x: newX + offset.x, y: newY + offset.y};
+	}
 
-		if (this.content.configId != null) {
-			// FIXME: position not saved for child
-			stendhal.config.windowstates[this.content.configId] = {x: newX, y: newY};
-		}
-
-		this.content.onMoved();
+	public override onMoved() {
+		this.checkPos();
 	}
 }

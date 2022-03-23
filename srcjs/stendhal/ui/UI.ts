@@ -36,6 +36,15 @@ class UI {
 	public get(key: UIComponentEnum): Component|undefined {
 		return this.wellKnownComponents.get(key);
 	}
+
+	public getPageOffset() {
+		const body = document.body;
+		const delem = document.documentElement;
+		const offsetX = window.pageXOffset || delem.scrollLeft || body.scrollLeft;
+		const offsetY = window.pageYOffset || delem.scrollTop || body.scrollTop;
+
+		return {x: offsetX, y: offsetY};
+	}
 }
 
 export let ui = new UI();

@@ -31,8 +31,7 @@ stendhal.config = {
 		this.itemDoubleClick = args.get("item_doubleclick") != null;
 
 		// store window information for this session
-		this.windowstates = {
-			settings: {x: 20, y: 20}
-		};
+		this.dialogstates = {};
+		this.dialogstates["settings"] = {x: 20, y: 20};
 	}
 };
