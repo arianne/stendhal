@@ -220,8 +220,9 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		const lcount = lines.length;
+		let spriteCtx: CanvasRenderingContext2D|null = null;
 
-		stendhal.ui.gamewindow.addTextSprite({
+		stendhal.ui.gamewindow.addNotifSprite({
 			timeStamp: Date.now(),
 			entity: this,
 			lmargin: 4,
@@ -261,6 +262,18 @@ export class RPEntity extends ActiveEntity {
 				for (let li = 0; li < lines.length; li++) {
 					ctx.fillText(lines[li], x + this.lmargin, sy);
 					sy += lheight;
+				}
+
+				if (spriteCtx == null) {
+					spriteCtx = ctx;
+
+					// add click listener to remove notification bubble
+					ctx.canvas.addEventListener("click", (e) => {
+						// FIXME: need to override character movement
+						if (stendhal.ui.gamewindow.isTopNotification(this)) {
+							stendhal.ui.gamewindow.removeNotifSprite(this);
+						}
+					});
 				}
 
 				return Date.now() > this.timeStamp + 2000 + 20 * text.length;

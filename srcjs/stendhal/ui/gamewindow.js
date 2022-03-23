@@ -26,6 +26,7 @@ stendhal.ui.gamewindow = {
 	offsetY: 0,
 	timeStamp: Date.now(),
 	textSprites: [],
+	notifSprites: [],
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -53,6 +54,7 @@ stendhal.ui.gamewindow = {
 
 				this.drawEntitiesTop();
 				this.drawTextSprites();
+				this.drawTextSprites(this.notifSprites);
 			}
 		}
 		setTimeout(function() {
@@ -88,12 +90,12 @@ stendhal.ui.gamewindow = {
 		}
 	},
 
-	drawTextSprites: function(ctx) {
-		for (var i = 0; i < this.textSprites.length; i++) {
-			var sprite = this.textSprites[i];
+	drawTextSprites: function(sgroup=this.textSprites) {
+		for (var i = 0; i < sgroup.length; i++) {
+			var sprite = sgroup[i];
 			var remove = sprite.draw(this.ctx);
 			if (remove) {
-				this.textSprites.splice(i, 1);
+				sgroup.splice(i, 1);
 				i--;
 			}
 		}
@@ -121,6 +123,29 @@ stendhal.ui.gamewindow = {
 
 	addTextSprite: function(sprite) {
 		this.textSprites.push(sprite);
+	},
+
+	addNotifSprite: function(sprite) {
+		this.notifSprites.push(sprite);
+	},
+
+	removeNotifSprite: function(sprite) {
+		const idx = this.notifSprites.indexOf(sprite);
+		if (idx > -1) {
+			this.notifSprites.splice(idx, 1);
+		}
+	},
+
+	/**
+	 * Checks if a notification sprite is drawn on top of all others.
+	 *
+	 * @param sprite
+	 *     Sprite to be checked.
+	 * @return
+	 *     <code>true</code> if sprite is most recently added to client.
+	 */
+	isTopNotification: function(sprite) {
+		return this.notifSprites.indexOf(sprite) + 1 == this.notifSprites.length;
 	},
 
 	// Mouse click handling
