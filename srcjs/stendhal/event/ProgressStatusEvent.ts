@@ -15,6 +15,9 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { RPEvent } from "./RPEvent";
 
+declare let stendhal: any;
+
+
 /**
  * show travel log and details
  */
@@ -31,8 +34,9 @@ export class ProgressStatusEvent extends RPEvent {
 		let travelLogDialog = ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog;
 		if (!this["progress_type"]) {
 			if (!travelLogDialog) {
+				const dstate = stendhal.config.dialogstates["travellog"];
 				travelLogDialog = new TravelLogDialog(dataItems);
-				new FloatingWindow("Travel Log", travelLogDialog, 160, 50);
+				new FloatingWindow("Travel Log", travelLogDialog, dstate.x, dstate.y);
 			}
 			return;
 		}

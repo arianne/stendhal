@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
+import { DialogContentComponent } from "../component/DialogContentComponent";
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
@@ -19,7 +19,7 @@ declare var stendhal: any;
 /**
  * a dialog to display images
  */
-export class TravelLogDialog extends Component {
+export class TravelLogDialog extends DialogContentComponent {
 	private currentProgressType = "";
 
 	constructor(dataItems: string[]) {
@@ -37,6 +37,9 @@ export class TravelLogDialog extends Component {
 		marauroa.clientFramework.sendAction(action);
 	};
 
+	public override getConfigId(): string {
+		return "travellog";
+	}
 
 	private createHtml(dataItems: string[]) {
 		let buttons = "";

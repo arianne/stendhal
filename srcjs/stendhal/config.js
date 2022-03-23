@@ -34,5 +34,6 @@ stendhal.config = {
 		this.dialogstates = {};
 		this.dialogstates["menu"] = {x: 150, y: 20};
 		this.dialogstates["settings"] = {x: 20, y: 20};
+		this.dialogstates["travellog"] = {x: 160, y: 50};
 	}
 };
