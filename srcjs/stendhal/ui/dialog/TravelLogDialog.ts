@@ -113,7 +113,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		html += "<p id=\"travellogdescription\">" + stendhal.ui.html.esc(description) + "</p>";
 		html += "<ul>";
 		for (var i = 0; i < dataItems.length; i++) {
-			html += "<li>" + stendhal.ui.html.esc(dataItems[i]);
+			html += "<li>" + dataItems[i];
 		}
 		html += "</ul>";
 		this.componentElement.querySelector(".travellogdetails")!.innerHTML = html;
