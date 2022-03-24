@@ -34,7 +34,7 @@ export class PlayerStatsComponent extends Component {
 		this.xp[5] = 800;
 
 		for (let i = 5; i < this.LEVELS; i++) {
-			const exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
+			const exp = Math.floor((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
 			this.xp[i + 1] = exp;
 		}
 	}
@@ -54,10 +54,7 @@ export class PlayerStatsComponent extends Component {
 		const lvl = object["level"];
 		const xp = object["xp"];
 		// show dash for max level
-		let xpTNL: number|string = "-";
-		if (lvl < this.getMaxLevel()) {
-			xpTNL = this.getTNL(lvl, xp);
-		}
+		let xpTNL: number|string = (lvl < this.getMaxLevel()) ? this.getTNL(lvl, xp) : "-";
 
 		this.componentElement.innerText =
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
