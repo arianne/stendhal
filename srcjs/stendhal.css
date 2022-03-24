@@ -16,6 +16,11 @@ li.offline {
   color: #AAA
 }
 
+ul.uniform {
+  list-style-position: outside;
+  margin-left: -23px;
+}
+
 #buddyList {
   border: 1px solid black;
   width: 128px;
@@ -234,14 +239,32 @@ span.logi {
   flex-direction: column;
 }
 
+.tavellogtabpanel {
+  margin-left: 13px;
+}
+
+.tlog_hlayout {
+  width: 40em;
+  height: 25em;
+}
+
+.tlog_rpane {
+  float: top;
+  height: 95%;
+  margin-left: 15em;
+  overflow-y: auto;
+}
+
 .travellogitems {
   float: left;
   width: 15em;
-  margin-right: 2em;
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 .travellogdetails {
-  width: 40em;
+  float: left;
+  margin-right: 1em;
 }
 
 .travellogdescription {

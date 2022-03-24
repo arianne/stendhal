@@ -115,9 +115,12 @@ export class TravelLogDialog extends DialogContentComponent {
 
 		const detailsSpan = document.createElement("span");
 
-		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
-		detailsSpan.innerHTML += "<p id=\"travellogdescription\">"
-				+ stendhal.ui.html.esc(description) + "</p><ul>";
+		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>"
+				+ "<p id=\"travellogdescription\">"
+				+ stendhal.ui.html.esc(description) + "</p>";
+
+		const ul = document.createElement("ul");
+		ul.className = "uniform";
 
 		for (var i = 0; i < dataItems.length; i++) {
 			let content = []
@@ -129,6 +132,7 @@ export class TravelLogDialog extends DialogContentComponent {
 			}
 
 			const li = document.createElement("li");
+			li.className = "uniform";
 			li.innerHTML = content[0];
 			if (content[1]) {
 				li.appendChild(content[1]);
@@ -138,10 +142,10 @@ export class TravelLogDialog extends DialogContentComponent {
 				}
 			}
 
-			detailsSpan.appendChild(li);
+			ul.appendChild(li);
 		}
 
-		detailsSpan.innerHTML += "</ul>";
+		detailsSpan.appendChild(ul);
 		this.refreshDetails("", detailsSpan);
 	}
 
