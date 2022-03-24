@@ -226,6 +226,35 @@ stendhal.main = {
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
+
+		// attributes to set after connection made
+		if (stendhal.config.moveCont) {
+			const socket = marauroa.clientFramework.socket;
+			let tries = 0;
+
+			function checkConnection() {
+				setTimeout(function() {
+					tries++;
+					if (socket.readyState === WebSocket.OPEN) {
+						marauroa.clientFramework.sendAction({
+							"type": "move.continuous",
+							"move.continuous": ""
+						});
+						return;
+					}
+
+					if (tries > 4) {
+						console.warn("could not set \"move.continuous\" attribute,"
+								+ " gave up after " + tries + " tries");
+						return;
+					}
+
+					checkConnection();
+				}, 5000);
+			}
+
+			checkConnection();
+		}
 	},
 
 	onerror: function(error) {

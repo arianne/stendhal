@@ -26,6 +26,7 @@ stendhal.config = {
 
 		this.character = args.get("char");
 		this.itemDoubleClick = args.get("item_doubleclick") != null;
+		this.moveCont = args.get("movecont") != null;
 
 		// initialize custom theme
 		const tmp = args.get("theme");
