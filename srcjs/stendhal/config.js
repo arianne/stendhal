@@ -24,7 +24,7 @@ stendhal.config = {
 		this.gamescreen.blood = args.get("noblood") == null;
 		this.gamescreen.shadows = args.get("noshadows") == null;
 
-		this.character = args.get("char");
+		this.character = args.get("char") || args.get("character") || args.get("name");
 		this.itemDoubleClick = args.get("item_doubleclick") != null;
 		this.moveCont = args.get("movecont") != null;
 
