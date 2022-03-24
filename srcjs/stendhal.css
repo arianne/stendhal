@@ -334,3 +334,8 @@ span.logi {
   font-family: "Tally";
   src: url("/data/gui/Tally.ttf");
 }
+
+@font-face {
+  font-family: "BlackChancery";
+  src: url("/data/gui/BlackChancery.ttf");
+}
