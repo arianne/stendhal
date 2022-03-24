@@ -112,19 +112,46 @@ export class TravelLogDialog extends DialogContentComponent {
 		if (progressType !== this.currentProgressType) {
 			return;
 		}
-		var html = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
-		html += "<p id=\"travellogdescription\">" + stendhal.ui.html.esc(description) + "</p>";
-		html += "<ul>";
-		for (var i = 0; i < dataItems.length; i++) {
-			html += "<li>" + stendhal.ui.html.esc(dataItems[i], ["em", "tally"]);
-		}
-		html += "</ul>";
 
-		this.refreshDetails(html);
+		const detailsSpan = document.createElement("span");
+
+		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
+		detailsSpan.innerHTML += "<p id=\"travellogdescription\">"
+				+ stendhal.ui.html.esc(description) + "</p><ul>";
+
+		for (var i = 0; i < dataItems.length; i++) {
+			let content = []
+			let html = stendhal.ui.html.esc(dataItems[i], ["em", "tally"]);
+			if (html.includes("<tally>") && html.includes("</tally>")) {
+				 content = stendhal.ui.html.formatTallyMarks(html);
+			} else {
+				content.push(html);
+			}
+
+			const li = document.createElement("li");
+			li.innerHTML = content[0];
+			if (content[1]) {
+				li.appendChild(content[1]);
+
+				if (content[2]) {
+					li.innerHTML += content[2];
+				}
+			}
+
+			detailsSpan.appendChild(li);
+		}
+
+		detailsSpan.innerHTML += "</ul>";
+		this.refreshDetails("", detailsSpan);
 	}
 
-	private refreshDetails(html: string="") {
-		this.componentElement.querySelector(".travellogdetails")!.innerHTML = html;
+	private refreshDetails(html: string="", newDetails?: HTMLElement) {
+		const details = this.componentElement.querySelector(".travellogdetails")!;
+		details.innerHTML = html;
+
+		if (newDetails) {
+			details.appendChild(newDetails);
+		}
 	}
 
 	public override onParentClose() {
