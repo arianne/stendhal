@@ -36,12 +36,10 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 			{
 				title: "Tools",
 				children: [
-					/*
 					{
 						title: "Take Screenshot",
-						action: "takescreenshot",
+						action: "screenshot",
 					},
-					*/
 					{
 						title: "Settings",
 						action: "settings",

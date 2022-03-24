@@ -704,6 +704,15 @@ stendhal.slashActionRepository = {
 		maxParams: 1
 	},
 
+	"screenshot": {
+		execute: function(type, params, remainder) {
+			stendhal.ui.gamewindow.createScreenshot();
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0
+	},
+
 	"sentence": {
 		execute: function(type, params, remainder) {
 			if (params == null) {

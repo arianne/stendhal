@@ -335,8 +335,45 @@ stendhal.ui.gamewindow = {
 
 	onContentMenu: function(e) {
 		e.preventDefault();
-	}
+	},
 
+	/**
+	 * Creates a screenshot of game screen to download.
+	 */
+	createScreenshot: function() {
+		Chat.log("client", "creating screenshot ...");
+		const uri = this.ctx.canvas.toDataURL("image/png");
+
+		const d = new Date();
+		const ts = {
+			yyyy: d.getFullYear() + "",
+			mm: (d.getMonth() + 1) + "",
+			dd: d.getDate() + "",
+			HH: d.getHours() + "",
+			MM: d.getMinutes() + "",
+			SS: d.getSeconds() + "",
+			ms: d.getMilliseconds() + ""
+		};
+
+		for (let o of [ts.mm, ts.dd, ts.HH, ts.MM, ts.SS]) {
+			if (o.length < 2) {
+				o = "0" + o;
+			}
+		}
+		while (ts.ms.length < 3) {
+			ts.ms = "0" + ts.ms;
+		}
+
+		const filename = "screenshot_" + ts.yyyy + ts.mm
+				+ ts.dd + "." + ts.HH + "." + ts.MM + "."
+				+ ts.SS + "." + ts.ms + ".png";
+
+		const anchor = document.createElement("a");
+		anchor.download = filename;
+		anchor.target = "_blank";
+		anchor.href = uri;
+		anchor.click();
+	}
 };
 
 
