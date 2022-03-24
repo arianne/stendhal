@@ -44,6 +44,10 @@ stendhal.data.sprites = {
 		"ent": true
 	},
 
+	emojis: {
+		"smile": true
+	},
+
 	get: function(filename) {
 		if (!filename) {
 			return {};
@@ -368,6 +372,16 @@ stendhal.data.sprites = {
 	 */
 	hasSafeImage: function(filename) {
 		return this.knownSafeSprites[filename] == true;
+	},
+
+	getEmoji: function(name) {
+		if (this.emojis[name]) {
+			const img = new Image();
+			img.src = "/data/sprites/emoji/" + name + ".png";
+			return img;
+		}
+
+		return undefined;
 	}
 }
 

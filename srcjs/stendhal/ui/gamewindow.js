@@ -27,6 +27,7 @@ stendhal.ui.gamewindow = {
 	timeStamp: Date.now(),
 	textSprites: [],
 	notifSprites: [],
+	emojiSprites: [],
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -53,6 +54,7 @@ stendhal.ui.gamewindow = {
 				stendhal.data.map.strategy.render(canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.drawEntitiesTop();
+				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
 			}
@@ -98,6 +100,23 @@ stendhal.ui.gamewindow = {
 				sgroup.splice(i, 1);
 				i--;
 			}
+		}
+	},
+
+	addEmojiSprite: function(sprite) {
+		this.emojiSprites.push(sprite);
+	},
+
+	drawEmojiSprites: function() {
+		let idx = 0;
+		for (const sprite of this.emojiSprites) {
+			const remove = sprite.draw(this.ctx);
+			if (remove) {
+				this.emojiSprites.splice(idx, 1);
+				idx--;
+			}
+
+			idx++;
 		}
 	},
 

@@ -45,6 +45,10 @@ export class RPEntity extends ActiveEntity {
 	/** the diameter of the arc of the rounded bubble corners. */
 	//private arc_diameter = 2 * this.margin_width + 2;
 
+	private emojiKey = {
+		":)": "smile"
+	} as {[index: string]: string;};
+
 
 	override set(key: string, value: any) {
 		// Ugly hack to detect changes. The old value is no
@@ -147,7 +151,13 @@ export class RPEntity extends ActiveEntity {
 			return;
 		}
 		if (marauroa.me.isInHearingRange(this)) {
-			if (text.startsWith("^!me")) {
+			let emoji = this.emojiKey[text];
+			if (emoji) {
+				this.addEmoji(emoji);
+			} else if (text.startsWith(":") && text.endsWith(":")) {
+				emoji = text.substr(0, text.length - 1).substr(1);
+				this.addEmoji(emoji);
+			} else if (text.startsWith("^!me")) {
 				Chat.log("emote", text.replace(/^!me/, this.getTitle()));
 			} else {
 				this.addSpeechBubble(text);
@@ -277,6 +287,34 @@ export class RPEntity extends ActiveEntity {
 				}
 
 				return Date.now() > this.timeStamp + 2000 + 20 * text.length;
+			}
+		});
+	}
+
+	addEmoji(emoji: string) {
+		const sprite = stendhal.data.sprites.getEmoji(emoji);
+		if (!emoji) {
+			return;
+		}
+
+		stendhal.ui.gamewindow.addEmojiSprite({
+			timeStamp: Date.now(),
+			entity: this,
+			sprite: sprite,
+			draw: function(ctx: CanvasRenderingContext2D) {
+				let x = this.entity["_x"] * 32 - 16;
+				let y = this.entity["_y"] * 32 - 32;
+				if (x < 0) {
+					x = 0;
+				}
+				if (y < 0) {
+					y = 0;
+				}
+
+				ctx.drawImage(this.sprite, x, y);
+
+				// 5 seconds
+				return Date.now() > this.timeStamp + 5000;
 			}
 		});
 	}
