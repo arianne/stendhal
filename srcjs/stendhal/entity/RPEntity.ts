@@ -533,8 +533,15 @@ export class RPEntity extends ActiveEntity {
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/" + this["idea"] + ".png"),
-					x + 32 * this["width"], y - this["drawHeight"]);
+			const idea = "/data/sprites/ideas/" + this["idea"] + ".png";
+			const ani = stendhal.data.sprites.animations.idea[this["idea"]];
+			if (ani) {
+				drawAnimatedIcon(idea, ani.delay, x + ani.offsetX * this["width"],
+						y - this["drawHeight"] + ani.offsetY);
+			} else {
+				ctx.drawImage(stendhal.data.sprites.get(idea), x + 32 * this["width"],
+						y - this["drawHeight"]);
+			}
 		}
 		if (this.hasOwnProperty("away")) {
 			drawAnimatedIcon("/data/sprites/ideas/away.png", 1500, x + 32 * this["width"], y - this["drawHeight"]);

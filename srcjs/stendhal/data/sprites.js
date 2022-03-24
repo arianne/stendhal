@@ -399,3 +399,9 @@ stendhal.data.sprites.knownSafeSprites = {
 	"/data/sprites/monsters/undead/bloody_zombie": true,
 	"/data/sprites/npc/deadmannpc": true
 }
+
+stendhal.data.sprites.animations = {
+	idea: {
+		"love": {delay: 100, offsetX: 24, offsetY: -8}
+	}
+}
