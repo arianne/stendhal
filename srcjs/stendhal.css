@@ -325,3 +325,8 @@ span.logi {
 .btnleft {
   margin-right: 5px;
 }
+
+@font-face {
+  font-family: Tally;
+  src: url("/data/gui/Tally.ttf");
+}
