@@ -117,6 +117,11 @@ div.logsignificant_positive { color: #4169e1 }
 div.logtutorial { color: #ac00ac }
 div.logsupport { color: #ff7200 }
 
+span.logtimestamp {
+  font-size: 8pt;
+  color: gray;
+}
+
 span.logh {
   color: #00F
 }

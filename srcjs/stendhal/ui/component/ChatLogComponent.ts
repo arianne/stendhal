@@ -34,9 +34,14 @@ export class ChatLogComponent extends Component {
 		}
 		time = time + date.getMinutes();
 
+		const timestamp = document.createElement("span");
+		timestamp.className = "logtimestamp";
+		timestamp.innerHTML = "[" + time + "]";
+
 		let div = document.createElement("div");
 		div.className = "log" + type;
-		div.innerHTML = "[" + time + "] " + this.formatLogEntry(message);
+		div.appendChild(timestamp);
+		div.innerHTML += " " + this.formatLogEntry(message);
 
 		let isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
 		chatElement.appendChild(div);
