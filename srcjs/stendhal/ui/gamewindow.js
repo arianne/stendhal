@@ -27,7 +27,7 @@ stendhal.ui.gamewindow = {
 	timeStamp: Date.now(),
 	textSprites: [],
 	notifSprites: [],
-	emojiSprites: [],
+	emojiSprites: {},
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -103,20 +103,25 @@ stendhal.ui.gamewindow = {
 		}
 	},
 
-	addEmojiSprite: function(sprite) {
-		this.emojiSprites.push(sprite);
+	/**
+	 * Adds a sprite to be drawn on screen.
+	 *
+	 * @param owner
+	 *     Entity the sprite is attached to.
+	 * @param sprite
+	 *     Sprite definition.
+	 */
+	addEmojiSprite: function(owner, sprite) {
+		this.emojiSprites[owner] = sprite;
 	},
 
 	drawEmojiSprites: function() {
-		let idx = 0;
-		for (const sprite of this.emojiSprites) {
+		for (const owner of Object.keys(this.emojiSprites)) {
+			const sprite = this.emojiSprites[owner];
 			const remove = sprite.draw(this.ctx);
 			if (remove) {
-				this.emojiSprites.splice(idx, 1);
-				idx--;
+				delete this.emojiSprites[owner];
 			}
-
-			idx++;
 		}
 	},
 
