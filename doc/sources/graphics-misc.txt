@@ -170,6 +170,10 @@ data/sprites/effects/
 fire_explosion_2x2.*  StumpyStrust; CC0; https://opengameart.org/node/15394
 water_splash.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
+data/sprites/emoji/
+
+*  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+
 data/sprites/examine/
 
 arandula.png               ???; ???; ???

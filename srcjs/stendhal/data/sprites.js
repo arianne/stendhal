@@ -418,20 +418,65 @@ stendhal.data.sprites.animations = {
 
 stendhal.data.sprites.emojis = {
 	available: {
+		"frown": true,
 		"grin": true,
 		"heart": true,
+		"slightsmile": true,
 		"smile": true,
-		"unamused": true
+		"smileinvert": true,
+		"sweat": true,
+		"tongue": true,
+		"unamused": true,
+		"wink": true,
+		"winktongue": true
 	},
 
 	map: {
+		":(": "frown",
+		":-(": "frown",
+		"):": "frown",
+		")-:": "frown",
+		":frowning:": "frown",
+
+		":D": "grin",
+		":-D": "grin",
+		":grinning:": "grin",
+
+		"<3": "heart",
+		":love:": "heart",
+
+		":smileslight:": "slightsmile",
+
 		":)": "smile",
 		":-)": "smile",
 		":smiling:": "smile",
+
+		"(:": "smileinvert",
+		"(-:": "smileinvert",
+		":smileinverted:": "smileinvert",
+		":invertsmile:": "smileinvert",
+		":invertedsmile:": "smileinvert",
+		":upsidedownsmile:": "smileinvert",
+		":silly:": "smileinvert",
+
+		":sweating:": "sweat",
+		":nervous:": "sweat",
+
+		":p": "tongue",
+		":P": "tongue",
+		":-p": "tongue",
+		":-P": "tongue",
+
 		":-|": "unamused",
-		"<3": "heart",
-		":D": "grin",
-		":-D": "grin",
-		":grinning:": "grin"
+		":meh:": "unamused",
+
+		";)": "wink",
+		";-)": "wink",
+		":winking:": "wink",
+
+		";p": "winktongue",
+		";P": "winktongue",
+		";-p": "winktongue",
+		";-P": "winktongue"
 	}
 }
