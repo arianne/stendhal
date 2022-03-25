@@ -419,6 +419,7 @@ stendhal.data.sprites.animations = {
 stendhal.data.sprites.emojis = {
 	available: {
 		"angermark": true,
+		"expressionless": true,
 		"frown": true,
 		"grin": true,
 		"heart": true,
@@ -436,6 +437,10 @@ stendhal.data.sprites.emojis = {
 		":anger:": "angermark",
 		":angry:": "angermark",
 		"💢": "angermark",
+
+		"-_-": "expressionless",
+		":noexpression:": "expressionless",
+		"😑": "expressionless",
 
 		":(": "frown",
 		":-(": "frown",
