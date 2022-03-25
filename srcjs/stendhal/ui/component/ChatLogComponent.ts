@@ -22,9 +22,14 @@ export class ChatLogComponent extends Component {
 	}
 
 
-	public addLine(type: string, message: string) {
-		let chatElement = this.componentElement;
-		let date = new Date();
+	/**
+	 * Generates a timestamp.
+	 *
+	 * @return
+	 *     Timestamp formatted <code>HTMLSpanElement</code> element.
+	 */
+	private createTimestamp() {
+		const date = new Date();
 		let time = "" + date.getHours() + ":";
 		if (date.getHours() < 10) {
 			time = "0" + time;
@@ -38,17 +43,58 @@ export class ChatLogComponent extends Component {
 		timestamp.className = "logtimestamp";
 		timestamp.innerHTML = "[" + time + "]";
 
-		let div = document.createElement("div");
-		div.className = "log" + type;
-		div.appendChild(timestamp);
-		div.innerHTML += " " + this.formatLogEntry(message);
+		return timestamp;
+	}
 
-		let isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
+
+	private add(div: HTMLDivElement) {
+		const chatElement = this.componentElement;
+		const isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
 		chatElement.appendChild(div);
 
 		if (isAtBottom) {
 			chatElement.scrollTop = chatElement.scrollHeight;
 		}
+	}
+
+
+	/**
+	 * Adds a line of text.
+	 *
+	 * @param type
+	 *     Message type.
+	 * @param message
+	 *     Text to be added.
+	 */
+	public addLine(type: string, message: string) {
+		const div = document.createElement("div");
+		div.className = "log" + type;
+		div.appendChild(this.createTimestamp());
+		div.innerHTML += " " + this.formatLogEntry(message);
+
+		this.add(div);
+	}
+
+
+	/**
+	 * Adds a line displaying an emoji image.
+	 *
+	 * @param emoji
+	 *     Emoji image sprite.
+	 * @param orator
+	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 */
+	public addEmojiLine(emoji: HTMLImageElement, orator?: string) {
+		const div = document.createElement("div");
+		div.className = "lognormal";
+		div.appendChild(this.createTimestamp());
+		div.innerHTML += " ";
+		if (orator) {
+			div.innerHTML += orator + ": ";
+		}
+		div.appendChild(emoji);
+
+		this.add(div);
 	}
 
 

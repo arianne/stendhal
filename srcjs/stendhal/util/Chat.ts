@@ -16,7 +16,7 @@ import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 declare let marauroa: any;
 
 const headless_types = ["normal", "regular", "privmsg",
-		"significant_positive", "client"];
+		"significant_positive", "client", "emoji"];
 
 
 /**
@@ -27,11 +27,24 @@ export class Chat {
 	/**
 	 * adds a line to the chat log
 	 *
-	 * @param type type of message
-	 * @param message message to log
+	 * @param type
+	 *     Message type.
+	 * @param message
+	 *     Message to log.
+	 * @param orator
+	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 */
-	public static log(type: string, message: string) {
-		(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).addLine(type, message);
+	public static log(type: string, message: string|HTMLElement, orator?: string) {
+		const ChatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+
+		if (type === "emoji" && message instanceof HTMLImageElement) {
+			ChatLog.addEmojiLine(message, orator);
+		} else if (typeof(message) === "string") {
+			if (orator) {
+				message = orator + ": " + message;
+			}
+			ChatLog.addLine(type, message);
+		}
 
 		if (marauroa.me && !(headless_types.indexOf(type) >= 0)) {
 			marauroa.me.addNotificationBubble(type, message);

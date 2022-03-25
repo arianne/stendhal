@@ -150,11 +150,12 @@ export class RPEntity extends ActiveEntity {
 			let emoji = stendhal.data.emoji.get(text);
 			if (emoji) {
 				this.addEmoji(emoji);
+				Chat.log("emoji", emoji, this.getTitle());
 			} else if (text.startsWith("^!me")) {
 				Chat.log("emote", text.replace(/^!me/, this.getTitle()));
 			} else {
 				this.addSpeechBubble(text);
-				Chat.log("normal", this.getTitle() + ": " + text);
+				Chat.log("normal", text, this.getTitle());
 			}
 		}
 	}
@@ -284,7 +285,7 @@ export class RPEntity extends ActiveEntity {
 		});
 	}
 
-	addEmoji(emoji: typeof Image) {
+	addEmoji(emoji: HTMLImageElement) {
 		stendhal.ui.gamewindow.addEmojiSprite(this, {
 			timeStamp: Date.now(),
 			entity: this,

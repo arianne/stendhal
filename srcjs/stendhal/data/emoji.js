@@ -25,14 +25,14 @@ stendhal.data.emoji = {
 	 *     <code>Image</code> or <code>undefined</code> if emoji isn't available.
 	 */
 	get: function(text) {
-		let name = this.check(text);
-		if (name) {
-			const img = new Image();
-			img.src = "/data/sprites/emoji/" + name + ".png";
-			return img;
+		const path = this.absPath(text);
+		if (!path) {
+			return;
 		}
 
-		return undefined;
+		const img = new Image();
+		img.src = path;
+		return img;
 	},
 
 	/**
@@ -44,18 +44,49 @@ stendhal.data.emoji = {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	check: function(text) {
-		let emoji = this.map[text];
-		if (!emoji && (text.startsWith(":") && text.endsWith(":"))) {
+		let name = this.map[text];
+		if (!name && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substr(0, text.length - 1).substr(1);
-			if (this.available[text]) {
-				emoji = text;
+			if (this.isAvailable(text)) {
+				name = text;
 			}
 		}
 
-		return emoji;
+		return name;
 	},
 
-	available: {
+	/**
+	 * Retrieves full path to an emoji image.
+	 *
+	 * @param name
+	 *     Text representing emoji image filename.
+	 * @return
+	 *     String path to emoji image.
+	 */
+	absPath: function(name) {
+		name = this.check(name);
+		if (name) {
+			return "/data/sprites/emoji/" + name + ".png";
+		}
+	},
+
+	/**
+	 * Checks if an emoji is registered.
+	 *
+	 * @param name
+	 *     Text representing emoji image filename.
+	 * @return
+	 *     <code>true</code> if name is registered.
+	 */
+	isAvailable: function(name) {
+		if (name.startsWith(":") && name.endsWith(":")) {
+			name = name.substr(0, name.length - 1).substr(1);
+		}
+
+		return this.registered[name] == true;
+	},
+
+	registered: {
 		"angermark": true,
 		"expressionless": true,
 		"frown": true,
