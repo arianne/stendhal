@@ -90,6 +90,7 @@ stendhal.data.emoji = {
 		"angermark": true,
 		"expressionless": true,
 		"frown": true,
+		"frownslight": true,
 		"grin": true,
 		"heart": true,
 		"neutral": true,
@@ -115,12 +116,15 @@ stendhal.data.emoji = {
 		":noexpression:": "expressionless",
 		"😑": "expressionless",
 
-		":(": "frown",
 		":-(": "frown",
-		"):": "frown",
 		")-:": "frown",
 		":frowning:": "frown",
 		"\u2639": "frown",
+
+		":(": "frownslight",
+		"):": "frownslight",
+		":slightfrown:": "frownslight",
+		"🙁": "frownslight",
 
 		":D": "grin",
 		":-D": "grin",
