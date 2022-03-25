@@ -418,6 +418,7 @@ stendhal.data.sprites.animations = {
 
 stendhal.data.sprites.emojis = {
 	available: {
+		"grin": true,
 		"heart": true,
 		"smile": true,
 		"unamused": true
@@ -426,6 +427,8 @@ stendhal.data.sprites.emojis = {
 	map: {
 		":)": "smile",
 		":-|": "unamused",
-		"<3": "heart"
+		"<3": "heart",
+		":D": "grin",
+		":-D": "grin"
 	}
 }
