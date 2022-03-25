@@ -46,7 +46,9 @@ export class RPEntity extends ActiveEntity {
 	//private arc_diameter = 2 * this.margin_width + 2;
 
 	private emojiKey = {
-		":)": "smile"
+		":)": "smile",
+		":-|": "unamused",
+		"<3": "heart"
 	} as {[index: string]: string;};
 
 

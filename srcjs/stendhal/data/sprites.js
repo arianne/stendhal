@@ -45,7 +45,9 @@ stendhal.data.sprites = {
 	},
 
 	emojis: {
-		"smile": true
+		"heart": true,
+		"smile": true,
+		"unamused": true
 	},
 
 	get: function(filename) {
