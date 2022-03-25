@@ -285,7 +285,7 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	addEmoji(emoji: typeof Image) {
-		stendhal.ui.gamewindow.addEmojiSprite({
+		stendhal.ui.gamewindow.addEmojiSprite(this, {
 			timeStamp: Date.now(),
 			entity: this,
 			sprite: emoji,
