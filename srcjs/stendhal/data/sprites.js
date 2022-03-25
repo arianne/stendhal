@@ -457,6 +457,9 @@ stendhal.data.sprites.emojis = {
 		":)": "smile",
 		":-)": "smile",
 		":smiling:": "smile",
+		":smiley:": "smile",
+		"\u263a": "smile",
+		"\u263b": "smile",
 
 		"(:": "smileinvert",
 		"(-:": "smileinvert",
