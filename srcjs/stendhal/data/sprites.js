@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -368,16 +368,6 @@ stendhal.data.sprites = {
 	 */
 	hasSafeImage: function(filename) {
 		return this.knownSafeSprites[filename] == true;
-	},
-
-	getEmoji: function(name) {
-		if (this.emojis.available[name]) {
-			const img = new Image();
-			img.src = "/data/sprites/emoji/" + name + ".png";
-			return img;
-		}
-
-		return undefined;
 	}
 }
 
@@ -413,95 +403,5 @@ stendhal.data.sprites.knownSafeSprites = {
 stendhal.data.sprites.animations = {
 	idea: {
 		"love": {delay: 100, offsetX: 24, offsetY: -8}
-	}
-}
-
-stendhal.data.sprites.emojis = {
-	available: {
-		"angermark": true,
-		"expressionless": true,
-		"frown": true,
-		"grin": true,
-		"heart": true,
-		"neutral": true,
-		"smile": true,
-		"smileinvert": true,
-		"smileslight": true,
-		"sweat": true,
-		"tongue": true,
-		"wink": true,
-		"winktongue": true
-	},
-
-	map: {
-		":anger:": "angermark",
-		":angry:": "angermark",
-		"💢": "angermark",
-
-		"-_-": "expressionless",
-		":noexpression:": "expressionless",
-		"😑": "expressionless",
-
-		":(": "frown",
-		":-(": "frown",
-		"):": "frown",
-		")-:": "frown",
-		":frowning:": "frown",
-		"\u2639": "frown",
-
-		":D": "grin",
-		":-D": "grin",
-		":grinning:": "grin",
-		"😀": "grin",
-		"😃": "grin",
-
-		"<3": "heart",
-		":love:": "heart",
-		"\u2764": "heart",
-
-		":-|": "neutral",
-		":meh:": "neutral",
-		":unamused:": "neutral",
-		"😐": "neutral",
-
-		":)": "smile",
-		":-)": "smile",
-		":smiling:": "smile",
-		":smiley:": "smile",
-		"\u263a": "smile",
-		"\u263b": "smile",
-
-		"(:": "smileinvert",
-		"(-:": "smileinvert",
-		":smileinverted:": "smileinvert",
-		":invertsmile:": "smileinvert",
-		":invertedsmile:": "smileinvert",
-		":upsidedownsmile:": "smileinvert",
-		":silly:": "smileinvert",
-		"🙃": "smileinvert",
-
-		":slightsmile:": "smileslight",
-		"🙂": "smileslight",
-
-		":sweating:": "sweat",
-		":nervous:": "sweat",
-		"💧": "sweat",
-
-		":p": "tongue",
-		":P": "tongue",
-		":-p": "tongue",
-		":-P": "tongue",
-		"😛": "tongue",
-
-		";)": "wink",
-		";-)": "wink",
-		":winking:": "wink",
-		"😉": "wink",
-
-		";p": "winktongue",
-		";P": "winktongue",
-		";-p": "winktongue",
-		";-P": "winktongue",
-		"😜": "winktongue"
 	}
 }

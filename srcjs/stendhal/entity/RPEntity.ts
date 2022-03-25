@@ -140,26 +140,6 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	/**
-	 * Checks if text represents an emoji.
-	 *
-	 * @param text
-	 *     Text to be checked.
-	 * @return
-	 *     String representing emoji sprite filename or <code>undefined</code>.
-	 */
-	private checkEmoji(text: string): string|undefined {
-		let emoji: string|undefined = stendhal.data.sprites.emojis.map[text];
-		if (!emoji && (text.startsWith(":") && text.endsWith(":"))) {
-			text = text.substr(0, text.length - 1).substr(1);
-			if (stendhal.data.sprites.emojis.available[text]) {
-				emoji = text;
-			}
-		}
-
-		return emoji;
-	}
-
-	/**
 	 * says a text
 	 */
 	override say(text: string) {
@@ -167,7 +147,7 @@ export class RPEntity extends ActiveEntity {
 			return;
 		}
 		if (marauroa.me.isInHearingRange(this)) {
-			let emoji = this.checkEmoji(text);
+			let emoji = stendhal.data.emoji.get(text);
 			if (emoji) {
 				this.addEmoji(emoji);
 			} else if (text.startsWith("^!me")) {
@@ -304,16 +284,11 @@ export class RPEntity extends ActiveEntity {
 		});
 	}
 
-	addEmoji(emoji: string) {
-		const sprite = stendhal.data.sprites.getEmoji(emoji);
-		if (!emoji) {
-			return;
-		}
-
+	addEmoji(emoji: typeof Image) {
 		stendhal.ui.gamewindow.addEmojiSprite({
 			timeStamp: Date.now(),
 			entity: this,
-			sprite: sprite,
+			sprite: emoji,
 			draw: function(ctx: CanvasRenderingContext2D) {
 				let x = this.entity["_x"] * 32 - 16;
 				let y = this.entity["_y"] * 32 - 32;
