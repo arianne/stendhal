@@ -437,15 +437,20 @@ stendhal.data.sprites.emojis = {
 		"):": "frown",
 		")-:": "frown",
 		":frowning:": "frown",
+		"\u2639": "frown",
 
 		":D": "grin",
 		":-D": "grin",
 		":grinning:": "grin",
+		"😀": "grin",
+		"😃": "grin",
 
 		"<3": "heart",
 		":love:": "heart",
+		"\u2764": "heart",
 
 		":smileslight:": "slightsmile",
+		"🙂": "slightsmile",
 
 		":)": "smile",
 		":-)": "smile",
@@ -458,25 +463,31 @@ stendhal.data.sprites.emojis = {
 		":invertedsmile:": "smileinvert",
 		":upsidedownsmile:": "smileinvert",
 		":silly:": "smileinvert",
+		"🙃": "smileinvert",
 
 		":sweating:": "sweat",
 		":nervous:": "sweat",
+		"💧": "sweat",
 
 		":p": "tongue",
 		":P": "tongue",
 		":-p": "tongue",
 		":-P": "tongue",
+		"😛": "tongue",
 
 		":-|": "unamused",
 		":meh:": "unamused",
+		"😐": "unamused",
 
 		";)": "wink",
 		";-)": "wink",
 		":winking:": "wink",
+		"😉": "wink",
 
 		";p": "winktongue",
 		";P": "winktongue",
 		";-p": "winktongue",
-		";-P": "winktongue"
+		";-P": "winktongue",
+		"😜": "winktongue"
 	}
 }
