@@ -421,9 +421,9 @@ stendhal.data.sprites.emojis = {
 		"frown": true,
 		"grin": true,
 		"heart": true,
-		"slightsmile": true,
 		"smile": true,
 		"smileinvert": true,
+		"smileslight": true,
 		"sweat": true,
 		"tongue": true,
 		"unamused": true,
@@ -449,9 +449,6 @@ stendhal.data.sprites.emojis = {
 		":love:": "heart",
 		"\u2764": "heart",
 
-		":smileslight:": "slightsmile",
-		"🙂": "slightsmile",
-
 		":)": "smile",
 		":-)": "smile",
 		":smiling:": "smile",
@@ -464,6 +461,9 @@ stendhal.data.sprites.emojis = {
 		":upsidedownsmile:": "smileinvert",
 		":silly:": "smileinvert",
 		"🙃": "smileinvert",
+
+		":slightsmile:": "smileslight",
+		"🙂": "smileslight",
 
 		":sweating:": "sweat",
 		":nervous:": "sweat",
