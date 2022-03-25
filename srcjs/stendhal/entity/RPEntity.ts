@@ -45,12 +45,6 @@ export class RPEntity extends ActiveEntity {
 	/** the diameter of the arc of the rounded bubble corners. */
 	//private arc_diameter = 2 * this.margin_width + 2;
 
-	private emojiKey = {
-		":)": "smile",
-		":-|": "unamused",
-		"<3": "heart"
-	} as {[index: string]: string;};
-
 
 	override set(key: string, value: any) {
 		// Ugly hack to detect changes. The old value is no
@@ -154,10 +148,10 @@ export class RPEntity extends ActiveEntity {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	private checkEmoji(text: string): string|undefined {
-		let emoji: string|undefined = this.emojiKey[text];
+		let emoji: string|undefined = stendhal.data.sprites.emojis.map[text];
 		if (!emoji && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substr(0, text.length - 1).substr(1);
-			if (stendhal.data.sprites.emojis[text]) {
+			if (stendhal.data.sprites.emojis.available[text]) {
 				emoji = text;
 			}
 		}

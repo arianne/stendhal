@@ -44,12 +44,6 @@ stendhal.data.sprites = {
 		"ent": true
 	},
 
-	emojis: {
-		"heart": true,
-		"smile": true,
-		"unamused": true
-	},
-
 	get: function(filename) {
 		if (!filename) {
 			return {};
@@ -377,7 +371,7 @@ stendhal.data.sprites = {
 	},
 
 	getEmoji: function(name) {
-		if (this.emojis[name]) {
+		if (this.emojis.available[name]) {
 			const img = new Image();
 			img.src = "/data/sprites/emoji/" + name + ".png";
 			return img;
@@ -419,5 +413,19 @@ stendhal.data.sprites.knownSafeSprites = {
 stendhal.data.sprites.animations = {
 	idea: {
 		"love": {delay: 100, offsetX: 24, offsetY: -8}
+	}
+}
+
+stendhal.data.sprites.emojis = {
+	available: {
+		"heart": true,
+		"smile": true,
+		"unamused": true
+	},
+
+	map: {
+		":)": "smile",
+		":-|": "unamused",
+		"<3": "heart"
 	}
 }
