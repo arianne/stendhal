@@ -146,6 +146,26 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	/**
+	 * Checks if text represents an emoji.
+	 *
+	 * @param text
+	 *     Text to be checked.
+	 * @return
+	 *     String representing emoji sprite filename or <code>undefined</code>.
+	 */
+	private checkEmoji(text: string): string|undefined {
+		let emoji: string|undefined = this.emojiKey[text];
+		if (!emoji && (text.startsWith(":") && text.endsWith(":"))) {
+			text = text.substr(0, text.length - 1).substr(1);
+			if (stendhal.data.sprites.emojis[text]) {
+				emoji = text;
+			}
+		}
+
+		return emoji;
+	}
+
+	/**
 	 * says a text
 	 */
 	override say(text: string) {
@@ -153,11 +173,8 @@ export class RPEntity extends ActiveEntity {
 			return;
 		}
 		if (marauroa.me.isInHearingRange(this)) {
-			let emoji = this.emojiKey[text];
+			let emoji = this.checkEmoji(text);
 			if (emoji) {
-				this.addEmoji(emoji);
-			} else if (text.startsWith(":") && text.endsWith(":")) {
-				emoji = text.substr(0, text.length - 1).substr(1);
 				this.addEmoji(emoji);
 			} else if (text.startsWith("^!me")) {
 				Chat.log("emote", text.replace(/^!me/, this.getTitle()));
