@@ -426,9 +426,12 @@ stendhal.data.sprites.emojis = {
 
 	map: {
 		":)": "smile",
+		":-)": "smile",
+		":smiling:": "smile",
 		":-|": "unamused",
 		"<3": "heart",
 		":D": "grin",
-		":-D": "grin"
+		":-D": "grin",
+		":grinning:": "grin"
 	}
 }
