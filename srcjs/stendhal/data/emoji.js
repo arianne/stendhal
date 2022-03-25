@@ -62,6 +62,7 @@ stendhal.data.emoji = {
 		"grin": true,
 		"heart": true,
 		"neutral": true,
+		"savor": true,
 		"smile": true,
 		"smileinvert": true,
 		"smileslight": true,
@@ -72,6 +73,9 @@ stendhal.data.emoji = {
 	},
 
 	map: {
+		// NOTE: must use raw characters for unicode codes with more
+		//       than 4 digits
+
 		":anger:": "angermark",
 		":angry:": "angermark",
 		"💢": "angermark",
@@ -101,6 +105,9 @@ stendhal.data.emoji = {
 		":meh:": "neutral",
 		":unamused:": "neutral",
 		"😐": "neutral",
+
+		":yum:": "savor",
+		"😋": "savor",
 
 		":)": "smile",
 		":-)": "smile",
