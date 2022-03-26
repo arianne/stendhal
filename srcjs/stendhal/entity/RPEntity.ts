@@ -404,7 +404,7 @@ export class RPEntity extends ActiveEntity {
 			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
 		}
 
-		if (stendhal.config.gamescreen.shadows && this.castsShadow()) {
+		if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
 			// FIXME: this will not display correctly for horse outfit
 			const shadow = stendhal.data.sprites.getShadow("48x64");
@@ -504,7 +504,7 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			// check for safe image
-			if (!stendhal.config.gamescreen.blood && stendhal.data.sprites.hasSafeImage(filename)) {
+			if (!stendhal.config.getBoolean("gamescreen.blood") && stendhal.data.sprites.hasSafeImage(filename)) {
 				filename = filename + "-safe.png";
 			} else {
 				filename = filename + ".png";
@@ -512,7 +512,7 @@ export class RPEntity extends ActiveEntity {
 
 			let image = stendhal.data.sprites.get(filename);
 
-			if (stendhal.config.gamescreen.shadows && this.castsShadow()) {
+			if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
 				// check for configured shadow style
 				let shadow_style = this["shadow_style"];
 				if (typeof(shadow_style) === "undefined") {

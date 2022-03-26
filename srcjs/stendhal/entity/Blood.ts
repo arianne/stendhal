@@ -41,7 +41,7 @@ export class Blood extends Entity {
 	}
 
 	override drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
-		if (!stendhal.config.gamescreen.blood) {
+		if (!stendhal.config.getBoolean("gamescreen.blood")) {
 			return;
 		}
 

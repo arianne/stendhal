@@ -24,28 +24,28 @@ export class SettingsDialog extends DialogContentComponent {
 		super("settingsdialog-template");
 
 		const chk_blood = this.getCheckBox("chk_blood")!;
-		chk_blood.checked = stendhal.config.gamescreen.blood;
+		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
 		chk_blood.addEventListener("change", (e) => {
-			stendhal.config.gamescreen.blood = chk_blood.checked;
+			stendhal.config.set("gamescreen.blood", chk_blood.checked);
 			this.reloadRequired = true; // only required to immediately update corpses & tiles
 		});
 
 		const chk_shadows = this.getCheckBox("chk_shadows")!;
-		chk_shadows.checked = stendhal.config.gamescreen.shadows;
+		chk_shadows.checked = stendhal.config.getBoolean("gamescreen.shadows");
 		chk_shadows.addEventListener("change", (e) => {
-			stendhal.config.gamescreen.shadows = chk_shadows.checked;
+			stendhal.config.set("gamescreen.shadows", chk_shadows.checked);
 		});
 
 		const chk_dblclick = this.getCheckBox("chk_dblclick")!;
-		chk_dblclick.checked = stendhal.config.itemDoubleClick;
+		chk_dblclick.checked = stendhal.config.getBoolean("input.item_doubleclick");
 		chk_dblclick.addEventListener("change", (e) => {
-			stendhal.config.itemDoubleClick = chk_dblclick.checked;
+			stendhal.config.set("input.item_doubleclick", chk_dblclick.checked);
 		});
 
 		const chk_movecont = this.getCheckBox("chk_movecont")!;
-		chk_movecont.checked = stendhal.config.moveCont;
+		chk_movecont.checked = stendhal.config.getBoolean("input.movecont");
 		chk_movecont.addEventListener("change", (e) => {
-			stendhal.config.moveCont = chk_movecont.checked;
+			stendhal.config.set("input.movecont", chk_movecont.checked);
 			const action = {"type": "move.continuous"} as {[index: string]: string;};
 			if (chk_movecont.checked) {
 				action["move.continuous"] = "";
@@ -56,7 +56,7 @@ export class SettingsDialog extends DialogContentComponent {
 
 		const sel_theme = <HTMLSelectElement>
 				this.componentElement.querySelector("select[id='selecttheme']")!;
-		const themes = Object.keys(stendhal.config.theme.index);
+		const themes = Object.keys(stendhal.config.themes.map);
 		for (const key of themes) {
 			const opt = document.createElement("option");
 			opt.value = key;
@@ -67,9 +67,9 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 			sel_theme.appendChild(opt);
 		}
-		sel_theme.selectedIndex = themes.indexOf(stendhal.config.theme.current);
+		sel_theme.selectedIndex = themes.indexOf(stendhal.config.getTheme());
 		sel_theme.addEventListener("change", (o) => {
-			stendhal.config.theme.current = themes[sel_theme.selectedIndex];
+			stendhal.config.setTheme(themes[sel_theme.selectedIndex]);
 			this.reloadRequired = true;
 		});
 
@@ -82,24 +82,7 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 
 			if (this.reloadRequired) {
-				// FIXME: need confirmation dialog
-				let params = "?char=" + stendhal.config.character
-						+ "&theme=" + stendhal.config.theme.current;
-
-				if (stendhal.config.itemDoubleClick) {
-					params += "&item_doubleclick";
-				}
-				if (stendhal.config.moveCont) {
-					params += "&movecont";
-				}
-				if (!stendhal.config.gamescreen.blood) {
-					params += "&noblood";
-				}
-				if (!stendhal.config.gamescreen.shadows) {
-					params += "&noshadows";
-				}
-
-				document.location = params;
+				location.reload();
 			}
 		});
 

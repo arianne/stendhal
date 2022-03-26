@@ -171,7 +171,7 @@ stendhal.data.map = {
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
 
 			const baseFilename = filename.replace(/\.png$/, "");
-			if (!stendhal.config.gamescreen.blood && this.hasSafeTileset(baseFilename)) {
+			if (!stendhal.config.getBoolean("gamescreen.blood") && this.hasSafeTileset(baseFilename)) {
 				stendhal.data.map.tilesetFilenames.push(baseFilename + "-safe.png");
 			} else {
 				stendhal.data.map.tilesetFilenames.push(filename);

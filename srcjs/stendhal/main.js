@@ -139,14 +139,13 @@ stendhal.main = {
 	},
 
 	toggleSound: function() {
-		stendhal.config.sound.play = !stendhal.config.sound.play;
-
+		stendhal.config.set("ui.sound", !stendhal.config.getBoolean("ui.sound"));
 		stendhal.main.onSoundToggled();
 	},
 
 	onSoundToggled: function() {
 		var soundbutton = document.getElementById("soundbutton");
-		if (stendhal.config.sound.play) {
+		if (stendhal.config.getBoolean("ui.sound")) {
 			soundbutton.textContent = "🔊";
 		} else {
 			soundbutton.textContent = "🔇";
@@ -207,7 +206,7 @@ stendhal.main = {
 		stendhal.main.devWarning();
 
 		stendhal.config.init(new URL(document.location).searchParams);
-		stendhal.config.theme.apply(document.querySelector(".background"));
+		stendhal.config.applyTheme(document.querySelector(".background"));
 
 		new DesktopUserInterfaceFactory().create();
 
@@ -229,7 +228,7 @@ stendhal.main = {
 		}
 
 		// attributes to set after connection made
-		if (stendhal.config.moveCont) {
+		if (stendhal.config.getBoolean("input.movecont")) {
 			const socket = marauroa.clientFramework.socket;
 			let tries = 0;
 

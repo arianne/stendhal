@@ -18,7 +18,7 @@ stendhal.ui.sound = {
 	layers: ["music", "ambient", "creature", "sfx", "gui"],
 
 	playLocalizedEffect: function(x, y, radius, layer, soundName, volume) {
-		if (!stendhal.config.sound.play) {
+		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
 		}
 
@@ -48,7 +48,7 @@ stendhal.ui.sound = {
 	},
 
 	playGlobalizedEffect: function(soundName, volume) {
-		if (!stendhal.config.sound.play) {
+		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
 		}
 

@@ -26,9 +26,11 @@ export class Corpse extends Entity {
 		super.set(key, value);
 
 		this.sprite = this.sprite || {};
-		if (stendhal.config.gamescreen.blood && (key === "image")) {
+		const bloodEnabled = stendhal.config.getBoolean("gamescreen.blood");
+
+		if (bloodEnabled && (key === "image")) {
 			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
-		} else if (!stendhal.config.gamescreen.blood && (key === "harmless_image")) {
+		} else if (!bloodEnabled && (key === "harmless_image")) {
 			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
 		}
 	}
