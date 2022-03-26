@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,6 +35,7 @@ stendhal.config = {
 		}
 
 		// store window information for this session
+		// TODO: move this into "session.js" file
 		this.dialogstates = {};
 		this.dialogstates["menu"] = {x: 150, y: 20};
 		this.dialogstates["settings"] = {x: 20, y: 20};
