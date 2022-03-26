@@ -20,3 +20,6 @@ This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
 Files:
 - Carlito-Bold.ttf
+- Carlito-BoldItalic.ttf
+- Carlito-Italic.ttf
+- Carlito-Regular.ttf
