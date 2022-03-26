@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                     Copyright © 2003-2022 - Arianne                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -15,6 +15,9 @@ declare let stendhal: any;
 
 
 export class SettingsDialog extends DialogContentComponent {
+
+	private reloadRequired = false;
+
 
 	constructor() {
 		super("settingsdialog-template");
@@ -37,6 +40,11 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_dblclick.setting = "itemDoubleClick";
 		chk_dblclick.checked = stendhal.config.itemDoubleClick;
 		this.addGeneralCheckListener(chk_dblclick);
+
+		const chk_movecont = this.getCheckBox("chk_movecont")!;
+		chk_movecont.setting = "moveCont";
+		chk_movecont.checked = stendhal.config.moveCont;
+		this.addGeneralCheckListener(chk_movecont);
 
 		const btn_accept = this.getButton("config_accept")!;
 		const btn_cancel = this.getButton("config_cancel")!;
@@ -65,11 +73,17 @@ export class SettingsDialog extends DialogContentComponent {
 	 *
 	 * @param chk
 	 *     CheckBox to apply listener.
+	 * @param requireReload
+	 *     If <code>true</code>, will trigger page reload when changes accepted.
 	 */
-	private addGeneralCheckListener(chk: CheckBox) {
+	private addGeneralCheckListener(chk: CheckBox, requireReload: boolean=false) {
 		chk.addEventListener("change", e => {
 			this.onToggleGeneralCheck(chk);
 		});
+
+		if (requireReload) {
+			this.reloadRequired = true;
+		}
 	}
 
 	/**
@@ -77,11 +91,17 @@ export class SettingsDialog extends DialogContentComponent {
 	 *
 	 * @param chk
 	 *     CheckBox to apply listener.
+	 * @param requireReload
+	 *     If <code>true</code>, will trigger page reload when changes accepted.
 	 */
-	private addGameScreenCheckListener(chk: CheckBox) {
+	private addGameScreenCheckListener(chk: CheckBox, requireReload: boolean=false) {
 		chk.addEventListener("change", e => {
 			this.onToggleGameScreenCheck(chk);
 		});
+
+		if (requireReload) {
+			this.reloadRequired = true;
+		}
 	}
 
 	/**
