@@ -68,7 +68,7 @@ class Initializer {
 			}
 		}
 		if (needsLoading) {
-			String resource = "data/gui/" + fontName + ".ttf";
+			String resource = "data/font/" + fontName + ".ttf";
 			try {
 				ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, DataLoader.getResourceAsStream(resource)));
 			} catch (IOException|FontFormatException e) {

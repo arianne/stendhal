@@ -380,8 +380,8 @@ span.logi {
 }
 
 @font-face {
-  font-family: BlackChancery;
-  src: url("/data/gui/BlackChancery.ttf");
+  font-family: Black Chancery;
+  src: url("/data/font/BlackChancery.ttf");
 }
 
 @font-face {
@@ -407,5 +407,5 @@ span.logi {
 
 @font-face {
   font-family: Tally;
-  src: url("/data/gui/Tally.ttf");
+  src: url("/data/font/Tally.ttf");
 }

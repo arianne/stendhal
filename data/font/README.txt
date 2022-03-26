@@ -12,7 +12,7 @@ to keep duplicate texts for fonts that share the same license.
 
 == Fonts ==
 
-=== Amaranth ===
+=== Amaranth (OFL 1.1) ===
 
 Copyright (c) 2011, Gesine Todt (hallo@gesine-todt.de),
 with Reserved Font Name Amaranth.
@@ -25,7 +25,16 @@ Files:
 - Amaranth-Regular.ttf
 
 
-=== Carlito ===
+=== Black Chancery (public domain) ===
+
+Black Chancery font
+version of 11/19/91 by Earl Allen/Doug Miles
+
+Files:
+- BlackChancery.ttf
+
+
+=== Carlito (OFL 1.1) ===
 
 Copyright (c) 2010-2013 by tyPoland Lukasz Dziedzic with Reserved Font Name "Carlito".
 
@@ -36,3 +45,12 @@ Files:
 - Carlito-BoldItalic.ttf
 - Carlito-Italic.ttf
 - Carlito-Regular.ttf
+
+
+=== Tally ===
+
+Copyright (c) 2016, Kimmo Rundelin
+
+Files:
+- Tally.ttf
+- Tally.sfd
