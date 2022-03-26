@@ -11,7 +11,8 @@
 
 import { DialogContentComponent } from "../component/DialogContentComponent";
 
-declare let stendhal: any;
+declare var marauroa: any;
+declare var stendhal: any;
 
 
 export class SettingsDialog extends DialogContentComponent {
@@ -43,8 +44,16 @@ export class SettingsDialog extends DialogContentComponent {
 
 		const chk_movecont = this.getCheckBox("chk_movecont")!;
 		chk_movecont.setting = "moveCont";
-		chk_movecont.checked = stendhal.config.moveCont;
-		this.addGeneralCheckListener(chk_movecont);
+		chk_movecont.checked = marauroa.me.hasOwnProperty("move.continuous");
+		chk_movecont.addEventListener("change", (e) => {
+			this.onToggleGeneralCheck(chk_movecont);
+			const action = {"type": "move.continuous"} as {[index: string]: string;};
+			if (chk_movecont.checked) {
+				action["move.continuous"] = "";
+			}
+
+			marauroa.clientFramework.sendAction(action);
+		});
 
 		const btn_accept = this.getButton("config_accept")!;
 		const btn_cancel = this.getButton("config_cancel")!;
