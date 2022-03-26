@@ -12,6 +12,19 @@ to keep duplicate texts for fonts that share the same license.
 
 == Fonts ==
 
+=== Amaranth ===
+
+Copyright (c) 2011, Gesine Todt (hallo@gesine-todt.de),
+with Reserved Font Name Amaranth.
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+
+Files:
+- Amaranth-Bold.ttf
+- Amaranth-BoldItalic.ttf
+- Amaranth-Italic.ttf
+- Amaranth-Regular.ttf
+
+
 === Carlito ===
 
 Copyright (c) 2010-2013 by tyPoland Lukasz Dziedzic with Reserved Font Name "Carlito".
