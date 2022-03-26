@@ -244,14 +244,14 @@ stendhal.main = {
 						return;
 					}
 
-					if (tries > 4) {
+					if (tries > 5) {
 						console.warn("could not set \"move.continuous\" attribute,"
 								+ " gave up after " + tries + " tries");
 						return;
 					}
 
 					checkConnection();
-				}, 5000);
+				}, 3000);
 			}
 
 			checkConnection();
