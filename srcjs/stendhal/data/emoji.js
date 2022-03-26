@@ -88,6 +88,7 @@ stendhal.data.emoji = {
 
 	registered: {
 		"angermark": true,
+		"cry": true,
 		"expressionless": true,
 		"frown": true,
 		"frownslight": true,
@@ -111,6 +112,11 @@ stendhal.data.emoji = {
 		":anger:": "angermark",
 		":angry:": "angermark",
 		"💢": "angermark",
+
+		":'(": "cry",
+		")':": "cry",
+		":crying:": "cry",
+		"😢": "cry",
 
 		"-_-": "expressionless",
 		":noexpression:": "expressionless",
