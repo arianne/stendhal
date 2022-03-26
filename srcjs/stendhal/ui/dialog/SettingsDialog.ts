@@ -23,30 +23,29 @@ export class SettingsDialog extends DialogContentComponent {
 	constructor() {
 		super("settingsdialog-template");
 
-		// FIXME: need a button to refresh page after adjusting settings
-
 		const chk_blood = this.getCheckBox("chk_blood")!;
-		chk_blood.setting = "blood";
 		chk_blood.checked = stendhal.config.gamescreen.blood;
+		chk_blood.addEventListener("change", (e) => {
+			stendhal.config.gamescreen.blood = chk_blood.checked;
+			this.reloadRequired = true; // only required to immediately update corpses & tiles
+		});
 
 		const chk_shadows = this.getCheckBox("chk_shadows")!;
-		chk_shadows.setting = "shadows";
 		chk_shadows.checked = stendhal.config.gamescreen.shadows;
-
-		[chk_blood, chk_shadows].forEach(chk => {
-			this.addGameScreenCheckListener(chk);
+		chk_shadows.addEventListener("change", (e) => {
+			stendhal.config.gamescreen.shadows = chk_shadows.checked;
 		});
 
 		const chk_dblclick = this.getCheckBox("chk_dblclick")!;
-		chk_dblclick.setting = "itemDoubleClick";
 		chk_dblclick.checked = stendhal.config.itemDoubleClick;
-		this.addGeneralCheckListener(chk_dblclick);
+		chk_dblclick.addEventListener("change", (e) => {
+			stendhal.config.itemDoubleClick = chk_dblclick.checked;
+		});
 
 		const chk_movecont = this.getCheckBox("chk_movecont")!;
-		chk_movecont.setting = "moveCont";
-		chk_movecont.checked = marauroa.me.hasOwnProperty("move.continuous");
+		chk_movecont.checked = stendhal.config.moveCont;
 		chk_movecont.addEventListener("change", (e) => {
-			this.onToggleGeneralCheck(chk_movecont);
+			stendhal.config.moveCont = chk_movecont.checked;
 			const action = {"type": "move.continuous"} as {[index: string]: string;};
 			if (chk_movecont.checked) {
 				action["move.continuous"] = "";
@@ -59,10 +58,29 @@ export class SettingsDialog extends DialogContentComponent {
 		const btn_cancel = this.getButton("config_cancel")!;
 
 		btn_accept.addEventListener("click", (e: Event) => {
-			// TODO:
-
 			if (this.frame != null) {
 				this.frame.close();
+			}
+
+			if (this.reloadRequired) {
+				// FIXME: need confirmation dialog
+				let params = "?char=" + stendhal.config.character
+						+ "&theme=" + stendhal.config.theme.current;
+
+				if (stendhal.config.itemDoubleClick) {
+					params += "&item_doubleclick";
+				}
+				if (stendhal.config.moveCont) {
+					params += "&movecont";
+				}
+				if (!stendhal.config.gamescreen.blood) {
+					params += "&noblood";
+				}
+				if (!stendhal.config.gamescreen.shadows) {
+					params += "&noshadows";
+				}
+
+				document.location = params;
 			}
 		});
 
@@ -78,64 +96,6 @@ export class SettingsDialog extends DialogContentComponent {
 	}
 
 	/**
-	 * Sets up a checkbox change state listener.
-	 *
-	 * @param chk
-	 *     CheckBox to apply listener.
-	 * @param requireReload
-	 *     If <code>true</code>, will trigger page reload when changes accepted.
-	 */
-	private addGeneralCheckListener(chk: CheckBox, requireReload: boolean=false) {
-		chk.addEventListener("change", e => {
-			this.onToggleGeneralCheck(chk);
-		});
-
-		if (requireReload) {
-			this.reloadRequired = true;
-		}
-	}
-
-	/**
-	 * Sets up a checkbox change state listener.
-	 *
-	 * @param chk
-	 *     CheckBox to apply listener.
-	 * @param requireReload
-	 *     If <code>true</code>, will trigger page reload when changes accepted.
-	 */
-	private addGameScreenCheckListener(chk: CheckBox, requireReload: boolean=false) {
-		chk.addEventListener("change", e => {
-			this.onToggleGameScreenCheck(chk);
-		});
-
-		if (requireReload) {
-			this.reloadRequired = true;
-		}
-	}
-
-	/**
-	 * Updates configuration when checkbox values are changed.
-	 *
-	 * @param chk
-	 *     The checkbox that changed state.
-	 */
-	private onToggleGeneralCheck(chk: CheckBox) {
-		// FIXME: settings not being updated
-		stendhal.config[chk.setting] = chk.checked;
-	}
-
-	/**
-	 * Updates configuration when checkbox values are changed.
-	 *
-	 * @param chk
-	 *     The checkbox that changed state.
-	 */
-	private onToggleGameScreenCheck(chk: CheckBox) {
-		// FIXME: settings not being updated
-		stendhal.config.gamescreen[chk.setting] = chk.checked;
-	}
-
-	/**
 	 * Retrieves checkbox element.
 	 *
 	 * @param id
@@ -143,8 +103,8 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLInputElement.
 	 */
-	private getCheckBox(id: string): CheckBox {
-		return <CheckBox> this.componentElement.querySelector(
+	private getCheckBox(id: string): HTMLInputElement {
+		return <HTMLInputElement> this.componentElement.querySelector(
 			"input[type=checkbox][id=" + id + "]");
 	}
 
@@ -160,38 +120,4 @@ export class SettingsDialog extends DialogContentComponent {
 		return <HTMLButtonElement> this.componentElement.querySelector(
 			"button[id=" + id + "]");
 	}
-
-	/**
-	 * Updates window state for this session.
-	 */
-	public override onMoved() {
-		/*
-		const rect = this.componentElement.getBoundingClientRect();
-		let newX = rect.left;
-		let newY = rect.top;
-
-		// keep dialog within view bounds
-		if (newX < 0) {
-			newX = 0;
-			this.componentElement.style.left = "0px";
-		}
-		if (newY < 0) {
-			newY = 0;
-			this.componentElement.style.top = "0px";
-		}
-
-		// FIXME: need to check bounds of view width & height
-
-		stendhal.config.windowstates.settings = {x: newX, y: newY};
-
-		// DEBUG:
-		console.log("SettingsDialog moved: " + newX + "," + newY);
-		*/
-	}
-}
-
-
-// XXX: this is probably unnecessary
-class CheckBox extends HTMLInputElement {
-	public setting: string = "";
 }

@@ -70,6 +70,7 @@ stendhal.main = {
 			let name = null;
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
+				stendhal.config.character = name;
 			} else {
 				name = stendhal.config.character;
 
