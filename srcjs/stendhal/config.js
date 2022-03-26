@@ -23,6 +23,7 @@ stendhal.config = {
 		this.setTheme(this.getTheme());
 		this.set("ui.sound", this.get("ui.sound") || false);
 		this.set("gamescreen.blood", this.get("gamescreen.blood") || true);
+		this.set("gamescreen.nonude", this.get("gamescreen.nonude") || true);
 		this.set("gamescreen.shadows", this.get("gamescreen.shadows") || true);
 		this.set("input.item_doubleclick", this.get("input.item_doubleclick") || false);
 		this.set("input.movecont", this.get("input.movecont") || false);

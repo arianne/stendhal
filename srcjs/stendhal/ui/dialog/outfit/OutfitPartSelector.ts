@@ -97,7 +97,12 @@ export class OutfitPartSelector {
 	}
 
 	_getPartSprite(part: string, index: number, color = null): Promise<CanvasImageSource> {
-		const fname = "/data/sprites/outfit/" + part + "/" + this.indexString(index) + ".png";
+		let suffix = ".png";
+		if (this._part === "body" && stendhal.config.getBoolean("gamescreen.nonude")) {
+			suffix = "-nonude.png";
+		}
+
+		const fname = "/data/sprites/outfit/" + part + "/" + this.indexString(index) + suffix;
 		if (color != null) {
 			return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 		}

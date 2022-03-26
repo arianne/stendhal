@@ -30,6 +30,12 @@ export class SettingsDialog extends DialogContentComponent {
 			this.reloadRequired = true; // only required to immediately update corpses & tiles
 		});
 
+		const chk_nonude = this.getCheckBox("chk_nonude")!;
+		chk_nonude.checked = stendhal.config.getBoolean("gamescreen.nonude");
+		chk_nonude.addEventListener("change", (e) => {
+			stendhal.config.set("gamescreen.nonude", chk_nonude.checked);
+		});
+
 		const chk_shadows = this.getCheckBox("chk_shadows")!;
 		chk_shadows.checked = stendhal.config.getBoolean("gamescreen.shadows");
 		chk_shadows.addEventListener("change", (e) => {

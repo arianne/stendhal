@@ -447,6 +447,11 @@ export class RPEntity extends ActiveEntity {
 		} else if(index < 100) {
 			n = "0" + index;
 		}
+
+		if (part === "body" && index < 3 && stendhal.config.getBoolean("gamescreen.nonude")) {
+			n += "-nonude";
+		}
+
 		const filename = "/data/sprites/outfit/" + part + "/" + n + ".png";
 		const colors = this["outfit_colors"];
 		let colorname;
