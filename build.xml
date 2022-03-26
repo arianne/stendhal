@@ -552,6 +552,10 @@
 			</fileset>
 		</copy>
 
+		<copy todir="${build_client_data}/data/font">
+			<fileset dir="data/font"/>
+		</copy>
+
 		<copy todir="${build_client_data}/data/gui">
 			<fileset dir="${data}">
 				<exclude name="paneldrock009.jpg"/>
