@@ -34,7 +34,7 @@ public class ListUnusedCharacters extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(ListUnusedCharacters.class);
 
-	class ListUnusedCharactersCommand extends AbstractDBCommand {
+	public static class ListUnusedCharactersCommand extends AbstractDBCommand {
 		private Player admin;
 
 		public ListUnusedCharactersCommand(Player admin) {
