@@ -54,6 +54,25 @@ export class SettingsDialog extends DialogContentComponent {
 			marauroa.clientFramework.sendAction(action);
 		});
 
+		const sel_theme = <HTMLSelectElement>
+				this.componentElement.querySelector("select[id='selecttheme']")!;
+		const themes = Object.keys(stendhal.config.theme.index);
+		for (const key of themes) {
+			const opt = document.createElement("option");
+			opt.value = key;
+			if (key === "wood") {
+				opt.innerHTML = key + " (default)";
+			} else {
+				opt.innerHTML = key;
+			}
+			sel_theme.appendChild(opt);
+		}
+		sel_theme.selectedIndex = themes.indexOf(stendhal.config.theme.current);
+		sel_theme.addEventListener("change", (o) => {
+			stendhal.config.theme.current = themes[sel_theme.selectedIndex];
+			this.reloadRequired = true;
+		});
+
 		const btn_accept = this.getButton("config_accept")!;
 		const btn_cancel = this.getButton("config_cancel")!;
 
