@@ -22,6 +22,7 @@ declare var stendhal: any;
 export class SettingsDialog extends DialogContentComponent {
 
 	private initialStates: {[index: string]: string};
+	private btn_reload: HTMLButtonElement;
 
 
 	constructor() {
@@ -43,6 +44,7 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_blood.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.blood", chk_blood.checked);
 			chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
+			this.refresh();
 		});
 
 		const chk_nonude = this.createCheckBox("chk_nonude")!;
@@ -111,6 +113,7 @@ export class SettingsDialog extends DialogContentComponent {
 
 		sel_theme.addEventListener("change", (o) => {
 			stendhal.config.setTheme(Object.keys(themes)[sel_theme.selectedIndex]);
+			this.refresh();
 		});
 
 		/* TODO:
@@ -157,22 +160,12 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* *** buttons *** */
 
-		const btn_reload = this.createButton("btn_config_reload",
+		this.btn_reload = this.createButton("btn_config_reload",
 				"Reloads page if required by changes");
-		btn_reload.addEventListener("click", (e: Event) => {
+		this.btn_reload.disabled = true;
+		this.btn_reload.addEventListener("click", (e: Event) => {
 			this.close();
-
-			let reloadRequired = false;
-			for (const key of Object.keys(this.initialStates)) {
-				if (stendhal.config.get(key) !== this.initialStates[key]) {
-					reloadRequired = true;
-					break;
-				}
-			}
-
-			if (reloadRequired) {
-				location.reload();
-			}
+			location.reload();
 		});
 
 		const btn_close = this.createButton("btn_config_close",
@@ -181,12 +174,27 @@ export class SettingsDialog extends DialogContentComponent {
 			this.close();
 		});
 
-		const button_layout = btn_reload.parentElement!;
+		const button_layout = this.btn_reload.parentElement!;
 		button_layout.style.setProperty("padding-top", "15px");
 	}
 
 	public override getConfigId(): string {
 		return "settings";
+	}
+
+	/**
+	 * Updates state of reload button.
+	 */
+	private refresh() {
+		let reloadRequired = false;
+		for (const key of Object.keys(this.initialStates)) {
+			if (stendhal.config.get(key) !== this.initialStates[key]) {
+				reloadRequired = true;
+				break;
+			}
+		}
+
+		this.btn_reload.disabled = !reloadRequired;
 	}
 
 	/**
