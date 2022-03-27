@@ -16,8 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -31,8 +29,6 @@ import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 
 public class ListUnusedCharacters extends ScriptImpl {
-
-	private static Logger logger = Logger.getLogger(ListUnusedCharacters.class);
 
 	public static class ListUnusedCharactersCommand extends AbstractDBCommand {
 		private Player admin;
@@ -49,7 +45,7 @@ public class ListUnusedCharacters extends ScriptImpl {
 					+ " SELECT characters.charname, account.username, characters.player_id FROM character_stats, characters, account"
 					+ " WHERE age<5 AND level=0 AND character_stats.name=characters.charname AND characters.player_id=account.id"
 					+ " AND characters.status='active' AND account.status='active'"
-					+ " AND character_sats.lastseen < date_sub(CURRENT_DATE, INTERVAL 1 MONTH)", null);
+					+ " AND character_stats.lastseen < date_sub(CURRENT_DATE, INTERVAL 1 MONTH)", null);
 			transaction.execute("DELETE FROM temp_delete WHERE EXISTS (SELECT null FROM buddy WHERE temp_delete.charname=buddy.buddy)", null);
 
 			CharacterDAO characterDao = DAORegister.get().get(CharacterDAO.class);
