@@ -21,11 +21,19 @@ declare var stendhal: any;
 
 export class SettingsDialog extends DialogContentComponent {
 
-	private reloadRequired = false;
+	private initialStates: {[index: string]: string};
 
 
 	constructor() {
 		super("settingsdialog-template");
+
+		this.initialStates = {
+			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
+			"ui.theme": stendhal.config.get("ui.theme")
+		};
+
+
+		/* *** left panel *** */
 
 		const chk_blood = this.createCheckBox("chk_blood")!;
 		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
@@ -35,7 +43,6 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_blood.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.blood", chk_blood.checked);
 			chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
-			this.reloadRequired = true; // only required to immediately update corpses & tiles
 		});
 
 		const chk_nonude = this.createCheckBox("chk_nonude")!;
@@ -57,6 +64,9 @@ export class SettingsDialog extends DialogContentComponent {
 			stendhal.config.set("gamescreen.shadows", chk_shadows.checked);
 			chk_shadows.parentElement!.title = tt_shadows.getValue(chk_shadows.checked);
 		});
+
+
+		/* *** center panel *** */
 
 		const chk_dblclick = this.createCheckBox("chk_dblclick")!;
 		chk_dblclick.checked = stendhal.config.getBoolean("input.item_doubleclick");
@@ -84,6 +94,9 @@ export class SettingsDialog extends DialogContentComponent {
 			marauroa.clientFramework.sendAction(action);
 		});
 
+
+		/* *** right panel *** */
+
 		const themes = {} as {[index: string]: string};
 		for (const t of Object.keys(stendhal.config.themes.map)) {
 			if (t === "wood") {
@@ -98,7 +111,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 		sel_theme.addEventListener("change", (o) => {
 			stendhal.config.setTheme(Object.keys(themes)[sel_theme.selectedIndex]);
-			this.reloadRequired = true;
 		});
 
 		/* TODO:
@@ -141,13 +153,22 @@ export class SettingsDialog extends DialogContentComponent {
 				"Reloads page if required by changes");
 		btn_reload.addEventListener("click", (e: Event) => {
 			this.close();
-			if (this.reloadRequired) {
+
+			let reloadRequired = false;
+			for (const key of Object.keys(this.initialStates)) {
+				if (stendhal.config.get(key) !== this.initialStates[key]) {
+					reloadRequired = true;
+					break;
+				}
+			}
+
+			if (reloadRequired) {
 				location.reload();
 			}
 		});
 
 		const btn_close = this.createButton("btn_config_close",
-				"Close settings without reloading page");
+				"Close this dialog without reloading page");
 		btn_close.addEventListener("click", (e: Event) => {
 			this.close();
 		});

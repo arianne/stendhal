@@ -14,6 +14,8 @@ import { FloatingWindow } from "../toolkit/FloatingWindow";
 
 declare let stendhal: any;
 
+// FIXME: this should be moved to ui/toolkit
+
 
 export abstract class DialogContentComponent extends Component {
 
