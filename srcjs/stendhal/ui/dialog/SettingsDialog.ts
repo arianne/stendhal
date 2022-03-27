@@ -83,9 +83,11 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* TODO:
 		 *   - create components to change font size, weight, style, etc.
-		 *   - add option to use system default
 		 */
-		const fonts = {} as {[index: string]: string};
+		const fonts = {
+			"sans-serif": "system default",
+			"serif": "system default (serif)"
+		} as {[index: string]: string};
 		for (const f of ["Amaranth", "Black Chancery", "Carlito"]) {
 			fonts[f] = f;
 		}
