@@ -73,8 +73,14 @@ export class ChatLogComponent extends Component {
 	 *     Message type.
 	 * @param message
 	 *     Text to be added.
+	 * @param orator
+	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 */
-	public addLine(type: string, message: string) {
+	public addLine(type: string, message: string, orator?: string) {
+		if (orator) {
+			message = orator + ": " + message;
+		}
+
 		const div = document.createElement("div");
 		div.className = "log" + type;
 		div.appendChild(this.createTimestamp());

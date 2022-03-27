@@ -40,10 +40,7 @@ export class Chat {
 		if (type === "emoji" && message instanceof HTMLImageElement) {
 			ChatLog.addEmojiLine(message, orator);
 		} else if (typeof(message) === "string") {
-			if (orator) {
-				message = orator + ": " + message;
-			}
-			ChatLog.addLine(type, message);
+			ChatLog.addLine(type, message, orator);
 		}
 
 		if (marauroa.me && !(headless_types.indexOf(type) >= 0)) {
