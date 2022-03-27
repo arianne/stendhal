@@ -27,32 +27,32 @@ export class SettingsDialog extends DialogContentComponent {
 	constructor() {
 		super("settingsdialog-template");
 
-		const chk_blood = this.getCheckBox("chk_blood")!;
+		const chk_blood = this.createCheckBox("chk_blood")!;
 		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
 		chk_blood.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.blood", chk_blood.checked);
 			this.reloadRequired = true; // only required to immediately update corpses & tiles
 		});
 
-		const chk_nonude = this.getCheckBox("chk_nonude")!;
+		const chk_nonude = this.createCheckBox("chk_nonude")!;
 		chk_nonude.checked = stendhal.config.getBoolean("gamescreen.nonude");
 		chk_nonude.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.nonude", chk_nonude.checked);
 		});
 
-		const chk_shadows = this.getCheckBox("chk_shadows")!;
+		const chk_shadows = this.createCheckBox("chk_shadows")!;
 		chk_shadows.checked = stendhal.config.getBoolean("gamescreen.shadows");
 		chk_shadows.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.shadows", chk_shadows.checked);
 		});
 
-		const chk_dblclick = this.getCheckBox("chk_dblclick")!;
+		const chk_dblclick = this.createCheckBox("chk_dblclick")!;
 		chk_dblclick.checked = stendhal.config.getBoolean("input.item_doubleclick");
 		chk_dblclick.addEventListener("change", (e) => {
 			stendhal.config.set("input.item_doubleclick", chk_dblclick.checked);
 		});
 
-		const chk_movecont = this.getCheckBox("chk_movecont")!;
+		const chk_movecont = this.createCheckBox("chk_movecont")!;
 		chk_movecont.checked = stendhal.config.getBoolean("input.movecont");
 		chk_movecont.addEventListener("change", (e) => {
 			stendhal.config.set("input.movecont", chk_movecont.checked);
@@ -117,7 +117,7 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* *** buttons *** */
 
-		const btn_reload = this.getButton("btn_config_reload",
+		const btn_reload = this.createButton("btn_config_reload",
 				"Reloads page if required by changes");
 		btn_reload.addEventListener("click", (e: Event) => {
 			this.close();
@@ -126,7 +126,7 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
-		const btn_close = this.getButton("btn_config_close",
+		const btn_close = this.createButton("btn_config_close",
 				"Close settings without reloading page");
 		btn_close.addEventListener("click", (e: Event) => {
 			this.close();
@@ -141,27 +141,36 @@ export class SettingsDialog extends DialogContentComponent {
 	}
 
 	/**
-	 * Retrieves checkbox element.
+	 * Creates a checkbox element.
 	 *
 	 * @param id
 	 *     Identifier of element to retrieve.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
 	 * @return
 	 *     HTMLInputElement.
 	 */
-	private getCheckBox(id: string): HTMLInputElement {
-		return <HTMLInputElement> this.componentElement.querySelector(
-			"input[type=checkbox][id=" + id + "]");
+	private createCheckBox(id: string, tooltip?: string): HTMLInputElement {
+		const checkbox = <HTMLInputElement> this.componentElement.querySelector(
+			"input[type=checkbox][id=" + id + "]")!;
+		if (tooltip) {
+			checkbox.title = tooltip;
+		}
+
+		return checkbox;
 	}
 
 	/**
-	 * Retrieves a button element.
+	 * Creates a button element.
 	 *
 	 * @param id
 	 *     Identifier of element to retrieve.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
 	 * @return
 	 *     HTMLButtonElement.
 	 */
-	private getButton(id: string, tooltip?: string): HTMLButtonElement {
+	private createButton(id: string, tooltip?: string): HTMLButtonElement {
 		const button = <HTMLButtonElement> this.componentElement.querySelector(
 			"button[id=" + id + "]")!;
 		if (tooltip) {
@@ -172,34 +181,42 @@ export class SettingsDialog extends DialogContentComponent {
 	}
 
 	/**
-	 * Retrieves a select element.
+	 * Creates a select element.
 	 *
 	 * @param id
 	 *     Identifier of element to retrieve.
+	 * @param options
+	 *     A {string: string} (identifier: visible text) object for available
+	 *     options.
+	 * @param idx
+	 *     The index to set as selected on construction.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
 	 * @return
 	 *     HTMLSelectElement.
 	 */
-	private getSelect(id: string): HTMLSelectElement {
-		return <HTMLSelectElement> this.componentElement.querySelector(
-			"select[id=" + id + "]")!;
-	}
+	private createFontSelect(id: string, options: {[index: string]: string},
+			idx: number, tooltip?: string): HTMLSelectElement {
 
-	private createFontSelect(id: string, options: {[index: string]: string}, idx: number): HTMLSelectElement {
-		const sel = this.getSelect(id);
+		const sel = <HTMLSelectElement> this.componentElement.querySelector(
+			"select[id=" + id + "]")!;
 		sel.style.setProperty("width", "9em");
 		sel.parentElement!.style.setProperty("margin-right", "0");
 		sel.parentElement!.style.setProperty("margin-left", "auto");
 		sel.parentElement!.style.setProperty("padding-bottom", "5px");
 
-		//options = options as {[index: string]: string};
 		for (const key of Object.keys(options)) {
 			const opt = document.createElement("option");
 			opt.value = key;
 			opt.innerHTML = options[key];
 			sel.appendChild(opt);
 		}
-
 		sel.selectedIndex = idx;
+
+		if (tooltip) {
+			sel.title = tooltip;
+		}
+
 		return sel;
 	}
 }
