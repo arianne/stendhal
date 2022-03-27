@@ -34,17 +34,30 @@ export class Chat {
 	 * @param orator
 	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 */
-	public static log(type: string, message: string|HTMLElement, orator?: string) {
+	public static log(type: string, message: string|string[]|HTMLElement, orator?: string) {
 		const ChatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		if (type === "emoji" && message instanceof HTMLImageElement) {
 			ChatLog.addEmojiLine(message, orator);
-		} else if (typeof(message) === "string") {
-			ChatLog.addLine(type, message, orator);
+		} else {
+			if (typeof(message) === "string") {
+				ChatLog.addLine(type, message, orator);
+			} else if (Object.prototype.toString.call(message) === "[object Array]") {
+				ChatLog.addLines(type, message as string[], orator);
+			}
 		}
 
 		if (marauroa.me && !(headless_types.indexOf(type) >= 0)) {
-			marauroa.me.addNotificationBubble(type, message);
+			let messages = [];
+			if (typeof(message) === "string") {
+				messages.push(message);
+			} else {
+				messages = message as string[];
+			}
+
+			for (const m of messages) {
+				marauroa.me.addNotificationBubble(type, m);
+			}
 		}
 	}
 

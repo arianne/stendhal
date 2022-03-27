@@ -195,15 +195,13 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 			return;
 		}
 
-		const title = "Bestiary";
-		var header = ["\"???\" = unknown"];
-
+		const header = ["Bestiary:", "\"???\" = unknown"];
 		const hasRare = this["enemies"].includes("(rare)");
 		const hasAbnormal = this["enemies"].includes("(abnormal)");
 
 		// show explanation of "rare" & "abnormal" creatures in header
 		if (hasRare || hasAbnormal) {
-			var subheader = "";
+			let subheader = "";
 			if (!hasRare) {
 				subheader += "\"abnormal\"";
 			} else {
@@ -220,17 +218,14 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 		header[2] = "------------------";
 
 		// FIXME: hack until a proper window is implemented
-		Chat.log("normal", title + ":");
-		for (h of header) {
-			Chat.log("normal", h);
-		}
+		Chat.log("normal", header);
 
-		const enemies = this["enemies"].split(";");
-		for (e of enemies) {
+		const enemies = [];
+		for (e of this["enemies"].split(";")) {
 			const info = e.split(",");
 			const name = info[0];
-			var solo = " ";
-			var shared = " ";
+			let solo = " ";
+			let shared = " ";
 			if (info[1] == "true") {
 				solo = "✔";
 			}
@@ -238,8 +233,10 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 				shared = "✔";
 			}
 
-			// FIXME: hack until a proper window is implemented
-			Chat.log("normal", name + ":   solo [" + solo + "], shared [" + shared + "]");
+			enemies.push(name + ":   solo [" + solo + "], shared [" + shared + "]");
 		}
+
+		// FIXME: hack until a proper window is implemented
+		Chat.log("normal", enemies);
 	}
 });

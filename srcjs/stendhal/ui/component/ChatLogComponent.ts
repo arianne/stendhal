@@ -91,6 +91,23 @@ export class ChatLogComponent extends Component {
 
 
 	/**
+	 * Adds multiple lines of text.
+	 *
+	 * @param type
+	 *     Message type.
+	 * @param messages
+	 *     Texts to be added.
+	 * @param orator
+	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 */
+	public addLines(type: string, messages: string[], orator?: string) {
+		for (const line of messages) {
+			this.addLine(type, line, orator);
+		}
+	}
+
+
+	/**
 	 * Adds a line displaying an emoji image.
 	 *
 	 * @param emoji
