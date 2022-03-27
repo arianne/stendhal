@@ -120,10 +120,7 @@ export class SettingsDialog extends DialogContentComponent {
 		const btn_reload = this.getButton("btn_config_reload",
 				"Reloads page if required by changes");
 		btn_reload.addEventListener("click", (e: Event) => {
-			if (this.frame != null) {
-				this.frame.close();
-			}
-
+			this.close();
 			if (this.reloadRequired) {
 				location.reload();
 			}
@@ -132,9 +129,7 @@ export class SettingsDialog extends DialogContentComponent {
 		const btn_close = this.getButton("btn_config_close",
 				"Close settings without reloading page");
 		btn_close.addEventListener("click", (e: Event) => {
-			if (this.frame != null) {
-				this.frame.close();
-			}
+			this.close();
 		});
 
 		const button_layout = btn_reload.parentElement!;

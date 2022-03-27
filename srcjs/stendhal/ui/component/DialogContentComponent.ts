@@ -51,4 +51,13 @@ export abstract class DialogContentComponent extends Component {
 	public getFrame(): FloatingWindow|undefined {
 		return this.frame;
 	}
+
+	/**
+	 * Closes the containing FloatingWindow.
+	 */
+	public close() {
+		if (this.frame) {
+			this.frame.close();
+		}
+	}
 }
