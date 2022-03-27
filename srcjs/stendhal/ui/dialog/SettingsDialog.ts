@@ -279,17 +279,17 @@ export class SettingsDialog extends DialogContentComponent {
 }
 
 
-	class CheckTooltip {
-		private valueEnabled: string;
-		private valueDisabled: string;
-		constructor(e: string, d: string) {
-			this.valueEnabled = e;
-			this.valueDisabled = d;
-		}
-		public getValue(enabled: boolean): string {
-			if (enabled) {
-				return this.valueEnabled;
-			}
-			return this.valueDisabled;
-		}
+class CheckTooltip {
+	private valueEnabled: string;
+	private valueDisabled: string;
+	constructor(e: string, d: string) {
+		this.valueEnabled = e;
+		this.valueDisabled = d;
 	}
+	public getValue(enabled: boolean): string {
+		if (enabled) {
+			return this.valueEnabled;
+		}
+		return this.valueDisabled;
+	}
+}
