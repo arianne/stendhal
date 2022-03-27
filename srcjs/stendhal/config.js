@@ -29,6 +29,7 @@ stendhal.config = {
 		this.set("input.movecont", this.get("input.movecont") || false);
 
 		// fonts
+		this.set("ui.font.body", this.get("ui.font.body") || "Carlito");
 		this.set("ui.font.chat", this.get("ui.font.chat") || "Carlito");
 		this.set("ui.font.tlog", this.get("ui.font.tlog") || "Black Chancery");
 

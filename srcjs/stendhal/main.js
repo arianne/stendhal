@@ -88,7 +88,7 @@ stendhal.main = {
 				}
 			}
 			marauroa.clientFramework.chooseCharacter(name);
-			var body = document.getElementById("body")
+			var body = document.getElementById("body");
 			body.style.cursor = "auto";
 			Chat.log("client", "Loading world...");
 		};
@@ -206,7 +206,10 @@ stendhal.main = {
 		stendhal.main.devWarning();
 
 		stendhal.config.init(new URL(document.location).searchParams);
+
+		// update user interface after config is loaded
 		stendhal.config.applyTheme(document.querySelector(".background"));
+		document.getElementById("body").style.setProperty("font-family", stendhal.config.get("ui.font.body"));
 
 		new DesktopUserInterfaceFactory().create();
 

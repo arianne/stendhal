@@ -85,14 +85,21 @@ export class SettingsDialog extends DialogContentComponent {
 		 *   - create components to change font size, weight, style, etc.
 		 *   - add option to use system default
 		 */
-		//const fonts = ["Amaranth", "Black Chancery", "Carlito"];
 		const fonts = {} as {[index: string]: string};
 		for (const f of ["Amaranth", "Black Chancery", "Carlito"]) {
 			fonts[f] = f;
 		}
 
+		const sel_fontbody = this.createFontSelect("selfontbody", fonts,
+				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.body")));
+		sel_fontbody.addEventListener("change", (e) => {
+			const new_font = Object.keys(fonts)[sel_fontbody.selectedIndex];
+			stendhal.config.set("ui.font.body", new_font);
+			document.body.style.setProperty("font-family", new_font);
+		});
+
 		const sel_fontchat = this.createFontSelect("selfontchat", fonts,
-				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.chat")))
+				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
 			stendhal.config.set("ui.font.chat", Object.keys(fonts)[sel_fontchat.selectedIndex]);
 			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).refresh();
