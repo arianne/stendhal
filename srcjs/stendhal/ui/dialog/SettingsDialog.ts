@@ -108,7 +108,7 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		}
 
-		const sel_theme = this.createFontSelect("selecttheme", themes,
+		const sel_theme = this.createSelect("selecttheme", themes,
 				Object.keys(themes).indexOf(stendhal.config.getTheme()));
 
 		sel_theme.addEventListener("change", (o) => {
@@ -119,26 +119,21 @@ export class SettingsDialog extends DialogContentComponent {
 		/* TODO:
 		 *   - create components to change font size, weight, style, etc.
 		 */
-		const fonts = {
-			"sans-serif": "system default",
-			"serif": "system default (serif)"
-		} as {[index: string]: string};
-		for (const f of ["Amaranth", "Black Chancery", "Carlito"]) {
-			fonts[f] = f;
-		}
 
-		const sel_fontbody = this.createFontSelect("selfontbody", fonts,
-				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.body")));
+		const fonts = Object.keys(stendhal.config.fonts);
+
+		const sel_fontbody = this.createFontSelect("selfontbody",
+				fonts.indexOf(stendhal.config.get("ui.font.body")));
 		sel_fontbody.addEventListener("change", (e) => {
-			const new_font = Object.keys(fonts)[sel_fontbody.selectedIndex];
+			const new_font = fonts[sel_fontbody.selectedIndex];
 			stendhal.config.set("ui.font.body", new_font);
 			document.body.style.setProperty("font-family", new_font);
 		});
 
-		const sel_fontchat = this.createFontSelect("selfontchat", fonts,
-				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.chat")));
+		const sel_fontchat = this.createFontSelect("selfontchat",
+				fonts.indexOf(stendhal.config.get("ui.font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
-			stendhal.config.set("ui.font.chat", Object.keys(fonts)[sel_fontchat.selectedIndex]);
+			stendhal.config.set("ui.font.chat", fonts[sel_fontchat.selectedIndex]);
 			const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 			// make sure component is open before trying to refresh
 			if (clog) {
@@ -146,10 +141,10 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
-		const sel_fonttlog = this.createFontSelect("selfonttlog", fonts,
-				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.tlog")))
+		const sel_fonttlog = this.createFontSelect("selfonttlog",
+				fonts.indexOf(stendhal.config.get("ui.font.tlog")))
 		sel_fonttlog.addEventListener("change", (e) => {
-			stendhal.config.set("ui.font.tlog", Object.keys(fonts)[sel_fonttlog.selectedIndex]);
+			stendhal.config.set("ui.font.tlog", fonts[sel_fonttlog.selectedIndex]);
 			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
 			// make sure component is open before trying to refresh
 			if (tlog) {
@@ -252,7 +247,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLSelectElement.
 	 */
-	private createFontSelect(id: string, options: {[index: string]: string},
+	private createSelect(id: string, options: {[index: string]: string},
 			idx: number, tooltip?: string): HTMLSelectElement {
 
 		const sel = <HTMLSelectElement> this.componentElement.querySelector(
@@ -275,6 +270,31 @@ export class SettingsDialog extends DialogContentComponent {
 		}
 
 		return sel;
+	}
+
+	/**
+	 * Creates a select element for registered fonts.
+	 *
+	 * @param id
+	 *     Identifier of element to retrieve.
+	 * @param idx
+	 *     The index to set as selected on construction.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
+	 * @return
+	 *     HTMLSelectElement.
+	 */
+	private createFontSelect(id: string, idx: number, tooltip?: string): HTMLSelectElement {
+		const options = {} as {[index: string]: string};
+		for (const key of Object.keys(stendhal.config.fonts)) {
+			let value = stendhal.config.fonts[key];
+			if (value === "") {
+				value = key;
+			}
+			options[key] = value;
+		}
+
+		return this.createSelect(id, options, idx, tooltip);
 	}
 }
 

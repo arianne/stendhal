@@ -158,4 +158,12 @@ stendhal.config = {
 			"wood2": true
 		}
 	},
+
+	fonts: {
+		"sans-serif": "system default",
+		"serif": "system default (serif)",
+		"Amaranth": "",
+		"Black Chancery": "",
+		"Carlito": ""
+	}
 };
