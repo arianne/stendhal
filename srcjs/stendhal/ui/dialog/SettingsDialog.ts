@@ -136,14 +136,22 @@ export class SettingsDialog extends DialogContentComponent {
 				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
 			stendhal.config.set("ui.font.chat", Object.keys(fonts)[sel_fontchat.selectedIndex]);
-			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).refresh();
+			const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+			// make sure component is open before trying to refresh
+			if (clog) {
+				clog.refresh();
+			}
 		});
 
 		const sel_fonttlog = this.createFontSelect("selfonttlog", fonts,
 				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.tlog")))
 		sel_fonttlog.addEventListener("change", (e) => {
 			stendhal.config.set("ui.font.tlog", Object.keys(fonts)[sel_fonttlog.selectedIndex]);
-			(ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog).refresh();
+			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
+			// make sure component is open before trying to refresh
+			if (tlog) {
+				tlog.refresh();
+			}
 		});
 
 
