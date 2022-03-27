@@ -15,23 +15,22 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.config = {
 
+	defaults: {
+		"ui.sound": "false",
+		"ui.font.body": "Carlito",
+		"ui.font.chat": "Carlito",
+		"ui.font.tlog": "Black Chancery",
+		"gamescreen.blood": "true",
+		"gamescreen.nonude": "true",
+		"gamescreen.shadows": "true",
+		"input.item_doubleclick": "true",
+		"input.movecont": "false"
+	},
+
 	init: function(args) {
 		this.character = args.get("char") || args.get("character") || args.get("name");
 
 		this.storage = window.localStorage;
-
-		this.setTheme(this.getTheme());
-		this.set("ui.sound", this.get("ui.sound") || false);
-		this.set("gamescreen.blood", this.get("gamescreen.blood") || true);
-		this.set("gamescreen.nonude", this.get("gamescreen.nonude") || true);
-		this.set("gamescreen.shadows", this.get("gamescreen.shadows") || true);
-		this.set("input.item_doubleclick", this.get("input.item_doubleclick") || true);
-		this.set("input.movecont", this.get("input.movecont") || false);
-
-		// fonts
-		this.set("ui.font.body", this.get("ui.font.body") || "Carlito");
-		this.set("ui.font.chat", this.get("ui.font.chat") || "Carlito");
-		this.set("ui.font.tlog", this.get("ui.font.tlog") || "Black Chancery");
 
 		// store window information for this session
 		// TODO: move this into "session.js" file
@@ -49,7 +48,7 @@ stendhal.config = {
 	},
 
 	get: function(key) {
-		return this.storage.getItem(key);
+		return this.storage.getItem(key) || this.defaults[key];
 	},
 
 	getInt: function(key) {
