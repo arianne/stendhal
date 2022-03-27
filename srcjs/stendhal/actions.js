@@ -13,6 +13,7 @@
 
 var DebugAction = require("../../build/ts/action/DebugAction").DebugAction;
 var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenWebsiteAction;
+var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 var stendhal = window.stendhal = window.stendhal || {};
 
@@ -211,7 +212,7 @@ stendhal.slashActionRepository = {
 
 	"clear": {
 		execute: function(type, params, remainder) {
-			ui.get(UICommponentEnum.ChatLog).clear();
+			ui.get(UIComponentEnum.ChatLog).clear();
 			return true;
 		},
 		minParams: 0,
