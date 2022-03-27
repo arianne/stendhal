@@ -114,12 +114,12 @@ export class SettingsDialog extends DialogContentComponent {
 			(ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog).refresh();
 		});
 
-		// TODO: most changes are immediate, so we only need one button to refresh
-		//       for theme & blood settings
-		const btn_accept = this.getButton("config_accept")!;
-		const btn_cancel = this.getButton("config_cancel")!;
 
-		btn_accept.addEventListener("click", (e: Event) => {
+		/* *** buttons *** */
+
+		const btn_reload = this.getButton("btn_config_reload",
+				"Reloads page if required by changes");
+		btn_reload.addEventListener("click", (e: Event) => {
 			if (this.frame != null) {
 				this.frame.close();
 			}
@@ -129,13 +129,15 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
-		btn_cancel.addEventListener("click", (e: Event) => {
+		const btn_close = this.getButton("btn_config_close",
+				"Close settings without reloading page");
+		btn_close.addEventListener("click", (e: Event) => {
 			if (this.frame != null) {
 				this.frame.close();
 			}
 		});
 
-		const button_layout = btn_accept.parentElement!;
+		const button_layout = btn_reload.parentElement!;
 		button_layout.style.setProperty("padding-top", "15px");
 	}
 
@@ -164,9 +166,14 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLButtonElement.
 	 */
-	private getButton(id: string): HTMLButtonElement {
-		return <HTMLButtonElement> this.componentElement.querySelector(
-			"button[id=" + id + "]");
+	private getButton(id: string, tooltip?: string): HTMLButtonElement {
+		const button = <HTMLButtonElement> this.componentElement.querySelector(
+			"button[id=" + id + "]")!;
+		if (tooltip) {
+			button.title = tooltip;
+		}
+
+		return button;
 	}
 
 	/**
