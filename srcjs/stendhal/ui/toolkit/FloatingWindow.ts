@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "./Component";
-import { DialogContentComponent } from "../component/DialogContentComponent";
+import { DialogContentComponent } from "./DialogContentComponent";
 
 declare var stendhal: any;
 

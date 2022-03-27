@@ -9,12 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
-import { FloatingWindow } from "../toolkit/FloatingWindow";
+import { Component } from "./Component";
+import { FloatingWindow } from "./FloatingWindow";
 
 declare let stendhal: any;
-
-// FIXME: this should be moved to ui/toolkit
 
 
 export abstract class DialogContentComponent extends Component {

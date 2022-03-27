@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { DialogContentComponent } from "../component/DialogContentComponent";
+import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 
 declare var stendhal: any;
 

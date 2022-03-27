@@ -11,7 +11,7 @@
 
 import { ui } from "../UI";
 import { ChatLogComponent } from "../component/ChatLogComponent";
-import { DialogContentComponent } from "../component/DialogContentComponent";
+import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { TravelLogDialog } from "./TravelLogDialog";
 import { UIComponentEnum } from "../UIComponentEnum";
 
