@@ -29,38 +29,58 @@ export class SettingsDialog extends DialogContentComponent {
 
 		const chk_blood = this.createCheckBox("chk_blood")!;
 		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
+		const tt_blood = new CheckTooltip("Gory images are enabled",
+				"Gory images are disabled");
+		chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
 		chk_blood.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.blood", chk_blood.checked);
+			chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
 			this.reloadRequired = true; // only required to immediately update corpses & tiles
 		});
 
 		const chk_nonude = this.createCheckBox("chk_nonude")!;
 		chk_nonude.checked = stendhal.config.getBoolean("gamescreen.nonude");
+		const tt_nonude = new CheckTooltip("Naked entities have undergarments",
+				"Naked entities are not covered");
+		chk_nonude.parentElement!.title = tt_nonude.getValue(chk_nonude.checked);
 		chk_nonude.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.nonude", chk_nonude.checked);
+			chk_nonude.parentElement!.title = tt_nonude.getValue(chk_nonude.checked);
 		});
 
 		const chk_shadows = this.createCheckBox("chk_shadows")!;
 		chk_shadows.checked = stendhal.config.getBoolean("gamescreen.shadows");
+		const tt_shadows = new CheckTooltip("Shadows are enabled",
+				"Shadows are disabled");
+		chk_shadows.parentElement!.title = tt_shadows.getValue(chk_shadows.checked);
 		chk_shadows.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.shadows", chk_shadows.checked);
+			chk_shadows.parentElement!.title = tt_shadows.getValue(chk_shadows.checked);
 		});
 
 		const chk_dblclick = this.createCheckBox("chk_dblclick")!;
 		chk_dblclick.checked = stendhal.config.getBoolean("input.item_doubleclick");
+		const tt_dblclick = new CheckTooltip("Items are used/consumed with double click/touch",
+				"Items are used/consumed with single click/touch");
+		chk_dblclick.parentElement!.title = tt_dblclick.getValue(chk_dblclick.checked);
 		chk_dblclick.addEventListener("change", (e) => {
 			stendhal.config.set("input.item_doubleclick", chk_dblclick.checked);
+			chk_dblclick.parentElement!.title = tt_dblclick.getValue(chk_dblclick.checked);
 		});
 
 		const chk_movecont = this.createCheckBox("chk_movecont")!;
 		chk_movecont.checked = stendhal.config.getBoolean("input.movecont");
+		const tt_movecont = new CheckTooltip("Player will continue to walk after changing areas",
+				"Player will stop after changing areas");
+		chk_movecont.parentElement!.title = tt_movecont.getValue(chk_movecont.checked);
 		chk_movecont.addEventListener("change", (e) => {
 			stendhal.config.set("input.movecont", chk_movecont.checked);
+			chk_movecont.parentElement!.title = tt_movecont.getValue(chk_movecont.checked);
+
 			const action = {"type": "move.continuous"} as {[index: string]: string;};
 			if (chk_movecont.checked) {
 				action["move.continuous"] = "";
 			}
-
 			marauroa.clientFramework.sendAction(action);
 		});
 
@@ -220,3 +240,19 @@ export class SettingsDialog extends DialogContentComponent {
 		return sel;
 	}
 }
+
+
+	class CheckTooltip {
+		private valueEnabled: string;
+		private valueDisabled: string;
+		constructor(e: string, d: string) {
+			this.valueEnabled = e;
+			this.valueDisabled = d;
+		}
+		public getValue(enabled: boolean): string {
+			if (enabled) {
+				return this.valueEnabled;
+			}
+			return this.valueDisabled;
+		}
+	}
