@@ -182,7 +182,7 @@ export class RPEntity extends ActiveEntity {
 				var width = ctx.measureText(this.realText).width + 8;
 				ctx.strokeStyle = "#000000";
 
-				this.entity.fillRoundRect(ctx, x, y - 15, width, 20);
+				this.entity.drawSpeechBubbleRounded(ctx, x, y - 15, width, 20);
 
 				ctx.fillStyle = "#000000";
 				ctx.fillText(this.realText, x + 4, y);
@@ -259,7 +259,7 @@ export class RPEntity extends ActiveEntity {
 				ctx.font = fontsize + "px sans-serif";
 				ctx.fillStyle = "#ffffff";
 				ctx.strokeStyle = "#000000";
-				this.entity.fillRect(ctx, x, y, width, height);
+				this.entity.drawSpeechBubble(ctx, x, y, width, height);
 				ctx.fillStyle = NotificationType[mtype] || "#000000";
 
 				let sy = y;
@@ -317,7 +317,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param width
 	 * @param height
 	 */
-	private fillRect(ctx: CanvasRenderingContext2D, x: number, y: number,
+	private drawSpeechBubble(ctx: CanvasRenderingContext2D, x: number, y: number,
 			width: number, height: number, tail: boolean = false) {
 		ctx.strokeRect(x, y - 15, width, height);
 		ctx.fillRect(x, y - 15, width, height);
@@ -347,7 +347,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param width
 	 * @param height
 	 */
-	private fillRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number,
+	private drawSpeechBubbleRounded(ctx: CanvasRenderingContext2D, x: number, y: number,
 			width: number, height: number) {
 		//const arc = this.arc_diameter;
 		const arc = 3;
