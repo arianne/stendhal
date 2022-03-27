@@ -11,6 +11,8 @@
 
 import { Component } from "../toolkit/Component";
 
+declare var stendhal: any;
+
 
 /**
  * Chat Log
@@ -19,6 +21,12 @@ export class ChatLogComponent extends Component {
 
 	constructor() {
 		super("chat");
+		this.refresh();
+	}
+
+
+	public refresh() {
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("ui.font.chat"));
 	}
 
 

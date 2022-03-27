@@ -28,6 +28,10 @@ stendhal.config = {
 		this.set("input.item_doubleclick", this.get("input.item_doubleclick") || false);
 		this.set("input.movecont", this.get("input.movecont") || false);
 
+		// fonts
+		this.set("ui.font.chat", this.get("ui.font.chat") || "Carlito");
+		this.set("ui.font.tlog", this.get("ui.font.tlog") || "Black Chancery");
+
 		// store window information for this session
 		// TODO: move this into "session.js" file
 		this.dialogstates = {};

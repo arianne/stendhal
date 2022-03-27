@@ -9,7 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "../UI";
+import { ChatLogComponent } from "../component/ChatLogComponent";
 import { DialogContentComponent } from "../component/DialogContentComponent";
+import { TravelLogDialog } from "./TravelLogDialog";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -60,25 +64,49 @@ export class SettingsDialog extends DialogContentComponent {
 			marauroa.clientFramework.sendAction(action);
 		});
 
-		const sel_theme = <HTMLSelectElement>
-				this.componentElement.querySelector("select[id='selecttheme']")!;
-		const themes = Object.keys(stendhal.config.themes.map);
-		for (const key of themes) {
-			const opt = document.createElement("option");
-			opt.value = key;
-			if (key === "wood") {
-				opt.innerHTML = key + " (default)";
+		const themes = {} as {[index: string]: string};
+		for (const t of Object.keys(stendhal.config.themes.map)) {
+			if (t === "wood") {
+				themes[t] = t + " (default)";
 			} else {
-				opt.innerHTML = key;
+				themes[t] = t;
 			}
-			sel_theme.appendChild(opt);
 		}
-		sel_theme.selectedIndex = themes.indexOf(stendhal.config.getTheme());
+
+		const sel_theme = this.createFontSelect("selecttheme", themes,
+				Object.keys(themes).indexOf(stendhal.config.getTheme()));
+
 		sel_theme.addEventListener("change", (o) => {
-			stendhal.config.setTheme(themes[sel_theme.selectedIndex]);
+			stendhal.config.setTheme(Object.keys(themes)[sel_theme.selectedIndex]);
 			this.reloadRequired = true;
 		});
 
+		/* TODO:
+		 *   - create components to change font size, weight, style, etc.
+		 *   - add option to use system default
+		 */
+		//const fonts = ["Amaranth", "Black Chancery", "Carlito"];
+		const fonts = {} as {[index: string]: string};
+		for (const f of ["Amaranth", "Black Chancery", "Carlito"]) {
+			fonts[f] = f;
+		}
+
+		const sel_fontchat = this.createFontSelect("selfontchat", fonts,
+				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.chat")))
+		sel_fontchat.addEventListener("change", (e) => {
+			stendhal.config.set("ui.font.chat", Object.keys(fonts)[sel_fontchat.selectedIndex]);
+			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).refresh();
+		});
+
+		const sel_fonttlog = this.createFontSelect("selfonttlog", fonts,
+				Object.keys(fonts).indexOf(stendhal.config.get("ui.font.tlog")))
+		sel_fonttlog.addEventListener("change", (e) => {
+			stendhal.config.set("ui.font.tlog", Object.keys(fonts)[sel_fonttlog.selectedIndex]);
+			(ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog).refresh();
+		});
+
+		// TODO: most changes are immediate, so we only need one button to refresh
+		//       for theme & blood settings
 		const btn_accept = this.getButton("config_accept")!;
 		const btn_cancel = this.getButton("config_cancel")!;
 
@@ -97,6 +125,9 @@ export class SettingsDialog extends DialogContentComponent {
 				this.frame.close();
 			}
 		});
+
+		const button_layout = btn_accept.parentElement!;
+		button_layout.style.setProperty("padding-top", "15px");
 	}
 
 	public override getConfigId(): string {
@@ -127,5 +158,37 @@ export class SettingsDialog extends DialogContentComponent {
 	private getButton(id: string): HTMLButtonElement {
 		return <HTMLButtonElement> this.componentElement.querySelector(
 			"button[id=" + id + "]");
+	}
+
+	/**
+	 * Retrieves a select element.
+	 *
+	 * @param id
+	 *     Identifier of element to retrieve.
+	 * @return
+	 *     HTMLSelectElement.
+	 */
+	private getSelect(id: string): HTMLSelectElement {
+		return <HTMLSelectElement> this.componentElement.querySelector(
+			"select[id=" + id + "]")!;
+	}
+
+	private createFontSelect(id: string, options: {[index: string]: string}, idx: number): HTMLSelectElement {
+		const sel = this.getSelect(id);
+		sel.style.setProperty("width", "9em");
+		sel.parentElement!.style.setProperty("margin-right", "0");
+		sel.parentElement!.style.setProperty("margin-left", "auto");
+		sel.parentElement!.style.setProperty("padding-bottom", "5px");
+
+		//options = options as {[index: string]: string};
+		for (const key of Object.keys(options)) {
+			const opt = document.createElement("option");
+			opt.value = key;
+			opt.innerHTML = options[key];
+			sel.appendChild(opt);
+		}
+
+		sel.selectedIndex = idx;
+		return sel;
 	}
 }

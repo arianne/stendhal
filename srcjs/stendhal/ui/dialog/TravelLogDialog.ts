@@ -25,6 +25,7 @@ export class TravelLogDialog extends DialogContentComponent {
 	constructor(dataItems: string[]) {
 		super("travellogdialog-template");
 		ui.registerComponent(UIComponentEnum.TravelLogDialog, this);
+		this.refresh();
 
 		this.createHtml(dataItems);
 
@@ -36,6 +37,10 @@ export class TravelLogDialog extends DialogContentComponent {
 		}
 		marauroa.clientFramework.sendAction(action);
 	};
+
+	public refresh() {
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("ui.font.tlog"));
+	}
 
 	public override getConfigId(): string {
 		return "travellog";
