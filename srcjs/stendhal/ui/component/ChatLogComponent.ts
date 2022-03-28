@@ -310,14 +310,17 @@ export class ChatLogComponent extends Component {
 			const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
 			const options = [
 				{
-					title: "Copy",
-					action: function() {log.copyToClipboard();}
-				},
-				{
 					title: "Clear",
 					action: function() {log.clear();}
 				}
 			] as MenuItem[];
+
+			if (navigator && navigator.clipboard) {
+				options.unshift({
+					title: "Copy",
+					action: function() {log.copyToClipboard();}
+				});
+			}
 
 			const pos = stendhal.ui.html.extractPosition(evt);
 			stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
