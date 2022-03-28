@@ -80,16 +80,21 @@ export class ChatLogComponent extends Component {
 	 *     Text to be added.
 	 * @param orator
 	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 * @param timestamp
+	 *     If <code>false</code>, suppresses prepending message with timestamp.
 	 */
-	public addLine(type: string, message: string, orator?: string) {
+	public addLine(type: string, message: string, orator?: string, timestamp=true) {
 		if (orator) {
 			message = orator + ": " + message;
 		}
 
 		const div = document.createElement("div");
 		div.className = "log" + type;
-		div.appendChild(this.createTimestamp());
-		div.innerHTML += " " + this.formatLogEntry(message);
+		if (timestamp) {
+			div.appendChild(this.createTimestamp());
+			div.innerHTML += " ";
+		}
+		div.innerHTML += this.formatLogEntry(message);
 
 		this.add(div);
 	}
@@ -106,8 +111,14 @@ export class ChatLogComponent extends Component {
 	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 */
 	public addLines(type: string, messages: string[], orator?: string) {
+		let stamped = false;
 		for (const line of messages) {
-			this.addLine(type, line, orator);
+			if (!stamped) {
+				this.addLine(type, line, orator);
+				stamped = true;
+			} else {
+				this.addLine(type, line, orator, false);
+			}
 		}
 	}
 

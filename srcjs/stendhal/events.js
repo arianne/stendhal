@@ -102,7 +102,14 @@ marauroa.rpeventFactory["player_logged_out"] = marauroa.util.fromProto(marauroa.
 
 marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		Chat.log(this["texttype"].toLowerCase(), this["text"]);
+		const ttype = this["texttype"].toLowerCase();
+		const msg = this["text"].replace("\r\n", "\n").replace("\r", "\n");
+
+		if (ttype === "server" && msg.includes("\n")) {
+			Chat.log(ttype, msg.split("\n"));
+		} else {
+			Chat.log(ttype, msg);
+		}
 	}
 });
 
