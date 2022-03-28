@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { TextSprite } from "../sprite/TextSprite";
 
@@ -40,6 +41,24 @@ export class Item extends Entity {
 
 	override isVisibleToAction(_filter: boolean) {
 		return true;
+	}
+
+	override buildActions(list: MenuItem[]) {
+		super.buildActions(list);
+
+		const count = parseInt(this["quantity"], 10);
+		if (this["name"] === "empty scroll" && count > 1) {
+			list.splice(1, 0, {
+				title: "Mark all",
+				action: function(entity: Entity) {
+					const action = {
+						"type": "markscroll",
+						"quantity": ""+count
+					} as {[index: string]: string};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+		}
 	}
 
 	// default action for items on the ground is to pick them up
