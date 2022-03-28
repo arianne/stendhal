@@ -47,10 +47,12 @@ export class Item extends Entity {
 		super.buildActions(list);
 
 		const count = parseInt(this["quantity"], 10);
-		if (this["name"] === "empty scroll" && count > 1) {
+		if (this["name"] === "empty scroll" && count > 1 && this["$_parent$"]) {
 			list.splice(1, 0, {
 				title: "Mark all",
 				action: function(entity: Entity) {
+					// FIXME: doesn't work if scrolls are on ground
+					//        tries to pull scrolls from inventory
 					const action = {
 						"type": "markscroll",
 						"quantity": ""+count
