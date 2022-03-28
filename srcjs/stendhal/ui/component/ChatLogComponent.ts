@@ -41,7 +41,7 @@ export class ChatLogComponent extends Component {
 	 * @return
 	 *     Timestamp formatted <code>HTMLSpanElement</code> element.
 	 */
-	private createTimestamp() {
+	private createTimestamp(): HTMLSpanElement {
 		const date = new Date();
 		let time = "" + date.getHours() + ":";
 		if (date.getHours() < 10) {
@@ -60,10 +60,10 @@ export class ChatLogComponent extends Component {
 	}
 
 
-	private add(div: HTMLDivElement) {
+	private add(row: HTMLDivElement) {
 		const chatElement = this.componentElement;
 		const isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
-		chatElement.appendChild(div);
+		chatElement.appendChild(row);
 
 		if (isAtBottom) {
 			chatElement.scrollTop = chatElement.scrollHeight;
@@ -88,15 +88,25 @@ export class ChatLogComponent extends Component {
 			message = orator + ": " + message;
 		}
 
-		const div = document.createElement("div");
-		div.className = "log" + type;
+		const lcol = document.createElement("div");
+		lcol.className = "logcolL";
 		if (timestamp) {
-			div.appendChild(this.createTimestamp());
-			div.innerHTML += " ";
+			lcol.appendChild(this.createTimestamp());
+		} else {
+			// add whitespace to preserve margin of right column
+			lcol.innerHTML = " ";
 		}
-		div.innerHTML += this.formatLogEntry(message);
 
-		this.add(div);
+		const rcol = document.createElement("div");
+		rcol.className = "logcolR log" + type;
+		rcol.innerHTML += this.formatLogEntry(message);
+
+		const row = document.createElement("div");
+		row.className = "logrow";
+		row.appendChild(lcol);
+		row.appendChild(rcol);
+
+		this.add(row);
 	}
 
 
@@ -132,16 +142,23 @@ export class ChatLogComponent extends Component {
 	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 */
 	public addEmojiLine(emoji: HTMLImageElement, orator?: string) {
-		const div = document.createElement("div");
-		div.className = "lognormal";
-		div.appendChild(this.createTimestamp());
-		div.innerHTML += " ";
-		if (orator) {
-			div.innerHTML += orator + ": ";
-		}
-		div.appendChild(emoji);
+		const lcol = document.createElement("div");
+		lcol.className = "logcolL";
+		lcol.appendChild(this.createTimestamp());
 
-		this.add(div);
+		const rcol = document.createElement("div");
+		rcol.className = "logcolR lognormal";
+		if (orator) {
+			rcol.innerHTML += orator + ": ";
+		}
+		rcol.appendChild(emoji);
+
+		const row = document.createElement("div");
+		row.className = "logrow";
+		row.appendChild(lcol);
+		row.appendChild(rcol);
+
+		this.add(row);
 	}
 
 
@@ -267,8 +284,14 @@ export class ChatLogComponent extends Component {
 		const lines = [];
 		const children = this.componentElement.children;
 		for (let idx = 0; idx < children.length; idx++) {
-			lines.push(stendhal.ui.html.plainText(children[idx].innerHTML, ["span"])
-					.replace("<br>", "\n").replace("&lt;", "<").replace("&gt;", ">"));
+			const row = children[idx];
+			let text = row.children[0].innerHTML.trim() + " ";
+			if (text.trim() === "") {
+				text = "    ";
+			}
+			text = stendhal.ui.html.plainText(text + row.children[1].innerHTML,
+					["span", "div"]);
+			lines.push(text.replace("&lt;", "<").replace("&gt;", ">"));
 		}
 
 		if (lines.length > 0) {

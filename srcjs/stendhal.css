@@ -129,6 +129,18 @@ span.logi {
   text-decoration: underline
 }
 
+div.logcolL {
+  float: left;
+  min-width: 2.5em;
+  height: 100%;
+  white-space: pre;
+}
+
+div.logcolR {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .actionmenu {
   border: 1px solid #000;
   background-color: #FFF
