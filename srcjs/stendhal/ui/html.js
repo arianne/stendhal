@@ -45,7 +45,7 @@ stendhal.ui.html = {
 		} else {
 			for (const tag of tags) {
 				msg = msg.replace(new RegExp("<" + tag + ".*?>", "g"), "")
-						.replace(new RegExp("</" + tag + ">"), "");
+						.replace(new RegExp("</" + tag + ">", "g"), "");
 			}
 		}
 
