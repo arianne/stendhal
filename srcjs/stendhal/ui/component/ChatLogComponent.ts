@@ -276,12 +276,12 @@ export class ChatLogComponent extends Component {
 			const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
 			const options = [
 				{
-					title: "Clear",
-					action: function() {log.clear();}
-				},
-				{
 					title: "Copy",
 					action: function() {log.copyToClipboard();}
+				},
+				{
+					title: "Clear",
+					action: function() {log.clear();}
 				}
 			] as MenuItem[];
 
