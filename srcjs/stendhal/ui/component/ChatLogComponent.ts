@@ -257,7 +257,7 @@ export class ChatLogComponent extends Component {
 		const children = this.componentElement.children;
 		for (let idx = 0; idx < children.length; idx++) {
 			lines.push(stendhal.ui.html.plainText(children[idx].innerHTML, ["span"])
-					.replace("&lt;", "<").replace("&gt;", ">"));
+					.replace("<br>", "\n").replace("&lt;", "<").replace("&gt;", ">"));
 		}
 
 		if (lines.length > 0) {
