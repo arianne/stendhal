@@ -9,7 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "../UI";
 import { Component } from "../toolkit/Component";
+import { MenuItem } from "../../action/MenuItem";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 declare var stendhal: any;
 
@@ -22,6 +25,8 @@ export class ChatLogComponent extends Component {
 	constructor() {
 		super("chat");
 		this.refresh();
+
+		this.componentElement.addEventListener("mouseup", this.onMouseUp);
 	}
 
 
@@ -257,6 +262,78 @@ export class ChatLogComponent extends Component {
 
 		if (lines.length > 0) {
 			navigator.clipboard.writeText(lines.join("\n"));
+		}
+	}
+
+	private onMouseUp(evt: MouseEvent) {
+		if (stendhal.ui.actionContextMenu.isOpen()) {
+			stendhal.ui.actionContextMenu.close();
+		}
+
+		if (evt.button === 2) {
+			evt.stopPropagation();
+			// setting "log" to "this" here doesn't work
+			const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
+			const options = [
+				{
+					title: "Clear",
+					action: function() {log.clear();}
+				},
+				{
+					title: "Copy",
+					action: function() {log.copyToClipboard();}
+				}
+			] as MenuItem[];
+
+			const pos = stendhal.ui.html.extractPosition(evt);
+			stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
+					new LogContextMenu(options), pos.pageX - 50, pos.pageY - 5));
+		}
+	}
+}
+
+
+class LogContextMenu extends Component {
+
+	options!: MenuItem[];
+
+	constructor(options: MenuItem[]) {
+		super("contextmenu-template");
+		this.options = options;
+
+		let content = "<div class=\"actionmenu\">";
+		for (let i = 0; i < this.options.length; i++) {
+			content += "<button id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.options[i].title) + "</button><br>";
+		}
+		content += "</div>";
+		this.componentElement.innerHTML = content;
+
+		this.componentElement.addEventListener("click", (evt) => {
+			this.onClick(evt);
+		});
+	}
+
+	private onClick(evt: Event) {
+		let iStr = (evt.target as HTMLElement).getAttribute("id")?.substring(13);
+		if (iStr === undefined || iStr === "") {
+			return;
+		}
+		let i = parseInt(iStr);
+		if (i < 0) {
+			return;
+		}
+
+		this.componentElement.dispatchEvent(new Event("close"));
+
+		if (i >= this.options.length) {
+			throw new Error("actions index is larger than number of actions");
+		}
+
+		const action = this.options[i].action;
+		if (action) {
+			action();
+		} else {
+			console.error("chat log context menu action failed");
 		}
 	}
 }
