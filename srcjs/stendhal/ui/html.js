@@ -29,6 +29,29 @@ stendhal.ui.html = {
 		return msg;
 	},
 
+	/**
+	 * Removes HTML tag formatting from a string.
+	 *
+	 * @param msg
+	 *     Message to format.
+	 * @param tags
+	 *     Only remove listed tags.
+	 * @return
+	 *     Formatted message.
+	 */
+	plainText: function(msg, tags=undefined) {
+		if (!tags) {
+			msg = msg.replace(/<.*?>/g, "");
+		} else {
+			for (const tag of tags) {
+				msg = msg.replace(new RegExp("<" + tag + ".*?>", "g"), "")
+						.replace(new RegExp("</" + tag + ">"), "");
+			}
+		}
+
+		return msg;
+	},
+
 	extractKeyCode: function(event) {
 		if (event.which) {
 			return event.which;
