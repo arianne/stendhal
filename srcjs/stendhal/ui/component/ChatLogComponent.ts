@@ -241,4 +241,22 @@ export class ChatLogComponent extends Component {
 		this.componentElement.innerHTML = "";
 	}
 
+
+	public copyToClipboard() {
+		if (!navigator || !navigator.clipboard) {
+			console.warn("copying to clipboard not supported by this browser");
+			return;
+		}
+
+		const lines = [];
+		const children = this.componentElement.children;
+		for (let idx = 0; idx < children.length; idx++) {
+			lines.push(stendhal.ui.html.plainText(children[idx].innerHTML, ["span"])
+					.replace("&lt;", "<").replace("&gt;", ">"));
+		}
+
+		if (lines.length > 0) {
+			navigator.clipboard.writeText(lines.join("\n"));
+		}
+	}
 }
