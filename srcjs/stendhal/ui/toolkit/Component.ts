@@ -43,4 +43,8 @@ export abstract class Component {
 	public onMoved() {
 		// do nothing
 	};
+
+	public refresh() {
+		// inheriting classes can override
+	};
 }

@@ -180,7 +180,7 @@ export class SettingsDialog extends DialogContentComponent {
 	/**
 	 * Updates state of reload button.
 	 */
-	private refresh() {
+	public override refresh() {
 		let reloadRequired = false;
 		for (const key of Object.keys(this.initialStates)) {
 			if (stendhal.config.get(key) !== this.initialStates[key]) {

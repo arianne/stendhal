@@ -30,7 +30,7 @@ export class ChatLogComponent extends Component {
 	}
 
 
-	public refresh() {
+	public override refresh() {
 		this.componentElement.style.setProperty("font-family", stendhal.config.get("ui.font.chat"));
 	}
 

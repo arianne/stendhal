@@ -38,7 +38,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		marauroa.clientFramework.sendAction(action);
 	};
 
-	public refresh() {
+	public override refresh() {
 		this.componentElement.style.setProperty("font-family", stendhal.config.get("ui.font.tlog"));
 	}
 
