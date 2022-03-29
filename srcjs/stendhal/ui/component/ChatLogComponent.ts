@@ -26,7 +26,9 @@ export class ChatLogComponent extends Component {
 		super("chat");
 		this.refresh();
 
-		this.componentElement.addEventListener("mouseup", this.onMouseUp);
+		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
+			this.onMouseUp(evt)
+		});
 	}
 
 
