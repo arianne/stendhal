@@ -289,7 +289,7 @@ export class ChatLogComponent extends Component {
 			if (text.trim() === "") {
 				text = "    ";
 			}
-			text = stendhal.ui.html.plainText(text + row.children[1].innerHTML,
+			text = this.plainText(text + row.children[1].innerHTML,
 					["span", "div"]);
 			lines.push(text.replace("&lt;", "<").replace("&gt;", ">"));
 		}
@@ -298,6 +298,30 @@ export class ChatLogComponent extends Component {
 			navigator.clipboard.writeText(lines.join("\n"));
 		}
 	}
+
+	/**
+	 * Removes HTML tag formatting from a string.
+	 *
+	 * @param msg
+	 *     Message to format.
+	 * @param tags
+	 *     Only remove listed tags.
+	 * @return
+	 *     Formatted message.
+	 */
+	private plainText(msg: string, tags: string[]|undefined=undefined): string {
+		if (!tags) {
+			msg = msg.replace(/<.*?>/g, "");
+		} else {
+			for (const tag of tags) {
+				msg = msg.replace(new RegExp("<" + tag + ".*?>", "g"), "")
+						.replace(new RegExp("</" + tag + ">", "g"), "");
+			}
+		}
+
+		return msg;
+	}
+
 
 	private onMouseUp(evt: MouseEvent) {
 		if (stendhal.ui.actionContextMenu.isOpen()) {
