@@ -71,12 +71,12 @@ export class SettingsDialog extends DialogContentComponent {
 		/* *** center panel *** */
 
 		const chk_dblclick = this.createCheckBox("chk_dblclick")!;
-		chk_dblclick.checked = stendhal.config.getBoolean("input.item_doubleclick");
+		chk_dblclick.checked = stendhal.config.getBoolean("action.item.doubleclick");
 		const tt_dblclick = new CheckTooltip("Items are used/consumed with double click/touch",
 				"Items are used/consumed with single click/touch");
 		chk_dblclick.parentElement!.title = tt_dblclick.getValue(chk_dblclick.checked);
 		chk_dblclick.addEventListener("change", (e) => {
-			stendhal.config.set("input.item_doubleclick", chk_dblclick.checked);
+			stendhal.config.set("action.item.doubleclick", chk_dblclick.checked);
 			chk_dblclick.parentElement!.title = tt_dblclick.getValue(chk_dblclick.checked);
 		});
 

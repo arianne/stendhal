@@ -23,8 +23,8 @@ stendhal.config = {
 		"gamescreen.blood": "true",
 		"gamescreen.nonude": "true",
 		"gamescreen.shadows": "true",
-		"input.item_doubleclick": "true",
-		"input.movecont": "false"
+		"input.movecont": "false",
+		"action.item.doubleclick": "true"
 	},
 
 	init: function(args) {
