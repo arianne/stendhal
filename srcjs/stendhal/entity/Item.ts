@@ -47,7 +47,7 @@ export class Item extends Entity {
 		super.buildActions(list);
 
 		const count = parseInt(this["quantity"], 10);
-		if (this["name"] === "empty scroll" && count > 1 && this["$_parent$"]) {
+		if (this["name"] === "empty scroll" && count > 1 && this._parent) {
 			list.splice(1, 0, {
 				title: "Mark all",
 				action: function(entity: Entity) {
