@@ -11,6 +11,8 @@
 
 "use strict";
 
+var ui = require("../../../build/ts/ui/UI").ui;
+var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
@@ -170,6 +172,26 @@ stendhal.ui.gamewindow = {
 	 */
 	isTopNotification: function(sprite) {
 		return this.notifSprites.indexOf(sprite) + 1 == this.notifSprites.length;
+	},
+
+	/**
+	 * Adds a notification bubble to window.
+	 *
+	 * @param cat
+	 *     Achievement categroy.
+	 * @param title
+	 *     Achievement title.
+	 * @param desc
+	 *     Achievement description.
+	 */
+	addAchievementNotif: function(cat, title, desc) {
+		const msg = "Achievement: " + title + ": \"" + desc + "\"";
+
+		// for now we will just create a notification bubble & add line to chat log
+		if (marauroa.me) {
+			marauroa.me.addNotificationBubble("server", msg);
+		}
+		ui.get(UIComponentEnum.ChatLog).addLine("server", msg);
 	},
 
 	// Mouse click handling

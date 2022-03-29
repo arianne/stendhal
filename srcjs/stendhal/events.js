@@ -118,7 +118,7 @@ marauroa.rpeventFactory["progress_status_event"] = new ProgressStatusEvent();
 
 marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new ReachedAchievementEvent();
+		stendhal.ui.gamewindow.addAchievementNotif(this["category"], this["title"], this["description"]);
 	}
 });
 
