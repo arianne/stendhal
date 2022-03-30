@@ -21,6 +21,8 @@ stendhal.config = {
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",
 		"gamescreen.blood": "true",
+		"gamescreen.lighting": "true",
+		"gamescreen.weather": "true",
 		"gamescreen.nonude": "true",
 		"gamescreen.shadows": "true",
 		"input.movecont": "false",

@@ -47,6 +47,34 @@ export class SettingsDialog extends DialogContentComponent {
 			this.refresh();
 		});
 
+		const chk_light = this.createCheckBox("chk_light")!;
+		chk_light.checked = stendhal.config.getBoolean("gamescreen.lighting");
+		const tt_light = new CheckTooltip("Lighting effects are enabled",
+				"Lighting effects are disabled");
+		chk_light.parentElement!.title = tt_light.getValue(chk_light.checked);
+		chk_light.addEventListener("change", (e) => {
+			stendhal.config.set("gamescreen.lighting", chk_light.checked);
+			chk_light.parentElement!.title = tt_light.getValue(chk_light.checked);
+		});
+
+		// lighting effects not yet supported
+		chk_light.disabled = true;
+		chk_light.parentElement!.title = "Lighting effects not currently supported";
+
+		const chk_weather = this.createCheckBox("chk_weather")!;
+		chk_weather.checked = stendhal.config.getBoolean("gamescreen.weather");
+		const tt_weather = new CheckTooltip("Weather is enabled",
+				"Weather is disabled");
+		chk_weather.parentElement!.title = tt_weather.getValue(chk_weather.checked);
+		chk_weather.addEventListener("change", (e) => {
+			stendhal.config.set("gamescreen.weather", chk_weather.checked);
+			chk_weather.parentElement!.title = tt_weather.getValue(chk_weather.checked);
+		});
+
+		// weather effects not yet supported
+		chk_weather.disabled = true;
+		chk_weather.parentElement!.title = "Weather effects not currently supported";
+
 		const chk_nonude = this.createCheckBox("chk_nonude")!;
 		chk_nonude.checked = stendhal.config.getBoolean("gamescreen.nonude");
 		const tt_nonude = new CheckTooltip("Naked entities have undergarments",
