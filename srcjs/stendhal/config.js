@@ -24,7 +24,7 @@ stendhal.config = {
 		"gamescreen.nonude": "true",
 		"gamescreen.shadows": "true",
 		"input.movecont": "false",
-		"action.item.doubleclick": "true"
+		"action.item.doubleclick": "false"
 	},
 
 	init: function(args) {
