@@ -312,6 +312,12 @@ div.logcolR {
 	padding: 1em
 }
 
+#bestiary {
+  min-width: 35em;
+  height: 23em;
+  overflow-y: scroll;
+}
+
 .progressbar {
 	border: 1px solid #005;
 	line-height: 5Vh;

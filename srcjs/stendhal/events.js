@@ -19,6 +19,7 @@ var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").Pr
 var SoundId = require("../../build/ts/util/SoundId").SoundId;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+var DialogContentComponent = require("../../build/ts/ui/toolkit/DialogContentComponent").DialogContentComponent;
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -221,12 +222,6 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 			header[1] = subheader + " creatures not required for achievements";
 		}
 
-		// spacing for clarity
-		header[2] = "------------------";
-
-		// FIXME: hack until a proper window is implemented
-		Chat.log("normal", header);
-
 		const enemies = [];
 		for (e of this["enemies"].split(";")) {
 			const info = e.split(",");
@@ -243,7 +238,21 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 			enemies.push(name + ":   solo [" + solo + "], shared [" + shared + "]");
 		}
 
-		// FIXME: hack until a proper window is implemented
-		Chat.log("normal", enemies);
+		// TODO: clean up columns & add borders
+
+		const content = new DialogContentComponent("empty-div-template");
+		content.setConfigId("bestiary");
+		content.componentElement.id = "bestiary";
+
+		for (const enemy of enemies) {
+			const line = document.createElement("div");
+			line.className = "horizontalgroup";
+			line.style.padding = "5px";
+			line.innerHTML = enemy;
+			content.componentElement.appendChild(line);
+		}
+
+		stendhal.ui.globalInternalWindow.set(ui.createSingletonFloatingWindow(header.join(" "),
+				content, 20, 20));
 	}
 });

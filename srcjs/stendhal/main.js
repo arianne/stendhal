@@ -222,6 +222,7 @@ stendhal.main = {
 
 		if (stendhal.ui.dialogHandler) {
 			stendhal.ui.actionContextMenu = stendhal.ui.dialogHandler.copy();
+			stendhal.ui.globalInternalWindow = stendhal.ui.dialogHandler.copy();
 		} else {
 			console.error("stendhal.ui.dialogHandler not found, some dialogs may not function");
 		}
