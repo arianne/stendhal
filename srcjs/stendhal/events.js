@@ -126,47 +126,108 @@ marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauro
 
 marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
+		let title = "Items";
+		let caption = "";
+		let items = [];
+
 		if (this.hasOwnProperty("title")) {
-			Chat.log("normal", this["title"]);
+			title = this["title"];
 		}
 		if (this.hasOwnProperty("caption")) {
-			Chat.log("normal", this["caption"]);
+			caption = this["caption"];
 		}
 		if (this.hasOwnProperty("content")) {
-			Chat.log("normal", "Item\t-\tPrice\t-\tDescription");
 			for (var obj in this["content"]) {
 				if (this["content"].hasOwnProperty(obj)) {
 					var slotObj = this["content"][obj];
 					var data = this["content"][obj]["a"];
-					Chat.log("normal", data["subclass"] + "\t"
-							+ data["price"] + "\t" + data["description_info"]);
+					const i = {
+						clazz: data["class"],
+						subclass: data["subclass"],
+						img: data["class"] + "/" + data["subclass"] + ".png",
+						price: data["price"],
+						desc: data["description_info"]
+					}
+
+					// seller shops prefix prices with "-"
+					if (i.price.startsWith("-")) {
+						i.price = i.price.substr(1);
+					}
+					items.push(i);
 				}
 			}
 		}
+
+		const content = new DialogContentComponent("empty-div-template");
+		content.componentElement.classList.add("shopsign");
+		const captionElement = document.createElement("div");
+		captionElement.className = "horizontalgroup shopcaption";
+		captionElement.innerHTML = caption + "<br>Item\t-\tPrice\t-\tDescription";
+		content.componentElement.appendChild(captionElement);
+		const itemList = document.createElement("div");
+		itemList.className = "shoplist";
+		content.componentElement.appendChild(itemList);
+
+		// TODO: organize in columns & show item sprites
+		for (const i of items) {
+			const row = document.createElement("div");
+			row.className = "horizontalgroup shoprow";
+			const sprite = stendhal.data.sprites.get("/data/sprites/items/" + i.img);
+			row.appendChild(sprite);
+			row.innerHTML += ": " + i.price + ": " + i.desc;
+			itemList.appendChild(row);
+		}
+
+		stendhal.ui.globalInternalWindow.set(
+				ui.createSingletonFloatingWindow(title, content, 20, 20));
 	}
 });
 
 
 marauroa.rpeventFactory["show_outfit_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
+		let title = "Outfits";
+		let caption = "";
+		let outfits = [];
+
 		if (this.hasOwnProperty("title")) {
-			Chat.log("normal", this["title"]);
+			title = this["title"];
 		}
 		if (this.hasOwnProperty("caption")) {
-			Chat.log("normal", this["caption"]);
+			caption = this["caption"];
 		}
 		if (this.hasOwnProperty("outfits")) {
-			const outfits = this["outfits"].split(":");
-			for (let o of outfits) {
+			for (let o of this["outfits"].split(":")) {
 				o = o.split(";");
 				if (o.length > 2) {
-					Chat.log("normal", o[0] + ": " + o[2]);
+					outfits.push([o[0], o[1], o[2]]);
 				}
 			}
 		}
 		if (this.hasOwnProperty("show_base")) {
 			//Chat.log("normal", this["show_base"]);
 		}
+
+		const content = new DialogContentComponent("empty-div-template");
+		content.componentElement.classList.add("shopsign");
+		const captionElement = document.createElement("div");
+		captionElement.className = "horizontalgroup shopcaption";
+		captionElement.innerHTML = caption;
+		content.componentElement.appendChild(captionElement);
+		const itemList = document.createElement("div");
+		itemList.className = "shoplist";
+		content.componentElement.appendChild(itemList);
+
+		// TODO: organize in columns & show outfit sprites
+		for (const o of outfits) {
+			const row = document.createElement("div");
+			row.className = "horizontalgroup shoprow";
+			row.innerHTML = o[0] + ": " + o[2];
+			itemList.appendChild(row);
+		}
+
+		stendhal.ui.globalInternalWindow.set(
+				ui.createSingletonFloatingWindow(title, content, 20, 20));
 	}
 })
 
@@ -266,7 +327,7 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 
 		const content = new DialogContentComponent("empty-div-template");
 		content.setConfigId("bestiary");
-		content.componentElement.id = "bestiary";
+		content.componentElement.classList.add("bestiary");
 
 		for (const enemy of enemies) {
 			const line = document.createElement("div");

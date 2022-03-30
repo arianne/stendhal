@@ -312,7 +312,25 @@ div.logcolR {
 	padding: 1em
 }
 
-#bestiary {
+.shopsign {
+  min-width: 35em;
+  height: 23em;
+}
+
+.shopcaption {
+}
+
+.shoprow {
+}
+
+.shoplist {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.bestiary {
   min-width: 35em;
   height: 23em;
   overflow-y: scroll;
