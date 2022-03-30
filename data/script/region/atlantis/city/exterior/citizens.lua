@@ -52,8 +52,7 @@ if game:setZone(zoneName) then
 		{
 			pos = {x=61, y=79},
 			name = "bee",
-			--class = "../monsters/insect/killer_bee", -- this only works in Eclipse
-			class = "animal/bee",
+			class = "../monsters/insect/killer_bee",
 			dir = Direction.LEFT,
 			resistance = 0,
 			desc = "You see a bee gathering nectar from the flowers.",
