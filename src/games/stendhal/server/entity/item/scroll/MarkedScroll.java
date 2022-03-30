@@ -42,6 +42,9 @@ public class MarkedScroll extends TeleportScroll {
 	public MarkedScroll(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+
+		this.applyDestInfo();
+		this.update();
 	}
 
 	/**
@@ -52,6 +55,9 @@ public class MarkedScroll extends TeleportScroll {
 	 */
 	public MarkedScroll(final MarkedScroll item) {
 		super(item);
+
+		this.applyDestInfo();
+		this.update();
 	}
 
 	/**
@@ -122,5 +128,20 @@ public class MarkedScroll extends TeleportScroll {
 			text += " Upon it is written: " + infostring;
 		}
 		return (text);
+	}
+
+	@Override
+	public void setInfoString(final String infostring) {
+		super.setInfoString(infostring);
+		this.applyDestInfo();
+	}
+
+	public void applyDestInfo() {
+		if (this.has("infostring")) {
+			final String[] infos = this.get("infostring").split(" ");
+			if (infos.length > 2) {
+				this.put("dest", infos[0] + "," + infos[1] + "," + infos[2]);
+			}
+		}
 	}
 }

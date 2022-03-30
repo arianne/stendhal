@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.item.scroll.MarkedScroll;
 import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -93,6 +94,11 @@ public class ItemTransformer {
 				}
 			}
 			UpdateConverter.updateItemAttributes(item);
+
+			// update visible destination info on marked scrolls
+			if (item instanceof MarkedScroll) {
+				((MarkedScroll) item).applyDestInfo();
+			}
 
 			// Contents, if the item has slot(s)
 			for (RPSlot slot : rpobject.slots()) {
