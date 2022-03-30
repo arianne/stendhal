@@ -456,6 +456,11 @@ stendhal.ui.dialogHandler = {
 			return;
 		}
 
+		// make sure this is closed before opening again
+		if (this.isOpen()) {
+			this.close();
+		}
+
 		this.content = c;
 	},
 
@@ -497,5 +502,5 @@ stendhal.ui.dialogHandler = {
 		if (unset) {
 			this.content = null;
 		}
-	},
+	}
 };
