@@ -147,6 +147,30 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 });
 
 
+marauroa.rpeventFactory["show_outfit_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		if (this.hasOwnProperty("title")) {
+			Chat.log("normal", this["title"]);
+		}
+		if (this.hasOwnProperty("caption")) {
+			Chat.log("normal", this["caption"]);
+		}
+		if (this.hasOwnProperty("outfits")) {
+			const outfits = this["outfits"].split(":");
+			for (let o of outfits) {
+				o = o.split(";");
+				if (o.length > 2) {
+					Chat.log("normal", o[0] + ": " + o[2]);
+				}
+			}
+		}
+		if (this.hasOwnProperty("show_base")) {
+			//Chat.log("normal", this["show_base"]);
+		}
+	}
+})
+
+
 marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		var volume = 1;
