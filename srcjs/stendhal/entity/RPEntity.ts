@@ -702,7 +702,7 @@ export class RPEntity extends ActiveEntity {
 			this["drawHeight"] = image.height as number / nDirections;
 			this["drawWidth"] = image.width as number / nFrames;
 			var drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
-			if (this["speed"] > 0 && nFrames != 1) {
+			if ((this["speed"] > 0 || this.hasOwnProperty("active_idle")) && nFrames != 1) {
 				var animLength = nFrames * 2 - 2;
 				// % Works normally with *floats* (just whose bright idea was
 				// that?), so use floor() as a workaround
