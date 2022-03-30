@@ -86,6 +86,12 @@ export class ItemContainerImplementation {
 			e.addEventListener("contextmenu", (event: MouseEvent) => {
 				this.onContextMenu(event);
 			});
+			e.addEventListener("mouseenter", (event: MouseEvent) => {
+				this.onMouseEnter(event);
+			});
+			e.addEventListener("mouseleave", (event: MouseEvent) => {
+				this.onMouseLeave(event);
+			});
 		}
 		this.update();
 	}
@@ -328,5 +334,24 @@ export class ItemContainerImplementation {
 	private onTouchCancel(evt: TouchEvent) {
 		// DEBUG:
 		console.log("onTouchCancel: " + evt.type);
+	}
+
+	private onMouseEnter(evt: MouseEvent) {
+		const dataItem = (evt.target as any).dataItem;
+		if (dataItem) {
+			if (dataItem["class"] === "scroll" && dataItem["dest"]) {
+				const dest = dataItem["dest"].split(",");
+				if (dest.length > 2) {
+					document.getElementById((evt.target as HTMLElement).id)!
+							.title = dest[0] + " " + dest[1] + "," + dest[2];
+				}
+			}
+		}
+	}
+
+	private onMouseLeave(evt: MouseEvent) {
+		if (evt.target) {
+			document.getElementById((evt.target as HTMLElement).id)!.title = "";
+		}
 	}
 }
