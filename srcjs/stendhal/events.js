@@ -162,7 +162,7 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 		content.componentElement.classList.add("shopsign");
 		const captionElement = document.createElement("div");
 		captionElement.className = "horizontalgroup shopcaption";
-		captionElement.innerHTML = caption + "<br>Item\t-\tPrice\t-\tDescription";
+		captionElement.textContent = caption + "\nItem\t-\tPrice\t-\tDescription";
 		content.componentElement.appendChild(captionElement);
 		const itemList = document.createElement("div");
 		itemList.className = "shoplist";
@@ -174,7 +174,7 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 			row.className = "horizontalgroup shoprow";
 			const sprite = stendhal.data.sprites.get("/data/sprites/items/" + i.img);
 			row.appendChild(sprite);
-			row.innerHTML += ": " + i.price + ": " + i.desc;
+			row.textContent += ": " + i.price + ": " + i.desc;
 			itemList.appendChild(row);
 		}
 
@@ -212,7 +212,7 @@ marauroa.rpeventFactory["show_outfit_list"] = marauroa.util.fromProto(marauroa.r
 		content.componentElement.classList.add("shopsign");
 		const captionElement = document.createElement("div");
 		captionElement.className = "horizontalgroup shopcaption";
-		captionElement.innerHTML = caption;
+		captionElement.textContent = caption;
 		content.componentElement.appendChild(captionElement);
 		const itemList = document.createElement("div");
 		itemList.className = "shoplist";
@@ -222,7 +222,7 @@ marauroa.rpeventFactory["show_outfit_list"] = marauroa.util.fromProto(marauroa.r
 		for (const o of outfits) {
 			const row = document.createElement("div");
 			row.className = "horizontalgroup shoprow";
-			row.innerHTML = o[0] + ": " + o[2];
+			row.textContent = o[0] + ": " + o[2];
 			itemList.appendChild(row);
 		}
 
@@ -333,7 +333,7 @@ marauroa.rpeventFactory["bestiary"] = marauroa.util.fromProto(marauroa.rpeventFa
 			const line = document.createElement("div");
 			line.className = "horizontalgroup";
 			line.style.padding = "5px";
-			line.innerHTML = enemy;
+			line.textContent = enemy;
 			content.componentElement.appendChild(line);
 		}
 
