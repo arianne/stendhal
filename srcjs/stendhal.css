@@ -142,8 +142,6 @@ div.logcolR {
 }
 
 .actionmenu {
-  border: 1px solid #000;
-  background-color: #FFF
 }
 
 .actionmenu button {
@@ -359,7 +357,9 @@ div.logcolR {
 }
 
 .dialogcontents {
-  padding: 10px;
+  padding: 7px;
+  border-style: inset;
+  border-width: 3px;
 }
 
 .dialogbuttons {

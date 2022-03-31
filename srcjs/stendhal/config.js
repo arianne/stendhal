@@ -121,14 +121,20 @@ stendhal.config = {
 
 		// make texts readable with dark & light themes
 		let color = "#000000";
-		let bgcolor = "#ffffff";
+		let colorbg = "#ffffff";
+		let colorborder = "#eeeeee";
 		if (this.themes.dark[current]) {
 			color = "#ffffff";
-			bgcolor = "#000000";
+			colorbg = "#000000";
+			colorborder = "#808080";
 		}
 		element.style.setProperty("color", color);
 		if (updateBG) {
-			element.style.setProperty("background-color", bgcolor);
+			element.style.setProperty("background-color", colorbg);
+		}
+		// only set border for floating dialogs
+		if (element.classList.contains("dialogcontents")) {
+			element.style.setProperty("border-color", colorborder);
 		}
 
 		if (children && element.children) {
