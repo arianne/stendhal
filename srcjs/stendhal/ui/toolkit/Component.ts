@@ -33,10 +33,6 @@ export abstract class Component {
 		this.componentElement = element;
 	}
 
-	protected applyTheme() {
-		stendhal.config.applyTheme(this.componentElement);
-	}
-
 	public onParentClose() {
 		// do nothing
 	};

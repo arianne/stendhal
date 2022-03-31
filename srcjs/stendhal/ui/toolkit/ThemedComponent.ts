@@ -9,44 +9,33 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ThemedComponent } from "./ThemedComponent";
-import { FloatingWindow } from "./FloatingWindow";
+import { Component } from "./Component";
 
-declare let stendhal: any;
+declare var stendhal: any;
 
 
 /**
- * Component representing the contents of a floating dialog.
+ * Component representation that applies the current theme.
  */
-export abstract class DialogContentComponent extends ThemedComponent {
+export class ThemedComponent extends Component {
 
-	protected frame?: FloatingWindow;
-
-
-	public updateConfig(newX: number, newY: number) {
-		const cid = this.getConfigId();
-		if (stendhal.config.dialogstates[cid]) {
-			stendhal.config.dialogstates[cid] = {x: newX, y: newY};
-		}
+	constructor(id: string) {
+		super(id);
+		this.applyTheme();
 	}
 
 	/**
-	 * Sets the closable dialog frame.
+	 * Applies the current theme to the main element.
 	 */
-	public setFrame(frame: FloatingWindow) {
-		this.frame = frame;
-	}
-
-	public getFrame(): FloatingWindow|undefined {
-		return this.frame;
+	protected applyTheme() {
+		stendhal.config.applyTheme(this.componentElement);
 	}
 
 	/**
-	 * Closes the containing FloatingWindow.
+	 * Applies the current theme to the main element & all
+	 * its children recursively.
 	 */
-	public close() {
-		if (this.frame) {
-			this.frame.close();
-		}
+	protected applyThemeRecursive() {
+		stendhal.config.applyTheme(this.componentElement, true, true);
 	}
 }
