@@ -15,23 +15,17 @@ import { FloatingWindow } from "./FloatingWindow";
 declare let stendhal: any;
 
 
+/**
+ * Component representing the contents of a floating dialog.
+ */
 export abstract class DialogContentComponent extends Component {
 
 	protected frame?: FloatingWindow;
-	private cid?: string;
 
 
 	constructor(id: string) {
 		super(id);
 		this.applyTheme();
-	}
-
-	public setConfigId(cid: string) {
-		this.cid = cid;
-	}
-
-	public getConfigId(): string {
-		return this.cid || "";
 	}
 
 	public updateConfig(newX: number, newY: number) {
