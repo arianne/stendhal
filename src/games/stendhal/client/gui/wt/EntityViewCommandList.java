@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,6 +58,6 @@ public class EntityViewCommandList extends CommandList {
 			LOGGER.error("Unknown command: '" + command + "'");
 			return;
 		}
-		view.onAction(ActionType.getbyRep(command));
+		view.onAction(action);
 	}
 }
