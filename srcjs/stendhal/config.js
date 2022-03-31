@@ -110,18 +110,26 @@ stendhal.config = {
 	 * @param recurse
 	 *     If <code>true</code>, applies to all children recursively (default:
 	 *     <code>false</code>).
+	 * @param updateBG
+	 *     If <code>true</code>, applies white backgrounds for dark themes &
+	 *     black backgrounds for light themes (default: <code>false</code>).
 	 */
-	applyTheme: function(element, children=false, recurse=false) {
+	applyTheme: function(element, children=false, recurse=false, updateBG=false) {
 		const current = this.getTheme();
 		element.style.setProperty("background",
 				"url(/data/gui/" + this.themes.map[current] + ")");
 
 		// make texts readable with dark & light themes
 		let color = "#000000";
+		let bgcolor = "#ffffff";
 		if (this.themes.dark[current]) {
 			color = "#ffffff";
+			bgcolor = "#000000";
 		}
 		element.style.setProperty("color", color);
+		if (updateBG) {
+			element.style.setProperty("background-color", bgcolor);
+		}
 
 		if (children && element.children) {
 			for (let idx = 0; idx < element.children.length; idx++) {
