@@ -172,9 +172,18 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 		for (const i of items) {
 			const row = document.createElement("div");
 			row.className = "horizontalgroup shoprow";
-			const sprite = stendhal.data.sprites.get("/data/sprites/items/" + i.img);
-			row.appendChild(sprite);
-			row.textContent += ": " + i.price + ": " + i.desc;
+			const img = document.createElement("div");
+			img.className = "shopcol";
+			img.appendChild(stendhal.data.sprites.get("/data/sprites/items/" + i.img));
+			row.appendChild(img);
+			const price = document.createElement("div");
+			price.className = "shopcol";
+			price.textContent = i.price;
+			row.appendChild(price);
+			const desc = document.createElement("div");
+			desc.className = "shopcol shopcolr";
+			desc.textContent = i.desc;
+			row.appendChild(desc);
 			itemList.appendChild(row);
 		}
 
