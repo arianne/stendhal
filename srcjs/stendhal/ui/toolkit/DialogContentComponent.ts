@@ -23,6 +23,11 @@ export abstract class DialogContentComponent extends ThemedComponent {
 	protected frame?: FloatingWindow;
 
 
+	constructor(id: string) {
+		super(id);
+		this.componentElement.classList.add("dialogcontents");
+	}
+
 	public updateConfig(newX: number, newY: number) {
 		const cid = this.getConfigId();
 		if (stendhal.config.dialogstates[cid]) {

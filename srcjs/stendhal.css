@@ -256,7 +256,6 @@ div.logcolR {
 }
 
 .tavellogtabpanel {
-  margin-left: 13px;
 }
 
 .tlog_hlayout {
@@ -266,7 +265,7 @@ div.logcolR {
 
 .tlog_rpane {
   float: top;
-  height: 95%;
+  height: 100%;
   margin-left: 15em;
   overflow-y: auto;
 }
@@ -275,16 +274,15 @@ div.logcolR {
   float: left;
   width: 15em;
   margin-top: 1em;
-  margin-left: 1em;
 }
 
 .travellogdetails {
   float: left;
-  margin-right: 1em;
+  margin-top: 1em;
 }
 
 .travellogdescription {
-  font-style: italic
+  font-style: italic;
 }
 
 .imageviewer h3 {
@@ -360,7 +358,7 @@ div.logcolR {
 	}
 }
 
-.settings {
+.dialogcontents {
   padding: 10px;
 }
 
