@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -175,6 +175,17 @@ public enum ActionType {
 			return a;
 		}
 
+	},
+	MARK_ALL("markscroll", "Mark all") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			// Servers older than v1.40 don't support the "quantity" attribute.
+			// This should still work but only mark one scroll.
+			final RPAction a = super.fillTargetInfo(entity);
+			a.put("type", "markscroll");
+			a.put("quantity", entity.getRPObject().get("quantity"));
+			return a;
+		}
 	};
 
 	/**

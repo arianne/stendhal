@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -903,6 +903,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 		case LOOK:
 		case ADMIN_INSPECT:
 		case ADMIN_DESTROY:
+		case MARK_ALL:
 		case USE:
 			at.send(at.fillTargetInfo(entity));
 			break;
