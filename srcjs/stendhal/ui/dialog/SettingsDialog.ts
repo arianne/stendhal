@@ -30,7 +30,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.initialStates = {
 			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
-			"ui.theme": stendhal.config.get("ui.theme")
 		};
 
 
@@ -141,7 +140,7 @@ export class SettingsDialog extends DialogContentComponent {
 
 		sel_theme.addEventListener("change", (o) => {
 			stendhal.config.setTheme(Object.keys(themes)[sel_theme.selectedIndex]);
-			this.refresh();
+			stendhal.config.refreshTheme();
 		});
 
 		/* TODO:

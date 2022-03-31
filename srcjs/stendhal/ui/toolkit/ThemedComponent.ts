@@ -21,6 +21,7 @@ export class ThemedComponent extends Component {
 
 	constructor(id: string) {
 		super(id);
+		this.componentElement.classList.add("background");
 		this.applyTheme();
 	}
 

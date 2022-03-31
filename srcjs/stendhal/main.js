@@ -208,7 +208,7 @@ stendhal.main = {
 		stendhal.config.init(new URL(document.location).searchParams);
 
 		// update user interface after config is loaded
-		stendhal.config.applyTheme(document.querySelector(".background"));
+		stendhal.config.refreshTheme();
 		document.getElementById("body").style.setProperty("font-family", stendhal.config.get("ui.font.body"));
 
 		new DesktopUserInterfaceFactory().create();

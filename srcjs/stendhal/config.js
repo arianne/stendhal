@@ -99,6 +99,10 @@ stendhal.config = {
 		return this.get("ui.theme") || "wood";
 	},
 
+	getThemeBG: function() {
+		return this.themes.map[this.getTheme()] || this.themes.map["wood"];
+	},
+
 	/**
 	 * Applies current theme to an element.
 	 *
@@ -141,6 +145,19 @@ stendhal.config = {
 			for (let idx = 0; idx < element.children.length; idx++) {
 				this.applyTheme(element.children[idx], recurse, recurse);
 			}
+		}
+	},
+
+	/**
+	 * Refreshes theme for all applicable elements.
+	 *
+	 * @param updateBG
+	 *     If <code>true</code>, applies white backgrounds for dark themes &
+	 *     black backgrounds for light themes (default: <code>false</code>).
+	 */
+	refreshTheme(updateBG=false) {
+		for (const elem of document.querySelectorAll(".background")) {
+			this.applyTheme(elem, undefined, undefined, updateBG);
 		}
 	},
 
