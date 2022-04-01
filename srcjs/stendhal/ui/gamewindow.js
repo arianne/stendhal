@@ -393,6 +393,29 @@ stendhal.ui.gamewindow = {
 		e.preventDefault();
 	},
 
+	onTouchStart: function(e) {
+		e.preventDefault();
+		stendhal.ui.touch.timestampTouchStart = +new Date();
+	},
+
+	onTouchEnd: function(e) {
+		e.preventDefault();
+		stendhal.ui.touch.timestampTouchEnd = +new Date();
+		if (stendhal.ui.heldItem) {
+			this.onDrop(e);
+		} else {
+			this.onMouseUp(e);
+		}
+	},
+
+	onTouchMove: function(e) {
+		if (stendhal.ui.heldItem) {
+			this.onDragOver(e);
+		} else {
+			this.onDragStart(e);
+		}
+	},
+
 	onContentMenu: function(e) {
 		e.preventDefault();
 	},

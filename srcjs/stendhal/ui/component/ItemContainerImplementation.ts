@@ -26,15 +26,6 @@ export class ItemContainerImplementation {
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
 
-	/* touch handling */
-
-	// duration indicating long touch
-	private longTouchDuration = 300;
-	// timestamp of touch start
-	private timestampTouchStart = 0;
-	// timestamp of touch end
-	private timestampTouchEnd = 0;
-
 
 	// TODO: replace usage of global document.getElementById()
 
@@ -72,10 +63,10 @@ export class ItemContainerImplementation {
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});
-			/*
 			e.addEventListener("touchmove", (event: TouchEvent) => {
 				this.onTouchMove(event)
 			});
+			/*
 			e.addEventListener("touchcancel", (event: TouchEvent) => {
 				this.onTouchCancel(event)
 			});
@@ -138,7 +129,7 @@ export class ItemContainerImplementation {
 		}
 	}
 
-	private onDragStart(event: DragEvent) {
+	private onDragStart(event: DragEvent|TouchEvent) {
 		let myobject = this.object || marauroa.me;
 		if (!myobject[this.slot]) {
 			event.preventDefault();
@@ -152,7 +143,7 @@ export class ItemContainerImplementation {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName
 			} as any;
-			if (event.dataTransfer) {
+			if (event instanceof DragEvent && event.dataTransfer) {
 				const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 				event.dataTransfer.setDragImage(img, 0, 0);
 			}
@@ -161,15 +152,15 @@ export class ItemContainerImplementation {
 		}
 	}
 
-	private onDragOver(event: DragEvent) {
+	private onDragOver(event: DragEvent|TouchEvent) {
 		event.preventDefault();
-		if (event.dataTransfer) {
+		if (event instanceof DragEvent && event.dataTransfer) {
 			event.dataTransfer.dropEffect = "move";
 		}
 		return false;
 	}
 
-	private onDrop(event: DragEvent) {
+	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldItem) {
 			const  targetPath = "[" + myobject["id"] + "\t" + this.slot + "]";
@@ -184,7 +175,7 @@ export class ItemContainerImplementation {
 			stendhal.ui.heldItem = undefined;
 
 			// if ctrl is pressed, we ask for the quantity
-			if (event.ctrlKey) {
+			if (event instanceof DragEvent && event.ctrlKey) {
 				ui.createSingletonFloatingWindow("Quantity",
 					new DropQuantitySelectorDialog(action),
 					event.pageX - 50, event.pageY - 25);
@@ -212,17 +203,15 @@ export class ItemContainerImplementation {
 		return (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration);
 	}
 
-	private isLongTouch() {
-		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
-	}
-
 	onMouseDown(event: MouseEvent|TouchEvent) {
 		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
 	}
 
 	onMouseUp(evt: MouseEvent|TouchEvent) {
-		evt.preventDefault();
+		if (evt instanceof MouseEvent) {
+			evt.preventDefault();
+		}
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			if (this.quickPickup) {
@@ -236,7 +225,7 @@ export class ItemContainerImplementation {
 				return;
 			}
 
-			if (this.isRightClick(event) || (evt.type === "touchend" && this.isLongTouch())) {
+			if (this.isRightClick(event) || stendhal.ui.touch.isLongTouch()) {
 				ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
 					event.pageX - 50, event.pageY - 5);
@@ -251,73 +240,6 @@ export class ItemContainerImplementation {
 			}
 		}
 		document.getElementById("gamewindow")!.focus();
-	}
-
-	private dispatchEventOnTouchTarget(evt: TouchEvent, newEvent: Event) {
-		const target = stendhal.ui.html.extractPosition(evt).target;
-		if (target !== null && typeof target !== "undefined") {
-			target.dispatchEvent(newEvent);
-		}
-	}
-
-	/**
-	 * Event handler when touch event starts.
-	 *
-	 * @param evt
-	 *     The touch event.
-	 */
-	private onTouchStart(evt: TouchEvent) {
-		// disable default "mousedown" event
-		evt.preventDefault();
-		this.timestampTouchStart = +new Date();
-	}
-
-	/**
-	 * Event handler when touch event ends.
-	 *
-	 * @param evt
-	 *     The touch event.
-	 */
-	private onTouchEnd(evt: TouchEvent) {
-		// disable default "mouseup" event
-		evt.preventDefault();
-
-		if (!stendhal.ui.heldItem) {
-			this.timestampTouchEnd = +new Date();
-			this.onMouseUp(evt);
-		} else {
-			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("drop"));
-		}
-	}
-
-	/**
-	 * Event handler when touch drag occurs.
-	 *
-	 * @param evt
-	 *     The touch event.
-	 */
-	private onTouchMove(evt: TouchEvent) {
-		evt.preventDefault(); // FIXME: can't prevent scrolling?
-
-		if (stendhal.ui.heldItem) {
-			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("dragover"));
-		} else {
-			this.dispatchEventOnTouchTarget(evt,
-				new DragEvent("dragstart"));
-		}
-	}
-
-	/**
-	 * Event handler when touch event is cancelled.
-	 *
-	 * @param evt
-	 *     The touch event.
-	 */
-	private onTouchCancel(evt: TouchEvent) {
-		// DEBUG:
-		console.log("onTouchCancel: " + evt.type);
 	}
 
 	private onMouseEnter(evt: MouseEvent) {
@@ -336,6 +258,29 @@ export class ItemContainerImplementation {
 	private onMouseLeave(evt: MouseEvent) {
 		if (evt.target) {
 			document.getElementById((evt.target as HTMLElement).id)!.title = "";
+		}
+	}
+
+	private onTouchStart(evt: TouchEvent) {
+		evt.preventDefault();
+		stendhal.ui.touch.timestampTouchStart = +new Date();
+	}
+
+	private onTouchEnd(evt: TouchEvent) {
+		evt.preventDefault();
+		stendhal.ui.touch.timestampTouchEnd = +new Date();
+		if (stendhal.ui.heldItem) {
+			this.onDrop(evt);
+		} else {
+			this.onMouseUp(evt);
+		}
+	}
+
+	private onTouchMove(evt: TouchEvent) {
+		if (stendhal.ui.heldItem) {
+			this.onDragOver(evt);
+		} else {
+			this.onDragStart(evt);
 		}
 	}
 }
