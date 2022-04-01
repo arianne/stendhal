@@ -86,7 +86,7 @@ stendhal.ui.html = {
 
 		const tally = document.createElement("span");
 		tally.className = "tally";
-		tally.innerHTML = tallyString;
+		tally.textContent = tallyString;
 
 		return [pre, tally, post];
 	}
