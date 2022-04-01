@@ -36,8 +36,8 @@ import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.facade.InfiniteAudibleArea;
-import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 

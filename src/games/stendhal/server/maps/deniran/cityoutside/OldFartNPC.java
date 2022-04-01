@@ -11,18 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityoutside;
 
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.Map;
+
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.common.Direction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
-import java.util.Arrays;
-import java.awt.Color;
-import java.util.Map;
 
 /**
  * This old fart sits on a bench in Deniran. From eating cabbage soup he has

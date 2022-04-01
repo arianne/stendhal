@@ -19,8 +19,8 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
 

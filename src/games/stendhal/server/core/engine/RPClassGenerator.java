@@ -14,8 +14,8 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.CombatEntity;
 import games.stendhal.server.entity.Blood;
+import games.stendhal.server.entity.CombatEntity;
 import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;

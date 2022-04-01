@@ -14,7 +14,6 @@ package games.stendhal.tools.contributors;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.lang.StringBuilder;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;

@@ -15,9 +15,9 @@ package games.stendhal.client.gui.j2d;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import games.stendhal.client.GameScreenSpriteHelper;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.GameScreenSpriteHelper;
 
 
 /**

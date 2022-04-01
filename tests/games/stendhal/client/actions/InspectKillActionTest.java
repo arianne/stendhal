@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.INSPECTKILL;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -20,8 +21,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static games.stendhal.common.constants.Actions.INSPECTKILL;
 
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;

@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.npc.ChatAction;

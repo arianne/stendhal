@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-import java.lang.Runnable;
 import java.util.LinkedList;
 import java.util.List;
 
