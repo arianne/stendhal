@@ -209,10 +209,15 @@ div.logcolR {
 .popuptitle, .windowtitlebar {
   padding: 3px;
   border-bottom: 1px solid #777;
+  border: 1px solid #000000;
 }
 
 .popuptitleclose, .windowtitleclose {
   float: right;
+  border: 1px solid #000000;
+  height: 100%;
+  width: 1.1em;
+  text-align: center;
 }
 
 .quantityselectorvalue {
@@ -371,9 +376,10 @@ div.logcolR {
 }
 
 .dialogcontents {
-  padding: 7px;
-  border-style: inset;
-  border-width: 3px;
+  padding: 9px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
 }
 
 .dialogbuttons {
