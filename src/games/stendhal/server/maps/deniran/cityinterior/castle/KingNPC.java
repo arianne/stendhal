@@ -57,10 +57,9 @@ public class KingNPC implements ZoneConfigurator {
 
 	private void buildShops(final SpeakerNPC npc) {
 		final ShopList shops = ShopList.get();
+		// sells deniran city scroll
 		new SellerAdder().addSeller(npc, new SellerBehaviour(shops.get("denirankingsell")));
-		// currently enabled on test server only
-		if (System.getProperty("stendhal.testserver") != null) {
-			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shops.get("denirankingbuy")));
-		}
+		// buys royal equipment
+		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shops.get("denirankingbuy")));
 	}
 }
