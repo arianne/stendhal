@@ -90,6 +90,7 @@ public class ClientView extends WebView {
 
 		final WebSettings viewSettings = getSettings();
 		viewSettings.setJavaScriptEnabled(true);
+		viewSettings.setDomStorageEnabled(true);
 
 		// keep elements in position in portrait mode
 		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);// <-- SINGLE_COLUMN deprecated
