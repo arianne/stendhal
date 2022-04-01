@@ -300,7 +300,9 @@ export class RPEntity extends ActiveEntity {
 					y = 0;
 				}
 
-				ctx.drawImage(this.sprite, x, y);
+				if (this.sprite.height && this.sprite.complete) {
+					ctx.drawImage(this.sprite, x, y);
+				}
 
 				// 5 seconds
 				return Date.now() > this.timeStamp + 5000;

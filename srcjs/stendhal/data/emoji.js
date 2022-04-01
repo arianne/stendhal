@@ -25,7 +25,7 @@ stendhal.data.emoji = {
 	 *     <code>Image</code> or <code>undefined</code> if emoji isn't available.
 	 */
 	get: function(text) {
-		const path = this.absPath(text);
+		const path = stendhal.data.emoji.absPath(text);
 		if (!path) {
 			return;
 		}
@@ -44,10 +44,10 @@ stendhal.data.emoji = {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	check: function(text) {
-		let name = this.map[text];
+		let name = stendhal.data.emoji.map[text];
 		if (!name && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substr(0, text.length - 1).substr(1);
-			if (this.isAvailable(text)) {
+			if (stendhal.data.emoji.isAvailable(text)) {
 				name = text;
 			}
 		}
@@ -64,7 +64,7 @@ stendhal.data.emoji = {
 	 *     String path to emoji image.
 	 */
 	absPath: function(name) {
-		name = this.check(name);
+		name = stendhal.data.emoji.check(name);
 		if (name) {
 			return "/data/sprites/emoji/" + name + ".png";
 		}
@@ -83,7 +83,7 @@ stendhal.data.emoji = {
 			name = name.substr(0, name.length - 1).substr(1);
 		}
 
-		return this.registered[name] == true;
+		return stendhal.data.emoji.registered[name] == true;
 	},
 
 	registered: {
