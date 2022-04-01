@@ -18,6 +18,9 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+/** Represents an item being transferred from one container slot to another. */
+stendhal.ui.heldItem = undefined;
+
 
 /**
  * game window aka world view
@@ -332,45 +335,52 @@ stendhal.ui.gamewindow = {
 		var img = undefined;
 		if (draggedEntity.type === "item") {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
+			stendhal.ui.heldItem = {
+				path: draggedEntity.getIdPath(),
+				zone: marauroa.currentZoneName
+			}
 		} else if (draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
 		} else {
 			e.preventDefault();
 			return;
 		}
-		window.event = e; // required by setDragImage polyfil
-		e.dataTransfer.setDragImage(img, 0, 0);
-		e.dataTransfer.setData("Text", JSON.stringify({
-			path: draggedEntity.getIdPath(),
-			zone: marauroa.currentZoneName
-		}));
+
+		if (e.dataTransfer) {
+			window.event = e; // required by setDragImage polyfil
+			e.dataTransfer.setDragImage(img, 0, 0);
+		}
 	},
 
 	onDragOver: function(e) {
 		e.preventDefault(); // Necessary. Allows us to drop.
-		e.dataTransfer.dropEffect = "move";
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = "move";
+		}
 		return false;
 	},
 
 	onDrop: function(e) {
 		var pos = stendhal.ui.html.extractPosition(e);
-		var datastr = e.dataTransfer.getData("Text") || e.dataTransfer.getData("text/x-stendhal");
-		if (datastr) {
-			var data = JSON.parse(datastr);
+		if (stendhal.ui.heldItem) {
 			var action = {
 				"x": Math.floor((pos.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((pos.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
-				"zone" : data.zone
-			};
-			var id = data.path.substr(1, data.path.length - 2);
+				"zone": stendhal.ui.heldItem.zone
+			}
+
+			var id = stendhal.ui.heldItem.path.substr(1, stendhal.ui.heldItem.path.length - 2);
 			var drop = /\t/.test(id);
 			if (drop) {
 				action["type"] = "drop";
-				action["source_path"] = data.path;
+				action["source_path"] = stendhal.ui.heldItem.path;
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;
 			}
+
+			// item was dropped
+			stendhal.ui.heldItem = undefined;
 
 			// if ctrl is pressed, we ask for the quantity
 			if (e.ctrlKey) {
