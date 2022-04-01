@@ -26,8 +26,8 @@ export class ChatLogComponent extends Component {
 		super("chat");
 		this.refresh();
 
-		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
-			this.onMouseUp(evt)
+		this.componentElement.addEventListener("contextmenu", (evt: MouseEvent) => {
+			this.onContextMenu(evt)
 		});
 	}
 
@@ -325,33 +325,33 @@ export class ChatLogComponent extends Component {
 	}
 
 
-	private onMouseUp(evt: MouseEvent) {
+	private onContextMenu(evt: MouseEvent) {
+		evt.preventDefault();
+		evt.stopPropagation();
+
 		if (stendhal.ui.actionContextMenu.isOpen()) {
 			stendhal.ui.actionContextMenu.close();
 		}
 
-		if (evt.button === 2) {
-			evt.stopPropagation();
-			// setting "log" to "this" here doesn't work
-			const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
-			const options = [
-				{
-					title: "Clear",
-					action: function() {log.clear();}
-				}
-			] as MenuItem[];
-
-			if (navigator && navigator.clipboard) {
-				options.unshift({
-					title: "Copy",
-					action: function() {log.copyToClipboard();}
-				});
+		// setting "log" to "this" here doesn't work
+		const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
+		const options = [
+			{
+				title: "Clear",
+				action: function() {log.clear();}
 			}
+		] as MenuItem[];
 
-			const pos = stendhal.ui.html.extractPosition(evt);
-			stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
-					new LogContextMenu(options), pos.pageX - 50, pos.pageY - 5));
+		if (navigator && navigator.clipboard) {
+			options.unshift({
+				title: "Copy",
+				action: function() {log.copyToClipboard();}
+			});
 		}
+
+		const pos = stendhal.ui.html.extractPosition(evt);
+		stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
+				new LogContextMenu(options), pos.pageX - 50, pos.pageY - 5));
 	}
 }
 
