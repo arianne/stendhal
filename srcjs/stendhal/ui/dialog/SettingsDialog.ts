@@ -287,7 +287,7 @@ export class SettingsDialog extends DialogContentComponent {
 		for (const key of Object.keys(options)) {
 			const opt = document.createElement("option");
 			opt.value = key;
-			opt.innerHTML = options[key];
+			opt.textContent = options[key];
 			sel.appendChild(opt);
 		}
 		sel.selectedIndex = idx;
