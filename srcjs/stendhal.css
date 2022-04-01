@@ -220,6 +220,10 @@ div.logcolR {
   text-align: center;
 }
 
+.popuptitleclose:hover, .windowtitleclose:hover {
+  background-color: #ffffff2a;
+}
+
 .quantityselectorvalue {
   width: 4em;
 }
