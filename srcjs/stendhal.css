@@ -23,9 +23,8 @@ ul.uniform {
 #buddyList {
   border: 1px solid black;
   width: 128px;
-  height: 250px;
+  height: 175px;
   float: left;
-  overflow: auto;
 }
 
 #buddyList ul {
