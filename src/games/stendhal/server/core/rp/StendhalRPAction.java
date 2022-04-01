@@ -345,41 +345,13 @@ public class StendhalRPAction {
 			beaten = player.canHit(defender);
 		}
 
-		// For checking if RATK XP should be incremented on successful hit
-		boolean addRatkXP = false;
-		if (Testing.COMBAT) {
-			addRatkXP = isRanged;
-		}
-
-		/* TODO: Remove if alternate attack training method implemented in
-		 *       game.
-		 *
-		 * Current ATK XP training system allows training ATK XP only if the
-		 * player has recently received damage from the target. ATK experience
-		 * increases even if attack is blocked.
-		 */
-		// disabled attack xp for attacking NPC's
-		if (!(defender instanceof SpeakerNPC) && player.getsFightXpFrom(defender)) {
-			if (Testing.COMBAT && isRanged) {
-				player.incRatkXP();
-				// don't allow player to receive double experience from successful hits
-				addRatkXP = false;
-			} else {
-				player.incAtkXP();
-			}
-		}
-
 		// equipment that are broken are added to this list
 		final List<BreakableItem> broken = new ArrayList<>();
 
 		if (beaten) {
-			if ((defender instanceof Player)
-					&& defender.getsFightXpFrom(player)) {
-				defender.incDefXP();
-			}
-
 			final List<Item> weapons = player.getWeapons();
 			final float itemAtk;
+
 			if (Testing.COMBAT && isRanged) {
 				itemAtk = player.getItemRatk();
 			} else {
@@ -387,12 +359,21 @@ public class StendhalRPAction {
 			}
 
 			int damage = player.damageDone(defender, itemAtk, player.getDamageType());
-			if (!usesTrainingDummy && damage > 0) {
+			final boolean didDamage = damage > 0;
 
-				if (Testing.COMBAT && addRatkXP && !(defender instanceof SpeakerNPC)) {
-					// Range attack XP is incremented for successful hits regardless of whether player has recently been hit
+			// give xp even if attack was blocked
+			if (defender.getsDefXpFrom(player)) {
+				defender.incDefXP();
+			}
+			if (player.getsAtkXpFrom(defender)) {
+				if (Testing.COMBAT && isRanged) {
 					player.incRatkXP();
+				} else {
+					player.incAtkXP();
 				}
+			}
+
+			if (didDamage && !usesTrainingDummy) {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());

@@ -2049,7 +2049,7 @@ public class Player extends DressedEntity implements UseListener {
 
 	@Override
 	protected void applyDefXP(final RPEntity entity) {
-		if (getsFightXpFrom(entity)) {
+		if (getsDefXpFrom(entity)) {
 			incDefXP();
 		}
 	}

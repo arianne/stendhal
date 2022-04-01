@@ -11,8 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.Map;
+import java.util.WeakHashMap;
+
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -20,7 +26,7 @@ import marauroa.common.game.RPObject;
 
 
 /**
- * An entity that engages in combat fighting.
+ * An entity that can engage in combat.
  */
 public abstract class CombatEntity extends GuidedEntity {
 
@@ -28,12 +34,24 @@ public abstract class CombatEntity extends GuidedEntity {
 
 	public static final String RPCLASS_NAME = "combat_entity";
 
+	/**
+	 * Player(s) taking damage receive more XP.
+	 */
+	private static final int GUARANTEED_ATK_XP_TURNS = 12;
+
+	/**
+	 * Maps each enemy which has recently damaged this entity to the turn when
+	 * the last damage has occurred.
+	 */
+	protected final Map<CombatEntity, Integer> enemiesThatGiveFightXP;
+
 
 	/**
 	 * Default constructor.
 	 */
 	public CombatEntity() {
 		super();
+		enemiesThatGiveFightXP = new WeakHashMap<>();
 	}
 
 	/**
@@ -44,13 +62,14 @@ public abstract class CombatEntity extends GuidedEntity {
 	 */
 	public CombatEntity(final RPObject object) {
 		super(object);
+		enemiesThatGiveFightXP = new WeakHashMap<>();
 	}
 
 	/**
 	 * Generates the RPClass & specifies attributes.
 	 */
-    public static void generateRPClass() {
-        try {
+	public static void generateRPClass() {
+		try {
 			final RPClass rpclass = new RPClass(RPCLASS_NAME);
 			rpclass.isA("active_entity");
 
@@ -105,8 +124,38 @@ public abstract class CombatEntity extends GuidedEntity {
 			// DO NOT USE, the following are obsolete
 			rpclass.addAttribute("risk", Type.BYTE, Definition.VOLATILE);
 			rpclass.addAttribute("damage", Type.INT, Definition.VOLATILE);
-        } catch (final Exception e) {
-            logger.error("cannot generate RPClass", e);
-        }
-    }
+		} catch (final Exception e) {
+				logger.error("cannot generate RPClass", e);
+		}
+	}
+
+	private boolean getsFightXpFrom(final CombatEntity opponent) {
+		return this instanceof Player && !(opponent instanceof PassiveNPC);
+	}
+
+	public boolean getsAtkXpFrom(final CombatEntity defender) {
+		return getsFightXpFrom(defender);
+	}
+
+	public boolean getsDefXpFrom(final CombatEntity attacker) {
+		return getsFightXpFrom(attacker);
+	}
+
+	/**
+	 * UNUSED
+	 */
+	public boolean isGuaranteedAtkXpFrom(final CombatEntity defender) {
+		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(defender);
+		if (turnWhenLastDamaged == null) {
+			return false;
+		}
+
+		final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
+		if (currentTurn - turnWhenLastDamaged > GUARANTEED_ATK_XP_TURNS) {
+			enemiesThatGiveFightXP.remove(defender);
+			return false;
+		}
+
+		return true;
+	}
 }
