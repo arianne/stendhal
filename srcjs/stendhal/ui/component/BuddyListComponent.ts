@@ -143,18 +143,18 @@ export class BuddyListComponent extends Component {
 		if (this.current.className === "online") {
 			actions.push({
 				title: "Talk",
-				action: function(entity: any) {
+				action: function(buddyListComponent: BuddyListComponent) {
 					(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/msg "
-							+ this.current.textContent.trim()
+							+ buddyListComponent.current!.textContent!.trim()
 							+ " ");
 				}
 			});
 			actions.push({
 				title: "Where",
-				action: function(entity: any) {
+				action: function(buddyListComponent: BuddyListComponent) {
 					let action = {
 						"type": "where",
-						"target": this.current.textContent.trim(),
+						"target": buddyListComponent.current!.textContent!.trim(),
 						"zone": marauroa.currentZoneName
 					};
 					marauroa.clientFramework.sendAction(action);
@@ -164,23 +164,23 @@ export class BuddyListComponent extends Component {
 		} else {
 			actions.push({
 				title: "Leave Message",
-				action: function(entity: any) {
+				action: function(buddyListComponent: BuddyListComponent) {
 					(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/storemessage "
-							+ this.current.textContent.trim()
+							+ buddyListComponent.current!.textContent!.trim()
 							+ " ");
 				}
 			});
 		}
 		actions.push({
 			title: "Remove",
-			action: function(entity: any) {
+			action: function(buddyListComponent: BuddyListComponent) {
 				let action = {
 					"type": "removebuddy",
-					"target": this.current.textContent.trim(),
+					"target": buddyListComponent.current!.textContent!.trim(),
 					"zone": marauroa.currentZoneName
 				};
 				marauroa.clientFramework.sendAction(action);
-				this.removeBuddy(this.current.textContent.trim());
+				buddyListComponent.removeBuddy(buddyListComponent.current!.textContent!.trim());
 			}
 		});
 
