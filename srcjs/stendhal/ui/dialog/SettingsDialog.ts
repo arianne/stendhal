@@ -35,17 +35,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* *** left panel *** */
 
-		const chk_blood = this.createCheckBox("chk_blood")!;
-		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
-		const tt_blood = new CheckTooltip("Gory images are enabled",
-				"Gory images are disabled");
-		chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
-		chk_blood.addEventListener("change", (e) => {
-			stendhal.config.set("gamescreen.blood", chk_blood.checked);
-			chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
-			this.refresh();
-		});
-
 		const chk_light = this.createCheckBox("chk_light")!;
 		chk_light.checked = stendhal.config.getBoolean("gamescreen.lighting");
 		const tt_light = new CheckTooltip("Lighting effects are enabled",
@@ -74,6 +63,17 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_weather.disabled = true;
 		chk_weather.parentElement!.title = "Weather effects not currently supported";
 
+		const chk_blood = this.createCheckBox("chk_blood")!;
+		chk_blood.checked = stendhal.config.getBoolean("gamescreen.blood");
+		const tt_blood = new CheckTooltip("Gory images are enabled",
+				"Gory images are disabled");
+		chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
+		chk_blood.addEventListener("change", (e) => {
+			stendhal.config.set("gamescreen.blood", chk_blood.checked);
+			chk_blood.parentElement!.title = tt_blood.getValue(chk_blood.checked);
+			this.refresh();
+		});
+
 		const chk_nonude = this.createCheckBox("chk_nonude")!;
 		chk_nonude.checked = stendhal.config.getBoolean("gamescreen.nonude");
 		const tt_nonude = new CheckTooltip("Naked entities have undergarments",
@@ -92,6 +92,16 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_shadows.addEventListener("change", (e) => {
 			stendhal.config.set("gamescreen.shadows", chk_shadows.checked);
 			chk_shadows.parentElement!.title = tt_shadows.getValue(chk_shadows.checked);
+		});
+
+		const chk_speechcr = this.createCheckBox("chk_speechcr");
+		chk_speechcr.checked = stendhal.config.getBoolean("gamescreen.speech.creature");
+		const tt_speechcr = new CheckTooltip("Creature speech bubbles are enabled",
+				"Creature speech bubbles are disabled");
+		chk_speechcr.parentElement!.title = tt_speechcr.getValue(chk_speechcr.checked);
+		chk_speechcr.addEventListener("change", (e) => {
+			stendhal.config.set("gamescreen.speech.creature", chk_speechcr.checked);
+			chk_speechcr.parentElement!.title = tt_speechcr.getValue(chk_speechcr.checked);
 		});
 
 

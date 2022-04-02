@@ -25,6 +25,7 @@ stendhal.config = {
 		"gamescreen.weather": "true",
 		"gamescreen.nonude": "true",
 		"gamescreen.shadows": "true",
+		"gamescreen.speech.creature": "true",
 		"input.movecont": "false",
 		"action.item.doubleclick": "false"
 	},

@@ -12,6 +12,7 @@
 import { RPEntity } from "./RPEntity";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 export class Creature extends RPEntity {
 
@@ -29,7 +30,9 @@ export class Creature extends RPEntity {
 
 	// Overrides the one in creature
 	override say(text: string) {
-		this.addSpeechBubble(text);
+		if (stendhal.config.getBoolean("gamescreen.speech.creature")) {
+			this.addSpeechBubble(text);
+		}
 	}
 
 	override getCursor(_x: number, _y: number) {

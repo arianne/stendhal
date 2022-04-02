@@ -51,6 +51,7 @@ Changelog
   - setting to enable/disable item double-click mode
 	- setting to enable/disable continuous movement
 	- setting to enable/disable covering naked entities
+	- setting to enable/disable creature speech bubbles
 
 *misc*
 - fixed exploit that allowed players to repair emerald ring for free using Sawyer
