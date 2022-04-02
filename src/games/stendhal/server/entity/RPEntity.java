@@ -3058,22 +3058,14 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			roll -= (int) karmaEffect;
 		}
 
-		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
+		final int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.debug("attack from " + this + " to " + defender
 					+ ": Risk to strike: " + risk);
 		}
 
-		if (risk < 0) {
-			risk = 0;
-		}
-
-		if (risk > 1) {
-			risk = 1;
-		}
-
-		return (risk != 0);
+		return risk > 0;
 	}
 
 	int calculateRiskForCanHit(final int roll, final int defenderDEF,
