@@ -1,3 +1,9 @@
+
+:root {
+  --text-color-online: #0a0;
+  --text-color-offline: #aaa;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -8,11 +14,11 @@ body {
 }
 
 li.online {
-  color: #0A0
+  color: var(--text-color-online);
 }
 
 li.offline {
-  color: #AAA
+  color: var(--text-color-offline);
 }
 
 ul.uniform {

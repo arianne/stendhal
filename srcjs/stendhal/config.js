@@ -11,6 +11,9 @@
 
 "use strict";
 
+var ui = require("../../build/ts/ui/UI").ui;
+var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+
 var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.config = {
@@ -154,6 +157,27 @@ stendhal.config = {
 		for (const elem of document.querySelectorAll(".background")) {
 			this.applyTheme(elem, undefined, undefined, updateBG);
 		}
+
+		// buddy list text color
+		if (this.usingDarkTheme()) {
+			document.documentElement.style.setProperty("--text-color-online", "#0a0");
+			document.documentElement.style.setProperty("--text-color-offline", "#aaa");
+		} else {
+			document.documentElement.style.setProperty("--text-color-online", "#070");
+			document.documentElement.style.setProperty("--text-color-offline", "#777");
+		}
+
+		const buddyList = ui.get(UIComponentEnum.BuddyList);
+		if (buddyList) {
+			buddyList.update();
+		}
+	},
+
+	/**
+	 * Checks if the current theme is defined as "dark".
+	 */
+	usingDarkTheme() {
+		return this.themes.dark[this.getTheme()] == true;
 	},
 
 	themes: {
