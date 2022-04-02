@@ -203,8 +203,7 @@ export class RPEntity extends ActiveEntity {
 	 */
 	addNotificationBubble(mtype: string, text: string) {
 		// line wrap
-		const ccount = 30;
-		const tlen = text.length;
+		const wrap = 30;
 		const lines: string[] = [];
 
 		const whitespace = [" ", "\t"];
@@ -212,8 +211,7 @@ export class RPEntity extends ActiveEntity {
 		let idx = 0;
 		let curline = "";
 		for (const c of text) {
-			if ((whitespace.indexOf(c) >= 0 && curline.length >= ccount)
-					|| idx + 1 == tlen) {
+			if (whitespace.indexOf(c) >= 0 && curline.length >= wrap) {
 				lines.push(curline.trim());
 				curline = "";
 			} else {
@@ -221,6 +219,9 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			idx++;
+		}
+		if (curline) {
+			lines.push(curline.trim());
 		}
 
 		const lcount = lines.length;
