@@ -202,26 +202,28 @@ export class RPEntity extends ActiveEntity {
 	 *     Text to display.
 	 */
 	addNotificationBubble(mtype: string, text: string) {
-		// line wrap
-		const wrap = 30;
+		const linewrap = 30;
+		const wordbreak = 60;
 		const lines: string[] = [];
 
-		const whitespace = [" ", "\t"];
-
-		let idx = 0;
-		let curline = "";
-		for (const c of text) {
-			if (whitespace.indexOf(c) >= 0 && curline.length >= wrap) {
-				lines.push(curline.trim());
-				curline = "";
-			} else {
-				curline += c;
+		let words = text.split("\t").join(" ").split(" ");
+		let nextline = "";
+		for (const w of words) {
+			if (nextline) {
+				nextline += " ";
 			}
+			nextline += w;
 
-			idx++;
+			if (nextline.length > wordbreak) {
+				lines.push(nextline.substr(0, wordbreak) + "-");
+				nextline = "-" + nextline.substr(wordbreak);
+			} else if (nextline.length >= linewrap) {
+				lines.push(nextline);
+				nextline = "";
+			}
 		}
-		if (curline) {
-			lines.push(curline.trim());
+		if (nextline) {
+			lines.push(nextline);
 		}
 
 		const lcount = lines.length;
