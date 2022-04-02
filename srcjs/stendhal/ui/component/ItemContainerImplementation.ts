@@ -94,10 +94,12 @@ export class ItemContainerImplementation {
 		if (myobject && myobject[this.slot]) {
 			for (let i = 0; i < myobject[this.slot].count(); i++) {
 				let o = myobject[this.slot].getByIndex(i);
-				let e = document.getElementById(this.slot + this.suffix + cnt)!;
+				let e = document.getElementById(this.slot + this.suffix + cnt);
+				if (!e) {
+					continue;
+				}
 
 				const item = <Item> o;
-				const subclass = o["subclass"];
 				let xOffset = 0;
 				let yOffset = 0;
 				if (item["name"] === "emerald ring" && item["amount"] == 0) {
