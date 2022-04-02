@@ -26,6 +26,7 @@ var ChatLogComponent = require("../../build/ts/ui/component/ChatLogComponent").C
 var ItemInventoryComponent = require("../../build/ts/ui/component/ItemInventoryComponent").ItemInventoryComponent;
 
 var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
+var ChooseCharacterDialog = require("../../build/ts/ui/dialog/ChooseCharacterDialog").ChooseCharacterDialog;
 var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;
 var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
 var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
@@ -75,6 +76,7 @@ stendhal.main = {
 				name = stendhal.config.character;
 
 				if (name == null || typeof(name) === "undefined" || name === "") {
+					// /*
 					name = marauroa.util.first(characters)["a"]["name"];
 					var admin = 0;
 					for (var i in characters) {
@@ -84,7 +86,9 @@ stendhal.main = {
 								name = characters[i]["a"]["name"];
 							}
 						}
-					}
+					}// */
+//					ui.createSingletonFloatingWindow("Select character", new ChooseCharacterDialog(characters), 150, 150);
+//					return;
 				}
 			}
 			marauroa.clientFramework.chooseCharacter(name);

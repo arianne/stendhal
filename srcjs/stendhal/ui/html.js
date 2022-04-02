@@ -88,6 +88,6 @@ stendhal.ui.html = {
 		tally.className = "tally";
 		tally.textContent = tallyString;
 
-		return [pre, tally, post];
+		return [stendhal.ui.html.esc(pre), tally, stendhal.ui.html.esc(post)];
 	}
 };
