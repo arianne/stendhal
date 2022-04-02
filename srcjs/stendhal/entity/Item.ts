@@ -141,6 +141,9 @@ export class Item extends Entity {
 	}
 
 	public isAnimated(): boolean {
+		if (!stendhal.data.sprites.get(this.sprite.filename).height) {
+			return false;
+		}
 		if (this.animated == null) {
 			// store animation state
 			this.animated = (stendhal.data.sprites.get(this.sprite.filename).width / 32) > 1;

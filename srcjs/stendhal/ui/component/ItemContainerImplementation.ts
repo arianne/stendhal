@@ -103,8 +103,6 @@ export class ItemContainerImplementation {
 				if (item["name"] === "emerald ring" && item["amount"] == 0) {
 					yOffset = -32;
 				} else if (item.isAnimated()) {
-					// FIXME: animation does not start until item is removed &
-					// picked up from ground or zone change
 					item.stepAnimation();
 					xOffset = -(item.getXFrameIndex() * 32);
 				}
