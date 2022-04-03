@@ -38,6 +38,8 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DoctorNPC"/>
+
     <portal x="47" y="33" ref="deniran_tiny_house_entrance">
       <destination zone="int_deniran_tiny_house" ref="entrance"/>
       <attribute name="move.continuous"/>
