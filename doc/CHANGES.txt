@@ -20,38 +20,39 @@ Changelog
 - "Mark all" option for contained empty scrolls
 - speech bubbles follow owning entity
 - added some missing shadows for entities
-- Web client:
-  - rounded corners of speech bubbles
-  - shadows drawing supported
-  - mouse wheel changes facing direction
-  - "walk" option added to player context menu
-  - autowalk can be stopped with corresponding direction key
-  - action context menu closes when game screen clicked
-	- emoji support
-	- chat log context menu with "clear" & "copy" to clipboard commands
-	- font & background theme customizations
-	- windows for shop lists & bestiary
-	- some item animation support
-	- fixed tally marks in Kill Monks travel log info
-	- fixed path to bee sprite in Atlantis
-	- contained marked scrolls display a tooltip with destination info
-	- screenshot support
-	- notification bubble support
-	- many UI touch-ups
-	- animated "love" NPC idea
-	- XP to next level displayed (WIP)
-	- dialog window positions persist for session
-	- walking away automatically closes corpse & chest windows
-	- emerald ring image updates when broken
-	- title & health bar remain in view when reaching top of game window
-	- fixed collision check for entities that ignore collsion
-	- persistent settings
-  - setting to enable/disable shadows
-  - setting to enable/disable blood & gory images
-  - setting to enable/disable item double-click mode
-	- setting to enable/disable continuous movement
-	- setting to enable/disable covering naked entities
-	- setting to enable/disable creature speech bubbles
+
+*web client*
+- rounded corners of speech bubbles
+- shadows drawing supported
+- mouse wheel changes facing direction
+- "walk" option added to player context menu
+- autowalk can be stopped with corresponding direction key
+- action context menu closes when game screen clicked
+. emoji support
+- chat log context menu with "clear" & "copy" to clipboard commands
+- font & background theme customizations
+- windows for shop lists & bestiary
+- some item animation support
+- fixed tally marks in Kill Monks travel log info
+- fixed path to bee sprite in Atlantis
+- contained marked scrolls display a tooltip with destination info
+- screenshot support
+- notification bubble support
+- many UI touch-ups
+- animated "love" NPC idea
+- XP to next level displayed (WIP)
+- dialog window positions persist for session
+- walking away automatically closes corpse & chest windows
+- emerald ring image updates when broken
+- title & health bar remain in view when reaching top of game window
+- fixed collision check for entities that ignore collsion
+- persistent settings
+- setting to enable/disable shadows
+ setting to enable/disable blood & gory images
+ setting to enable/disable item double-click mode
+- setting to enable/disable continuous movement
+- setting to enable/disable covering naked entities
+- setting to enable/disable creature speech bubbles
 
 *misc*
 - fixed exploit that allowed players to repair emerald ring for free using Sawyer
