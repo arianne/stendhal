@@ -34,10 +34,28 @@ public class DoctorNPC implements ZoneConfigurator {
 				addGreeting("Oh, hello there!");
 				addJob("I am inspector of fences or something.");
 				addGoodbye("Be fantastic!");
-				addReply("advice", "Never be cruel, never be cowardly. And never ever eat pears! Remember: Hate is always foolish and love is always wise.");
-				addReply("winning", "I’m not doing this because I want to beat someone, or because I hate someone, or because I want to blame someone. It’s not even because it works, because it hardly ever does. I do what I do because it’s right! Because it’s decent! And above all it’s kind.");
-				addReply(Arrays.asList("faith", "love"), "Something I believe in, my faith: Love in all its forms is the most powerful weapon because love is a form of hope.");
-				addReply("war", "It’s always the same. When you fire that first shot, no matter how right you feel, you have no idea, who’s going to die! You don’t know, whose children are going to scream and burn! How many hearts will be broken! How many lives shattered! How much blood will spill, until everybody does, what they were always going to do from the very beginning? – Sit down and talk! ");
+				addReply(Arrays.asList("advice", "doctor", "promise", "kind", "cowardly", "pear", "pears"),
+						"Never be cruel, never be cowardly. And never ever eat pears! Remember: Hate is always foolish and love is always wise.");
+				addReply(Arrays.asList("faith", "love", "wedding", "marriage"),
+						"Something I believe in, my faith: Love in all its forms is the most powerful weapon because love is a form of hope.");
+				addReply(Arrays.asList("war", "army", "fight", "gun", "attack"),
+						"When you fire that first shot, no matter how right you feel, you have no idea, who’s going to die! You don’t know, whose children are going to scream and burn! How many hearts will be broken! How many lives shattered! How much blood will spill, until everybody does, what they were always going to do from the very beginning! – Sit down and talk! ");
+				addReply(Arrays.asList("tardis", "blue", "box"),
+						"I stole it. Well, I borrowed it; I was always going to take it back. Oh, that box. Big and little at the same time, brand-new and ancient, and the bluest blue ever.");
+				addReply(Arrays.asList("sonic", "screwdriver"),
+						"It's a sonic screwdriver. See? It makes a noise.");
+				addReply(Arrays.asList("regeneration", "death", "dying", "end", "change"),
+						"We all change. We are all different people all through our lives, and that's okay, that's good. You've got to keep moving. So long as you remember all the people that you used to be.");
+				addReply(Arrays.asList("good", "bad", "idiot", "mad"),
+						"Am I a good man?");
+				addReply(Arrays.asList("fact", "facts"),
+						"The very powerful and the very stupid have one thing in common. Instead of altering their views to fit the facts, they alter the facts to fit their views... Which can be very uncomfortable, if you happen to be one of the facts, that needs altering.");
+				addReply(Arrays.asList("9", "nine", "ninth", "Christopher", "Eccleston"),
+						"Fantastic!");
+				addReply(Arrays.asList("10", "ten", "David", "Tennant"),
+						"Allons-y!");
+				addReply(Arrays.asList("11", "eleven", "Matt", "Smith"),
+						"Geronimo!");
 			}
 
 		};
