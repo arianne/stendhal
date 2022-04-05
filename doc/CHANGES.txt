@@ -20,6 +20,7 @@ Changelog
 - floaters are drawn above roof layers
 - "Mark all" option for contained empty scrolls
 - speech bubbles follow owning entity
+- contained marked scrolls display a tooltip with destination info
 
 *web client*
 - rounded corners of speech bubbles
@@ -35,7 +36,6 @@ Changelog
 - some item animation support
 - fixed tally marks in Kill Monks travel log info
 - fixed path to bee sprite in Atlantis
-- contained marked scrolls display a tooltip with destination info
 - screenshot support
 - notification bubble support
 - many UI touch-ups
