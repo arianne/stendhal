@@ -14,7 +14,11 @@ package games.stendhal.server.script;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -40,6 +44,7 @@ public class ListUnusedCharacters extends ScriptImpl {
 		@Override
 		public void execute(DBTransaction transaction) throws SQLException, IOException {
 			transaction.execute("CREATE TABLE IF NOT EXISTS temp_delete(charname VARCHAR(64), username VARCHAR(64), player_id INT);", null);
+			transaction.execute("CREATE UNIQUE INDEX IF NOT EXISTS i_temp_delete on temp_delete(charname);", null);
 			transaction.execute("TRUNCATE temp_delete", null);
 			transaction.execute("INSERT INTO temp_delete(charname, username, player_id) "
 					+ " SELECT characters.charname, account.username, characters.player_id FROM character_stats, characters, account"
@@ -51,6 +56,7 @@ public class ListUnusedCharacters extends ScriptImpl {
 			CharacterDAO characterDao = DAORegister.get().get(CharacterDAO.class);
 			ResultSet resultSet = transaction.query("SELECT charname, username FROM temp_delete", null);
 			int i = 0;
+			Set<String> unused = new HashSet<String>();
 			while (resultSet.next()) {
 				if (i % 1000 == 0) {
 					admin.sendPrivateText("ListUnsuedCharacters processed " + i);
@@ -63,14 +69,20 @@ public class ListUnusedCharacters extends ScriptImpl {
 
 				RPObject visited = KeyedSlotUtil.getKeyedSlotObject(character, "!visited");
 				if (visited.size() > 2) {
-					resultSet.deleteRow();
+					unused.add(charname);
 					continue;
 				}
 
 				if (hasNonInitialItems(character)) {
-					resultSet.deleteRow();
+					unused.add(charname);
 					continue;
 				}
+			}
+			admin.sendPrivateText("Cleanup");
+			Map<String, Object> prop = new HashMap<>();
+			for (String charname : unused) {
+				prop.put("charname", charname);
+				transaction.execute("DELETE FROM temp_delete WHERE charname='[charname]'", prop);
 			}
 			admin.sendPrivateText("ListUnsuedCharacters completed, see database table temp_delete");
 		}
