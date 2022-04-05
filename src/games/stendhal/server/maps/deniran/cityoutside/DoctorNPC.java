@@ -31,7 +31,7 @@ public class DoctorNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Oh, hello there!");
+				addGreeting("Brilliant! I like a nice fence! *sniff* *snniff* War is immentent. No, don't like #wars.");
 				addJob("I am inspector of fences. Or something.");
 				addGoodbye("Be fantastic!");
 				addReply(Arrays.asList("advice", "doctor", "promise", "kind", "cowardly", "pear", "pears"),
@@ -59,6 +59,8 @@ public class DoctorNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("13", "thirteen", "Jodie", "Whittaker"),
 						"Brilliant!");
 				addReply("bow", "Bow ties are cool.");
+				addReply(Arrays.asList("mate", "companion", "friend"),
+						"Oh, friends! Friends are great! I have a lot of friends... and had. Some left me. Some got left behind. And some, not many but, some regrettably died.");
 			}
 
 		};
