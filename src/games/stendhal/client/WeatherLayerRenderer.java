@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2014 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2022 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,7 +56,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 			template = sr.getModifiedSprite(name, color, blend);
 		}
 		Tileset ts = new SpriteTileset(sr, template, template.getHeight());
-		TilesetGroupAnimationMap animationMap = TileStore.getAnimationMap();
+		TilesetGroupAnimationMap animationMap = TileStore.getWeatherAnimationMap();
 
 		if (animationMap != null && animationMap.get(name) != null) {
 			this.weather = animationMap.get(name).getSprite(ts, 0);

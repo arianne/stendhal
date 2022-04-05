@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2022 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,11 +16,18 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.FlippedSprite;
@@ -53,7 +60,13 @@ class TileStore implements Tileset {
 	/**
 	 * The tileset animation map.
 	 */
-	private static final TilesetGroupAnimationMap animationMap = createAnimationMap();
+	private static final TilesetGroupAnimationMap tileAnimationMap = createAnimationMap(
+			"tileset", "tileset/");
+	/**
+	 * The weather animation map.
+	 */
+	private static final TilesetGroupAnimationMap weatherAnimationMap = createAnimationMap(
+			"weather", "data/sprites/weather/");
 
 	/**
 	 * A cache of loaded tilesets.
@@ -78,12 +91,23 @@ class TileStore implements Tileset {
 	private boolean validated;
 
 	/**
-	 * Get the animation map.
+	 * Get the animation map used for tilesets.
 	 *
-	 * @return animation map
+	 * @return
+	 *     Tileset animation map.
 	 */
-	public static TilesetGroupAnimationMap getAnimationMap() {
-		return animationMap;
+	public static TilesetGroupAnimationMap getTileAnimationMap() {
+		return tileAnimationMap;
+	}
+
+	/**
+	 * Get the animation map used for weather.
+	 *
+	 * @return
+	 *     Weather animation map.
+	 */
+	public static TilesetGroupAnimationMap getWeatherAnimationMap() {
+		return weatherAnimationMap;
 	}
 
 	/**
@@ -177,7 +201,7 @@ class TileStore implements Tileset {
 		/*
 		 * Override the animated tiles (if any)
 		 */
-		final TilesetAnimationMap tsam = animationMap.get(ref);
+		final TilesetAnimationMap tsam = tileAnimationMap.get(ref);
 
 		if (tsam != null) {
 			for (int i = 0; i < size; i++) {
@@ -238,6 +262,8 @@ class TileStore implements Tileset {
 	 *
 	 * @return A tileset animation map.
 	 */
+	@SuppressWarnings("unused")
+	@Deprecated
 	private static TilesetGroupAnimationMap createAnimationMap() {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
@@ -254,6 +280,96 @@ class TileStore implements Tileset {
 				}
 			} catch (final IOException ex) {
 				logger.error("Error loading tileset animation map", ex);
+			}
+		}
+
+		return map;
+	}
+
+	/**
+	 * Loads animations from <code>tileset/animation.json</code>.
+	 *
+	 * TODO: fix unchecked casts
+	 *
+	 * @param id
+	 *     Key to load from <code>animations.json</code>.
+	 * @return
+	 *     Animations listed under <code>id</code>.
+	 */
+	private static Map<String, List<List<String>>> loadAnimations(final String id) {
+		final Map<String, List<List<String>>> animations = new HashMap<>();
+
+		final String ani_file = baseFolder + "tileset/animation.json";
+		final URL url = DataLoader.getResource(ani_file);
+		if (url != null) {
+			try {
+				final InputStreamReader isr = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8);
+				final JSONObject document = (JSONObject) JSONValue.parse(isr);
+
+				if (document == null) {
+					logger.error("failed to read animations file: " + ani_file);
+					return null;
+				}
+
+				if (document.containsKey(id)) {
+					for (final Map.Entry entry: ((Map<String, List<List<String>>>) document.get(id)).entrySet()) {
+						animations.put((String) entry.getKey(), (List<List<String>>) entry.getValue());
+					}
+				}
+			} catch (final IOException ex) {
+				logger.error("Error loading tileset animation map key: " + id, ex);
+			}
+		}
+
+		return animations;
+	}
+
+	/**
+	 * Formats animation map to list of strings.
+	 *
+	 * TODO: fix unchecked casts
+	 *
+	 * @param animations
+	 *     Map to parse.
+	 * @param prefix
+	 *     Tileset directory prefix.
+	 * @return
+	 *     List of strings formatted as: <tileset> <frame> <frames>
+	 */
+	private static List<String> formatLines(final Map<String, List<List<String>>> animations,
+			final String prefix) {
+		final List<String> lines = new LinkedList<>();
+		for (final Map.Entry entry: animations.entrySet()) {
+			final String li = prefix + entry.getKey() + ".png";
+			for (final List<String> val: (List<List<String>>) entry.getValue()) {
+				if (val.size() > 1) {
+					lines.add(li + " " + val.get(0) + " " + val.get(1));
+				}
+			}
+		}
+
+		return lines;
+	}
+
+	/**
+	 * Create a tileset animation map.
+	 *
+	 * @param id
+	 *     Key to load from <code>animations.json</code>.
+	 * @param prefix
+	 *     Tileset directory prefix.
+	 * @return
+	 *     A tileset animation map.
+	 */
+	private static TilesetGroupAnimationMap createAnimationMap(final String id,
+			final String prefix) {
+		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
+
+		final Map<String, List<List<String>>> animations = loadAnimations(id);
+		if (animations != null) {
+			final List<String> lines = formatLines(animations, prefix);
+			if (lines.size() > 0) {
+				map.load(lines);
 			}
 		}
 

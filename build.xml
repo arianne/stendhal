@@ -398,6 +398,7 @@
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${log4j_jar}"/>
 			<fileset file="${jorbis_jar}"/>
+			<fileset file="${jsonsimple_jar}"/>
 		</copy>
 
 		<chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
@@ -485,6 +486,7 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
+				<pathelement path="${jsonsimple_jar}"/>
 			</classpath>
 		</javac>
 		<delete file="${src}/games/stendhal/client/StendhalBuild.java" quiet="true" failonerror="false" />
@@ -512,7 +514,7 @@
 				<attribute name="Application-Name" value="Stendhal" />
 				<attribute name="Application-Library-Allowable-Codebase"  value="https://arianne-project.org http://arianne.sf.net http://arianne.sourceforge.net https://arianne.sf.net https://arianne.sourceforge.net https://stendhalgame.org *" />
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="."/>
+				<attribute name="Class-path" value=". lib/${jsonsimple_jarname}"/>
 				<attribute name="Permissions" value="all-permissions"/>
 				<attribute name="Codebase" value="*"/>
 				<attribute name="Trusted-Library" value="true" />
@@ -798,6 +800,7 @@
 		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${log4j_jar}"/>
 		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${marauroa_jar}"/>
 		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${jorbis_jar}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/${jsonsimple_jarname}" file="${jsonsimple_jar}"/>
 		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
 		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
 		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
