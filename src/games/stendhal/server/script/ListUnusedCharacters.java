@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -35,6 +37,7 @@ import marauroa.server.game.db.DAORegister;
 public class ListUnusedCharacters extends ScriptImpl {
 
 	public static class ListUnusedCharactersCommand extends AbstractDBCommand {
+		private static Logger logger = Logger.getLogger(ListUnusedCharactersCommand.class);
 		private Player admin;
 
 		public ListUnusedCharactersCommand(Player admin) {
@@ -65,17 +68,21 @@ public class ListUnusedCharacters extends ScriptImpl {
 
 				String charname = resultSet.getString("charname");
 				String username = resultSet.getString("username");
-				RPObject character = characterDao.loadCharacter(transaction, username, charname);
-
-				RPObject visited = KeyedSlotUtil.getKeyedSlotObject(character, "!visited");
-				if (visited.size() > 2) {
-					unused.add(charname);
-					continue;
-				}
-
-				if (hasNonInitialItems(character)) {
-					unused.add(charname);
-					continue;
+				try {
+					RPObject character = characterDao.loadCharacter(transaction, username, charname);
+	
+					RPObject visited = KeyedSlotUtil.getKeyedSlotObject(character, "!visited");
+					if (visited.size() > 2) {
+						unused.add(charname);
+						continue;
+					}
+	
+					if (hasNonInitialItems(character)) {
+						unused.add(charname);
+						continue;
+					}
+				} catch (IOException e) {
+					logger.error("Could not load character " + charname);
 				}
 			}
 			admin.sendPrivateText("Cleanup");
