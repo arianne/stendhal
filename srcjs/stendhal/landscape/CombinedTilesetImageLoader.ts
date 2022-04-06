@@ -52,13 +52,10 @@ export class CombinedTilesetImageLoader {
 			this.drawTileset(tileset);
 		}
 
-		const image_filename = this.map.tilesetFilenames[tileset];
-		img.src = image_filename + "?v=" + stendhal.data.build.version;
+		const tsname = this.map.tilesetFilenames[tileset];
+		img.src = tsname + "?v=" + stendhal.data.build.version;
 
-		// animations are keyed with "/tileset/" prefix & ".png" suffix removed
-		const animation = stendhal.data.tileset.landscapeAnimationMap[
-				image_filename.substr("/tileset/".length,
-				image_filename.length - "/tileset/".length - 4)];
+		const animation = stendhal.data.tileset.landscapeAnimationMap[tsname];
 		if (animation) {
 			this.animations[tileset] = animation;
 		}
