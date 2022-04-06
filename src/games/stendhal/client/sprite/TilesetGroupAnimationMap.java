@@ -285,7 +285,7 @@ public class TilesetGroupAnimationMap {
 		}
 	}
 
-	/*
+	/**
 	 * Load tileset mappings from list.
 	 *
 	 * @param lines

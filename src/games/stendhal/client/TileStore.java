@@ -60,8 +60,8 @@ class TileStore implements Tileset {
 	/**
 	 * The tileset animation map.
 	 */
-	private static final TilesetGroupAnimationMap tileAnimationMap = createAnimationMap(
-			"tileset", "tileset/");
+	private static final TilesetGroupAnimationMap landscapeAnimationMap = createAnimationMap(
+			"landscape", "tileset/");
 	/**
 	 * The weather animation map.
 	 */
@@ -91,17 +91,17 @@ class TileStore implements Tileset {
 	private boolean validated;
 
 	/**
-	 * Get the animation map used for tilesets.
+	 * Get the animation map used for landscape tilesets.
 	 *
 	 * @return
-	 *     Tileset animation map.
+	 *     Landscape animation map.
 	 */
-	public static TilesetGroupAnimationMap getTileAnimationMap() {
-		return tileAnimationMap;
+	public static TilesetGroupAnimationMap getLandscapeAnimationMap() {
+		return landscapeAnimationMap;
 	}
 
 	/**
-	 * Get the animation map used for weather.
+	 * Get the animation map used for weather tilesets.
 	 *
 	 * @return
 	 *     Weather animation map.
@@ -201,7 +201,7 @@ class TileStore implements Tileset {
 		/*
 		 * Override the animated tiles (if any)
 		 */
-		final TilesetAnimationMap tsam = tileAnimationMap.get(ref);
+		final TilesetAnimationMap tsam = landscapeAnimationMap.get(ref);
 
 		if (tsam != null) {
 			for (int i = 0; i < size; i++) {
@@ -296,8 +296,8 @@ class TileStore implements Tileset {
 	 * @return
 	 *     Animations listed under <code>id</code>.
 	 */
-	private static Map<String, List<List<String>>> loadAnimations(final String id) {
-		final Map<String, List<List<String>>> animations = new HashMap<>();
+	private static Map<String, List<String>> loadAnimations(final String id) {
+		final Map<String, List<String>> animations = new HashMap<>();
 
 		final String ani_file = baseFolder + "tileset/animation.json";
 		final URL url = DataLoader.getResource(ani_file);
@@ -312,8 +312,8 @@ class TileStore implements Tileset {
 				}
 
 				if (document.containsKey(id)) {
-					for (final Map.Entry entry: ((Map<String, List<List<String>>>) document.get(id)).entrySet()) {
-						animations.put((String) entry.getKey(), (List<List<String>>) entry.getValue());
+					for (final Map.Entry entry: ((Map<String, List<String>>) document.get(id)).entrySet()) {
+						animations.put((String) entry.getKey(), (List<String>) entry.getValue());
 					}
 				}
 			} catch (final IOException ex) {
@@ -336,15 +336,12 @@ class TileStore implements Tileset {
 	 * @return
 	 *     List of strings formatted as: <tileset> <frame> <frames>
 	 */
-	private static List<String> formatLines(final Map<String, List<List<String>>> animations,
+	private static List<String> formatLines(final Map<String, List<String>> animations,
 			final String prefix) {
 		final List<String> lines = new LinkedList<>();
 		for (final Map.Entry entry: animations.entrySet()) {
-			final String li = prefix + entry.getKey() + ".png";
-			for (final List<String> val: (List<List<String>>) entry.getValue()) {
-				if (val.size() > 1) {
-					lines.add(li + " " + val.get(0) + " " + val.get(1));
-				}
+			for (final String val: (List<String>) entry.getValue()) {
+				lines.add(prefix + entry.getKey() + ".png " + val);
 			}
 		}
 
@@ -365,7 +362,7 @@ class TileStore implements Tileset {
 			final String prefix) {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		final Map<String, List<List<String>>> animations = loadAnimations(id);
+		final Map<String, List<String>> animations = loadAnimations(id);
 		if (animations != null) {
 			final List<String> lines = formatLines(animations, prefix);
 			if (lines.size() > 0) {
