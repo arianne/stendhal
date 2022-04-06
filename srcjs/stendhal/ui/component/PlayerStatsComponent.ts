@@ -51,7 +51,7 @@ export class PlayerStatsComponent extends Component {
 		const defXP = object["def_xp"];
 		const atkTNL = this.getAtkDefTNL(atk, atkXP);
 		const defTNL = this.getAtkDefTNL(def, defXP);
-		const lvl = object["level"];
+		const lvl = parseInt(object["level"], 10);
 		const xp = object["xp"];
 		// show dash for max level
 		let xpTNL: number|string = (lvl < this.getMaxLevel()) ? this.getTNL(lvl, xp) : "-";
@@ -64,22 +64,52 @@ export class PlayerStatsComponent extends Component {
 			+ "Level: " + lvl + "\r\n  (" + xpTNL + ")";
 	}
 
+	/**
+	 * Retrieves amount of experience required to reach a level.
+	 *
+	 * @param lvl
+	 *     Desired level.
+	 * @param xp
+	 *     Current XP.
+	 * @return
+	 *     Remaining XP.
+	 */
 	private getTNL(lvl: number, xp: number): number {
-		return this.getXP(lvl + 1) - xp;
+		return this.getReqXP(lvl + 1) - xp;
 	}
 
+	/**
+	 * Retrieves amount of experience required to reach an ATK/DEF level.
+	 *
+	 * @param lvl
+	 *     Desired level.
+	 * @param xp
+	 *     Current XP.
+	 * @return
+	 *     Remaining XP.
+	 */
 	private getAtkDefTNL(lvl: number, xp: number): number {
-		return this.getXP(lvl - 9) - xp;
+		return this.getReqXP(lvl - 9) - xp;
 	}
 
-	private getXP(lvl: number): number {
+	/**
+	 * Retrieves the amount of XP required to reach a level.
+	 *
+	 * @param lvl
+	 *     The respective level.
+	 * @return
+	 *     Amount of expericence.
+	 */
+	private getReqXP(lvl: number): number {
 		if ((lvl >= 0) && (lvl < this.xp.length)) {
 			return this.xp[lvl];
 		}
-
 		return -1;
 	}
 
+	/**
+	 * Retrieves highest possible player level.
+	 */
 	private getMaxLevel(): number {
 		return this.LEVELS - 1;
 	}
