@@ -212,6 +212,10 @@ stendhal.main = {
 		stendhal.config.refreshTheme();
 		document.getElementById("body").style.setProperty("font-family", stendhal.config.get("ui.font.body"));
 
+		// cache tileset animations
+		// FIXME: how to wait for animations to finish loading?
+		//stendhal.data.tileset.loadAnimations();
+
 		new DesktopUserInterfaceFactory().create();
 
 		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
