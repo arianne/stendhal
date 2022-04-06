@@ -214,7 +214,7 @@ stendhal.main = {
 
 		// cache tileset animations
 		// FIXME: how to wait for animations to finish loading?
-		//stendhal.data.tileset.loadAnimations();
+		stendhal.data.tileset.loadAnimations();
 
 		new DesktopUserInterfaceFactory().create();
 
