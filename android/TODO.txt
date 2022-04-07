@@ -2,9 +2,7 @@
 TODO:
 - show input preview when typing
 - scale page to fit inside view
-- create menu when back pressed:
-  - take screenshot
-  - set theme
+- handle screenshots by automatically saving to "Pictures/Screenshots"
 - create activity for about information
 - add credits to about information
 - switch to Log4j for logging (maybe)
