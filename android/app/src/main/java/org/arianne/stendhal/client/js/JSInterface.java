@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.arianne.stendhal.client.js;
 
 import android.webkit.JavascriptInterface;
 
