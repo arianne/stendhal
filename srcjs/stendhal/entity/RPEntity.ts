@@ -719,7 +719,7 @@ export class RPEntity extends ActiveEntity {
 			var drawY = (this["height"] * 32) - this["drawHeight"];
 
 			let opacity = parseInt(this["visibility"], 10);
-			opacity = typeof(opacity) === "number" ? opacity : 100;
+			opacity = isNaN(opacity) ? 100 : opacity;
 			if (this.hasOwnProperty("ghostmode") && this === marauroa.me && opacity > 50) {
 				opacity = 50;
 			}
