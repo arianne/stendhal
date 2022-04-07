@@ -720,6 +720,9 @@ export class RPEntity extends ActiveEntity {
 
 			let opacity = parseInt(this["visibility"], 10);
 			opacity = typeof(opacity) === "number" ? opacity : 100;
+			if (this.hasOwnProperty("ghostmode") && this === marauroa.me && opacity > 50) {
+				opacity = 50;
+			}
 			const opacity_orig = ctx.globalAlpha;
 			if (opacity < 100) {
 				ctx.globalAlpha = opacity * 0.01;
