@@ -14,21 +14,24 @@ package org.arianne.stendhal.client.js;
 import android.webkit.JavascriptInterface;
 
 
-public abstract class JSInterface {
 
-	private String html;
+public class JSInterface {
+
+	/** Singleton instance. */
+	private static JSInterface instance;
 
 
-	@JavascriptInterface
-	public void fire(final String html) {
-		this.html = html;
-
-		onFire();
+	/**
+	 * Retrieves the singleton instance.
+	 */
+	public static JSInterface get() {
+		if (instance == null) {
+			instance = new JSInterface();
+		}
+		return instance;
 	}
 
-	protected abstract void onFire();
-
-	public String getHTML() {
-		return html;
+	private JSInterface() {
+		// singleton
 	}
 }

@@ -34,7 +34,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import org.arianne.stendhal.client.input.DPad;
-//import org.arianne.stendhal.client.js.JSInterface;
+import org.arianne.stendhal.client.js.JSInterface;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
@@ -50,7 +50,6 @@ public class ClientView extends WebView {
 	private boolean testing = false;
 	private Boolean debugging;
 	private static PageId currentPage;
-	//private String currentHTML;
 	// denotes previous touch was remapped to mouse event
 	private boolean touchOverridden = false;
 
@@ -244,14 +243,7 @@ public class ClientView extends WebView {
 	}
 
 	private void initJSInterface() {
-		/*
-		addJavascriptInterface(new JSInterface() {
-			@Override
-			protected void onFire() {
-				currentHTML = getHTML();
-			}
-		}, "JSI");
-		*/
+		addJavascriptInterface(JSInterface.get(), "jsi");
 	}
 
 	/**
