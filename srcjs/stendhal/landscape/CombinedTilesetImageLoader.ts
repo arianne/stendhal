@@ -18,7 +18,7 @@ export class CombinedTilesetImageLoader {
 
 	private tileUsedAtIndex!: MapOfSets<number, number>
 	private tilesetImages: HTMLImageElement[] = [];
-	private animations: string[] = [];
+	private animations: any = {};
 
 	constructor(
 		private map: any,
