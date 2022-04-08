@@ -27,11 +27,14 @@ import android.view.inputmethod.InputConnection;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+
+import marauroa.common.Pair;
 
 import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.js.JSInterface;
@@ -109,6 +112,7 @@ public class ClientView extends WebView {
 		initWebViewClient();
 		initTouchHandler();
 		initJSInterface();
+		initDownloadHandler();
 	}
 
 	private void initWebViewClient() {
@@ -244,6 +248,30 @@ public class ClientView extends WebView {
 
 	private void initJSInterface() {
 		addJavascriptInterface(JSInterface.get(), "jsi");
+	}
+
+	/**
+	 * Handles downloading screenshot created by web client.
+	 */
+	private void initDownloadHandler() {
+		setDownloadListener(new DownloadListener() {
+			@Override
+			public void onDownloadStart(final String url, final String userAgent,
+					final String contentDisposition, final String mimetype,
+					final long contentLength) {
+
+				final Pair<Boolean, String> res = new DownloadHandler().download(url, mimetype);
+				if (res.first()) {
+					final String msg = "Downloaded file: " + res.second();
+					DebugLog.debug(msg);
+					Notifier.toast(msg);
+				} else {
+					final String msg = res.second();
+					DebugLog.error(msg);
+					Notifier.toast("ERROR: " + msg);
+				}
+			}
+		});
 	}
 
 	/**
