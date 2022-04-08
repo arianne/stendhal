@@ -14,6 +14,7 @@ package org.arianne.stendhal.client;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 
 public class Notifier {
@@ -152,6 +153,59 @@ public class Notifier {
 	public void showPrompt(final String msg, final Action... actions) {
 		showPrompt(MainActivity.get(), msg, actions);
 	}
+
+	/**
+	 * Wrapper for <code>Toast.makeText</code>.
+	 *
+	 * @param ctx
+	 *     The context over which to show the message.
+	 * @param msg
+	 *     Text to be displayed.
+	 * @param duration
+	 *     Duration that text is on screen (default: <code>Toast.LENGTH_LONG</code>).
+	 */
+	public static void toast(final Context ctx, final String msg, final int duration) {
+		Toast.makeText(ctx, msg, duration).show();
+	}
+
+	/**
+	 * Wrapper for <code>Toast.makeText</code>.
+	 *
+	 * @param ctx
+	 *     The context over which to show the message.
+	 * @param msg
+	 *     Text to be displayed.
+	 */
+	public static void toast(final Context ctx, final String msg) {
+		toast(ctx, msg, Toast.LENGTH_LONG);
+	}
+
+	/**
+	 * Wrapper for <code>Toast.makeText</code>.
+	 *
+	 * Displays a message on the main activity context.
+	 *
+	 * @param msg
+	 *     Text to be displayed.
+	 * @param duration
+	 *     Duration that text is on screen (default: <code>Toast.LENGTH_LONG</code>).
+	 */
+	public static void toast(final String msg, final int duration) {
+		toast(MainActivity.get(), msg, duration);
+	}
+
+	/**
+	 * Wrapper for <code>Toast.makeText</code>.
+	 *
+	 * Displays a message on the main activity context.
+	 *
+	 * @param msg
+	 *     Text to be displayed.
+	 */
+	public static void toast(final String msg) {
+		toast(msg, Toast.LENGTH_LONG);
+	}
+
 
 	public static abstract class Action {
 		protected String label;
