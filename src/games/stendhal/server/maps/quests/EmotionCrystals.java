@@ -219,7 +219,7 @@ public class EmotionCrystals extends AbstractQuest {
 		riddles.add("I burn like fire. My presence is not enjoyed. Those who test me will feel my wrath. What am I?");
 		answers.add(Arrays.asList("anger", "angry", "mad", "offended", "hostility", "hostile", "hate", "hatred", "animosity"));
 		// Purple Crystal (crystal of fear)
-		riddles.add("I dare not come out and avoid the consequence. They try and convince my but I shall not. Trembling is my favorite activity. What am I?");
+		riddles.add("I dare not come out and avoid the consequence. They try and convince me but I shall not. Trembling is my favorite activity. What am I?");
 		answers.add(Arrays.asList("fear", "fearful", "fearfullness", "fright", "frightened", "afraid", "scared"));
 		// Yellow Crystal (crystal of joy)
 		riddles.add("I can't be stopped. Only positive, no negative, can exist in my heart. If you spread me life will be as sunshine. What am I?");
