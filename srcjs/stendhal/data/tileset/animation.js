@@ -104,7 +104,7 @@ const formatAnimations = function(animations, prefix) {
  * <code>weatherAnimationMap</code> objects.
  */
 stendhal.data.tileset.loadAnimations = function() {
-	fetch("/data/tileset/animation.json", {"Content-Type": "application/json"})
+	fetch("/tiled/tileset/animation.json", {"Content-Type": "application/json"})
 		.then(resp => resp.json())
 		.then(animations => {
 			stendhal.data.tileset.landscapeAnimationMap
