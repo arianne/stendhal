@@ -183,11 +183,19 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			view.release();
 		}
 
+		String tooltip = null;
 		if (entity != null) {
 			setEntityView(EntityViewFactory.create(entity));
+			// show tooltip for scrolls with destination information
+			final RPObject rpobject = entity.getRPObject();
+			if ("scroll".equals(entity.getEntityClass()) && rpobject.has("dest")) {
+				tooltip = rpobject.get("dest").replaceFirst(",", " ");
+			}
 		} else {
 			setEntityView(null);
 		}
+
+		setToolTipText(tooltip);
 
 		// The old popup menu is no longer valid
 		popupMenu = null;

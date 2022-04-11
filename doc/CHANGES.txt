@@ -14,12 +14,13 @@ Changelog
 - added polka dots to red cloak to match description
 - touched up blordrough sprites
 - added outlines to many item sprites
+- added some missing shadows for entities
 
-*client*
+*clients*
 - floaters are drawn above roof layers
 - "Mark all" option for contained empty scrolls
 - speech bubbles follow owning entity
-- added some missing shadows for entities
+- contained marked scrolls display a tooltip with destination info
 
 *web client*
 - rounded corners of speech bubbles
@@ -28,14 +29,13 @@ Changelog
 - "walk" option added to player context menu
 - autowalk can be stopped with corresponding direction key
 - action context menu closes when game screen clicked
-. emoji support
+- emoji support
 - chat log context menu with "clear" & "copy" to clipboard commands
 - font & background theme customizations
 - windows for shop lists & bestiary
 - some item animation support
 - fixed tally marks in Kill Monks travel log info
 - fixed path to bee sprite in Atlantis
-- contained marked scrolls display a tooltip with destination info
 - screenshot support
 - notification bubble support
 - many UI touch-ups
@@ -48,8 +48,8 @@ Changelog
 - fixed collision check for entities that ignore collsion
 - persistent settings
 - setting to enable/disable shadows
- setting to enable/disable blood & gory images
- setting to enable/disable item double-click mode
+- setting to enable/disable blood & gory images
+- setting to enable/disable item double-click mode
 - setting to enable/disable continuous movement
 - setting to enable/disable covering naked entities
 - setting to enable/disable creature speech bubbles

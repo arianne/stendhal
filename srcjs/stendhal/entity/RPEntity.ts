@@ -717,7 +717,20 @@ export class RPEntity extends ActiveEntity {
 				}
 			}
 			var drawY = (this["height"] * 32) - this["drawHeight"];
+
+			let opacity = parseInt(this["visibility"], 10);
+			opacity = isNaN(opacity) ? 100 : opacity;
+			if (this.hasOwnProperty("ghostmode") && this === marauroa.me && opacity > 50) {
+				opacity = 50;
+			}
+			const opacity_orig = ctx.globalAlpha;
+			if (opacity < 100) {
+				ctx.globalAlpha = opacity * 0.01;
+			}
+
 			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
+			// restore opacity
+			ctx.globalAlpha = opacity_orig;
 		}
 	}
 
