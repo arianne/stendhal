@@ -172,8 +172,8 @@ export class RPEntity extends ActiveEntity {
 			timeStamp: Date.now(),
 			entity: this,
 			draw: function(ctx: CanvasRenderingContext2D) {
-				var x = this.entity["_x"] * 32 + 32;
-				var y = this.entity["_y"] * 32 - 16;
+				var x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
+				var y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1));
 
 				ctx.lineWidth = 2;
 				ctx.font = "14px Arial";
