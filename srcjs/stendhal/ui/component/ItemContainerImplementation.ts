@@ -57,6 +57,7 @@ export class ItemContainerImplementation {
 			e.addEventListener("mouseup", (event: MouseEvent) => {
 				this.onMouseUp(event)
 			});
+			/*
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
 			});
@@ -66,7 +67,6 @@ export class ItemContainerImplementation {
 			e.addEventListener("touchmove", (event: TouchEvent) => {
 				this.onTouchMove(event)
 			});
-			/*
 			e.addEventListener("touchcancel", (event: TouchEvent) => {
 				this.onTouchCancel(event)
 			});
