@@ -211,7 +211,7 @@
 
   <creature name="red dragon">
     <type class="dragon" subclass="red_dragon" tileid="dragon.png:2"/>
-    <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
+    <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. Its red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
     <attributes>
       <atk value="777"/>
       <ratk value="777"/>

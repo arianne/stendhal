@@ -302,7 +302,7 @@
 
   <creature name="imperial leader">
     <type class="human" subclass="imperial_leader" tileid="human_imperial.png:11"/>
-    <description>You see a well dressed imperial leader. It's troops will try to dash you.</description>
+    <description>You see a well dressed imperial leader. Its troops will try to dash you.</description>
     <attributes>
       <atk value="493"/>
       <def value="64"/>
