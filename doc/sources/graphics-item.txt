@@ -7,19 +7,19 @@ data/sprites/items/ammunition/
 
 dark_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 fire_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-fumble_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
+fumble_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_arrow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-poison_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
-power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-power_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-slowdown_arrow.png  bleutailfly; OGA BY 3.0; Stendhal
-speedup_arrow.png   bleutailfly; OGA BY 3.0; Stendhal
+poison_arrow.*      David E. Gervais, bleutailfly; CC BY 3.0; Stendhal, http://pousse.rapiere.free.fr/tome/
+power_arrow.*       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+power_bolt.*        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+slowdown_arrow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+speedup_arrow.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-wooden_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
+wooden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/armor/
