@@ -448,7 +448,7 @@ blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_legs.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_legs.png            ScratchIO; CC0; https://opengameart.org/node/108448
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-elvish_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
+elvish_legs.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
 jewelled_legs.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ modded (committed by kymara: 69cbfee)
 leather_legs.png          Clint Bellanger, Justin Nichol; CC0; https://opengameart.org/node/13879
