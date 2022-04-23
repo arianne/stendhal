@@ -669,7 +669,7 @@ imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; htt
 katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 kilij.png                    durkham; GPL 2.0 or newer; Stendhal
 knife.png                    thekingphoenix; CC0; https://opengameart.org/node/77305
-[l|r]_hand_sword.png         LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/11142
+[l|r]_hand_sword.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
