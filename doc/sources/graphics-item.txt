@@ -96,7 +96,7 @@ blue_boots.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_boots.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_boots.png            ScratchIO; CC0; https://opengameart.org/node/108448
 darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal (re-color of elvish_boots)
-elvish_boots.png           Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/271/
+elvish_boots.png           ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 golden_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 killer_boots.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
