@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -40,6 +41,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
 
 /**
@@ -152,6 +154,7 @@ npc.add(ConversationStates.ATTENDING,
 										Grammar.thisthese(pieAmount) + " " +
 										Grammar.quantityplnoun(pieAmount, "fish pie", "") +
 										" from my cook, and this kiss, from me.");
+								npc.addEvent(new SoundEvent("kiss-female-01", SoundLayer.CREATURE_NOISE));
 								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;"
 																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
 							}
