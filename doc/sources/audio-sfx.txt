@@ -205,6 +205,7 @@ data/sounds/npc/
 
 goodbye_female-01.*  shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
 hello_female-01.*    shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
+hum_happy.*          Topschool; CC0; https://freesound.org/s/361077/
 mm_hmm_female-01.*   esperar; CC0; https://freesound.org/people/esperar/sounds/170767/
 whistling-01.*       Anton Porsche (dersuperanton); CC BY 3.0; https://freesound.org/people/dersuperanton/sounds/433651/
 
