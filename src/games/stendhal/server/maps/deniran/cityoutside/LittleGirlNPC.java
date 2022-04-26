@@ -53,6 +53,9 @@ public class LittleGirlNPC implements ZoneConfigurator {
 		npc.setEntityClass("kid5npc");
 		npc.setDescription("You see a little girl.");
 		npc.setDirection(Direction.LEFT);
+		npc.setSounds(new String[] {
+				"npc/hum_child_01", "npc/hum_child_02", "npc/sigh_child_01",
+				"npc/sigh_child_02", "npc/yawn_child_01"});
 		zone.add(npc);
 	}
 }

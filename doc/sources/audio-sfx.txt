@@ -205,9 +205,14 @@ data/sounds/npc/
 
 goodbye_female-01.*  shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
 hello_female-01.*    shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
+hum_child_01.*       Hawkeye_Sprout; CC BY 3.0; https://freesound.org/s/469071/
+hum_child_02.*       Hawkeye_Sprout; CC BY 3.0; https://freesound.org/s/469163/
 hum_happy.*          Topschool; CC0; https://freesound.org/s/361077/
 mm_hmm_female-01.*   esperar; CC0; https://freesound.org/people/esperar/sounds/170767/
-whistling-01.*       Anton Porsche (dersuperanton); CC BY 3.0; https://freesound.org/people/dersuperanton/sounds/433651/
+sigh_child_01.*      Hawkeye_Sprout; CC BY 3.0; https://freesound.org/s/469058/
+sigh_child_02.*      Hawkeye_Sprout; CC BY 3.0; https://freesound.org/s/469059/
+whistling-01.*       Anton Porsche (dersuperanton); CC BY 3.0; https://freesound.org/s/433651/
+yawn_child_01.*      Hawkeye_Sprout; CC BY 3.0; https://freesound.org/s/469064/
 
 data/sounds/player/
 
