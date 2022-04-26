@@ -987,6 +987,8 @@ The following people released their work to the public with a suitable license f
 * [SpiderDave](https://opengameart.org/users/spiderdave)
 * [Ragewortt](https://opengameart.org/users/ragewortt)
 * [pan14](https://freesound.org/people/pan14/)
+* [Topschool](https://freesound.org/people/Topschool/)
+* [Hawkeye_Sprout](https://freesound.org/people/Hawkeye_Sprout/)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
