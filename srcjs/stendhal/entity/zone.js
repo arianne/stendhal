@@ -21,18 +21,42 @@ stendhal.zone = stendhal.zone || {};
  */
 stendhal.zone = {
 	entityAt: function(x, y, filter) {
-		x = x / 32;
-		y = y / 32;
-		var res = stendhal.zone.ground;
+		let xGrid = x / 32;
+		let yGrid = y / 32;
+		let res = stendhal.zone.ground;
 		for (var i in stendhal.zone.entities) {
-			var obj = stendhal.zone.entities[i];
-			if (obj.isVisibleToAction(filter) && (obj["_x"] <= x) && (obj["_y"] <= y)
-				&& (obj["_x"] + (obj["width"] || 1) >= x) && (obj["_y"] + (obj["height"] || 1) >= y)) {
+			let obj = stendhal.zone.entities[i];
+			if (obj.isVisibleToAction(filter) && (obj["_x"] <= xGrid) && (obj["_y"] <= yGrid)
+				&& (obj["_x"] + (obj["width"] || 1) >= xGrid) && (obj["_y"] + (obj["height"] || 1) >= yGrid)) {
 
 				res = obj;
 			}
 		}
-		// TODO: check draw area
+
+		// If we found an entity, return it
+		if (res != stendhal.zone.ground) {
+			return res;
+		}
+
+		// Otherwise we check the draw area
+		for (var i in stendhal.zone.entities) {
+			let obj = stendhal.zone.entities[i];
+			if (!obj.isVisibleToAction(filter) || !obj["drawHeight"]) {
+				continue;
+			}
+			let localX = obj["_x"] * 32;
+			let localY = obj["_y"] * 32;
+			let drawHeight = obj["drawHeight"];
+			let drawWidth = obj["drawWidth"];
+			var drawX = ((obj["width"] * 32) - drawWidth) / 2;
+			var drawY = (obj["height"] * 32) - drawHeight;
+
+			if ((localX + drawX <= x) && (localX + drawX + drawWidth >= x)
+				&& (localY + drawY <= y) && (localY + drawY + drawHeight >= y)) {
+
+				res = obj;
+			}
+		}
 
 		return res;
 	},
