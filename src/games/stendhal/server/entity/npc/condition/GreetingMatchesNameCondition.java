@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -101,5 +102,9 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 		}
 		GreetingMatchesNameCondition other = (GreetingMatchesNameCondition) obj;
 		return name.equals(other.name);
+	}
+	
+	public static ConditionBuilder greetingMatchesName(String name) {
+		return new ConditionBuilder(new GreetingMatchesNameCondition(name));
 	}
 }

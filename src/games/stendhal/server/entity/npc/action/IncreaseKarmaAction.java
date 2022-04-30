@@ -74,4 +74,8 @@ public class IncreaseKarmaAction implements ChatAction {
 		}
 		return true;
 	}
+	
+	public static ChatAction increaseKarma(double amount) {
+		return new IncreaseKarmaAction(amount);
+	}
 }

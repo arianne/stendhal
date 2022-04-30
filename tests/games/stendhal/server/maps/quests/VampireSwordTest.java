@@ -32,6 +32,7 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
@@ -170,6 +171,7 @@ public class VampireSwordTest {
 			en.step(player, answer);
 			assertEquals("Then you need this #goblet. Take it to the Semos #Catacombs.", getReply(npc));
 			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
+			assertTrue("Quest state is started", new QuestActiveCondition(questSlot).fire(player, null, npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}

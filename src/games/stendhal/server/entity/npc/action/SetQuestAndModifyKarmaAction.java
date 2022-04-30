@@ -110,4 +110,8 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 		return true;
 	}
 
+	public static ChatAction setQuestAndModifyKarma(String questName, String status,
+			double karmaDiff) {
+		return new SetQuestAndModifyKarmaAction(questName, status, karmaDiff);
+	}
 }

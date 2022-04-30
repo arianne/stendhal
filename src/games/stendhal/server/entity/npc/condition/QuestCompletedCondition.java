@@ -19,6 +19,7 @@ import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -69,5 +70,9 @@ public class QuestCompletedCondition implements ChatCondition {
 		}
 		QuestCompletedCondition other = (QuestCompletedCondition) obj;
 		return questname.equals(other.questname);
+	}
+	
+	public static ConditionBuilder questCompleted(String questName) {
+		return new ConditionBuilder(new QuestCompletedCondition(questName));
 	}
 }

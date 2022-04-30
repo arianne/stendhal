@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -112,5 +113,9 @@ public class TimePassedCondition implements ChatCondition {
 		return (index == other.index)
 			&& (delay == other.delay)
 			&& questname.equals(other.questname);
+	}
+	
+	public static ConditionBuilder timePassed(String questName, int index, int timeInMinutes) {
+		return new ConditionBuilder(new TimePassedCondition(questName, index, timeInMinutes));
 	}
 }

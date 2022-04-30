@@ -19,6 +19,7 @@ import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -66,5 +67,9 @@ public class QuestStateStartsWithCondition implements ChatCondition {
 		QuestStateStartsWithCondition other = (QuestStateStartsWithCondition) obj;
 		return state.equals(other.state)
 			&& questname.equals(other.questname);
+	}
+	
+	public static ConditionBuilder questStateStartsWith(String questName, String state) {
+		return new ConditionBuilder(new QuestStateStartsWithCondition(questName, state));
 	}
 }

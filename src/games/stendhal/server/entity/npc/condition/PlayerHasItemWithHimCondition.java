@@ -19,6 +19,7 @@ import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -80,5 +81,13 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 		PlayerHasItemWithHimCondition other = (PlayerHasItemWithHimCondition) obj;
 		return (amount == other.amount)
 			&& itemName.equals(other.itemName);
+	}
+	
+	public static ConditionBuilder playerCarriesItem(String itemName) {
+		return new ConditionBuilder(new PlayerHasItemWithHimCondition(itemName));
+	}
+	
+	public static ConditionBuilder playerCarriesItem(String itemName, int amount) {
+		return new ConditionBuilder(new PlayerHasItemWithHimCondition(itemName, amount));
 	}
 }

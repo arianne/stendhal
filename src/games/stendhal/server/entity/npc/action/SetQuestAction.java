@@ -93,4 +93,8 @@ public class SetQuestAction implements ChatAction {
 			&& questname.equals(other.questname)
 			&& Objects.equal(state, other.state);
 	}
+	
+	public static ChatAction setQuest(String questSlot, String state) {
+		return new SetQuestAction(questSlot, state);
+	}
 }
