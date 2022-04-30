@@ -15,6 +15,8 @@ package games.stendhal.server.entity.npc.condition;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -39,6 +41,16 @@ public class AndCondition implements ChatCondition {
 	 */
 	public AndCondition(final ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
+	}
+
+	/**
+	 * Creates a new "and"-condition.
+	 *
+	 * @param conditions
+	 *            condition which should be and-ed.
+	 */
+	public AndCondition(final Iterable<ChatCondition> conditions) {
+		this.conditions = ImmutableList.copyOf(conditions);
 	}
 
 	@Override

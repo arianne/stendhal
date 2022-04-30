@@ -4,6 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 
 public class QuestCompleteBuilder {
 	private String greet = "Thank you";
@@ -51,6 +59,65 @@ public class QuestCompleteBuilder {
 		}
 		simulator.info("Player was rewarded with " + this.rewardWith.toString());
 		simulator.info("");
+	}
+
+	void build(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+		if (respondToAccept != null) {
+			buildWithConfirmation(npc, questSlot, questCompletedCondition, questCompleteAction);
+		} else {
+			buildWithoutConfirmation(npc, questSlot, questCompletedCondition, questCompleteAction);
+		}
+	}
+
+	void buildWithConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+
+		// player returns while quest is still active
+		npc.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				new GreetingMatchesNameCondition(npc.getName()),
+				new QuestInStateCondition(questSlot, "start"),
+				questCompletedCondition),
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			greet,
+			null);
+
+		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
+		actions.add(questCompleteAction);
+
+		npc.add(
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES,
+			// make sure the player isn't cheating by putting the armor
+			// away and then saying "yes"
+			questCompletedCondition,
+			ConversationStates.ATTENDING,
+			"Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
+			new MultipleActions(actions));
+
+		npc.add(
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			respondToReject,
+			null);
+
+	}
+
+	void buildWithoutConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
+		actions.add(questCompleteAction);
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(questSlot, 0, "start"),
+						questCompletedCondition),
+				ConversationStates.ATTENDING, 
+				greet,
+				new MultipleActions(actions));
 	}
 
 }

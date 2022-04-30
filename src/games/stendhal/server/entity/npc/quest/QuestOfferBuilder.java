@@ -1,11 +1,34 @@
 package games.stendhal.server.entity.npc.quest;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+
 public class QuestOfferBuilder {
 	private String respondToRequest = null;
 	private String respondToRepeatedRequest = "Thanks for your help. I have no new task for you.";
 	private String respondToAccept = "Thank you";
 	private String respondToReject = "Ohh. Too bad";
 	private String remind = "Please keep your promise";
+	private List<String> lastRespondTo = null;
+	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
 	
 	public QuestOfferBuilder respondToRequest(String respondToRequest) {
@@ -28,15 +51,13 @@ public class QuestOfferBuilder {
 		return this;
 	}
 
-	
-	public QuestOfferBuilder respondTo(String string, String string2) {
-		// TODO Auto-generated method stub
+	public QuestOfferBuilder respondTo(String... respondTo) {
+		this.lastRespondTo = Arrays.asList(respondTo);
 		return this;
 	}
 
-	// TODO: This should be somewhere else
-	public QuestOfferBuilder saying(String string) {
-		// TODO Auto-generated method stub
+	public QuestOfferBuilder saying(String reply) {
+		additionalReplies.put(lastRespondTo, reply);
 		return this;
 	}
 
@@ -72,4 +93,59 @@ public class QuestOfferBuilder {
 		simulator.playerSays("quest");
 		simulator.npcSays(npc, respondToRepeatedRequest);
 	}
+
+	void build(SpeakerNPC npc, String questSlot, ChatAction startQuestAction, ChatCondition questCompletedCondition) {
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(questSlot),
+				ConversationStates.QUEST_OFFERED,
+				respondToRequest,
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(questSlot),
+				ConversationStates.ATTENDING,
+				respondToRepeatedRequest,
+				null);
+
+		final List<ChatAction> start = new LinkedList<ChatAction>();
+		start.add(new SetQuestAction(questSlot, 0, "start"));
+		start.add(startQuestAction);
+
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				respondToAccept,
+				new MultipleActions(start));
+
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				respondToReject,
+				new SetQuestAndModifyKarmaAction(questSlot, "rejected", -2.0));
+
+		for (Map.Entry<List<String>, String> entry : additionalReplies.entrySet()) {
+			npc.add(
+					ConversationStates.QUEST_OFFERED,
+					entry.getKey(),
+					null,
+					ConversationStates.QUEST_OFFERED,
+					entry.getValue(),
+					null);
+		}
+
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(questSlot, 0, "start"),
+						new NotCondition(questCompletedCondition)),
+				ConversationStates.ATTENDING,
+				remind,
+				null);
+	}
+
 }

@@ -56,4 +56,28 @@ public class QuestInfoBuilder {
 		// TODO
 	}
 
+	String getName() {
+		return name;
+	}
+
+	String getDescription() {
+		return description;
+	}
+
+	String getInternalName() {
+		return internalName;
+	}
+
+	boolean isRepeatable() {
+		return repeatable;
+	}
+
+	int getMinLevel() {
+		return minLevel;
+	}
+
+	String getRegion() {
+		return region;
+	}
+
 }
