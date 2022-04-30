@@ -24,4 +24,14 @@ public class QuestBuilder {
 		return complete;
 	}
 
+	public void simulate() {
+		QuestSimulator simulator = new QuestSimulator();
+		info.simulate(simulator);
+		String npc = info.getQuestGiverNpc();
+		offer.simulateFirst(npc, simulator);
+		task.simulate(simulator);
+		complete.simulate(npc, simulator);
+		offer.simulateRepeat(npc, simulator);
+	}
+
 }

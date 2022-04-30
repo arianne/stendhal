@@ -48,4 +48,12 @@ public class QuestInfoBuilder {
 		return questGiverNpc;
 	}
 
+	void simulate(QuestSimulator simulator) {
+		simulator.info("Quest: " + name + " (internal: " + internalName + ")");
+		simulator.info(description);
+		simulator.info("");
+
+		// TODO
+	}
+
 }

@@ -45,4 +45,31 @@ public class QuestOfferBuilder {
 		return this;
 	}
 
+	void simulateFirst(String npc, QuestSimulator simulator) {
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondToRequest);
+		simulator.playerSays("no");
+		simulator.npcSays(npc, respondToReject);
+		simulator.playerSays("bye");
+		simulator.info("");
+
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondToRequest);
+		simulator.playerSays("yes");
+		simulator.npcSays(npc, respondToAccept);
+		simulator.playerSays("bye");
+		simulator.info("");
+
+		simulator.playerSays("hi");
+		simulator.npcSays(npc, remind);
+		simulator.info("");
+	}
+
+	void simulateRepeat(String npc, QuestSimulator simulator) {
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondToRepeatedRequest);
+	}
 }
