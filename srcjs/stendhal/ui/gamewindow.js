@@ -341,6 +341,10 @@ stendhal.ui.gamewindow = {
 			}
 		} else if (draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
+			stendhal.ui.heldItem = {
+				path: draggedEntity.getIdPath(),
+				zone: marauroa.currentZoneName
+			}
 		} else {
 			e.preventDefault();
 			return;
