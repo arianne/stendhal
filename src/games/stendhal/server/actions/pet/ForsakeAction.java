@@ -77,5 +77,6 @@ public class ForsakeAction implements ActionListener {
 				}
 			}
 		}
+		player.notifyWorldAboutChanges();
 	}
 }
