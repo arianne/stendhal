@@ -267,6 +267,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("wooden bow",1);
 
 		// resource
+		items.put("charcoal",5);
 		items.put("coal",10);
 		items.put("flour",5);
 		items.put("grain",20);
