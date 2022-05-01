@@ -11,7 +11,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="poisoned" value="0.25"/>
-      <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -31,7 +31,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="poisoned" value="0.5"/>
-      <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -73,7 +73,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="shocked" value="0.33"/>
-      <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -93,7 +93,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
       <status_resist slots="finger;" type="shocked" value="0.66"/>
-      <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -114,7 +114,7 @@
     <description>You see a golden wedding ring, a symbol of love.</description>
     <implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>
     <attributes>
-    <min_level condition="stendhal.testserver" value="0"/>
+    <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -133,7 +133,7 @@
     <description>You see a diamond engagement ring, a symbol of love (or a symbol of wealth?)</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -154,7 +154,7 @@
     <attributes>
       <amount value="1"/>
       <persistent value="1"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="100000"/>
@@ -174,7 +174,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="1"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -194,7 +194,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="1"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -215,7 +215,7 @@
     <attributes>
       <atk value="1"/>
       <def value="1"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>

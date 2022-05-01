@@ -14,7 +14,7 @@
     <attributes>
       <atk value="12"/>
       <range value="3"/>
-    <min_level condition="stendhal.testserver" value="9999"/>
+      <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -29,7 +29,7 @@
     <attributes>
       <atk value="22"/>
       <range value="8"/>
-    <min_level condition="stendhal.testserver" value="9999"/>
+      <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

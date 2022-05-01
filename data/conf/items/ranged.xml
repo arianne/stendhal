@@ -11,7 +11,7 @@
       <atk condition="!testing.combat" value="12"/>
       <ratk condition="testing.combat" value="12"/>
       <range value="3"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="1.0"/>
     <value value="17280"/>
@@ -33,7 +33,7 @@
       <atk condition="!testing.combat" value="14"/>
       <ratk condition="testing.combat" value="14"/>
       <range value="4"/>
-    <min_level condition="stendhal.testserver" value="5"/>
+      <min_level value="5"/>
     </attributes>
     <weight value="1.0"/>
     <value value="27440"/>
@@ -55,7 +55,7 @@
       <atk condition="!testing.combat" value="15"/>
       <ratk condition="testing.combat" value="15"/>
       <range value="5"/>
-    <min_level condition="stendhal.testserver" value="10"/>
+      <min_level value="10"/>
     </attributes>
     <weight value="1.0"/>
     <value value="33750"/>
@@ -77,7 +77,7 @@
       <atk condition="!testing.combat" value="17"/>
       <ratk condition="testing.combat" value="17"/>
       <range value="3"/>
-    <min_level condition="stendhal.testserver" value="20"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="3.0"/>
     <value value="49130"/>
@@ -99,7 +99,7 @@
       <atk condition="!testing.combat" value="21"/>
       <ratk condition="testing.combat" value="21"/>
       <range value="4"/>
-    <min_level condition="stendhal.testserver" value="50"/>
+      <min_level value="50"/>
     </attributes>
     <weight value="3.0"/>
     <value value="92610"/>
@@ -121,7 +121,7 @@
       <atk condition="!testing.combat" value="28"/>
       <ratk condition="testing.combat" value="28"/>
       <range value="4"/>
-    <min_level condition="stendhal.testserver" value="300"/>
+      <min_level value="300"/>
     </attributes>
     <weight value="3.0"/>
     <value value="142610"/>

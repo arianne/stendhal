@@ -9,7 +9,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="1"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="2.0"/>
     <value value="7"/>
@@ -29,7 +29,7 @@
     <attributes>
       <def value="1"/>
       <autobind value=""/>
-      <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="10.0"/>
     <value value="7"/>
@@ -48,7 +48,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="2"/>
-    <min_level condition="stendhal.testserver" value="1"/>
+      <min_level value="1"/>
     </attributes>
     <weight value="6.0"/>
     <value value="56"/>
@@ -67,7 +67,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="2"/>
-    <min_level condition="stendhal.testserver" value="1"/>
+      <min_level value="1"/>
     </attributes>
     <weight value="3.0"/>
     <value value="56"/>
@@ -86,7 +86,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="3"/>
-    <min_level condition="stendhal.testserver" value="3"/>
+      <min_level value="3"/>
     </attributes>
     <weight value="1.0"/>
     <value value="7"/>
@@ -105,7 +105,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="4"/>
-    <min_level condition="stendhal.testserver" value="5"/>
+      <min_level value="5"/>
     </attributes>
     <weight value="6.0"/>
     <value value="448"/>
@@ -124,7 +124,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="5"/>
-    <min_level condition="stendhal.testserver" value="7"/>
+      <min_level value="7"/>
     </attributes>
     <weight value="6.0"/>
     <value value="875"/>
@@ -143,8 +143,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="6"/>
-      <min_level condition="stendhal.testserver" value="10"/>
-      <min_level condition="!stendhal.testserver" value="5"/>
+      <min_level value="10"/>
     </attributes>
     <weight value="6.0"/>
     <value value="1512"/>
@@ -163,8 +162,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="7"/>
-      <min_level condition="stendhal.testserver" value="15"/>
-      <min_level condition="!stendhal.testserver" value="10"/>
+      <min_level value="15"/>
     </attributes>
     <weight value="8.0"/>
     <value value="3012"/>
@@ -183,8 +181,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="7"/>
-      <min_level condition="stendhal.testserver" value="15"/>
-      <min_level condition="!stendhal.testserver" value="10"/>
+      <min_level value="15"/>
     </attributes>
     <weight value="6.0"/>
     <value value="1512"/>
@@ -396,8 +393,7 @@ Possibly add to weekly item quest. -->
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="29"/>
-      <min_level condition="stendhal.testserver" value="330"/>
-      <min_level condition="!stendhal.testserver" value="200"/>
+      <min_level value="330"/>
     </attributes>
     <weight value="12.0"/>
     <value value="323032"/>
@@ -418,8 +414,7 @@ Possibly add to weekly item quest. -->
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="23"/>
-      <min_level condition="stendhal.testserver" value="120"/>
-      <min_level condition="!stendhal.testserver" value="250"/>
+      <min_level value="120"/>
     </attributes>
     <weight value="15.0"/>
     <value value="74536"/>

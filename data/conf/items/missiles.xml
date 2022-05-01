@@ -13,7 +13,7 @@
       <range value="8"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
@@ -38,7 +38,7 @@
       <range value="5"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-    <min_level condition="stendhal.testserver" value="0"/>
+      <min_level value="0"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2"/>
@@ -112,7 +112,7 @@
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-    <min_level condition="stendhal.testserver" value="10"/>
+      <min_level value="10"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -136,7 +136,7 @@
       <range value="3"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-    <min_level condition="stendhal.testserver" value="50"/>
+      <min_level value="50"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -161,7 +161,7 @@
       <range value="4"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-    <min_level condition="stendhal.testserver" value="1"/>
+      <min_level value="1"/>
     </attributes>
     <weight value="0.1"/>
     <value value="10000"/>
