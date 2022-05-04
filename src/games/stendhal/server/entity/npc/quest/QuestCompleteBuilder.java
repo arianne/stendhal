@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
 import java.util.LinkedList;
@@ -13,6 +24,11 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 
+/**
+ * defines how the NPC react after the player completes the quest
+ *
+ * @author hendrik
+ */
 public class QuestCompleteBuilder {
 	private String greet = "Thank you";
 	private String respondToReject = null;
@@ -34,12 +50,10 @@ public class QuestCompleteBuilder {
 		return this;
 	}
 
-	
 	public QuestCompleteBuilder rewardWith(ChatAction action) {
 		this.rewardWith.add(action);
 		return this;
 	}
-
 
 	void simulate(String npc, QuestSimulator simulator) {
 		simulator.playerSays("hi");
