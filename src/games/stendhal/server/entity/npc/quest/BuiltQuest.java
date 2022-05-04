@@ -10,10 +10,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 
 class BuiltQuest extends AbstractQuest {
-	private QuestBuilder questBuilder;
+	private QuestBuilder<?> questBuilder;
 	private String questSlot = null;
 
-	public BuiltQuest(QuestBuilder questBuilder) {
+	public BuiltQuest(QuestBuilder<?> questBuilder) {
 		this.questBuilder = questBuilder;
 		// TODO: make sure questSlot is compatible
 		this.questSlot = questBuilder.info().getInternalName().toLowerCase();
@@ -34,7 +34,7 @@ class BuiltQuest extends AbstractQuest {
 			return res;
 		}
 		res.add(history.getWhenQuestWasAccepted());
-		if ("done".equals(questState) || ("start".equals(questState) && questBuilder.task().isCompleted(player))) {
+		if ("done".equals(questState) || ("start".equals(questState) && questBuilder.task().isCompleted(player, questSlot))) {
 			res.add(history.getWhenTaskWasCompleted());
 		}
 		if ("done".equals(questState)) {

@@ -8,7 +8,7 @@ import games.stendhal.server.maps.Region;
 public class Test {
 
 	public void test() {
-		QuestBuilder quest = new QuestBuilder();
+		QuestBuilder<KillCreaturesTask> quest = new QuestBuilder<>(new KillCreaturesTask());
 
 		quest.info()
 			.name("Clean the Storage Space")
@@ -50,7 +50,7 @@ public class Test {
 	}
 
 	public void test2() {
-		QuestBuilder quest = new QuestBuilder();
+		QuestBuilder<BringItemTask> quest = new QuestBuilder<>(new BringItemTask());
 
 		quest.info()
 			.name("Armor for Dagobert")

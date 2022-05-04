@@ -47,6 +47,15 @@ public class AndCondition implements ChatCondition {
 	 * Creates a new "and"-condition.
 	 *
 	 * @param conditions
+	 *            list of condition which should be and-ed.
+	 */
+	public AndCondition(final List<ChatCondition> conditions) {
+		this.conditions = ImmutableList.copyOf(conditions);
+	}
+	/**
+	 * Creates a new "and"-condition.
+	 *
+	 * @param conditions
 	 *            condition which should be and-ed.
 	 */
 	public AndCondition(final Iterable<ChatCondition> conditions) {

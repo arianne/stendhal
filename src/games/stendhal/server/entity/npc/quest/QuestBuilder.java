@@ -1,12 +1,16 @@
 package games.stendhal.server.entity.npc.quest;
 
-public class QuestBuilder {
+public class QuestBuilder<T extends QuestTaskBuilder> {
 
 	private QuestInfoBuilder info = new QuestInfoBuilder();
 	private QuestHistoryBuilder history = new QuestHistoryBuilder();
 	private QuestOfferBuilder offer = new QuestOfferBuilder();
-	private QuestTaskBuilder task = new QuestTaskBuilder();
+	private T task = null;
 	private QuestCompleteBuilder complete = new QuestCompleteBuilder();
+
+	public QuestBuilder(T task) {
+		this.task = task;
+	}
 
 	public QuestInfoBuilder info() {
 		return info;
@@ -17,7 +21,7 @@ public class QuestBuilder {
 	public QuestOfferBuilder offer() {
 		return offer;
 	}
-	public QuestTaskBuilder task() {
+	public T task() {
 		return task;
 	}
 	public QuestCompleteBuilder complete() {
