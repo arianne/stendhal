@@ -21,6 +21,8 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.constants.Occasion;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
+import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
@@ -228,6 +230,15 @@ public class StendhalQuestSystem {
 		} catch (Exception e) {
 			logger.error("Quest(" + quest.getName() + ") loading failed.", e);
 		}
+	}
+
+	/**
+	 * loads the quests and adds it to the world
+	 *
+	 * @param quest a Quest
+	 */
+	public void loadQuest(final QuestManuscript quest) {
+		loadQuest(new BuiltQuest(quest.story()));
 	}
 
 	/**

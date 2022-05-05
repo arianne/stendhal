@@ -25,7 +25,7 @@ import games.stendhal.server.maps.quests.AbstractQuest;
  *
  * @author hendrik
  */
-class BuiltQuest extends AbstractQuest {
+public class BuiltQuest extends AbstractQuest {
 	private QuestBuilder<?> questBuilder;
 	private String questSlot = null;
 
