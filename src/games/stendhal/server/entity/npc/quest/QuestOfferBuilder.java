@@ -28,7 +28,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
@@ -120,14 +120,16 @@ public class QuestOfferBuilder {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(questSlot),
+				new QuestCompletedCondition(questSlot),
 				ConversationStates.ATTENDING,
 				respondToRepeatedRequest,
 				null);
 
 		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new SetQuestAction(questSlot, 0, "start"));
-		start.add(startQuestAction);
+		if (startQuestAction != null) {
+			start.add(startQuestAction);
+		}
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
