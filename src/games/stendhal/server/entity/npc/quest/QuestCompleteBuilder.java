@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -76,14 +77,20 @@ public class QuestCompleteBuilder {
 	}
 
 	void build(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
+		actions.add(new SetQuestAction(questSlot, 0, "done"));
+		if (questCompleteAction != null) {
+			actions.add(questCompleteAction);
+		}
+
 		if (respondToAccept != null) {
-			buildWithConfirmation(npc, questSlot, questCompletedCondition, questCompleteAction);
+			buildWithConfirmation(npc, questSlot, questCompletedCondition, actions);
 		} else {
-			buildWithoutConfirmation(npc, questSlot, questCompletedCondition, questCompleteAction);
+			buildWithoutConfirmation(npc, questSlot, questCompletedCondition, actions);
 		}
 	}
 
-	void buildWithConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+	void buildWithConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, List<ChatAction> actions) {
 
 		// player returns while quest is still active
 		npc.add(
@@ -96,9 +103,6 @@ public class QuestCompleteBuilder {
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			greet,
 			null);
-
-		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
-		actions.add(questCompleteAction);
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
@@ -120,9 +124,7 @@ public class QuestCompleteBuilder {
 
 	}
 
-	void buildWithoutConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
-		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
-		actions.add(questCompleteAction);
+	void buildWithoutConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, List<ChatAction> actions) {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
