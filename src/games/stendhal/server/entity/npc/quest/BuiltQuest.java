@@ -36,7 +36,6 @@ public class BuiltQuest extends AbstractQuest {
 	 */
 	public BuiltQuest(QuestBuilder<?> questBuilder) {
 		this.questBuilder = questBuilder;
-		// TODO: make sure questSlot is compatible
 		this.questSlot = questBuilder.info().getInternalName().toLowerCase();
 	}
 

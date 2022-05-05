@@ -111,7 +111,7 @@ public class QuestCompleteBuilder {
 			// away and then saying "yes"
 			questCompletedCondition,
 			ConversationStates.ATTENDING,
-			"Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
+			respondToAccept,
 			new MultipleActions(actions));
 
 		npc.add(
