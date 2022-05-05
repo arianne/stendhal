@@ -28,6 +28,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC;
 import utilities.PlayerTestHelper;
@@ -51,7 +52,7 @@ public class ArmorForDagobertTest {
 		new CustomerAdvisorNPC().configureZone(zone, null);
 
 		npc = SingletonRepository.getNPCList().get("Dagobert");
-		quest = new ArmorForDagobert();
+		quest = new BuiltQuest(new ArmorForDagobert().story());
 		quest.addToWorld();
 		en = npc.getEngine();
 
