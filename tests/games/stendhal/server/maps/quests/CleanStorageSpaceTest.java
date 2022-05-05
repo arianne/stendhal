@@ -111,7 +111,7 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals("A hero at last! Thank you!", getReply(npc));
 
-		assertEquals("done", player.getQuest("clean_storage"));
+		assertEquals("done", player.getQuest("clean_storage", 0));
 	}
 
 }
