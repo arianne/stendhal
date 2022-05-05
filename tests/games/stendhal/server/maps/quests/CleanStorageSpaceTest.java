@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +22,7 @@ import org.junit.Test;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -49,7 +49,7 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 		super.setUp();
 
 		final CleanStorageSpace cf = new CleanStorageSpace();
-		cf.addToWorld();
+		new BuiltQuest(cf.story()).addToWorld();
 	}
 
 	/**
