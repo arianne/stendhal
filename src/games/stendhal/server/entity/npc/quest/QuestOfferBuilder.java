@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 
 /**
  * defines how the NPC offers the player the quest when the player says "quest"
@@ -39,7 +40,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  */
 public class QuestOfferBuilder {
 	private String respondToRequest = null;
-	private String respondToRepeatedRequest = "Thanks for your help. I have no new task for you.";
+	private String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
+	private String respondToRepeatedRequest = null;
 	private String respondToAccept = "Thank you";
 	private String respondToReject = "Ohh. Too bad";
 	private String remind = "Please keep your promise";
@@ -49,6 +51,14 @@ public class QuestOfferBuilder {
 	
 	public QuestOfferBuilder respondToRequest(String respondToRequest) {
 		this.respondToRequest = respondToRequest;
+		if (this.respondToRepeatedRequest == null) {
+			this.respondToRepeatedRequest = respondToRequest;
+		}
+		return this;
+	}
+
+	public QuestOfferBuilder respondToUnrepeatableRequest(String respondToUnrepeatableRequest) {
+		this.respondToUnrepeatableRequest = respondToUnrepeatableRequest;
 		return this;
 	}
 
@@ -104,13 +114,27 @@ public class QuestOfferBuilder {
 		simulator.info("");
 	}
 
+	void simulateNotRepeatable(String npc, QuestSimulator simulator) {
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondToUnrepeatableRequest);
+		simulator.playerSays("bye");
+		simulator.info("");
+	}
+
 	void simulateRepeat(String npc, QuestSimulator simulator) {
 		simulator.playerSays("hi");
 		simulator.playerSays("quest");
 		simulator.npcSays(npc, respondToRepeatedRequest);
+		simulator.playerSays("bye");
+		simulator.info("");
 	}
 
-	void build(SpeakerNPC npc, String questSlot, ChatAction startQuestAction, ChatCondition questCompletedCondition) {
+
+	void build(SpeakerNPC npc, String questSlot,
+				ChatAction startQuestAction, ChatCondition questCompletedCondition,
+				int repeatableAfterMinutes) {
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(questSlot),
@@ -118,12 +142,35 @@ public class QuestOfferBuilder {
 				respondToRequest,
 				null);
 
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(questSlot),
-				ConversationStates.ATTENDING,
-				respondToRepeatedRequest,
-				null);
+		if (repeatableAfterMinutes > 0) {
+
+			npc.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					new AndCondition(
+						new QuestCompletedCondition(questSlot),
+						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes)),
+					ConversationStates.QUEST_OFFERED,
+					respondToRepeatedRequest,
+					null);
+
+			npc.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					new AndCondition(
+							new QuestCompletedCondition(questSlot),
+						new NotCondition(new TimePassedCondition(questSlot, 1, repeatableAfterMinutes))),
+					ConversationStates.ATTENDING,
+					respondToUnrepeatableRequest,
+					null);
+
+		} else {
+
+			npc.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					new QuestCompletedCondition(questSlot),
+					ConversationStates.ATTENDING,
+					respondToUnrepeatableRequest,
+					null);
+		}
 
 		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new SetQuestAction(questSlot, 0, "start"));

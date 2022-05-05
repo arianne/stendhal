@@ -22,6 +22,7 @@ public class QuestHistoryBuilder {
 	private String whenQuestWasAccepted;
 	private String whenTaskWasCompleted;
 	private String whenQuestWasCompleted;
+	private String whenQuestCanBeRepeated;
 
 	public QuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {
 		this.whenNpcWasMet = whenNpcWasMet;
@@ -48,6 +49,11 @@ public class QuestHistoryBuilder {
 		return this;
 	}
 
+	public QuestHistoryBuilder whenQuestCanBeRepeated(String whenQuestCanBeRepeated) {
+		this.whenQuestCanBeRepeated = whenQuestCanBeRepeated;
+		return this;
+	}
+
 	String getWhenNpcWasMet() {
 		return whenNpcWasMet;
 	}
@@ -66,6 +72,10 @@ public class QuestHistoryBuilder {
 
 	String getWhenQuestWasCompleted() {
 		return whenQuestWasCompleted;
+	}
+
+	String getWhenQuestCanBeRepeated() {
+		return this.whenQuestCanBeRepeated;
 	}
 
 }

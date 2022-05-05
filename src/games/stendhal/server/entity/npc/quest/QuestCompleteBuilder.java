@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -73,12 +74,14 @@ public class QuestCompleteBuilder {
 			
 		}
 		simulator.info("Player was rewarded with " + this.rewardWith.toString());
+		simulator.playerSays("bye");
 		simulator.info("");
 	}
 
 	void build(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
 		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
 		actions.add(new SetQuestAction(questSlot, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(questSlot, 1));
 		if (questCompleteAction != null) {
 			actions.add(questCompleteAction);
 		}

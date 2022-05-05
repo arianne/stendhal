@@ -20,7 +20,7 @@ public class QuestInfoBuilder {
 	private String name = "<unnamed>";
 	private String description = "";
 	private String internalName = null;
-	private boolean repeatable = false;
+	private int repeatableAfterMinutes = 0;
 	private int minLevel = 0;
 	private String region = "somewhere";
 	private String questGiverNpc = null;
@@ -40,8 +40,13 @@ public class QuestInfoBuilder {
 		return this;
 	}
 
-	public QuestInfoBuilder repeatable(boolean repeatable) {
-		this.repeatable = repeatable;
+	public QuestInfoBuilder repeatableAfterMinutes(int repeatableAfterMinutes) {
+		this.repeatableAfterMinutes = repeatableAfterMinutes;
+		return this;
+	}
+
+	public QuestInfoBuilder notRepeatable() {
+		this.repeatableAfterMinutes = 0;
 		return this;
 	}
 
@@ -84,8 +89,8 @@ public class QuestInfoBuilder {
 		return internalName;
 	}
 
-	boolean isRepeatable() {
-		return repeatable;
+	int getRepeatableAfterMinutes() {
+		return repeatableAfterMinutes;
 	}
 
 	int getMinLevel() {
@@ -95,5 +100,6 @@ public class QuestInfoBuilder {
 	String getRegion() {
 		return region;
 	}
+
 
 }

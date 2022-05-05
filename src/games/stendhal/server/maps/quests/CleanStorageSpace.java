@@ -48,7 +48,7 @@ public class CleanStorageSpace implements QuestManuscript {
 			.name("Clean the Storage Space")
 			.description("Eonna is too scared to go into her underground storage space, as it is filled with rats and snakes.")
 			.internalName("clean_storage")
-			.repeatable(false)
+			.notRepeatable()
 			.minLevel(0)
 			.region(Region.SEMOS_CITY)
 			.questGiverNpc("Eonna");
@@ -62,7 +62,7 @@ public class CleanStorageSpace implements QuestManuscript {
 
 		quest.offer()
 			.respondToRequest("My #basement is absolutely crawling with rats. Will you help me?")
-			.respondToRepeatedRequest("Thanks again! I think it's still clear down there.")
+			.respondToUnrepeatableRequest("Thanks again! I think it's still clear down there.")
 			.respondToAccept("Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!")
 			.respondToReject("*sigh* Oh well, maybe someone else will be my hero...")
 			.respondTo("basement", "storage space").saying("Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?")

@@ -62,7 +62,7 @@ public class ArmorForDagobert implements QuestManuscript {
 			.name("Armor for Dagobert")
 			.description("Dagobert, the consultant at the bank of Semos, needs protection.")
 			.internalName("armor_dagobert")
-			.repeatable(false)
+			.notRepeatable()
 			.minLevel(0)
 			.region(Region.SEMOS_CITY)
 			.questGiverNpc("Dagobert");
@@ -76,7 +76,7 @@ public class ArmorForDagobert implements QuestManuscript {
 
 		quest.offer()
 			.respondToRequest("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?")
-			.respondToRepeatedRequest("Thank you very much for the armor, but I don't have any other task for you.")
+			.respondToUnrepeatableRequest("Thank you very much for the armor, but I don't have any other task for you.")
 			.respondToAccept("Once I had a nice #'leather cuirass', but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.")
 			.respondToReject("Well, then I guess I'll just duck and cover.")
 			.remind("Luckily I haven't been robbed while you were away. I would be glad to receive a leather cuirass. Anyway, how can I #help you?");

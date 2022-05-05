@@ -89,7 +89,12 @@ public class QuestBuilder<T extends QuestTaskBuilder> {
 		offer.simulateFirst(npc, simulator);
 		task.simulate(simulator);
 		complete.simulate(npc, simulator);
-		offer.simulateRepeat(npc, simulator);
+		offer.simulateNotRepeatable(npc, simulator);
+		if (info.getRepeatableAfterMinutes() > 0) {
+			simulator.info("Time passed");
+			simulator.info("");
+			offer.simulateRepeat(npc, simulator);
+		}
 	}
 
 }

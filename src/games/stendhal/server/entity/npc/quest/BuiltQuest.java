@@ -17,6 +17,7 @@ import java.util.List;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 
@@ -60,6 +61,9 @@ public class BuiltQuest extends AbstractQuest {
 		if ("done".equals(questState)) {
 			res.add(history.getWhenQuestWasCompleted());
 		}
+		if (isRepeatable(player)){
+			res.add(history.getWhenQuestCanBeRepeated());
+		}
 		return res;
 	}
 
@@ -68,14 +72,14 @@ public class BuiltQuest extends AbstractQuest {
 		fillQuestInfo(
 				questBuilder.info().getName(),
 				questBuilder.info().getDescription(),
-				questBuilder.info().isRepeatable());
+				questBuilder.info().getRepeatableAfterMinutes() > 0);
 
 		ChatAction startQuestAction = questBuilder.task().buildStartQuestAction(questSlot);
 		ChatCondition questCompletedCondition = questBuilder.task().buildQuestCompletedCondition(questSlot);
 		ChatAction questCompleteAction = questBuilder.task().buildQuestCompleteAction(questSlot);
 
 		final SpeakerNPC npc = npcs.get(questBuilder.info().getQuestGiverNpc());
-		questBuilder.offer().build(npc, questSlot, startQuestAction, questCompletedCondition);
+		questBuilder.offer().build(npc, questSlot, startQuestAction, questCompletedCondition, questBuilder.info().getRepeatableAfterMinutes());
 		questBuilder.complete().build(npc, questSlot, questCompletedCondition, questCompleteAction);
 	}
 
@@ -104,4 +108,10 @@ public class BuiltQuest extends AbstractQuest {
 		return questSlot;
 	}
 
+
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return isCompleted(player) 
+				&& new TimePassedCondition(questSlot, 1, questBuilder.info().getRepeatableAfterMinutes()).fire(player,null, null);
+	}
 }

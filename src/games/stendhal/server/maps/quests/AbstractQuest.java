@@ -103,6 +103,7 @@ public abstract class AbstractQuest implements IQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
+		// TODO implement
 		return false;
 	}
 
