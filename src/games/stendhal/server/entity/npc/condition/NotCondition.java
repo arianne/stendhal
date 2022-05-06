@@ -63,7 +63,7 @@ public class NotCondition implements ChatCondition {
 		NotCondition other = (NotCondition) obj;
 		return condition.equals(other.condition);
 	}
-	
+
 	public static ConditionBuilder not(ConditionBuilder child) {
 		return new ConditionBuilder(new NotCondition(child.build()));
 	}

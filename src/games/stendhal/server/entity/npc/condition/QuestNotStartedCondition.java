@@ -63,7 +63,7 @@ public class QuestNotStartedCondition implements ChatCondition {
 		QuestNotStartedCondition other = (QuestNotStartedCondition) obj;
 		return questname.equals(other.questname);
 	}
-	
+
 	public static ConditionBuilder questNotStarted(String questName) {
 		return new ConditionBuilder(new QuestNotStartedCondition(questName));
 	}

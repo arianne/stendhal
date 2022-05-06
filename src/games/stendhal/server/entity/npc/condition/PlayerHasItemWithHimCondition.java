@@ -82,11 +82,11 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 		return (amount == other.amount)
 			&& itemName.equals(other.itemName);
 	}
-	
+
 	public static ConditionBuilder playerCarriesItem(String itemName) {
 		return new ConditionBuilder(new PlayerHasItemWithHimCondition(itemName));
 	}
-	
+
 	public static ConditionBuilder playerCarriesItem(String itemName, int amount) {
 		return new ConditionBuilder(new PlayerHasItemWithHimCondition(itemName, amount));
 	}

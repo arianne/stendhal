@@ -45,7 +45,7 @@ public class QuestBuilder<T extends QuestTaskBuilder> {
 
 	/**
 	 * defines the "history" of player progress as shown in the travel log
-	 * 
+	 *
 	 * @return QuestHistoryBuilder
 	 */
 	public QuestHistoryBuilder history() {

@@ -96,7 +96,7 @@ public class QuestInStateCondition implements ChatCondition {
 			&& questname.equals(other.questname)
 			&& state.equals(other.state);
 	}
-	
+
 	public static ConditionBuilder questInState(String questName, String state) {
 		return new ConditionBuilder(new QuestInStateCondition(questName, state));
 	}

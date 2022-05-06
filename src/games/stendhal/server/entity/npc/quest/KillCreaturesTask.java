@@ -22,7 +22,7 @@ import marauroa.common.Pair;
 
 /**
  * requests that the player kills creatures
- * 
+ *
  * @author hendrik
  */
 public class KillCreaturesTask extends QuestTaskBuilder {

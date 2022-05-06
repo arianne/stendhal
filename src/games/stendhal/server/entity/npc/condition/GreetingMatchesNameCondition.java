@@ -103,7 +103,7 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 		GreetingMatchesNameCondition other = (GreetingMatchesNameCondition) obj;
 		return name.equals(other.name);
 	}
-	
+
 	public static ConditionBuilder greetingMatchesName(String name) {
 		return new ConditionBuilder(new GreetingMatchesNameCondition(name));
 	}

@@ -92,7 +92,7 @@ public class DropItemAction implements ChatAction {
 	public static ChatAction dropItem(String itemName) {
 		return new DropItemAction(itemName);
 	}
-	
+
 	public static ChatAction dropItem(String itemName, int amount) {
 		return new DropItemAction(itemName, amount);
 	}

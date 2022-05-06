@@ -99,7 +99,7 @@ public class Test {
 			.rewardWith(new EquipItemAction("money", 80))
 			.rewardWith(new IncreaseXPAction(50))
 			.rewardWith(new IncreaseKarmaAction(10));
-	
+
 		quest.simulate();
 	}
 

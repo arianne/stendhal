@@ -46,7 +46,7 @@ public class QuestOfferBuilder {
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
-	
+
 	public QuestOfferBuilder respondToRequest(String respondToRequest) {
 		this.respondToRequest = respondToRequest;
 		return this;
@@ -139,7 +139,7 @@ public class QuestOfferBuilder {
 				respondToAccept,
 				new MultipleActions(start));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				respondToReject,

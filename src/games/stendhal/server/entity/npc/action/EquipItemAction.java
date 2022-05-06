@@ -153,7 +153,7 @@ public class EquipItemAction implements ChatAction {
 	public static ChatAction equipItem(String itemName) {
 		return new EquipItemAction(itemName);
 	}
-	
+
 	public static ChatAction equipBoundItem(String itemName) {
 		return new EquipItemAction(itemName, 1, true);
 	}
