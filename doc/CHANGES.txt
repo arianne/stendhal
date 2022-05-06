@@ -3,6 +3,33 @@ Changelog
 ---------
 
 
+1.41
+
+*world*
+- adventure island guarantees spawn for daily monster quest
+- Find Jef's mom quest added to Private Detective achievement
+- centaur king drops power arrows
+- glacier centaur drops ice arrows
+- solar centaur drops fire arrows
+- charcoal added to daily item quest
+- additional 4 mins in training dojo at level 590 & above
+
+*graphics*
+- item sprites touch ups
+- replaced some item sprites:
+  - l/r hand swords
+  - elvish shield
+  - elvish legs
+  - elvish boots
+- entity sprites touch ups
+
+*sound*
+- added sounds for Rose Leigh, Marianne, & Princess Esclara
+
+*webclient*
+- added own/leave options for pets
+
+
 1.40
 
 *world*
