@@ -112,7 +112,10 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 						final int left = 7 - done.length;
 						return left < 0;
 					}
-				})));
+				},
+				// Jef, Kirdneh
+				new QuestCompletedCondition("find_jefs_mom")
+			)));
 
 		// earn over 250 karma
 		achievements.add(createAchievement(
