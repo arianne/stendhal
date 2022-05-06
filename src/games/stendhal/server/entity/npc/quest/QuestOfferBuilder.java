@@ -45,6 +45,7 @@ public class QuestOfferBuilder {
 	private String respondToAccept = "Thank you";
 	private String respondToReject = "Ohh. Too bad";
 	private String remind = "Please keep your promise";
+	private double rejectionKarmaPenalty = 2.0;
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
@@ -89,6 +90,11 @@ public class QuestOfferBuilder {
 
 	public QuestOfferBuilder remind(String remind) {
 		this.remind = remind;
+		return this;
+	}
+
+	public QuestOfferBuilder rejectionKarmaPenalty(double rejectionKarmaPenalty) {
+		this.rejectionKarmaPenalty = rejectionKarmaPenalty;
 		return this;
 	}
 
@@ -190,7 +196,7 @@ public class QuestOfferBuilder {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				respondToReject,
-				new SetQuestAndModifyKarmaAction(questSlot, "rejected", -2.0));
+				new SetQuestAndModifyKarmaAction(questSlot, "rejected", -1 * rejectionKarmaPenalty));
 
 		for (Map.Entry<List<String>, String> entry : additionalReplies.entrySet()) {
 			npc.add(
