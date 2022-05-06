@@ -111,7 +111,8 @@ public class BuiltQuest extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return isCompleted(player) 
+		return isCompleted(player)
+				&& questBuilder.info().getRepeatableAfterMinutes() > 0
 				&& new TimePassedCondition(questSlot, 1, questBuilder.info().getRepeatableAfterMinutes()).fire(player,null, null);
 	}
 }
