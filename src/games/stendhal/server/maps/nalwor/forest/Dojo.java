@@ -276,12 +276,24 @@ public class Dojo implements ZoneConfigurator {
 
 	/**
 	 * Calculates the amount of time player can spend in dojo.
+	 *
+	 * - below level 60: 20 minutes
+	 * - levels 60-589: 24 minutes
+	 * - levels 590 & above: 28 minutes
+	 *
+	 * @param player
+	 *     Player that wants to train.
+	 * @return
+	 *     Time in seconds player is allowed to train.
 	 */
 	private int calculateTrainTime(final Player player) {
 		int trainTime = BASE_TRAIN_TIME;
 
-		if (player.getLevel() >= 60) {
-			trainTime = trainTime + 4;
+		final int plvl = player.getLevel();
+		if (plvl > 589) {
+			trainTime += 8;
+		} else if (plvl > 59) {
+			trainTime += 4;
 		}
 
 		return trainTime;
