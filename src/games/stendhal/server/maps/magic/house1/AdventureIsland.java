@@ -13,8 +13,6 @@
 package games.stendhal.server.maps.magic.house1;
 
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 
