@@ -437,6 +437,7 @@ pink.png       Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 purple.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 red.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 silver.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+skeleton.*     Katie Russell (kymara), Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal
 square.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 turquoise.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
