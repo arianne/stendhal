@@ -68,7 +68,7 @@ public class QuestStateStartsWithCondition implements ChatCondition {
 		return state.equals(other.state)
 			&& questname.equals(other.questname);
 	}
-	
+
 	public static ConditionBuilder questStateStartsWith(String questName, String state) {
 		return new ConditionBuilder(new QuestStateStartsWithCondition(questName, state));
 	}

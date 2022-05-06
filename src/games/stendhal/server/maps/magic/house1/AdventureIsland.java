@@ -17,6 +17,7 @@ import java.awt.geom.Rectangle2D;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
@@ -67,18 +68,41 @@ public class AdventureIsland extends StendhalRPZone {
 		add(portal);
 		numCreatures = 0;
 		int count = 0;
+
+		// check state of daily monster quest
+		Creature daily = null;
+		if (player.hasQuest("daily")) {
+			final String[] dailyInfo = player.getQuest("daily", 0).split(",");
+			if (dailyInfo.length > 0 && !dailyInfo[0].equals("done")) {
+				daily = SingletonRepository.getEntityManager().getCreature(dailyInfo[0]);
+			}
+		}
+
 		// max ALLOWED_FAILS fails to place all creatures before we give up
 		while (numCreatures < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
-			int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel());
-			CreatureSpawner creatureSpawner = new CreatureSpawner();
-			Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
-				if (StendhalRPAction.placeat(this, creature, Rand.randUniform(MIN_X, MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
-					numCreatures++;
-				} else {
-					logger.info(" could not add a creature to adventure island: " + creature);
-					count++;
+			// ensure daily monster is spawned if quest is active
+			Creature creature = daily;
+
+			if (creature == null) {
+				final int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel());
+				final CreatureSpawner creatureSpawner = new CreatureSpawner();
+				creature = new Creature(creatureSpawner.calculateNextCreature(level));
+			}
+
+			if (StendhalRPAction.placeat(this, creature, Rand.randUniform(MIN_X, MAX_X),
+					Rand.randUniform(MIN_Y, MAX_Y))) {
+				numCreatures++;
+
+				if (daily != null) {
+					// daily monster was spawned
+					daily = null;
 				}
+			} else {
+				logger.info(" could not add a creature to adventure island: " + creature);
+				count++;
+			}
 		}
+
 		disallowIn();
 		this.addMovementListener(new ChallengeMovementListener(player.getX(), player.getY()));
 	}

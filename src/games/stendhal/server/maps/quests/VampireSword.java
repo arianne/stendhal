@@ -120,7 +120,7 @@ public class VampireSword extends AbstractQuest {
 			.saying("Why are you bothering me when you haven't completed your quest yet?")
 			.inState(ConversationStates.ATTENDING)
 			.when(questActive(QUEST_SLOT)));
-	
+
 		// Player wants to do the quest
 		conversation(actor(npc)
 			.respondsTo(ConversationPhrases.YES_MESSAGES)
@@ -230,7 +230,7 @@ public class VampireSword extends AbstractQuest {
 						.and(questInState(QUEST_SLOT, "start"))
 						.and(playerCarriesItem("goblet"))
 						.unless(playerHasKilled("vampire lord"))));
-		
+
 		// Player lost the empty goblet?
 		conversation(actor(npc)
 				.respondsTo(ConversationPhrases.GREETING_MESSAGES)
@@ -256,7 +256,7 @@ public class VampireSword extends AbstractQuest {
 				.inState(ConversationStates.QUESTION_1)
 				.saying("Then why are you back here? Go slay some vampires! Bye!")
 				.changingStateTo(ConversationStates.IDLE));
-		
+
 		// Returned too early; still forging
 		conversation(actor(npc)
 				.respondsTo(ConversationPhrases.GREETING_MESSAGES)
@@ -265,7 +265,7 @@ public class VampireSword extends AbstractQuest {
 						.and(questStateStartsWith(QUEST_SLOT, "forging;"))
 						.unless(timePassed(QUEST_SLOT, SLOT_TIME_INDEX, REQUIRED_MINUTES)))
 				.doing(sayTimeRemaining(QUEST_SLOT, SLOT_TIME_INDEX, REQUIRED_MINUTES, "I haven't finished forging the sword. Please check back in")));
-		
+
 		conversation(actor(npc)
 				.respondsTo(ConversationPhrases.GREETING_MESSAGES)
 				.inState(ConversationStates.IDLE)

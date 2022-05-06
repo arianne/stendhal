@@ -68,7 +68,7 @@ public class IncreaseXPAction implements ChatAction {
 			return false;
 		}
 		final IncreaseXPAction other = (IncreaseXPAction) obj;
-		
+
 		return xpDiff == other.xpDiff;
 	}
 

@@ -114,7 +114,7 @@ public class TimePassedCondition implements ChatCondition {
 			&& (delay == other.delay)
 			&& questname.equals(other.questname);
 	}
-	
+
 	public static ConditionBuilder timePassed(String questName, int index, int timeInMinutes) {
 		return new ConditionBuilder(new TimePassedCondition(questName, index, timeInMinutes));
 	}

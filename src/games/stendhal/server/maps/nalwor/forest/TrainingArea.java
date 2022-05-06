@@ -148,6 +148,11 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	/**
 	 * Calculates the stat level cap at which a player cannot train.
 	 *
+	 * - up to level 55: player level
+	 * - above level 55: (player level / 10) + 50
+	 *
+	 * At max level (597), cap is 109.
+	 *
 	 * @param playerLevel
 	 * 		Level of player to be checked.
 	 * @return

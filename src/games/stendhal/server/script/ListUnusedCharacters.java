@@ -70,13 +70,13 @@ public class ListUnusedCharacters extends ScriptImpl {
 				String username = resultSet.getString("username");
 				try {
 					RPObject character = characterDao.loadCharacter(transaction, username, charname);
-	
+
 					RPObject visited = KeyedSlotUtil.getKeyedSlotObject(character, "!visited");
 					if (visited.size() > 2) {
 						unused.add(charname);
 						continue;
 					}
-	
+
 					if (hasNonInitialItems(character)) {
 						unused.add(charname);
 						continue;

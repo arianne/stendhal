@@ -71,7 +71,7 @@ public class QuestCompletedCondition implements ChatCondition {
 		QuestCompletedCondition other = (QuestCompletedCondition) obj;
 		return questname.equals(other.questname);
 	}
-	
+
 	public static ConditionBuilder questCompleted(String questName) {
 		return new ConditionBuilder(new QuestCompletedCondition(questName));
 	}

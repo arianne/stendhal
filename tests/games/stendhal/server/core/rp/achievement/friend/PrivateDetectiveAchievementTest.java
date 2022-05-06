@@ -48,6 +48,7 @@ import games.stendhal.server.maps.orril.dungeon.RatChild2NPC;
 import games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC;
 import games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC;
 import games.stendhal.server.maps.quests.FindGhosts;
+import games.stendhal.server.maps.quests.FindJefsMom;
 import games.stendhal.server.maps.quests.FindRatChildren;
 import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC;
@@ -67,7 +68,7 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private static final NPCList npcs = SingletonRepository.getNPCList();
 
 	private final String[] questSlots = {
-			"find_rat_kids", "find_ghosts", "seven_cherubs"
+			"find_rat_kids", "find_ghosts", "seven_cherubs", "find_jefs_mom"
 	};
 
 
@@ -90,6 +91,8 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		configurators.put("Ben", new KidGhostNPC());
 		configurators.put("Zak", new games.stendhal.server.maps.wofol.house5.GhostNPC());
 		configurators.put("Goran", new games.stendhal.server.maps.orril.dungeon.GhostNPC());
+		configurators.put("Jef", new games.stendhal.server.maps.kirdneh.city.GossipNPC());
+		configurators.put("Amber", new games.stendhal.server.maps.fado.forest.OldWomanNPC());
 
 		final String zoneName = "testzone";
 		for (final ZoneConfigurator zc: configurators.values()) {
@@ -118,6 +121,7 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		questSystem.loadQuest(new FindRatChildren());
 		questSystem.loadQuest(new FindGhosts());
 		questSystem.loadQuest(new SevenCherubs());
+		questSystem.loadQuest(new FindJefsMom());
 	}
 
 	@AfterClass
@@ -134,6 +138,8 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		doQuestCarena();
 		assertFalse(achievementReached());
 		doQuestCherubs();
+		assertFalse(achievementReached());
+		doQuestJef();
 
 		assertTrue(achievementReached());
 	}
@@ -267,5 +273,38 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		}
 
 		assertEquals(sb.toString(), player.getQuest(questSlot));
+	}
+
+	private void doQuestJef() {
+		final String questSlot = "find_jefs_mom";
+		assertNull(player.getQuest(questSlot));
+
+		final SpeakerNPC jef = npcs.get("Jef");
+		final SpeakerNPC amber = npcs.get("Amber");
+		assertNotNull(jef);
+		assertNotNull(amber);
+
+		Engine en = jef.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+
+		assertNotNull(player.getQuest(questSlot));
+
+		en = amber.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "jef");
+		en.step(player, "bye");
+
+		en = jef.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "fine");
+		en.step(player, "bye");
+
+		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 }

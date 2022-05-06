@@ -71,7 +71,7 @@ public class QuestCompleteBuilder {
 			simulator.npcSays(npc, greet);
 			simulator.playerSays("yes");
 			simulator.npcSays(npc, respondToAccept);
-			
+
 		}
 		simulator.info("Player was rewarded with " + this.rewardWith.toString());
 		simulator.playerSays("bye");
@@ -134,7 +134,7 @@ public class QuestCompleteBuilder {
 						new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(questSlot, 0, "start"),
 						questCompletedCondition),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				greet,
 				new MultipleActions(actions));
 	}

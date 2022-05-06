@@ -64,7 +64,7 @@ public class QuestActiveCondition implements ChatCondition {
 		QuestActiveCondition other = (QuestActiveCondition) obj;
 		return questname.equals(other.questname);
 	}
-	
+
 	public static ConditionBuilder questActive(String questName) {
 		return new ConditionBuilder(new QuestActiveCondition(questName));
 	}
