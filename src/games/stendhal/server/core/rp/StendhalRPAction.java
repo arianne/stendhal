@@ -745,7 +745,7 @@ public class StendhalRPAction {
 					final String source = oldZone.getName();
 					final String destination = zone.getName();
 
-					new GameEvent(player.getName(), "change zone", destination).raise();
+					new GameEvent(player.getName(), "change zone", destination, source).raise();
 
 					TutorialNotifier.zoneChange(player, source, destination);
 					ZoneNotifier.zoneChange(player, source, destination);
