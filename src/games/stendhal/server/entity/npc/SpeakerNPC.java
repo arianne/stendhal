@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,8 +13,10 @@ package games.stendhal.server.entity.npc;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -179,6 +180,8 @@ public class SpeakerNPC extends PassiveNPC {
 	 */
 	private Direction idleDirection = null;
 
+	private LinkedHashMap<ChatCondition, Object> prioritizedGreetingTransitions;
+
 	/**
 	 * Creates a new SpeakerNPC.
 	 *
@@ -227,7 +230,7 @@ public class SpeakerNPC extends PassiveNPC {
 	 * needed.
 	 * @param attending2 who has been talked to.
 	 */
-	protected void onGoodbye(final RPEntity attending2) {
+	protected void onGoodbye(@SuppressWarnings("unused") final RPEntity attending2) {
 		// do nothing
 	}
 
@@ -1049,5 +1052,41 @@ public class SpeakerNPC extends PassiveNPC {
 	 */
 	public void onRejectedAttackStart(RPEntity attacker) {
 		say(attacker.getName() + ", if you want my attention, just say #hi.");
+	}
+
+	/**
+	 * marks a greeting transition as priority over other greeting conditions
+	 *
+	 * @param condition ChatCondition
+	 * @param owner     owner of the condition (e. g. a quest)
+	 */
+	public void registerPrioritizedGreetingTransition(ChatCondition condition, Object owner) {
+		if (prioritizedGreetingTransitions == null) {
+			prioritizedGreetingTransitions = new LinkedHashMap<>();
+		}
+		prioritizedGreetingTransitions.put(condition, owner);
+	}
+
+	/**
+	 * checks that there are no other greeting transitions with higher priority
+	 *
+	 * @param owner    owner that likes to execute a greeting condition
+	 * @param player   Player
+	 * @param sentence Sentance
+	 * @return true, if the transition may be executed; false if another transition has a higher priority
+	 */
+	public boolean mayGreetingConditionBeExecuted(Object owner, Player player, Sentence sentence) {
+		if (prioritizedGreetingTransitions == null) {
+			return true;
+		}
+		for (Map.Entry<ChatCondition, Object> entry : prioritizedGreetingTransitions.entrySet()) {
+			if (entry.getValue() == owner) {
+				return true;
+			}
+			if (entry.getKey().fire(player, sentence, this)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
