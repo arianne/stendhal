@@ -561,7 +561,9 @@ public abstract class UpdateConverter {
 		// fix Maze
 		fixMazeQuestSlot(player);
 
+		fixQuestDoneState(player);
 	}
+
 
 	/**
 	 * Convert keyring feature to keyring item. Moves the contents of the
@@ -741,6 +743,12 @@ public abstract class UpdateConverter {
 		}
 	}
 
-
+	private static void fixQuestDoneState(Player player) {
+		String quest = "kill_gnomes";
+		String value = player.getQuest(quest, 0);
+		if (value != null && value.equals("killed")) {
+			player.setQuest(quest, 0, "done");
+		}
+	}
 
 }
