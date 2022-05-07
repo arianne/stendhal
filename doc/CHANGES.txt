@@ -28,6 +28,7 @@ Changelog
 
 *webclient*
 - added own/leave options for pets
+- entity size used to offset speech bubble position
 
 
 1.40
