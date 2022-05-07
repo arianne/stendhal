@@ -24,7 +24,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 
 /**
  * defines how the NPC react after the player completes the quest
@@ -79,6 +79,12 @@ public class QuestCompleteBuilder {
 	}
 
 	void build(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction) {
+		ChatCondition mayCompleteCondition = new AndCondition(
+				new GreetingMatchesNameCondition(npc.getName()),
+				new QuestActiveCondition(questSlot),
+				questCompletedCondition);
+		npc.registerPrioritizedGreetingTransition(mayCompleteCondition, this);
+
 		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
 		actions.add(new SetQuestAction(questSlot, 0, "done"));
 		actions.add(new SetQuestToTimeStampAction(questSlot, 1));
@@ -87,22 +93,19 @@ public class QuestCompleteBuilder {
 		}
 
 		if (respondToAccept != null) {
-			buildWithConfirmation(npc, questSlot, questCompletedCondition, actions);
+			buildWithConfirmation(npc, mayCompleteCondition, actions);
 		} else {
-			buildWithoutConfirmation(npc, questSlot, questCompletedCondition, actions);
+			buildWithoutConfirmation(npc, mayCompleteCondition, actions);
 		}
 	}
 
-	void buildWithConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, List<ChatAction> actions) {
+	void buildWithConfirmation(SpeakerNPC npc, ChatCondition mayCompleteCondition, List<ChatAction> actions) {
 
 		// player returns while quest is still active
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(
-				new GreetingMatchesNameCondition(npc.getName()),
-				new QuestInStateCondition(questSlot, "start"),
-				questCompletedCondition),
+			mayCompleteCondition,
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			greet,
 			null);
@@ -112,7 +115,7 @@ public class QuestCompleteBuilder {
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the armor
 			// away and then saying "yes"
-			questCompletedCondition,
+			mayCompleteCondition,
 			ConversationStates.ATTENDING,
 			respondToAccept,
 			new MultipleActions(actions));
@@ -127,13 +130,10 @@ public class QuestCompleteBuilder {
 
 	}
 
-	void buildWithoutConfirmation(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, List<ChatAction> actions) {
+	void buildWithoutConfirmation(SpeakerNPC npc, ChatCondition mayCompleteCondition, List<ChatAction> actions) {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(questSlot, 0, "start"),
-						questCompletedCondition),
+				mayCompleteCondition,
 				ConversationStates.ATTENDING,
 				greet,
 				new MultipleActions(actions));

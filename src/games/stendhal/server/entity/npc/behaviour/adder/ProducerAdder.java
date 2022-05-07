@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
+import games.stendhal.server.entity.npc.condition.TransitionMayBeExecutedCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
@@ -76,8 +76,10 @@ public class ProducerAdder {
         * The NPC is not currently producing for player (not started, is rejected, or is complete) */
 		engine.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npcName),
-						new QuestNotActiveCondition(QUEST_SLOT)),
+				new AndCondition(
+						new GreetingMatchesNameCondition(npcName),
+						new QuestNotActiveCondition(QUEST_SLOT),
+						new TransitionMayBeExecutedCondition(this)),
 				false, ConversationStates.ATTENDING, null, new SayTextAction(thisWelcomeMessage));
 
 		engine.add(ConversationStates.ATTENDING,
@@ -165,8 +167,10 @@ public class ProducerAdder {
 		engine.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npcName),
-						new QuestActiveCondition(QUEST_SLOT)),
+				new AndCondition(
+						new GreetingMatchesNameCondition(npcName),
+						new QuestActiveCondition(QUEST_SLOT),
+						new TransitionMayBeExecutedCondition(this)),
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					@Override
