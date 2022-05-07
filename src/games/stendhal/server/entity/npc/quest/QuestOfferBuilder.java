@@ -26,10 +26,9 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 
@@ -116,6 +115,7 @@ public class QuestOfferBuilder {
 		simulator.info("");
 
 		simulator.playerSays("hi");
+		simulator.playerSays("quest");
 		simulator.npcSays(npc, remind);
 		simulator.info("");
 	}
@@ -148,6 +148,18 @@ public class QuestOfferBuilder {
 				respondToRequest,
 				null);
 
+		LinkedList<String> triggers = new LinkedList<String>();
+		triggers.addAll(ConversationPhrases.FINISH_MESSAGES);
+		triggers.addAll(ConversationPhrases.QUEST_MESSAGES);
+		npc.add(ConversationStates.ATTENDING,
+				triggers,
+				new AndCondition(
+					new QuestActiveCondition(questSlot),
+					new NotCondition(questCompletedCondition)),
+				ConversationStates.ATTENDING,
+				remind,
+				null);
+
 		if (repeatableAfterMinutes > 0) {
 
 			npc.add(ConversationStates.ATTENDING,
@@ -163,7 +175,7 @@ public class QuestOfferBuilder {
 					ConversationPhrases.QUEST_MESSAGES,
 					new AndCondition(
 							new QuestCompletedCondition(questSlot),
-						new NotCondition(new TimePassedCondition(questSlot, 1, repeatableAfterMinutes))),
+							new NotCondition(new TimePassedCondition(questSlot, 1, repeatableAfterMinutes))),
 					ConversationStates.ATTENDING,
 					respondToUnrepeatableRequest,
 					null);
@@ -208,15 +220,6 @@ public class QuestOfferBuilder {
 					null);
 		}
 
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(questSlot, 0, "start"),
-						new NotCondition(questCompletedCondition)),
-				ConversationStates.ATTENDING,
-				remind,
-				null);
 	}
 
 }
