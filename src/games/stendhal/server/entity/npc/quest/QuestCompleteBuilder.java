@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
@@ -88,6 +89,7 @@ public class QuestCompleteBuilder {
 		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
 		actions.add(new SetQuestAction(questSlot, 0, "done"));
 		actions.add(new SetQuestToTimeStampAction(questSlot, 1));
+		actions.add(new IncrementQuestAction(questSlot, 2, 1));
 		if (questCompleteAction != null) {
 			actions.add(questCompleteAction);
 		}
