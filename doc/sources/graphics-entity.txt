@@ -273,7 +273,7 @@ amazoness_archer.*             Svetlana Kushnariova (Cabbit), Michael Williams (
 amazoness_archer_commander.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michael Williams (BizmasterStudios), olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/66349
 amazoness_bodyguard.*          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 amazoness_coastguard.*         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/108
-amazoness_coastguard_master.*  Svetlana Kushnariova (Cabbit), olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
+amazoness_coastguard_master.*  Svetlana Kushnariova (Cabbit), olonu, Spring, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
 amazoness_commander.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
 amazoness_elite_coastguard.*   Svetlana Kushnariova (Cabbit), olonu, dwtoch, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 amazoness_giant.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
