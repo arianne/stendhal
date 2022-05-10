@@ -269,17 +269,17 @@ zekiel.*         etcgood1; CC BY 4.0; https://opengameart.org/node/75195
 
 data/sprites/entity/amazon/
 
-amazoness_archer.*               Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/144
-amazoness_archer_commander.*     Svetlana Kushnariova (Cabbit), diamonddmgirl, Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/66349
-amazoness_bodyguard.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-amazoness_coastguard.png         Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/108
-amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
-amazoness_commander.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
-amazoness_elite_coastguard.*     Svetlana Kushnariova (Cabbit), olonu, dwtoch; OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
-amazoness_giant.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
-amazoness_hunter.png             Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
-amazoness_imperator.png          Svetlana Kushnariova (Cabbit), Nila122, Sollision, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/29293, https://opengameart.org/node/76967
-amazoness_vigilance.*            Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
+amazoness_archer.*             Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/144
+amazoness_archer_commander.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/66349
+amazoness_bodyguard.*          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+amazoness_coastguard.*         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/108
+amazoness_coastguard_master.*  Svetlana Kushnariova (Cabbit), olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
+amazoness_commander.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
+amazoness_elite_coastguard.*   Svetlana Kushnariova (Cabbit), olonu, dwtoch, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
+amazoness_giant.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
+amazoness_hunter.*             Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
+amazoness_imperator.*          Svetlana Kushnariova (Cabbit), Nila122, Sollision, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/29293, https://opengameart.org/node/76967
+amazoness_vigilance.*          Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
 
 
 data/sprites/entity/angel/
