@@ -681,8 +681,8 @@ royal_mummy.*  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY
 data/sprites/entity/mutant/
 
 armed_naga.png           bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
-blacky.png               Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), onu/olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/72
 cat_woman.*              Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
+dark_mutant.*            Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), onu/olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/72
 glow_monster.png         Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; https://opengameart.org/node/4125
 high_naga.png            bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
 imperial_experiment.png  artisticdude, Tuomo Untinen (Reemax), onu/olonu; CC0; https://github.com/arianne/stendhal/issues/74

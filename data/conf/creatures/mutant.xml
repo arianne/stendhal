@@ -34,7 +34,7 @@
   </creature>
 
   <creature name="dark mutant">
-    <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
+    <type class="mutant" subclass="dark_mutant" tileid="mutant.png:0"/>
     <description></description>
     <attributes>
       <atk value="325"/>
