@@ -647,18 +647,18 @@ veteran_kobold.png  Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); C
 data/sprites/entity/madaram/
 
 kasarkutominubat.*       Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/109
-madaram_archer.*         Svetlana Kushnariova (Cabbit), David E. Gervais, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/6622
-madaram_axeman.*         Svetlana Kushnariova (Cabbit), GrumpyDiamond, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83728
-madaram_buster_blader.*  Svetlana Kushnariova (Cabbit), Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10653
+madaram_archer.*         Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), David E. Gervais, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662, https://opengameart.org/node/6622
+madaram_axeman.*         Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), GrumpyDiamond, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662, https://opengameart.org/node/83728
+madaram_buster_blader.*  Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662, https://opengameart.org/node/10653
 madaram_cavalry.*        Stephen Challener (Redshrike), wulax, olonu; CC BY-SA 3.0; https://opengameart.org/node/11152, https://opengameart.org/node/11165
-madaram_healer.*         Svetlana Kushnariova (Cabbit), Devin Gaulin, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/32401
-madaram_hero.*           Svetlana Kushnariova (Cabbit), hernandack, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/91222, https://opengameart.org/node/10879
-madaram_peasant.*        Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
-madaram_queen.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-madaram_soldier.*        Svetlana Kushnariova (Cabbit), Nila122, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/25629
-madaram_stalker.*        Svetlana Kushnariova (Cabbit), olonu, Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
-madaram_trooper.*        Svetlana Kushnariova (Cabbit), olonu, Michele Bucelli (Buch), Shawneth, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
-madaram_windwalker.*     Svetlana Kushnariova (Cabbit), Buch, Olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/29662
+madaram_healer.*         Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), Devin Gaulin, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662, https://opengameart.org/node/32401
+madaram_hero.*           Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), hernandack, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/29662, https://opengameart.org/node/91222, https://opengameart.org/node/10879
+madaram_peasant.*        Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
+madaram_queen.*          Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662
+madaram_soldier.*        Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), Nila122, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29662, https://opengameart.org/node/25629
+madaram_stalker.*        Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), Eldiran, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
+madaram_trooper.*        Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), Shawneth, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
+madaram_windwalker.*     Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/29662
 
 
 data/sprites/entity/minotaur/
