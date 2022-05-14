@@ -658,7 +658,7 @@ madaram_queen.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OG
 madaram_soldier.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, Nila122, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/25629
 madaram_stalker.png      Svetlana Kushnariova (Cabbit), olonu, Eldiran; OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
 madaram_trooper.png      Svetlana Kushnariova (Cabbit), olonu, Michele Bucelli (Buch), Shawneth; OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
-madaram_windwalker.png   Andrew Friend; CC BY-SA 3.0; https://opengameart.org/node/46973
+madaram_windwalker.*     Svetlana Kushnariova (Cabbit), Buch, Olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/29662
 
 
 data/sprites/entity/minotaur/
