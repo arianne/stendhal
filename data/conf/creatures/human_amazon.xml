@@ -126,7 +126,7 @@
   </creature>
 
   <creature name="amazoness coastguard mistress">
-    <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
+    <type class="amazon" subclass="amazoness_coastguard_mistress" tileid="amazon.png:9"/>
     <description>You see an amazoness coastguard mistress. Even if they are women, these blue haired mistresses should not be underestimated.</description>
     <attributes>
       <atk value="569"/>
