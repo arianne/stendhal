@@ -2,3 +2,6 @@ The following images can be removed after version 1.41 release:
 
 amazon/
 - amazoness_coastguard_master
+
+mutant/
+- blacky
