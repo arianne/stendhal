@@ -647,17 +647,17 @@ veteran_kobold.png  Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); C
 data/sprites/entity/madaram/
 
 kasarkutominubat.*       Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/109
-madaram_archer.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/6622
+madaram_archer.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, David E. Gervais, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/6622
 madaram_axeman.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/83728
-madaram_buster_blader.*  Svetlana Kushnariova (Cabbit), diamonddmgirl, Gwes, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/10653
+madaram_buster_blader.*  Svetlana Kushnariova (Cabbit), diamonddmgirl, Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/10653
 madaram_cavalry.*        Stephen Challener (Redshrike), wulax, olonu; CC BY-SA 3.0; https://opengameart.org/node/11152, https://opengameart.org/node/11165
-madaram_healer.png       Svetlana Kushnariova (Cabbit), diamonddmgirl, Devin Gaulin, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/32401
+madaram_healer.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, Devin Gaulin, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/32401
 madaram_hero.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, hernandack, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/72198, https://opengameart.org/node/91222, https://opengameart.org/node/10879
 madaram_peasant.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/83661
-madaram_queen.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
-madaram_soldier.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, Nila122, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/25629
-madaram_stalker.png      Svetlana Kushnariova (Cabbit), olonu, Eldiran; OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
-madaram_trooper.png      Svetlana Kushnariova (Cabbit), olonu, Michele Bucelli (Buch), Shawneth; OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
+madaram_queen.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
+madaram_soldier.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, Nila122, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/25629
+madaram_stalker.*        Svetlana Kushnariova (Cabbit), olonu, Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
+madaram_trooper.*        Svetlana Kushnariova (Cabbit), olonu, Michele Bucelli (Buch), Shawneth, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
 madaram_windwalker.*     Svetlana Kushnariova (Cabbit), Buch, Olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/29662
 
 
