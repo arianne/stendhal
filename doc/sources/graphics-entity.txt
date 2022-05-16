@@ -404,7 +404,7 @@ data/sprites/entity/elemental/
 air_elemental.*      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 djinn.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/82929
 earth_elemental.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; https://opengameart.org/node/3393
-fire_elemental.png   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+fire_elemental.png   Svetlana Kushnariova (Cabbit), Jirdan Irwin (AntumDeluge); OGA BY 3.0; Stendhal,  https://opengameart.org/node/72969
 ice_elemental.png    Wolfgang Wozniak (Ouren); CC BY 3.0; https://opengameart.org/node/45977
 nymph.png            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 water_elemental.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
