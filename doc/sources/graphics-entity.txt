@@ -510,7 +510,7 @@ woman_gnome.png  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart
 
 data/sprites/entity/goblin/
 
-goblin.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
+goblin.*            Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/5215
 soldier_goblin.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 veteran_goblin.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 
