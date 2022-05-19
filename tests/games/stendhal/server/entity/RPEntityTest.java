@@ -353,7 +353,7 @@ public class RPEntityTest {
 			}
 
 			@Override
-			public int damageDone(final RPEntity defender, double attackingWeaponsValue,
+			protected int damageDone(final RPEntity defender, double attackingWeaponsValue,
 					Nature damageType, boolean ranged, int maxRange) {
 				return 30;
 			}
