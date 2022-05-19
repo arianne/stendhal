@@ -371,8 +371,18 @@ public class SimulateCombat {
 
 		player.setLevel(p_lvl);
 		player.setBaseHP(100 + 10 * p_lvl);
-		player.setAtk(atkLevels[p_lvl]);
-		player.setDef(defLevels[p_lvl]);
+
+		int p_atk = atkLevels[p_lvl] + 8;
+		int p_def = defLevels[p_lvl] + 8;
+
+		if (p_lvl > 149) {
+			// stat boost from Aenihata
+			p_atk += 50;
+			p_def += 100;
+		}
+
+		player.setAtk(p_atk);
+		player.setDef(p_def);
 
 		if (fair) {
 			player.equip("rhand", weapon_5);
