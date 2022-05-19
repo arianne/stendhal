@@ -3068,7 +3068,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return risk > 0;
 	}
 
-	int calculateRiskForCanHit(final int roll, final int defenderDEF,
+	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
 		return 20 * attackerATK - roll * defenderDEF;
 	}
