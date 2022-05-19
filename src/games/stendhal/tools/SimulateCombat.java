@@ -363,6 +363,8 @@ public class SimulateCombat {
 			}
 		}
 
+		System.out.println("\nSetting up for enemy: " + enemy.getName());
+
 		player = (Player) new PlayerTransformer().transform(new RPObject());
 
 		final int p_lvl = enemy.getLevel();
