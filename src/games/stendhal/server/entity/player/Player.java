@@ -2921,13 +2921,20 @@ public class Player extends DressedEntity implements UseListener {
 	/**
 	 * This hack doubles the chance that a player can hit an enemy
 	 * to make the game feel more fair. However, in order to avoid
-	 * drastic changes to the game's balance, we will need to
-	 * reduce the amount of damage done by players.
+	 * drastic changes to the game's balance, we need to reduce
+	 * the amount of damage done by players. See:
+	 *     Player.damageDone.
 	 */
 	@Override
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
 		// use 40 as multiple for players instead of 20
 		return 40 * attackerATK - roll * defenderDEF;
+	}
+
+	@Override
+	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
+		// compensate for player doubled chance of hit
+		return (int) Math.ceil(super.damageDone(defender, attackingWeaponsValue, damageType) / 2.0);
 	}
 }
