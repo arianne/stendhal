@@ -110,6 +110,15 @@ public class SimulateCombat {
 	private static final int TURN_LIMIT = 1000;
 	private static int incomplete_rounds = 0;
 
+	private static int phits = 0; // total successful hits by player
+	private static int pmisses = 0; // total misses by player
+	private static int pblocked = 0; // total times player was blocked
+	private static long pdamage = 0; // total damage done by player
+	private static int ehits = 0; // total successful hits by enemy
+	private static int emisses = 0; // total misses by enemy
+	private static int eblocked = 0; // total times enemy was blocked
+	private static long edamage = 0; // total damage done by enemy
+
 
 	public static void main(final String[] argv) throws Exception {
 		parseArgs(argv);
@@ -428,6 +437,15 @@ public class SimulateCombat {
 		int losses = 0;
 		int ties = 0;
 
+		phits = 0;
+		pmisses = 0;
+		pblocked = 0;
+		pdamage = 0;
+		ehits = 0;
+		emisses = 0;
+		eblocked = 0;
+		edamage = 0;
+
 		int ridx;
 		for (ridx = 0; ridx < rounds; ridx++) {
 			final Pair<Integer, Integer> result = simulateRound();
@@ -608,6 +626,15 @@ public class SimulateCombat {
 				+ balance_threshold + "%");
 		}
 		System.out.println("    Beneficiary: " + beneficiary);
+
+		System.out.println("\n  Total damage done by player: " + pdamage
+		+ "\n    Hits:    " + phits
+		+ "\n    Misses:  " + pmisses
+		+ "\n    Blocked: " + pblocked
+		+ "\n  Total damage done by enemy: " + edamage
+		+ "\n    Hits:    " + ehits
+		+ "\n    Misses:  " + emisses
+		+ "\n    Blocked: " + eblocked);
 	}
 
 	private static Pair<Integer, Integer> simulateRound() {
@@ -619,8 +646,34 @@ public class SimulateCombat {
 		while (player.getHP() > 0 && enemy.getHP() > 0) {
 			turn++;
 
-			final int damageDealt = player.damageDone(enemy, player.getItemAtk(), player.getDamageType());
-			final int damageReceived = enemy.damageDone(player, enemy.getItemAtk(), player.getDamageType());
+			int damageDealt = 0;
+			int damageReceived = 0;
+
+			if (!player.canHit(enemy)) {
+				pmisses++;
+			} else {
+				damageDealt = player.damageDone(enemy, player.getItemAtk(), player.getDamageType());
+
+				if (damageDealt > 0 ) {
+					phits++;
+					pdamage += damageDealt;
+				} else {
+					pblocked++;
+				}
+			}
+
+			if (!enemy.canHit(player)) {
+				emisses++;
+			} else {
+				damageReceived = enemy.damageDone(player, enemy.getItemAtk(), player.getDamageType());
+
+				if (damageReceived > 0 ) {
+					ehits++;
+					edamage += damageReceived;
+				} else {
+					eblocked++;
+				}
+			}
 
 			player.setHP(player.getHP() - damageReceived);
 			enemy.setHP(enemy.getHP() - damageDealt);
