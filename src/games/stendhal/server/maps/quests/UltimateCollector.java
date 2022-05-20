@@ -221,66 +221,66 @@ public class UltimateCollector extends AbstractQuest {
 
 		/* Updated 2022-05-20
 		 *
-		 * Rarity calculations (lower means more rare):
-		 *   (spawn points * drop rate * (1 / respawn time)) +
-		 *   (spawn points * drop rate * (1 / respawn time)) + ....
+		 * Rarity calculations (higher means more rare):
+		 *   1 / (spawn points * drop rate * (1 / respawn time)) +
+		 *   1 / (spawn points * drop rate * (1 / respawn time)) + ....
 		 *
-		 * Recommended min: 1.669 (imperator sword)
-		 * Recommended max: 27.501 (vulcano hammer)
+		 * Current most rare: 920308 (vulcano hammer)
+		 * Current least rare: 500 (chaos dagger)
 		 *
 		 * Items given as rewards from quests or otherwise acquirable via
 		 * methods other than creature drops should not be included.
 		 *
 		 *
 		 * - black scythe
-		 *   - devil monk: 4 * 0.001 * (1 / 26000) = 3.846
-		 *   - black death: 4 * 0.005 * (1 / 70000) = 1.429
-		 *   - total: 5.275
+		 *   - devil monk: 1 / (4 * 0.001 * (1 / 130)) = 32500
+		 *   - black death: 1 / (4 * 0.005 * (1 / 350)) = 17500
+		 *   - total: 50000
 		 *
 		 * - black sword
-		 *   - dark mutant: 10 * 0.000025 * (1 / 1420) = 7.042
-		 *   - dark elf master: 2 * 0.0005 * (1 / 10300) = 9.709
-		 *   - black giant: 3 * 0.005 * (1 / 32000) = 0.00003
-		 *   - total: 16.751
+		 *   - dark mutant: 1 / (10 * 0.000025 * (1 / 7.1)) = 28400
+		 *   - dark elf master: 1 / (2 * 0.0005 * (1 / 51.5)) = 51500
+		 *   - black giant: 1 / (3 * 0.005 * (1 / 160)) = 10667
+		 *   - total: 90567
 		 *
 		 * - chaos dagger
-		 *   - chaos sorcerer: 30 * 0.001 * (1 / 3000) = 3.333
-		 *   - total: 3.333
+		 *   - chaos sorcerer: 1 / (30 * 0.001 * (1 / 15)) = 500
+		 *   - total: 500
 		 *
 		 * - durin axe
-		 *   - duergar hero: 10 * 0.00001 * (1 / 1650) = 6.06
-		 *   - giant dwarf: 2 * 0.0001 * (1 / 3530) = 2.833
-		 *   - dwarf golem: 11 * 0.0025 * (1 / 16000) = 0.00006
-		 *   - Lord Durin: 1 * 0.01 * (1 / 75000) = 1.333
-		 *   - total: 10.226
+		 *   - duergar hero: 1 / (10 * 0.00001 * (1 / 8.25)) = 82500
+		 *   - giant dwarf: 1 / (2 * 0.0001 * (1 / 17.65)) = 88250
+		 *   - dwarf golem: 1 / (11 * 0.0025 * (1 / 80)) = 2909
+		 *   - Lord Durin: 1 / (1 * 0.01 * (1 / 375)) = 37500
+		 *   - total: 211159
 		 *
 		 * - imperator sword
-		 *   - amazoness imperator: 1 * 0.01 * (1 / 5990) = 1.669
-		 *   - total: 1.669
+		 *   - amazoness imperator: 1 / (1 * 0.01 * (1 / 29.95)) = 2995
+		 *   - total: 2995
 		 *
 		 * - magic twoside axe
-		 *   - mountain leader dwarf:  18 * 0.00005 * (1 / 2690) = 3.717
-		 *   - giant dwarf: 2 * 0.002 * (1 / 3530) = 2.833
-		 *   - dwarf golem: 11 * 0.01 * (1 / 16000) = 0.00006
-		 *   - dark angel: 2 * 0.02 * (1 / 160000) = 0.000006
-		 *   - total: 6.55
+		 *   - mountain leader dwarf:  1 / (18 * 0.00005 * (1 / 13.45)) = 14944
+		 *   - giant dwarf: 1 / (2 * 0.002 * (1 / 17.65)) = 4413
+		 *   - dwarf golem: 1 / (11 * 0.01 * (1 / 80)) = 727
+		 *   - dark angel: 1 / (2 * 0.02 * (1 / 800)) = 20000
+		 *   - total: 40084
 		 *
 		 * - nihonto
-		 *   - samurai: 20 * 0.001 * (1 / 2880) = 3.472
-		 *   - total: 3.472
+		 *   - samurai: 1 / (20 * 0.001 * (1 / 14.4)) = 720
+		 *   - total: 720
 		 *
 		 * - vulcano hammer
-		 *   - mountain orc hunter: 11 * 0.00005 * (1 / 1690) = 5.917
-		 *   - minotaur king: 1 * 0.00005 * (1 / 1870) = 5.348
-		 *   - barbarian leader: 7 * 0.00005 * (1 / 1960) = 5.102
-		 *   - mountain leader dwarf: 18 * 0.00005 * (1 / 2690) = 3.717
-		 *   - devil monk: 4 * 0.0001 * (1 / 26000) = 3.846
-		 *   - fallen angel: 4 * 0.0001 * (1 / 28000) = 3.571
-		 *   - total: 27.501
+		 *   - mountain orc hunter: 1 / (11 * 0.00005 * (1 / 8.45)) = 15364
+		 *   - minotaur king: 1 / (1 * 0.00005 * (1 / 9.35)) = 187000
+		 *   - barbarian leader: 1 / (7 * 0.00005 * (1 / 9.8)) = 28000
+		 *   - mountain leader dwarf: 1 / (18 * 0.00005 * (1 / 13.45)) = 14944
+		 *   - devil monk: 1 / (4 * 0.0001 * (1 / 130)) = 325000
+		 *   - fallen angel: 1 / (4 * 0.0001 * (1 / 140)) = 350000
+		 *   - total: 920308
 		 *
 		 * - xeno sword
-		 *   - xenocium: 2 * 0.005 * (1 / 3000) = 3.333
-		 *   - total: 3.333
+		 *   - xenocium: 1 / (2 * 0.005 * (1 / 15)) = 1500
+		 *   - total: 1500
 		 */
 
 		// the numbers are based on depo's metric for rarity (bigger number = more rare) which may be out of date https://sourceforge.net/tracker/?func=detail&aid=2066597&group_id=1111&atid=973767
