@@ -219,6 +219,63 @@ public class UltimateCollector extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Balduin");
 		final Map<String,Integer> items = new HashMap<String, Integer>();
 
+		/* Updated 2022-05-20
+		 *
+		 * Rarity calculations:
+		 *   (spawn points * drop rate * (1 / respawn time)) +
+		 *   (spawn points * drop rate * (1 / respawn time)) + ....
+		 *
+		 * - black scythe
+		 *   - devil monk: 4 * 0.001 * (1 / 26000) = 3.846
+		 *   - black death: 4 * 0.005 * (1 / 70000) = 1.429
+		 *   - total: 5.275
+		 *
+		 * - black sword
+		 *   - dark mutant: 10 * 0.000025 * (1 / 1420) = 7.042
+		 *   - dark elf master: 2 * 0.0005 * (1 / 10300) = 9.709
+		 *   - black giant: 3 * 0.005 * (1 / 32000) = 0.00003
+		 *   - total: 16.751
+		 *
+		 * - chaos dagger
+		 *   - chaos sorcerer: 30 * 0.001 * (1 / 3000) = 3.333
+		 *   - total: 3.333
+		 *
+		 * - durin axe
+		 *   - duergar hero: 10 * 0.00001 * (1 / 1650) = 6.06
+		 *   - giant dwarf: 2 * 0.0001 * (1 / 3530) = 2.833
+		 *   - dwarf golem: 11 * 0.0025 * (1 / 16000) = 0.00006
+		 *   - Lord Durin: 1 * 0.01 * (1 / 75000) = 1.333
+		 *   - total: 10.226
+		 *
+		 * - imperator sword
+		 *   - amazoness imperator: 1 * 0.01 * (1 / 5990) = 1.669
+		 *   - total: 1.669
+		 *
+		 * - magic twoside axe
+		 *   - mountain leader dwarf:  18 * 0.00005 * (1 / 2690) = 3.717
+		 *   - giant dwarf: 2 * 0.002 * (1 / 3530) = 2.833
+		 *   - dwarf golem: 11 * 0.01 * (1 / 16000) = 0.00006
+		 *   - dark angel: 2 * 0.02 * (1 / 160000) = 0.000006
+		 *   - total: 6.55
+		 *
+		 * - nihonto
+		 *   - samurai: 20 * 0.001 * (1 / 2880) = 3.472
+		 *   - total: 3.472
+		 *
+		 * - vulcano hammer
+		 *   - mountain orc hunter: 11 * 0.00005 * (1 / 1690) = 5.917
+		 *   - minotaur king: 1 * 0.00005 * (1 / 1870) = 5.348
+		 *   - barbarian leader: 7 * 0.00005 * (1 / 1960) = 5.102
+		 *   - mountain leader dwarf: 18 * 0.00005 * (1 / 2690) = 3.717
+		 *   - devil monk: 4 * 0.0001 * (1 / 26000) = 3.846
+		 *   - fallen angel: 4 * 0.0001 * (1 / 28000) = 3.571
+		 *   - total: 27.501
+		 *
+		 * - xeno sword
+		 *   - xenocium: 2 * 0.005 * (1 / 3000) = 3.333
+		 *   - total: 3.333
+		 */
+
 		// the numbers are based on depo's metric for rarity (bigger number = more rare) which may be out of date https://sourceforge.net/tracker/?func=detail&aid=2066597&group_id=1111&atid=973767
 		// nothing rarer than a demon fire sword, and not included items which are quest rewards elsewhere
 		items.put("nihonto",1); // 5169
