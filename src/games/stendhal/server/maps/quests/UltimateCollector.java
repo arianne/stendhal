@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -221,9 +221,16 @@ public class UltimateCollector extends AbstractQuest {
 
 		/* Updated 2022-05-20
 		 *
-		 * Rarity calculations:
+		 * Rarity calculations (lower means more rare):
 		 *   (spawn points * drop rate * (1 / respawn time)) +
 		 *   (spawn points * drop rate * (1 / respawn time)) + ....
+		 *
+		 * Recommended min: 1.669 (imperator sword)
+		 * Recommended max: 27.501 (vulcano hammer)
+		 *
+		 * Items given as rewards from quests or otherwise acquirable via
+		 * methods other than creature drops should not be included.
+		 *
 		 *
 		 * - black scythe
 		 *   - devil monk: 4 * 0.001 * (1 / 26000) = 3.846
