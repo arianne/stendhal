@@ -329,8 +329,7 @@ public class LuaQuestHelper {
 	/**
 	 * Class to aid with quest manipulation in Lua.
 	 */
-	@SuppressWarnings("unused")
-	private static class LuaQuest extends AbstractQuest {
+	public static class LuaQuest extends AbstractQuest {
 
 		private static LuaLogger logger = LuaLogger.get();
 
