@@ -80,6 +80,7 @@ public interface ITPPQuestConstants {
 			"int_ados_church_1",
 //			"int_ados_felinas_house",
 			"int_ados_fishermans_hut_north",
+			"int_ados_fishermans_hut_south",
 			"int_ados_goldsmith",
 //			"int_ados_haunted_house",
 			"int_ados_library",
