@@ -452,7 +452,7 @@ stendhal.ui.gamewindow = {
 		}
 
 		const filename = "screenshot_" + ts.yyyy + ts.mm
-				+ ts.dd + "." + ts.HH + "." + ts.MM + "."
+				+ ts.dd + "_" + ts.HH + "." + ts.MM + "."
 				+ ts.SS + "." + ts.ms + ".png";
 
 		const anchor = document.createElement("a");
