@@ -30,6 +30,9 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import marauroa.common.game.IRPZone;
 
+
+// FIXME: this does not count spawn points for ItemGuardCreature nor
+//        ItemChangeGuardCreature instances
 public class GenerateMonsterUsage {
 	public static void main(final String[] args) throws URISyntaxException,
 			SAXException, IOException {
