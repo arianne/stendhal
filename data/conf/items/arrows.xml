@@ -199,4 +199,30 @@
     </equipable>
   </item>
 
+<!-- FIXME: need to implement status attacks for weapons
+  <item name="poison arrow">
+    <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
+    <description>You see a poison arrow. The tip has been saturated with a poisonous compound.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk condition="!testing.combat" value="1"/>
+      <ratk condition="testing.combat" value="1"/>
+      <range value="2"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+      <min_level value="0"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="50"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+-->
+
 </items>
