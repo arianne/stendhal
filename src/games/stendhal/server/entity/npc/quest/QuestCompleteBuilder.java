@@ -86,13 +86,14 @@ public class QuestCompleteBuilder {
 				questCompletedCondition);
 		npc.registerPrioritizedGreetingTransition(mayCompleteCondition, this);
 
-		List<ChatAction> actions = new LinkedList<ChatAction>(rewardWith);
-		actions.add(new SetQuestAction(questSlot, 0, "done"));
-		actions.add(new SetQuestToTimeStampAction(questSlot, 1));
-		actions.add(new IncrementQuestAction(questSlot, 2, 1));
+		List<ChatAction> actions = new LinkedList<ChatAction>();
 		if (questCompleteAction != null) {
 			actions.add(questCompleteAction);
 		}
+		actions.add(new SetQuestAction(questSlot, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(questSlot, 1));
+		actions.add(new IncrementQuestAction(questSlot, 2, 1));
+		actions.addAll(rewardWith);
 
 		if (respondToAccept != null) {
 			buildWithConfirmation(npc, mayCompleteCondition, actions);
