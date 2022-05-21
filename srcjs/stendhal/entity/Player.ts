@@ -22,13 +22,15 @@ import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
 import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
+import { Color } from "../util/Color";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
 
 export class Player extends RPEntity {
 	override minimapShow = true;
-	override minimapStyle = "rgb(255, 255, 255)";
+	override minimapStyle = Color.USER;
 	override dir = 3;
 
 	override set(key: string, value: any) {
