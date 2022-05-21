@@ -11,6 +11,8 @@
 
 import { Component } from "../toolkit/Component";
 
+import { Player } from "../../entity/Player";
+
 declare let marauroa: any;
 declare let stendhal: any;
 
@@ -176,7 +178,29 @@ export class MiniMapComponent extends Component {
 				} else {
 					ctx.strokeStyle = "rgb(128, 128, 128)";
 				}
-				ctx.strokeRect(o["x"] * this.scale, o["y"] * this.scale, o["width"] * this.scale, o["height"] * this.scale);
+
+				if (o instanceof Player) {
+					let adj_scale = this.scale;
+					if (adj_scale < 6) {
+						// + is hard to see in wider views
+						adj_scale = 6;
+					}
+
+					let ho = (o["width"] * adj_scale) / 2;
+					let vo = (o["height"] * adj_scale) / 2;
+					const hc = o["x"] * this.scale + ho;
+					const vc = o["y"] * this.scale + vo;
+
+					ctx.beginPath();
+					ctx.moveTo(hc - ho, vc);
+					ctx.lineTo(hc + ho, vc);
+					ctx.moveTo(hc, vc - vo);
+					ctx.lineTo(hc, vc + vo);
+					ctx.stroke();
+					ctx.closePath();
+				} else {
+					ctx.strokeRect(o["x"] * this.scale, o["y"] * this.scale, o["width"] * this.scale, o["height"] * this.scale);
+				}
 			}
 		}
 	}
