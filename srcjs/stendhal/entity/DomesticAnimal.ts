@@ -12,10 +12,14 @@
 import { RPEntity } from "./RPEntity";
 import { MenuItem} from "../action/MenuItem";
 
+import { Color } from "../util/Color";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
 export class DomesticAnimal extends RPEntity {
+
+	override minimapStyle = Color.DOMESTICANIMAL;
 
 	override drawMain(ctx: CanvasRenderingContext2D) {
 		if (!this.imagePath && this["_rpclass"]) {
