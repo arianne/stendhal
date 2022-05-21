@@ -117,6 +117,10 @@ export class Entity extends RPObject {
 		}
 	}
 
+	public onMiniMapDraw() {
+		// do nothing
+	}
+
 	/**
 	 *  Ensure that the drawing code can rely on _x and _y
 	 */

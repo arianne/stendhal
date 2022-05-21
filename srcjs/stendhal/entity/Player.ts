@@ -30,7 +30,7 @@ declare var stendhal: any;
 
 export class Player extends RPEntity {
 	override minimapShow = true;
-	override minimapStyle = Color.USER;
+	override minimapStyle = Color.PLAYER;
 	override dir = 3;
 
 	override set(key: string, value: any) {
@@ -159,6 +159,15 @@ export class Player extends RPEntity {
 		}
 		var temp = marauroa.me["!ignore"]._objects;
 		return temp.length > 0 && ("_" + this["_name"]) in temp[0];
+	}
+
+	public override onMiniMapDraw() {
+		if (marauroa.me === this) {
+			// FIXME: is it possible to do this in constructor or after construction
+			this.minimapStyle = Color.USER;
+		} else {
+			this.minimapStyle = Color.PLAYER;
+		}
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {

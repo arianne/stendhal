@@ -168,6 +168,8 @@ export class MiniMapComponent extends Component {
 		for (let i in marauroa.currentZone) {
 			let o = marauroa.currentZone[i];
 			if (typeof(o["x"]) != "undefined" && typeof(o["y"]) != "undefined" && (o.minimapShow || isAdmin)) {
+				o.onMiniMapDraw();
+
 				// this.ctx.fillText(o.id, o.x * this.scale, o.y * this.scale);
 				if (o.minimapStyle) {
 					ctx.strokeStyle = o.minimapStyle;
