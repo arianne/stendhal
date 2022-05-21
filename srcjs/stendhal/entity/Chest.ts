@@ -14,6 +14,8 @@ import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 
 import { Entity } from "./Entity";
 
+import { Color } from "../util/Color";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
@@ -32,6 +34,9 @@ let CLOSED_SPRITE = {
 };
 
 export class Chest extends Entity {
+
+	override minimapStyle = Color.CHEST;
+
 	override zIndex = 5000;
 	sprite = CLOSED_SPRITE;
 	open = false;

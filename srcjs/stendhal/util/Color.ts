@@ -23,6 +23,7 @@ export class Color {
 	public static readonly ORANGE = "#ffa500";
 	public static readonly PINK = "#ffc0cb";
 	public static readonly RED = "#ff0000";
+	public static readonly VIOLET = "rgb(238, 130, 238)";
 	public static readonly WHITE = "#ffffff";
 	public static readonly YELLOW = "#ffff00";
 
@@ -44,4 +45,5 @@ export class Color {
 	public static readonly MOVING = "rgb(200, 255, 200)";
 	public static readonly PORTAL = Color.WHITE;
 	public static readonly PORTALOUTLINE = Color.BLACK;
+	public static readonly CHEST = Color.VIOLET;
 }
