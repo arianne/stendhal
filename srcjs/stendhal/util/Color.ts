@@ -26,6 +26,7 @@ export class Color {
 	public static readonly WHITE = "#ffffff";
 	public static readonly YELLOW = "#ffff00";
 
+	public static readonly CREATURE = Color.YELLOW;
 	public static readonly DOMESTICANIMAL = "rgb(255, 150, 0)";
 	public static readonly GHOST = Color.GRAY;
 	public static readonly GROUP = "rgb(99, 61, 139)";

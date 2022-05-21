@@ -11,12 +11,14 @@
 
 import { RPEntity } from "./RPEntity";
 
+import { Color } from "../util/Color";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
 export class Creature extends RPEntity {
 
-	override minimapStyle = "rgb(255,255,0)";
+	override minimapStyle = Color.CREATURE;
 	override spritePath = "monsters";
 	override titleStyle = "#ffc8c8";
 
