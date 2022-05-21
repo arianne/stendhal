@@ -6,17 +6,17 @@
   <!-- START: cephalopod -->
 
   <creature name="kraken">
-  <type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
-  <description>From the depths of the sea rises a Kraken!</description>
-  <attributes>
-  <atk value="887"/>
-  <def value="114"/>
-  <hp value="1935"/>
-  <speed value="1"/>
-  <size value="3,2"/>
-  </attributes>
-  <level value="155"/>
-  <experience value="38830"/>
+    <type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
+    <description>From the depths of the sea rises a Kraken!</description>
+    <attributes>
+      <atk value="887"/>
+      <def value="114"/>
+      <hp value="1935"/>
+      <speed value="1"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="155"/>
+    <experience value="38830"/>
     <respawn value="5400"/>
     <corpse name="animal_2x2"/>
     <drops>
