@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,15 +13,20 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 /**
  * Chooses and equips the specified item from a list
@@ -35,7 +39,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	private final int min;
 	private final int max;
 	private final int increment;
-
+	private final String text;
 
 	/**
 	 * Creates a new EquipRandomAmountOfItemAction.<br/>
@@ -50,7 +54,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * 			 maximum quantity
 	 */
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max) {
-		this(item, min, max, 1);
+		this(item, min, max, 1, null);
 	}
 
 	/**
@@ -64,15 +68,37 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * 			 lower bound
 	 * @param max
 	 * 			 upper bound
-	 * @param multiplayer
+	 * @param increment
 	 * 			 ie, only return numbers multiples of X
 	 */
 	@Dev
-	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int multiplayer) {
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment) {
+		this(item, min, max, increment, null);
+	}
+
+	/**
+	 * Creates a new EquipRandomItemAction.<br/>
+	 * Since stackable, min and max must be > 0.<br/>
+	 * If min > max, min is treated like max and vice versa
+	 *
+	 * @param item
+	 *           stackable item
+	 * @param min
+	 * 			 lower bound
+	 * @param max
+	 * 			 upper bound
+	 * @param increment
+	 * 			 ie, only return numbers multiples of X
+	 * @param text
+	 * 			text to say
+	 */
+	@Dev
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment, String text) {
 		this.item = checkNotNull(item);
 		this.min = min;
 		this.max = max;
-		this.increment = multiplayer;
+		this.increment = increment;
+		this.text = text;
 	}
 
 	@Override
@@ -93,6 +119,12 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 			}
 			final Integer amount = attempt;
 			new EquipItemAction(itemName, amount, false).fire(player, null, null);
+			if (text != null) {
+				Map<String, Object> params = new HashMap<>();
+				params.put("this_these", Grammar.thisthese(amount));
+				params.put("number_item", Grammar.quantityNumberStrNoun(amount, item));
+				npc.say(StringUtils.substitute(text, params));
+			}
 		}
 	}
 
@@ -105,13 +137,15 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 		sb.append(min);
 		sb.append(", ");
 		sb.append(max);
+		sb.append(", ");
+		sb.append(text);
 		sb.append(">");
 		return sb.toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return 5179 * item.hashCode() + min * max * increment;
+		return 5179 * item.hashCode() + min * max * increment * text.hashCode();
 	}
 
 	@Override
@@ -134,6 +168,9 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 			return false;
 		}
 		if ((min != other.min) || (max != other.max) || (increment != other.increment)){
+			return false;
+		}
+		if ((text != other.text) || (text == null) || !text.equals(other.text)){
 			return false;
 		}
 		return true;
