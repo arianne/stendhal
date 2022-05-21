@@ -23,6 +23,7 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.maps.ados.market.BBQGrillmasterNPC;
 import games.stendhal.server.maps.semos.mines.MinerNPC;
 import utilities.PlayerTestHelper;
@@ -56,7 +57,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		new BBQGrillmasterNPC().configureZone(zone, null);
 		new MinerNPC().configureZone(zone, null);
 
-		quest = new CoalForHaunchy();
+		quest = new BuiltQuest(new CoalForHaunchy().story());
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
@@ -78,11 +79,11 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "task");
 		assertEquals("I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?", getReply(haunchy));
 		haunchyEng.step(player, "coal");
-		assertEquals("Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels...", getReply(haunchy));
+		assertEquals("Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels... Will you help me?", getReply(haunchy));
 		haunchyEng.step(player, "yes");
-		assertEquals("Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.", getReply(haunchy));
+		assertEquals("Thank you! I'll be sure to give you a nice and tasty reward.", getReply(haunchy));
 		haunchyEng.step(player, "coal");
-		assertEquals("You don't have the coal amount which I need yet. Go and pick some more pieces up, please.", getReply(haunchy));
+		assertEquals("Sometime you could do me a #favour ...", getReply(haunchy));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 
@@ -115,20 +116,16 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "hi");
 		assertEquals("Hey! Nice day for a BBQ!", getReply(haunchy));
 		haunchyEng.step(player, "task");
-		assertEquals("You don't have the coal amount which I need yet. Go and pick some more pieces up, please.", getReply(haunchy));
+		assertEquals("Luckily my BBQ is still going. But please hurry up to bring me 25 coal as you promised.", getReply(haunchy));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 
 		// get another 15 coals
 		PlayerTestHelper.equipWithStackableItem(player, "coal", 25);
 		haunchyEng.step(player, "hi");
-		assertEquals("Hey! Nice day for a BBQ!", getReply(haunchy));
-		haunchyEng.step(player, "task");
-		// We get one or more grilled steaks a reward:
-		// You see a fresh grilled steak. It smells awesome and is really juicy. It is a special quest reward for player, and cannot be used by others. Stats are (HP: 200).
-		assertTrue(getReply(haunchy).matches("Thank you!! Take .* grilled steaks? from my grill!"));
+		assertTrue(getReply(haunchy).matches("Thank you! Take .* grilled steaks? from my grill!"));
 		assertTrue(player.isEquipped("grilled steak"));
-		assertEquals("waiting", player.getQuest(questSlot, 0));
+		assertEquals("done", player.getQuest(questSlot, 0));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 
@@ -137,7 +134,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "hi");
 		assertEquals("Hey! Nice day for a BBQ!", getReply(haunchy));
 		haunchyEng.step(player, "task");
-		assertEquals("The coal amount behind my counter is still high enough. I will not need more for 2 days.", getReply(haunchy));
+		assertEquals("The coal amount behind my counter is still high enough. I will not need more for some time.", getReply(haunchy));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 
@@ -148,13 +145,13 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "coal");
 		assertEquals("Sometime you could do me a #favour ...", getReply(haunchy));
 		haunchyEng.step(player, "favour");
-		assertEquals("The coal amount behind my counter is still high enough. I will not need more for 2 days.", getReply(haunchy));
+		assertEquals("The coal amount behind my counter is still high enough. I will not need more for some time.", getReply(haunchy));
 		haunchyEng.step(player, "offer");
 		assertEquals("I hope that my steaks will be ready soon. Please be a bit patient or have some other snacks first.", getReply(haunchy));
 		haunchyEng.step(player, "help");
 		assertEquals("Unfortunately the steaks aren't ready yet... If you are hungry and can't wait, you could check some offers in the near out like the Blacksheep offers near the fisherhuts in Ados or you can take a ferry to Athor for getting some nice snacks...", getReply(haunchy));
 		haunchyEng.step(player, "task");
-		assertEquals("The coal amount behind my counter is still high enough. I will not need more for 2 days.", getReply(haunchy));
+		assertEquals("The coal amount behind my counter is still high enough. I will not need more for some time.", getReply(haunchy));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 	}

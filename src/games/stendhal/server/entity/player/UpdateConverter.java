@@ -744,10 +744,10 @@ public abstract class UpdateConverter {
 	}
 
 	private static void fixQuestDoneState(Player player) {
-		List<String> quests = Arrays.asList("kill_gnomes", "clean_athors_underground");
+		List<String> quests = Arrays.asList("kill_gnomes", "clean_athors_underground", "coal_for_haunchy");
 		for (String quest : quests) {
 			String value = player.getQuest(quest, 0);
-			if (value != null && value.equals("killed")) {
+			if (value != null && (value.equals("killed") || value.equals("waiting"))) {
 				player.setQuest(quest, 0, "done");
 			}
 		}
