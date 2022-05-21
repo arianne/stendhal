@@ -165,6 +165,8 @@ export class Player extends RPEntity {
 		if (marauroa.me === this) {
 			// FIXME: is it possible to do this in constructor or after construction
 			this.minimapStyle = Color.USER;
+		} else if (stendhal.data.group.members[this["name"]]) {
+			this.minimapStyle = Color.GROUP;
 		} else {
 			this.minimapStyle = Color.PLAYER;
 		}
