@@ -29,6 +29,7 @@ export class Color {
 	public static readonly DOMESTICANIMAL = "rgb(255, 150, 0)";
 	public static readonly GHOST = Color.GRAY;
 	public static readonly GROUP = "rgb(99, 61, 139)";
+	public static readonly NPC = "rgb(0, 150, 0)";
 	public static readonly PLAYER = Color.WHITE;
 	public static readonly USER = Color.BLUE;
 

@@ -11,8 +11,10 @@
 
 import { RPEntity } from "./RPEntity";
 
+import { Color } from "../util/Color";
+
 export class NPC extends RPEntity {
-	override minimapStyle = "rgb(0,0,255)";
+	override minimapStyle = Color.NPC;
 	override spritePath = "npc";
 	override titleStyle = "#c8c8ff";
 
