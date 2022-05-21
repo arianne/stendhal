@@ -12,12 +12,14 @@
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 
+import { Color } from "../util/Color";
+
 declare var marauroa: any;
 
 export class Portal extends Entity {
 
 	override minimapShow = true;
-	override minimapStyle = "rgb(0,0,0)";
+	override minimapStyle = Color.BLACK;
 	override zIndex = 5000;
 
 	override buildActions(list: MenuItem[]) {
