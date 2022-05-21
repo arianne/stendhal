@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static games.stendhal.common.constants.Testing.TESTSERVER;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -247,12 +249,36 @@ public class UltimateCollector extends AbstractQuest {
 		 *   - chaos sorcerer: 1 / (30 * 0.001 * (1 / 15)) = 500
 		 *   - total: 500
 		 *
+		 * - drow sword
+		 *   - albino elf queen: 1 / (8 * 0.0001 * (1 / 9)) = 11250
+		 *   - dark elf captain: 1 / (19 * 0.0005 * (1 / 9)) = 947
+		 *   - dark elf knight: 1 / (9 * 0.0005 * (1 / 10)) = 2222
+		 *   - dark elf captain: 1 / (19 * 0.005 * (1 / 9)) = 95
+		 *   - dark elf viceroy: 1 / (2 * 0.01 * (1 / 22)) = 1100
+		 *   - dark elf ranger: 1 / (5 * 0.01 * (1 / 25.5)) = 510
+		 *   - total: 16124
+		 *
 		 * - durin axe
 		 *   - duergar hero: 1 / (10 * 0.00001 * (1 / 8.25)) = 82500
 		 *   - giant dwarf: 1 / (2 * 0.0001 * (1 / 17.65)) = 88250
 		 *   - dwarf golem: 1 / (11 * 0.0025 * (1 / 80)) = 2909
 		 *   - Lord Durin: 1 / (1 * 0.01 * (1 / 375)) = 37500
 		 *   - total: 211159
+		 *
+		 * - golden orc sword
+		 *   - master giant: 1 / (9 * 0.0001 * (1 / 64)) = 71111
+		 *   - total: 71111
+		 *
+		 * - hell dagger
+		 *   - demon skeleton: 1 / (28 * 0.0003 * (1 / 8.3)) = 988
+		 *   - dark elf admiral: 1 / (5 * 0.002 * (1 / 45)) = 4500
+		 *   - devil monk: 1 / (4 * 0.005 * (1 / 130)) = 6500
+		 *   - ruby mermaid: 1 / (102 * 0.0001 * (1 / 140)) = 13725
+		 *   - total: 25713
+		 *
+		 * - ice war hammer
+		 *   - ice giant: 1 / (2 * 0.005 * (1 / 68.5)) = 6850
+		 *   - total: 6850
 		 *
 		 * - imperator sword
 		 *   - amazoness imperator: 1 / (1 * 0.01 * (1 / 29.95)) = 2995
@@ -268,6 +294,11 @@ public class UltimateCollector extends AbstractQuest {
 		 * - nihonto
 		 *   - samurai: 1 / (20 * 0.001 * (1 / 14.4)) = 720
 		 *   - total: 720
+		 *
+		 * - orcish sword
+		 *   - elder giant: 1 / (28 * 0.001 * (1 / 44)) = 1571
+		 *   - kraken: 1 / (2 * 0.003 * (1 / 27)) = 4500
+		 *   - total: 6071
 		 *
 		 * - vulcano hammer
 		 *   - mountain orc hunter: 1 / (11 * 0.00005 * (1 / 8.45)) = 15364
@@ -294,6 +325,13 @@ public class UltimateCollector extends AbstractQuest {
 		items.put("black scythe",1); // 3918 (pretty sure this is rarer now but a lot of old ones about to buy)
 		items.put("chaos dagger",1); // 1691
 		items.put("black sword",1); // 6285
+		if (TESTSERVER) {
+			items.put("drow sword",1);
+			items.put("golden orc sword",1);
+			items.put("hell dagger",1);
+			items.put("ice war hammer",1);
+			items.put("orcish sword",1);
+		}
 
 		// If all quests are completed, ask for an item
 		npc.add(ConversationStates.ATTENDING,
