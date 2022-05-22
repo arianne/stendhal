@@ -336,4 +336,44 @@
 
   <!-- END: mountain orc -->
 
+
+  <!-- START: rare orc -->
+
+  <creature name="golden orc">
+    <type class="orc" subclass="golden_orc" tileid="orc.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="500"/>
+      <def value="110"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="99"/>
+    <experience value="10500"/>
+    <!-- once in 4 weeks (8064000 * 0.3 / 60 = 40320 min = 672 hr = 28 days) -->
+    <respawn value="8064000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="golden orc sword" quantity="[1,1]" probability="25.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="orc-snarl-01"/>
+        <sound value="tiger-snarl-02"/>
+        <sound value="tiger-snarl-04"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+
+  <!-- END: rare orc -->
+
 </creatures>
