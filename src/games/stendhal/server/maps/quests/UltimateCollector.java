@@ -221,116 +221,34 @@ public class UltimateCollector extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Balduin");
 		final Map<String,Integer> items = new HashMap<String, Integer>();
 
-		/* Updated 2022-05-20
+		/* Updated 2022-05-22
 		 *
-		 * Rarity calculations (higher means more rare):
-		 *   1 / (spawn points * drop rate * (1 / respawn time)) +
-		 *   1 / (spawn points * drop rate * (1 / respawn time)) + ....
+		 * Rarity calculations (lower means more rare):
+		 *   (spawn count * drop rate * (1 / respawn)) * 1000 + (spawn count * drop rate * (1 / respawn)) * 1000 ...
 		 *
-		 * Current most rare: 920308 (vulcano hammer)
-		 * Current least rare: 500 (chaos dagger)
+		 * See: https://stendhalgame.org/wiki/StendhalItemsDropScoring
+		 *   Current most rare: 0.09 (black scythe)
+		 *   Current least rare: 2.0 (chaos dagger)
 		 *
 		 * Items given as rewards from quests or otherwise acquirable via
 		 * methods other than creature drops should not be included.
-		 *
-		 *
-		 * - black scythe
-		 *   - devil monk: 1 / (4 * 0.001 * (1 / 130)) = 32500
-		 *   - black death: 1 / (4 * 0.005 * (1 / 350)) = 17500
-		 *   - total: 50000
-		 *
-		 * - black sword
-		 *   - dark mutant: 1 / (10 * 0.000025 * (1 / 7.1)) = 28400
-		 *   - dark elf master: 1 / (2 * 0.0005 * (1 / 51.5)) = 51500
-		 *   - black giant: 1 / (3 * 0.005 * (1 / 160)) = 10667
-		 *   - total: 90567
-		 *
-		 * - chaos dagger
-		 *   - chaos sorcerer: 1 / (30 * 0.001 * (1 / 15)) = 500
-		 *   - total: 500
-		 *
-		 * - drow sword
-		 *   - albino elf queen: 1 / (8 * 0.0001 * (1 / 9)) = 11250
-		 *   - dark elf captain: 1 / (19 * 0.0005 * (1 / 9)) = 947
-		 *   - dark elf knight: 1 / (9 * 0.0005 * (1 / 10)) = 2222
-		 *   - dark elf captain: 1 / (19 * 0.005 * (1 / 9)) = 95
-		 *   - dark elf viceroy: 1 / (2 * 0.01 * (1 / 22)) = 1100
-		 *   - dark elf ranger: 1 / (5 * 0.01 * (1 / 25.5)) = 510
-		 *   - total: 16124
-		 *
-		 * - durin axe
-		 *   - duergar hero: 1 / (10 * 0.00001 * (1 / 8.25)) = 82500
-		 *   - giant dwarf: 1 / (2 * 0.0001 * (1 / 17.65)) = 88250
-		 *   - dwarf golem: 1 / (11 * 0.0025 * (1 / 80)) = 2909
-		 *   - Lord Durin: 1 / (1 * 0.01 * (1 / 375)) = 37500
-		 *   - total: 211159
-		 *
-		 * - golden orc sword
-		 *   - master giant: 1 / (9 * 0.0001 * (1 / 64)) = 71111
-		 *   - total: 71111
-		 *
-		 * - hell dagger
-		 *   - demon skeleton: 1 / (28 * 0.0003 * (1 / 8.3)) = 988
-		 *   - dark elf admiral: 1 / (5 * 0.002 * (1 / 45)) = 4500
-		 *   - devil monk: 1 / (4 * 0.005 * (1 / 130)) = 6500
-		 *   - ruby mermaid: 1 / (102 * 0.0001 * (1 / 140)) = 13725
-		 *   - total: 25713
-		 *
-		 * - ice war hammer
-		 *   - ice giant: 1 / (2 * 0.005 * (1 / 68.5)) = 6850
-		 *   - total: 6850
-		 *
-		 * - imperator sword
-		 *   - amazoness imperator: 1 / (1 * 0.01 * (1 / 29.95)) = 2995
-		 *   - total: 2995
-		 *
-		 * - magic twoside axe
-		 *   - mountain leader dwarf:  1 / (18 * 0.00005 * (1 / 13.45)) = 14944
-		 *   - giant dwarf: 1 / (2 * 0.002 * (1 / 17.65)) = 4413
-		 *   - dwarf golem: 1 / (11 * 0.01 * (1 / 80)) = 727
-		 *   - dark angel: 1 / (2 * 0.02 * (1 / 800)) = 20000
-		 *   - total: 40084
-		 *
-		 * - nihonto
-		 *   - samurai: 1 / (20 * 0.001 * (1 / 14.4)) = 720
-		 *   - total: 720
-		 *
-		 * - orcish sword
-		 *   - elder giant: 1 / (28 * 0.001 * (1 / 44)) = 1571
-		 *   - kraken: 1 / (2 * 0.003 * (1 / 27)) = 4500
-		 *   - total: 6071
-		 *
-		 * - vulcano hammer
-		 *   - mountain orc hunter: 1 / (11 * 0.00005 * (1 / 8.45)) = 15364
-		 *   - minotaur king: 1 / (1 * 0.00005 * (1 / 9.35)) = 187000
-		 *   - barbarian leader: 1 / (7 * 0.00005 * (1 / 9.8)) = 28000
-		 *   - mountain leader dwarf: 1 / (18 * 0.00005 * (1 / 13.45)) = 14944
-		 *   - devil monk: 1 / (4 * 0.0001 * (1 / 130)) = 325000
-		 *   - fallen angel: 1 / (4 * 0.0001 * (1 / 140)) = 350000
-		 *   - total: 920308
-		 *
-		 * - xeno sword
-		 *   - xenocium: 1 / (2 * 0.005 * (1 / 15)) = 1500
-		 *   - total: 1500
 		 */
 
-		// the numbers are based on depo's metric for rarity (bigger number = more rare) which may be out of date https://sourceforge.net/tracker/?func=detail&aid=2066597&group_id=1111&atid=973767
-		// nothing rarer than a demon fire sword, and not included items which are quest rewards elsewhere
-		items.put("nihonto",1); // 5169
-		items.put("magic twoside axe",1); // 1010
-		items.put("imperator sword",1); // 2393
-		items.put("durin axe",1); // 4331
-		items.put("vulcano hammer",1); // 4474
-		items.put("xeno sword",1); // 1347
-		items.put("black scythe",1); // 3918 (pretty sure this is rarer now but a lot of old ones about to buy)
-		items.put("chaos dagger",1); // 1691
-		items.put("black sword",1); // 6285
+		items.put("nihonto",1); // 1.39
+		items.put("magic twoside axe",1); // 1.72
+		items.put("imperator sword",1); // 0.33
+		items.put("durin axe",1); // 0.39
+		items.put("vulcano hammer",1); // 0.18
+		items.put("xeno sword",1); // 0.67
+		items.put("black scythe",1); // 0.09
+		items.put("chaos dagger",1); // 2.0
+		items.put("black sword",1); // 0.15
 		if (TESTSERVER) {
-			items.put("drow sword",1);
-			items.put("golden orc sword",1);
-			items.put("hell dagger",1);
-			items.put("ice war hammer",1);
-			items.put("orcish sword",1);
+			items.put("drow sword",1); // 8.04
+			items.put("golden orc sword",1); // 0.01
+			items.put("hell dagger",1); // 1.46
+			items.put("ice war hammer",1); // 0.15
+			items.put("orcish sword",1); // 0.86
 		}
 
 		// If all quests are completed, ask for an item
