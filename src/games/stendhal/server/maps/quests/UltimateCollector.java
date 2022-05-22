@@ -248,6 +248,7 @@ public class UltimateCollector extends AbstractQuest {
 			items.put("hell dagger",1); // 1.46
 			items.put("ice war hammer",1); // 0.15
 			items.put("orcish sword",1); // 0.86
+			items.put("black halberd",1); // 0.12
 		}
 
 		// If all quests are completed, ask for an item
