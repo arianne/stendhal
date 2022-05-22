@@ -269,9 +269,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addHard("xeno shield", 1);
 
 		// sword (hard difficulty)
+		addHard("hell dagger", 1);
 		addHard("immortal sword", 1);
 		if (!TESTSERVER) {
-			addHard("hell dagger", 1);
 			addHard("xeno sword", 1);
 		}
 
