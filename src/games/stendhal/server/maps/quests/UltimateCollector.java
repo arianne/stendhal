@@ -244,7 +244,6 @@ public class UltimateCollector extends AbstractQuest {
 		items.put("chaos dagger",1); // 2.0
 		items.put("black sword",1); // 0.15
 		if (TESTSERVER) {
-			items.put("drow sword",1); // 8.04
 			items.put("golden orc sword",1); // 0.01
 			items.put("hell dagger",1); // 1.46
 			items.put("ice war hammer",1); // 0.15
