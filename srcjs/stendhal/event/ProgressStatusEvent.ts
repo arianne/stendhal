@@ -46,7 +46,11 @@ export class ProgressStatusEvent extends RPEvent {
 		}
 
 		if (!this["item"]) {
-			travelLogDialog.progressTypeData(progressType, dataItems);
+			if (progressType === "repeatable") {
+				travelLogDialog.setRepeatable(dataItems);
+			} else {
+				travelLogDialog.progressTypeData(progressType, dataItems);
+			}
 		} else {
 			travelLogDialog.itemData(progressType, this["item"], this["description"], dataItems);
 		}

@@ -32,6 +32,7 @@ Changelog
 *webclient*
 - added own/leave options for pets
 - entity size used to offset speech bubble position
+- travel log shows when quests are repeatable
 
 
 1.40

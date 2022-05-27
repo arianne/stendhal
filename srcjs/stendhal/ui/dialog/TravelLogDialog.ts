@@ -21,6 +21,7 @@ declare var stendhal: any;
  */
 export class TravelLogDialog extends DialogContentComponent {
 	private currentProgressType = "";
+	private repeatable: {[key: string]: boolean;} = {};
 
 	constructor(dataItems: string[]) {
 		super("travellogdialog-template");
@@ -77,6 +78,14 @@ export class TravelLogDialog extends DialogContentComponent {
 			"progress_type":  this.currentProgressType
 		}
 		marauroa.clientFramework.sendAction(action);
+
+		// request repeatable quests
+		if (this.currentProgressType === "Completed Quests") {
+			marauroa.clientFramework.sendAction({
+				"type": "progressstatus",
+				"progress_type": "repeatable"
+			});
+		}
 	}
 
 	private onTravelLogItemsChange(event: Event) {
@@ -95,8 +104,13 @@ export class TravelLogDialog extends DialogContentComponent {
 		}
 		var html = "";
 		for (var i = 0; i < dataItems.length; i++) {
-			html += "<option value=\"" + stendhal.ui.html.esc(dataItems[i]) + "\">"
-				+ stendhal.ui.html.esc(dataItems[i]) + "</option>";
+			const currentItem = dataItems[i];
+			html += "<option value=\"" + stendhal.ui.html.esc(currentItem) + "\">"
+				+ stendhal.ui.html.esc(currentItem);
+			if (this.repeatable[currentItem]) {
+				html += " (R)";
+			}
+			html += "</option>";
 		}
 		this.componentElement.querySelector(".travellogitems")!.innerHTML = html;
 
@@ -120,8 +134,13 @@ export class TravelLogDialog extends DialogContentComponent {
 
 		const detailsSpan = document.createElement("span");
 
-		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>"
-				+ "<p id=\"travellogdescription\">"
+		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
+		if (this.repeatable[selectedItem]) {
+			detailsSpan.innerHTML += "<p id=\"travellogrepeatable\">"
+				+ "<img src=\"data/gui/rp.png\" /> <em>I can do this quest again.</em></p>";
+		}
+
+		detailsSpan.innerHTML += "<p id=\"travellogdescription\">"
 				+ stendhal.ui.html.esc(description) + "</p>";
 
 		const ul = document.createElement("ul");
@@ -167,4 +186,12 @@ export class TravelLogDialog extends DialogContentComponent {
 		ui.unregisterComponent(this);
 	}
 
+	public setRepeatable(dataItems: string[]) {
+		const repeatable = {} as {[key: string]: boolean};
+		for (const item of dataItems) {
+			repeatable[item] = true;
+		}
+
+		this.repeatable = repeatable;
+	}
 }
