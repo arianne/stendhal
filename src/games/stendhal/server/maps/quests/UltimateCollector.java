@@ -136,7 +136,7 @@ public class UltimateCollector extends AbstractQuest {
 			res.add("Balduin has asked me to bring him " + Grammar.a_noun(player.getRequiredItemName(QUEST_SLOT,0)) + ".");
 		}
 		if (isCompleted(player)) {
-			res.add("Yay! I am *the* ultimate weapon collector now and I can sell black items to Balduin!");
+			res.add("Yay! I am <em>the</em> ultimate weapon collector now and I can sell black items to Balduin!");
 		}
 		return res;
 	}
