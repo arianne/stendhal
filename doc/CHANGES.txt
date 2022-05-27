@@ -33,7 +33,7 @@ Changelog
 - added own/leave options for pets
 - entity size used to offset speech bubble position
 - travel log shows when quests are repeatable
-- players represted with blue + on minimap
+- players represented with blue + on minimap
 
 
 1.40
