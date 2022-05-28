@@ -16,6 +16,11 @@ Changelog
 - int_ados_fishermans_hut_south whitelisted for rat spawns in The Pied Piper quest
 - new rare creature: golden orc
 - orc spearman drops golden orc sword
+- added to Ultimate Collector Quest:
+  - golden orc sword
+  - ice war hammer
+  - orcish sword
+  - black halberd
 
 *graphics*
 - item sprites touch ups
