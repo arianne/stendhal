@@ -230,6 +230,7 @@ hat_996.png                    Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0
 hat_997.png                    Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
 hat_998.png (prison hat)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83639
 hat_999.png (Santa hat)        Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+turban.png                     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/82929
 
 data/sprites/outfit/head/
 
