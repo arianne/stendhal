@@ -32,6 +32,7 @@ Changelog
   - elvish legs
   - elvish boots
 - entity sprites touch ups
+- another set of eyes for outfits
 
 *sound*
 - added sounds for Rose Leigh, Marianne, & Princess Esclara

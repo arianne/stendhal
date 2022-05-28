@@ -41,7 +41,7 @@ public class Outfits {
 	private static final List<Integer> DRESS_COMPATIBLE_BODIES = Arrays.asList(980, 981); // populate with any other bodies that a dress layer can be worn over
 
 	/** number of player selectable eyes */
-	public static final int EYES_OUTFITS = 27;
+	public static final int EYES_OUTFITS = 28;
 
 	/** number of player selectable mouths */
 	public static final int MOUTH_OUTFITS = 5;
