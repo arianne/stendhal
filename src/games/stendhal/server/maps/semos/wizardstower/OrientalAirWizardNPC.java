@@ -89,7 +89,8 @@ public class OrientalAirWizardNPC implements ZoneConfigurator {
 		};
 
 		jaer.setDescription("You see Jaer, the master of illusion.");
-		jaer.setEntityClass("orientalwizardnpc");
+		jaer.setOutfit("body=0,eyes=27,dress=29,hat=989");
+		jaer.setOutfitColor("skin", 0x774c35);
 		jaer.setPosition(40, 43);
 		jaer.initHP(100);
 		zone.add(jaer);
