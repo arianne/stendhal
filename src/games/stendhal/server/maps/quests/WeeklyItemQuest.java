@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import static games.stendhal.common.constants.Testing.TESTSERVER;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -240,11 +238,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addHard("mainio armor", 1);
 		addHard("xeno armor", 1);
 
-		// axe (hard difficulty)
-		if (!TESTSERVER) {
-			addHard("magic twoside axe", 1);
-		}
-
 		// boots (hard difficulty)
 		addHard("xeno boots", 1);
 
@@ -271,9 +264,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		// sword (hard difficulty)
 		addHard("hell dagger", 1);
 		addHard("immortal sword", 1);
-		if (!TESTSERVER) {
-			addHard("xeno sword", 1);
-		}
 
 
 		// add "easy" items to "medium" list

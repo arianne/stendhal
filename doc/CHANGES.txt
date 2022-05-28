@@ -21,6 +21,7 @@ Changelog
   - ice war hammer
   - orcish sword
   - black halberd
+- removed from Kirdneh Museum quest items requested by Ultimate Collector
 
 *graphics*
 - item sprites touch ups
