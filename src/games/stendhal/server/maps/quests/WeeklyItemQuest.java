@@ -136,97 +136,111 @@ public class WeeklyItemQuest extends AbstractQuest {
 		 * - hard:   levels 151+
 		 */
 
-		// armor (easy difficulty)
+		// armor (easy)
 		addEasy("shadow armor", 1); // 450.59, 35 (purchasable)
 		addEasy("stone armor", 1); // 53.63, 41
-
-		// boots (easy difficulty)
-		addEasy("golden boots", 1); // 89.09, 25
-		addEasy("steel boots", 1); // 315.17, 15
-		addEasy("stone boots", 1); // 374.07, 32
-
-		// cloak (easy difficulty)
-		addEasy("blue striped cloak", 1); // 39.38, 26 (purchasable)
-
-		// club (easy difficulty)
-		addEasy("skull staff", 1); // 81.22, 15
-		addEasy("ugmash", 1); // 86.57, 16
-
-		// drink (easy difficulty)
-		addEasy("fish soup", 3); // n/a, n/a (producable)
-		addEasy("mega potion", 5); // 1357.34, 51 (purchasable)
-
-		// special (easy difficulty)
-		addEasy("lucky charm", 1); // 76.37, 9
-
-		// shield (easy difficulty)
-		addEasy("green dragon shield", 1); // 11.3, 50
-		addEasy("shadow shield", 1); // 113.19, 36 (purchasable)
-
-		// sword (easy difficulty)
-		addEasy("dark dagger", 1); // 6.95, 50 (acquired from well)
-		addEasy("demon sword", 1); // 33.73, 42
-
-
-		// armor (medium difficulty)
+		// armor (medium)
 		addMed("barbarian armor", 1); // 400.95, 37
 		addMed("dwarvish armor", 1); // 163.15, 15
 		addMed("golden armor", 1); // 536.32, 30
 		addMed("magic plate armor", 1); // 0.097, 90 (maybe too rare, remove?)
+		// armor (hard)
+		addHard("chaos armor", 1); // 4.45, 70
+		addHard("ice armor", 1); // 3.38, 45
+		addHard("mainio armor", 1); // 1.33, 250
+		addHard("xeno armor", 1); // 2.0, 170
 
-		// axe (medium difficulty)
+		// axe (medium)
 		addMed("golden twoside axe", 1); // 19.21, 60
 
-		// boots (medium difficulty)
+		// boots (easy)
+		addEasy("golden boots", 1); // 89.09, 25
+		addEasy("steel boots", 1); // 315.17, 15
+		addEasy("stone boots", 1); // 374.07, 32
+		// boots (medium)
 		addMed("chaos boots", 1); // 347.15, 62
 		addMed("mainio boots", 1); // 6.99, 28
 		addMed("shadow boots", 1); // 248.78, 41 (purchasable)
+		// boots (hard)
+		addHard("xeno boots", 1); // 3.33, 170
 
-		// cloak (medium difficulty)
+		// cloak (easy)
+		addEasy("blue striped cloak", 1); // 39.38, 26 (purchasable)
+		// cloak (medium)
 		addMed("blue dragon cloak", 1); // 42.19, 70
 		addMed("chaos cloak", 1); // 200.67, 74
 		addMed("golden cloak", 1); // 71.0, 70
 		addMed("red dragon cloak", 1); // 13.86, 125
 		addMed("shadow cloak", 1); // 93.14, 61 (purchasable)
+		// cloak (hard)
+		addHard("magic cloak", 1); // 20.76, 114 (should move to medium difficulty)
+		addHard("mainio cloak", 1); // 5.16, 44
+		addHard("xeno cloak", 1); // 2.0, 170
 
-		// helmet (medium difficulty)
+		// club (easy)
+		addEasy("skull staff", 1); // 81.22, 15
+		addEasy("ugmash", 1); // 86.57, 16
+
+		// drink (easy)
+		addEasy("fish soup", 3); // n/a, n/a (producable)
+		addEasy("mega potion", 5); // 1357.34, 51 (purchasable)
+
+		// helmet (medium)
 		addMed("golden helmet", 1); // 80.9, 30
 		addMed("horned golden helmet", 1); // 25.98, 58
 		addMed("mainio helmet", 1); // 3.47, 37
 		addMed("shadow helmet", 1); // 27.26, 52 (purchasable)
+		// helmet (hard)
+		addHard("chaos helmet", 1); // 44.16, 75
 
-		// jewellery (medium difficulty)
+		// jewellery (medium)
 		addMed("diamond", 1); // 20.13, 48
+		// jewellery (hard)
+		addHard("obsidian", 1); // 4.17, 200
 
-		// legs (medium difficulty)
+		// legs (medium)
 		addMed("chaos legs", 1); // 123.2, 85
 		addMed("dwarvish legs", 1); // 6.13, 67
 		addMed("golden legs", 1); // 53.80, 25
 		addMed("mainio legs", 1); // 13.97, 20
 		addMed("shadow legs", 1); // 49.19, 55
+		// legs (hard)
+		addHard("xeno legs", 1); // 2.0, 170
 
-		// misc (medium difficulty)
+		// misc (medium)
 		addMed("giant heart", 5); // 2409.75, 110
 		addMed("venom gland", 1); // 55.56, 120
+		// misc (hard)
+		addHard("unicorn horn", 5); // 398.33, 250
 
-		// resource (medium difficulty)
+		// resource (medium)
 		addMed("mithril bar", 1); // 0.0006, 90 (producable)
 		addMed("mithril nugget", 1); // 0.16, 90 (harvestable)
 		addMed("silk gland", 7); // 522.79, 110
 
-		// ring (medium difficulty)
+		// ring (medium)
 		addMed("medicinal ring", 1); // 78.26, 73
 
-		// special (medium difficulty)
+		// special (easy)
+		addEasy("lucky charm", 1); // 76.37, 9
+		// special (medium)
 		addMed("mythical egg", 1); // n/a, n/a (quest reward)
 
-		// shield (medium difficulty)
+		// shield (easy)
+		addEasy("green dragon shield", 1); // 11.3, 50
+		addEasy("shadow shield", 1); // 113.19, 36 (purchasable)
+		// shield (medium)
 		addMed("chaos shield", 1); // 165.18, 75
 		addMed("golden shield", 1); // 21.2, 48
 		addMed("magic plate shield", 1); // 23.31, 41
 		addMed("mainio shield", 1); // 9.33, 102
+		// shield (hard)
+		addHard("xeno shield", 1); // 1.33, 170
 
-		// sword (medium difficulty)
+		// sword (easy)
+		addEasy("dark dagger", 1); // 6.95, 50 (acquired from well)
+		addEasy("demon sword", 1); // 33.73, 42
+		// sword (medium)
 		addMed("assassin dagger", 1); // 235.12, 40
 		addMed("buster", 1); // 2.26, 69
 		addMed("chaos sword", 1); // 120.58, 43
@@ -235,43 +249,13 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("great sword", 1); // 29.99, 52
 		addMed("ice sword", 1); // 3.28, 45
 		addMed("night dagger", 1); // 30.9, 39
-
-		// tool (medium difficulty)
-		addMed("scroll eraser", 1); // 18.05, 55
-
-
-		// armor (hard difficulty)
-		addHard("chaos armor", 1); // 4.45, 70
-		addHard("ice armor", 1); // 3.38, 45
-		addHard("mainio armor", 1); // 1.33, 250
-		addHard("xeno armor", 1); // 2.0, 170
-
-		// boots (hard difficulty)
-		addHard("xeno boots", 1); // 3.33, 170
-
-		// cloak (hard difficulty)
-		addHard("magic cloak", 1); // 20.76, 114 (should move to medium difficulty)
-		addHard("mainio cloak", 1); // 5.16, 44
-		addHard("xeno cloak", 1); // 2.0, 170
-
-		// helmet (hard difficulty)
-		addHard("chaos helmet", 1); // 44.16, 75
-
-		// jewellery (hard difficulty)
-		addHard("obsidian", 1); // 4.17, 200
-
-		// legs (hard difficulty)
-		addHard("xeno legs", 1); // 2.0, 170
-
-		// misc (hard difficulty)
-		addHard("unicorn horn", 5); // 398.33, 250
-
-		// shield (hard difficulty)
-		addHard("xeno shield", 1); // 1.33, 170
-
-		// sword (hard difficulty)
+		// sword (hard)
 		addHard("hell dagger", 1); // 1.46, 42 (purchasable) (should move to medium difficulty)
 		addHard("immortal sword", 1); // 0.17, 230
+
+		// tool (medium)
+		addMed("scroll eraser", 1); // 18.05, 55
+
 
 
 		// add "easy" items to "medium" list
