@@ -2495,7 +2495,7 @@ your error log files and pleace continue to do so.
 - added missing logic to BringListOfItemsQuests
 - monogenes shows map, ilisa shows picture, liliana shows outfits again
 - don't allow pets or sheep in death match
-- remove possibility of	dropping or displacing	items to places	where they can't be retrieved (or where it would be v long walk to fetch them)
+- remove possibility of dropping or displacing  items to places where they can't be retrieved (or where it would be v long walk to fetch them)
 - minor map and graphical fixes
 - unignore: check first, and if target not being ignored, tell player so.
 - now getting points in dm for the final creature killed
