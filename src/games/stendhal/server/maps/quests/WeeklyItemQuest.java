@@ -170,10 +170,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("blue dragon cloak", 1); // 42.19, 70
 		addMed("chaos cloak", 1); // 200.67, 74
 		addMed("golden cloak", 1); // 71.0, 70
+		addMed("magic cloak", 1); // 20.76, 114
 		addMed("red dragon cloak", 1); // 13.86, 125
 		addMed("shadow cloak", 1); // 93.14, 61 (purchasable)
 		// cloak (hard)
-		addHard("magic cloak", 1); // 20.76, 114 (should move to medium difficulty)
 		addHard("mainio cloak", 1); // 5.16, 44
 		addHard("xeno cloak", 1); // 2.0, 170
 
@@ -247,10 +247,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("drow sword", 1); // 8.04, 58
 		addMed("fire sword", 1); // 78.51, 50
 		addMed("great sword", 1); // 29.99, 52
+		addMed("hell dagger", 1); // 1.46, 42 (purchasable)
 		addMed("ice sword", 1); // 3.28, 45
 		addMed("night dagger", 1); // 30.9, 39
 		// sword (hard)
-		addHard("hell dagger", 1); // 1.46, 42 (purchasable) (should move to medium difficulty)
 		addHard("immortal sword", 1); // 0.17, 230
 
 		// tool (medium)

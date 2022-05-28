@@ -22,6 +22,7 @@ Changelog
   - orcish sword
   - black halberd
 - removed from Kirdneh Museum quest items requested by Ultimate Collector
+- magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
 
 *graphics*
 - item sprites touch ups
