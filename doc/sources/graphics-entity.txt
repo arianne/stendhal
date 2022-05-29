@@ -166,11 +166,11 @@ priestnpc.*                   Svetlana Kushnariova (Cabbit), onu, Jordan Irwin (
 princess2npc.png              Svetlana Kushnariova (Cabbit), Tracy, bleutailfly; CC BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/13927
 principalnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 rangernpc.*                   Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
-ratchefnpc.png                Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
-ratchild1npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
+ratchefnpc.*                  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+ratchild1npc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
 ratchild2npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
-ratchildboy1npc.png           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
-ratchildboy2npc.png           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
+ratchildboy1npc.*             Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+ratchildboy2npc.*             Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 recruiter1npc.*               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 recruiter2npc.png             Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152, https://opengameart.org/node/83728
 recruiter3npc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -245,7 +245,7 @@ yetimalenpc.png               Tuomo Untinen (Reemax), bleutailfly, Jordan Irwin 
 youngnpc.*                    Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/87
 youngsoldiernpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 youngwitchnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
+youngwomannpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24823
 zoologistnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 
 
