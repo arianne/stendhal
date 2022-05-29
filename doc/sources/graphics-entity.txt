@@ -90,7 +90,7 @@ holidaymakernpc.png           Svetlana Kushnariova (Cabbit), Sebastian Riedel (B
 hotelchefnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/69527
 hotelguestnpc.*               Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 hotelreceptionistnpc.*        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
-housewifenpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+housewifenpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 icecreamsellernpc.*           Svetlana Kushnariova (Cabbit), Sebastian Riedel (Baŝto), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/90784
 investigatornpc.*             Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 jailedbarbariannpc.*          Svetlana Kushnariova (Cabbit), bleutailfly, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
