@@ -387,7 +387,7 @@ duergar_black.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Ir
 duergar_elder.*   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/164
 duergar_elite.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728, https://opengameart.org/node/10879
 duergar_hero.*    Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
-duergar_king.*    Svetlana Kushnariova (Cabbit), Razare2015, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/163
+duergar_king.*    Svetlana Kushnariova (Cabbit), Razare2015, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/163, https://opengameart.org/node/72495
 duergar_wizard.*  Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, qubodup, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83728
 dwarf.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarf_guardian.*  Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
