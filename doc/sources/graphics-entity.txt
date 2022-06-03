@@ -139,7 +139,7 @@ nightguardswordnpc.png        CC0 (placeholder)
 noimagenpc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/24944
 nunnpc.*                      Charles Gabriel, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/3393, https://opengameart.org/node/24944
 oldcowboynpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802
-olddwarfnpc.png               Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
+olddwarfnpc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 oldfishermannpc.*             Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldmaidnpc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -216,7 +216,7 @@ whitesorceressnpc.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 wifenpc.png                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 wisemannpc.*                  Svetlana Kushnariova (Cabbit), Sollision, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/52761
 witchnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86131
-witch2npc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+witch2npc.*                   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 witch3npc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86131
 wizardnpc.*                   bleutailfly; OGA BY 3.0; Stendhal, https://github.com/bleutailfly/bleu-doodles/
 wizardwomannpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -763,9 +763,9 @@ training_dummy.png  Danimal; CC BY-SA 3.0; https://opengameart.org/node/17272; h
 
 data/sprites/entity/ratfolk/
 
-archrat.png   Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), DkuCook, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
-ratman.png    Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
-ratwoman.png  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+archrat.*   Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), DkuCook, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+ratman.*    Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+ratwoman.*  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 
 
 data/sprites/entity/reptile/
