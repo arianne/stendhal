@@ -47,7 +47,7 @@ public class RedDemonLordNPC implements ZoneConfigurator {
 		};
 
 		demonlord.setDescription("You see Xaruhwaiyz the demon lord");
-		demonlord.setEntityClass("reddemonnpc");
+		demonlord.setEntityClass("../monsters/demon/demon");
 		demonlord.setPosition(15, 4);
 		demonlord.initHP(100);
 		zone.add(demonlord);

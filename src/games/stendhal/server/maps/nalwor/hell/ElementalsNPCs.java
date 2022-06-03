@@ -92,7 +92,7 @@ public class ElementalsNPCs implements ZoneConfigurator {
 
 				}
 			};
-			npc.setEntityClass("fireelementalnpc");
+			npc.setEntityClass("../monsters/elemental/fire_elemental");
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
