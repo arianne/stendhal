@@ -633,12 +633,12 @@ scarab*.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.o
 
 data/sprites/entity/kobold/
 
-archer_kobold.png   Svetlana Kushnariova, yolkati, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-giant_kobold.png    Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-kobold.png          Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-leader_kobold.png   Svetlana Kushnariova, yolkati, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-soldier_kobold.png  Svetlana Kushnariova, yolkati, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-veteran_kobold.png  Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+archer_kobold.*   Svetlana Kushnariova, yolkati, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+giant_kobold.*    Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+kobold.*          Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+leader_kobold.*   Svetlana Kushnariova, yolkati, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+soldier_kobold.*  Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+veteran_kobold.*  Svetlana Kushnariova, yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 
 
 data/sprites/entity/madaram/
