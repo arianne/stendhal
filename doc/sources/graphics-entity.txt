@@ -236,7 +236,7 @@ woman_014_npc.png             Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; 
 woman_015_npc.png             Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://openclipart.org/detail/232340
 womanexoticdressnpc.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 womanonstoolnpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-woodcutternpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
+woodcutternpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 writernpc.*                   Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal & https://opengameart.org/node/24944
 xpphunternpc.*                Fabzy, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/23314, https://opengameart.org/node/24944, https://opengameart.org/node/80916
 yetifemalenpc.*               Tracy, Tuomo Untinen (Reemax), bleutailfly, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/78138, https://opengameart.org/node/13927
