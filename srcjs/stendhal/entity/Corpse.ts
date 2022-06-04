@@ -11,12 +11,13 @@
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
-import { Entity } from "./Entity";
+
+import { PopupInventory } from "./PopupInventory";
 
 declare var marauroa: any;
 declare var stendhal: any;
 
-export class Corpse extends Entity {
+export class Corpse extends PopupInventory {
 
 	override minimapShow = false;
 	override zIndex = 5500;
@@ -55,23 +56,6 @@ export class Corpse extends Entity {
 		slot._objects = [];
 		slot._parent = this;
 		return slot;
-	}
-
-	override draw(ctx: CanvasRenderingContext2D) {
-		super.draw(ctx);
-
-		this.checkDistance();
-	}
-
-	private checkDistance() {
-		if (marauroa.me) {
-			const xDist = Math.abs(this["x"] - marauroa.me["x"]);
-			const yDist = Math.abs(this["y"] - marauroa.me["y"]);
-
-			if (xDist > 4 || yDist > 4) {
-				this.destroy();
-			}
-		}
 	}
 
 	override isVisibleToAction(_filter: boolean) {
@@ -119,7 +103,7 @@ export class Corpse extends Entity {
 		}
 	}
 
-	override destroy() {
+	override closeInventoryWindow() {
 		this.closeCorpseInventory();
 	}
 

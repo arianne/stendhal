@@ -42,6 +42,7 @@ Changelog
 - entity size used to offset speech bubble position
 - travel log shows when quests are repeatable
 - players represented with blue + on minimap
+- fixed distance check for automatically closing corpse & chest windows
 
 
 1.40

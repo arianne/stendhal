@@ -12,7 +12,7 @@
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 
-import { Entity } from "./Entity";
+import { PopupInventory } from "./PopupInventory";
 
 import { Color } from "../util/Color";
 
@@ -33,7 +33,7 @@ let CLOSED_SPRITE = {
 	width: 32
 };
 
-export class Chest extends Entity {
+export class Chest extends PopupInventory {
 
 	override minimapStyle = Color.CHEST;
 
@@ -97,27 +97,10 @@ export class Chest extends Entity {
 		}
 	}
 
-	closeInventoryWindow() {
+	override closeInventoryWindow() {
 		if (this.inventory && this.inventory.isOpen()) {
 			this.inventory.close();
 			this.inventory = undefined;
-		}
-	}
-
-	override draw(ctx: CanvasRenderingContext2D) {
-		super.draw(ctx);
-
-		this.checkDistance();
-	}
-
-	private checkDistance() {
-		if (marauroa.me) {
-			const xDist = Math.abs(this["x"] - marauroa.me["x"]);
-			const yDist = Math.abs(this["y"] - marauroa.me["y"]);
-
-			if (xDist > 4 || yDist > 4) {
-				this.closeInventoryWindow();
-			}
 		}
 	}
 
