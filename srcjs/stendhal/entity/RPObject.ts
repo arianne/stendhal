@@ -65,4 +65,18 @@ export class RPObject {
 	init() {
 		// do nothing
 	}
+
+	/**
+	 * Retrieves object width.
+	 */
+	public getWidth(): number {
+		return this["width"] || 1;
+	}
+
+	/**
+	 * Retrieves object height.
+	 */
+	public getHeight(): number {
+		return this["height"] || 1;
+	}
 }

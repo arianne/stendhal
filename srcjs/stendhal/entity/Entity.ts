@@ -224,6 +224,11 @@ export class Entity extends RPObject {
 			var offsetY = this.sprite.offsetY || 0;
 			var width = this.sprite.width || image.width;
 			var height = this.sprite.height || image.height;
+
+			// use entity dimensions to center sprite
+			x += Math.floor((this.getWidth() * 32 - width) / 2);
+			y += Math.floor((this.getHeight() * 32 - height) / 2);
+
 			ctx.drawImage(image, offsetX, offsetY, width, height, x, y, width, height);
 		}
 	}
