@@ -79,4 +79,18 @@ export class RPObject {
 	public getHeight(): number {
 		return this["height"] || 1;
 	}
+
+	/**
+	 * Checks if this object is nested.
+	 */
+	public isContained(): boolean {
+		return this._parent !== undefined;
+	}
+
+	/**
+	 * Retrieves the parent object.
+	 */
+	public getContainer(): RPObject {
+		return <RPObject> this._parent;
+	}
 }

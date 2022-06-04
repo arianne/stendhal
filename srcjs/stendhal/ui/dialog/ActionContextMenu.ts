@@ -85,14 +85,21 @@ export class ActionContextMenu extends Component {
 					console.log(entity);
 				}
 			});
-			// FIXME: cannot destroy items equipped in player's inventory slots
 			actions.push({
 				title: "(*) Destroy",
 				action: function(entity: any) {
 					var action = {
 						"type": "destroy",
-						"target": "#" + entity["id"],
+					} as {[key: string]: string};
+
+					if (entity.isContained()) {
+						action["baseobject"] = marauroa.me["id"];
+						action["baseslot"] = entity.getContainer()._name;
+						action["baseitem"] = entity["id"];
+					} else {
+						action["target"] = "#" + entity["id"];
 					}
+
 					marauroa.clientFramework.sendAction(action);
 				}
 			});
