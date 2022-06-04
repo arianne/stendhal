@@ -35,6 +35,7 @@ let CLOSED_SPRITE = {
 
 export class Chest extends PopupInventory {
 
+	override minimapShow = true;
 	override minimapStyle = Color.CHEST;
 
 	override zIndex = 5000;

@@ -24,6 +24,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalClient.ZoneChangeListener;
 import games.stendhal.client.Zone;
+import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.FlyOverArea;
@@ -123,6 +124,12 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 		} else if (entity instanceof DomesticAnimal) {
 			// Only own pets and sheep are drawn but this is checked in the map object so the user status is always up to date
 			object = new DomesticAnimalMapObject((DomesticAnimal) entity);
+		} else if (entity instanceof Chest) {
+			object = new RPEntityMapObject(entity) {
+				{
+					drawColor = new Color(238, 130, 238);
+				}
+			};
 		} else if (supermanMode && User.isAdmin()) {
 			if (entity instanceof RPEntity) {
 				object = new RPEntityMapObject(entity);
