@@ -62,6 +62,79 @@ export class Entity extends RPObject {
 	}
 
 	/**
+	 * Finds distance to another object on the X axis.
+	 *
+	 * @param other
+	 *     The object to measure against.
+	 * @return
+	 *     Distance in steps or -1.
+	 */
+	private getXDistanceTo(other: RPObject): number {
+		if (other && this["x"] && other["x"]) {
+			const tx_right = this["x"] + (this["width"] || 1) - 1;
+			const ox_right = other["x"] + (other["width"] || 1) - 1;
+
+			if (this["x"] > ox_right) {
+				return Math.abs(this["x"] - ox_right);
+			} else if (other["x"] > tx_right) {
+				return Math.abs(other["x"] - tx_right);
+			}
+
+			return 0;
+		}
+
+		return -1;
+	}
+
+	/**
+	 * Finds distance to another object on the Y axis.
+	 *
+	 * @param other
+	 *     The object to measure against.
+	 * @return
+	 *     Distance in steps or -1.
+	 */
+	private getYDistanceTo(other: RPObject): number {
+		if (other && this["y"] && other["y"]) {
+			const ty_bottom = this["y"] + (this["height"] || 1) - 1;
+			const oy_bottom = other["y"] + (other["height"] || 1) -1;
+
+			if (this["y"] > oy_bottom) {
+				return Math.abs(this["y"] - oy_bottom);
+			} else if (other["y"] > ty_bottom) {
+				return Math.abs(other["y"] - ty_bottom);
+			}
+
+			return 0;
+		}
+
+		return -1;
+	}
+
+	/**
+	 * Finds the combined distance on the X & Y axi to
+	 * another object.
+	 *
+	 * @param other
+	 *     The object to measure against.
+	 * @return
+	 *     Distance in steps or -1.
+	 */
+	public getDistanceTo(other: RPObject): number {
+		let x_dist = this.getXDistanceTo(other);
+		let y_dist = this.getYDistanceTo(other);
+
+		if (x_dist < 0 && y_dist < 0) {
+			return -1;
+		}
+
+		x_dist = x_dist > -1 ? x_dist : 0;
+		y_dist = y_dist > -1 ? y_dist : 0;
+
+		return x_dist + y_dist;
+	}
+
+	/**
 	 * is this entity visible to a specific action
 	 *
 	 * @param filter 0: short left click
