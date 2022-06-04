@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Entity } from "./Entity";
+import { RPObject } from "./RPObject";
 
 declare var marauroa: any;
 
@@ -41,5 +42,10 @@ export class PopupInventory extends Entity {
 
 	public closeInventoryWindow() {
 		// inheriting classes can override
+	}
+
+	override destroy(_parent: RPObject) {
+		this.closeInventoryWindow();
+		super.destroy(_parent);
 	}
 }
