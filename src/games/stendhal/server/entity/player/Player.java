@@ -2928,12 +2928,20 @@ public class Player extends DressedEntity implements UseListener {
 	@Override
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
+		if (!games.stendhal.common.constants.Testing.TESTSERVER) {
+			return super.calculateRiskForCanHit(roll, defenderDEF, attackerATK);
+		}
+
 		// use 40 as multiple for players instead of 20
 		return 40 * attackerATK - roll * defenderDEF;
 	}
 
 	@Override
 	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
+		if (!games.stendhal.common.constants.Testing.TESTSERVER) {
+			return super.damageDone(defender, attackingWeaponsValue, damageType);
+		}
+
 		// compensate for player doubled chance of hit
 		return (int) Math.ceil(super.damageDone(defender, attackingWeaponsValue, damageType) / 2.0);
 	}
