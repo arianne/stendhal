@@ -23,6 +23,8 @@ Changelog
   - black halberd
 - removed from Kirdneh Museum quest items requested by Ultimate Collector
 - magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
+- ATK XP rewarded for successful or blocked hits regardless of having recently taken damage
+- missed hits never reward ATK XP
 
 *graphics*
 - item sprites touch ups
