@@ -94,6 +94,8 @@ public abstract class RPEntity extends CombatEntity {
 	private static final float RING_DEF_MULTIPLIER = 1.0f;
 	private static Statistics stats;
 
+	protected static final int HIT_CHANCE_MULTIPLIER = 20;
+
 	private String name;
 	protected int atk;
 	private int atk_xp;
@@ -3036,7 +3038,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
-		return 20 * attackerATK - roll * defenderDEF;
+		return HIT_CHANCE_MULTIPLIER * attackerATK - roll * defenderDEF;
 	}
 
 	/**

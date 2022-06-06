@@ -2932,8 +2932,8 @@ public class Player extends DressedEntity implements UseListener {
 			return super.calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 		}
 
-		// use 40 as multiple for players instead of 20
-		return 40 * attackerATK - roll * defenderDEF;
+		// use 30 as multiple for players instead of 20
+		return ((int) Math.round(HIT_CHANCE_MULTIPLIER * 1.5)) * attackerATK - roll * defenderDEF;
 	}
 
 	@Override
@@ -2942,7 +2942,7 @@ public class Player extends DressedEntity implements UseListener {
 			return super.damageDone(defender, attackingWeaponsValue, damageType);
 		}
 
-		// compensate for player doubled chance of hit
-		return (int) Math.ceil(super.damageDone(defender, attackingWeaponsValue, damageType) / 2.0);
+		// compensate for player increased chance of hit
+		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.5);
 	}
 }
