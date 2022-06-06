@@ -443,7 +443,7 @@ public class SimulateCombat {
 	private static void runSimulation() {
 		if (!all) {
 			if (creature_name != null) {
-				System.out.println("\nRunning simulation for " + creature_name + " ...");
+				System.out.println("\nRunning simulation for " + creature_name + " (" + rounds + " rounds) ...");
 			} else {
 				System.out.println("\nRunning simulation ...");
 			}
