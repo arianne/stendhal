@@ -17,6 +17,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Transparency;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.util.ArrayList;
@@ -183,19 +184,11 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			view.release();
 		}
 
-		String tooltip = null;
 		if (entity != null) {
 			setEntityView(EntityViewFactory.create(entity));
-			// show tooltip for scrolls with destination information
-			final RPObject rpobject = entity.getRPObject();
-			if ("scroll".equals(entity.getEntityClass()) && rpobject.has("dest")) {
-				tooltip = rpobject.get("dest").replaceFirst(",", " ");
-			}
 		} else {
 			setEntityView(null);
 		}
-
-		setToolTipText(tooltip);
 
 		// The old popup menu is no longer valid
 		popupMenu = null;
@@ -480,6 +473,23 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			action.put(EquipActionConsts.CLICKED, "");
 
 			StendhalClient.get().send(action);
+		}
+
+		@Override
+		public void mouseEntered(final MouseEvent e) {
+			final IEntity entity = getEntity();
+			if (entity != null) {
+				// show tooltip for scrolls with destination information
+				final RPObject rpobject = entity.getRPObject();
+				if ("scroll".equals(entity.getEntityClass()) && rpobject.has("dest")) {
+					setToolTipText(rpobject.get("dest").replaceFirst(",", " "));
+				}
+			}
+		}
+
+		@Override
+		public void mouseExited(final MouseEvent e) {
+			setToolTipText(null);
 		}
 	}
 
