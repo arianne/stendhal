@@ -46,6 +46,12 @@ Changelog
 - players represented with blue + on minimap
 - fixed distance check for automatically closing corpse & chest windows
 
+*java client*
+- fixed inaccurate marked scroll tooltips
+
+*misc*
+- marked scroll tooltips now show custom labels
+
 
 1.40
 

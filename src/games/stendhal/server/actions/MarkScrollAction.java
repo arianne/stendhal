@@ -29,18 +29,18 @@ public class MarkScrollAction implements ActionListener {
 
 				player.drop("empty scroll", count);
 
-				String infostring = zone.getName() + " " + x + " " + y;
-
 				final MarkedScroll scroll = (MarkedScroll)
 						SingletonRepository.getEntityManager().getItem("marked scroll");
 				scroll.setQuantity(count);
-				scroll.setInfoString(infostring);
 
 				// add a description if the player wanted one
 				if (action.has(TARGET)) {
 					String description = action.get(TARGET) + " " + action.get("args");
 					scroll.setDescription("You see a scroll marked by " + player.getName() + ". It says: \""+ description +"\". ");
 				}
+
+				// set infostring after description
+				scroll.setInfoString(zone.getName() + " " + x + " " + y);
 
 				player.equipOrPutOnGround(scroll);
 

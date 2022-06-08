@@ -140,7 +140,13 @@ public class MarkedScroll extends TeleportScroll {
 		if (this.has("infostring")) {
 			final String[] infos = this.get("infostring").split(" ");
 			if (infos.length > 2) {
-				this.put("dest", infos[0] + "," + infos[1] + "," + infos[2]);
+				String destInfo = infos[0] + "," + infos[1] + "," + infos[2];
+				final String desc = this.getDescription();
+				// apply custom label
+				if (desc.contains("It says: ")) {
+					destInfo += " (" + desc.split("\"")[1].strip() + ")";
+				}
+				this.put("dest", destInfo);
 			}
 		}
 	}
