@@ -144,7 +144,7 @@ public class MarkedScroll extends TeleportScroll {
 				final String desc = this.getDescription();
 				// apply custom label
 				if (desc.contains("It says: ")) {
-					destInfo += " (" + desc.split("\"")[1].strip() + ")";
+					destInfo += " (" + desc.split("\"")[1].trim() + ")";
 				}
 				this.put("dest", destInfo);
 			}
