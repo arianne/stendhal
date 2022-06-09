@@ -96,6 +96,7 @@ dress_059.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_060.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_061.png (ranger uniform)   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/50909
 dress_062.png (armor)            bleutailfly; OGA BY 3.0; https://postimg.cc/xcf7MS00
+dress_968.*                      Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/95, https://opengameart.org/node/72969
 dress_969.*   (king robes)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_970.*   (postal)           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_971.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
