@@ -824,14 +824,14 @@ bloody_zombie*.png    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge);
 dead_lich.png         Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 death.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 death_knight.*        Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
-demon_skeleton.png    artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
+demon_skeleton.png    artisticdude, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/83067
 devil_monk.png        Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 devil_queen.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/66147, https://openclipart.org/detail/4365
 elder_skeleton.*      Stephen Challener (Redshirke), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262
 fallen_high_priest.*  Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/5215, https://opengameart.org/node/6262
 fallen_priest.*       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/6262, Stendhal
 fallen_warrior.*      Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
-gashadokuro.png       artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
+gashadokuro.*         artisticdude, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/83067
 ghost.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ghosthound.png        Stephen Challener (Redshrike), William Thompson (William.Thompsonj); OGA BY 3.0; https://opengameart.org/node/20830
 green_phantom.*       Svetlana Kushnariova (Cabbit), Charles Gabriel, AlexCons, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83035, https://opengameart.org/node/15360
@@ -842,9 +842,9 @@ invisible_man.png     Svetlana Kushnariova (Cabbit); CC0; https://opengameart.or
 lich.*                Stephen Challener (Redshrike), Lori Angela Nagel (Jastiv), artisticdude, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/82964, https://opengameart.org/node/6262, https://opengameart.org/node/83067
 myling.*              Artisticdude; CC0; https://opengameart.org/node/14803
 rotten_zombie.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
-skeleton.png          artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
+skeleton.*            artisticdude, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/83067
 tiny_skelly.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
-warrior_skeleton.png  artisticdude, LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
+warrior_skeleton.*    artisticdude, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/83067
 zombie.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 
 
