@@ -37,8 +37,8 @@ chefnpc.*                     Svetlana Kushnariova (Cabbit), One Man Army, Jorda
 chessplayernpc.png            Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
 chieffalatheennpc.png         Svetlana Kushnariova (Cabbit) bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://github.com/bleutailfly/bleu-doodles/blob/98cd893/clothing/armor1.png
 childnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-cloakedwomannpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/719/
-cloakedwoman2npc.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+cloakedwomannpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/719/, https://opengameart.org/node/72969, https://opengameart.org/node/24823
+cloakedwoman2npc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/719/, https://opengameart.org/node/72969, https://opengameart.org/node/24823
 confectionerapplepienpc.png   Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 curatornpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
