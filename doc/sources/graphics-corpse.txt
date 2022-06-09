@@ -29,7 +29,7 @@ player.png             Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 puddle_*.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
 rock.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 rodent_large.*         rg1024, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; stendhal, https://openclipart.org/detail/31207
-rodent_small.png       rg1024, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; stendhal, https://openclipart.org/detail/31207
+rodent_small.*         rg1024, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; stendhal, https://openclipart.org/detail/31207
 shark_2x2.png          soniccuz; CC BY-SA 3.0; Stendhal
 small_animal.png       Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
 small_boneless.png     Groundhug McHampster (h4mt4r0); GPL2+; Stendhal
