@@ -104,7 +104,8 @@ dress_972.*   (armor)            bleutailfly, Jordan Irwin (AntumDeluge); OGA BY
 dress_973.png (superstendhal)    bleutailfly; OGA BY 3.0; https://postimg.cc/p5LbSWQw
 dress_974.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_075_976.xcf                bleutailfly; OGA BY 3.0; Stendhal
-dress_076.png (jester suit)      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_976.png (jester suit)      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_977.*                      Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/130
 dress_978.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
 dress_979.*   (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_980.png ("S" suit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
