@@ -26,8 +26,10 @@ stendhal.zone = {
 		let res = stendhal.zone.ground;
 		for (var i in stendhal.zone.entities) {
 			let obj = stendhal.zone.entities[i];
-			if (obj.isVisibleToAction(filter) && (obj["_x"] <= xGrid) && (obj["_y"] <= yGrid)
-				&& (obj["_x"] + (obj["width"] || 1) >= xGrid) && (obj["_y"] + (obj["height"] || 1) >= yGrid)) {
+			if (obj.isDraggable() && obj.isVisibleToAction(filter)
+					&& (obj["_x"] <= xGrid) && (obj["_y"] <= yGrid)
+					&& (obj["_x"] + (obj["width"] || 1) >= xGrid)
+					&& (obj["_y"] + (obj["height"] || 1) >= yGrid)) {
 
 				res = obj;
 			}

@@ -295,4 +295,12 @@ export class Entity extends RPObject {
 	onclick(x: number, y: number) {
 		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
+
+	/**
+	 * Checks if this is an entity that can be moved via
+	 * drag-and-drop, such as a corpse or an item.
+	 */
+	public isDraggable(): boolean {
+		return false;
+	}
 }

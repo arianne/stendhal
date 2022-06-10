@@ -187,4 +187,8 @@ export class Item extends Entity {
 	public getYFrameIndex(): number {
 		return (this.sprite.offsetY || 0) / 32;
 	}
+
+	public override isDraggable(): boolean {
+		return true;
+	}
 }

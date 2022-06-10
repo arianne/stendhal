@@ -126,4 +126,8 @@ export class Corpse extends PopupInventory {
 		}
 		return "url(/data/sprites/cursor/lockedbag.png) 1 3, auto";
 	}
+
+	public override isDraggable(): boolean {
+		return true;
+	}
 }
