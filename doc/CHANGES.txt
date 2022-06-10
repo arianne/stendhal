@@ -50,6 +50,10 @@ Changelog
 - travel log shows when quests are repeatable
 - players represented with blue + on minimap
 - fixed distance check for automatically closing corpse & chest windows
+- Ctrl is used instead of Shift key to change facing direction
+- character will not move when scrolling chat history (holding Shift key + arrow up/down)
+- text is not highlighted when scrolling chat history
+- Ctrl+Shift+arrow left/right/up/down moves chat input caret without moving character nor highlighting line
 
 *java client*
 - fixed inaccurate marked scroll tooltips
