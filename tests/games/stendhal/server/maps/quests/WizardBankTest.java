@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -136,7 +137,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "yes"));
-		assertTrue(npc.isTalking());
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
 	}
 
@@ -237,9 +238,10 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
-		assertTrue(npc.isTalking());
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertTrue(player.hasQuest(QUEST_SLOT));
 
+		assertTrue(en.step(player, "hi"));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Hm, I do not understand you. If you wish to #leave, just say", getReply(npc));
 		assertTrue(npc.isTalking());
@@ -254,10 +256,11 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "leave"));
 		assertEquals("Thank you for using the Wizard's Bank", getReply(npc));
-		assertTrue(npc.isTalking());
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		player.setQuest(QUEST_SLOT, "done");
 
+		assertTrue(en.step(player, "hi"));
 		assertTrue(en.step(player, "leave"));
 		assertEquals("Leave where?", getReply(npc));
 		assertTrue(npc.isTalking());
