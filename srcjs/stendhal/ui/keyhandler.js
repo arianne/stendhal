@@ -23,7 +23,7 @@ stendhal.ui.keyhandler = {
 	pressedKeys: [],
 
 	extractMoveOrFaceActionFromEvent: function(event) {
-		if (event.shiftKey) {
+		if (event.ctrlKey) {
 			return "face";
 		}
 		return "move";
