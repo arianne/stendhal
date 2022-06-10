@@ -255,7 +255,7 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 								new PlayerHasItemWithHimCondition("money", COST),
 								new QuestNotActiveCondition(QUEST_SLOT)),
 						ConversationStates.IDLE,
-						"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
+						"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Deniran and Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
 						new MultipleActions(
 								new DropItemAction("money", COST),
 								new TeleportAction(ZONE_NAME, 10, 10, Direction.DOWN),
