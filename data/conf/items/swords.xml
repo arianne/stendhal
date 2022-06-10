@@ -286,7 +286,7 @@
 
   <item name="elvish sword">
     <type class="sword" subclass="elvish_sword" tileid="-1"/>
-    <description>This is an elvish sword. It looks like it is made from tree leaves!</description>
+    <description>This is an elvish sword. It is finely crafted.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="16"/>
