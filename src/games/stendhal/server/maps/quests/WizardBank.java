@@ -342,6 +342,7 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 		npc.setEntityClass("brownwizardnpc");
 		npc.setPosition(15, 10);
 		npc.initHP(100);
+		npc.setIdleDirection(Direction.DOWN);
 		zone.add(npc);
 	}
 
