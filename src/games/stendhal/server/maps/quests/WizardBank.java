@@ -254,17 +254,17 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 						new AndCondition(
 								new PlayerHasItemWithHimCondition("money", COST),
 								new QuestNotActiveCondition(QUEST_SLOT)),
-								ConversationStates.IDLE,
-								"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
-								new MultipleActions(
-										new DropItemAction("money", COST),
-										new TeleportAction(ZONE_NAME, 10, 10, Direction.DOWN),
-										new SetQuestAction(QUEST_SLOT, "start"),
-										new ChatAction() {
-											@Override
-											public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-												SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
-											}}));
+						ConversationStates.IDLE,
+						"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
+						new MultipleActions(
+								new DropItemAction("money", COST),
+								new TeleportAction(ZONE_NAME, 10, 10, Direction.DOWN),
+								new SetQuestAction(QUEST_SLOT, "start"),
+								new ChatAction() {
+									@Override
+									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+										SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
+									}}));
 
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.YES_MESSAGES,
