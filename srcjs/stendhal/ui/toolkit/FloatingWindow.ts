@@ -57,6 +57,7 @@ export class FloatingWindow extends Component {
 		});
 		this.componentElement.querySelector(".windowtitleclose")!.addEventListener("click", (event) => {
 			this.onClose(event);
+			stendhal.ui.sound.playGlobalizedEffect(this.closeSound);
 		});
 		this.onMouseMovedDuringDragListener = (event: Event) => {
 			if (event.type === "mousemove") {
@@ -86,7 +87,6 @@ export class FloatingWindow extends Component {
 			(<DialogContentComponent> this.content).updateConfig(storepos.x, storepos.y);
 		}
 
-		stendhal.ui.sound.playGlobalizedEffect(this.closeSound);
 		this.componentElement.remove();
 		this.contentComponent.onParentClose();
 		this.opened = false;
