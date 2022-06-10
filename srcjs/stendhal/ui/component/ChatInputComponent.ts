@@ -59,12 +59,41 @@ export class ChatInputComponent extends Component {
 	onKeyDown(event: KeyboardEvent) {
 		let code = stendhal.ui.html.extractKeyCode(event);
 
-		// chat history
-		if (event.shiftKey) {
+		if (event.shiftKey && event.ctrlKey) {
+			if (this.inputElement.setSelectionRange !== undefined) {
+				event.stopPropagation();
+
+				// use Ctrl+Shift+arrow left/right to move caret without
+				// moving character nor highlighting text
+				let idx = this.inputElement.selectionEnd || 0;
+				if (code === 37) {
+					// arrow left
+					event.preventDefault();
+
+					idx--;
+					if (idx < 0) {
+						idx = 0;
+					}
+					this.inputElement.setSelectionRange(idx, idx);
+				} else if (code === 39) {
+					// arrow right
+					event.preventDefault();
+
+					idx++;
+					if (idx > this.inputElement.value.length) {
+						idx = this.inputElement.value.length;
+					}
+					this.inputElement.setSelectionRange(idx, idx);
+				}
+			}
+		} else if (event.shiftKey) {
+			// chat history
 			if (code === 38) {
+				// arrow up
 				event.preventDefault();
 				this.fromHistory(-1);
 			} else if (code === 40){
+				// arrow down
 				event.preventDefault();
 				this.fromHistory(1);
 			}
