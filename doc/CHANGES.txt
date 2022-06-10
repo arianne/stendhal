@@ -27,6 +27,8 @@ Changelog
 - magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
 - ATK XP rewarded for successful or blocked hits regardless of having recently taken damage
 - missed hits never reward ATK XP
+- player hit chance is increased by 50% during combat
+- player hit damage is decreased by 50% to compensate for increased hit chance
 
 *graphics*
 - item sprites touch ups
