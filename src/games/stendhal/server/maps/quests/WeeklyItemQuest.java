@@ -218,6 +218,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 		addMed("mithril nugget", 1); // 0.16, 90 (harvestable)
 		addMed("silk gland", 7); // 522.79, 110
 
+		// ring (easy)
+		addEasy("engagement ring", 1); // purchasable
 		// ring (medium)
 		addMed("medicinal ring", 1); // 78.26, 73
 

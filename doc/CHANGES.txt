@@ -21,6 +21,8 @@ Changelog
   - ice war hammer
   - orcish sword
   - black halberd
+- added to Kirdneh Museum quest:
+  - engagement ring
 - removed from Kirdneh Museum quest items requested by Ultimate Collector
 - magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
 - ATK XP rewarded for successful or blocked hits regardless of having recently taken damage
