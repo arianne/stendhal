@@ -25,7 +25,10 @@ stendhal.ui.keyhandler = {
 	extractMoveOrFaceActionFromEvent: function(event) {
 		if (event.ctrlKey) {
 			return "face";
+		} else if (event.shiftKey) {
+			return null;
 		}
+
 		return "move";
 	},
 
@@ -59,6 +62,9 @@ stendhal.ui.keyhandler = {
 			stendhal.ui.keyhandler.pressedKeys.push(code);
 
 			var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+			if (!type) {
+				return;
+			}
 			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
@@ -100,6 +106,9 @@ stendhal.ui.keyhandler = {
 			if (stendhal.ui.keyhandler.pressedKeys.length > 0) {
 				code = stendhal.ui.keyhandler.pressedKeys[0];
 				var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+				if (!type) {
+					return;
+				}
 				var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 				var action = {"type": type, "dir": ""+dir};
 				marauroa.clientFramework.sendAction(action);
