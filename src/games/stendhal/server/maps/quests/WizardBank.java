@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -254,7 +254,7 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 						new AndCondition(
 								new PlayerHasItemWithHimCondition("money", COST),
 								new QuestNotActiveCondition(QUEST_SLOT)),
-								ConversationStates.ATTENDING,
+								ConversationStates.IDLE,
 								"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
 								new MultipleActions(
 										new DropItemAction("money", COST),
@@ -307,7 +307,7 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 				add(ConversationStates.ATTENDING,
 						"leave",
 						new QuestActiveCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING,
+						ConversationStates.IDLE,
 						"Thank you for using the Wizard's Bank",
 						// we used to use teleportAway() here
 						new MultipleActions(
