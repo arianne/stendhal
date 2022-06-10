@@ -16,6 +16,14 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+
+stendhal.ui.keycode = {
+	left: 37,
+	up: 38,
+	right: 39,
+	down: 40
+}
+
 /**
  * handling of key presses and releases
  */
@@ -48,7 +56,7 @@ stendhal.ui.keyhandler = {
 		}
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		if (code >= 37 && code <= 40) {
+		if (code >= stendhal.ui.keycode.left && code <= stendhal.ui.keycode.down) {
 
 			// disable scrolling via arrow keys
 			if (event.target.tagName === "BODY" || event.target.tagName === "CANVAS") {
@@ -93,7 +101,7 @@ stendhal.ui.keyhandler = {
 		}
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		if (code >= 37 && code <= 40) {
+		if (code >= stendhal.ui.keycode.left && code <= stendhal.ui.keycode.down) {
 			var code = stendhal.ui.html.extractKeyCode(event);
 			var i = stendhal.ui.keyhandler.pressedKeys.indexOf(code);
 			if (i > -1) {

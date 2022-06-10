@@ -66,8 +66,7 @@ export class ChatInputComponent extends Component {
 				// use Ctrl+Shift+arrow left/right to move caret without
 				// moving character nor highlighting text
 				let idx = this.inputElement.selectionEnd || 0;
-				if (code === 37) {
-					// arrow left
+				if (code === stendhal.ui.keycode.left) {
 					event.preventDefault();
 
 					idx--;
@@ -75,8 +74,7 @@ export class ChatInputComponent extends Component {
 						idx = 0;
 					}
 					this.inputElement.setSelectionRange(idx, idx);
-				} else if (code === 39) {
-					// arrow right
+				} else if (code === stendhal.ui.keycode.right) {
 					event.preventDefault();
 
 					idx++;
@@ -88,12 +86,10 @@ export class ChatInputComponent extends Component {
 			}
 		} else if (event.shiftKey) {
 			// chat history
-			if (code === 38) {
-				// arrow up
+			if (code === stendhal.ui.keycode.up) {
 				event.preventDefault();
 				this.fromHistory(-1);
-			} else if (code === 40){
-				// arrow down
+			} else if (code === stendhal.ui.keycode.down){
 				event.preventDefault();
 				this.fromHistory(1);
 			}
