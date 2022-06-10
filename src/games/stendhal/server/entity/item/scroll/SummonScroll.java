@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
+import static games.stendhal.server.maps.ados.wall.Deathmatch.playerInArena;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -71,7 +73,7 @@ public class SummonScroll extends Scroll {
 	protected boolean useScroll(final Player player) {
 		final StendhalRPZone zone = player.getZone();
 
-		if (zone.isInProtectionArea(player)) {
+		if (zone.isInProtectionArea(player) && !playerInArena(player)) {
 			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
 			return false;
 		}

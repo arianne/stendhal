@@ -29,6 +29,7 @@ Changelog
 - missed hits never reward ATK XP
 - player hit chance is increased by 50% during combat
 - player hit damage is decreased by 50% to compensate for increased hit chance
+- summon scrolls can be used inside deathmatch arena
 
 *graphics*
 - item sprites touch ups
