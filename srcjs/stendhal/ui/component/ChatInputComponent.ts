@@ -62,8 +62,10 @@ export class ChatInputComponent extends Component {
 		// chat history
 		if (event.shiftKey) {
 			if (code === 38) {
+				event.preventDefault();
 				this.fromHistory(-1);
 			} else if (code === 40){
+				event.preventDefault();
 				this.fromHistory(1);
 			}
 		}
