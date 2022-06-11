@@ -420,19 +420,29 @@ export class RPEntity extends ActiveEntity {
 			}
 		}
 
+		const ocanvas = document.createElement("canvas");
+		let octx
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
 			if (layer == "hair" && stendhal.HATS_NO_HAIR.includes(parseInt(outfit["hat"]))) {
 				continue;
 			}
 
-			if (layer in outfit) {
-				const img = this.getOutfitPart(layer, outfit[layer]);
-				if (img) {
-					this.drawSpriteImage(ctx, img);
+			const lsprite = this.getOutfitPart(layer, outfit[layer]);
+			if (lsprite) {
+				if (!octx) {
+					ocanvas.width = lsprite.width;
+					ocanvas.height = lsprite.height;
+					octx = ocanvas.getContext("2d")!;
 				}
+
+				octx.drawImage(lsprite, 0, 0);
 			}
 		}
+
+		const osprite = new Image();
+		osprite.src = ocanvas.toDataURL("image/png");
+		this.drawSpriteImage(ctx, osprite);
 	}
 
 	/**

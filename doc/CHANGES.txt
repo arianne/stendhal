@@ -57,6 +57,7 @@ Changelog
 - fixed dragging items & corpses under other entities
 - fixed re-ordering items in inventory
 - added setting to enable quick pickup from chests
+- outfit layers are combined before drawing on game window
 
 *java client*
 - fixed inaccurate marked scroll tooltips
