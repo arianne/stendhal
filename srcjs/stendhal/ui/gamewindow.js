@@ -329,17 +329,22 @@ stendhal.ui.gamewindow = {
 	// ***************** Drag and drop ******************
 	onDragStart: function(e) {
 		var pos = stendhal.ui.html.extractPosition(e);
-		var draggedEntity = stendhal.zone.entityAt(pos.offsetX + stendhal.ui.gamewindow.offsetX,
-				pos.offsetY + stendhal.ui.gamewindow.offsetY);
+		let draggedEntity;
+		for (const obj of stendhal.zone.getEntitiesAt(pos.offsetX + stendhal.ui.gamewindow.offsetX,
+				pos.offsetY + stendhal.ui.gamewindow.offsetY)) {
+			if (obj.isDraggable()) {
+				draggedEntity = obj;
+			}
+		}
 
 		var img = undefined;
-		if (draggedEntity.type === "item") {
+		if (draggedEntity && draggedEntity.type === "item") {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
 			stendhal.ui.heldItem = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName
 			}
-		} else if (draggedEntity.type === "corpse") {
+		} else if (draggedEntity && draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
 			stendhal.ui.heldItem = {
 				path: draggedEntity.getIdPath(),

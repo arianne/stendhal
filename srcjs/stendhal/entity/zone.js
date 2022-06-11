@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,19 +20,28 @@ stendhal.zone = stendhal.zone || {};
  * stendhal zone
  */
 stendhal.zone = {
-	entityAt: function(x, y, filter) {
-		let xGrid = x / 32;
-		let yGrid = y / 32;
-		let res = stendhal.zone.ground;
-		for (var i in stendhal.zone.entities) {
-			let obj = stendhal.zone.entities[i];
-			if (obj.isDraggable() && obj.isVisibleToAction(filter)
+	getEntitiesAt: function(x, y, filter) {
+		const xGrid = x / 32;
+		const yGrid = y / 32;
+		const entities = [];
+		for (const i in stendhal.zone.entities) {
+			const obj = stendhal.zone.entities[i];
+			if (obj.isVisibleToAction(filter)
 					&& (obj["_x"] <= xGrid) && (obj["_y"] <= yGrid)
 					&& (obj["_x"] + (obj["width"] || 1) >= xGrid)
 					&& (obj["_y"] + (obj["height"] || 1) >= yGrid)) {
 
-				res = obj;
+				entities.push(obj);
 			}
+		}
+
+		return entities;
+	},
+
+	entityAt: function(x, y, filter) {
+		let res = stendhal.zone.ground;
+		for (const obj of stendhal.zone.getEntitiesAt(x, y, filter)) {
+			res = obj;
 		}
 
 		// If we found an entity, return it
