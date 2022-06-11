@@ -56,6 +56,7 @@ Changelog
 - Ctrl+Shift+arrow left/right/up/down moves chat input caret without moving character nor highlighting line
 - fixed dragging items & corpses under other entities
 - fixed re-ordering items in inventory
+- added setting to enable quick pickup from chests
 
 *java client*
 - fixed inaccurate marked scroll tooltips

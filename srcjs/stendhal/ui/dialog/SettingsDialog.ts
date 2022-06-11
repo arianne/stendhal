@@ -117,6 +117,17 @@ export class SettingsDialog extends DialogContentComponent {
 			chk_dblclick.parentElement!.title = tt_dblclick.getValue(chk_dblclick.checked);
 		});
 
+		// FIXME: open chest windows are not refreshed
+		const chk_chestqp = this.createCheckBox("chk_chestqp")!;
+		chk_chestqp.checked = stendhal.config.getBoolean("action.chest.quickpickup");
+		const tt_chestqp = new CheckTooltip("Click to tranfer items from chest",
+				"Click executes default action on items in chests");
+		chk_chestqp.parentElement!.title = tt_chestqp.getValue(chk_chestqp.checked);
+		chk_chestqp.addEventListener("change", (e) => {
+			stendhal.config.set("action.chest.quickpickup", chk_chestqp.checked);
+			chk_chestqp.parentElement!.title = tt_chestqp.getValue(chk_chestqp.checked);
+		});
+
 		const chk_movecont = this.createCheckBox("chk_movecont")!;
 		chk_movecont.checked = stendhal.config.getBoolean("input.movecont");
 		const tt_movecont = new CheckTooltip("Player will continue to walk after changing areas",
