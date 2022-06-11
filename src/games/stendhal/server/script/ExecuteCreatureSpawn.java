@@ -60,9 +60,9 @@ public class ExecuteCreatureSpawn extends ScriptImpl {
 		String zoneSpawns = "";
 		for (final CreatureRespawnPoint p: zone.getRespawnPointList()) {
 			if (zoneSpawns.equals("")) {
-				zoneSpawns = "(" + p.getX() + "," + p.getY() + ")";
+				zoneSpawns = p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")";
 			} else {
-				zoneSpawns += ", (" + p.getX() + "," + p.getY() + ")";
+				zoneSpawns += ", " + p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")";
 			}
 
 			if (p.getX() == x && p.getY() == y) {
