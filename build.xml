@@ -839,7 +839,7 @@
 		<zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
 			<zipfileset dir="${buildroot}/js" prefix="js"/>
 			<zipfileset dir="${buildroot}/ts" prefix="ts"/>
-      <zipfileset file="LICENSE.txt"/>
+			<zipfileset file="LICENSE.txt"/>
 		</zip>
 	</target>
 
