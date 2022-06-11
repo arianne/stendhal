@@ -433,25 +433,20 @@ stendhal.ui.gamewindow = {
 
 		const d = new Date();
 		const ts = {
-			yyyy: d.getFullYear() + "",
-			mm: (d.getMonth() + 1) + "",
-			dd: d.getDate() + "",
-			HH: d.getHours() + "",
-			MM: d.getMinutes() + "",
-			SS: d.getSeconds() + "",
-			ms: d.getMilliseconds() + ""
+			yyyy: "" + d.getFullYear(),
+			mm: ("00" + (d.getMonth() + 1)).slice(-2),
+			dd: ("00" + d.getDate()).slice(-2),
+			HH: ("00" + d.getHours()).slice(-2),
+			MM: ("00" + d.getMinutes()).slice(-2),
+			SS: ("00" + d.getSeconds()).slice(-2),
+			ms: "" + d.getMilliseconds()
 		};
 
-		for (let o of [ts.mm, ts.dd, ts.HH, ts.MM, ts.SS]) {
-			if (o.length < 2) {
-				o = "0" + o;
-			}
-		}
 		while (ts.ms.length < 3) {
 			ts.ms = "0" + ts.ms;
 		}
 
-		const filename = "screenshot_" + ts.yyyy + ts.mm
+		const filename = "stendhal_" + ts.yyyy + ts.mm
 				+ ts.dd + "_" + ts.HH + "." + ts.MM + "."
 				+ ts.SS + "." + ts.ms + ".png";
 
