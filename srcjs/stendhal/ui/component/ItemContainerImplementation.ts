@@ -26,6 +26,9 @@ export class ItemContainerImplementation {
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
 
+	// slot index where cursor is hovering
+	private selectedIdx: string|undefined = undefined;
+
 
 	// TODO: replace usage of global document.getElementById()
 
@@ -141,7 +144,8 @@ export class ItemContainerImplementation {
 		if (item) {
 			stendhal.ui.heldItem = {
 				path: item.getIdPath(),
-				zone: marauroa.currentZoneName
+				zone: marauroa.currentZoneName,
+				slot: this.slot
 			} as any;
 			if (event instanceof DragEvent && event.dataTransfer) {
 				const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
@@ -157,19 +161,35 @@ export class ItemContainerImplementation {
 		if (event instanceof DragEvent && event.dataTransfer) {
 			event.dataTransfer.dropEffect = "move";
 		}
+
+		// store index of where cursor is located
+		const id = (event.target as HTMLElement).id;
+		if (id.includes(".")) {
+			const tmp = id.split(".");
+			const idx = tmp[tmp.length - 1];
+			if (!isNaN(parseInt(idx, 10))) {
+				this.selectedIdx = idx;
+			}
+		}
+
 		return false;
 	}
 
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldItem) {
-			const  targetPath = "[" + myobject["id"] + "\t" + this.slot + "]";
 			const action = {
-				"type": "equip",
-				"source_path": stendhal.ui.heldItem.path,
-				"target_path": targetPath,
-				"zone": stendhal.ui.heldItem.zone
+				"source_path": stendhal.ui.heldItem.path
 			} as any;
+
+			if (stendhal.ui.heldItem.slot === this.slot) {
+				action["type"] = "reorder";
+				action["new_position"] = this.selectedIdx || "" + (this.size - 1);
+			} else {
+				action["type"] = "equip";
+				action["target_path"] = "[" + myobject["id"] + "\t" + this.slot + "]";
+				action["zone"] = stendhal.ui.heldItem.zone;
+			}
 
 			// item was dropped
 			stendhal.ui.heldItem = undefined;

@@ -55,6 +55,7 @@ Changelog
 - text is not highlighted when scrolling chat history
 - Ctrl+Shift+arrow left/right/up/down moves chat input caret without moving character nor highlighting line
 - fixed dragging items & corpses under other entities
+- fixed re-ordering items in inventory
 
 *java client*
 - fixed inaccurate marked scroll tooltips
