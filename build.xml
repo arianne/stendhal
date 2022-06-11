@@ -830,6 +830,19 @@
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
+	<target name="cleanjs">
+		<delete dir="${buildroot}/js"/>
+		<delete dir="${buildroot}/ts"/>
+	</target>
+
+	<target name="dist_webclient_binary" depends="cleanjs,compilejs">
+		<zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
+			<zipfileset dir="${buildroot}/js" prefix="js"/>
+			<zipfileset dir="${buildroot}/ts" prefix="ts"/>
+      <zipfileset file="LICENSE.txt"/>
+		</zip>
+	</target>
+
 
 	<target name="dist_client_starter" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
