@@ -611,7 +611,7 @@ data/sprites/entity/hybrid/
 arachne.*            Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/21036
 blue_mohiko.*        Svetlana Kushnariova (Cabbit), bluecarrot16, Michael Williams (BizmasterStudios), olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/36060, https://opengameart.org/node/77334
 brain_ahouga.png     Tuomo Untinen (Reemax); CC BY 3.0; https://opengameart.org/node/15590
-dark_aruthon.png     Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50703
+dark_aruthon.*       Kevin Smith (TKZ Productions), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/50703
 googon.*             Tracy, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/13716
 grobble_monster.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 mimic.*              Diligent Dodo/soniccuz; GPL 2.0 or newer; Stendhal
