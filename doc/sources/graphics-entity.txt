@@ -298,7 +298,7 @@ bat*.png              bagzie; OGA BY 3.0; https://opengameart.org/node/26447
 bear.png              ScratchIO, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/100779
 bee.png               Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 black_bear.png        ScratchIO, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/100779
-boar.png              Daniel Eddeland (daneeklu), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83210, https://opengameart.org/node/11629
+boar.png              Daniel Eddeland (daneeklu), Benjamin K. Smith (BenCreating), Commissioned by Castelonia; CC BY-SA 3.0; https://opengameart.org/node/11629, https://opengameart.org/node/124333
 butterfly.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79095
 cat.png               bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 crab.png              Dominik Gmiterko (ienze); CC BY 3.0; https://opengameart.org/node/6270
