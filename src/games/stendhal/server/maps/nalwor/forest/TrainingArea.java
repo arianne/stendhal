@@ -444,7 +444,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 			if (skipNotify) {
 				skipNotify = false;
 			} else {
-				trainer.say(player.getName() + ", you have " + TimeUtil.timeUntil(minsRemain * 60) + " left.");
+				if (minsRemain > 0) {
+					trainer.say(player.getName() + ", you have " + TimeUtil.timeUntil(minsRemain * 60) + " left.");
+				}
 			}
 
 			SingletonRepository.getTurnNotifier().notifyInSeconds(notifyIn * 60, this);
