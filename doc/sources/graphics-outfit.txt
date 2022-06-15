@@ -13,6 +13,8 @@ body_978.*        (white cat)     Svetlana Kushnariova (Cabbit), bleutailfly, Jo
 body_979.png      (black cat)     Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
 body_980*.png     (pink body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 body_981*.png     (blue body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+body_986.png      (elder)         Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+body_987.png      (elder w/ cane) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 body_988.png      (red slime)     nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 body_989.png      (green slime)   nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 body_990.png      (yellow slime)  nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
@@ -158,6 +160,10 @@ eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silv
 eyes_023.png                CC0; Stendhal
 eyes_024.png                CC0; Stendhal
 eyes_024.png                CC0; Stendhal
+eyes_025.png                CC0; Stendhal
+eyes_026.png                CC0; Stendhal
+eyes_027.png                CC0; Stendhal
+eyes_999.png (elder)        CC0; Stendhal
 
 data/sprites/outfit/hair/
 
@@ -253,6 +259,7 @@ head_985.png (dog)     yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https:
 head_987.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal;
 head_988.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
 head_989.png (elf)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84456
+head_996.png (elder)   Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_998.png (empty)
 
 data/sprites/outfit/mask/
