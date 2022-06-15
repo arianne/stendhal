@@ -263,6 +263,7 @@ head_987.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDelug
 head_988.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
 head_989.png (elf)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84456
 head_994.png (child)     Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_995.png (elf child) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_996.png (elder)     Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_997.png (elf elder) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_998.png (empty)
