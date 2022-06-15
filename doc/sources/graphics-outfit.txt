@@ -28,6 +28,7 @@ body_995.png      (alien)         Fabzy; CC BY-SA 3.0; https://opengameart.org/n
 body_996.png      (horse mount)   bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 body_997.png      (horse mount)   bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 body_998.png      (empty)
+body_999.png      (dwarf)         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84448
 
 data/sprites/outfit/detail/
 
@@ -165,6 +166,7 @@ eyes_024.png                CC0; Stendhal
 eyes_025.png                CC0; Stendhal
 eyes_026.png                CC0; Stendhal
 eyes_027.png                CC0; Stendhal
+eyes_997.png (dwarf)        CC0; Stendhal
 eyes_998.png (child)        CC0; Stendhal
 eyes_999.png (elder)        CC0; Stendhal
 
@@ -262,6 +264,8 @@ head_985.png (dog)       yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; http
 head_987.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal;
 head_988.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
 head_989.png (elf)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84456
+head_992.png (dwarf)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84448
+head_993.png (dwarf)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84448
 head_994.png (child)     Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_995.png (elf child) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_996.png (elder)     Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
