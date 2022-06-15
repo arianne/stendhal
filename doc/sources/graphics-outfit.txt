@@ -245,21 +245,22 @@ hat_999.png (Santa hat)        Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:
 
 data/sprites/outfit/head/
 
-head_000.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-head_001.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-head_002.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-head_003.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-head_978.png           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
-head_980.png           (placeholder)
-head_981.*   (frog)    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-head_982.png           (placeholder)
-head_983.*   (monkey)  Crisisworks, Jordan Irwin (AntumDeluge); CC BY 4.0; https://opengameart.org/node/83903, https://evilartbunny.itch.io/spirit-of-the-wind
-head_984.*   (dog)     yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-head_985.png (dog)     yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-head_987.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal;
-head_988.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
-head_989.png (elf)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84456
-head_996.png (elder)   Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_000.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_001.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_002.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_003.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_978.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
+head_980.png             (placeholder)
+head_981.*   (frog)      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+head_982.png             (placeholder)
+head_983.*   (monkey)    Crisisworks, Jordan Irwin (AntumDeluge); CC BY 4.0; https://opengameart.org/node/83903, https://evilartbunny.itch.io/spirit-of-the-wind
+head_984.*   (dog)       yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+head_985.png (dog)       yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+head_987.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal;
+head_988.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; Stendhal
+head_989.png (elf)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84456
+head_996.png (elder)     Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+head_997.png (elf elder) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 head_998.png (empty)
 
 data/sprites/outfit/mask/
