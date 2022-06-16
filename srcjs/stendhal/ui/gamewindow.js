@@ -62,6 +62,12 @@ stendhal.ui.gamewindow = {
 				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
+
+				if (stendhal.ui.touch.held) {
+					// draw a representation of a item "held" via touch input
+					stendhal.ui.touch.drawHeld(this.ctx);
+				}
+
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
 				ui.get(UIComponentEnum.PlayerEquipment).update();
