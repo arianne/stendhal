@@ -63,7 +63,6 @@ stendhal.ui.gamewindow = {
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
 				// redraw inventory sprites
-				// FIXME: animations don't begin until zone change or item moved
 				stendhal.ui.equip.update();
 				ui.get(UIComponentEnum.PlayerEquipment).update();
 			}
