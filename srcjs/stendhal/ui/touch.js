@@ -20,19 +20,34 @@ stendhal.ui.touch = {
 	timestampTouchStart: 0,
 	timestampTouchEnd: 0,
 
+	/**
+	 * Sets timestamp when touch applied.
+	 */
 	onTouchStart: function() {
 		stendhal.ui.touch.timestampTouchStart = +new Date();
 	},
 
+	/**
+	 * Sets timestamp when touch released.
+	 */
 	onTouchEnd: function() {
 		stendhal.ui.touch.timestampTouchEnd = +new Date();
 	},
 
+	/**
+	 * Checks if a touch event represents a long touch after release.
+	 */
 	isLongTouch: function() {
 		return (stendhal.ui.touch.timestampTouchEnd - stendhal.ui.touch.timestampTouchStart
 				> stendhal.ui.touch.longTouchDuration);
 	},
 
+	/**
+	 * Sets information for a held item representation.
+	 *
+	 * @param img
+	 *     Sprite <code>Image</code> to be drawn.
+	 */
 	setHeldItem: function(img) {
 		stendhal.ui.touch.held = {
 			image: img,
@@ -41,6 +56,9 @@ stendhal.ui.touch = {
 		}
 	},
 
+	/**
+	 * Clears information for a held item representation.
+	 */
 	unsetHeldItem: function() {
 		stendhal.ui.touch.held = undefined;
 	},
