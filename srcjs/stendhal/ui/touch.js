@@ -20,32 +20,6 @@ stendhal.ui.touch = {
 	timestampTouchStart: 0,
 	timestampTouchEnd: 0,
 
-	toMouseEvent: function(evt, type, drag=false) {
-		const touch = evt.changedTouches[0] || evt.targetTouches[0] || evt.touches[0];
-		const def = {
-				"screenX": touch.screenX, "screenY": touch.screenY,
-				"clientX": touch.clientX, "clientY": touch.clientY,
-				"ctrlKey": evt.ctrlKey, "shiftKey": evt.shiftKey,
-				"altKey": evt.altKey, "metaKey": evt.metaKey
-		};
-
-		if (drag) {
-			return new DragEvent(type, def);
-		}
-		return new MouseEvent(type, def);
-	},
-
-	toDragEvent: function(evt, type) {
-		return this.toMouseEvent(evt, type, true);
-	},
-
-	dispatchConverted: function(srcEvt, newEvt) {
-		const target = stendhal.ui.html.extractPosition(srcEvt).target;
-		if (target) {
-			target.dispatchEvent(newEvt);
-		}
-	},
-
 	onTouchStart: function() {
 		stendhal.ui.touch.timestampTouchStart = +new Date();
 	},
