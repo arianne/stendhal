@@ -28,7 +28,7 @@ stendhal.ui.outfitCount = {
 	"eyes": 28,
 	"mouth": 5,
 	"head":  4,
-	"dress": 63,
+	"dress": 64,
 	"body": 3
 };
 
