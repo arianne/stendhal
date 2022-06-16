@@ -23,7 +23,7 @@ declare var stendhal: any;
 
 stendhal.ui.outfitCount = {
 	"hat": 15,
-	"hair": 53,
+	"hair": 54,
 	"mask": 9,
 	"eyes": 28,
 	"mouth": 5,
