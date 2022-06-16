@@ -47,6 +47,7 @@ stendhal.ui.touch = {
 	},
 
 	isLongTouch: function() {
-		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+		return (stendhal.ui.touch.timestampTouchEnd - stendhal.ui.touch.timestampTouchStart
+				> stendhal.ui.touch.longTouchDuration);
 	}
 }
