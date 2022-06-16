@@ -198,7 +198,7 @@ swimmer2npc.*                 Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin
 swimmer3npc.*                 Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
 swimmer4npc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 swimmer5npc.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-swimmer6npc.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/72198
+swimmer6npc.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/72198
 swimmer7npc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 swimmer8npc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 tavernbarmaidnpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
