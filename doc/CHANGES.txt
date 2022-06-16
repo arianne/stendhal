@@ -58,6 +58,7 @@ Changelog
 - fixed re-ordering items in inventory
 - added setting to enable quick pickup from chests
 - outfit layers are combined before drawing on game window
+- support for moving items via touch added
 
 *java client*
 - fixed inaccurate marked scroll tooltips
