@@ -60,20 +60,12 @@ export class ItemContainerImplementation {
 			e.addEventListener("mouseup", (event: MouseEvent) => {
 				this.onMouseUp(event)
 			});
-			/*
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
 			});
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});
-			e.addEventListener("touchmove", (event: TouchEvent) => {
-				this.onTouchMove(event)
-			});
-			e.addEventListener("touchcancel", (event: TouchEvent) => {
-				this.onTouchCancel(event)
-			});
-			*/
 			e.addEventListener("contextmenu", (event: MouseEvent) => {
 				this.onContextMenu(event);
 			});
@@ -139,7 +131,16 @@ export class ItemContainerImplementation {
 			return;
 		}
 
-		let slotNumber = (event.target as HTMLElement).id.slice(this.slot.length + this.suffix.length);
+		let target
+		if (event instanceof DragEvent) {
+			target = (event.target as HTMLElement);
+		} else {
+			// touch event
+			const touch = event.touches[0] || event.targetTouches[0] || event.changedTouches[0];
+			target = (touch.target as HTMLElement);
+		}
+
+		const slotNumber = target.id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
 		if (item) {
 			stendhal.ui.heldItem = {
@@ -147,9 +148,12 @@ export class ItemContainerImplementation {
 				zone: marauroa.currentZoneName,
 				slot: this.slot
 			} as any;
+
+			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
-				const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 				event.dataTransfer.setDragImage(img, 0, 0);
+			} else if (event instanceof TouchEvent) {
+				stendhal.ui.touch.setHeldItem(img);
 			}
 		} else {
 			event.preventDefault();
@@ -282,25 +286,22 @@ export class ItemContainerImplementation {
 	}
 
 	private onTouchStart(evt: TouchEvent) {
-		evt.preventDefault();
-		stendhal.ui.touch.timestampTouchStart = +new Date();
+		stendhal.ui.touch.onTouchStart();
 	}
 
 	private onTouchEnd(evt: TouchEvent) {
-		evt.preventDefault();
-		stendhal.ui.touch.timestampTouchEnd = +new Date();
-		if (stendhal.ui.heldItem) {
-			this.onDrop(evt);
-		} else {
-			this.onMouseUp(evt);
-		}
-	}
+		stendhal.ui.touch.onTouchEnd();
+		if (stendhal.ui.touch.isLongTouch() && !stendhal.ui.touch.held) {
+			// don't call this.onMouseUp
+			evt.preventDefault();
 
-	private onTouchMove(evt: TouchEvent) {
-		if (stendhal.ui.heldItem) {
-			this.onDragOver(evt);
-		} else {
 			this.onDragStart(evt);
+		} else if (stendhal.ui.touch.held) {
+			// don't call this.onMouseUp
+			evt.preventDefault();
+
+			this.onDrop(evt);
+			stendhal.ui.touch.unsetHeldItem();
 		}
 	}
 }

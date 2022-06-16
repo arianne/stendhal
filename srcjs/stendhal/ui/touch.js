@@ -46,8 +46,26 @@ stendhal.ui.touch = {
 		}
 	},
 
+	onTouchStart: function() {
+		stendhal.ui.touch.timestampTouchStart = +new Date();
+	},
+
+	onTouchEnd: function() {
+		stendhal.ui.touch.timestampTouchEnd = +new Date();
+	},
+
 	isLongTouch: function() {
 		return (stendhal.ui.touch.timestampTouchEnd - stendhal.ui.touch.timestampTouchStart
 				> stendhal.ui.touch.longTouchDuration);
+	},
+
+	setHeldItem: function(img) {
+		stendhal.ui.touch.held = {
+			image: img
+		}
+	},
+
+	unsetHeldItem: function() {
+		stendhal.ui.touch.held = undefined;
 	}
 }

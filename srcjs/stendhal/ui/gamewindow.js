@@ -401,26 +401,13 @@ stendhal.ui.gamewindow = {
 		e.preventDefault();
 	},
 
-	onTouchStart: function(e) {
-		e.preventDefault();
-		stendhal.ui.touch.timestampTouchStart = +new Date();
-	},
-
 	onTouchEnd: function(e) {
-		e.preventDefault();
-		stendhal.ui.touch.timestampTouchEnd = +new Date();
-		if (stendhal.ui.heldItem) {
-			this.onDrop(e);
-		} else {
-			this.onMouseUp(e);
-		}
-	},
+		if (stendhal.ui.touch.held) {
+			// don't call this.onMouseUp
+			e.preventDefault();
 
-	onTouchMove: function(e) {
-		if (stendhal.ui.heldItem) {
-			this.onDragOver(e);
-		} else {
-			this.onDragStart(e);
+			stendhal.ui.gamewindow.onDrop(e);
+			stendhal.ui.touch.unsetHeldItem();
 		}
 	},
 
