@@ -447,7 +447,76 @@
     <delete dir="run_srvr"/>
   </target>
 
-  <target name="client_build" depends="init" description="Build JAR file for Stendhal client">
+  <target name="clean_client_data">
+    <delete dir="${build_client_data}"/>
+    <delete dir="${build_client_music_data}"/>
+    <delete dir="${build_client_sound_data}"/>
+  </target>
+
+  <target name="build_client_data">
+    <!-- base data -->
+    <mkdir dir="${build_client_data}"/>
+    <copy todir="${build_client_data}/data/sprites">
+      <fileset dir="${sprites}">
+        <exclude name="**/*.bz2"/>
+        <exclude name="**/*.gz"/>
+        <exclude name="**/*.psd"/>
+        <exclude name="**/*.xcf"/>
+        <exclude name="**/*.xcf.*"/>
+        <exclude name="templates/"/>
+        <exclude name="placeholder-*.png"/>
+        <exclude name="cursor/*.svg"/>
+      </fileset>
+    </copy>
+    <copy todir="${build_client_data}/data/tileset">
+      <fileset dir="${tiled}/tileset">
+        <exclude name="**/*.bz2"/>
+        <exclude name="**/*.gz"/>
+        <exclude name="**/*.psd"/>
+        <exclude name="**/*.xcf"/>
+        <exclude name="**/*.xcf.*"/>
+      </fileset>
+    </copy>
+    <copy todir="${build_client_data}/data/font">
+      <fileset dir="data/font"/>
+    </copy>
+    <copy todir="${build_client_data}/data/gui">
+      <fileset dir="${data}">
+        <exclude name="paneldrock009.jpg"/>
+        <exclude name="panelmetal003.gif"/>
+        <exclude name="panelrock016.jpg"/>
+        <exclude name="panelwood006.jpg"/>
+        <exclude name="panelwood032.gif"/>
+        <exclude name="panelwood003.jpg"/>
+        <exclude name="**/*.bz2"/>
+        <exclude name="**/*.gz"/>
+        <exclude name="**/*.psd"/>
+        <exclude name="**/*.xcf"/>
+        <exclude name="**/*.xcf.*"/>
+        <exclude name="**/*.svg"/>
+      </fileset>
+    </copy>
+    <copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
+
+    <!-- music data -->
+    <mkdir dir="${build_client_music_data}"/>
+    <copy todir="${build_client_music_data}/data/music">
+      <fileset dir="data/music">
+        <include name="**/*.ogg"/>
+      </fileset>
+    </copy>
+
+    <!-- sounds data -->
+    <mkdir dir="${build_client_sound_data}"/>
+    <copy todir="${build_client_sound_data}/data/sounds">
+      <fileset dir="data/sounds">
+        <include name="**/*.ogg"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+  <target name="client_build" depends="init,build_client_data" description="Build JAR file for Stendhal client">
     <mkdir dir="${build_client}"/>
 
     <copy todir="${build_client}/games/stendhal/client">
@@ -531,73 +600,11 @@
       </fileset>
     </jar>
 
-    <mkdir dir="${build_client_data}"/>
-
-    <copy todir="${build_client_data}/data/sprites">
-      <fileset dir="${sprites}">
-        <exclude name="**/*.bz2" />
-        <exclude name="**/*.gz" />
-        <exclude name="**/*.psd" />
-        <exclude name="**/*.xcf" />
-        <exclude name="**/*.xcf.*" />
-        <exclude name="templates/" />
-        <exclude name="placeholder-*.png" />
-        <exclude name="cursor/*.svg" />
-      </fileset>
-    </copy>
-
-    <copy todir="${build_client_data}/data/tileset">
-      <fileset dir="${tiled}/tileset">
-        <exclude name="**/*.bz2" />
-        <exclude name="**/*.gz" />
-        <exclude name="**/*.psd" />
-        <exclude name="**/*.xcf" />
-        <exclude name="**/*.xcf.*" />
-      </fileset>
-    </copy>
-
-    <copy todir="${build_client_data}/data/font">
-      <fileset dir="data/font"/>
-    </copy>
-
-    <copy todir="${build_client_data}/data/gui">
-      <fileset dir="${data}">
-        <exclude name="paneldrock009.jpg"/>
-        <exclude name="panelmetal003.gif"/>
-        <exclude name="panelrock016.jpg"/>
-        <exclude name="panelwood006.jpg"/>
-        <exclude name="panelwood032.gif"/>
-        <exclude name="panelwood003.jpg"/>
-        <exclude name="**/*.bz2" />
-        <exclude name="**/*.gz" />
-        <exclude name="**/*.psd" />
-        <exclude name="**/*.xcf" />
-        <exclude name="**/*.xcf.*" />
-        <exclude name="**/*.svg" />
-      </fileset>
-    </copy>
-
-    <copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
+    <!-- base data -->
     <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
-
-    <mkdir dir="${build_client_sound_data}"/>
-
-    <copy todir="${build_client_sound_data}/data/sounds">
-      <fileset dir="data/sounds">
-        <include name="**/*.ogg"/>
-      </fileset>
-    </copy>
-
+    <!-- sounds data -->
     <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
-
-    <mkdir dir="${build_client_music_data}"/>
-
-    <copy todir="${build_client_music_data}/data/music">
-      <fileset dir="data/music">
-        <include name="**/*.ogg"/>
-      </fileset>
-    </copy>
-
+    <!-- music data -->
     <jar jarfile="${lib}/${client_music_data}" basedir="${build_client_music_data}"/>
 
   </target>
@@ -794,7 +801,7 @@
     <delete dir="${buildroot}/stendhal-server-${version}"/>
   </target>
 
-  <target name="dist_client_binary" depends="client_build">
+  <target name="dist_client_binary" depends="clean_client_data,client_build">
     <mkdir dir="${buildroot}/stendhal-${version}"/>
     <mkdir dir="${buildroot}/stendhal-${version}/lib"/>
     <mkdir dir="${buildroot}/stendhal-${version}/log"/>
