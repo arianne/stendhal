@@ -1124,7 +1124,7 @@
     </echo>
   </target> <!-- js-invoke-compiler -->
 
-  <target name="compilejs">
+  <target name="compilejs" depends="cleanjs">
     <antcall target="js-prepare" unless:set="exclude.webclient" />
     <antcall target="js-invoke-compiler" unless:set="exclude.webclient" />
 
