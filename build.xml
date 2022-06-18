@@ -1,1010 +1,1010 @@
 <?xml version='1.0'?>
 
 <project name="stendhal" default="compile" basedir="." xmlns:jacoco="antlib:org.jacoco.ant"
-		xmlns:if="ant:if" xmlns:unless="ant:unless">
-	<!--
-		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
-		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
-	-->
-	<property environment="env"/>
-
-	<condition property="os.win">
-		<os family="windows"/>
-	</condition>
-
-	<condition property="exe.ext" value=".exe" else="">
-		<equals arg1="${os.win}" arg2="true"/>
-	</condition>
-	<condition property="executable.npm" value="npm.cmd" else="npm">
-		<equals arg1="${os.win}" arg2="true" />
-	</condition>
-
-	<!-- check for some executables -->
-	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
-	<available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
-
-	<property file="build.ant-private.properties"/>
-	<property file="build.ant.properties"/>
-
-	<property name="build_tests" value="${buildroot}/build_tests"/>
-	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
-
-	<property name="build_client" value="${buildroot}/build_client"/>
-	<property name="build_client_data" value="${buildroot}/build_client_data"/>
-	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
-	<property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
-
-	<property name="build_postman" value="${buildroot}/buildbot/"/>
-
-	<property name="build_server" value="${buildroot}/build_server"/>
-	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
-	<property name="build_server_script" value="${buildroot}/build_server_script"/>
-	<property name="build_server_mods" value="${buildroot}/build_server_mods"/>
-	<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf"/>
-
-	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
-	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
-
-	<property name="client_data" value="stendhal-data-${version}.jar"/>
-	<property name="client_jarname" value="stendhal-${version}.jar"/>
-	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
-	<property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
-	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
-
-	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
-
-	<property name="server_jarname" value="stendhal-server-${version}.jar"/>
-	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
-
-	<property name="config_dir" value="data/conf"/>
-
-	<property name="schema_location" value="${config_dir}"/>
-
-	<property name="cobertura.dir" value="${libdir}/cobertura" />
-
-	<import file="build-private.xml" optional="true" />
-
-	<condition property="exclude.signing" value="true">
-		<not>
-			<available file="keystore.ks"/>
-		</not>
-	</condition>
-	<condition property="exclude.jardiff" value="true">
-		<not>
-			<available file="${build-archive}/stendhal-${version.old}.zip"/>
-		</not>
-	</condition>
-	<condition property="exclude.webclient" value="true">
-		<not>
-			<available file="${executable.npm}" filepath="${env.PATH}"/>
-		</not>
-	</condition>
-
-	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
-	<condition property="executable.suffix" value=".cmd">
-		<os family="windows" />
-	</condition>
-	<property name="executable.suffix" value="" />
-
-	<tstamp>
-		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
-	</tstamp>
-
-	<condition property="doxygen.fix_urls" value="true">
-		<and>
-			<equals arg1="${python.present}" arg2="true"/>
-			<available file="buildtools/doxygen/fix_urls.py"/>
-		</and>
-	</condition>
-
-	<!-- Android properties -->
-
-	<condition property="exclude.webview" value="true">
-		<and>
-			<not>
-				<isset property="env.ANDROID_SDK_ROOT" />
-			</not>
-			<not>
-				<available file="${user.dir}/android/local.properties" />
-			</not>
-		</and>
-	</condition>
-
-	<!-- END: Android properties -->
-
-
-	<target name="init">
-		<mkdir dir="${lib}"/>
-
-		<!-- We update the version number -->
-		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
-			match="String VERSION ?= ?&quot;.*&quot;;"
-			replace="String VERSION = &quot;${version}&quot;;"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
-			match="out.println\(&quot;server_version=.*&quot;\);"
-			replace="out.println(&quot;server_version=${version}&quot;);"
-			byline="true"/>
-		<replaceregexp file="runserver.bat"
-			match="STENDHAL_VERSION=.*"
-			replace="STENDHAL_VERSION=${version}"
-			byline="true"/>
-		<replaceregexp file="runserver.sh"
-			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
-			replace="STENDHAL_VERSION=&quot;${version}&quot;"
-			byline="true"/>
-		<replaceregexp file="buildtools/doxygen/Doxyfile"
-			match="^PROJECT_NUMBER .*$"
-			replace="PROJECT_NUMBER         = ${version}"
-			byline="true"/>
-		<!-- Update location of resources -->
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="GAME_NAME=.*"
-			replace="GAME_NAME=${game_name}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="DEFAULT_SERVER=.*"
-			replace="DEFAULT_SERVER=${default_server}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="UPDATE_SERVER_FOLDER=.*"
-			replace="UPDATE_SERVER_FOLDER=${updates_server}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="UPDATE_SERVER_FOLDER_FALLBACK=.*"
-			replace="UPDATE_SERVER_FOLDER_FALLBACK=${updates_server_fallback}"
-			byline="true"/>
-		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
-			match="UPDATE_VERSION_CHECK=.*"
-			replace="UPDATE_VERSION_CHECK=${version_server}"
-			byline="true"/>
-
-
-		<replaceregexp file="stendhal.jnlp"
-			match="-0\..*\.jar&quot;"
-			replace="-${version}.jar&quot;"
-			byline="true"/>
-
-		<!-- pre release version -->
-		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
-			match="String PRE_RELEASE_VERSION ?= .*;"
-			replace="String PRE_RELEASE_VERSION = null;"
-			byline="true"/>
-		<antcall target="internalUpdatePrereleaseVersion" />
-	</target>
-
-	<target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE">
-		<tstamp prefix="date">
-			<format property="iso" pattern="yyyy-MM-dd" />
-		</tstamp>
-		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
-			match="String PRE_RELEASE_VERSION ?= .*;"
-			replace="String PRE_RELEASE_VERSION = &quot;PRE_RELEASE ${date.iso}&quot;;"
-			byline="true"/>
-	</target>
-
-	<target name="clean">
-		<delete dir="${buildroot}" />
-		<delete dir="${build_cobertura}"/>
-		<delete dir="${build_cobertura_report}"/>
-		<delete file="cobertura.ser" />
-		<delete dir="android/app/build/" />
-		<delete>
-					<fileset dir=".">
-						<include name="TEST-*.xml"/>
-					</fileset>
-		</delete>
-	</target>
-
-
-
-	<target name = "postman">
-		<mkdir dir="${buildroot}/buildbot"/>
-		<javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/bot/postman/*.java"/>
-			<include name="games/stendhal/bot/package-info.java"/>
-			<include name="games/stendhal/bot/shouter/*.java"/>
-			<include name="games/stendhal/bot/core/*.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
-
-			<classpath>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="libs/pircbot.jar"/>
-			</classpath>
-
-		</javac>
-		<jar jarfile="${buildroot}/buildbot/postman.jar">
-			<fileset dir="${buildroot}/buildbot">
-				<include name="games/stendhal/bot/postman/*"/>
-
-				<include name="games/stendhal/bot/core/*"/>
-
-				<include name="games/stendhal/bot/shouter/*"/>
-			</fileset>
-			<manifest>
-				<attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
-			</manifest>
-		</jar>
-		<!-- ende build bot -->
-
-	</target>
-	<target name="server_build" depends="init, checkxml" description="Build JAR file for Stendhal server">
-		<mkdir dir="${build_server}"/>
-
-		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
-		<copy todir="${build_server}/games/stendhal/server" file="${src}/games/stendhal/server/stendhal_init.sql"/>
-		<copy todir="${build_server}/games/stendhal/common">
-			<fileset dir="${src}/games/stendhal/common">
-				<include name="**/*.txt"/>
-			</fileset>
-		</copy>
-
-		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/common/*.java"/>
-			<include name="games/stendhal/common/**/*.java"/>
-
-			<include name="games/stendhal/server/*.java"/>
-			<include name="games/stendhal/server/**/*.java"/>
-			<exclude name="games/stendhal/server/maps/**"/>
-			<exclude name="games/stendhal/server/script/**"/>
-
-			<include name="games/stendhal/tools/tiled/LayerDefinition.java"/>
-			<include name="games/stendhal/tools/tiled/ServerTMXLoader.java"/>
-			<include name="games/stendhal/tools/tiled/StendhalMapStructure.java"/>
-			<include name="games/stendhal/tools/tiled/TileSetDefinition.java"/>
-			<include name="games/stendhal/tools/test/LineAnalyser.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
-			<classpath>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${luaj_jar}"/>
-			</classpath>
-		</javac>
-
-		<!-- built-in Lua scripts -->
-		<copy todir="${build_server}/games/stendhal/server/core/scripting/lua">
-			<fileset dir="${src}/games/stendhal/server/core/scripting/lua">
-				<include name="**/*.lua"/>
-			</fileset>
-		</copy>
-
-		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
-			<manifest>
-				<attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
-				<attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} guava.jar log4j.jar ${groovy_jarname} ${mysqldriver_jarname} mysql.jar h2.jar ${luaj_jarname}"/>
-			</manifest>
-		</jar>
-		<chmod file="${lib}/${server_jarname}" perm="+x"/>
-
-		<mkdir dir="${build_server_maps}"/>
-
-		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/server/maps/*.java"/>
-			<exclude name="games/stendhal/server/maps/ZoneConfigurator.java"/>
-			<include name="games/stendhal/server/maps/**/*.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
-
-			<classpath>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${guava_jar}"/>
-			</classpath>
-		</javac>
-
-		<copy todir="${build_server_maps}/data/maps">
-			<fileset dir="${tiled}">
-				<include name="**/*.tmx"/>
-			</fileset>
-		</copy>
-
-		<jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>
-
-		<mkdir dir="${build_server_xmlconf}"/>
-
-		<copy todir="${build_server_xmlconf}/data/conf">
-			<fileset dir="data/conf">
-				<include name="creatures.xml"/>
-				<include name="creatures/*.xml"/>
-				<include name="items.xml"/>
-				<include name="items/*.xml"/>
-				<include name="zones.xml"/>
-				<include name="zones/*.xml"/>
-				<include name="riddles-example.xml"/>
-				<include name="spells.xml" />
-				<include name="spells/*.xml" />
-				<include name="shops.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${build_server_xmlconf}/data/languages">
-			<fileset dir="data/languages" />
-		</copy>
-
-		<jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>
-
-		<mkdir dir="${build_server_script}"/>
-
-		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/server/script/*.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
-
-			<classpath>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${lib}/${server_jarname}"/>
-				<pathelement path="${lib}/${maps_jarname}"/>
-			</classpath>
-		</javac>
-
-		<!-- data Groovy & Lua scripts -->
-		<copy todir="${build_server_script}">
-			<fileset dir="data/script">
-				<include name="**/*"/>
-			</fileset>
-		</copy>
-
-		<!-- Lua mods -->
-		<!--
-		<mkdir dir="${build_server_mods}"/>
-		<copy todir="${build_server_mods}">
-			<fileset dir="data/mods">
-				<include name="**/*"/>
-			</fileset>
-		</copy>
-		-->
-
-	</target>
-
-	<target name="jar" depends="client_build, server_build" description="Builds Client and Server">
-		<echo>Built client and server for NetBeans.</echo>
-	</target>
-
-	<!-- Runs the client -->
-	<target name="client_run" depends="client_build" description="Runs the client">
-		<mkdir dir="run_clnt"/>
-		<mkdir dir="run_clnt/lib"/>
-
-		<copy todir="run_clnt">
-			<fileset file="build/lib/${client_jarname}"/>
-		</copy>
-
-		<copy todir="run_clnt/lib">
-			<fileset file="build/lib/${client_data}"/>
-			<fileset file="build/lib/${client_sound_data}"/>
-			<fileset file="build/lib/${client_music_data}"/>
-			<fileset file="build/lib/${client_starter_jarname}"/>
-			<fileset file="${marauroa_jar}"/>
-			<fileset file="${log4j_jar}"/>
-			<fileset file="${jorbis_jar}"/>
-			<fileset file="${jsonsimple_jar}"/>
-		</copy>
-
-		<chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
-
-		<java classname="games.stendhal.client.stendhal"
-			fork="true"
-			failonerror="true"
-			maxmemory="128m">
-			<classpath>
-				<pathelement location="run_clnt/*"/>
-				<pathelement location="run_clnt/lib/*"/>
-			</classpath>
-		</java>
-
-		<!-- we've run the program, so delete the jars -->
-		<delete dir="run_clnt"/>
-	</target>
-
-	<!-- Netbeans won't let you choose ant options, so this does it for us-->
-	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
-
-	<!-- Runs the server -->
-	<target name="server_run" depends="server_build, compilejs" description="Runs the server">
-		<mkdir dir="run_srvr"/>
-
-		<copy todir="run_srvr">
-			<fileset file="build/lib/${server_jarname}"/>
-			<fileset file="build/lib/${xmlconf_jarname}"/>
-			<fileset file="build/lib/${maps_jarname}"/>
-			<fileset file="libs/marauroa.jar"/>
-			<fileset file="libs/groovy.jar"/>
-			<fileset file="libs/guava.jar"/>
-			<fileset file="libs/log4j.jar"/>
-			<fileset file="libs/${mysqldriver_jarname}"/>
-		</copy>
-
-		<chmod file="run_srvr/${server_jarname}" perm="+x"/>
-
-		<exec dir="." executable="java">
-			<arg line="-Xmx256m -cp run_srvr -jar run_srvr/${server_jarname} -c server.ini -l"/>
-		</exec>
-
-		<!-- we've run the program, so delete the jars -->
-		<delete dir="run_srvr"/>
-	</target>
-
-	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
-		<mkdir dir="${build_client}"/>
-
-		<copy todir="${build_client}/games/stendhal/client">
-			<fileset dir="${src}/games/stendhal/client">
-				<include name="**/*.txt"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${build_client}/games/stendhal/common">
-			<fileset dir="${src}/games/stendhal/common">
-				<include name="**/*.txt"/>
-			</fileset>
-		</copy>
-
-		<echo file="${src}/games/stendhal/client/StendhalBuild.java">
-			package games.stendhal.client;
-			public class StendhalBuild {
-			private static final String BUILD_NUMBER = "${timestamp}";
-			public static String getBuildNumber() {return BUILD_NUMBER;}
-			}
-		</echo>
-		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/client/*.java"/>
-			<include name="games/stendhal/client/**/*.java"/>
-			<exclude name="games/stendhal/client/update/Starter.java"/>
-
-			<include name="games/stendhal/common/*.java"/>
-			<include name="games/stendhal/common/**/*.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
-
-			<!-- Only include the libraries which are distributed to detect
-				 unwanted dependencies (i. e. .jar which are not part of the
-				client-distribution) during compile time -->
-			<classpath>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${jsonsimple_jar}"/>
-			</classpath>
-		</javac>
-		<delete file="${src}/games/stendhal/client/StendhalBuild.java" quiet="true" failonerror="false" />
-
-		<!-- compile Starter.java for Java 1.7. So we will be able to
-		 display a dialogbox if running on an old Java Version -->
-		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.7" target="1.7" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/client/update/Starter.java"/>
-
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-		</javac>
-
-		<copy todir="${build_client}/games/stendhal/client/update">
-			<fileset file="${src}/games/stendhal/client/update/**">
-				<exclude name="*.java" />
-			</fileset>
-		</copy>
-
-		<jar jarfile="${lib}/${client_starter_jarname}">
-			<fileset dir="${build_client}">
-				<include name="games/stendhal/client/update/*"/>
-			</fileset>
-			<manifest>
-				<attribute name="Application-Name" value="Stendhal" />
-				<attribute name="Application-Library-Allowable-Codebase"  value="https://arianne-project.org http://arianne.sf.net http://arianne.sourceforge.net https://arianne.sf.net https://arianne.sourceforge.net https://stendhalgame.org *" />
-				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value=". lib/${jsonsimple_jarname}"/>
-				<attribute name="Permissions" value="all-permissions"/>
-				<attribute name="Codebase" value="*"/>
-				<attribute name="Trusted-Library" value="true" />
-			</manifest>
-		</jar>
-		<antcall target="signjar" />
-		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
-
-		<jar jarfile="${lib}/${client_jarname}">
-			<fileset dir="${build_client}">
-				<exclude name="games/stendhal/client/update/**"/>
-			</fileset>
-		</jar>
-
-		<mkdir dir="${build_client_data}"/>
-
-		<copy todir="${build_client_data}/data/sprites">
-			<fileset dir="${sprites}">
-				<exclude name="**/*.bz2" />
-				<exclude name="**/*.gz" />
-				<exclude name="**/*.psd" />
-				<exclude name="**/*.xcf" />
-				<exclude name="**/*.xcf.*" />
-				<exclude name="templates/" />
-				<exclude name="placeholder-*.png" />
-				<exclude name="cursor/*.svg" />
-			</fileset>
-		</copy>
-
-		<copy todir="${build_client_data}/data/tileset">
-			<fileset dir="${tiled}/tileset">
-				<exclude name="**/*.bz2" />
-				<exclude name="**/*.gz" />
-				<exclude name="**/*.psd" />
-				<exclude name="**/*.xcf" />
-				<exclude name="**/*.xcf.*" />
-			</fileset>
-		</copy>
-
-		<copy todir="${build_client_data}/data/font">
-			<fileset dir="data/font"/>
-		</copy>
-
-		<copy todir="${build_client_data}/data/gui">
-			<fileset dir="${data}">
-				<exclude name="paneldrock009.jpg"/>
-				<exclude name="panelmetal003.gif"/>
-				<exclude name="panelrock016.jpg"/>
-				<exclude name="panelwood006.jpg"/>
-				<exclude name="panelwood032.gif"/>
-				<exclude name="panelwood003.jpg"/>
-				<exclude name="**/*.bz2" />
-				<exclude name="**/*.gz" />
-				<exclude name="**/*.psd" />
-				<exclude name="**/*.xcf" />
-				<exclude name="**/*.xcf.*" />
-				<exclude name="**/*.svg" />
-			</fileset>
-		</copy>
-
-		<copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
-		<jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
-
-		<mkdir dir="${build_client_sound_data}"/>
-
-		<copy todir="${build_client_sound_data}/data/sounds">
-			<fileset dir="data/sounds">
-				<include name="**/*.ogg"/>
-			</fileset>
-		</copy>
-
-		<jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
-
-		<mkdir dir="${build_client_music_data}"/>
-
-		<copy todir="${build_client_music_data}/data/music">
-			<fileset dir="data/music">
-				<include name="**/*.ogg"/>
-			</fileset>
-		</copy>
-
-		<jar jarfile="${lib}/${client_music_data}" basedir="${build_client_music_data}"/>
-
-	</target>
-
-	<target name="client_android_build">
-		<echo
-			if:set="exclude.webview"
-			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
-		<echo
-			unless:set="exclude.webview"
-			message="Building Android WebView client." />
-
-		<condition property="gradlew" value="${user.dir}/android/gradlew.bat">
-			<os family="windows" />
-		</condition>
-		<property name="gradlew" value="${user.dir}/android/gradlew" />
-
-		<property name="android.build" value="assembleDebug" />
-
-		<condition property="android.build_wout_rev">
-			<and>
-				<not>
-					<isset property="android.rev" />
-				</not>
-				<not>
-					<isset property="gradle.params" />
-				</not>
-			</and>
-		</condition>
-		<condition property="android.build_w_rev">
-			<and>
-				<isset property="android.rev" />
-				<not>
-					<isset property="gradle.params" />
-				</not>
-			</and>
-		</condition>
-
-		<exec unless:set="exclude.webview" failonerror="true"
-				executable="${gradlew}" dir="android/">
-			<arg if:set="gradle.params" line="${gradle.params}" />
-			<arg if:set="android.build_wout_rev" value="${android.build}" />
-			<arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
-		</exec>
-	</target> <!-- client_android_build -->
-
-	<target name="build_android_client" depends="client_android_build" />
-
-	<target name="signjar" unless="exclude.signing">
-		<signjar
-			alias="${keystore.alias}"
-			keystore="keystore.ks"
-			storepass="${keystore.password}"
-			jar="${lib}/${client_starter_jarname}" />
-	</target>
-
-	<target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
-		<condition property="include.marauroa" value="true">
-			<available file="../marauroa/src/" type="dir"/>
-		</condition>
-
-		<javadoc packagenames="games.stendhal.*,marauroa.*"
-		   defaultexcludes="yes"
-		   destdir="${docs}"
-		   author="true"
-		   encoding="UTF-8"
-		   version="true"
-		   use="true"
-		   windowtitle="Stendhal API Documentation Version: ${version}">
-			<!-- include marauroa source if available -->
-			<sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
-			<sourcepath path="${src}"/>
-			<classpath>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${swinglayout_jar}"/>
-				<pathelement path="${tiled_jar}"/>
-				<pathelement path="libs/ant.jar"/>
-				<pathelement path="libs/jcurses.jar"/>
-				<pathelement path="libs/pircbot.jar"/>
-				<pathelement path="${luaj_jar}"/>
-				<pathelement path="libs/json-simple-1.1.1.jar"/>
-				<pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
-			</classpath>
-		</javadoc>
-	</target>
-
-	<target name="clean_docs" description="Delete javadoc generated HTML API reference.">
-		<delete dir="${docs}" />
-	</target>
-
-	<target name="mkdocs" description="Generate HTML reference." depends="clean_mkdocs">
-		<!-- call "docs" to include javadocs -->
-
-		<echo unless:true="${python.present}"
-			message="Python unavailable, cannot run mkdocs" />
-
-		<!--<antcall if:true="${python.present}" target="docs"/>-->
-		<exec if:true="${python.present}" failonerror="true"
-			executable="python" dir="./buildtools/mkdocs/">
-			<arg value="-u" />
-			<arg value="build.py" />
-		</exec>
-	</target> <!-- mkdocs -->
-
-	<target name="clean_mkdocs">
-		<delete dir="${buildroot}/mkdocs/" />
-	</target>
-
-	<target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
-		<exec executable="doxygen" failonerror="true">
-			<arg value="./buildtools/doxygen/Doxyfile" />
-		</exec>
-
-		<!-- Doxygen 1.9.3 has some issues with tags files URLs -->
-		<exec if:set="doxygen.fix_urls" executable="python">
-			<arg value="./buildtools/doxygen/fix_urls.py"/>
-		</exec>
-	</target>
-
-	<target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
-		<delete dir="${buildroot}/doxygen" />
-	</target>
-
-	<target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
-
-	<target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
-
-	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_client_android"/>
-
-	<target name="dist_server_binary" depends="server_build, compilejs">
-		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
-
-		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
-			<fileset dir="${buildroot}/build_server_script">
-				<include name="games/stendhal/server/script/**.*"/>
-				<include name="**/*"/>
-			</fileset>
-		</copy>
-
-		<!--
-		<copy todir="${buildroot}/stendhal-server-${version}/data/mods">
-			<fileset dir="${build_server_mods}">
-				<include name="**/*"/>
-			</fileset>
-		</copy>
-		-->
-
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${guava_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${h2_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${luaj_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
-		<copy todir="${buildroot}/stendhal-server-${version}/lib">
-			<fileset dir="libs">
-				<include name="*.txt"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-		<copy todir="${buildroot}/stendhal-server-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="mkdocs/"/>
-			</fileset>
-			<fileset dir="." includes="LICENSE.txt"/>
-		</copy>
-
-		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
+    xmlns:if="ant:if" xmlns:unless="ant:unless">
+  <!--
+    Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
+    Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
+  -->
+  <property environment="env"/>
+
+  <condition property="os.win">
+    <os family="windows"/>
+  </condition>
+
+  <condition property="exe.ext" value=".exe" else="">
+    <equals arg1="${os.win}" arg2="true"/>
+  </condition>
+  <condition property="executable.npm" value="npm.cmd" else="npm">
+    <equals arg1="${os.win}" arg2="true" />
+  </condition>
+
+  <!-- check for some executables -->
+  <available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
+  <available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
+
+  <property file="build.ant-private.properties"/>
+  <property file="build.ant.properties"/>
+
+  <property name="build_tests" value="${buildroot}/build_tests"/>
+  <property name="build_tests_report" value="${buildroot}/build_test_report"/>
+
+  <property name="build_client" value="${buildroot}/build_client"/>
+  <property name="build_client_data" value="${buildroot}/build_client_data"/>
+  <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
+  <property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
+
+  <property name="build_postman" value="${buildroot}/buildbot/"/>
+
+  <property name="build_server" value="${buildroot}/build_server"/>
+  <property name="build_server_maps" value="${buildroot}/build_server_maps"/>
+  <property name="build_server_script" value="${buildroot}/build_server_script"/>
+  <property name="build_server_mods" value="${buildroot}/build_server_mods"/>
+  <property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf"/>
+
+  <property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
+  <property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
+
+  <property name="client_data" value="stendhal-data-${version}.jar"/>
+  <property name="client_jarname" value="stendhal-${version}.jar"/>
+  <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+  <property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
+  <property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
+
+  <property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
+
+  <property name="server_jarname" value="stendhal-server-${version}.jar"/>
+  <property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
+
+  <property name="config_dir" value="data/conf"/>
+
+  <property name="schema_location" value="${config_dir}"/>
+
+  <property name="cobertura.dir" value="${libdir}/cobertura" />
+
+  <import file="build-private.xml" optional="true" />
+
+  <condition property="exclude.signing" value="true">
+    <not>
+      <available file="keystore.ks"/>
+    </not>
+  </condition>
+  <condition property="exclude.jardiff" value="true">
+    <not>
+      <available file="${build-archive}/stendhal-${version.old}.zip"/>
+    </not>
+  </condition>
+  <condition property="exclude.webclient" value="true">
+    <not>
+      <available file="${executable.npm}" filepath="${env.PATH}"/>
+    </not>
+  </condition>
+
+  <!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
+  <condition property="executable.suffix" value=".cmd">
+    <os family="windows" />
+  </condition>
+  <property name="executable.suffix" value="" />
+
+  <tstamp>
+    <format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
+  </tstamp>
+
+  <condition property="doxygen.fix_urls" value="true">
+    <and>
+      <equals arg1="${python.present}" arg2="true"/>
+      <available file="buildtools/doxygen/fix_urls.py"/>
+    </and>
+  </condition>
+
+  <!-- Android properties -->
+
+  <condition property="exclude.webview" value="true">
+    <and>
+      <not>
+        <isset property="env.ANDROID_SDK_ROOT" />
+      </not>
+      <not>
+        <available file="${user.dir}/android/local.properties" />
+      </not>
+    </and>
+  </condition>
+
+  <!-- END: Android properties -->
+
+
+  <target name="init">
+    <mkdir dir="${lib}"/>
+
+    <!-- We update the version number -->
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String VERSION ?= ?&quot;.*&quot;;"
+      replace="String VERSION = &quot;${version}&quot;;"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
+      match="out.println\(&quot;server_version=.*&quot;\);"
+      replace="out.println(&quot;server_version=${version}&quot;);"
+      byline="true"/>
+    <replaceregexp file="runserver.bat"
+      match="STENDHAL_VERSION=.*"
+      replace="STENDHAL_VERSION=${version}"
+      byline="true"/>
+    <replaceregexp file="runserver.sh"
+      match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
+      replace="STENDHAL_VERSION=&quot;${version}&quot;"
+      byline="true"/>
+    <replaceregexp file="buildtools/doxygen/Doxyfile"
+      match="^PROJECT_NUMBER .*$"
+      replace="PROJECT_NUMBER         = ${version}"
+      byline="true"/>
+    <!-- Update location of resources -->
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="GAME_NAME=.*"
+      replace="GAME_NAME=${game_name}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="DEFAULT_SERVER=.*"
+      replace="DEFAULT_SERVER=${default_server}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_SERVER_FOLDER=.*"
+      replace="UPDATE_SERVER_FOLDER=${updates_server}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_SERVER_FOLDER_FALLBACK=.*"
+      replace="UPDATE_SERVER_FOLDER_FALLBACK=${updates_server_fallback}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_VERSION_CHECK=.*"
+      replace="UPDATE_VERSION_CHECK=${version_server}"
+      byline="true"/>
+
+
+    <replaceregexp file="stendhal.jnlp"
+      match="-0\..*\.jar&quot;"
+      replace="-${version}.jar&quot;"
+      byline="true"/>
+
+    <!-- pre release version -->
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String PRE_RELEASE_VERSION ?= .*;"
+      replace="String PRE_RELEASE_VERSION = null;"
+      byline="true"/>
+    <antcall target="internalUpdatePrereleaseVersion" />
+  </target>
+
+  <target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE">
+    <tstamp prefix="date">
+      <format property="iso" pattern="yyyy-MM-dd" />
+    </tstamp>
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String PRE_RELEASE_VERSION ?= .*;"
+      replace="String PRE_RELEASE_VERSION = &quot;PRE_RELEASE ${date.iso}&quot;;"
+      byline="true"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${buildroot}" />
+    <delete dir="${build_cobertura}"/>
+    <delete dir="${build_cobertura_report}"/>
+    <delete file="cobertura.ser" />
+    <delete dir="android/app/build/" />
+    <delete>
+          <fileset dir=".">
+            <include name="TEST-*.xml"/>
+          </fileset>
+    </delete>
+  </target>
+
+
+
+  <target name = "postman">
+    <mkdir dir="${buildroot}/buildbot"/>
+    <javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/bot/postman/*.java"/>
+      <include name="games/stendhal/bot/package-info.java"/>
+      <include name="games/stendhal/bot/shouter/*.java"/>
+      <include name="games/stendhal/bot/core/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="libs/pircbot.jar"/>
+      </classpath>
+
+    </javac>
+    <jar jarfile="${buildroot}/buildbot/postman.jar">
+      <fileset dir="${buildroot}/buildbot">
+        <include name="games/stendhal/bot/postman/*"/>
+
+        <include name="games/stendhal/bot/core/*"/>
+
+        <include name="games/stendhal/bot/shouter/*"/>
+      </fileset>
+      <manifest>
+        <attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
+      </manifest>
+    </jar>
+    <!-- ende build bot -->
+
+  </target>
+  <target name="server_build" depends="init, checkxml" description="Build JAR file for Stendhal server">
+    <mkdir dir="${build_server}"/>
+
+    <copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
+    <copy todir="${build_server}/games/stendhal/server" file="${src}/games/stendhal/server/stendhal_init.sql"/>
+    <copy todir="${build_server}/games/stendhal/common">
+      <fileset dir="${src}/games/stendhal/common">
+        <include name="**/*.txt"/>
+      </fileset>
+    </copy>
+
+    <javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/common/*.java"/>
+      <include name="games/stendhal/common/**/*.java"/>
+
+      <include name="games/stendhal/server/*.java"/>
+      <include name="games/stendhal/server/**/*.java"/>
+      <exclude name="games/stendhal/server/maps/**"/>
+      <exclude name="games/stendhal/server/script/**"/>
+
+      <include name="games/stendhal/tools/tiled/LayerDefinition.java"/>
+      <include name="games/stendhal/tools/tiled/ServerTMXLoader.java"/>
+      <include name="games/stendhal/tools/tiled/StendhalMapStructure.java"/>
+      <include name="games/stendhal/tools/tiled/TileSetDefinition.java"/>
+      <include name="games/stendhal/tools/test/LineAnalyser.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+      <classpath>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${luaj_jar}"/>
+      </classpath>
+    </javac>
+
+    <!-- built-in Lua scripts -->
+    <copy todir="${build_server}/games/stendhal/server/core/scripting/lua">
+      <fileset dir="${src}/games/stendhal/server/core/scripting/lua">
+        <include name="**/*.lua"/>
+      </fileset>
+    </copy>
+
+    <jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
+      <manifest>
+        <attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
+        <attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} guava.jar log4j.jar ${groovy_jarname} ${mysqldriver_jarname} mysql.jar h2.jar ${luaj_jarname}"/>
+      </manifest>
+    </jar>
+    <chmod file="${lib}/${server_jarname}" perm="+x"/>
+
+    <mkdir dir="${build_server_maps}"/>
+
+    <javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/server/maps/*.java"/>
+      <exclude name="games/stendhal/server/maps/ZoneConfigurator.java"/>
+      <include name="games/stendhal/server/maps/**/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${guava_jar}"/>
+      </classpath>
+    </javac>
+
+    <copy todir="${build_server_maps}/data/maps">
+      <fileset dir="${tiled}">
+        <include name="**/*.tmx"/>
+      </fileset>
+    </copy>
+
+    <jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>
+
+    <mkdir dir="${build_server_xmlconf}"/>
+
+    <copy todir="${build_server_xmlconf}/data/conf">
+      <fileset dir="data/conf">
+        <include name="creatures.xml"/>
+        <include name="creatures/*.xml"/>
+        <include name="items.xml"/>
+        <include name="items/*.xml"/>
+        <include name="zones.xml"/>
+        <include name="zones/*.xml"/>
+        <include name="riddles-example.xml"/>
+        <include name="spells.xml" />
+        <include name="spells/*.xml" />
+        <include name="shops.xml" />
+      </fileset>
+    </copy>
+    <copy todir="${build_server_xmlconf}/data/languages">
+      <fileset dir="data/languages" />
+    </copy>
+
+    <jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>
+
+    <mkdir dir="${build_server_script}"/>
+
+    <javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/server/script/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${lib}/${server_jarname}"/>
+        <pathelement path="${lib}/${maps_jarname}"/>
+      </classpath>
+    </javac>
+
+    <!-- data Groovy & Lua scripts -->
+    <copy todir="${build_server_script}">
+      <fileset dir="data/script">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <!-- Lua mods -->
+    <!--
+    <mkdir dir="${build_server_mods}"/>
+    <copy todir="${build_server_mods}">
+      <fileset dir="data/mods">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+    -->
+
+  </target>
+
+  <target name="jar" depends="client_build, server_build" description="Builds Client and Server">
+    <echo>Built client and server for NetBeans.</echo>
+  </target>
+
+  <!-- Runs the client -->
+  <target name="client_run" depends="client_build" description="Runs the client">
+    <mkdir dir="run_clnt"/>
+    <mkdir dir="run_clnt/lib"/>
+
+    <copy todir="run_clnt">
+      <fileset file="build/lib/${client_jarname}"/>
+    </copy>
+
+    <copy todir="run_clnt/lib">
+      <fileset file="build/lib/${client_data}"/>
+      <fileset file="build/lib/${client_sound_data}"/>
+      <fileset file="build/lib/${client_music_data}"/>
+      <fileset file="build/lib/${client_starter_jarname}"/>
+      <fileset file="${marauroa_jar}"/>
+      <fileset file="${log4j_jar}"/>
+      <fileset file="${jorbis_jar}"/>
+      <fileset file="${jsonsimple_jar}"/>
+    </copy>
+
+    <chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
+
+    <java classname="games.stendhal.client.stendhal"
+      fork="true"
+      failonerror="true"
+      maxmemory="128m">
+      <classpath>
+        <pathelement location="run_clnt/*"/>
+        <pathelement location="run_clnt/lib/*"/>
+      </classpath>
+    </java>
+
+    <!-- we've run the program, so delete the jars -->
+    <delete dir="run_clnt"/>
+  </target>
+
+  <!-- Netbeans won't let you choose ant options, so this does it for us-->
+  <target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
+
+  <!-- Runs the server -->
+  <target name="server_run" depends="server_build, compilejs" description="Runs the server">
+    <mkdir dir="run_srvr"/>
+
+    <copy todir="run_srvr">
+      <fileset file="build/lib/${server_jarname}"/>
+      <fileset file="build/lib/${xmlconf_jarname}"/>
+      <fileset file="build/lib/${maps_jarname}"/>
+      <fileset file="libs/marauroa.jar"/>
+      <fileset file="libs/groovy.jar"/>
+      <fileset file="libs/guava.jar"/>
+      <fileset file="libs/log4j.jar"/>
+      <fileset file="libs/${mysqldriver_jarname}"/>
+    </copy>
+
+    <chmod file="run_srvr/${server_jarname}" perm="+x"/>
+
+    <exec dir="." executable="java">
+      <arg line="-Xmx256m -cp run_srvr -jar run_srvr/${server_jarname} -c server.ini -l"/>
+    </exec>
+
+    <!-- we've run the program, so delete the jars -->
+    <delete dir="run_srvr"/>
+  </target>
+
+  <target name="client_build" depends="init" description="Build JAR file for Stendhal client">
+    <mkdir dir="${build_client}"/>
+
+    <copy todir="${build_client}/games/stendhal/client">
+      <fileset dir="${src}/games/stendhal/client">
+        <include name="**/*.txt"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client}/games/stendhal/common">
+      <fileset dir="${src}/games/stendhal/common">
+        <include name="**/*.txt"/>
+      </fileset>
+    </copy>
+
+    <echo file="${src}/games/stendhal/client/StendhalBuild.java">
+      package games.stendhal.client;
+      public class StendhalBuild {
+      private static final String BUILD_NUMBER = "${timestamp}";
+      public static String getBuildNumber() {return BUILD_NUMBER;}
+      }
+    </echo>
+    <javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/client/*.java"/>
+      <include name="games/stendhal/client/**/*.java"/>
+      <exclude name="games/stendhal/client/update/Starter.java"/>
+
+      <include name="games/stendhal/common/*.java"/>
+      <include name="games/stendhal/common/**/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <!-- Only include the libraries which are distributed to detect
+         unwanted dependencies (i. e. .jar which are not part of the
+        client-distribution) during compile time -->
+      <classpath>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${jsonsimple_jar}"/>
+      </classpath>
+    </javac>
+    <delete file="${src}/games/stendhal/client/StendhalBuild.java" quiet="true" failonerror="false" />
+
+    <!-- compile Starter.java for Java 1.7. So we will be able to
+     display a dialogbox if running on an old Java Version -->
+    <javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.7" target="1.7" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/client/update/Starter.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+    </javac>
+
+    <copy todir="${build_client}/games/stendhal/client/update">
+      <fileset file="${src}/games/stendhal/client/update/**">
+        <exclude name="*.java" />
+      </fileset>
+    </copy>
+
+    <jar jarfile="${lib}/${client_starter_jarname}">
+      <fileset dir="${build_client}">
+        <include name="games/stendhal/client/update/*"/>
+      </fileset>
+      <manifest>
+        <attribute name="Application-Name" value="Stendhal" />
+        <attribute name="Application-Library-Allowable-Codebase"  value="https://arianne-project.org http://arianne.sf.net http://arianne.sourceforge.net https://arianne.sf.net https://arianne.sourceforge.net https://stendhalgame.org *" />
+        <attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
+        <attribute name="Class-path" value=". lib/${jsonsimple_jarname}"/>
+        <attribute name="Permissions" value="all-permissions"/>
+        <attribute name="Codebase" value="*"/>
+        <attribute name="Trusted-Library" value="true" />
+      </manifest>
+    </jar>
+    <antcall target="signjar" />
+    <chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
+
+    <jar jarfile="${lib}/${client_jarname}">
+      <fileset dir="${build_client}">
+        <exclude name="games/stendhal/client/update/**"/>
+      </fileset>
+    </jar>
+
+    <mkdir dir="${build_client_data}"/>
+
+    <copy todir="${build_client_data}/data/sprites">
+      <fileset dir="${sprites}">
+        <exclude name="**/*.bz2" />
+        <exclude name="**/*.gz" />
+        <exclude name="**/*.psd" />
+        <exclude name="**/*.xcf" />
+        <exclude name="**/*.xcf.*" />
+        <exclude name="templates/" />
+        <exclude name="placeholder-*.png" />
+        <exclude name="cursor/*.svg" />
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/tileset">
+      <fileset dir="${tiled}/tileset">
+        <exclude name="**/*.bz2" />
+        <exclude name="**/*.gz" />
+        <exclude name="**/*.psd" />
+        <exclude name="**/*.xcf" />
+        <exclude name="**/*.xcf.*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/font">
+      <fileset dir="data/font"/>
+    </copy>
+
+    <copy todir="${build_client_data}/data/gui">
+      <fileset dir="${data}">
+        <exclude name="paneldrock009.jpg"/>
+        <exclude name="panelmetal003.gif"/>
+        <exclude name="panelrock016.jpg"/>
+        <exclude name="panelwood006.jpg"/>
+        <exclude name="panelwood032.gif"/>
+        <exclude name="panelwood003.jpg"/>
+        <exclude name="**/*.bz2" />
+        <exclude name="**/*.gz" />
+        <exclude name="**/*.psd" />
+        <exclude name="**/*.xcf" />
+        <exclude name="**/*.xcf.*" />
+        <exclude name="**/*.svg" />
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
+    <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
+
+    <mkdir dir="${build_client_sound_data}"/>
+
+    <copy todir="${build_client_sound_data}/data/sounds">
+      <fileset dir="data/sounds">
+        <include name="**/*.ogg"/>
+      </fileset>
+    </copy>
+
+    <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
+
+    <mkdir dir="${build_client_music_data}"/>
+
+    <copy todir="${build_client_music_data}/data/music">
+      <fileset dir="data/music">
+        <include name="**/*.ogg"/>
+      </fileset>
+    </copy>
+
+    <jar jarfile="${lib}/${client_music_data}" basedir="${build_client_music_data}"/>
+
+  </target>
+
+  <target name="client_android_build">
+    <echo
+      if:set="exclude.webview"
+      message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+    <echo
+      unless:set="exclude.webview"
+      message="Building Android WebView client." />
+
+    <condition property="gradlew" value="${user.dir}/android/gradlew.bat">
+      <os family="windows" />
+    </condition>
+    <property name="gradlew" value="${user.dir}/android/gradlew" />
+
+    <property name="android.build" value="assembleDebug" />
+
+    <condition property="android.build_wout_rev">
+      <and>
+        <not>
+          <isset property="android.rev" />
+        </not>
+        <not>
+          <isset property="gradle.params" />
+        </not>
+      </and>
+    </condition>
+    <condition property="android.build_w_rev">
+      <and>
+        <isset property="android.rev" />
+        <not>
+          <isset property="gradle.params" />
+        </not>
+      </and>
+    </condition>
+
+    <exec unless:set="exclude.webview" failonerror="true"
+        executable="${gradlew}" dir="android/">
+      <arg if:set="gradle.params" line="${gradle.params}" />
+      <arg if:set="android.build_wout_rev" value="${android.build}" />
+      <arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}" />
+    </exec>
+  </target> <!-- client_android_build -->
+
+  <target name="build_android_client" depends="client_android_build" />
+
+  <target name="signjar" unless="exclude.signing">
+    <signjar
+      alias="${keystore.alias}"
+      keystore="keystore.ks"
+      storepass="${keystore.password}"
+      jar="${lib}/${client_starter_jarname}" />
+  </target>
+
+  <target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
+    <condition property="include.marauroa" value="true">
+      <available file="../marauroa/src/" type="dir"/>
+    </condition>
+
+    <javadoc packagenames="games.stendhal.*,marauroa.*"
+       defaultexcludes="yes"
+       destdir="${docs}"
+       author="true"
+       encoding="UTF-8"
+       version="true"
+       use="true"
+       windowtitle="Stendhal API Documentation Version: ${version}">
+      <!-- include marauroa source if available -->
+      <sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
+      <sourcepath path="${src}"/>
+      <classpath>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${swinglayout_jar}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="libs/ant.jar"/>
+        <pathelement path="libs/jcurses.jar"/>
+        <pathelement path="libs/pircbot.jar"/>
+        <pathelement path="${luaj_jar}"/>
+        <pathelement path="libs/json-simple-1.1.1.jar"/>
+        <pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
+      </classpath>
+    </javadoc>
+  </target>
+
+  <target name="clean_docs" description="Delete javadoc generated HTML API reference.">
+    <delete dir="${docs}" />
+  </target>
+
+  <target name="mkdocs" description="Generate HTML reference." depends="clean_mkdocs">
+    <!-- call "docs" to include javadocs -->
+
+    <echo unless:true="${python.present}"
+      message="Python unavailable, cannot run mkdocs" />
+
+    <!--<antcall if:true="${python.present}" target="docs"/>-->
+    <exec if:true="${python.present}" failonerror="true"
+      executable="python" dir="./buildtools/mkdocs/">
+      <arg value="-u" />
+      <arg value="build.py" />
+    </exec>
+  </target> <!-- mkdocs -->
+
+  <target name="clean_mkdocs">
+    <delete dir="${buildroot}/mkdocs/" />
+  </target>
+
+  <target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
+    <exec executable="doxygen" failonerror="true">
+      <arg value="./buildtools/doxygen/Doxyfile" />
+    </exec>
+
+    <!-- Doxygen 1.9.3 has some issues with tags files URLs -->
+    <exec if:set="doxygen.fix_urls" executable="python">
+      <arg value="./buildtools/doxygen/fix_urls.py"/>
+    </exec>
+  </target>
+
+  <target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
+    <delete dir="${buildroot}/doxygen" />
+  </target>
+
+  <target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
+
+  <target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
+
+  <target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_client_android"/>
+
+  <target name="dist_server_binary" depends="server_build, compilejs">
+    <mkdir dir="${buildroot}/stendhal-server-${version}"/>
+
+    <copy todir="${buildroot}/stendhal-server-${version}/data/script">
+      <fileset dir="${buildroot}/build_server_script">
+        <include name="games/stendhal/server/script/**.*"/>
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <!--
+    <copy todir="${buildroot}/stendhal-server-${version}/data/mods">
+      <fileset dir="${build_server_mods}">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+    -->
+
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${guava_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${h2_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${luaj_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
+    <copy todir="${buildroot}/stendhal-server-${version}/lib">
+      <fileset dir="libs">
+        <include name="*.txt"/>
+        <include name="*.html"/>
+      </fileset>
+    </copy>
+    <copy todir="${buildroot}/stendhal-server-${version}/doc">
+      <fileset dir="doc">
+        <exclude name="mkdocs/"/>
+      </fileset>
+      <fileset dir="." includes="LICENSE.txt"/>
+    </copy>
+
+    <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
 <!--
-		<mkdir dir="${buildroot}/stendhal-server-${version}/js" />
-		<copy todir="${buildroot}/stendhal-server-${version}/js">
-			<fileset dir="srcjs" />
-		</copy>
+    <mkdir dir="${buildroot}/stendhal-server-${version}/js" />
+    <copy todir="${buildroot}/stendhal-server-${version}/js">
+      <fileset dir="srcjs" />
+    </copy>
 -->
 
-		<copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
-		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
-		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
-		<zip destfile="${buildroot}/stendhal-server-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
-			<zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
-		</zip>
-		<delete dir="${buildroot}/stendhal-server-${version}"/>
-	</target>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
+    <mkdir dir="${buildroot}/stendhal-server-${version}/log" />
+    <touch file="${buildroot}/stendhal-server-${version}/log/empty" />
+    <zip destfile="${buildroot}/stendhal-server-${version}.zip">
+      <zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
+      <zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
+    </zip>
+    <delete dir="${buildroot}/stendhal-server-${version}"/>
+  </target>
 
-	<target name="dist_client_binary" depends="client_build">
-		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
+  <target name="dist_client_binary" depends="client_build">
+    <mkdir dir="${buildroot}/stendhal-${version}"/>
+    <mkdir dir="${buildroot}/stendhal-${version}/lib"/>
+    <mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${lib}/${client_starter_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${log4j_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${marauroa_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${jorbis_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/${jsonsimple_jarname}" file="${jsonsimple_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib">
-			<fileset dir="libs">
-				<include name="*.txt"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="mkdocs/"/>
-			</fileset>
-			<fileset dir="." includes="LICENSE.txt"/>
-		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
-		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
-		<zip destfile="${buildroot}/stendhal-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
-			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
-			<zipfileset dir="buildtools/launch4j" includes="stendhal-starter.exe" filemode="755"/>
-		</zip>
-		<delete dir="${buildroot}/stendhal-${version}"/>
-	</target>
+    <copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${lib}/${client_starter_jarname}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${log4j_jar}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${marauroa_jar}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${jorbis_jar}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/${jsonsimple_jarname}" file="${jsonsimple_jar}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
+    <copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
+    <copy todir="${buildroot}/stendhal-${version}/lib">
+      <fileset dir="libs">
+        <include name="*.txt"/>
+        <include name="*.html"/>
+      </fileset>
+    </copy>
+    <copy todir="${buildroot}/stendhal-${version}/doc">
+      <fileset dir="doc">
+        <exclude name="mkdocs/"/>
+      </fileset>
+      <fileset dir="." includes="LICENSE.txt"/>
+    </copy>
+    <touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
+    <copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
+    <zip destfile="${buildroot}/stendhal-${version}.zip">
+      <zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
+      <zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
+      <zipfileset dir="buildtools/launch4j" includes="stendhal-starter.exe" filemode="755"/>
+    </zip>
+    <delete dir="${buildroot}/stendhal-${version}"/>
+  </target>
 
-	<target name="cleanjs">
-		<delete dir="${buildroot}/js"/>
-		<delete dir="${buildroot}/ts"/>
-	</target>
+  <target name="cleanjs">
+    <delete dir="${buildroot}/js"/>
+    <delete dir="${buildroot}/ts"/>
+  </target>
 
-	<target name="dist_webclient_binary" depends="cleanjs,compilejs">
-		<zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
-			<zipfileset dir="${buildroot}/js" prefix="js"/>
-			<zipfileset dir="${buildroot}/ts" prefix="ts"/>
-			<zipfileset file="LICENSE.txt"/>
-		</zip>
-	</target>
+  <target name="dist_webclient_binary" depends="cleanjs,compilejs">
+    <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
+      <zipfileset dir="${buildroot}/js" prefix="js"/>
+      <zipfileset dir="${buildroot}/ts" prefix="ts"/>
+      <zipfileset file="LICENSE.txt"/>
+    </zip>
+  </target>
 
 
-	<target name="dist_client_starter" depends="client_build">
-		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib">
-			<fileset dir="libs">
-				<include name="*.txt"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="mkdocs/"/>
-			</fileset>
-			<fileset dir="." includes="LICENSE.txt"/>
-		</copy>
-		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
-		<zip destfile="${buildroot}/stendhal-starter-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_starter_jarname}"/>
-			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_starter_jarname}" filemode="755"/>
-		</zip>
-		<delete dir="${buildroot}/stendhal-${version}"/>
-	</target>
+  <target name="dist_client_starter" depends="client_build">
+    <mkdir dir="${buildroot}/stendhal-${version}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
+    <copy todir="${buildroot}/stendhal-${version}/lib">
+      <fileset dir="libs">
+        <include name="*.txt"/>
+        <include name="*.html"/>
+      </fileset>
+    </copy>
+    <copy todir="${buildroot}/stendhal-${version}/doc">
+      <fileset dir="doc">
+        <exclude name="mkdocs/"/>
+      </fileset>
+      <fileset dir="." includes="LICENSE.txt"/>
+    </copy>
+    <copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
+    <zip destfile="${buildroot}/stendhal-starter-${version}.zip">
+      <zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_starter_jarname}"/>
+      <zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_starter_jarname}" filemode="755"/>
+    </zip>
+    <delete dir="${buildroot}/stendhal-${version}"/>
+  </target>
 
-	<target name="dist_client_android">
-		<echo
-			if:set="exclude.webview"
-			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
+  <target name="dist_client_android">
+    <echo
+      if:set="exclude.webview"
+      message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
 
-		<antcall unless:set="exclude.webview" target="client_android_build" />
-		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
-			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
-				<include name="**/*.apk" />
-			</fileset>
-		</copy>
-	</target> <!-- dist_client_android -->
+    <antcall unless:set="exclude.webview" target="client_android_build" />
+    <copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
+      <fileset dir="${buildroot}/build_android_client/outputs/apk/">
+        <include name="**/*.apk" />
+      </fileset>
+    </copy>
+  </target> <!-- dist_client_android -->
 
-	<target name="dist_android_client" depends="dist_client_android" />
+  <target name="dist_android_client" depends="dist_client_android" />
 
-	<target name="dist_source">
-		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
+  <target name="dist_source">
+    <mkdir dir="${buildroot}/stendhal-${version}-src"/>
 
-		<copy todir="${buildroot}/stendhal-${version}-src/src">
-			<fileset dir="src"/>
-		</copy>
+    <copy todir="${buildroot}/stendhal-${version}-src/src">
+      <fileset dir="src"/>
+    </copy>
 
-		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
-		<copy todir="${buildroot}/stendhal-${version}-src/libs">
-			<fileset dir="libs"/>
-		</copy>
+    <mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
+    <copy todir="${buildroot}/stendhal-${version}-src/libs">
+      <fileset dir="libs"/>
+    </copy>
 
-		<copy todir="${buildroot}/stendhal-${version}-src/tests">
-			<fileset dir="tests"/>
-		</copy>
+    <copy todir="${buildroot}/stendhal-${version}-src/tests">
+      <fileset dir="tests"/>
+    </copy>
 
-		<copy todir="${buildroot}/stendhal-${version}-src/data">
-			<fileset dir="data">
-			</fileset>
-		</copy>
+    <copy todir="${buildroot}/stendhal-${version}-src/data">
+      <fileset dir="data">
+      </fileset>
+    </copy>
 
-		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
-			<fileset dir="${tiled}">
-				<exclude name="world/**" />
-			</fileset>
-		</copy>
+    <copy todir="${buildroot}/stendhal-${version}-src/tiled">
+      <fileset dir="${tiled}">
+        <exclude name="world/**" />
+      </fileset>
+    </copy>
 
-		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
 
-		<copy todir="${buildroot}/stendhal-${version}-src" file="README.md"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
-		<copy todir="${buildroot}/stendhal-${version}-src/lib">
-			<fileset dir="libs">
-				<include name="*.txt"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-		<copy todir="${buildroot}/stendhal-${version}-src/doc">
-			<fileset dir="doc"/>
-			<fileset dir="." includes="LICENSE.txt"/>
-		</copy>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="README.md"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
+    <copy todir="${buildroot}/stendhal-${version}-src/lib">
+      <fileset dir="libs">
+        <include name="*.txt"/>
+        <include name="*.html"/>
+      </fileset>
+    </copy>
+    <copy todir="${buildroot}/stendhal-${version}-src/doc">
+      <fileset dir="doc"/>
+      <fileset dir="." includes="LICENSE.txt"/>
+    </copy>
 
-		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip" longfile="gnu">
-			<tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
-				<exclude name="**/CVS/**"/>
-			</tarfileset>
-		</tar>
+    <tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip" longfile="gnu">
+      <tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
+        <exclude name="**/CVS/**"/>
+      </tarfileset>
+    </tar>
 
-		<delete dir="${buildroot}/stendhal-${version}-src"/>
-	</target>
+    <delete dir="${buildroot}/stendhal-${version}-src"/>
+  </target>
 
-	<target name="compile_stendhaltools" description="compiles the Stendhal build tools">
-		<mkdir dir="${build_stendhaltools}"/>
+  <target name="compile_stendhaltools" description="compiles the Stendhal build tools">
+    <mkdir dir="${build_stendhaltools}"/>
 
-		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
-			<include name="games/stendhal/tools/**/*.java"/>
-			<include name="games/stendhal/tools/*.java"/>
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
+    <javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
+      <include name="games/stendhal/tools/**/*.java"/>
+      <include name="games/stendhal/tools/*.java"/>
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
 
-			<classpath>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${tiled_jar}"/>
-				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${swinglayout_jar}"/>
-				<pathelement path="${luaj_jar}"/>
-				<pathelement path="${jsonsimple_jar}"/>
-			</classpath>
-		</javac>
-	</target>
+      <classpath>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${swinglayout_jar}"/>
+        <pathelement path="${luaj_jar}"/>
+        <pathelement path="${jsonsimple_jar}"/>
+      </classpath>
+    </javac>
+  </target>
 
-	<target name="compile_stendhaltextclient" description="compiles the Stendhal text client ">
-		<mkdir dir="${build_stendhaltextclient}"/>
+  <target name="compile_stendhaltextclient" description="compiles the Stendhal text client ">
+    <mkdir dir="${build_stendhaltextclient}"/>
 
-		<javac srcdir="${src}" destdir="${build_stendhaltextclient}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="games/stendhal/bot/textclient/*.java"/>
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-			<compilerarg value="-Xlint:unchecked"/>
+    <javac srcdir="${src}" destdir="${build_stendhaltextclient}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/bot/textclient/*.java"/>
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
 
-			<classpath>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${tiled_jar}"/>
-				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${swinglayout_jar}"/>
-			</classpath>
-		</javac>
-	</target>
+      <classpath>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${swinglayout_jar}"/>
+      </classpath>
+    </javac>
+  </target>
 
-	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
-		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</taskdef>
+  <target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
+    <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${tiled_jar}"/>
+      </classpath>
+    </taskdef>
 
-		<mkdir dir="tiled/world"/>
-		<maprenderer imagePath="${tiled}/world/">
-			<fileset dir="tiled">
-				<include name="Level */**/*.tmx"/>
-				<include name="interiors/**/*.tmx"/>
-				<exclude name="**/memory/**" />
-			</fileset>
-		</maprenderer>
-	</target>
-	<target name="renderatlas" description="Generates the files for the Stendhal Atlas" depends="compile_stendhaltools">
-		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</taskdef>
+    <mkdir dir="tiled/world"/>
+    <maprenderer imagePath="${tiled}/world/">
+      <fileset dir="tiled">
+        <include name="Level */**/*.tmx"/>
+        <include name="interiors/**/*.tmx"/>
+        <exclude name="**/memory/**" />
+      </fileset>
+    </maprenderer>
+  </target>
+  <target name="renderatlas" description="Generates the files for the Stendhal Atlas" depends="compile_stendhaltools">
+    <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${tiled_jar}"/>
+      </classpath>
+    </taskdef>
 <!--
 7   1  1
 6   2  0.5
@@ -1016,175 +1016,175 @@
 0 128  0.0078125
 -->
 
-		<mkdir dir="tiled/world" />
-		<maprenderer imagePath="${tiled}/world/" zoom="0.0625">
-			<fileset dir="tiled">
-				<include name="Level 0/**/*.tmx"/>
-				<exclude name="**/memory/**" />
-			</fileset>
-		</maprenderer>
-		<mkdir dir="tiled/world/large" />
-		<maprenderer imagePath="${tiled}/world/large" zoom="0.25">
-			<fileset dir="tiled">
-				<include name="Level 0/**/*.tmx"/>
-				<exclude name="**/memory/**" />
-			</fileset>
-		</maprenderer>
-	</target>
+    <mkdir dir="tiled/world" />
+    <maprenderer imagePath="${tiled}/world/" zoom="0.0625">
+      <fileset dir="tiled">
+        <include name="Level 0/**/*.tmx"/>
+        <exclude name="**/memory/**" />
+      </fileset>
+    </maprenderer>
+    <mkdir dir="tiled/world/large" />
+    <maprenderer imagePath="${tiled}/world/large" zoom="0.25">
+      <fileset dir="tiled">
+        <include name="Level 0/**/*.tmx"/>
+        <exclude name="**/memory/**" />
+      </fileset>
+    </maprenderer>
+  </target>
 
-	<target name="renderworldmap" description="Exports the world.tmx file to .png" depends="rendermaps">
-		<property name="pycmd" value="python3" if:true="${python3.present}"/>
-		<property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
+  <target name="renderworldmap" description="Exports the world.tmx file to .png" depends="rendermaps">
+    <property name="pycmd" value="python3" if:true="${python3.present}"/>
+    <property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
 
-		<!-- embed area images with area name -->
-		<!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
-				write Java class that can do this -->
-		<exec executable="${pycmd}" if:set="pycmd">
-			<arg value="./tiled/vampire_maplabel.py"/>
-			<arg value="-world"/>
-		</exec>
+    <!-- embed area images with area name -->
+    <!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
+        write Java class that can do this -->
+    <exec executable="${pycmd}" if:set="pycmd">
+      <arg value="./tiled/vampire_maplabel.py"/>
+      <arg value="-world"/>
+    </exec>
 
-		<!-- render world map after images have been embedded with map names -->
-		<!-- FIXME: this should be skipped if previous Python script was not run -->
-		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</taskdef>
-		<maprenderer imagePath="${tiled}/world/" zoom="1.0">
-			<fileset dir="tiled/world">
-				<include name="world.tmx"/>
-			</fileset>
-		</maprenderer>
+    <!-- render world map after images have been embedded with map names -->
+    <!-- FIXME: this should be skipped if previous Python script was not run -->
+    <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${tiled_jar}"/>
+      </classpath>
+    </taskdef>
+    <maprenderer imagePath="${tiled}/world/" zoom="1.0">
+      <fileset dir="tiled/world">
+        <include name="world.tmx"/>
+      </fileset>
+    </maprenderer>
 
-		<!-- FIXME: should 'rendermaps' be called again to remove labels from individual images? -->
-	</target>
+    <!-- FIXME: should 'rendermaps' be called again to remove labels from individual images? -->
+  </target>
 
-	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
-		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</taskdef>
+  <target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
+    <taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${tiled_jar}"/>
+      </classpath>
+    </taskdef>
 
-		<mapupdater>
-			<fileset dir="tiled">
-				<include name="Level */**/*.tmx"/>
-				<include name="interiors/**/*.tmx"/>
-			</fileset>
-		</mapupdater>
-	</target>
+    <mapupdater>
+      <fileset dir="tiled">
+        <include name="Level */**/*.tmx"/>
+        <include name="interiors/**/*.tmx"/>
+      </fileset>
+    </mapupdater>
+  </target>
 
-	<target name="jardiff" depends="client_build" unless="exclude.jardiff">
-		<echo>Creating update from ${version.old} to ${version}</echo>
-		<delete>
-			<fileset dir="${build-archive}">
-				<exclude name="*.zip"/>
-			</fileset>
-		</delete>
-		<unzip src="${build-archive}/stendhal-${version.old}.zip" dest="${build-archive}" />
-		<java jar="libs/jardiff.jar" fork="true">
-			<arg value="-nonminimal" />
-			<arg value="-creatediff" />
-			<arg value="-output" />
-			<arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar" />
-			<arg value="${build-archive}/lib/stendhal.jar" />
-			<arg value="${build}/lib/stendhal-${version}.jar" />
-		</java>
-		<java jar="libs/jardiff.jar" fork="true">
-			<arg value="-nonminimal" />
-			<arg value="-creatediff" />
-			<arg value="-output" />
-			<arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
-			<arg value="${build-archive}/lib/stendhal-data.jar" />
-			<arg value="${build}/lib/stendhal-data-${version}.jar" />
-		</java>
-		<java jar="libs/jardiff.jar" fork="true">
-			<arg value="-nonminimal" />
-			<arg value="-creatediff" />
-			<arg value="-output" />
-			<arg value="${build}/lib/stendhal-music-data-diff-${version.old}-${version}.jar" />
-			<arg value="${build-archive}/lib/stendhal-music-data.jar" />
-			<arg value="${build}/lib/stendhal-music-data-${version}.jar" />
-		</java>
-		<java jar="libs/jardiff.jar" fork="true">
-			<arg value="-nonminimal" />
-			<arg value="-creatediff" />
-			<arg value="-output" />
-			<arg value="${build}/lib/stendhal-sound-data-diff-${version.old}-${version}.jar" />
-			<arg value="${build-archive}/lib/stendhal-sound-data.jar" />
-			<arg value="${build}/lib/stendhal-sound-data-${version}.jar" />
-		</java>
-	<!-- TODO maraurora.jar-->
-	</target>
+  <target name="jardiff" depends="client_build" unless="exclude.jardiff">
+    <echo>Creating update from ${version.old} to ${version}</echo>
+    <delete>
+      <fileset dir="${build-archive}">
+        <exclude name="*.zip"/>
+      </fileset>
+    </delete>
+    <unzip src="${build-archive}/stendhal-${version.old}.zip" dest="${build-archive}" />
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal" />
+      <arg value="-creatediff" />
+      <arg value="-output" />
+      <arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar" />
+      <arg value="${build-archive}/lib/stendhal.jar" />
+      <arg value="${build}/lib/stendhal-${version}.jar" />
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal" />
+      <arg value="-creatediff" />
+      <arg value="-output" />
+      <arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
+      <arg value="${build-archive}/lib/stendhal-data.jar" />
+      <arg value="${build}/lib/stendhal-data-${version}.jar" />
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal" />
+      <arg value="-creatediff" />
+      <arg value="-output" />
+      <arg value="${build}/lib/stendhal-music-data-diff-${version.old}-${version}.jar" />
+      <arg value="${build-archive}/lib/stendhal-music-data.jar" />
+      <arg value="${build}/lib/stendhal-music-data-${version}.jar" />
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal" />
+      <arg value="-creatediff" />
+      <arg value="-output" />
+      <arg value="${build}/lib/stendhal-sound-data-diff-${version.old}-${version}.jar" />
+      <arg value="${build-archive}/lib/stendhal-sound-data.jar" />
+      <arg value="${build}/lib/stendhal-sound-data-${version}.jar" />
+    </java>
+  <!-- TODO maraurora.jar-->
+  </target>
 
-	<target name="signupdates" description="signs updates" depends="compile_stendhaltools,jardiff" unless="exclude.signing">
-		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
-			<classpath>
-				<pathelement path="."/>
-				<pathelement path="${build_stendhaltools}"/>
-			</classpath>
-		</taskdef>
+  <target name="signupdates" description="signs updates" depends="compile_stendhaltools,jardiff" unless="exclude.signing">
+    <taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
+      <classpath>
+        <pathelement path="."/>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+    </taskdef>
 
-		<updatesigner>
-			<fileset dir="${lib}">
-				<include name="*.jar"/>
-			</fileset>
-		</updatesigner>
-	</target>
+    <updatesigner>
+      <fileset dir="${lib}">
+        <include name="*.jar"/>
+      </fileset>
+    </updatesigner>
+  </target>
 
-	<target name="cleanwhitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+  <target name="cleanwhitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
 
-		<java classname="games.stendhal.tools.CleanWhitespace">
-			<classpath>
-				<pathelement path="${build_stendhaltools}" />
-			</classpath>
-			<arg value="src/" />
-			<arg value="tests/" />
-			<arg value="android/app/src/" />
-			<arg value="java,xml,lua" />
-		</java>
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}" />
+      </classpath>
+      <arg value="src/" />
+      <arg value="tests/" />
+      <arg value="android/app/src/" />
+      <arg value="java,xml,lua" />
+    </java>
 
-		<java classname="games.stendhal.tools.CleanWhitespace">
-			<classpath>
-				<pathelement path="${build_stendhaltools}" />
-			</classpath>
-			<arg value="srcjs/" />
-			<arg value="js,ts,css" />
-		</java>
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}" />
+      </classpath>
+      <arg value="srcjs/" />
+      <arg value="js,ts,css" />
+    </java>
 
-		<java classname="games.stendhal.tools.CleanWhitespace">
-			<classpath>
-				<pathelement path="${build_stendhaltools}" />
-			</classpath>
-			<arg value="data/" />
-			<arg value="tiled/" />
-			<arg value="xml,xsd,lua,py" />
-		</java>
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}" />
+      </classpath>
+      <arg value="data/" />
+      <arg value="tiled/" />
+      <arg value="xml,xsd,lua,py" />
+    </java>
 
-	</target> <!-- cleanwhitespace -->
+  </target> <!-- cleanwhitespace -->
 
-	<target name="clean_whitespace" depends="cleanwhitespace" />
+  <target name="clean_whitespace" depends="cleanwhitespace" />
 
-	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
-	<target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
-		<java classname="games.stendhal.tools.BalanceRPGame">
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="."/>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${testsrc}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-			</classpath>
-			<arg line="${creature}"/>
-			<sysproperty key="showxp" value=""/>
-		</java>
-	</target>
+  <!-- USAGE: ant balance -Dcreature="<creature_name>" -->
+  <target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
+    <java classname="games.stendhal.tools.BalanceRPGame">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="."/>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${testsrc}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+      </classpath>
+      <arg line="${creature}"/>
+      <sysproperty key="showxp" value=""/>
+    </java>
+  </target>
 
 
 
@@ -1199,62 +1199,62 @@
 <!--************************************************************************-->
 
 
-	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
-		<exec executable="curl">
-		    <arg value="-q" />
-			<arg value="-F" />
-			<arg value="filename=testresults.xml" />
-			<arg value="-F" />
-			<arg value="file=@build/build_test_report/testresults-short.xml" />
-			<arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.GITHUB_RUN_NUMBER}&amp;buildid=${env.GITHUB_RUN_ID}&amp;commit=${env.GITHUB_SHA}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.GITHUB_HEAD_REF}&amp;branch=${env.GITHUB_REF_NAME}"/>
-		</exec>
-		<fail message="Test errors detected, check test results." if="test.error" />
-		<fail message="Test failure detected, check test results." if="test.failure" />
-	</target>
+  <target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
+    <exec executable="curl">
+        <arg value="-q" />
+      <arg value="-F" />
+      <arg value="filename=testresults.xml" />
+      <arg value="-F" />
+      <arg value="file=@build/build_test_report/testresults-short.xml" />
+      <arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.GITHUB_RUN_NUMBER}&amp;buildid=${env.GITHUB_RUN_ID}&amp;commit=${env.GITHUB_SHA}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.GITHUB_HEAD_REF}&amp;branch=${env.GITHUB_REF_NAME}"/>
+    </exec>
+    <fail message="Test errors detected, check test results." if="test.error" />
+    <fail message="Test failure detected, check test results." if="test.failure" />
+  </target>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
-		<mkdir dir="${build_tests}"/>
+  <target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
+    <mkdir dir="${build_tests}"/>
 
-		<copy todir="${build_tests}">
-			<fileset dir="tests">
-				<exclude name="**/*.java"/>
-			</fileset>
-		</copy>
+    <copy todir="${build_tests}">
+      <fileset dir="tests">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
 
-		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
-			<include name="**/*.java"/>
+    <javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="**/*.java"/>
 
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
 
-			<compilerarg value="-Xlint:unchecked"/>
+      <compilerarg value="-Xlint:unchecked"/>
 
-			<classpath>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_stendhaltextclient}"/>
-				<pathelement path="${build_client}"/>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${build_server_maps}"/>
-				<pathelement path="${build_server_script}"/>
-				<!--<pathelement path="${build_server_mods}"/>-->
-				<pathelement path="${build_postman}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${hamcrest_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${easymock_jar}"/>
-				<pathelement path="${easymockclassextension_jar}"/>
-				<pathelement path="${build_server_script}"/>
-				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</javac>
-	</target>
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${build_stendhaltextclient}"/>
+        <pathelement path="${build_client}"/>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${build_server_maps}"/>
+        <pathelement path="${build_server_script}"/>
+        <!--<pathelement path="${build_server_mods}"/>-->
+        <pathelement path="${build_postman}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${hamcrest_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${easymock_jar}"/>
+        <pathelement path="${easymockclassextension_jar}"/>
+        <pathelement path="${build_server_script}"/>
+        <pathelement path="${tiled_jar}"/>
+      </classpath>
+    </javac>
+  </target>
 
-	<available property="server.ini" file="server.ini"/>
-	<target name="prepare_serverini_for_tests" unless="server.ini">
-		<echo file="server.ini">
+  <available property="server.ini" file="server.ini"/>
+  <target name="prepare_serverini_for_tests" unless="server.ini">
+    <echo file="server.ini">
 database_implementation=games.stendhal.server.core.engine.StendhalPlayerDatabase
 factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory
 database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter
@@ -1271,264 +1271,264 @@ server_contact=https://sourceforge.net/tracker/?atid=514826&amp;group_id=66537&a
 n = 966117159215070350422008719727400433209081371975507132437556194069529307432746058120899703845731090424709994853484674454738958575201865208533043689325553646377
 e = 15
 d = 901709348600732327060541471745573737661809280510473323608385781131560686937229596225645929798090122419343070307904183075525081589946196209839163758401803422679
-		</echo>
-	</target>
+    </echo>
+  </target>
 
-	<target name="run_tests" description="Run tests">
-		<mkdir dir="${build_tests_report}"/>
-		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-			<classpath path="buildtools/jacoco/jacocoant.jar"/>
-		</taskdef>
-		<jacoco:coverage destfile="${build_tests_report}/jacoco.exec" append="false" includes="games.stendhal.*">
-			<junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
-				<classpath>
-					<pathelement path="${build_tests}"/>
-					<pathelement path="${build_client}"/>
-					<pathelement path="${build_server}"/>
-					<pathelement path="${build_server_maps}"/>
-					<pathelement path="${build_stendhaltools}"/>
-					<pathelement path="${build_stendhaltextclient}"/>
-					<pathelement path="${build_server_script}"/>
-					<!--<pathelement path="${build_server_mods}"/>-->
-					<pathelement path="${build_postman}"/>
-					<pathelement path="${easymock_jar}"/>
-					<pathelement path="${easymockclassextension_jar}"/>
-					<pathelement path="${cglib_jar}"/>
-					<pathelement path="${marauroa_jar}"/>
-					<pathelement path="${hamcrest_jar}"/>
-					<pathelement path="${log4j_jar}"/>
-					<pathelement path="${junit_jar}"/>
-					<pathelement path="${groovy_jar}"/>
-					<pathelement path="${simple_jar}"/>
-					<pathelement path="${guava_jar}"/>
-					<pathelement path="${mysqldriver_jar}"/>
-					<pathelement path="${h2_jar}"/>
-					<pathelement path="${jorbis_jar}"/>
-					<pathelement path="${luaj_jar}"/>
-					<pathelement path="."/>
-					<pathelement path="data/conf"/>
-					<pathelement path="data/script"/>
-				</classpath>
-				<formatter type="xml"/>
-				<batchtest  todir="${build_tests_report}">
-					<fileset dir="tests">
-						<include name="**/*Test.java"/>
-						<include name="**/Test*.java"/>
-					</fileset>
-				</batchtest>
-			</junit>
-		</jacoco:coverage>
-	    <jacoco:report>
-	        <executiondata>
-	            <file file="${build_tests_report}/jacoco.exec" />
-	        </executiondata>
-	        <structure name="stendhal">
-	            <classfiles>
-	            	<fileset dir="${build_client}"/>
-					<fileset dir="${build_server}"/>
-	            </classfiles>
-	            <sourcefiles encoding="UTF-8">
-	                <fileset dir="${src}" />
-	            </sourcefiles>
-	        </structure>
-	    	<xml destfile="${build_tests_report}/jacoco.xml" />
-	    </jacoco:report>
+  <target name="run_tests" description="Run tests">
+    <mkdir dir="${build_tests_report}"/>
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+      <classpath path="buildtools/jacoco/jacocoant.jar"/>
+    </taskdef>
+    <jacoco:coverage destfile="${build_tests_report}/jacoco.exec" append="false" includes="games.stendhal.*">
+      <junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
+        <classpath>
+          <pathelement path="${build_tests}"/>
+          <pathelement path="${build_client}"/>
+          <pathelement path="${build_server}"/>
+          <pathelement path="${build_server_maps}"/>
+          <pathelement path="${build_stendhaltools}"/>
+          <pathelement path="${build_stendhaltextclient}"/>
+          <pathelement path="${build_server_script}"/>
+          <!--<pathelement path="${build_server_mods}"/>-->
+          <pathelement path="${build_postman}"/>
+          <pathelement path="${easymock_jar}"/>
+          <pathelement path="${easymockclassextension_jar}"/>
+          <pathelement path="${cglib_jar}"/>
+          <pathelement path="${marauroa_jar}"/>
+          <pathelement path="${hamcrest_jar}"/>
+          <pathelement path="${log4j_jar}"/>
+          <pathelement path="${junit_jar}"/>
+          <pathelement path="${groovy_jar}"/>
+          <pathelement path="${simple_jar}"/>
+          <pathelement path="${guava_jar}"/>
+          <pathelement path="${mysqldriver_jar}"/>
+          <pathelement path="${h2_jar}"/>
+          <pathelement path="${jorbis_jar}"/>
+          <pathelement path="${luaj_jar}"/>
+          <pathelement path="."/>
+          <pathelement path="data/conf"/>
+          <pathelement path="data/script"/>
+        </classpath>
+        <formatter type="xml"/>
+        <batchtest  todir="${build_tests_report}">
+          <fileset dir="tests">
+            <include name="**/*Test.java"/>
+            <include name="**/Test*.java"/>
+          </fileset>
+        </batchtest>
+      </junit>
+    </jacoco:coverage>
+      <jacoco:report>
+          <executiondata>
+              <file file="${build_tests_report}/jacoco.exec" />
+          </executiondata>
+          <structure name="stendhal">
+              <classfiles>
+                <fileset dir="${build_client}"/>
+          <fileset dir="${build_server}"/>
+              </classfiles>
+              <sourcefiles encoding="UTF-8">
+                  <fileset dir="${src}" />
+              </sourcefiles>
+          </structure>
+        <xml destfile="${build_tests_report}/jacoco.xml" />
+      </jacoco:report>
 
-	</target>
+  </target>
 
-	<target name="report_test" description="Aggregate Testresults">
-		<mkdir dir="${build_tests_report}" />
-		<junitreport todir="${build_tests_report}" tofile="testresults.xml">
-			<fileset dir="${build_tests_report}">
-				<include name="TEST-*.xml"/>
-			</fileset>
-			<report format="frames" todir="${build_tests_report}"/>
-		</junitreport>
-		<copy file="${build_tests_report}/testresults.xml" tofile="${build_tests_report}/testresults-short.xml"/>
-		<replaceregexp file="${build_tests_report}/testresults-short.xml"
-		               match="&lt;properties&gt;.*?&lt;/properties&gt;|&lt;system-out /&gt;|&lt;system-err /&gt;|^ *"
-		               replace=""
-			           flags="gsm"
-		               byline="false"
-		/>
-		<delete>
-			<fileset dir="${build_tests_report}">
-				<include name="TEST-*.xml"/>
-			</fileset>
-		</delete>
-	</target>
+  <target name="report_test" description="Aggregate Testresults">
+    <mkdir dir="${build_tests_report}" />
+    <junitreport todir="${build_tests_report}" tofile="testresults.xml">
+      <fileset dir="${build_tests_report}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${build_tests_report}"/>
+    </junitreport>
+    <copy file="${build_tests_report}/testresults.xml" tofile="${build_tests_report}/testresults-short.xml"/>
+    <replaceregexp file="${build_tests_report}/testresults-short.xml"
+                   match="&lt;properties&gt;.*?&lt;/properties&gt;|&lt;system-out /&gt;|&lt;system-err /&gt;|^ *"
+                   replace=""
+                 flags="gsm"
+                   byline="false"
+    />
+    <delete>
+      <fileset dir="${build_tests_report}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+    </delete>
+  </target>
 
-	<target name="checkxml" description="Verify XML files are well-formed">
-		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
-			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
-			<fileset dir="${config_dir}/zones">
-					<include name="*.xml"/>
-			</fileset>
-		</schemavalidate>
-		<schemavalidate>
-		<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
-			<fileset dir="${config_dir}/creatures">
-				<include name="*.xml" />
-			</fileset>
-		</schemavalidate>
-		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/items.xsd" />
-			<fileset dir="data/conf/items">
-				<include name="*.xml"/>
-				<exclude name="armors.xml"/>
-				<exclude name="arrows.xml"/>
-				<exclude name="axes.xml"/>
-				<exclude name="boots.xml"/>
-				<exclude name="cloaks.xml"/>
-				<exclude name="clubs.xml"/>
-				<exclude name="dummy_weapons.xml"/>
-				<exclude name="helmets.xml"/>
-				<exclude name="legs.xml"/>
-				<exclude name="missiles.xml"/>
-				<exclude name="ranged.xml"/>
-				<exclude name="rings.xml"/>
-				<exclude name="shields.xml"/>
-				<exclude name="swords.xml"/>
-			</fileset>
-		</schemavalidate>
-		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/equipment.xsd" />
-			<fileset dir="data/conf/items">
-				<include name="armors.xml"/>
-				<include name="arrows.xml"/>
-				<include name="axes.xml"/>
-				<include name="boots.xml"/>
-				<include name="cloaks.xml"/>
-				<include name="clubs.xml"/>
-				<include name="dummy_weapons.xml"/>
-				<include name="helmets.xml"/>
-				<include name="legs.xml"/>
-				<include name="missiles.xml"/>
-				<include name="ranged.xml"/>
-				<include name="rings.xml"/>
-				<include name="shields.xml"/>
-				<include name="swords.xml"/>
-			</fileset>
-		</schemavalidate>
-		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/groups.xsd"/>
-			<fileset dir="${config_dir}">
-				<filename name="zones.xml"/>
-				<filename name="items.xml"/>
-				<filename name="creatures.xml"/>
-			</fileset>
-		</schemavalidate>
-		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/shops.xsd"/>
-			<fileset dir="${config_dir}">
-				<filename name="shops.xml"/>
-			</fileset>
-		</schemavalidate>
-	</target>
+  <target name="checkxml" description="Verify XML files are well-formed">
+    <schemavalidate failonerror="yes" lenient="yes" warn="yes">
+      <schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
+      <fileset dir="${config_dir}/zones">
+          <include name="*.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+    <schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
+      <fileset dir="${config_dir}/creatures">
+        <include name="*.xml" />
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/items.xsd" />
+      <fileset dir="data/conf/items">
+        <include name="*.xml"/>
+        <exclude name="armors.xml"/>
+        <exclude name="arrows.xml"/>
+        <exclude name="axes.xml"/>
+        <exclude name="boots.xml"/>
+        <exclude name="cloaks.xml"/>
+        <exclude name="clubs.xml"/>
+        <exclude name="dummy_weapons.xml"/>
+        <exclude name="helmets.xml"/>
+        <exclude name="legs.xml"/>
+        <exclude name="missiles.xml"/>
+        <exclude name="ranged.xml"/>
+        <exclude name="rings.xml"/>
+        <exclude name="shields.xml"/>
+        <exclude name="swords.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/equipment.xsd" />
+      <fileset dir="data/conf/items">
+        <include name="armors.xml"/>
+        <include name="arrows.xml"/>
+        <include name="axes.xml"/>
+        <include name="boots.xml"/>
+        <include name="cloaks.xml"/>
+        <include name="clubs.xml"/>
+        <include name="dummy_weapons.xml"/>
+        <include name="helmets.xml"/>
+        <include name="legs.xml"/>
+        <include name="missiles.xml"/>
+        <include name="ranged.xml"/>
+        <include name="rings.xml"/>
+        <include name="shields.xml"/>
+        <include name="swords.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/groups.xsd"/>
+      <fileset dir="${config_dir}">
+        <filename name="zones.xml"/>
+        <filename name="items.xml"/>
+        <filename name="creatures.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/shops.xsd"/>
+      <fileset dir="${config_dir}">
+        <filename name="shops.xml"/>
+      </fileset>
+    </schemavalidate>
+  </target>
 
-	<target name="compilejs">
-		<antcall target="js-prepare" unless:set="exclude.webclient" />
-		<antcall target="js-invoke-compiler" unless:set="exclude.webclient" />
+  <target name="compilejs">
+    <antcall target="js-prepare" unless:set="exclude.webclient" />
+    <antcall target="js-invoke-compiler" unless:set="exclude.webclient" />
 
-		<echo if:set="exclude.webclient" level="warning"
-			message="WARNING: Node.js is not installed, skipping web client build." />
-	</target>
+    <echo if:set="exclude.webclient" level="warning"
+      message="WARNING: Node.js is not installed, skipping web client build." />
+  </target>
 
-	<target name="js-prepare-marauroa">
-		<mkdir dir="build/js" />
-		<unzip dest="build" src="libs/marauroa.jar">
-			<patternset>
-				<include name="js/**"/>
-			</patternset>
-		</unzip>
-	</target>
+  <target name="js-prepare-marauroa">
+    <mkdir dir="build/js" />
+    <unzip dest="build" src="libs/marauroa.jar">
+      <patternset>
+        <include name="js/**"/>
+      </patternset>
+    </unzip>
+  </target>
 
-	<target name="js-prepare-build">
+  <target name="js-prepare-build">
 
-		<echo file="build/js/build.js">
-			var stendhal = window.stendhal = window.stendhal || {};
-			stendhal.data = stendhal.data || {};
+    <echo file="build/js/build.js">
+      var stendhal = window.stendhal = window.stendhal || {};
+      stendhal.data = stendhal.data || {};
 
-			stendhal.data.build = {
-				version: "${version}",
-				build: "${timestamp}",
-				dist: "webclient"
-			}
-		</echo>
-	</target>
+      stendhal.data.build = {
+        version: "${version}",
+        build: "${timestamp}",
+        dist: "webclient"
+      }
+    </echo>
+  </target>
 
-	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build, js-prepare-node" />
+  <extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build, js-prepare-node" />
 
-	<target name="js-prepare-node">
-		<exec executable="npm${executable.suffix}" failonerror="true">
-			<arg value="install" />
-			<arg value="--no-save" />
-		</exec>
-	</target>
+  <target name="js-prepare-node">
+    <exec executable="npm${executable.suffix}" failonerror="true">
+      <arg value="install" />
+      <arg value="--no-save" />
+    </exec>
+  </target>
 
-	<target name="js-invoke-compiler">
-		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
-			<arg value="tsc" />
-		</exec>
+  <target name="js-invoke-compiler">
+    <exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
+      <arg value="tsc" />
+    </exec>
 
-		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content" />
+    <property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content" />
 
-		<property name="js-files-license"  value="srcjs/stendhal/license.js" />
-		<property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js build/js/inflate.js build/js/deserializer.js" />
-		<property name="js-files-config"   value="srcjs/stendhal/config.js build/js/build.js" />
-		<property name="js-files-lib1"     value="srcjs/jsxgraph-util.js" />
-		<property name="js-files-lib2"     value="" />
-		<property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/group.js srcjs/stendhal/data/map.js srcjs/stendhal/data/outfit.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js  srcjs/stendhal/data/emoji.js srcjs/stendhal/data/tileset/animation.js" />
-		<property name="js-files-data2"    value="" />
-		<property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" />
-		<property name="js-files-entity6"  value="" />
-		<property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js srcjs/stendhal/ui/keyhandler.js" />
-		<property name="js-files-ui2"      value="srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/touch.js" />
-		<property name="js-files-ui3"      value="" />
-		<property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
-		<property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/settings.js" />
-		<property name="js-files-main2"    value="srcjs/stendhal/main.js" />
-		<property name="js-files-main3"    value="" />
-		<property name="js-files-ts"       value="build/ts/**/*.js" />
+    <property name="js-files-license"  value="srcjs/stendhal/license.js" />
+    <property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js build/js/inflate.js build/js/deserializer.js" />
+    <property name="js-files-config"   value="srcjs/stendhal/config.js build/js/build.js" />
+    <property name="js-files-lib1"     value="srcjs/jsxgraph-util.js" />
+    <property name="js-files-lib2"     value="" />
+    <property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/group.js srcjs/stendhal/data/map.js srcjs/stendhal/data/outfit.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js  srcjs/stendhal/data/emoji.js srcjs/stendhal/data/tileset/animation.js" />
+    <property name="js-files-data2"    value="" />
+    <property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" />
+    <property name="js-files-entity6"  value="" />
+    <property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js srcjs/stendhal/ui/keyhandler.js" />
+    <property name="js-files-ui2"      value="srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/touch.js" />
+    <property name="js-files-ui3"      value="" />
+    <property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
+    <property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/settings.js" />
+    <property name="js-files-main2"    value="srcjs/stendhal/main.js" />
+    <property name="js-files-main3"    value="" />
+    <property name="js-files-ts"       value="build/ts/**/*.js" />
 
 
-		<java jar="buildtools/closure-compiler/compiler.jar"
-				fork="true"
-				failonerror="true"
-				maxmemory="128m">
-			<arg value="--language_in=ECMASCRIPT_2020"/>
-			<arg value="--language_out=STABLE"/>
-			<arg value="--compilation_level" />
-			<arg value="ADVANCED" />
-			<arg line="${js-debug}" />
-			<arg value="--jscomp_off=checkVars" />
-			<arg value="--process_common_js_modules" />
-			<arg value="--module_resolution=node" />
+    <java jar="buildtools/closure-compiler/compiler.jar"
+        fork="true"
+        failonerror="true"
+        maxmemory="128m">
+      <arg value="--language_in=ECMASCRIPT_2020"/>
+      <arg value="--language_out=STABLE"/>
+      <arg value="--compilation_level" />
+      <arg value="ADVANCED" />
+      <arg line="${js-debug}" />
+      <arg value="--jscomp_off=checkVars" />
+      <arg value="--process_common_js_modules" />
+      <arg value="--module_resolution=node" />
 
-			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
+      <arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
 
-			<arg line="${js-files-license}" />
-			<arg line="${js-files-marauroa}" />
-			<arg line="${js-files-config}" />
-			<arg line="${js-files-lib1}" />
-			<arg line="${js-files-lib2}" />
-			<arg line="${js-files-data1}" />
-			<arg line="${js-files-data2}" />
-			<arg line="${js-files-entity5}" />
-			<arg line="${js-files-entity6}" />
-			<arg line="${js-files-ui1}" />
-			<arg line="${js-files-ui2}" />
-			<arg line="${js-files-ui3}" />
-			<arg line="${js-files-main1}" />
-			<arg line="${js-files-ui4}" />
-			<arg line="${js-files-main2}" />
-			<arg line="${js-files-main3}" />
-			<arg line="${js-files-ts}" />
-		</java>
+      <arg line="${js-files-license}" />
+      <arg line="${js-files-marauroa}" />
+      <arg line="${js-files-config}" />
+      <arg line="${js-files-lib1}" />
+      <arg line="${js-files-lib2}" />
+      <arg line="${js-files-data1}" />
+      <arg line="${js-files-data2}" />
+      <arg line="${js-files-entity5}" />
+      <arg line="${js-files-entity6}" />
+      <arg line="${js-files-ui1}" />
+      <arg line="${js-files-ui2}" />
+      <arg line="${js-files-ui3}" />
+      <arg line="${js-files-main1}" />
+      <arg line="${js-files-ui4}" />
+      <arg line="${js-files-main2}" />
+      <arg line="${js-files-main3}" />
+      <arg line="${js-files-ts}" />
+    </java>
 
-		<echo file="srcjs/stendhal-compiled.js" append="true">
+    <echo file="srcjs/stendhal-compiled.js" append="true">
 //# sourceMappingURL=stendhal-compiled.js.map
-		</echo>
-	</target>
+    </echo>
+  </target>
 
 </project>
