@@ -440,7 +440,7 @@
 
   <target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
 
-  <target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_client_android"/>
+  <target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_webclient_binary, dist_client_android"/>
 
 
   <!-- START: source -->
