@@ -423,7 +423,7 @@
   <!-- END: maintenance -->
 
 
-  <target name="jar" depends="client_build,server_build" description="Builds Client and Server">
+  <target name="jar" depends="client_build,server_build" description="Builds client and server">
     <echo>Built client and server for NetBeans.</echo>
   </target>
 
@@ -1197,10 +1197,9 @@
     </exec>
   </target> <!-- client_android_build -->
 
-  <!-- alias for "client_android_build" -->
-  <target name="build_android_client" depends="client_android_build" />
+  <target name="build_android_client" depends="client_android_build" description="Alias for client_android_build"/>
 
-  <target name="dist_client_android">
+  <target name="dist_client_android" description="Builds Android client distribution package">
     <echo
       if:set="exclude.webview"
       message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build." />
@@ -1341,7 +1340,7 @@
   </target> <!-- jardiff -->
 
   <!-- USAGE: ant balance -Dcreature="<creature_name>" -->
-  <target name="balance" description="runs enemy balancer" depends="compile_stendhaltools,server_build">
+  <target name="balance" description="Runs enemy balancer" depends="compile_stendhaltools,server_build">
     <java classname="games.stendhal.tools.BalanceRPGame">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
