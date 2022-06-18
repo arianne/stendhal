@@ -21,8 +21,6 @@ import { TextSprite } from "../sprite/TextSprite";
 declare var marauroa: any;
 declare var stendhal: any;
 
-// hair should not be drawn with hat indexes in this list
-stendhal.HATS_NO_HAIR = [3, 4, 13, 16, 992, 993, 994, 996, 997];
 var HEALTH_BAR_HEIGHT = 6;
 
 
@@ -424,7 +422,7 @@ export class RPEntity extends ActiveEntity {
 		let octx
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
-			if (layer == "hair" && stendhal.HATS_NO_HAIR.includes(parseInt(outfit["hat"]))) {
+			if (layer == "hair" && !stendhal.data.outfit.drawHair(parseInt(outfit["hat"], 10))) {
 				continue;
 			}
 

@@ -21,17 +21,6 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 
-stendhal.ui.outfitCount = {
-	"hat": 17,
-	"hair": 56,
-	"mask": 9,
-	"eyes": 28,
-	"mouth": 5,
-	"head":  4,
-	"dress": 64,
-	"body": 3
-};
-
 /**
  * a dialog to choose an outfit from
  */
@@ -149,7 +138,7 @@ export class OutfitDialog extends DialogContentComponent {
 			index = 0;
 		}
 
-		const selector = new OutfitPartSelector(part, index, stendhal.ui.outfitCount[part] - 1, () => {
+		const selector = new OutfitPartSelector(part, index, stendhal.data.outfit.count[part] - 1, () => {
 			this.drawComposite();
 		});
 
@@ -174,19 +163,14 @@ export class OutfitDialog extends DialogContentComponent {
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-		var drawHair = true;
-		// hair is not drawn under certain hats/helmets
-		if (stendhal.HATS_NO_HAIR !== null && stendhal.HATS_NO_HAIR !== undefined) {
-			drawHair = !stendhal.HATS_NO_HAIR.includes(parseInt(this.hatSelector.index, 10));
-		}
-
 		draw(ctx, this.bodySelector);
 		draw(ctx, this.dressSelector);
 		draw(ctx, this.headSelector);
 		draw(ctx, this.mouthSelector);
 		draw(ctx, this.eyesSelector);
 		draw(ctx, this.maskSelector);
-		if (drawHair) {
+		// hair is not drawn under certain hats/helmets
+		if (stendhal.data.outfit.drawHair(parseInt(this.hatSelector.index, 10))) {
 			draw(ctx, this.hairSelector);
 		}
 		draw(ctx, this.hatSelector);
