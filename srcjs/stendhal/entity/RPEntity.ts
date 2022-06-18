@@ -22,7 +22,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 // hair should not be drawn with hat indexes in this list
-stendhal.HATS_NO_HAIR = [3, 4, 13, 992, 993, 994, 996, 997];
+stendhal.HATS_NO_HAIR = [3, 4, 13, 16, 992, 993, 994, 996, 997];
 var HEALTH_BAR_HEIGHT = 6;
 
 

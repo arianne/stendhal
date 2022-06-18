@@ -246,8 +246,8 @@ hat_012.png (boggin)           bleutailfly; OGA BY 3.0; Stendhal
 hat_013.*   (robe hood)        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_014.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hat_015.png (samurai amigasa)  DezrasDragons, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/47664
+hat_016.png (turban)           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/82929
 hat_988.png (crown)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
-hat_989.png (turban)           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/82929
 hat_990.png (postal)           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/100767
 hat_991.png (wedding veil)
 hat_992.png (superstendhal)    bleutailfly; OGA BY 3.0; Stendhal
