@@ -1132,10 +1132,14 @@
       message="WARNING: Node.js is not installed, skipping web client build." />
   </target> <!-- compilejs -->
 
-  <target name="dist_webclient_binary" depends="cleanjs,compilejs">
+  <target name="dist_webclient_binary" depends="cleanjs,clean_client_data,compilejs,build_client_data">
     <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
       <zipfileset dir="${buildroot}/js" prefix="js"/>
       <zipfileset dir="${buildroot}/ts" prefix="ts"/>
+      <zipfileset dir="${build_client_data}"/>
+      <zipfileset dir="${build_client_music_data}"/>
+      <zipfileset dir="${build_client_sound_data}"/>
+      <zipfileset dir="doc/sources" prefix="doc/sources"/>
       <zipfileset file="LICENSE.txt"/>
     </zip>
   </target> <!-- dist_webclient_binary -->
