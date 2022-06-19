@@ -24,7 +24,7 @@ stendhal.data.outfit = {
 		"eyes": 28,
 		"mouth": 5,
 		"head": 4,
-		"dress": 64,
+		"dress": 65,
 		"body": 3
 	},
 
