@@ -32,10 +32,10 @@ body_999.png      (dwarf)         Svetlana Kushnariova (Cabbit), Jordan Irwin (A
 
 data/sprites/outfit/detail/
 
-detail_00[1-4].png (balloon)  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/101299
-detail_005.*   (flag)        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-detail_006.*   (bride veil)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
-detail_007.*   (umbrella)    Diligent Dodo (soniccuz); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/
+detail_00[1-4].png (balloon)   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/101299
+detail_005.*       (flag)      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+detail_006.*       (cane)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_007.*       (umbrella)  Diligent Dodo (soniccuz); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/
 
 data/sprites/outfit/dress/
 
