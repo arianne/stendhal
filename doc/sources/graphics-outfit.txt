@@ -227,6 +227,7 @@ hair_052.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDel
 hair_053.png               diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83661
 hair_054.*                 diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72198
 hair_055.png               Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11445
+hair_056.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 hair_999.png (jester hat)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/outfit/hat/
