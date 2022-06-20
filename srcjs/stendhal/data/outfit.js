@@ -18,7 +18,7 @@ stendhal.data = stendhal.data || {};
 stendhal.data.outfit = {
 	// player pickable layers
 	count: {
-		"hat": 17,
+		"hat": 18,
 		"hair": 57,
 		"mask": 9,
 		"eyes": 28,
