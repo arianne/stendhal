@@ -53,7 +53,7 @@ dress_011.*   (soldier uniform)  Svetlana Kushnariova (Cabbit), Jordan Irwin (An
 dress_012.*   (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_013.png (soldier uniform)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/AntumDeluge/game-resources
 dress_014.*   (robes)            wulax, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/11165
-dress_015.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_015.*   (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_016.*                      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_017.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_018.png (lavender dress)   bleutailfly; OGA BY 3.0; Stendhal
@@ -119,7 +119,7 @@ dress_979.*   (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (An
 dress_980.png ("S" suit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
 dress_981.*   (bunny suit)       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/14851
 dress_982.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-dress_983.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_983.png (15 recolor)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_984.png (overalls)         bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_985.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_986.png                    bleutailfly; OGA BY 3.0; Stendhal
