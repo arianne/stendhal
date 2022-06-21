@@ -47,7 +47,7 @@ public class Outfits {
 	public static final int MOUTH_OUTFITS = 5;
 
 	public static final int MASK_OUTFITS = 9;
-	public static final int HAT_OUTFITS = 18;
+	public static final int HAT_OUTFITS = 19;
 
 	// hair should not be drawn with hat indexes in this list
 	public static final List<Integer> HATS_NO_HAIR = Arrays.asList(3, 4, 13, 16, 992, 993, 994, 996, 997);
