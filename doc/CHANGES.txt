@@ -59,6 +59,7 @@ Changelog
 - added setting to enable quick pickup from chests
 - outfit layers are combined before drawing on game window
 - support for moving items via touch added
+- fixed tutorial notifications to show NPC profile image
 
 *java client*
 - fixed inaccurate marked scroll tooltips
