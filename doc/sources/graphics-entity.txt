@@ -74,7 +74,7 @@ girlnpc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 goldsmithnpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 grandadnpc.*                  Svetlana Kushnariova (Cabbit), Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/72969
-granmanpc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+granmanpc.*                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 greendwarfnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 greenelfwizardnpc.*           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/114
 grim_reaper*_npc.*            Stephen Challener (Redshirke), oksmith, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262, https://openclipart.org/detail/284272
