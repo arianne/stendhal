@@ -266,15 +266,18 @@ export class RPEntity extends ActiveEntity {
 				// FIXME: doesn't reach bottom of game window
 				const y = screenBottom - height;
 
-				if (this.profile) {
-					 ctx.drawImage(this.profile, x - 48, y - 16);
-				}
-
 				ctx.lineWidth = 2;
 				ctx.font = fontsize + "px sans-serif";
 				ctx.fillStyle = "#ffffff";
 				ctx.strokeStyle = "#000000";
-				this.entity.drawSpeechBubble(ctx, x, y, width, height);
+
+				if (this.profile) {
+					ctx.drawImage(this.profile, x - 48, y - 16);
+					this.entity.drawSpeechBubbleRounded(ctx, x, y - 15, width, height);
+				} else {
+					this.entity.drawSpeechBubble(ctx, x, y, width, height);
+				}
+
 				ctx.fillStyle = NotificationType[mtype] || "#000000";
 
 				let sy = y;
