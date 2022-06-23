@@ -106,10 +106,18 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 		const ttype = this["texttype"].toLowerCase();
 		const msg = this["text"].replace("\r\n", "\n").replace("\r", "\n");
 
+		// FIXME: doesn't show on first message at login (caching?)
+		let profile;
+		if (this.hasOwnProperty("profile")) {
+			profile = this["profile"];
+		} else if (ttype === "tutorial") {
+			profile = "floattingladynpc";
+		}
+
 		if (ttype === "server" && msg.includes("\n")) {
-			Chat.log(ttype, msg.split("\n"));
+			Chat.log(ttype, msg.split("\n"), undefined, profile);
 		} else {
-			Chat.log(ttype, msg);
+			Chat.log(ttype, msg, undefined, profile);
 		}
 	}
 });

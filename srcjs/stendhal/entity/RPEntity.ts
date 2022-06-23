@@ -198,8 +198,10 @@ export class RPEntity extends ActiveEntity {
 	 *     Message type.
 	 * @param text
 	 *     Text to display.
+	 * @param profile
+	 *     Filename of NPC profile image to display with message.
 	 */
-	addNotificationBubble(mtype: string, text: string) {
+	addNotificationBubble(mtype: string, text: string, profile?: string) {
 		const linewrap = 30;
 		const wordbreak = 60;
 		const lines: string[] = [];
@@ -227,10 +229,18 @@ export class RPEntity extends ActiveEntity {
 		const lcount = lines.length;
 		let spriteCtx: CanvasRenderingContext2D|null = null;
 
+		let pimg
+		if (profile) {
+			pimg = stendhal.data.sprites.getAreaOf(
+				stendhal.data.sprites.get("data/sprites/npc/" + profile + ".png"),
+				48, 48, 48, 128);
+		}
+
 		stendhal.ui.gamewindow.addNotifSprite({
 			timeStamp: Date.now(),
 			entity: this,
 			lmargin: 4,
+			profile: pimg,
 			draw: function(ctx: CanvasRenderingContext2D) {
 				const screenArea = document.getElementById("gamewindow")!.getBoundingClientRect();
 				const screenTop = stendhal.ui.gamewindow.offsetY;
@@ -255,6 +265,10 @@ export class RPEntity extends ActiveEntity {
 				const x = screenCenterX - (width / 2);
 				// FIXME: doesn't reach bottom of game window
 				const y = screenBottom - height;
+
+				if (this.profile) {
+					 ctx.drawImage(this.profile, x - 48, y - 16);
+				}
 
 				ctx.lineWidth = 2;
 				ctx.font = fontsize + "px sans-serif";

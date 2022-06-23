@@ -33,8 +33,11 @@ export class Chat {
 	 *     Message to log.
 	 * @param orator
 	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 * @param profile
+	 *     Filename of NPC profile image to display with message.
 	 */
-	public static log(type: string, message: string|string[]|HTMLElement, orator?: string) {
+	public static log(type: string, message: string|string[]|HTMLElement, orator?: string,
+			profile?: string) {
 		const ChatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		if (type === "emoji" && message instanceof HTMLImageElement) {
@@ -56,7 +59,7 @@ export class Chat {
 			}
 
 			for (const m of messages) {
-				marauroa.me.addNotificationBubble(type, m);
+				marauroa.me.addNotificationBubble(type, m, profile);
 			}
 		}
 	}
