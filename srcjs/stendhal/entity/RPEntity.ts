@@ -375,14 +375,14 @@ export class RPEntity extends ActiveEntity {
 		ctx.quadraticCurveTo(x + width, y, x + width, y + arc);
 		ctx.lineTo(x + width, y + height - arc);
 		ctx.quadraticCurveTo(x + width, y + height, x + width - arc, y + height);
-		ctx.lineTo(x + 8, y + height);
-
-		// tail
-		ctx.lineTo(x - 3, y + height + 5);
-		ctx.lineTo(x + 2, y + height);
-
 		ctx.lineTo(x + arc, y + height);
 		ctx.quadraticCurveTo(x, y + height, x, y + height - arc);
+		ctx.lineTo(x, y + 8);
+
+		// tail
+		ctx.lineTo(x - 8, y + 11);
+		ctx.lineTo(x, y + 3);
+
 		ctx.lineTo(x, y + arc);
 		ctx.quadraticCurveTo(x, y, x + arc, y);
 		ctx.stroke();
