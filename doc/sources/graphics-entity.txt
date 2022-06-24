@@ -514,7 +514,7 @@ data/sprites/entity/goblin/
 
 data/sprites/entity/golem/
 
-ice_golem.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
+ice_golem.png    Stephen Challener (Redshrike), William.Thompsonj; OGA BY 3.0; https://opengameart.org/node/24436
 stone_golem.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 wooden_golem.*   Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 
