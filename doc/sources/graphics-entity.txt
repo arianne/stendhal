@@ -458,7 +458,7 @@ chick.*        Shepardskin, Jordan Irwin (AntumDeluge); CC0; https://opengameart
 chicken.png    Daniel Eddeland (daneeklu); CC BY 3.0; https://opengameart.org/node/11629
 dodo_bird.png  bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101289
 hen.png        Daniel Eddeland (daneeklu); CC BY 3.0; https://opengameart.org/node/11629
-penguin.png    Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
+penguin.*      Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
 pigeon.*       Onno Timmerman (Enquest), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84675
 
 
