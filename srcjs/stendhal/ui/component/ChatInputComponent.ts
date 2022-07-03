@@ -59,44 +59,7 @@ export class ChatInputComponent extends Component {
 	onKeyDown(event: KeyboardEvent) {
 		let code = stendhal.ui.html.extractKeyCode(event);
 
-		if (event.shiftKey && event.ctrlKey) {
-			if (this.inputElement.setSelectionRange !== undefined) {
-				event.stopPropagation();
-
-				/* Use Ctrl+Shift+arrow to move caret without moving character
-				 * nor highlighting text. left/right moves caret 1 position
-				 * to left or right. up/down moves caret to beginning or
-				 * end of line. */
-				let idx = this.inputElement.selectionEnd || 0;
-				if (code === stendhal.ui.keycode.left) {
-					event.preventDefault();
-
-					idx--;
-					if (idx < 0) {
-						idx = 0;
-					}
-					this.inputElement.setSelectionRange(idx, idx);
-				} else if (code === stendhal.ui.keycode.right) {
-					event.preventDefault();
-
-					idx++;
-					if (idx > this.inputElement.value.length) {
-						idx = this.inputElement.value.length;
-					}
-					this.inputElement.setSelectionRange(idx, idx);
-				} else if (code === stendhal.ui.keycode.up) {
-					event.preventDefault();
-
-					idx = 0;
-					this.inputElement.setSelectionRange(idx, idx);
-				} else if (code === stendhal.ui.keycode.down) {
-					event.preventDefault();
-
-					idx = this.inputElement.value.length;
-					this.inputElement.setSelectionRange(idx, idx);
-				}
-			}
-		} else if (event.shiftKey) {
+		if (event.shiftKey) {
 			// chat history
 			if (code === stendhal.ui.keycode.up) {
 				event.preventDefault();
