@@ -32,7 +32,6 @@ stendhal.ui.keyhandler = {
 
 	extractMoveOrFaceActionFromEvent: function(event) {
 		if (event.ctrlKey) {
-			event.preventDefault(); // don't move chat input caret
 			return "face";
 		} else if (event.shiftKey) {
 			return null;
