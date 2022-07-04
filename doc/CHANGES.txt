@@ -44,6 +44,9 @@ Changelog
 *sound*
 - added sounds for Rose Leigh, Marianne, & Princess Esclara
 
+*clients*
+- chest collision is visible on minimap
+
 *webclient*
 - added own/leave options for pets
 - entity size used to offset speech bubble position
@@ -53,7 +56,6 @@ Changelog
 - Ctrl is used instead of Shift key to change facing direction
 - character will not move when scrolling chat history (holding Shift key + arrow up/down)
 - text is not highlighted when scrolling chat history
-- Ctrl+Shift+arrow left/right/up/down moves chat input caret without moving character nor highlighting line
 - fixed dragging items & corpses under other entities
 - fixed re-ordering items in inventory
 - added setting to enable quick pickup from chests
@@ -63,6 +65,7 @@ Changelog
 
 *java client*
 - fixed inaccurate marked scroll tooltips
+- fixed wrong cursor for bestiary
 
 *misc*
 - marked scroll tooltips now show custom labels
