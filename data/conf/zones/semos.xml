@@ -205,7 +205,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     </entity>
   </zone>
 
-  <zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx" accessible="false">
+  <zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC"/>
 
