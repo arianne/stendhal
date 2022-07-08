@@ -21,7 +21,7 @@ body_988.png      (red slime)     nudelchef (Dragon); CC0; Stendhal, https://sou
 body_989.png      (green slime)   nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 body_990.png      (yellow slime)  nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 body_991.png      (blue slime)    nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
-body_992.png      (gingerbread)   ???; ???; ???
+body_992.*        (gingerbread)   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/140789
 body_993.png      (purple slime)  nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 body_994.png                      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 body_995.png      (alien)         Fabzy; CC BY-SA 3.0; https://opengameart.org/node/88800
