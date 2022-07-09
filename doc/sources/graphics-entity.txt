@@ -67,7 +67,7 @@ fishermannpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 fishermansdaughternpc.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 fishsoupmakernpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 floattingladynpc.png          Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/83626, https://opengameart.org/node/29293
-friendlywizardnpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
+friendlywizardnpc.*           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 gamesupervisornpc.png         Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969
 gardenernpc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, olonu, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/72969
 girlnpc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944
