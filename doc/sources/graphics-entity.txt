@@ -212,7 +212,7 @@ wannabekingnpc.png            Svetlana Kushnariova (Cabbit), daimonddmgirl, bleu
 weaponrytradernpc.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://opengameart.org/node/83523
 weaponsellernpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 welcomernpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
-wellroundedguynpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/50909
+wellroundedguynpc.*           Svetlana Kushnariova (Cabbit), Fabzy, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/50909, https://opengameart.org/node/23314
 whitesorceressnpc.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 wifenpc.png                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 wisemannpc.*                  Svetlana Kushnariova (Cabbit), Sollision, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/52761
