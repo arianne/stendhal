@@ -296,6 +296,7 @@ mask_00[4-5].png (eye patch)   bleutailfly; OGA BY 3.0; Stendhal
 mask_006.png     (sunglasses)  Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 mask_007.png     (kitsune)     practicing01; CC0; https://opengameart.org/node/23856
 mask_008.png     (earrings)    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+mask_996.png     (penguin)     Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
 
 data/sprites/outfit/mouth/
 
