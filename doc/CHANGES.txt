@@ -46,9 +46,10 @@ Changelog
 
 *clients*
 - chest collision is visible on minimap
+- "busty" dress variant can be drawn for body index 1
 
 *webclient*
-- added own/leave options for pets
+- own/leave options for pets
 - entity size used to offset speech bubble position
 - travel log shows when quests are repeatable
 - players represented with blue + on minimap
@@ -58,9 +59,9 @@ Changelog
 - text is not highlighted when scrolling chat history
 - fixed dragging items & corpses under other entities
 - fixed re-ordering items in inventory
-- added setting to enable quick pickup from chests
+- setting to enable quick pickup from chests
 - outfit layers are combined before drawing on game window
-- support for moving items via touch added
+- support for moving items via touch
 - fixed tutorial notifications to show NPC profile image
 
 *java client*

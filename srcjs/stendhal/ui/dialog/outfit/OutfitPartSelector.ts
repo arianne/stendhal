@@ -102,6 +102,8 @@ export class OutfitPartSelector {
 			suffix = "-nonude.png";
 		}
 
+		// FIXME: need to draw "busty" dress variants for body index 1
+
 		const fname = "/data/sprites/outfit/" + part + "/" + this.indexString(index) + suffix;
 		if (color != null) {
 			return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);

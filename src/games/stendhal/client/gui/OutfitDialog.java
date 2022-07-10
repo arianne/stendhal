@@ -545,7 +545,8 @@ class OutfitDialog extends JDialog {
 	 * @return dress sprite
 	 */
 	private Sprite getDressSprite() {
-		return store.getTile(ostore.getLayerSprite("dress", dress.getIndex(), outfitColor),
+		return store.getTile(ostore.getLayerSprite("dress", dress.getIndex(), outfitColor,
+				body.getIndex() == 1),
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 

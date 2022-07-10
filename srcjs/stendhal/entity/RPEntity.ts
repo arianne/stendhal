@@ -424,6 +424,9 @@ export class RPEntity extends ActiveEntity {
 			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
 		}
 
+		// for "busty" dress variants
+		const busty = parseInt(outfit["body"], 10) == 1;
+
 		if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
 			// FIXME: this will not display correctly for horse outfit
@@ -443,7 +446,7 @@ export class RPEntity extends ActiveEntity {
 				continue;
 			}
 
-			const lsprite = this.getOutfitPart(layer, outfit[layer]);
+			const lsprite = this.getOutfitPart(layer, outfit[layer], busty);
 			if (lsprite) {
 				if (!octx) {
 					ocanvas.width = lsprite.width;
@@ -465,8 +468,9 @@ export class RPEntity extends ActiveEntity {
 	 *
 	 * @param {string}  part
 	 * @param {Number} index
+	 * @param {boolean} busty
 	 */
-	getOutfitPart(part: string, index: number) {
+	getOutfitPart(part: string, index: number, busty: boolean=false) {
 		if (index < 0) {
 			return null;
 		}
@@ -480,6 +484,8 @@ export class RPEntity extends ActiveEntity {
 
 		if (part === "body" && index < 3 && stendhal.config.getBoolean("gamescreen.nonude")) {
 			n += "-nonude";
+		} else if (part === "dress" && busty && stendhal.data.outfit.busty_dress[n]) {
+			n += "b";
 		}
 
 		const filename = "/data/sprites/outfit/" + part + "/" + n + ".png";

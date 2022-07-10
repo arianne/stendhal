@@ -102,10 +102,14 @@ public class OutfitStore {
 
 		// Body layer
 		final int bodyIndex = layer_map.get("body");
+		boolean busty = false;
 		if (bodyIndex < 0) {
 			layer = store.getEmptySprite(48 * 3, 64 * 4);
 		} else {
 			layer = getLayerSprite("body", layer_map.get("body"), color);
+			if (bodyIndex == 1) {
+				busty = true;
+			}
 		}
 
 		if (layer == null) {
@@ -123,9 +127,9 @@ public class OutfitStore {
 			}
 
 			if (RECOLORABLE_OUTFIT_PARTS.contains(lname)) {
-				layer = getLayerSprite(lname, layer_map.get(lname), color);
+				layer = getLayerSprite(lname, layer_map.get(lname), color, busty);
 			} else {
-				layer = getLayerSprite(lname, layer_map.get(lname));
+				layer = getLayerSprite(lname, layer_map.get(lname), busty);
 			}
 			layer.draw(g, 0, 0);
 		}
@@ -181,15 +185,18 @@ public class OutfitStore {
 	 * Get the layer sprite tileset.
 	 *
 	 * @param layer
-	 * 		Name of the layer.
+	 *     Name of the layer.
 	 * @param index
-	 * 		The resource index.
+	 *     The resource index.
 	 * @param color
-	 * 		Layer coloring.
-	 *
-	 * @return The Sprite or <code>null</code>.
+	 *     Layer coloring.
+	 * @param busty
+	 *     Body type is "busty".
+	 * @return
+	 *     The Sprite or <code>null</code>.
 	 */
-	public Sprite getLayerSprite(final String layer, final int index, final OutfitColor color) {
+	public Sprite getLayerSprite(final String layer, final int index, final OutfitColor color,
+				final boolean busty) {
 		if (emptyForZeroIndex.contains(layer)) {
 			if (index <= 0) {
 				return getEmptySprite();
@@ -205,6 +212,12 @@ public class OutfitStore {
 			final URL nonudeURL = DataLoader.getResource(ref + "-nonude.png");
 			if (nonudeURL != null) {
 				ref = ref + "-nonude";
+			}
+		} else if (layer.equals("dress") && busty) {
+			// check if "busty" dress exists
+			final URL bustyURL = DataLoader.getResource(ref + "b.png");
+			if (bustyURL != null) {
+				ref = ref + "b";
 			}
 		}
 
@@ -229,14 +242,46 @@ public class OutfitStore {
 	 * Get the layer sprite tileset.
 	 *
 	 * @param layer
-	 * 		Name of the layer.
+	 *     Name of the layer.
 	 * @param index
-	 * 		The resource index.
+	 *     The resource index.
+	 * @param color
+	 *     Layer coloring.
+	 * @return
+	 *     The Sprite or <code>null</code>.
+	 */
+	public Sprite getLayerSprite(final String layer, final int index, final OutfitColor color) {
+		return getLayerSprite(layer, index, color, false);
+	}
+
+	/**
+	 * Get the layer sprite tileset.
 	 *
-	 * @return The Sprite or <code>null</code>.
+	 * @param layer
+	 *     Name of the layer.
+	 * @param index
+	 *     The resource index.
+	 * @param busty
+	 *     Body type is "busty".
+	 * @return
+	 *     The Sprite or <code>null</code>.
+	 */
+	public Sprite getLayerSprite(final String layer, final int index, final boolean busty) {
+		return getLayerSprite(layer, index, null, busty);
+	}
+
+	/**
+	 * Get the layer sprite tileset.
+	 *
+	 * @param layer
+	 *     Name of the layer.
+	 * @param index
+	 *     The resource index.
+	 * @return
+	 *     The Sprite or <code>null</code>.
 	 */
 	public Sprite getLayerSprite(final String layer, final int index) {
-		return getLayerSprite(layer, index, null);
+		return getLayerSprite(layer, index, null, false);
 	}
 
 	/**
