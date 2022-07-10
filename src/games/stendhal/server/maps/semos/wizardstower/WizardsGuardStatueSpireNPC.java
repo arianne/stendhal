@@ -122,7 +122,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 						add(ConversationStates.ATTENDING,
 								Arrays.asList("demon fire sword", "swords", "sword"),
 								ConversationStates.INFORMATION_1,
-							    "I can craft for you a demon fire sword if you can procure a demon sword and a fire sword.",
+							    "I can craft for you a demon fire sword if you can procure a demon sword and a fire sword. Do you want a demon fire sword?",
 							    null);
 						add(ConversationStates.INFORMATION_1,
 								ConversationPhrases.YES_MESSAGES,
