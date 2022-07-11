@@ -59,7 +59,7 @@ public class StartAction implements ChatAction {
 		final long dmStart = System.currentTimeMillis();
 		final String pName = player.getName();
 
-		// don't make announcement if previous start time was within 10 minutes
+		// don't make announcement if previous announcement time was within 10 minutes
 		if (!announceTimes.containsKey(pName) || (dmStart - announceTimes.get(pName)) / 60000 > 10) {
 			final String msg = raiser.getName() + " shouts: A deathmatch has begun! Will "
 				+ pName + " survive? Come and satisfy your thirst for violence.";
