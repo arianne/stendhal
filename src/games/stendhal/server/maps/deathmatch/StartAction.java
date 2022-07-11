@@ -32,7 +32,10 @@ import games.stendhal.server.entity.player.Player;
 public class StartAction implements ChatAction {
 
 	private final DeathmatchInfo deathmatchInfo;
-	private static Map<String, Long> announceTimes;
+
+	// elapsed time in minutes required for repeated announcement
+	private static final int ANNOUNCE_COOLDOWN_MINS = 15;
+	private static final Map<String, Long> announceTimes = new HashMap<String, Long>();
 
 
 	/**
@@ -42,9 +45,6 @@ public class StartAction implements ChatAction {
 	 */
 	public StartAction(final DeathmatchInfo deathmatchInfo) {
 		this.deathmatchInfo = deathmatchInfo;
-		if (this.announceTimes == null) {
-			this.announceTimes = new HashMap<String, Long>();
-		}
 	}
 
 	@Override
@@ -59,8 +59,9 @@ public class StartAction implements ChatAction {
 		final long dmStart = System.currentTimeMillis();
 		final String pName = player.getName();
 
-		// don't make announcement if previous announcement time was within 10 minutes
-		if (!announceTimes.containsKey(pName) || (dmStart - announceTimes.get(pName)) / 60000 > 10) {
+		// don't make announcement if previous was within 15 minutes
+		if (!announceTimes.containsKey(pName) ||
+				(dmStart - announceTimes.get(pName)) / 60000 >= ANNOUNCE_COOLDOWN_MINS) {
 			final String msg = raiser.getName() + " shouts: A deathmatch has begun! Will "
 				+ pName + " survive? Come and satisfy your thirst for violence.";
 
