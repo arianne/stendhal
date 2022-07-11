@@ -29,6 +29,7 @@ bones-2.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 book-1.ogg                Storyteller; GPL
 book-2.ogg                Storyteller; GPL
 cat-purr-1.*              Belhene; CC0; https://freesound.org/people/Belhene/sounds/157837/
+cha-ching.ogg             Lucish_; CC BY 3.0; https://freesound.org/s/554841/
 chicken-[01-02].*         www.bonson.ca; CC BY 3.0; https://freesound.org/people/www.bonson.ca/sounds/24967/
 chicken-03.*              Rudmer_Rotteveel; CC0; https://freesound.org/people/Rudmer_Rotteveel/sounds/316921/
 chicken-chick-1.*         Barbamiz; CC0; https://freesound.org/people/Barbamiz/sounds/116135/
