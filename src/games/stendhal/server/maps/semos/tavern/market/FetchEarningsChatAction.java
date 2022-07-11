@@ -14,6 +14,8 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import java.util.Set;
 
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -21,6 +23,9 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.events.SoundEvent;
+
+
 /**
  * chat action to let a player fetch his earnings from the market
  *
@@ -48,6 +53,7 @@ public class FetchEarningsChatAction implements ChatAction {
 			collectedSum += earning.getValue().intValue();
 		}
 		if (collectedSum > 0) {
+			npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
 			npc.say("Welcome to Semos trading center. I gave your pending earnings to you. What else can I do?");
 		} else {
