@@ -37,6 +37,8 @@ export class RPEntity extends ActiveEntity {
 	titleTextSprite?: TextSprite;
 	floaters: any[] = [];
 	protected statusBarYOffset: number = 0;
+	// canvas for merging outfit layers to be drawn
+	private ocanvas = document.createElement("canvas");
 
 	/** space to be left at the beginning and end of line in pixels. */
 	//private margin_width = 3;
@@ -438,7 +440,6 @@ export class RPEntity extends ActiveEntity {
 			}
 		}
 
-		const ocanvas = document.createElement("canvas");
 		let octx
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
@@ -449,9 +450,9 @@ export class RPEntity extends ActiveEntity {
 			const lsprite = this.getOutfitPart(layer, outfit[layer], busty);
 			if (lsprite) {
 				if (!octx) {
-					ocanvas.width = lsprite.width;
-					ocanvas.height = lsprite.height;
-					octx = ocanvas.getContext("2d")!;
+					this.ocanvas.width = lsprite.width;
+					this.ocanvas.height = lsprite.height;
+					octx = this.ocanvas.getContext("2d")!;
 				}
 
 				octx.drawImage(lsprite, 0, 0);
@@ -459,7 +460,7 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		const osprite = new Image();
-		osprite.src = ocanvas.toDataURL("image/png");
+		osprite.src = this.ocanvas.toDataURL("image/png");
 		this.drawSpriteImage(ctx, osprite);
 	}
 
