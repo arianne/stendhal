@@ -78,8 +78,8 @@ public class Seed extends StackableItem {
 		final String flowerName = getInfoString();
 
 		if (flowerName != null) {
-			return "You see a " + flowerName + " " + this.getName() + "."
-                + "It can be planted anywhere, but it will only thrive on fertile ground.";
+			return "You see a " + flowerName + " " + this.getName()
+                + ". It can be planted anywhere, but it will only thrive on fertile ground.";
 		} else {
 			return "You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.";
 		}
