@@ -30,6 +30,7 @@ Changelog
 - player hit chance is increased by 50% during combat
 - player hit damage is decreased by 50% to compensate for increased hit chance
 - summon scrolls can be used inside deathmatch arena
+- deathmatch announcements not repeated until after 10 minutes
 
 *graphics*
 - item sprites touch ups
