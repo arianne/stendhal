@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -29,14 +32,19 @@ import games.stendhal.server.entity.player.Player;
 public class StartAction implements ChatAction {
 
 	private final DeathmatchInfo deathmatchInfo;
+	private static Map<String, Long> announceTimes;
+
 
 	/**
 	 * Creates a new StartAction for the specified deathmatch.
-
+	 *
 	 * @param deathmatchInfo deathmatch to start
 	 */
 	public StartAction(final DeathmatchInfo deathmatchInfo) {
 		this.deathmatchInfo = deathmatchInfo;
+		if (this.announceTimes == null) {
+			this.announceTimes = new HashMap<String, Long>();
+		}
 	}
 
 	@Override
@@ -48,21 +56,27 @@ public class StartAction implements ChatAction {
 		deathmatchInfo.startSession(player, raiser);
 
 
-		// XXX: perhaps a timer should be set so that multiple announcements are not
-		//      made within a certain period
+		final long dmStart = System.currentTimeMillis();
+		final String pName = player.getName();
 
-		final String msg = raiser.getName() + " shouts: A deathmatch has begun! Will "
-			+ player.getName() + " survive? Come and satisfy your thirst for violence.";
+		// don't make announcement if previous start time was within 10 minutes
+		if (!announceTimes.containsKey(pName) || (dmStart - announceTimes.get(pName)) / 60000 > 10) {
+			final String msg = raiser.getName() + " shouts: A deathmatch has begun! Will "
+				+ pName + " survive? Come and satisfy your thirst for violence.";
 
-		final StendhalRPRuleProcessor rp = SingletonRepository.getRuleProcessor();
+			final StendhalRPRuleProcessor rp = SingletonRepository.getRuleProcessor();
 
-		// tell all players in game
-		rp.tellAllPlayers(NotificationType.PRIVMSG, msg);
+			// tell all players in game
+			rp.tellAllPlayers(NotificationType.PRIVMSG, msg);
 
-		// notify IRC via postman
-		final Player postman = rp.getPlayer("postman");
-		if (postman != null) {
-			postman.sendPrivateText(msg);
+			// notify IRC via postman
+			final Player postman = rp.getPlayer("postman");
+			if (postman != null) {
+				postman.sendPrivateText(msg);
+			}
+
+			// store announcement time
+			announceTimes.put(pName, dmStart);
 		}
 	}
 }
