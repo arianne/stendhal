@@ -18,5 +18,6 @@ export const SoundId = {
 	"stat_down": undefined,
 	"achievement": "yay-1",
 	"commerce": "coins-01",
+	"commerce2": "cha-ching",
 	"heal": "heal-01"
 } as {[index: string]: string|undefined;};

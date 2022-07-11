@@ -22,6 +22,7 @@ public enum SoundID {
 	STAT_DOWN("stat_down"),
 	ACHIEVEMENT("achievement"),
 	COMMERCE("commerce"),
+	COMMERCE2("commerce2"),
 	HEAL("heal");
 
 	String label;

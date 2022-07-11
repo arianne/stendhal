@@ -24,6 +24,7 @@ public class ConfiguredSounds {
 		put(SoundID.STAT_UP, "player/stat_up-01");
 		put(SoundID.ACHIEVEMENT, "yay-1");
 		put(SoundID.COMMERCE, "coins-01");
+		put(SoundID.COMMERCE2, "cha-ching");
 		put(SoundID.HEAL, "heal-01");
 	}};
 

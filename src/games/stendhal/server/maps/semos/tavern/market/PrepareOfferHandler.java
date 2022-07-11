@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
@@ -212,7 +213,7 @@ public class PrepareOfferHandler {
 					TradingUtility.substractTradingFee(player, price);
 					new AsynchronousProgramExecutor("trade", buildTweetMessage(item, quantity, price)).start();
 					DBCommandQueue.get().enqueue(new LogTradeEventCommand(player, item, quantity, price));
-					npc.addEvent(new SoundEvent("cha-ching", SoundLayer.CREATURE_NOISE));
+					npc.addEvent(new SoundEvent(SoundID.COMMERCE2, SoundLayer.CREATURE_NOISE));
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
