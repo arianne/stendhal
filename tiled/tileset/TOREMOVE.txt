@@ -1,0 +1,6 @@
+
+The following images can be removed after 1.41 release:
+
+ground/fire/
+
+- flame.png
