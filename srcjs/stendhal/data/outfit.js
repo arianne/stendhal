@@ -29,7 +29,8 @@ stendhal.data.outfit = {
 	},
 
 	busty_dress: {
-		"029": true
+		"029": true,
+		"968": true
 	},
 
 	// hair should not be drawn with hat indexes in this list
