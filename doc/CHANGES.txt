@@ -61,7 +61,6 @@ Changelog
 - fixed dragging items & corpses under other entities
 - fixed re-ordering items in inventory
 - setting to enable quick pickup from chests
-- outfit layers are combined before drawing on game window
 - support for moving items via touch
 - fixed tutorial notifications to show NPC profile image
 
