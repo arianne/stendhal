@@ -66,7 +66,7 @@ data/sprites/outfit/dress/
 028 (armor)            bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 029 (tunic)            bleutailfly, Jordan Irwin; OGA BY 3.0; Stendhal
 030 (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-031                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+031                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 032 (dress / skirt)    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 033 (overalls)         bleutailfly; OGA BY 3.0; Stendhal
 034 (overalls)         bleutailfly; OGA BY 3.0; Stendhal
