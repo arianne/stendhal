@@ -17,7 +17,7 @@ data/sprites/outfit/body/
 987        (elder w/ cane) Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 9[88-91,93] (slime)        nudelchef (Dragon); CC0; Stendhal, https://sourceforge.net/p/arianne/patches/738/
 992         (gingerbread)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/140789
-994                        Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+994                        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 995         (alien)        Fabzy; CC BY-SA 3.0; https://opengameart.org/node/88800
 99[6-7]     (horse)        bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 998         (empty)
