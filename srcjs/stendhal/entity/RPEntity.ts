@@ -38,7 +38,7 @@ export class RPEntity extends ActiveEntity {
 	floaters: any[] = [];
 	protected statusBarYOffset: number = 0;
 	// canvas for merging outfit layers to be drawn
-	private ocanvas = document.createElement("canvas");
+	private octx?: CanvasRenderingContext2D;
 
 	/** space to be left at the beginning and end of line in pixels. */
 	//private margin_width = 3;
@@ -440,7 +440,9 @@ export class RPEntity extends ActiveEntity {
 			}
 		}
 
-		let octx
+		if (this.octx) {
+			this.octx.clearRect(0, 0, this.octx.canvas.width, this.octx.canvas.height);
+		}
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
 			if (layer == "hair" && !stendhal.data.outfit.drawHair(parseInt(outfit["hat"], 10))) {
@@ -448,20 +450,20 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			const lsprite = this.getOutfitPart(layer, outfit[layer], busty);
-			if (lsprite) {
-				if (!octx) {
-					this.ocanvas.width = lsprite.width;
-					this.ocanvas.height = lsprite.height;
-					octx = this.ocanvas.getContext("2d")!;
+			if (lsprite && lsprite.complete && lsprite.height) {
+				if (!this.octx) {
+					let ocanvas = document.createElement("canvas");
+					this.octx = ocanvas.getContext("2d")!;
+					ocanvas.width = lsprite.width;
+					ocanvas.height = lsprite.height;
 				}
-
-				octx.drawImage(lsprite, 0, 0);
+				this.octx!.drawImage(lsprite, 0, 0);
 			}
 		}
 
-		const osprite = new Image();
-		osprite.src = this.ocanvas.toDataURL("image/png");
-		this.drawSpriteImage(ctx, osprite);
+		if (this.octx) {
+			this.drawSpriteImage(ctx, this.octx.canvas);
+		}
 	}
 
 	/**
