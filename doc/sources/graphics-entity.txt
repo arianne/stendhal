@@ -738,7 +738,7 @@ Sources:
 oni_archer.*  Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), onu/olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/93
 oni_king.*    Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0, https://github.com/arianne/stendhal/issues/85
 oni_priest.*  Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), onu/olonu, Guyome41, rones, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/94
-oni_queen.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0, https://github.com/arianne/stendhal/issues/83
+oni_queen.*   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0, https://github.com/arianne/stendhal/issues/83
 oni_warrior.* Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/118
 
 
