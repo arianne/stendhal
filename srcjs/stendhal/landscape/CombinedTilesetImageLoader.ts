@@ -55,9 +55,11 @@ export class CombinedTilesetImageLoader {
 		const tsname = this.map.tilesetFilenames[tileset];
 		img.src = tsname + "?v=" + stendhal.data.build.version;
 
-		const animation = stendhal.data.tileset.landscapeAnimationMap[tsname];
-		if (animation) {
-			this.animations[tileset] = animation;
+		if (stendhal.data.tileset.landscapeAnimationMap) {
+			const animation = stendhal.data.tileset.landscapeAnimationMap[tsname];
+			if (animation) {
+				this.animations[tileset] = animation;
+			}
 		}
 
 		this.tilesetImages[tileset] = img;
