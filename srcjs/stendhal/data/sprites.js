@@ -185,6 +185,7 @@ stendhal.data.sprites = {
 				const data = imgData.data;
 				filterFn(data, param);
 				ctx.putImageData(imgData, 0, 0);
+				canvas.complete = true;
 				stendhal.data.sprites.images[filteredName] = filtered = canvas;
 			}
 
