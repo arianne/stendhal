@@ -30,6 +30,7 @@ stendhal.data.outfit = {
 
 	busty_dress: {
 		"029": true,
+		"967": true,
 		"968": true
 	},
 
