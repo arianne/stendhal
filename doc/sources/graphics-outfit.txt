@@ -100,6 +100,7 @@ data/sprites/outfit/dress/
 062 (armor)            bleutailfly; OGA BY 3.0; https://postimg.cc/xcf7MS00
 063                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 064                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+966                    diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/66147
 967*                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 968*                   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/95, https://opengameart.org/node/72969
 969 (king robes)       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
