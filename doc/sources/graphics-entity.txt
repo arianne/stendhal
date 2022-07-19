@@ -757,8 +757,8 @@ orc_warrior.png           Tuomo Untinen (Reemax); Jordan Irwin (AntumDeluge); CC
 
 data/sprites/entity/other/
 
-bullseye.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-training_dummy.png  Danimal; CC BY-SA 3.0; https://opengameart.org/node/17272; https://opengameart.org/users/danimal
+bullseye.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+training_dummy.*  Danimal, Kimmo Rundelin (kiheru), ScratchIO, Jordan Irwin (AntumDeluge); Danimal; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/17272; https://opengameart.org/users/danimal, https://opengameart.org/node/108295
 
 
 data/sprites/entity/ratfolk/
