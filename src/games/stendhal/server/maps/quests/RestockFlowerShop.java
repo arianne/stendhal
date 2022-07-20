@@ -109,11 +109,11 @@ public class RestockFlowerShop extends AbstractQuest {
 				res.add(requestedFlowers);
 			}
 		} else {
-            if (isRepeatable(player)) {
-                res.add("It has been a while since I helped " + npcName + ". Perhaps she could use my help again.");
-            } else {
-                res.add(npcName + " now has a good supply of flowers.");
-            }
+			if (isRepeatable(player)) {
+				res.add("It has been a while since I helped " + npcName + ". Perhaps she could use my help again.");
+			} else {
+				res.add(npcName + " now has a good supply of flowers.");
+			}
 		}
 
 		return res;

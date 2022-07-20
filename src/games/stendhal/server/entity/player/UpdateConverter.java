@@ -216,7 +216,7 @@ public abstract class UpdateConverter {
 			final int number = 0;
 			final String[] parts = name.split(" ");
 			if (parts.length > 2) {
-			   	try {
+				try {
 					// house number
 					final int id;
 					id = Integer.parseInt(parts[2]);
@@ -247,133 +247,133 @@ public abstract class UpdateConverter {
 	}
 
 	/**
-     * Updates a player RPObject from an old version of Stendhal.
-     *
-     * @param object
-     *            RPObject representing a player
-     */
-    public static void updatePlayerRPObject(final RPObject object) {
-    	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
-    			"legs", "feet", "finger", "cloak", "bank", "bank_ados", "bank_deniran",
-    			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-    			"keyring", /*"portfolio", */ "trade", "pouch" };
+	 * Updates a player RPObject from an old version of Stendhal.
+	 *
+	 * @param object
+	 *            RPObject representing a player
+	 */
+	public static void updatePlayerRPObject(final RPObject object) {
+		final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
+				"legs", "feet", "finger", "cloak", "bank", "bank_ados", "bank_deniran",
+				"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+				"keyring", /*"portfolio", */ "trade", "pouch" };
 
-    	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
-    			"!visited", "skills", "!tutorial"};
+		final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
+				"!visited", "skills", "!tutorial"};
 
-    	// Port from 0.03 to 0.10
-    	if (!object.has("base_hp")) {
-    		object.put("base_hp", "100");
-    		object.put("hp", "100");
-    	}
+		// Port from 0.03 to 0.10
+		if (!object.has("base_hp")) {
+			object.put("base_hp", "100");
+			object.put("hp", "100");
+		}
 
-    	// Port from 0.13 to 0.20
-    	final Outfit tempOutfit = new Outfit();
-    	if (!object.has("outfit")) {
-    		object.put("outfit", tempOutfit.getCode());
-    	}
+		// Port from 0.13 to 0.20
+		final Outfit tempOutfit = new Outfit();
+		if (!object.has("outfit")) {
+			object.put("outfit", tempOutfit.getCode());
+		}
 
-    	// create slots if they do not exist yet:
+		// create slots if they do not exist yet:
 
-    	// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-    	// Port from 0.44 to 0.50: cloak, bank
-    	// Port from 0.57 to 0.58: bank_ados, bank_fado
-    	// Port from 0.58 to ?: bank_nalwor, keyring, finger
-    	// Port from 1.29 to 1.30: bank_deniran
-    	for (final String slotName : slotsNormal) {
-    		if (!object.hasSlot(slotName)) {
-    			object.addSlot(new PlayerSlot(slotName));
-    		}
-    	}
+		// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+		// Port from 0.44 to 0.50: cloak, bank
+		// Port from 0.57 to 0.58: bank_ados, bank_fado
+		// Port from 0.58 to ?: bank_nalwor, keyring, finger
+		// Port from 1.29 to 1.30: bank_deniran
+		for (final String slotName : slotsNormal) {
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new PlayerSlot(slotName));
+			}
+		}
 
-    	// Port from 0.44 to 0.50: !buddy
-    	// Port from 0.56 to 0.56.1: !ignore
-    	// Port from 0.57 to 0.58: skills
-    	for (final String slotName : slotsSpecial) {
-    		if (!object.hasSlot(slotName)) {
-    			object.addSlot(new KeyedSlot(slotName));
-    		}
-    		final RPSlot slot = object.getSlot(slotName);
-    		if (slot.size() == 0) {
-    			final RPObject singleObject = new RPObject();
-    			slot.add(singleObject);
-    		}
-    	}
+		// Port from 0.44 to 0.50: !buddy
+		// Port from 0.56 to 0.56.1: !ignore
+		// Port from 0.57 to 0.58: skills
+		for (final String slotName : slotsSpecial) {
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new KeyedSlot(slotName));
+			}
+			final RPSlot slot = object.getSlot(slotName);
+			if (slot.size() == 0) {
+				final RPObject singleObject = new RPObject();
+				slot.add(singleObject);
+			}
+		}
 
-    	// Port from 0.30 to 0.35
-    	if (!object.has("atk_xp")) {
-    		object.put("atk_xp", "0");
-    		object.put("def_xp", "0");
-    	}
+		// Port from 0.30 to 0.35
+		if (!object.has("atk_xp")) {
+			object.put("atk_xp", "0");
+			object.put("def_xp", "0");
+		}
 
-    	if (object.has("devel")) {
-    		object.remove("devel");
-    	}
+		if (object.has("devel")) {
+			object.remove("devel");
+		}
 
-    	// From 0.44 to 0.50
-    	if (!object.has("release")) {
-    		object.put("release", "0.00");
-    		object.put("atk", "10");
-    		object.put("def", "10");
-    	}
+		// From 0.44 to 0.50
+		if (!object.has("release")) {
+			object.put("release", "0.00");
+			object.put("atk", "10");
+			object.put("def", "10");
+		}
 
 		if (Testing.COMBAT && !object.has("ratk_xp")) {
 			object.put("ratk_xp", "0");
 		}
 
-    	if (!object.has("age")) {
-    		object.put("age", "0");
-    	}
+		if (!object.has("age")) {
+			object.put("age", "0");
+		}
 
-    	if (!object.has("karma")) {
-    		// A little beginner's luck
-    		object.put("karma", 10);
-    	}
-    	if (!object.has("mana")) {
-    		object.put("mana", 0);
-    	}
-    	if (!object.has("base_mana")) {
-    		object.put("base_mana", 0);
-    	}
+		if (!object.has("karma")) {
+			// A little beginner's luck
+			object.put("karma", 10);
+		}
+		if (!object.has("mana")) {
+			object.put("mana", 0);
+		}
+		if (!object.has("base_mana")) {
+			object.put("base_mana", 0);
+		}
 
-    	// Renamed to skills
-    	if (object.has("!skills")) {
-    		object.remove("!skills");
-    	}
+		// Renamed to skills
+		if (object.has("!skills")) {
+			object.remove("!skills");
+		}
 
-    	if (!object.has("height")) {
-    		object.put("height", 2);
-    	}
-    	if (!object.has("width")) {
-    		object.put("width", 1);
-    	}
+		if (!object.has("height")) {
+			object.put("height", 2);
+		}
+		if (!object.has("width")) {
+			object.put("width", 1);
+		}
 
-    	// port to 0.66
-    	transformKillSlot(object);
+		// port to 0.66
+		transformKillSlot(object);
 
-    	// port to 0.81 because of a bug in 0.80 which allowed 0 hp by double killing on logout during dying
-    	if (object.getInt("hp") <= 0) {
-    		logger.warn("Setting hp to 1 for player " + object);
-    		object.put("hp", 1);
-    	}
+		// port to 0.81 because of a bug in 0.80 which allowed 0 hp by double killing on logout during dying
+		if (object.getInt("hp") <= 0) {
+			logger.warn("Setting hp to 1 for player " + object);
+			object.put("hp", 1);
+		}
 
-    	// port to 0.85 added buddy list as map - copy buddies to map
-    	if (object.hasSlot("!buddy")) {
-    		for (RPObject buddy : object.getSlot("!buddy")) {
-    			for (final String buddyname : buddy) {
-    				if (buddyname.startsWith("_")) {
-    					boolean online = false;
-    					if (buddy.get(buddyname).equals("1")) {
-    						online = true;
-    					}
-    					//strip out the _ in the beginning
-    					object.put("buddies", buddyname.substring(1), online);
-    				}
-    			}
-    			buddy.remove("_db_id");
-    		}
-    		// remove buddy slot for 0.87
-    		object.removeSlot("!buddy");
+		// port to 0.85 added buddy list as map - copy buddies to map
+		if (object.hasSlot("!buddy")) {
+			for (RPObject buddy : object.getSlot("!buddy")) {
+				for (final String buddyname : buddy) {
+					if (buddyname.startsWith("_")) {
+						boolean online = false;
+						if (buddy.get(buddyname).equals("1")) {
+							online = true;
+						}
+						//strip out the _ in the beginning
+						object.put("buddies", buddyname.substring(1), online);
+					}
+				}
+				buddy.remove("_db_id");
+			}
+			// remove buddy slot for 0.87
+			object.removeSlot("!buddy");
 		}
 		object.remove("buddies", "db_id");
 
