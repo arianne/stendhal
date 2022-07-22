@@ -233,9 +233,13 @@ export class RPEntity extends ActiveEntity {
 
 		let pimg
 		if (profile) {
-			pimg = stendhal.data.sprites.getAreaOf(
-				stendhal.data.sprites.get("data/sprites/npc/" + profile + ".png"),
-				48, 48, 48, 128);
+			// TODO: The image might not have been loaded here, so
+			// so we need to retry getAreaOf in the drawing code.
+			// But we still want to cache it once loading successed
+			let img = stendhal.data.sprites.get("data/sprites/npc/" + profile + ".png");
+			if (img.complete && img.height) {
+				pimg = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);
+			}
 		}
 
 		stendhal.ui.gamewindow.addNotifSprite({

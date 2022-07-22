@@ -77,6 +77,7 @@ public class StartAction implements ChatAction {
 			}
 
 			// store announcement time
+			// TODO: Clean up expired announcementTimes entries
 			announceTimes.put(pName, dmStart);
 		}
 	}
