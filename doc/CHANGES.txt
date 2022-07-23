@@ -13,7 +13,6 @@ Changelog
 - glacier centaur drops ice arrows
 - solar centaur drops fire arrows
 - charcoal added to daily item quest
-- additional 4 mins in training dojo at level 590 & above
 - int_ados_fishermans_hut_south whitelisted for rat spawns in The Pied Piper quest
 - new rare creature: golden orc
 - orc spearman drops golden orc sword
