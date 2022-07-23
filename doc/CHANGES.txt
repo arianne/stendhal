@@ -6,6 +6,7 @@ Changelog
 1.41
 
 *world*
+- added mimimum level to many items to make them useful
 - adventure island guarantees spawn for daily monster quest
 - Find Jef's mom quest added to Private Detective achievement
 - centaur king drops power arrows
