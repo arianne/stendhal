@@ -2919,10 +2919,11 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
-	 * This hack doubles the chance that a player can hit an enemy
-	 * to make the game feel more fair. However, in order to avoid
-	 * drastic changes to the game's balance, we need to reduce
-	 * the amount of damage done by players. See:
+	 * This hack increases chance that a player can hit an enemy
+	 * to make the game feel more fair. Hit chance is based on
+	 * raw atk stat, which is much higher for creatues. In order
+	 * to avoid drastic changes to the game's balance, we also
+	 * need to reduce the amount of damage done by players. See:
 	 *     Player.damageDone.
 	 */
 	@Override
@@ -2933,7 +2934,8 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	@Override
-	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
+	public int damageDone(final RPEntity defender, double attackingWeaponsValue,
+			final Nature damageType) {
 		// compensate for player increased chance of hit
 		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.5);
 	}
