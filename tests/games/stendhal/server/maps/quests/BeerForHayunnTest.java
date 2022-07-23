@@ -78,7 +78,7 @@ public class BeerForHayunnTest {
 		assertTrue(player.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
-				"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
+				"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go? #Yes?",
 				getReply(hayunn));
 		en.step(player, "quest");
 		assertEquals(
@@ -106,7 +106,7 @@ public class BeerForHayunnTest {
 		assertTrue(player2.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
-			"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
+			"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go? #Yes?",
 				getReply(hayunn));
 		en.step(player2, "quest");
 		assertEquals(

@@ -59,7 +59,7 @@ public class MeetHayunnTest {
 		en = npc.getEngine();
 
 		en.step(player, "hi");
-		assertEquals("Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?", getReply(npc));
+		assertEquals("Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go? #Yes?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Well, back when I was a young adventurer, I clicked on my enemies to attack them. I'm sure that will work for you, too. Good luck, and come back once you are done.", getReply(npc));
 		en.step(player, "bye");
@@ -67,7 +67,7 @@ public class MeetHayunnTest {
 
 
 		en.step(player, "hi");
-		assertEquals("I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?", getReply(npc));
+		assertEquals("I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them? #Yes?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Well, back when I was a young adventurer, I clicked on my enemies to attack them. I'm sure that will work for you, too. Good luck, and come back once you are done.", getReply(npc));
 		en.step(player, "bye");
@@ -86,7 +86,7 @@ public class MeetHayunnTest {
 		en.step(player, "hi");
 		assertEquals("Hello again. Have you come to learn more from me?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately, if you'd like to hear it. #Yes?", getReply(npc));
+		assertEquals("Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately. Do you like to hear it?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Simple, really; just click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?", getReply(npc));
 		en.step(player, "yes");
