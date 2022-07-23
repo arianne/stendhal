@@ -216,13 +216,10 @@
     <description>You see a bottle of fresh spring water. It's really tasty and fresh.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount condition="!stendhal.testserver" value="15"/>
-      <amount condition="stendhal.testserver" value="20"/>
-      <frequency condition="!stendhal.testserver" value="6"/>
-      <frequency condition="stendhal.testserver" value="5"/>
+      <amount value="20"/>
+      <frequency value="5"/>
       <quantity value="1"/>
-      <regen condition="!stendhal.testserver" value="2"/>
-      <regen condition="stendhal.testserver" value="5"/>
+      <regen value="5"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
@@ -265,12 +262,10 @@
     <description>You see a lovely cup of tea.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount condition="!stendhal.testserver" value="30"/>
-      <amount condition="stendhal.testserver" value="50"/>
+      <amount value="50"/>
       <frequency value="5"/>
       <quantity value="1"/>
-      <regen condition="!stendhal.testserver" value="3"/>
-      <regen condition="stendhal.testserver" value="10"/>
+      <regen value="10"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
@@ -290,12 +285,10 @@
     <description>You see a small bottle of fresh milk.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
-      <amount condition="!stendhal.testserver" value="10"/>
-      <amount condition="stendhal.testserver" value="30"/>
+      <amount value="30"/>
       <frequency value="5"/>
       <quantity value="1"/>
-      <regen condition="!stendhal.testserver" value="1"/>
-      <regen condition="stendhal.testserver" value="5"/>
+      <regen value="5"/>
       <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
