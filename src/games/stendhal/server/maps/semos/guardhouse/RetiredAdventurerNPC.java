@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,7 +57,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				// A little trick to make NPC remember if it has met
-			    // player before and react accordingly
+				// player before and react accordingly
 				// NPC_name quest doesn't exist anywhere else neither is
 				// used for any other purpose
 
@@ -71,10 +70,10 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition(QUEST_SLOT)),
 						ConversationStates.ATTENDING,
-				        "Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
+						"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go? #Yes?",
 						new MultipleActions(actions));
 
-			   	add(ConversationStates.IDLE,
+				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestCompletedCondition(QUEST_SLOT),
@@ -83,7 +82,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 						"Hi again, how can I #help you this time?",
 						null);
 
-				addHelp("As I say, I'm a retired adventurer, and now I teach people. Do you want me to teach you what I know?");
+				addHelp("As I say, I'm a retired adventurer, and now I teach people. Do you want me to teach you what I know? #Yes?");
 				addJob("My job was to guard the people of Semos from any creature that might escape from vile dungeons. I have now retired, and with all our young people away battling Blordrough's evil legions to the south, the monsters down there are getting more confident about coming to the surface. Semos will need help from people like your good self. Ask the Mayor for what task he needs doing.");
 				addGoodbye();
 				// further behaviour is defined in quests.

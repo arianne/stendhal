@@ -128,7 +128,7 @@ public class MeetHayunn extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT,1))),
 				ConversationStates.ATTENDING,
-				"I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
+				"I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them? #Yes?",
 				null);
 
 		//player returns to Hayunn having killed a rat
@@ -147,7 +147,7 @@ public class MeetHayunn extends AbstractQuest {
 				new MultipleActions(actions));
 
 
-	   	// The player has had enough info for now. Send them to semos. When they come back they can learn some more tips.
+		// The player has had enough info for now. Send them to semos. When they come back they can learn some more tips.
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("money", 5));
@@ -179,7 +179,7 @@ public class MeetHayunn extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "taught")),
 				ConversationStates.INFORMATION_2,
-		        "Hello again. Have you come to learn more from me?",
+				"Hello again. Have you come to learn more from me?",
 				null);
 
 		npc.add(
@@ -187,7 +187,7 @@ public class MeetHayunn extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_3,
-			"Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately, if you'd like to hear it. #Yes?",
+			"Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately. Do you like to hear it?",
 			null);
 
 		npc.add(
