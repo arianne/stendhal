@@ -48,7 +48,7 @@
     <respawn value="900"/>
     <corpse name="small_animal" harmless="rodent_small"/>
     <drops>
-      <item value="cheese" quantity="[1,1]" probability="50.0"/>
+      <item value="cheese" quantity="[1,2]" probability="90.0"/>
       <item value="money" quantity="[1,3]" probability="70.0"/>
       <item value="club" quantity="[1,1]" probability="5.0"/>
     </drops>
@@ -84,7 +84,7 @@
     <corpse name="small_animal" harmless="rodent_small"/>
     <drops>
       <item value="money" quantity="[1,6]" probability="90.0"/>
-      <item value="cheese" quantity="[1,2]" probability="60.0"/>
+      <item value="cheese" quantity="[2,3]" probability="75.0"/>
     </drops>
     <equips>
     </equips>
