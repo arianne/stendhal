@@ -498,7 +498,7 @@ public class SimulateCombat {
 		if (!barehanded && equipsame) {
 			// doesn't appear to actually do anything
 			final Item pWeapon = player.getWeapon();
-			if (weapon != null) {
+			if (pWeapon != null) {
 				enemy.equip("rhand", pWeapon);
 			}
 			if (player.hasShield()) {
