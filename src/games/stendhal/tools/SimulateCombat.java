@@ -42,6 +42,11 @@ import marauroa.common.game.RPObject;
  *     games.stendhal.tools.SimulateCombat --lvl <lvl> --hp <hp> --atk <atk> --def <def>[ --rounds <rounds>]
  *     games.stendhal.tools.SimulateCombat --help
  *
+ * If no equipment slots are specificed, player will be equipped with a default set
+ * unless --barehanded or --fair is used.
+ *
+ * --noboost is implied if custom equipment slots are set.
+ *
  * @param --lvl
  *     Level at which player & enemy should be set.
  * @param --hp
@@ -64,6 +69,22 @@ import marauroa.common.game.RPObject;
  *     Difference threshold used to determine if combat was balanced.
  * @param --creature
  *     Use a predefined creature as enemy.
+ * @param --lhand
+ *     Item to equip in `lhand` slot.
+ * @param --rhand
+ *     Item to equip in `rhand` slot.
+ * @param --armor
+ *     Item to equip in `armor` slot.
+ * @param --head
+ *     Item to equip in `head` slot.
+ * @param --legs
+ *     Item to equip in `legs` slot.
+ * @param --boots
+ *     Item to equip in `boots` slot.
+ * @param --cloak
+ *     Item to equip in `cloak` slot.
+ * @param --finger
+ *     Item to equip in `finger` slot.
  * @param --barehanded
  *     Entities will not be equipped with weapons & armor.
  * @param --equipsame
@@ -110,6 +131,9 @@ public class SimulateCombat {
 	private static boolean boss = false;
 	private static boolean all = false;
 	private static boolean verbose = false;
+
+	/* manually set equipment */
+	private static Map<String, String> equipment = new HashMap<String, String>();
 
 	private static EntityManager em;
 	private static List<DefaultCreature> creatures;
@@ -199,6 +223,14 @@ public class SimulateCombat {
 			+ "\n\t--threshold:  Difference threshold used to determine if combat was balanced (default: "
 				+ default_balance_threshold + ")."
 			+ "\n\t--creature:   Use a predefined creature as enemy."
+			+ "\n\t--lhand:      Item to equip to `lhand` slot."
+			+ "\n\t--rhand:      Item to equip to `rhand` slot."
+			+ "\n\t--armor:      Item to equip to `armor` slot."
+			+ "\n\t--head:       Item to equip to `head` slot."
+			+ "\n\t--legs:       Item to equip to `legs` slot."
+			+ "\n\t--boots:      Item to equip to `boots` slot."
+			+ "\n\t--cloak:      Item to equip to `cloak` slot."
+			+ "\n\t--finger:     Item to equip to `finger` slot."
 			+ "\n\t--help|-h:    Show usage information & exit."
 			+ "\n\nFlag Arguments:"
 			+ "\n\t--barehanded: Entities will not be equipped with weapons & armor."
@@ -355,6 +387,62 @@ public class SimulateCombat {
 				creature_name = argv[idx + 1];
 
 				idx++;
+			} else if (st.equals("--lhand")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("lhand argument requires value", 1);
+				}
+
+				equipment.put("lhand", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--rhand")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("rhand argument requires value", 1);
+				}
+
+				equipment.put("rhand", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--armor")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("armor argument requires value", 1);
+				}
+
+				equipment.put("armor", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--head")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("head argument requires value", 1);
+				}
+
+				equipment.put("head", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--legs")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("legs argument requires value", 1);
+				}
+
+				equipment.put("legs", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--boots")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("boots argument requires value", 1);
+				}
+
+				equipment.put("boots", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--cloak")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("cloak argument requires value", 1);
+				}
+
+				equipment.put("cloak", argv[idx + 1]);
+				idx++;
+			} else if (st.equals("--finger")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("finger argument requires value", 1);
+				}
+
+				equipment.put("finger", argv[idx + 1]);
+				idx++;
 			} else if (st.equals("--barehanded")) {
 				barehanded = true;
 			} else if (st.equals("--equipsame")) {
@@ -401,13 +489,97 @@ public class SimulateCombat {
 					+ l - 26);
 		}
 
-		final Item weapon = em.getItem("club");
-		final Item weapon_5 = em.getItem("soul dagger");
-		final Item shield = em.getItem("wooden shield");
-		final Item armor = em.getItem("dress");
-		final Item helmet = em.getItem("leather helmet");
-		final Item legs = em.getItem("leather legs");
-		final Item boots = em.getItem("leather boots");
+		Item lhand = null;
+		Item rhand = null;
+		Item armor = null;
+		Item helmet = null;
+		Item legs = null;
+		Item boots = null;
+		Item cloak = null;
+		Item finger = null;
+
+		boolean custom_equip = false;
+		if (equipment.containsKey("lhand")) {
+			final String itemName = equipment.get("lhand");
+			lhand = em.getItem(itemName);
+			if (lhand == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("rhand")) {
+			final String itemName = equipment.get("rhand");
+			rhand = em.getItem(itemName);
+			if (rhand == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("armor")) {
+			final String itemName = equipment.get("armor");
+			armor = em.getItem(itemName);
+			if (armor == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("helmet")) {
+			final String itemName = equipment.get("");
+			helmet = em.getItem(itemName);
+			if (helmet == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("legs")) {
+			final String itemName = equipment.get("legs");
+			legs = em.getItem(itemName);
+			if (legs == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("boots")) {
+			final String itemName = equipment.get("boots");
+			boots = em.getItem(itemName);
+			if (boots == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("cloak")) {
+			final String itemName = equipment.get("cloak");
+			cloak = em.getItem(itemName);
+			if (cloak == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+		if (equipment.containsKey("finger")) {
+			final String itemName = equipment.get("finger");
+			finger = em.getItem(itemName);
+			if (finger == null) {
+				System.out.println("Unknown item: " + itemName);
+				System.exit(1);
+			}
+			custom_equip = true;
+		}
+
+		if (!custom_equip) {
+			lhand = em.getItem("wooden shield");
+			rhand = em.getItem("club");
+			armor = em.getItem("dress");
+			helmet = em.getItem("leather helmet");
+			legs = em.getItem("leather legs");
+			boots = em.getItem("leather boots");
+		}
 
 		if (creature_name == null) {
 			enemy = new Creature("dummy", "dummy", "(generic creature)", hp, atk, atk, def, lvl,
@@ -471,16 +643,18 @@ public class SimulateCombat {
 		player.setDef(p_def);
 
 		if (fair) {
-			player.equip("rhand", weapon_5);
+			player.equip("rhand", em.getItem("soul dagger"));
 		} else if (!barehanded) {
-			player.equip("lhand", shield);
-			player.equip("rhand", weapon);
+			player.equip("lhand", lhand);
+			player.equip("rhand", rhand);
 			player.equip("armor", armor);
 			player.equip("head", helmet);
 			player.equip("legs", legs);
 			player.equip("feet", boots);
+			player.equip("cloak", cloak);
+			player.equip("finger", finger);
 
-			if (!noboost) {
+			if (!noboost && !custom_equip) {
 				// not sure what this does (copied from games.stendhal.tools.BalanceRPGame)
 				player.getWeapon().put("atk", 7 + p_lvl * 2 / 6);
 				if (p_lvl == 0) {
