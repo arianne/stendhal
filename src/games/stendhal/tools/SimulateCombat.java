@@ -104,7 +104,9 @@ public class SimulateCombat {
 
 	private static final int default_rounds = 1000;
 	private static int rounds = default_rounds;
-	private static final int default_balance_threshold = 5;
+
+	// percent value to gauge balancing (1-100)
+	private static final int default_balance_threshold = 15;
 	private static int balance_threshold = default_balance_threshold;
 
 	private static Integer lvl;
