@@ -120,6 +120,8 @@ public class SimulateCombat {
 	private static int eblocked = 0; // total times enemy was blocked
 	private static long edamage = 0; // total damage done by enemy
 
+	private static int total_turns = 0; // number of turns processed during simulation
+
 
 	public static void main(final String[] argv) throws Exception {
 		parseArgs(argv);
@@ -462,6 +464,8 @@ public class SimulateCombat {
 		eblocked = 0;
 		edamage = 0;
 
+		total_turns = 0;
+
 		int ridx;
 		for (ridx = 0; ridx < rounds; ridx++) {
 			final Pair<Integer, Integer> result = simulateRound();
@@ -621,7 +625,9 @@ public class SimulateCombat {
 		System.out.println("\n  Player wins:       " + wins + " (" + win_ratio + "%)"
 			+ "\n  Enemy wins:        " + losses + " (" + loss_ratio + "%)"
 			+ "\n  Ties:              " + ties + " (" + tie_ratio + "%)"
-			+ "\n  Incomplete rounds: " + incomplete_rounds);
+			+ "\n  Incomplete rounds: " + incomplete_rounds
+			+ "\n  Total turns:       " + total_turns
+			+ "\n  Turns per round:   " + (total_turns / (double) rounds));
 
 		long diff_ratio = 0;
 		String beneficiary = "none";
@@ -693,6 +699,8 @@ public class SimulateCombat {
 
 			player.setHP(player.getHP() - damageReceived);
 			enemy.setHP(enemy.getHP() - damageDealt);
+
+			total_turns++;
 
 			if (turn == TURN_LIMIT && player.getHP() > 0 && enemy.getHP() > 0) {
 				System.out.println("\nWARNING: Turn limit reached (" + TURN_LIMIT + "), terminating round ...");
