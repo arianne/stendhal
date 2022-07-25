@@ -50,6 +50,14 @@ import marauroa.common.game.RPObject;
  *     Attack level of enemy.
  * @param --def
  *     Defense level of enemy.
+ * @param --plvl
+ *     Player level (overrides --lvl).
+ * @param --php
+ *     Overrides default player HP level.
+ * @param --patk
+ *     Overrides default player attack level.
+ * @param --pdef
+ *     Overrides default player defense level.
  * @param --rounds
  *     Number of rounds to simulate (default: 500).
  * @param --threshold
@@ -79,10 +87,13 @@ public class SimulateCombat {
 	private static int balance_threshold = default_balance_threshold;
 
 	private static Integer lvl;
-	private static Integer plvl;
 	private static Integer hp;
 	private static Integer atk;
 	private static Integer def;
+	private static Integer plvl;
+	private static Integer php;
+	private static Integer patk;
+	private static Integer pdef;
 
 	private static Player player;
 	private static Creature enemy;
@@ -177,10 +188,13 @@ public class SimulateCombat {
 			+ "\n\t" + exe + " --help"
 			+ "\n\nRegular Arguments:"
 			+ "\n\t--lvl:        Level at which player & enemy should be set."
-			+ "\n\t--plvl:       Player level (overrides --lvl)."
 			+ "\n\t--hp:         HP value of enemy."
 			+ "\n\t--atk:        Attack level of enemy."
 			+ "\n\t--def:        Defense level of enemy."
+			+ "\n\t--plvl:       Player level (overrides --lvl)."
+			+ "\n\t--php:        Overrides default player HP level."
+			+ "\n\t--patk:       Overrides default player attack level."
+			+ "\n\t--pdef:       Overrides default player defense level."
 			+ "\n\t--rounds:     Number of rounds to simulate (default: " + default_rounds + ")."
 			+ "\n\t--threshold:  Difference threshold used to determine if combat was balanced (default: "
 				+ default_balance_threshold + ")."
@@ -225,18 +239,6 @@ public class SimulateCombat {
 				}
 
 				idx++;
-			} else if (st.equals("--plvl") || st.equals("--plevel")) {
-				if (argv.length < idx + 2) {
-					showUsageErrorAndExit("plvl argument requires value", 1);
-				}
-
-				try {
-					plvl = Integer.parseInt(argv[idx + 1]);
-				} catch (final NumberFormatException e) {
-					showUsageErrorAndExit("plvl argument must be an integer number", 1);
-				}
-
-				idx++;
 			} else if (st.equals("--hp")) {
 				if (argv.length < idx + 2) {
 					showUsageErrorAndExit("hp argument requires value", 1);
@@ -270,6 +272,54 @@ public class SimulateCombat {
 					def = Integer.parseInt(argv[idx + 1]);
 				} catch (final NumberFormatException e) {
 					showUsageErrorAndExit("def argument must be an integer number", 1);
+				}
+
+				idx++;
+			} else if (st.equals("--plvl") || st.equals("--plevel")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("plvl argument requires value", 1);
+				}
+
+				try {
+					plvl = Integer.parseInt(argv[idx + 1]);
+				} catch (final NumberFormatException e) {
+					showUsageErrorAndExit("plvl argument must be an integer number", 1);
+				}
+
+				idx++;
+			} else if (st.equals("--php")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("php argument requires value", 1);
+				}
+
+				try {
+					php = Integer.parseInt(argv[idx + 1]);
+				} catch (final NumberFormatException e) {
+					showUsageErrorAndExit("php argument must be an integer number", 1);
+				}
+
+				idx++;
+			} else if (st.equals("--patk")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("patk argument requires value", 1);
+				}
+
+				try {
+					patk = Integer.parseInt(argv[idx + 1]);
+				} catch (final NumberFormatException e) {
+					showUsageErrorAndExit("patk argument must be an integer number", 1);
+				}
+
+				idx++;
+			} else if (st.equals("--pdef")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("pdef argument requires value", 1);
+				}
+
+				try {
+					pdef = Integer.parseInt(argv[idx + 1]);
+				} catch (final NumberFormatException e) {
+					showUsageErrorAndExit("pdef argument must be an integer number", 1);
 				}
 
 				idx++;
@@ -393,7 +443,12 @@ public class SimulateCombat {
 		}
 
 		player.setLevel(p_lvl);
-		player.setBaseHP(100 + 10 * p_lvl);
+
+		if (php == null) {
+			player.setBaseHP(100 + 10 * p_lvl);
+		} else {
+			player.setBaseHP(php);
+		}
 
 		int p_atk = atkLevels[p_lvl] + 8;
 		int p_def = defLevels[p_lvl] + 8;
@@ -402,6 +457,14 @@ public class SimulateCombat {
 			// stat boost from Aenihata
 			p_atk += 50;
 			p_def += 100;
+		}
+
+		// overridden with manual values
+		if (patk != null) {
+			p_atk = patk;
+		}
+		if (pdef != null) {
+			p_def = pdef;
 		}
 
 		player.setAtk(p_atk);
