@@ -726,6 +726,16 @@ public class SimulateCombat {
 			}
 		}
 
+		// calculate damage within range of entity's HP
+		final int res_p_hp = player.getHP();
+		final int res_e_hp = enemy.getHP();
+		if (res_p_hp < 0) {
+			edamage += res_p_hp;
+		}
+		if (res_e_hp < 0) {
+			pdamage += res_e_hp;
+		}
+
 		return new Pair<Integer, Integer>(player.getHP(), enemy.getHP());
 	}
 
