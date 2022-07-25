@@ -79,6 +79,7 @@ public class SimulateCombat {
 	private static int balance_threshold = default_balance_threshold;
 
 	private static Integer lvl;
+	private static Integer plvl;
 	private static Integer hp;
 	private static Integer atk;
 	private static Integer def;
@@ -176,6 +177,7 @@ public class SimulateCombat {
 			+ "\n\t" + exe + " --help"
 			+ "\n\nRegular Arguments:"
 			+ "\n\t--lvl:        Level at which player & enemy should be set."
+			+ "\n\t--plvl:       Player level (overrides --lvl)."
 			+ "\n\t--hp:         HP value of enemy."
 			+ "\n\t--atk:        Attack level of enemy."
 			+ "\n\t--def:        Defense level of enemy."
@@ -220,6 +222,18 @@ public class SimulateCombat {
 					lvl = Integer.parseInt(argv[idx + 1]);
 				} catch (final NumberFormatException e) {
 					showUsageErrorAndExit("lvl argument must be an integer number", 1);
+				}
+
+				idx++;
+			} else if (st.equals("--plvl") || st.equals("--plevel")) {
+				if (argv.length < idx + 2) {
+					showUsageErrorAndExit("plvl argument requires value", 1);
+				}
+
+				try {
+					plvl = Integer.parseInt(argv[idx + 1]);
+				} catch (final NumberFormatException e) {
+					showUsageErrorAndExit("plvl argument must be an integer number", 1);
 				}
 
 				idx++;
@@ -373,7 +387,10 @@ public class SimulateCombat {
 
 		player = (Player) new PlayerTransformer().transform(new RPObject());
 
-		final int p_lvl = enemy.getLevel();
+		Integer p_lvl = plvl;
+		if (p_lvl == null) {
+			p_lvl = enemy.getLevel();
+		}
 
 		player.setLevel(p_lvl);
 		player.setBaseHP(100 + 10 * p_lvl);
