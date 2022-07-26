@@ -316,6 +316,7 @@ polar_bear.png        ScratchIO, bleutailfly; OGA BY 3.0; Stendhal, https://open
 puppy.*               triceratops; CC BY 3.0; https://opengameart.org/node/55254
 rabbit.png            Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851
 reindeer.*            Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
+tadpole.png           YuriNikolai; OGA BY 3.0; https://opengameart.org/node/81756
 tiger.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wolf.png              Groundhug McHamster (h4mt4ro); GPL 2.0+; Stendhal
 woolly_mammoth.*      lawnjelly, Jordan Irwin (AntumDeluge); CC BY 3.0; stendhal, https://opengameart.org/node/84509
