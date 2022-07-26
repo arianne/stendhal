@@ -4546,6 +4546,7 @@ Southeast: Docks
 
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.rock.TadpolesNPC"/>
 
     <!-- Music ambiance -->
     <entity x="3" y="35">
