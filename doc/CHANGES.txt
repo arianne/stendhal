@@ -3,6 +3,12 @@ Changelog
 ---------
 
 
+1.42
+
+*world*
+- added non-interactive tadpole to Ados Rock map
+
+
 1.41
 
 *world*
