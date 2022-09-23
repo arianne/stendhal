@@ -143,6 +143,7 @@ import marauroa.common.Pair;
 							  "dark elf captain",
 							  "dark elf knight",
 							  "dark elf general",
+							  "dark elf ranger",
 							  "dark elf wizard",
 							  "dark elf viceroy",
 							  "dark elf sacerdotist",

@@ -6,7 +6,7 @@ Changelog
 1.41
 
 *world*
-- added mimimum level to many items to make them useful
+- added/changed mimimum level to many items to make them more useful
 - adventure island guarantees spawn for daily monster quest
 - Find Jef's mom quest added to Private Detective achievement
 - centaur king drops power arrows
@@ -31,6 +31,7 @@ Changelog
 - player hit damage is decreased by 50% to compensate for increased hit chance
 - summon scrolls can be used inside deathmatch arena
 - deathmatch announcements not repeated until after 15 minutes
+- added missing dark elf ranger to Kill Enemy Army quest
 
 *graphics*
 - item sprites touch ups
