@@ -31,7 +31,7 @@ public class TransitionMayBeExecutedCondition implements ChatCondition {
 
 	/**
 	 * creates a TransitionMayBeExecuted
-	 * 
+	 *
 	 * @param owner
 	 */
 	public TransitionMayBeExecutedCondition(Object owner) {
