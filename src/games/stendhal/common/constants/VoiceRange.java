@@ -22,6 +22,10 @@ public enum VoiceRange {
 	private final int range;
 
 
+	private VoiceRange() {
+		this.range = VoiceRange.NORMAL;
+	}
+
 	private VoiceRange(final int range) {
 		this.range = range;
 	}
