@@ -23,7 +23,7 @@ public enum VoiceRange {
 
 
 	private VoiceRange() {
-		this.range = VoiceRange.NORMAL;
+		this.range = 15; // VoiceRange.NORMAL
 	}
 
 	private VoiceRange(final int range) {
