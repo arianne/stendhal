@@ -17,7 +17,7 @@ package games.stendhal.common.constants;
  */
 public enum VoiceRange {
 	NORMAL(15),
-	MAP(500);
+	MAP(-1); // can be heard anywhere on map
 
 	private final int range;
 
