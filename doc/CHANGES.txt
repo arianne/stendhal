@@ -31,8 +31,8 @@ Changelog
   - engagement ring
 - removed from Kirdneh Museum quest items requested by Ultimate Collector
 - magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
-- ATK XP rewarded for successful or blocked hits regardless of having recently taken damage
-- missed hits never reward ATK XP
+- ATK XP rewarded for successful or blocked hits regardless of having recently taken damage from creatures only
+- missed hits never reward ATK XP against creatures only
 - player hit chance is increased by 50% during combat
 - player hit damage is decreased by 50% to compensate for increased hit chance
 - summon scrolls can be used inside deathmatch arena
