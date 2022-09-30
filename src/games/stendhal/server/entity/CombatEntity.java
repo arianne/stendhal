@@ -130,6 +130,11 @@ public abstract class CombatEntity extends GuidedEntity {
 	}
 
 	private boolean getsFightXpFrom(final CombatEntity opponent) {
+		// PvP is handled with the traditional rules
+		if (opponent instanceof Player) {
+			return isGuaranteedAtkXpFrom(opponent);
+		}
+
 		return this instanceof Player && !(opponent instanceof PassiveNPC);
 	}
 
@@ -142,7 +147,7 @@ public abstract class CombatEntity extends GuidedEntity {
 	}
 
 	/**
-	 * UNUSED
+	 * Checks if damage was recently received from opponent.
 	 */
 	public boolean isGuaranteedAtkXpFrom(final CombatEntity defender) {
 		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(defender);
