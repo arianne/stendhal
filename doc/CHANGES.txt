@@ -7,6 +7,7 @@ Changelog
 
 *world*
 - added non-interactive tadpole to Ados Rock map
+- reworked chaos sprites for Cabbit bases
 
 
 1.41
