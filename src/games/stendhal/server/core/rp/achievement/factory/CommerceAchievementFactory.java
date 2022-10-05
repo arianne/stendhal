@@ -137,7 +137,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 						// add some info to "help" response
 						final String sHelp = seller.getReply("help");
 						if (sHelp != null && !sHelp.equals("")) {
-							seller.addHelp(sHelp + " Also, you can ask me about #patronage.");
+							seller.addHelp("Also, you can ask me about #patronage.");
 						} else {
 							seller.addHelp("You can ask me about #patronage.");
 						}
