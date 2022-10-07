@@ -20,9 +20,9 @@ import games.stendhal.common.constants.SoundID;
 public class ConfiguredSounds {
 
 	private static final Map<SoundID, String> sounds = new HashMap<SoundID, String>() {{
-		put(SoundID.LEVEL_UP, "player/level_up-01");
+		put(SoundID.LEVEL_UP, "player/tadaa");
 		put(SoundID.STAT_UP, "player/stat_up-01");
-		put(SoundID.ACHIEVEMENT, "yay-1");
+		put(SoundID.ACHIEVEMENT, "player/yay");
 		put(SoundID.COMMERCE, "coins-01");
 		put(SoundID.COMMERCE2, "cha-ching");
 		put(SoundID.HEAL, "heal-01");

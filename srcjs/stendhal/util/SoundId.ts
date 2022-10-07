@@ -12,11 +12,11 @@
 
 /** Configured sounds associated with IDs. */
 export const SoundId = {
-	"level_up": "player/level_up-01",
+	"level_up": "player/tadaa",
 	"level_down": undefined,
 	"stat_up": "player/stat_up-01",
 	"stat_down": undefined,
-	"achievement": "yay-1",
+	"achievement": "player/yay",
 	"commerce": "coins-01",
 	"commerce2": "cha-ching",
 	"heal": "heal-01"

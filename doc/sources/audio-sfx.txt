@@ -173,7 +173,6 @@ snake-cobra-2.ogg         unnamed; public domain; https://archive.org/details/un
 snap-branch-1.*           mrjingles; CC0; https://freesound.org/people/mrjingles/sounds/17184/
 sneeze-baby-1.ogg         Stephan; public domain; https://soundbible.com/23-Baby-Sneeze.html
 sneeze-male-01.*          Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/352177/
-tadaa-1.ogg               Katie Russell (kymara); GPL
 tiger-roar-01.ogg         unnamed; public domain; https://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
 tiger-roar-02.*           videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
 tiger-snarl-01.*          videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
@@ -200,7 +199,6 @@ wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312
 wolf-howl-02.*            killyourpepe; CC0; https://freesound.org/people/killyourpepe/sounds/395192/
 xylophone-1.*             Storyteller; GPL
 yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
-yay-1.ogg                 Katie Russell (kymara); GPL
 
 data/sounds/npc/
 
@@ -219,6 +217,8 @@ data/sounds/player/
 
 level_up-01.*  LittleRainySeasons; CC0; https://freesound.org/people/LittleRainySeasons/sounds/365424/
 stat_up-01.*   wobbleboxx; CC0; https://opengameart.org/node/31038
+tadaa.ogg      Katie Russell (kymara); GPL
+yay.ogg        Katie Russell (kymara); GPL
 
 data/sounds/ui/
 
