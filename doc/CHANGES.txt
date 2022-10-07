@@ -7,7 +7,13 @@ Changelog
 
 *world*
 - added non-interactive tadpole to Ados Rock map
+
+*graphics*
 - reworked chaos sprites for Cabbit bases
+- touched up Wrviliza sprite
+
+*clients*
+- changed level-up sound back to "tadaa"
 
 
 1.41
