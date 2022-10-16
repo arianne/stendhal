@@ -54,8 +54,10 @@ import games.stendhal.client.gui.NumberDocumentFilter;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.common.MathHelper;
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
@@ -67,6 +69,9 @@ import marauroa.common.net.message.MessageS2CLoginNACK;
  * Server login dialog.
  */
 public class LoginDialog extends JDialog {
+
+	private static final String SELECTED_PROFILE_PROPERTY = "ui.window.login.profile";
+
 	private ProfileList profiles;
 
 	private JComboBox<Profile> profilesComboBox;
@@ -398,6 +403,7 @@ public class LoginDialog extends JDialog {
 			}
 
 		}
+		setCurrentProfileAsDefault();
 
 		/*
 		 * Run the connection procces in separate thread. added by TheGeneral
@@ -437,9 +443,17 @@ public class LoginDialog extends JDialog {
 			saveProfiles(profiles);
 			profiles = loadProfiles();
 			populateProfiles(profiles);
+			setCurrentProfileAsDefault();
 		}
 
 		setEnabled(true);
+	}
+
+	private void setCurrentProfileAsDefault() {
+		final int currentIndex = profilesComboBox.getSelectedIndex();
+		if (currentIndex >= 0) {
+			WtWindowManager.getInstance().setProperty(SELECTED_PROFILE_PROPERTY, String.valueOf(currentIndex));
+		}
 	}
 
 	@Override
@@ -599,11 +613,17 @@ public class LoginDialog extends JDialog {
 			profilesComboBox.addItem(p);
 		}
 
-		/*
-		 * The last profile (if any) is the default.
-		 */
+		selectDefaultProfile();
+	}
+
+	private void selectDefaultProfile() {
+		String profileIndexProperty = WtWindowManager.getInstance().getProperty(SELECTED_PROFILE_PROPERTY, "-1");
+		int savedProfileIndex = MathHelper.parseIntDefault(profileIndexProperty, -1);
 		final int count = profilesComboBox.getItemCount();
-		if (count != 0) {
+		if (savedProfileIndex >= 0 && savedProfileIndex < count) {
+			profilesComboBox.setSelectedIndex(savedProfileIndex);
+		} else if (count != 0) {
+			// The last profile is the default.
 			profilesComboBox.setSelectedIndex(count - 1);
 		}
 	}
