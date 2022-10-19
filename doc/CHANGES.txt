@@ -7,6 +7,7 @@ Changelog
 
 *world*
 - added/changed mimimum level to many items to make them more useful
+- increased heal rate of some food/drink items
 - adventure island guarantees spawn for daily monster quest
 - Find Jef's mom quest added to Private Detective achievement
 - centaur king drops power arrows
@@ -25,13 +26,14 @@ Changelog
   - engagement ring
 - removed from Kirdneh Museum quest items requested by Ultimate Collector
 - magic cloak & hell dagger changed to medium difficulty in Kirdneh Museum quest
-- ATK XP rewarded for successful or blocked hits regardless of having recently taken damage from creatures only
-- missed hits never reward ATK XP against creatures only
-- player hit chance is increased by 50% during combat
-- player hit damage is decreased by 50% to compensate for increased hit chance
 - summon scrolls can be used inside deathmatch arena
 - deathmatch announcements not repeated until after 15 minutes
 - added missing dark elf ranger to Kill Enemy Army quest
+- combat changes (creatures only, PvP not affected)
+  - ATK XP rewarded for successful or blocked hits regardless of having recently taken damage
+  - missed hits never reward ATK XP
+  - player hit chance is increased by 50% during combat
+  - player hit damage is decreased by 50% to compensate for increased hit chance
 
 *graphics*
 - item sprites touch ups
@@ -41,14 +43,14 @@ Changelog
   - elvish legs
   - elvish boots
 - entity sprites touch ups
-- another set of eyes for outfits
+- more player outfits
 
 *sound*
 - added sounds for Rose Leigh, Marianne, & Princess Esclara
 
 *clients*
 - chest collision is visible on minimap
-- "busty" dress variant can be drawn for body index 1
+- "busty" variants can be drawn for dress outfit layer
 
 *webclient*
 - own/leave options for pets
