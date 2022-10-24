@@ -2926,6 +2926,7 @@ public class Player extends DressedEntity implements UseListener {
 	 * need to reduce the amount of damage done by players. See:
 	 *     Player.damageDone.
 	 */
+	/*
 	@Override
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
@@ -2939,4 +2940,5 @@ public class Player extends DressedEntity implements UseListener {
 		// compensate for player increased chance of hit
 		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.5);
 	}
+	*/
 }
