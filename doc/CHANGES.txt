@@ -3,6 +3,12 @@ Changelog
 ---------
 
 
+1.41.1
+
+*world*
+- disabled hack that increased hit chance & lowered damage (affected game balance negatively)
+
+
 1.41
 
 *world*
