@@ -16,10 +16,16 @@ Changelog
 - changed level-up sound back to "tadaa"
 
 
+1.41.2
+
+*bugfixes*
+- fixed creature DEF being set to 10 during combat
+
+
 1.41.1
 
 *world*
-- disabled hack that increased hit chance & lowered damage (affected game balance negatively)
+- disabled hack that increased hit chance & lowered damage
 
 
 1.41
