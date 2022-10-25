@@ -8,6 +8,9 @@ Changelog
 *bugfixes*
 - fixed creature DEF being set to 10 during combat
 
+*world*
+- re-enabled hack to increase hit chance & lower damage
+
 
 1.41.1
 
