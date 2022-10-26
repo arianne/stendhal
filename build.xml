@@ -74,11 +74,14 @@
       <available file="${build-archive}/stendhal-${version.old}.zip"/>
     </not>
   </condition>
+  <!-- On Microsoft Windows binary files do not have to be on $env.PATH,
+       so this check does not work. 
   <condition property="exclude.webclient" value="true">
     <not>
       <available file="${executable.npm}" filepath="${env.PATH}"/>
     </not>
   </condition>
+  -->
 
   <!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
   <condition property="executable.suffix" value=".cmd">
