@@ -5,6 +5,9 @@ Changelog
 
 1.42
 
+*bugfixes*
+- copy "dest" attribute when splitting marked scroll stacks
+
 *world*
 - added non-interactive tadpole to Ados Rock map
 
