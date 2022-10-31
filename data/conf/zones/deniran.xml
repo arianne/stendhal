@@ -69,6 +69,11 @@
       <attribute name="move.continuous"/>
     </portal>
 
+    <portal x="59" y="55" ref="breland_house_entrance">
+      <destination zone="int_breland_house" ref="entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
     <entity x="41" y="6">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -1488,6 +1493,15 @@ Entrance fee is 10 money</attribute>
       </implementation>
       <attribute name="description">You see a toy train. Toot toot!</attribute>
     </entity>
+
+  </zone>
+
+  <zone name="int_breland_house" file="interiors/deniran/breland_house.tmx">
+
+    <portal x="10" y="22" ref="entrance">
+      <destination zone="0_deniran_city_sw" ref="breland_house_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
 
   </zone>
 
