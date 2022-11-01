@@ -77,7 +77,7 @@ public class AnOldMansWish extends AbstractQuest {
 		} else {
 			res.add("I have agreed to investigate.");
 			if (quest_state.equals("done")) {
-				res.add(elias.getName() + " and his grandson have been"
+				res.add("Elias and his grandson have been"
 					+ " reunited.");
 			}
 		}
