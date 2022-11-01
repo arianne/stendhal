@@ -231,6 +231,7 @@ data/sprites/outfit/hair/
 054             diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72198
 055             Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11445
 056             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+999             diamonddmgirl, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72198
 
 
 data/sprites/outfit/hat/
