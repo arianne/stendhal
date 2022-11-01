@@ -11,11 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.brelandhouse;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
@@ -29,9 +34,27 @@ public class OldManNPC implements ZoneConfigurator  {
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC elias = new SpeakerNPC("Elias Breland");
 
-		elias.setPosition(8, 15);
-		elias.setIdleDirection(Direction.DOWN);
+		elias.addGreeting("Hello young one.");
+		elias.addGoodbye("Goodbye.");
+		elias.addHelp("I wish I had help to offer. But sadly I do not.");
+		elias.addJob("I am an old man that enjoys tending to my garden.");
+		elias.addOffer("I have nothing to offer.");
+		elias.addQuest("There is something that weighs heavy on me. But I'm"
+			+ " not ready for help. Perhaps you could come back later.");
+
+		final List<Node> nodes = new LinkedList<Node>();
+		nodes.add(new Node(11, 16));
+		nodes.add(new Node( 3, 16));
+		nodes.add(new Node( 3,  3));
+		nodes.add(new Node(11,  3));
+		nodes.add(new Node(11,  6));
+		nodes.add(new Node(27,  6));
+		nodes.add(new Node(11,  6));
+		elias.setPathAndPosition(new FixedPath(nodes, true));
+		elias.setCollisionAction(CollisionAction.STOP);
+
 		elias.setOutfit("body=986,head=996,eyes=999,dress=965,hair=999");
+		elias.setDescription("You see Elias Breland pacing around his home.");
 
 		zone.add(elias);
 	}
