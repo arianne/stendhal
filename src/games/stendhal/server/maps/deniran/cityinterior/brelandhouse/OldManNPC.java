@@ -31,7 +31,7 @@ public class OldManNPC implements ZoneConfigurator  {
 
 		elias.setPosition(8, 15);
 		elias.setIdleDirection(Direction.DOWN);
-		elias.setOutfit("body=986,head=996,eyes=999");
+		elias.setOutfit("body=986,head=996,eyes=999,dress=965");
 
 		zone.add(elias);
 	}
