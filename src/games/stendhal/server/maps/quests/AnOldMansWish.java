@@ -125,7 +125,6 @@ public class AnOldMansWish extends AbstractQuest {
 			null);
 
 			// already accepted quest
-			// FIXME: ConversationStates.ANY not working
 			elias.add(
 				ConversationStates.ANY,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -137,7 +136,6 @@ public class AnOldMansWish extends AbstractQuest {
 				null);
 
 			// already completed quest
-			// FIXME: ConversationStates.ANY not working
 			elias.add(
 				ConversationStates.ANY,
 				ConversationPhrases.QUEST_MESSAGES,

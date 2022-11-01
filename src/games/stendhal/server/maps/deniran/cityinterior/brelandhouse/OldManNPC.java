@@ -19,6 +19,10 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestRegisteredCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -38,8 +42,13 @@ public class OldManNPC implements ZoneConfigurator  {
 		elias.addHelp("I wish I had help to offer. But sadly I do not.");
 		elias.addJob("I am an old man that enjoys tending to my garden.");
 		elias.addOffer("I have nothing to offer.");
-		elias.addQuest("There is something that weighs heavy on me. But I'm"
-			+ " not ready for help. Perhaps you could come back later.");
+		elias.add(ConversationStates.ANY,
+			ConversationPhrases.QUEST_MESSAGES,
+			new NotCondition(new QuestRegisteredCondition("an_old_mans_wish")),
+			ConversationStates.ATTENDING,
+			"There is something that weighs heavy on me. But I am not ready"
+				+ " for help. Perhaps you could come back later.",
+			null);
 
 		final List<Node> nodes = new LinkedList<Node>();
 		nodes.add(new Node(11, 16));
