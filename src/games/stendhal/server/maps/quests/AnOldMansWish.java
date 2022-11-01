@@ -131,7 +131,7 @@ public class AnOldMansWish extends AbstractQuest {
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thank you for accepting my plea for help. Please tell me if"
-					+ " if you hear any news about what has become of my"
+					+ " you hear any news about what has become of my"
 					+ " grandson.",
 				null);
 
