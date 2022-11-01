@@ -10,6 +10,7 @@ Changelog
 
 *world*
 - added non-interactive tadpole to Ados Rock map
+- new NPC Elias Breland
 
 *graphics*
 - reworked chaos sprites for Cabbit bases
