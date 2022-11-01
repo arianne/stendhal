@@ -53,7 +53,7 @@ public class OldManNPC implements ZoneConfigurator  {
 		elias.setCollisionAction(CollisionAction.STOP);
 
 		elias.setOutfit("body=986,head=996,eyes=999,dress=965,hair=999");
-		elias.setDescription("You see Elias Breland pacing around his home.");
+		elias.setDescription("You see " + elias.getName() + " pacing around his home.");
 
 		zone.add(elias);
 	}
