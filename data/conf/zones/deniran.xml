@@ -1503,6 +1503,9 @@ Entrance fee is 10 money</attribute>
       <attribute name="move.continuous"/>
     </portal>
 
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC"/>
+
   </zone>
 
   <zone name="int_atlantis_potions_shop" file="interiors/atlantis/potions_shop.tmx">
