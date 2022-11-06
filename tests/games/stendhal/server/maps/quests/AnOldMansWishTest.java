@@ -14,7 +14,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReplies;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.Before;
@@ -28,6 +30,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC;
+import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -40,22 +43,62 @@ public class AnOldMansWishTest extends QuestHelper {
 
 	private Player player;
 	private SpeakerNPC elias;
+	private SpeakerNPC marianne;
 
 
 	@Before
 	public void setup() {
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
 		new OldManNPC().configureZone(zone, null);
+		new LittleGirlNPC().configureZone(zone, null);
 		player = PlayerTestHelper.createPlayer("player");
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
+		marianne = SingletonRepository.getNPCList().get("Marianne");
 	}
 
 	@Test
 	public void init() {
+		checkEntities();
+		checkBeforeQuest();
+		checkEliasStep();
+		checkMarianneStep();
+		checkAfterQuest();
+	}
+
+	private void checkEntities() {
 		assertNotNull(player);
 		assertNotNull(elias);
+		assertNotNull(marianne);
 		assertFalse(player.hasQuest(QUEST_SLOT));
+	}
 
+	private void checkBeforeQuest() {
+		// quest not added to world
+		Engine en = elias.getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"There is something that weighs heavy on me. But I am not ready"
+				+ " for help. Perhaps you could come back later.",
+			getReply(elias));
+		en.step(player, "bye");
+
+		// Marianne should not respond before quest is started
+		en = marianne.getEngine();
+		en.step(player, "hi");
+		marianne.clearEvents(); // clear reply to "hi"
+		en.step(player, "Niall");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertNull(getReply(marianne));
+		en.step(player, "bye");
+
+		// clear replies
+		elias.clearEvents();
+		marianne.clearEvents();
+	}
+
+	private void checkEliasStep() {
 		player.setLevel(99);
 		assertEquals(99, player.getLevel());
 
@@ -63,14 +106,6 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "hello");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Hello young one.", getReply(elias));
-
-		// quest not added to world
-		en.step(player, "quest");
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals(
-			"There is something that weighs heavy on me. But I am not ready"
-				+ " for help. Perhaps you could come back later.",
-			getReply(elias));
 
 		// add quest to world
 		final AnOldMansWish quest = new AnOldMansWish();
@@ -137,6 +172,49 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("Goodbye.", getReply(elias));
+	}
+
+	private void checkMarianneStep() {
+		final Engine en = marianne.getEngine();
+
+		en.step(player, "hi");
+		marianne.clearEvents(); // clear reply to "hi"
+		en.step(player, "Niall");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Oh! My friend Niall! I haven't seen him in a long time. Every"
+				+ " time I go to his grandfather's house to #play, he is not"
+				+ " home.",
+			getReplies(marianne).get(0));
+
+		en.step(player, "play");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Not only was he fun to play with, but he was also very helpful."
+				+ " He used to help me gather chicken eggs whenever I was too"
+				+ " #afraid to do it myself.",
+			getReplies(marianne).get(0));
+
+		en.step(player, "afraid");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Know what he told me once? He said he wanted to go all the way"
+				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
+				+ " sounds more scary than chickens.",
+			getReplies(marianne).get(0));
+
+		en.step(player, "graveyard");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"I hope he didn't go to that scary graveyard. Who knows what kind"
+				+ " of monsters are there.",
+			getReply(marianne));
+
+		en.step(player, "bye");
+	}
+
+	private void checkAfterQuest() {
+		final Engine en = elias.getEngine();
 
 		// TODO: complete quest
 		player.setQuest(QUEST_SLOT, "done");
@@ -148,5 +226,7 @@ public class AnOldMansWishTest extends QuestHelper {
 			"Thank you for returning my grandson to me. I am overfilled"
 				+ " with joy!",
 			getReply(elias));
+
+		en.step(player, "bye");
 	}
 }

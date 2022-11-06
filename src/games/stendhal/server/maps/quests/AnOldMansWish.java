@@ -21,13 +21,16 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -100,12 +103,12 @@ public class AnOldMansWish extends AbstractQuest {
 			elias.getName() + " is grieved over the loss of his grandson.",
 			false
 		);
-		prepareRequestStep();
+		prepareElias();
+		prepareMarianne();
 		prepareCompleteStep();
 	}
 
-	private void prepareRequestStep() {
-
+	private void prepareElias() {
 		// requests quest but does not meet minimum level requirement
 		elias.add(
 			ConversationStates.ATTENDING,
@@ -194,6 +197,51 @@ public class AnOldMansWish extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Marianne lives here in Deniran. Ask her about #Niall.",
 				null);
+	}
+
+	private void prepareMarianne() {
+		final SpeakerNPC marianne = npcs.get("Marianne");
+
+		final ChatCondition m1 = new QuestInStateCondition(QUEST_SLOT, "Marianne");
+
+		marianne.add(
+			ConversationStates.ATTENDING,
+			"Niall",
+			m1,
+			ConversationStates.ATTENDING,
+			"Oh! My friend Niall! I haven't seen him in a long time. Every"
+				+ " time I go to his grandfather's house to #play, he is not"
+				+ " home.",
+			new NPCEmoteAction("suddenly looks very melancholy."));
+
+		marianne.add(
+			ConversationStates.ATTENDING,
+			"play",
+			m1,
+			ConversationStates.ATTENDING,
+			"Not only was he fun to play with, but he was also very helpful."
+				+ " He used to help me gather chicken eggs whenever I was too"
+				+ " #afraid to do it myself.",
+			new NPCEmoteAction("looks even more melancholy."));
+
+		marianne.add(
+			ConversationStates.ATTENDING,
+			"afraid",
+			m1,
+			ConversationStates.ATTENDING,
+			"Know what he told me once? He said he wanted to go all the way"
+				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
+				+ " sounds more scary than chickens.",
+			new NPCEmoteAction("shivers."));
+
+		marianne.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("graveyard", "cemetary"),
+			m1,
+			ConversationStates.ATTENDING,
+			"I hope he didn't go to that scary graveyard. Who knows what kind"
+				+ " of monsters are there.",
+			null);
 	}
 
 	private void prepareCompleteStep() {
