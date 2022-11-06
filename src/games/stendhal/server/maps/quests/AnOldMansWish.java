@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -31,6 +32,13 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 
+/** Quest to increase number of bag slots.
+ *
+ *  NPCs:
+ *  - Elias Breland
+ *  - Niall Breland
+ *  - Marianne
+ */
 public class AnOldMansWish extends AbstractQuest {
 
 	public static final String QUEST_SLOT = "an_old_mans_wish";
@@ -131,8 +139,8 @@ public class AnOldMansWish extends AbstractQuest {
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thank you for accepting my plea for help. Please tell me if"
-					+ " you hear any news about what has become of my"
-					+ " grandson.",
+					+ " you hear any news about what has become of my grandson."
+					+ " He used to play with a little girl named #Marianne.",
 				null);
 
 			// already completed quest
@@ -160,11 +168,32 @@ public class AnOldMansWish extends AbstractQuest {
 			elias.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
-				null,
-				"Thank you so much! I await your return.",
+				ConversationStates.ATTENDING,
+				"Oh thank you! My grandson's name is #Niall. You could talk"
+					+ " to #Marianne. They used to play together.",
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "start"),
+					new SetQuestAction(QUEST_SLOT, "Marianne"),
 					new IncreaseKarmaAction(15)));
+
+			// ask about Niall
+			elias.add(
+				ConversationStates.ANY,
+				Arrays.asList("Niall", "grandson"),
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Niall is my grandson. I am so distraught over his"
+					+ " disappearance. Ask the girl #Marianne. The often played"
+					+ " together.",
+				null);
+
+			// ask about Marianne
+			elias.add(
+				ConversationStates.ANY,
+				"Marianne",
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Marianne lives here in Deniran. Ask her about #Niall.",
+				null);
 	}
 
 	private void prepareCompleteStep() {
