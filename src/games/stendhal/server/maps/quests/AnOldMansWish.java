@@ -77,16 +77,42 @@ public class AnOldMansWish extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<>();
+		final String[] states = player.getQuest(QUEST_SLOT).split(";");
+		final String quest_state = states[0];
+		String find_myling = null;
+		String find_apothecary = null;
+		for (final String st: states) {
+			if (st.startsWith("find_myling:")) {
+				find_myling = st.split(":")[1];
+			}
+			if (st.startsWith("find_apothecary:")) {
+				find_apothecary = st.split(":")[1];
+			}
+		}
 
+		final List<String> res = new ArrayList<>();
 		res.add(elias.getName() + " wishes to know what has become of his"
 			+ " estranged grandson.");
 
-		final String quest_state = player.getQuest(QUEST_SLOT);
 		if (quest_state.equals("rejected")) {
 			res.add("I have no time for senile old men.");
 		} else {
 			res.add("I have agreed to investigate.");
+			if (find_myling != null) {
+				res.add("Marianne mentioned that Niall wanted to"
+					+ " explore the graveyard near Semos City.");
+				if (find_myling.equals("done")) {
+					res.add("Niall has been turned into a myling. Elias will be"
+						+ " devestated. But I must tell him.");
+				}
+			}
+			if (find_apothecary != null) {
+				res.add("There may be hope yet. I must go to the apothecary"
+					+ " for help changing Niall back to normal.");
+				if (find_apothecary.equals("done")) {
+					res.add("The apothecary asked me to gather some items.");
+				}
+			}
 			if (quest_state.equals("done")) {
 				res.add("Elias and his grandson have been"
 					+ " reunited.");
