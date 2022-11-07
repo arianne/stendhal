@@ -136,7 +136,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "no");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Alas! What has become of my grandson!?", getReply(elias));
-		assertEquals("rejected", player.getQuest(QUEST_SLOT));
+		assertEquals("rejected", player.getQuest(QUEST_SLOT, 0));
 
 		en.step(player, "quest");
 		en.step(player, "yes");
@@ -145,7 +145,7 @@ public class AnOldMansWishTest extends QuestHelper {
 			"Oh thank you! My grandson's name is #Niall. You could talk to"
 				+ " #Marianne. They used to play together.",
 			getReply(elias));
-		assertEquals("investigate", player.getQuest(QUEST_SLOT));
+		assertEquals("investigate", player.getQuest(QUEST_SLOT, 0));
 
 		// quest already started
 		en.step(player, "quest");
@@ -202,6 +202,7 @@ public class AnOldMansWishTest extends QuestHelper {
 				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
 				+ " sounds more scary than chickens.",
 			getReplies(marianne).get(0));
+		assertEquals("find_myling:start", player.getQuest(QUEST_SLOT, 1));
 
 		en.step(player, "graveyard");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -215,7 +216,7 @@ public class AnOldMansWishTest extends QuestHelper {
 
 	private void checkAfterQuest() {
 		// TODO: complete quest
-		player.setQuest(QUEST_SLOT, "done");
+		player.setQuest(QUEST_SLOT, 0, "done");
 
 		Engine en = elias.getEngine();
 

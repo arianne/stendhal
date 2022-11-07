@@ -103,12 +103,12 @@ public class AnOldMansWish extends AbstractQuest {
 			elias.getName() + " is grieved over the loss of his grandson.",
 			false
 		);
-		prepareElias();
-		prepareMarianne();
+		requestStep();
+		findMylingStep();
 		prepareCompleteStep();
 	}
 
-	private void prepareElias() {
+	private void requestStep() {
 		// requests quest but does not meet minimum level requirement
 		elias.add(
 			ConversationStates.ATTENDING,
@@ -164,7 +164,7 @@ public class AnOldMansWish extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Alas! What has become of my grandson!?",
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "rejected"),
+					new SetQuestAction(QUEST_SLOT, "rejected;;;"),
 					new DecreaseKarmaAction(15)));
 
 			// accepts quest
@@ -175,7 +175,7 @@ public class AnOldMansWish extends AbstractQuest {
 				"Oh thank you! My grandson's name is #Niall. You could talk"
 					+ " to #Marianne. They used to play together.",
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "investigate"),
+					new SetQuestAction(QUEST_SLOT, "investigate;;;"),
 					new IncreaseKarmaAction(15)));
 
 			// ask about Niall
@@ -199,10 +199,10 @@ public class AnOldMansWish extends AbstractQuest {
 				null);
 	}
 
-	private void prepareMarianne() {
+	private void findMylingStep() {
 		final SpeakerNPC marianne = npcs.get("Marianne");
 
-		final ChatCondition investigating = new QuestInStateCondition(QUEST_SLOT, "investigate");
+		final ChatCondition investigating = new QuestActiveCondition(QUEST_SLOT);
 
 		marianne.add(
 			ConversationStates.ATTENDING,
@@ -232,7 +232,9 @@ public class AnOldMansWish extends AbstractQuest {
 			"Know what he told me once? He said he wanted to go all the way"
 				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
 				+ " sounds more scary than chickens.",
-			new NPCEmoteAction("shivers."));
+			new MultipleActions(
+				new NPCEmoteAction("shivers."),
+				new SetQuestAction(QUEST_SLOT, 1, "find_myling:start")));
 
 		marianne.add(
 			ConversationStates.ATTENDING,
