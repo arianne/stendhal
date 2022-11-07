@@ -81,12 +81,16 @@ public class AnOldMansWish extends AbstractQuest {
 		final String quest_state = states[0];
 		String find_myling = null;
 		String find_apothecary = null;
+		String heal_myling = null;
 		for (final String st: states) {
 			if (st.startsWith("find_myling:")) {
 				find_myling = st.split(":")[1];
 			}
 			if (st.startsWith("find_apothecary:")) {
 				find_apothecary = st.split(":")[1];
+			}
+			if (st.startsWith("heal_myling:")) {
+				heal_myling = st.split(":")[1];
 			}
 		}
 
@@ -109,9 +113,17 @@ public class AnOldMansWish extends AbstractQuest {
 			if (find_apothecary != null) {
 				res.add("There may be hope yet. I must go to the apothecary"
 					+ " for help changing Niall back to normal.");
-				if (find_apothecary.equals("done")) {
+				if (!find_apothecary.equals("start")) {
 					res.add("The apothecary asked me to gather some items.");
+					if (find_apothecary.equals("done")) {
+						res.add("The apothecary brewed a holy water potion. Now I"
+							+ " must use it on Niall.");
+					}
 				}
+			}
+			if (heal_myling != null && heal_myling.equals("done")) {
+				res.add("I used the holy water. Niall is healed! Now I should"
+					+ " bring him back to his grandfather.");
 			}
 			if (quest_state.equals("done")) {
 				res.add("Elias and his grandson have been"
