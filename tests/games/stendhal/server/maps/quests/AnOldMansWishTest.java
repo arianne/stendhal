@@ -145,7 +145,7 @@ public class AnOldMansWishTest extends QuestHelper {
 			"Oh thank you! My grandson's name is #Niall. You could talk to"
 				+ " #Marianne. They used to play together.",
 			getReply(elias));
-		assertEquals("Marianne", player.getQuest(QUEST_SLOT));
+		assertEquals("investigate", player.getQuest(QUEST_SLOT));
 
 		// quest already started
 		en.step(player, "quest");
@@ -214,10 +214,10 @@ public class AnOldMansWishTest extends QuestHelper {
 	}
 
 	private void checkAfterQuest() {
-		final Engine en = elias.getEngine();
-
 		// TODO: complete quest
 		player.setQuest(QUEST_SLOT, "done");
+
+		Engine en = elias.getEngine();
 
 		en.step(player, "hi");
 		en.step(player, "quest");
@@ -226,6 +226,19 @@ public class AnOldMansWishTest extends QuestHelper {
 			"Thank you for returning my grandson to me. I am overfilled"
 				+ " with joy!",
 			getReply(elias));
+
+		en.step(player, "bye");
+
+		en = marianne.getEngine();
+
+		en.step(player, "hi");
+		marianne.clearEvents(); // clear reply to "hi"
+		en.step(player, "Niall");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"I heard that Niall came home! He sure was gone for a long time."
+				+ " I am glad he is home safe.",
+			getReplies(marianne).get(0));
 
 		en.step(player, "bye");
 	}

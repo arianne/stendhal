@@ -175,7 +175,7 @@ public class AnOldMansWish extends AbstractQuest {
 				"Oh thank you! My grandson's name is #Niall. You could talk"
 					+ " to #Marianne. They used to play together.",
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "Marianne"),
+					new SetQuestAction(QUEST_SLOT, "investigate"),
 					new IncreaseKarmaAction(15)));
 
 			// ask about Niall
@@ -202,12 +202,12 @@ public class AnOldMansWish extends AbstractQuest {
 	private void prepareMarianne() {
 		final SpeakerNPC marianne = npcs.get("Marianne");
 
-		final ChatCondition m1 = new QuestInStateCondition(QUEST_SLOT, "Marianne");
+		final ChatCondition investigating = new QuestInStateCondition(QUEST_SLOT, "investigate");
 
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"Niall",
-			m1,
+			investigating,
 			ConversationStates.ATTENDING,
 			"Oh! My friend Niall! I haven't seen him in a long time. Every"
 				+ " time I go to his grandfather's house to #play, he is not"
@@ -217,7 +217,7 @@ public class AnOldMansWish extends AbstractQuest {
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"play",
-			m1,
+			investigating,
 			ConversationStates.ATTENDING,
 			"Not only was he fun to play with, but he was also very helpful."
 				+ " He used to help me gather chicken eggs whenever I was too"
@@ -227,7 +227,7 @@ public class AnOldMansWish extends AbstractQuest {
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"afraid",
-			m1,
+			investigating,
 			ConversationStates.ATTENDING,
 			"Know what he told me once? He said he wanted to go all the way"
 				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
@@ -237,11 +237,20 @@ public class AnOldMansWish extends AbstractQuest {
 		marianne.add(
 			ConversationStates.ATTENDING,
 			Arrays.asList("graveyard", "cemetary"),
-			m1,
+			investigating,
 			ConversationStates.ATTENDING,
 			"I hope he didn't go to that scary graveyard. Who knows what kind"
 				+ " of monsters are there.",
 			null);
+
+		marianne.add(
+			ConversationStates.ATTENDING,
+			"Niall",
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"I heard that Niall came home! He sure was gone for a long time."
+				+ " I am glad he is home safe.",
+			new NPCEmoteAction("lets out a sigh of relief."));
 	}
 
 	private void prepareCompleteStep() {
