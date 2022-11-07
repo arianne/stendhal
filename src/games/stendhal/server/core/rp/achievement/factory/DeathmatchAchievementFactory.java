@@ -85,7 +85,7 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_HELPER_100, "Deathmatch Convoy",
 			"Aid other players in 100 rounds of deathmatch",
-			Achievement.MEDIUM_BASE_SCORE, false,
+			Achievement.MEDIUM_BASE_SCORE, true,
 			new HasHelpedNumberOfTimes(100)));
 
 		achievements.add(createAchievement(

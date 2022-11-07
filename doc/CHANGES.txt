@@ -11,6 +11,7 @@ Changelog
 *world*
 - added non-interactive tadpole to Ados Rock map
 - new NPC Elias Breland
+- Deathmatch Convoy achievement: Aid other players in 100 rounds of deathmatch
 
 *graphics*
 - reworked chaos sprites for Cabbit bases
