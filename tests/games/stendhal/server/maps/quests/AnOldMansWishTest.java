@@ -161,7 +161,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 			"Niall is my grandson. I am so distraught over his disappearance."
-				+ " Ask the girl #Marianne. The often played together.",
+				+ " Ask the girl #Marianne. They often played together.",
 			getReply(elias));
 
 		en.step(player, "Marianne");

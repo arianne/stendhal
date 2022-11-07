@@ -224,7 +224,7 @@ public class AnOldMansWish extends AbstractQuest {
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Niall is my grandson. I am so distraught over his"
-					+ " disappearance. Ask the girl #Marianne. The often played"
+					+ " disappearance. Ask the girl #Marianne. They often played"
 					+ " together.",
 				null);
 
