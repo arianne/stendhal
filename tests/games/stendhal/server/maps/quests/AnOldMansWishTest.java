@@ -62,6 +62,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		checkBeforeQuest();
 		checkEliasStep();
 		checkMarianneStep();
+		checkFindApothecaryStep();
 		checkAfterQuest();
 	}
 
@@ -210,6 +211,38 @@ public class AnOldMansWishTest extends QuestHelper {
 			"I hope he didn't go to that scary graveyard. Who knows what kind"
 				+ " of monsters are there.",
 			getReply(marianne));
+
+		en.step(player, "bye");
+	}
+
+	private void checkFindApothecaryStep() {
+		final Engine en = elias.getEngine();
+
+		// TODO: set in quest action
+		player.setQuest(QUEST_SLOT, 1, "find_myling:done");
+
+		en.step(player, "hi");
+		en.step(player, "myling");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Oh no! My dear grandson! If only there were a way to #change"
+					+ " him back.",
+			getReply(elias));
+
+		en.step(player, "change");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Wait! I heard there was an apothecary that lives somewhere"
+					+ " near Semos. Please, go to him and plead for help.",
+			getReply(elias));
+		assertEquals("find_apothecary:start", player.getQuest(QUEST_SLOT, 2));
+
+		en.step(player, "apothecary");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Please! Find the apothecary. Maybe he can do something to"
+					+ " help my grandson.",
+			getReply(elias));
 
 		en.step(player, "bye");
 	}

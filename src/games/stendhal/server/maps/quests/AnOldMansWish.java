@@ -105,6 +105,7 @@ public class AnOldMansWish extends AbstractQuest {
 		);
 		requestStep();
 		findMylingStep();
+		findApothecaryStep();
 		prepareCompleteStep();
 	}
 
@@ -253,6 +254,38 @@ public class AnOldMansWish extends AbstractQuest {
 			"I heard that Niall came home! He sure was gone for a long time."
 				+ " I am glad he is home safe.",
 			new NPCEmoteAction("lets out a sigh of relief."));
+	}
+
+	private void findApothecaryStep() {
+			final ChatCondition found_myling = new QuestInStateCondition(QUEST_SLOT, 1, "find_myling:done");
+
+			// tells Elias that Niall has been turned into a myling
+			elias.add(
+				ConversationStates.ANY,
+				Arrays.asList("Niall", "myling"),
+				found_myling,
+				ConversationStates.ATTENDING,
+				"Oh no! My dear grandson! If only there were a way to #change"
+					+ " him back.",
+				null);
+
+			elias.add(
+				ConversationStates.ANY,
+				"change",
+				found_myling,
+				ConversationStates.ATTENDING,
+				"Wait! I heard there was an apothecary that lives somewhere"
+					+ " near Semos. Please, go to him and plead for help.",
+				new SetQuestAction(QUEST_SLOT, 2, "find_apothecary:start"));
+
+			elias.add(
+				ConversationStates.ANY,
+				Arrays.asList("Niall", "myling", "apothecary"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "find_apothecary:start"),
+				ConversationStates.ATTENDING,
+				"Please! Find the apothecary. Maybe he can do something to"
+					+ " help my grandson.",
+				null);
 	}
 
 	private void prepareCompleteStep() {
