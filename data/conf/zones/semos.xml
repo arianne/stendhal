@@ -4205,6 +4205,11 @@ West: Deniran City
     <configurator class-name="games.stendhal.server.maps.semos.yeticave.MrsYetiNPC"/>
   </zone>
 
+  <zone name="-1_cemetery_burrow" file="interiors/abstract/burrow.tmx"
+      accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+  </zone>
+
   <!-- Level -2 -->
 
   <zone name="-2_semos_mine_n2_e" level="-2" x="500128" y="499616"
