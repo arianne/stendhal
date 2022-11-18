@@ -42,7 +42,6 @@ cloakedwoman2npc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 confectionerapplepienpc.png   Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 curatornpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-customeronchairnpc.png        omero; CC BY-SA 3.0; Stendhal
 darkwizardnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 deadmannpc*.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 doctornpc.*                   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
