@@ -9,6 +9,9 @@
  <tileset firstgid="7" name="int_sandstone" tilewidth="32" tileheight="32" tilecount="15" columns="3">
   <image source="../../tileset/building/wall/int_sandstone.png" width="96" height="160"/>
  </tileset>
+ <tileset firstgid="22" name="portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
  <layer id="1" name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+NkYGDgHGSYDQemRC8xZhDSS8iMUf1DWz+l6Yca6ZfeGAANqgnGAAQAAA==
@@ -26,7 +29,7 @@
  </layer>
  <layer id="4" name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAA2NgGAWjYHADqYF2wDAGAAtjFXYABAAA
   </data>
  </layer>
  <layer id="5" name="collision" width="16" height="16" opacity="0.27">
