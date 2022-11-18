@@ -183,7 +183,7 @@ bottle_squared.png           omero; CC BY-SA 3.0; Stendhal
 bottle_tall.png              omero; CC BY-SA 3.0; Stendhal
 bottle_triangular.png        omero; CC BY-SA 3.0; Stendhal
 empty_goblet.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-empty_sack.png               omero; CC BY-SA 3.0; Stendhal
+empty_sack.png               ScratchIO; CC0; https://opengameart.org/node/99798
 flask.png                    Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 full_goblet.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 keyring.png                  Jordan Irwin (AntumDeluge); CC0; Stendhal
