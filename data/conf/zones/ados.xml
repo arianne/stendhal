@@ -5277,6 +5277,7 @@ Southeast: Docks
 
   <zone name="int_ados_church_0" file="interiors/ados/church_0.tmx">
     <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.ados.church.PriestNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.church.VergerNPC"/>
 
     <!-- Music/Ambiance -->
