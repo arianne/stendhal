@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -11,6 +11,9 @@
  </tileset>
  <tileset firstgid="22" name="portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
+ <tileset firstgid="46" name="rope_ladder" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+  <image source="../../tileset/ground/ladder/rope_ladder.png" width="160" height="128"/>
  </tileset>
  <layer id="1" name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -27,12 +30,17 @@
    H4sIAAAAAAAAA2NgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer id="4" name="objects" width="16" height="16">
+ <layer id="7" name="3_roof" width="16" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjAD8wplC/xQDrt6VQ/3AGAOTMyckABAAA
+  </data>
+ </layer>
+ <layer id="4" name="objects" width="16" height="16" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA2NgGAWjYHADqYF2wDAGAAtjFXYABAAA
   </data>
  </layer>
- <layer id="5" name="collision" width="16" height="16" opacity="0.27">
+ <layer id="5" name="collision" width="16" height="16" visible="0" opacity="0.27">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA2NkYGBgHIYYHVCilxQzCIFR/YNbP6XxP9QwAI/ApHoABAAA
   </data>
