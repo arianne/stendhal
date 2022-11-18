@@ -242,7 +242,7 @@ public class AnOldMansWishTest extends QuestHelper {
 					+ " when used on the undead. Perhaps a #priest would have"
 					+ " have some. Please, go and find a priest.",
 			getReply(elias));
-		assertEquals("find_priest:start", player.getQuest(QUEST_SLOT, 2));
+		assertEquals("holy_water:start", player.getQuest(QUEST_SLOT, 2));
 
 		en.step(player, "priest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -255,6 +255,50 @@ public class AnOldMansWishTest extends QuestHelper {
 	}
 
 	private void checkHolyWaterStep() {
+		final Engine en = priest.getEngine();
+
+		assertFalse(player.isEquipped("water"));
+		assertFalse(player.isEquipped("holy water"));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hello my child.", getReply(priest));
+		en.step(player, "holy water");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Oh my! A young boy has transformed into a myling? I can help,"
+				+ " but this will require a special holy water. Bring me a"
+				+ " flask of water.",
+			getReply(priest));
+		assertEquals("holy_water:bring_items", player.getQuest(QUEST_SLOT, 2));
+
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Go in peace.", getReply(priest));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hurry, bring me a flask of water to bless.", getReply(priest));
+		en.step(player, "bye");
+
+		PlayerTestHelper.equipWithItem(player, "water");
+		assertEquals(1, player.getNumberOfEquipped("water"));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Excellent! I have blessed the water. Go and use it to restore"
+				+ " the young man.",
+			getReply(priest));
+		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
+		assertFalse(player.isEquipped("water"));
+		assertEquals(1, player.getNumberOfEquipped("holy water"));
+		en.step(player, "bye");
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hello my child.", getReply(priest));
+		en.step(player, "bye");
 	}
 
 	private void checkCompleteStep() {

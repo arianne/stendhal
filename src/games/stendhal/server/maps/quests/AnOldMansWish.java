@@ -19,6 +19,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
@@ -27,6 +29,8 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -323,12 +327,12 @@ public class AnOldMansWish extends AbstractQuest {
 				"Wait! I have heard that #'holy water' has special properties"
 					+ " when used on the undead. Perhaps a #priest would have"
 					+ " have some. Please, go and find a priest.",
-				new SetQuestAction(QUEST_SLOT, 2, "find_priest:start"));
+				new SetQuestAction(QUEST_SLOT, 2, "holy_water:start"));
 
 			elias.add(
 				ConversationStates.ANY,
 				Arrays.asList("Niall", "myling", "priest", "holy water"),
-				new QuestInStateCondition(QUEST_SLOT, 2, "find_priest:start"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
 				ConversationStates.ATTENDING,
 				"Please! Find a priest. Maybe one can provide holy water to"
 					+ " help my grandson.",
@@ -338,7 +342,48 @@ public class AnOldMansWish extends AbstractQuest {
 	private void prepareHolyWaterStep() {
 		final SpeakerNPC priest = npcs.get("Priest Calenus");
 
-		// TODO:
+		final ChatCondition canRequestHolyWater = new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new NotCondition(new PlayerHasItemWithHimCondition("holy water")),
+			new OrCondition(
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
+		);
+
+		priest.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("holy water", "myling", "Niall", "Elias"),
+			canRequestHolyWater,
+			ConversationStates.ATTENDING,
+			"Oh my! A young boy has transformed into a myling? I can help,"
+				+ " but this will require a special holy water. Bring me a"
+				+ " flask of water.",
+			new SetQuestAction(QUEST_SLOT, 2, "holy_water:bring_items"));
+
+		priest.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
+				new NotCondition(new PlayerHasItemWithHimCondition("water"))),
+			ConversationStates.ATTENDING,
+			"Hurry, bring me a flask of water to bless.",
+			null);
+
+		priest.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
+				new PlayerHasItemWithHimCondition("water")),
+			ConversationStates.ATTENDING,
+			"Excellent! I have blessed the water. Go and use it to restore"
+				+ " the young man.",
+			new MultipleActions(
+				new DropItemAction("water"),
+				// TODO: set infostring to "myling"
+				new EquipItemAction("holy water", 1, true),
+				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done")));
 	}
 
 	private void prepareCompleteStep() {
