@@ -246,7 +246,7 @@ data/sprites/items/flower/
 daisies.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 exotic_flower.png  bleutailfly; OGA BY 3.0; Stendhal
 lilia.png          Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-pansy.png          omero; CC BY-SA 3.0; Stendhal
+pansy.png          cookieeater, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/183397
 rose.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/red-rose-with-thorns
 zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
