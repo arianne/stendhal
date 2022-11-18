@@ -35,12 +35,18 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 
-/** Quest to increase number of bag slots.
+/**
+ * Quest to increase number of bag slots.
  *
- *  NPCs:
- *  - Elias Breland
- *  - Niall Breland
- *  - Marianne
+ * NPCs:
+ * - Elias Breland
+ * - Niall Breland
+ * - Marianne
+ * - Priest Calenus
+ *
+ * Required items:
+ * - rope ladder
+ * - holy water
  */
 public class AnOldMansWish extends AbstractQuest {
 
@@ -80,14 +86,14 @@ public class AnOldMansWish extends AbstractQuest {
 		final String[] states = player.getQuest(QUEST_SLOT).split(";");
 		final String quest_state = states[0];
 		String find_myling = null;
-		String find_apothecary = null;
+		String holy_water = null;
 		String heal_myling = null;
 		for (final String st: states) {
 			if (st.startsWith("find_myling:")) {
 				find_myling = st.split(":")[1];
 			}
-			if (st.startsWith("find_apothecary:")) {
-				find_apothecary = st.split(":")[1];
+			if (st.startsWith("holy_water:")) {
+				holy_water = st.split(":")[1];
 			}
 			if (st.startsWith("heal_myling:")) {
 				heal_myling = st.split(":")[1];
@@ -110,14 +116,15 @@ public class AnOldMansWish extends AbstractQuest {
 						+ " devestated. But I must tell him.");
 				}
 			}
-			if (find_apothecary != null) {
-				res.add("There may be hope yet. I must go to the apothecary"
-					+ " for help changing Niall back to normal.");
-				if (!find_apothecary.equals("start")) {
-					res.add("The apothecary asked me to gather some items.");
-					if (find_apothecary.equals("done")) {
-						res.add("The apothecary brewed a holy water potion. Now I"
-							+ " must use it on Niall.");
+			if (holy_water != null) {
+				res.add("There may be hope yet. I must find a priest and ask"
+					+ " about holy water to help change Niall back to normal.");
+				if (!holy_water.equals("start")) {
+					res.add("The priest asked me to gather some items. He needs"
+						+ " a flask of water.");
+					if (holy_water.equals("done")) {
+						res.add("The priest gave me a bottle of blessed holy water."
+							+ " Now I must use it on Niall.");
 					}
 				}
 			}
@@ -141,13 +148,14 @@ public class AnOldMansWish extends AbstractQuest {
 			elias.getName() + " is grieved over the loss of his grandson.",
 			false
 		);
-		requestStep();
-		findMylingStep();
-		findApothecaryStep();
+		prepareRequestStep();
+		prepareMarianneStep();
+		prepareFindPriestStep();
+		prepareHolyWaterStep();
 		prepareCompleteStep();
 	}
 
-	private void requestStep() {
+	private void prepareRequestStep() {
 		// requests quest but does not meet minimum level requirement
 		elias.add(
 			ConversationStates.ATTENDING,
@@ -238,7 +246,7 @@ public class AnOldMansWish extends AbstractQuest {
 				null);
 	}
 
-	private void findMylingStep() {
+	private void prepareMarianneStep() {
 		final SpeakerNPC marianne = npcs.get("Marianne");
 
 		final ChatCondition investigating = new QuestActiveCondition(QUEST_SLOT);
@@ -294,7 +302,7 @@ public class AnOldMansWish extends AbstractQuest {
 			new NPCEmoteAction("lets out a sigh of relief."));
 	}
 
-	private void findApothecaryStep() {
+	private void prepareFindPriestStep() {
 			final ChatCondition found_myling = new QuestInStateCondition(QUEST_SLOT, 1, "find_myling:done");
 
 			// tells Elias that Niall has been turned into a myling
@@ -312,20 +320,28 @@ public class AnOldMansWish extends AbstractQuest {
 				"change",
 				found_myling,
 				ConversationStates.ATTENDING,
-				"Wait! I heard there was an apothecary that lives somewhere"
-					+ " near Semos. Please, go to him and plead for help.",
-				new SetQuestAction(QUEST_SLOT, 2, "find_apothecary:start"));
+				"Wait! I have heard that #'holy water' has special properties"
+					+ " when used on the undead. Perhaps a #priest would have"
+					+ " have some. Please, go and find a priest.",
+				new SetQuestAction(QUEST_SLOT, 2, "find_priest:start"));
 
 			elias.add(
 				ConversationStates.ANY,
-				Arrays.asList("Niall", "myling", "apothecary"),
-				new QuestInStateCondition(QUEST_SLOT, 2, "find_apothecary:start"),
+				Arrays.asList("Niall", "myling", "priest", "holy water"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "find_priest:start"),
 				ConversationStates.ATTENDING,
-				"Please! Find the apothecary. Maybe he can do something to"
+				"Please! Find a priest. Maybe one can provide holy water to"
 					+ " help my grandson.",
 				null);
 	}
 
+	private void prepareHolyWaterStep() {
+		final SpeakerNPC priest = npcs.get("Priest Calenus");
+
+		// TODO:
+	}
+
 	private void prepareCompleteStep() {
+		// TODO:
 	}
 }

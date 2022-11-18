@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
 import utilities.PlayerTestHelper;
@@ -44,6 +45,7 @@ public class AnOldMansWishTest extends QuestHelper {
 	private Player player;
 	private SpeakerNPC elias;
 	private SpeakerNPC marianne;
+	private SpeakerNPC priest;
 
 
 	@Before
@@ -51,25 +53,29 @@ public class AnOldMansWishTest extends QuestHelper {
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
 		new OldManNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
+		new PriestNPC().configureZone(zone, null);
 		player = PlayerTestHelper.createPlayer("player");
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
 		marianne = SingletonRepository.getNPCList().get("Marianne");
+		priest = SingletonRepository.getNPCList().get("Priest Calenus");
 	}
 
 	@Test
 	public void init() {
 		checkEntities();
 		checkBeforeQuest();
-		checkEliasStep();
+		checkRequestStep();
 		checkMarianneStep();
-		checkFindApothecaryStep();
-		checkAfterQuest();
+		checkFindPriestStep();
+		checkHolyWaterStep();
+		checkCompleteStep();
 	}
 
 	private void checkEntities() {
 		assertNotNull(player);
 		assertNotNull(elias);
 		assertNotNull(marianne);
+		assertNotNull(priest);
 		assertFalse(player.hasQuest(QUEST_SLOT));
 	}
 
@@ -99,7 +105,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		marianne.clearEvents();
 	}
 
-	private void checkEliasStep() {
+	private void checkRequestStep() {
 		player.setLevel(99);
 		assertEquals(99, player.getLevel());
 
@@ -215,7 +221,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "bye");
 	}
 
-	private void checkFindApothecaryStep() {
+	private void checkFindPriestStep() {
 		final Engine en = elias.getEngine();
 
 		// TODO: set in quest action
@@ -232,22 +238,26 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "change");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Wait! I heard there was an apothecary that lives somewhere"
-					+ " near Semos. Please, go to him and plead for help.",
+			"Wait! I have heard that #'holy water' has special properties"
+					+ " when used on the undead. Perhaps a #priest would have"
+					+ " have some. Please, go and find a priest.",
 			getReply(elias));
-		assertEquals("find_apothecary:start", player.getQuest(QUEST_SLOT, 2));
+		assertEquals("find_priest:start", player.getQuest(QUEST_SLOT, 2));
 
-		en.step(player, "apothecary");
+		en.step(player, "priest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Please! Find the apothecary. Maybe he can do something to"
+			"Please! Find a priest. Maybe one can provide holy water to"
 					+ " help my grandson.",
 			getReply(elias));
 
 		en.step(player, "bye");
 	}
 
-	private void checkAfterQuest() {
+	private void checkHolyWaterStep() {
+	}
+
+	private void checkCompleteStep() {
 		// TODO: complete quest
 		player.setQuest(QUEST_SLOT, 0, "done");
 
