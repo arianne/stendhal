@@ -4222,6 +4222,7 @@ West: Deniran City
 
     <portal x="9" y="10" ref="exit">
       <destination zone="0_semos_mountain_n2_e" ref="to_burrow"/>
+      <attribute name="resistance">0</attribute>
     </portal>
   </zone>
 
