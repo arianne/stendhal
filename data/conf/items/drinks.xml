@@ -699,8 +699,7 @@
     </equipable>
   </item>
 
-<!-- disabled
-  <item name="holy water" condition="stendhal.testserver">
+  <item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
@@ -722,7 +721,6 @@
       <slot name="trade"/>
     </equipable>
   </item>
--->
 
   <item name="cobra venom">
     <type class="drink" subclass="cobra_venom"/>
