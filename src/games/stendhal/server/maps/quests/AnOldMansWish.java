@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -30,11 +34,13 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -344,11 +350,24 @@ public class AnOldMansWish extends AbstractQuest {
 
 		final ChatCondition canRequestHolyWater = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),
-			new NotCondition(new PlayerHasItemWithHimCondition("holy water")),
+			new NotCondition(new PlayerHasInfostringItemWithHimCondition("holy water", "Niall Breland")),
 			new OrCondition(
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
 		);
+
+		final ChatAction equipWithHolyWater = new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				final Item holy_water = SingletonRepository.getEntityManager().getItem("holy water");
+				holy_water.put("menu", "Use");
+				holy_water.setDescription("A special bottle of holy water to cure Niall.");
+				holy_water.setInfoString("Niall Breland");
+				holy_water.setBoundTo(player.getName());
+
+				player.equipOrPutOnGround(holy_water);
+			}
+		};
 
 		priest.add(
 			ConversationStates.ATTENDING,
@@ -381,8 +400,7 @@ public class AnOldMansWish extends AbstractQuest {
 				+ " the young man.",
 			new MultipleActions(
 				new DropItemAction("water"),
-				// TODO: set infostring to "myling"
-				new EquipItemAction("holy water", 1, true),
+				equipWithHolyWater,
 				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done")));
 	}
 

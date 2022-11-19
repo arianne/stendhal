@@ -25,6 +25,7 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -299,6 +300,14 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Hello my child.", getReply(priest));
 		en.step(player, "bye");
+
+		// check holy water attributes
+		final Item holy_water = player.getFirstEquipped("holy water");
+		assertNotNull(holy_water);
+		assertEquals(1, holy_water.getQuantity());
+		assertEquals(player.getName(), holy_water.getBoundTo());
+		assertEquals("Niall Breland", holy_water.getInfoString());
+		assertEquals("A special bottle of holy water to cure Niall.", holy_water.getDescription());
 	}
 
 	private void checkCompleteStep() {
