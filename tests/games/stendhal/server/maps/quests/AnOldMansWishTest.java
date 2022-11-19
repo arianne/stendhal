@@ -51,6 +51,8 @@ public class AnOldMansWishTest extends QuestHelper {
 
 	@Before
 	public void setup() {
+		// burrow zone must exist in world when quest is loaded
+		SingletonRepository.getRPWorld().addRPZone("dummy", new StendhalRPZone("-1_cemetery_burrow"));
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
 		new OldManNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
