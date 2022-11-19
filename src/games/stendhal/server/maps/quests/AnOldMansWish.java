@@ -13,23 +13,28 @@ package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -38,9 +43,8 @@ import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHim
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -163,6 +167,7 @@ public class AnOldMansWish extends AbstractQuest {
 		prepareFindPriestStep();
 		prepareHolyWaterStep();
 		prepareCompleteStep();
+		prepareMylingSpawner();
 	}
 
 	private void prepareRequestStep() {
@@ -406,5 +411,36 @@ public class AnOldMansWish extends AbstractQuest {
 
 	private void prepareCompleteStep() {
 		// TODO:
+	}
+
+	private void prepareMylingSpawner() {
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
+		final CreatureRespawnPoint spawner = new CreatureRespawnPoint(zone, 6, 5, new Myling(), 1);
+		//spawner.setRespawnTime(2000); // 10 minutes
+		spawner.setRespawnTime(10);
+		zone.add(spawner);
+	}
+
+
+	// TODO: don't allow killing
+	private class Myling extends Creature {
+		public Myling() {
+			super();
+
+			setName("myling");
+			setEntityClass("undead");
+			setEntitySubclass("myling");
+			setDescription("You see a myling.");
+			setBaseHP(100);
+			setHP(10); // FIXME:
+			setBaseSpeed(0.8);
+
+			final Map<String, String> aiProfiles = new LinkedHashMap<String, String>();
+			aiProfiles.put("patrolling", "");
+			setAIProfiles(aiProfiles);
+		}
+
+		public void onCured(final Player player) {
+		}
 	}
 }
