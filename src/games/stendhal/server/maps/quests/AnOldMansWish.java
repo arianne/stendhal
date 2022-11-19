@@ -415,7 +415,16 @@ public class AnOldMansWish extends AbstractQuest {
 
 	private void prepareMylingSpawner() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
-		final CreatureRespawnPoint spawner = new CreatureRespawnPoint(zone, 6, 5, new Myling(), 1);
+		final CreatureRespawnPoint spawner = new CreatureRespawnPoint(zone, 6, 5, new Myling(), 1) {
+			@Override
+			protected void respawn() {
+				super.respawn();
+				if (creatures.size() > 0) {
+					final Creature newest = creatures.get(creatures.size() - 1);
+					newest.setHP(10);
+				}
+			}
+		};
 		//spawner.setRespawnTime(2000); // 10 minutes
 		spawner.setRespawnTime(10);
 		zone.add(spawner);
@@ -432,7 +441,6 @@ public class AnOldMansWish extends AbstractQuest {
 			setEntitySubclass("myling");
 			setDescription("You see a myling.");
 			setBaseHP(100);
-			setHP(10); // FIXME:
 			setBaseSpeed(0.8);
 
 			final Map<String, String> aiProfiles = new LinkedHashMap<String, String>();
