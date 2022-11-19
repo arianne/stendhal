@@ -43,7 +43,6 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.AttackEvent;
@@ -113,9 +112,7 @@ public class StendhalRPAction {
 
 		// Disable attacking NPCS that are created as not attackable.
 		if (!victim.isAttackable()) {
-			if ((victim instanceof SpeakerNPC)) {
-				((SpeakerNPC) victim).onRejectedAttackStart(player);
-			}
+			victim.onRejectedAttackStart(player);
 			logger.info("REJECTED. " + pName + " is attacking " + vName);
 			return;
 		}

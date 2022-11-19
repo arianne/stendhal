@@ -1050,6 +1050,7 @@ public class SpeakerNPC extends PassiveNPC {
 	 *
 	 * @param attacker
 	 */
+	@Override
 	public void onRejectedAttackStart(RPEntity attacker) {
 		say(attacker.getName() + ", if you want my attention, just say #hi.");
 	}
