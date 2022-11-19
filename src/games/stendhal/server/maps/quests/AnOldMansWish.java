@@ -20,9 +20,12 @@ import java.util.Map;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -415,32 +418,60 @@ public class AnOldMansWish extends AbstractQuest {
 
 	private void prepareMylingSpawner() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
-		final CreatureRespawnPoint spawner = new CreatureRespawnPoint(zone, 6, 5, new Myling(), 1) {
-			@Override
-			protected void respawn() {
-				super.respawn();
-				if (creatures.size() > 0) {
-					final Creature newest = creatures.get(creatures.size() - 1);
-					newest.setHP(10);
-				}
-			}
-		};
-		//spawner.setRespawnTime(2000); // 10 minutes
-		spawner.setRespawnTime(10);
+		final MylingSpawner spawner = new MylingSpawner();
+		spawner.setPosition(6, 5);
 		zone.add(spawner);
+		spawner.startTurnNotifier();
 	}
 
 
-	// TODO: don't allow killing
-	private class Myling extends Creature {
-		public Myling() {
+	/**
+	 * Custom spawner so Creature is not attackable.
+	 */
+	private class MylingSpawner extends Entity implements TurnListener {
+		private boolean activeInWorld = false;
+
+		public MylingSpawner() {
 			super();
+		}
+
+		private void respawn() {
+			if (!activeInWorld) {
+				final Myling myling = new Myling(this);
+				myling.setPosition(getX(), getY());
+				SingletonRepository.getRPWorld().getZone(getID().getZoneID()).add(myling);
+				activeInWorld = true;
+			}
+		}
+
+		public void onTurnReached(final int currentTurn) {
+			respawn();
+		}
+
+		public void startTurnNotifier() {
+			//SingletonRepository.getTurnNotifier().notifyInTurns(2000, this); // 10 minutes
+			SingletonRepository.getTurnNotifier().notifyInTurns(20, this);
+		}
+
+		public void onMylingRemoved() {
+			activeInWorld = false;
+			startTurnNotifier();
+		}
+	}
+
+	private class Myling extends Creature {
+		private MylingSpawner spawner;
+
+		public Myling(final MylingSpawner spawner) {
+			super();
+			this.spawner = spawner;
 
 			setName("myling");
 			setEntityClass("undead");
 			setEntitySubclass("myling");
 			setDescription("You see a myling.");
 			setBaseHP(100);
+			setHP(10);
 			setBaseSpeed(0.8);
 
 			final Map<String, String> aiProfiles = new LinkedHashMap<String, String>();
@@ -448,7 +479,26 @@ public class AnOldMansWish extends AbstractQuest {
 			setAIProfiles(aiProfiles);
 		}
 
+		@Override
+		public boolean isAttackable() {
+			return false;
+		}
+
+		@Override
+		public void onRejectedAttackStart(final RPEntity attacker) {
+			if (attacker instanceof Player) {
+				((Player) attacker).sendPrivateText("That's not a good idea.");
+			}
+		}
+
+		@Override
+		public void onDead(final Killer killer, final boolean remove) {
+			super.onDead(killer, remove);
+			spawner.onMylingRemoved();
+		}
+
 		public void onCured(final Player player) {
+			spawner.onMylingRemoved();
 		}
 	}
 }
