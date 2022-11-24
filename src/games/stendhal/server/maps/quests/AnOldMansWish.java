@@ -399,6 +399,7 @@ public class AnOldMansWish extends AbstractQuest {
 			"Hurry, bring me a flask of water to bless.",
 			null);
 
+		// TODO: include charcoal as ingredient
 		priest.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -411,7 +412,8 @@ public class AnOldMansWish extends AbstractQuest {
 			new MultipleActions(
 				new DropItemAction("water"),
 				equipWithHolyWater,
-				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done")));
+				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done"),
+				new SetQuestAction(QUEST_SLOT, 3, "heal_myling:start")));
 	}
 
 	private void prepareCompleteStep() {
@@ -419,6 +421,7 @@ public class AnOldMansWish extends AbstractQuest {
 	}
 
 	private void prepareMylingSpawner() {
+		// TODO: use well instead of burrow
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
 		spawner = new MylingSpawner();
 		spawner.setPosition(6, 5);
@@ -478,8 +481,8 @@ public class AnOldMansWish extends AbstractQuest {
 			onMylingRemoved();
 			/* TODO:
 			 * - add SpeakerNPC instance of Niall
-			 * - update player quest slot
 			 */
+			player.setQuest(QUEST_SLOT, 3, "heal_myling:done");
 		}
 
 		public boolean mylingIsActive() {

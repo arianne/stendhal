@@ -294,6 +294,7 @@ public class AnOldMansWishTest extends QuestHelper {
 				+ " the young man.",
 			getReply(priest));
 		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
+		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
 		assertFalse(player.isEquipped("water"));
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		en.step(player, "bye");
@@ -309,7 +310,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals(1, holy_water.getQuantity());
 		assertEquals(player.getName(), holy_water.getBoundTo());
 		assertEquals("Niall Breland", holy_water.getInfoString());
-		assertEquals("A special bottle of holy water to cure Niall.", holy_water.getDescription());
+		assertEquals("A bottle of ashen holy water to cure Niall.", holy_water.getDescription());
 	}
 
 	private void checkCompleteStep() {
