@@ -37,7 +37,7 @@ import games.stendhal.server.util.StringUtils;
 @Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextAction implements ChatAction {
 
-	private final List<String> texts;
+	protected final List<String> texts;
 
 	/**
 	 * Creates a new SayTextAction.
