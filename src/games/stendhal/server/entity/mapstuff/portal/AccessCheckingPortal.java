@@ -253,7 +253,9 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	protected void rejected(final RPEntity user) {
 		if (rejectedMessage != null) {
-			sendMessage(user, rejectedMessage);
+			if (!rejectedMessage.trim().equals("")) {
+			  sendMessage(user, rejectedMessage);
+			}
 
 			if (rejectedAction != null) {
 				rejectedAction.fire((Player) user, null, null);
