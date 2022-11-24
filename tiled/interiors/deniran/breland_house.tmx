@@ -48,9 +48,12 @@
  <tileset firstgid="222" name="picture/small" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/furniture/picture/small.png" width="96" height="32"/>
  </tileset>
+ <tileset firstgid="225" name="stairs" tilewidth="32" tileheight="32" tilecount="12" columns="2">
+  <image source="../../tileset/building/stairs/stairs.png" width="64" height="192"/>
+ </tileset>
  <layer id="1" name="0_floor" width="32" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAxNgYGAQGGDMSQGmRD+y/UFkYE4K9I/aT7n9lODhYP9Ah/+o/YOj/KFG+TuU/T8Y4h8mVgPEtThwHR3srwfiBhy4kcr2Y8Mjyf6BDn9s9jcBcTMO3EIH+0nVS2z5EYRDnBrlDzE4iET1xGIAPfWZiIALAAA=
+   H4sIAAAAAAAAAxNgYGAQGGDMSQGmRD+y/UFkYE4K9I/aT7n9lODhYP9Ah/+o/dQrfx5T6AdKy9+B9v9Qj3+YWA0Q1+LAdXSwvx6IG3DgRirbjw2PJPsHOvyx2d8ExM04cAsd7CdVL7HlRxAOcWqUP8TgIBLVE4sBNHltxIALAAA=
   </data>
  </layer>
  <layer id="2" name="1_terrain" width="32" height="23">
@@ -70,7 +73,7 @@
  </layer>
  <layer id="5" name="objects" width="32" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3MIQEAAAwCMGrSvwj+/m4LsAQAALj69A5S3gX3gAsAAA==
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwkCByoB0wCkbBKBgFowAroFX5DAAwZT0ggAsAAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="32" height="23" opacity="0.3">
