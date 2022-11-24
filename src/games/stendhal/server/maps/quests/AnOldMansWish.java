@@ -72,6 +72,8 @@ public class AnOldMansWish extends AbstractQuest {
 
 	private final SpeakerNPC elias = npcs.get("Elias Breland");
 
+	private static MylingSpawner spawner;
+
 
 	@Override
 	public String getSlotName() {
@@ -358,7 +360,7 @@ public class AnOldMansWish extends AbstractQuest {
 
 		final ChatCondition canRequestHolyWater = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),
-			new NotCondition(new PlayerHasInfostringItemWithHimCondition("holy water", "Niall Breland")),
+			new NotCondition(new PlayerHasInfostringItemWithHimCondition("ashen holy water", "Niall Breland")),
 			new OrCondition(
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
@@ -367,9 +369,8 @@ public class AnOldMansWish extends AbstractQuest {
 		final ChatAction equipWithHolyWater = new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				final Item holy_water = SingletonRepository.getEntityManager().getItem("holy water");
-				holy_water.put("menu", "Use");
-				holy_water.setDescription("A special bottle of holy water to cure Niall.");
+				final Item holy_water = SingletonRepository.getEntityManager().getItem("ashen holy water");
+				holy_water.setDescription("A bottle of ashen holy water to cure Niall.");
 				holy_water.setInfoString("Niall Breland");
 				holy_water.setBoundTo(player.getName());
 
@@ -418,17 +419,21 @@ public class AnOldMansWish extends AbstractQuest {
 
 	private void prepareMylingSpawner() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
-		final MylingSpawner spawner = new MylingSpawner();
+		spawner = new MylingSpawner();
 		spawner.setPosition(6, 5);
 		zone.add(spawner);
 		spawner.startTurnNotifier();
+	}
+
+	public static MylingSpawner getMylingSpawner() {
+		return spawner;
 	}
 
 
 	/**
 	 * Custom spawner so Creature is not attackable.
 	 */
-	private class MylingSpawner extends Entity implements TurnListener {
+	public class MylingSpawner extends Entity implements TurnListener {
 		private boolean activeInWorld = false;
 
 		public MylingSpawner() {
@@ -456,6 +461,10 @@ public class AnOldMansWish extends AbstractQuest {
 		public void onMylingRemoved() {
 			activeInWorld = false;
 			startTurnNotifier();
+		}
+
+		public boolean mylingIsActive() {
+			return activeInWorld;
 		}
 	}
 

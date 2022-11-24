@@ -261,7 +261,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		final Engine en = priest.getEngine();
 
 		assertFalse(player.isEquipped("water"));
-		assertFalse(player.isEquipped("holy water"));
+		assertFalse(player.isEquipped("ashen holy water"));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -295,7 +295,7 @@ public class AnOldMansWishTest extends QuestHelper {
 			getReply(priest));
 		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
 		assertFalse(player.isEquipped("water"));
-		assertEquals(1, player.getNumberOfEquipped("holy water"));
+		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		en.step(player, "bye");
 
 		en.step(player, "hi");
@@ -304,7 +304,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		en.step(player, "bye");
 
 		// check holy water attributes
-		final Item holy_water = player.getFirstEquipped("holy water");
+		final Item holy_water = player.getFirstEquipped("ashen holy water");
 		assertNotNull(holy_water);
 		assertEquals(1, holy_water.getQuantity());
 		assertEquals(player.getName(), holy_water.getBoundTo());

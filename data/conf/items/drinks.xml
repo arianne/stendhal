@@ -699,6 +699,7 @@
     </equipable>
   </item>
 
+<!--
   <item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
@@ -709,6 +710,29 @@
       <quantity value="1"/>
       <regen value="0"/>
       <menu value="Drink|Use"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+-->
+
+  <item name="ashen holy water">
+    <type class="drink" subclass="holy_water" tileid="-1"/>
+    <description>A bottle of ashen holy water.</description>
+    <implementation class-name="games.stendhal.server.entity.item.AshenHolyWater"/>
+    <attributes>
+      <amount value="400"/>
+      <frequency value="1"/>
+      <quantity value="1"/>
+      <regen value="0"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
