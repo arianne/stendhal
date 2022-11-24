@@ -33,6 +33,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
+import games.stendhal.server.maps.quests.AnOldMansWish;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -48,16 +49,22 @@ public class AnOldMansWishTest extends QuestHelper {
 	private SpeakerNPC marianne;
 	private SpeakerNPC priest;
 
+	private StendhalRPZone burrow;
+
 
 	@Before
 	public void setup() {
 		// burrow zone must exist in world when quest is loaded
-		SingletonRepository.getRPWorld().addRPZone("dummy", new StendhalRPZone("-1_cemetery_burrow"));
+		burrow = new StendhalRPZone("-1_cemetery_burrow");
+		SingletonRepository.getRPWorld().addRPZone("dummy", burrow);
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
+
+		player = PlayerTestHelper.createPlayer("player");
+		zone.add(player);
+
 		new OldManNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
 		new PriestNPC().configureZone(zone, null);
-		player = PlayerTestHelper.createPlayer("player");
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
 		marianne = SingletonRepository.getNPCList().get("Marianne");
 		priest = SingletonRepository.getNPCList().get("Priest Calenus");
@@ -71,15 +78,19 @@ public class AnOldMansWishTest extends QuestHelper {
 		checkMarianneStep();
 		checkFindPriestStep();
 		checkHolyWaterStep();
+		checkHealMylingStep();
 		checkCompleteStep();
 	}
 
 	private void checkEntities() {
 		assertNotNull(player);
+		assertNotNull(player.getZone());
 		assertNotNull(elias);
 		assertNotNull(marianne);
 		assertNotNull(priest);
 		assertFalse(player.hasQuest(QUEST_SLOT));
+
+		assertNotNull(burrow);
 	}
 
 	private void checkBeforeQuest() {
@@ -311,6 +322,38 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals(player.getName(), holy_water.getBoundTo());
 		assertEquals("Niall Breland", holy_water.getInfoString());
 		assertEquals("A bottle of ashen holy water to cure Niall.", holy_water.getDescription());
+	}
+
+	private void checkHealMylingStep() {
+		final AnOldMansWish.MylingSpawner spawner = AnOldMansWish.getMylingSpawner();
+		assertNotNull(spawner);
+		assertFalse(spawner.mylingIsActive());
+
+		final Item holy_water = player.getFirstEquipped("ashen holy water");
+		assertNotNull(holy_water);
+
+		assertFalse(burrow.equals(player.getZone()));
+
+		holy_water.onUsed(player);
+		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
+		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
+
+		// add player to burrow
+		player.getZone().remove(player);
+		burrow.add(player);
+		assertTrue(burrow.equals(player.getZone()));
+
+		holy_water.onUsed(player);
+		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
+		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
+
+		// add myling to zone
+		spawner.onTurnReached(0);
+		assertTrue(spawner.mylingIsActive());
+
+		holy_water.onUsed(player);
+		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
+		assertEquals("heal_myling:done", player.getQuest(QUEST_SLOT, 3));
 	}
 
 	private void checkCompleteStep() {
