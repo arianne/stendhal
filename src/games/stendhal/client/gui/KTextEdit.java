@@ -452,10 +452,15 @@ class KTextEdit extends JComponent {
 	 * @return file name
 	 */
 	private String getSaveFileName() {
+		final String timestamp = new SimpleDateFormat(
+				"yyyyMMdd_HH.mm.ss.SSS").format(new Date());
+
 		if ("".equals(name)) {
-			return stendhal.getGameFolder() + "gamechat.log";
+			return stendhal.getGameFolder() + "gamechat_" + timestamp
+					+ ".log";
 		} else {
-			return stendhal.getGameFolder() + "gamechat-" + name + ".log";
+			return stendhal.getGameFolder() + "gamechat_" + name + timestamp
+					+ ".log";
 		}
 	}
 
