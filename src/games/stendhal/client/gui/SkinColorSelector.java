@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
+import games.stendhal.client.gui.AbstractColorSelector.HSLSelectionModel;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
