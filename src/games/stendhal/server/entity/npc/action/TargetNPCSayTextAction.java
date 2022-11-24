@@ -34,25 +34,21 @@ public class TargetNPCSayTextAction extends SayTextAction {
 	private final static Logger logger = Logger.getLogger(TargetNPCSayTextAction.class);
 
 	private final String npcName;
-	//private final List<String> texts;
 
 
 	public TargetNPCSayTextAction(final String npcName, final String text) {
 		super(text);
 		this.npcName = checkNotNull(npcName);
-		//this.texts = ImmutableList.of(checkNotNull(text));
 	}
 
 	public TargetNPCSayTextAction(final String npcName, final Iterable<String> texts) {
 		super(texts);
 		this.npcName = checkNotNull(npcName);
-		//this.texts = ImmutableList.copyOf(checkNotNull(texts));
 	}
 
 	public TargetNPCSayTextAction(final String npcName, final String[] texts) {
 		super(texts);
 		this.npcName = checkNotNull(npcName);
-		//this.texts = ImmutableList.copyOf(checkNotNull(texts));
 	}
 
 	@Override
@@ -72,7 +68,6 @@ public class TargetNPCSayTextAction extends SayTextAction {
 
 	@Override
 	public int hashCode() {
-		//return 5417 * npcName.hashCode() * texts.hashCode();
 		return super.hashCode() * npcName.hashCode();
 	}
 
