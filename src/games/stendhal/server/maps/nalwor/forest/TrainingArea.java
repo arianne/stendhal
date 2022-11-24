@@ -68,6 +68,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
 	private final TrainerNPC trainer;
 
+	// big enough to reach entire dojo area
+	private static final int shoutRangeSquared = 29 * 29;
+
 	/** quest states */
 	private static final String STATE_ACTIVE = "training";
 	private static final String STATE_DONE = "done";
@@ -331,7 +334,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 		final StendhalRPZone zone = getZone();
 
 		if (player.getZone().equals(zone)) {
-			trainer.say("Your training time is up " + player.getName() + ".");
+			trainer.say(
+				"Your training time is up " + player.getName() + ".",
+				shoutRangeSquared);
 		}
 		if (contains(player)) {
 			player.teleport(zone, END_POS.x, END_POS.y, null, null);
@@ -486,7 +491,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 				skipNotify = false;
 			} else {
 				if (minsRemain > 0) {
-					trainer.say(player.getName() + ", you have " + TimeUtil.timeUntil(minsRemain * 60) + " left.");
+					trainer.say(
+						player.getName() + ", you have " + TimeUtil.timeUntil(minsRemain * 60) + " left.",
+						shoutRangeSquared);
 				}
 			}
 
