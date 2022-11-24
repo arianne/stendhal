@@ -31,7 +31,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.church.PriestNPC;
-import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC;
+import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
 import games.stendhal.server.maps.quests.AnOldMansWish;
 import utilities.PlayerTestHelper;
@@ -62,7 +62,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		player = PlayerTestHelper.createPlayer("player");
 		zone.add(player);
 
-		new OldManNPC().configureZone(zone, null);
+		new GrandfatherNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
 		new PriestNPC().configureZone(zone, null);
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
