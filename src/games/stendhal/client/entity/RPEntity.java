@@ -941,8 +941,23 @@ public abstract class RPEntity extends AudibleEntity {
 	 *
 	 * @param text message contents
 	 */
-	public void onTalk(String text) {
-		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+	public void onTalk(final String text) {
+		onTalk(text, HEARING_DISTANCE_SQ);
+	}
+
+	/**
+	 * Called when entity says something.
+	 *
+	 * @param text
+	 *     Message contents.
+	 * @param rangeSquared
+	 *     Distance at which message can be heard (-1 represents
+	 *     entire map).
+	 */
+	public void onTalk(String text, final int rangeSquared) {
+		if (User.isAdmin()
+				|| (rangeSquared < 0)
+				|| (User.squaredDistanceTo(x, y) < rangeSquared)) {
 			//an emote action is changed server side to an chat action with a leading !me
 			//this supports also invoking an emote with !me instead of /me
 			if (text.startsWith("!me")) {

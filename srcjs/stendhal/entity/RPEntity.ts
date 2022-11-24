@@ -141,12 +141,19 @@ export class RPEntity extends ActiveEntity {
 
 	/**
 	 * says a text
+	 *
+	 * @param text
+	 *     Message contents.
+	 * @param rangeSquared
+	 *     Distance at which message can be heard (-1 represents
+	 *     entire map).
 	 */
-	override say(text: string) {
+	override say(text: string, rangeSquared?: number) {
 		if (!marauroa.me) {
 			return;
 		}
-		if (marauroa.me.isInHearingRange(this)) {
+
+		if (marauroa.me.isInHearingRange(this, rangeSquared)) {
 			let emoji = stendhal.data.emoji.get(text);
 			if (emoji) {
 				this.addEmoji(emoji);

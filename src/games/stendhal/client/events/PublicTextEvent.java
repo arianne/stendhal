@@ -25,6 +25,10 @@ class PublicTextEvent extends Event<RPEntity> {
 	 */
 	@Override
 	public void execute() {
-		entity.onTalk(event.get("text"));
+		if (event.has("range")) {
+			entity.onTalk(event.get("text"), event.getInt("range"));
+		} else {
+			entity.onTalk(event.get("text"));
+		}
 	}
 }

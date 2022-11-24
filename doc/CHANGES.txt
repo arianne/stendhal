@@ -14,6 +14,7 @@ Changelog
   - Elias Breland
   - Priest Calenus
 - Deathmatch Convoy achievement: Aid other players in 100 rounds of deathmatch
+- range can be set for entity public text events
 
 *graphics*
 - reworked chaos sprites for Cabbit bases

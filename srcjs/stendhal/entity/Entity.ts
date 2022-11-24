@@ -255,9 +255,15 @@ export class Entity extends RPObject {
 
 	/**
 	 * says a text
+	 *
+	 * @param text
+	 *     Message contents.
+	 * @param rangeSquared
+	 *     Distance squared within which the entity can be heard (-1
+	 *     represents entire map).
 	 */
-	say(text: string) {
-		if (marauroa.me && marauroa.me.isInHearingRange(this)) {
+	say(text: string, rangeSquared?: number) {
+		if (marauroa.me && marauroa.me.isInHearingRange(this, rangeSquared)) {
 			Chat.log("normal", text);
 		}
 	}

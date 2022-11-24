@@ -189,21 +189,43 @@ export class Player extends RPEntity {
 
 	/**
 	 * says a text
+	 *
+	 * @param text
+	 *     Message contents.
+	 * @param rangeSquared
+	 *     Distance squared within which the entity can be heard (-1
+	 *     represents entire map).
 	 */
-	override say(text: string) {
+	override say(text: string, rangeSquared?: number) {
 		if (this.isIgnored()) {
 			return;
 		}
-		super.say(text);
+		super.say(text, rangeSquared);
 	}
 
 	/**
 	 * Can the player hear this chat message?
+	 *
+	 * @param entity
+	 *     The speaking entity.
+	 * @param rangeSquared
+	 *     Distance squared within which the entity can be heard (-1
+	 *     represents entire map).
 	 */
-	isInHearingRange(entity: Entity) {
+	isInHearingRange(entity: Entity, rangeSquared?: number) {
+		let hearingRange = 15; // default
+		if (typeof rangeSquared !== "undefined") {
+			if (rangeSquared < 0) {
+				hearingRange = -1;
+			} else {
+				hearingRange = Math.sqrt(rangeSquared);
+			}
+		}
+
 		return (this.isAdmin()
-			|| ((Math.abs(this["x"] - entity["x"]) < 15)
-				&& (Math.abs(this["y"] - entity["y"]) < 15)));
+			|| (hearingRange < 0)
+			|| ((Math.abs(this["x"] - entity["x"]) < hearingRange)
+				&& (Math.abs(this["y"] - entity["y"]) < hearingRange)));
 	}
 
 	override getCursor(_x: number, _y: number) {

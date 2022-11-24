@@ -169,6 +169,14 @@ public abstract class NPC extends DressedEntity {
 		this.notifyWorldAboutChanges();
 	}
 
+	public void say(final String text, final int rangeSquared) {
+		final RPEvent rpe = new RPEvent(Events.PUBLIC_TEXT);
+		rpe.put("text", text);
+		rpe.put("range", rangeSquared);
+		this.addEvent(rpe);
+		this.notifyWorldAboutChanges();
+	}
+
 	/**
 	 * moves to the given entity. When the distance to the destination is
 	 * between <code>min</code> and <code>max</code> and this entity does

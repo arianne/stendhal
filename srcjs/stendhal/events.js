@@ -271,7 +271,11 @@ marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeven
 
 marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		rpobject.say(this["text"]);
+		if (this.hasOwnProperty("range")) {
+			rpobject.say(this["text"], this["range"]);
+		} else {
+			rpobject.say(this["text"]);
+		}
 	}
 });
 
