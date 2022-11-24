@@ -456,18 +456,18 @@ class KTextEdit extends JComponent {
 		String savename = new SimpleDateFormat(
 				"yyyyMMdd_HH.mm.ss.SSS").format(new Date());
 
-		final String username = UserContext.get().getName();
-		if (username != null) {
-			savename = username + "_" + savename;
+		// channel name
+		if (!"".equals(name)) {
+			savename = name + "_" + savename;
 		}
 
-		if ("".equals(name)) {
-			return stendhal.getGameFolder() + "gamechat_" + savename
-					+ ".log";
-		} else {
-			return stendhal.getGameFolder() + "gamechat_" + name + "_"
-					+ savename + ".log";
+		// character name
+		final String charname = UserContext.get().getName();
+		if (charname != null) {
+			savename = charname + "_" + savename;
 		}
+
+		return stendhal.getGameFolder() + "gamechat_" + savename + ".log";
 	}
 
 	/**
