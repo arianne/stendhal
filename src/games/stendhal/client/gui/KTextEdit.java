@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -477,6 +478,8 @@ class KTextEdit extends JComponent {
 		String fname = getSaveFileName();
 		Writer fo;
 		try {
+			// create parent directory if not exists
+			new File(fname).getParentFile().mkdirs();
 			fo = new OutputStreamWriter(new FileOutputStream(fname), "UTF-8");
 			try {
 				textPane.write(fo);
