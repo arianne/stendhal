@@ -468,7 +468,7 @@ class KTextEdit extends JComponent {
 			savename = charname + "_" + savename;
 		}
 
-		return stendhal.getGameFolder() + "gamechat_" + savename + ".log";
+		return stendhal.getGameFolder() + "chat/" + savename + ".log";
 	}
 
 	/**

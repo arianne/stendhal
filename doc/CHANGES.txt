@@ -24,6 +24,10 @@ Changelog
 *clients*
 - changed level-up sound back to "tadaa"
 
+*java client*
+- saved chatlog filename includes character name, date, & timestamp
+- chatlog saved to "chat" subdirectory
+
 
 1.41.2
 
