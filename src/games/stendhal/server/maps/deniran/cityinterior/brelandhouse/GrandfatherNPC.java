@@ -27,7 +27,7 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
-public class OldManNPC implements ZoneConfigurator  {
+public class GrandfatherNPC implements ZoneConfigurator  {
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {

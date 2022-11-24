@@ -1504,7 +1504,7 @@ Entrance fee is 10 money</attribute>
     </portal>
 
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.brelandhouse.OldManNPC"/>
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC"/>
 
   </zone>
 
