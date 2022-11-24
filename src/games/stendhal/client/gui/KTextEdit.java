@@ -65,6 +65,7 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
+import games.stendhal.client.UserContext;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
@@ -452,15 +453,20 @@ class KTextEdit extends JComponent {
 	 * @return file name
 	 */
 	private String getSaveFileName() {
-		final String timestamp = new SimpleDateFormat(
+		String savename = new SimpleDateFormat(
 				"yyyyMMdd_HH.mm.ss.SSS").format(new Date());
 
+		final String username = UserContext.get().getName();
+		if (username != null) {
+			savename = username + "_" + savename;
+		}
+
 		if ("".equals(name)) {
-			return stendhal.getGameFolder() + "gamechat_" + timestamp
+			return stendhal.getGameFolder() + "gamechat_" + savename
 					+ ".log";
 		} else {
-			return stendhal.getGameFolder() + "gamechat_" + name + timestamp
-					+ ".log";
+			return stendhal.getGameFolder() + "gamechat_" + name + "_"
+					+ savename + ".log";
 		}
 	}
 
