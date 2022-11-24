@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -434,18 +435,19 @@ public class AnOldMansWish extends AbstractQuest {
 	 * Custom spawner so Creature is not attackable.
 	 */
 	public class MylingSpawner extends Entity implements TurnListener {
-		private boolean activeInWorld = false;
+		// should never be more than 1 myling in world at a time
+		private List<Myling> activeMylings = new LinkedList<Myling>();
 
 		public MylingSpawner() {
 			super();
 		}
 
 		private void respawn() {
-			if (!activeInWorld) {
+			if (!mylingIsActive()) {
 				final Myling myling = new Myling(this);
 				myling.setPosition(getX(), getY());
 				SingletonRepository.getRPWorld().getZone(getID().getZoneID()).add(myling);
-				activeInWorld = true;
+				activeMylings.add(myling);
 			}
 		}
 
@@ -459,12 +461,29 @@ public class AnOldMansWish extends AbstractQuest {
 		}
 
 		public void onMylingRemoved() {
-			activeInWorld = false;
+			for (int idx = 0; idx < activeMylings.size(); idx++) {
+				final Myling myling = activeMylings.get(idx);
+				final StendhalRPZone zone = myling.getZone();
+				if (zone != null && zone.has(myling.getID())) {
+					zone.remove(myling);
+				}
+				activeMylings.remove(myling);
+			}
+
+			// reset for next myling spawn
 			startTurnNotifier();
 		}
 
+		public void onMylingCured(final Player player) {
+			onMylingRemoved();
+			/* TODO:
+			 * - add SpeakerNPC instance of Niall
+			 * - update player quest slot
+			 */
+		}
+
 		public boolean mylingIsActive() {
-			return activeInWorld;
+			return activeMylings.size() > 0;
 		}
 	}
 
@@ -503,10 +522,6 @@ public class AnOldMansWish extends AbstractQuest {
 		@Override
 		public void onDead(final Killer killer, final boolean remove) {
 			super.onDead(killer, remove);
-			spawner.onMylingRemoved();
-		}
-
-		public void onCured(final Player player) {
 			spawner.onMylingRemoved();
 		}
 	}

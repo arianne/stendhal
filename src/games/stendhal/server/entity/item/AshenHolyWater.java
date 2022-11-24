@@ -35,19 +35,22 @@ public class AshenHolyWater extends Item {
 	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (user instanceof Player) {
+			final Player player = (Player) user;
+
 			if (checkZone(user)) {
-				if (checkMylingInWorld()) {
-					// DEBUG:
-					((Player) user).sendPrivateText("Used holy water.");
+				final AnOldMansWish.MylingSpawner spawner = AnOldMansWish.getMylingSpawner();
+
+				if (checkMylingInWorld(spawner)) {
+					player.sendPrivateText("You sprinkle the holy water over the myling's head.");
 
 					removeOne();
+					spawner.onMylingCured(player);
 				} else {
-					// DEBUG:
-					((Player) user).sendPrivateText("There is no myling here");
+					// TODO:
+					player.sendPrivateText("There is no myling here");
 				}
 			} else {
-				// DEBUG:
-				((Player) user).sendPrivateText("You cannot use this here.");
+				player.sendPrivateText("You cannot use this here.");
 			}
 		}
 
@@ -61,8 +64,7 @@ public class AshenHolyWater extends Item {
 		return user.getZone().equals(SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow"));
 	}
 
-	private boolean checkMylingInWorld() {
-		final AnOldMansWish.MylingSpawner spawner = AnOldMansWish.getMylingSpawner();
+	private boolean checkMylingInWorld(final AnOldMansWish.MylingSpawner spawner) {
 		return spawner != null && spawner.mylingIsActive();
 	}
 }
