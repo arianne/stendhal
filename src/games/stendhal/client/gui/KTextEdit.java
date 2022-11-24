@@ -60,13 +60,13 @@ import javax.swing.text.ViewFactory;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.UserContext;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.ChatTextSink;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
-import games.stendhal.client.UserContext;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 

@@ -33,7 +33,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
-import games.stendhal.server.maps.quests.AnOldMansWish;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
