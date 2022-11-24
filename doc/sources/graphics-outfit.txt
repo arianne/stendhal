@@ -100,6 +100,7 @@ data/sprites/outfit/dress/
 062 (armor)            bleutailfly; OGA BY 3.0; https://postimg.cc/xcf7MS00
 063                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 064                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+964 (child suspenders) Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 965                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 966 (queen robes)      diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/66147
 967*                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
@@ -231,6 +232,7 @@ data/sprites/outfit/hair/
 054             diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72198
 055             Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11445
 056             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+998             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 999             diamonddmgirl, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72198
 
 
