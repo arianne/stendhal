@@ -48,14 +48,14 @@ public class AnOldMansWishTest extends QuestHelper {
 	private SpeakerNPC marianne;
 	private SpeakerNPC priest;
 
-	private StendhalRPZone burrow;
+	private StendhalRPZone wellZone;
 
 
 	@Before
 	public void setup() {
-		// burrow zone must exist in world when quest is loaded
-		burrow = new StendhalRPZone("-1_cemetery_burrow");
-		SingletonRepository.getRPWorld().addRPZone("dummy", burrow);
+		// well zone must exist in world when quest is loaded
+		wellZone = new StendhalRPZone("-1_myling_well");
+		SingletonRepository.getRPWorld().addRPZone("dummy", wellZone);
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
 
 		player = PlayerTestHelper.createPlayer("player");
@@ -89,7 +89,8 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertNotNull(priest);
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
-		assertNotNull(burrow);
+		assertNotNull(wellZone);
+		assertEquals(wellZone, SingletonRepository.getRPWorld().getZone("-1_myling_well"));
 	}
 
 	private void checkBeforeQuest() {
@@ -331,16 +332,16 @@ public class AnOldMansWishTest extends QuestHelper {
 		final Item holy_water = player.getFirstEquipped("ashen holy water");
 		assertNotNull(holy_water);
 
-		assertFalse(burrow.equals(player.getZone()));
+		assertFalse(wellZone.equals(player.getZone()));
 
 		holy_water.onUsed(player);
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
 
-		// add player to burrow
+		// add player to well
 		player.getZone().remove(player);
-		burrow.add(player);
-		assertTrue(burrow.equals(player.getZone()));
+		wellZone.add(player);
+		assertTrue(wellZone.equals(player.getZone()));
 
 		holy_water.onUsed(player);
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));

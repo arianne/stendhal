@@ -61,7 +61,7 @@ public class AshenHolyWater extends Item {
 	 * Checks if the player is currently in the burrow.
 	 */
 	private boolean checkZone(final RPEntity user) {
-		return user.getZone().equals(SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow"));
+		return user.getZone().equals(SingletonRepository.getRPWorld().getZone("-1_myling_well"));
 	}
 
 	private boolean checkMylingInWorld(final AnOldMansWish.MylingSpawner spawner) {

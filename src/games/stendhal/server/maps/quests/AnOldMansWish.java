@@ -421,11 +421,10 @@ public class AnOldMansWish extends AbstractQuest {
 	}
 
 	private void prepareMylingSpawner() {
-		// TODO: use well instead of burrow
-		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-1_cemetery_burrow");
+		final StendhalRPZone wellZone = SingletonRepository.getRPWorld().getZone("-1_myling_well");
 		spawner = new MylingSpawner();
 		spawner.setPosition(6, 5);
-		zone.add(spawner);
+		wellZone.add(spawner);
 		spawner.startTurnNotifier();
 	}
 

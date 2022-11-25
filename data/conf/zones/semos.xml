@@ -402,16 +402,24 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
-    <portal x="46" y="81" ref="to_burrow">
-      <destination zone="-1_cemetery_burrow" ref="exit"/>
+    <portal x="14" y="19" ref="well_entrance_left">
+      <destination zone="-1_myling_well" ref="exit"/>
       <implementation
           class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
         <parameter name="condition">new QuestStartedCondition("an_old_mans_wish")</parameter>
         <parameter name="rejected">Something feels odd here.</parameter>
         <parameter name="action">new SetQuestAction("an_old_mans_wish", 1, "find_myling:done")</parameter>
       </implementation>
-      <attribute name="hidden"/>
-      <attribute name="resistance">0</attribute>
+    </portal>
+
+    <portal x="15" y="19" ref="well_entrance_right">
+      <destination zone="-1_myling_well" ref="exit"/>
+      <implementation
+          class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+        <parameter name="condition">new QuestStartedCondition("an_old_mans_wish")</parameter>
+        <parameter name="rejected">Something feels odd here.</parameter>
+        <parameter name="action">new SetQuestAction("an_old_mans_wish", 1, "find_myling:done")</parameter>
+      </implementation>
     </portal>
   </zone>
 
@@ -4216,12 +4224,12 @@ West: Deniran City
     <configurator class-name="games.stendhal.server.maps.semos.yeticave.MrsYetiNPC"/>
   </zone>
 
-  <zone name="-1_cemetery_burrow" file="interiors/abstract/burrow.tmx"
+  <zone name="-1_myling_well" file="interiors/abstract/myling_well.tmx"
       accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 
     <portal x="9" y="10" ref="exit">
-      <destination zone="0_semos_mountain_n2_e" ref="to_burrow"/>
+      <destination zone="0_semos_mountain_n2_e" ref="well_entrance_left"/>
       <attribute name="resistance">0</attribute>
     </portal>
   </zone>
