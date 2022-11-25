@@ -35,6 +35,8 @@ public class GrandsonNPC implements ZoneConfigurator {
 		final SpeakerNPC niall = new SpeakerNPC("Niall Breland");
 		niall.setOutfit("body=984,head=994,eyes=998,hair=998,dress=964");
 
+		niall.addGoodbye();
+
 		niall.setPosition(9, 7);
 
 		zone.add(niall);

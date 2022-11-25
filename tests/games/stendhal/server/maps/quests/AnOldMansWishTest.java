@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC;
+import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
@@ -45,6 +46,7 @@ public class AnOldMansWishTest extends QuestHelper {
 
 	private Player player;
 	private SpeakerNPC elias;
+	private SpeakerNPC niall;
 	private SpeakerNPC marianne;
 	private SpeakerNPC priest;
 
@@ -62,9 +64,11 @@ public class AnOldMansWishTest extends QuestHelper {
 		zone.add(player);
 
 		new GrandfatherNPC().configureZone(zone, null);
+		new GrandsonNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
 		new PriestNPC().configureZone(zone, null);
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
+		niall = SingletonRepository.getNPCList().get("Niall Breland");
 		marianne = SingletonRepository.getNPCList().get("Marianne");
 		priest = SingletonRepository.getNPCList().get("Priest Calenus");
 	}
@@ -85,6 +89,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertNotNull(player);
 		assertNotNull(player.getZone());
 		assertNotNull(elias);
+		assertNotNull(niall);
 		assertNotNull(marianne);
 		assertNotNull(priest);
 		assertFalse(player.hasQuest(QUEST_SLOT));
@@ -357,19 +362,60 @@ public class AnOldMansWishTest extends QuestHelper {
 	}
 
 	private void checkCompleteStep() {
-		// TODO: complete quest
-		player.setQuest(QUEST_SLOT, 0, "done");
+		assertNull(player.getFeature("bag"));
 
 		Engine en = elias.getEngine();
 
 		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"You have returned my grandson to me. I cannot thank you enough."
+				+ " I don't have much to offer for your kind service, but"
+				+ " please speak to Niall. He is in the basement.",
+			getReply(elias));
+		en.step(player, "bye");
+
+		en = niall.getEngine();
+
+		final int xpBefore = player.getXP();
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Thank you. Without your help, I would have never made it back"
+				+ " home. I want you to have my backpack. It will let you carry"
+				+ " more stuff.",
+			getReply(niall));
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("done", player.getQuest(QUEST_SLOT, 0));
+		assertEquals("3 5", player.getFeature("bag"));
+		assertEquals(5000, player.getXP() - xpBefore);
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Hi again. I'm getting ready to go on another adventure with"
+				+ " Marianne. But don't worry, we are staying away from"
+				+ " cemeteries.",
+			getReply(niall));
+		en.step(player, "bye");
+
+		en = elias.getEngine();
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Thank you for returning my grandson to me. He is in the basement"
+				+ " if you want to speak to him.",
+			getReply(elias));
+
 		en.step(player, "quest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 			"Thank you for returning my grandson to me. I am overfilled"
 				+ " with joy!",
 			getReply(elias));
-
 		en.step(player, "bye");
 
 		en = marianne.getEngine();

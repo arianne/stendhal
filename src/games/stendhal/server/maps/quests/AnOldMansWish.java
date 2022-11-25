@@ -35,7 +35,9 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -65,6 +67,11 @@ import games.stendhal.server.maps.Region;
  * Required items:
  * - rope ladder
  * - holy water
+ *
+ * Reward:
+ * - 5000 XP
+ * - 500 karma
+ * - 3 more bag slots
  */
 public class AnOldMansWish extends AbstractQuest {
 
@@ -417,7 +424,55 @@ public class AnOldMansWish extends AbstractQuest {
 	}
 
 	private void prepareCompleteStep() {
-		// TODO:
+		final SpeakerNPC niall = npcs.get("Niall Breland");
+
+		final ChatCondition canGetReward = new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new QuestInStateCondition(QUEST_SLOT, 3, "heal_myling:done"));
+
+		// Niall has been healed
+		elias.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			canGetReward,
+			ConversationStates.ATTENDING,
+			"You have returned my grandson to me. I cannot thank you enough."
+				+ " I don't have much to offer for your kind service, but"
+				+ " please speak to Niall. He is in the basement.",
+				null);
+
+		elias.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Thank you for returning my grandson to me. He is in the basement"
+				+ " if you want to speak to him.",
+			null);
+
+		niall.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			canGetReward,
+			ConversationStates.ATTENDING,
+			"Thank you. Without your help, I would have never made it back"
+				+ " home. I want you to have my backpack. It will let you carry"
+				+ " more stuff.",
+			new MultipleActions(
+				new SetQuestAction(QUEST_SLOT, 0, "done"),
+				new IncreaseKarmaAction(500),
+				new IncreaseXPAction(5000),
+				new EnableFeatureAction("bag", "3 5")));
+
+		niall.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Hi again. I'm getting ready to go on another adventure with"
+				+ " Marianne. But don't worry, we are staying away from"
+				+ " cemeteries.",
+			null);
 	}
 
 	private void prepareMylingSpawner() {
