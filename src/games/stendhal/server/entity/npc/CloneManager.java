@@ -365,4 +365,20 @@ public class CloneManager {
 	public SpeakerNPC getOriginal(final SpeakerNPC npc) {
 		return getOriginal(npc.getName());
 	}
+
+	/**
+	 * Retrieves the number of currently registered clones for an NPC.
+	 *
+	 * @param origName
+	 *     Name of the original SpeakerNPC.
+	 * @return
+	 *     Number of registered clone names.
+	 */
+	public int getCloneCount(final String origName) {
+		if (!clonedList.containsKey(origName)) {
+			return 0;
+		}
+
+		return clonedList.get(origName).size();
+	}
 }
