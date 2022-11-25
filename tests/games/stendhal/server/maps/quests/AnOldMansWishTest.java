@@ -383,8 +383,8 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 			"Thank you. Without your help, I would have never made it back"
-				+ " home. I want you to have my backpack. It will let you carry"
-				+ " more stuff.",
+				+ " home. This is my backpack. I want you to have it. It will"
+				+ " enable you to carry more stuff.",
 			getReply(niall));
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());

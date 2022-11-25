@@ -18,10 +18,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
@@ -29,6 +34,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -74,6 +80,8 @@ import games.stendhal.server.maps.Region;
  * - 3 more bag slots
  */
 public class AnOldMansWish extends AbstractQuest {
+
+	private static final Logger logger = Logger.getLogger(AnOldMansWish.class);
 
 	public static final String QUEST_SLOT = "an_old_mans_wish";
 	private static final int min_level = 100;
@@ -456,8 +464,8 @@ public class AnOldMansWish extends AbstractQuest {
 			canGetReward,
 			ConversationStates.ATTENDING,
 			"Thank you. Without your help, I would have never made it back"
-				+ " home. I want you to have my backpack. It will let you carry"
-				+ " more stuff.",
+				+ " home. This is my backpack. I want you to have it. It will"
+				+ " enable you to carry more stuff.",
 			new MultipleActions(
 				new SetQuestAction(QUEST_SLOT, 0, "done"),
 				new IncreaseKarmaAction(500),
@@ -480,7 +488,7 @@ public class AnOldMansWish extends AbstractQuest {
 		spawner = new MylingSpawner();
 		spawner.setPosition(6, 5);
 		wellZone.add(spawner);
-		spawner.startTurnNotifier();
+		spawner.startSpawnTimer();
 	}
 
 	public static MylingSpawner getMylingSpawner() {
@@ -493,7 +501,21 @@ public class AnOldMansWish extends AbstractQuest {
 	 */
 	public class MylingSpawner extends Entity implements TurnListener {
 		// should never be more than 1 myling in world at a time
-		private List<Myling> activeMylings = new LinkedList<Myling>();
+		private final List<Myling> activeMylings = new LinkedList<Myling>();
+		private final List<SpeakerNPC> activeNialls = new LinkedList<SpeakerNPC>();
+
+		//private static int respawnTurns = 2000;
+		private final int respawnTurns = 20;
+
+		private final String[] dialogue = new String[] {
+			"You cured me!",
+			"I have been stuck in that myling form for so long now. My"
+				+ " grandpa must be worried sick about me.",
+			"I need to get home as soon as possible to let him know I am"
+				+ " alright. Stop by my house sometime. There is something I"
+				+ " want to give you.",
+			null // signals Niall is done talking
+		};
 
 		public MylingSpawner() {
 			super();
@@ -509,12 +531,16 @@ public class AnOldMansWish extends AbstractQuest {
 		}
 
 		public void onTurnReached(final int currentTurn) {
-			respawn();
+			if (niallIsActive()) {
+				// wait for Niall clones to be removed before respawning myling
+				startSpawnTimer();
+			} else {
+				respawn();
+			}
 		}
 
-		public void startTurnNotifier() {
-			//SingletonRepository.getTurnNotifier().notifyInTurns(2000, this); // 10 minutes
-			SingletonRepository.getTurnNotifier().notifyInTurns(20, this);
+		public void startSpawnTimer() {
+			SingletonRepository.getTurnNotifier().notifyInTurns(respawnTurns, this);
 		}
 
 		public void onMylingRemoved() {
@@ -528,19 +554,58 @@ public class AnOldMansWish extends AbstractQuest {
 			}
 
 			// reset for next myling spawn
-			startTurnNotifier();
+			startSpawnTimer();
 		}
 
 		public void onMylingCured(final Player player) {
 			onMylingRemoved();
-			/* TODO:
-			 * - add SpeakerNPC instance of Niall
-			 */
 			player.setQuest(QUEST_SLOT, 3, "heal_myling:done");
+
+			final CloneManager cloneM = SingletonRepository.getCloneManager();
+
+			final SpeakerNPC curedNiall = cloneM.clone("Niall Breland");
+			if (curedNiall == null) {
+				logger.error("Couldn't create temporary clone of Niall Breland");
+			} else {
+				curedNiall.setPosition(getX(), getY());
+				curedNiall.setCollisionAction(CollisionAction.STOP);
+				getZone().add(curedNiall);
+				activeNialls.add(curedNiall);
+
+				SingletonRepository.getTurnNotifier().notifyInTurns(75, new TurnListener() {
+					public void onTurnReached(final int currentTurn) {
+						// remove Niall from world so new Myling can spawn
+						activeNialls.remove(curedNiall);
+						SingletonRepository.getRPWorld().remove(curedNiall.getID());
+					}
+				});
+
+				int talkDelay = 0;
+				for (final String phrase : dialogue) {
+					talkDelay += 10;
+					SingletonRepository.getTurnNotifier().notifyInTurns(talkDelay, new TurnListener() {
+						public void onTurnReached(final int currentTurn) {
+							if (phrase == null) {
+								// walk to rope/ladder
+								final List<Node> nodes = new LinkedList<Node>();
+								nodes.add(new Node(6, 10));
+								nodes.add(new Node(8, 10));
+								curedNiall.setPath(new FixedPath(nodes, false));
+							} else {
+								curedNiall.say(phrase);
+							}
+						}
+					});
+				 }
+			}
 		}
 
 		public boolean mylingIsActive() {
 			return activeMylings.size() > 0;
+		}
+
+		public boolean niallIsActive() {
+			return activeNialls.size() > 0;
 		}
 	}
 
