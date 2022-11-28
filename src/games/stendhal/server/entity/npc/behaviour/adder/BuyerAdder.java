@@ -47,10 +47,28 @@ public class BuyerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
+	/**
+	 * Configures an NPC to buy items.
+	 *
+	 * @param npc
+	 *     The NPC that buys.
+	 * @param buyerBehavior
+	 *     The <code>BuyerBehaviour</code>.
+	 */
 	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour) {
 		addBuyer(npc, buyerBehaviour, true);
 	}
 
+	/**
+	 * Configures an NPC to buy items.
+	 *
+	 * @param npc
+	 *     The NPC that buys.
+	 * @param buyerBehavior
+	 *     The <code>BuyerBehaviour</code>.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
+	 */
 	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
 

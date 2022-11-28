@@ -50,10 +50,28 @@ public class SellerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
+	/**
+	 * Configures an NPC to sell items.
+	 *
+	 * @param npc
+	 *     The NPC that buys.
+	 * @param sellerBehavior
+	 *     The <code>SllerBehaviour</code>.
+	 */
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);
 	}
 
+	/**
+	 * Configures an NPC to sell items.
+	 *
+	 * @param npc
+	 *     The NPC that buys.
+	 * @param sellerBehavior
+	 *     The <code>SllerBehaviour</code>.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
+	 */
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour sellerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
 
