@@ -82,9 +82,9 @@ public class FarmerNPC implements ZoneConfigurator {
 						"way is a bit harder.");
 				addQuest("I don't have time for those things, sorry. Working.. working.. working..");
 				addReply("empty sack","Oh, I got plenty of those to sell. Ask me for an #offer.");
-                final Map<String, Integer> offerings = new HashMap<String, Integer>();
-                offerings.put("empty sack", 10);
-                new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
+				final Map<String, Integer> offerings = new HashMap<String, Integer>();
+				offerings.put("empty sack", 10);
+				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 				addGoodbye("Bye bye. Be careful on your way.");
 			}
 		};
