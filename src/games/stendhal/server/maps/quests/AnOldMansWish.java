@@ -409,23 +409,26 @@ public class AnOldMansWish extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
-				new NotCondition(new PlayerHasItemWithHimCondition("water"))),
+				new OrCondition(
+					new NotCondition(new PlayerHasItemWithHimCondition("water")),
+					new NotCondition(new PlayerHasItemWithHimCondition("charcoal")))),
 			ConversationStates.ATTENDING,
-			"Hurry, bring me a flask of water to bless.",
+			"Hurry, bring me a flask of water and some charcoal to bless.",
 			null);
 
-		// TODO: include charcoal as ingredient
 		priest.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
-				new PlayerHasItemWithHimCondition("water")),
+				new PlayerHasItemWithHimCondition("water"),
+				new PlayerHasItemWithHimCondition("charcoal")),
 			ConversationStates.ATTENDING,
 			"Excellent! I have blessed the water. Go and use it to restore"
 				+ " the young man.",
 			new MultipleActions(
 				new DropItemAction("water"),
+				new DropItemAction("charcoal"),
 				equipWithHolyWater,
 				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done"),
 				new SetQuestAction(QUEST_SLOT, 3, "heal_myling:start")));

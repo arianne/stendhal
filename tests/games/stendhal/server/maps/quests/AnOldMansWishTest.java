@@ -297,7 +297,30 @@ public class AnOldMansWishTest extends QuestHelper {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Hurry, bring me a flask of water to bless.", getReply(priest));
+		assertEquals(
+			"Hurry, bring me a flask of water and some charcoal to bless.",
+			getReply(priest));
+		en.step(player, "bye");
+
+		PlayerTestHelper.equipWithItem(player, "water");
+		assertEquals(1, player.getNumberOfEquipped("water"));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Hurry, bring me a flask of water and some charcoal to bless.",
+			getReply(priest));
+		en.step(player, "bye");
+
+		player.drop("water");
+		PlayerTestHelper.equipWithItem(player, "charcoal");
+		assertEquals(1, player.getNumberOfEquipped("charcoal"));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Hurry, bring me a flask of water and some charcoal to bless.",
+			getReply(priest));
 		en.step(player, "bye");
 
 		PlayerTestHelper.equipWithItem(player, "water");
@@ -312,6 +335,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
 		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
 		assertFalse(player.isEquipped("water"));
+		assertFalse(player.isEquipped("charcoal"));
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		en.step(player, "bye");
 
