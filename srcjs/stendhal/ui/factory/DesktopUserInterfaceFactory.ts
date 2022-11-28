@@ -15,10 +15,10 @@ import { ui } from "../UI";
 import { Component } from "../toolkit/Component";
 import { Panel } from "../toolkit/Panel";
 
+import { BagComponent } from "../component/BagComponent";
 import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
-import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
 import { KeyringComponent } from "../component/KeyringComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
@@ -42,7 +42,7 @@ export class DesktopUserInterfaceFactory {
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
 		this.add(rightPanel, UIComponentEnum.PlayerEquipment, new PlayerEquipmentComponent());
 		this.add(rightPanel, UIComponentEnum.Bag,
-			new ItemInventoryComponent(undefined, "bag", 3, 4, false, undefined));
+			new BagComponent(undefined, "bag", 3, 4, false, undefined));
 
 		const keyring = new KeyringComponent(undefined, "keyring", 2, 4, false, "slot-key.png");
 		// hide keyring by default

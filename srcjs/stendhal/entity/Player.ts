@@ -46,6 +46,7 @@ export class Player extends RPEntity {
 
 		queueMicrotask( () => {
 			(ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent).update(key);
+			(ui.get(UIComponentEnum.Bag) as ItemInventoryComponent).update();
 			(ui.get(UIComponentEnum.Keyring) as ItemInventoryComponent).update();
 		});
 	}
