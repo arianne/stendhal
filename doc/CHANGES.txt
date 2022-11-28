@@ -17,6 +17,7 @@ Changelog
 - Deathmatch Convoy achievement: Aid other players in 100 rounds of deathmatch
 - range can be set for entity public text events
 - Omura Sumitada's training announcements can be heard anywhere in dojo
+- item descriptions show regen & frequency values
 
 *graphics*
 - reworked chaos sprites for Cabbit bases

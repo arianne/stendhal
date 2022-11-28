@@ -788,6 +788,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 			stats.append(" HP: ");
 			stats.append(get("amount"));
 		}
+		if (has("frequency")) {
+			stats.append(" FREQUENCY: ");
+			stats.append(get("frequency"));
+		}
+		if (has("regen")) {
+			stats.append(" REGEN: ");
+			stats.append(get("regen"));
+		}
 		if (has("range")) {
 			stats.append(" RANGE: ");
 			stats.append(get("range"));
