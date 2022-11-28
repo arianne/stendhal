@@ -29,30 +29,30 @@ public class RPEntityRPClass {
 	 *
 	 * @param ATTR_TITLE title attribute name
 	 */
-    public static void generateRPClass(String ATTR_TITLE) {
-        final RPClass entity = new RPClass("rpentity");
+	public static void generateRPClass(String ATTR_TITLE) {
+		final RPClass entity = new RPClass("rpentity");
 
-        entity.isA(CombatEntity.RPCLASS_NAME);
-        entity.addAttribute("name", Type.STRING);
-        entity.addAttribute(ATTR_TITLE, Type.STRING);
+		entity.isA(CombatEntity.RPCLASS_NAME);
+		entity.addAttribute("name", Type.STRING);
+		entity.addAttribute(ATTR_TITLE, Type.STRING);
 
-        entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
-        entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
+		entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
+		entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
 
-        entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
 
-        entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
-        entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
-        entity.addAttribute("no_attack", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("no_attack", Type.FLAG, Definition.VOLATILE);
 		// client will suppress drawing shadow under entity if this is set
-        entity.addAttribute("no_shadow", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("no_shadow", Type.FLAG, Definition.VOLATILE);
 		// the shadow the client should draw for entity
 		// defaults to sprite dimensions if "no_shadow" not set
-        entity.addAttribute("shadow_style", Type.STRING, Definition.VOLATILE);
+		entity.addAttribute("shadow_style", Type.STRING, Definition.VOLATILE);
 
-        // Jobs
-        entity.addAttribute("job_merchant", Type.FLAG, Definition.VOLATILE);
-        entity.addAttribute("job_healer", Type.FLAG, Definition.VOLATILE);
+		// Jobs
+		entity.addAttribute("job_merchant", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("job_healer", Type.FLAG, Definition.VOLATILE);
 
 		/* Movement */
 		entity.addAttribute(PATHSET, Type.STRING, Definition.VOLATILE);
@@ -61,20 +61,20 @@ public class RPEntityRPClass {
 		// animation should cycle even if entity is idle
 		entity.addAttribute("active_idle", Type.FLAG, Definition.VOLATILE);
 
-        entity.addRPSlot("head", 1, Definition.PRIVATE);
-        entity.addRPSlot("rhand", 1, Definition.PRIVATE);
-        entity.addRPSlot("lhand", 1, Definition.PRIVATE);
-        entity.addRPSlot("armor", 1, Definition.PRIVATE);
-        entity.addRPSlot("finger", 1, Definition.PRIVATE);
-        entity.addRPSlot("cloak", 1, Definition.PRIVATE);
-        entity.addRPSlot("legs", 1, Definition.PRIVATE);
-        entity.addRPSlot("feet", 1, Definition.PRIVATE);
-        entity.addRPSlot("back", 1, Definition.PRIVATE);
-        entity.addRPSlot("belt", 1, (byte) (Definition.PRIVATE|Definition.VOLATILE));
+		entity.addRPSlot("head", 1, Definition.PRIVATE);
+		entity.addRPSlot("rhand", 1, Definition.PRIVATE);
+		entity.addRPSlot("lhand", 1, Definition.PRIVATE);
+		entity.addRPSlot("armor", 1, Definition.PRIVATE);
+		entity.addRPSlot("finger", 1, Definition.PRIVATE);
+		entity.addRPSlot("cloak", 1, Definition.PRIVATE);
+		entity.addRPSlot("legs", 1, Definition.PRIVATE);
+		entity.addRPSlot("feet", 1, Definition.PRIVATE);
+		entity.addRPSlot("back", 1, Definition.PRIVATE);
+		entity.addRPSlot("belt", 1, (byte) (Definition.PRIVATE|Definition.VOLATILE));
 
-        entity.addRPSlot("bag", 15, Definition.PRIVATE);
-        entity.addRPSlot("keyring", 12, Definition.PRIVATE);
+		entity.addRPSlot("bag", 15, Definition.PRIVATE);
+		entity.addRPSlot("keyring", 12, Definition.PRIVATE);
 
-        entity.addRPSlot("portfolio", 9, Definition.VOLATILE);
-    }
+		entity.addRPSlot("portfolio", 9, Definition.VOLATILE);
+	}
 }
