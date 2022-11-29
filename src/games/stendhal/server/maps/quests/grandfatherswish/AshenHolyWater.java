@@ -9,11 +9,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.item;
+package games.stendhal.server.maps.quests.grandfatherswish;
 
 import java.util.Map;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.maps.quests.GrandfathersWish;
