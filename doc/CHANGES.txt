@@ -18,6 +18,7 @@ Changelog
 - range can be set for entity public text events
 - Omura Sumitada's training announcements can be heard anywhere in dojo
 - item descriptions show regen & frequency values
+- Karl sells horse hair after Bows for Ouchit quest
 
 *graphics*
 - reworked chaos sprites for Cabbit bases

@@ -17,11 +17,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
@@ -73,7 +79,7 @@ public class FarmerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Heyho! Nice to see you here at our farm.");
 				addJob("Oh, working here is hard, I don't think that you can help me here.");
-				addOffer("Our milk is really tasty. Ask my wife #Philomena for some.");
+				//addOffer("Our milk is really tasty. Ask my wife #Philomena for some.");
 				addReply("Philomena","She's in the farm house just south west from here.");
 				addHelp("You need help? I can tell you a bit about the #neighborhood.");
 				addReply("neighborhood.","In the north is a cave with bears and other creatures. If you go to the north-east " +
@@ -82,10 +88,41 @@ public class FarmerNPC implements ZoneConfigurator {
 						"way is a bit harder.");
 				addQuest("I don't have time for those things, sorry. Working.. working.. working..");
 				addReply("empty sack","Oh, I got plenty of those to sell. Ask me for an #offer.");
+				addGoodbye("Bye bye. Be careful on your way.");
+
+				// shop
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("empty sack", 10);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
-				addGoodbye("Bye bye. Be careful on your way.");
+				final Map<String, Integer> allOfferings = new HashMap<String, Integer>();
+				allOfferings.putAll(offerings);
+				allOfferings.put("horse hair", 20);
+				final SellerBehaviour behaviour = new SellerBehaviour(allOfferings);
+				final Map<String, ChatCondition> conditions = new HashMap<String, ChatCondition>();
+				conditions.put("horse hair", new QuestCompletedCondition("bows_ouchit"));
+				behaviour.addConditions(this, conditions);
+				new SellerAdder().addSeller(this, behaviour, false);
+
+				final String offerReply = "Our milk is really tasty. Ask my wife #Philomena for some.";
+				add(
+					ConversationStates.ATTENDING,
+					ConversationPhrases.OFFER_MESSAGES,
+					new QuestNotCompletedCondition("bows_ouchit"),
+					false,
+					ConversationStates.ATTENDING,
+					offerReply + " I sell "
+						+ Grammar.enumerateCollection(offerings.keySet()) + ".",
+					null);
+
+				add(
+					ConversationStates.ATTENDING,
+					ConversationPhrases.OFFER_MESSAGES,
+					new QuestCompletedCondition("bows_ouchit"),
+					false,
+					ConversationStates.ATTENDING,
+					offerReply + " I sell "
+						+ Grammar.enumerateCollection(allOfferings.keySet())
+						+ ".",
+					null);
 			}
 		};
 
