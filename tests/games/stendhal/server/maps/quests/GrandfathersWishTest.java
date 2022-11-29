@@ -34,6 +34,7 @@ import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
+import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -354,7 +355,7 @@ public class GrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkHealMylingStep() {
-		final GrandfathersWish.MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
+		final MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
 		assertNotNull(spawner);
 		assertFalse(spawner.mylingIsActive());
 

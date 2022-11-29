@@ -13,28 +13,14 @@ package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Killer;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -59,6 +45,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
 
 
 /**
@@ -80,8 +67,6 @@ import games.stendhal.server.maps.Region;
  * - 3 more bag slots
  */
 public class GrandfathersWish extends AbstractQuest {
-
-	private static final Logger logger = Logger.getLogger(GrandfathersWish.class);
 
 	public static final String QUEST_SLOT = "grandfatherswish";
 	private static final int min_level = 100;
@@ -496,158 +481,5 @@ public class GrandfathersWish extends AbstractQuest {
 
 	public static MylingSpawner getMylingSpawner() {
 		return spawner;
-	}
-
-
-	/**
-	 * Custom spawner so Creature is not attackable.
-	 */
-	public class MylingSpawner extends Entity implements TurnListener {
-		// should never be more than 1 myling in world at a time
-		private final List<Myling> activeMylings = new LinkedList<Myling>();
-		private final List<SpeakerNPC> activeNialls = new LinkedList<SpeakerNPC>();
-
-		//private static int respawnTurns = 2000;
-		private final int respawnTurns = 20;
-
-		private final String[] dialogue = new String[] {
-			"You cured me!",
-			"I have been stuck in that myling form for so long now. My"
-				+ " grandpa must be worried sick about me.",
-			"I need to get home as soon as possible to let him know I am"
-				+ " alright. Stop by my house sometime. There is something I"
-				+ " want to give you.",
-			null // signals Niall is done talking
-		};
-
-		public MylingSpawner() {
-			super();
-		}
-
-		private void respawn() {
-			if (!mylingIsActive()) {
-				final Myling myling = new Myling(this);
-				myling.setPosition(getX(), getY());
-				SingletonRepository.getRPWorld().getZone(getID().getZoneID()).add(myling);
-				activeMylings.add(myling);
-			}
-		}
-
-		public void onTurnReached(final int currentTurn) {
-			if (niallIsActive()) {
-				// wait for Niall clones to be removed before respawning myling
-				startSpawnTimer();
-			} else {
-				respawn();
-			}
-		}
-
-		public void startSpawnTimer() {
-			SingletonRepository.getTurnNotifier().notifyInTurns(respawnTurns, this);
-		}
-
-		public void onMylingRemoved() {
-			for (int idx = 0; idx < activeMylings.size(); idx++) {
-				final Myling myling = activeMylings.get(idx);
-				final StendhalRPZone zone = myling.getZone();
-				if (zone != null && zone.has(myling.getID())) {
-					zone.remove(myling);
-				}
-				activeMylings.remove(myling);
-			}
-
-			// reset for next myling spawn
-			startSpawnTimer();
-		}
-
-		public void onMylingCured(final Player player) {
-			onMylingRemoved();
-			player.setQuest(QUEST_SLOT, 3, "heal_myling:done");
-
-			final CloneManager cloneM = SingletonRepository.getCloneManager();
-
-			final SpeakerNPC curedNiall = cloneM.clone("Niall Breland");
-			if (curedNiall == null) {
-				logger.error("Couldn't create temporary clone of Niall Breland");
-			} else {
-				curedNiall.setPosition(getX(), getY());
-				curedNiall.setCollisionAction(CollisionAction.STOP);
-				getZone().add(curedNiall);
-				activeNialls.add(curedNiall);
-
-				SingletonRepository.getTurnNotifier().notifyInTurns(75, new TurnListener() {
-					public void onTurnReached(final int currentTurn) {
-						// remove Niall from world so new Myling can spawn
-						activeNialls.remove(curedNiall);
-						SingletonRepository.getRPWorld().remove(curedNiall.getID());
-					}
-				});
-
-				int talkDelay = 0;
-				for (final String phrase : dialogue) {
-					talkDelay += 10;
-					SingletonRepository.getTurnNotifier().notifyInTurns(talkDelay, new TurnListener() {
-						public void onTurnReached(final int currentTurn) {
-							if (phrase == null) {
-								// walk to rope/ladder
-								final List<Node> nodes = new LinkedList<Node>();
-								nodes.add(new Node(6, 10));
-								nodes.add(new Node(8, 10));
-								curedNiall.setPath(new FixedPath(nodes, false));
-							} else {
-								curedNiall.say(phrase);
-							}
-						}
-					});
-				 }
-			}
-		}
-
-		public boolean mylingIsActive() {
-			return activeMylings.size() > 0;
-		}
-
-		public boolean niallIsActive() {
-			return activeNialls.size() > 0;
-		}
-	}
-
-	private class Myling extends Creature {
-		private MylingSpawner spawner;
-
-		public Myling(final MylingSpawner spawner) {
-			super();
-			this.spawner = spawner;
-
-			setName("myling");
-			setEntityClass("undead");
-			setEntitySubclass("myling");
-			setDescription("You see a myling.");
-			setBaseHP(100);
-			setHP(10);
-			setBaseSpeed(0.8);
-
-			final Map<String, String> aiProfiles = new LinkedHashMap<String, String>();
-			aiProfiles.put("patrolling", "");
-			setAIProfiles(aiProfiles);
-		}
-
-		@Override
-		public boolean isAttackable() {
-			return false;
-		}
-
-		@Override
-		public void onRejectedAttackStart(final RPEntity attacker) {
-			if (attacker instanceof Player) {
-				((Player) attacker).sendPrivateText("That's not a good idea.");
-			}
-		}
-
-		@Override
-		public void onDead(final Killer killer, final boolean remove) {
-			super.onDead(killer, remove);
-			spawner.onMylingRemoved();
-		}
 	}
 }
