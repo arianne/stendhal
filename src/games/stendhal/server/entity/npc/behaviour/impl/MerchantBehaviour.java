@@ -12,12 +12,16 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.FixedPricePriceCalculationStrategy;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.PriceCalculationStrategy;
 import games.stendhal.server.entity.player.Player;
@@ -31,6 +35,12 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 //	protected Map<String, Integer> priceList;
 
 	protected PriceCalculationStrategy priceCalculator;
+
+	// merchant only deals with these items if condition is met
+	private Map<String, ChatCondition> conditions;
+
+	private SpeakerNPC merchant;
+
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
@@ -47,21 +57,46 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	/**
 	 * Returns a set of the names of all items that the NPC deals with.
 	 *
-	 * @return the dealt items
+	 * @return
+	 *     The dealt items.
 	 */
 	public Set<String> dealtItems() {
-		return priceCalculator.dealtItems();
+		if (conditions == null || conditions.isEmpty()) {
+			return priceCalculator.dealtItems();
+		}
+
+		Player player = null;
+		if (merchant != null) {
+			final RPEntity attending = merchant.getAttending();
+			if (attending instanceof Player) {
+				player = (Player) attending;
+			}
+		}
+
+		final Set<String> items = new HashSet<String>();
+		for (final String itemName : priceCalculator.dealtItems()) {
+			if (!conditions.containsKey(itemName)) {
+				items.add(itemName);
+			} else if (player != null) {
+				if (conditions.get(itemName).fire(player, null, null)) {
+					items.add(itemName);
+				}
+			}
+		}
+
+		return items;
 	}
 
 	/**
 	 * Checks whether the NPC deals with the specified item.
 	 *
 	 * @param item
-	 *            the name of the item
-	 * @return true iff the NPC deals with the item
+	 *     The name of the item.
+	 * @return
+	 *     <code>true</code> if the NPC deals with the item.
 	 */
 	public boolean hasItem(final String item) {
-		return priceCalculator.hasItem(item);
+		return dealtItems().contains(item);
 	}
 
 	/**
@@ -90,5 +125,23 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 		} else {
 			return res.getAmount() * getUnitPrice(res.getChosenItemName());
 		}
+	}
+
+	/**
+	 * Adds a list of items that are dealt only if a condition is met.
+	 *
+	 * @param merchant
+	 *     SpeakerNPC that is the merchant.
+	 * @param conditions
+	 *     List of conditions to check item availability against.
+	 */
+	public void addConditions(final SpeakerNPC merchant, final Map<String, ChatCondition> conditions) {
+		this.merchant = merchant;
+		this.conditions = conditions;
+	}
+
+	@Override
+	public Set<String> getItemNames() {
+		return dealtItems();
 	}
 }

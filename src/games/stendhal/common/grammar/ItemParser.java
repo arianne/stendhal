@@ -40,7 +40,10 @@ public class ItemParser {
 	 * @return parsing result
 	 */
 	public ItemParserResult parse(final Sentence sentence) {
-		if (itemNames.isEmpty()) {
+		// get names from overriden method
+		final Set<String> iNames = getItemNames();
+
+		if (iNames.isEmpty()) {
     		List<Expression> expressions = sentence.getExpressions();
     		String chosenName;
     		int amount;
@@ -58,7 +61,7 @@ public class ItemParser {
 			return new ItemParserResult(false, chosenName, amount, null);
 		}
 
-		NameSearch search = sentence.findMatchingName(itemNames);
+		NameSearch search = sentence.findMatchingName(iNames);
 
 		boolean found = search.found();
 
@@ -82,16 +85,16 @@ public class ItemParser {
         		amount = 1;
     		}
 
-			if (chosenName == null && itemNames.size() == 1) {
+			if (chosenName == null && iNames.size() == 1) {
     			// The NPC only offers one type of ware, so
     			// it's clear what the player wants.
-				chosenName = itemNames.iterator().next();
+				chosenName = iNames.iterator().next();
 				found = true;
 			} else if (chosenName != null) {
 				mayBeItems = new HashSet<String>();
 
     			// search for items to sell with compound names, ending with the given expression
-    			for(String name : itemNames) {
+    			for(String name : iNames) {
     				if (name.endsWith(" "+chosenName)||(name.startsWith(chosenName+" "))) {
     					mayBeItems.add(name);
     				}
