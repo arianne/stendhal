@@ -16,7 +16,7 @@ import java.util.Map;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.maps.quests.AnOldMansWish;
+import games.stendhal.server.maps.quests.GrandfathersWish;
 
 
 /**
@@ -38,7 +38,7 @@ public class AshenHolyWater extends Item {
 			final Player player = (Player) user;
 
 			if (checkZone(user)) {
-				final AnOldMansWish.MylingSpawner spawner = AnOldMansWish.getMylingSpawner();
+				final GrandfathersWish.MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
 
 				if (checkMylingInWorld(spawner)) {
 					player.sendPrivateText("You sprinkle the holy water over the myling's head.");
@@ -64,7 +64,7 @@ public class AshenHolyWater extends Item {
 		return user.getZone().equals(SingletonRepository.getRPWorld().getZone("-1_myling_well"));
 	}
 
-	private boolean checkMylingInWorld(final AnOldMansWish.MylingSpawner spawner) {
+	private boolean checkMylingInWorld(final GrandfathersWish.MylingSpawner spawner) {
 		return spawner != null && spawner.mylingIsActive();
 	}
 }

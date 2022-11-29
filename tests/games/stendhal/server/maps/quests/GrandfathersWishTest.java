@@ -38,11 +38,11 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 
-public class AnOldMansWishTest extends QuestHelper {
+public class GrandfathersWishTest extends QuestHelper {
 
 	private static final StendhalQuestSystem quests = StendhalQuestSystem.get();
 
-	private static final String QUEST_SLOT = AnOldMansWish.QUEST_SLOT;
+	private static final String QUEST_SLOT = GrandfathersWish.QUEST_SLOT;
 
 	private Player player;
 	private SpeakerNPC elias;
@@ -134,7 +134,7 @@ public class AnOldMansWishTest extends QuestHelper {
 		assertEquals("Hello young one.", getReply(elias));
 
 		// add quest to world
-		final AnOldMansWish quest = new AnOldMansWish();
+		final GrandfathersWish quest = new GrandfathersWish();
 		assertFalse(quests.isLoaded(quest));
 		quests.loadQuest(quest);
 		assertTrue(quests.isLoaded(quest));
@@ -354,7 +354,7 @@ public class AnOldMansWishTest extends QuestHelper {
 	}
 
 	private void checkHealMylingStep() {
-		final AnOldMansWish.MylingSpawner spawner = AnOldMansWish.getMylingSpawner();
+		final GrandfathersWish.MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
 		assertNotNull(spawner);
 		assertFalse(spawner.mylingIsActive());
 

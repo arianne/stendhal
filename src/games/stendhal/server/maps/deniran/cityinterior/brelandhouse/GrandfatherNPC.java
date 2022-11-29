@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.brelandhouse;
 
+import static games.stendhal.server.maps.quests.GrandfathersWish.QUEST_SLOT;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +46,7 @@ public class GrandfatherNPC implements ZoneConfigurator  {
 		elias.addOffer("I have nothing to offer.");
 		elias.add(ConversationStates.ANY,
 			ConversationPhrases.QUEST_MESSAGES,
-			new NotCondition(new QuestRegisteredCondition("an_old_mans_wish")),
+			new NotCondition(new QuestRegisteredCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"There is something that weighs heavy on me. But I am not ready"
 				+ " for help. Perhaps you could come back later.",

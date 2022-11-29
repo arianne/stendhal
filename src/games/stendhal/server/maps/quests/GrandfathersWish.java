@@ -79,11 +79,11 @@ import games.stendhal.server.maps.Region;
  * - 500 karma
  * - 3 more bag slots
  */
-public class AnOldMansWish extends AbstractQuest {
+public class GrandfathersWish extends AbstractQuest {
 
-	private static final Logger logger = Logger.getLogger(AnOldMansWish.class);
+	private static final Logger logger = Logger.getLogger(GrandfathersWish.class);
 
-	public static final String QUEST_SLOT = "an_old_mans_wish";
+	public static final String QUEST_SLOT = "grandfatherswish";
 	private static final int min_level = 100;
 
 	private final SpeakerNPC elias = npcs.get("Elias Breland");
@@ -98,7 +98,7 @@ public class AnOldMansWish extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "AnOldMansWish";
+		return "GrandfathersWish";
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class AnOldMansWish extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-			"An Old Man's Wish",
+			"A Grandfather's Wish",
 			elias.getName() + " is grieved over the loss of his grandson.",
 			false
 		);

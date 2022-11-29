@@ -9,9 +9,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.quests.oldmanswish;
+package games.stendhal.server.maps.quests.grandfatherswish;
 
-import static games.stendhal.server.maps.quests.AnOldMansWish.QUEST_SLOT;
+import static games.stendhal.server.maps.quests.GrandfathersWish.QUEST_SLOT;
 
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal;
 import games.stendhal.server.entity.RPEntity;
