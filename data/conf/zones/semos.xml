@@ -404,22 +404,12 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="14" y="19" ref="well_entrance_left">
       <destination zone="-1_myling_well" ref="exit"/>
-      <implementation
-          class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-        <parameter name="condition">new QuestStartedCondition("an_old_mans_wish")</parameter>
-        <parameter name="rejected">Something feels odd here.</parameter>
-        <parameter name="action">new SetQuestAction("an_old_mans_wish", 1, "find_myling:done")</parameter>
-      </implementation>
+      <implementation class-name="games.stendhal.server.maps.quests.oldmanswish.MylingWellPortal"/>
     </portal>
 
     <portal x="15" y="19" ref="well_entrance_right">
       <destination zone="-1_myling_well" ref="exit"/>
-      <implementation
-          class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-        <parameter name="condition">new QuestStartedCondition("an_old_mans_wish")</parameter>
-        <parameter name="rejected">Something feels odd here.</parameter>
-        <parameter name="action">new SetQuestAction("an_old_mans_wish", 1, "find_myling:done")</parameter>
-      </implementation>
+      <implementation class-name="games.stendhal.server.maps.quests.oldmanswish.MylingWellPortal"/>
     </portal>
   </zone>
 

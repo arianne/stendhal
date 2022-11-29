@@ -22,7 +22,7 @@ import marauroa.common.game.RPObject;
  * An access checking portal is a special kind of portal which requires some
  * condition to use.
  */
-abstract class AccessCheckingPortal extends Portal {
+public abstract class AccessCheckingPortal extends Portal {
 
     /** the logger instance. */
     private static final Logger logger = Logger.getLogger(AccessCheckingPortal.class);

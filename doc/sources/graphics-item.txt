@@ -702,6 +702,7 @@ magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_detector.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/84600
+rope.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rotary_cutter.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/116893
