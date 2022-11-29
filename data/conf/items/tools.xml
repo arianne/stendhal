@@ -266,7 +266,10 @@
     <type class="tool" subclass="rope" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-    <attributes></attributes>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
     <weight value="2.0"/>
     <value value="1"/>
     <equipable>
