@@ -456,6 +456,7 @@ public class GrandfathersWish extends AbstractQuest {
 				+ " enable you to carry more stuff.",
 			new MultipleActions(
 				new SetQuestAction(QUEST_SLOT, 0, "done"),
+				new SetQuestToTimeStampAction(QUEST_SLOT, 4), // store timestamp of completion
 				new IncreaseKarmaAction(500),
 				new IncreaseXPAction(5000),
 				new EnableFeatureAction("bag", "3 5")));
