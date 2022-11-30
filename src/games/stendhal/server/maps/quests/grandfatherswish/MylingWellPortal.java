@@ -57,8 +57,8 @@ public class MylingWellPortal extends AccessCheckingPortal {
 					player.drop("rope");
 					player.setQuest(QUEST_SLOT, 1, "find_myling:done");
 				}
+				return usePortal(player);
 			}
-			return super.onUsed(user);
 		}
 
 		rejected(user);
