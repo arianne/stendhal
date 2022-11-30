@@ -54,7 +54,7 @@ public class RopemakerNPC implements ZoneConfigurator {
 
 		// production
 		final Map<String, Integer> required = new TreeMap<String, Integer>();
-		required.put("money", 50);
+		required.put("money", 200);
 		required.put("horse hair", 6);
 		new ProducerAdder().addProducer(
 			giles,
