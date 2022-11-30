@@ -13,7 +13,7 @@ Changelog
 - new NPCs:
   - Elias Breland
   - Niall Breland
-  - Priest Calenus
+  - Father Calenus
   - Giles
 - new items:
   - rope

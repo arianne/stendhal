@@ -29,21 +29,25 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 public class PriestNPC implements ZoneConfigurator {
 
 	@Override
-	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone);
+	public void configureZone(final StendhalRPZone zone,
+			final Map<String, String> attributes) {
+		zone.add(buildNPC());
 	}
 
-	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC priest = new SpeakerNPC("Priest Calenus");
+	private SpeakerNPC buildNPC() {
+		final SpeakerNPC priest = new SpeakerNPC("Father Calenus");
 		priest.setOutfit("body=0,head=0,eyes=9,dress=56,hair=8");
 		priest.setOutfitColor("eyes", 0x1f2f9e);
 		priest.setOutfitColor("hair", 0x59260b);
+		priest.setDescription("You see a priest preparing to give a"
+			+ " sermon.");
 
 		priest.addGreeting("Hello my child.");
 		priest.addGoodbye("Go in peace.");
 		priest.addJob("I am steward over this holy house.");
 		priest.addHelp("Inner peace is the only true happiness.");
-		priest.addOffer("Find inner peace. Only then will you understand the value of life.");
+		priest.addOffer("Find inner peace. Only then will you understand"
+			+ " the value of life.");
 
 		final List<Node> nodes = new LinkedList<Node>();
 		nodes.add(new Node(16, 4));
@@ -51,6 +55,6 @@ public class PriestNPC implements ZoneConfigurator {
 		priest.setPathAndPosition(new FixedPath(nodes, true));
 		priest.setCollisionAction(CollisionAction.STOP);
 
-		zone.add(priest);
+		return priest;
 	}
 }

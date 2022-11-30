@@ -55,7 +55,7 @@ import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
  * - Elias Breland
  * - Niall Breland
  * - Marianne
- * - Priest Calenus
+ * - Father Calenus
  *
  * Required items:
  * - rope ladder
@@ -140,7 +140,7 @@ public class GrandfathersWish extends AbstractQuest {
 				res.add("There may be hope yet. I must find a priest and ask"
 					+ " about holy water to help change Niall back to normal.");
 				if (!holy_water.equals("start")) {
-					res.add("I found Priest Calenus. He asked me to gather some"
+					res.add("I found Father Calenus. He asked me to gather some"
 						+ " items. He needs a flask of water and some charcoal.");
 					if (holy_water.equals("done")) {
 						res.add("The priest gave me a bottle of blessed holy water."
@@ -357,7 +357,7 @@ public class GrandfathersWish extends AbstractQuest {
 	}
 
 	private void prepareHolyWaterStep() {
-		final SpeakerNPC priest = npcs.get("Priest Calenus");
+		final SpeakerNPC priest = npcs.get("Father Calenus");
 
 		final ChatCondition canRequestHolyWater = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),

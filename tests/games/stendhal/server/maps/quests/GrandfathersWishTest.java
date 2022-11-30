@@ -71,7 +71,7 @@ public class GrandfathersWishTest extends QuestHelper {
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
 		niall = SingletonRepository.getNPCList().get("Niall Breland");
 		marianne = SingletonRepository.getNPCList().get("Marianne");
-		priest = SingletonRepository.getNPCList().get("Priest Calenus");
+		priest = SingletonRepository.getNPCList().get("Father Calenus");
 	}
 
 	@Test
