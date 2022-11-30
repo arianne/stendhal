@@ -297,9 +297,22 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals("Go in peace.", getReply(priest));
 
 		en.step(player, "hi");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals(
+			"Have you brought the items I requested?",
+			getReply(priest));
+		en.step(player, "no");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Hurry, bring me a flask of water and some charcoal to bless.",
+			"Okay, I still need a flask of water and some charcoal.",
+			getReply(priest));
+		en.step(player, "bye");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Hmmm... It doesn't look like you have what I need. I requested"
+				+ " a flask of water and some charcoal.",
 			getReply(priest));
 		en.step(player, "bye");
 
@@ -307,9 +320,11 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals(1, player.getNumberOfEquipped("water"));
 
 		en.step(player, "hi");
+		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Hurry, bring me a flask of water and some charcoal to bless.",
+			"Hmmm... It doesn't look like you have what I need. I requested"
+				+ " a flask of water and some charcoal.",
 			getReply(priest));
 		en.step(player, "bye");
 
@@ -318,9 +333,11 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals(1, player.getNumberOfEquipped("charcoal"));
 
 		en.step(player, "hi");
+		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Hurry, bring me a flask of water and some charcoal to bless.",
+			"Hmmm... It doesn't look like you have what I need. I requested"
+				+ " a flask of water and some charcoal.",
 			getReply(priest));
 		en.step(player, "bye");
 
@@ -328,11 +345,45 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals(1, player.getNumberOfEquipped("water"));
 
 		en.step(player, "hi");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals(
+			"Okay. It will take about 10 minutes to bless this water and"
+				+ " make it holy.",
+			getReply(priest));
+		assertEquals("holy_water:blessing", player.getQuest(QUEST_SLOT, 2));
+		assertFalse(player.isEquipped("water"));
+		assertFalse(player.isEquipped("charcoal"));
+
+		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Excellent! I have blessed the water. Go and use it to restore"
-				+ " the young man.",
+			"The holy water will be ready in 10 minutes.",
 			getReply(priest));
+		en.step(player, "bye");
+
+		final Long timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 4));
+		assertNotNull(timestamp);
+
+		player.setQuest(QUEST_SLOT, 4, Long.toString(
+			timestamp - (5 * 60000)));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"The holy water will be ready in 5 minutes.",
+			getReply(priest));
+		en.step(player, "bye");
+
+		player.setQuest(QUEST_SLOT, 4, Long.toString(
+			timestamp - (10 * 60000)));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Here is the holy water. Use it to cure the boy.",
+			getReply(priest));
+
 		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
 		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 		assertFalse(player.isEquipped("water"));

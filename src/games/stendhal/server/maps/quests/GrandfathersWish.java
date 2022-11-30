@@ -32,13 +32,16 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -359,6 +362,13 @@ public class GrandfathersWish extends AbstractQuest {
 	private void prepareHolyWaterStep() {
 		final SpeakerNPC priest = npcs.get("Father Calenus");
 
+		final int blessTime = 10; // 10 minutes to make holy water
+
+		final ChatCondition stateBringing =
+			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items");
+		final ChatCondition stateBlessing =
+			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:blessing");
+
 		final ChatCondition canRequestHolyWater = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),
 			new NotCondition(new PlayerHasInfostringItemWithHimCondition("ashen holy water", "Niall Breland")),
@@ -366,6 +376,10 @@ public class GrandfathersWish extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
 		);
+
+		final ChatCondition hasIngredients = new AndCondition(
+			new PlayerHasItemWithHimCondition("water"),
+			new PlayerHasItemWithHimCondition("charcoal"));
 
 		final ChatAction equipWithHolyWater = new ChatAction() {
 			@Override
@@ -392,31 +406,75 @@ public class GrandfathersWish extends AbstractQuest {
 		priest.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
-				new OrCondition(
-					new NotCondition(new PlayerHasItemWithHimCondition("water")),
-					new NotCondition(new PlayerHasItemWithHimCondition("charcoal")))),
-			ConversationStates.ATTENDING,
-			"Hurry, bring me a flask of water and some charcoal to bless.",
+			stateBringing,
+			ConversationStates.QUESTION_1,
+			"Have you brought the items I requested?",
 			null);
+
+		priest.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			stateBringing,
+			ConversationStates.ATTENDING,
+			"Okay, I still need a flask of water and some charcoal.",
+			null);
+
+		priest.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				stateBringing,
+				new NotCondition(hasIngredients)),
+			ConversationStates.ATTENDING,
+			"Hmmm... It doesn't look like you have what I need. I requested"
+				+ " a flask of water and some charcoal.",
+			null);
+
+		priest.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			new AndCondition(
+				stateBringing,
+				hasIngredients),
+			ConversationStates.IDLE,
+			"Okay. It will take about 10 minutes to bless this water and"
+				+ " make it holy.",
+			new MultipleActions(
+				new DropItemAction("water"),
+				new DropItemAction("charcoal"),
+				new SetQuestAction(QUEST_SLOT, 2, "holy_water:blessing"),
+				new SetQuestToTimeStampAction(QUEST_SLOT, 4)));
+			/*
+				new SayTimeRemainingAction(QUEST_SLOT, 4, blessTime,
+					"Okay. It will take about", "to bless this water and"
+						+ " make it holy.")));
+			*/
 
 		priest.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
-				new PlayerHasItemWithHimCondition("water"),
-				new PlayerHasItemWithHimCondition("charcoal")),
+				stateBlessing,
+				new NotCondition(new TimePassedCondition(QUEST_SLOT, 4,
+					blessTime))),
 			ConversationStates.ATTENDING,
-			"Excellent! I have blessed the water. Go and use it to restore"
-				+ " the young man.",
+			null,
+			new SayTimeRemainingAction(QUEST_SLOT, 4, blessTime, "The holy"
+				+ " water will be ready in"));
+
+		priest.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				stateBlessing,
+				new TimePassedCondition(QUEST_SLOT, 4, blessTime)),
+			ConversationStates.ATTENDING,
+			"Here is the holy water. Use it to cure the boy.",
 			new MultipleActions(
-				new DropItemAction("water"),
-				new DropItemAction("charcoal"),
 				equipWithHolyWater,
 				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done"),
-				new SetQuestAction(QUEST_SLOT, 3, "cure_myling:start")));
+				new SetQuestAction(QUEST_SLOT, 3, "cure_myling:start"),
+				new SetQuestAction(QUEST_SLOT, 4, null)));
 	}
 
 	private void prepareCompleteStep() {
