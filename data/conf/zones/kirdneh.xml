@@ -43,6 +43,7 @@
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC"/>
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC"/>
     <!--<configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehAnxiousSorceressNPC"/>-->
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.RopemakerNPC"/>
 
     <entity x="65" y="94">
       <implementation
