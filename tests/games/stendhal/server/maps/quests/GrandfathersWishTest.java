@@ -334,7 +334,7 @@ public class GrandfathersWishTest extends QuestHelper {
 				+ " the young man.",
 			getReply(priest));
 		assertEquals("holy_water:done", player.getQuest(QUEST_SLOT, 2));
-		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
+		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 		assertFalse(player.isEquipped("water"));
 		assertFalse(player.isEquipped("charcoal"));
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
@@ -366,7 +366,7 @@ public class GrandfathersWishTest extends QuestHelper {
 
 		holy_water.onUsed(player);
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
-		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
+		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 
 		// add player to well
 		player.getZone().remove(player);
@@ -375,7 +375,7 @@ public class GrandfathersWishTest extends QuestHelper {
 
 		holy_water.onUsed(player);
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
-		assertEquals("heal_myling:start", player.getQuest(QUEST_SLOT, 3));
+		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 
 		// add myling to zone
 		spawner.onTurnReached(0);
@@ -383,7 +383,7 @@ public class GrandfathersWishTest extends QuestHelper {
 
 		holy_water.onUsed(player);
 		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
-		assertEquals("heal_myling:done", player.getQuest(QUEST_SLOT, 3));
+		assertEquals("cure_myling:done", player.getQuest(QUEST_SLOT, 3));
 	}
 
 	private void checkCompleteStep() {

@@ -96,7 +96,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 
 	public void onMylingCured(final Player player) {
 		onMylingRemoved();
-		player.setQuest(QUEST_SLOT, 3, "heal_myling:done");
+		player.setQuest(QUEST_SLOT, 3, "cure_myling:done");
 
 		final CloneManager cloneM = SingletonRepository.getCloneManager();
 

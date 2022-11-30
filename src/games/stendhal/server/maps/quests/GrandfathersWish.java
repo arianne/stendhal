@@ -107,7 +107,7 @@ public class GrandfathersWish extends AbstractQuest {
 		final String quest_state = states[0];
 		String find_myling = null;
 		String holy_water = null;
-		String heal_myling = null;
+		String cure_myling = null;
 		for (final String st: states) {
 			if (st.startsWith("find_myling:")) {
 				find_myling = st.split(":")[1];
@@ -115,8 +115,8 @@ public class GrandfathersWish extends AbstractQuest {
 			if (st.startsWith("holy_water:")) {
 				holy_water = st.split(":")[1];
 			}
-			if (st.startsWith("heal_myling:")) {
-				heal_myling = st.split(":")[1];
+			if (st.startsWith("cure_myling:")) {
+				cure_myling = st.split(":")[1];
 			}
 		}
 
@@ -148,7 +148,7 @@ public class GrandfathersWish extends AbstractQuest {
 					}
 				}
 			}
-			if (heal_myling != null && heal_myling.equals("done")) {
+			if (cure_myling != null && cure_myling.equals("done")) {
 				res.add("I used the holy water. Niall is healed! Now I should"
 					+ " bring him back to his grandfather.");
 			}
@@ -416,7 +416,7 @@ public class GrandfathersWish extends AbstractQuest {
 				new DropItemAction("charcoal"),
 				equipWithHolyWater,
 				new SetQuestAction(QUEST_SLOT, 2, "holy_water:done"),
-				new SetQuestAction(QUEST_SLOT, 3, "heal_myling:start")));
+				new SetQuestAction(QUEST_SLOT, 3, "cure_myling:start")));
 	}
 
 	private void prepareCompleteStep() {
@@ -424,7 +424,7 @@ public class GrandfathersWish extends AbstractQuest {
 
 		final ChatCondition canGetReward = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),
-			new QuestInStateCondition(QUEST_SLOT, 3, "heal_myling:done"));
+			new QuestInStateCondition(QUEST_SLOT, 3, "cure_myling:done"));
 
 		// Niall has been healed
 		elias.add(
