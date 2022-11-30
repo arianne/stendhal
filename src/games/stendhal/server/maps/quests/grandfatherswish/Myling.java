@@ -30,7 +30,7 @@ public class Myling extends Creature {
 		setName("myling");
 		setEntityClass("undead");
 		setEntitySubclass("myling");
-		setDescription("You see a myling.");
+		setDescription("You see a myling. Could this be Niall!?");
 		setBaseHP(100);
 		setHP(10);
 		setBaseSpeed(0.8);
