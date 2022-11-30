@@ -288,7 +288,7 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals(
 			"Oh my! A young boy has transformed into a myling? I can help,"
 				+ " but this will require a special holy water. Bring me a"
-				+ " flask of water.",
+				+ " flask of water and some charcoal.",
 			getReply(priest));
 		assertEquals("holy_water:bring_items", player.getQuest(QUEST_SLOT, 2));
 

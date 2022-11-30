@@ -140,8 +140,8 @@ public class GrandfathersWish extends AbstractQuest {
 				res.add("There may be hope yet. I must find a priest and ask"
 					+ " about holy water to help change Niall back to normal.");
 				if (!holy_water.equals("start")) {
-					res.add("The priest asked me to gather some items. He needs"
-						+ " a flask of water.");
+					res.add("I found Priest Calenus. He asked me to gather some"
+						+ " items. He needs a flask of water and some charcoal.");
 					if (holy_water.equals("done")) {
 						res.add("The priest gave me a bottle of blessed holy water."
 							+ " Now I must use it on Niall.");
@@ -386,7 +386,7 @@ public class GrandfathersWish extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Oh my! A young boy has transformed into a myling? I can help,"
 				+ " but this will require a special holy water. Bring me a"
-				+ " flask of water.",
+				+ " flask of water and some charcoal.",
 			new SetQuestAction(QUEST_SLOT, 2, "holy_water:bring_items"));
 
 		priest.add(
