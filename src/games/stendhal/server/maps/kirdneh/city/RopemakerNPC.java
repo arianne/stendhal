@@ -36,11 +36,21 @@ public class RopemakerNPC implements ZoneConfigurator {
 		giles.setPosition(11, 57);
 		giles.setIdleDirection(Direction.LEFT);
 
-		//giles.addGreeting();
 		giles.addGoodbye();
-		giles.addJob("I am a ropemaker. My shop isn't built yet, but I can still #braid rope for you.");
+		giles.addJob("I am a ropemaker. My shop isn't built yet, but I can"
+			+ " still #braid rope for you.");
 		giles.addOffer("I can #braid rope.");
-		giles.addHelp("I can #braid rope.");
+		giles.addHelp("If you need a rope I can #braid one for you.");
+		giles.addReply(
+			"rope",
+			"My ropes are made from the finest #'horse hair'.");
+		giles.addReply(
+			"horse hair",
+			"I believe #Karl has a supply of horse hair. But you may need to"
+				+ " do something before he will sell it to you.");
+		giles.addReply(
+			"Karl",
+			"Karl and his wife Philomena tend to the farms west of Ados.");
 
 		// production
 		final Map<String, Integer> required = new TreeMap<String, Integer>();
