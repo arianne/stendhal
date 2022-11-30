@@ -1506,7 +1506,7 @@ Entrance fee is 10 money</attribute>
     <portal x="2" y="11" ref="stairs_down">
       <destination zone="int_breland_house_basement" ref="stairs_up"/>
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-        <parameter name="condition">new QuestInStateCondition("an_old_mans_wish", 3, "heal_myling:done")</parameter>
+        <parameter name="condition">new QuestInStateCondition("grandfatherswish", 3, "heal_myling:done")</parameter>
         <parameter name="rejectedAction">new TargetNPCSayTextAction("Elias Breland", "[name], please don't go down there. That is where I keep Niall's things.")</parameter>
         <parameter name="rejected"></parameter> <!-- set to empty so player doesn't receive rejected message -->
       </implementation>
