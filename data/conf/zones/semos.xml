@@ -411,6 +411,15 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <destination zone="-1_myling_well" ref="exit"/>
       <implementation class-name="games.stendhal.server.maps.quests.grandfatherswish.MylingWellPortal"/>
     </portal>
+
+    <entity x="8" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">12</parameter>
+        <parameter name="height">12</parameter>
+        <parameter name="enterMessage">There is something eerie about this well.</parameter>
+        <!--<parameter name="warnPlayer">true</parameter>-->
+      </implementation>
+    </entity>
   </zone>
 
   <zone name="int_mithrilbourgh_stores" file="interiors/mithrilbourgh/stores.tmx">
