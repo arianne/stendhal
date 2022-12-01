@@ -78,6 +78,7 @@ public class StendhalQuestSystem {
 	 * Initializes the QuestSystem.
 	 */
 	public void init() {
+		loadQuest(new AGrandfathersWish());
 		//deactivated AdMemoriaInPortfolio
 		//loadQuest(new AdMemoriaInPortfolio());
 		loadQuest(new AdosDeathmatch());
@@ -118,7 +119,6 @@ public class StendhalQuestSystem {
 		loadQuest(new FishSoup());
 		loadQuest(new FishSoupForHughie());
 		loadQuest(new FruitsForCoralia());
-		loadQuest(new GrandfathersWish());
 		loadQuest(new GuessKills());
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());

@@ -24,6 +24,7 @@ Changelog
 - item descriptions show regen & frequency values
 - Karl sells horse hair after Bows for Ouchit quest
 - 3 rope added to Daily Item quest
+- new quest: A Grandfather's Wish
 
 *graphics*
 - reworked chaos sprites for Cabbit bases

@@ -49,7 +49,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
+import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingSpawner;
 
 
 /**
@@ -70,9 +70,9 @@ import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
  * - 500 karma
  * - 3 more bag slots
  */
-public class GrandfathersWish extends AbstractQuest {
+public class AGrandfathersWish extends AbstractQuest {
 
-	public static final String QUEST_SLOT = "grandfatherswish";
+	public static final String QUEST_SLOT = "a_grandfathers_wish";
 	private static final int min_level = 100;
 
 	private final SpeakerNPC elias = npcs.get("Elias Breland");
@@ -87,7 +87,7 @@ public class GrandfathersWish extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "GrandfathersWish";
+		return "AGrandfathersWish";
 	}
 
 	@Override

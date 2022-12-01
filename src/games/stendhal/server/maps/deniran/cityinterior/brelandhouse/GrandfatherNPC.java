@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityinterior.brelandhouse;
 
-import static games.stendhal.server.maps.quests.GrandfathersWish.QUEST_SLOT;
+import static games.stendhal.server.maps.quests.AGrandfathersWish.QUEST_SLOT;
 
 import java.util.LinkedList;
 import java.util.List;

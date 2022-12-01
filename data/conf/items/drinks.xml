@@ -727,7 +727,8 @@
   <item name="ashen holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>A bottle of ashen holy water.</description>
-    <implementation class-name="games.stendhal.server.maps.quests.grandfatherswish.AshenHolyWater"/>
+    <implementation class-name=
+      "games.stendhal.server.maps.quests.a_grandfathers_wish.AshenHolyWater"/>
     <attributes>
       <amount value="400"/>
       <frequency value="1"/>

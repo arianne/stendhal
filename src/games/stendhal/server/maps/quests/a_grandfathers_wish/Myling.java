@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.quests.grandfatherswish;
+package games.stendhal.server.maps.quests.a_grandfathers_wish;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

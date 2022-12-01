@@ -34,16 +34,16 @@ import games.stendhal.server.maps.ados.church.PriestNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC;
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
-import games.stendhal.server.maps.quests.grandfatherswish.MylingSpawner;
+import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingSpawner;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 
-public class GrandfathersWishTest extends QuestHelper {
+public class AGrandfathersWishTest extends QuestHelper {
 
 	private static final StendhalQuestSystem quests = StendhalQuestSystem.get();
 
-	private static final String QUEST_SLOT = GrandfathersWish.QUEST_SLOT;
+	private static final String QUEST_SLOT = AGrandfathersWish.QUEST_SLOT;
 
 	private Player player;
 	private SpeakerNPC elias;
@@ -135,7 +135,7 @@ public class GrandfathersWishTest extends QuestHelper {
 		assertEquals("Hello young one.", getReply(elias));
 
 		// add quest to world
-		final GrandfathersWish quest = new GrandfathersWish();
+		final AGrandfathersWish quest = new AGrandfathersWish();
 		assertFalse(quests.isLoaded(quest));
 		quests.loadQuest(quest);
 		assertTrue(quests.isLoaded(quest));
@@ -405,7 +405,7 @@ public class GrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkHealMylingStep() {
-		final MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
+		final MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
 		assertNotNull(spawner);
 		assertFalse(spawner.mylingIsActive());
 
