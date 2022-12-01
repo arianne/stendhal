@@ -419,7 +419,7 @@ public class AGrandfathersWish extends AbstractQuest {
 	private void prepareHolyWaterStep() {
 		final SpeakerNPC priest = npcs.get("Father Calenus");
 
-		final int blessTime = 10; // 10 minutes to make holy water
+		final int blessTime = 60; // 1 hour to make holy water
 
 		final ChatCondition stateBringing =
 			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items");

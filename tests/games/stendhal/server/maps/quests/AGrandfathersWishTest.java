@@ -357,7 +357,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"The holy water will be ready in 10 minutes.",
+			"The holy water will be ready in 60 minutes.",
 			getReply(priest));
 		en.step(player, "bye");
 
@@ -365,7 +365,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertNotNull(timestamp);
 
 		player.setQuest(QUEST_SLOT, 4, Long.toString(
-			timestamp - (5 * 60000)));
+			timestamp - (55 * 60000)));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -375,7 +375,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "bye");
 
 		player.setQuest(QUEST_SLOT, 4, Long.toString(
-			timestamp - (10 * 60000)));
+			timestamp - (60 * 60000)));
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
