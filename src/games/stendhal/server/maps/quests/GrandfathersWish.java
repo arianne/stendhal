@@ -158,8 +158,8 @@ public class GrandfathersWish extends AbstractQuest {
 				}
 			}
 			if (cure_myling != null && cure_myling.equals("done")) {
-				res.add("I used the holy water. Niall is healed! Now I should"
-					+ " bring him back to his grandfather.");
+				res.add("I used the holy water. Niall is healed! I should visit"
+					+ " him at his house to see how he is doing.");
 			}
 			if (quest_state.equals("done")) {
 				res.add("Elias and his grandson have been"
