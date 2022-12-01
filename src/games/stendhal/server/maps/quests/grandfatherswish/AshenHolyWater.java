@@ -43,16 +43,18 @@ public class AshenHolyWater extends Item {
 				final MylingSpawner spawner = GrandfathersWish.getMylingSpawner();
 
 				if (checkMylingInWorld(spawner)) {
-					player.sendPrivateText("You sprinkle the holy water over the myling's head.");
+					player.sendPrivateText("You sprinkle the holy water over the"
+						+ " myling's head.");
 
 					removeOne();
 					spawner.onMylingCured(player);
 				} else {
-					// TODO:
-					player.sendPrivateText("There is no myling here");
+					player.sendPrivateText("There is no myling here. Maybe if I"
+						+ " wait one will show up.");
 				}
 			} else {
-				player.sendPrivateText("You cannot use this here.");
+				player.sendPrivateText("There is nothing here that this can be"
+					+ " used on.");
 			}
 		}
 
