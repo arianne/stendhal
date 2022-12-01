@@ -133,7 +133,7 @@ public class GrandfathersWish extends AbstractQuest {
 			res.add("I have agreed to investigate.");
 			if (find_myling != null) {
 				res.add("Marianne mentioned that Niall wanted to"
-					+ " explore the graveyard near Semos City.");
+					+ " explore the graveyard in the Semos area.");
 				if (find_myling.equals("done")) {
 					res.add("Niall has been turned into a myling. Elias will be"
 						+ " devestated. But I must tell him.");
@@ -143,11 +143,16 @@ public class GrandfathersWish extends AbstractQuest {
 				res.add("There may be hope yet. I must find a priest and ask"
 					+ " about holy water to help change Niall back to normal.");
 				if (!holy_water.equals("start")) {
-					res.add("I found Father Calenus. He asked me to gather some"
-						+ " items. He needs a flask of water and some charcoal.");
-					if (holy_water.equals("done")) {
-						res.add("The priest gave me a bottle of blessed holy water."
-							+ " Now I must use it on Niall.");
+					res.add("I found Father Calenus.");
+					if (holy_water.equals("bring_items")) {
+						res.add("He asked me to gather some items. He needs a flask"
+							+ " of water and some charcoal.");
+					} else if (holy_water.equals("blessing")) {
+						res.add("He is blessing the holy water and will give it to"
+							+ " me when it is ready.");
+					} else if (holy_water.equals("done")) {
+						res.add("He gave me a bottle of blessed holy water. Now I"
+							+ " must use it on Niall.");
 					}
 				}
 			}
