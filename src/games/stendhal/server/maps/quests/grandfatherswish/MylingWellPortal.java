@@ -49,19 +49,30 @@ public class MylingWellPortal extends AccessCheckingPortal {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		if (isAllowed(user)) {
-			if (user instanceof Player) {
-				final Player player = (Player) user;
-				if (!player.getQuest(QUEST_SLOT, 1).equals("find_myling:done")) {
-					// rope is hung so player can use anytime now
-					player.drop("rope");
-					player.setQuest(QUEST_SLOT, 1, "find_myling:done");
-				}
-				return usePortal(player);
-			}
+		if (isAllowed(user) && user instanceof Player) {
+			return usePortal((Player) user);
 		}
 
 		rejected(user);
 		return false;
+	}
+
+	@Override
+	protected boolean usePortal(final Player player) {
+		final boolean ret = super.usePortal(player);
+
+		if (player.getQuest(QUEST_SLOT, 1).equals("find_myling:start")) {
+			// rope is hung so player can use anytime now
+			player.drop("rope");
+			player.setQuest(QUEST_SLOT, 1, "find_myling:done");
+			player.sendPrivateText("Is that thing Niall!? Poor boy. I"
+				+ " need to tell Elias right away.");
+		} else if (player.getQuest(QUEST_SLOT, 3).equals("cure_myling:start")
+				&& player.isEquipped("ashen holy water")) {
+			player.sendPrivateText("I should be able to use the holy"
+				+ " water here.");
+		}
+
+		return ret;
 	}
 }
