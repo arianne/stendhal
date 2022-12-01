@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.AGrandfathersWish;
 
 
 /**
@@ -114,7 +115,9 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 					}
 				},
 				// Jef, Kirdneh
-				new QuestCompletedCondition("find_jefs_mom")
+				new QuestCompletedCondition("find_jefs_mom"),
+				// Elias Breland, Deniran
+				new QuestCompletedCondition(AGrandfathersWish.QUEST_SLOT)
 			)));
 
 		// earn over 250 karma

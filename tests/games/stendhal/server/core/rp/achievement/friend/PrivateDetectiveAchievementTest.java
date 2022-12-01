@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -41,17 +43,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.city.KidGhostNPC;
-import games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC;
-import games.stendhal.server.maps.orril.dungeon.RatChild1NPC;
-import games.stendhal.server.maps.orril.dungeon.RatChild2NPC;
-import games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC;
-import games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC;
+import games.stendhal.server.maps.quests.AGrandfathersWish;
 import games.stendhal.server.maps.quests.FindGhosts;
 import games.stendhal.server.maps.quests.FindJefsMom;
 import games.stendhal.server.maps.quests.FindRatChildren;
 import games.stendhal.server.maps.quests.SevenCherubs;
-import games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
@@ -60,15 +56,18 @@ import utilities.ZonePlayerAndNPCTestImpl;
 
 public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 
+	private static final Logger logger = Logger.getLogger(PrivateDetectiveAchievementTest.class);
+
 	private Player player;
 
 	private static final StendhalRPWorld world = MockStendlRPWorld.get();
-	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
+	private static final StendhalQuestSystem quests = StendhalQuestSystem.get();
 
 	private static final NPCList npcs = SingletonRepository.getNPCList();
 
 	private final String[] questSlots = {
-			"find_rat_kids", "find_ghosts", "seven_cherubs", "find_jefs_mom"
+			"find_rat_kids", "find_ghosts", "seven_cherubs", "find_jefs_mom",
+			AGrandfathersWish.QUEST_SLOT
 	};
 
 
@@ -81,18 +80,22 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		final Map<String, ZoneConfigurator> configurators = new HashMap<>();
-		configurators.put("Agnus", new OldRatWomanNPC());
-		configurators.put("Opal", new RatChild1NPC());
-		configurators.put("Mariel", new RatChild2NPC());
-		configurators.put("Cody", new RatChildBoy1NPC());
-		configurators.put("Avalon", new RatChildBoy2NPC());
-		configurators.put("Carena", new WomanGhostNPC());
+		configurators.put("Agnus", new games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC());
+		configurators.put("Opal", new games.stendhal.server.maps.orril.dungeon.RatChild1NPC());
+		configurators.put("Mariel", new games.stendhal.server.maps.orril.dungeon.RatChild2NPC());
+		configurators.put("Cody", new games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC());
+		configurators.put("Avalon", new games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC());
+		configurators.put("Carena", new games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC());
 		configurators.put("Mary", new games.stendhal.server.maps.athor.cave.GhostNPC());
-		configurators.put("Ben", new KidGhostNPC());
+		configurators.put("Ben", new games.stendhal.server.maps.ados.city.KidGhostNPC());
 		configurators.put("Zak", new games.stendhal.server.maps.wofol.house5.GhostNPC());
 		configurators.put("Goran", new games.stendhal.server.maps.orril.dungeon.GhostNPC());
 		configurators.put("Jef", new games.stendhal.server.maps.kirdneh.city.GossipNPC());
 		configurators.put("Amber", new games.stendhal.server.maps.fado.forest.OldWomanNPC());
+		configurators.put("Elias Breland", new games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC());
+		configurators.put("Niall Breland", new games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC());
+		configurators.put("Marianne", new games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC());
+		configurators.put("Father Calenus", new games.stendhal.server.maps.ados.church.PriestNPC());
 
 		final String zoneName = "testzone";
 		for (final ZoneConfigurator zc: configurators.values()) {
@@ -111,6 +114,9 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		world.addRPZone("none", new StendhalRPZone("0_semos_mountain_n2_w2"));
 		world.addRPZone("none", new StendhalRPZone("0_ados_rock"));
 
+		// zones required for A Grandfather's Wish quest
+		world.addRPZone("none", new StendhalRPZone("-1_myling_well"));
+
 		setNpcNames(allNPCs.toArray(new String[0]));
 		zone = setupZone(zoneName);
 		setZoneForPlayer(zoneName);
@@ -118,10 +124,11 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		super.setUp();
 
 		// load quests
-		questSystem.loadQuest(new FindRatChildren());
-		questSystem.loadQuest(new FindGhosts());
-		questSystem.loadQuest(new SevenCherubs());
-		questSystem.loadQuest(new FindJefsMom());
+		quests.loadQuest(new FindRatChildren());
+		quests.loadQuest(new FindGhosts());
+		quests.loadQuest(new SevenCherubs());
+		quests.loadQuest(new FindJefsMom());
+		quests.loadQuest(new AGrandfathersWish());
 	}
 
 	@AfterClass
@@ -133,6 +140,11 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	public void init() {
 		resetPlayer();
 
+		for (final String slot : questSlots) {
+			logger.info("checking quest loaded: " + slot);
+			assertTrue(quests.isLoaded(quests.getQuestFromSlot(slot)));
+		}
+
 		doQuestAgnus();
 		assertFalse(achievementReached());
 		doQuestCarena();
@@ -140,6 +152,8 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		doQuestCherubs();
 		assertFalse(achievementReached());
 		doQuestJef();
+		assertFalse(achievementReached());
+		doQuestGrandfathersWish();
 
 		assertTrue(achievementReached());
 	}
@@ -303,6 +317,23 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		en.step(player, "fine");
+		en.step(player, "bye");
+
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	private void doQuestGrandfathersWish() {
+		final String questSlot = AGrandfathersWish.QUEST_SLOT;
+		assertNull(player.getQuest(questSlot));
+
+		final SpeakerNPC niall = npcs.get("Niall Breland");
+		assertNotNull(niall);
+
+		// set quest to final step
+		player.setQuest(questSlot, "investigate;find_myling:done;holy_water:done;cure_myling:done");
+
+		final Engine en = niall.getEngine();
+		en.step(player, "hi");
 		en.step(player, "bye");
 
 		assertEquals("done", player.getQuest(questSlot, 0));
