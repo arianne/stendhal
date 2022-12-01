@@ -84,6 +84,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		checkHolyWaterStep();
 		checkHealMylingStep();
 		checkCompleteStep();
+		checkAfterQuest();
 	}
 
 	private void checkEntities() {
@@ -120,9 +121,26 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertNull(getReply(marianne));
 		en.step(player, "bye");
 
+		en = priest.getEngine();
+		en.step(player, "hi");
+		en.step(player, "help");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"If you are in need of blessings, I can offer you"
+			+ " some #'holy water'.",
+			getReply(priest));
+		en.step(player, "holy water");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Holy water is consecrated to help those that are afflicted and"
+				+ " in need of blessings.",
+			getReply(priest));
+		en.step(player, "bye");
+
 		// clear replies
 		elias.clearEvents();
 		marianne.clearEvents();
+		priest.clearEvents();
 	}
 
 	private void checkRequestStep() {
@@ -281,7 +299,9 @@ public class AGrandfathersWishTest extends QuestHelper {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Hello my child.", getReply(priest));
+		assertEquals(
+			"Hello my child. What can I #help you with?",
+			getReply(priest));
 		en.step(player, "holy water");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
@@ -392,7 +412,9 @@ public class AGrandfathersWishTest extends QuestHelper {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Hello my child.", getReply(priest));
+		assertEquals(
+			"Hello my child. What can I #help you with?",
+			getReply(priest));
 		en.step(player, "bye");
 
 		// check holy water attributes
@@ -466,6 +488,10 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals("done", player.getQuest(QUEST_SLOT, 0));
 		assertEquals("3 5", player.getFeature("bag"));
 		assertEquals(5000, player.getXP() - xpBefore);
+	}
+
+	private void checkAfterQuest() {
+		Engine en = niall.getEngine();
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -503,7 +529,17 @@ public class AGrandfathersWishTest extends QuestHelper {
 			"I heard that Niall came home! He sure was gone for a long time."
 				+ " I am glad he is home safe.",
 			getReplies(marianne).get(0));
+		en.step(player, "bye");
 
+		en = priest.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "holy water");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Holy water is consecrated to help those that are afflicted and"
+				+ " in need of blessings.",
+			getReply(priest));
 		en.step(player, "bye");
 	}
 }

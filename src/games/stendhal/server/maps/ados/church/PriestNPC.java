@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.church;
 
+import static games.stendhal.server.maps.quests.AGrandfathersWish.canRequestHolyWater;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,9 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 
 
 /**
@@ -42,12 +46,22 @@ public class PriestNPC implements ZoneConfigurator {
 		priest.setDescription("You see a priest preparing to give a"
 			+ " sermon.");
 
-		priest.addGreeting("Hello my child.");
+		priest.addGreeting("Hello my child. What can I #help you with?");
 		priest.addGoodbye("Go in peace.");
 		priest.addJob("I am steward over this holy house.");
-		priest.addHelp("Inner peace is the only true happiness.");
+		priest.addHelp("If you are in need of blessings, I can offer you"
+			+ " some #'holy water'.");
 		priest.addOffer("Find inner peace. Only then will you understand"
 			+ " the value of life.");
+
+		priest.add(
+			ConversationStates.ATTENDING,
+			"holy water",
+			new NotCondition(canRequestHolyWater()),
+			ConversationStates.ATTENDING,
+			"Holy water is consecrated to help those that are afflicted and"
+				+ " in need of blessings.",
+			null);
 
 		final List<Node> nodes = new LinkedList<Node>();
 		nodes.add(new Node(16, 4));

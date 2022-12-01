@@ -416,6 +416,16 @@ public class AGrandfathersWish extends AbstractQuest {
 			null);
 	}
 
+	public static ChatCondition canRequestHolyWater() {
+		return new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new NotCondition(new PlayerHasInfostringItemWithHimCondition("ashen holy water", "Niall Breland")),
+			new OrCondition(
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
+		);
+	}
+
 	private void prepareHolyWaterStep() {
 		final SpeakerNPC priest = npcs.get("Father Calenus");
 
@@ -425,14 +435,6 @@ public class AGrandfathersWish extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items");
 		final ChatCondition stateBlessing =
 			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:blessing");
-
-		final ChatCondition canRequestHolyWater = new AndCondition(
-			new QuestActiveCondition(QUEST_SLOT),
-			new NotCondition(new PlayerHasInfostringItemWithHimCondition("ashen holy water", "Niall Breland")),
-			new OrCondition(
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
-		);
 
 		final ChatCondition hasIngredients = new AndCondition(
 			new PlayerHasItemWithHimCondition("water"),
@@ -453,7 +455,7 @@ public class AGrandfathersWish extends AbstractQuest {
 		priest.add(
 			ConversationStates.ATTENDING,
 			Arrays.asList("holy water", "myling", "Niall", "Elias"),
-			canRequestHolyWater,
+			canRequestHolyWater(),
 			ConversationStates.ATTENDING,
 			"Oh my! A young boy has transformed into a myling? I can help,"
 				+ " but this will require a special holy water. Bring me a"
