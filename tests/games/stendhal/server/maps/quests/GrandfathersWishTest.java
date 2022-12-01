@@ -248,7 +248,6 @@ public class GrandfathersWishTest extends QuestHelper {
 		player.setQuest(QUEST_SLOT, 1, "find_myling:done");
 
 		en.step(player, "hi");
-		en.step(player, "myling");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 			"Oh no! My dear grandson! If only there were a way to #change"

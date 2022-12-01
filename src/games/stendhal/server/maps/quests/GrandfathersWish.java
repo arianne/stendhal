@@ -18,6 +18,7 @@ import java.util.List;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -278,44 +279,71 @@ public class GrandfathersWish extends AbstractQuest {
 	private void prepareMarianneStep() {
 		final SpeakerNPC marianne = npcs.get("Marianne");
 
-		final ChatCondition investigating = new QuestActiveCondition(QUEST_SLOT);
+		final ChatCondition investigating1 = new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence,
+						final Entity entity) {
+					return player.getQuest(QUEST_SLOT, 1).equals("");
+				}
+			});
+		final ChatCondition investigating2 = new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence,
+						final Entity entity) {
+					return !player.getQuest(QUEST_SLOT, 1).equals("");
+				}
+			});
 
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"Niall",
-			investigating,
+			investigating1,
 			ConversationStates.ATTENDING,
 			"Oh! My friend Niall! I haven't seen him in a long time. Every"
 				+ " time I go to his grandfather's house to #play, he is not"
 				+ " home.",
-			new NPCEmoteAction("suddenly looks very melancholy."));
+			new NPCEmoteAction("suddenly looks very melancholy.", false));
 
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"play",
-			investigating,
+			investigating1,
 			ConversationStates.ATTENDING,
 			"Not only was he fun to play with, but he was also very helpful."
 				+ " He used to help me gather chicken eggs whenever I was too"
 				+ " #afraid to do it myself.",
-			new NPCEmoteAction("looks even more melancholy."));
+			new NPCEmoteAction("looks even more melancholy.", false));
 
 		marianne.add(
 			ConversationStates.ATTENDING,
 			"afraid",
-			investigating,
+			investigating1,
 			ConversationStates.ATTENDING,
 			"Know what he told me once? He said he wanted to go all the way"
 				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
 				+ " sounds more scary than chickens.",
 			new MultipleActions(
-				new NPCEmoteAction("shivers."),
+				new NPCEmoteAction("shivers.", false),
 				new SetQuestAction(QUEST_SLOT, 1, "find_myling:start")));
 
 		marianne.add(
 			ConversationStates.ATTENDING,
+			"Niall",
+			investigating2,
+			ConversationStates.ATTENDING,
+			"Niall said he wanted to go all the way to Semos to see the"
+				+ " #graveyard there. Nuh uh! No way! That sounds more scary"
+				+ " than chickens.",
+			null);
+
+		marianne.add(
+			ConversationStates.ATTENDING,
 			Arrays.asList("graveyard", "cemetary"),
-			investigating,
+			investigating2,
 			ConversationStates.ATTENDING,
 			"I hope he didn't go to that scary graveyard. Who knows what kind"
 				+ " of monsters are there.",
@@ -328,40 +356,64 @@ public class GrandfathersWish extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I heard that Niall came home! He sure was gone for a long time."
 				+ " I am glad he is home safe.",
-			new NPCEmoteAction("lets out a sigh of relief."));
+			new NPCEmoteAction("lets out a sigh of relief.", false));
 	}
 
 	private void prepareFindPriestStep() {
-			final ChatCondition found_myling = new QuestInStateCondition(QUEST_SLOT, 1, "find_myling:done");
+		final ChatCondition foundMyling = new AndCondition(
+			new QuestActiveCondition(QUEST_SLOT),
+			new QuestInStateCondition(QUEST_SLOT, 1, "find_myling:done"),
+			new NotCondition(
+				new QuestInStateCondition(QUEST_SLOT, 3, "cure_myling:done")));
+		final ChatCondition findPriest =
+			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start");
 
-			// tells Elias that Niall has been turned into a myling
-			elias.add(
-				ConversationStates.ANY,
-				Arrays.asList("Niall", "myling"),
-				found_myling,
-				ConversationStates.ATTENDING,
-				"Oh no! My dear grandson! If only there were a way to #change"
-					+ " him back.",
-				null);
+		// tells Elias that Niall has been turned into a myling
+		elias.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			foundMyling,
+			ConversationStates.ATTENDING,
+			"Oh no! My dear grandson! If only there were a way to #change"
+				+ " him back.",
+			null);
 
-			elias.add(
-				ConversationStates.ANY,
-				"change",
-				found_myling,
-				ConversationStates.ATTENDING,
-				"Wait! I have heard that #'holy water' has special properties"
-					+ " when used on the undead. Perhaps a #priest would have"
-					+ " have some. Please, go and find a priest.",
-				new SetQuestAction(QUEST_SLOT, 2, "holy_water:start"));
+		elias.add(
+			ConversationStates.ANY,
+			Arrays.asList("Niall", "myling"),
+			foundMyling,
+			ConversationStates.ATTENDING,
+			"Oh no! My dear grandson! If only there were a way to #change"
+				+ " him back.",
+			null);
 
-			elias.add(
-				ConversationStates.ANY,
-				Arrays.asList("Niall", "myling", "priest", "holy water"),
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
-				ConversationStates.ATTENDING,
-				"Please! Find a priest. Maybe one can provide holy water to"
-					+ " help my grandson.",
-				null);
+		elias.add(
+			ConversationStates.ANY,
+			"change",
+			foundMyling,
+			ConversationStates.ATTENDING,
+			"Wait! I have heard that #'holy water' has special properties"
+				+ " when used on the undead. Perhaps a #priest would have"
+				+ " have some. Please, go and find a priest.",
+			new SetQuestAction(QUEST_SLOT, 2, "holy_water:start"));
+
+		elias.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			findPriest,
+			ConversationStates.ATTENDING,
+			"Please! Find a priest. Maybe one can provide holy water to"
+				+ " help my grandson.",
+			null);
+
+		elias.add(
+			ConversationStates.ANY,
+			Arrays.asList("Niall", "myling", "priest", "holy water"),
+			findPriest,
+			ConversationStates.ATTENDING,
+			"Please! Find a priest. Maybe one can provide holy water to"
+				+ " help my grandson.",
+			null);
 	}
 
 	private void prepareHolyWaterStep() {
