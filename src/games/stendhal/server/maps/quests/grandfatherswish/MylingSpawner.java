@@ -41,8 +41,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 	private final List<Myling> activeMylings = new LinkedList<Myling>();
 	private final List<SpeakerNPC> activeNialls = new LinkedList<SpeakerNPC>();
 
-	//private static int respawnTurns = 2000;
-	private final int respawnTurns = 20;
+	private static final int respawnTurns = 2000;
 
 	private final String[] dialogue = new String[] {
 		"You cured me!",
