@@ -1507,7 +1507,7 @@ Entrance fee is 10 money</attribute>
       <destination zone="int_breland_house_basement" ref="stairs_up"/>
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
         <parameter name="condition">new QuestInStateCondition("a_grandfathers_wish", 3, "cure_myling:done")</parameter>
-        <parameter name="rejectedAction">new TargetNPCSayTextAction("Elias Breland", "[name], please don't go down there. That is where I keep Niall's things.")</parameter>
+        <parameter name="rejectedAction">new TargetNPCSayTextAction("Elias Breland", "[name], please don't go down there. That is where I keep my grandson's things.")</parameter>
         <parameter name="rejected"></parameter> <!-- set to empty so player doesn't receive rejected message -->
       </implementation>
       <attribute name="face">east</attribute>
