@@ -44,7 +44,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 	private static final int respawnTurns = 2000;
 
 	private final String[] dialogue = new String[] {
-		"You cured me!",
+		"[name] you cured me!",
 		"I have been stuck in that myling form for so long now. My"
 			+ " grandpa must be worried sick about me.",
 		"I need to get home as soon as possible to let him know I am"
@@ -128,7 +128,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 							nodes.add(new Node(8, 10));
 							curedNiall.setPath(new FixedPath(nodes, false));
 						} else {
-							curedNiall.say(phrase);
+							curedNiall.say(phrase.replace("[name]", player.getName()));
 						}
 					}
 				});
