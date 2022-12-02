@@ -24,7 +24,6 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -40,8 +39,6 @@ import utilities.QuestHelper;
 
 
 public class AGrandfathersWishTest extends QuestHelper {
-
-	private static final StendhalQuestSystem quests = StendhalQuestSystem.get();
 
 	private static final String QUEST_SLOT = AGrandfathersWish.QUEST_SLOT;
 

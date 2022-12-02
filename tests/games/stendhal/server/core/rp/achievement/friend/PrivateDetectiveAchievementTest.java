@@ -36,7 +36,6 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -61,7 +60,6 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	private Player player;
 
 	private static final StendhalRPWorld world = MockStendlRPWorld.get();
-	private static final StendhalQuestSystem quests = StendhalQuestSystem.get();
 
 	private static final NPCList npcs = SingletonRepository.getNPCList();
 

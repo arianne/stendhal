@@ -15,6 +15,7 @@ package utilities;
 import org.junit.BeforeClass;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -27,6 +28,9 @@ import utilities.RPClass.ItemTestHelper;
  * @author hendrik
  */
 public abstract class QuestHelper extends PlayerTestHelper  {
+
+	protected static final StendhalQuestSystem quests = StendhalQuestSystem.get();
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
