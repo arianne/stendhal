@@ -381,7 +381,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		final String reply = getReply(priest);
 		assertTrue(
-			reply.equals("The holy water will be ready in 60 minutes." ||
+			reply.equals("The holy water will be ready in 60 minutes.") ||
 			reply.equals("The holy water will be ready in 1 hour."));
 		en.step(player, "bye");
 
