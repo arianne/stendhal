@@ -133,6 +133,11 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		PlayerTestHelper.removeAllPlayers();
+
+		final IQuest toUnload = quests.getQuestFromSlot(AGrandfathersWish.QUEST_SLOT);
+		assertNotNull(toUnload);
+		quests.unloadQuest(toUnload.getName());
+		assertFalse(quests.isLoaded(toUnload));
 	}
 
 	@Test

@@ -106,6 +106,18 @@ public class AGrandfathersWish extends AbstractQuest {
 	}
 
 	@Override
+	public boolean removeFromWorld() {
+		if (spawner != null) {
+			spawner.removeActiveMylings();
+			SingletonRepository.getRPWorld().remove(spawner.getID());
+		}
+
+		// FIXME: NPCs should be reset
+
+		return true;
+	}
+
+	@Override
 	public List<String> getHistory(final Player player) {
 		final String[] states = player.getQuest(QUEST_SLOT).split(";");
 		final String quest_state = states[0];
