@@ -19,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReplies;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -71,6 +72,11 @@ public class AGrandfathersWishTest extends QuestHelper {
 		priest = SingletonRepository.getNPCList().get("Father Calenus");
 	}
 
+	@After
+	public void tearDown() throws Exception {
+		removePlayer(player);
+	}
+
 	@Test
 	public void init() {
 		checkEntities();
@@ -98,6 +104,8 @@ public class AGrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkBeforeQuest() {
+		assertFalse(quests.isLoaded(quests.getQuestFromSlot(QUEST_SLOT)));
+
 		// quest not added to world
 		Engine en = elias.getEngine();
 		en.step(player, "hi");
@@ -141,6 +149,10 @@ public class AGrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkRequestStep() {
+		// add quest to world
+		quests.loadQuest(new AGrandfathersWish());
+		assertTrue(quests.isLoaded(quests.getQuestFromSlot(QUEST_SLOT)));
+
 		player.setLevel(99);
 		assertEquals(99, player.getLevel());
 
@@ -148,12 +160,6 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "hello");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Hello young one.", getReply(elias));
-
-		// add quest to world
-		final AGrandfathersWish quest = new AGrandfathersWish();
-		assertFalse(quests.isLoaded(quest));
-		quests.loadQuest(quest);
-		assertTrue(quests.isLoaded(quest));
 
 		// level too low to start quest
 		en.step(player, "quest");

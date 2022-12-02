@@ -100,7 +100,7 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 			addZoneConfigurator(zc, zoneName);
 		}
 
-		Set<String> allNPCs = new HashSet<>();
+		final Set<String> allNPCs = new HashSet<>();
 		allNPCs.addAll(configurators.keySet());
 
 		// zones required for Seven Cherubs quest
@@ -139,8 +139,10 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 		resetPlayer();
 
 		for (final String slot : questSlots) {
-			logger.info("checking quest loaded: " + slot);
-			assertTrue(quests.isLoaded(quests.getQuestFromSlot(slot)));
+			final IQuest qInstance = quests.getQuestFromSlot(slot);
+			assertNotNull(qInstance);
+			logger.info("checking quest loaded: " + qInstance.getName());
+			assertTrue(quests.isLoaded(qInstance));
 		}
 
 		doQuestAgnus();
@@ -161,8 +163,12 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	private void resetPlayer() {
+		if (player != null) {
+			removePlayer(player);
+		}
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
+		registerPlayer(player, "testzone");
 
 		for (final String quest: questSlots) {
 			assertNull(player.getQuest(quest));
