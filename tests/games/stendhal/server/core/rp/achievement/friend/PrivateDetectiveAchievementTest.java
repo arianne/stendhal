@@ -48,7 +48,6 @@ import games.stendhal.server.maps.quests.FindJefsMom;
 import games.stendhal.server.maps.quests.FindRatChildren;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.SevenCherubs;
-import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -69,11 +68,6 @@ public class PrivateDetectiveAchievementTest extends ZonePlayerAndNPCTestImpl {
 			AGrandfathersWish.QUEST_SLOT
 	};
 
-
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		new DatabaseFactory().initializeDatabase();
-	}
 
 	@Override
 	@Before
