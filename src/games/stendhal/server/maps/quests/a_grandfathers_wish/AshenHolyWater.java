@@ -14,11 +14,10 @@ package games.stendhal.server.maps.quests.a_grandfathers_wish;
 import java.util.Map;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.maps.quests.AGrandfathersWish;
-import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingSpawner;
 
 
 /**
