@@ -1,0 +1,1 @@
+FROM eclipse-temurin:8-alpine
