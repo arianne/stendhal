@@ -33,7 +33,10 @@
   <property name="build_client_data" value="${buildroot}/build_client_data"/>
   <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
   <property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
-
+	
+  <property name="build_docker" value="${buildroot}/build_docker"/>
+  <property name="buildtools_docker" value="buildtools/docker"/>
+	
   <property name="build_postman" value="${buildroot}/buildbot/"/>
 
   <property name="build_server" value="${buildroot}/build_server"/>
@@ -50,6 +53,8 @@
   <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
   <property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
   <property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
+	
+  <property name="dist_server_binary" value="${buildroot}/stendhal-server-${version}.zip" />
 
   <property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
 
@@ -439,7 +444,7 @@
 
   <target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
 
-  <target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
+  <target name="dist" depends="clean, dist_binary, dist_source, signupdates, docker" description="Creates all the packages needed for a Stendhal release"/>
 
   <target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_webclient_binary, dist_client_android"/>
 
@@ -704,14 +709,29 @@
     <copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
     <mkdir dir="${buildroot}/stendhal-server-${version}/log"/>
     <touch file="${buildroot}/stendhal-server-${version}/log/empty"/>
-    <zip destfile="${buildroot}/stendhal-server-${version}.zip">
+    <zip destfile="${dist_server_binary}">
       <zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
       <zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
     </zip>
     <delete dir="${buildroot}/stendhal-server-${version}"/>
 
   </target> <!-- dist_server_binary -->
-
+  
+  <target name="dist_docker" depends="docker_build,docker_push" description="Builds and pushes the container images" />
+	
+  <target name="docker_build_prepare" depends="dist_server_binary" description="Prepares container image build">
+  	<mkdir dir="${build_docker}" />
+  	<copy file="${buildtools_docker}/Dockerfile" todir="${build_docker}" />
+  	<copy file="${buildtools_docker}/.dockerignore" todir="${build_docker}" />
+  	<unzip dest="${build_docker}" src="${dist_server_binary}" />
+  </target>	
+  
+  <target name="docker_build" depends="docker_build_prepare" description="Builds the container image">
+  </target>
+	
+  <target name="docker_push" description="Pushes the container image">
+  </target>
+	
   <target name="server_run" depends="server_build, compilejs" description="Runs the server">
     <mkdir dir="run_srvr"/>
 
