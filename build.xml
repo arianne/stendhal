@@ -444,7 +444,7 @@
 
   <target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
 
-  <target name="dist" depends="clean, dist_binary, dist_source, signupdates, docker" description="Creates all the packages needed for a Stendhal release"/>
+  <target name="dist" depends="clean, dist_binary, dist_source, signupdates, dist_docker" description="Creates all the packages needed for a Stendhal release"/>
 
   <target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter, dist_webclient_binary, dist_client_android"/>
 
