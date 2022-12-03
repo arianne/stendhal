@@ -727,6 +727,12 @@
   </target>	
   
   <target name="docker_build" depends="docker_build_prepare" description="Builds the container image">
+  	<exec dir="${build_docker}" executable="docker">
+  		<arg value="build" />
+  		<arg value="-t" />
+  		<arg value="marauroa/stendhalserver:${version}" />
+  		<arg value="." />
+  	</exec>
   </target>
 	
   <target name="docker_push" description="Pushes the container image">
