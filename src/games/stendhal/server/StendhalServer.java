@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.ContainerGenerateINI;
 import games.stendhal.server.core.engine.GenerateINI;
 import games.stendhal.server.core.rp.DaylightPhase;
 
@@ -30,6 +31,9 @@ public class StendhalServer {
 	private static final Logger logger = Logger.getLogger(StendhalServer.class);
 
 	private static String serverIni = "server.ini";
+	private static boolean inContainer = false;
+	private static String databasePath = "~/stendhal/database/h2db";
+	private static Integer keySize = Integer.valueOf(512);
 
 	/**
 	 * parses the command line for overwriten configuration file.
@@ -43,6 +47,15 @@ public class StendhalServer {
 			if (args[i].equals("-c")) {
 				serverIni = args[i + 1];
 			}
+			if (args[i].equals("-container")) {
+			    inContainer = true;
+			}
+			if (args[i].equals("-databasePath")) {
+                databasePath = args[i + 1];
+            }
+			if (args[i].equals("-keySize")) {
+                keySize = Integer.valueOf(args[i + 1]);
+            }
 			i++;
 		}
 	}
@@ -56,12 +69,16 @@ public class StendhalServer {
 	public static void main(String[] args) throws FileNotFoundException {
 		parseCommandLine(args);
 		if (!new File(serverIni).exists()) {
-			System.out.println("Welcome to your own Stendhal Server.");
-			System.out.println("");
-			System.out.println("This seems to be the very first start because we could not find a server.ini.");
-			System.out.println("So there are some simple questions for you to create it...");
-			System.out.println("");
-			GenerateINI.main(args, serverIni);
+		    if (!inContainer) {
+		        System.out.println("Welcome to your own Stendhal Server.");
+		        System.out.println("");
+		        System.out.println("This seems to be the very first start because we could not find a server.ini.");
+		        System.out.println("So there are some simple questions for you to create it...");
+		        System.out.println("");
+		        GenerateINI.main(args, serverIni);
+		    } else {
+		        new ContainerGenerateINI(databasePath, keySize).write(serverIni);
+		    }
 		}
 		marauroa.server.marauroad.main(args);
 
