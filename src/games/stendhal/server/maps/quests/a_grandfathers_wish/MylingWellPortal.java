@@ -36,7 +36,8 @@ public class MylingWellPortal extends AccessCheckingPortal {
 			return true;
 		}
 		if (find_myling == null || !find_myling.equals("find_myling:start")) {
-			rejectedMessage = "There is something strange about this well.";
+			rejectedMessage = "There is no reason to enter this well right"
+				+ " now.";
 			return false;
 		}
 		if (!player.isEquipped("rope")) {
