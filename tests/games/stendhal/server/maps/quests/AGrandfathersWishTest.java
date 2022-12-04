@@ -290,7 +290,14 @@ public class AGrandfathersWishTest extends QuestHelper {
 			"Please! Find a priest. Maybe one can provide holy water to"
 					+ " help my grandson.",
 			getReply(elias));
+		en.step(player, "bye");
 
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Please! Find a priest. Maybe one can provide holy water to"
+					+ " help my grandson.",
+			getReply(elias));
 		en.step(player, "bye");
 	}
 
@@ -313,6 +320,13 @@ public class AGrandfathersWishTest extends QuestHelper {
 				+ " flask of water and some charcoal.",
 			getReply(priest));
 		assertEquals("holy_water:bring_items", player.getQuest(QUEST_SLOT, 2));
+
+		en.step(player, "holy water");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"I am still waiting for you to bring me a flask of water and some"
+				+ " charcoal before I can bless the holy water.",
+			getReply(priest));
 
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
@@ -502,7 +516,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(
 			"Hi again. I'm getting ready to go on another adventure with"
 				+ " Marianne. But don't worry, we are staying away from"
-				+ " cemeteries.",
+				+ " graveyards.",
 			getReply(niall));
 		en.step(player, "bye");
 

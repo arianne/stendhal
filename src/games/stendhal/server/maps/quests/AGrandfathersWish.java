@@ -46,6 +46,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -277,14 +278,16 @@ public class AGrandfathersWish extends AbstractQuest {
 				"Oh thank you! My grandson's name is #Niall. You could talk"
 					+ " to #Marianne. They used to play together.",
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "investigate;;;"),
+					new SetQuestAction(QUEST_SLOT, "investigate"),
 					new IncreaseKarmaAction(15)));
 
 			// ask about Niall
 			elias.add(
 				ConversationStates.ANY,
 				Arrays.asList("Niall", "grandson"),
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(
+					new QuestActiveCondition(QUEST_SLOT),
+					new QuestInStateCondition(QUEST_SLOT, 2, "")),
 				ConversationStates.ATTENDING,
 				"Niall is my grandson. I am so distraught over his"
 					+ " disappearance. Ask the girl #Marianne. They often played"
@@ -295,7 +298,9 @@ public class AGrandfathersWish extends AbstractQuest {
 			elias.add(
 				ConversationStates.ANY,
 				"Marianne",
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(
+					new QuestActiveCondition(QUEST_SLOT),
+					new QuestInStateCondition(QUEST_SLOT, 2, "")),
 				ConversationStates.ATTENDING,
 				"Marianne lives here in Deniran. Ask her about #Niall.",
 				null);
@@ -388,8 +393,8 @@ public class AGrandfathersWish extends AbstractQuest {
 		final ChatCondition foundMyling = new AndCondition(
 			new QuestActiveCondition(QUEST_SLOT),
 			new QuestInStateCondition(QUEST_SLOT, 1, "find_myling:done"),
-			new NotCondition(
-				new QuestInStateCondition(QUEST_SLOT, 3, "cure_myling:done")));
+			new QuestInStateCondition(QUEST_SLOT, 2, ""),
+			new QuestNotInStateCondition(QUEST_SLOT, 3, "cure_myling:done"));
 		final ChatCondition findPriest =
 			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start");
 
@@ -486,6 +491,15 @@ public class AGrandfathersWish extends AbstractQuest {
 				+ " but this will require a special holy water. Bring me a"
 				+ " flask of water and some charcoal.",
 			new SetQuestAction(QUEST_SLOT, 2, "holy_water:bring_items"));
+
+		priest.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("holy water", "myling", "Niall", "Elias"),
+			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:bring_items"),
+			ConversationStates.ATTENDING,
+			"I am still waiting for you to bring me a flask of water and some"
+				+ " charcoal before I can bless the holy water.",
+			null);
 
 		priest.add(
 			ConversationStates.IDLE,
@@ -611,7 +625,7 @@ public class AGrandfathersWish extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Hi again. I'm getting ready to go on another adventure with"
 				+ " Marianne. But don't worry, we are staying away from"
-				+ " cemeteries.",
+				+ " graveyards.",
 			null);
 	}
 
