@@ -163,7 +163,7 @@ public class AGrandfathersWish extends AbstractQuest {
 				res.add("I told Elias about Niall's state. He asked me to find"
 					+ " a priest and ask about holy water to help change Niall"
 					+ " back to normal.");
-				if (!holy_water.equals("start")) {
+				if (!holy_water.equals("find_priest")) {
 					res.add("I met Father Calenus.");
 					if (holy_water.equals("bring_items")) {
 						res.add("He asked me to gather some items to bless holy"
@@ -396,7 +396,7 @@ public class AGrandfathersWish extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, 2, ""),
 			new QuestNotInStateCondition(QUEST_SLOT, 3, "cure_myling:done"));
 		final ChatCondition findPriest =
-			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start");
+			new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:find_priest");
 
 		// tells Elias that Niall has been turned into a myling
 		elias.add(
@@ -425,7 +425,7 @@ public class AGrandfathersWish extends AbstractQuest {
 			"Wait! I have heard that #'holy water' has special properties"
 				+ " when used on the undead. Perhaps a #priest would have"
 				+ " have some. Please, go and find a priest.",
-			new SetQuestAction(QUEST_SLOT, 2, "holy_water:start"));
+			new SetQuestAction(QUEST_SLOT, 2, "holy_water:find_priest"));
 
 		elias.add(
 			ConversationStates.IDLE,
@@ -451,7 +451,7 @@ public class AGrandfathersWish extends AbstractQuest {
 			new QuestActiveCondition(QUEST_SLOT),
 			new NotCondition(new PlayerHasInfostringItemWithHimCondition("ashen holy water", "Niall Breland")),
 			new OrCondition(
-				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:start"),
+				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:find_priest"),
 				new QuestInStateCondition(QUEST_SLOT, 2, "holy_water:done"))
 		);
 	}

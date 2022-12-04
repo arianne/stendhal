@@ -282,7 +282,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 					+ " when used on the undead. Perhaps a #priest would have"
 					+ " have some. Please, go and find a priest.",
 			getReply(elias));
-		assertEquals("holy_water:start", player.getQuest(QUEST_SLOT, 2));
+		assertEquals("holy_water:find_priest", player.getQuest(QUEST_SLOT, 2));
 
 		en.step(player, "priest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
