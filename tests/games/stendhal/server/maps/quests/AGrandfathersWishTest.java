@@ -24,8 +24,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -35,6 +37,7 @@ import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherN
 import games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC;
 import games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC;
 import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingSpawner;
+import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingWellPortal;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -49,32 +52,66 @@ public class AGrandfathersWishTest extends QuestHelper {
 	private SpeakerNPC marianne;
 	private SpeakerNPC priest;
 
+	private StendhalRPZone mainZone;
 	private StendhalRPZone wellZone;
+	private MylingWellPortal wellEntrance;
+	private Portal wellExit;
 
 
 	@Before
 	public void setup() {
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+
 		// well zone must exist in world when quest is loaded
 		wellZone = new StendhalRPZone("-1_myling_well");
-		SingletonRepository.getRPWorld().addRPZone("dummy", wellZone);
-		final StendhalRPZone zone = new StendhalRPZone("test_zone");
+		world.addRPZone("dummy", wellZone);
+		mainZone = new StendhalRPZone("test_zone");
+		world.addRPZone("dummy", mainZone);
+
+		assertEquals(wellZone, world.getZone("-1_myling_well"));
+		assertEquals(mainZone, world.getZone("test_zone"));
 
 		player = PlayerTestHelper.createPlayer("player");
-		zone.add(player);
+		mainZone.add(player);
 
-		new GrandfatherNPC().configureZone(zone, null);
-		new GrandsonNPC().configureZone(zone, null);
-		new LittleGirlNPC().configureZone(zone, null);
-		new PriestNPC().configureZone(zone, null);
+		new GrandfatherNPC().configureZone(mainZone, null);
+		new GrandsonNPC().configureZone(mainZone, null);
+		new LittleGirlNPC().configureZone(mainZone, null);
+		new PriestNPC().configureZone(mainZone, null);
 		elias = SingletonRepository.getNPCList().get("Elias Breland");
 		niall = SingletonRepository.getNPCList().get("Niall Breland");
 		marianne = SingletonRepository.getNPCList().get("Marianne");
 		priest = SingletonRepository.getNPCList().get("Father Calenus");
+
+		// setup well portals
+		wellExit = new Portal();
+		wellExit.setPosition(9, 10);
+		wellExit.setIdentifier("well_exit");
+		wellExit.setDestination(mainZone.getName(), "well_entrance");
+		wellZone.add(wellExit);
+
+		assertEquals(wellZone, wellExit.getZone());
+		assertEquals(mainZone.getName(), wellExit.getDestinationZone());
+		assertEquals("well_entrance", wellExit.getDestinationReference());
+
+		wellEntrance = new MylingWellPortal();
+		wellEntrance.setPosition(5, 5);
+		wellEntrance.setIdentifier("well_entrance");
+		wellEntrance.setDestination(wellZone.getName(), "well_exit");
+		mainZone.add(wellEntrance);
+
+		assertEquals(mainZone, wellEntrance.getZone());
+		assertEquals(wellZone.getName(), wellEntrance.getDestinationZone());
+		assertEquals("well_exit", wellEntrance.getDestinationReference());
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		removePlayer(player);
+
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
+		world.removeZone(mainZone);
+		world.removeZone(wellZone);
 	}
 
 	@Test
@@ -83,24 +120,31 @@ public class AGrandfathersWishTest extends QuestHelper {
 		checkBeforeQuest();
 		checkRequestStep();
 		checkMarianneStep();
+		checkFindWellStep();
 		checkFindPriestStep();
 		checkHolyWaterStep();
-		checkHealMylingStep();
+		checkCureMylingStep();
 		checkCompleteStep();
 		checkAfterQuest();
 	}
 
 	private void checkEntities() {
 		assertNotNull(player);
-		assertNotNull(player.getZone());
+		assertEquals(mainZone, player.getZone());
+		assertFalse(player.hasQuest(QUEST_SLOT));
+
 		assertNotNull(elias);
 		assertNotNull(niall);
 		assertNotNull(marianne);
 		assertNotNull(priest);
-		assertFalse(player.hasQuest(QUEST_SLOT));
 
-		assertNotNull(wellZone);
-		assertEquals(wellZone, SingletonRepository.getRPWorld().getZone("-1_myling_well"));
+		/* FIXME: how to make portals functional?
+		// check functioning portals
+		SingletonRepository.getRPWorld().changeZone(wellZone.getID(), player);
+		assertEquals(wellZone, player.getZone());
+		wellExit.onUsed(player);
+		assertEquals(mainZone, player.getZone());
+		*/
 	}
 
 	private void checkBeforeQuest() {
@@ -146,6 +190,18 @@ public class AGrandfathersWishTest extends QuestHelper {
 		elias.clearEvents();
 		marianne.clearEvents();
 		priest.clearEvents();
+
+		// check portals
+		wellEntrance.onUsed(player);
+		assertEquals(mainZone, player.getZone());
+		/* FIXME: see: games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortalTest.testSetRejectedMessage
+		assertEquals(
+			"There is no reason to enter this well right now.",
+			PlayerTestHelper.getPrivateReply(player));
+		*/
+		assertEquals(
+			"There is no reason to enter this well right now.",
+			wellEntrance.getRejectedMessage());
 	}
 
 	private void checkRequestStep() {
@@ -262,11 +318,42 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "bye");
 	}
 
+	private void checkFindWellStep() {
+		assertFalse(player.isEquipped("rope"));
+
+		wellEntrance.onUsed(player);
+		assertEquals(mainZone, player.getZone());
+		/* FIXME: see: games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortalTest.testSetRejectedMessage
+		assertEquals(
+			"You need a rope to descend down this well.",
+			PlayerTestHelper.getPrivateReply(player));
+		*/
+		assertEquals(
+			"You need a rope to descend down this well.",
+			wellEntrance.getRejectedMessage());
+		assertEquals(
+			"find_myling:well_rope",
+			player.getQuest(QUEST_SLOT, 1));
+
+		PlayerTestHelper.equipWithItem(player, "rope");
+		assertEquals(1, player.getNumberOfEquipped("rope"));
+
+		wellEntrance.onUsed(player);
+		// FIXME: how to make portals functional?
+		//assertEquals(wellZone, player.getZone());
+		assertEquals(
+			"Is that thing Niall!? Poor boy. I need to tell Elias right"
+				+ " away.",
+			PlayerTestHelper.getPrivateReply(player));
+		assertEquals("find_myling:done", player.getQuest(QUEST_SLOT, 1));
+
+		// FIXME: how to make portals functional?
+		//wellExit.onUsed(player);
+		assertEquals(mainZone, player.getZone());
+	}
+
 	private void checkFindPriestStep() {
 		final Engine en = elias.getEngine();
-
-		// TODO: set in quest action
-		player.setQuest(QUEST_SLOT, 1, "find_myling:done");
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -444,7 +531,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals("A bottle of ashen holy water to cure Niall.", holy_water.getDescription());
 	}
 
-	private void checkHealMylingStep() {
+	private void checkCureMylingStep() {
 		final MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
 		assertNotNull(spawner);
 		assertFalse(spawner.mylingIsActive());
@@ -455,15 +542,25 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertFalse(wellZone.equals(player.getZone()));
 
 		holy_water.onUsed(player);
+		assertEquals(
+			"There is nothing here that this can be used on.",
+			PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 
-		// add player to well
-		player.getZone().remove(player);
-		wellZone.add(player);
-		assertTrue(wellZone.equals(player.getZone()));
+		wellEntrance.onUsed(player);
+		assertEquals(
+			"I should be able to use the holy water here.",
+			PlayerTestHelper.getPrivateReply(player));
+		// FIXME: how to make portals functional?
+		SingletonRepository.getRPWorld()
+			.changeZone(wellZone.getID(), player);
+		assertEquals(wellZone, player.getZone());
 
 		holy_water.onUsed(player);
+		assertEquals(
+			"There is no myling here. Maybe if I wait one will show up.",
+			PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 
@@ -472,8 +569,18 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertTrue(spawner.mylingIsActive());
 
 		holy_water.onUsed(player);
+		assertEquals(
+			"You sprinkle the holy water over the myling's head.",
+			PlayerTestHelper.getPrivateReply(player));
 		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:done", player.getQuest(QUEST_SLOT, 3));
+
+		// leave well
+		// FIXME: how to make portals functional?
+		//wellExit.onUsed(player);
+		SingletonRepository.getRPWorld()
+			.changeZone(mainZone.getID(), player);
+		assertEquals(mainZone, player.getZone());
 	}
 
 	private void checkCompleteStep() {
