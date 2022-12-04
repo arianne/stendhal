@@ -1,5 +1,8 @@
 package games.stendhal.server.core.engine.generateini;
 
+/**
+ * Representation of a H2DB configuration.
+ */
 public class H2DatabaseConfiguration extends DatabaseConfiguration {
 
     private String databasePath;

@@ -8,6 +8,9 @@ import java.util.Locale;
 
 import marauroa.common.crypto.RSAKey;
 
+/**
+ * Class representing the configuration within a server.ini file.
+ */
 public class ServerIniConfiguration {
 
     private static final DateFormat FORMAT = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault());
@@ -24,11 +27,16 @@ public class ServerIniConfiguration {
     private final Date generationDate;
 
     public ServerIniConfiguration(DatabaseConfiguration databaseConfiguration, Integer keySize) {
-        this.databaseConfiguration = databaseConfiguration;
-        this.rsakey = RSAKey.generateKey(keySize);
-        this.generationDate = new Date();
+        this(databaseConfiguration, RSAKey.generateKey(keySize), new Date());
     }
 
+    /**
+     * Constructor for testing purposes with fixed {@link RSAKey} and generation {@link Date}.
+     *
+     * @param databaseConfiguration
+     * @param rsakey
+     * @param generationDate
+     */
     ServerIniConfiguration(
             DatabaseConfiguration databaseConfiguration,
             RSAKey rsakey,
@@ -38,8 +46,12 @@ public class ServerIniConfiguration {
         this.generationDate = generationDate;
     }
 
+    /**
+     * Writes the actual configuration to the given {@link PrintWriter}.
+     * @param out
+     *  The {@link PrintWriter} to write on.
+     */
     public void write(PrintWriter out) {
-
         out.println("# Generated .ini file for Test Game at " + FORMAT.format(this.generationDate));
         out.println("# Database and factory classes. Don't edit.");
         out.println("database_implementation=" + this.databaseImplementation);

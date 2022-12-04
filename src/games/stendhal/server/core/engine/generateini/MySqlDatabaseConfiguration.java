@@ -1,5 +1,9 @@
 package games.stendhal.server.core.engine.generateini;
 
+/**
+ * Representation of a MySQL datatabse configuration.
+ *
+ */
 public class MySqlDatabaseConfiguration extends DatabaseConfiguration {
 
     private String dbName;
