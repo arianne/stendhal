@@ -370,7 +370,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "yes");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(
-			"Okay. It will take about 10 minutes to bless this water and"
+			"Okay. It will take about 1 hour to bless this water and"
 				+ " make it holy.",
 			getReply(priest));
 		assertEquals("holy_water:blessing", player.getQuest(QUEST_SLOT, 2));

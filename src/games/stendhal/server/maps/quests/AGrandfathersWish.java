@@ -50,6 +50,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.a_grandfathers_wish.MylingSpawner;
+import games.stendhal.server.util.TimeUtil;
 
 
 /**
@@ -520,8 +521,9 @@ public class AGrandfathersWish extends AbstractQuest {
 				stateBringing,
 				hasIngredients),
 			ConversationStates.IDLE,
-			"Okay. It will take about 10 minutes to bless this water and"
-				+ " make it holy.",
+			"Okay. It will take about "
+				+ TimeUtil.approxTimeUntil(blessTime * 60)
+				+ " to bless this water and make it holy.",
 			new MultipleActions(
 				new DropItemAction("water"),
 				new DropItemAction("charcoal"),
