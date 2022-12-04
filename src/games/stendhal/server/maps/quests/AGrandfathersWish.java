@@ -143,39 +143,50 @@ public class AGrandfathersWish extends AbstractQuest {
 		if (quest_state.equals("rejected")) {
 			res.add("I have no time for senile old men.");
 		} else {
-			res.add("I have agreed to investigate.");
+			res.add("I have agreed to investigate. I should speak with the"
+				+ " girl Marianne and ask her about Niall. They used to play"
+				+ " together.");
 			if (find_myling != null) {
-				res.add("Marianne mentioned that Niall wanted to"
-					+ " explore the graveyard in the Semos area.");
+				res.add("Marianne mentioned that Niall wanted to explore the"
+					+ " graveyard in the Semos area.");
 				if (find_myling.equals("done")) {
-					res.add("Niall has been turned into a myling. Elias will be"
-						+ " devestated. But I must tell him.");
+					res.add("I found Niall in a well near the graveyard. He has"
+						+ " been turned into a myling.");
+					if (holy_water == null) {
+						res.add("Elias will be devestated but I must tell him.");
+					}
 				}
 			}
 			if (holy_water != null) {
-				res.add("There may be hope yet. I must find a priest and ask"
-					+ " about holy water to help change Niall back to normal.");
+				res.add("I told Elias about Niall's state. He asked me to find"
+					+ " a priest and ask about holy water to help change Niall"
+					+ " back to normal.");
 				if (!holy_water.equals("start")) {
-					res.add("I found Father Calenus.");
+					res.add("I met Father Calenus.");
 					if (holy_water.equals("bring_items")) {
-						res.add("He asked me to gather some items. He needs a flask"
-							+ " of water and some charcoal.");
+						res.add("He asked me to gather some items to bless holy"
+							+ " water. He needs a flask of water and some charcoal.");
 					} else if (holy_water.equals("blessing")) {
 						res.add("He is blessing the holy water and will give it to"
 							+ " me when it is ready.");
 					} else if (holy_water.equals("done")) {
-						res.add("He gave me a bottle of blessed holy water. Now I"
-							+ " must use it on Niall.");
+						res.add("He gave me a bottle of blessed holy water.");
+						if (cure_myling == null || cure_myling.equals("start")) {
+							res.add("Now I must use it on Niall.");
+						}
 					}
 				}
 			}
 			if (cure_myling != null && cure_myling.equals("done")) {
-				res.add("I used the holy water. Niall is healed! I should visit"
-					+ " him at his house to see how he is doing.");
+				res.add("I used the holy water to cure Niall.");
+				if (!quest_state.equals("done")) {
+					res.add("I should visit him at his house to see how he is"
+						+ " doing.");
+					}
 			}
 			if (quest_state.equals("done")) {
-				res.add("Elias and his grandson have been"
-					+ " reunited.");
+				res.add("Elias and his grandson have been reunited. Niall gave"
+					+ " me his backpack. Now I can carry more items.");
 			}
 		}
 
@@ -186,7 +197,8 @@ public class AGrandfathersWish extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 			"A Grandfather's Wish",
-			elias.getName() + " is grieved over the loss of his grandson.",
+			elias.getName() + " is grieved over the disappearance of his"
+				+ " grandson.",
 			false
 		);
 		prepareRequestStep();
