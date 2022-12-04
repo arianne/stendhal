@@ -110,7 +110,8 @@ public class FarmerNPC implements ZoneConfigurator {
 					false,
 					ConversationStates.ATTENDING,
 					offerReply + " I sell "
-						+ Grammar.enumerateCollection(offerings.keySet()) + ".",
+						+ Grammar.enumerateCollection(offerings.keySet())
+						+ ". I will also sell horse hair when I get a new supply.",
 					null);
 
 				add(
