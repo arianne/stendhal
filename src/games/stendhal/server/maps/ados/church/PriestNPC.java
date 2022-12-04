@@ -11,8 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.church;
 
-import static games.stendhal.server.maps.quests.AGrandfathersWish.canRequestHolyWater;
 import static games.stendhal.server.maps.quests.AGrandfathersWish.QUEST_SLOT;
+import static games.stendhal.server.maps.quests.AGrandfathersWish.canRequestHolyWater;
 
 import java.util.LinkedList;
 import java.util.List;

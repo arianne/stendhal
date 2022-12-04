@@ -19,9 +19,9 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.PlayerMapAdapter;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.util.StringUtils;
 
 

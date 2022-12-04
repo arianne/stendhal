@@ -13,8 +13,8 @@ package games.stendhal.server.maps.quests.a_grandfathers_wish;
 
 import static games.stendhal.server.maps.quests.AGrandfathersWish.QUEST_SLOT;
 
-import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal;
 import games.stendhal.server.entity.player.Player;
 
 
