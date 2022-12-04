@@ -32,16 +32,19 @@ public class MylingWellPortal extends AccessCheckingPortal {
 
 		final Player player = (Player) user;
 		final String find_myling = player.getQuest(QUEST_SLOT, 1);
-		if (find_myling != null && find_myling.equals("find_myling:done")) {
-			return true;
-		}
-		if (find_myling == null || !find_myling.equals("find_myling:start")) {
+		if (find_myling == null || find_myling.equals("")) {
 			rejectedMessage = "There is no reason to enter this well right"
 				+ " now.";
 			return false;
 		}
+		if (find_myling.equals("find_myling:done")) {
+			return true;
+		}
 		if (!player.isEquipped("rope")) {
 			rejectedMessage = "You need a rope to descend down this well.";
+			if (!find_myling.equals("find_myling:well_rope")) {
+				player.setQuest(QUEST_SLOT, 1, "find_myling:well_rope");
+			}
 			return false;
 		}
 
@@ -62,7 +65,7 @@ public class MylingWellPortal extends AccessCheckingPortal {
 	protected boolean usePortal(final Player player) {
 		final boolean ret = super.usePortal(player);
 
-		if (player.getQuest(QUEST_SLOT, 1).equals("find_myling:start")) {
+		if (!player.getQuest(QUEST_SLOT, 1).equals("find_myling:done")) {
 			// rope is hung so player can use anytime now
 			player.drop("rope");
 			player.setQuest(QUEST_SLOT, 1, "find_myling:done");

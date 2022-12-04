@@ -129,11 +129,9 @@ public class AGrandfathersWish extends AbstractQuest {
 		for (final String st: states) {
 			if (st.startsWith("find_myling:")) {
 				find_myling = st.split(":")[1];
-			}
-			if (st.startsWith("holy_water:")) {
+			} else if (st.startsWith("holy_water:")) {
 				holy_water = st.split(":")[1];
-			}
-			if (st.startsWith("cure_myling:")) {
+			} else if (st.startsWith("cure_myling:")) {
 				cure_myling = st.split(":")[1];
 			}
 		}
@@ -151,9 +149,12 @@ public class AGrandfathersWish extends AbstractQuest {
 			if (find_myling != null) {
 				res.add("Marianne mentioned that Niall wanted to explore the"
 					+ " graveyard in the Semos area.");
-				if (find_myling.equals("done")) {
-					res.add("I found Niall in a well near the graveyard. He has"
-						+ " been turned into a myling.");
+				if (find_myling.equals("well_rope")) {
+					res.add("I heard a strange noise coming from a well north of"
+						+ " the graveyard. I need a rope to decend into it.");
+				} else if (find_myling.equals("done")) {
+					res.add("I found Niall in a well north of the graveyard. He"
+						+ " has been turned into a myling.");
 					if (holy_water == null) {
 						res.add("Elias will be devestated but I must tell him.");
 					}
