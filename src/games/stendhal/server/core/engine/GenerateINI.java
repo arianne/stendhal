@@ -18,9 +18,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Date;
 
-import marauroa.common.crypto.RSAKey;
+import games.stendhal.server.core.engine.generateini.DatabaseConfiguration;
+import games.stendhal.server.core.engine.generateini.H2DatabaseConfiguration;
+import games.stendhal.server.core.engine.generateini.MySqlDatabaseConfiguration;
+import games.stendhal.server.core.engine.generateini.ServerIniConfiguration;
 
 
 /**
@@ -37,32 +39,6 @@ public class GenerateINI {
 	/** Where data is read from. */
 	private static BufferedReader in = new BufferedReader(
 			new InputStreamReader(System.in));
-	private static String gameName;
-
-	private static String databaseSystem;
-
-	private static String databaseName;
-
-	private static String databaseHost;
-
-	private static String databaseUsername;
-
-	private static String databasePassword;
-
-	private static String databaseImplementation;
-
-	private static String tcpPort;
-
-	private static String worldImplementation;
-
-	private static String ruleprocessorImplementation;
-
-	private static String turnLength;
-
-	private static String statisticsFilename;
-
-	private static RSAKey rsakey;
-
 
 	/**
 	 * reads a String from the input. When no String is chosen the defaultValue
@@ -141,7 +117,7 @@ public class GenerateINI {
 	 * @param serverIni name of server.ini to write
 	 * @throws FileNotFoundException in case the file cannot be written
 	 */
-	public static void main(String[] args, String serverIni) throws FileNotFoundException {
+	public static void main(final String[] args, final String serverIni) throws FileNotFoundException {
 		filename = serverIni;
 		main(args);
 	}
@@ -154,16 +130,15 @@ public class GenerateINI {
 	 * @throws FileNotFoundException in case the file cannot be written
 	 */
 	public static void main(final String[] args) throws FileNotFoundException {
-		gameName = "stendhal";
 
 		/** Write configuration for database */
-		databaseImplementation = getDatabaseImplementation();
-		databaseSystem = getDatabaseSystem();
+	    final String databaseSystem = getDatabaseSystem();
+		DatabaseConfiguration dbConfig = null;
 		if (databaseSystem.equals("mysql")) {
-			databaseName = getDatabaseName();
-			databaseHost = getDatabaseHost();
-			databaseUsername = getDatabaseUsername();
-			databasePassword = getDatabasePassword();
+		    final String databaseName = getDatabaseName();
+		    final String databaseHost = getDatabaseHost();
+		    final String databaseUsername = getDatabaseUsername();
+		    final String databasePassword = getDatabasePassword();
 			System.out.println("Using \"" + databaseName + "\" as database name\n");
 			System.out.println("Using \"" + databaseHost + "\" as database host\n");
 			System.out.println("Using \"" + databaseUsername + "\" as database user\n");
@@ -175,29 +150,22 @@ public class GenerateINI {
 			System.out.println("  grant all on " + databaseName + ".* to "
 					+ databaseUsername + "@localhost identified by '"
 					+ databasePassword + "';");
+			dbConfig = new MySqlDatabaseConfiguration(databaseName, databaseHost, databaseUsername, databasePassword);
 			System.out.println("  exit");
 		} else {
+		    dbConfig = new H2DatabaseConfiguration();
 			System.out.println("Using integrated h2 database.");
 		}
 
-		tcpPort = getTCPPort();
-
-		worldImplementation = getWorldImplementation();
-		ruleprocessorImplementation = getRuleProcessorImplementation();
-
-		turnLength = getTurnLength();
-
-		statisticsFilename = getStatisticsFilename();
 
 		/* The size of the RSA Key in bits, usually 512 */
 		final String keySize = getRSAKeyBits();
 		System.out.println("Using key of " + keySize + " bits.");
 		System.out.println("Please wait while the key is generated.");
-		rsakey = RSAKey.generateKey(Integer.valueOf(keySize));
+		final ServerIniConfiguration serverConfig = new ServerIniConfiguration(dbConfig, Integer.valueOf(keySize));
 		final PrintWriter out = new PrintWriter(new FileOutputStream(filename));
-		write(out);
+		serverConfig.write(out);
 		out.close();
-
 		System.out.println(filename + " has been generated.");
 	}
 
@@ -215,72 +183,6 @@ public class GenerateINI {
 		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create (minimum 512) [512]: ");
 		final String keySize = getStringWithDefault(in, "512");
 		return keySize;
-	}
-
-	private static String getStatisticsFilename() {
-		return "./server_stats.xml";
-	}
-
-	private static String getTurnLength() {
-		return "300";
-	}
-
-	private static String getRuleProcessorImplementation() {
-		return "games.stendhal.server.core.engine.StendhalRPRuleProcessor";
-	}
-
-	private static String getWorldImplementation() {
-		return "games.stendhal.server.core.engine.StendhalRPWorld";
-	}
-
-	private static String getTCPPort() {
-		return "32160";
-	}
-
-	private static String getDatabaseImplementation() {
-		return "games.stendhal.server.core.engine.StendhalPlayerDatabase";
-	}
-
-	private static void write(final PrintWriter out) {
-		out.println("# Generated .ini file for Test Game at " + new Date());
-		out.println("# Database and factory classes. Don't edit.");
-		out.println("database_implementation=" + databaseImplementation);
-		out.println("factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory");
-		out.println();
-		out.println("# Database information. Edit to match your configuration.");
-		if (databaseSystem.equals("mysql")) {
-			out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/" + databaseName + "?useUnicode=yes&characterEncoding=UTF-8");
-			out.println("jdbc_class=com.mysql.jdbc.Driver");
-			out.println("jdbc_user=" + databaseUsername);
-			out.println("jdbc_pwd=" + databasePassword);
-		} else {
-			out.println("database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter");
-			out.println("jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE");
-			out.println("#jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE");
-			out.println("jdbc_class=org.h2.Driver");
-		}
-		out.println();
-		out.println("# TCP port stendhald will use. ");
-		out.println("tcp_port=" + tcpPort);
-		out.println();
-		out.println("# World and RP configuration. Don't edit.");
-		out.println("world=" + worldImplementation);
-		out.println("ruleprocessor=" + ruleprocessorImplementation);
-		out.println();
-		out.println("turn_length=" + turnLength);
-		out.println();
-		out.println("server_typeGame=" + gameName);
-		out.println("server_name=" + gameName + " Marauroa server");
-		out.println("server_version=1.41.5");
-		out.println("server_contact=https://sourceforge.net/tracker/?atid=514826&group_id=66537&func=browse");
-		out.println();
-		out.println("# Extensions configured on the server. Enable at will.");
-		out.println("#server_extension=xxx");
-		out.println("#xxx=some.package.Classname");
-		out.println();
-		out.println("statistics_filename=" + statisticsFilename);
-		out.println();
-		rsakey.print(out);
 	}
 
 	protected static String getDatabasePassword() {
