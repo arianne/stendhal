@@ -1,7 +1,7 @@
 package games.stendhal.server.core.engine.generateini;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -19,8 +19,8 @@ public class ServerIniConfigurationTest extends TestCase {
         DatabaseConfiguration db = new H2DatabaseConfiguration();
         RSAKey key = new RSAKey(N, D, E);
         ServerIniConfiguration cfg = new ServerIniConfiguration(db, key, FIXED_DATE);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        cfg.write(new PrintStream(baos));
+        StringWriter stringWriter = new StringWriter();
+        cfg.write(new PrintWriter(stringWriter));
         assertEquals(
             "# Generated .ini file for Test Game at Thu Jan 01 01:00:00 CET 1970" + System.lineSeparator()
             + "# Database and factory classes. Don't edit." + System.lineSeparator()
@@ -55,7 +55,7 @@ public class ServerIniConfigurationTest extends TestCase {
             + "n = 27589337880622167149566855031201078241218568900664800652168408894520896214784592456421102448544305731046309374186279143629838201421190157282512920346888296230131072115446956972775880311738630492239167618359336655119023913362723476989557322720989568156648633458184618695333136566311334027924114681361069710488041661" + System.lineSeparator()
             + "e = 15" + System.lineSeparator()
             + "d = 20232181112456255909682360356214124043560283860487520478256833189315323890842034468042141795599157536100626874403271371995214681042206115340509474921051417227725705013448998220265389087719392924733983760957442260014978024520655221185504022062734688680546685592911391587811226309898115759790087662518564367650476571" + System.lineSeparator(),
-            baos.toString());
+            stringWriter.toString());
     }
 
 }

@@ -1,10 +1,10 @@
 package games.stendhal.server.core.engine.generateini;
 
-import java.io.PrintStream;
+import java.io.PrintWriter;
 
 public abstract class DatabaseConfiguration {
 
-    public void write(PrintStream out) {
+    public void write(PrintWriter out) {
         out.print(this.toIni());
     }
 
