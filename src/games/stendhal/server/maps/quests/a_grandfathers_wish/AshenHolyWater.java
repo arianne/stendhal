@@ -19,7 +19,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AGrandfathersWish;
 
-
 /**
  * A special item for An Old Man's Wish quest.
  */
@@ -38,14 +37,14 @@ public class AshenHolyWater extends Item {
 		if (user instanceof Player) {
 			final Player player = (Player) user;
 
-			if (checkZone(user)) {
+			if (this.checkZone(user)) {
 				final MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
 
-				if (checkMylingInWorld(spawner)) {
+				if (this.checkMylingInWorld(spawner)) {
 					player.sendPrivateText("You sprinkle the holy water over the"
 						+ " myling's head.");
 
-					removeOne();
+					this.removeOne();
 					spawner.onMylingCured(player);
 				} else {
 					player.sendPrivateText("There is no myling here. Maybe if I"
