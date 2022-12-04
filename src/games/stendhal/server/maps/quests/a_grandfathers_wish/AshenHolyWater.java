@@ -23,22 +23,22 @@ import games.stendhal.server.maps.quests.AGrandfathersWish;
  * A special item for An Old Man's Wish quest.
  */
 public class AshenHolyWater extends Item {
-	public AshenHolyWater(final String name, final String clazz,
-			final String subclass, final Map<String, String> attributes) {
+	public AshenHolyWater(String name, String clazz,
+			String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
-	public AshenHolyWater(final AshenHolyWater hw) {
+	public AshenHolyWater(AshenHolyWater hw) {
 		super(hw);
 	}
 
 	@Override
-	public boolean onUsed(final RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		if (user instanceof Player) {
-			final Player player = (Player) user;
+			Player player = (Player) user;
 
 			if (this.checkZone(user)) {
-				final MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
+				MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
 
 				if (this.checkMylingInWorld(spawner)) {
 					player.sendPrivateText("You sprinkle the holy water over the"
@@ -62,11 +62,11 @@ public class AshenHolyWater extends Item {
 	/**
 	 * Checks if the player is currently in the burrow.
 	 */
-	private boolean checkZone(final RPEntity user) {
+	private boolean checkZone(RPEntity user) {
 		return user.getZone().equals(SingletonRepository.getRPWorld().getZone("-1_myling_well"));
 	}
 
-	private boolean checkMylingInWorld(final MylingSpawner spawner) {
+	private boolean checkMylingInWorld(MylingSpawner spawner) {
 		return spawner != null && spawner.mylingIsActive();
 	}
 }
