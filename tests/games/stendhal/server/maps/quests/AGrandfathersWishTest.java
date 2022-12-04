@@ -209,6 +209,8 @@ public class AGrandfathersWishTest extends QuestHelper {
 		quests.loadQuest(new AGrandfathersWish());
 		assertTrue(quests.isLoaded(quests.getQuestFromSlot(QUEST_SLOT)));
 
+		double karma = player.getKarma();
+
 		player.setLevel(99);
 		assertEquals(99, player.getLevel());
 
@@ -241,6 +243,9 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Alas! What has become of my grandson!?", getReply(elias));
 		assertEquals("rejected", player.getQuest(QUEST_SLOT, 0));
+		assertEquals(karma - 15, player.getKarma(), 0);
+
+		karma = player.getKarma();
 
 		en.step(player, "quest");
 		en.step(player, "yes");
@@ -250,6 +255,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 				+ " #Marianne. They used to play together.",
 			getReply(elias));
 		assertEquals("investigate", player.getQuest(QUEST_SLOT, 0));
+		assertEquals(karma + 15, player.getKarma(), 0);
 
 		// quest already started
 		en.step(player, "quest");
@@ -621,6 +627,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en = niall.getEngine();
 
 		final int xpBefore = player.getXP();
+		final double karmaBefore = player.getKarma();
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -633,7 +640,8 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("done", player.getQuest(QUEST_SLOT, 0));
 		assertEquals("3 5", player.getFeature("bag"));
-		assertEquals(5000, player.getXP() - xpBefore);
+		assertEquals(xpBefore + 5000, player.getXP());
+		assertEquals(karmaBefore + 500, player.getKarma(), 0);
 	}
 
 	private void checkAfterQuest() {
