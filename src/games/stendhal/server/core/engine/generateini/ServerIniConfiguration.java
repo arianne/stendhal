@@ -1,12 +1,16 @@
 package games.stendhal.server.core.engine.generateini;
 
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import marauroa.common.crypto.RSAKey;
 
 public class ServerIniConfiguration {
 
+    private static final DateFormat FORMAT = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault());
     private final DatabaseConfiguration databaseConfiguration;
     private final String gameName = "stendhal";
     private final String databaseImplementation = "games.stendhal.server.core.engine.StendhalPlayerDatabase";
@@ -35,7 +39,8 @@ public class ServerIniConfiguration {
     }
 
     public void write(PrintWriter out) {
-        out.println("# Generated .ini file for Test Game at " + this.generationDate);
+
+        out.println("# Generated .ini file for Test Game at " + FORMAT.format(this.generationDate));
         out.println("# Database and factory classes. Don't edit.");
         out.println("database_implementation=" + this.databaseImplementation);
         out.println("factory_implementation=" + this.factoryImplementation);
