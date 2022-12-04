@@ -168,4 +168,19 @@ public class MylingSpawner extends Entity implements TurnListener {
 			activeMylings.remove(myling);
 		}
 	}
+
+	/**
+	 * Retrieved the currently active Niall instance.
+	 *
+	 * @return
+	 *     <code>SpeakerNPC</code> Niall instance.
+	 */
+	public SpeakerNPC getActiveNiall() {
+		final int activeCount = activeNialls.size();
+		if (activeCount > 0) {
+			return activeNialls.get(activeCount - 1);
+		}
+
+		return null;
+	}
 }

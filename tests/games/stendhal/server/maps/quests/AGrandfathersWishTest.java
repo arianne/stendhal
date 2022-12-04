@@ -575,6 +575,27 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:done", player.getQuest(QUEST_SLOT, 3));
 
+		final SpeakerNPC activeNiall = spawner.getActiveNiall();
+		assertNotNull(activeNiall);
+
+		/* FIXME: need to get correct TurnListener instance
+		spawner.onTurnReached(10);
+		assertEquals(
+			player.getName() + " you cured me!",
+			getReply(activeNiall));
+		spawner.onTurnReached(20);
+		assertEquals(
+			"I have been stuck in that myling form for so long now. My"
+				+ " grandpa must be worried sick about me.",
+			getReply(activeNiall));
+		spawner.onTurnReached(30);
+		assertEquals(
+			"I need to get home as soon as possible to let him know I am"
+				+ " alright. Stop by my house sometime. There is something I"
+				+ " want to give you.",
+			getReply(activeNiall));
+		*/
+
 		// leave well
 		// FIXME: how to make portals functional?
 		//wellExit.onUsed(player);
