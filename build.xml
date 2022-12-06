@@ -33,10 +33,10 @@
   <property name="build_client_data" value="${buildroot}/build_client_data"/>
   <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
   <property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
-	
+
   <property name="build_docker" value="${buildroot}/build_docker"/>
   <property name="buildtools_docker" value="buildtools/docker"/>
-	
+
   <property name="build_postman" value="${buildroot}/buildbot/"/>
 
   <property name="build_server" value="${buildroot}/build_server"/>
@@ -53,7 +53,7 @@
   <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
   <property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
   <property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
-	
+
   <property name="dist_server_binary" value="${buildroot}/stendhal-server-${version}.zip" />
 
   <property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
@@ -80,7 +80,7 @@
     </not>
   </condition>
   <!-- On Microsoft Windows binary files do not have to be on $env.PATH,
-       so this check does not work. 
+       so this check does not work.
   <condition property="exclude.webclient" value="true">
     <not>
       <available file="${executable.npm}" filepath="${env.PATH}"/>
@@ -716,16 +716,16 @@
     <delete dir="${buildroot}/stendhal-server-${version}"/>
 
   </target> <!-- dist_server_binary -->
-  
+
   <target name="dist_docker" depends="docker_build,docker_push" description="Builds and pushes the container images" />
-	
+
   <target name="docker_build_prepare" depends="dist_server_binary" description="Prepares container image build">
   	<mkdir dir="${build_docker}" />
   	<copy file="${buildtools_docker}/Dockerfile" todir="${build_docker}" />
   	<copy file="${buildtools_docker}/.dockerignore" todir="${build_docker}" />
   	<unzip dest="${build_docker}" src="${dist_server_binary}" />
-  </target>	
-  
+  </target>
+
   <target name="docker_build" depends="docker_build_prepare" description="Builds the container image">
   	<exec dir="${build_docker}" executable="docker">
   		<arg value="build" />
@@ -734,10 +734,10 @@
   		<arg value="." />
   	</exec>
   </target>
-	
+
   <target name="docker_push" description="Pushes the container image">
   </target>
-	
+
   <target name="server_run" depends="server_build, compilejs" description="Runs the server">
     <mkdir dir="run_srvr"/>
 
