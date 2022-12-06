@@ -1408,7 +1408,9 @@
        encoding="UTF-8"
        version="true"
        use="true"
-       windowtitle="Stendhal API Documentation Version: ${version}">
+       windowtitle="Stendhal API Documentation Version: ${version}"
+       failonerror="yes"
+       additionalparam="-Xdoclint:-html">
       <!-- include marauroa source if available -->
       <sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
       <sourcepath path="${src}"/>
@@ -1426,7 +1428,7 @@
         <pathelement path="libs/jcurses.jar"/>
         <pathelement path="libs/pircbot.jar"/>
         <pathelement path="${luaj_jar}"/>
-        <pathelement path="libs/json-simple-1.1.1.jar"/>
+        <pathelement path="${jsonsimple_jar}"/>
         <pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
       </classpath>
     </javadoc>
