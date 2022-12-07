@@ -1396,25 +1396,33 @@
 
   <!-- START: documentation -->
 
-  <target name="docs" description="Generate HTML API reference with javadoc." depends="clean_docs">
+  <target name="docs"
+      description="Generate HTML API reference with javadoc."
+      depends="clean_docs">
     <condition property="include.marauroa" value="true">
-      <available file="../marauroa/src/" type="dir"/>
+      <available file="${marauroa_src}" type="dir"/>
     </condition>
 
-    <javadoc packagenames="games.stendhal.*,marauroa.*"
-       defaultexcludes="yes"
-       destdir="${docs}"
-       author="true"
-       encoding="UTF-8"
-       version="true"
-       use="true"
-       windowtitle="Stendhal API Documentation Version: ${version}"
-       failonerror="yes"
-       additionalparam="-Xdoclint:-html">
+    <javadoc
+        defaultexcludes="yes"
+        destdir="${docs}"
+        author="true"
+        encoding="UTF-8"
+        version="true"
+        use="true"
+        windowtitle="Stendhal API Documentation Version: ${version}"
+        failonerror="yes"
+        additionalparam="-Xdoclint:-html">
       <!-- include marauroa source if available -->
-      <sourcepath path="../marauroa/src/" if:true="${include.marauroa}"/>
-      <sourcepath path="${src}"/>
+      <fileset dir="${marauroa_src}" includes="**/*.java"
+          if:true="${include.marauroa}"/>
+      <fileset dir="${src}" includes="**/*.java"/>
+      <fileset dir="${testsrc}" includes="utilities/**/*.java"/>
       <classpath>
+        <pathelement path="${marauroa_src}"
+            if:true="${include.marauroa}"/>
+        <pathelement path="${src}"/>
+        <pathelement path="${testsrc}"/>
         <pathelement path="${guava_jar}"/>
         <pathelement path="${groovy_jar}"/>
         <pathelement path="${marauroa_jar}"/>
@@ -1424,12 +1432,18 @@
         <pathelement path="${simple_jar}"/>
         <pathelement path="${swinglayout_jar}"/>
         <pathelement path="${tiled_jar}"/>
-        <pathelement path="libs/ant.jar"/>
-        <pathelement path="libs/jcurses.jar"/>
-        <pathelement path="libs/pircbot.jar"/>
+        <pathelement path="${libdir}/ant.jar"/>
+        <pathelement path="${libdir}/jcurses.jar"/>
+        <pathelement path="${libdir}/pircbot.jar"/>
         <pathelement path="${luaj_jar}"/>
         <pathelement path="${jsonsimple_jar}"/>
-        <pathelement path="../marauroa/libs/*" if:true="${include.marauroa}"/>
+        <pathelement path="${hamcrest_jar}"/>
+        <pathelement path="${easymock_jar}"/>
+        <pathelement path="${easymockclassextension_jar}"/>
+        <!-- put marauroa/libs last because it may contain duplicate
+             libraries of a different version -->
+        <pathelement path="${marauroa_libs}/*"
+            if:true="${include.marauroa}"/>
       </classpath>
     </javadoc>
   </target> <!-- docs -->
