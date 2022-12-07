@@ -78,7 +78,7 @@ public class StendhalNPCDAO {
 	private String getOutfitLayer(SpeakerNPC npc) {
 		String outfit = null;
 		if (npc.getOutfit() != null) {
-			outfit = (npc.getOutfit().getData(null));
+			outfit = (npc.getOutfit().getData(npc.getOutfitColors()));
 		}
 		return outfit;
 	}
