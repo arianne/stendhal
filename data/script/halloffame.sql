@@ -237,7 +237,7 @@ SELECT 'accounts_1', count(DISTINCT player_id), CURRENT_DATE()
 FROM loginEvent 
 WHERE timedate>date_sub(CURRENT_TIMESTAMP, interval 1 day) AND result=1;
 
-CREATE TABLE IF NOT EXISTS cid(charname varchar(255), timedate timestamp);
+CREATE TABLE IF NOT EXISTS cid(charname varchar(32), timedate timestamp);
 
 INSERT INTO statistics_archive (name, val, day)
 SELECT 'characters_30', count(DISTINCT charname), CURRENT_DATE() 
