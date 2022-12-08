@@ -198,7 +198,9 @@ public class DeepInspect extends ScriptImpl {
 			sb.append("All Production (excludes items above):");
 
 			final Map<String, Map<String, String>> allProduced = new TreeMap<>(); // TreeMap keeps items sorted alphabetically
-			for (final Entry<String, String> e: player.getMap(LOOTED_ITEMS).entrySet()) {
+			Map<String, String> loots = player.getMap(LOOTED_ITEMS);
+			loots = loots != null ? loots : new TreeMap<>();
+			for (final Entry<String, String> e: loots.entrySet()) {
 				String prefix = "misc";
 				String itemName = e.getKey();
 				final String itemQuantity = e.getValue();
