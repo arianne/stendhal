@@ -231,11 +231,6 @@ public class MeetKetteh extends AbstractQuest {
             new QuestInStateCondition(QUEST_SLOT,"done")).fire(player, null, null);
 	}
 
-    @Override
-    public boolean isRepeatable(final Player player) {
-        return true;
-    }
-
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;
