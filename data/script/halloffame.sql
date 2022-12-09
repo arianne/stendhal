@@ -8,7 +8,7 @@
 -- X  XP
 -- B  Best (xp and online age)
 -- @  Achievement score
--- R  Role play score (xp, online age and achievement)
+-- R  Role play score (xp and achievement)
 -- O
 -- 0
 -- 3,4,5,6,7,8,9  Paper Chase 2013 and newer
@@ -108,7 +108,7 @@ ORDER BY points DESC, nmb DESC, xp DESC) As scoretable,
 INSERT INTO halloffame_archive_recent (charname, fametype, halloffame_archive_recent.rank, points, day)
 SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rankX, scoretable.points, CURRENT_DATE()
 FROM (
-  SELECT name, round(ln(xp*(ifnull(sum(1/reached)*1000,0)+0.0001)/(age+1))*1000) As points, sum(1/reached)
+  SELECT name, round(ln(xp*(ifnull(sum(1/reached)*1000,0)+0.0001))*1000) As points, sum(1/reached)
   FROM achievement
   JOIN reached_achievement ra ON (ra.achievement_id=achievement.id)
   RIGHT JOIN character_stats ON name = charname
@@ -207,7 +207,7 @@ ORDER BY points DESC, nmb DESC, xp DESC) As scoretable,
 INSERT INTO halloffame_archive_alltimes (charname, fametype, halloffame_archive_alltimes.rank, points, day)
 SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rankX, scoretable.points, CURRENT_DATE()
 FROM (
-  SELECT name, round(ln(xp*(ifnull(sum(1/reached)*1000,0)+0.0001)/(age+1))*1000) As points, sum(1/reached)
+  SELECT name, round(ln(xp*(ifnull(sum(1/reached)*1000,0)+0.0001))*1000) As points, sum(1/reached)
   FROM achievement
   JOIN reached_achievement ra ON (ra.achievement_id=achievement.id)
   RIGHT JOIN character_stats ON name = charname
