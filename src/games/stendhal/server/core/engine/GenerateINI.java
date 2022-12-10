@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -132,13 +131,13 @@ public class GenerateINI {
 	public static void main(final String[] args) throws FileNotFoundException {
 
 		/** Write configuration for database */
-	    final String databaseSystem = getDatabaseSystem();
+		final String databaseSystem = getDatabaseSystem();
 		DatabaseConfiguration dbConfig = null;
 		if (databaseSystem.equals("mysql")) {
-		    final String databaseName = getDatabaseName();
-		    final String databaseHost = getDatabaseHost();
-		    final String databaseUsername = getDatabaseUsername();
-		    final String databasePassword = getDatabasePassword();
+			final String databaseName = getDatabaseName();
+			final String databaseHost = getDatabaseHost();
+			final String databaseUsername = getDatabaseUsername();
+			final String databasePassword = getDatabasePassword();
 			System.out.println("Using \"" + databaseName + "\" as database name\n");
 			System.out.println("Using \"" + databaseHost + "\" as database host\n");
 			System.out.println("Using \"" + databaseUsername + "\" as database user\n");
@@ -153,7 +152,7 @@ public class GenerateINI {
 			dbConfig = new MySqlDatabaseConfiguration(databaseName, databaseHost, databaseUsername, databasePassword);
 			System.out.println("  exit");
 		} else {
-		    dbConfig = new H2DatabaseConfiguration();
+			dbConfig = new H2DatabaseConfiguration();
 			System.out.println("Using integrated h2 database.");
 		}
 
@@ -173,7 +172,7 @@ public class GenerateINI {
 		String temp = "";
 		do {
 			System.out.println("Which database system do you want to use? \"h2\" is an integrated database that ");
-			System.out.print("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\" [h2]: ");
+			System.out.print("works out of the box, \"mysql\" requires a MySQL or MariaDB server. If in doubt, say \"h2\" [h2]: ");
 			temp = getStringWithDefault(in, "h2").toLowerCase().trim();
 		} while (!temp.equals("h2") && !temp.equals("mysql"));
 		return temp;
