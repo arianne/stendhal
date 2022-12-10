@@ -44,7 +44,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 	private static final int respawnTurns = 2000;
 
 	private final String[] dialogue = new String[] {
-		"[name] you cured me!",
+		"[name], you cured me!",
 		"I have been stuck in that myling form for so long now. My"
 			+ " grandpa must be worried sick about me.",
 		"I need to get home as soon as possible to let him know I am"
@@ -69,6 +69,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (niallIsActive()) {
 			// wait for Niall clones to be removed before respawning myling
@@ -113,6 +114,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 			activeNialls.add(curedNiall);
 
 			SingletonRepository.getTurnNotifier().notifyInTurns(75, new TurnListener() {
+				@Override
 				public void onTurnReached(final int currentTurn) {
 					// remove Niall from world so new Myling can spawn
 					activeNialls.remove(curedNiall);
@@ -124,6 +126,7 @@ public class MylingSpawner extends Entity implements TurnListener {
 			for (final String phrase : dialogue) {
 				talkDelay += 10;
 				SingletonRepository.getTurnNotifier().notifyInTurns(talkDelay, new TurnListener() {
+					@Override
 					public void onTurnReached(final int currentTurn) {
 						if (phrase == null) {
 							// walk to rope/ladder
