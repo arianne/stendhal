@@ -455,7 +455,7 @@ class KTextEdit extends JComponent {
 	 */
 	private String getSaveFileName() {
 		String savename = new SimpleDateFormat(
-				"yyyyMMdd_HH.mm.ss.SSS").format(new Date());
+				"yyyyMMdd_HHmmss").format(new Date());
 
 		// channel name
 		if (!"".equals(name)) {
