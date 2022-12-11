@@ -8,7 +8,7 @@
 -- X  XP
 -- B  Best (xp and online age)
 -- @  Achievement score
--- R  Role play score (xp, achievement, karma, maze score, & deathmatch score) (TODO: visited zones & completed quests)
+-- R  Role play score (xp, achievement, maze score, & deathmatch score)
 -- O
 -- 0
 -- 3,4,5,6,7,8,9  Paper Chase 2013 and newer
@@ -111,7 +111,7 @@ FROM (
   SELECT
     name,
     round(ln(
-      (xp+karma
+      (xp
       +ifnull((SELECT points FROM halloffame WHERE fametype='M' AND charname=name LIMIT 1), 0)
       +ifnull((SELECT points FROM halloffame WHERE fametype='D' AND charname=name LIMIT 1), 0)
       )*(ifnull(sum(1/reached)*1000,0)+0.0001))*1000) As points,
@@ -217,7 +217,7 @@ FROM (
   SELECT
     name,
     round(ln(
-      (xp+karma
+      (xp
       +ifnull((SELECT points FROM halloffame WHERE fametype='M' AND charname=name LIMIT 1), 0)
       +ifnull((SELECT points FROM halloffame WHERE fametype='D' AND charname=name LIMIT 1), 0)
       )*(ifnull(sum(1/reached)*1000,0)+0.0001))*1000) As points,
