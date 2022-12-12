@@ -127,6 +127,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			final Attributes attrs) {
 
 		if (attributesTag && qName.equals("unattainable")) {
+			// "unattainable" is for website use to prevent listing item
 			return;
 		}
 
