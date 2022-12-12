@@ -351,9 +351,9 @@ stendhal.slashActionRepository = {
 				"- /walk \tToggles autowalk on/off.",
 				"- /stopwalk \tTurns autowalk off.",
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
-/*				"* CLIENT SETTINGS:",
+				"* CLIENT SETTINGS:",
 				"- /mute \tMute or unmute the sounds.",
-				"- /volume \tLists or sets the volume for sound and music.",*/
+//				"- /volume \tLists or sets the volume for sound and music.",
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
@@ -658,6 +658,19 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 1,
 		maxParams: 1
+	},
+
+	"mute": {
+		execute: function(type, params, remainder) {
+			stendhal.main.toggleSound();
+			if (stendhal.config.getBoolean("ui.sound")) {
+				Chat.log("info", "Sounds are now on.");
+			} else {
+				Chat.log("info", "Sounds are now off.");
+			}
+		},
+		minParams: 0,
+		maxParams: 0
 	},
 
 	"p": {
@@ -1070,6 +1083,6 @@ stendhal.slashActionRepository = {
 		}
 	}
 };
-// answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, mute, settings
+// answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, settings
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
 stendhal.slashActionRepository["tell"] = stendhal.slashActionRepository["msg"];
