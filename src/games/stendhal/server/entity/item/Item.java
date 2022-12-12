@@ -254,9 +254,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// marked scroll
 		entity.addAttribute("dest", Type.STRING, Definition.VOLATILE);
-
-		// hidden from website
-		entity.addAttribute("unattainable", Type.FLAG, Definition.VOLATILE);
 	}
 
 
