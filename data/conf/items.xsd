@@ -78,6 +78,7 @@
       <element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded"/>
       <element name="itemset" type="Q1:attribute" minOccurs="0"/>
       <element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+      <element name="unattainable" type="boolean" minOccurs="0" maxOccurs="1"/>
     </sequence>
   </complexType>
 
