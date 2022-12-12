@@ -41,6 +41,7 @@
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -65,6 +66,7 @@
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -89,6 +91,7 @@
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -1617,6 +1620,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
       </attributes>
       <weight value="1.0"/>
       <value value="150"/>
@@ -1640,6 +1644,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1663,6 +1668,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1686,6 +1692,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1709,6 +1716,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1732,6 +1740,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1755,6 +1764,7 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
