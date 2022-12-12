@@ -9,6 +9,7 @@
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
     <attributes>
       <menu value="Use|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="10.0"/>
     <value value="1"/>
