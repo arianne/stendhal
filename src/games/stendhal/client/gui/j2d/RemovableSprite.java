@@ -127,18 +127,27 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 *     Graphics.
 	 */
 	private void drawAttached(final Graphics g) {
+		int sx = getAttachedX();
+		int sy = getAttachedY(sx);
+
+		sprite.draw(g, sx, sy);
+	}
+
+	private int getAttachedX() {
 		int sx = gsHelper.convertWorldXToScaledScreen(owner.getX() + owner.getWidth());
+		sx = gsHelper.keepSpriteOnMapX(sprite, sx);
+		return sx;
+	}
+	
+	private int getAttachedY(int attachedX) {
 		int sy = gsHelper.convertWorldYToScaledScreen(owner.getY());
 
 		// Point alignment: left, bottom
 		sy -= sprite.getHeight();
-
-		sx = gsHelper.keepSpriteOnMapX(sprite, sx);
 		sy = gsHelper.keepSpriteOnMapY(sprite, sy);
 		// FIXME: not working to place a new bubble below previous one
-		sy = gsHelper.findFreeTextBoxPosition(sprite, sx, sy);
-
-		sprite.draw(g, sx, sy);
+		sy = gsHelper.findFreeTextBoxPosition(sprite, attachedX, sy);
+		return sy;
 	}
 
 	/**
@@ -148,7 +157,9 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public Rectangle getArea() {
 		if (owner != null) {
-			return new Rectangle((int) owner.getX(), (int) owner.getY(), sprite.getWidth(),
+			int sx = getAttachedX();
+			int sy = getAttachedY(sx);
+			return new Rectangle(sx, sy, sprite.getWidth(),
 				sprite.getHeight());
 		}
 
