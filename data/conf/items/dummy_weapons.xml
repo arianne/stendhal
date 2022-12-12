@@ -14,6 +14,7 @@
     <attributes>
       <atk value="12"/>
       <range value="3"/>
+      <unattainable>true</unattainable>
       <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
@@ -29,6 +30,7 @@
     <attributes>
       <atk value="22"/>
       <range value="8"/>
+      <unattainable>true</unattainable>
       <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
