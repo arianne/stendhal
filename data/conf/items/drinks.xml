@@ -361,6 +361,7 @@
       <quantity value="1"/>
       <regen value="0"/>
       <menu value="Drink|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
