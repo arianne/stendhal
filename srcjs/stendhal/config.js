@@ -30,6 +30,7 @@ stendhal.config = {
 		"gamescreen.shadows": "true",
 		"gamescreen.speech.creature": "true",
 		"input.movecont": "false",
+		"input.doubleclick": "false",
 		"action.item.doubleclick": "false",
 		"action.chest.quickpickup": "false"
 	},
