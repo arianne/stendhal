@@ -193,6 +193,7 @@
     <attributes>
       <menu value="Dig|Use"/>
       <use_sound value="shovel_dig"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="10.0"/>
     <value value="1"/>
