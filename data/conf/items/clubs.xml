@@ -270,6 +270,7 @@
       <atk value="100"/>
       <def value="100"/>
       <rate value="2"/>
+      <unattainable>true</unattainable>
       <min_level value="0"/>
     </attributes>
     <weight value="0.01"/>
