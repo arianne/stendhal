@@ -130,6 +130,7 @@
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -150,6 +151,7 @@
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
