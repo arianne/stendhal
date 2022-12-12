@@ -43,6 +43,7 @@
     <attributes>
       <quantity value="1"/>
       <menu value="Use|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -64,6 +65,7 @@
     <attributes>
       <quantity value="1"/>
       <menu value="Use|Use"/>
+      <unattainable>true</unattainable>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
