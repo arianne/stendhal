@@ -219,6 +219,22 @@ stendhal.slashActionRepository = {
 		maxParams: 0
 	},
 
+	"clickmode": {
+		execute: function(type, params, remainder) {
+			const newMode = !stendhal.config.getBoolean("input.doubleclick");
+			stendhal.config.set("input.doubleclick", newMode);
+			stendhal.ui.gamewindow.updateClickMode();
+
+			if (newMode) {
+				Chat.log("info", "Click mode is now set to double click.");
+			} else {
+				Chat.log("info", "Click mode is now set to single click.");
+			}
+		},
+		minParams: 0,
+		maxParams: 0
+	},
+
 	"debug": new DebugAction(),
 
 	"drop": {
@@ -331,7 +347,7 @@ stendhal.slashActionRepository = {
 				"- /name <pet> <name> \t\tGive a name to your pet.",
 				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
 				"* PLAYER CONTROL:",
-//				"- /clickmode \tSwitches between single click mode and double click mode.",
+				"- /clickmode \tSwitches between single click mode and double click mode.",
 				"- /walk \tToggles autowalk on/off.",
 				"- /stopwalk \tTurns autowalk off.",
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
@@ -1054,6 +1070,6 @@ stendhal.slashActionRepository = {
 		}
 	}
 };
-// answer, sentence, drop, add, remove, away, grumpy, profile, clickmode, walk, stopwalk, movecont, mute, settings
+// answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, mute, settings
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
 stendhal.slashActionRepository["tell"] = stendhal.slashActionRepository["msg"];
