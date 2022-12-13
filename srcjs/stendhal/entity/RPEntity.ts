@@ -174,6 +174,8 @@ export class RPEntity extends ActiveEntity {
 	 *     Text to display.
 	 */
 	addSpeechBubble(text: string) {
+		let spriteCtx: CanvasRenderingContext2D|null = null;
+
 		stendhal.ui.gamewindow.addTextSprite({
 			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
 			timeStamp: Date.now(),
@@ -193,6 +195,24 @@ export class RPEntity extends ActiveEntity {
 
 				ctx.fillStyle = "#000000";
 				ctx.fillText(this.realText, x + 4, y);
+
+				// prevent new listener being added for every redraw
+				if (spriteCtx == null) {
+					spriteCtx = ctx;
+
+					// add click listener to remove chat bubble
+					ctx.canvas.addEventListener("click", (e) => {
+						/* FIXME:
+						 * - need to override character movement
+						 * - only removes topmost sprite
+						 * - removes sprite even if click was not over it
+						 */
+						if (stendhal.ui.gamewindow.isTopText(this)) {
+							stendhal.ui.gamewindow.removeTextSprite(this);
+						}
+					});
+				}
+
 				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
 			}
 		});
@@ -299,12 +319,17 @@ export class RPEntity extends ActiveEntity {
 					sy += lheight;
 				}
 
+				// prevent new listener being added for every redraw
 				if (spriteCtx == null) {
 					spriteCtx = ctx;
 
 					// add click listener to remove notification bubble
 					ctx.canvas.addEventListener("click", (e) => {
-						// FIXME: need to override character movement
+						/* FIXME:
+						 * - need to override character movement
+						 * - only removes topmost sprite
+						 * - removes sprite even if click was not over it
+						 */
 						if (stendhal.ui.gamewindow.isTopNotification(this)) {
 							stendhal.ui.gamewindow.removeNotifSprite(this);
 						}

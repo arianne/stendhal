@@ -163,6 +163,25 @@ stendhal.ui.gamewindow = {
 		this.textSprites.push(sprite);
 	},
 
+	removeTextSprite: function(sprite) {
+		const idx = this.textSprites.indexOf(sprite);
+		if (idx > -1) {
+			this.textSprites.splice(idx, 1);
+		}
+	},
+
+	/**
+	 * Checks if a speech bubble sprite is drawn on top of all others.
+	 *
+	 * @param sprite
+	 *     Sprite to be checked.
+	 * @return
+	 *     <code>true</code> if sprite is most recently added to client.
+	 */
+	isTopText: function(sprite) {
+		return this.textSprites.indexOf(sprite) + 1 == this.textSprites.length;
+	},
+
 	addNotifSprite: function(sprite) {
 		this.notifSprites.push(sprite);
 	},
