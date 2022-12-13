@@ -35,6 +35,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.maze.MazeGenerator;
 import games.stendhal.server.maps.quests.maze.MazeSign;
+import games.stendhal.server.util.TimeUtil;
 
 public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
@@ -77,6 +78,13 @@ public class Maze extends AbstractQuest {
 			final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 			if (repetitions > 1) {
 				res.add("So far I've solved the maze " + repetitions + " times already!");
+			}
+
+			final Long bestTime = MazeGenerator.getBestTime(player);
+			if (bestTime != null) {
+				res.add("My best time is "
+					+ TimeUtil.timeUntil((int) (bestTime / 1000),
+						true) + ".");
 			}
 
 			return res;

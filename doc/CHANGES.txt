@@ -26,6 +26,7 @@ Changelog
 - 3 rope added to Daily Item quest
 - new quest: A Grandfather's Wish
 - A Grandfather's Wish quest added to Private Detective achievement
+- travel log displays fastest maze completion time
 
 *graphics*
 - reworked chaos sprites for Cabbit bases
