@@ -230,6 +230,7 @@ stendhal.slashActionRepository = {
 			} else {
 				Chat.log("info", "Click mode is now set to single click.");
 			}
+			return true;
 		},
 		minParams: 0,
 		maxParams: 0
@@ -668,6 +669,7 @@ stendhal.slashActionRepository = {
 			} else {
 				Chat.log("info", "Sounds are now off.");
 			}
+			return true;
 		},
 		minParams: 0,
 		maxParams: 0
