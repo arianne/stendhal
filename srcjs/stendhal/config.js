@@ -20,6 +20,7 @@ stendhal.config = {
 
 	defaults: {
 		"ui.sound": "false",
+		"ui.sound.master.volume": "100",
 		"ui.font.body": "Carlito",
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",

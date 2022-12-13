@@ -354,7 +354,7 @@ stendhal.slashActionRepository = {
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
 				"* CLIENT SETTINGS:",
 				"- /mute \tMute or unmute the sounds.",
-//				"- /volume \tLists or sets the volume for sound and music.",
+				"- /volume \tLists or sets the volume for sound and music (changing volume currently not supported).",
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
@@ -783,6 +783,29 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 0
+	},
+
+	"volume": {
+		execute: function(type, params, remainder) {
+			if (typeof(params[0]) == "undefined") {
+				const curVol = stendhal.config.getFloat("ui.sound.master.volume");
+				Chat.log("info", "Please use /volume <name> <value> to adjust the volume.");
+				// FIXME: the following messages are headerless in Java client
+				Chat.log("info", "<name> is an item from the following list. \"master\" refers to the global volume setting.");
+				Chat.log("info", "<value> is in the range from 0 to 100 but may be set higher.");
+				Chat.log("info", "master -> " + curVol);
+				// TODO: list all channels
+			} else if (typeof(params[1]) != "undefined") {
+				// TODO:
+				Chat.log("info", "Changing volume currently not supported.");
+			} else {
+				Chat.log("error", "Please use /volume for help.");
+			}
+
+			return true;
+		},
+		minParams: 0,
+		maxParams: 2
 	},
 
 	"summon": {
