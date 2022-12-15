@@ -189,7 +189,7 @@ public class EggsForMarianne extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"I need a dozen of eggs. " +
 				"My mom asked me to collect eggs and she is going to make me pancakes! " +
-				"I'm afraid getting close to those chickens! " +
+				"I'm afraid of getting close to those chickens! " +
 				"Could you please get eggs for me?",
 				null);
 
