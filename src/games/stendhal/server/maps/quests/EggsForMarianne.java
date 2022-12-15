@@ -190,8 +190,7 @@ public class EggsForMarianne extends AbstractQuest {
 				"I need a dozen of eggs. " +
 				"My mom asked me to collect eggs and she is going to make me pancakes! " +
 				"I'm afraid getting close to those chickens! " +
-				"Could you please get eggs for me? " +
-				"Remember .. I need a dozen of eggs ...",
+				"Could you please get eggs for me?",
 				null);
 
 		// player returns - enough time has passed
@@ -203,8 +202,7 @@ public class EggsForMarianne extends AbstractQuest {
 						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"My mom needs eggs again! " +
-				"Could you please get more eggs for me? "+
-				"A dozen of eggs will do ...",
+				"Could you please get a dozen more for me?",
 				null);
 
 		// player returns - enough time has passed
