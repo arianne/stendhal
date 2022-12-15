@@ -33,7 +33,6 @@ stendhal.ui.gamewindow = {
 	textSprites: [],
 	notifSprites: [],
 	emojiSprites: {},
-	doubleClickMode: false,
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -207,13 +206,6 @@ stendhal.ui.gamewindow = {
 		ui.get(UIComponentEnum.ChatLog).addLine("server", msg);
 	},
 
-	/**
-	 * Sets click mode to either single or double from config.
-	 */
-	updateClickMode: function() {
-		this.doubleClickMode = stendhal.config.getBoolean("input.doubleclick");
-	},
-
 	// Mouse click handling
 	onMouseDown: (function() {
 		var entity;
@@ -240,14 +232,13 @@ stendhal.ui.gamewindow = {
 			entity = stendhal.zone.entityAt(x, y);
 			stendhal.ui.timestampMouseDown = +new Date();
 
-			// FIXME: double-click does not always work
-			if (isRightClick(e) || (
-					(!stendhal.ui.gamewindow.doubleClickMode && e.type !== "dblclick")
-					|| (stendhal.ui.gamewindow.doubleClickMode && e.type === "dblclick"))) {
+			if (e.type !== "dblclick") {
 				e.target.addEventListener("mousemove", onDrag);
 				e.target.addEventListener("mouseup", onMouseUp);
 				e.target.addEventListener("touchmove", onDrag);
 				e.target.addEventListener("touchend", onMouseUp);
+			} else if (entity == stendhal.zone.ground) {
+				entity.onclick(pos.offsetX, pos.offsetY, true);
 			}
 		}
 

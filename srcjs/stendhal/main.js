@@ -232,8 +232,6 @@ stendhal.main = {
 
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-			// sync clickmode with config
-			stendhal.ui.gamewindow.updateClickMode();
 		}
 
 		// attributes to set after connection made

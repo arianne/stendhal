@@ -219,6 +219,7 @@ stendhal.slashActionRepository = {
 		maxParams: 0
 	},
 
+	/*
 	"clickmode": {
 		execute: function(type, params, remainder) {
 			const newMode = !stendhal.config.getBoolean("input.doubleclick");
@@ -235,6 +236,7 @@ stendhal.slashActionRepository = {
 		minParams: 0,
 		maxParams: 0
 	},
+	*/
 
 	"debug": new DebugAction(),
 
@@ -348,7 +350,7 @@ stendhal.slashActionRepository = {
 				"- /name <pet> <name> \t\tGive a name to your pet.",
 				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
 				"* PLAYER CONTROL:",
-				"- /clickmode \tSwitches between single click mode and double click mode.",
+//				"- /clickmode \tSwitches between single click mode and double click mode.",
 				"- /walk \tToggles autowalk on/off.",
 				"- /stopwalk \tTurns autowalk off.",
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
