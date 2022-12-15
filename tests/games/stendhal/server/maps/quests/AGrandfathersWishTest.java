@@ -309,8 +309,8 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
 			"Know what he told me once? He said he wanted to go all the way"
-				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
-				+ " sounds more scary than chickens.",
+				+ " to Semos mountains to see the #graveyard there. Nuh uh! No"
+				+ " way! That sounds more scary than chickens.",
 			getReplies(marianne).get(0));
 		assertEquals("find_myling:start", player.getQuest(QUEST_SLOT, 1));
 
@@ -320,6 +320,14 @@ public class AGrandfathersWishTest extends QuestHelper {
 			"I hope he didn't go to that scary graveyard. Who knows what kind"
 				+ " of monsters are there.",
 			getReply(marianne));
+
+		en.step(player, "Niall");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Niall said he wanted to go all the way to Semos mountains to see"
+				+ " the #graveyard there. Nuh uh! No way! That sounds more"
+				+ " scary than chickens.",
+				getReply(marianne));
 
 		en.step(player, "bye");
 	}

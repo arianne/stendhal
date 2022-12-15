@@ -148,7 +148,7 @@ public class AGrandfathersWish extends AbstractQuest {
 				+ " together.");
 			if (find_myling != null) {
 				res.add("Marianne mentioned that Niall wanted to explore the"
-					+ " graveyard in the Semos area.");
+					+ " graveyard in Semos mountains.");
 				if (find_myling.equals("well_rope")) {
 					res.add("I heard a strange noise coming from a well north of"
 						+ " the graveyard. I need a rope to decend into it.");
@@ -355,8 +355,8 @@ public class AGrandfathersWish extends AbstractQuest {
 			investigating1,
 			ConversationStates.ATTENDING,
 			"Know what he told me once? He said he wanted to go all the way"
-				+ " to Semos to see the #graveyard there. Nuh uh! No way! That"
-				+ " sounds more scary than chickens.",
+				+ " to Semos mountains to see the #graveyard there. Nuh uh! No"
+				+ " way! That sounds more scary than chickens.",
 			new MultipleActions(
 				new NPCEmoteAction("shivers.", false),
 				new SetQuestAction(QUEST_SLOT, 1, "find_myling:start")));
@@ -366,9 +366,9 @@ public class AGrandfathersWish extends AbstractQuest {
 			"Niall",
 			investigating2,
 			ConversationStates.ATTENDING,
-			"Niall said he wanted to go all the way to Semos to see the"
-				+ " #graveyard there. Nuh uh! No way! That sounds more scary"
-				+ " than chickens.",
+			"Niall said he wanted to go all the way to Semos mountains to see"
+				+ " the #graveyard there. Nuh uh! No way! That sounds more"
+				+ " scary than chickens.",
 			null);
 
 		marianne.add(
