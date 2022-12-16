@@ -141,7 +141,6 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 				+ stendhal.ui.gamewindow.offsetY + 15;
 
 		/* FIXME:
-		 * - need to override character movement
 		 * - only removes topmost sprite
 		 */
 		if (stendhal.ui.gamewindow.isTopNotification(this)

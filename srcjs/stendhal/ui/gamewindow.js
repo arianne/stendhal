@@ -228,6 +228,31 @@ stendhal.ui.gamewindow = {
 		ui.get(UIComponentEnum.ChatLog).addLine("server", msg);
 	},
 
+	/**
+	 * Checks for an active text bubble.
+	 *
+	 * @param x
+	 *     X coordinate to check.
+	 * @param y
+	 *     Y coordinate to check.
+	 * @return
+	 *     <code>true</code> if there is a text bubble at position.
+	 */
+	textBubbleAt(x, y) {
+		for (const sprite of this.notifSprites) {
+			if (sprite.clipsPoint(x, y)) {
+				return true;
+			}
+		}
+		for (const sprite of this.textSprites) {
+			if (sprite.clipsPoint(x, y)) {
+				return true;
+			}
+		}
+
+		return false;
+	},
+
 	// Mouse click handling
 	onMouseDown: (function() {
 		var entity;
@@ -251,6 +276,12 @@ stendhal.ui.gamewindow = {
 
 			var x = pos.offsetX + stendhal.ui.gamewindow.offsetX;
 			var y = pos.offsetY + stendhal.ui.gamewindow.offsetY;
+
+			// override ground/entity action if there is a text bubble
+			if (stendhal.ui.gamewindow.textBubbleAt(x, y+15)) {
+				return;
+			}
+
 			entity = stendhal.zone.entityAt(x, y);
 			stendhal.ui.timestampMouseDown = +new Date();
 
