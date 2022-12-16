@@ -61,21 +61,4 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 
 		return Date.now() > this.timeStamp + 2000 + 20 * this.text.length;
 	}
-
-	onClick(evt: MouseEvent) {
-		const screenRect = document.getElementById("gamewindow")!
-				.getBoundingClientRect();
-		const pointX = evt.clientX - screenRect.x
-				+ stendhal.ui.gamewindow.offsetX;
-		const pointY = evt.clientY - screenRect.y
-				+ stendhal.ui.gamewindow.offsetY + 15;
-
-		/* FIXME:
-		 * - only removes topmost sprite
-		 */
-		if (stendhal.ui.gamewindow.isTopText(this)
-				&& this.clipsPoint(pointX, pointY)) {
-			stendhal.ui.gamewindow.removeTextSprite(this);
-		}
-	}
 }

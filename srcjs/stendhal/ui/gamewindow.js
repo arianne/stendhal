@@ -164,48 +164,8 @@ stendhal.ui.gamewindow = {
 		this.textSprites.push(sprite);
 	},
 
-	removeTextSprite: function(sprite) {
-		const idx = this.textSprites.indexOf(sprite);
-		if (idx > -1) {
-			this.textSprites.splice(idx, 1);
-			sprite.onRemoved();
-		}
-	},
-
-	/**
-	 * Checks if a speech bubble sprite is drawn on top of all others.
-	 *
-	 * @param sprite
-	 *     Sprite to be checked.
-	 * @return
-	 *     <code>true</code> if sprite is most recently added to client.
-	 */
-	isTopText: function(sprite) {
-		return this.textSprites.indexOf(sprite) + 1 == this.textSprites.length;
-	},
-
 	addNotifSprite: function(sprite) {
 		this.notifSprites.push(sprite);
-	},
-
-	removeNotifSprite: function(sprite) {
-		const idx = this.notifSprites.indexOf(sprite);
-		if (idx > -1) {
-			this.notifSprites.splice(idx, 1);
-			sprite.onRemoved();
-		}
-	},
-
-	/**
-	 * Checks if a notification sprite is drawn on top of all others.
-	 *
-	 * @param sprite
-	 *     Sprite to be checked.
-	 * @return
-	 *     <code>true</code> if sprite is most recently added to client.
-	 */
-	isTopNotification: function(sprite) {
-		return this.notifSprites.indexOf(sprite) + 1 == this.notifSprites.length;
 	},
 
 	/**
@@ -226,6 +186,38 @@ stendhal.ui.gamewindow = {
 			marauroa.me.addNotificationBubble("server", msg);
 		}
 		ui.get(UIComponentEnum.ChatLog).addLine("server", msg);
+	},
+
+	/**
+	 * Removes a text bubble. Looks for topmost sprite at
+	 * <code>x</code>,<code>y</code>. Otherwise removes
+	 * <code>sprite</code>.
+	 *
+	 * @param sprite
+	 *     The sprite that is to be removed.
+	 * @param x
+	 *     X coordinate to check for overlapping sprite.
+	 * @param y
+	 *     Y coordinate to check for overlapping sprite.
+	 */
+	removeTextBubble(sprite, x, y) {
+		for (let idx = this.notifSprites.length-1; idx >= 0; idx--) {
+			const topSprite = this.notifSprites[idx];
+			if (topSprite == sprite || topSprite.clipsPoint(x, y)) {
+				this.notifSprites.splice(idx, 1);
+				topSprite.onRemoved();
+				return;
+			}
+		}
+
+		for (let idx = this.textSprites.length-1; idx >= 0; idx--) {
+			const topSprite = this.textSprites[idx];
+			if (topSprite == sprite || topSprite.clipsPoint(x, y)) {
+				this.textSprites.splice(idx, 1);
+				topSprite.onRemoved();
+				return;
+			}
+		}
 	},
 
 	/**

@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 
 export abstract class TextBubbleSprite {
 
@@ -26,6 +28,8 @@ export abstract class TextBubbleSprite {
 		this.text = text;
 		this.timeStamp = Date.now();
 	}
+
+	abstract draw(ctx: CanvasRenderingContext2D): boolean;
 
 	/**
 	 * Checks if a point or area clips the boundries of this sprite.
@@ -65,7 +69,19 @@ export abstract class TextBubbleSprite {
 		return this.clips(x, x, y, y);
 	}
 
-	abstract draw(ctx: CanvasRenderingContext2D): boolean;
+	onClick(evt: MouseEvent) {
+		const screenRect = document.getElementById("gamewindow")!
+				.getBoundingClientRect();
+		const pointX = evt.clientX - screenRect.x
+				+ stendhal.ui.gamewindow.offsetX;
+		const pointY = evt.clientY - screenRect.y
+				+ stendhal.ui.gamewindow.offsetY + 15;
+
+		if (this.clipsPoint(pointX, pointY)) {
+			evt.stopPropagation();
+			stendhal.ui.gamewindow.removeTextBubble(this, pointX, pointY);
+		}
+	}
 
 	onRemoved() {
 		if (typeof(this.onRemovedAction) !== "undefined") {
