@@ -14,7 +14,8 @@ export abstract class TextBubbleSprite {
 
 	protected text: string;
 	protected timeStamp: number;
-	protected listening = false;
+
+	protected onRemovedAction?: Function;
 
 
 	constructor(text: string) {
@@ -24,5 +25,9 @@ export abstract class TextBubbleSprite {
 
 	abstract draw(ctx: CanvasRenderingContext2D): boolean;
 
-	abstract onClick(evt: MouseEvent): void;
+	onRemoved() {
+		if (typeof(this.onRemovedAction) !== "undefined") {
+			this.onRemovedAction();
+		}
+	}
 }

@@ -112,6 +112,7 @@ stendhal.ui.gamewindow = {
 			var remove = sprite.draw(this.ctx);
 			if (remove) {
 				sgroup.splice(i, 1);
+				sprite.onRemoved();
 				i--;
 			}
 		}
@@ -167,6 +168,7 @@ stendhal.ui.gamewindow = {
 		const idx = this.textSprites.indexOf(sprite);
 		if (idx > -1) {
 			this.textSprites.splice(idx, 1);
+			sprite.onRemoved();
 		}
 	},
 
@@ -190,6 +192,7 @@ stendhal.ui.gamewindow = {
 		const idx = this.notifSprites.indexOf(sprite);
 		if (idx > -1) {
 			this.notifSprites.splice(idx, 1);
+			sprite.onRemoved();
 		}
 	},
 

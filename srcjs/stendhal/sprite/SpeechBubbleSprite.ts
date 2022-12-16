@@ -54,23 +54,25 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 		ctx.fillText(this.text, x + 4, y);
 
 		// prevent new listener being added for every redraw
-		if (!this.listening) {
-			this.listening = true;
+		if (typeof(this.onRemovedAction) === "undefined") {
 			// add click listener to remove chat bubble
-			ctx.canvas.addEventListener("click", (e) => {
+			const listener = (e: MouseEvent) => {
 				this.onClick(e);
-			});
+			}
+			ctx.canvas.addEventListener("click", listener);
+			this.onRemovedAction = function() {
+				ctx.canvas.removeEventListener("click", listener);
+			};
 		}
 
 		return Date.now() > this.timeStamp + 2000 + 20 * this.text.length;
 	}
 
-	override onClick(evt: MouseEvent) {
+	onClick(evt: MouseEvent) {
 		/* FIXME:
 		 * - removes sprite when clicked anywhere on screen
 		 * - need to override character movement
 		 * - only removes topmost sprite
-		 * - event handler is never removed
 		 */
 		if (stendhal.ui.gamewindow.isTopText(this)) {
 			stendhal.ui.gamewindow.removeTextSprite(this);
