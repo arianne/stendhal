@@ -12,10 +12,11 @@
 import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
-import { NotificationType } from "../util/NotificationType";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
+import { NotificationBubbleSprite } from "../sprite/NotificationBubbleSprite";
+import { SpeechBubbleSprite } from "../sprite/SpeechBubbleSprite";
 import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
@@ -174,54 +175,11 @@ export class RPEntity extends ActiveEntity {
 	 *     Text to display.
 	 */
 	addSpeechBubble(text: string) {
-		let spriteCtx: CanvasRenderingContext2D|null = null;
-
-		stendhal.ui.gamewindow.addTextSprite({
-			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
-			timeStamp: Date.now(),
-			entity: this,
-			draw: function(ctx: CanvasRenderingContext2D) {
-				var x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
-				var y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1));
-
-				ctx.lineWidth = 2;
-				ctx.font = "14px Arial";
-				ctx.fillStyle = '#ffffff';
-				// get width of text
-				var width = ctx.measureText(this.realText).width + 8;
-				ctx.strokeStyle = "#000000";
-
-				this.entity.drawSpeechBubbleRounded(ctx, x, y - 15, width, 20);
-
-				ctx.fillStyle = "#000000";
-				ctx.fillText(this.realText, x + 4, y);
-
-				// prevent new listener being added for every redraw
-				if (spriteCtx == null) {
-					spriteCtx = ctx;
-
-					// add click listener to remove chat bubble
-					ctx.canvas.addEventListener("click", (e) => {
-						/* FIXME:
-						 * - need to override character movement
-						 * - only removes topmost sprite
-						 * - removes sprite even if click was not over it
-						 */
-						if (stendhal.ui.gamewindow.isTopText(this)) {
-							stendhal.ui.gamewindow.removeTextSprite(this);
-						}
-					});
-				}
-
-				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
-			}
-		});
+		stendhal.ui.gamewindow.addTextSprite(new SpeechBubbleSprite(text, this));
 	}
 
 	/**
 	 * Displays a notification at the bottom of the game screen.
-	 *
-	 * FIXME: clicking should remove sprite
 	 *
 	 * @param mtype
 	 *     Message type.
@@ -231,114 +189,7 @@ export class RPEntity extends ActiveEntity {
 	 *     Filename of NPC profile image to display with message.
 	 */
 	addNotificationBubble(mtype: string, text: string, profile?: string) {
-		const linewrap = 30;
-		const wordbreak = 60;
-		const lines: string[] = [];
-
-		let words = text.split("\t").join(" ").split(" ");
-		let nextline = "";
-		for (const w of words) {
-			if (nextline) {
-				nextline += " ";
-			}
-			nextline += w;
-
-			if (nextline.length > wordbreak) {
-				lines.push(nextline.substr(0, wordbreak) + "-");
-				nextline = "-" + nextline.substr(wordbreak);
-			} else if (nextline.length >= linewrap) {
-				lines.push(nextline);
-				nextline = "";
-			}
-		}
-		if (nextline) {
-			lines.push(nextline);
-		}
-
-		const lcount = lines.length;
-		let spriteCtx: CanvasRenderingContext2D|null = null;
-
-		let pimg
-		if (profile) {
-			// TODO: The image might not have been loaded here, so
-			// so we need to retry getAreaOf in the drawing code.
-			// But we still want to cache it once loading successed
-			let img = stendhal.data.sprites.get("data/sprites/npc/" + profile + ".png");
-			if (img.complete && img.height) {
-				pimg = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);
-			}
-		}
-
-		stendhal.ui.gamewindow.addNotifSprite({
-			timeStamp: Date.now(),
-			entity: this,
-			lmargin: 4,
-			profile: pimg,
-			draw: function(ctx: CanvasRenderingContext2D) {
-				const screenArea = document.getElementById("gamewindow")!.getBoundingClientRect();
-				const screenTop = stendhal.ui.gamewindow.offsetY;
-				const screenBottom = screenTop + screenArea.height;
-				const screenLeft = stendhal.ui.gamewindow.offsetX;
-				const screenCenterX = screenLeft + (screenArea.width / 2);
-
-				let longest = "";
-				for (let li = 0; li < lines.length; li++) {
-					if (lines[li].length > longest.length) {
-						longest = lines[li];
-					}
-				}
-
-				// get width & height of text
-				const fontsize = 14;
-				const lheight = fontsize + 6;
-				const meas = ctx.measureText(longest);
-				const width = meas.width + (this.lmargin * 2);
-				const height = lcount * lheight;
-
-				const x = screenCenterX - (width / 2);
-				// FIXME: doesn't reach bottom of game window
-				const y = screenBottom - height;
-
-				ctx.lineWidth = 2;
-				ctx.font = fontsize + "px sans-serif";
-				ctx.fillStyle = "#ffffff";
-				ctx.strokeStyle = "#000000";
-
-				if (this.profile) {
-					ctx.drawImage(this.profile, x - 48, y - 16);
-					this.entity.drawSpeechBubbleRounded(ctx, x, y - 15, width, height);
-				} else {
-					this.entity.drawSpeechBubble(ctx, x, y, width, height);
-				}
-
-				ctx.fillStyle = NotificationType[mtype] || "#000000";
-
-				let sy = y;
-				for (let li = 0; li < lines.length; li++) {
-					ctx.fillText(lines[li], x + this.lmargin, sy);
-					sy += lheight;
-				}
-
-				// prevent new listener being added for every redraw
-				if (spriteCtx == null) {
-					spriteCtx = ctx;
-
-					// add click listener to remove notification bubble
-					ctx.canvas.addEventListener("click", (e) => {
-						/* FIXME:
-						 * - need to override character movement
-						 * - only removes topmost sprite
-						 * - removes sprite even if click was not over it
-						 */
-						if (stendhal.ui.gamewindow.isTopNotification(this)) {
-							stendhal.ui.gamewindow.removeNotifSprite(this);
-						}
-					});
-				}
-
-				return Date.now() > this.timeStamp + 2000 + 20 * text.length;
-			}
-		});
+		stendhal.ui.gamewindow.addNotifSprite(new NotificationBubbleSprite(mtype, text, this, profile));
 	}
 
 	addEmoji(emoji: HTMLImageElement) {
@@ -375,7 +226,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param width
 	 * @param height
 	 */
-	private drawSpeechBubble(ctx: CanvasRenderingContext2D, x: number, y: number,
+	public drawSpeechBubble(ctx: CanvasRenderingContext2D, x: number, y: number,
 			width: number, height: number, tail: boolean = false) {
 		ctx.strokeRect(x, y - 15, width, height);
 		ctx.fillRect(x, y - 15, width, height);
@@ -405,7 +256,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param width
 	 * @param height
 	 */
-	private drawSpeechBubbleRounded(ctx: CanvasRenderingContext2D, x: number, y: number,
+	public drawSpeechBubbleRounded(ctx: CanvasRenderingContext2D, x: number, y: number,
 			width: number, height: number) {
 		//const arc = this.arc_diameter;
 		const arc = 3;
