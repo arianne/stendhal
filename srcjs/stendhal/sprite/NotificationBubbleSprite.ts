@@ -86,9 +86,11 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		const fontsize = 14;
 		const lheight = fontsize + 6;
 		const meas = ctx.measureText(longest);
-		this.width = meas.width + (this.lmargin * 2);
-		this.height = lcount * lheight;
 
+		if (this.width < 0 || this.height < 0) {
+			this.width = meas.width + (this.lmargin * 2);
+			this.height = lcount * lheight;
+		}
 		this.x = screenCenterX - (this.width / 2);
 		// FIXME: doesn't reach bottom of game window
 		this.y = screenBottom - this.height;

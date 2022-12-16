@@ -14,10 +14,10 @@ export abstract class TextBubbleSprite {
 
 	protected text: string;
 	protected timeStamp: number;
-	protected x = 0;
-	protected y = 0;
-	protected width = 0;
-	protected height = 0;
+	protected x = -1;
+	protected y = -1;
+	protected width = -1;
+	protected height = -1;
 
 	protected onRemovedAction?: Function;
 

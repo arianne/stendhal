@@ -33,10 +33,13 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 		ctx.lineWidth = 2;
 		ctx.font = "14px Arial";
 		ctx.fillStyle = '#ffffff';
-		// get width of text
-		this.width = ctx.measureText(this.text).width + 8;
-		this.height = 20;
 		ctx.strokeStyle = "#000000";
+
+		if (this.width < 0 || this.height < 0) {
+			// get width of text
+			this.width = ctx.measureText(this.text).width + 8;
+			this.height = 20;
+		}
 
 		this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
 				this.width, this.height);
