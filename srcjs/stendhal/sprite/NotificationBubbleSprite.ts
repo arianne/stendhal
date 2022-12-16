@@ -66,7 +66,8 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D): boolean {
-		const screenArea = document.getElementById("gamewindow")!.getBoundingClientRect();
+		const screenArea = document.getElementById("gamewindow")!
+				.getBoundingClientRect();
 		const screenTop = stendhal.ui.gamewindow.offsetY;
 		const screenBottom = screenTop + screenArea.height;
 		const screenLeft = stendhal.ui.gamewindow.offsetX;
@@ -85,12 +86,12 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		const fontsize = 14;
 		const lheight = fontsize + 6;
 		const meas = ctx.measureText(longest);
-		const width = meas.width + (this.lmargin * 2);
-		const height = lcount * lheight;
+		this.width = meas.width + (this.lmargin * 2);
+		this.height = lcount * lheight;
 
-		const x = screenCenterX - (width / 2);
+		this.x = screenCenterX - (this.width / 2);
 		// FIXME: doesn't reach bottom of game window
-		const y = screenBottom - height;
+		this.y = screenBottom - this.height;
 
 		ctx.lineWidth = 2;
 		ctx.font = fontsize + "px sans-serif";
@@ -98,17 +99,19 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		ctx.strokeStyle = "#000000";
 
 		if (this.profile) {
-			ctx.drawImage(this.profile, x - 48, y - 16);
-			this.entity.drawSpeechBubbleRounded(ctx, x, y - 15, width, height);
+			ctx.drawImage(this.profile, this.x - 48, this.y - 16);
+			this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
+					this.width, this.height);
 		} else {
-			this.entity.drawSpeechBubble(ctx, x, y, width, height);
+			this.entity.drawSpeechBubble(ctx, this.x, this.y, this.width,
+					this.height);
 		}
 
 		ctx.fillStyle = NotificationType[this.mtype] || "#000000";
 
-		let sy = y;
+		let sy = this.y;
 		for (let li = 0; li < lcount; li++) {
-			ctx.fillText(this.lines[li], x + this.lmargin, sy);
+			ctx.fillText(this.lines[li], this.x + this.lmargin, sy);
 			sy += lheight;
 		}
 
@@ -128,12 +131,19 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 	}
 
 	onClick(evt: MouseEvent) {
+		const screenRect = document.getElementById("gamewindow")!
+				.getBoundingClientRect();
+		const pointX = evt.clientX - screenRect.x
+				+ stendhal.ui.gamewindow.offsetX;
+		const pointY = evt.clientY - screenRect.y
+				+ stendhal.ui.gamewindow.offsetY + 15;
+
 		/* FIXME:
-		 * - removes sprite when clicked anywhere on screen
 		 * - need to override character movement
 		 * - only removes topmost sprite
 		 */
-		if (stendhal.ui.gamewindow.isTopNotification(this)) {
+		if (stendhal.ui.gamewindow.isTopNotification(this)
+				&& this.clipsPoint(pointX, pointY)) {
 			stendhal.ui.gamewindow.removeNotifSprite(this);
 		}
 	}

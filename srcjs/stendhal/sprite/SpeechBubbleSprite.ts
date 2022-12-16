@@ -18,8 +18,6 @@ declare var stendhal: any;
 export class SpeechBubbleSprite extends TextBubbleSprite {
 
 	private entity: RPEntity;
-	private width = 0;
-	private height = 0;
 
 
 	constructor(text: string, entity: RPEntity) {
@@ -27,17 +25,10 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 		this.entity = entity;
 	}
 
-	getX(): number {
-		return this.entity["_x"] * 32 + (32 * this.entity["width"]);
-	}
-
-	getY(): number {
-		return this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1));
-	}
-
 	override draw(ctx: CanvasRenderingContext2D): boolean {
-		const x = this.getX();
-		const y = this.getY();
+		this.x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
+		this.y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"]
+			- 1));
 
 		ctx.lineWidth = 2;
 		ctx.font = "14px Arial";
@@ -47,11 +38,11 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 		this.height = 20;
 		ctx.strokeStyle = "#000000";
 
-		this.entity.drawSpeechBubbleRounded(ctx, x, y - 15,
+		this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
 				this.width, this.height);
 
 		ctx.fillStyle = "#000000";
-		ctx.fillText(this.text, x + 4, y);
+		ctx.fillText(this.text, this.x + 4, this.y);
 
 		// prevent new listener being added for every redraw
 		if (typeof(this.onRemovedAction) === "undefined") {
@@ -69,12 +60,19 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 	}
 
 	onClick(evt: MouseEvent) {
+		const screenRect = document.getElementById("gamewindow")!
+				.getBoundingClientRect();
+		const pointX = evt.clientX - screenRect.x
+				+ stendhal.ui.gamewindow.offsetX;
+		const pointY = evt.clientY - screenRect.y
+				+ stendhal.ui.gamewindow.offsetY + 15;
+
 		/* FIXME:
-		 * - removes sprite when clicked anywhere on screen
 		 * - need to override character movement
 		 * - only removes topmost sprite
 		 */
-		if (stendhal.ui.gamewindow.isTopText(this)) {
+		if (stendhal.ui.gamewindow.isTopText(this)
+				&& this.clipsPoint(pointX, pointY)) {
 			stendhal.ui.gamewindow.removeTextSprite(this);
 		}
 	}
