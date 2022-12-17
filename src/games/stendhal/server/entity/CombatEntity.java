@@ -143,7 +143,11 @@ public abstract class CombatEntity extends GuidedEntity {
 	}
 
 	public boolean getsDefXpFrom(final CombatEntity attacker) {
-		return getsFightXpFrom(attacker);
+		if (this instanceof Player) {
+			return isGuaranteedAtkXpFrom(attacker);
+		}
+
+		return false;
 	}
 
 	/**

@@ -364,7 +364,7 @@ public class StendhalRPAction {
 			 *        is supposed to be done in CombatEntity but is not
 			 *        working for some reason.
 			 */
-			if ((defender instanceof Player) && defender.getsDefXpFrom(player)) {
+			if (defender.getsDefXpFrom(player)) {
 				defender.incDefXP();
 			}
 			if (player.getsAtkXpFrom(defender)) {
