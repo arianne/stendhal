@@ -132,7 +132,7 @@ public abstract class CombatEntity extends GuidedEntity {
 	private boolean getsFightXpFrom(final CombatEntity opponent) {
 		// PvP is handled with the traditional rules
 		if (opponent instanceof Player) {
-			return isGuaranteedAtkXpFrom(opponent);
+			return recentlyDamagedBy(opponent);
 		}
 
 		return this instanceof Player && !(opponent instanceof PassiveNPC);
@@ -144,24 +144,30 @@ public abstract class CombatEntity extends GuidedEntity {
 
 	public boolean getsDefXpFrom(final CombatEntity attacker) {
 		if (this instanceof Player) {
-			return isGuaranteedAtkXpFrom(attacker);
+			return recentlyDamagedBy(attacker);
 		}
 
 		return false;
 	}
 
 	/**
-	 * Checks if damage was recently received from opponent.
+	 * Checks if entity qualifies to receive combat XP.
+	 *
+	 * @param opponent
+	 *     Opposing entity.
+	 * @return
+	 *     <code>true</code> if damage occurred within a specified
+	 *     number of turns.
 	 */
-	public boolean isGuaranteedAtkXpFrom(final CombatEntity defender) {
-		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(defender);
+	private boolean recentlyDamagedBy(final CombatEntity opponent) {
+		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(opponent);
 		if (turnWhenLastDamaged == null) {
 			return false;
 		}
 
 		final int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (currentTurn - turnWhenLastDamaged > GUARANTEED_ATK_XP_TURNS) {
-			enemiesThatGiveFightXP.remove(defender);
+			enemiesThatGiveFightXP.remove(opponent);
 			return false;
 		}
 
