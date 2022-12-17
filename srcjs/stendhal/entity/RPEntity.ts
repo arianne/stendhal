@@ -673,7 +673,7 @@ export class RPEntity extends ActiveEntity {
 		ctx.rect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
 		ctx.stroke();
 
-		ctx.fillStyle = "#E0E0E0";
+		ctx.fillStyle = "#808080"; // same as java.awt.Color.GRAY (rgb(128,128,128))
 		ctx.fillRect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
 
 		// Bar color
