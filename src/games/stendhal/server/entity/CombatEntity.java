@@ -129,25 +129,31 @@ public abstract class CombatEntity extends GuidedEntity {
 		}
 	}
 
-	private boolean getsFightXpFrom(final CombatEntity opponent) {
-		// PvP is handled with the traditional rules
-		if (opponent instanceof Player) {
-			return recentlyDamagedBy(opponent);
-		}
-
-		return this instanceof Player && !(opponent instanceof PassiveNPC);
-	}
-
+	/**
+	 * Checks if this entity should get ATK XP.
+	 */
 	public boolean getsAtkXpFrom(final CombatEntity defender) {
-		return getsFightXpFrom(defender);
-	}
-
-	public boolean getsDefXpFrom(final CombatEntity attacker) {
-		if (this instanceof Player) {
-			return recentlyDamagedBy(attacker);
+		if (!(this instanceof Player)) {
+			return false;
 		}
 
-		return false;
+		// PvP is handled with the traditional rules
+		if (defender instanceof Player) {
+			return recentlyDamagedBy(defender);
+		}
+
+		return !(defender instanceof PassiveNPC);
+	}
+
+	/**
+	 * Checks if this entity should get DEF XP.
+	 */
+	public boolean getsDefXpFrom(final CombatEntity attacker) {
+		if (!(this instanceof Player)) {
+			return false;
+		}
+
+		return recentlyDamagedBy(attacker);
 	}
 
 	/**
