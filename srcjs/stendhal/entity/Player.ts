@@ -239,4 +239,14 @@ export class Player extends RPEntity {
 	public autoWalkEnabled(): boolean {
 		return typeof(this["autowalk"]) !== "undefined";
 	}
+
+	override drawHealthBar(ctx: CanvasRenderingContext2D, x: number, y: number) {
+		// offset so not hidden by other entity bars
+		super.drawHealthBar(ctx, x, y + 6);
+	}
+
+	override drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
+		// offset to match health bar
+		super.drawTitle(ctx, x, y + 6);
+	}
 }
