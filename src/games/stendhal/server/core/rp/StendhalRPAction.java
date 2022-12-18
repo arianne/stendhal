@@ -359,7 +359,7 @@ public class StendhalRPAction {
 			final boolean didDamage = damage > 0;
 
 			// give xp even if attack was blocked
-			if (defender.getsDefXpFrom(player)) {
+			if (defender.getsDefXpFrom(player, didDamage)) {
 				defender.incDefXP();
 			}
 			if (player.getsAtkXpFrom(defender)) {

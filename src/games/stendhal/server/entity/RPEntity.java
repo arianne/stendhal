@@ -3137,13 +3137,14 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 
 		if (this.canHit(defender)) {
-			if (defender.getsDefXpFrom(this)) {
+			int damage = damageDone(defender, itemAtk, nature, isRanged, maxRange);
+			final boolean didDamage = damage > 0;
+
+			if (defender.getsDefXpFrom(this, didDamage)) {
 				defender.incDefXP();
 			}
 
-			int damage = damageDone(defender, itemAtk, nature, isRanged, maxRange);
-
-			if (damage > 0) {
+			if (didDamage) {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());

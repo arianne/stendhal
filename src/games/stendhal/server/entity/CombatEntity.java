@@ -131,6 +131,9 @@ public abstract class CombatEntity extends GuidedEntity {
 
 	/**
 	 * Checks if this entity should get ATK XP.
+	 *
+	 * @param defender
+	 *     The target of this entity.
 	 */
 	public boolean getsAtkXpFrom(final CombatEntity defender) {
 		if (!(this instanceof Player)) {
@@ -147,10 +150,20 @@ public abstract class CombatEntity extends GuidedEntity {
 
 	/**
 	 * Checks if this entity should get DEF XP.
+	 *
+	 * @param attacker
+	 *     The entity targeting this one.
+	 * @param damaged
+	 *     Whether or not damage was inflicted.
 	 */
-	public boolean getsDefXpFrom(final CombatEntity attacker) {
+	public boolean getsDefXpFrom(final CombatEntity attacker, final boolean damaged) {
 		if (!(this instanceof Player)) {
 			return false;
+		}
+
+		// immediate damage guarantees XP
+		if (damaged) {
+			return true;
 		}
 
 		return recentlyDamagedBy(attacker);
