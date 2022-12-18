@@ -359,11 +359,6 @@ public class StendhalRPAction {
 			final boolean didDamage = damage > 0;
 
 			// give xp even if attack was blocked
-			/* FIXME: if we don't check if instance is Player then creature's
-			 *        DEF gets set to 10 due to change in def xp. This check
-			 *        is supposed to be done in CombatEntity but is not
-			 *        working for some reason.
-			 */
 			if (defender.getsDefXpFrom(player)) {
 				defender.incDefXP();
 			}
