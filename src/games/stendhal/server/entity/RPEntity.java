@@ -3137,7 +3137,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 
 		if (this.canHit(defender)) {
-			defender.applyDefXP(this);
+			if (defender.getsDefXpFrom(this)) {
+				defender.incDefXP();
+			}
 
 			int damage = damageDone(defender, itemAtk, nature, isRanged, maxRange);
 
@@ -3182,10 +3184,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		this.notifyWorldAboutChanges();
 		return result;
-	}
-
-	protected void applyDefXP(final RPEntity entity) {
-		// implemented in sub classes
 	}
 
 	/**
