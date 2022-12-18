@@ -133,6 +133,9 @@ public class MylingSpawner extends Entity implements TurnListener {
 							final List<Node> nodes = new LinkedList<Node>();
 							nodes.add(new Node(6, 10));
 							nodes.add(new Node(8, 10));
+							// FIXME: if we don't add another node EntityGuide.nextNode()
+							//        returns null when colliding with another entity
+							nodes.add(new Node(8, 10));
 							curedNiall.setPath(new FixedPath(nodes, false));
 						} else {
 							curedNiall.say(phrase.replace("[name]", player.getName()));
