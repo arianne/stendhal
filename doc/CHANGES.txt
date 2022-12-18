@@ -7,6 +7,8 @@ Changelog
 
 *bugfixes*
 - copy "dest" attribute when splitting marked scroll stacks
+- updated arandula preview for Medicine for Tad quest
+- NPC outfit colors are included in database dump
 
 *world*
 - added non-interactive tadpole to Ados Rock map
@@ -27,6 +29,9 @@ Changelog
 - new quest: A Grandfather's Wish
 - A Grandfather's Wish quest added to Private Detective achievement
 - travel log displays fastest maze completion time
+- refined DEF XP reward:
+  - awarded immediately if damage was inflicted
+  - awarded for blocks only if damage was recently inflicted
 
 *graphics*
 - reworked chaos sprites for Cabbit bases
@@ -35,7 +40,15 @@ Changelog
 *clients*
 - changed level-up sound back to "tadaa"
 
+*web client*
+- fixed closing notification & entity chat bubbles on click
+- offset player HP bar so not blocked by other entities
+- changed background color of HP bar to increase contrast
+- travel log items are sorted alphabetically
+- added "mute" & "volume" slash commands (changing volume currently not supported)
+
 *java client*
+- fixed closing entity chat bubbles on click
 - saved chatlog filename includes character name, date, & timestamp
 - chatlog saved to "chat" subdirectory
 
