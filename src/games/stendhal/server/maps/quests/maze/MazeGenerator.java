@@ -566,7 +566,7 @@ public class MazeGenerator {
 				+ " to solve the maze. That was worth "
 				+ Grammar.quantityplnoun(points, "point") + ".";
 		if (best) {
-			player.setQuest("maze", 3, String.valueOf(timediff));
+			setBestTime(player, timediff);
 			if (oldTime != null) {
 				msg += " You beat your old time of "
 						+ TimeUtil.timeUntil((int) (oldTime / 1000), true) + ".";
@@ -605,6 +605,20 @@ public class MazeGenerator {
 	 */
 	public Portal getPortal() {
 		return portal;
+	}
+
+	/**
+	 * Stores completion time in quest slot.
+	 *
+	 * @param player
+	 *     Player for whom time is being stored.
+	 * @param timestamp
+	 *     Time to store.
+	 */
+	private static void setBestTime(final Player player, final long timestamp) {
+		player.setQuest("maze", 3, String.valueOf(timestamp));
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(
+				player.getName(), "MT", (int) timestamp, false), DBCommandPriority.LOW);
 	}
 
 	/**
