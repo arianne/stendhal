@@ -44,7 +44,7 @@ stendhal.ui.sound = {
 		var sound = new Audio();
 		sound.autoplay = true;
 		sound.volume = volume;
-		sound.src = "/data/sounds/" + soundName + ".ogg";
+		sound.src = stendhal.paths.sounds + "/" + soundName + ".ogg";
 	},
 
 	playGlobalizedEffect: function(soundName, volume) {
@@ -52,7 +52,7 @@ stendhal.ui.sound = {
 			return;
 		}
 
-		const sound = new Audio("/data/sounds/" + soundName + ".ogg");
+		const sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
 		if (volume != null) {
 			sound.volume = volume;
 		}

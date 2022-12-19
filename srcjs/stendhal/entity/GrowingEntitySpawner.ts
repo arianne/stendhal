@@ -64,7 +64,7 @@ export class GrowingEntitySpawner extends Entity {
 			class_name = class_name.replace(" ", "_");
 		}
 
-		var image = stendhal.data.sprites.get("/data/sprites/" + class_name + ".png");
+		var image = stendhal.data.sprites.get(stendhal.paths.sprites + "/" + class_name + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
 			var drawHeight = image.height / count;
@@ -75,7 +75,7 @@ export class GrowingEntitySpawner extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/harvest.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/harvest.png) 1 3, auto";
 	}
 
 }

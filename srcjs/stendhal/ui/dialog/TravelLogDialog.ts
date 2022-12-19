@@ -139,7 +139,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
 		if (this.repeatable[selectedItem]) {
 			detailsSpan.innerHTML += "<p id=\"travellogrepeatable\">"
-				+ "<img src=\"/data/gui/rp.png\" /> <em>I can do this quest again.</em></p>";
+				+ "<img src=\"" + stendhal.paths.gui + "/rp.png\" /> <em>I can do this quest again.</em></p>";
 		}
 
 		detailsSpan.innerHTML += "<p id=\"travellogdescription\">"

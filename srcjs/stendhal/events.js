@@ -182,7 +182,7 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 			row.className = "horizontalgroup shoprow";
 			const img = document.createElement("div");
 			img.className = "shopcol";
-			img.appendChild(stendhal.data.sprites.get("/data/sprites/items/" + i.img));
+			img.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/items/" + i.img));
 			row.appendChild(img);
 			const price = document.createElement("div");
 			price.className = "shopcol";

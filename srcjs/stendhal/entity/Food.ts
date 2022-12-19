@@ -28,7 +28,7 @@ export class Food extends Entity {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {
-		var image = stendhal.data.sprites.get("/data/sprites/food.png");
+		var image = stendhal.data.sprites.get(stendhal.paths.sprites + "/food.png");
 		if (image.height) {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;
@@ -50,7 +50,7 @@ export class Food extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

@@ -12,6 +12,7 @@
 import { NPC } from "./NPC";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 
 export class TrainingDummy extends NPC {
@@ -28,6 +29,6 @@ export class TrainingDummy extends NPC {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/attack.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/attack.png) 1 3, auto";
 	}
 }

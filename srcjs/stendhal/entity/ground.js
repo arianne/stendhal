@@ -51,14 +51,14 @@ stendhal.zone.ground = {
 
 	getCursor: function(x, y) {
 		if ((x < 15) || (y < 15) || (x > stendhal.data.map.zoneSizeX * 32 - 15) || (y > stendhal.data.map.zoneSizeY * 32 - 15)) {
-			return "url(/data/sprites/cursor/walkborder.png) 1 3, auto"
+			return "url(" + stendhal.paths.sprites + "/cursor/walkborder.png) 1 3, auto"
 		}
 		var worldX = Math.floor(x / 32);
 		var worldY = Math.floor(y / 32);
 		if (stendhal.data.map.collision(worldX, worldY)) {
-			return "url(/data/sprites/cursor/stop.png) 1 3, auto";
+			return "url(" + stendhal.paths.sprites + "/cursor/stop.png) 1 3, auto";
 		}
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
 	},
 
 	onclick: function(x, y, dblclick) {

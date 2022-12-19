@@ -27,7 +27,7 @@ export class DomesticAnimal extends RPEntity {
 			if (this["_rpclass"] == "sheep") {
 				this["largeWeight"] = 60;
 			}
-			this.imagePath = "/data/sprites/" + this["_rpclass"] + ".png";
+			this.imagePath = stendhal.paths.sprites + "/" + this["_rpclass"] + ".png";
 		}
 
 		var localX = this["_x"] * 32;
@@ -55,7 +55,7 @@ export class DomesticAnimal extends RPEntity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 	override buildActions(list: MenuItem[]) {

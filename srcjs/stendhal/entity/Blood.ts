@@ -23,7 +23,7 @@ export class Blood extends Entity {
 		this.sprite = {
 			height: 32,
 			width: 32,
-			filename: "/data/sprites/combat/blood_red.png"
+			filename: stendhal.paths.sprites + "/combat/blood_red.png"
 		};
 	}
 
@@ -32,12 +32,12 @@ export class Blood extends Entity {
 		if (key === "amount") {
 			this.sprite.offsetY = parseInt(value, 10) * 32;
 		} else if (key === "class") {
-			this.sprite.filename = "/data/sprites/combat/blood_" + value + ".png";
+			this.sprite.filename = stendhal.paths.sprites + "/combat/blood_" + value + ".png";
 		}
 	}
 
 	override getCursor(x: number, y: number) {
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 	override drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {

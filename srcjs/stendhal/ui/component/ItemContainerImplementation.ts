@@ -104,7 +104,7 @@ export class ItemContainerImplementation {
 					xOffset = -(item.getXFrameIndex() * 32);
 				}
 
-				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png)";
+				e.style.backgroundImage = "url(" + stendhal.paths.sprites + "/items/" + o["class"] + "/" + o["subclass"] + ".png)";
 				e.style.backgroundPosition = xOffset + "px " + yOffset + "px";
 				e.textContent = o.formatQuantity();
 				(e as any).dataItem = o;
@@ -115,7 +115,7 @@ export class ItemContainerImplementation {
 		for (let i = cnt; i < this.size; i++) {
 			let e = document.getElementById(this.slot +this. suffix + i)!;
 			if (this.defaultImage) {
-				e.style.backgroundImage = "url(/data/gui/" + this.defaultImage + ")";
+				e.style.backgroundImage = "url(" + stendhal.paths.gui + "/" + this.defaultImage + ")";
 			} else {
 				e.style.backgroundImage = "none";
 			}

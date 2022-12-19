@@ -46,7 +46,7 @@ export class Gate extends Entity {
 
 	override draw(ctx: CanvasRenderingContext2D) {
 		if (this._image == undefined) {
-			var filename = "/data/sprites/doors/" + this["image"] + "_" + this["orientation"] + ".png";
+			var filename = stendhal.paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
 			this._image = stendhal.data.sprites.get(filename);
 		}
 		if (this._image.height) {
@@ -74,7 +74,7 @@ export class Gate extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/activity.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/activity.png) 1 3, auto";
 	}
 
 }

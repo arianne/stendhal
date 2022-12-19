@@ -11,6 +11,8 @@
 
 import { Entity } from "./Entity";
 
+declare var stendhal: any;
+
 export class InvisibleEntity extends Entity {
 
 	override isVisibleToAction(_filter: boolean) {
@@ -18,7 +20,7 @@ export class InvisibleEntity extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 }

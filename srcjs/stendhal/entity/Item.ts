@@ -79,7 +79,7 @@ export class Item extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "subclass") {
-			this.sprite.filename = "/data/sprites/items/"
+			this.sprite.filename = stendhal.paths.sprites + "/items/"
 				+ this["class"] + "/" + this["subclass"] + ".png";
 		}
 		if (key === "quantity") {
@@ -137,7 +137,7 @@ export class Item extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/itempickupfromslot.png) 1 3, auto";
 	}
 
 	public isAnimated(): boolean {

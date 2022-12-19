@@ -13,6 +13,8 @@ import { RPEntity } from "./RPEntity";
 
 import { Color } from "../util/Color";
 
+declare var stendhal: any;
+
 export class NPC extends RPEntity {
 	override minimapStyle = Color.NPC;
 	override spritePath = "npc";
@@ -36,7 +38,7 @@ export class NPC extends RPEntity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

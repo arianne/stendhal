@@ -21,14 +21,14 @@ declare var stendhal: any;
 
 
 let OPEN_SPRITE = {
-	filename: "/data/sprites/chest.png",
+	filename: stendhal.paths.sprites + "/chest.png",
 	height: 32,
 	width: 32,
 	offsetY: 32
 };
 
 let CLOSED_SPRITE = {
-	filename: "/data/sprites/chest.png",
+	filename: stendhal.paths.sprites + "/chest.png",
 	height: 32,
 	width: 32
 };
@@ -106,7 +106,7 @@ export class Chest extends PopupInventory {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/bag.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/bag.png) 1 3, auto";
 	}
 
 }

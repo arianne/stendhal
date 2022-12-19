@@ -231,9 +231,9 @@ export class Player extends RPEntity {
 
 	override getCursor(_x: number, _y: number) {
 		if (this.isVisibleToAction(false)) {
-			return "url(/data/sprites/cursor/look.png) 1 3, auto";
+			return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 		}
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 	public autoWalkEnabled(): boolean {

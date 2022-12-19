@@ -298,7 +298,7 @@ stendhal.main = {
 
 	onMouseEnter: function(e) {
 		// use Stendhal's built-in cursor for entire page
-		e.target.style.cursor = "url(/data/sprites/cursor/normal.png) 1 3, auto";
+		e.target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/normal.png) 1 3, auto";
 	}
 }
 

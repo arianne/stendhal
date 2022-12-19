@@ -30,9 +30,9 @@ export class Corpse extends PopupInventory {
 		const bloodEnabled = stendhal.config.getBoolean("gamescreen.blood");
 
 		if (bloodEnabled && (key === "image")) {
-			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
+			this.sprite.filename = stendhal.paths.sprites + "/corpse/" + value + ".png";
 		} else if (!bloodEnabled && (key === "harmless_image")) {
-			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
+			this.sprite.filename = stendhal.paths.sprites + "/corpse/" + value + ".png";
 		}
 	}
 
@@ -113,18 +113,18 @@ export class Corpse extends PopupInventory {
 
 	override getCursor(_x: number, _y: number) {
 		if (!this["content"] || this["content"]._objects.length === 0) {
-			return "url(/data/sprites/cursor/emptybag.png) 1 3, auto";
+			return "url(" + stendhal.paths.sprites + "/cursor/emptybag.png) 1 3, auto";
 		}
 
 		// owner
 		if (!this["corpse_owner"] || (this["corpse_owner"] == marauroa.me["_name"])) {
-			return "url(/data/sprites/cursor/bag.png) 1 3, auto";
+			return "url(" + stendhal.paths.sprites + "/cursor/bag.png) 1 3, auto";
 		}
 
 		if ((stendhal.data.group.lootmode === "shared") && (stendhal.data.group.members[this["corpse_owner"]])) {
-			return "url(/data/sprites/cursor/bag.png) 1 3, auto";
+			return "url(" + stendhal.paths.sprites + "/cursor/bag.png) 1 3, auto";
 		}
-		return "url(/data/sprites/cursor/lockedbag.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/lockedbag.png) 1 3, auto";
 	}
 
 	public override isDraggable(): boolean {

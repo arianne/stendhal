@@ -378,7 +378,7 @@ export class RPEntity extends ActiveEntity {
 			n += "b";
 		}
 
-		const filename = "/data/sprites/outfit/" + part + "/" + n + ".png";
+		const filename = stendhal.paths.sprites + "/outfit/" + part + "/" + n + ".png";
 		const colors = this["outfit_colors"];
 		let colorname;
 		if (part === "body" || part === "head") {
@@ -429,7 +429,7 @@ export class RPEntity extends ActiveEntity {
 		if (typeof(this["outfit"]) != "undefined" || typeof(this["outfit_ext"]) != "undefined") {
 			this.drawMultipartOutfit(ctx);
 		} else {
-			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
+			filename = stendhal.paths.sprites + "/" + this.spritePath + "/" + this["class"];
 			if (typeof(this["subclass"]) != "undefined") {
 				filename = filename + "/" + this["subclass"];
 			}
@@ -485,13 +485,13 @@ export class RPEntity extends ActiveEntity {
 		var x = this["_x"] * 32 - 10;
 		var y = (this["_y"] + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/choking.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/eat.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/ideas/eat.png"), x, y - 10);
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
-			const idea = "/data/sprites/ideas/" + this["idea"] + ".png";
+			const idea = stendhal.paths.sprites + "/ideas/" + this["idea"] + ".png";
 			const ani = stendhal.data.sprites.animations.idea[this["idea"]];
 			if (ani) {
 				drawAnimatedIcon(idea, ani.delay, x + ani.offsetX * this["width"],
@@ -502,23 +502,23 @@ export class RPEntity extends ActiveEntity {
 			}
 		}
 		if (this.hasOwnProperty("away")) {
-			drawAnimatedIcon("/data/sprites/ideas/away.png", 1500, x + 32 * this["width"], y - this["drawHeight"]);
+			drawAnimatedIcon(stendhal.paths.sprites + "/ideas/away.png", 1500, x + 32 * this["width"], y - this["drawHeight"]);
 		}
 		if (this.hasOwnProperty("grumpy")) {
-			drawAnimatedIcon("/data/sprites/ideas/grumpy.png", 1000, x + 5, y - this["drawHeight"]);
+			drawAnimatedIcon(stendhal.paths.sprites + "/ideas/grumpy.png", 1000, x + 5, y - this["drawHeight"]);
 		}
 		if (this.hasOwnProperty("last_player_kill_time")) {
-			drawAnimatedIconWithFrames("/data/sprites/ideas/pk.png", 12, 300, x, y - this["drawHeight"]);
+			drawAnimatedIconWithFrames(stendhal.paths.sprites + "/ideas/pk.png", 12, 300, x, y - this["drawHeight"]);
 		}
 		if (this.hasOwnProperty("poisoned")) {
-			drawAnimatedIcon("/data/sprites/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
+			drawAnimatedIcon(stendhal.paths.sprites + "/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
 		}
 		// NPC job icons
 		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/status/healer.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/healer.png"), x, y - 10);
 		}
 		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/status/merchant.png"), x + 12, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/merchant.png"), x + 12, y - 10);
 		}
 	}
 
@@ -739,21 +739,21 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	onDamaged(_source: Entity, damage: number) {
-		this.attackResult = this.createResultIcon("/data/sprites/combat/hitted.png");
+		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/hitted.png");
 		var sounds = ["attack-melee-01", "attack-melee-02", "attack-melee-03", "attack-melee-04", "attack-melee-05", "attack-melee-06", "attack-melee-07"];
 		var index = Math.floor(Math.random() * Math.floor(sounds.length));
 		stendhal.ui.sound.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
 	}
 
 	onBlocked(_source: Entity) {
-		this.attackResult = this.createResultIcon("/data/sprites/combat/blocked.png");
+		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/blocked.png");
 		var sounds = ["clang-metallic-1", "clang-dull-1"];
 		var index = Math.floor(Math.random() * Math.floor(sounds.length));
 		stendhal.ui.sound.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
 	}
 
 	onMissed(_source: Entity) {
-		this.attackResult = this.createResultIcon("/data/sprites/combat/missed.png");
+		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/missed.png");
 	}
 
 	onHPChanged(change: number) {

@@ -11,6 +11,8 @@
 
 import { Entity } from "./Entity";
 
+declare var stendhal: any;
+
 export class WalkBlocker extends Entity {
 
 	override zIndex = 3000;
@@ -20,7 +22,7 @@ export class WalkBlocker extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/stop.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/stop.png) 1 3, auto";
 	}
 
 }

@@ -104,7 +104,7 @@ export class OutfitPartSelector {
 
 		// FIXME: need to draw "busty" dress variants for body index 1
 
-		const fname = "/data/sprites/outfit/" + part + "/" + this.indexString(index) + suffix;
+		const fname = stendhal.paths.sprites + "/outfit/" + part + "/" + this.indexString(index) + suffix;
 		if (color != null) {
 			return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 		}

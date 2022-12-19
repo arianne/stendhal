@@ -13,6 +13,7 @@
 
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
+stendhal.paths = stendhal.paths || {};
 
 stendhal.data.sprites = {
 
@@ -353,7 +354,7 @@ stendhal.data.sprites = {
 	getShadow: function(shadowStyle) {
 		if (this.knownShadows[shadowStyle]) {
 			const img = new Image();
-			img.src = "/data/sprites/shadow/" + shadowStyle + ".png";
+			img.src = stendhal.paths.sprites + "/shadow/" + shadowStyle + ".png";
 			return img;
 		}
 
@@ -396,10 +397,10 @@ stendhal.data.sprites.filter['trueColor'] = function(data, color) {
 
 // alternatives for known images that may be considered violent or mature
 stendhal.data.sprites.knownSafeSprites = {
-	"/data/sprites/monsters/huge_animal/thing": true,
-	"/data/sprites/monsters/mutant/imperial_mutant": true,
-	"/data/sprites/monsters/undead/bloody_zombie": true,
-	"/data/sprites/npc/deadmannpc": true
+	[stendhal.paths.sprites + "/monsters/huge_animal/thing"]: true,
+	[stendhal.paths.sprites + "/monsters/mutant/imperial_mutant"]: true,
+	[stendhal.paths.sprites + "/monsters/undead/bloody_zombie"]: true,
+	[stendhal.paths.sprites + "/npc/deadmannpc"]: true
 }
 
 stendhal.data.sprites.animations = {

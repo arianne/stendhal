@@ -66,7 +66,7 @@ stendhal.data.emoji = {
 	absPath: function(name) {
 		name = stendhal.data.emoji.check(name);
 		if (name) {
-			return "/data/sprites/emoji/" + name + ".png";
+			return stendhal.paths.sprites + "/emoji/" + name + ".png";
 		}
 	},
 

@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
+
 /**
  * Available natures.
  *
@@ -18,15 +21,15 @@
 export class Nature {
 
 	/** physical attack */
-	public static readonly CUT   = new Nature("#c0c0c0", "/data/sprites/combat/blade_strike_cut.png");
+	public static readonly CUT   = new Nature("#c0c0c0", stendhal.paths.sprites + "/combat/blade_strike_cut.png");
 	/** fire magic */
-	public static readonly FIRE  = new Nature("#ff6400", "/data/sprites/combat/blade_strike_fire.png");
+	public static readonly FIRE  = new Nature("#ff6400", stendhal.paths.sprites + "/combat/blade_strike_fire.png");
 	/** ice magic */
-	public static readonly ICE   = new Nature("#8c8cff", "/data/sprites/combat/blade_strike_ice.png");
+	public static readonly ICE   = new Nature("#8c8cff", stendhal.paths.sprites + "/combat/blade_strike_ice.png");
 	/** light magic */
-	public static readonly LIGHT = new Nature("#fff08c", "/data/sprites/combat/blade_strike_light.png");
+	public static readonly LIGHT = new Nature("#fff08c", stendhal.paths.sprites + "/combat/blade_strike_light.png");
 	/** dark magic */
-	public static readonly DARK  = new Nature("#404040", "/data/sprites/combat/blade_strike_dark.png");
+	public static readonly DARK  = new Nature("#404040", stendhal.paths.sprites + "/combat/blade_strike_dark.png");
 
 	public static readonly VALUES = [Nature.CUT, Nature.FIRE, Nature.ICE, Nature.LIGHT, Nature.DARK];
 

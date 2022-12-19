@@ -128,7 +128,7 @@ stendhal.config = {
 	applyTheme: function(element, children=false, recurse=false, updateBG=false) {
 		const current = this.getTheme();
 		element.style.setProperty("background",
-				"url(/data/gui/" + this.themes.map[current] + ")");
+				"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
 
 		// make texts readable with dark & light themes
 		let color = "#000000";

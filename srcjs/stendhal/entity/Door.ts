@@ -20,7 +20,7 @@ export class Door extends Portal {
 	override zIndex = 5000;
 
 	override draw(ctx: CanvasRenderingContext2D) {
-		let imagePath = "/data/sprites/doors/" + this["class"] + ".png";
+		let imagePath = stendhal.paths.sprites + "/doors/" + this["class"] + ".png";
 		let image = stendhal.data.sprites.get(imagePath);
 		if (image.height) {
 			let x = (this["x"] - 1) * 32;
@@ -64,7 +64,7 @@ export class Door extends Portal {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/portal.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/portal.png) 1 3, auto";
 	}
 
 }

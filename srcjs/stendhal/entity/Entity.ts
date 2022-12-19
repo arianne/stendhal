@@ -274,7 +274,7 @@ export class Entity extends RPObject {
 			cursor = this["cursor"];
 		}
 
-		return "url(/data/sprites/cursor/" + cursor.toLowerCase().replace("_", "") + ".png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/" + cursor.toLowerCase().replace("_", "") + ".png) 1 3, auto";
 	}
 
 	/**

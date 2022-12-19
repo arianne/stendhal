@@ -11,6 +11,8 @@
 
 import { Entity } from "./Entity";
 
+declare var stendhal: any;
+
 export class UseableEntity extends Entity {
 	override zIndex = 3000
 	action = "use";
@@ -26,7 +28,7 @@ export class UseableEntity extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "name") {
-			this.sprite.filename = "/data/sprites/"
+			this.sprite.filename = stendhal.paths.sprites + "/"
 				+ this["class"] + "/" + this["_name"] + ".png";
 		}
 		if (key === "state") {

@@ -38,7 +38,7 @@ export class Creature extends RPEntity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/attack.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/attack.png) 1 3, auto";
 	}
 
 }

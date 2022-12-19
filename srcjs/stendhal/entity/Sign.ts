@@ -23,7 +23,7 @@ export class Sign extends Entity {
 
 	override draw(ctx: CanvasRenderingContext2D) {
 		if (!this.imagePath) {
-			this.imagePath = "/data/sprites/signs/" + this["class"] + ".png";
+			this.imagePath = stendhal.paths.sprites + "/signs/" + this["class"] + ".png";
 		}
 		var image = stendhal.data.sprites.get(this.imagePath);
 		if (image.height) {
@@ -38,7 +38,7 @@ export class Sign extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

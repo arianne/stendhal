@@ -15,6 +15,7 @@ import { Entity } from "./Entity";
 import { Color } from "../util/Color";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 export class Portal extends Entity {
 
@@ -66,7 +67,7 @@ export class Portal extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(/data/sprites/cursor/portal.png) 1 3, auto";
+		return "url(" + stendhal.paths.sprites + "/cursor/portal.png) 1 3, auto";
 	}
 
 }
