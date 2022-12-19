@@ -1,5 +1,6 @@
 -- D  deathmatch
 -- M  maze
+-- MT best maze time
 -- P  paper chase (mine town revival weeks) 2012
 -- A  online age
 -- T  ATK
@@ -39,6 +40,13 @@ SELECT charname, fametype, @rownum:=@rownum+1 as rankX, points, CURRENT_DATE()
 FROM halloffame, character_stats, (SELECT @rownum:=0) r
 WHERE fametype='M' AND halloffame.charname = character_stats.name AND admin<=600 AND points > 0 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY points DESC;
+
+
+INSERT INTO halloffame_archive_recent (charname, fametype, halloffame_archive_recent.rank, points, day)
+SELECT charname, fametype, @rownum:=@rownum+1 as rankX, points, CURRENT_DATE()
+FROM halloffame, character_stats, (SELECT @rownum:=0) r
+WHERE fametype='MT' AND halloffame.charname = character_stats.name AND admin<=600 AND points > 0 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+ORDER BY points ASC;
 
 
 INSERT INTO halloffame_archive_recent (charname, fametype, halloffame_archive_recent.rank, points, day)
@@ -139,6 +147,13 @@ SELECT charname, fametype, @rownum:=@rownum+1 as rankX, points, CURRENT_DATE()
 FROM halloffame, character_stats, (SELECT @rownum:=0) r
 WHERE fametype='M' AND halloffame.charname = character_stats.name AND admin<=600 AND points > 0
 ORDER BY points DESC;
+
+
+INSERT INTO halloffame_archive_alltimes (charname, fametype, halloffame_archive_alltimes.rank, points, day)
+SELECT charname, fametype, @rownum:=@rownum+1 as rankX, points, CURRENT_DATE()
+FROM halloffame, character_stats, (SELECT @rownum:=0) r
+WHERE fametype='MT' AND halloffame.charname = character_stats.name AND admin<=600 AND points > 0
+ORDER BY points ASC;
 
 
 INSERT INTO halloffame_archive_alltimes (charname, fametype, halloffame_archive_alltimes.rank, points, day)
