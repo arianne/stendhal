@@ -559,14 +559,16 @@ public class MazeGenerator {
 		new IncrementQuestAction("maze", 2, 1).fire(player, null, null);
 
 		final Long oldTime = getBestTime(player);
-		final boolean best = oldTime != null && timediff < oldTime;
+		final boolean best = oldTime == null || timediff < oldTime;
 
 		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
 				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
 		if (best) {
 			player.setQuest("maze", 3, String.valueOf(timediff));
-			player.sendPrivateText("You beat your old time of "
-				+ TimeUtil.timeUntil((int) (oldTime / 1000), true) + ".");
+			if (oldTime != null) {
+				player.sendPrivateText("You beat your old time of "
+					+ TimeUtil.timeUntil((int) (oldTime / 1000), true) + ".");
+			}
 		}
 
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
