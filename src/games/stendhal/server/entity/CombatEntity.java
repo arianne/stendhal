@@ -178,7 +178,7 @@ public abstract class CombatEntity extends GuidedEntity {
 	 *     <code>true</code> if damage occurred within a specified
 	 *     number of turns.
 	 */
-	private boolean recentlyDamagedBy(final CombatEntity opponent) {
+	public boolean recentlyDamagedBy(final CombatEntity opponent) {
 		final Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(opponent);
 		if (turnWhenLastDamaged == null) {
 			return false;

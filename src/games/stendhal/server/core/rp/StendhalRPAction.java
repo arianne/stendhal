@@ -345,6 +345,9 @@ public class StendhalRPAction {
 		// equipment that are broken are added to this list
 		final List<BreakableItem> broken = new ArrayList<>();
 
+		boolean getsDefXp = false;
+		boolean getsAtkXp = player.recentlyDamagedBy(defender);
+
 		if (beaten) {
 			final List<Item> weapons = player.getWeapons();
 			final float itemAtk;
@@ -359,15 +362,9 @@ public class StendhalRPAction {
 			final boolean didDamage = damage > 0;
 
 			// give xp even if attack was blocked
-			if (defender.getsDefXpFrom(player, didDamage)) {
-				defender.incDefXP();
-			}
-			if (player.getsAtkXpFrom(defender)) {
-				if (Testing.COMBAT && isRanged) {
-					player.incRatkXP();
-				} else {
-					player.incAtkXP();
-				}
+			getsDefXp = defender.getsDefXpFrom(player, didDamage);
+			if (!getsAtkXp) {
+				getsAtkXp = player.getsAtkXpFrom(defender);
 			}
 
 			if (didDamage && !usesTrainingDummy) {
@@ -421,6 +418,17 @@ public class StendhalRPAction {
 					+ defender.getID() + ": Missed");
 			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponClass, isRanged));
 			player.notifyWorldAboutChanges();
+		}
+
+		if (getsDefXp) {
+			defender.incDefXP();
+		}
+		if (getsAtkXp) {
+			if (Testing.COMBAT && isRanged) {
+				player.incRatkXP();
+			} else {
+				player.incAtkXP();
+			}
 		}
 
 		if (isRanged) {

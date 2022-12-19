@@ -32,6 +32,8 @@ Changelog
 - refined DEF XP reward:
   - awarded immediately if damage was inflicted
   - awarded for blocks only if damage was recently inflicted
+- refined ATK XP reward:
+  - always awarded if damage was recently received from opponent
 
 *graphics*
 - reworked chaos sprites for Cabbit bases
