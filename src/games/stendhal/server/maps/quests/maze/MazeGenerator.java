@@ -561,15 +561,18 @@ public class MazeGenerator {
 		final Long oldTime = getBestTime(player);
 		final boolean best = oldTime == null || timediff < oldTime;
 
-		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
-				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
+		String msg = "You used "
+				+ TimeUtil.timeUntil((int) (timediff / 1000), true)
+				+ " to solve the maze. That was worth "
+				+ Grammar.quantityplnoun(points, "point") + ".";
 		if (best) {
 			player.setQuest("maze", 3, String.valueOf(timediff));
 			if (oldTime != null) {
-				player.sendPrivateText("You beat your old time of "
-					+ TimeUtil.timeUntil((int) (oldTime / 1000), true) + ".");
+				msg += " You beat your old time of "
+						+ TimeUtil.timeUntil((int) (oldTime / 1000), true) + ".";
 			}
 		}
+		player.sendPrivateText(msg);
 
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
 		player.addXP(REWARD_XP);
@@ -604,6 +607,15 @@ public class MazeGenerator {
 		return portal;
 	}
 
+	/**
+	 * Retrieves best time from quest slot.
+	 *
+	 * @param player
+	 *     Player for whom time is being retrieved.
+	 * @return
+	 *     Best maze completion time or <code>null</code> if no best
+	 *     time was previously stored.
+	 */
 	public static Long getBestTime(final Player player) {
 		final String bestTime = player.getQuest("maze", 3);
 		if (bestTime != null && !bestTime.equals("")) {
