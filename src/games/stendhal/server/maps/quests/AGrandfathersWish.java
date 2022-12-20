@@ -425,7 +425,7 @@ public class AGrandfathersWish extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Wait! I have heard that #'holy water' has special properties"
 				+ " when used on the undead. Perhaps a #priest would have"
-				+ " have some. Please, go and find a priest.",
+				+ " some. Please, go and find a priest.",
 			new SetQuestAction(QUEST_SLOT, 2, "holy_water:find_priest"));
 
 		elias.add(
