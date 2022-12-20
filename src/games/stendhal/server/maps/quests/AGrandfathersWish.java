@@ -433,7 +433,8 @@ public class AGrandfathersWish extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			findPriest,
 			ConversationStates.ATTENDING,
-			"Please! Find a priest. Maybe one can provide holy water to"
+			"Please! Find a priest. I have heard there is one in Ados that"
+				+ " specializes in holy water. Maybe he can provide some to"
 				+ " help my grandson.",
 			null);
 
@@ -442,7 +443,8 @@ public class AGrandfathersWish extends AbstractQuest {
 			Arrays.asList("Niall", "myling", "priest", "holy water"),
 			findPriest,
 			ConversationStates.ATTENDING,
-			"Please! Find a priest. Maybe one can provide holy water to"
+			"Please! Find a priest. I have heard there is one in Ados that"
+				+ " specializes in holy water. Maybe he can provide some to"
 				+ " help my grandson.",
 			null);
 	}
