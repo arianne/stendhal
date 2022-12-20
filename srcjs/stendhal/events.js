@@ -38,7 +38,7 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 		} else {
 			target.onMissed(entity);
 		}
-		entity.onAttackPerformed(parseInt(this["type"], 10), this.hasOwnProperty("ranged"));
+		entity.onAttackPerformed(parseInt(this["type"], 10), this.hasOwnProperty("ranged"), this["weapon"]);
 	}
 });
 

@@ -797,7 +797,10 @@ export class RPEntity extends ActiveEntity {
 		};
 	}
 
-	onAttackPerformed(nature: number, ranged: boolean) {
+	onAttackPerformed(nature: number, ranged: boolean, weapon?: string) {
+		const tileW = stendhal.ui.gamewindow.targetTileWidth;
+		const tileH = stendhal.ui.gamewindow.targetTileHeight;
+
 		if (ranged) {
 			let color = Nature.VALUES[nature].color;
 			var tgt = this.getAttackTarget()!;
@@ -833,12 +836,20 @@ export class RPEntity extends ActiveEntity {
 				};
 			})(color, (tgt.x + tgt.width / 2) * 32, (tgt.y + tgt.height / 2) * 32);
 		} else {
-			let imagePath = Nature.VALUES[nature].imagePath;
+			if (typeof(weapon) === "undefined") {
+				weapon = "blade_strike";
+			}
+			if (weapon === "blade_strike" && nature == 0) {
+				weapon += "_cut";
+			}
+			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
+
 			this.attackSprite = (function(imagePath, _ranged, dir) {
 				return {
 					initTime: Date.now(),
 					image: stendhal.data.sprites.get(imagePath),
 					frame: 0,
+					barehand: weapon.startsWith("blade_strike"),
 					expired: function() {
 						return Date.now() - this.initTime > 180;
 					},
@@ -846,11 +857,24 @@ export class RPEntity extends ActiveEntity {
 						if (!this.image.height) {
 							return;
 						}
-						var yRow = dir - 1;
-						var drawHeight = this.image.height / 4;
-						var drawWidth = this.image.width / 3;
-						var dtime = Date.now() - this.initTime;
-						var frame = Math.floor(Math.min(dtime / 60, 3));
+
+						const dtime = Date.now() - this.initTime;
+						const frameIndex = Math.floor(Math.min(dtime / 60, 3));
+						let rotation = 0;
+
+						let yRow, frame, drawWidth, drawHeight;
+						if (this.barehand) {
+							yRow = dir - 1;
+							frame = frameIndex;
+							drawWidth = this.image.width / 3;
+							drawHeight = this.image.height / 4;
+						} else {
+							yRow = 0;
+							frame = 0;
+							drawWidth = this.image.width;
+							drawHeight = this.image.height;
+						}
+
 						var centerX = x + (entityWidth - drawWidth) / 2;
 						var centerY = y + (entityHeight - drawHeight) / 2;
 
@@ -864,22 +888,40 @@ export class RPEntity extends ActiveEntity {
 							case "3": // DOWN
 								sx = centerX;
 								sy = y + entityHeight - drawHeight + (tileH / 2);
+								rotation = 180;
 								break;
 							case "4": // LEFT
 								sx = x - (tileW / 2);
 								sy = centerY - (tileH / 2);
+								rotation = -90;
 								break;
 							case "2": // RIGHT
 								sx = x + entityWidth - drawWidth + (tileW / 2);
 								sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
+								rotation = 90;
 								break;
 							default:
 								sx = centerX;
 								sy = centerY;
 						}
 
+						const rotated = !this.barehand && rotation != 0;
+						if (rotated) {
+							ctx.save();
+							// FIXME: rotate correctly for direction & frame
+							/*
+							ctx.translate(sx + (drawWidth / 2) - stendhal.ui.gamewindow.offsetX,
+									sy + (drawHeight / 2) - stendhal.ui.gamewindow.offsetY);
+							ctx.rotate(rotation * Math.PI / 180);
+							*/
+						}
+
 						ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
 								drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
+
+						if (rotated) {
+							ctx.restore();
+						}
 					}
 				};
 			})(imagePath, ranged, this["dir"]);
