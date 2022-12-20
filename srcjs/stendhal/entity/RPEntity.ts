@@ -719,7 +719,9 @@ export class RPEntity extends ActiveEntity {
 		}
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-		this.attackSprite.draw(ctx, localX, localY, this["drawWidth"], this["drawHeight"]);
+		var localW = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
+		var localH = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
+		this.attackSprite.draw(ctx, localX, localY, localW, localH);
 	}
 
 	// attack handling
