@@ -85,6 +85,10 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("beer", 5);
 		hints.put("beer", "You can probably find beer in any tavern.");
 
+		required.put("rope", 5);
+		chunkSize.put("rope", 1);
+		hints.put("rope", "I am sure, Giles in Kirdneh can braid rope for you.");
+
 		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, hints, progress);
 		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
 	}
