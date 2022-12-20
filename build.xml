@@ -1123,7 +1123,6 @@
       <arg value="ADVANCED"/>
       <arg line="${js-debug}"/>
       <arg value="--jscomp_off=checkVars"/>
-      <arg value="--jscomp_off=globalThis"/>
       <arg value="--process_common_js_modules"/>
       <arg value="--module_resolution=node"/>
 
