@@ -388,16 +388,18 @@ public class AGrandfathersWishTest extends QuestHelper {
 		en.step(player, "priest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Please! Find a priest. Maybe one can provide holy water to"
-					+ " help my grandson.",
+			"Please! Find a priest. I have heard there is one in Ados that"
+				+ " specializes in holy water. Maybe he can provide some to"
+				+ " help my grandson.",
 			getReply(elias));
 		en.step(player, "bye");
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Please! Find a priest. Maybe one can provide holy water to"
-					+ " help my grandson.",
+			"Please! Find a priest. I have heard there is one in Ados that"
+				+ " specializes in holy water. Maybe he can provide some to"
+				+ " help my grandson.",
 			getReply(elias));
 		en.step(player, "bye");
 	}
