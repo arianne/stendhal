@@ -853,8 +853,33 @@ export class RPEntity extends ActiveEntity {
 						var frame = Math.floor(Math.min(dtime / 60, 3));
 						var centerX = x + (entityWidth - drawWidth) / 2;
 						var centerY = y + (entityHeight - drawHeight) / 2;
+
+						// offset sprite for facing direction
+						let sx, sy;
+						switch (dir+"") {
+							case "1": // UP
+								sx = centerX + (tileW / 2);
+								sy = y - (tileH * 1.5);
+								break;
+							case "3": // DOWN
+								sx = centerX;
+								sy = y + entityHeight - drawHeight + (tileH / 2);
+								break;
+							case "4": // LEFT
+								sx = x - (tileW / 2);
+								sy = centerY - (tileH / 2);
+								break;
+							case "2": // RIGHT
+								sx = x + entityWidth - drawWidth + (tileW / 2);
+								sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
+								break;
+							default:
+								sx = centerX;
+								sy = centerY;
+						}
+
 						ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
-								drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
+								drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
 					}
 				};
 			})(imagePath, ranged, this["dir"]);
