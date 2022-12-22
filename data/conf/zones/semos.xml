@@ -1309,7 +1309,8 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
   <zone name="bone_pillar" file="interiors/abstract/malleus_plain_bone_pillar.tmx"
     accessible="false">
     <configurator
-      class-name="games.stendhal.server.maps.semos.wizardstower.RedDemonLordNPC"/>
+      class-name="games.stendhal.server.maps.semos.wizardstower.RedDemonLordNPC"
+      condition="stendhal.testserver"/>
     <portal x="14" y="30" ref="exit_bone_pillar_1">
       <destination zone="malleus_plain" ref="entrance_bone_pillar"/>
       <attribute name="hidden"/>
