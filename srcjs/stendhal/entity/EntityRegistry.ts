@@ -32,6 +32,7 @@ import { UnknownEntity } from "./UnknownEntity";
 import { UseableEntity } from "./UseableEntity";
 import { VisibleEntity } from "./VisibleEntity";
 import { WalkBlocker } from "./WalkBlocker";
+import { Weather } from "./Weather";
 
 marauroa.rpobjectFactory["area"] = InvisibleEntity;
 marauroa.rpobjectFactory["baby_dragon"] = DomesticAnimal;
@@ -69,3 +70,4 @@ marauroa.rpobjectFactory["useable_entity"] = UseableEntity;
 marauroa.rpobjectFactory["visible_entity"] = VisibleEntity;
 marauroa.rpobjectFactory["walkblocker"] = WalkBlocker;
 marauroa.rpobjectFactory["wall"] = InvisibleEntity;
+marauroa.rpobjectFactory["weather_entity"] = Weather;
