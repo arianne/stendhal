@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2022 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -106,7 +106,6 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 		const ttype = this["texttype"].toLowerCase();
 		const msg = this["text"].replace("\r\n", "\n").replace("\r", "\n");
 
-		// FIXME: doesn't show on first message at login (caching?)
 		let profile;
 		if (this.hasOwnProperty("profile")) {
 			profile = this["profile"];

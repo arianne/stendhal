@@ -22,6 +22,7 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 	private lines: string[];
 	private entity: RPEntity;
 	private profile?: HTMLImageElement;
+	private profileName?: string;
 	private lmargin = 4;
 
 
@@ -29,6 +30,7 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		super(text);
 		this.mtype = mtype;
 		this.entity = entity;
+		this.profileName = profile;
 
 		const linewrap = 30;
 		const wordbreak = 60;
@@ -55,14 +57,10 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		}
 
 		if (profile) {
-			// TODO: The image might not have been loaded here, so
-			// so we need to retry getAreaOf in the drawing code.
-			// But we still want to cache it once loading successed
-			let img = stendhal.data.sprites.get(stendhal.paths.sprites
-					+ "/npc/" + profile + ".png");
-			if (img.complete && img.height) {
-				this.profile = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);
-			}
+			// FIXME: first drawing of profile may still be delayed on slower systems
+			// cache profile image at construction
+			this.profile = new Image();
+			this.loadProfileSprite();
 		}
 	}
 
@@ -102,6 +100,9 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		ctx.strokeStyle = "#000000";
 
 		if (this.profile) {
+			if (!this.profile.complete || !this.profile.height) {
+				this.loadProfileSprite();
+			}
 			ctx.drawImage(this.profile, this.x - 48, this.y - 16);
 			this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
 					this.width, this.height);
@@ -131,5 +132,16 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		}
 
 		return Date.now() > this.timeStamp + 2000 + 20 * this.text.length;
+	}
+
+	/**
+	 * Loads a profile image to be drawn with text.
+	 */
+	private loadProfileSprite() {
+		const img = stendhal.data.sprites.get(stendhal.paths.sprites
+				+ "/npc/" + this.profileName + ".png");
+		if (img.complete && img.height) {
+			this.profile = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);
+		}
 	}
 }
