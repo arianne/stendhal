@@ -445,6 +445,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 			script = script.trim();
 			if ("list".equals(mode) || script.endsWith(".groovy") || script.endsWith(".lua") || script.endsWith(".class")) {
 				boolean res = false;
+				// remove mode from list of arguments
+				final int modeArgIdx = args.indexOf("-" + mode);
+				if (modeArgIdx >= 0) {
+					args.remove(modeArgIdx);
+				}
 				res = perform(script, mode, player, args);
 				if (res) {
 					StringBuilder stringBuilder = new StringBuilder();
