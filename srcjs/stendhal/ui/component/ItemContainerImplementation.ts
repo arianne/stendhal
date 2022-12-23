@@ -108,7 +108,7 @@ export class ItemContainerImplementation {
 						+ stendhal.data.sprites.checkPath(stendhal.paths.sprites
 								+ "/items/" + o["class"] + "/" + o["subclass"] + ".png")
 						+ ")";
-				e.style.backgroundPosition = xOffset + "px " + yOffset + "px";
+				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
 				e.textContent = o.formatQuantity();
 				(e as any).dataItem = o;
 				cnt++;
