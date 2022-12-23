@@ -23,6 +23,10 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 	constructor(text: string, entity: RPEntity) {
 		super((text.length > 30) ? (text.substring(0, 30) + "...") : text);
 		this.entity = entity;
+
+		this.duration = Math.max(
+				TextBubbleSprite.STANDARD_DUR,
+				this.text.length * TextBubbleSprite.STANDARD_DUR / 50);
 	}
 
 	override draw(ctx: CanvasRenderingContext2D): boolean {

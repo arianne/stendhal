@@ -14,13 +14,15 @@ declare var stendhal: any;
 
 export abstract class TextBubbleSprite {
 
+	protected static readonly STANDARD_DUR = 5000;
+
 	protected text: string;
 	protected timeStamp: number;
 	protected x = -1;
 	protected y = -1;
 	protected width = -1;
 	protected height = -1;
-	protected baseDuration = 2000;
+	protected duration = 5000;
 
 	protected onRemovedAction?: Function;
 
@@ -103,14 +105,18 @@ export abstract class TextBubbleSprite {
 	}
 
 	/**
-	 * Sets the base duration that the sprite should be displayed on the
+	 * Sets the duration that the sprite should be displayed on the
 	 * screen.
 	 *
 	 * @param dur
 	 *     New duration time.
 	 */
-	setBaseDuration(dur: number) {
-		this.baseDuration = dur;
+	setDuration(dur: number) {
+		if (dur == 0) {
+			this.duration = TextBubbleSprite.STANDARD_DUR;
+		} else {
+			this.duration = dur;
+		}
 	}
 
 	/**
@@ -121,7 +127,6 @@ export abstract class TextBubbleSprite {
 	 *     <code>true</code> if the duration time has been exceeded.
 	 */
 	expired(): boolean {
-		return Date.now() > this.timeStamp + this.baseDuration + 20
-				* this.text.length;
+		return Date.now() >= this.timeStamp + this.duration;
 	}
 }

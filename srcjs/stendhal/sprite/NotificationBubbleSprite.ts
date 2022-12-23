@@ -32,6 +32,10 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		this.entity = entity;
 		this.profileName = profile;
 
+		this.duration = Math.max(
+				TextBubbleSprite.STANDARD_DUR,
+				this.text.length * TextBubbleSprite.STANDARD_DUR / 50);
+
 		const linewrap = 30;
 		const wordbreak = 60;
 		this.lines = [];
