@@ -60,12 +60,14 @@ public class MylingSpawner extends Entity implements TurnListener {
 	/**
 	 * Adds a new myling to world.
 	 */
-	private void respawn() {
+	public void respawn() {
 		if (!mylingIsActive()) {
 			final Myling myling = new Myling(this);
 			myling.setPosition(getX(), getY());
 			SingletonRepository.getRPWorld().getZone(getID().getZoneID()).add(myling);
 			activeMylings.add(myling);
+			// in case spawn was triggered by means other than turn notifier
+			SingletonRepository.getTurnNotifier().dontNotify(this);
 		}
 	}
 
