@@ -59,6 +59,6 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 			};
 		}
 
-		return Date.now() > this.timeStamp + 2000 + 20 * this.text.length;
+		return this.expired();
 	}
 }

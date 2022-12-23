@@ -20,6 +20,7 @@ export abstract class TextBubbleSprite {
 	protected y = -1;
 	protected width = -1;
 	protected height = -1;
+	protected baseDuration = 2000;
 
 	protected onRemovedAction?: Function;
 
@@ -29,6 +30,15 @@ export abstract class TextBubbleSprite {
 		this.timeStamp = Date.now();
 	}
 
+	/**
+	 * Handles drawing the sprite on the screen.
+	 *
+	 * @param ctx
+	 *     Drawing canvas.
+	 * @return
+	 *     <code>true</code> if the sprites duration time has expired
+	 *     & should be removed from the screen.
+	 */
 	abstract draw(ctx: CanvasRenderingContext2D): boolean;
 
 	/**
@@ -83,9 +93,35 @@ export abstract class TextBubbleSprite {
 		}
 	}
 
+	/**
+	 * Action to execute when the sprite is removed.
+	 */
 	onRemoved() {
 		if (typeof(this.onRemovedAction) !== "undefined") {
 			this.onRemovedAction();
 		}
+	}
+
+	/**
+	 * Sets the base duration that the sprite should be displayed on the
+	 * screen.
+	 *
+	 * @param dur
+	 *     New duration time.
+	 */
+	setBaseDuration(dur: number) {
+		this.baseDuration = dur;
+	}
+
+	/**
+	 * Checks if the sprite duration time has expired & should be
+	 * removed from the screen.
+	 *
+	 * @return
+	 *     <code>true</code> if the duration time has been exceeded.
+	 */
+	expired(): boolean {
+		return Date.now() > this.timeStamp + this.baseDuration + 20
+				* this.text.length;
 	}
 }
