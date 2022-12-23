@@ -11,14 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.a_grandfathers_wish;
 
-import static games.stendhal.server.maps.quests.AGrandfathersWish.QUEST_SLOT;
-
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.AGrandfathersWish;
 
 
 public class MylingWellPortal extends AccessCheckingPortal {
+
+	private static final String QUEST_SLOT = AGrandfathersWish.QUEST_SLOT;
+	private static MylingSpawner spawner;
+
 
 	public MylingWellPortal() {
 		super();
@@ -64,6 +67,14 @@ public class MylingWellPortal extends AccessCheckingPortal {
 	@Override
 	protected boolean usePortal(final Player player) {
 		final boolean ret = super.usePortal(player);
+
+		if (!player.getQuest(QUEST_SLOT, 3).equals("cure_myling:done")) {
+			if (spawner == null) {
+				spawner = AGrandfathersWish.getMylingSpawner();
+			}
+			// make sure there is a myling in the well for player to see
+			spawner.respawn();
+		}
 
 		if (!player.getQuest(QUEST_SLOT, 1).equals("find_myling:done")) {
 			// rope is hung so player can use anytime now
