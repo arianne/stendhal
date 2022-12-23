@@ -83,6 +83,13 @@ export class SettingsDialog extends DialogContentComponent {
 					marauroa.clientFramework.sendAction(action);
 				})!;
 
+		// TODO: make this multiple choice
+		const chk_pvtsnd = this.createCheckBox("chk_pvtsnd", "event.pvtmsg.sound",
+				"Private message audio notifications enabled",
+				"Private message audio notifications disabled",
+				undefined, "ui/notify_up", "null");
+		chk_pvtsnd.checked = stendhal.config.get("event.pvtmsg.sound") === "ui/notify_up";
+
 
 		/* *** right panel *** */
 
@@ -210,24 +217,38 @@ export class SettingsDialog extends DialogContentComponent {
 	 *     Tooltip to display when setting is enabled.
 	 * @param ttneg
 	 *     Tooltip to display when setting is disabled.
+	 * @param action
+	 *     Action to execute when state changed.
+	 * @param von
+	 *     Optional value to set when enabled (<code>null</code> can be
+	 *     used).
+	 * @param voff
+	 *     Optional value to set when disabled (<code>null</code> can be
+	 *     used).
 	 * @return
 	 *     HTMLInputElement.
 	 */
 	private createCheckBox(id: string, setid: string, ttpos: string="",
-			ttneg: string="", actions?: Function): HTMLInputElement {
+			ttneg: string="", action?: Function,
+			von?: string, voff?: string): HTMLInputElement {
 
 		const chk = this.createCheckBoxSkel(id)!;
 		chk.checked = stendhal.config.getBoolean(setid);
 		const tt = new CheckTooltip(ttpos, ttneg);
 		chk.parentElement!.title = tt.getValue(chk.checked);
 		chk.addEventListener("change", (e) => {
-			stendhal.config.set(setid, chk.checked);
-			chk.parentElement!.title = tt.getValue(chk.checked);
-			this.refresh();
-
-			if (actions) {
-				actions();
+			if (chk.checked && typeof(von) !== "undefined") {
+				stendhal.config.set(setid, von);
+			} else if (!chk.checked && typeof(voff) !== "undefined") {
+				stendhal.config.set(setid, voff);
+			} else {
+				stendhal.config.set(setid, chk.checked);
 			}
+			chk.parentElement!.title = tt.getValue(chk.checked);
+			if (action) {
+				action();
+			}
+			this.refresh();
 		});
 
 		return chk;

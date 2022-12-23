@@ -101,6 +101,12 @@ marauroa.rpeventFactory["player_logged_out"] = marauroa.util.fromProto(marauroa.
 });
 
 
+const soundTextEvents = {
+	"privmsg": true,
+	"support": true,
+	"tutorial": true
+}
+
 marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		const ttype = this["texttype"].toLowerCase();
@@ -117,6 +123,12 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 			Chat.log(ttype, msg.split("\n"), undefined, profile);
 		} else {
 			Chat.log(ttype, msg, undefined, profile);
+		}
+
+		// play notification sound
+		const notif = stendhal.config.get("event.pvtmsg.sound");
+		if (notif && soundTextEvents[ttype]) {
+			stendhal.ui.sound.playGlobalizedEffect(notif);
 		}
 	}
 });

@@ -33,7 +33,8 @@ stendhal.config = {
 		"input.movecont": "false",
 		//"input.doubleclick": "false",
 		"action.item.doubleclick": "false",
-		"action.chest.quickpickup": "false"
+		"action.chest.quickpickup": "false",
+		"event.pvtmsg.sound": "ui/notify_up"
 	},
 
 	init: function(args) {
@@ -57,7 +58,12 @@ stendhal.config = {
 	},
 
 	get: function(key) {
-		return this.storage.getItem(key) || this.defaults[key];
+		const ret = this.storage.getItem(key) || this.defaults[key];
+		// allow null to be a value
+		if (ret === "null") {
+			return null;
+		}
+		return ret;
 	},
 
 	getInt: function(key) {
