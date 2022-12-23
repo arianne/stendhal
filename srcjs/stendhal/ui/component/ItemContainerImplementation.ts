@@ -104,7 +104,10 @@ export class ItemContainerImplementation {
 					xOffset = -(item.getXFrameIndex() * 32);
 				}
 
-				e.style.backgroundImage = "url(" + stendhal.paths.sprites + "/items/" + o["class"] + "/" + o["subclass"] + ".png)";
+				e.style.backgroundImage = "url("
+						+ stendhal.data.sprites.checkPath(stendhal.paths.sprites
+								+ "/items/" + o["class"] + "/" + o["subclass"] + ".png")
+						+ ")";
 				e.style.backgroundPosition = xOffset + "px " + yOffset + "px";
 				e.textContent = o.formatQuantity();
 				(e as any).dataItem = o;

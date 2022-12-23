@@ -62,6 +62,16 @@ stendhal.data.sprites = {
 		}
 		var temp = new Image;
 		temp.counter = 0;
+		temp.onerror = function() {
+			if (this.src && !stendhal.data.sprites.knownBrokenUrls[this.src]) {
+				console.log("Broken image path:", this.src, new Error());
+				stendhal.data.sprites.knownBrokenUrls[this.src] = true;
+			}
+			const failsafe = stendhal.data.sprites.getFailsafe();
+			if (failsafe.src && this.src !== failsafe.src) {
+				this.src = failsafe.src;
+			}
+		}
 		temp.src = filename;
 		stendhal.data.sprites.images[filename] = temp;
 		return temp;
@@ -80,6 +90,38 @@ stendhal.data.sprites = {
 			image.onload = () => resolve(image);
 			image.src = filename;
 		});
+	},
+
+	/**
+	 * Retrieves the failsafe sprite.
+	 *
+	 * @return
+	 *     HTMLImageElement with failsafe image data.
+	 */
+	getFailsafe: function() {
+		const filename = stendhal.paths.sprites + "/failsafe.png";
+		let failsafe = stendhal.data.sprites.images[filename];
+		if (failsafe) {
+			failsafe.counter++;
+		} else {
+			failsafe = new Image();
+			failsafe.counter = 0;
+			failsafe.src = filename;
+			stendhal.data.sprites.images[filename] = failsafe;
+		}
+		return failsafe;
+	},
+
+	/**
+	 * Checks cached images for a valid filename.
+	 *
+	 * @param filename
+	 *     Image filename to be checked.
+	 * @return
+	 *     Path to image or failsafe image file.
+	 */
+	checkPath: function(filename) {
+		return stendhal.data.sprites.get(filename).src;
 	},
 
 	/** deletes all objects that have not been accessed since this method was called last time */
@@ -110,22 +152,33 @@ stendhal.data.sprites = {
 	 * @param {number=} offsetY optional. top y coordinate of the area
 	 */
 	getAreaOf: function(image, width, height, offsetX, offsetY) {
-		offsetX = offsetX || 0;
-		offsetY = offsetY || 0;
-		if ((image.width === width) && (image.height === height)
-				&& (offsetX === 0) && (offsetY === 0)) {
-			return image;
+		try {
+			offsetX = offsetX || 0;
+			offsetY = offsetY || 0;
+			if ((image.width === width) && (image.height === height)
+					&& (offsetX === 0) && (offsetY === 0)) {
+				return image;
+			}
+			var canvas = document.createElement("canvas");
+			canvas.width  = width;
+			canvas.height = height;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(image, offsetX, offsetY, width, height, 0, 0, width, height);
+			// Firefox would be able to use the canvas directly as a drag image, but
+			// Chrome does not. This should work in any standards compliant browser.
+			var newImage = new Image();
+			newImage.src = canvas.toDataURL("image/png");
+			return newImage;
+		} catch (err) {
+			if (err instanceof DOMException) {
+				return this.getFailsafe();
+			} else {
+				// don't ignore other errors
+				throw err;
+			}
 		}
-		var canvas = document.createElement("canvas");
-		canvas.width  = width;
-		canvas.height = height;
-		var ctx = canvas.getContext("2d");
-		ctx.drawImage(image, offsetX, offsetY, width, height, 0, 0, width, height);
-		// Firefox would be able to use the canvas directly as a drag image, but
-		// Chrome does not. This should work in any standards compliant browser.
-		var newImage = new Image();
-		newImage.src = canvas.toDataURL("image/png");
-		return newImage;
+
+		return {};
 	},
 
 	/**
