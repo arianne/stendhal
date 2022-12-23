@@ -58,7 +58,8 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 			// TODO: The image might not have been loaded here, so
 			// so we need to retry getAreaOf in the drawing code.
 			// But we still want to cache it once loading successed
-			let img = stendhal.data.sprites.get("data/sprites/npc/" + profile + ".png");
+			let img = stendhal.data.sprites.get(stendhal.paths.sprites
+					+ "/npc/" + profile + ".png");
 			if (img.complete && img.height) {
 				this.profile = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);
 			}
