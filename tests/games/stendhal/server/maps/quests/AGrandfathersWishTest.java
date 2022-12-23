@@ -56,6 +56,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 	private StendhalRPZone wellZone;
 	private MylingWellPortal wellEntrance;
 	private Portal wellExit;
+	private MylingSpawner spawner;
 
 
 	@Before
@@ -208,6 +209,10 @@ public class AGrandfathersWishTest extends QuestHelper {
 		// add quest to world
 		quests.loadQuest(new AGrandfathersWish());
 		assertTrue(quests.isLoaded(quests.getQuestFromSlot(QUEST_SLOT)));
+		spawner = AGrandfathersWish.getMylingSpawner();
+		assertNotNull(spawner);
+		assertFalse(spawner.mylingIsActive());
+		assertFalse(spawner.niallIsActive());
 
 		double karma = player.getKarma();
 
@@ -348,6 +353,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(
 			"find_myling:well_rope",
 			player.getQuest(QUEST_SLOT, 1));
+		assertFalse(spawner.mylingIsActive());
 
 		PlayerTestHelper.equipWithItem(player, "rope");
 		assertEquals(1, player.getNumberOfEquipped("rope"));
@@ -360,6 +366,12 @@ public class AGrandfathersWishTest extends QuestHelper {
 				+ " away.",
 			PlayerTestHelper.getPrivateReply(player));
 		assertEquals("find_myling:done", player.getQuest(QUEST_SLOT, 1));
+		assertTrue(spawner.mylingIsActive());
+
+		wellEntrance.onUsed(player);
+		assertEquals(
+			"I need to tell Elias about Niall.",
+			PlayerTestHelper.getPrivateReply(player));
 
 		// FIXME: how to make portals functional?
 		//wellExit.onUsed(player);
@@ -548,10 +560,6 @@ public class AGrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkCureMylingStep() {
-		final MylingSpawner spawner = AGrandfathersWish.getMylingSpawner();
-		assertNotNull(spawner);
-		assertFalse(spawner.mylingIsActive());
-
 		final Item holy_water = player.getFirstEquipped("ashen holy water");
 		assertNotNull(holy_water);
 
@@ -564,6 +572,18 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:start", player.getQuest(QUEST_SLOT, 3));
 
+		player.drop(holy_water);
+		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
+
+		wellEntrance.onUsed(player);
+		assertEquals(
+			"Where did I put that holy water? I should return to the priest"
+				+ " to get some more.",
+			PlayerTestHelper.getPrivateReply(player));
+
+		player.equipToInventoryOnly(holy_water);
+		assertEquals(1, player.getNumberOfEquipped("ashen holy water"));
+
 		wellEntrance.onUsed(player);
 		assertEquals(
 			"I should be able to use the holy water here.",
@@ -572,6 +592,9 @@ public class AGrandfathersWishTest extends QuestHelper {
 		SingletonRepository.getRPWorld()
 			.changeZone(wellZone.getID(), player);
 		assertEquals(wellZone, player.getZone());
+
+		spawner.removeActiveMylings();
+		assertFalse(spawner.mylingIsActive());
 
 		holy_water.onUsed(player);
 		assertEquals(
@@ -591,6 +614,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals(0, player.getNumberOfEquipped("ashen holy water"));
 		assertEquals("cure_myling:done", player.getQuest(QUEST_SLOT, 3));
 
+		assertTrue(spawner.niallIsActive());
 		final SpeakerNPC activeNiall = spawner.getActiveNiall();
 		assertNotNull(activeNiall);
 
