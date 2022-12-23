@@ -262,6 +262,9 @@ stendhal.main = {
 
 			checkConnection();
 		}
+
+		// pre-cache images
+		stendhal.data.sprites.startupCache();
 	},
 
 	onerror: function(error) {

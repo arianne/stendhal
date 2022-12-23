@@ -371,6 +371,14 @@ stendhal.data.sprites = {
 	 */
 	hasSafeImage: function(filename) {
 		return this.knownSafeSprites[filename] == true;
+	},
+
+	/**
+	 * Called at startup to pre-cache certain images.
+	 */
+	startupCache: function() {
+		// tutorial profile
+		this.get(stendhal.paths.sprites + "/npc/floattingladynpc.png");
 	}
 }
 
