@@ -112,6 +112,8 @@ public class MylingSpawner extends Entity implements TurnListener {
 		} else {
 			curedNiall.setPosition(getX(), getY());
 			curedNiall.setCollisionAction(CollisionAction.STOP);
+			// entity descriptions default to using "name" attribute
+			curedNiall.setDescription("You see " + curedNiall.getTitle() + ".");
 			getZone().add(curedNiall);
 			activeNialls.add(curedNiall);
 
