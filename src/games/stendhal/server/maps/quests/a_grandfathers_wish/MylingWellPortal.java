@@ -82,10 +82,16 @@ public class MylingWellPortal extends AccessCheckingPortal {
 			player.setQuest(QUEST_SLOT, 1, "find_myling:done");
 			player.sendPrivateText("Is that thing Niall!? Poor boy. I"
 				+ " need to tell Elias right away.");
-		} else if (player.getQuest(QUEST_SLOT, 3).equals("cure_myling:start")
-				&& player.isEquipped("ashen holy water")) {
-			player.sendPrivateText("I should be able to use the holy"
-				+ " water here.");
+		} else if (player.getQuest(QUEST_SLOT, 2).equals("")) {
+			player.sendPrivateText("I need to tell Elias about Niall.");
+		} else if (player.getQuest(QUEST_SLOT, 3).equals("cure_myling:start")) {
+			if (player.isEquipped("ashen holy water")) {
+				player.sendPrivateText("I should be able to use the holy"
+					+ " water here.");
+			} else {
+				player.sendPrivateText("Where did I put that holy water? I"
+					+ " should return to the priest to get some more.");
+			}
 		}
 
 		return ret;
