@@ -14,6 +14,7 @@
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+// TODO: cache played sounds
 stendhal.ui.sound = {
 	layers: ["music", "ambient", "creature", "sfx", "gui"],
 	active: [],
