@@ -147,12 +147,25 @@ stendhal.main = {
 		var soundbutton = document.getElementById("soundbutton");
 		if (stendhal.config.getBoolean("ui.sound")) {
 			soundbutton.textContent = "🔊";
+
+			for (const snd of stendhal.ui.sound.activeLoops) {
+				if (snd && (snd.paused || snd.ended)) {
+					snd.play();
+				}
+			}
 		} else {
 			soundbutton.textContent = "🔇";
+
+			// FIXME: should we mute instead of stop?
 			if (!stendhal.ui.sound.stopAll()) {
 				let errmsg = "Failed to stop playing sounds:";
 				for (const snd of stendhal.ui.sound.active) {
 					if (snd && snd.src) {
+						errmsg += "\n- " + snd.src;
+					}
+				}
+				for (const snd of stendhal.ui.sound.activeLoops) {
+					if (snd && snd.src && !snd.paused) {
 						errmsg += "\n- " + snd.src;
 					}
 				}
