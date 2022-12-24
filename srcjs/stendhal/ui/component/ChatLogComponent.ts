@@ -231,7 +231,9 @@ export class ChatLogComponent extends Component {
 					inHighlight = false;
 					inHighlightQuote = false;
 					res += "</span>";
+					continue;
 				}
+				res += c;
 
 			// HTML escape
 			} else if (c === "<") {
