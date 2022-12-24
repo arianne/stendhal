@@ -90,6 +90,8 @@ marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeven
 marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		// TODO: new PlayerLoggedOnEvent();
+
+		stendhal.ui.sound.playGlobalizedEffect("ui/login", 1.0);
 	}
 });
 
