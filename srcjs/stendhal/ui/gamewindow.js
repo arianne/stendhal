@@ -252,12 +252,6 @@ stendhal.ui.gamewindow = {
 		var startY;
 
 		function _onMouseDown(e) {
-			// close action menu if open
-			if (stendhal.ui.actionContextMenu.isOpen()) {
-				// let global handler close action context menu
-				return;
-			}
-
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
