@@ -75,8 +75,8 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	private JComponent content;
 	private boolean hideOnClose = false;
 
-	private String openSound = "gui-window-fold";
-	private String minimizeSound = "gui-window-fold";
+	private String openSound = "ui/window_fold";
+	private String minimizeSound = "ui/window_fold";
 	private String closeSound = "click-1";
 
 	private final List<CloseListener> closeListeners = new LinkedList<CloseListener>();

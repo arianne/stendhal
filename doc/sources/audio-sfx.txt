@@ -84,7 +84,6 @@ goblin-laugh-01.*         spookymodem; CC0; https://freesound.org/people/spookym
 growl-large-3.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
 grunt-large-1.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
 grunt-large-2.*           SmallQuadruped; CC0; https://freesound.org/people/SmallQuadruped/sounds/42201/
-gui-window-fold.*         Nicole Marie T; CC BY 4.0; https://opengameart.org/node/92701
 guitar-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16326
 hiccup-01.*               ceoux; CC0; https://freesound.org/people/ceoux/sounds/338196/
 naga_hiss-0[1-5].*        columbia23; CC BY 3.0; https://freesound.org/people/columbia23/sounds/395396/
@@ -197,7 +196,6 @@ witch-cackle-1.ogg        Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 wolf-growl-01.*           newagesoup; CC BY 3.0; https://freesound.org/people/newagesoup/sounds/338674/
 wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312/sounds/139901/
 wolf-howl-02.*            killyourpepe; CC0; https://freesound.org/people/killyourpepe/sounds/395192/
-xylophone-1.*             Storyteller; GPL
 yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
 
 data/sounds/npc/
@@ -222,4 +220,6 @@ yay.ogg        Katie Russell (kymara); GPL
 
 data/sounds/ui/
 
-notify_*  finn.appleton; CC0; https://freesound.org/s/560880/
+login.*        Storyteller; GPL
+notify_*       finn.appleton; CC0; https://freesound.org/s/560880/
+window_fold.*  Nicole Marie T; CC BY 4.0; https://opengameart.org/node/92701
