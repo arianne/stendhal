@@ -81,8 +81,13 @@ export class ActionContextMenu extends Component {
 		if (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600) {
 			actions.push({
 				title: "(*) Inspect",
-				action: function(entity: object) {
-					console.log(entity);
+				action: function(entity: any) {
+					const action = {"type": "inspect"} as {[key: string]: string};
+					if (entity.hasOwnProperty("id")) {
+						action["target"] = "#" + entity["id"];
+					}
+
+					marauroa.clientFramework.sendAction(action);
 				}
 			});
 			actions.push({
