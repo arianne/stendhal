@@ -294,8 +294,9 @@ stendhal.main = {
 			checkConnection();
 		}
 
-		// pre-cache images
+		// pre-cache images & sounds
 		stendhal.data.sprites.startupCache();
+		stendhal.ui.sound.startupCache();
 	},
 
 	onerror: function(error) {

@@ -14,11 +14,31 @@
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+
 // TODO: cache played sounds
 stendhal.ui.sound = {
 	layers: ["music", "ambient", "creature", "sfx", "gui"],
+	cache: {},
 	active: [],
 	activeLoops: [],
+
+	/**
+	 * Initializes an audio object & loads into the cache.
+	 *
+	 * @param id
+	 *     Identifier string used to retrieve from cache.
+	 * @param filename
+	 *     Path to sound file.
+	 * @return
+	 *     New audio object.
+	 */
+	load: function(id, filename) {
+		const snd = new Audio(filename);
+		snd.autoplay = false;
+		// load into cache
+		stendhal.ui.sound.cache[id] = snd;
+		return snd;
+	},
 
 	/**
 	 * Plays a sound with volume relative to distance.
@@ -71,10 +91,14 @@ stendhal.ui.sound = {
 			volume = 0.0;
 		}
 
-		var sound = new Audio();
+		// check cache first
+		let sound = stendhal.ui.sound.cache[soundName];
+		if (!sound) {
+			sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
+		}
+
 		sound.autoplay = true;
 		sound.volume = volume;
-		sound.src = stendhal.paths.sounds + "/" + soundName + ".ogg";
 		sound.loop = loop;
 
 		stendhal.ui.sound.onSoundAdd(sound);
@@ -148,7 +172,12 @@ stendhal.ui.sound = {
 			return;
 		}
 
-		const sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
+		// check cache first
+		let sound = stendhal.ui.sound.cache[soundName];
+		if (!sound) {
+			sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
+		}
+
 		if (volume != null) {
 			if (volume > 1) {
 				volume = 1.0;
@@ -258,4 +287,16 @@ stendhal.ui.sound = {
 			stendhal.ui.sound.active.push(sound);
 		}
 	},
+
+	/**
+	 * Called at startup to pre-cache certain sounds.
+	 */
+	startupCache: function() {
+		// DEBUG:
+		console.log("pre-caching sounds");
+
+		// login sound
+		stendhal.ui.sound.load("ui/login",
+				stendhal.paths.sounds + "/ui/login.ogg");
+	}
 };
