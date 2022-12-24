@@ -16,7 +16,7 @@ import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 declare let marauroa: any;
 
 const headless_types = ["normal", "regular",
-		"significant_positive", "client", "emoji"];
+		"significant_positive", "client", "emoji", 'emote'];
 
 
 /**

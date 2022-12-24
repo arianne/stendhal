@@ -159,7 +159,7 @@ export class RPEntity extends ActiveEntity {
 			if (emoji) {
 				this.addEmoji(emoji);
 				Chat.log("emoji", emoji, this.getTitle());
-			} else if (text.startsWith("^!me")) {
+			} else if (text.startsWith("!me")) {
 				Chat.log("emote", text.replace(/^!me/, this.getTitle()));
 			} else {
 				this.addSpeechBubble(text);
