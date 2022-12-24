@@ -30,6 +30,25 @@ stendhal.ui.keycode = {
 stendhal.ui.keyhandler = {
 	pressedKeys: [],
 
+	/**
+	 * Checks if any direction key is currently pressed.
+	 *
+	 * @return
+	 *     <code>true</code> if direction keycode found in pressed
+	 *     keys list.
+	 */
+	isDirPressed: function() {
+		for (const dir of [stendhal.ui.keycode.left,
+				stendhal.ui.keycode.right, stendhal.ui.keycode.up,
+				stendhal.ui.keycode.down]) {
+			if (stendhal.ui.keyhandler.pressedKeys.indexOf(dir) > -1) {
+				return true;
+			}
+		}
+
+		return false;
+	},
+
 	extractMoveOrFaceActionFromEvent: function(event) {
 		if (event.ctrlKey) {
 			return "face";
@@ -102,14 +121,15 @@ stendhal.ui.keyhandler = {
 		var code = stendhal.ui.html.extractKeyCode(event);
 
 		if (code >= stendhal.ui.keycode.left && code <= stendhal.ui.keycode.down) {
-			var code = stendhal.ui.html.extractKeyCode(event);
 			var i = stendhal.ui.keyhandler.pressedKeys.indexOf(code);
 			if (i > -1) {
 				stendhal.ui.keyhandler.pressedKeys.splice(i, 1);
 			}
 
-			var action = {"type": "stop"};
-			marauroa.clientFramework.sendAction(action);
+			if (!stendhal.ui.keyhandler.isDirPressed()) {
+				var action = {"type": "stop"};
+				marauroa.clientFramework.sendAction(action);
+			}
 
 			if (stendhal.ui.keyhandler.pressedKeys.length > 0) {
 				code = stendhal.ui.keyhandler.pressedKeys[0];
