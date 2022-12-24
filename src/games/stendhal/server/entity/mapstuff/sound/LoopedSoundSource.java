@@ -24,7 +24,8 @@ import marauroa.common.game.RPClass;
  * @author hendrik
  */
 public class LoopedSoundSource extends PassiveEntity {
-	private static final String RPCLASS_NAME = "looped_sound_source";
+
+	public static final String RPCLASS_NAME = "looped_sound_source";
 
 
 	/**
