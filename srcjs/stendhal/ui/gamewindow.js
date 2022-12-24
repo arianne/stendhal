@@ -253,8 +253,8 @@ stendhal.ui.gamewindow = {
 
 		function _onMouseDown(e) {
 			// close action menu if open
-			if (stendhal.ui.actionContextMenu.isOpen() && !this.isRightClick(e)) {
-				stendhal.ui.actionContextMenu.close(true);
+			if (stendhal.ui.actionContextMenu.isOpen()) {
+				// let global handler close action context menu
 				return;
 			}
 
@@ -540,6 +540,11 @@ stendhal.ui.dialogHandler = {
 		}
 
 		this.content = c;
+		this.content.componentElement.addEventListener("mousedown", function(e) {
+			// prevent global handler from closing when clicked on
+			e.preventDefault();
+			e.stopPropagation();
+		});
 	},
 
 	/**

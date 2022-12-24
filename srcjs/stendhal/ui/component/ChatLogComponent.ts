@@ -26,7 +26,7 @@ export class ChatLogComponent extends Component {
 		super("chat");
 		this.refresh();
 
-		this.componentElement.addEventListener("contextmenu", (evt: MouseEvent) => {
+		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
 			this.onContextMenu(evt)
 		});
 	}
@@ -328,11 +328,8 @@ export class ChatLogComponent extends Component {
 
 
 	private onContextMenu(evt: MouseEvent) {
-		evt.preventDefault();
-		evt.stopPropagation();
-
-		if (stendhal.ui.actionContextMenu.isOpen()) {
-			stendhal.ui.actionContextMenu.close();
+		if (!evt || evt.button != 2 || stendhal.ui.actionContextMenu.isOpen()) {
+			return;
 		}
 
 		// setting "log" to "this" here doesn't work
@@ -354,6 +351,9 @@ export class ChatLogComponent extends Component {
 		const pos = stendhal.ui.html.extractPosition(evt);
 		stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 				new LogContextMenu(options), pos.pageX - 50, pos.pageY - 5));
+
+		evt.preventDefault();
+		evt.stopPropagation();
 	}
 }
 

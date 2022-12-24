@@ -169,6 +169,15 @@ stendhal.main = {
 		document.addEventListener("keyup", stendhal.ui.keyhandler.onKeyUp);
 		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
+		// handles closing the context menu
+		document.addEventListener("mousedown", function(e) {
+			if (stendhal.ui.actionContextMenu.isOpen()) {
+				stendhal.ui.actionContextMenu.close(true);
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		});
+
 		document.getElementById("body").addEventListener("mouseenter", stendhal.main.onMouseEnter);
 
 		var gamewindow = document.getElementById("gamewindow");
