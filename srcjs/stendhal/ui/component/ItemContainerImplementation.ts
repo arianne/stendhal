@@ -253,9 +253,12 @@ export class ItemContainerImplementation {
 			}
 
 			if (this.isRightClick(event) || stendhal.ui.touch.isLongTouch()) {
-				ui.createSingletonFloatingWindow("Action",
+				// FIXME: other instances of actionContextMenu should act as this one
+				//        and create a new dialog on right-click immediately after
+				//        closing this one
+				stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem),
-					event.pageX - 50, event.pageY - 5);
+					event.pageX - 50, event.pageY - 5));
 			} else if (!stendhal.ui.heldItem) {
 				if (!stendhal.config.getBoolean("action.item.doubleclick") || this.isDoubleClick(event)) {
 					marauroa.clientFramework.sendAction({
