@@ -16,7 +16,22 @@ stendhal.ui = stendhal.ui || {};
 
 stendhal.ui.sound = {
 	layers: ["music", "ambient", "creature", "sfx", "gui"],
+	active: [],
 
+	/**
+	 * Plays a sound with volume relative to distance.
+	 *
+	 * @param x
+	 *     X coordinate of sound source.
+	 * @param y
+	 *     Y coordinate of sound source.
+	 * @param radius
+	 *     Radius at which sound can be heard.
+	 * @param soundName
+	 *     Sound file basename.
+	 * @param volume
+	 *     Volume level between 0.0 and 1.0.
+	 */
 	playLocalizedEffect: function(x, y, radius, layer, soundName, volume) {
 		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
@@ -45,8 +60,18 @@ stendhal.ui.sound = {
 		sound.autoplay = true;
 		sound.volume = volume;
 		sound.src = stendhal.paths.sounds + "/" + soundName + ".ogg";
+
+		stendhal.ui.sound.onSoundAdd(sound);
 	},
 
+	/**
+	 * Plays a sound with uniform volume.
+	 *
+	 * @param soundName
+	 *     Sound file basename.
+	 * @param volume
+	 *     Volume level between 0.0 and 1.0.
+	 */
 	playGlobalizedEffect: function(soundName, volume) {
 		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
@@ -57,5 +82,43 @@ stendhal.ui.sound = {
 			sound.volume = volume;
 		}
 		sound.autoplay = true;
-	}
+
+		stendhal.ui.sound.onSoundAdd(sound);
+	},
+
+	/**
+	 * Stops all currently playing sounds.
+	 *
+	 * @return
+	 *     <code>true</code> if all sounds were aborted.
+	 */
+	stopAll: function() {
+		for (let idx = stendhal.ui.sound.active.length; idx >= 0 ; idx--) {
+			const snd = stendhal.ui.sound.active[idx];
+			// sound may have ended during this call
+			if (snd) {
+				snd.pause();
+			}
+		}
+
+		stendhal.ui.sound.active.splice(0, stendhal.ui.sound.active.length);
+		return stendhal.ui.sound.active.length == 0;
+	},
+
+	/**
+	 * Sets event handlers for when sound finishes.
+	 *
+	 * @param sound
+	 *     The playing sound.
+	 */
+	onSoundAdd: function(sound) {
+		sound.onended = (e) => {
+			// remove from active sounds
+			const idx = stendhal.ui.sound.active.indexOf(sound);
+			if (idx > -1) {
+				stendhal.ui.sound.active.splice(idx, 1);
+			}
+		};
+		stendhal.ui.sound.active.push(sound);
+	},
 };

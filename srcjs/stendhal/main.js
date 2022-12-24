@@ -149,6 +149,15 @@ stendhal.main = {
 			soundbutton.textContent = "🔊";
 		} else {
 			soundbutton.textContent = "🔇";
+			if (!stendhal.ui.sound.stopAll()) {
+				let errmsg = "Failed to stop playing sounds:";
+				for (const snd of stendhal.ui.sound.active) {
+					if (snd && snd.src) {
+						errmsg += "\n- " + snd.src;
+					}
+				}
+				console.warn(errmsg);
+			}
 		}
 	},
 
