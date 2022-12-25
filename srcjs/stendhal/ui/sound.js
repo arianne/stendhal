@@ -56,8 +56,6 @@ stendhal.ui.sound = {
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
 	 *     Whether or not sound should be looped.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playLocalizedEffect: function(x, y, radius, layer, soundName, volume,
 			loop=false) {
@@ -99,14 +97,14 @@ stendhal.ui.sound = {
 			if (!sound.paused && !sound.ended) {
 				if (sound.loop) {
 					// don't play loops over each other
-					return sound;
+					return;
 				}
 				// create a new sound instead of interrupting the cached one
 				const addSound = new Audio(sound.src);
 				addSound.autoplay = true;
 				addSound.volume = sound.volume;
 				stendhal.ui.sound.onSoundAdd(addSound);
-				return addSound;
+				return;
 			}
 		} else {
 			// add new sound to cache
@@ -129,7 +127,6 @@ stendhal.ui.sound = {
 
 		sound.hasplayed = true;
 		stendhal.ui.sound.onSoundAdd(sound);
-		return sound;
 	},
 
 	/**
@@ -147,11 +144,9 @@ stendhal.ui.sound = {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playLocalizedLoop: function(x, y, radius, layer, soundName, volume) {
-		return stendhal.ui.sound.playLocalizedEffect(x, y, radius, layer,
+		stendhal.ui.sound.playLocalizedEffect(x, y, radius, layer,
 				soundName, volume, true);
 	},
 
@@ -170,15 +165,13 @@ stendhal.ui.sound = {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playLocalizedMusic: function(x, y, radius, layer, musicName, volume) {
 		// load into cache so playLocalizedEffect doesn't look in "data/sounds"
 		stendhal.ui.sound.load(musicName,
 				stendhal.paths.music + "/" + musicName + ".ogg");
-		return stendhal.ui.sound.playLocalizedLoop(x, y, radius,
-				layer, musicName, volume);
+		stendhal.ui.sound.playLocalizedLoop(x, y, radius, layer, musicName,
+				volume);
 	},
 
 	/**
@@ -190,8 +183,6 @@ stendhal.ui.sound = {
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
 	 *     Whether or not sound should be looped.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playGlobalizedEffect: function(soundName, volume, loop=false) {
 		if (!stendhal.config.getBoolean("ui.sound")) {
@@ -212,14 +203,14 @@ stendhal.ui.sound = {
 			if (!sound.paused && !sound.ended) {
 				if (sound.loop) {
 					// don't play loops over each other
-					return sound;
+					return;
 				}
 				// create a temporary sound instead of interrupting the cached one
 				const addSound = new Audio(sound.src);
 				addSound.autoplay = true;
 				addSound.volume = sound.volume;
 				stendhal.ui.sound.onSoundAdd(addSound);
-				return addSound;
+				return;
 			}
 		} else {
 			// add new sound to cache
@@ -242,7 +233,6 @@ stendhal.ui.sound = {
 
 		sound.hasplayed = true;
 		stendhal.ui.sound.onSoundAdd(sound);
-		return sound;
 	},
 
 	/**
@@ -252,12 +242,9 @@ stendhal.ui.sound = {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playGlobalizedLoop: function(soundName, volume) {
-		return stendha.ui.sound.playGlobalizedEffect(soundName, volume,
-				true);
+		stendha.ui.sound.playGlobalizedEffect(soundName, volume, true);
 	},
 
 	/**
@@ -267,14 +254,12 @@ stendhal.ui.sound = {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     HTMLAudioElement.
 	 */
 	playGlobalizedMusic: function(musicName, volume) {
 		// load into cache so playGlobalizedEffect doesn't look in "data/sounds"
 		stendhal.ui.sound.load(musicName,
 				stendhal.paths.music + "/" + musicName + ".ogg");
-		return stendhal.ui.sound.playGlobalizedLoop(musicName, volume);
+		stendhal.ui.sound.playGlobalizedLoop(musicName, volume);
 	},
 
 	/**

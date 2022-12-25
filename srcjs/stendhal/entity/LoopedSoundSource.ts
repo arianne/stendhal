@@ -16,7 +16,6 @@ declare var stendhal: any;
 
 export class LoopedSoundSource extends InvisibleEntity {
 
-	private audio?: HTMLAudioElement;
 	private loaded = false;
 
 
@@ -47,14 +46,13 @@ export class LoopedSoundSource extends InvisibleEntity {
 	 * Plays sound once all required attributes are loaded.
 	 */
 	onLoaded() {
-		const snd = this["sound"];
-		if (snd && (!this.audio || snd !== this.audio.src)) {
+		if (this["sound"]) {
 			const x = this["x"], y = this["y"];
 			if (typeof(x) !== "undefined" && typeof(y) !== "undefined") {
 				// start new audio
 				// FIXME: distinguish between music & looped sounds effects
-				this.audio = stendhal.ui.sound.playLocalizedMusic(x, y,
-						this["radius"], this["layer"], snd, this["volume"]);
+				stendhal.ui.sound.playLocalizedMusic(x, y, this["radius"],
+						this["layer"], this["sound"], this["volume"]);
 			}
 		}
 	}
