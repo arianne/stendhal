@@ -15,7 +15,6 @@ var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 
-// TODO: cache played sounds
 stendhal.ui.sound = {
 	layers: ["music", "ambient", "creature", "sfx", "gui"],
 	cache: {},
@@ -66,6 +65,8 @@ stendhal.ui.sound = {
 			return;
 		}
 
+		volume = typeof(volume) !== "undefined" ? volume : 1.0;
+
 		// Further adjustments if the sound has a radius
 		if (radius) {
 			if (!marauroa.me || !x) {
@@ -93,14 +94,40 @@ stendhal.ui.sound = {
 
 		// check cache first
 		let sound = stendhal.ui.sound.cache[soundName];
-		if (!sound) {
-			sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
+		if (sound) {
+			// TODO: handle HTMLAudioElement.error
+			if (!sound.paused && !sound.ended) {
+				if (sound.loop) {
+					// don't play loops over each other
+					return sound;
+				}
+				// create a new sound instead of interrupting the cached one
+				const addSound = new Audio(sound.src);
+				addSound.autoplay = true;
+				addSound.volume = sound.volume;
+				stendhal.ui.sound.onSoundAdd(addSound);
+				return addSound;
+			}
+		} else {
+			// add new sound to cache
+			sound = stendhal.ui.sound.load(soundName,
+					stendhal.paths.sounds + "/" + soundName + ".ogg");
 		}
 
 		sound.autoplay = true;
 		sound.volume = volume;
 		sound.loop = loop;
 
+		// must be started manually if autoplay has already ocurred
+		if (sound.hasplayed) {
+			if (!sound.paused && !sound.ended) {
+				sound.pause();
+			}
+			sound.currentTime = 0;
+			sound.play();
+		}
+
+		sound.hasplayed = true;
 		stendhal.ui.sound.onSoundAdd(sound);
 		return sound;
 	},
@@ -147,12 +174,11 @@ stendhal.ui.sound = {
 	 *     HTMLAudioElement.
 	 */
 	playLocalizedMusic: function(x, y, radius, layer, musicName, volume) {
-		const music = stendhal.ui.sound.playLocalizedLoop(x, y, radius,
+		// load into cache so playLocalizedEffect doesn't look in "data/sounds"
+		stendhal.ui.sound.load(musicName,
+				stendhal.paths.music + "/" + musicName + ".ogg");
+		return stendhal.ui.sound.playLocalizedLoop(x, y, radius,
 				layer, musicName, volume);
-		if (music) {
-			music.src = stendhal.paths.music + "/" + musicName + ".ogg";
-		}
-		return music;
 	},
 
 	/**
@@ -172,23 +198,49 @@ stendhal.ui.sound = {
 			return;
 		}
 
+		volume = typeof(volume) !== "undefined" ? volume : 1.0;
+		if (volume > 1) {
+			volume = 1.0;
+		} else if (volume < 0) {
+			volume = 0.0;
+		}
+
 		// check cache first
 		let sound = stendhal.ui.sound.cache[soundName];
-		if (!sound) {
-			sound = new Audio(stendhal.paths.sounds + "/" + soundName + ".ogg");
+		if (sound) {
+			// TODO: handle HTMLAudioElement.error
+			if (!sound.paused && !sound.ended) {
+				if (sound.loop) {
+					// don't play loops over each other
+					return sound;
+				}
+				// create a temporary sound instead of interrupting the cached one
+				const addSound = new Audio(sound.src);
+				addSound.autoplay = true;
+				addSound.volume = sound.volume;
+				stendhal.ui.sound.onSoundAdd(addSound);
+				return addSound;
+			}
+		} else {
+			// add new sound to cache
+			sound = stendhal.ui.sound.load(soundName,
+					stendhal.paths.sounds + "/" + soundName + ".ogg");
 		}
 
-		if (volume != null) {
-			if (volume > 1) {
-				volume = 1.0;
-			} else if (volume < 0) {
-				volume = 0.0;
-			}
-			sound.volume = volume;
-		}
 		sound.autoplay = true;
+		sound.volume = volume;
 		sound.loop = loop;
 
+		// must be started manually if autoplay has already ocurred
+		if (sound.hasplayed) {
+			if (!sound.paused && !sound.ended) {
+				sound.pause();
+			}
+			sound.currentTime = 0;
+			sound.play();
+		}
+
+		sound.hasplayed = true;
 		stendhal.ui.sound.onSoundAdd(sound);
 		return sound;
 	},
@@ -219,11 +271,10 @@ stendhal.ui.sound = {
 	 *     HTMLAudioElement.
 	 */
 	playGlobalizedMusic: function(musicName, volume) {
-		const music = stendhal.ui.sound.playGlobalizedLoop(musicName, volume);
-		if (music) {
-			music.src = stendhal.paths.music + "/" + musicName + ".ogg";
-		}
-		return music;
+		// load into cache so playGlobalizedEffect doesn't look in "data/sounds"
+		stendhal.ui.sound.load(musicName,
+				stendhal.paths.music + "/" + musicName + ".ogg");
+		return stendhal.ui.sound.playGlobalizedLoop(musicName, volume);
 	},
 
 	/**
@@ -292,9 +343,6 @@ stendhal.ui.sound = {
 	 * Called at startup to pre-cache certain sounds.
 	 */
 	startupCache: function() {
-		// DEBUG:
-		console.log("pre-caching sounds");
-
 		// login sound
 		stendhal.ui.sound.load("ui/login",
 				stendhal.paths.sounds + "/ui/login.ogg");
