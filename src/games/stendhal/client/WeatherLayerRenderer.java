@@ -31,7 +31,12 @@ import games.stendhal.client.sprite.TilesetGroupAnimationMap;
  * can be used for animation.
  */
 public class WeatherLayerRenderer extends LayerRenderer {
+
+	private static final Logger logger = Logger.getLogger(WeatherLayerRenderer.class);
+
 	private final Sprite weather;
+	private final String name;
+	private boolean reported = false;
 
 	/**
 	 * Create a new weather layer.
@@ -43,7 +48,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 	public WeatherLayerRenderer(String weather, Color color, Composite blend) {
 		SpriteStore sr = SpriteStore.get();
 
-		String name = "data/sprites/weather/" + weather + ".png";
+		name = "data/sprites/weather/" + weather + ".png";
 		Sprite template;
 		/*
 		 * The failsafe sprite must not be used here, under any circumstances.
@@ -51,7 +56,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 		 */
 		if (sr.getSprite(name) == sr.getFailsafe()) {
 			template = new EmptySprite(1024, 1024, null);
-			Logger.getLogger(WeatherLayerRenderer.class).warn("Weather sprite not found:" + name);
+			logger.warn("Weather sprite not found:" + name);
 		} else {
 			template = sr.getModifiedSprite(name, color, blend);
 		}
@@ -67,20 +72,27 @@ public class WeatherLayerRenderer extends LayerRenderer {
 
 	@Override
 	public void draw(Graphics g, int x, int y, int w, int h) {
-		int myX = (x * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth();
-		int myY = (y * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight();
-		int myW = (w * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth() + 1;
-		int myH = (h * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight() + 1;
+		try {
+			int myX = (x * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth();
+			int myY = (y * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight();
+			int myW = (w * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth() + 1;
+			int myH = (h * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight() + 1;
 
-		int sy = myY * weather.getHeight();
-		for (int j = myY; j < myY + myH; j++) {
-			int sx = myX * weather.getWidth();
+			int sy = myY * weather.getHeight();
+			for (int j = myY; j < myY + myH; j++) {
+				int sx = myX * weather.getWidth();
 
-			for (int i = myX; i < myX + myW; i++) {
-				weather.draw(g, sx, sy);
-				sx += weather.getWidth();
+				for (int i = myX; i < myX + myW; i++) {
+					weather.draw(g, sx, sy);
+					sx += weather.getWidth();
+				}
+				sy += weather.getHeight();
 			}
-			sy += weather.getHeight();
+		} catch (final NullPointerException e) {
+			if (!reported) {
+				logger.error("Failed to draw weather: " + name, e);
+				reported = true;
+			}
 		}
 	}
 
