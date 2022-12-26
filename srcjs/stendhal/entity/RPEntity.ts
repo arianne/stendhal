@@ -46,7 +46,7 @@ export class RPEntity extends ActiveEntity {
 	/** the diameter of the arc of the rounded bubble corners. */
 	//private arc_diameter = 2 * this.margin_width + 2;
 
-	private attackers: {[key: string]: boolean} = {};
+	private attackers: {[key: string]: any} = { size: 0 };
 
 
 	override set(key: string, value: any) {
@@ -532,7 +532,7 @@ export class RPEntity extends ActiveEntity {
 	 * ellipses) when the entity is being attacked, or is attacking the user.
 	 */
 	drawCombat(ctx: CanvasRenderingContext2D) {
-		if (Object.keys(this.attackers).length > 0) {
+		if (this.attackers.size > 0) {
 			ctx.lineWidth = 1;
 			/*
 			 * As of 2015-9-15 CanvasRenderingContext2D.ellipse() is not
@@ -987,6 +987,7 @@ export class RPEntity extends ActiveEntity {
 
 		if (!(attacker["id"] in this.attackers)) {
 			this.attackers[attacker["id"]] = true;
+			this.attackers.size += 1;
 		}
 	}
 
@@ -999,6 +1000,7 @@ export class RPEntity extends ActiveEntity {
 	onAttackStopped(attacker: Entity) {
 		if (attacker["id"] in this.attackers) {
 			delete this.attackers[attacker["id"]];
+			this.attackers.size -= 1;
 		}
 	}
 
