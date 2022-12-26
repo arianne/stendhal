@@ -980,11 +980,6 @@ export class RPEntity extends ActiveEntity {
 	 * @param attacked The entity that selected this as the target
 	 */
 	onTargeted(attacker: Entity) {
-		if (!attacker["id"]) {
-			// attacker's id was not set when this entity was targeted
-			return;
-		}
-
 		if (!(attacker["id"] in this.attackers)) {
 			this.attackers[attacker["id"]] = true;
 			this.attackers.size += 1;
