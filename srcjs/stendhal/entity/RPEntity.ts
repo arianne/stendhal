@@ -46,6 +46,8 @@ export class RPEntity extends ActiveEntity {
 	/** the diameter of the arc of the rounded bubble corners. */
 	//private arc_diameter = 2 * this.margin_width + 2;
 
+	private attackers: {[key: string]: boolean} = {};
+
 
 	override set(key: string, value: any) {
 		// Ugly hack to detect changes. The old value is no
@@ -60,7 +62,10 @@ export class RPEntity extends ActiveEntity {
 			if (key === "hp" && oldValue != undefined) {
 				this.onHPChanged(this[key] - oldValue);
 			}
-		} else if (key === "target") {
+		} else if (key === "id" && !oldValue && this._target) {
+			// update list of attackers since id was not set when entity was targeted
+			this._target.onTargeted(this);
+		} else if (key === "target" && this["id"]) {
 			if (this._target) {
 				this._target.onAttackStopped(this);
 			}
@@ -527,7 +532,7 @@ export class RPEntity extends ActiveEntity {
 	 * ellipses) when the entity is being attacked, or is attacking the user.
 	 */
 	drawCombat(ctx: CanvasRenderingContext2D) {
-		if (this.attackers > 0) {
+		if (Object.keys(this.attackers).length > 0) {
 			ctx.lineWidth = 1;
 			/*
 			 * As of 2015-9-15 CanvasRenderingContext2D.ellipse() is not
@@ -975,20 +980,13 @@ export class RPEntity extends ActiveEntity {
 	 * @param attacked The entity that selected this as the target
 	 */
 	onTargeted(attacker: Entity) {
-		/* FIXME: can't use attacker["id"] as it is not always set
-		if (!this.attackers) {
-			this.attackers = { size: 0 };
+		if (!attacker["id"]) {
+			// attacker's id was not set when this entity was targeted
+			return;
 		}
+
 		if (!(attacker["id"] in this.attackers)) {
 			this.attackers[attacker["id"]] = true;
-			this.attackers.size += 1;
-		}
-		*/
-		if (typeof(this.attackers) === "undefined") {
-			this.attackers = 0;
-		}
-		if (typeof(attacker) !== "undefined") {
-			this.attackers++;
 		}
 	}
 
@@ -999,14 +997,8 @@ export class RPEntity extends ActiveEntity {
 	 * 	stopped attacking
 	 */
 	onAttackStopped(attacker: Entity) {
-		/* FIXME: can't use attacker["id"] as it is not always set
 		if (attacker["id"] in this.attackers) {
 			delete this.attackers[attacker["id"]];
-			this.attackers.size -= 1;
-		}
-		*/
-		if (typeof(attacker) !== "undefined" && this.attackers > 0) {
-			this.attackers--;
 		}
 	}
 
