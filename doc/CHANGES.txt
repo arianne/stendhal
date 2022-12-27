@@ -3,6 +3,29 @@ Changelog
 ---------
 
 
+1.43
+
+*bugfixes*
+- java client:
+  - fixed error where drawing stalled when weather sprite not found
+- web client
+  - fixed admin inspect action from context menu
+  - fixed closing action context menu when clicking anywhere
+  - fixed movement with direction key
+  - fixed duration time of chat & notification bubbles
+  - fixed attack sprite positioning
+  - fixed tutorial profile image not displaying on first notification
+  - fixed item & corpse failsafe image
+  - fixed emote action
+  - fixed sounds not stopping when audio is turned off
+  - fixed apostrophe's being removed in chat log
+
+*web client*
+- added support for drawing weather effects
+- added login sound
+- added bell notifaction on private messages
+
+
 1.42
 
 *bugfixes*
