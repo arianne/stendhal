@@ -9,14 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
-import { TextBubbleSprite } from "./TextBubbleSprite";
+import { TextBubble } from "./TextBubble";
 import { RPEntity } from "../entity/RPEntity";
 import { NotificationType } from "../util/NotificationType";
 
 declare var stendhal: any;
 
 
-export class NotificationBubbleSprite extends TextBubbleSprite {
+export class NotificationBubble extends TextBubble {
 
 	private mtype: string;
 	private lines: string[];
@@ -33,8 +33,8 @@ export class NotificationBubbleSprite extends TextBubbleSprite {
 		this.profileName = profile;
 
 		this.duration = Math.max(
-				TextBubbleSprite.STANDARD_DUR,
-				this.text.length * TextBubbleSprite.STANDARD_DUR / 50);
+				TextBubble.STANDARD_DUR,
+				this.text.length * TextBubble.STANDARD_DUR / 50);
 
 		const linewrap = 30;
 		const wordbreak = 60;

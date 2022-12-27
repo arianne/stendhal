@@ -9,13 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { TextBubbleSprite } from "./TextBubbleSprite";
+import { TextBubble } from "./TextBubble";
 import { RPEntity } from "../entity/RPEntity";
 
 declare var stendhal: any;
 
 
-export class SpeechBubbleSprite extends TextBubbleSprite {
+export class SpeechBubble extends TextBubble {
 
 	private entity: RPEntity;
 
@@ -25,8 +25,8 @@ export class SpeechBubbleSprite extends TextBubbleSprite {
 		this.entity = entity;
 
 		this.duration = Math.max(
-				TextBubbleSprite.STANDARD_DUR,
-				this.text.length * TextBubbleSprite.STANDARD_DUR / 50);
+				TextBubble.STANDARD_DUR,
+				this.text.length * TextBubble.STANDARD_DUR / 50);
 	}
 
 	override draw(ctx: CanvasRenderingContext2D): boolean {

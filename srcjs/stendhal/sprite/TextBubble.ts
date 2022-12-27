@@ -12,7 +12,7 @@
 declare var stendhal: any;
 
 
-export abstract class TextBubbleSprite {
+export abstract class TextBubble {
 
 	protected static readonly STANDARD_DUR = 5000;
 
@@ -113,7 +113,7 @@ export abstract class TextBubbleSprite {
 	 */
 	setDuration(dur: number) {
 		if (dur == 0) {
-			this.duration = TextBubbleSprite.STANDARD_DUR;
+			this.duration = TextBubble.STANDARD_DUR;
 		} else {
 			this.duration = dur;
 		}

@@ -15,8 +15,8 @@ import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
-import { NotificationBubbleSprite } from "../sprite/NotificationBubbleSprite";
-import { SpeechBubbleSprite } from "../sprite/SpeechBubbleSprite";
+import { NotificationBubble } from "../sprite/NotificationBubble";
+import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 
 declare var marauroa: any;
@@ -180,7 +180,7 @@ export class RPEntity extends ActiveEntity {
 	 *     Text to display.
 	 */
 	addSpeechBubble(text: string) {
-		stendhal.ui.gamewindow.addTextSprite(new SpeechBubbleSprite(text, this));
+		stendhal.ui.gamewindow.addTextSprite(new SpeechBubble(text, this));
 	}
 
 	/**
@@ -194,7 +194,7 @@ export class RPEntity extends ActiveEntity {
 	 *     Filename of NPC profile image to display with message.
 	 */
 	addNotificationBubble(mtype: string, text: string, profile?: string) {
-		stendhal.ui.gamewindow.addNotifSprite(new NotificationBubbleSprite(mtype, text, this, profile));
+		stendhal.ui.gamewindow.addNotifSprite(new NotificationBubble(mtype, text, this, profile));
 	}
 
 	addEmoji(emoji: HTMLImageElement) {
