@@ -125,15 +125,16 @@ stendhal.zone = {
 				this.sprite.frames = animationMap[0].frames;
 				this.sprite.delays = animationMap[0].delays;
 
-				// FIXME: sometimes this is called before gamewindow dimensions are set
 				const gamewindow = document.getElementById("gamewindow");
 				this.tilesX = Math.ceil(gamewindow.width / this.sprite.height);
 				this.tilesY = Math.ceil(gamewindow.height / this.sprite.height);
 				if (!this.tilesX || !isFinite(this.tilesX)) {
-					this.tilesX = 0;
+					// failsafe max width in case gamewindow.width is not set
+					this.tilesX = Math.ceil(640 / this.sprite.height);
 				}
 				if (!this.tilesY || !isFinite(this.tilesY)) {
-					this.tilesY = 0;
+					// failsafe max height in case gamewindow.height is not set
+					this.tilesY = Math.ceil(480 / this.sprite.height);
 				}
 			}
 		},
