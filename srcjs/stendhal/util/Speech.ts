@@ -9,17 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
-
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.util = stendhal.util || {};
+declare var stendhal: any
 
 
-stendhal.util.speech = {
+export class Speech {
 	// space to be left at the beginning and end of line in pixels
-	//margin_width: 3,
+	//private margin_width = 3;
 	// the diameter of the arc of the rounded bubble corners
-	//arc_diameter: 2 * this.margin_width + 2,
+	//private arc_diameter = 2 * this.margin_width + 2;
 
 	/**
 	 * Draws a rectangle.
@@ -30,7 +27,8 @@ stendhal.util.speech = {
 	 * @param width
 	 * @param height
 	 */
-	drawBubble: function(ctx, x, y, width, height, tail=false) {
+	static drawBubble(ctx: CanvasRenderingContext2D, x: number, y: number,
+			width: number, height: number, tail: boolean=false) {
 		ctx.strokeRect(x, y - 15, width, height);
 		ctx.fillRect(x, y - 15, width, height);
 
@@ -46,7 +44,7 @@ stendhal.util.speech = {
 		ctx.stroke();
 		ctx.closePath();
 		ctx.fill();
-	},
+	}
 
 	/**
 	 * Draws a rectangle with rounded edges.
@@ -59,7 +57,8 @@ stendhal.util.speech = {
 	 * @param width
 	 * @param height
 	 */
-	drawBubbleRounded: function(ctx, x, y, width, height) {
+	static drawBubbleRounded(ctx: CanvasRenderingContext2D, x: number,
+			y: number, width: number, height: number) {
 		//const arc = this.arc_diameter;
 		const arc = 3;
 

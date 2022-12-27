@@ -11,6 +11,7 @@
 
 import { TextBubble } from "./TextBubble";
 import { NotificationType } from "../util/NotificationType";
+import { Speech } from "../util/Speech";
 
 declare var stendhal: any;
 
@@ -105,10 +106,10 @@ export class NotificationBubble extends TextBubble {
 				this.loadProfileSprite();
 			}
 			ctx.drawImage(this.profile, this.x - 48, this.y - 16);
-			stendhal.util.speech.drawBubbleRounded(ctx, this.x, this.y - 15,
+			Speech.drawBubbleRounded(ctx, this.x, this.y - 15,
 					this.width, this.height);
 		} else {
-			stendhal.util.speech.drawBubble(ctx, this.x, this.y, this.width,
+			Speech.drawBubble(ctx, this.x, this.y, this.width,
 					this.height);
 		}
 

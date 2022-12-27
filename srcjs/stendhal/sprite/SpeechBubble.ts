@@ -11,6 +11,7 @@
 
 import { TextBubble } from "./TextBubble";
 import { RPEntity } from "../entity/RPEntity";
+import { Speech } from "../util/Speech";
 
 declare var stendhal: any;
 
@@ -45,7 +46,7 @@ export class SpeechBubble extends TextBubble {
 			this.height = 20;
 		}
 
-		stendhal.util.speech.drawBubbleRounded(ctx, this.x, this.y - 15,
+		Speech.drawBubbleRounded(ctx, this.x, this.y - 15,
 				this.width, this.height);
 
 		ctx.fillStyle = "#000000";
