@@ -24,6 +24,7 @@ Changelog
 - added support for drawing weather effects
 - added login sound
 - added bell notifaction on private messages
+- replaced text bubble achievement notification with scroll background & icon
 
 
 1.42

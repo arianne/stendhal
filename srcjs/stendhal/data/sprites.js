@@ -432,6 +432,15 @@ stendhal.data.sprites = {
 	startupCache: function() {
 		// tutorial profile
 		this.get(stendhal.paths.sprites + "/npc/floattingladynpc.png");
+		// achievement assets
+		this.get(stendhal.paths.gui + "/banner_background.png");
+		for (const cat of ["commerce", "deathmatch", "experience", "fighting", "friend",
+				"interior_zone", "item", "obtain", "outside_zone", "production", "quest",
+				"quest_ados_items", "quest_kill_blordroughs", "quest_kirdneh_item",
+				"quest_mithrilbourgh_enemy_army", "quest_semos_monster", "special",
+				"underground_zone"]) {
+			this.get(stendhal.paths.achievements + "/" + cat + ".png");
+		}
 	}
 }
 
