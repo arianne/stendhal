@@ -106,6 +106,11 @@ stendhal.zone = {
 			} else {
 				const img = stendhal.paths.weather + "/" + weather + ".png";
 				this.sprite = stendhal.data.sprites.get(img);
+				/* FIXME:
+				 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$
+				 *   is undefined" occurs sometimes at startup. Need to ensure
+				 *   stendhal.data.tileset.weatherAnimationMap is loaded.
+				 */
 				const animationMap = stendhal.data.tileset.weatherAnimationMap[img];
 
 				if (!this.sprite || !this.sprite.src) {
@@ -120,6 +125,7 @@ stendhal.zone = {
 				this.sprite.frames = animationMap[0].frames;
 				this.sprite.delays = animationMap[0].delays;
 
+				// FIXME: sometimes this is called before gamewindow dimensions are set
 				const gamewindow = document.getElementById("gamewindow");
 				this.tilesX = Math.ceil(gamewindow.width / this.sprite.height);
 				this.tilesY = Math.ceil(gamewindow.height / this.sprite.height);
