@@ -44,6 +44,7 @@ stendhal.main = {
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
+		stendhal.zone.weather.update(zoneinfo["weather"]);
 	},
 
 	/**

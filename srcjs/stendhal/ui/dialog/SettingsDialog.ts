@@ -28,6 +28,8 @@ export class SettingsDialog extends DialogContentComponent {
 	constructor() {
 		super("settingsdialog-template");
 
+		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+
 		this.initialStates = {
 			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
 		};
@@ -42,9 +44,11 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_light.parentElement!.title = "Lighting effects not currently supported";
 
 		const chk_weather = this.createCheckBox("chk_weather", "gamescreen.weather",
-				"Weather is enabled", "Weather is disabled")!;
-		// FIXME: weather effects not yet supported
-		chk_weather.disabled = true;
+				"Weather is enabled", "Weather is disabled", function() {
+					if (clog) {
+						clog.addLine("information", "Weather changes will take effect after you change maps.");
+					}
+				})!;
 		chk_weather.parentElement!.title = "Weather effects not currently supported";
 
 		const sd = this;
@@ -128,7 +132,6 @@ export class SettingsDialog extends DialogContentComponent {
 				fonts.indexOf(stendhal.config.get("ui.font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
 			stendhal.config.set("ui.font.chat", fonts[sel_fontchat.selectedIndex]);
-			const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 			// make sure component is open before trying to refresh
 			if (clog) {
 				clog.refresh();

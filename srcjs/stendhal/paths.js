@@ -20,3 +20,4 @@ stendhal.paths.gui = stendhal.paths.data + "/gui";
 stendhal.paths.music = stendhal.paths.data + "/music";
 stendhal.paths.sounds = stendhal.paths.data + "/sounds";
 stendhal.paths.sprites = stendhal.paths.data + "/sprites";
+stendhal.paths.weather = stendhal.paths.sprites + "/weather";

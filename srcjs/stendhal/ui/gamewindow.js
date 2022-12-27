@@ -62,6 +62,7 @@ stendhal.ui.gamewindow = {
 				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
+				stendhal.zone.weather.draw(this.ctx);
 
 				if (stendhal.ui.touch.held) {
 					// draw a representation of a item "held" via touch input

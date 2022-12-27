@@ -14,6 +14,7 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.zone = stendhal.zone || {};
+stendhal.data = stendhal.data || {tileset: {weatherAnimationMap: {}}};
 
 
 /**
@@ -91,5 +92,79 @@ stendhal.zone = {
 
 			return rv;
 		});
+	},
+
+	weather: {
+		update: function(weather) {
+			this.enabled = stendhal.config.getBoolean("gamescreen.weather");
+			this.frameIdx = 0;
+			this.lastUpdate = Date.now();
+			this.warned = false;
+
+			if (!weather) {
+				this.sprite = undefined;
+			} else {
+				const img = stendhal.paths.weather + "/" + weather + ".png";
+				this.sprite = stendhal.data.sprites.get(img);
+				const animationMap = stendhal.data.tileset.weatherAnimationMap[img];
+
+				if (!this.sprite || !this.sprite.src) {
+					console.warn("weather sprite not found: " + weather);
+					return;
+				}
+				if (!animationMap) {
+					console.warn("weather animation map not found: " + this.sprite.src);
+					return;
+				}
+
+				this.sprite.frames = animationMap[0].frames;
+				this.sprite.delays = animationMap[0].delays;
+
+				const gamewindow = document.getElementById("gamewindow");
+				this.tilesX = Math.ceil(gamewindow.width / this.sprite.height);
+				this.tilesY = Math.ceil(gamewindow.height / this.sprite.height);
+				if (!this.tilesX || !isFinite(this.tilesX)) {
+					this.tilesX = 0;
+				}
+				if (!this.tilesY || !isFinite(this.tilesY)) {
+					this.tilesY = 0;
+				}
+			}
+		},
+
+		draw: function(ctx) {
+			if (this.enabled && this.sprite && this.sprite.frames) {
+				if (!this.tilesX || !this.tilesY) {
+					if (!this.warned) {
+						console.warn("client too small to tile weather");
+						this.warned = true;
+					}
+					return;
+				}
+
+				// width & height dimensions should be the same
+				const dim = this.sprite.height;
+				for (let ix = 0; ix < this.tilesX; ix++) {
+					for (let iy = 0; iy < this.tilesY; iy++) {
+						ctx.drawImage(this.sprite,
+								this.sprite.frames[this.frameIdx]*dim,
+								0,
+								dim, dim,
+								(ix*dim)+stendhal.ui.gamewindow.offsetX,
+								(iy*dim)+stendhal.ui.gamewindow.offsetY,
+								dim, dim);
+					}
+				}
+
+				const cycleTime = Date.now();
+				if (cycleTime - this.lastUpdate >= this.sprite.delays[this.frameIdx]) {
+					this.lastUpdate = cycleTime;
+					this.frameIdx++;
+					if (this.frameIdx + 1 > this.sprite.frames.length) {
+						this.frameIdx = 0;
+					}
+				}
+			}
+		}
 	}
 };

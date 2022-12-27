@@ -110,6 +110,6 @@ stendhal.data.tileset.loadAnimations = function() {
 			stendhal.data.tileset.landscapeAnimationMap
 					= formatAnimations(animations["landscape"], "/tileset/");
 			stendhal.data.tileset.weatherAnimationMap
-					= formatAnimations(animations["weather"], stendhal.paths.sprites + "/weather/");
+					= formatAnimations(animations["weather"], stendhal.paths.weather + "/");
 		});
 }
