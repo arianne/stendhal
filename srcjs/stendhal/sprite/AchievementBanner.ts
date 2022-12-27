@@ -86,9 +86,4 @@ export class AchievementBanner extends TextBubble {
 
 		return this.expired();
 	}
-
-	// DEBUG:
-	override expired(): boolean {
-		return false;
-	}
 }
