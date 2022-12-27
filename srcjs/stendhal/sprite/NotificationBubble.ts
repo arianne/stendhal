@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 import { TextBubble } from "./TextBubble";
-import { RPEntity } from "../entity/RPEntity";
 import { NotificationType } from "../util/NotificationType";
 
 declare var stendhal: any;
@@ -20,16 +19,14 @@ export class NotificationBubble extends TextBubble {
 
 	private mtype: string;
 	private lines: string[];
-	private entity: RPEntity;
 	private profile?: HTMLImageElement;
 	private profileName?: string;
 	private lmargin = 4;
 
 
-	constructor(mtype: string, text: string, entity: RPEntity, profile?: string) {
+	constructor(mtype: string, text: string, profile?: string) {
 		super(text);
 		this.mtype = mtype;
-		this.entity = entity;
 		this.profileName = profile;
 
 		this.duration = Math.max(
@@ -108,10 +105,10 @@ export class NotificationBubble extends TextBubble {
 				this.loadProfileSprite();
 			}
 			ctx.drawImage(this.profile, this.x - 48, this.y - 16);
-			this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
+			stendhal.util.speech.drawBubbleRounded(ctx, this.x, this.y - 15,
 					this.width, this.height);
 		} else {
-			this.entity.drawSpeechBubble(ctx, this.x, this.y, this.width,
+			stendhal.util.speech.drawBubble(ctx, this.x, this.y, this.width,
 					this.height);
 		}
 

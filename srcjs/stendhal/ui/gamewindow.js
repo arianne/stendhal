@@ -14,6 +14,7 @@
 var ui = require("../../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 const AchievementBanner = require("../../../build/ts/sprite/AchievementBanner").AchievementBanner;
+const NotificationBubble = require("../../../build/ts/sprite/NotificationBubble").NotificationBubble;
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
@@ -162,12 +163,28 @@ stendhal.ui.gamewindow = {
 		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
 
+	/**
+	 * Adds a text bubble sprite to screen.
+	 *
+	 * @param sprite
+	 *     Text sprite to display.
+	 */
 	addTextSprite: function(sprite) {
 		this.textSprites.push(sprite);
 	},
 
-	addNotifSprite: function(sprite) {
-		this.notifSprites.push(sprite);
+	/**
+	 * Adds a notification bubble to screen.
+	 *
+	 * @param mtype
+	 *     Message type.
+	 * @param text
+	 *     Text contents.
+	 * @param profile
+	 *     Optional entity image filename to show as the speaker.
+	 */
+	addNotifSprite: function(mtype, text, profile) {
+		this.notifSprites.push(new NotificationBubble(mtype, text, profile));
 	},
 
 	/**

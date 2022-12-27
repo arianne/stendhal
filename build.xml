@@ -1106,6 +1106,8 @@
     <property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js srcjs/stendhal/ui/keyhandler.js"/>
     <property name="js-files-ui2"      value="srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/touch.js"/>
     <property name="js-files-ui3"      value=""/>
+    <property name="js.files-util1"    value="srcjs/stendhal/util/speech.js"/>
+    <property name="js.files-util2"    value=""/>
     <property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js srcjs/stendhal/paths.js"/>
     <property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/settings.js"/>
     <property name="js-files-main2"    value="srcjs/stendhal/main.js"/>
@@ -1140,6 +1142,8 @@
       <arg line="${js-files-ui1}"/>
       <arg line="${js-files-ui2}"/>
       <arg line="${js-files-ui3}"/>
+      <arg line="${js.files-util1}"/>
+      <arg line="${js.files-util2}"/>
       <arg line="${js-files-main1}"/>
       <arg line="${js-files-ui4}"/>
       <arg line="${js-files-main2}"/>

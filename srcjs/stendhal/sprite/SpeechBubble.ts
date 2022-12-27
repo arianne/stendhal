@@ -45,7 +45,7 @@ export class SpeechBubble extends TextBubble {
 			this.height = 20;
 		}
 
-		this.entity.drawSpeechBubbleRounded(ctx, this.x, this.y - 15,
+		stendhal.util.speech.drawBubbleRounded(ctx, this.x, this.y - 15,
 				this.width, this.height);
 
 		ctx.fillStyle = "#000000";

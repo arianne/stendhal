@@ -14,6 +14,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
 declare let marauroa: any;
+declare let stendhal: any;
 
 const headless_types = ["normal", "regular",
 		"significant_positive", "client", "emoji", 'emote'];
@@ -25,7 +26,7 @@ const headless_types = ["normal", "regular",
 export class Chat {
 
 	/**
-	 * adds a line to the chat log
+	 * Adds a line to the chat log.
 	 *
 	 * @param type
 	 *     Message type.
@@ -34,7 +35,7 @@ export class Chat {
 	 * @param orator
 	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 * @param profile
-	 *     Filename of NPC profile image to display with message.
+	 *     Optional entity image filename to show as the speaker.
 	 */
 	public static log(type: string, message: string|string[]|HTMLElement, orator?: string,
 			profile?: string) {
@@ -59,7 +60,7 @@ export class Chat {
 			}
 
 			for (const m of messages) {
-				marauroa.me.addNotificationBubble(type, m, profile);
+				stendhal.ui.gamewindow.addNotifSprite(type, m, profile);
 			}
 		}
 	}

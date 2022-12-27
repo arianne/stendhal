@@ -15,7 +15,6 @@ import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
-import { NotificationBubble } from "../sprite/NotificationBubble";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 
@@ -40,11 +39,6 @@ export class RPEntity extends ActiveEntity {
 	protected statusBarYOffset: number = 0;
 	// canvas for merging outfit layers to be drawn
 	private octx?: CanvasRenderingContext2D;
-
-	/** space to be left at the beginning and end of line in pixels. */
-	//private margin_width = 3;
-	/** the diameter of the arc of the rounded bubble corners. */
-	//private arc_diameter = 2 * this.margin_width + 2;
 
 	private attackers: {[key: string]: any} = { size: 0 };
 
@@ -183,20 +177,6 @@ export class RPEntity extends ActiveEntity {
 		stendhal.ui.gamewindow.addTextSprite(new SpeechBubble(text, this));
 	}
 
-	/**
-	 * Displays a notification at the bottom of the game screen.
-	 *
-	 * @param mtype
-	 *     Message type.
-	 * @param text
-	 *     Text to display.
-	 * @param profile
-	 *     Filename of NPC profile image to display with message.
-	 */
-	addNotificationBubble(mtype: string, text: string, profile?: string) {
-		stendhal.ui.gamewindow.addNotifSprite(new NotificationBubble(mtype, text, this, profile));
-	}
-
 	addEmoji(emoji: HTMLImageElement) {
 		stendhal.ui.gamewindow.addEmojiSprite(this, {
 			timeStamp: Date.now(),
@@ -220,71 +200,6 @@ export class RPEntity extends ActiveEntity {
 				return Date.now() > this.timeStamp + 5000;
 			}
 		});
-	}
-
-	/**
-	 * Draws a rectangle.
-	 *
-	 * @param ctx
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	public drawSpeechBubble(ctx: CanvasRenderingContext2D, x: number, y: number,
-			width: number, height: number, tail: boolean = false) {
-		ctx.strokeRect(x, y - 15, width, height);
-		ctx.fillRect(x, y - 15, width, height);
-
-		ctx.beginPath();
-		ctx.moveTo(x, y);
-
-		// tail
-		if (tail) {
-			ctx.lineTo(x - 5, y + 8);
-			ctx.lineTo(x + 1, y + 5);
-		}
-
-		ctx.stroke();
-		ctx.closePath();
-		ctx.fill();
-	}
-
-	/**
-	 * Draws a rectangle with rounded edges.
-	 *
-	 * Source: https://stackoverflow.com/a/3368118/4677917
-	 *
-	 * @param ctx
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	public drawSpeechBubbleRounded(ctx: CanvasRenderingContext2D, x: number, y: number,
-			width: number, height: number) {
-		//const arc = this.arc_diameter;
-		const arc = 3;
-
-		ctx.beginPath();
-		ctx.moveTo(x + arc, y);
-		ctx.lineTo(x + width - arc, y);
-		ctx.quadraticCurveTo(x + width, y, x + width, y + arc);
-		ctx.lineTo(x + width, y + height - arc);
-		ctx.quadraticCurveTo(x + width, y + height, x + width - arc, y + height);
-		ctx.lineTo(x + arc, y + height);
-		ctx.quadraticCurveTo(x, y + height, x, y + height - arc);
-		ctx.lineTo(x, y + 8);
-
-		// tail
-		ctx.lineTo(x - 8, y + 11);
-		ctx.lineTo(x, y + 3);
-
-		ctx.lineTo(x, y + arc);
-		ctx.quadraticCurveTo(x, y, x + arc, y);
-		ctx.stroke();
-		ctx.closePath();
-		ctx.fill();
 	}
 
 	/**
