@@ -57,7 +57,7 @@ stendhal.ui.sound = {
 	 * @param loop
 	 *     Whether or not sound should be looped.
 	 */
-	playLocalizedEffect: function(x, y, radius, layer, soundName, volume,
+	playLocalizedEffect: function(x, y, radius, layer, soundName, volume=1.0,
 			loop=false) {
 		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
@@ -184,12 +184,11 @@ stendhal.ui.sound = {
 	 * @param loop
 	 *     Whether or not sound should be looped.
 	 */
-	playGlobalizedEffect: function(soundName, volume, loop=false) {
+	playGlobalizedEffect: function(soundName, volume=1.0, loop=false) {
 		if (!stendhal.config.getBoolean("ui.sound")) {
 			return;
 		}
 
-		volume = typeof(volume) !== "undefined" ? volume : 1.0;
 		if (volume > 1) {
 			volume = 1.0;
 		} else if (volume < 0) {
