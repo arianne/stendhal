@@ -14,6 +14,8 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var Animation = require("../../build/ts/data/tileset/Animation").Animation;
+
 var Chat = require("../../build/ts/util/Chat").Chat;
 
 var ui = require("../../build/ts/ui/UI").ui;
@@ -243,8 +245,7 @@ stendhal.main = {
 		document.getElementById("body").style.setProperty("font-family", stendhal.config.get("ui.font.body"));
 
 		// cache tileset animations
-		// FIXME: how to wait for animations to finish loading?
-		stendhal.data.tileset.loadAnimations();
+		Animation.get().loadAnimations();
 
 		new DesktopUserInterfaceFactory().create();
 

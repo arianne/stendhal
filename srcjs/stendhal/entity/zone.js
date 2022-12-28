@@ -11,10 +11,11 @@
 
 "use strict";
 
+var Animation = require("../../../build/ts/data/tileset/Animation").Animation;
+
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.zone = stendhal.zone || {};
-stendhal.data = stendhal.data || {tileset: {weatherAnimationMap: {}}};
 
 
 /**
@@ -108,17 +109,20 @@ stendhal.zone = {
 				this.sprite = stendhal.data.sprites.get(img);
 				/* FIXME:
 				 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$
-				 *   is undefined" occurs sometimes at startup. Need to ensure
-				 *   stendhal.data.tileset.weatherAnimationMap is loaded.
+				 *   is undefined". Animation.weatherMap is not always loaded
+				 *   before this is called.
 				 */
-				const animationMap = stendhal.data.tileset.weatherAnimationMap[img];
+				const animationMap = Animation.get().getWeatherMap()[img];
 
 				if (!this.sprite || !this.sprite.src) {
-					console.warn("weather sprite not found: " + weather);
+					console.error("weather sprite not found: " + weather);
 					return;
 				}
 				if (!animationMap) {
-					console.warn("weather animation map not found: " + this.sprite.src);
+					console.error("weather animation map not loaded");
+					return;
+				} else if (Object.keys(animationMap).length == 0) {
+					console.error("weather animation map is empty");
 					return;
 				}
 

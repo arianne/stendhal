@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Animation } from "../data/tileset/Animation";
 import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
 
@@ -19,11 +20,14 @@ export class CombinedTilesetImageLoader {
 	private tileUsedAtIndex!: MapOfSets<number, number>
 	private tilesetImages: HTMLImageElement[] = [];
 	private animations: any = {};
+	private landscapeAnimationMap: any;
 
 	constructor(
 		private map: any,
 		private indexToCombinedTiles: Map<number, number[]>,
-		private combinedTileset: CombinedTileset) {}
+		private combinedTileset: CombinedTileset) {
+			this.landscapeAnimationMap = Animation.get().getLandscapeMap();
+		}
 
 
 	private calculateTileUsedAtIndex(): void {
@@ -55,8 +59,8 @@ export class CombinedTilesetImageLoader {
 		const tsname = this.map.tilesetFilenames[tileset];
 		img.src = tsname + "?v=" + stendhal.data.build.version;
 
-		if (stendhal.data.tileset.landscapeAnimationMap) {
-			const animation = stendhal.data.tileset.landscapeAnimationMap[tsname];
+		if (this.landscapeAnimationMap) {
+			const animation = this.landscapeAnimationMap[tsname];
 			if (animation) {
 				this.animations[tileset] = animation;
 			}
