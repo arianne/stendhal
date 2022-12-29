@@ -21,6 +21,7 @@ var Chat = require("../../build/ts/util/Chat").Chat;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
+var SoundManager = require("../../build/ts/ui/SoundManager").SoundManager;
 
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
 
@@ -147,27 +148,24 @@ stendhal.main = {
 	},
 
 	onSoundToggled: function() {
+		const soundManager = SoundManager.get();
 		var soundbutton = document.getElementById("soundbutton");
 		if (stendhal.config.getBoolean("ui.sound")) {
 			soundbutton.textContent = "🔊";
 
-			for (const snd of stendhal.ui.sound.activeLoops) {
-				if (snd && (snd.paused || snd.ended)) {
-					snd.play();
-				}
-			}
+			soundManager.unmuteAll();
 		} else {
 			soundbutton.textContent = "🔇";
 
 			// FIXME: should we mute instead of stop?
-			if (!stendhal.ui.sound.stopAll()) {
+			if (!soundManager.stopAll()) {
 				let errmsg = "Failed to stop playing sounds:";
-				for (const snd of stendhal.ui.sound.active) {
+				for (const snd of soundManager.getActive()) {
 					if (snd && snd.src) {
 						errmsg += "\n- " + snd.src;
 					}
 				}
-				for (const snd of stendhal.ui.sound.activeLoops) {
+				for (const snd of soundManager.getActiveLoops()) {
 					if (snd && snd.src && !snd.paused) {
 						errmsg += "\n- " + snd.src;
 					}
@@ -298,7 +296,7 @@ stendhal.main = {
 
 		// pre-cache images & sounds
 		stendhal.data.sprites.startupCache();
-		stendhal.ui.sound.startupCache();
+		SoundManager.get().startupCache();
 	},
 
 	onerror: function(error) {

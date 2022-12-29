@@ -22,38 +22,27 @@ export class LoopedSoundSource extends InvisibleEntity {
 	override set(key: string, value: object) {
 		super.set(key, value);
 
-		// FIXME:
-		// - better way to detect when entity is fully loaded?
-		// - does not get loaded at login if mauraroa.me isn't set
-		/* Disabled until looped sounds can cleaned up & volume scaled with player movement
-		if (!this.loaded) {
-			for (const prop of [this["x"], this["y"], this["sound"],
-					this["radius"], this["layer"], this["volume"]]) {
-				this.loaded = typeof(prop) !== "undefined";
-				if (!this.loaded) {
-					break;
-				}
-			}
-
-			if (this.loaded) {
-				this.onLoaded();
-			}
+		if (!this.loaded && this["id"] && this["x"] && this["y"]
+				&& this["sound"] && this["volume"] && this["layer"]
+				&& this["radius"]) {
+			this.onLoaded();
+			this.loaded = true;
 		}
-		*/
 	}
 
 	/**
-	 * Plays sound once all required attributes are loaded.
-	 */
-	onLoaded() {
-		if (this["sound"]) {
-			const x = this["x"], y = this["y"];
-			if (typeof(x) !== "undefined" && typeof(y) !== "undefined") {
-				// start new audio
-				// FIXME: distinguish between music & looped sounds effects
-				stendhal.ui.sound.playLocalizedMusic(x, y, this["radius"],
-						this["layer"], this["sound"], this["volume"]);
-			}
-		}
+	* Plays sound once all required attributes are loaded.
+	*/
+	private onLoaded() {
+		// TODO:
+		//~ if (this["sound"]) {
+			//~ const x = this["x"], y = this["y"];
+			//~ if (typeof(x) !== "undefined" && typeof(y) !== "undefined") {
+				//~ // start new audio
+				//~ // FIXME: distinguish between music & looped sounds effects
+				//~ stendhal.ui.sound.playLocalizedMusic(x, y, this["radius"],
+					//~ this["layer"], this["sound"], this["volume"]);
+			//~ }
+		//~ }
 	}
 }
