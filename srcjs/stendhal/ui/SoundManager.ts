@@ -13,7 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 
-interface Sound extends HTMLAudioElement {
+export interface Sound extends HTMLAudioElement {
 	hasplayed: boolean;
 }
 
@@ -105,8 +105,10 @@ export class SoundManager {
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
 	 *     Whether or not sound should be looped.
+	 * @return
+	 *     The new sound instance.
 	 */
-	private playEffect(soundName: string, volume=1.0, loop=false) {
+	private playEffect(soundName: string, volume=1.0, loop=false): Sound {
 		// check volume sanity
 		if (volume > 1) {
 			volume = 1.0;
@@ -119,16 +121,12 @@ export class SoundManager {
 		if (sound) {
 			// TODO: handle HTMLAudioElement.error
 			if (!sound.paused && !sound.ended) {
-				if (sound.loop) {
-					// don't play loops over each other
-					return;
-				}
 				// create a temporary sound instead of interrupting the cached one
 				const addSound = <Sound> new Audio(sound.src);
 				addSound.autoplay = true;
 				addSound.volume = sound.volume;
 				this.onSoundAdded(addSound);
-				return;
+				return addSound;
 			}
 		} else {
 			// add new sound to cache
@@ -139,6 +137,9 @@ export class SoundManager {
 		sound.autoplay = true;
 		sound.volume = volume;
 		sound.loop = loop;
+		if (!stendhal.config.getBoolean("ui.sound")) {
+			sound.muted = true;
+		}
 
 		// must be started manually if autoplay has already ocurred
 		if (sound.hasplayed) {
@@ -151,6 +152,7 @@ export class SoundManager {
 
 		sound.hasplayed = true;
 		this.onSoundAdded(sound);
+		return sound;
 	}
 
 	/**
@@ -170,33 +172,32 @@ export class SoundManager {
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
 	 *     Whether or not sound should be looped.
+	 * @return
+	 *     The new sound instance.
 	 */
 	playLocalizedEffect(x: number, y: number, radius: number,
-			layer: number, soundName: string, volume=1.0, loop=false) {
-		if (!stendhal.config.getBoolean("ui.sound")) {
-			return;
-		}
-
+			layer: number, soundName: string, volume=1.0, loop=false): Sound {
 		// Further adjustments if the sound has a radius
 		if (radius) {
 			if (!marauroa.me || !x) {
 				// Can't calculate the distance yet. Ignore the sound.
-				return;
+				volume = 0;
+			} else {
+				var xdist = marauroa.me["_x"] - x;
+				var ydist = marauroa.me["_y"] - y;
+				var dist2 = xdist * xdist + ydist * ydist;
+				if (dist2 > radius * radius) {
+					// Outside the specified radius
+					volume = 0;
+				} else {
+					// The sound api does not guarantee anything about how the volume
+					// works, so it does not matter much how we scale it.
+					volume *= Math.min(radius * radius / (dist2 * 20), 1);
+				}
 			}
-
-			var xdist = marauroa.me["_x"] - x;
-			var ydist = marauroa.me["_y"] - y;
-			var dist2 = xdist * xdist + ydist * ydist;
-			if (dist2 > radius * radius) {
-				// Outside the specified radius
-				return;
-			}
-			// The sound api does not guarantee anything about how the volume
-			// works, so it does not matter much how we scale it.
-			volume *= Math.min(radius * radius / (dist2 * 20), 1);
 		}
 
-		this.playEffect(soundName, volume, loop);
+		return this.playEffect(soundName, volume, loop);
 	}
 
 	/**
@@ -208,12 +209,11 @@ export class SoundManager {
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
 	 *     Whether or not sound should be looped.
+	 * @return
+	 *     The new sound instance.
 	 */
-	playGlobalizedEffect(soundName: string, volume=1.0, loop=false) {
-		if (!stendhal.config.getBoolean("ui.sound")) {
-			return;
-		}
-		this.playEffect(soundName, volume, loop);
+	playGlobalizedEffect(soundName: string, volume=1.0, loop=false): Sound {
+		return this.playEffect(soundName, volume, loop);
 	}
 
 	/**
@@ -231,11 +231,13 @@ export class SoundManager {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
+	 * @return
+	 *     The new sound instance.
 	 */
 	playLocalizedLoop(x: number, y: number, radius: number, layer: number,
-			soundName: string, volume=1.0) {
-		this.playLocalizedEffect(x, y, radius, layer, soundName, volume,
-				true);
+			soundName: string, volume=1.0): Sound {
+		return this.playLocalizedEffect(x, y, radius, layer, soundName,
+				volume, true);
 	}
 
 	/**
@@ -245,9 +247,11 @@ export class SoundManager {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
+	 * @return
+	 *     The new sound instance.
 	 */
-	playGlobalizedLoop(soundName: string, volume=1.0) {
-		this.playGlobalizedEffect(soundName, volume, true);
+	playGlobalizedLoop(soundName: string, volume=1.0): Sound {
+		return this.playGlobalizedEffect(soundName, volume, true);
 	}
 
 	/**
@@ -265,15 +269,17 @@ export class SoundManager {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
+	 * @return
+	 *     The new sound instance.
 	 */
 	playLocalizedMusic(x: number, y: number, radius: number,
-			layer: number, musicName: string, volume=1.0) {
-		// load into cache so playLocalizedEffect doesn't look in "data/sounds"
+			layer: number, musicName: string, volume=1.0): Sound {
+		// load into cache so playEffect doesn't look in "data/sounds"
 		if (!this.cache[musicName]) {
 			this.load(musicName,
 					stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		this.playLocalizedLoop(x, y, radius, layer, musicName, volume);
+		return this.playLocalizedLoop(x, y, radius, layer, musicName, volume);
 	}
 
 	/**
@@ -283,14 +289,48 @@ export class SoundManager {
 	 *     Sound file basename.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
+	 * @return
+	 *     The new sound instance.
 	 */
-	playGlobalizedMusic(musicName: string, volume=1.0) {
-		// load into cache so playGlobalizedEffect doesn't look in "data/sounds"
+	playGlobalizedMusic(musicName: string, volume=1.0): Sound {
+		// load into cache so playEffect doesn't look in "data/sounds"
 		if (!this.cache[musicName]) {
 			this.load(musicName,
 					stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		this.playGlobalizedLoop(musicName, volume);
+		return this.playGlobalizedLoop(musicName, volume);
+	}
+
+	/**
+	 * Stops a sound & removes it from active group.
+	 *
+	 * @param sound
+	 *     The sound to be stopped.
+	 * @param group
+	 *     The group this sound is playing from.
+	 * @return
+	 *     <code>true</code> if succeeded.
+	 */
+	stop(sound: Sound, group: Sound[]=this.active): boolean {
+		const idx = group.indexOf(sound);
+		if (idx > -1) {
+			sound.pause();
+			sound.currentTime = 0;
+			group.splice(idx, 1);
+		}
+		return group.indexOf(sound) < 0;
+	}
+
+	/**
+	 * Stops a sound loop & removes it from active group.
+	 *
+	 * @param sound
+	 *     The sound to be stopped.
+	 * @return
+	 *     <code>true</code> if succeeded.
+	 */
+	stopLoop(sound: Sound): boolean {
+		return this.stop(sound, this.activeLoops);
 	}
 
 	/**
@@ -302,32 +342,29 @@ export class SoundManager {
 	 *     <code>true</code> if all sounds were aborted or paused.
 	 */
 	stopAll(clean: boolean=false): boolean {
-		// XXX: pausing active effects may be unnecessary since we are
-		//      removing them from memory below
-		for (let idx = this.active.length; idx >= 0; idx--) {
-			const snd = this.active[idx];
-			// sound may have ended during this call
-			if (snd) {
-				snd.pause();
-			}
+		let stopped = true;
+
+		for (const snd of this.active) {
+			this.stop(snd);
 		}
-		let stoppedLoops = true;
-		for (let idx = this.activeLoops.length; idx >=0; idx--) {
-			const snd = this.activeLoops[idx];
-			if (snd) {
-				// FIXME: should use mute instead of pause
-				snd.pause();
-			}
-			stoppedLoops = stoppedLoops && (!snd || snd.paused);
-		}
+		stopped = stopped && this.active.length == 0;
 
 		if (clean) {
-			this.activeLoops.splice(0, this.activeLoops.length);
-			stoppedLoops = this.activeLoops.length == 0;
+			for (const loop of this.activeLoops) {
+				this.stop(loop);
+			}
+			stopped = stopped && this.activeLoops.length == 0;
+		} else {
+			for (let idx = this.activeLoops.length; idx >=0; idx--) {
+				const loop = this.activeLoops[idx];
+				if (loop) {
+					loop.pause();
+				}
+				stopped = stopped && (!loop || loop.paused);
+			}
 		}
 
-		this.active.splice(0, this.active.length);
-		return this.active.length == 0 && stoppedLoops;
+		return stopped;
 	}
 
 	/**
@@ -337,7 +374,22 @@ export class SoundManager {
 	 *     <code>true</code> if all sounds were muted.
 	 */
 	muteAll(): boolean {
-		return this.stopAll();
+		// finite sounds are removed
+		for (let idx = this.active.length; idx >= 0; idx--) {
+			const snd = this.active[idx];
+			// sound may have ended during this call
+			if (snd) {
+				this.stop(snd);
+			}
+		}
+
+		let muted = true;
+		for (const snd of this.activeLoops) {
+			snd.muted = true;
+			muted = muted && snd.muted;
+		}
+
+		return this.active.length == 0 && muted;
 	}
 
 	/**

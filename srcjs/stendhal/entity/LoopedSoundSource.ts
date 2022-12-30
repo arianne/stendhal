@@ -11,38 +11,28 @@
 
 import { InvisibleEntity } from "./InvisibleEntity";
 
-declare var stendhal: any;
+import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
 
 
 export class LoopedSoundSource extends InvisibleEntity {
 
-	private loaded = false;
+	private readonly lssMan = LoopedSoundSourceManager.get();
 
 
-	override set(key: string, value: object) {
-		super.set(key, value);
-
-		if (!this.loaded && this["id"] && this["x"] && this["y"]
-				&& this["sound"] && this["volume"] && this["layer"]
-				&& this["radius"]) {
-			this.onLoaded();
-			this.loaded = true;
-		}
+	override destroy(parent: any) {
+		// stop sound when this entity is removed
+		this.lssMan.removeSource(this["id"]);
+		super.destroy(parent);
 	}
 
 	/**
-	* Plays sound once all required attributes are loaded.
-	*/
-	private onLoaded() {
-		// TODO:
-		//~ if (this["sound"]) {
-			//~ const x = this["x"], y = this["y"];
-			//~ if (typeof(x) !== "undefined" && typeof(y) !== "undefined") {
-				//~ // start new audio
-				//~ // FIXME: distinguish between music & looped sounds effects
-				//~ stendhal.ui.sound.playLocalizedMusic(x, y, this["radius"],
-					//~ this["layer"], this["sound"], this["volume"]);
-			//~ }
-		//~ }
+	 * Checks if a looped sound source has been loaded with this
+	 * entity's ID.
+	 *
+	 * @return
+	 *     <code>true</code> if the ID is found in the sources list.
+	 */
+	isLoaded(): boolean {
+		return typeof(this.lssMan.getSources()[this["id"]]) !== "undefined";
 	}
 }
