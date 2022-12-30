@@ -279,27 +279,49 @@ export class ChatLogComponent extends Component {
 	}
 
 
-	public copyToClipboard() {
-		if (!navigator || !navigator.clipboard) {
+	public exportContents(clipboard=true) {
+		if (clipboard && (!navigator || !navigator.clipboard)) {
 			console.warn("copying to clipboard not supported by this browser");
 			return;
 		}
 
 		const lines = [];
-		const children = this.componentElement.children;
-		for (let idx = 0; idx < children.length; idx++) {
-			const row = children[idx];
-			let text = row.children[0].innerHTML.trim() + " ";
-			if (text.trim() === "") {
-				text = "    ";
+		// try to get highlightext text first
+		if (window.getSelection) {
+			const sel = window.getSelection();
+			let value;
+			if (sel && sel.type == "Range") {
+				// FIXME: how to get only text from log when text from multiple elements is selected?
+				if (sel.rangeCount == 1) {
+					value = sel.toString()
+				}
 			}
-			text = this.plainText(text + row.children[1].innerHTML,
-					["span", "div"]);
-			lines.push(text.replace("&lt;", "<").replace("&gt;", ">"));
+			if (value && value !== "") {
+				lines.push(value);
+			}
+		//~ } else if (document.selection && document.selection.type == "Text") {
+			//~ lines.push(document.selection.createRange().text);
+		}
+		// if no highlighted text, copy the entire log
+		if (lines.length == 0) {
+			const children = this.componentElement.children;
+			for (let idx = 0; idx < children.length; idx++) {
+				const row = children[idx];
+				let text = row.children[0].innerHTML.trim() + " ";
+				if (text.trim() === "") {
+					text = "    ";
+				}
+				text = this.plainText(text + row.children[1].innerHTML,
+						["span", "div"]);
+				lines.push(text.replace("&lt;", "<").replace("&gt;", ">"));
+			}
 		}
 
 		if (lines.length > 0) {
-			navigator.clipboard.writeText(lines.join("\n"));
+			// TODO: export to file
+			if (clipboard) {
+				navigator.clipboard.writeText(lines.join("\n"));
+			}
 		}
 	}
 
@@ -344,7 +366,7 @@ export class ChatLogComponent extends Component {
 		if (navigator && navigator.clipboard) {
 			options.unshift({
 				title: "Copy",
-				action: function() {log.copyToClipboard();}
+				action: function() {log.exportContents();}
 			});
 		}
 
