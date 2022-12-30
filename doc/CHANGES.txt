@@ -25,6 +25,7 @@ Changelog
 - added login sound
 - added bell notifaction on private messages
 - replaced text bubble achievement notification with scroll background & icon
+- added music & looped sounds support
 
 
 1.42
