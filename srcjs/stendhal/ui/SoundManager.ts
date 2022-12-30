@@ -15,6 +15,7 @@ declare var stendhal: any;
 
 export interface Sound extends HTMLAudioElement {
 	hasplayed: boolean;
+	basevolume: number;
 }
 
 export class SoundManager {
@@ -124,7 +125,8 @@ export class SoundManager {
 				// create a temporary sound instead of interrupting the cached one
 				const addSound = <Sound> new Audio(sound.src);
 				addSound.autoplay = true;
-				addSound.volume = sound.volume;
+				addSound.basevolume = sound.basevolume;
+				addSound.volume = addSound.basevolume;
 				this.onSoundAdded(addSound);
 				return addSound;
 			}
@@ -135,7 +137,8 @@ export class SoundManager {
 		}
 
 		sound.autoplay = true;
-		sound.volume = volume;
+		sound.basevolume = volume;
+		sound.volume = sound.basevolume;
 		sound.loop = loop;
 		if (!stendhal.config.getBoolean("ui.sound")) {
 			sound.muted = true;
@@ -177,27 +180,19 @@ export class SoundManager {
 	 */
 	playLocalizedEffect(x: number, y: number, radius: number,
 			layer: number, soundName: string, volume=1.0, loop=false): Sound {
+		const snd = this.playEffect(soundName, volume, loop);
 		// Further adjustments if the sound has a radius
 		if (radius) {
 			if (!marauroa.me || !x) {
-				// Can't calculate the distance yet. Ignore the sound.
-				volume = 0;
+				// can't calculate distance yet
+				snd.volume = 0.0;
 			} else {
-				var xdist = marauroa.me["_x"] - x;
-				var ydist = marauroa.me["_y"] - y;
-				var dist2 = xdist * xdist + ydist * ydist;
-				if (dist2 > radius * radius) {
-					// Outside the specified radius
-					volume = 0;
-				} else {
-					// The sound api does not guarantee anything about how the volume
-					// works, so it does not matter much how we scale it.
-					volume *= Math.min(radius * radius / (dist2 * 20), 1);
-				}
+				this.adjustForDistance(snd, radius, x, y, marauroa.me["_x"],
+						marauroa.me["_y"]);
 			}
 		}
 
-		return this.playEffect(soundName, volume, loop);
+		return snd;
 	}
 
 	/**
@@ -409,6 +404,41 @@ export class SoundManager {
 		}
 
 		return unmuted;
+	}
+
+	/**
+	 * Adjusts volume level relative to distance.
+	 *
+	 * FIXME: hearing distance is slightly further than in Java client
+	 *        See: games.stendhal.client.sound.facade.Audible*Area
+	 *
+	 * @param snd
+	 *    The sound to be adjusted.
+	 * @param radius
+	 *     Radius at which sound can be heard.
+	 * @param sx
+	 *     X coordinate of sound entity.
+	 * @param sy
+	 *     Y coordinate of sound entity.
+	 * @param ex
+	 *     X coordinate of listening entity.
+	 * @param ey
+	 *     Y coordinate of listening entity.
+	 */
+	adjustForDistance(snd: Sound, radius: number, sx: number, sy: number,
+			ex: number, ey: number) {
+		const xdist = ex - sx;
+		const ydist = ey - sy;
+		const dist2 = xdist * xdist + ydist * ydist;
+		const rad2 = radius * radius;
+		if (dist2 > rad2) {
+			// outside the specified radius
+			snd.volume = 0.0;
+		} else {
+			// The sound api does not guarantee anything about how the volume
+			// works, so it does not matter much how we scale it.
+			snd.volume = Math.min(rad2 / (dist2 * 20), snd.basevolume);
+		}
 	}
 
 	/**

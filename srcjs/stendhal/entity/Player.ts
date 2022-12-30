@@ -16,6 +16,8 @@ import { MenuItem} from "../action/MenuItem";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
+import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
+
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
@@ -29,11 +31,17 @@ declare var stendhal: any;
 
 
 export class Player extends RPEntity {
+
+	private readonly lssMan = LoopedSoundSourceManager.get();
+
 	override minimapShow = true;
 	override minimapStyle = Color.PLAYER;
 	override dir = 3;
 
 	override set(key: string, value: any) {
+		const oldX = this["x"];
+		const oldY = this["y"];
+
 		super.set(key, value);
 		if (key === "ghostmode") {
 			this.minimapShow = false;
@@ -42,6 +50,11 @@ export class Player extends RPEntity {
 		// stats
 		if (marauroa.me !== this) {
 			return;
+		}
+
+		if ((key === "x" || key === "y") && this["x"] && this["y"]
+				&& (this["x"] !== oldX || this["y"] !== oldY)) {
+			this.lssMan.onDistanceChanged(this["x"], this["y"]);
 		}
 
 		queueMicrotask( () => {

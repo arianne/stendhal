@@ -120,15 +120,49 @@ export class LoopedSoundSourceManager {
 	}
 
 	/**
+	 * Retrieves a list of looped sound sources.
+	 *
+	 * @return
+	 *     All <code>LoopedSoundSource</code> entities in current zone.
+	 */
+	private getZoneEntities(): LoopedSoundSource[] {
+		const ents: LoopedSoundSource[] = [];
+		if (stendhal.zone.entities) {
+			for (const ent of stendhal.zone.entities) {
+				if (ent instanceof LoopedSoundSource) {
+					ents.push(ent);
+				}
+			}
+		}
+
+		return ents;
+	}
+
+	/**
 	 * This is called after zone is created to make sure looped sound
 	 * sources are added properly.
 	 */
 	onZoneReady() {
-		if (stendhal.zone.entities) {
-			for (const ent of stendhal.zone.entities) {
-				if (ent instanceof LoopedSoundSource && !ent.isLoaded()) {
-					this.addSource(ent);
-				}
+		for (const ent of this.getZoneEntities()) {
+			if (!ent.isLoaded()) {
+				this.addSource(ent);
+			}
+		}
+	}
+
+	/**
+	 * Adjusts volume level for each looped sound source in current zone.
+	 *
+	 * @param x
+	 *     The new X coordinate of listening entity.
+	 * @param y
+	 *     The new Y coordinate of listening entity.
+	 */
+	onDistanceChanged(x: number, y: number) {
+		for (const ent of this.getZoneEntities()) {
+			if (ent.isLoaded()) {
+				this.sndMan.adjustForDistance(this.sources[ent["id"]],
+						ent["radius"], ent["x"], ent["y"], x, y);
 			}
 		}
 	}
