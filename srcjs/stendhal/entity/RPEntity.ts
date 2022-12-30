@@ -284,7 +284,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param {boolean} busty
 	 */
 	getOutfitPart(part: string, index: number, busty: boolean=false) {
-		if (index < 0) {
+		if (typeof(index) === "undefined" || index < 0) {
 			return null;
 		}
 
