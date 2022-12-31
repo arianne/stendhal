@@ -441,6 +441,11 @@ stendhal.data.sprites = {
 				"underground_zone"]) {
 			this.get(stendhal.paths.achievements + "/" + cat + ".png");
 		}
+		// weather
+		for (const weather of ["fog", "fog_heavy", "rain", "rain_heavy",
+				"rain_light", "snow", "snow_heavy", "snow_light", "wave"]) {
+			this.get(stendhal.paths.weather + "/" + weather + ".png");
+		}
 	}
 }
 
