@@ -15,6 +15,7 @@ var ui = require("../../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 const AchievementBanner = require("../../../build/ts/sprite/AchievementBanner").AchievementBanner;
 const NotificationBubble = require("../../../build/ts/sprite/NotificationBubble").NotificationBubble;
+var WeatherRenderer = require("../../../build/ts/util/WeatherRenderer").WeatherRenderer;
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
@@ -35,6 +36,7 @@ stendhal.ui.gamewindow = {
 	textSprites: [],
 	notifSprites: [],
 	emojiSprites: {},
+	weatherRenderer: WeatherRenderer.get(),
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -64,7 +66,7 @@ stendhal.ui.gamewindow = {
 				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
-				stendhal.zone.weather.draw(this.ctx);
+				this.weatherRenderer.draw(this.ctx);
 
 				if (stendhal.ui.touch.held) {
 					// draw a representation of a item "held" via touch input

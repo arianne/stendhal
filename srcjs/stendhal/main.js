@@ -35,6 +35,8 @@ var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantityS
 var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
 var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
 
+var WeatherRenderer = require("../../build/ts/util/WeatherRenderer").WeatherRenderer;
+
 
 stendhal.main = {
 	errorCounter: 0,
@@ -48,7 +50,7 @@ stendhal.main = {
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
-		stendhal.zone.weather.update(zoneinfo["weather"]);
+		WeatherRenderer.get().update(zoneinfo["weather"]);
 	},
 
 	/**
