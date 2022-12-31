@@ -10,9 +10,18 @@
  ***************************************************************************/
 
 import { Animation } from "../data/tileset/Animation";
+import { Sound } from "../ui/SoundManager";
+import singletons from "./SingletonRepo";
 
 declare var stendhal: any;
 
+
+// TODO: incorporate thunder
+const weatherLoops = {
+	"rain": true,
+	"rain_heavy": true,
+	"rain_light": true
+} as {[key: string]: boolean};
 
 interface WeatherSprite extends HTMLImageElement {
 	frames: number[];
@@ -30,6 +39,7 @@ export class WeatherRenderer {
 	private lastUpdate = 0;
 	private tilesX = 0;
 	private tilesY = 0;
+	private audio?: Sound;
 
 
 	/**
@@ -66,6 +76,13 @@ export class WeatherRenderer {
 		this.lastUpdate = Date.now();
 		// reset warning messages
 		this.warned = {};
+
+		const soundMan = singletons.getSoundManager();
+		// stop previous sounds
+		if (this.audio) {
+			soundMan.stopLoop(this.audio);
+			this.audio = undefined;
+		}
 
 		if (!weather) {
 			this.sprite = undefined;
@@ -126,6 +143,10 @@ export class WeatherRenderer {
 
 			this.tilesX = Math.ceil(clientW / spriteH);
 			this.tilesY = Math.ceil(clientH / spriteH);
+
+			if (weatherLoops[weather]) {
+				this.audio = soundMan.playGlobalizedLoop("weather/" + weather);
+			}
 		}
 	}
 
