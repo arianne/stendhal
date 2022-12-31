@@ -35,6 +35,7 @@ var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").Outfi
 
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
 stendhal.config = stendhal.config || singletons.getConfigManager();
+stendhal.paths = stendhal.paths || singletons.getPaths();
 
 stendhal.main = {
 	errorCounter: 0,

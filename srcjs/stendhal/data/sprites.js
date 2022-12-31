@@ -13,7 +13,9 @@
 
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
-stendhal.paths = stendhal.paths || {};
+
+var singletons = singletons || require("../../../build/ts/util/SingletonRepo").SingletonRepo;
+stendhal.paths = stendhal.paths || singletons.getPaths();
 
 stendhal.data.sprites = {
 

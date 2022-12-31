@@ -9,16 +9,16 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
 
-var stendhal = window.stendhal = window.stendhal || {};
+export class Paths {
+	public static readonly data = "/data";
+	public static readonly font = Paths.data + "/font";
+	public static readonly gui = Paths.data + "/gui";
+	public static readonly music = Paths.data + "/music";
+	public static readonly sounds = Paths.data + "/sounds";
+	public static readonly sprites = Paths.data + "/sprites";
+	public static readonly weather = Paths.sprites + "/weather";
+	public static readonly achievements = Paths.sprites + "/achievements";
+}
 
-
-stendhal.paths = { data: "/data" }
-stendhal.paths.font = stendhal.paths.data + "/font";
-stendhal.paths.gui = stendhal.paths.data + "/gui";
-stendhal.paths.music = stendhal.paths.data + "/music";
-stendhal.paths.sounds = stendhal.paths.data + "/sounds";
-stendhal.paths.sprites = stendhal.paths.data + "/sprites";
-stendhal.paths.weather = stendhal.paths.sprites + "/weather";
-stendhal.paths.achievements = stendhal.paths.sprites + "/achievements";
+export { Paths as default };
