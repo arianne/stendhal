@@ -106,9 +106,9 @@ div.quickPickup div.itemSlot {
 }
 
 div.logerror { color: #F00 }
+div.logwarning { color: #a00000 }
 div.logprivmsg { color: #444 }
 div.logclient { color: #888}
-div.logerror { color: #F00 }
 div.loginformation { color: #ffc800}
 div.lognegative { color: #f00}
 div.lognormal { color: #000}
