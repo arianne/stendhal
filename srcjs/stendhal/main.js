@@ -34,6 +34,7 @@ var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").Im
 var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
 
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
+stendhal.config = stendhal.config || singletons.getConfigManager();
 
 stendhal.main = {
 	errorCounter: 0,

@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ConfigManager } from "./ConfigManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
@@ -16,6 +17,10 @@ import { SoundManager } from "../ui/SoundManager";
 
 
 export class SingletonRepo {
+
+	static getConfigManager(): ConfigManager {
+		return ConfigManager.get();
+	}
 
 	static getLoopedSoundSourceManager(): LoopedSoundSourceManager {
 		return LoopedSoundSourceManager.get();
