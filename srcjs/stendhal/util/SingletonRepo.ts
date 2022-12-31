@@ -13,6 +13,7 @@ import { ConfigManager } from "./ConfigManager";
 import { Paths } from "./Paths";
 import { WeatherRenderer } from "./WeatherRenderer";
 
+import { KeyHandler } from "../ui/KeyHandler";
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
 import { SoundManager } from "../ui/SoundManager";
 
@@ -21,6 +22,10 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
+	}
+
+	static getKeyHandler(): KeyHandler {
+		return KeyHandler;
 	}
 
 	static getLoopedSoundSourceManager(): LoopedSoundSourceManager {

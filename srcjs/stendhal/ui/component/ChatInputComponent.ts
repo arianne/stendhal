@@ -11,6 +11,8 @@
 
 import { Component } from "../toolkit/Component";
 
+import { KeyHandler } from "../KeyHandler";
+
 declare let marauroa: any;
 declare let stendhal: any;
 
@@ -61,10 +63,10 @@ export class ChatInputComponent extends Component {
 
 		if (event.shiftKey) {
 			// chat history
-			if (code === stendhal.ui.keycode.up) {
+			if (code === KeyHandler.keycode.up) {
 				event.preventDefault();
 				this.fromHistory(-1);
-			} else if (code === stendhal.ui.keycode.down){
+			} else if (code === KeyHandler.keycode.down){
 				event.preventDefault();
 				this.fromHistory(1);
 			}

@@ -188,8 +188,8 @@ stendhal.main = {
 	 * registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers: function() {
-		document.addEventListener("keydown", stendhal.ui.keyhandler.onKeyDown);
-		document.addEventListener("keyup", stendhal.ui.keyhandler.onKeyUp);
+		document.addEventListener("keydown", singletons.getKeyHandler().onKeyDown);
+		document.addEventListener("keyup", singletons.getKeyHandler().onKeyUp);
 		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
 		// handles closing the context menu

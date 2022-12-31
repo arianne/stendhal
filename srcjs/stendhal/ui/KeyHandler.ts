@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                    Copyright © 2003-2022 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,26 +9,20 @@
  *                                                                         *
  ***************************************************************************/
 
-
-"use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+declare var marauroa: any;
+declare var stendhal: any;
 
 
-stendhal.ui.keycode = {
-	left: 37,
-	up: 38,
-	right: 39,
-	down: 40
-}
+export class KeyHandler {
 
-/**
- * handling of key presses and releases
- */
-stendhal.ui.keyhandler = {
-	pressedKeys: [],
+	public static readonly keycode: {[key: string]: number} = {
+		left: 37,
+		up: 38,
+		right: 39,
+		down: 40
+	};
+	private static pressedKeys: number[] = [];
+
 
 	/**
 	 * Checks if any direction key is currently pressed.
@@ -37,62 +31,60 @@ stendhal.ui.keyhandler = {
 	 *     <code>true</code> if direction keycode found in pressed
 	 *     keys list.
 	 */
-	isDirPressed: function() {
-		for (const dir of [stendhal.ui.keycode.left,
-				stendhal.ui.keycode.right, stendhal.ui.keycode.up,
-				stendhal.ui.keycode.down]) {
-			if (stendhal.ui.keyhandler.pressedKeys.indexOf(dir) > -1) {
+	private static isDirPressed(): boolean {
+		for (const dir of Object.keys(KeyHandler.keycode).map((key) => KeyHandler.keycode[key])) {
+			if (KeyHandler.pressedKeys.indexOf(dir) > -1) {
 				return true;
 			}
 		}
-
 		return false;
-	},
+	}
 
-	extractMoveOrFaceActionFromEvent: function(event) {
+	private static extractMoveOrFaceActionFromEvent(event: KeyboardEvent): string|null {
 		if (event.ctrlKey) {
 			return "face";
 		} else if (event.shiftKey) {
 			return null;
 		}
-
 		return "move";
-	},
+	}
 
-	extractDirectionFromKeyCode: function(code) {
-		var dir = code - 37;
+	private static extractDirectionFromKeyCode(code: number): number {
+		var dir = code - KeyHandler.keycode.left;
 		if (dir === 0) {
 			dir = 4;
 		}
 		return dir;
-	},
+	}
 
-
-	onKeyDown: function(e) {
+	static onKeyDown(e?: KeyboardEvent) {
 		var event = e;
 		if (!event) {
-			event = window.event;
+			event = window.event as any;
 		}
+		if (!event) {
+			return;
+		}
+
 		var code = stendhal.ui.html.extractKeyCode(event);
-
-		if (code >= stendhal.ui.keycode.left && code <= stendhal.ui.keycode.down) {
-
+		if (code >= KeyHandler.keycode.left && code <= KeyHandler.keycode.down) {
 			// disable scrolling via arrow keys
-			if (event.target.tagName === "BODY" || event.target.tagName === "CANVAS") {
+			const target: any = event.target;
+			if (target.tagName === "BODY" || target.tagName === "CANVAS") {
 				event.preventDefault();
 			}
 
 			// if this is a repeated event, stop further processing
-			if (stendhal.ui.keyhandler.pressedKeys.indexOf(code) > -1) {
+			if (KeyHandler.pressedKeys.indexOf(code) > -1) {
 				return;
 			}
-			stendhal.ui.keyhandler.pressedKeys.push(code);
+			KeyHandler.pressedKeys.push(code);
 
-			var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+			var type = KeyHandler.extractMoveOrFaceActionFromEvent(event);
 			if (!type) {
 				return;
 			}
-			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
+			var dir = KeyHandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
 
@@ -106,39 +98,45 @@ stendhal.ui.keyhandler = {
 			// move focus to chat-input on keydown
 			// but don't do that for Ctrl+C, etc.
 			if (!event.altKey && !event.metaKey && !event.ctrlKey && event.key !== "Control") {
-				if (document.activeElement.localName !== "input") {
-					document.getElementById("chatinput").focus();
+				if (document.activeElement && document.activeElement.localName !== "input") {
+					document.getElementById("chatinput")!.focus();
 				}
 			}
 		}
-	},
+	}
 
-	onKeyUp: function(e) {
+	static onKeyUp(e?: KeyboardEvent) {
 		var event = e
 		if (!event) {
-			event = window.event;
+			event = window.event as any;
 		}
+		if (!event) {
+			return;
+		}
+
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		if (code >= stendhal.ui.keycode.left && code <= stendhal.ui.keycode.down) {
-			var i = stendhal.ui.keyhandler.pressedKeys.indexOf(code);
+		if (code >= KeyHandler.keycode.left && code <= KeyHandler.keycode.down) {
+			var i = KeyHandler.pressedKeys.indexOf(code);
 			if (i > -1) {
-				stendhal.ui.keyhandler.pressedKeys.splice(i, 1);
+				KeyHandler.pressedKeys.splice(i, 1);
 			}
 
-			if (!stendhal.ui.keyhandler.isDirPressed()) {
-				var action = {"type": "stop"};
+			var action: {[key: string]: string} = {};
+			if (!KeyHandler.isDirPressed()) {
+				action["type"] = "stop";
 				marauroa.clientFramework.sendAction(action);
 			}
 
-			if (stendhal.ui.keyhandler.pressedKeys.length > 0) {
-				code = stendhal.ui.keyhandler.pressedKeys[0];
-				var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+			if (KeyHandler.pressedKeys.length > 0) {
+				code = KeyHandler.pressedKeys[0];
+				var type = KeyHandler.extractMoveOrFaceActionFromEvent(event);
 				if (!type) {
 					return;
 				}
-				var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
-				var action = {"type": type, "dir": ""+dir};
+				var dir = KeyHandler.extractDirectionFromKeyCode(code);
+				action["type"] = type;
+				action["dir"] = ""+dir;
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
