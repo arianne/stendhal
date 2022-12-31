@@ -93,6 +93,18 @@ stendhal.data.sprites = {
 	},
 
 	/**
+	 * Used when we only want an image if it was previously cached.
+	 *
+	 * @param filename
+	 *     Full file path.
+	 * @return
+	 *     HTMLImageElement or undefined.
+	 */
+	getCached: function(filename) {
+		return stendhal.data.sprites.images[filename];
+	},
+
+	/**
 	 * Retrieves the failsafe sprite.
 	 *
 	 * @return
