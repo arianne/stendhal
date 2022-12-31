@@ -12,7 +12,6 @@
 import { ConfigManager } from "./ConfigManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
-import { Paths } from "../data/Paths";
 
 import { KeyHandler } from "../ui/KeyHandler";
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
@@ -31,10 +30,6 @@ export class SingletonRepo {
 
 	static getLoopedSoundSourceManager(): LoopedSoundSourceManager {
 		return LoopedSoundSourceManager.get();
-	}
-
-	static getPaths(): Paths {
-		return Paths;
 	}
 
 	static getSoundManager(): SoundManager {
