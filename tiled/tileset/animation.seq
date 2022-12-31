@@ -1,4 +1,8 @@
 #
+# !!! THIS FILE IS DEPRECATED !!!
+#   Animations are now stored in `animation.json`. This file remains as
+#   reference since the JSON format does not allow for comments.
+#
 # The animations used for map and weather tiles are defined here.
 #
 # The format of lines is:
