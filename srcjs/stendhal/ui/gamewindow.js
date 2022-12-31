@@ -36,7 +36,7 @@ stendhal.ui.gamewindow = {
 	timeStamp: Date.now(),
 	textSprites: [],
 	notifSprites: [],
-	emojiSprites: {},
+	emojiSprites: [],
 	weatherRenderer: singletons.getWeatherRenderer(),
 
 	draw: function() {
@@ -127,21 +127,20 @@ stendhal.ui.gamewindow = {
 	/**
 	 * Adds a sprite to be drawn on screen.
 	 *
-	 * @param owner
-	 *     Entity the sprite is attached to.
 	 * @param sprite
 	 *     Sprite definition.
 	 */
-	addEmojiSprite: function(owner, sprite) {
-		this.emojiSprites[owner] = sprite;
+	addEmojiSprite: function(sprite) {
+		this.emojiSprites.push(sprite);
 	},
 
 	drawEmojiSprites: function() {
-		for (const owner of Object.keys(this.emojiSprites)) {
-			const sprite = this.emojiSprites[owner];
+		for (let i = 0; i < this.emojiSprites.length; i++) {
+			const sprite = this.emojiSprites[i];
 			const remove = sprite.draw(this.ctx);
 			if (remove) {
-				delete this.emojiSprites[owner];
+				this.emojiSprites.splice(i, 1);
+				i--;
 			}
 		}
 	},

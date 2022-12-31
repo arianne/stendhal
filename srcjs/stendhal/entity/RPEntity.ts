@@ -15,6 +15,7 @@ import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
+import { EmojiSprite } from "../sprite/EmojiSprite";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 import { SoundManager } from "../ui/SoundManager";
@@ -185,28 +186,7 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	addEmoji(emoji: HTMLImageElement) {
-		stendhal.ui.gamewindow.addEmojiSprite(this, {
-			timeStamp: Date.now(),
-			entity: this,
-			sprite: emoji,
-			draw: function(ctx: CanvasRenderingContext2D) {
-				let x = this.entity["_x"] * 32 - 16;
-				let y = this.entity["_y"] * 32 - 32;
-				if (x < 0) {
-					x = 0;
-				}
-				if (y < 0) {
-					y = 0;
-				}
-
-				if (this.sprite.height && this.sprite.complete) {
-					ctx.drawImage(this.sprite, x, y);
-				}
-
-				// 5 seconds
-				return Date.now() > this.timeStamp + 5000;
-			}
-		});
+		stendhal.ui.gamewindow.addEmojiSprite(new EmojiSprite(emoji, this));
 	}
 
 	/**
