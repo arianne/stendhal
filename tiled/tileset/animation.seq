@@ -799,7 +799,7 @@ data/sprites/weather/rain_heavy.png *@15 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 data/sprites/weather/rain_light.png *@15 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 
 # Weather: wave
-data/sprites/weather/wave.png *@125 0:1:2:3:4:5:6:6:6:6:5:4:3:2:1:0:1:2:3:4:5:6:5:4:3:2:1::0:0
+data/sprites/weather/wave.png *@125 0:1:2:3:4:5:6:6:6:6:5:4:3:2:1:0:1:2:3:4:5:6:5:4:3:2:1:0:0
 
 # windmill blades
 tileset/building/windmill_blades.png *@125 0:3:6:9:12:15:18:21:72:75:78:81:84:87:90:93
