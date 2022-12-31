@@ -60,7 +60,7 @@ export class WeatherRenderer {
 	 * @param weather
 	 *     Weather type identifier.
 	 */
-	update(weather: string) {
+	update(weather?: string) {
 		this.enabled = stendhal.config.getBoolean("gamescreen.weather");
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
