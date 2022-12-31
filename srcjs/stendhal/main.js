@@ -268,6 +268,10 @@ stendhal.main = {
 			console.error("stendhal.ui.dialogHandler not found, some dialogs may not function");
 		}
 
+		// pre-cache images & sounds
+		stendhal.data.sprites.startupCache();
+		singletons.getSoundManager().startupCache();
+
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
@@ -300,10 +304,6 @@ stendhal.main = {
 
 			checkConnection();
 		}
-
-		// pre-cache images & sounds
-		stendhal.data.sprites.startupCache();
-		singletons.getSoundManager().startupCache();
 	},
 
 	onerror: function(error) {
