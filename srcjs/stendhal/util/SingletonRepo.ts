@@ -12,6 +12,7 @@
 import { ConfigManager } from "./ConfigManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
+import { EmojiStore } from "../data/EmojiStore";
 
 import { KeyHandler } from "../ui/KeyHandler";
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
@@ -22,6 +23,10 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
+	}
+
+	static getEmojiStore(): EmojiStore {
+		return EmojiStore.get();
 	}
 
 	static getKeyHandler(): KeyHandler {

@@ -19,8 +19,12 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 import { SoundManager } from "../ui/SoundManager";
 
+import singletons from "../util/SingletonRepo";
+
 declare var marauroa: any;
 declare var stendhal: any;
+
+const emojiStore = singletons.getEmojiStore();
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -157,7 +161,7 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		if (marauroa.me.isInHearingRange(this, rangeSquared)) {
-			let emoji = stendhal.data.emoji.get(text);
+			let emoji = emojiStore.create(text);
 			if (emoji) {
 				this.addEmoji(emoji);
 				Chat.log("emoji", emoji, this.getTitle());
