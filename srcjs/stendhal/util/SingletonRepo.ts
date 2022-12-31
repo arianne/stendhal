@@ -10,8 +10,9 @@
  ***************************************************************************/
 
 import { ConfigManager } from "./ConfigManager";
-import { Paths } from "./Paths";
 import { WeatherRenderer } from "./WeatherRenderer";
+
+import { Paths } from "../data/Paths";
 
 import { KeyHandler } from "../ui/KeyHandler";
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
