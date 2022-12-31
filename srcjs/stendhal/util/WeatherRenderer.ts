@@ -80,24 +80,29 @@ export class WeatherRenderer {
 			const animationMap = Animation.get().getWeatherMap()[img];
 
 			if (!this.sprite || !this.sprite.src) {
-				console.error("weather sprite not found: " + weather);
+				console.error("weather sprite for '" + weather + "' not found");
 				return;
 			}
-			if (!animationMap) {
-				console.error("weather animation map not loaded");
-				return;
-			} else if (Object.keys(animationMap).length == 0) {
-				console.error("weather animation map is empty");
+			//~ if (!animationMap) {
+				//~ console.error("weather animation map for '" + weather + "' not loaded");
+				//~ return;
+			if (animationMap && Object.keys(animationMap).length == 0) {
+				console.error("weather animation map for '" + weather + "' is empty");
 				return;
 			}
 
-			this.sprite.frames = animationMap[0].frames;
-			this.sprite.delays = animationMap[0].delays;
+			if (animationMap) {
+				this.sprite.frames = animationMap[0].frames;
+				this.sprite.delays = animationMap[0].delays;
+			} else {
+				// weather is not animated
+				this.sprite.frames = [0];
+			}
 
 			let spriteH = this.sprite.height;
-			// failsafe assumes min sprite dimensions to be 64x64
+			// failsafe assumes min sprite dimensions to be 32x32
 			if (!spriteH) {
-				spriteH = 64;
+				spriteH = 32;
 				console.log("using failsafe sprite height: " + spriteH);
 			}
 
@@ -163,12 +168,14 @@ export class WeatherRenderer {
 				}
 			}
 
-			const cycleTime = Date.now();
-			if (cycleTime - this.lastUpdate >= this.sprite.delays[this.frameIdx]) {
-				this.lastUpdate = cycleTime;
-				this.frameIdx++;
-				if (this.frameIdx + 1 > this.sprite.frames.length) {
-					this.frameIdx = 0;
+			if (this.sprite.delays) {
+				const cycleTime = Date.now();
+				if (cycleTime - this.lastUpdate >= this.sprite.delays[this.frameIdx]) {
+					this.lastUpdate = cycleTime;
+					this.frameIdx++;
+					if (this.frameIdx + 1 > this.sprite.frames.length) {
+						this.frameIdx = 0;
+					}
 				}
 			}
 		}
