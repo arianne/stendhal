@@ -21,7 +21,8 @@ var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var DialogContentComponent = require("../../build/ts/ui/toolkit/DialogContentComponent").DialogContentComponent;
 
-const soundManager = require("../../build/ts/ui/SoundManager").SoundManager.get();
+var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
+var soundMan = soundMan || singletons.getSoundManager();
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -93,7 +94,7 @@ marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.r
 	execute: function(rpobject) {
 		// TODO: new PlayerLoggedOnEvent();
 
-		soundManager.playGlobalizedEffect("ui/login", 1.0);
+		soundMan.playGlobalizedEffect("ui/login", 1.0);
 	}
 });
 
@@ -132,7 +133,7 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 		// play notification sound
 		const notif = stendhal.config.get("event.pvtmsg.sound");
 		if (notif && soundTextEvents[ttype]) {
-			soundManager.playGlobalizedEffect(notif);
+			soundMan.playGlobalizedEffect(notif);
 		}
 	}
 });
@@ -279,7 +280,7 @@ marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeven
 			sound = SoundId[sound_id];
 		}
 
-		soundManager.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
+		soundMan.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
 	}
 });
 

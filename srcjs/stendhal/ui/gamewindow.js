@@ -15,11 +15,12 @@ var ui = require("../../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 const AchievementBanner = require("../../../build/ts/sprite/AchievementBanner").AchievementBanner;
 const NotificationBubble = require("../../../build/ts/sprite/NotificationBubble").NotificationBubble;
-var WeatherRenderer = require("../../../build/ts/util/WeatherRenderer").WeatherRenderer;
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
+
+var singletons = singletons || require("../../../build/ts/util/SingletonRepo").SingletonRepo;
 
 /** Represents an item being transferred from one container slot to another. */
 stendhal.ui.heldItem = undefined;
@@ -36,7 +37,7 @@ stendhal.ui.gamewindow = {
 	textSprites: [],
 	notifSprites: [],
 	emojiSprites: {},
-	weatherRenderer: WeatherRenderer.get(),
+	weatherRenderer: singletons.getWeatherRenderer(),
 
 	draw: function() {
 		var startTime = new Date().getTime();

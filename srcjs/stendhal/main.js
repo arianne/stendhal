@@ -21,8 +21,6 @@ var Chat = require("../../build/ts/util/Chat").Chat;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
-var SoundManager = require("../../build/ts/ui/SoundManager").SoundManager;
-var LoopedSoundSourceManager = require("../../build/ts/ui/LoopedSoundSourceManager").LoopedSoundSourceManager;
 
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
 
@@ -35,8 +33,7 @@ var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantityS
 var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
 var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
 
-var WeatherRenderer = require("../../build/ts/util/WeatherRenderer").WeatherRenderer;
-
+var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
 
 stendhal.main = {
 	errorCounter: 0,
@@ -50,7 +47,7 @@ stendhal.main = {
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
-		WeatherRenderer.get().update(zoneinfo["weather"]);
+		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
 	},
 
 	/**
@@ -125,7 +122,7 @@ stendhal.main = {
 			stendhal.data.map.onTransfer(zoneName, data);
 
 			// play looped sound sources
-			LoopedSoundSourceManager.get().onZoneReady();
+			singletons.getLoopedSoundSourceManager().onZoneReady();
 		};
 
 		// update user interface on perceptions
@@ -154,15 +151,15 @@ stendhal.main = {
 	},
 
 	onSoundToggled: function() {
-		const soundManager = SoundManager.get();
+		const soundMan = singletons.getSoundManager();
 		var soundbutton = document.getElementById("soundbutton");
 		if (stendhal.config.getBoolean("ui.sound")) {
 			soundbutton.textContent = "🔊";
 
-			if (!soundManager.unmuteAll()) {
+			if (!soundMan.unmuteAll()) {
 				let errmsg = "Failed to unmute sounds:";
-				for (const snd of [...soundManager.getActive(),
-						...soundManager.getActiveLoops()]) {
+				for (const snd of [...soundMan.getActive(),
+						...soundMan.getActiveLoops()]) {
 					if (snd && snd.src) {
 						errmsg += "\n- " + snd.src;
 					}
@@ -172,10 +169,10 @@ stendhal.main = {
 		} else {
 			soundbutton.textContent = "🔇";
 
-			if (!soundManager.muteAll()) {
+			if (!soundMan.muteAll()) {
 				let errmsg = "Failed to stop playing sounds:";
-				for (const snd of [...soundManager.getActive(),
-						...soundManager.getActiveLoops()]) {
+				for (const snd of [...soundMan.getActive(),
+						...soundMan.getActiveLoops()]) {
 					if (snd && snd.src) {
 						errmsg += "\n- " + snd.src;
 					}
@@ -306,7 +303,7 @@ stendhal.main = {
 
 		// pre-cache images & sounds
 		stendhal.data.sprites.startupCache();
-		SoundManager.get().startupCache();
+		singletons.getSoundManager().startupCache();
 	},
 
 	onerror: function(error) {

@@ -16,7 +16,6 @@ import { MenuItem} from "../action/MenuItem";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
-import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
 
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
@@ -25,6 +24,7 @@ import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
 import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
 import { Color } from "../util/Color";
+import singletons from "../util/SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -32,7 +32,7 @@ declare var stendhal: any;
 
 export class Player extends RPEntity {
 
-	private readonly lssMan = LoopedSoundSourceManager.get();
+	private readonly lssMan = singletons.getLoopedSoundSourceManager();
 
 	override minimapShow = true;
 	override minimapStyle = Color.PLAYER;
