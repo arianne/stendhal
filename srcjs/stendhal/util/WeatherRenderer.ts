@@ -170,14 +170,31 @@ export class WeatherRenderer {
 
 			if (this.sprite.delays) {
 				const cycleTime = Date.now();
-				if (cycleTime - this.lastUpdate >= this.sprite.delays[this.frameIdx]) {
+				const elapsed = cycleTime - this.lastUpdate;
+				if (elapsed >= this.sprite.delays[this.frameIdx]) {
 					this.lastUpdate = cycleTime;
-					this.frameIdx++;
-					if (this.frameIdx + 1 > this.sprite.frames.length) {
-						this.frameIdx = 0;
-					}
+					this.frameIdx = this.getNextFrame(elapsed);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Calculates the next frame to display incorporating frame skipping.
+	 *
+	 * @param elapsed
+	 *     Amount of time (ms) that has elapsed.
+	 * @return
+	 *     The next frame index that should be drawn.
+	 */
+	private getNextFrame(elapsed: number): number {
+		let delayComb = 0, idx = this.frameIdx;
+		for (idx; delayComb < elapsed; idx++) {
+			delayComb += this.sprite!.delays[idx];
+			if (idx + 1 >= this.sprite!.delays.length) {
+				idx = -1;
+			}
+		}
+		return idx;
 	}
 }
