@@ -24,6 +24,7 @@ stendhal.config = {
 		"ui.font.body": "Carlito",
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",
+		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
 		"gamescreen.weather": "true",
