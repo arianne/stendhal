@@ -24,7 +24,7 @@ export class WeatherRenderer {
 	private static instance: WeatherRenderer;
 
 	private enabled = true;
-	private warned = false;
+	private warned: {[key: string]: boolean} = {};
 	private sprite?: WeatherSprite;
 	private frameIdx = 0;
 	private lastUpdate = 0;
@@ -64,7 +64,8 @@ export class WeatherRenderer {
 		this.enabled = stendhal.config.getBoolean("gamescreen.weather");
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
-		this.warned = false;
+		// reset warning messages
+		this.warned = {};
 
 		if (!weather) {
 			this.sprite = undefined;
@@ -93,18 +94,33 @@ export class WeatherRenderer {
 			this.sprite.frames = animationMap[0].frames;
 			this.sprite.delays = animationMap[0].delays;
 
-			this.tilesX = Math.ceil(stendhal.ui.gamewindow.width
-					/ this.sprite.height);
-			this.tilesY = Math.ceil(stendhal.ui.gamewindow.height
-					/ this.sprite.height);
-			if (!this.tilesX || !isFinite(this.tilesX)) {
-				// failsafe max width in case gamewindow.width is not set
-				this.tilesX = Math.ceil(640 / this.sprite.height);
+			let spriteH = this.sprite.height;
+			// failsafe assumes min sprite dimensions to be 64x64
+			if (!spriteH) {
+				spriteH = 64;
+				console.log("using failsafe sprite height: " + spriteH);
 			}
-			if (!this.tilesY || !isFinite(this.tilesY)) {
-				// failsafe max height in case gamewindow.height is not set
-				this.tilesY = Math.ceil(480 / this.sprite.height);
+
+			const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
+			let clientW = rect.width;
+			let clientH = rect.height;
+			// failsafe assumes max gamewindow dimensions to be 640x480
+			let failsafe = false;
+			if (!clientW) {
+				clientW = 640;
+				failsafe = true;
 			}
+			if (!clientH) {
+				clientH = 480;
+				failsafe = true;
+			}
+			if (failsafe) {
+				console.log("using failsafe client dimensions: "
+						+ clientW + "x" + clientH);
+			}
+
+			this.tilesX = Math.ceil(clientW / spriteH);
+			this.tilesY = Math.ceil(clientH / spriteH);
 		}
 	}
 
@@ -119,9 +135,16 @@ export class WeatherRenderer {
 	draw(ctx: CanvasRenderingContext2D) {
 		if (this.enabled && this.sprite && this.sprite.frames) {
 			if (!this.tilesX || !this.tilesY) {
-				if (!this.warned) {
-					console.warn("client too small to tile weather");
-					this.warned = true;
+				if (!this.warned.tiling) {
+					console.warn("cannot tile weather animation");
+					this.warned.tiling = true;
+				}
+				return;
+			}
+			if (!this.sprite.height) {
+				if (!this.warned.imgReady) {
+					console.warn("waiting on image to load before drawing weather");
+					this.warned.imgReady = true;
 				}
 				return;
 			}
