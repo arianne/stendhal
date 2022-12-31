@@ -46,7 +46,7 @@ export class SettingsDialog extends DialogContentComponent {
 		const chk_weather = this.createCheckBox("chk_weather", "gamescreen.weather",
 				"Weather is enabled", "Weather is disabled", function() {
 					if (clog) {
-						clog.addLine("information", "Weather changes will take effect after you change maps.");
+						clog.addLine("client", "Weather changes will take effect after you change maps.");
 					}
 				})!;
 		chk_weather.parentElement!.title = "Weather effects not currently supported";
