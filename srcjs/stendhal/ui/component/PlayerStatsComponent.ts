@@ -29,7 +29,6 @@ export class PlayerStatsComponent extends Component {
 	private xp;
 
 	private hpText: HTMLElement;
-	private hpBar: StatBar;
 	private otherText: HTMLElement;
 
 	private bars: any = {};
@@ -40,11 +39,10 @@ export class PlayerStatsComponent extends Component {
 
 		this.hpText = <HTMLElement> this.componentElement
 				.querySelector("#hptext")!;
-		this.hpBar = new StatBar("hpbar");
 		this.otherText = <HTMLElement> this.componentElement
 				.querySelector("#otherstats")!;
 
-		this.bars["hp"] = this.hpBar.canvas;
+		this.bars["hp"] = new StatBar("hpbar");
 
 		// use config to determine if HP bar should be visible
 		this.enableBar("hp", singletons.getConfigManager()
@@ -85,7 +83,7 @@ export class PlayerStatsComponent extends Component {
 	private updateHp(hp: number, base_hp: number) {
 		this.hpText.innerText = "HP: " + hp + " / " + base_hp;
 		if (this.isBarEnabled("hp")) {
-			this.hpBar.draw(hp / base_hp);
+			this.bars["hp"].draw(hp / base_hp);
 		}
 	}
 
@@ -203,18 +201,14 @@ export class PlayerStatsComponent extends Component {
 	enableBar(id: string, visible=true) {
 		const bar = this.bars[id];
 		if (bar) {
-			if (visible) {
-				bar.style.display = "";
-			} else {
-				bar.style.display = "none";
-			}
+			bar.setVisible(visible);
 		}
 	}
 
 	isBarEnabled(id: string): boolean {
 		const bar = this.bars[id];
 		if (bar) {
-			return bar.style.display !== "none";
+			return bar.isVisible();
 		}
 		return false;
 	}

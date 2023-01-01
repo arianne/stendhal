@@ -38,4 +38,16 @@ export class StatBar {
 		this.ctx.fillStyle = Color.getStatBarColor(ratio);
 		this.ctx.fillRect(0, 0, this.canvas.width * ratio, this.canvas.height);
 	}
+
+	setVisible(visible=true) {
+		if (visible) {
+			this.canvas.style.display = "";
+		} else {
+			this.canvas.style.display = "none";
+		}
+	}
+
+	isVisible() {
+		return this.canvas.style.display !== "none";
+	}
 }
