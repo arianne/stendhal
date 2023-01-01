@@ -11,6 +11,7 @@
 
 import { Component } from "../toolkit/Component";
 import { StatBar } from "../toolkit/StatBar";
+import { KarmaBar } from "../toolkit/KarmaBar";
 
 import { Item } from "../../entity/Item";
 
@@ -37,17 +38,6 @@ export class PlayerStatsComponent extends Component {
 	constructor() {
 		super("stats");
 
-		this.hpText = <HTMLElement> this.componentElement
-				.querySelector("#hptext")!;
-		this.otherText = <HTMLElement> this.componentElement
-				.querySelector("#otherstats")!;
-
-		this.bars["hp"] = new StatBar("hpbar");
-
-		// use config to determine if HP bar should be visible
-		this.enableBar("hp", singletons.getConfigManager()
-				.getBoolean("ui.stats.hpbar"));
-
 		this.xp = [this.LEVELS + 1];
 		this.xp[0] = 0;
 		this.xp[1] = 50;
@@ -60,6 +50,20 @@ export class PlayerStatsComponent extends Component {
 			const exp = Math.floor((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
 			this.xp[i + 1] = exp;
 		}
+
+		this.hpText = <HTMLElement> this.componentElement
+				.querySelector("#hptext")!;
+		this.otherText = <HTMLElement> this.componentElement
+				.querySelector("#otherstats")!;
+
+		this.bars["karma"] = new KarmaBar();
+		// hide karma bar by default
+		this.enableBar("karma", false);
+
+		this.bars["hp"] = new StatBar("hpbar");
+		// use config to determine if HP bar should be visible
+		this.enableBar("hp", singletons.getConfigManager()
+				.getBoolean("ui.stats.hpbar"));
 	}
 
 	update(key: string) {
@@ -68,8 +72,28 @@ export class PlayerStatsComponent extends Component {
 		}
 
 		const object = marauroa.me;
+		this.updateKarma(object["karma"]);
 		this.updateHp(object["hp"], object["base_hp"]);
 		this.updateOther(object);
+
+		if (!this.isBarEnabled("karma") && object) {
+			const features = object["features"];
+			if (features && features["karma_indicator"] != null) {
+				this.enableBar("karma");
+			}
+		}
+	}
+
+	/**
+	 * Updates karma bar.
+	 *
+	 * @param karma
+	 *     New karma value.
+	 */
+	private updateKarma(karma: number) {
+		if (this.isBarEnabled("karma")) {
+			this.bars["karma"].draw(karma);
+		}
 	}
 
 	/**

@@ -27,6 +27,8 @@ Changelog
 - added bell notifaction on private messages
 - replaced text bubble achievement notification with scroll background & icon
 - added music & looped sounds support
+- added HP bar to stats panel
+- added karma bar to stats panel
 
 
 1.42

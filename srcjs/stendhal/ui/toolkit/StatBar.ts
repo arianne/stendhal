@@ -15,7 +15,7 @@ import { Color } from "../../util/Color";
 export class StatBar {
 
 	readonly canvas: HTMLCanvasElement;
-	private readonly ctx: CanvasRenderingContext2D;
+	protected readonly ctx: CanvasRenderingContext2D;
 
 
 	constructor(id: string) {
