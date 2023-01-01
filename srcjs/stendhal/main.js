@@ -162,7 +162,7 @@ stendhal.main = {
 				let errmsg = "Failed to unmute sounds:";
 				for (const snd of [...soundMan.getActive(),
 						...soundMan.getActiveLoops()]) {
-					if (snd && snd.src) {
+					if (snd && snd.src && snd.muted) {
 						errmsg += "\n- " + snd.src;
 					}
 				}
@@ -172,10 +172,10 @@ stendhal.main = {
 			soundbutton.textContent = "🔇";
 
 			if (!soundMan.muteAll()) {
-				let errmsg = "Failed to stop playing sounds:";
+				let errmsg = "Failed to mute sounds:";
 				for (const snd of [...soundMan.getActive(),
 						...soundMan.getActiveLoops()]) {
-					if (snd && snd.src) {
+					if (snd && snd.src && !snd.muted) {
 						errmsg += "\n- " + snd.src;
 					}
 				}
