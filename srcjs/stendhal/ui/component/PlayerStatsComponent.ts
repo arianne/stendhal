@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2022 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,10 +10,10 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
+import { StatBar } from "../toolkit/StatBar";
 
 import { Item } from "../../entity/Item";
 
-import { Color } from "../../util/Color";
 import singletons from "../../util/SingletonRepo";
 
 declare var marauroa: any;
@@ -29,7 +29,7 @@ export class PlayerStatsComponent extends Component {
 	private xp;
 
 	private hpText: HTMLElement;
-	private hpCanvas: HTMLCanvasElement;
+	private hpBar: StatBar;
 	private otherText: HTMLElement;
 
 	private bars: any = {};
@@ -40,12 +40,11 @@ export class PlayerStatsComponent extends Component {
 
 		this.hpText = <HTMLElement> this.componentElement
 				.querySelector("#hptext")!;
-		this.hpCanvas = (<HTMLCanvasElement> this.componentElement.
-				querySelector("#hpbar")!);
+		this.hpBar = new StatBar("hpbar");
 		this.otherText = <HTMLElement> this.componentElement
 				.querySelector("#otherstats")!;
 
-		this.bars["hp"] = this.hpCanvas;
+		this.bars["hp"] = this.hpBar.canvas;
 
 		// use config to determine if HP bar should be visible
 		this.enableBar("hp", singletons.getConfigManager()
@@ -78,8 +77,6 @@ export class PlayerStatsComponent extends Component {
 	/**
 	 * Updates HP value & draws bar.
 	 *
-	 * TODO: create status bar class
-	 *
 	 * @param hp
 	 *     Player's actual HP.
 	 * @param base_hp
@@ -88,14 +85,7 @@ export class PlayerStatsComponent extends Component {
 	private updateHp(hp: number, base_hp: number) {
 		this.hpText.innerText = "HP: " + hp + " / " + base_hp;
 		if (this.isBarEnabled("hp")) {
-			const ratio = hp / base_hp;
-			const ctx = this.hpCanvas.getContext("2d")!;
-			ctx.beginPath();
-			//~ ctx.rect(0, 0, this.hpCanvas.width, this.hpCanvas.height);
-			ctx.fillStyle = "#808080"; // same as java.awt.Color.GRAY (rgb(128,128,128))
-			ctx.fillRect(0, 0, this.hpCanvas.width, this.hpCanvas.height);
-			ctx.fillStyle = Color.getStatBarColor(ratio);
-			ctx.fillRect(0, 0, this.hpCanvas.width * ratio, this.hpCanvas.height);
+			this.hpBar.draw(hp / base_hp);
 		}
 	}
 
