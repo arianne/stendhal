@@ -11,6 +11,8 @@
 
 import { Component } from "../toolkit/Component";
 
+import { Item } from "../../entity/Item";
+
 declare var marauroa: any;
 
 /**
@@ -20,6 +22,7 @@ export class PlayerStatsComponent extends Component {
 
 	private readonly keys = ["hp", "base_hp", "atk", "atk_item", "atk_xp", "def", "def_item", "def_xp", "xp", "level"];
 	private readonly LEVELS = 598;
+	private MONEY_SLOTS = ["pouch", "bag", "lhand", "rhand"];
 	private xp;
 
 	constructor() {
@@ -61,7 +64,8 @@ export class PlayerStatsComponent extends Component {
 			+ "ATK: " + atk + " x " + object["atk_item"] + "\r\n  (" + atkTNL + ")\r\n"
 			+ "DEF: " + def + " x " + object["def_item"] + "\r\n  (" + defTNL + ")\r\n"
 			+ "XP: " + xp + "\r\n"
-			+ "Level: " + lvl + "\r\n  (" + xpTNL + ")";
+			+ "Level: " + lvl + "\r\n  (" + xpTNL + ")\r\n"
+			+ "Money: " + this.calculateMoney();
 	}
 
 	/**
@@ -112,5 +116,32 @@ export class PlayerStatsComponent extends Component {
 	 */
 	private getMaxLevel(): number {
 		return this.LEVELS - 1;
+	}
+
+	/**
+	 * Retrieves amount of money being carried by player.
+	 *
+	 * @return
+	 *     Total money from relevant slots.
+	 */
+	private calculateMoney(): number {
+		let mo = 0;
+		if (marauroa.me) {
+			for (const sname of this.MONEY_SLOTS) {
+				const slot = marauroa.me[sname];
+				if (slot) {
+					for (let idx = 0; idx < slot.count(); idx++) {
+						const o = slot.getByIndex(idx);
+						if (o instanceof Item) {
+							const i = <Item> o;
+							if (i["name"] === "money") {
+								mo += parseInt(i["quantity"]);
+							}
+						}
+					}
+				}
+			}
+		}
+		return mo;
 	}
 }
