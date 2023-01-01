@@ -18,6 +18,12 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 
+// server doesn't distinguish between music & looped sound effects so we
+// need make some mappings to tell client which directory to use
+const sfxLoops: {[name: string]: boolean} = {
+	"clock-1": true
+}
+
 export class LoopedSoundSourceManager {
 
 	private readonly sndMan = SoundManager.get();
@@ -41,6 +47,16 @@ export class LoopedSoundSourceManager {
 
 	private constructor() {
 		// do nothing
+	}
+
+	/**
+	 * Determines whether sound file should be opened from music or sounds
+	 * directory.
+	 */
+	private isMusic(filename: string): boolean {
+		return !filename.startsWith("loop/")
+				&& !filename.startsWith("weather/")
+				&& !sfxLoops[filename];
 	}
 
 	/**
@@ -72,9 +88,16 @@ export class LoopedSoundSourceManager {
 			return true;
 		}
 
-		const snd = this.sndMan.playLocalizedMusic(source["x"], source["y"],
-				source["radius"], source["layer"], source["sound"],
-				source["volume"]);
+		let snd: any;
+		if (this.isMusic(source["sound"])) {
+			snd = this.sndMan.playLocalizedMusic(source["x"], source["y"],
+					source["radius"], source["layer"], source["sound"],
+					source["volume"]);
+		} else {
+			snd = this.sndMan.playLocalizedLoop(source["x"], source["y"],
+					source["radius"], source["layer"], source["sound"],
+					source["volume"]);
+		}
 
 		if (!snd) {
 			console.error("failed to add looped sound source with ID '" + id + "'");
