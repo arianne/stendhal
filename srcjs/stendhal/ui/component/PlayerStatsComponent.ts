@@ -13,6 +13,9 @@ import { Component } from "../toolkit/Component";
 
 import { Item } from "../../entity/Item";
 
+import { Color } from "../../util/Color";
+import singletons from "../../util/SingletonRepo";
+
 declare var marauroa: any;
 
 /**
@@ -25,8 +28,28 @@ export class PlayerStatsComponent extends Component {
 	private MONEY_SLOTS = ["pouch", "bag", "lhand", "rhand"];
 	private xp;
 
+	private hpText: HTMLElement;
+	private hpCanvas: HTMLCanvasElement;
+	private otherText: HTMLElement;
+
+	private bars: any = {};
+
+
 	constructor() {
 		super("stats");
+
+		this.hpText = <HTMLElement> this.componentElement
+				.querySelector("#hptext")!;
+		this.hpCanvas = (<HTMLCanvasElement> this.componentElement.
+				querySelector("#hpbar")!);
+		this.otherText = <HTMLElement> this.componentElement
+				.querySelector("#otherstats")!;
+
+		this.bars["hp"] = this.hpCanvas;
+
+		// use config to determine if HP bar should be visible
+		this.enableBar("hp", singletons.getConfigManager()
+				.getBoolean("ui.stats.hpbar"));
 
 		this.xp = [this.LEVELS + 1];
 		this.xp[0] = 0;
@@ -46,8 +69,43 @@ export class PlayerStatsComponent extends Component {
 		if (this.keys.indexOf(key) < -1) {
 			return;
 		}
-		const object = marauroa.me;
 
+		const object = marauroa.me;
+		this.updateHp(object["hp"], object["base_hp"]);
+		this.updateOther(object);
+	}
+
+	/**
+	 * Updates HP value & draws bar.
+	 *
+	 * TODO: create status bar class
+	 *
+	 * @param hp
+	 *     Player's actual HP.
+	 * @param base_hp
+	 *     Player's potential max HP.
+	 */
+	private updateHp(hp: number, base_hp: number) {
+		this.hpText.innerText = "HP: " + hp + " / " + base_hp;
+		if (this.isBarEnabled("hp")) {
+			const ratio = hp / base_hp;
+			const ctx = this.hpCanvas.getContext("2d")!;
+			ctx.beginPath();
+			//~ ctx.rect(0, 0, this.hpCanvas.width, this.hpCanvas.height);
+			ctx.fillStyle = "#808080"; // same as java.awt.Color.GRAY (rgb(128,128,128))
+			ctx.fillRect(0, 0, this.hpCanvas.width, this.hpCanvas.height);
+			ctx.fillStyle = Color.getStatBarColor(ratio);
+			ctx.fillRect(0, 0, this.hpCanvas.width * ratio, this.hpCanvas.height);
+		}
+	}
+
+	/**
+	 * Updates all other stat values.
+	 *
+	 * @param object
+	 *     Owner of stats.
+	 */
+	private updateOther(object: any) {
 		const atk = object["atk"];
 		const atkXP = object["atk_xp"];
 		const def = object["def"];
@@ -59,9 +117,8 @@ export class PlayerStatsComponent extends Component {
 		// show dash for max level
 		let xpTNL: number|string = (lvl < this.getMaxLevel()) ? this.getTNL(lvl, xp) : "-";
 
-		this.componentElement.innerText =
-			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
-			+ "ATK: " + atk + " x " + object["atk_item"] + "\r\n  (" + atkTNL + ")\r\n"
+		this.otherText.innerText =
+			"ATK: " + atk + " x " + object["atk_item"] + "\r\n  (" + atkTNL + ")\r\n"
 			+ "DEF: " + def + " x " + object["def_item"] + "\r\n  (" + defTNL + ")\r\n"
 			+ "XP: " + xp + "\r\n"
 			+ "Level: " + lvl + "\r\n  (" + xpTNL + ")\r\n"
@@ -143,5 +200,32 @@ export class PlayerStatsComponent extends Component {
 			}
 		}
 		return mo;
+	}
+
+	/**
+	 * Enables or disables drawing of stat bars.
+	 *
+	 * @param
+	 *     Bar identifier string.
+	 * @param visible
+	 *     If true, bar will be drawn.
+	 */
+	enableBar(id: string, visible=true) {
+		const bar = this.bars[id];
+		if (bar) {
+			if (visible) {
+				bar.style.display = "";
+			} else {
+				bar.style.display = "none";
+			}
+		}
+	}
+
+	isBarEnabled(id: string): boolean {
+		const bar = this.bars[id];
+		if (bar) {
+			return bar.style.display !== "none";
+		}
+		return false;
 	}
 }

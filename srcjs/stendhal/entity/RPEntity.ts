@@ -13,6 +13,7 @@ import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
+import { Color } from "../util/Color";
 import { Nature } from "../util/Nature";
 import { Floater } from "../sprite/Floater";
 import { EmojiSprite } from "../sprite/EmojiSprite";
@@ -585,9 +586,7 @@ export class RPEntity extends ActiveEntity {
 
 		// Bar color
 		var hpRatio = this["hp"] / this["base_hp"];
-		var red = Math.floor(Math.min((1 - hpRatio) * 2, 1) * 255);
-		var green = Math.floor(Math.min(hpRatio * 2, 1) * 255);
-		ctx.fillStyle = "rgb(" + red + "," + green + ", 0)";
+		ctx.fillStyle = Color.getStatBarColor(hpRatio);
 		ctx.fillRect(drawX, drawY, this["drawWidth"] * hpRatio, HEALTH_BAR_HEIGHT - 2);
 	}
 

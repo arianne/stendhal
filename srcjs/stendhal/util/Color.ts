@@ -46,4 +46,11 @@ export class Color {
 	public static readonly PORTAL = Color.WHITE;
 	public static readonly PORTALOUTLINE = Color.BLACK;
 	public static readonly CHEST = Color.VIOLET;
+
+
+	public static getStatBarColor(ratio: number): string {
+		const red = Math.floor(Math.min((1 - ratio) * 2, 1) * 255);
+		const green = Math.floor(Math.min(ratio * 2, 1) * 255);
+		return "rgb(" + red + ", " + green + ", 0)";
+	}
 }

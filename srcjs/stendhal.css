@@ -97,12 +97,25 @@ div.quickPickup div.itemSlot {
 }
 
 #stats {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   width: 128px;
   float: left;
   font-size: 0.8em;
   white-space: pre;
   padding: 0.1em;
+}
+
+.stattext {
+}
+
+.statbar {
+  outline: 1px solid #000000;
+  height: 8px;
+  margin-left: 2px;
+  margin-right: 5px;
+  margin-bottom: 3px;
 }
 
 div.logerror { color: #F00 }

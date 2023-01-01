@@ -27,7 +27,11 @@
 		<div id="leftColumn" class="unselectable">
 			<canvas id="minimap" width="128" height="128"></canvas>
 			<div id="zoneinfo"></div>
-			<div id="stats"></div>
+			<div id="stats">
+				<div id="hptext" class="stattext"></div>
+				<canvas id="hpbar" class="statbar"></canvas>
+				<div id="otherstats" class="stattext"></div>
+			</div>
 			<div id="buddyList">
 				<ul id="buddyListUL"></ul>
 			</div>
@@ -144,6 +148,7 @@
 				<label class="checksetting"><input type="checkbox" id="chk_nonude">Cover naked entities</label>
 				<label class="checksetting"><input type="checkbox" id="chk_shadows">Shadows</label>
 				<label class="checksetting"><input type="checkbox" id="chk_speechcr">Creature speech bubbles</label>
+				<label class="checksetting"><input type="checkbox" id="chk_hpbar">Status panel HP bar</label>
 			</div>
 			<div id="settings_panel2" class="verticalgroup vgroupcol">
 				<label class="checksetting"><input type="checkbox" id="chk_dblclick">Double-click items</label>
