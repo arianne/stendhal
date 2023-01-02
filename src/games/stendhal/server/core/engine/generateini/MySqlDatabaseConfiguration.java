@@ -11,10 +11,10 @@ public class MySqlDatabaseConfiguration extends DatabaseConfiguration {
     private String dbUser;
     private String dbPassword;
 
-    public MySqlDatabaseConfiguration(String databaseName, String databaseHost, String user, String password) {
+    public MySqlDatabaseConfiguration(String databaseHost, String databaseName, String user, String password) {
         super();
-        this.dbName = databaseName;
         this.dbHost = databaseHost;
+        this.dbName = databaseName;
         this.dbUser = user;
         this.dbPassword = password;
     }

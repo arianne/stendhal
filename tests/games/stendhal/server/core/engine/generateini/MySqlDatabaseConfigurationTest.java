@@ -11,7 +11,7 @@ public class MySqlDatabaseConfigurationTest extends TestCase {
                 + "jdbc_class=com.mysql.jdbc.Driver" + System.lineSeparator()
                 + "jdbc_user=user" + System.lineSeparator()
                 + "jdbc_pwd=password" + System.lineSeparator(),
-                new MySqlDatabaseConfiguration("db", "host", "user", "password").toIni());
+                new MySqlDatabaseConfiguration("host", "db", "user", "password").toIni());
     }
 
 }

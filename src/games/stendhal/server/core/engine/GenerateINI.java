@@ -149,7 +149,7 @@ public class GenerateINI {
 			System.out.println("  grant all on " + databaseName + ".* to "
 					+ databaseUsername + "@localhost identified by '"
 					+ databasePassword + "';");
-			dbConfig = new MySqlDatabaseConfiguration(databaseName, databaseHost, databaseUsername, databasePassword);
+			dbConfig = new MySqlDatabaseConfiguration(databaseHost, databaseName, databaseUsername, databasePassword);
 			System.out.println("  exit");
 		} else {
 			dbConfig = new H2DatabaseConfiguration();
