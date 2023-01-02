@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -72,7 +73,7 @@ public class StendhalServer {
 		        GenerateINI.main(args, serverIni);
 		    } else {
 		        Map<String, String> environment = getFilteredEnvironment();
-				new AutomaticGenerateINI(environment).write(serverIni);
+				new AutomaticGenerateINI(environment).write(new FileOutputStream(serverIni));
 		    }
 		}
 		marauroa.server.marauroad.main(args);

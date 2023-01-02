@@ -1,7 +1,6 @@
 package games.stendhal.server.core.engine;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Map;
 
@@ -43,8 +42,8 @@ public class AutomaticGenerateINI {
     	this.databasePassword = environment.get(STENDHAL_DB_PASSWORD);
     }
 
-    public void write(String serverIni) throws FileNotFoundException {
-        final PrintWriter out = new PrintWriter(new FileOutputStream(serverIni));
+    public void write(OutputStream outputStream) {
+        final PrintWriter out = new PrintWriter(outputStream);
         DatabaseConfiguration db;
         switch (this.databaseType) {
 		case MYSQL:
