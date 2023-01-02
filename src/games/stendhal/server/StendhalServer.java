@@ -14,10 +14,12 @@ package games.stendhal.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.server.core.engine.ContainerGenerateINI;
+import games.stendhal.server.core.engine.AutomaticGenerateINI;
 import games.stendhal.server.core.engine.GenerateINI;
 import games.stendhal.server.core.rp.DaylightPhase;
 
@@ -31,9 +33,7 @@ public class StendhalServer {
 	private static final Logger logger = Logger.getLogger(StendhalServer.class);
 
 	private static String serverIni = "server.ini";
-	private static boolean inContainer = false;
-	private static String databasePath = "~/stendhal/database/h2db";
-	private static Integer keySize = Integer.valueOf(512);
+	private static boolean automatic = false;
 
 	/**
 	 * parses the command line for overwriten configuration file.
@@ -47,15 +47,9 @@ public class StendhalServer {
 			if (args[i].equals("-c")) {
 				serverIni = args[i + 1];
 			}
-			if (args[i].equals("-container")) {
-			    inContainer = true;
+			if (args[i].equals("-auto-config")) {
+			    automatic = true;
 			}
-			if (args[i].equals("-databasePath")) {
-                databasePath = args[i + 1];
-            }
-			if (args[i].equals("-keySize")) {
-                keySize = Integer.valueOf(args[i + 1]);
-            }
 			i++;
 		}
 	}
@@ -69,7 +63,7 @@ public class StendhalServer {
 	public static void main(String[] args) throws FileNotFoundException {
 		parseCommandLine(args);
 		if (!new File(serverIni).exists()) {
-		    if (!inContainer) {
+		    if (!automatic) {
 		        System.out.println("Welcome to your own Stendhal Server.");
 		        System.out.println("");
 		        System.out.println("This seems to be the very first start because we could not find a server.ini.");
@@ -77,7 +71,8 @@ public class StendhalServer {
 		        System.out.println("");
 		        GenerateINI.main(args, serverIni);
 		    } else {
-		        new ContainerGenerateINI(databasePath, keySize).write(serverIni);
+		        Map<String, String> environment = getFilteredEnvironment();
+				new AutomaticGenerateINI(environment).write(serverIni);
 		    }
 		}
 		marauroa.server.marauroad.main(args);
@@ -95,5 +90,15 @@ public class StendhalServer {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @return {@link Map} with STENDHAL_ fixed key value pairs read from the environment. 
+	 */
+	private static Map<String, String> getFilteredEnvironment() {
+		return System.getenv().entrySet()
+				.stream()
+				.filter(e -> e.getKey().startsWith("STENDHAL_"))
+				.collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
 	}
 }
