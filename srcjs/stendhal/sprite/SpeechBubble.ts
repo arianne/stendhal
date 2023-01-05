@@ -19,11 +19,21 @@ declare var stendhal: any;
 export class SpeechBubble extends TextBubble {
 
 	private entity: RPEntity;
+	private offsetY: number;
 
 
 	constructor(text: string, entity: RPEntity) {
 		super((text.length > 30) ? (text.substring(0, 30) + "...") : text);
 		this.entity = entity;
+
+		this.offsetY = 0;
+		// find free text bubble position
+		const x = this.getX(), y = this.getY();
+		for (const bubble of stendhal.ui.gamewindow.textSprites) {
+			if (x == bubble.getX() && y + this.offsetY == bubble.getY()) {
+				this.offsetY += stendhal.ui.gamewindow.targetTileHeight / 2;
+			}
+		}
 
 		this.duration = Math.max(
 				TextBubble.STANDARD_DUR,
@@ -31,10 +41,6 @@ export class SpeechBubble extends TextBubble {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D): boolean {
-		this.x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
-		this.y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"]
-			- 1));
-
 		ctx.lineWidth = 2;
 		ctx.font = "14px Arial";
 		ctx.fillStyle = '#ffffff';
@@ -46,11 +52,11 @@ export class SpeechBubble extends TextBubble {
 			this.height = 20;
 		}
 
-		Speech.drawBubbleRounded(ctx, this.x, this.y - 15,
-				this.width, this.height);
+		const x = this.getX(), y = this.getY();
+		Speech.drawBubbleRounded(ctx, x, y - 15, this.width, this.height);
 
 		ctx.fillStyle = "#000000";
-		ctx.fillText(this.text, this.x + 4, this.y);
+		ctx.fillText(this.text, x + 4, y);
 
 		// prevent new listener being added for every redraw
 		if (typeof(this.onRemovedAction) === "undefined") {
@@ -65,5 +71,14 @@ export class SpeechBubble extends TextBubble {
 		}
 
 		return this.expired();
+	}
+
+	override getX(): number {
+		return this.entity["_x"] * 32 + (32 * this.entity["width"]);
+	}
+
+	override getY(): number {
+		return this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"]
+				- 1)) + this.offsetY;
 	}
 }

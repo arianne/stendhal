@@ -43,6 +43,22 @@ export abstract class TextBubble {
 	 */
 	abstract draw(ctx: CanvasRenderingContext2D): boolean;
 
+	getX(): number {
+		return this.x;
+	}
+
+	getY(): number {
+		return this.y;
+	}
+
+	getWidth(): number {
+		return this.width;
+	}
+
+	getHeight(): number {
+		return this.height;
+	}
+
 	/**
 	 * Checks if a point or area clips the boundries of this sprite.
 	 *
@@ -59,11 +75,12 @@ export abstract class TextBubble {
 	 *     sprite.
 	 */
 	clips(x1: number, x2: number, y1: number, y2: number): boolean {
-		const r = this.x + this.width;
-		const b = this.y + this.height;
+		const x = this.getX(), y = this.getY();
+		const r = x + this.getWidth();
+		const b = y + this.getHeight();
 
-		return (this.x <= x1 && x1 <= r && this.x <= x2 && x2 <= r)
-			&& (this.y <= y1 && y1 <= b && this.y <= y2 && y2 <= b);
+		return (x <= x1 && x1 <= r && x <= x2 && x2 <= r)
+			&& (y <= y1 && y1 <= b && y <= y2 && y2 <= b);
 	}
 
 	/**
