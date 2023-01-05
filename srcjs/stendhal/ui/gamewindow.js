@@ -63,10 +63,10 @@ stendhal.ui.gamewindow = {
 
 				stendhal.data.map.strategy.render(canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
+				this.weatherRenderer.draw(this.ctx);
 				this.drawEntitiesTop();
 				this.drawEmojiSprites();
 				this.drawTextSprites();
-				this.weatherRenderer.draw(this.ctx);
 				this.drawTextSprites(this.notifSprites);
 
 				if (stendhal.ui.touch.held) {
