@@ -9,8 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
+import singletons from "../util/SingletonRepo";
+
 declare var marauroa: any;
 declare var stendhal: any;
+
+stendhal.config = stendhal.config || singletons.getConfigManager();
 
 
 export interface Sound extends HTMLAudioElement {
@@ -111,11 +115,9 @@ export class SoundManager {
 	 */
 	private playEffect(soundName: string, volume=1.0, loop=false): Sound {
 		// check volume sanity
-		if (volume > 1) {
-			volume = 1.0;
-		} else if (volume < 0) {
-			volume = 0.0;
-		}
+		volume = this.normVolume(volume);
+		// apply master channel level
+		const actualvolume = volume * this.getVolume();
 
 		// check cache first
 		let sound = this.cache[soundName];
@@ -125,8 +127,8 @@ export class SoundManager {
 				// create a temporary sound instead of interrupting the cached one
 				const addSound = <Sound> new Audio(sound.src);
 				addSound.autoplay = true;
-				addSound.basevolume = sound.basevolume;
-				addSound.volume = addSound.basevolume;
+				addSound.basevolume = volume;
+				addSound.volume = actualvolume;
 				this.onSoundAdded(addSound);
 				return addSound;
 			}
@@ -138,11 +140,9 @@ export class SoundManager {
 
 		sound.autoplay = true;
 		sound.basevolume = volume;
-		sound.volume = sound.basevolume;
+		sound.volume = actualvolume;
 		sound.loop = loop;
-		if (!stendhal.config.getBoolean("ui.sound")) {
-			sound.muted = true;
-		}
+		sound.muted = !stendhal.config.getBoolean("ui.sound");
 
 		// must be started manually if autoplay has already ocurred
 		if (sound.hasplayed) {
@@ -437,8 +437,88 @@ export class SoundManager {
 		} else {
 			// The sound api does not guarantee anything about how the volume
 			// works, so it does not matter much how we scale it.
-			snd.volume = Math.min(rad2 / (dist2 * 20), snd.basevolume);
+			snd.volume = Math.min(rad2 / (dist2 * 20), snd.basevolume) * this.getVolume();
 		}
+	}
+
+	/**
+	 * Normalizes volume level.
+	 *
+	 * @param vol
+	 *     The input volume.
+	 * @return
+	 *     Level between 0 and 1.
+	 */
+	private normVolume(vol: number): number {
+		return vol < 0 ? 0 : vol > 1 ? 1 : vol;
+	}
+
+	/**
+	 * Sets volume level.
+	 *
+	 * @param chan
+	 *     Channel name.
+	 * @param vol
+	 *     Volume level.
+	 * @return
+	 *     <code>true</code> if volume level was set.
+	 */
+	setVolume(chan: string, vol: number): boolean {
+		const oldvol = stendhal.config.getFloat("ui.sound." + chan + ".volume");
+		if (typeof(oldvol) === "undefined" || oldvol === "") {
+			return false;
+		}
+		vol = this.normVolume(vol);
+		stendhal.config.set("ui.sound." + chan + ".volume", vol);
+		if (chan === "master") {
+			// update active sounds
+			const vdiff = vol - oldvol;
+			// DOMException: Index or size is negative or greater than the allowed amount
+			//~ for (const snd of [...this.active, ...this.activeLoops]) {
+				//~ snd.volume += vdiff;
+			//~ }
+			const active = this.getActive();
+			for (let idx = active.length; idx >= 0; idx--) {
+				const snd = active[idx];
+				try {
+					if (snd) {
+						snd.volume += vdiff;
+					}
+				} catch (e) {
+					// FIXME:
+					console.warn("could not update volume for sound", e);
+				}
+			}
+			const activeLoops = this.getActiveLoops();
+			for (let idx = activeLoops.length; idx >= 0; idx--) {
+				const snd = activeLoops[idx];
+				try {
+					if (snd) {
+						snd.volume += vdiff;
+					}
+				} catch (e) {
+					// FIXME:
+					console.warn("could not update volume for sound", e);
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Retrieves volume level.
+	 *
+	 * @param chan
+	 *     Channel name.
+	 * @return
+	 *     Current volume level for channel.
+	 */
+	getVolume(chan="master"): number {
+		let vol = stendhal.config.getFloat("ui.sound." + chan + ".volume");
+		if (typeof(vol) === "undefined") {
+			return 1;
+		}
+		return this.normVolume(vol);
 	}
 
 	/**

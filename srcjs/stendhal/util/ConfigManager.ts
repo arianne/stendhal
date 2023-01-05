@@ -114,7 +114,7 @@ export class ConfigManager {
 		this.storage.setItem(key, value);
 	}
 
-	get(key: string): string|null {
+	get(key: string): string|null|undefined {
 		const ret = this.storage.getItem(key) || this.defaults[key];
 		// allow null to be a value
 		if (ret === "null") {

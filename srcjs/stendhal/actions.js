@@ -16,6 +16,8 @@ var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenW
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 var stendhal = window.stendhal = window.stendhal || {};
+var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
+var soundMan = soundMan || singletons.getSoundManager();
 
 stendhal.slashActionRepository = {
 	"add": {
@@ -356,7 +358,7 @@ stendhal.slashActionRepository = {
 				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
 				"* CLIENT SETTINGS:",
 				"- /mute \tMute or unmute the sounds.",
-				"- /volume \tLists or sets the volume for sound and music (changing volume currently not supported).",
+				"- /volume \tLists or sets the volume for sound and music.",
 				"* MISC:",
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
@@ -789,17 +791,25 @@ stendhal.slashActionRepository = {
 
 	"volume": {
 		execute: function(type, params, remainder) {
-			if (typeof(params[0]) == "undefined") {
-				const curVol = stendhal.config.getFloat("ui.sound.master.volume");
+			const chan = params[0];
+			let vol = params[1];
+			if (typeof(chan) === "undefined") {
 				Chat.log("info", "Please use /volume <name> <value> to adjust the volume.");
-				// FIXME: the following messages are headerless in Java client
-				Chat.log("info", "<name> is an item from the following list. \"master\" refers to the global volume setting.");
-				Chat.log("info", "<value> is in the range from 0 to 100 but may be set higher.");
-				Chat.log("info", "master -> " + curVol);
+				Chat.log("client", "<name> is an item from the following list. \"master\" refers to the global volume setting.");
+				Chat.log("client", "<value> is in the range from 0 to 100.");
+				Chat.log("client", "master -> " + soundMan.getVolume() * 100);
 				// TODO: list all channels
-			} else if (typeof(params[1]) != "undefined") {
-				// TODO:
-				Chat.log("info", "Changing volume currently not supported.");
+			} else if (typeof(vol) !== "undefined") {
+				if (!/^\d+$/.test(vol)) {
+					Chat.log("error", "Value must be a number.");
+					return true;
+				}
+				if (soundMan.setVolume(chan, parseInt(vol, 10) / 100)) {
+					Chat.log("client", "Channel \"" + chan + "\" volume set to "
+							+ (soundMan.getVolume(chan) * 100) + ".");
+				} else {
+					Chat.log("error", "Unknown channel \"" + chan + "\".");
+				}
 			} else {
 				Chat.log("error", "Please use /volume for help.");
 			}
