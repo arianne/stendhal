@@ -173,7 +173,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public int getX() {
 		if (owner != null) {
-			owner.getX();
+			return getAttachedX();
 		}
 
 		return x;
@@ -186,7 +186,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public int getY() {
 		if (owner != null) {
-			owner.getY();
+			return getAttachedY();
 		}
 
 		return y;
