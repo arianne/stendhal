@@ -158,6 +158,7 @@ public class ExtendedSoundManager extends SoundManagerNG {
 			logger.info("User selected sound device: " + userSelected);
 			mDeviceEvaluator.setRating(Pattern.compile(Pattern.quote(userSelected)), null, 100);
 		}
+		mDeviceEvaluator.setRating(Pattern.compile(".*default.*", Pattern.CASE_INSENSITIVE), null, 3);
 		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 2);
 		mDeviceEvaluator.setRating(Pattern.compile(".*plughw.0.0.*"), null, 1);
 		mDeviceEvaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null, -1);
