@@ -62,7 +62,7 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 
 		// Balloon for Bobby
 		achievements.add(createAchievement(
-			"quest.bobby.balloons.5", "Fairgoer",
+			"quest.bobby.balloons.0005", "Fairgoer",
 			"Bring Bobby 5 balloons",
 			Achievement.HARD_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("balloon_bobby", 1, 4)));
