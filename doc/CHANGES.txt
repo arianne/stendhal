@@ -22,7 +22,9 @@ Changelog
   - chat log copy option only copies selection if text is highlighted
 
 *world*
-- new achievement: Fairgoer: Bring Bobby 5 balloons
+- new achievements:
+  - Fairgoer: Bring Bobby 5 balloons
+  - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
 
 *web client*
 - added support for drawing weather effects
