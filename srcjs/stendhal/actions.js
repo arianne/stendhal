@@ -137,7 +137,22 @@ stendhal.slashActionRepository = {
 			};
 
 			if (params[2] != null) {
-				action["state"] = params[2];
+				let state = params[2];
+				if (state.includes("\"") && remainder.includes("\"")) {
+					let endQuote = false;
+					let paramEnd = 0;
+					const arr = Array.from(remainder);
+					for (const c of arr) {
+						if (c === " " && endQuote) {
+							break;
+						} else if (c === "\"") {
+							endQuote = !endQuote;
+						}
+						paramEnd++;
+					}
+					state = (state + " " + remainder.substring(0, paramEnd+1)).replace(/\"/g, "").trim();
+				}
+				action["state"] = state;
 			}
 
 			marauroa.clientFramework.sendAction(action);
