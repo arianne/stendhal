@@ -656,6 +656,13 @@ public class AGrandfathersWishTest extends QuestHelper {
 				+ " I don't have much to offer for your kind service, but"
 				+ " please speak to Niall. He is in the basement.",
 			getReply(elias));
+
+		en.step(player, "quest");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Thank you for returning my grandson to me. I am overfilled"
+				+ " with joy!",
+			getReply(elias));
 		en.step(player, "bye");
 
 		en = niall.getEngine();
