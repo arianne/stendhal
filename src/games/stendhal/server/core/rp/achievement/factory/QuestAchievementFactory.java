@@ -60,6 +60,13 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 			Achievement.EASY_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("maze", 2, 0)));
 
+		// Balloon for Bobby
+		achievements.add(createAchievement(
+			"quest.bobby.balloons.5", "Fairgoer",
+			"Bring Bobby 5 balloons",
+			Achievement.HARD_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("balloon_bobby", 1, 4)));
+
 		// have completed all quests in Semos City?
 		achievements.add(createAchievement(
 			"quest.special.semos", "Aide to Semos Folk",
