@@ -41,8 +41,11 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 	private static final Logger logger = Logger.getLogger(CommerceAchievementFactory.class);
 
-	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
+	public static final String ID_MARKET_S10K = "commerce.market.sell.10K";
+	public static final String ID_BUY_ALL = "commerce.buy.all";
+
+	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
 	public static final int COUNT_HAPPY_HOUR = 100;
 
 	// NPCs involved in "Community Supporter"
@@ -110,7 +113,18 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			new BoughtNumberOfCondition(COUNT_HAPPY_HOUR, ITEMS_HAPPY_HOUR)));
 
 		achievements.add(createAchievement(
-			"commerce.buy.all", "Community Supporter",
+			ID_MARKET_S10K, "Beginning Entrepreneurship",
+			"Make 10000 in sales with Harold",
+			Achievement.EASY_BASE_SCORE, true,
+			new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					return (player.getCommerceTransactionAmount("Harold", true) > 9999);
+				}
+			}));
+
+		achievements.add(createAchievement(
+			ID_BUY_ALL, "Community Supporter",
 			"Spend money around the world",
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new HasSpentAmountAtSellers()));
