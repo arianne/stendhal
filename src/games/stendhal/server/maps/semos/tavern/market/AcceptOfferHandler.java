@@ -99,14 +99,19 @@ public class AcceptOfferHandler extends OfferHandler {
 				earningToFetchMessage.append(itemname);
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
 
-				logger.debug("sending a notice to '" + offer.getOfferer() + "': " + earningToFetchMessage.toString());
-				DBCommandQueue.get().enqueue(new StoreMessageCommand("Harold", offer.getOfferer(), earningToFetchMessage.toString(), "N"));
+				final MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
+				final String managerName = manager.getName();
 
+				logger.debug("sending a notice to '" + offer.getOfferer() + "': " + earningToFetchMessage.toString());
+				DBCommandQueue.get().enqueue(new StoreMessageCommand(managerName, offer.getOfferer(), earningToFetchMessage.toString(), "N"));
+
+				// record purchases from market manager
+				player.incCommerceTransaction(managerName, offer.getPrice().intValue(), false);
 				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 				npc.say("Thanks.");
 
 				// Obsolete the offers, since the list has changed
-				((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
+				manager.getOfferMap().clear();
 			} else {
 				// Trade failed for some reason. Check why, and inform the player
 				if (!m.contains(offer)) {
