@@ -106,7 +106,8 @@ public class AcceptOfferHandler extends OfferHandler {
 				DBCommandQueue.get().enqueue(new StoreMessageCommand(managerName, offer.getOfferer(), earningToFetchMessage.toString(), "N"));
 
 				// record purchases from market manager
-				player.incCommerceTransaction(managerName, offer.getPrice().intValue(), false);
+				// DISABLED: players can buy their own things from Harold
+				//player.incCommerceTransaction(managerName, offer.getPrice().intValue(), false);
 				npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 				npc.say("Thanks.");
 
