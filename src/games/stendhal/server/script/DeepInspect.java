@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -35,6 +37,8 @@ import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 
@@ -44,6 +48,8 @@ import marauroa.server.game.db.DAORegister;
  * @author hendrik
  */
 public class DeepInspect extends ScriptImpl {
+
+	private static Logger logger = Logger.getLogger(DeepInspect.class);
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
@@ -83,8 +89,9 @@ public class DeepInspect extends ScriptImpl {
 	 * @param username username who's characters are being inspected
 	 */
 	private void inspectOffline(final Player admin, final String username) {
+		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			Map<String, RPObject> characters = DAORegister.get().get(CharacterDAO.class).loadAllActiveCharacters(username);
+			Map<String, RPObject> characters = DAORegister.get().get(CharacterDAO.class).loadAllActiveCharacters(transaction, username);
 			int i = 0;
 			for (RPObject object : characters.values()) {
 				i++;
@@ -100,6 +107,12 @@ public class DeepInspect extends ScriptImpl {
 			admin.sendPrivateText(NotificationType.ERROR, e.toString());
 		} catch (IOException e) {
 			admin.sendPrivateText(NotificationType.ERROR, e.toString());
+		} finally {
+			try {
+				TransactionPool.get().commit(transaction);
+			} catch (final SQLException e) {
+				logger.error(e);
+			}
 		}
 	}
 
