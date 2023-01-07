@@ -16,6 +16,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 import marauroa.common.game.Result;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
@@ -43,14 +45,21 @@ public class IsNotCharacterNameValidator implements AccountParameterValidator {
 
 	@Override
 	public Result validate() {
+		 final DBTransaction transaction = TransactionPool.get().beginWork();
 		 try {
-			 if(DAORegister.get().get(CharacterDAO.class).getAccountName(username) != null) {
+			 if(DAORegister.get().get(CharacterDAO.class).getAccountName(transaction, username) != null) {
 				 return Result.FAILED_CHARACTER_EXISTS;
 			 }
 		} catch (SQLException e) {
 			logger.error("Error while trying to validate username", e);
 			return Result.FAILED_EXCEPTION;
+		} finally {
+			try {
+				TransactionPool.get().commit(transaction);
+			} catch (final SQLException e) {
+				logger.error(e);
+			}
 		}
-		 return null;
+		return null;
 	}
 }

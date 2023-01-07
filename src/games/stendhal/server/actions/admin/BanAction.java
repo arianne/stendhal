@@ -24,6 +24,8 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
@@ -61,6 +63,7 @@ public class BanAction extends AdministrationAction {
 			}
 
 
+			final DBTransaction transaction = TransactionPool.get().beginWork();
 			try {
 				// parse expire
 				Timestamp expire = null;
@@ -73,7 +76,7 @@ public class BanAction extends AdministrationAction {
 				}
 
 				// look up username
-				String username = DAORegister.get().get(CharacterDAO.class).getAccountName(bannedName);
+				String username = DAORegister.get().get(CharacterDAO.class).getAccountName(transaction, bannedName);
 				if (username == null) {
 					player.sendPrivateText(NotificationType.ERROR, "No such character");
 					return;
@@ -91,6 +94,12 @@ public class BanAction extends AdministrationAction {
 				logoutAccount(username);
 			} catch (SQLException e) {
 				logger.error("Error while trying to ban user", e);
+			} finally {
+				try {
+					TransactionPool.get().commit(transaction);
+				} catch (final SQLException e) {
+					logger.error(e);
+				}
 			}
 		}
 	}
