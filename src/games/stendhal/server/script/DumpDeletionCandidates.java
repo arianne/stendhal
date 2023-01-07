@@ -11,8 +11,6 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.RPObjectDAO;
 
@@ -28,20 +26,13 @@ public class DumpDeletionCandidates extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 	    admin.sendPrivateText("Important: You need to edit the script to define the highest RPObject number.");
 		for (int i = 1; i < 0; i++) {
-			final DBTransaction transaction = TransactionPool.get().beginWork();
 			RPObject object = null;
 			try {
-				object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(transaction, i, false);
+				object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(i, false);
 			} catch (SQLException e) {
 				// ignore
 			} catch (IOException e) {
 				// ignore
-			} finally {
-				try {
-					TransactionPool.get().commit(transaction);
-				} catch (final SQLException e) {
-					logger.error(e);
-				}
 			}
 			if (object != null) {
 				dumpObject(object);

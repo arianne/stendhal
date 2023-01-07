@@ -21,8 +21,6 @@ import org.apache.log4j.Logger;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
-import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.RPObjectDAO;
 
@@ -42,20 +40,13 @@ public class DumpCharacterFromDatabase extends ScriptImpl {
 			return;
 		}
 
-		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			RPObject object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(transaction, Integer.parseInt(args.get(0)), false);
+			RPObject object = DAORegister.get().get(RPObjectDAO.class).loadRPObject(Integer.parseInt(args.get(0)), false);
 			logger.info("loaded character: " + object);
 		} catch (SQLException e) {
 			logger.error(e, e);
 		} catch (IOException e) {
 			logger.error(e, e);
-		} finally {
-			try {
-				TransactionPool.get().commit(transaction);
-			} catch (final SQLException e) {
-				logger.error(e);
-			}
 		}
 	}
 

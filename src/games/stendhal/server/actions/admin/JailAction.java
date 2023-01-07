@@ -22,8 +22,6 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
@@ -57,20 +55,13 @@ public class JailAction extends AdministrationAction {
 		// extract and validate player
 		final String target = action.get(TARGET);
 		if (StendhalRPRuleProcessor.get().getPlayer(target) == null) {
-			final DBTransaction transaction = TransactionPool.get().beginWork();
 			try {
-				if (!DAORegister.get().get(CharacterDAO.class).hasCharacter(transaction, target)) {
+				if (!DAORegister.get().get(CharacterDAO.class).hasCharacter(target)) {
 					player.sendPrivateText("No character with that name: " + target);
 					return;
 				}
 			} catch (SQLException e) {
 				logger.error(e, e);
-			} finally {
-				try {
-					TransactionPool.get().commit(transaction);
-				} catch (final SQLException e) {
-					logger.error(e);
-				}
 			}
 		}
 
