@@ -112,10 +112,11 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			Achievement.EASY_BASE_SCORE, true,
 			new BoughtNumberOfCondition(COUNT_HAPPY_HOUR, ITEMS_HAPPY_HOUR)));
 
+		// DISABLED: players can buy their own things from Harold
 		achievements.add(createAchievement(
 			ID_MARKET_S10K, "Beginning Entrepreneurship",
 			"Make 10000 in sales with Harold",
-			Achievement.EASY_BASE_SCORE, true,
+			Achievement.EASY_BASE_SCORE, false,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {

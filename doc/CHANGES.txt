@@ -25,7 +25,6 @@ Changelog
 - new achievements:
   - Fairgoer: Bring Bobby 5 balloons
   - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
-  - Beginning Entrepreneurship: Make 10000 in sales with Harold
 
 *web client*
 - added support for drawing weather effects
