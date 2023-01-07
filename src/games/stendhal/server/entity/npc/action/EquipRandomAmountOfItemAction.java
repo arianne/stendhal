@@ -40,6 +40,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	private final int max;
 	private final int increment;
 	private final String text;
+	private final boolean bind;
 
 	/**
 	 * Creates a new EquipRandomAmountOfItemAction.<br/>
@@ -54,7 +55,26 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * 			 maximum quantity
 	 */
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max) {
-		this(item, min, max, 1, null);
+		this(item, min, max, 1, null, false);
+	}
+
+	/**
+	 * Creates a new EquipRandomItemAction.<br/>
+	 * Since stackable, min and max must be > 0.<br/>
+	 * If min > max, min is treated like max and vice versa
+	 *
+	 * @param item
+	 *     Stackable item.
+	 * @param min
+	 *     Lower amount boundary.
+	 * @param max
+	 *     Upper amount boundary.
+	 * @param bind
+	 *     Whether or not item should be bound to player.
+	 */
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max,
+			final boolean bind) {
+		this(item, min, max, 1, null, bind);
 	}
 
 	/**
@@ -73,7 +93,29 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 */
 	@Dev
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment) {
-		this(item, min, max, increment, null);
+		this(item, min, max, increment, null, false);
+	}
+
+	/**
+	 * Creates a new EquipRandomItemAction.<br/>
+	 * Since stackable, min and max must be > 0.<br/>
+	 * If min > max, min is treated like max and vice versa
+	 *
+	 * @param item
+	 *     Stackable item.
+	 * @param min
+	 *     Lower amount boundary.
+	 * @param max
+	 *     Upper amount boundary.
+	 * @param increment
+	 *     ie, only return numbers multiples of X.
+	 * @param bind
+	 *     Whether or not item should be bound to player.
+	 */
+	@Dev
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max,
+			@Dev(defaultValue="1") final int increment, final boolean bind) {
+		this(item, min, max, increment, null, bind);
 	}
 
 	/**
@@ -94,11 +136,36 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 */
 	@Dev
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment, String text) {
+		this(item, min, max, increment, text, false);
+	}
+
+	/**
+	 * Creates a new EquipRandomItemAction.<br/>
+	 * Since stackable, min and max must be > 0.<br/>
+	 * If min > max, min is treated like max and vice versa
+	 *
+	 * @param item
+	 *     Stackable item.
+	 * @param min
+	 *     Lower amount boundary.
+	 * @param max
+	 *     Upper amount boundary.
+	 * @param increment
+	 *     ie, only return numbers multiples of X.
+	 * @param text
+	 *     Text to say.
+	 * @param bind
+	 *     Whether or not item should be bound to player.
+	 */
+	@Dev
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max,
+			@Dev(defaultValue="1") final int increment, String text, final boolean bind) {
 		this.item = checkNotNull(item);
 		this.min = min;
 		this.max = max;
 		this.increment = increment;
 		this.text = text;
+		this.bind = bind;
 	}
 
 	@Override
@@ -118,7 +185,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 				}
 			}
 			final Integer amount = attempt;
-			new EquipItemAction(itemName, amount, false).fire(player, null, null);
+			new EquipItemAction(itemName, amount, bind).fire(player, null, null);
 			if (text != null) {
 				Map<String, Object> params = new HashMap<>();
 				params.put("this_these", Grammar.thisthese(amount));
@@ -139,7 +206,8 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 		sb.append(max);
 		sb.append(", ");
 		sb.append(text);
-		sb.append(">");
+		sb.append(">, bound: ");
+		sb.append(String.valueOf(bind));
 		return sb.toString();
 	}
 
@@ -167,7 +235,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 		} else if (!item.equals(other.item)) {
 			return false;
 		}
-		if ((min != other.min) || (max != other.max) || (increment != other.increment)){
+		if ((min != other.min) || (max != other.max) || (increment != other.increment) || bind != other.bind) {
 			return false;
 		}
 		if ((text != other.text) || (text == null) || !text.equals(other.text)){
