@@ -14,6 +14,8 @@ package games.stendhal.tools.playerUpdate;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
@@ -61,7 +63,8 @@ public class UpdatePlayerEntities {
 	}
 
 	void savePlayer(DBTransaction transaction, final Player player) throws SQLException, IOException {
-		DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player);
+		DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player,
+				new Timestamp(new Date().getTime()));
 	}
 
     private void doUpdate() {
