@@ -308,7 +308,7 @@ export class SoundManager {
 	 */
 	stop(sound: Sound, group: Sound[]=this.active): boolean {
 		const idx = group.indexOf(sound);
-		if (idx > -1) {
+		if (sound && idx > -1) {
 			sound.pause();
 			sound.currentTime = 0;
 			group.splice(idx, 1);
@@ -339,14 +339,14 @@ export class SoundManager {
 	stopAll(clean: boolean=false): boolean {
 		let stopped = true;
 
-		for (const snd of this.active) {
-			this.stop(snd);
+		while (this.active.length > 0) {
+			this.stop(this.active[0]);
 		}
 		stopped = stopped && this.active.length == 0;
 
 		if (clean) {
-			for (const loop of this.activeLoops) {
-				this.stop(loop);
+			while (this.activeLoops.length > 0) {
+				this.stopLoop(this.activeLoops[0]);
 			}
 			stopped = stopped && this.activeLoops.length == 0;
 		} else {
