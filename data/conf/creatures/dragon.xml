@@ -399,6 +399,7 @@
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="80.0"/>
       <item value="money" quantity="[30,200]" probability="100.0"/>
+      <item value="amethyst" quantity="[1,4]" probability="10.0"/>
       <item value="magic plate boots" quantity="[1,1]" probability="1.0"/>
       <item value="placid ring" quantity="[1,1]" probability="2.5"/>
     </drops>
