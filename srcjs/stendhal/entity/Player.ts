@@ -39,14 +39,6 @@ export class Player extends RPEntity {
 	override dir = 3;
 
 
-	override destroy(parent: any) {
-		// stop playing sounds & clear map cache on zone change
-		if (!singletons.getSoundManager().stopAll(true)) {
-			console.warn("SoundManager reported not all sounds stopped on zone change");
-		}
-		super.destroy(parent);
-	}
-
 	override set(key: string, value: any) {
 		const oldX = this["x"];
 		const oldY = this["y"];
@@ -74,11 +66,9 @@ export class Player extends RPEntity {
 	}
 
 	override createTitleTextSprite() {
-		// HACK: titleStyle should be overridden when player is created
 		if (this.isAdmin()) {
 			this.titleStyle = "#FFFF00";
 		}
-
 		super.createTitleTextSprite();
 	}
 
@@ -270,5 +260,23 @@ export class Player extends RPEntity {
 	override drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
 		// offset to match health bar
 		super.drawTitle(ctx, x, y + 6);
+	}
+
+	/**
+	 * Actions when player leaves a zone.
+	 *
+	 * @param oldZone
+	 *     Name of zone player is leaving.
+	 * @param newZone
+	 *     Name of zone player is entering.
+	 */
+	private onZoneChangeStart(oldZone?: string, newZone?: string) {
+		// stop sounds & clear map sounds cache on zone change
+		if (!singletons.getLoopedSoundSourceManager().removeAll()) {
+			console.warn("LoopedSoundSourceManager reported not all sources stopped on zone change");
+		}
+		if (!singletons.getSoundManager().stopAll(true)) {
+			console.warn("SoundManager reported not all sounds stopped on zone change");
+		}
 	}
 }

@@ -127,10 +127,12 @@ export class LoopedSoundSourceManager {
 
 		const errmsg = [];
 		if (!this.sndMan.stopLoop(source)) {
-			errmsg.push("failed to stop looped sound source with ID '" + id + "'");
+			errmsg.push("failed to stop looped sound source with ID '" + id + "' ("
+					+ source.src + ")");
 		}
 		if (this.sources[id]) {
-			errmsg.push("failed to remove looped sound source with ID '" + id + "'");
+			errmsg.push("failed to remove looped sound source with ID '" + id + "' ("
+					+ source.src + ")");
 		}
 
 		if (errmsg.length > 0) {
@@ -140,6 +142,21 @@ export class LoopedSoundSourceManager {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Removes all looped sound sources.
+	 *
+	 * @return
+	 *     <code>true</code> if the sources list is empty & all removed
+	 *     sources returned successful.
+	 */
+	removeAll(): boolean {
+		let removed = true;
+		for (const id in this.sources) {
+			removed = removed && this.removeSource(id);
+		}
+		return removed && Object.keys(this.sources).length == 0;
 	}
 
 	/**

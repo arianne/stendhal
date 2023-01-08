@@ -100,8 +100,7 @@ export class SoundManager {
 		};
 
 		if (sound.loop) {
-			// FIXME: should be removed from this list when destroyed or
-			//        preserved if sound continues on map change
+			// FIXME: should be preserved if sound continues on map change
 			this.activeLoops.push(sound);
 		} else {
 			this.active.push(sound);

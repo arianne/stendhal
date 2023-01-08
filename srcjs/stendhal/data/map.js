@@ -130,6 +130,9 @@ stendhal.data.map = {
 	},
 
 	onTransfer: function(zoneName, content) {
+		const oldZoneName = stendhal.data.map.currentZoneName;
+		marauroa.me.onZoneChangeStart(oldZoneName, zoneName);
+
 		stendhal.data.map.currentZoneName = zoneName;
 		stendhal.data.map.firstgids = [];
 		stendhal.data.map.layers = [];
