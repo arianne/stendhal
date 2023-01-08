@@ -27,6 +27,7 @@ export class SoundManager {
 	private static instance: SoundManager;
 
 	private layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
+	private cacheGlobal: {[source: string]: Sound} = {};
 	private cache: {[source: string]: Sound} = {};
 	private active: Sound[] = [];
 	private activeLoops: Sound[] = [];
@@ -64,14 +65,20 @@ export class SoundManager {
 	 *     Identifier string used to retrieve from cache.
 	 * @param filename
 	 *     Path to sound file.
+	 * @param global
+	 *     Store in session cache instead of map.
 	 * @return
 	 *     New audio object.
 	 */
-	private load(id: string, filename: string): Sound {
+	private load(id: string, filename: string, global=false): Sound {
 		const snd = <Sound> new Audio(filename);
 		snd.autoplay = false;
 		// load into cache
-		this.cache[id] = snd;
+		if (global) {
+			this.cacheGlobal[id] = snd;
+		} else {
+			this.cache[id] = snd;
+		}
 		return snd;
 	}
 
@@ -120,7 +127,7 @@ export class SoundManager {
 		const actualvolume = volume * this.getVolume();
 
 		// check cache first
-		let sound = this.cache[soundName];
+		let sound = this.cache[soundName] || this.cacheGlobal[soundName];
 		if (sound) {
 			// TODO: handle HTMLAudioElement.error
 			if (!sound.paused && !sound.ended) {
@@ -136,6 +143,10 @@ export class SoundManager {
 			// add new sound to cache
 			sound = this.load(soundName,
 					stendhal.paths.sounds + "/" + soundName + ".ogg");
+		}
+		if (!this.cache[soundName]) {
+			// add globally cached sound to map cache
+			this.cache[soundName] = sound;
 		}
 
 		sound.autoplay = true;
@@ -349,6 +360,12 @@ export class SoundManager {
 				this.stopLoop(this.activeLoops[0]);
 			}
 			stopped = stopped && this.activeLoops.length == 0;
+
+			// clean map cache
+			for (const id in this.cache) {
+				delete this.cache[id];
+			}
+			stopped = stopped && Object.keys(this.cache).length == 0;
 		} else {
 			for (let idx = this.activeLoops.length; idx >=0; idx--) {
 				const loop = this.activeLoops[idx];
@@ -528,6 +545,6 @@ export class SoundManager {
 	startupCache() {
 		// login sound
 		this.load("ui/login",
-				stendhal.paths.sounds + "/ui/login.ogg");
+				stendhal.paths.sounds + "/ui/login.ogg", true);
 	}
 }

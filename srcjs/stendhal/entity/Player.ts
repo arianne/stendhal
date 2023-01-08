@@ -38,6 +38,15 @@ export class Player extends RPEntity {
 	override minimapStyle = Color.PLAYER;
 	override dir = 3;
 
+
+	override destroy(parent: any) {
+		// stop playing sounds & clear map cache on zone change
+		if (!singletons.getSoundManager().stopAll(true)) {
+			console.warn("SoundManager reported not all sounds stopped on zone change");
+		}
+		super.destroy(parent);
+	}
+
 	override set(key: string, value: any) {
 		const oldX = this["x"];
 		const oldY = this["y"];
