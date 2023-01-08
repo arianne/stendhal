@@ -130,9 +130,6 @@ stendhal.data.map = {
 	},
 
 	onTransfer: function(zoneName, content) {
-		const oldZoneName = stendhal.data.map.currentZoneName;
-		marauroa.me.onZoneChangeStart(oldZoneName, zoneName);
-
 		stendhal.data.map.currentZoneName = zoneName;
 		stendhal.data.map.firstgids = [];
 		stendhal.data.map.layers = [];
@@ -155,6 +152,8 @@ stendhal.data.map = {
 		stendhal.data.map.layerGroupIndexes = stendhal.data.map.mapLayerGroup();
 
 		stendhal.data.map.strategy.onMapLoaded(stendhal.data.map);
+
+		marauroa.me.onEnterZone(marauroa.currentZoneName);
 	},
 
 	decodeTileset: function(content, name) {

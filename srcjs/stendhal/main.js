@@ -122,9 +122,6 @@ stendhal.main = {
 				}
 			}
 			stendhal.data.map.onTransfer(zoneName, data);
-
-			// play looped sound sources
-			singletons.getLoopedSoundSourceManager().onZoneReady();
 		};
 
 		// update user interface on perceptions

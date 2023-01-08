@@ -39,6 +39,11 @@ export class Player extends RPEntity {
 	override dir = 3;
 
 
+	override destroy(parent: any) {
+		this.onExitZone(marauroa.currentZoneName);
+		super.destroy(parent);
+	}
+
 	override set(key: string, value: any) {
 		const oldX = this["x"];
 		const oldY = this["y"];
@@ -267,10 +272,8 @@ export class Player extends RPEntity {
 	 *
 	 * @param oldZone
 	 *     Name of zone player is leaving.
-	 * @param newZone
-	 *     Name of zone player is entering.
 	 */
-	private onZoneChangeStart(oldZone?: string, newZone?: string) {
+	onExitZone(oldZone?: string) {
 		if (!oldZone) {
 			return;
 		}
@@ -302,5 +305,16 @@ export class Player extends RPEntity {
 		for (const msg of msgs) {
 			console.warn(msg);
 		}
+	}
+
+	/**
+	 * Actions when player enters a zone.
+	 *
+	 * @param newZone
+	 *     Name of zone player is entering.
+	 */
+	onEnterZone(newZone?: string) {
+		// play looped sound sources
+		singletons.getLoopedSoundSourceManager().onZoneReady();
 	}
 }
