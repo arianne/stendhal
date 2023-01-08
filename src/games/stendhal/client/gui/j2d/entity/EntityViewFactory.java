@@ -206,6 +206,10 @@ public class EntityViewFactory {
 		register("item", "ring", "wedding", UseableRing2DView.class);
 
 		register("item", "book", "bestiary", UseableGenericItem2DView.class);
+		register("item", "misc", "snowglobe", UseableGenericItem2DView.class);
+		register("item", "misc", "teddy", UseableGenericItem2DView.class);
+		register("item", "tool", "metal_detector", UseableGenericItem2DView.class);
+		register("item", "tool", "rotary_cutter", UseableGenericItem2DView.class);
 
 		register("useable_entity", null, null, UseableEntity2DView.class);
 
