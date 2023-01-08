@@ -274,10 +274,6 @@ export class Player extends RPEntity {
 	 *     Name of zone player is leaving.
 	 */
 	onExitZone(oldZone?: string) {
-		if (!oldZone) {
-			return;
-		}
-
 		// stop sounds & clear map sounds cache on zone change
 		const msgs: string[] = [];
 		const lssMan = singletons.getLoopedSoundSourceManager();

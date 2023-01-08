@@ -122,6 +122,7 @@ export class LoopedSoundSourceManager {
 			return true;
 		}
 
+		// FIXME: doesn't always delete reference
 		delete this.sources[id];
 		const errmsg = [];
 		if (!this.sndMan.stop(source.layer, source.sound)) {
@@ -156,7 +157,11 @@ export class LoopedSoundSourceManager {
 		for (const id in this.sources) {
 			removed = removed && this.removeSource(id);
 		}
-		return removed && Object.keys(this.sources).length == 0;
+		// FIXME: not all sounds being removed
+		if (!removed) {
+			this.sources = {};
+		}
+		return Object.keys(this.sources).length == 0;
 	}
 
 	/**

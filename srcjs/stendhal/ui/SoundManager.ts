@@ -379,6 +379,7 @@ export class SoundManager {
 				continue;
 			}
 			const curLayer = this.active[layerName];
+			// XXX: just iterating over indexes doesn't remove all sounds. async issue?
 			while (curLayer.length > 0) {
 				this.stop(this.layers.indexOf(layerName), curLayer[0]);
 			}
