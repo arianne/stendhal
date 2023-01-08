@@ -137,7 +137,7 @@ stendhal.slashActionRepository = {
 			};
 
 			if (params[2] != null) {
-				action["state"] = params[2];
+				action["state"] = stendhal.slashActionRepository.checkQuoted(params[2], remainder);
 			}
 
 			marauroa.clientFramework.sendAction(action);
@@ -1118,6 +1118,34 @@ stendhal.slashActionRepository = {
 			Chat.log("error", "Missing arguments. Try /help");
 			return false;
 		}
+	},
+
+	/**
+	 * Checks for quoted whitepace to be included in parameter.
+	 *
+	 * @param p
+	 *     The parameter to be amended.
+	 * @param remainder
+	 *     String to be checked for quoted whitespace.
+	 * @return
+	 *     Amended parameter.
+	 */
+	checkQuoted: function(p, remainder) {
+		if (p.includes("\"") && remainder.includes("\"")) {
+			let endQuote = false;
+			let paramEnd = 0;
+			const arr = Array.from(remainder);
+			for (const c of arr) {
+				if (c === " " && endQuote) {
+					break;
+				} else if (c === "\"") {
+					endQuote = !endQuote;
+				}
+				paramEnd++;
+			}
+			p = (p + " " + remainder.substring(0, paramEnd+1)).replace(/\"/g, "").trim();
+		}
+		return p;
 	}
 };
 // answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, settings

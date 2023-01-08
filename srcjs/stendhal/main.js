@@ -122,9 +122,6 @@ stendhal.main = {
 				}
 			}
 			stendhal.data.map.onTransfer(zoneName, data);
-
-			// play looped sound sources
-			singletons.getLoopedSoundSourceManager().onZoneReady();
 		};
 
 		// update user interface on perceptions
@@ -160,8 +157,7 @@ stendhal.main = {
 
 			if (!soundMan.unmuteAll()) {
 				let errmsg = "Failed to unmute sounds:";
-				for (const snd of [...soundMan.getActive(),
-						...soundMan.getActiveLoops()]) {
+				for (const snd of soundMan.getActive()) {
 					if (snd && snd.src && snd.muted) {
 						errmsg += "\n- " + snd.src;
 					}
@@ -173,8 +169,7 @@ stendhal.main = {
 
 			if (!soundMan.muteAll()) {
 				let errmsg = "Failed to mute sounds:";
-				for (const snd of [...soundMan.getActive(),
-						...soundMan.getActiveLoops()]) {
+				for (const snd of soundMan.getActive()) {
 					if (snd && snd.src && !snd.muted) {
 						errmsg += "\n- " + snd.src;
 					}

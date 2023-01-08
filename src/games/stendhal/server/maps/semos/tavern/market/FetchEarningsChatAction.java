@@ -53,6 +53,9 @@ public class FetchEarningsChatAction implements ChatAction {
 			collectedSum += earning.getValue().intValue();
 		}
 		if (collectedSum > 0) {
+			// record sales with market manager
+			// DISABLED: players can buy their own things from Harold
+			//player.incCommerceTransaction(npc.getName(), collectedSum, true);
 			npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
 			npc.say("Welcome to Semos trading center. I gave your pending earnings to you. What else can I do?");

@@ -34,11 +34,19 @@ public class TargetNPCSayTextAction extends SayTextAction {
 	private final static Logger logger = Logger.getLogger(TargetNPCSayTextAction.class);
 
 	private final String npcName;
+	private Integer range;
 
 
 	public TargetNPCSayTextAction(final String npcName, final String text) {
 		super(text);
 		this.npcName = checkNotNull(npcName);
+	}
+
+	public TargetNPCSayTextAction(final String npcName, final String text,
+			final int range) {
+		super(text);
+		this.npcName = checkNotNull(npcName);
+		this.range = range;
 	}
 
 	public TargetNPCSayTextAction(final String npcName, final Iterable<String> texts) {
@@ -55,7 +63,12 @@ public class TargetNPCSayTextAction extends SayTextAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 		if (npc != null) {
-			npc.say(StringUtils.substitute(Rand.rand(texts), new PlayerMapAdapter(player)));
+			if (range == null) {
+				npc.say(StringUtils.substitute(Rand.rand(texts), new PlayerMapAdapter(player)));
+			} else {
+				npc.say(StringUtils.substitute(Rand.rand(texts), new PlayerMapAdapter(player)),
+						range);
+			}
 		} else {
 			logger.error("NPC \"" + npcName + "\" not found");
 		}

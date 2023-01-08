@@ -272,11 +272,11 @@ stendhal.ui.gamewindow = {
 				stendhal.ui.globalpopup.close();
 			}
 
-			startX = pos.offsetX;
-			startY = pos.offsetY;
+			startX = pos.canvasRelativeX;
+			startY = pos.canvasRelativeY;
 
-			var x = pos.offsetX + stendhal.ui.gamewindow.offsetX;
-			var y = pos.offsetY + stendhal.ui.gamewindow.offsetY;
+			var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
+			var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 
 			// override ground/entity action if there is a text bubble
 			if (stendhal.ui.gamewindow.textBubbleAt(x, y+15)) {
@@ -292,7 +292,7 @@ stendhal.ui.gamewindow = {
 				e.target.addEventListener("touchmove", onDrag);
 				e.target.addEventListener("touchend", onMouseUp);
 			} else if (entity == stendhal.zone.ground) {
-				entity.onclick(pos.offsetX, pos.offsetY, true);
+				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY, true);
 			}
 		}
 
@@ -315,7 +315,7 @@ stendhal.ui.gamewindow = {
 						new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5));
 				}
 			} else {
-				entity.onclick(pos.offsetX, pos.offsetY);
+				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
 			}
 			cleanUp(pos);
 			pos.target.focus();
@@ -345,8 +345,8 @@ stendhal.ui.gamewindow = {
 
 	onMouseMove: function(e) {
 		var pos = stendhal.ui.html.extractPosition(e);
-		var x = pos.offsetX + stendhal.ui.gamewindow.offsetX;
-		var y = pos.offsetY + stendhal.ui.gamewindow.offsetY;
+		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
+		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 		var entity = stendhal.zone.entityAt(x, y);
 		document.getElementById("gamewindow").style.cursor = entity.getCursor(x, y);
 	},
@@ -389,8 +389,8 @@ stendhal.ui.gamewindow = {
 	onDragStart: function(e) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		let draggedEntity;
-		for (const obj of stendhal.zone.getEntitiesAt(pos.offsetX + stendhal.ui.gamewindow.offsetX,
-				pos.offsetY + stendhal.ui.gamewindow.offsetY)) {
+		for (const obj of stendhal.zone.getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
+				pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY)) {
 			if (obj.isDraggable()) {
 				draggedEntity = obj;
 			}
@@ -432,8 +432,8 @@ stendhal.ui.gamewindow = {
 		var pos = stendhal.ui.html.extractPosition(e);
 		if (stendhal.ui.heldItem) {
 			var action = {
-				"x": Math.floor((pos.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
-				"y": Math.floor((pos.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
+				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
+				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
 				"zone": stendhal.ui.heldItem.zone
 			}
 

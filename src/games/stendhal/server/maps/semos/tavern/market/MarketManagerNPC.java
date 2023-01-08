@@ -65,17 +65,41 @@ public final class MarketManagerNPC extends SpeakerNPC {
 				 "number'. If you have expired offers, you can ask for them by saying #'show expired'. You can " +
 				 "prolong an expired offer by saying #'prolong number'. If you already sold some items you can say " +
 				 "#fetch to me and I will pay out your earnings.");
+		addGoodbye("Visit me again to see available offers, make a new offer or fetch your earnings!");
+
 		new PrepareOfferHandler().add(this);
-		add(ConversationStates.ATTENDING, "show", new NotCondition(new TextHasParameterCondition()),
-				ConversationStates.ATTENDING, null, new ShowOfferItemsChatAction());
-		add(ConversationStates.ATTENDING, "show", new TextHasParameterCondition(), ConversationStates.ATTENDING, null, new ShowOffersChatAction());
-		// fetch earnings when starting to talk to the market manager
-		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new PlayerHasEarningsToCollectCondition(), ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		new AcceptOfferHandler().add(this);
 		new RemoveOfferHandler().add(this);
 		new ProlongOfferHandler().add(this);
-		add(ConversationStates.ATTENDING, "examine", null, ConversationStates.ATTENDING, null, new ExamineOfferChatAction());
-		addGoodbye("Visit me again to see available offers, make a new offer or fetch your earnings!");
+
+		add(ConversationStates.ATTENDING,
+				"show",
+				new NotCondition(new TextHasParameterCondition()),
+				ConversationStates.ATTENDING,
+				null,
+				new ShowOfferItemsChatAction());
+
+		add(ConversationStates.ATTENDING,
+				"show",
+				new TextHasParameterCondition(),
+				ConversationStates.ATTENDING,
+				null,
+				new ShowOffersChatAction());
+
+		// fetch earnings when starting to talk to the market manager
+		add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new PlayerHasEarningsToCollectCondition(),
+				ConversationStates.ATTENDING,
+				null,
+				new FetchEarningsChatAction());
+
+		add(ConversationStates.ATTENDING,
+				"examine",
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new ExamineOfferChatAction());
 	}
 
 	public Map<String, Offer> getOfferMap() {

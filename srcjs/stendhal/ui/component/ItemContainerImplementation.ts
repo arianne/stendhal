@@ -14,6 +14,7 @@ import { ui } from "../UI";
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
 import { Item } from "../../entity/Item";
+import { ItemMap } from "../../entity/ItemMap";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -272,11 +273,24 @@ export class ItemContainerImplementation {
 	private onMouseEnter(evt: MouseEvent) {
 		const dataItem = (evt.target as any).dataItem;
 		if (dataItem) {
-			if (dataItem["class"] === "scroll" && dataItem["dest"]) {
+			const target = <HTMLElement> evt.target;
+			const clazz = dataItem["class"];
+			let imap = ItemMap["name"][dataItem["name"]];
+			if (!imap) {
+				imap = ItemMap["class"][clazz];
+			}
+			if (imap && imap["cursor"]) {
+				target.style.cursor = "url(" + stendhal.paths.sprites
+						+ "/cursor/" + imap["cursor"] + ".png) 1 3, auto";
+			} else {
+				target.style.cursor = "url(" + stendhal.paths.sprites
+						+ "/cursor/normal.png) 1 3, auto";
+			}
+
+			if (clazz === "scroll" && dataItem["dest"]) {
 				const dest = dataItem["dest"].split(",");
 				if (dest.length > 2) {
-					document.getElementById((evt.target as HTMLElement).id)!
-							.title = dest[0] + " " + dest[1] + "," + dest[2];
+					target.title = dest[0] + " " + dest[1] + "," + dest[2];
 				}
 			}
 		}

@@ -243,18 +243,22 @@ public class AGrandfathersWish extends AbstractQuest {
 			elias.add(
 				ConversationStates.ANY,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(
+					new QuestActiveCondition(QUEST_SLOT),
+					new QuestNotInStateCondition(QUEST_SLOT, 3, "cure_myling:done")),
 				ConversationStates.ATTENDING,
 				"Thank you for accepting my plea for help. Please tell me if"
 					+ " you hear any news about what has become of my grandson."
 					+ " He used to play with a little girl named #Marianne.",
 				null);
 
-			// already completed quest
+			// already cured Niall
 			elias.add(
 				ConversationStates.ANY,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new OrCondition(
+					new QuestCompletedCondition(QUEST_SLOT),
+					new QuestInStateCondition(QUEST_SLOT, 3, "cure_myling:done")),
 				ConversationStates.ATTENDING,
 				"Thank you for returning my grandson to me. I am overfilled"
 					+ " with joy!",

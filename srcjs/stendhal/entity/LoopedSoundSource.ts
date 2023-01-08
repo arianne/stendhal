@@ -19,12 +19,6 @@ export class LoopedSoundSource extends InvisibleEntity {
 	private readonly lssMan = LoopedSoundSourceManager.get();
 
 
-	override destroy(parent: any) {
-		// stop sound when this entity is removed
-		this.lssMan.removeSource(this["id"]);
-		super.destroy(parent);
-	}
-
 	/**
 	 * Checks if a looped sound source has been loaded with this
 	 * entity's ID.

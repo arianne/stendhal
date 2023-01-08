@@ -46,17 +46,20 @@ stendhal.ui.html = {
 	},
 
 	extractPosition: function(event) {
+		let pos = event;
 		if (event.changedTouches) {
-			var pos = {
+			pos = {
 				pageX: Math.round(event.changedTouches[0].pageX),
 				pageY: Math.round(event.changedTouches[0].pageY),
 				target: event.changedTouches[0].target
 			}
 			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
 			pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
-			return pos;
 		}
-		return event;
+		let canvas = event.target;
+		pos.canvasRelativeX = Math.round(pos.offsetX * canvas.width / canvas.clientWidth);
+		pos.canvasRelativeY = Math.round(pos.offsetY * canvas.height / canvas.clientHeight);
+		return pos;
 	},
 
 	formatTallyMarks: function(line) {

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -68,7 +70,7 @@ public abstract class AbstractOfflineAction extends ScriptImpl {
 			process(admin, object, args);
 
 			// safe it back
-			characterDAO.storeCharacter(transaction, username, characterName, object);
+			characterDAO.storeCharacter(transaction, username, characterName, object, new Timestamp(new Date().getTime()));
 			TransactionPool.get().commit(transaction);
 
 			// remove from world

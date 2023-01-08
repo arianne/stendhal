@@ -152,6 +152,8 @@ stendhal.data.map = {
 		stendhal.data.map.layerGroupIndexes = stendhal.data.map.mapLayerGroup();
 
 		stendhal.data.map.strategy.onMapLoaded(stendhal.data.map);
+
+		marauroa.me.onEnterZone(marauroa.currentZoneName);
 	},
 
 	decodeTileset: function(content, name) {

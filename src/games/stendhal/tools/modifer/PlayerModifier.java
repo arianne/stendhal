@@ -14,6 +14,8 @@ package games.stendhal.tools.modifer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
@@ -43,7 +45,8 @@ public class PlayerModifier {
 
 	public boolean savePlayer(final DBTransaction transaction, final Player player) {
 		try {
-			DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player);
+			DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player,
+					new Timestamp(new Date().getTime()));
 
 		} catch (final SQLException e) {
 			return false;

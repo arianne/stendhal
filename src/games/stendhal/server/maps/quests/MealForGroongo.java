@@ -386,6 +386,16 @@ public class MealForGroongo extends AbstractQuest {
             }
         }
 
+        final String completions = player.getQuest(QUEST_SLOT, 7);
+        if (completions != null && !completions.equals("")) {
+          String tmp = "I have brought " + completions + " decent meal";
+          if (!completions.equals("1")) {
+            tmp += "s";
+          }
+          tmp += " to Groongo.";
+          res.add(tmp);
+        }
+
         return res;
 
     }

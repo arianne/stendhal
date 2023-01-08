@@ -60,6 +60,20 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 			Achievement.EASY_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("maze", 2, 0)));
 
+		// Balloon for Bobby
+		achievements.add(createAchievement(
+			"quest.bobby.balloons.0005", "Fairgoer",
+			"Bring Bobby 5 balloons",
+			Achievement.HARD_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("balloon_bobby", 1, 4)));
+
+		// Meal for Groongo Rahnnt
+		achievements.add(createAchievement(
+			"quest.groongo.meals.0050", "Patiently Waiting on Grumpy",
+			"Serve up 50 decent meals to Groongo Rahnnt",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("meal_for_groongo", 7, 49)));
+
 		// have completed all quests in Semos City?
 		achievements.add(createAchievement(
 			"quest.special.semos", "Aide to Semos Folk",

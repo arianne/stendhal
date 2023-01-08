@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.account;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -97,7 +100,7 @@ public class CharacterCreator {
 			SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
 
 			// Finally we add it to database.
-			characterDAO.addCharacter(trans, username, character, object);
+			characterDAO.addCharacter(trans, username, character, object, new Timestamp(new Date().getTime()));
 			transactionPool.commit(trans);
 
 			return new CharacterResult(Result.OK_CREATED, character, object);

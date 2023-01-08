@@ -95,7 +95,7 @@ marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.r
 		// TODO: new PlayerLoggedOnEvent();
 
 		// FIXME: master volume is not applied to this
-		soundMan.playGlobalizedEffect("ui/login", 1.0);
+		soundMan.playGlobalizedEffect("ui/login");
 	}
 });
 

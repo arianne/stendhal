@@ -38,6 +38,12 @@ export class Player extends RPEntity {
 	override minimapStyle = Color.PLAYER;
 	override dir = 3;
 
+
+	override destroy(parent: any) {
+		this.onExitZone(marauroa.currentZoneName);
+		super.destroy(parent);
+	}
+
 	override set(key: string, value: any) {
 		const oldX = this["x"];
 		const oldY = this["y"];
@@ -65,11 +71,9 @@ export class Player extends RPEntity {
 	}
 
 	override createTitleTextSprite() {
-		// HACK: titleStyle should be overridden when player is created
 		if (this.isAdmin()) {
 			this.titleStyle = "#FFFF00";
 		}
-
 		super.createTitleTextSprite();
 	}
 
@@ -261,5 +265,52 @@ export class Player extends RPEntity {
 	override drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
 		// offset to match health bar
 		super.drawTitle(ctx, x, y + 6);
+	}
+
+	/**
+	 * Actions when player leaves a zone.
+	 *
+	 * @param oldZone
+	 *     Name of zone player is leaving.
+	 */
+	onExitZone(oldZone?: string) {
+		// stop sounds & clear map sounds cache on zone change
+		const msgs: string[] = [];
+		const lssMan = singletons.getLoopedSoundSourceManager();
+		const soundMan = singletons.getSoundManager();
+		if (!lssMan.removeAll()) {
+			let tmp = "LoopedSoundSourceManager reported not all sources stopped on zone change:";
+			const loopSources = lssMan.getSources();
+			for (const id in loopSources) {
+				const snd = loopSources[id].sound;
+				tmp += "\n- ID: " + id + " (" + snd.src + ")";
+			}
+			msgs.push(tmp);
+		}
+		if (!soundMan.stopAll()) {
+			let tmp = "SoundManager reported not all sounds stopped on zone change:";
+			for (const snd of soundMan.getActive()) {
+				tmp += "\n- " + snd.src;
+				if (snd.loop) {
+					tmp += " (loop)";
+				}
+			}
+			msgs.push(tmp);
+		}
+
+		for (const msg of msgs) {
+			console.warn(msg);
+		}
+	}
+
+	/**
+	 * Actions when player enters a zone.
+	 *
+	 * @param newZone
+	 *     Name of zone player is entering.
+	 */
+	onEnterZone(newZone?: string) {
+		// play looped sound sources
+		singletons.getLoopedSoundSourceManager().onZoneReady();
 	}
 }
