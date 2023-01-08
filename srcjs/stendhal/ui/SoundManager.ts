@@ -515,7 +515,8 @@ export class SoundManager {
 	 */
 	getVolume(chan="master"): number {
 		let vol = stendhal.config.getFloat("ui.sound." + chan + ".volume");
-		if (typeof(vol) === "undefined") {
+		if (typeof(vol) === "undefined" || isNaN(vol) || !isFinite(vol)) {
+			console.warn("could not get volume for channel \"" + chan + "\"");
 			return 1;
 		}
 		return this.normVolume(vol);
