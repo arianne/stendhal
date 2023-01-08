@@ -20,17 +20,25 @@ stendhal.config = stendhal.config || singletons.getConfigManager();
 export interface Sound extends HTMLAudioElement {
 	hasplayed: boolean;
 	basevolume: number;
+	radius: number;
+	x: number;
+	y: number;
 }
 
 export class SoundManager {
 
 	private static instance: SoundManager;
 
-	private layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
+	public readonly layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
 	private cacheGlobal: {[source: string]: Sound} = {};
 	private cache: {[source: string]: Sound} = {};
-	private active: Sound[] = [];
-	private activeLoops: Sound[] = [];
+	private active: {[layer: string]: Sound[]} = {
+		["music"]: [],
+		["ambient"]: [],
+		["creature"]: [],
+		["sfx"]: [],
+		["gui"]: []
+	};
 
 
 	static get(): SoundManager {
@@ -45,17 +53,22 @@ export class SoundManager {
 	}
 
 	/**
-	 * Retrieves finite active sounds.
+	 * Retrieves active sounds.
+	 *
+	 * @param includeGui
+	 *     Will include sounds from the gui layer (default: false).
 	 */
-	getActive(): Sound[] {
-		return this.active;
-	}
-
-	/**
-	 * Retrieves looping active sounds.
-	 */
-	getActiveLoops(): Sound[] {
-		return this.activeLoops;
+	getActive(includeGui=false): Sound[] {
+		const active: Sound[] = [];
+		for (const layerName of this.layers) {
+			if (layerName === "gui" && !includeGui) {
+				continue;
+			}
+			for (const snd of this.active[layerName]) {
+				active.push(snd);
+			}
+		}
+		return active;
 	}
 
 	/**
@@ -85,26 +98,22 @@ export class SoundManager {
 	/**
 	 * Sets event handlers for when sound finishes.
 	 *
+	 * @param layer
+	 *     Channel index sound will play on.
 	 * @param sound
 	 *     The playing sound.
 	 */
-	private onSoundAdded(sound: Sound) {
+	private onSoundAdded(layer: number, sound: Sound) {
+		const layerName = this.layers[layer];
 		sound.onended = (e) => {
-			if (!sound.loop) {
-				// remove from active sounds
-				const idx = this.active.indexOf(sound);
-				if (idx > -1) {
-					this.active.splice(idx, 1);
-				}
+			// remove from active sounds
+			const idx = this.active[layerName].indexOf(sound);
+			if (idx > -1) {
+				this.active[layerName].splice(idx, 1);
 			}
 		};
-
-		if (sound.loop) {
-			// FIXME: should be preserved if sound continues on map change
-			this.activeLoops.push(sound);
-		} else {
-			this.active.push(sound);
-		}
+		// FIXME: loops should be preserved if sound continues on map change
+		this.active[layerName].push(sound);
 	}
 
 	/**
@@ -112,6 +121,8 @@ export class SoundManager {
 	 *
 	 * @param soundName
 	 *     Sound file basename.
+	 * @param layer
+	 *     Channel index sound will play on.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
@@ -119,7 +130,12 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	private playEffect(soundName: string, volume=1.0, loop=false): Sound {
+	private playEffect(soundName: string, layer: number, volume=1.0, loop=false): Sound {
+		// default to GUI layer
+		if (layer < 0 || layer >= this.layers.length) {
+			console.warn("tried to add sound to non-existent layer: " + layer);
+			layer = this.layers.indexOf("gui");
+		}
 		// check volume sanity
 		volume = this.normVolume(volume);
 		// apply master channel level
@@ -135,7 +151,7 @@ export class SoundManager {
 				addSound.autoplay = true;
 				addSound.basevolume = volume;
 				addSound.volume = actualvolume;
-				this.onSoundAdded(addSound);
+				this.onSoundAdded(layer, addSound);
 				return addSound;
 			}
 		} else {
@@ -164,7 +180,7 @@ export class SoundManager {
 		}
 
 		sound.hasplayed = true;
-		this.onSoundAdded(sound);
+		this.onSoundAdded(layer, sound);
 		return sound;
 	}
 
@@ -178,7 +194,7 @@ export class SoundManager {
 	 * @param radius
 	 *     Radius at which sound can be heard.
 	 * @param layer
-	 *     Channel on which to be played (currently not supported).
+	 *     Channel index sound will play on.
 	 * @param soundName
 	 *     Sound file basename.
 	 * @param volume
@@ -190,7 +206,7 @@ export class SoundManager {
 	 */
 	playLocalizedEffect(x: number, y: number, radius: number,
 			layer: number, soundName: string, volume=1.0, loop=false): Sound {
-		const snd = this.playEffect(soundName, volume, loop);
+		const snd = this.playEffect(soundName, layer, volume, loop);
 		// Further adjustments if the sound has a radius
 		if (radius) {
 			if (!marauroa.me || !x) {
@@ -202,6 +218,9 @@ export class SoundManager {
 			}
 		}
 
+		snd.radius = radius;
+		snd.x = x;
+		snd.y = y;
 		return snd;
 	}
 
@@ -210,6 +229,8 @@ export class SoundManager {
 	 *
 	 * @param soundName
 	 *     Sound file basename.
+	 * @param layer
+	 *     Channel index sound will play on.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
 	 * @param loop
@@ -217,8 +238,12 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	playGlobalizedEffect(soundName: string, volume=1.0, loop=false): Sound {
-		return this.playEffect(soundName, volume, loop);
+	playGlobalizedEffect(soundName: string, layer?: number, volume=1.0, loop=false): Sound {
+		// default to gui layer
+		if (!layer) {
+			layer = this.layers.indexOf("gui");
+		}
+		return this.playEffect(soundName, layer, volume, loop);
 	}
 
 	/**
@@ -231,7 +256,7 @@ export class SoundManager {
 	 * @param radius
 	 *     Radius at which sound can be heard.
 	 * @param layer
-	 *     Channel on which to be played (currently not supported).
+	 *     Channel index sound will play on.
 	 * @param soundName
 	 *     Sound file basename.
 	 * @param volume
@@ -250,13 +275,15 @@ export class SoundManager {
 	 *
 	 * @param soundName
 	 *     Sound file basename.
+	 * @param layer
+	 *     Channel index sound will play on.
 	 * @param volume
 	 *     Volume level between 0.0 and 1.0.
 	 * @return
 	 *     The new sound instance.
 	 */
-	playGlobalizedLoop(soundName: string, volume=1.0): Sound {
-		return this.playGlobalizedEffect(soundName, volume, true);
+	playGlobalizedLoop(soundName: string, layer?: number, volume=1.0): Sound {
+		return this.playGlobalizedEffect(soundName, layer, volume, true);
 	}
 
 	/**
@@ -303,78 +330,60 @@ export class SoundManager {
 			this.load(musicName,
 					stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		return this.playGlobalizedLoop(musicName, volume);
+		return this.playGlobalizedLoop(musicName,
+				this.layers.indexOf("music"), volume);
 	}
 
 	/**
 	 * Stops a sound & removes it from active group.
 	 *
+	 * @param layer
+	 *     Channel index sound is playing on.
 	 * @param sound
 	 *     The sound to be stopped.
-	 * @param group
-	 *     The group this sound is playing from.
 	 * @return
 	 *     <code>true</code> if succeeded.
 	 */
-	stop(sound: Sound, group: Sound[]=this.active): boolean {
+	stop(layer: number, sound: Sound): boolean {
+		if (layer < 0 || layer >= this.layers.length) {
+			console.error("cannot stop sound on non-existent layer: " + layer);
+			return false;
+		}
+
+		const layerName = this.layers[layer];
+		const group = this.active[layerName];
 		const idx = group.indexOf(sound);
 		if (sound && idx > -1) {
 			sound.pause();
 			sound.currentTime = 0;
-			group.splice(idx, 1);
+			if (sound.onended) {
+				sound.onended(new Event("stopsound"));
+			}
 		}
-		return group.indexOf(sound) < 0;
-	}
-
-	/**
-	 * Stops a sound loop & removes it from active group.
-	 *
-	 * @param sound
-	 *     The sound to be stopped.
-	 * @return
-	 *     <code>true</code> if succeeded.
-	 */
-	stopLoop(sound: Sound): boolean {
-		return this.stop(sound, this.activeLoops);
+		return this.active[layerName].indexOf(sound) < 0;
 	}
 
 	/**
 	 * Stops all currently playing sounds.
 	 *
-	 * @param clean
-	 *     If <code>true</code>, removes loops instead of pausing.
+	 * @param includeGui
+	 *     If <code>true</code>, sounds on the gui layer will stopped
+	 *     as well.
 	 * @return
 	 *     <code>true</code> if all sounds were aborted or paused.
 	 */
-	stopAll(clean: boolean=false): boolean {
+	stopAll(includeGui=false): boolean {
 		let stopped = true;
-
-		while (this.active.length > 0) {
-			this.stop(this.active[0]);
+		for (const layerName of this.layers) {
+			if (layerName === "gui" && !includeGui) {
+				continue;
+			}
+			const curLayer = this.active[layerName];
+			while (curLayer.length > 0) {
+				this.stop(this.layers.indexOf(layerName), curLayer[0]);
+			}
+			stopped = stopped && this.active[layerName].length == 0;
 		}
-		stopped = stopped && this.active.length == 0;
-
-		if (clean) {
-			while (this.activeLoops.length > 0) {
-				this.stopLoop(this.activeLoops[0]);
-			}
-			stopped = stopped && this.activeLoops.length == 0;
-
-			// clean map cache
-			for (const id in this.cache) {
-				delete this.cache[id];
-			}
-			stopped = stopped && Object.keys(this.cache).length == 0;
-		} else {
-			for (let idx = this.activeLoops.length; idx >=0; idx--) {
-				const loop = this.activeLoops[idx];
-				if (loop) {
-					loop.pause();
-				}
-				stopped = stopped && (!loop || loop.paused);
-			}
-		}
-
 		return stopped;
 	}
 
@@ -385,22 +394,19 @@ export class SoundManager {
 	 *     <code>true</code> if all sounds were muted.
 	 */
 	muteAll(): boolean {
-		// finite sounds are removed
-		for (let idx = this.active.length; idx >= 0; idx--) {
-			const snd = this.active[idx];
-			// sound may have ended during this call
-			if (snd) {
-				this.stop(snd);
+		let muted = true;
+		for (const layerName of this.layers) {
+			for (const snd of this.active[layerName]) {
+				if (snd.loop) {
+					snd.muted = true;
+					muted = muted && snd.muted;
+				} else {
+					// finite sounds are removed
+					muted = muted && this.stop(this.layers.indexOf(layerName), snd);
+				}
 			}
 		}
-
-		let muted = true;
-		for (const snd of this.activeLoops) {
-			snd.muted = true;
-			muted = muted && snd.muted;
-		}
-
-		return this.active.length == 0 && muted;
+		return muted;
 	}
 
 	/**
@@ -411,12 +417,11 @@ export class SoundManager {
 	 */
 	unmuteAll(): boolean {
 		let unmuted = true;
-		for (const snd of this.activeLoops) {
-			snd.muted = false;
-			if (snd.paused) {
-				snd.play();
+		for (const layerName of this.layers) {
+			for (const snd of this.active[layerName]) {
+				snd.muted = false;
+				unmuted = unmuted && !snd.paused && !snd.muted;
 			}
-			unmuted = unmuted && !snd.paused && !snd.muted;
 		}
 
 		return unmuted;
@@ -472,6 +477,8 @@ export class SoundManager {
 	/**
 	 * Sets volume level.
 	 *
+	 * FIXME: not all sound get re-adjusted for distance
+	 *
 	 * @param chan
 	 *     Channel name.
 	 * @param vol
@@ -489,31 +496,22 @@ export class SoundManager {
 		if (chan === "master") {
 			// update active sounds
 			const vdiff = vol - oldvol;
-			// DOMException: Index or size is negative or greater than the allowed amount
-			//~ for (const snd of [...this.active, ...this.activeLoops]) {
-				//~ snd.volume += vdiff;
-			//~ }
-			const active = this.getActive();
-			for (let idx = active.length; idx >= 0; idx--) {
-				const snd = active[idx];
+			for (const layerName of this.layers) {
+				// FIXME: DOMException: Index or size is negative or greater than the allowed amount
 				try {
-					if (snd) {
+					for (const snd of this.active[layerName]) {
+						// mute until we are done adjusting sound
+						snd.muted = true;
 						snd.volume += vdiff;
+						if (typeof(snd.radius) === "number"
+								&& typeof(snd.x) === "number"
+								&& typeof(snd.y) === "number") {
+							this.adjustForDistance(snd, snd.radius, snd.x, snd.y,
+									marauroa.me["_x"], marauroa.me["_y"]);
+						}
+						snd.muted = false;
 					}
 				} catch (e) {
-					// FIXME:
-					console.warn("could not update volume for sound", e);
-				}
-			}
-			const activeLoops = this.getActiveLoops();
-			for (let idx = activeLoops.length; idx >= 0; idx--) {
-				const snd = activeLoops[idx];
-				try {
-					if (snd) {
-						snd.volume += vdiff;
-					}
-				} catch (e) {
-					// FIXME:
 					console.warn("could not update volume for sound", e);
 				}
 			}

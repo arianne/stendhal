@@ -40,6 +40,7 @@ export class WeatherRenderer {
 	private tilesX = 0;
 	private tilesY = 0;
 	private audio?: Sound;
+	private soundLayer = singletons.getSoundManager().layers.indexOf("ambient");
 
 
 	/**
@@ -80,7 +81,7 @@ export class WeatherRenderer {
 		const soundMan = singletons.getSoundManager();
 		// stop previous sounds
 		if (this.audio) {
-			soundMan.stopLoop(this.audio);
+			soundMan.stop(this.soundLayer, this.audio);
 			this.audio = undefined;
 		}
 
@@ -145,7 +146,8 @@ export class WeatherRenderer {
 			this.tilesY = Math.ceil(clientH / spriteH);
 
 			if (weatherLoops[weather]) {
-				this.audio = soundMan.playGlobalizedLoop("weather/" + weather);
+				this.audio = soundMan.playGlobalizedLoop("weather/" + weather,
+						this.soundLayer);
 			}
 		}
 	}

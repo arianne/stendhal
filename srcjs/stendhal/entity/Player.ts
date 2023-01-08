@@ -271,12 +271,36 @@ export class Player extends RPEntity {
 	 *     Name of zone player is entering.
 	 */
 	private onZoneChangeStart(oldZone?: string, newZone?: string) {
-		// stop sounds & clear map sounds cache on zone change
-		if (!singletons.getLoopedSoundSourceManager().removeAll()) {
-			console.warn("LoopedSoundSourceManager reported not all sources stopped on zone change");
+		if (!oldZone) {
+			return;
 		}
-		if (!singletons.getSoundManager().stopAll(true)) {
-			console.warn("SoundManager reported not all sounds stopped on zone change");
+
+		// stop sounds & clear map sounds cache on zone change
+		const msgs: string[] = [];
+		const lssMan = singletons.getLoopedSoundSourceManager();
+		const soundMan = singletons.getSoundManager();
+		if (!lssMan.removeAll()) {
+			let tmp = "LoopedSoundSourceManager reported not all sources stopped on zone change:";
+			const loopSources = lssMan.getSources();
+			for (const id in loopSources) {
+				const snd = loopSources[id].sound;
+				tmp += "\n- ID: " + id + " (" + snd.src + ")";
+			}
+			msgs.push(tmp);
+		}
+		if (!soundMan.stopAll()) {
+			let tmp = "SoundManager reported not all sounds stopped on zone change:";
+			for (const snd of soundMan.getActive()) {
+				tmp += "\n- " + snd.src;
+				if (snd.loop) {
+					tmp += " (loop)";
+				}
+			}
+			msgs.push(tmp);
+		}
+
+		for (const msg of msgs) {
+			console.warn(msg);
 		}
 	}
 }

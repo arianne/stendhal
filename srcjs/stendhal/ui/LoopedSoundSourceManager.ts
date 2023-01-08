@@ -29,7 +29,7 @@ export class LoopedSoundSourceManager {
 	private readonly sndMan = SoundManager.get();
 	private static instance?: LoopedSoundSourceManager;
 
-	private sources: {[id: string]: Sound} = {};
+	private sources: {[id: string]: any} = {};
 
 
 	/**
@@ -65,7 +65,7 @@ export class LoopedSoundSourceManager {
 	 * @return
 	 *     Sound sources.
 	 */
-	getSources(): {[id: string]: Sound} {
+	getSources(): {[id: string]: any} {
 		return this.sources;
 	}
 
@@ -89,14 +89,13 @@ export class LoopedSoundSourceManager {
 		}
 
 		let snd: any;
+		const layer = source["layer"];
 		if (this.isMusic(source["sound"])) {
 			snd = this.sndMan.playLocalizedMusic(source["x"], source["y"],
-					source["radius"], source["layer"], source["sound"],
-					source["volume"]);
+					source["radius"], layer, source["sound"], source["volume"]);
 		} else {
 			snd = this.sndMan.playLocalizedLoop(source["x"], source["y"],
-					source["radius"], source["layer"], source["sound"],
-					source["volume"]);
+					source["radius"], layer, source["sound"], source["volume"]);
 		}
 
 		if (!snd) {
@@ -104,7 +103,7 @@ export class LoopedSoundSourceManager {
 			return false;
 		}
 
-		this.sources[id] = snd;
+		this.sources[id] = {layer: layer, sound: snd};
 		return true;
 	}
 
@@ -124,15 +123,14 @@ export class LoopedSoundSourceManager {
 		}
 
 		delete this.sources[id];
-
 		const errmsg = [];
-		if (!this.sndMan.stopLoop(source)) {
+		if (!this.sndMan.stop(source.layer, source.sound)) {
 			errmsg.push("failed to stop looped sound source with ID '" + id + "' ("
-					+ source.src + ")");
+					+ source.sound.src + ")");
 		}
 		if (this.sources[id]) {
 			errmsg.push("failed to remove looped sound source with ID '" + id + "' ("
-					+ source.src + ")");
+					+ source.sound.src + ")");
 		}
 
 		if (errmsg.length > 0) {
@@ -145,7 +143,9 @@ export class LoopedSoundSourceManager {
 	}
 
 	/**
-	 * Removes all looped sound sources.
+	 * Stops all playing looped sounds.
+	 *
+	 * FIXME: not all sounds stopped/removed
 	 *
 	 * @return
 	 *     <code>true</code> if the sources list is empty & all removed
@@ -201,7 +201,7 @@ export class LoopedSoundSourceManager {
 	onDistanceChanged(x: number, y: number) {
 		for (const ent of this.getZoneEntities()) {
 			if (ent.isLoaded()) {
-				this.sndMan.adjustForDistance(this.sources[ent["id"]],
+				this.sndMan.adjustForDistance(this.sources[ent["id"]].sound,
 						ent["radius"], ent["x"], ent["y"], x, y);
 			}
 		}
