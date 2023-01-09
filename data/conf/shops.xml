@@ -161,6 +161,7 @@
     <item name="gold bar" price="250" />
     <item name="emerald" price="200" />
     <item name="sapphire" price="400" />
+    <item name="amethyst" price="500" />
     <item name="carbuncle" price="600" />
     <item name="diamond" price="800" />
     <item name="obsidian" price="1000" />

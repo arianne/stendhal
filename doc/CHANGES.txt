@@ -25,6 +25,7 @@ Changelog
 - new achievements:
   - Fairgoer: Bring Bobby 5 balloons
   - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
+- new item: amethyst
 
 *web client*
 - added support for drawing weather effects
