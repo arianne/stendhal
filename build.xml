@@ -789,6 +789,7 @@
         <exclude name="**/*.psd"/>
         <exclude name="**/*.xcf"/>
         <exclude name="**/*.xcf.*"/>
+        <exclude name="animation.seq"/>
       </fileset>
     </copy>
     <copy todir="${build_client_data}/data/font">
