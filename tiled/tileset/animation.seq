@@ -397,9 +397,17 @@ tileset/furniture/light/dark_torch.png	2	0:2:4:2
 tileset/furniture/light/dark_torch.png	4	0:2:4:2
 
 tileset/furniture/light/lights_candle.png	*	4:16
+tileset/furniture/light/lights_candle.png	*	16:4
 tileset/furniture/light/lights_candle.png	*	5:17
-
+tileset/furniture/light/lights_candle.png	*	17:5
 tileset/furniture/light/lights_candle.png	*	24:25
+tileset/furniture/light/lights_candle.png	*	25:24
+tileset/furniture/light/lights_candle.png	*	26:38
+tileset/furniture/light/lights_candle.png	*	38:26
+tileset/furniture/light/lights_candle.png	*	27:39
+tileset/furniture/light/lights_candle.png	*	39:27
+tileset/furniture/light/lights_candle.png	*	28:40
+tileset/furniture/light/lights_candle.png	*	40:28
 
 tileset/furniture/light/torch_top.png * 0:1:2:3
 
