@@ -75,10 +75,13 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	private boolean ignored = false;
 
+
 	/**
 	 * Create a new Player2DView.
 	 */
 	public Player2DView() {
+		// shift hp bar & title to avoid overlap with other entities
+		titleDrawYOffset = 6;
 		addIconManager(new AbstractStatusIconManager(Player.PROP_AWAY, awaySprite,
 				HorizontalAlignment.RIGHT, VerticalAlignment.TOP) {
 					@Override
@@ -118,18 +121,15 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	@Override
 	protected void drawStatusBar(final Graphics2D g2d, final int x,
 			final int y, final int width) {
-		/*
-		 * Shift bar slightly to avoid overlap with smaller entities
-		 */
-		drawTitle(g2d, x, y + 6, width);
+		drawTitle(g2d, x, y, width);
 		Composite comp = g2d.getComposite();
 		// Draw in full color for ignored players. Avoid making ghosts visible
 		if (ignored && !entity.isGhostMode()) {
 			g2d.setComposite(AlphaComposite.SrcAtop);
-			drawHPbar(g2d, x, y + 6, width);
+			drawHPbar(g2d, x, y, width);
 			g2d.setComposite(comp);
 		} else {
-			drawHPbar(g2d, x, y + 6, width);
+			drawHPbar(g2d, x, y, width);
 		}
 	}
 

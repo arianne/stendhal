@@ -94,6 +94,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private boolean showTitle;
 	/** <code>true</code> if the view should show the HP bar. */
 	private boolean showHP;
+	/** for adjusting entity hp bar & title vertical position */
+	protected int titleDrawYOffset = 0;
 
 	/**
 	 * The title image sprite.
@@ -360,7 +362,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
 			final int width) {
 		int dx = (width - healthBar.getWidth()) / 2;
-		healthBar.draw(g2d, x + dx, y - healthBar.getHeight());
+		healthBar.draw(g2d, x + dx, y - healthBar.getHeight() + titleDrawYOffset);
 	}
 
 	/**
@@ -408,7 +410,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void drawTitle(final Graphics2D g2d, final int x, final int y, final int width) {
 		if (titleSprite != null) {
 			int tx = x + ((width - titleSprite.getWidth()) / 2);
-			int ty = y - getStatusBarHeight();
+			int ty = y - getStatusBarHeight() + titleDrawYOffset;
 
 			titleSprite.draw(g2d, tx, ty);
 		}

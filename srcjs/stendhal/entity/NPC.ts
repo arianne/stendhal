@@ -26,6 +26,15 @@ export class NPC extends RPEntity {
 		this["base_hp"] = 100;
 	}
 
+	override set(key: string, value: string) {
+		super.set(key, value);
+
+		if (key === "name" && value.startsWith("Zekiel")) {
+			// Zekiel uses transparentnpc sprite but he is taller
+			this.titleDrawYOffset = -32;
+		}
+	}
+
 	override drawTop(ctx: CanvasRenderingContext2D) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;

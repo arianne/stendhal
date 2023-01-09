@@ -45,7 +45,10 @@ export class RPEntity extends ActiveEntity {
 	dir = 3;
 	titleTextSprite?: TextSprite;
 	floaters: any[] = [];
+	// for keeping hp bar & title on screen
 	protected statusBarYOffset: number = 0;
+	// for adjusting entity hp bar & title vertical position
+	protected titleDrawYOffset: number = 0;
 	// canvas for merging outfit layers to be drawn
 	private octx?: CanvasRenderingContext2D;
 
@@ -573,7 +576,8 @@ export class RPEntity extends ActiveEntity {
 
 	drawHealthBar(ctx: CanvasRenderingContext2D, x: number, y: number) {
 		var drawX = x + ((this["width"] * 32) - this["drawWidth"]) / 2;
-		var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
+		var drawY = y + (this["height"] * 32) - this["drawHeight"]
+				- HEALTH_BAR_HEIGHT + this.titleDrawYOffset;
 
 		ctx.strokeStyle = "#000000";
 		ctx.lineWidth = 2;
@@ -610,7 +614,8 @@ export class RPEntity extends ActiveEntity {
 	drawTitle(ctx: CanvasRenderingContext2D, x: number, y: number) {
 		if (this.titleTextSprite) {
 			let textMetrics = this.titleTextSprite.getTextMetrics(ctx);
-			var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
+			var drawY = y + (this["height"] * 32) - this["drawHeight"]
+					- HEALTH_BAR_HEIGHT + this.titleDrawYOffset;
 			this.titleTextSprite.draw(ctx, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	}
