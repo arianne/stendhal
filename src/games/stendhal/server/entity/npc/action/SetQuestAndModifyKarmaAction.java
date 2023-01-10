@@ -28,6 +28,7 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 	private final String questname;
 	private final String state;
 	private final double karmaDiff;
+	private final Integer index;
 
 	/**
 	 * Creates a new SetQuestAction.
@@ -44,18 +45,47 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 		this.questname = questname;
 		this.state = state;
 		this.karmaDiff = karmaDiff;
+		this.index = null;
+	}
+
+	/**
+	 * Creates a new SetQuestAction.
+	 *
+	 * @param questname
+	 *     Name of quest-slot to change.
+	 * @param index
+	 *     Quest-slot index to change.
+	 * @param state
+	 *     New value.
+	 * @param karmaDiff
+	 *     Amount of karma to add (negative numbers allowed).
+	 */
+	public SetQuestAndModifyKarmaAction(final String questname, final int index,
+			final String state, final double karmaDiff) {
+		this.questname = questname;
+		this.state = state;
+		this.karmaDiff = karmaDiff;
+		this.index = index;
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		player.setQuest(questname, state);
+		if (index != null) {
+			player.setQuest(questname, index, state);
+		} else {
+			player.setQuest(questname, state);
+		}
 		player.addKarma(karmaDiff);
 	}
 
 	@Override
 	public String toString() {
-		return "SetQuestAndModifyKarma<" + questname + ",\"" + state + "\","
-				+ karmaDiff + ">";
+		String st = "SetQuestAndModifyKarma<" + questname;
+		if (index != null) {
+			st += "," + index;
+		}
+		st += ",\"" + state + "\"," + karmaDiff + ">";
+		return st;
 	}
 
 	@Override
@@ -74,6 +104,11 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 			result = PRIME * result;
 		} else {
 			result = PRIME * result + state.hashCode();
+		}
+		if (index == null) {
+			result = PRIME * result;
+		} else {
+			result = PRIME * result + index.hashCode();
 		}
 		return result;
 	}
@@ -105,6 +140,13 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 				return false;
 			}
 		} else if (!state.equals(other.state)) {
+			return false;
+		}
+		if (index == null) {
+			if (other.index != null) {
+				return false;
+			}
+		} else if (!index.equals(other.index)) {
 			return false;
 		}
 		return true;
