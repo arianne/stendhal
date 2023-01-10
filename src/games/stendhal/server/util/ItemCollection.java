@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,7 +53,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	 * 		Index of item list in quest state string.
 	 */
 	public void addFromQuestStateString(final String str, final int position) {
-		addFromQuestStateString(str, position, false);
+		addFromQuestStateString(str, position, ";");
 	}
 
 	/**
@@ -61,34 +61,22 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * the form "item1=n1;item2=n2;..." or "item1=n1,item2=n2,...".
      *
 	 * @param str
-	 * 		Quest state string.
+	 *     Quest state string.
 	 * @param position
-	 * 		Index of item list in quest state string.
-	 * @param invert
-	 * 		If <code>true</code>, string will be parsed using "," instead of ";".
+	 *     Index of item list in quest state string.
+	 * @param delim
+	 *     Character used to split string.
 	 */
-    public void addFromQuestStateString(final String str, final int position, final boolean invert) {
+    public void addFromQuestStateString(final String str, final int position, final String delim) {
 	    if (str != null) {
-	    	// FIXME: Hack to get item list from comma-separated list
-	    	String slotDelim = ",";
-	    	String itemDelim = ";";
-	    	if (invert) {
-	    		slotDelim = ";";
-	    		itemDelim = ",";
-	    	}
-
-	    	final String[] slots = str.split(slotDelim);
-	    	if (slots[position] != null) {
-		        final List<String> items = Arrays.asList(slots[position].split(itemDelim));
-
-	    		for (final String item : items) {
-	    			final String[] pair = item.split("=");
-
-	    			if (pair.length == 2) {
-	        			addItem(pair[0], Integer.parseInt(pair[1]));
-	    			}
-	    		}
-    		}
+	    	String[] items = str.split(delim);
+		items = Arrays.copyOfRange(items, position, items.length);
+		for (final String item: items) {
+		  final String[] pair = item.split("=");
+		  if (pair.length > 1) {
+		    addItem(pair[0], Integer.parseInt(pair[1]));
+		  }
+		}
 		}
 	}
 
