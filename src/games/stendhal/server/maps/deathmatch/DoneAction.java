@@ -12,9 +12,11 @@
 package games.stendhal.server.maps.deathmatch;
 
 import static games.stendhal.server.core.rp.achievement.factory.DeathmatchAchievementFactory.HELPER_SLOT;
+import static games.stendhal.server.core.rp.achievement.factory.DeathmatchAchievementFactory.SOLOER_SLOT;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
@@ -105,6 +107,23 @@ public class DoneAction implements ChatAction {
 		}
 	}
 
+	/**
+	 * Tracks soloing players & updates achievements related to deathmatch.
+	 *
+	 * @param soloer
+	 *     The player who started the deathmatch.
+	 * @param timestamp
+	 *     Time the deathmatch was completed.
+	 */
+	private void updateSoloer(final Player soloer, final long timestamp) {
+		if (deathmatchInfo.wasAided()) {
+			return;
+		}
+		final int soloCount = MathHelper.parseInt(soloer.getQuest(SOLOER_SLOT, 0)) + 1;
+		soloer.setQuest(SOLOER_SLOT, 0, Integer.toString(soloCount));
+		soloer.setQuest(SOLOER_SLOT, 1, Long.toString(timestamp));
+	}
+
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
@@ -149,10 +168,12 @@ public class DoneAction implements ChatAction {
 		new SetQuestAction("deathmatch", 0, "done").fire(player, sentence, raiser);
 		// Track the number of wins.
 		new IncrementQuestAction("deathmatch", 6, 1).fire(player, sentence, raiser);
-		SingletonRepository.getAchievementNotifier().onFinishDeathmatch(player);
 
-		// track helpers
-		updateHelpers(player, System.currentTimeMillis());
+		// track helpers & soloers
+		final long timestamp = System.currentTimeMillis();
+		updateHelpers(player, timestamp);
+		updateSoloer(player, timestamp);
+		SingletonRepository.getAchievementNotifier().onFinishDeathmatch(player);
 	}
 
 }

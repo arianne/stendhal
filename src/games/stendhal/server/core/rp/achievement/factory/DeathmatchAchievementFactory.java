@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
@@ -34,10 +35,12 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 	private static final Logger logger = Logger.getLogger(DeathmatchAchievementFactory.class);
 
 	public static final String HELPER_SLOT = "deathmatch_helper";
+	public static final String SOLOER_SLOT = "deathmatch_soloer";
 
 	public static final String ID_HELPER_25 = "deathmatch.helper.0025";
 	public static final String ID_HELPER_50 = "deathmatch.helper.0050";
 	public static final String ID_HELPER_100 = "deathmatch.helper.0100";
+	public static final String ID_SOLO_5 = "deathmatch.solo.0005";
 	public static final String ID_HELM_MAX = "deathmatch.helmet.0124";
 
 
@@ -89,6 +92,12 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 			new HasHelpedNumberOfTimes(100)));
 
 		achievements.add(createAchievement(
+			ID_SOLO_5, "Challenge Accepted",
+			"Complete 5 rounds of deathmatch without help",
+			Achievement.EASY_BASE_SCORE, true,
+			new HasSoloedNumberOfTimes(5)));
+
+		achievements.add(createAchievement(
 			ID_HELM_MAX, "Determination",
 			"Increase trophy helmet to max defense",
 			Achievement.HARD_BASE_SCORE, true,
@@ -110,12 +119,10 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 
 
 	/**
-	 * Class to check if a player has helped in deathmatch a specified number of times.
+	 * Checks if a player has helped in deathmatch a specified number of times.
 	 */
 	private class HasHelpedNumberOfTimes implements ChatCondition {
-
 		private int requiredCount;
-
 
 		private HasHelpedNumberOfTimes(final int count) {
 			this.requiredCount = count;
@@ -123,18 +130,23 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 
 		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			int count = 0;
-			if (player.hasQuest(HELPER_SLOT)) {
-				try {
-					count = Integer.parseInt(player.getQuest(HELPER_SLOT, 0));
-				} catch (final NumberFormatException e) {
-					logger.error("Deathmatch helper quest slot value not an integer.");
-					e.printStackTrace();
-					return false;
-				}
-			}
+			return MathHelper.parseInt(player.getQuest(HELPER_SLOT, 0)) >= requiredCount;
+		}
+	};
 
-			return count >= requiredCount;
+	/**
+	 * Checks if a player has competed without help in deathmatch a specified number of times.
+	 */
+	private class HasSoloedNumberOfTimes implements ChatCondition {
+		private int requiredCount;
+
+		private HasSoloedNumberOfTimes(final int count) {
+			this.requiredCount = count;
+		}
+
+		@Override
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+			return MathHelper.parseInt(player.getQuest(SOLOER_SLOT, 0)) >= requiredCount;
 		}
 	};
 }

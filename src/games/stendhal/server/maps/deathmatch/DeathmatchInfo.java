@@ -116,4 +116,11 @@ public class DeathmatchInfo {
 
 		return aidedKills;
 	}
+
+	/**
+	 * Checks if player was helped at all by another.
+	 */
+	public boolean wasAided() {
+		return helpers.size() > 0;
+	}
 }
