@@ -37,7 +37,7 @@ import games.stendhal.server.maps.Region;
  * REWARD:
  * <ul>
  * <li>50000 xp</li>
- * <li>5 karma</li>
+ * <li>karma</li>
  * <li>3 soup</li>
  * <li>20000 money</li>
  * </ul>
@@ -73,7 +73,7 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.whenNpcWasMet(npcName + " asked me to get " + quantity
 					+ " " + plItemName + ".")
 			.whenQuestWasRejected("I do not want to help " + npcName + ".")
-			//.whenQuestWasAccepted("I have not found what I am looking for yet.")
+			.whenQuestWasAccepted("I have agreed to help.")
 			.whenTaskWasCompleted("I found enough " + plItemName + ".")
 			.whenQuestWasCompleted(npcName + " is now able to make daggers.")
 			.whenQuestCanBeRepeated("I should ask " + npcName + " if he wants"
@@ -90,7 +90,8 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.respondToAccept("Great! Be careful out there lots of large"
 					+ " monsters, and those centaurs are really nasty.")
 			.respondToReject("Thats ok, I will find someone else to help me.")
-			.rejectionKarmaPenalty(0)
+			.acceptedKarmaReward(10.0)
+			.rejectionKarmaPenalty(10.0)
 			//~ .remind("I have already asked you to get " + quantity
 					//~ + " " + plItemName + ". Are you #done?");
 			.remind("I asked you to bring me " + quantity + " " + plItemName
@@ -111,7 +112,7 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.respondToAccept("Thanks a bunch! As a reward I will give you "
 					+ rewardSoup + " soups and " + rewardMoney + " money.")
 			.rewardWith(new IncreaseXPAction(50000))
-			.rewardWith(new IncreaseKarmaAction(5.0))
+			.rewardWith(new IncreaseKarmaAction(30.0))
 			.rewardWith(new EquipItemAction("soup", rewardSoup))
 			.rewardWith(new EquipItemAction("money", rewardMoney));
 

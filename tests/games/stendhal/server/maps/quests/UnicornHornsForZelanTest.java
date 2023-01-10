@@ -70,8 +70,8 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 		assertEquals(0, player.getNumberOfEquipped("money"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
-		int playerXP = player.getXP();
-		double playerKarma = player.getKarma();
+		final int startXp = player.getXP();
+		final double startKarma = player.getKarma();
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -90,7 +90,7 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 		assertEquals(
 			"Thats ok, I will find someone else to help me.",
 			getReply(zelan));
-		assertTrue(player.getKarma() == playerKarma);
+		assertEquals(startKarma - 10, player.getKarma(), 0);
 		assertEquals("rejected", player.getQuest(slot, 0));
 
 		en.step(player, "quest");
@@ -101,7 +101,7 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 				+ " centaurs are really nasty.",
 			getReply(zelan));
 		assertEquals("start", player.getQuest(slot, 0));
-		assertTrue(player.getKarma() == playerKarma);
+		assertEquals(startKarma, player.getKarma(), 0);
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
@@ -131,8 +131,8 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 
 		assertEquals("done", player.getQuest(slot, 0));
 		assertEquals("1", player.getQuest(slot, 2));
-		assertTrue(player.getKarma() == playerKarma + 5);
-		assertEquals(playerXP + 50000, player.getXP());
+		assertEquals(startKarma + 30, player.getKarma(), 0);
+		assertEquals(startXp + 50000, player.getXP());
 		assertEquals(0, player.getNumberOfEquipped("unicorn horn"));
 		assertEquals(3, player.getNumberOfEquipped("soup"));
 		assertEquals(20000, player.getNumberOfEquipped("money"));
