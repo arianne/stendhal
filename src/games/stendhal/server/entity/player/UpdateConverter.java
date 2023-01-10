@@ -552,6 +552,15 @@ public abstract class UpdateConverter {
 			}
 		}
 
+		// 1.43: Unicorn Horns for Zelan converted to QuestManuscript
+		final String zelanQName = "unicorn_horns_for_zelan";
+		if (player.hasQuest(zelanQName)) {
+			final String[] zelanSlots = player.getQuest(zelanQName).split(";");
+			if (zelanSlots.length == 2) {
+				player.setQuest(zelanQName, zelanSlots[0] + ";;" + zelanSlots[1]);
+			}
+		}
+
 		// fix quest slots for kills quests.
 		fixKillQuestsSlots(player);
 

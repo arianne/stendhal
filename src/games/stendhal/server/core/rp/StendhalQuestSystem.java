@@ -186,6 +186,7 @@ public class StendhalQuestSystem {
 		loadQuest(new TrapsForKlaas());
 		//loadQuest(new TutorialIsland());
 		loadQuest(new UltimateCollector());
+		loadQuest(new UnicornHornsForZelan());
 		loadQuest(new VampireSword());
 		loadQuest(new WaterForXhiphin());
 		loadQuest(new WeaponsCollector());

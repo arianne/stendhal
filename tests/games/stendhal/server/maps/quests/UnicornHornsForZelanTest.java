@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Arianne                     *
+ *                    Copyright © 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package scripts.quest;
+package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -21,28 +21,31 @@ import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import utilities.LuaTestHelper;
-import utilities.PlayerTestHelper;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.atlantis.cityoutside.ZelanNPC;
+import utilities.QuestHelper;
 
 
-public class UnicornHornsForZelanTest extends LuaTestHelper {
+public class UnicornHornsForZelanTest extends QuestHelper {
 
 	private SpeakerNPC zelan;
+	private Player player;
 
 	private final String slot = "unicorn_horns_for_zelan";
 
 
 	@Before
 	public void setUp() {
-		setUpZone("-7_deniran_atlantis");
-		load("data/script/region/atlantis/city/exterior/ZelanNPC.lua");
-		loadCachedQuests();
-
-		addPlayerToWorld();
+		player = createPlayer("tester");
+		// load Zelan
+		new ZelanNPC().configureZone(new StendhalRPZone("testzone"), null);
 		zelan = SingletonRepository.getNPCList().get("Zelan");
+		// load quest
+		quests.loadQuest(new UnicornHornsForZelan());
 	}
 
 	@Test
@@ -57,6 +60,8 @@ public class UnicornHornsForZelanTest extends LuaTestHelper {
 	}
 
 	private void testQuest() {
+		assertTrue(quests.isLoaded(quests.getQuestFromSlot(slot)));
+
 		final Engine en = zelan.getEngine();
 
 		assertFalse(player.hasQuest(slot));
@@ -72,11 +77,13 @@ public class UnicornHornsForZelanTest extends LuaTestHelper {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 
 		en.step(player, "quest");
-		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals(ConversationStates.QUEST_OFFERED,
+			en.getCurrentState());
 		assertEquals(
 			"Hello! I'm in need of some unicorn horns to make some daggers."
-			+ " It is really dangerous in the woods surrounding Atlantis. If you are a brave sort"
-			+ " I could really use some help gathering unicorn horns. Will you help me?",
+			+ " It is really dangerous in the woods surrounding Atlantis. If"
+			+ " you are a brave sort I could really use some help gathering"
+			+ " unicorn horns. Will you help me?",
 			getReply(zelan));
 		en.step(player, "no");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -90,36 +97,52 @@ public class UnicornHornsForZelanTest extends LuaTestHelper {
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Great! Be careful out there lots of large monsters, and those centaurs are really nasty",
+			"Great! Be careful out there lots of large monsters, and those"
+				+ " centaurs are really nasty.",
 			getReply(zelan));
 		assertEquals("start", player.getQuest(slot, 0));
 		assertTrue(player.getKarma() == playerKarma);
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
-		PlayerTestHelper.equipWithStackableItem(player, "unicorn horn", 9);
+		equipWithStackableItem(player, "unicorn horn", 9);
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		en.step(player, "done");
-		assertEquals("I asked you to bring me 10 unicorn horns.", getReply(zelan));
+		assertEquals(
+			"I asked you to bring me 10 unicorn horns.",
+			getReply(zelan));
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithStackableItem(player, "unicorn horn", 1);
+		equipWithStackableItem(player, "unicorn horn", 1);
 
 		en.step(player, "hi");
-		en.step(player, "done");
+		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT,
+			en.getCurrentState());
+		assertEquals("Did you find the unicorn horns?", getReply(zelan));
+		en.step(player, "yes");
 		assertEquals(
-			"Thanks a bunch! As a reward I will give you 3 soups and 20000 money.",
+			"Thanks a bunch! As a reward I will give you 3 soups and 20000"
+				+ " money.",
 			getReply(zelan));
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		assertEquals("done", player.getQuest(slot, 0));
+		assertEquals("1", player.getQuest(slot, 2));
 		assertTrue(player.getKarma() == playerKarma + 5);
 		assertEquals(playerXP + 50000, player.getXP());
 		assertEquals(0, player.getNumberOfEquipped("unicorn horn"));
 		assertEquals(3, player.getNumberOfEquipped("soup"));
 		assertEquals(20000, player.getNumberOfEquipped("money"));
+
+		en.step(player, "hi");
+		en.step(player, "quest");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Thanks, but I don't need any more help.",
+			getReply(zelan));
+		en.step(player, "bye");
 	}
 }
