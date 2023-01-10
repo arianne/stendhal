@@ -23,6 +23,7 @@ public class QuestHistoryBuilder {
 	private String whenTaskWasCompleted;
 	private String whenQuestWasCompleted;
 	private String whenQuestCanBeRepeated;
+	private String whenCompletionsShown;
 
 	public QuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {
 		this.whenNpcWasMet = whenNpcWasMet;
@@ -54,6 +55,18 @@ public class QuestHistoryBuilder {
 		return this;
 	}
 
+	/**
+	 * Will be shown in travel log when player has completed quest at
+	 * least 1 time. Instances of "[count]" in the string will be
+	 * replaced with the number of completions. Anything else within
+	 * square brackets ("[]") will be replaced with the equivalent
+	 * singular or plural noun form.
+	 */
+	public QuestHistoryBuilder whenCompletionsShown(String whenCompletionsShown) {
+		this.whenCompletionsShown = whenCompletionsShown;
+		return this;
+	}
+
 	String getWhenNpcWasMet() {
 		return whenNpcWasMet;
 	}
@@ -76,6 +89,10 @@ public class QuestHistoryBuilder {
 
 	String getWhenQuestCanBeRepeated() {
 		return this.whenQuestCanBeRepeated;
+	}
+
+	String getWhenCompletionsShown() {
+		return this.whenCompletionsShown;
 	}
 
 }
