@@ -208,7 +208,7 @@ public class QuestOfferBuilder {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				respondToReject,
-				new SetQuestAndModifyKarmaAction(questSlot, "rejected", -1 * rejectionKarmaPenalty));
+				new SetQuestAndModifyKarmaAction(questSlot, 0, "rejected", -1 * rejectionKarmaPenalty));
 
 		for (Map.Entry<List<String>, String> entry : additionalReplies.entrySet()) {
 			npc.add(
