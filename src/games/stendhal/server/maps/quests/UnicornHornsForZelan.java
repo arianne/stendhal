@@ -44,7 +44,7 @@ import games.stendhal.server.maps.Region;
  *
  * REPETITIONS:
  * <ul>
- * <li>never</li>
+ * <li>3 days</li>
  * </ul>
  */
 public class UnicornHornsForZelan implements QuestManuscript {
@@ -63,28 +63,30 @@ public class UnicornHornsForZelan implements QuestManuscript {
 		quest.info()
 			.name("Unicorn Horns for Zelan")
 			.internalName("unicorn_horns_for_zelan")
-			.description("Zelan needs help gathering unicorn horns.")
+			.description("Zelan needs help gathering " + plItemName + ".")
 			.region(Region.ATLANTIS)
 			.questGiverNpc(npcName)
-			.notRepeatable();
+			// 3 days
+			.repeatableAfterMinutes(60 * 24 * 3);
 
 		quest.history()
 			.whenNpcWasMet(npcName + " asked me to get " + quantity
 					+ " " + plItemName + ".")
 			.whenQuestWasRejected("I do not want to help " + npcName + ".")
-			.whenQuestWasAccepted("I have not found what I am looking for yet.")
-			.whenTaskWasCompleted("I have what " + npcName + " asked for.")
-			.whenQuestWasCompleted("I found " + quantity
-					+ " " + plItemName + " for " + npcName + ".");
+			//.whenQuestWasAccepted("I have not found what I am looking for yet.")
+			.whenTaskWasCompleted("I found enough " + plItemName + ".")
+			.whenQuestWasCompleted(npcName + " is now able to make daggers.")
+			.whenQuestCanBeRepeated("I should ask " + npcName + " if he wants"
+					+ " more help.")
+			.whenCompletionsShown("I have helped " + npcName + " [count]"
+					+ " [time].");
 
 		quest.offer()
-			.respondToRequest("Hello! I'm in need of some unicorn horns to"
-					+ " make some daggers. It is really dangerous in the woods"
+			.respondToRequest("Hello! I'm in need of some " + plItemName
+					+ " to make some daggers. It is really dangerous in the woods"
 					+ " surrounding Atlantis. If you are a brave sort I could"
-					+ " really use some help gathering unicorn horns. Will you"
-					+ " help me?")
-			.respondToUnrepeatableRequest("Thanks, but I don't need any more"
-					+ " help.")
+					+ " really use some help gathering " + plItemName + ". Will"
+					+ " you help me?")
 			.respondToAccept("Great! Be careful out there lots of large"
 					+ " monsters, and those centaurs are really nasty.")
 			.respondToReject("Thats ok, I will find someone else to help me.")
@@ -92,7 +94,12 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			//~ .remind("I have already asked you to get " + quantity
 					//~ + " " + plItemName + ". Are you #done?");
 			.remind("I asked you to bring me " + quantity + " " + plItemName
-					+ ".");
+					+ ".")
+			.respondToUnrepeatableRequest("Thanks, but I don't need any more"
+					+ " help yet.")
+			.respondToRepeatedRequest("I want to make more daggers. I could"
+					+ " really use your help again. Would you gather more "
+					+ plItemName + " for me?");
 
 		quest.task()
 			.requestItem(quantity, itemName);

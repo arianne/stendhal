@@ -141,7 +141,13 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 		en.step(player, "quest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Thanks, but I don't need any more help.",
+			"Thanks, but I don't need any more help yet.",
+			getReply(zelan));
+		player.setQuest(slot, 1, "0");
+		en.step(player, "quest");
+		assertEquals(
+			"I want to make more daggers. I could really use your help again."
+				+ " Would you gather more unicorn horns for me?",
 			getReply(zelan));
 		en.step(player, "bye");
 	}
