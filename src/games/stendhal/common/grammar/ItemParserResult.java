@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                    Copyright © 2003-2023 - Arianne                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.common.grammar;
 
 import java.util.Set;
@@ -33,22 +44,22 @@ public class ItemParserResult {
 	}
 
 	/**
-     * @return the chosenItemName
-     */
-    public String getChosenItemName() {
-	    return chosenItemName;
-    }
+	 * @return the chosenItemName
+	 */
+	public String getChosenItemName() {
+		return chosenItemName;
+	}
 
 	/**
-     * @param chosenItemName the chosenItemName to set
-     */
-    public void setChosenItemName(final String chosenItemName) {
-	    this.chosenItemName = chosenItemName;
-    }
+	 * @param chosenItemName the chosenItemName to set
+	 */
+	public void setChosenItemName(final String chosenItemName) {
+		this.chosenItemName = chosenItemName;
+	}
 
 	/**
-     * @return the partly matching item names
-     */
+	 * @return the partly matching item names
+	 */
 	public Set<String> getMayBeItems() {
 		return mayBeItems;
 	}
@@ -61,7 +72,7 @@ public class ItemParserResult {
 	 * Sets the amount that the player wants to transact with the NPC.
 	 *
 	 * @param amount
-	 *            amount
+	 *     amount
 	 */
 	public void setAmount(final int amount) {
 		if (amount < 1 || amount > 1000) {

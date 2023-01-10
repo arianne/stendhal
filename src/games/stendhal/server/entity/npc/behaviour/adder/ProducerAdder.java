@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ import games.stendhal.server.entity.player.Player;
 public class ProducerAdder {
 	private static final Logger logger = Logger.getLogger(ProducerAdder.class);
 
-    private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
+	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 	/**
 	 * Behaviour parse result in the current conversation.
@@ -47,23 +47,23 @@ public class ProducerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
-    /**
-     * Adds all the dialogue associated with a Producing NPC
-     *
-     * @param npc producer
-     * @param behaviour
-     * @param welcomeMessage
-     */
+	/**
+	 * Adds all the dialogue associated with a Producing NPC
+	 *
+	 * @param npc producer
+	 * @param behaviour
+	 * @param welcomeMessage
+	 */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
-			final String welcomeMessage) {
+		final String welcomeMessage) {
 
-        /** Which NPC is this? */
+		/** Which NPC is this? */
 		final Engine engine = npc.getEngine();
 
-        /** What quest slot is the production stored in? */
-        final String QUEST_SLOT = behaviour.getQuestSlot();
+		/** What quest slot is the production stored in? */
+		final String QUEST_SLOT = behaviour.getQuestSlot();
 
-        /** How should we greet the player? */
+		/** How should we greet the player? */
 		final String thisWelcomeMessage = welcomeMessage;
 
 		/** What is the NPC name? */
@@ -72,8 +72,8 @@ public class ProducerAdder {
 		/* add to producer register */
 		producerRegister.add(npcName, behaviour);
 
-        /* The Player greets the NPC.
-        * The NPC is not currently producing for player (not started, is rejected, or is complete) */
+		/* The Player greets the NPC.
+		* The NPC is not currently producing for player (not started, is rejected, or is complete) */
 		engine.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
@@ -88,18 +88,18 @@ public class ProducerAdder {
 				false, ConversationStates.ATTENDING,
 				null, new ComplainAboutSentenceErrorAction());
 
-        /* In the behaviour a production activity is defined, e.g. 'cast' or 'mill'
-        * and this is used as the trigger to start the production,
-        * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */
-        engine.add(
+		/* In the behaviour a production activity is defined, e.g. 'cast' or 'mill'
+		 * and this is used as the trigger to start the production,
+		 * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */
+		engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
 				new AndCondition(
 					new NotCondition(new SentenceHasErrorCondition()),
 					new QuestNotActiveCondition(QUEST_SLOT)
 				),
-                false,
-                ConversationStates.ATTENDING, null,
+				false,
+				ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
 					public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -121,7 +121,7 @@ public class ProducerAdder {
 					}
 				});
 
-        /* Player agrees to the proposed production deal */
+		/* Player agrees to the proposed production deal */
 		engine.add(ConversationStates.PRODUCTION_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
@@ -134,17 +134,17 @@ public class ProducerAdder {
 					}
 				});
 
-        /* Player does not agree to the proposed production deal */
+		/* Player does not agree to the proposed production deal */
 		engine.add(ConversationStates.PRODUCTION_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				false, ConversationStates.ATTENDING, "OK, no problem.", null);
 
-        /* Player says the production trigger word but the NPC is already producing items for that player */
+		/* Player says the production trigger word but the NPC is already producing items for that player */
 		engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
 				new QuestActiveCondition(QUEST_SLOT),
-                false, ConversationStates.ATTENDING,
+				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence,
@@ -161,9 +161,9 @@ public class ProducerAdder {
 					}
 				});
 
-        /* Player greets NPC and the NPC is already producing items for that player
-         * There are two options: the NPC is still busy or he is finished
-         * The method giveProduct(npc, player) used here takes care of both. */
+		/* Player greets NPC and the NPC is already producing items for that player
+		 * There are two options: the NPC is still busy or he is finished
+		 * The method giveProduct(npc, player) used here takes care of both. */
 		engine.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,

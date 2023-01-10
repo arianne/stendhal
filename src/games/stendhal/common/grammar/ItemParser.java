@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                    Copyright © 2003-2023 - Arianne                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.common.grammar;
 
 import java.util.HashSet;
@@ -14,17 +25,17 @@ public class ItemParser {
 	protected Set<String> itemNames;
 
 	public ItemParser() {
-	    this.itemNames = new HashSet<String>();
-    }
+		this.itemNames = new HashSet<String>();
+	}
 
 	public ItemParser(final Set<String> itemNames) {
-	    this.itemNames = itemNames;
-    }
+		this.itemNames = itemNames;
+	}
 
 	public ItemParser(final String itemName) {
-	    itemNames = new HashSet<String>();
-	    itemNames.add(itemName);
-    }
+		itemNames = new HashSet<String>();
+		itemNames.add(itemName);
+	}
 
 	/**
 	 * @return the recognized item names
@@ -44,18 +55,18 @@ public class ItemParser {
 		final Set<String> iNames = getItemNames();
 
 		if (iNames.isEmpty()) {
-    		List<Expression> expressions = sentence.getExpressions();
-    		String chosenName;
-    		int amount;
+			List<Expression> expressions = sentence.getExpressions();
+			String chosenName;
+			int amount;
 
-    		if (expressions.size() == 1) {
+			if (expressions.size() == 1) {
 				Expression expr = expressions.get(0);
 				amount = expr.getAmount();
 				chosenName = expr.getNormalized();
 			} else {
 				final Expression numeral = sentence.getNumeral();
-	    		amount = numeral!=null? numeral.getAmount(): 1;
-	    		chosenName = sentence.getExpressionStringAfterVerb();
+				amount = numeral!=null? numeral.getAmount(): 1;
+				chosenName = sentence.getExpressionStringAfterVerb();
 			}
 
 			return new ItemParserResult(false, chosenName, amount, null);
@@ -76,34 +87,34 @@ public class ItemParser {
 					&& (sentence.getObjectCount() == 0)) {
 				final Expression number = sentence.getNumeral();
 
-    			// If there is given only a number, return this as amount.
-        		amount = number.getAmount();
-    		} else {
-    			// If there was no match, return the given object name instead
-    			// and set amount to 1.
-        		chosenName = sentence.getExpressionStringAfterVerb();
-        		amount = 1;
-    		}
+				// If there is given only a number, return this as amount.
+				amount = number.getAmount();
+			} else {
+				// If there was no match, return the given object name instead
+				// and set amount to 1.
+				chosenName = sentence.getExpressionStringAfterVerb();
+				amount = 1;
+			}
 
 			if (chosenName == null && iNames.size() == 1) {
-    			// The NPC only offers one type of ware, so
-    			// it's clear what the player wants.
+				// The NPC only offers one type of ware, so
+				// it's clear what the player wants.
 				chosenName = iNames.iterator().next();
 				found = true;
 			} else if (chosenName != null) {
 				mayBeItems = new HashSet<String>();
 
-    			// search for items to sell with compound names, ending with the given expression
-    			for(String name : iNames) {
-    				if (name.endsWith(" "+chosenName)||(name.startsWith(chosenName+" "))) {
-    					mayBeItems.add(name);
-    				}
-    			}
-    		}
+				// search for items to sell with compound names, ending with the given expression
+				for(String name : iNames) {
+					if (name.endsWith(" "+chosenName)||(name.startsWith(chosenName+" "))) {
+						mayBeItems.add(name);
+					}
+				}
+			}
 		}
 
 		return new ItemParserResult(found, chosenName, amount, mayBeItems);
-    }
+	}
 
 	/**
 	 * Answer with an error message in case the request could not be fulfilled.
