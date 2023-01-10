@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *					(C) Copyright 2003-2011 - Stendhal					   *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
- *																		   *
- *	 This program is free software; you can redistribute it and/or modify  *
- *	 it under the terms of the GNU General Public License as published by  *
- *	 the Free Software Foundation; either version 2 of the License, or	   *
- *	 (at your option) any later version.								   *
- *																		   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
@@ -552,15 +552,6 @@ public abstract class UpdateConverter {
 			}
 		}
 
-		// 1.43: Unicorn Horns for Zelan converted to QuestManuscript
-		final String zelanQName = "unicorn_horns_for_zelan";
-		if (player.hasQuest(zelanQName)) {
-			final String[] zelanSlots = player.getQuest(zelanQName).split(";");
-			if (zelanSlots.length == 2) {
-				player.setQuest(zelanQName, zelanSlots[0] + ";;" + zelanSlots[1]);
-			}
-		}
-
 		// fix quest slots for kills quests.
 		fixKillQuestsSlots(player);
 
@@ -571,6 +562,24 @@ public abstract class UpdateConverter {
 		fixMazeQuestSlot(player);
 
 		fixQuestDoneState(player);
+
+		// 1.43: Unicorn Horns for Zelan converted to QuestManuscript
+		String questSlot = "unicorn_horns_for_zelan";
+		if (player.hasQuest(questSlot)) {
+			final String[] zelanSlots = player.getQuest(questSlot).split(";");
+			if (zelanSlots.length == 2) {
+				player.setQuest(questSlot, zelanSlots[0] + ";;" + zelanSlots[1]);
+			}
+		}
+
+		// 1.43: Restock the Flower Shop tracks completions
+		questSlot = "restock_flowershop";
+		if (player.hasQuest(questSlot)) {
+			final String fsState = player.getQuest(questSlot, 0);
+			if (!fsState.equals("done") && !fsState.equals("start")) {
+				player.setQuest(questSlot, "start;;;" + player.getQuest(questSlot));
+			}
+		}
 	}
 
 
