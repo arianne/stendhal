@@ -326,6 +326,8 @@
       <attribute name="move.continuous"/>
     </portal>
 
+    <!-- NPCs -->
+    <!--<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.FletcherNPC"/>-->
   </zone>
 
 
