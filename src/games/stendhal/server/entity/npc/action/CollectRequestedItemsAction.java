@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
@@ -42,6 +43,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	private final ChatAction toExecuteOnCompletion;
 	private final String questSlot;
 	private final ConversationStates stateAfterCompletion;
+	private final int position;
 
 	/**
 	 * create a new CollectRequestedItemsAction
@@ -60,6 +62,18 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		this.alreadyBrought = checkNotNull(alreadyBrought);
 		this.toExecuteOnCompletion = checkNotNull(completionAction);
 		this.stateAfterCompletion = checkNotNull(stateAfterCompletion);
+		this.position = 0;
+	}
+
+	public CollectRequestedItemsAction(String itemName, String quest, int position, String questionForMore,
+			String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
+		this.itemName = checkNotNull(itemName);
+		this.questSlot = checkNotNull(quest);
+		this.questionForMore = checkNotNull(questionForMore);
+		this.alreadyBrought = checkNotNull(alreadyBrought);
+		this.toExecuteOnCompletion = checkNotNull(completionAction);
+		this.stateAfterCompletion = checkNotNull(stateAfterCompletion);
+		this.position = position;
 	}
 
 	@Override
@@ -99,7 +113,8 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		// parse the quest state into a list of still missing items
 		final ItemCollection itemsTodo = new ItemCollection();
 
-		itemsTodo.addFromQuestStateString(player.getQuest(questSlot));
+		String questState = player.getQuest(questSlot);
+		itemsTodo.addFromQuestStateString(questState, position);
 
 		if (player.drop(itemName, itemCount)) {
 			if (itemsTodo.removeItem(itemName, itemCount)) {
@@ -134,7 +149,10 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 		 // update the quest state if some items are handed over
 		if (result) {
-			player.setQuest(questSlot, itemsTodo.toStringForQuestState());
+			// preserve slots preceding indexed position
+			questState = String.join(";", Arrays.copyOfRange(questState.split(";"), 0, position))
+					+ ";" + itemsTodo.toStringForQuestState();
+			player.setQuest(questSlot, questState);
 		}
 
 		return result;
@@ -149,7 +167,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	ItemCollection getMissingItems(final Player player) {
 		final ItemCollection missingItems = new ItemCollection();
 
-		missingItems.addFromQuestStateString(player.getQuest(questSlot));
+		missingItems.addFromQuestStateString(player.getQuest(questSlot), position);
 
 		return missingItems;
 	}
@@ -161,7 +179,8 @@ public final class CollectRequestedItemsAction implements ChatAction {
 				+ 5077 * (questionForMore.hashCode()
 				+ 5081 * (alreadyBrought.hashCode()
 				+ 5087 * (toExecuteOnCompletion.hashCode()
-				+ 5099 * stateAfterCompletion.hashCode())))));
+				+ 5099 * stateAfterCompletion.hashCode()))))
+				* position);
 	}
 
 	@Override
@@ -175,7 +194,8 @@ public final class CollectRequestedItemsAction implements ChatAction {
 			&& questionForMore.equals(other.questionForMore)
 			&& alreadyBrought.equals(other.alreadyBrought)
 			&& toExecuteOnCompletion.equals(other.toExecuteOnCompletion)
-			&& stateAfterCompletion.equals(other.stateAfterCompletion);
+			&& stateAfterCompletion.equals(other.stateAfterCompletion)
+			&& position == other.position;
 	}
 
 	@Override

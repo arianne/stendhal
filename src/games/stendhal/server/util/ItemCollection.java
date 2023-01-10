@@ -70,6 +70,9 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	public void addFromQuestStateString(final String str, final int position, final String delim) {
 		if (str != null) {
 			String[] items = str.split(delim);
+			if (position > items.length) {
+				return;
+			}
 			items = Arrays.copyOfRange(items, position, items.length);
 			for (final String item: items) {
 				final String[] pair = item.split("=");
