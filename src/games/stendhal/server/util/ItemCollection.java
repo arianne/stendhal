@@ -33,33 +33,33 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Construct an ItemCollection from a quest state string in
-     * the form "item1=n1;item2=n2;...".
-     *
-     * @param str
-     * 		Quest state string.
-     */
+	 * Construct an ItemCollection from a quest state string in
+	 * the form "item1=n1;item2=n2;...".
+	 *
+	 * @param str
+	 *     Quest state string.
+	 */
 	public void addFromQuestStateString(final String str) {
 		addFromQuestStateString(str, 0);
 	}
 
 	/**
-     * Construct an ItemCollection from a quest state string in
-     * the form "item1=n1;item2=n2;...".
-     *
+	 * Construct an ItemCollection from a quest state string in
+	 * the form "item1=n1;item2=n2;...".
+	 *
 	 * @param str
-	 * 		Quest state string.
+	 *     Quest state string.
 	 * @param position
-	 * 		Index of item list in quest state string.
+	 *     Index of item list in quest state string.
 	 */
 	public void addFromQuestStateString(final String str, final int position) {
 		addFromQuestStateString(str, position, ";");
 	}
 
 	/**
-     * Construct an ItemCollection from a quest state string in
-     * the form "item1=n1;item2=n2;..." or "item1=n1,item2=n2,...".
-     *
+	 * Construct an ItemCollection from a quest state string in
+	 * the form "item1=n1;item2=n2;..." or "item1=n1,item2=n2,...".
+	 *
 	 * @param str
 	 *     Quest state string.
 	 * @param position
@@ -67,67 +67,67 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	 * @param delim
 	 *     Character used to split string.
 	 */
-    public void addFromQuestStateString(final String str, final int position, final String delim) {
-	    if (str != null) {
-	    	String[] items = str.split(delim);
-		items = Arrays.copyOfRange(items, position, items.length);
-		for (final String item: items) {
-		  final String[] pair = item.split("=");
-		  if (pair.length > 1) {
-		    addItem(pair[0], Integer.parseInt(pair[1]));
-		  }
-		}
+	public void addFromQuestStateString(final String str, final int position, final String delim) {
+		if (str != null) {
+			String[] items = str.split(delim);
+			items = Arrays.copyOfRange(items, position, items.length);
+			for (final String item: items) {
+				final String[] pair = item.split("=");
+				if (pair.length > 1) {
+					addItem(pair[0], Integer.parseInt(pair[1]));
+				}
+			}
 		}
 	}
 
-    /**
-     * Adds a list of items from a comma separated string.
-     *
-     * @param str
-     * 		Comma-separate string to parse.
-     */
-    public void addFromString(final String str) {
-    	if (str != null) {
-    		final List<String> items = Arrays.asList(str.split(","));
-    		for (final String item : items) {
-    			final String[] pair = item.split("=");
-    			if (pair.length > 1) {
-    				addItem(pair[0], Integer.parseInt(pair[1]));
-    			}
-    		}
-    	}
-    }
+	/**
+	 * Adds a list of items from a comma separated string.
+	 *
+	 * @param str
+	 *     Comma-separate string to parse.
+	 */
+	public void addFromString(final String str) {
+		if (str != null) {
+			final List<String> items = Arrays.asList(str.split(","));
+			for (final String item : items) {
+				final String[] pair = item.split("=");
+				if (pair.length > 1) {
+					addItem(pair[0], Integer.parseInt(pair[1]));
+				}
+			}
+		}
+	}
 
-    /**
-     * Return the items as quest state string.
-     * @return semicolon separated states list
-     */
-    public String toStringForQuestState() {
-    	return toStringForQuestState(false);
-    }
+	/**
+	 * Return the items as quest state string.
+	 * @return semicolon separated states list
+	 */
+	public String toStringForQuestState() {
+		return toStringForQuestState(false);
+	}
 
-    public String toStringForQuestState(final boolean commaString) {
-        final StringBuilder sb = new StringBuilder();
-        boolean first = true;
+	public String toStringForQuestState(final boolean commaString) {
+		final StringBuilder sb = new StringBuilder();
+		boolean first = true;
 
-        for (final Map.Entry<String, Integer> e : entrySet()) {
-            if (first) {
-                first = false;
-            } else {
-            	if (!commaString) {
-            		sb.append(";");
-            	} else {
-            		sb.append(",");
-            	}
-            }
+		for (final Map.Entry<String, Integer> e : entrySet()) {
+			if (first) {
+				first = false;
+			} else {
+				if (!commaString) {
+					sb.append(";");
+				} else {
+					sb.append(",");
+				}
+			}
 
-            sb.append(e.getKey());
-            sb.append("=");
-            sb.append(e.getValue());
-        }
+			sb.append(e.getKey());
+			sb.append("=");
+			sb.append(e.getValue());
+		}
 
-        return sb.toString();
-    }
+		return sb.toString();
+	}
 
 	/**
 	 * Remove the specified amount of items from the collection.
@@ -136,66 +136,66 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	 * @return true if amount has been updated
 	 */
 	public boolean removeItem(final String itemName, final int amount) {
-    	Integer curAmount = get(itemName);
+		Integer curAmount = get(itemName);
 
-    	if (curAmount != null) {
-        	if (curAmount >= amount) {
-        		curAmount -= amount;
+		if (curAmount != null) {
+			if (curAmount >= amount) {
+				curAmount -= amount;
 
-        		if (curAmount > 0) {
-                    put(itemName, curAmount);
-        		} else {
-        		    remove(itemName);
-        		}
+				if (curAmount > 0) {
+					put(itemName, curAmount);
+				} else {
+					remove(itemName);
+				}
 
-        		return true;
-        	} else {
-        		return false;
-        	}
-        }
+				return true;
+			} else {
+				return false;
+			}
+		}
 
-    	return false;
+		return false;
 	}
 
-    /**
-     * Add the specified amount of items to the collection.
-     * @param itemName
-     * @param amount
-     */
-    public void addItem(final String itemName, final int amount) {
-        final Integer curAmount = get(itemName);
+	/**
+	 * Add the specified amount of items to the collection.
+	 * @param itemName
+	 * @param amount
+	 */
+	public void addItem(final String itemName, final int amount) {
+		final Integer curAmount = get(itemName);
 
-        if (curAmount != null) {
-            put(itemName, curAmount + amount);
-        } else {
-            put(itemName, amount);
-        }
-    }
+		if (curAmount != null) {
+			put(itemName, curAmount + amount);
+		} else {
+			put(itemName, amount);
+		}
+	}
 
-    /**
-     * @return a String list containing the items in the format "n item".
-     */
-    public List<String> toStringList() {
-        final List<String> result = new LinkedList<String>();
+	/**
+	 * @return a String list containing the items in the format "n item".
+	 */
+	public List<String> toStringList() {
+		final List<String> result = new LinkedList<String>();
 
-        for (final Map.Entry<String, Integer> entry : entrySet()) {
-            result.add(Grammar.quantityplnoun(entry.getValue(), entry.getKey()));
-        }
+		for (final Map.Entry<String, Integer> entry : entrySet()) {
+			result.add(Grammar.quantityplnoun(entry.getValue(), entry.getKey()));
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    /**
-     * @return a String list containing the items in the format "n #item, ...".
-     */
-    public List<String> toStringListWithHash() {
-        final List<String> result = new LinkedList<String>();
+	/**
+	 * @return a String list containing the items in the format "n #item, ...".
+	 */
+	public List<String> toStringListWithHash() {
+		final List<String> result = new LinkedList<String>();
 
-        for (final Map.Entry<String, Integer> item : entrySet()) {
-            result.add(Grammar.quantityplnounWithHash(item.getValue(), item.getKey()));
-        }
+		for (final Map.Entry<String, Integer> item : entrySet()) {
+			result.add(Grammar.quantityplnounWithHash(item.getValue(), item.getKey()));
+		}
 
-        return result;
-    }
+		return result;
+	}
 
 }
