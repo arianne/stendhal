@@ -25,6 +25,7 @@ Changelog
 - new achievements:
   - Fairgoer: Bring Bobby 5 balloons
   - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
+  - Floral Fondness: Help restock Nalwor flower shop 50 times
 - new item: amethyst
 - Unicorn Horns for Zelan quest is now repeatable
 - Restock the Flower Shop quest now tracks completions

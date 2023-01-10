@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,6 +29,9 @@ import games.stendhal.server.maps.Region;
  * @author madmetzger
  */
 public class QuestAchievementFactory extends AbstractAchievementFactory {
+
+	public static final String ID_FLOWERSHOP = "quest.flowershop.0050";
+
 
 	@Override
 	protected Category getCategory() {
@@ -73,6 +76,13 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 			"Serve up 50 decent meals to Groongo Rahnnt",
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("meal_for_groongo", 7, 49)));
+
+		// Restock the Flower Shop
+		achievements.add(createAchievement(
+			ID_FLOWERSHOP, "Floral Fondness",
+			"Help restock Nalwor flower shop 50 times",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("restock_flowershop", 2, 49)));
 
 		// have completed all quests in Semos City?
 		achievements.add(createAchievement(
