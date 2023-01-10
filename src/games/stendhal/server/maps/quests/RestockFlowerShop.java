@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                    Copyright © 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -230,6 +230,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
+						new IncreaseKarmaAction(5.0),
 						new StartItemsCollectionWithLimitAction(QUEST_SLOT, 0, flowerTypes, MAX_FLOWERS),
 						new AddItemToCollectionAction(QUEST_SLOT, "water", REQ_WATER),
 						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Great! Here is what I need: [items]."))
