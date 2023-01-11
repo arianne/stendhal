@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,6 +45,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.events.AttackEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.TransferContent;
@@ -342,6 +343,12 @@ public class StendhalRPAction {
 			beaten = player.canHit(defender);
 		}
 
+		// try to inflict status effect
+		final List<StatusAttacker> allStatusAttackers = player.getAllStatusAttackers();
+		for (final StatusAttacker statusAttacker: allStatusAttackers) {
+			statusAttacker.onAttackAttempt(defender, player);
+		}
+
 		// equipment that are broken are added to this list
 		final List<BreakableItem> broken = new ArrayList<>();
 
@@ -384,7 +391,12 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + 0);
 			}
 
-			//deteriorate weapons of attacker
+			// try to inflict status effect
+			for (final StatusAttacker statusAttacker: allStatusAttackers) {
+				statusAttacker.onHit(defender, player, damage);
+			}
+
+			// deteriorate weapons of attacker
 			for (final Item weapon: weapons) {
 				weapon.deteriorate(player);
 
