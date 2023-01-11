@@ -124,7 +124,7 @@ public class GameScreenSpriteHelper {
 	 * @return
 	 *     The X coordinate of the left side.
 	 */
-	static int getScreenViewX() {
+	public static int getScreenViewX() {
 		return svx;
 	}
 
@@ -144,7 +144,7 @@ public class GameScreenSpriteHelper {
 	 * @return
 	 *     The Y coordinate of the left side.
 	 */
-	static int getScreenViewY() {
+	public static int getScreenViewY() {
 		return svy;
 	}
 
