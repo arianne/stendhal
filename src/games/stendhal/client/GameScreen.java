@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -243,6 +243,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		// Drawing is done in EDT
 		gsHelper.setTexts(Collections.synchronizedList(new LinkedList<RemovableSprite>()));
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
+		gsHelper.setEmojis(Collections.synchronizedList(new LinkedList<RemovableSprite>()));
 
 		// create ground
 		ground = new GroundContainer(client, this, this);
@@ -591,6 +592,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 		// Don't scale text to keep it readable
 		drawText(g2d);
+		drawEmojis(g2d);
 
 		paintOffLineIfNeeded(g2d);
 		graphics.dispose();
@@ -717,6 +719,21 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		}
 	}
 
+	private void drawEmojis(final Graphics2D g2d) {
+		final List<RemovableSprite> emojis = gsHelper.getEmojis();
+		synchronized (emojis) {
+			Iterator<RemovableSprite> it = emojis.iterator();
+			while (it.hasNext()) {
+				RemovableSprite emoji = it.next();
+				if (!emoji.shouldBeRemoved()) {
+					emoji.drawEmoji(g2d);
+				} else {
+					it.remove();
+				}
+			}
+		}
+	}
+
 	/**
 	 * Get the view X world coordinate.
 	 *
@@ -802,12 +819,22 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		staticSprites.remove(entity);
 	}
 
+	public void addEmoji(final Sprite emoji, final Entity entity) {
+		gsHelper.addEmoji(new RemovableSprite(emoji, entity,
+				RemovableSprite.STANDARD_PERSISTENCE_TIME));
+	}
+
+	public void removeEmoji(final RemovableSprite entity) {
+		gsHelper.removeEmoji(entity);
+	}
+
 	/**
 	 * Remove all map objects.
 	 */
 	private void removeAllObjects() {
 		logger.debug("CLEANING screen object list");
 		gsHelper.clearTexts();
+		gsHelper.clearEmojis();
 		// staticSprites contents are not zone specific, so don't clear those
 	}
 
@@ -815,6 +842,11 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	public void clearTexts() {
 		gsHelper.clearTexts();
 		staticSprites.clear();
+		clearEmojis();
+	}
+
+	public void clearEmojis() {
+		gsHelper.clearEmojis();
 	}
 
 	@Override

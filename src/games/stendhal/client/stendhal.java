@@ -263,6 +263,9 @@ public final class stendhal {
 		StendhalFirstScreen splash;
 
 		Startup(String[] args) {
+			// initialize emoji data
+			ClientSingletonRepository.getEmojiStore().init();
+
 			final UserContext userContext = UserContext.get();
 			final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 			final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);

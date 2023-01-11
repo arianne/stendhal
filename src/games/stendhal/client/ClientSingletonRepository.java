@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,8 @@ package games.stendhal.client;
 import games.stendhal.client.gui.ScreenController;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
+import games.stendhal.client.sprite.EmojiStore;
+import games.stendhal.client.sprite.SpriteStore;
 import marauroa.client.ClientFramework;
 
 /**
@@ -82,5 +84,16 @@ public class ClientSingletonRepository {
 	 */
 	public static SoundSystemFacade getSound() {
 		return userInterface.getSoundSystemFacade();
+	}
+
+	public static SpriteStore getSpriteStore() {
+		return SpriteStore.get();
+	}
+
+	/**
+	 * Emoji sprites data.
+	 */
+	public static EmojiStore getEmojiStore() {
+		return EmojiStore.get();
 	}
 }

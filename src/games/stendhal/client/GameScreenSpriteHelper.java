@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,6 +37,8 @@ public class GameScreenSpriteHelper {
 	 * The text bubbles.
 	 */
 	private static List<RemovableSprite> texts;
+
+	private static List<RemovableSprite> emojis;
 
 
 	/**
@@ -188,6 +190,26 @@ public class GameScreenSpriteHelper {
 	 */
 	static void clearTexts() {
 		texts.clear();
+	}
+
+	static void setEmojis(final List<RemovableSprite> e) {
+		emojis = e;
+	}
+
+	static List<RemovableSprite> getEmojis() {
+		return emojis;
+	}
+
+	static void addEmoji(final RemovableSprite emoji) {
+		emojis.add(emoji);
+	}
+
+	static void removeEmoji(final RemovableSprite emoji) {
+		emojis.remove(emoji);
+	}
+
+	static void clearEmojis() {
+		emojis.clear();
 	}
 
 	/**

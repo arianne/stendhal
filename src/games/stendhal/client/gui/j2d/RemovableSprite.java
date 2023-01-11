@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -138,6 +138,14 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 		int sy = getAttachedY();
 
 		sprite.draw(g, sx, sy);
+	}
+
+	public void drawEmoji(final Graphics g) {
+		final int svx = gsHelper.getScreenViewX();
+		final int svy = gsHelper.getScreenViewY();
+		final int sx = gsHelper.convertWorldToPixelUnits(owner.getX());
+		final int sy = gsHelper.convertWorldToPixelUnits(owner.getY());
+		sprite.draw(g, sx - svx - 16, sy - svy - 32);
 	}
 
 	private int getAttachedX() {

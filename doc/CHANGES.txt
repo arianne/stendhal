@@ -42,6 +42,9 @@ Changelog
 - added HP bar to stats panel
 - added karma bar to stats panel
 
+*java client*
+- added emoji support
+
 
 1.42
 

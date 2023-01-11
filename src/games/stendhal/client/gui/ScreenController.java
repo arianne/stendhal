@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -171,6 +171,23 @@ public class ScreenController implements PositionChangeListener {
 				}
 			});
 		}
+	}
+
+	/**
+	 * Adds an emoji image to entity.
+	 *
+	 * @param entity
+	 *     Attached entity.
+	 * @param emoji
+	 *     The emoji image.
+	 */
+	public void addEmoji(final Entity entity, final Sprite emoji) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				screen.addEmoji(emoji, entity);
+			}
+		});
 	}
 
 	/**
