@@ -1,0 +1,105 @@
+{
+  "emojilist":
+  {
+    "angermark": true,
+    "cry": true,
+    "expressionless": true,
+    "frown": true,
+    "frownslight": true,
+    "grin": true,
+    "heart": true,
+    "neutral": true,
+    "savor": true,
+    "smile": true,
+    "smileinvert": true,
+    "smileslight": true,
+    "sweat": true,
+    "tongue": true,
+    "wink": true,
+    "winktongue": true
+  },
+
+  "emojimap":
+  {
+    ":anger:": "angermark",
+    ":angry:": "angermark",
+    "💢": "angermark",
+
+    ":'(": "cry",
+    ")':": "cry",
+    ":crying:": "cry",
+    "😢": "cry",
+
+    "-_-": "expressionless",
+    ":noexpression:": "expressionless",
+    "😑": "expressionless",
+
+    ":-(": "frown",
+    ")-:": "frown",
+    ":frowning:": "frown",
+    "\u2639": "frown",
+
+    ":(": "frownslight",
+    "):": "frownslight",
+    ":slightfrown:": "frownslight",
+    "🙁": "frownslight",
+
+    ":D": "grin",
+    ":-D": "grin",
+    ":grinning:": "grin",
+    "😀": "grin",
+    "😃": "grin",
+
+    "<3": "heart",
+    ":love:": "heart",
+    "\u2764": "heart",
+
+    ":-|": "neutral",
+    ":meh:": "neutral",
+    ":unamused:": "neutral",
+    "😐": "neutral",
+
+    ":yum:": "savor",
+    "😋": "savor",
+
+    ":)": "smile",
+    ":-)": "smile",
+    ":smiling:": "smile",
+    ":smiley:": "smile",
+    "\u263a": "smile",
+    "\u263b": "smile",
+
+    "(:": "smileinvert",
+    "(-:": "smileinvert",
+    ":smileinverted:": "smileinvert",
+    ":invertsmile:": "smileinvert",
+    ":invertedsmile:": "smileinvert",
+    ":upsidedownsmile:": "smileinvert",
+    ":silly:": "smileinvert",
+    "🙃": "smileinvert",
+
+    ":slightsmile:": "smileslight",
+    "🙂": "smileslight",
+
+    ":sweating:": "sweat",
+    ":nervous:": "sweat",
+    "💧": "sweat",
+
+    ":p": "tongue",
+    ":P": "tongue",
+    ":-p": "tongue",
+    ":-P": "tongue",
+    "😛": "tongue",
+
+    ";)": "wink",
+    ";-)": "wink",
+    ":winking:": "wink",
+    "😉": "wink",
+
+    ";p": "winktongue",
+    ";P": "winktongue",
+    ";-p": "winktongue",
+    ";-P": "winktongue",
+    "😜": "winktongue"
+  }
+}

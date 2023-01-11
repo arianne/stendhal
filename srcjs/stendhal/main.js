@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -248,6 +248,8 @@ stendhal.main = {
 
 		// cache tileset animations
 		Animation.get().loadAnimations();
+		// initialize emoji data
+		singletons.getEmojiStore().init();
 
 		new DesktopUserInterfaceFactory().create();
 

@@ -14,115 +14,12 @@ import { Paths } from "../data/Paths";
 declare var stendhal: any;
 
 
-const emojilist: {[name: string]: boolean} = {
-	"angermark": true,
-	"cry": true,
-	"expressionless": true,
-	"frown": true,
-	"frownslight": true,
-	"grin": true,
-	"heart": true,
-	"neutral": true,
-	"savor": true,
-	"smile": true,
-	"smileinvert": true,
-	"smileslight": true,
-	"sweat": true,
-	"tongue": true,
-	"wink": true,
-	"winktongue": true
-};
-
-const emojimap: {[key: string]: string} = {
-	// NOTE: must use raw characters for unicode codes with more
-	//       than 4 digits
-
-	":anger:": "angermark",
-	":angry:": "angermark",
-	"💢": "angermark",
-
-	":'(": "cry",
-	")':": "cry",
-	":crying:": "cry",
-	"😢": "cry",
-
-	"-_-": "expressionless",
-	":noexpression:": "expressionless",
-	"😑": "expressionless",
-
-	":-(": "frown",
-	")-:": "frown",
-	":frowning:": "frown",
-	"\u2639": "frown",
-
-	":(": "frownslight",
-	"):": "frownslight",
-	":slightfrown:": "frownslight",
-	"🙁": "frownslight",
-
-	":D": "grin",
-	":-D": "grin",
-	":grinning:": "grin",
-	"😀": "grin",
-	"😃": "grin",
-
-	"<3": "heart",
-	":love:": "heart",
-	"\u2764": "heart",
-
-	":-|": "neutral",
-	":meh:": "neutral",
-	":unamused:": "neutral",
-	"😐": "neutral",
-
-	":yum:": "savor",
-	"😋": "savor",
-
-	":)": "smile",
-	":-)": "smile",
-	":smiling:": "smile",
-	":smiley:": "smile",
-	"\u263a": "smile",
-	"\u263b": "smile",
-
-	"(:": "smileinvert",
-	"(-:": "smileinvert",
-	":smileinverted:": "smileinvert",
-	":invertsmile:": "smileinvert",
-	":invertedsmile:": "smileinvert",
-	":upsidedownsmile:": "smileinvert",
-	":silly:": "smileinvert",
-	"🙃": "smileinvert",
-
-	":slightsmile:": "smileslight",
-	"🙂": "smileslight",
-
-	":sweating:": "sweat",
-	":nervous:": "sweat",
-	"💧": "sweat",
-
-	":p": "tongue",
-	":P": "tongue",
-	":-p": "tongue",
-	":-P": "tongue",
-	"😛": "tongue",
-
-	";)": "wink",
-	";-)": "wink",
-	":winking:": "wink",
-	"😉": "wink",
-
-	";p": "winktongue",
-	";P": "winktongue",
-	";-p": "winktongue",
-	";-P": "winktongue",
-	"😜": "winktongue"
-};
-
-
 export class EmojiStore {
 
 	private static instance: EmojiStore;
+
+	private emojilist: {[name: string]: boolean} = {};
+	private emojimap: {[key: string]: string} = {};
 
 
 	/**
@@ -145,6 +42,18 @@ export class EmojiStore {
 	 */
 	private constructor() {
 		// do nothing
+	}
+
+	/**
+	 * Loads emoji data from JSON.
+	 */
+	public init() {
+		fetch(Paths.sprites + "/emoji/emojis.json", {
+				headers: {"Content-Type": "application/json"}
+		}).then(resp => resp.json()).then(emojidata => {
+				this.emojilist = emojidata["emojilist"];
+				this.emojimap = emojidata["emojimap"];
+		});
 	}
 
 	/**
@@ -172,7 +81,7 @@ export class EmojiStore {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	check(text: string): string|undefined {
-		let name = emojimap[text];
+		let name = this.emojimap[text];
 		if (!name && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substr(0, text.length - 1).substr(1);
 			if (this.isAvailable(text)) {
@@ -209,6 +118,6 @@ export class EmojiStore {
 		if (name.startsWith(":") && name.endsWith(":")) {
 			name = name.substr(0, name.length - 1).substr(1);
 		}
-		return emojilist[name] == true;
+		return this.emojilist[name] == true;
 	}
 }
