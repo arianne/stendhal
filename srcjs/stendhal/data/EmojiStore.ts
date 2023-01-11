@@ -120,4 +120,15 @@ export class EmojiStore {
 		}
 		return this.emojilist[name] == true;
 	}
+
+	/**
+	 * Get a list of available emojis.
+	 */
+	getEmojiList(): string[] {
+		const el: string[] = [];
+		for (const emoji in this.emojilist) {
+			el.push(":" + emoji + ":");
+		}
+		return el.sort();
+	}
 }

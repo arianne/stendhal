@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,7 +90,8 @@ class HelpAction implements SlashAction {
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
 				"- /help \tShow help information.",
-				"- /" + REMOVEDETAIL + " \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character."
+				"- /" + REMOVEDETAIL + " \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character.",
+				"- /emojilist \tList available emojis."
 		};
 
 		for (final String line : lines) {

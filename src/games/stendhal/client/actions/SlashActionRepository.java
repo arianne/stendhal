@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -134,6 +134,8 @@ public class SlashActionRepository {
 
 		// allows players to remove the detail layer manually
 		actions.put(REMOVEDETAIL, new RemoveDetailAction());
+
+		actions.put("emojilist", new EmojiListAction());
 	}
 
 	/**

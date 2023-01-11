@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -268,6 +268,15 @@ stendhal.slashActionRepository = {
 		maxParams: 1
 	},
 
+	"emojilist": {
+		execute: function(type, params, remainder) {
+			const emojis = singletons.getEmojiStore().getEmojiList();
+			Chat.log("client", emojis);
+		},
+		minParams: 0,
+		maxParams: 0
+	},
+
 	"gag": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -363,7 +372,8 @@ stendhal.slashActionRepository = {
 				"- /info \t\tFind out what the current server time is.",
 				"- /clear \tClear chat log.",
 				"- /help \tShow help information.",
-				"- /removedetail \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character."
+				"- /removedetail \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character.",
+				"- /emojilist \tList available emojis."
 			];
 			for (var i = 0; i < msg.length; i++) {
 				Chat.log("info", msg[i]);

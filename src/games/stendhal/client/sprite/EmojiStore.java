@@ -151,4 +151,11 @@ public class EmojiStore {
 		}
 		return emojilist.contains(name);
 	}
+
+	/**
+	 * Get a list of available emojis.
+	 */
+	public List<String> getEmojiList() {
+		return emojilist;
+	}
 }
