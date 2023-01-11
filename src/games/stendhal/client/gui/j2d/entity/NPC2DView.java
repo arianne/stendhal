@@ -62,7 +62,8 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 	public void initialize(final T entity) {
 		super.initialize(entity);
 		if (entity.showTitle()) {
-			if (entity.getName().startsWith("Zekiel")) {
+			final String ename = entity.getName();
+			if (ename != null && ename.startsWith("Zekiel")) {
 				// Zekiel uses transparentnpc sprite but he is taller
 				titleDrawYOffset = -32;
 			}
