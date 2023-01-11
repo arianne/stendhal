@@ -21,7 +21,9 @@ declare var stendhal: any;
 // server doesn't distinguish between music & looped sound effects so we
 // need make some mappings to tell client which directory to use
 const sfxLoops: {[name: string]: boolean} = {
-	"clock-1": true
+	"clock-1": true,
+	"fire-1": true,
+	"sleep-1": true
 }
 
 export class LoopedSoundSourceManager {
