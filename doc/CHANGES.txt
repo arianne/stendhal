@@ -30,6 +30,7 @@ Changelog
 - new item: amethyst
 - Unicorn Horns for Zelan quest is now repeatable
 - Restock the Flower Shop quest now tracks completions
+- weapons can now inflict status effects
 
 *web client*
 - added support for drawing weather effects

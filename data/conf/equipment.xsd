@@ -8,6 +8,7 @@
         <extension base="Q1:attributes">
           <sequence>
             <element name="min_level" type="Q1:attribute" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="statusattack" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
           </sequence>
         </extension>
       </complexContent>

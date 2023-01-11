@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,9 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
@@ -34,6 +37,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusType;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
@@ -80,6 +84,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 	/** The damage type of weapons */
 	private Nature damageType = Nature.CUT;
+
+	private ImmutableList<StatusAttacker> statusAttackers = ImmutableList.of();
 
 	private Map<Nature, Double> susceptibilities;
 
@@ -655,6 +661,22 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 */
 	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
+	}
+
+	/**
+	 * Add a status attack type to the item.
+	 *
+	 * @param statusAttacker
+	 *     Inflictable status effect.
+	 */
+	public void addStatusAttacker(final StatusAttacker statusAttacker) {
+		// the immutable statusAttackers list is shared between multiple instances of items to reduce memory usage
+		Builder<StatusAttacker> builder = ImmutableList.builder();
+		statusAttackers = builder.addAll(statusAttackers).add(statusAttacker).build();
+	}
+
+	public List<StatusAttacker> getStatusAttackers() {
+		return statusAttackers;
 	}
 
 	/**

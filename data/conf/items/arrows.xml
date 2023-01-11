@@ -199,7 +199,6 @@
     </equipable>
   </item>
 
-<!-- FIXME: need to implement status attacks for weapons
   <item name="poison arrow">
     <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
     <description>You see a poison arrow. The tip has been saturated with a poisonous compound.</description>
@@ -210,7 +209,9 @@
       <range value="2"/>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+      <unattainable>true</unattainable>
       <min_level value="0"/>
+      <statusattack value="5,poison"/>
     </attributes>
     <weight value="0.1"/>
     <value value="50"/>
@@ -223,6 +224,5 @@
       <slot name="rhand"/>
     </equipable>
   </item>
--->
 
 </items>

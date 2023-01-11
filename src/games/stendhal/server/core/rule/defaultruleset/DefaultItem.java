@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,9 @@ import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator
 import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
+import games.stendhal.server.entity.status.PoisonAttackerFactory;
+import games.stendhal.server.entity.status.StatusAttacker;
+import games.stendhal.server.entity.status.StatusAttackerFactory;
 import games.stendhal.server.entity.status.StatusType;
 
 /**
@@ -73,6 +76,8 @@ public class DefaultItem {
 
 	/* List of status effects to be added to StatusResistantIte. */
 	private Map<StatusType, Double> resistances;
+
+	private String[] statusAttacks;
 
 	/* Slots where SlotActivatedItem can be activated when equipped. */
 	private List<String> activeSlotsList;
@@ -140,6 +145,10 @@ public class DefaultItem {
 		for (Entry<String, Double> entry : sus.entrySet()) {
 			susceptibilities.put(Nature.parse(entry.getKey()), entry.getValue());
 		}
+	}
+
+	public void setStatusAttacks(final String statusAttacks) {
+		this.statusAttacks = statusAttacks.split(";");
 	}
 
 	/**
@@ -270,6 +279,21 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
+
+			// status attackers
+			if (statusAttacks != null) {
+				for (final String statk: statusAttacks) {
+					StatusAttacker statusAttacker;
+					if (statk.contains("poison")) {
+						statusAttacker = PoisonAttackerFactory.get(statk);
+					} else {
+						statusAttacker = StatusAttackerFactory.get(statk);
+					}
+					if (statusAttacker != null) {
+						item.addStatusAttacker(statusAttacker);
+					}
+				}
+			}
 
 			/* Set a list of status resistances for StatusResistantItem. */
 			if ((this.resistances != null) && (!this.resistances.isEmpty())) {
