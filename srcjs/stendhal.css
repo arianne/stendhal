@@ -2,6 +2,7 @@
 :root {
   --text-color-online: #0a0;
   --text-color-offline: #aaa;
+  overflow: hidden;
 }
 
 body {
@@ -31,13 +32,16 @@ ul.uniform {
   width: 128px;
   height: 175px;
   float: left;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1;
 }
 
 #buddyList ul {
   list-style-type: none;
   margin: 0;
   padding: 0.1em;
+  white-space: nowrap;
 }
 
 #menubutton {
@@ -89,6 +93,7 @@ div.quickPickup div.itemSlot {
   display: block;
   color: #000;
   background-color: #FFF;
+  flex: 1;
 }
 
 #zoneinfo {
@@ -168,9 +173,28 @@ div.logcolR {
   width: 100%
 }
 
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  height: 99vh;
+}
+
 #leftColumn {
   float: left;
-  width: 130px
+  width: 130px;
+}
+
+#middleColumn {
+  float: left;
+  width: 640px;
+  max-width: calc(100vw - 130px - 150px - 10px);
+  background-color: #000;
+}
+
+#rightColumn {
+  float: left;
+  width: 150px;
+  overflow: auto;
 }
 
 #minimap {
@@ -179,12 +203,16 @@ div.logcolR {
 }
 
 #gamewindow {
-  float: left
+  display: block;
+  max-height: calc(100vh - 5em);
+  max-width: calc((100vh - 5em) * 640 / 480);
 }
 
-#rightColumn {
-  float: left;
-  width: 130px
+
+#bottomPanel {
+  flex: 1;
+  height: auto;
+  overflow: hidden;
 }
 
 #equipmentborder {
