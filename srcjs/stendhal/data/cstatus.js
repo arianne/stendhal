@@ -17,7 +17,7 @@ stendhal.data = stendhal.data || {};
 stendhal.data.cstatus = {
 
 	send: function() {
-		if (!marauroa.me || stendhal.data.cache.get("cid") === "noIndexedDB") {
+		if (!marauroa.me) {
 			window.setTimeout(stendhal.data.cstatus.send, 1000);
 			return;
 		}

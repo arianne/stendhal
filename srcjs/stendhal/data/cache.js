@@ -43,11 +43,17 @@ stendhal.data.cache = {
 			};
 		}
 
+		let cacheId = null;
+		try {
+			cacheId = localStorage.getItem("cache.cid");
+		} catch (e) {
+			// ignore
+		}
 		stendhal.data.cache.sync = {
-			"cid": "noIndexedDB"
+			"cid": cacheId
 		};
 
-		if (!window.indexedDB) {
+		if (cacheId || !window.indexedDB) {
 			return;
 		}
 		var open = indexedDB.open("stendhal", 1);
@@ -63,16 +69,19 @@ stendhal.data.cache = {
 				var len = items.length;
 				for (var i = 0; i < len; i += 1) {
 					stendhal.data.cache.sync[items[i].key] = items[i].data;
+					try {
+						cacheId = localStorage.setItem("cache.cid", items[i].data);
+					} catch (e) {
+						// ignore
+					}
 				}
-				if (stendhal.data.cache.sync["cid"] === "noIndexedDB") {
+				if (!stendhal.data.cache.sync["cid"]) {
 					stendhal.data.cache.put("cid", (Math.random()*1e48).toString(36));
 				}
 			});
 		};
-		open.onerror = function(event) {
-			marauroa = {};
-			stendhal = {};
-			alert("Could not initialize cache.");
+		open.onerror = function() {
+			stendhal.data.cache.put("cid", (Math.random()*1e48).toString(36));
 		};
 	},
 
@@ -85,10 +94,11 @@ stendhal.data.cache = {
 			return;
 		}
 		stendhal.data.cache.sync[key] = value;
-
-		var tx = stendhal.data.cache.db.transaction("cache", "readwrite");
-		var store = tx.objectStore("cache");
-		store.put({key: key, data: value});
+		try {
+			localStorage.setItem("cache." + key, items[i].data);
+		} catch (e) {
+			console.log(e);
+		}
 	}
 }
 
