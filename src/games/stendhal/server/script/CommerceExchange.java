@@ -12,7 +12,6 @@
 package games.stendhal.server.script;
 
 import java.util.List;
-import java.util.Map;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.constants.StandardMessages;
