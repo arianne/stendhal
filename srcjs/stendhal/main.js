@@ -253,7 +253,6 @@ stendhal.main = {
 
 		new DesktopUserInterfaceFactory().create();
 
-		Chat.log("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		Chat.log("client", "Client loaded. Connecting...");
 
 		stendhal.main.registerMarauroaEventHandlers();
