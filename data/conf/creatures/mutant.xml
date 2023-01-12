@@ -157,7 +157,7 @@
 
   <creature name="poison shroom">
     <type class="mutant" subclass="poison_shroom_small" tileid="mutant.png:6"/>
-    <description></description>
+    <description>You see a toadstool... spitting poison at you?</description>
     <attributes>
       <atk value="234"/>
       <def value="116"/>

@@ -217,7 +217,7 @@
 
   <creature name="turtle">
     <type class="reptile" subclass="turtle" shadow="32x48_long" tileid="reptile.png:6"/>
-    <description></description>
+    <description>You see a turtle swimming quietly in the water. It doesn't want to be disturbed.</description>
     <attributes>
       <atk value="99"/>
       <def value="35"/>
