@@ -12,6 +12,7 @@
 
 var CombinedTilesetRenderingStrategy = require("../../../build/ts/landscape/LandscapeRenderingStrategy").CombinedTilesetRenderingStrategy;
 var IndividualTilesetRenderingStrategy = require("../../../build/ts/landscape/IndividualTilesetRenderingStrategy").IndividualTilesetRenderingStrategy;
+var Paths = require("../../../build/ts/data/Paths").Paths;
 
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
@@ -257,13 +258,12 @@ stendhal.data.map = {
 };
 
 // alternatives for known images that may be considered violent or mature
-stendhal.data.map.knownSafeTilesets = {
-	"/tileset/item/armor/bloodied_small_axe": true,
-	"/tileset/item/blood/floor_stain": true,
-	"/tileset/item/blood/floor_stains_2": true,
-	"/tileset/item/blood/nsew_stains": true,
-	"/tileset/item/blood/small_stains": true
-}
+stendhal.data.map.knownSafeTilesets = {};
+stendhal.data.map.knownSafeTilesets[Paths.tileset + "/item/armor/bloodied_small_axe"] = true;
+stendhal.data.map.knownSafeTilesets[Paths.tileset + "/item/blood/floor_stain"] = true;
+stendhal.data.map.knownSafeTilesets[Paths.tileset + "/item/blood/floor_stains_2"] = true;
+stendhal.data.map.knownSafeTilesets[Paths.tileset + "/item/blood/nsew_stains"] = true;
+stendhal.data.map.knownSafeTilesets[Paths.tileset + "/item/blood/small_stains"] = true;
 
 if (window.location.search.indexOf("old") > -1) {
 	stendhal.data.map.strategy = new IndividualTilesetRenderingStrategy();

@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../Paths";
+
 declare var stendhal: any;
 
 
@@ -50,11 +52,11 @@ export class Animation {
 	 * <code>weatherAnimationMap</code> objects.
 	 */
 	loadAnimations() {
-		fetch("/tiled/tileset/animation.json", {
+		fetch(Paths.tileset + "/animation.json", {
 				headers: {"Content-Type": "application/json"}
 		}).then(resp => resp.json()).then(animations => {
 			this.landscapeMap = this.formatAnimations(
-					animations["landscape"], "/tileset/");
+					animations["landscape"], Paths.tileset + "/");
 			this.weatherMap = this.formatAnimations(
 					animations["weather"], stendhal.paths.weather + "/");
 		});
