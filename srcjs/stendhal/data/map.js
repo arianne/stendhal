@@ -172,7 +172,7 @@ stendhal.data.map = {
 			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
 
-			const baseFilename = filename.replace(/\.png$/, "");
+			const baseFilename = filename.replace(/\.png$/, "").replace("/tileset", Paths.tileset);
 			if (!stendhal.config.getBoolean("gamescreen.blood") && this.hasSafeTileset(baseFilename)) {
 				stendhal.data.map.tilesetFilenames.push(baseFilename + "-safe.png");
 			} else {
