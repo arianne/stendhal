@@ -67,12 +67,10 @@ export class NotificationBubble extends TextBubble {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D): boolean {
-		const screenArea = document.getElementById("gamewindow")!
-				.getBoundingClientRect();
 		const screenTop = stendhal.ui.gamewindow.offsetY;
-		const screenBottom = screenTop + screenArea.height;
+		const screenBottom = screenTop + ctx.canvas.height;
 		const screenLeft = stendhal.ui.gamewindow.offsetX;
-		const screenCenterX = screenLeft + (screenArea.width / 2);
+		const screenCenterX = screenLeft + (ctx.canvas.width / 2);
 
 		const lcount = this.lines.length;
 

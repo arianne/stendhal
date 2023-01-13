@@ -124,26 +124,9 @@ export class WeatherRenderer {
 				console.log("using failsafe sprite height: " + spriteH);
 			}
 
-			const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
-			let clientW = rect.width;
-			let clientH = rect.height;
-			// failsafe assumes max gamewindow dimensions to be 640x480
-			let failsafe = false;
-			if (!clientW) {
-				clientW = 640;
-				failsafe = true;
-			}
-			if (!clientH) {
-				clientH = 480;
-				failsafe = true;
-			}
-			if (failsafe) {
-				console.log("using failsafe client dimensions: "
-						+ clientW + "x" + clientH);
-			}
-
-			this.tilesX = Math.ceil(clientW / spriteH);
-			this.tilesY = Math.ceil(clientH / spriteH);
+			const canvas = document.getElementById("gamewindow") as HTMLCanvasElement;
+			this.tilesX = Math.ceil(canvas.width / spriteH);
+			this.tilesY = Math.ceil(canvas.height / spriteH);
 
 			if (weatherLoops[weather]) {
 				this.audio = soundMan.playGlobalizedLoop("weather/" + weather,
