@@ -12,6 +12,7 @@
 import { StatBar } from "./StatBar";
 
 
+// TODO: refactor into a Component
 export class KarmaBar extends StatBar {
 
 	private karma = 0;

@@ -10,8 +10,8 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
-import { StatBar } from "../toolkit/StatBar";
-import { KarmaBar } from "../toolkit/KarmaBar";
+import { StatBar } from "./StatBar";
+import { KarmaBar } from "./KarmaBar";
 
 import { Item } from "../../entity/Item";
 

@@ -11,7 +11,7 @@
 
 import { Color } from "../../util/Color";
 
-
+// TODO: refactor into a Component
 export class StatBar {
 
 	readonly canvas: HTMLCanvasElement;
