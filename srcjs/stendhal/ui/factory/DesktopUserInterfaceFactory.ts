@@ -21,6 +21,7 @@ import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
 import { KeyringComponent } from "../component/KeyringComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
+import { ZoneInfoComponent } from "../component/ZoneInfoComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
@@ -34,6 +35,7 @@ export class DesktopUserInterfaceFactory {
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
 		this.add(leftPanel, UIComponentEnum.MiniMap, new MiniMapComponent());
+		this.add(leftPanel, UIComponentEnum.ZoneInfo, new ZoneInfoComponent());
 		this.add(leftPanel, UIComponentEnum.PlayerStats, new PlayerStatsComponent());
 		this.add(leftPanel, UIComponentEnum.BuddyList, new BuddyListComponent());
 

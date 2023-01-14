@@ -36,6 +36,7 @@ export class UIComponentEnum {
 	public static readonly PlayerEquipment = 10;
 	public static readonly Keyring = 11;
 	public static readonly MiniMap = 12;
-	public static readonly PlayerStats = 13;
+	public static readonly ZoneInfo = 13;
+	public static readonly PlayerStats = 14;
 
 }

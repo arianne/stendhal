@@ -47,20 +47,7 @@ stendhal.main = {
 		var zoneinfo = {};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
-		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
-		if (marauroa.me) {
-			let dangerLevelStrings = [
-				"The area feels safe.",
-				"The area feels relatively safe.",
-				"The area feels somewhat dangerous.",
-				"The area feels dangerous.",
-				"The area feels very dangerous!",
-				"The area feels extremely dangerous. Run away!"];
-			dangerLevel = Number.parseFloat(zoneinfo["danger_level"]);
-			let skulls = Math.min(5, Math.round(2 * dangerLevel / (Number.parseInt(marauroa.me.level, 10) + 3)));
-			document.getElementById("skulls").style.width = (skulls * 20) + "px";
-			document.getElementById("skulls").title = dangerLevelStrings[skulls];
-		}
+		ui.get(UIComponentEnum.ZoneInfo).zoneChange(zoneinfo);
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
