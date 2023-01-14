@@ -61,9 +61,11 @@ export class AchievementBanner extends TextBubble {
 
 		this.banner.paint(ctx, targetX, targetY, this.width,
 				this.height);
-		ctx.drawImage(this.icon, 0, 0, this.icon.width,
-				this.icon.height, iconX, iconY, this.icon.width,
-				this.icon.height);
+		if (this.icon.height && this.icon.complete) {
+			ctx.drawImage(this.icon, 0, 0, this.icon.width,
+					this.icon.height, iconX, iconY, this.icon.width,
+					this.icon.height);
+		}
 		ctx.fillStyle = "#000000";
 		ctx.font = this.fontT;
 		ctx.fillText(this.title, textX, textY-25);
