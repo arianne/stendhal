@@ -207,6 +207,17 @@ div.logcolR {
   float: left
 }
 
+#skullsbackground {
+  background: #000;
+}
+
+#skulls {
+  height: 1em;
+  width: 0px;
+  margin: auto;
+  background: url(data/gui/danger.png) repeat;
+}
+
 #gamewindow {
   display: block;
   max-height: calc(100vh - 5em);

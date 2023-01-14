@@ -95,7 +95,7 @@ stendhal.data.cache = {
 		}
 		stendhal.data.cache.sync[key] = value;
 		try {
-			localStorage.setItem("cache." + key, items[i].data);
+			localStorage.setItem("cache." + key, value);
 		} catch (e) {
 			console.log(e);
 		}
