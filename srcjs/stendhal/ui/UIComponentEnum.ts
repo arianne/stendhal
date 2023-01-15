@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2022 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,19 +24,20 @@ export class UIComponentEnum {
 	public static readonly RightPanel = 2;
 	public static readonly BottomPanel = 3;
 
-	// Dialog
-	public static readonly OutfitDialog = 4;
-	public static readonly TravelLogDialog = 5;
-
 	// Components
-	public static readonly Bag = 6;
-	public static readonly BuddyList = 7;
-	public static readonly ChatInput = 8;
-	public static readonly ChatLog = 9;
-	public static readonly PlayerEquipment = 10;
-	public static readonly Keyring = 11;
-	public static readonly MiniMap = 12;
-	public static readonly ZoneInfo = 13;
-	public static readonly PlayerStats = 14;
+	public static readonly Bag = 101;
+	public static readonly BuddyList = 102;
+	public static readonly ChatInput = 103;
+	public static readonly ChatLog = 104;
+	public static readonly PlayerEquipment = 105;
+	public static readonly Keyring = 106;
+	public static readonly MiniMap = 107;
+	public static readonly ZoneInfo = 108;
+	public static readonly PlayerStats = 109;
 
+
+	// Dialog
+	public static readonly TradeDialog = 201;
+	public static readonly TravelLogDialog = 202;
+	public static readonly OutfitDialog = 203;
 }

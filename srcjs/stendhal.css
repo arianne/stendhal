@@ -333,6 +333,24 @@ div.logcolR {
   align-items: stretch;
 }
 
+.tradepopup {
+  width: 200px;
+}
+
+#trade-other-column {
+  float: left;
+  margin-right: 20px;
+}
+
+.trade-column {
+  text-align:center;
+}
+
+#trade-cancel {
+  display: block;
+  margin-left: auto;
+}
+
 .tavellogtabpanel {
 }
 
