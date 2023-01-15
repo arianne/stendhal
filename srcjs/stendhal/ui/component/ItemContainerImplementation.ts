@@ -117,6 +117,7 @@ export class ItemContainerImplementation {
 				e.textContent = o.formatQuantity();
 				if (this.dirty) {
 					this.updateCursor(e, item["name"], item["class"]);
+					this.updateToolTip(e, item);
 				}
 				(e as any).dataItem = o;
 				cnt++;
@@ -131,10 +132,11 @@ export class ItemContainerImplementation {
 				e.style.backgroundImage = "none";
 			}
 			e.textContent = "";
-			(e as any).dataItem = undefined;
 			if (this.dirty) {
 				this.updateCursor(e);
+				this.updateToolTip(e);
 			}
+			(e as any).dataItem = undefined;
 		}
 
 		this.dirty = false;
@@ -282,23 +284,11 @@ export class ItemContainerImplementation {
 	}
 
 	private onMouseEnter(evt: MouseEvent) {
-		const dataItem = (evt.target as any).dataItem;
-		if (dataItem) {
-			const target = <HTMLElement> evt.target;
-			const clazz = dataItem["class"];
-			if (clazz === "scroll" && dataItem["dest"]) {
-				const dest = dataItem["dest"].split(",");
-				if (dest.length > 2) {
-					target.title = dest[0] + " " + dest[1] + "," + dest[2];
-				}
-			}
-		}
+		// nothing
 	}
 
 	private onMouseLeave(evt: MouseEvent) {
-		if (evt.target) {
-			document.getElementById((evt.target as HTMLElement).id)!.title = "";
-		}
+		// nothing
 	}
 
 	private onTouchStart(evt: TouchEvent) {
@@ -346,5 +336,24 @@ export class ItemContainerImplementation {
 		}
 		target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
 				+ cursor + ".png) 1 3, auto";
+	}
+
+	/**
+	 * Sets tooltip to be shown for item.
+	 *
+	 * @param target
+	 *     HTMLElement representing item.
+	 * @param item
+	 *     Object containing item information.
+	 */
+	private updateToolTip(target: HTMLElement, item?: Item) {
+		let tt = "";
+		if (item && item["class"] === "scroll" && item["dest"]) {
+			const dest = item["dest"].split(",");
+			if (dest.length > 2) {
+				tt = dest[0] + " " + dest[1] + "," + dest[2];
+			}
+		}
+		target.title = tt;
 	}
 }
