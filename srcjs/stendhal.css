@@ -128,6 +128,10 @@ div.quickPickup div.itemSlot {
   margin-bottom: 3px;
 }
 
+#karmabar {
+  margin-top: 0.2em;
+}
+
 div.logerror { color: #F00 }
 div.logwarning { color: #a00000 }
 div.logprivmsg { color: #444 }
