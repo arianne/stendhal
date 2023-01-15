@@ -9,6 +9,23 @@
  *                                                                         *
  ***************************************************************************/
 
+import singletons from "../util/SingletonRepo";
+
+const config = singletons.getConfigManager();
+
+
+/**
+ * Retrieves cursor to be shown for "use" action.
+ *
+ * @return
+ *     Dependent on "action.item.doubleclick" config setting.
+ */
+function getItemUseCursor() {
+	if (config.getBoolean("action.item.doubleclick")) {
+		return "itemuse";
+	}
+	return "activity";
+}
 
 export const ItemMap: {[index: string]: {[index: string]: any}} = {
 	["class"]: {
@@ -16,49 +33,49 @@ export const ItemMap: {[index: string]: {[index: string]: any}} = {
 			cursor: "bag"
 		},
 		["drink"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["food"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["scroll"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		}
 	},
 
 	["name"]: {
 		["bestiary"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["bulb"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["food mill"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["metal detector"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["rotary cutter"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["scroll eraser"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["seed"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["snowglobe"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["sugar mill"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["teddy"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		},
 		["wedding ring"]: {
-			cursor: "itemuse"
+			cursor: getItemUseCursor
 		}
 	}
 };

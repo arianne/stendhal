@@ -183,6 +183,7 @@ export class ItemContainerImplementation {
 		return false;
 	}
 
+	// FIXME: cursor should update when items are moved/re-arranged
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldItem) {
@@ -279,13 +280,17 @@ export class ItemContainerImplementation {
 			if (!imap) {
 				imap = ItemMap["class"][clazz];
 			}
+
+			let cursor = "normal";
 			if (imap && imap["cursor"]) {
-				target.style.cursor = "url(" + stendhal.paths.sprites
-						+ "/cursor/" + imap["cursor"] + ".png) 1 3, auto";
-			} else {
-				target.style.cursor = "url(" + stendhal.paths.sprites
-						+ "/cursor/normal.png) 1 3, auto";
+				if (typeof(imap["cursor"]) === "function") {
+					cursor = imap["cursor"]();
+				} else {
+					cursor = imap["cursor"];
+				}
 			}
+			target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
+					+ cursor + ".png) 1 3, auto";
 
 			if (clazz === "scroll" && dataItem["dest"]) {
 				const dest = dataItem["dest"].split(",");
