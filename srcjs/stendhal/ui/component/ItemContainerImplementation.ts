@@ -116,7 +116,7 @@ export class ItemContainerImplementation {
 				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
 				e.textContent = o.formatQuantity();
 				if (this.dirty) {
-					this.updateCursor(e, item["name"], item["class"]);
+					this.updateCursor(e, item["class"], item["name"]);
 					this.updateToolTip(e, item);
 				}
 				(e as any).dataItem = o;
@@ -316,23 +316,26 @@ export class ItemContainerImplementation {
 	 *
 	 * @param target
 	 *     HTMLElement representing item.
-	 * @param name
-	 *     Item name.
 	 * @param clazz
 	 *     Item class.
+	 * @param name
+	 *     Item name.
 	 */
-	private updateCursor(target: HTMLElement, name?: string, clazz?: string) {
-		let cursor = "normal";
-		let imap = typeof(name) === "undefined" ? undefined : ItemMap["name"][name];
-		if (!imap) {
-			imap = typeof(clazz) === "undefined" ? undefined : ItemMap["class"][clazz];
-		}
-		if (imap && imap["cursor"]) {
-			if (typeof(imap["cursor"]) === "function") {
-				cursor = imap["cursor"]();
-			} else {
-				cursor = imap["cursor"];
+	private updateCursor(target: HTMLElement, clazz?: string, name?: string) {
+		let cursor;
+		const cmap = typeof(clazz) === "undefined" ? undefined : ItemMap["class"][clazz];
+		const nmap = typeof(name) === "undefined" ? undefined : ItemMap["name"][name];
+		for (const imap of [cmap, nmap]) {
+			if (imap && imap["cursor"]) {
+				if (typeof(imap["cursor"]) === "function") {
+					cursor = imap["cursor"]();
+				} else {
+					cursor = imap["cursor"];
+				}
 			}
+		}
+		if (!cursor) {
+			cursor = "normal";
 		}
 		target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
 				+ cursor + ".png) 1 3, auto";
