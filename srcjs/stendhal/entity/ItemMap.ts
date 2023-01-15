@@ -9,10 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import singletons from "../util/SingletonRepo";
 
 const config = singletons.getConfigManager();
+
+declare var marauroa: any;
 
 
 /**
@@ -58,6 +61,26 @@ export const ItemMap: {[index: string]: any} = {
 		["bulb"]: {
 			cursor: getItemUseCursor
 		},
+		["empty scroll"]: {
+			actions: function(e: Entity) {
+				const count = parseInt(e["quantity"], 10);
+				if (count > 1 && e._parent) {
+					return [{
+						title: "Mark all",
+						index: 1,
+						action: function(entity: Entity) {
+							// FIXME: doesn't work if scrolls are on ground
+							//        tries to pull scrolls from inventory
+							marauroa.clientFramework.sendAction(
+								{
+									"type": "markscroll",
+									"quantity": ""+count
+								});
+						}
+					}];
+				}
+			}
+		},
 		["food mill"]: {
 			cursor: getItemUseCursor
 		},
@@ -101,13 +124,16 @@ export const ItemMap: {[index: string]: any} = {
 			return actions;
 		}
 
-		let imap = ItemMap["name"][item["name"]];
-		if (imap && imap.actions) {
-			actions = actions.concat(imap.actions);
-		}
-		imap = ItemMap["class"][item["class"]];
-		if (imap && imap.actions) {
-			actions = actions.concat(imap.actions);
+		for (const imap of [ItemMap["name"][item["name"]], ItemMap["class"][item["class"]]]) {
+			if (imap && imap.actions) {
+				let a: MenuItem[];
+				if (typeof(imap.actions) === "function") {
+					a = imap.actions(item) || [];
+				} else {
+					a = imap.actions;
+				}
+				actions = actions.concat(a);
+			}
 		}
 		return actions;
 	}

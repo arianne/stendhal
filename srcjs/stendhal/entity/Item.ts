@@ -47,22 +47,6 @@ export class Item extends Entity {
 	override buildActions(list: MenuItem[]) {
 		super.buildActions(list);
 
-		const count = parseInt(this["quantity"], 10);
-		if (this["name"] === "empty scroll" && count > 1 && this._parent) {
-			list.splice(1, 0, {
-				title: "Mark all",
-				action: function(entity: Entity) {
-					// FIXME: doesn't work if scrolls are on ground
-					//        tries to pull scrolls from inventory
-					const action = {
-						"type": "markscroll",
-						"quantity": ""+count
-					} as {[index: string]: string};
-					marauroa.clientFramework.sendAction(action);
-				}
-			});
-		}
-
 		for (const mi of ItemMap.getActions(this)) {
 			if (typeof(mi.index) === "number") {
 				list.splice(mi.index, 0, mi);
