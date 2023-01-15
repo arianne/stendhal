@@ -43,7 +43,7 @@ export class ZoneInfoComponent extends Component {
 				div.style.height = "16px";
 			}
 			div.style.width = (skulls * 20) + "px";
-			div.title = this.DANGER_LEVEL_DESCRIPTIONS[skulls];
+			this.componentElement.title = this.DANGER_LEVEL_DESCRIPTIONS[skulls];
 		}
 	};
 
