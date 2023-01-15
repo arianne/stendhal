@@ -336,13 +336,6 @@ export class ItemContainerImplementation {
 	 *     Object containing item information.
 	 */
 	private updateToolTip(target: HTMLElement, item?: Item) {
-		let tt = "";
-		if (item && item["class"] === "scroll" && item["dest"]) {
-			const dest = item["dest"].split(",");
-			if (dest.length > 2) {
-				tt = dest[0] + " " + dest[1] + "," + dest[2];
-			}
-		}
-		target.title = tt;
+		target.title = typeof(item) !== "undefined" ? item.getToolTip() : "";
 	}
 }

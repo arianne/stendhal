@@ -139,6 +139,16 @@ export class Item extends Entity {
 		return "url(" + stendhal.paths.sprites + "/cursor/" + cursor + ".png) 1 3, auto";
 	}
 
+	public getToolTip(): string {
+		if (this["class"] === "scroll" && this["dest"]) {
+			const dest = this["dest"].split(",");
+			if (dest.length > 2) {
+				return dest[0] + " " + dest[1] + "," + dest[2];
+			}
+		}
+		return "";
+	}
+
 	public isAnimated(): boolean {
 		if (!stendhal.data.sprites.get(this.sprite.filename).height) {
 			return false;
