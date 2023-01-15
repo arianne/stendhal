@@ -17,6 +17,12 @@ const config = singletons.getConfigManager();
 
 declare var marauroa: any;
 
+const defaultUse = {
+	title: "Use",
+	type: "use",
+	index: 0
+}
+
 
 /**
  * Retrieves cursor to be shown for "use" action.
@@ -55,6 +61,9 @@ export const ItemMap: {[index: string]: any} = {
 	},
 
 	["name"]: {
+		["ashen holy water"]: {
+			actions: [defaultUse]
+		},
 		["bestiary"]: {
 			cursor: getItemUseCursor
 		},
@@ -106,7 +115,8 @@ export const ItemMap: {[index: string]: any} = {
 			cursor: getItemUseCursor
 		},
 		["wedding ring"]: {
-			cursor: getItemUseCursor
+			cursor: getItemUseCursor,
+			actions: [defaultUse]
 		}
 	},
 
