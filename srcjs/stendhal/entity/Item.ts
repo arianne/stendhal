@@ -130,7 +130,13 @@ export class Item extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/itempickupfromslot.png) 1 3, auto";
+		let cursor;
+		if (!this._parent) {
+			cursor = "itempickupfromslot";
+		} else {
+			cursor = ItemMap.getCursor(this["class"], this["name"]);
+		}
+		return "url(" + stendhal.paths.sprites + "/cursor/" + cursor + ".png) 1 3, auto";
 	}
 
 	public isAnimated(): boolean {

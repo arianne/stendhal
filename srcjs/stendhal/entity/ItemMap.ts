@@ -24,19 +24,6 @@ const defaultUse = {
 }
 
 
-/**
- * Retrieves cursor to be shown for "use" action.
- *
- * @return
- *     Dependent on "action.item.doubleclick" config setting.
- */
-function getItemUseCursor() {
-	if (config.getBoolean("action.item.doubleclick")) {
-		return "itemuse";
-	}
-	return "activity";
-}
-
 export const ItemMap: {[index: string]: any} = {
 	["class"]: {
 		["box"]: {
@@ -50,13 +37,13 @@ export const ItemMap: {[index: string]: any} = {
 			]
 		},
 		["drink"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["food"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["scroll"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		}
 	},
 
@@ -65,10 +52,10 @@ export const ItemMap: {[index: string]: any} = {
 			actions: [defaultUse]
 		},
 		["bestiary"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["bulb"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["empty scroll"]: {
 			actions: function(e: Entity) {
@@ -91,33 +78,56 @@ export const ItemMap: {[index: string]: any} = {
 			}
 		},
 		["food mill"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["metal detector"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["rotary cutter"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["scroll eraser"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["seed"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["snowglobe"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["sugar mill"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["teddy"]: {
-			cursor: getItemUseCursor
+			cursor: "itemuse"
 		},
 		["wedding ring"]: {
-			cursor: getItemUseCursor,
+			cursor: "itemuse",
 			actions: [defaultUse]
 		}
+	},
+
+	/**
+	 * Retrieves cursor registered for item.
+	 *
+	 * @param clazz
+	 *     Item class.
+	 * @param name
+	 *     Item name.
+	 * @return
+	 *     Cursor name.
+	 */
+	getCursor: function(clazz: string, name: string) {
+		let cursor = "normal";
+		for (const imap of [ItemMap["class"][clazz], ItemMap["name"][name]]) {
+			if (imap && imap.cursor) {
+				cursor = imap.cursor;
+			}
+		}
+		if (cursor === "itemuse" && !config.getBoolean("action.item.doubleclick")) {
+			cursor = "activity";
+		}
+		return cursor;
 	},
 
 	/**
@@ -134,7 +144,7 @@ export const ItemMap: {[index: string]: any} = {
 			return actions;
 		}
 
-		for (const imap of [ItemMap["name"][item["name"]], ItemMap["class"][item["class"]]]) {
+		for (const imap of [ItemMap["class"][item["class"]], ItemMap["name"][item["name"]]]) {
 			if (imap && imap.actions) {
 				let a: MenuItem[];
 				if (typeof(imap.actions) === "function") {

@@ -14,7 +14,6 @@ import { ui } from "../UI";
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
 import { Item } from "../../entity/Item";
-import { ItemMap } from "../../entity/ItemMap";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -116,7 +115,7 @@ export class ItemContainerImplementation {
 				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
 				e.textContent = o.formatQuantity();
 				if (this.dirty) {
-					this.updateCursor(e, item["class"], item["name"]);
+					this.updateCursor(e, item);
 					this.updateToolTip(e, item);
 				}
 				(e as any).dataItem = o;
@@ -316,29 +315,16 @@ export class ItemContainerImplementation {
 	 *
 	 * @param target
 	 *     HTMLElement representing item.
-	 * @param clazz
-	 *     Item class.
-	 * @param name
-	 *     Item name.
+	 * @param item
+	 *     Object containing item information.
 	 */
-	private updateCursor(target: HTMLElement, clazz?: string, name?: string) {
-		let cursor;
-		const cmap = typeof(clazz) === "undefined" ? undefined : ItemMap["class"][clazz];
-		const nmap = typeof(name) === "undefined" ? undefined : ItemMap["name"][name];
-		for (const imap of [cmap, nmap]) {
-			if (imap && imap["cursor"]) {
-				if (typeof(imap["cursor"]) === "function") {
-					cursor = imap["cursor"]();
-				} else {
-					cursor = imap["cursor"];
-				}
-			}
+	private updateCursor(target: HTMLElement, item?: Item) {
+		if (item) {
+			target.style.cursor = item.getCursor(0, 0);
+			return;
 		}
-		if (!cursor) {
-			cursor = "normal";
-		}
-		target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
-				+ cursor + ".png) 1 3, auto";
+		target.style.cursor = "url(" + stendhal.paths.sprites
+				+ "/cursor/normal.png) 1 3, auto";
 	}
 
 	/**
