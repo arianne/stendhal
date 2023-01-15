@@ -13,4 +13,5 @@ export class MenuItem  {
 	title!: string;
 	type?: string;
 	action?: Function;
+	index?: number;
 }

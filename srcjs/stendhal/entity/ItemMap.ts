@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { MenuItem } from "../action/MenuItem";
 import singletons from "../util/SingletonRepo";
 
 const config = singletons.getConfigManager();
@@ -27,10 +28,17 @@ function getItemUseCursor() {
 	return "activity";
 }
 
-export const ItemMap: {[index: string]: {[index: string]: any}} = {
+export const ItemMap: {[index: string]: any} = {
 	["class"]: {
 		["box"]: {
-			cursor: "bag"
+			cursor: "bag",
+			actions: [
+				{
+					title: "Open",
+					type: "use",
+					index: 0
+				}
+			]
 		},
 		["drink"]: {
 			cursor: getItemUseCursor
@@ -77,5 +85,30 @@ export const ItemMap: {[index: string]: {[index: string]: any}} = {
 		["wedding ring"]: {
 			cursor: getItemUseCursor
 		}
+	},
+
+	/**
+	 * Retrieves list of menu actions defined for item.
+	 *
+	 * @param item
+	 *     Object containing item defintion.
+	 * @return
+	 *     Actions.
+	 */
+	getActions: function(item: any): MenuItem[] {
+		let actions: MenuItem[] = [];
+		if (!item) {
+			return actions;
+		}
+
+		let imap = ItemMap["name"][item["name"]];
+		if (imap && imap.actions) {
+			actions = actions.concat(imap.actions);
+		}
+		imap = ItemMap["class"][item["class"]];
+		if (imap && imap.actions) {
+			actions = actions.concat(imap.actions);
+		}
+		return actions;
 	}
 };

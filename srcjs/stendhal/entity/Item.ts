@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ItemMap } from "./ItemMap";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { TextSprite } from "../sprite/TextSprite";
@@ -60,6 +61,14 @@ export class Item extends Entity {
 					marauroa.clientFramework.sendAction(action);
 				}
 			});
+		}
+
+		for (const mi of ItemMap.getActions(this)) {
+			if (typeof(mi.index) === "number") {
+				list.splice(mi.index, 0, mi);
+			} else {
+				list.push(mi);
+			}
 		}
 	}
 
