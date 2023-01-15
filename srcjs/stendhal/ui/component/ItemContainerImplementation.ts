@@ -150,7 +150,9 @@ export class ItemContainerImplementation {
 			stendhal.ui.heldItem = {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName,
-				slot: this.slot
+				slot: this.slot,
+				name: item["name"],
+				["class"]: item["class"]
 			} as any;
 
 			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
@@ -183,7 +185,6 @@ export class ItemContainerImplementation {
 		return false;
 	}
 
-	// FIXME: cursor should update when items are moved/re-arranged
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldItem) {
@@ -200,6 +201,8 @@ export class ItemContainerImplementation {
 				action["zone"] = stendhal.ui.heldItem.zone;
 			}
 
+			this.updateCursor(<HTMLElement> event.target,
+					stendhal.ui.heldItem["name"], stendhal.ui.heldItem["class"]);
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
@@ -276,22 +279,7 @@ export class ItemContainerImplementation {
 		if (dataItem) {
 			const target = <HTMLElement> evt.target;
 			const clazz = dataItem["class"];
-			let imap = ItemMap["name"][dataItem["name"]];
-			if (!imap) {
-				imap = ItemMap["class"][clazz];
-			}
-
-			let cursor = "normal";
-			if (imap && imap["cursor"]) {
-				if (typeof(imap["cursor"]) === "function") {
-					cursor = imap["cursor"]();
-				} else {
-					cursor = imap["cursor"];
-				}
-			}
-			target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
-					+ cursor + ".png) 1 3, auto";
-
+			this.updateCursor(target, dataItem["name"], clazz);
 			if (clazz === "scroll" && dataItem["dest"]) {
 				const dest = dataItem["dest"].split(",");
 				if (dest.length > 2) {
@@ -325,5 +313,31 @@ export class ItemContainerImplementation {
 			this.onDrop(evt);
 			stendhal.ui.touch.unsetHeldItem();
 		}
+	}
+
+	/**
+	 * Updates cursor to display for targeted item.
+	 *
+	 * @param target
+	 *     HTMLElement representing item.
+	 * @param name
+	 *     Item name.
+	 * @param clazz
+	 *     Item class.
+	 */
+	private updateCursor(target: HTMLElement, name: string, clazz: string) {
+		let cursor = "normal", imap = ItemMap["name"][name];
+		if (!imap) {
+			imap = ItemMap["class"][clazz];
+		}
+		if (imap && imap["cursor"]) {
+			if (typeof(imap["cursor"]) === "function") {
+				cursor = imap["cursor"]();
+			} else {
+				cursor = imap["cursor"];
+			}
+		}
+		target.style.cursor = "url(" + stendhal.paths.sprites + "/cursor/"
+				+ cursor + ".png) 1 3, auto";
 	}
 }
