@@ -30,6 +30,9 @@ export class ItemContainerImplementation {
 	// slot index where cursor is hovering
 	private selectedIdx: string|undefined = undefined;
 
+	// marked for updating certain attributes
+	private dirty = false;
+
 
 	// TODO: replace usage of global document.getElementById()
 
@@ -95,6 +98,7 @@ export class ItemContainerImplementation {
 					continue;
 				}
 
+				this.dirty = this.dirty || o !== (e as any).dataItem;
 				const item = <Item> o;
 				let xOffset = 0;
 				let yOffset = 0;
@@ -111,6 +115,9 @@ export class ItemContainerImplementation {
 						+ ")";
 				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
 				e.textContent = o.formatQuantity();
+				if (this.dirty) {
+					this.updateCursor(e, item["name"], item["class"]);
+				}
 				(e as any).dataItem = o;
 				cnt++;
 			}
@@ -125,7 +132,12 @@ export class ItemContainerImplementation {
 			}
 			e.textContent = "";
 			(e as any).dataItem = undefined;
+			if (this.dirty) {
+				this.updateCursor(e);
+			}
 		}
+
+		this.dirty = false;
 	}
 
 	private onDragStart(event: DragEvent|TouchEvent) {
@@ -150,9 +162,7 @@ export class ItemContainerImplementation {
 			stendhal.ui.heldItem = {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName,
-				slot: this.slot,
-				name: item["name"],
-				["class"]: item["class"]
+				slot: this.slot
 			} as any;
 
 			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
@@ -201,9 +211,6 @@ export class ItemContainerImplementation {
 				action["zone"] = stendhal.ui.heldItem.zone;
 			}
 
-			this.updateCursor(<HTMLElement> event.target,
-					stendhal.ui.heldItem["name"], stendhal.ui.heldItem["class"]);
-			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
 			// if ctrl is pressed, we ask for the quantity
@@ -279,7 +286,6 @@ export class ItemContainerImplementation {
 		if (dataItem) {
 			const target = <HTMLElement> evt.target;
 			const clazz = dataItem["class"];
-			this.updateCursor(target, dataItem["name"], clazz);
 			if (clazz === "scroll" && dataItem["dest"]) {
 				const dest = dataItem["dest"].split(",");
 				if (dest.length > 2) {
@@ -325,10 +331,11 @@ export class ItemContainerImplementation {
 	 * @param clazz
 	 *     Item class.
 	 */
-	private updateCursor(target: HTMLElement, name: string, clazz: string) {
-		let cursor = "normal", imap = ItemMap["name"][name];
+	private updateCursor(target: HTMLElement, name?: string, clazz?: string) {
+		let cursor = "normal";
+		let imap = typeof(name) === "undefined" ? undefined : ItemMap["name"][name];
 		if (!imap) {
-			imap = ItemMap["class"][clazz];
+			imap = typeof(clazz) === "undefined" ? undefined : ItemMap["class"][clazz];
 		}
 		if (imap && imap["cursor"]) {
 			if (typeof(imap["cursor"]) === "function") {
