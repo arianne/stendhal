@@ -60,6 +60,10 @@ export class ItemInventoryComponent extends ThemedComponent {
 		this.itemContainerImplementation.update();
 	}
 
+	public markDirty() {
+		this.itemContainerImplementation.markDirty();
+	}
+
 	public override onParentClose() {
 		let idx = stendhal.ui.equip.inventory.indexOf(this.itemContainerImplementation);
 		console.log(stendhal.ui.equip.inventory, stendhal.ui.equip.inventory.indexOf(this.itemContainerImplementation));

@@ -11,7 +11,9 @@
 
 import { ui } from "../UI";
 import { ChatLogComponent } from "../component/ChatLogComponent";
+import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
+import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { TravelLogDialog } from "./TravelLogDialog";
 import { UIComponentEnum } from "../UIComponentEnum";
@@ -77,7 +79,14 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.createCheckBox("chk_dblclick", "action.item.doubleclick",
 				"Items are used/consumed with double click/touch",
-				"Items are used/consumed with single click/touch");
+				"Items are used/consumed with single click/touch",
+				function() {
+					// update cursors
+					(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).markDirty();
+					for (const cid of [UIComponentEnum.Bag, UIComponentEnum.Keyring]) {
+						(ui.get(cid) as ItemInventoryComponent).markDirty();
+					}
+				});
 
 		// FIXME: open chest windows are not refreshed
 		this.createCheckBox("chk_chestqp", "action.chest.quickpickup",

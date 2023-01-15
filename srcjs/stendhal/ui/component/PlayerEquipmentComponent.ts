@@ -59,6 +59,11 @@ export class PlayerEquipmentComponent extends Component {
 		}
 	}
 
+	public markDirty() {
+		for (const inv of this.inventory) {
+			inv.markDirty();
+		}
+	}
 
 	private showSlot(id: string, show: boolean) {
 		var slot = document.getElementById(id)!;

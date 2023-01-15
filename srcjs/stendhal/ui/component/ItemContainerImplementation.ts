@@ -82,6 +82,13 @@ export class ItemContainerImplementation {
 		this.update();
 	}
 
+	/**
+	 * Marks items to update cursors & tooltips.
+	 */
+	public markDirty() {
+		this.dirty = true;
+	}
+
 	public update() {
 		this.render();
 	}
