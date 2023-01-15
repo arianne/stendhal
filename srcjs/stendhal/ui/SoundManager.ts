@@ -130,7 +130,12 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	private playEffect(soundName: string, layer: number, volume=1.0, loop=false): Sound {
+	private playEffect(soundName: string, layer: number, volume=1.0, loop=false): any {
+		const muted = !stendhal.config.getBoolean("ui.sound");
+		if (muted && !loop) {
+			// don't add non-looping sounds when muted
+			return;
+		}
 		// default to GUI layer
 		if (layer < 0 || layer >= this.layers.length) {
 			console.warn("tried to add sound to non-existent layer: " + layer);
@@ -151,7 +156,7 @@ export class SoundManager {
 				addSound.autoplay = true;
 				addSound.basevolume = volume;
 				addSound.volume = actualvolume;
-				addSound.muted = !stendhal.config.getBoolean("ui.sound");
+				addSound.muted = muted;
 				this.onSoundAdded(layer, addSound);
 				return addSound;
 			}
@@ -169,7 +174,7 @@ export class SoundManager {
 		sound.basevolume = volume;
 		sound.volume = actualvolume;
 		sound.loop = loop;
-		sound.muted = !stendhal.config.getBoolean("ui.sound");
+		sound.muted = muted;
 
 		// must be started manually if autoplay has already ocurred
 		if (sound.hasplayed) {
@@ -206,8 +211,12 @@ export class SoundManager {
 	 *     The new sound instance.
 	 */
 	playLocalizedEffect(x: number, y: number, radius: number,
-			layer: number, soundName: string, volume=1.0, loop=false): Sound {
+			layer: number, soundName: string, volume=1.0, loop=false): any {
 		const snd = this.playEffect(soundName, layer, volume, loop);
+		if (!snd) {
+			return;
+		}
+
 		// Further adjustments if the sound has a radius
 		if (radius) {
 			if (!marauroa.me || !x) {
@@ -239,7 +248,7 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	playGlobalizedEffect(soundName: string, layer?: number, volume=1.0, loop=false): Sound {
+	playGlobalizedEffect(soundName: string, layer?: number, volume=1.0, loop=false): any {
 		// default to gui layer
 		if (!layer) {
 			layer = this.layers.indexOf("gui");
@@ -266,7 +275,7 @@ export class SoundManager {
 	 *     The new sound instance.
 	 */
 	playLocalizedLoop(x: number, y: number, radius: number, layer: number,
-			soundName: string, volume=1.0): Sound {
+			soundName: string, volume=1.0): any {
 		return this.playLocalizedEffect(x, y, radius, layer, soundName,
 				volume, true);
 	}
@@ -283,7 +292,7 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	playGlobalizedLoop(soundName: string, layer?: number, volume=1.0): Sound {
+	playGlobalizedLoop(soundName: string, layer?: number, volume=1.0): any {
 		return this.playGlobalizedEffect(soundName, layer, volume, true);
 	}
 
@@ -306,7 +315,7 @@ export class SoundManager {
 	 *     The new sound instance.
 	 */
 	playLocalizedMusic(x: number, y: number, radius: number,
-			layer: number, musicName: string, volume=1.0): Sound {
+			layer: number, musicName: string, volume=1.0): any {
 		// load into cache so playEffect doesn't look in "data/sounds"
 		if (!this.cache[musicName]) {
 			this.load(musicName,
@@ -325,7 +334,7 @@ export class SoundManager {
 	 * @return
 	 *     The new sound instance.
 	 */
-	playGlobalizedMusic(musicName: string, volume=1.0): Sound {
+	playGlobalizedMusic(musicName: string, volume=1.0): any {
 		// load into cache so playEffect doesn't look in "data/sounds"
 		if (!this.cache[musicName]) {
 			this.load(musicName,
@@ -391,6 +400,8 @@ export class SoundManager {
 
 	/**
 	 * Mutes all currently playing sounds.
+	 *
+	 * FIXME: some non-looping sounds do not stop immediatly
 	 *
 	 * @return
 	 *     <code>true</code> if all sounds were muted.
