@@ -151,6 +151,7 @@ export class SoundManager {
 				addSound.autoplay = true;
 				addSound.basevolume = volume;
 				addSound.volume = actualvolume;
+				addSound.muted = !stendhal.config.getBoolean("ui.sound");
 				this.onSoundAdded(layer, addSound);
 				return addSound;
 			}
