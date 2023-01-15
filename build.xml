@@ -723,6 +723,7 @@
   	<mkdir dir="${build_docker}" />
   	<copy file="${buildtools_docker}/Dockerfile" todir="${build_docker}" />
   	<copy file="${buildtools_docker}/.dockerignore" todir="${build_docker}" />
+  	<copy file="${buildtools_docker}/start.sh" todir="${build_docker}" />
   	<unzip dest="${build_docker}" src="${dist_server_binary}" />
   </target>
 
