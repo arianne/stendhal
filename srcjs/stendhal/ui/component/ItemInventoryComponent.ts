@@ -28,7 +28,7 @@ export class ItemInventoryComponent extends ThemedComponent {
 		super("iteminventory-template");
 
 		ItemInventoryComponent.counter++;
-		this.suffix = "." + ItemInventoryComponent.counter + ".";
+		this.suffix = "-" + ItemInventoryComponent.counter + "-";
 		this.componentElement.classList.add("inventorypopup_" + sizeX);
 		if (quickPickup) {
 			this.componentElement.classList.add("quickPickup");
@@ -37,11 +37,13 @@ export class ItemInventoryComponent extends ThemedComponent {
 		// TODO: rewrite ItemContainerImplementation not to depend on unique ids (aka suffix)
 		this.setSize(sizeX, sizeY);
 
-		// ItemContainerImplementation uses document.getElementById, so our parent windows must be added to the DOM first.
-		queueMicrotask(() => {
-			this.itemContainerImplementation = new ItemContainerImplementation(slot, sizeX * sizeY, object, this.suffix, quickPickup, defaultImage);
-			stendhal.ui.equip.inventory.push(this.itemContainerImplementation);
-		});
+		this.itemContainerImplementation = new ItemContainerImplementation(
+			this.componentElement, slot, sizeX * sizeY, object, this.suffix, quickPickup, defaultImage);
+		stendhal.ui.equip.inventory.push(this.itemContainerImplementation);
+	}
+
+	setObject(object: any) {
+		this.itemContainerImplementation.object = object;
 	}
 
 	setSize(sizeX: number, sizeY: number) {

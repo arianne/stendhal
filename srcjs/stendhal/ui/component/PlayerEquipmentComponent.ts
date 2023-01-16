@@ -33,7 +33,7 @@ export class PlayerEquipmentComponent extends Component {
 		for (var i in this.slotNames) {
 			this.inventory.push(
 				new ItemContainerImplementation(
-					this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
+					document, this.slotNames[i], this.slotSizes[i], null, "", false, this.slotImages[i]));
 		}
 
 		// hide pouch by default
