@@ -16,6 +16,8 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
 var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
+var TradeEvent = require("../../build/ts/event/TradeEvent").TradeEvent;
+
 var SoundId = require("../../build/ts/util/SoundId").SoundId;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
@@ -297,11 +299,7 @@ marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactor
 });
 
 
-marauroa.rpeventFactory["trade_state_change_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		// TODO: new TradeStateChangeEvent();
-	}
-});
+marauroa.rpeventFactory["trade_state_change_event"] = new TradeEvent();
 
 
 marauroa.rpeventFactory["transition_graph"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {

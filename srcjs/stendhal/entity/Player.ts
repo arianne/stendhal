@@ -129,6 +129,22 @@ export class Player extends RPEntity {
 				}
 			});
 		}
+		
+		if (marauroa.me !== this) {
+			list.push({
+				title: "Trade",
+					action: function(_entity: any) {
+						var action = {
+							"type": "trade",
+							"action": "offer_trade",
+							"zone": marauroa.currentZoneName,
+							"target": playerName
+						};
+						marauroa.clientFramework.sendAction(action);
+					}
+			});
+		}
+
 		if (marauroa.me === this) {
 			let walk_label = "Walk";
 			if (!this.stopped()) {
