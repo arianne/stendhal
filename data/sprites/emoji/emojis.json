@@ -1,28 +1,28 @@
 {
   "emojilist":
-  {
-    "angermark": true,
-    "astonished": true,
-    "confounded": true,
-    "confused": true,
-    "cry": true,
-    "expressionless": true,
-    "frown": true,
-    "frownslight": true,
-    "grin": true,
-    "happycry": true,
-    "heart": true,
-    "neutral": true,
-    "savor": true,
-    "smile": true,
-    "smileinvert": true,
-    "smileslight": true,
-    "smilingeyes": true,
-    "sweat": true,
-    "tongue": true,
-    "wink": true,
-    "winktongue": true
-  },
+  [
+    "angermark",
+    "astonished",
+    "confounded",
+    "confused",
+    "cry",
+    "expressionless",
+    "frown",
+    "frownslight",
+    "grin",
+    "happycry",
+    "heart",
+    "neutral",
+    "savor",
+    "smile",
+    "smileinvert",
+    "smileslight",
+    "smilingeyes",
+    "sweat",
+    "tongue",
+    "wink",
+    "winktongue"
+  ],
 
   "emojimap":
   {

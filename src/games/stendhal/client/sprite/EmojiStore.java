@@ -68,8 +68,8 @@ public class EmojiStore {
 					logger.error("Failed to read emoji data file: " + path);
 				} else {
 					final Object el = document.get("emojilist");
-					if (el != null && el instanceof Map<?, ?>) {
-						for (final Object k: ((Map<?, ?>) el).keySet()) {
+					if (el != null && el instanceof List<?>) {
+						for (final Object k: (List<?>) el) {
 							emojilist.add((String) k);
 						}
 					}

@@ -18,7 +18,7 @@ export class EmojiStore {
 
 	private static instance: EmojiStore;
 
-	private emojilist: {[name: string]: boolean} = {};
+	private emojilist: string[] = [];
 	private emojimap: {[key: string]: string} = {};
 
 
@@ -119,17 +119,13 @@ export class EmojiStore {
 		if (name.startsWith(":") && name.endsWith(":")) {
 			name = name.substr(1, name.length-2)
 		}
-		return this.emojilist[name] == true;
+		return this.emojilist.indexOf(name) > -1;
 	}
 
 	/**
 	 * Get a list of available emojis.
 	 */
 	getEmojiList(): string[] {
-		const el: string[] = [];
-		for (const emoji in this.emojilist) {
-			el.push(":" + emoji + ":");
-		}
-		return el.sort();
+		return this.emojilist;
 	}
 }
