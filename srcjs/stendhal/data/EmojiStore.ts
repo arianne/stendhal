@@ -81,6 +81,7 @@ export class EmojiStore {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	check(text: string): string|undefined {
+		text = text.replace(/\\\\/g, "\\");
 		let name = this.emojimap[text];
 		if (!name && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substr(0, text.length - 1).substr(1);

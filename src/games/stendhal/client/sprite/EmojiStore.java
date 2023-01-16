@@ -111,6 +111,7 @@ public class EmojiStore {
 	 *     String representing emoji sprite filename or <code>undefined</code>.
 	 */
 	public String check(String text) {
+		text = text.replace("\\\\", "\\");
 		String name = emojimap.containsKey(text) ? emojimap.get(text) : null;
 		if (name == null && (text.startsWith(":") && text.endsWith(":"))) {
 			text = text.substring(0, text.length() - 1).substring(1);
