@@ -101,6 +101,7 @@ public class CharacterMap extends JButton {
 			super(new ImageIcon(emoji.getImage()));
 			emojiText = text;
 			setIconTextGap(0);
+			setToolTipText(text);
 		}
 
 		public String getEmojiText() {
