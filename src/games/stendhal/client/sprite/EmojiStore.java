@@ -99,7 +99,7 @@ public class EmojiStore {
 		if (filename == null) {
 			return null;
 		}
-		return (Sprite) ClientSingletonRepository.getSpriteStore().getSprite(filename);
+		return ClientSingletonRepository.getSpriteStore().getSprite(filename);
 	}
 
 	/**
