@@ -2,6 +2,7 @@
   "emojilist":
   {
     "angermark": true,
+    "confused": true,
     "cry": true,
     "expressionless": true,
     "frown": true,
@@ -25,6 +26,12 @@
     ":anger:": "angermark",
     ":angry:": "angermark",
     "💢": "angermark",
+
+    ":\\": "confused",
+    ":/": "confused",
+    ":-\\": "confused",
+    ":-/": "confused",
+    "😕": "confused",
 
     ":'(": "cry",
     ")':": "cry",
