@@ -21,11 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.JTextComponent;
 
-import org.apache.log4j.Logger;
-
+import games.stendhal.client.scripting.ChatLineParser;
 import games.stendhal.client.sprite.EmojiStore;
 import games.stendhal.client.sprite.ImageSprite;
 
@@ -36,10 +33,8 @@ import games.stendhal.client.sprite.ImageSprite;
 public class CharacterMap extends JButton {
 	/**
 	 * Create a new CharacterMap.
-	 *
-	 * @param textField text field where selected character should be inserted
 	 */
-	public CharacterMap(final JTextComponent textField) {
+	public CharacterMap() {
 		super("☺");
 		setFocusable(false);
 		setToolTipText("Emojis");
@@ -59,13 +54,7 @@ public class CharacterMap extends JButton {
 			public void actionPerformed(ActionEvent ev) {
 				Object source = ev.getSource();
 				if (source instanceof EmojiButton) {
-					String str = ((EmojiButton) source).getEmojiText();
-					int pos = textField.getCaretPosition();
-					try {
-						textField.getDocument().insertString(pos, str, null);
-					} catch (BadLocationException ex) {
-						Logger.getLogger(CharacterMap.class).error("Bug", ex);
-					}
+					ChatLineParser.parseAndHandle(((EmojiButton) source).getEmojiText());
 				}
 			}
 		};

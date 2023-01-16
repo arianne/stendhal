@@ -483,7 +483,7 @@ class SwingClientGUI implements J2DClientGUI {
 		JComponent chatEntryBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		chatEntryBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
 
-		chatEntryBox.add(new CharacterMap(chatText.getPlayerChatText()));
+		chatEntryBox.add(new CharacterMap());
 		final JComponent chatBox = new JPanel();
 		chatBox.setBorder(null);
 		chatBox.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
