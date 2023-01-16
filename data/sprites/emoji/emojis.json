@@ -14,6 +14,7 @@
     "heart",
     "heartarrow",
     "heartbroken",
+    "joy",
     "neutral",
     "savor",
     "smile",
@@ -101,6 +102,12 @@
     ":brokenheart:": "heartbroken",
     "</3": "heartbroken",
     "💔": "heartbroken",
+
+    ":cryhappy:": "joy",
+    ":happycry:": "joy",
+    ":joytears:": "joy",
+    ":tearsjoy:": "joy",
+    "😂": "joy",
 
     ":meh:": "neutral",
     ":unamused:": "neutral",
