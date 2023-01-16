@@ -12,6 +12,7 @@
     "grin",
     "happycry",
     "heart",
+    "heartarrow",
     "heartbroken",
     "neutral",
     "savor",
@@ -93,6 +94,9 @@
     ":love:": "heart",
     "<3": "heart",
     "❤": "heart",
+
+    ":arrowheart:": "heartarrow",
+    "💘": "heartarrow",
 
     ":brokenheart:": "heartbroken",
     "</3": "heartbroken",
