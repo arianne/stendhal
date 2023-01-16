@@ -10,6 +10,7 @@
     "frown": true,
     "frownslight": true,
     "grin": true,
+    "happycry": true,
     "heart": true,
     "neutral": true,
     "savor": true,
@@ -78,6 +79,15 @@
     ":grinning:": "grin",
     "😀": "grin",
     "😃": "grin",
+
+    ":')": "happycry",
+    "(':": "happycry",
+    ":*)": "happycry",
+    "(*:": "happycry",
+    ":cryhappy:": "happycry",
+    ":happytear:": "happycry",
+    ":happytears:": "happycry",
+    "🥲": "happycry",
 
     "<3": "heart",
     ":love:": "heart",
