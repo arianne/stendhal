@@ -252,4 +252,11 @@ public class ImageSprite implements Sprite {
 
 		return new ImageSprite(orig.getSubimage(x, y, w, h));
 	}
+
+	/**
+	 * Retrieves the java.awt.Image instance.
+	 */
+	public Image getImage() {
+		return image;
+	}
 }
