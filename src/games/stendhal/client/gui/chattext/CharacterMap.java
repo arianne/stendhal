@@ -16,7 +16,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
@@ -25,6 +25,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.sprite.EmojiStore;
+import games.stendhal.client.sprite.ImageSprite;
 
 /**
  * A drop down menu for selecting special characters that players may want to
@@ -39,7 +42,7 @@ public class CharacterMap extends JButton {
 	public CharacterMap(final JTextComponent textField) {
 		super("☺");
 		setFocusable(false);
-		setToolTipText("Insert a special character");
+		setToolTipText("Emojis");
 
 		final JPopupMenu menu = new JPopupMenu();
 
@@ -55,8 +58,8 @@ public class CharacterMap extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				Object source = ev.getSource();
-				if (source instanceof AbstractButton) {
-					String str = ((AbstractButton) source).getText();
+				if (source instanceof EmojiButton) {
+					String str = ((EmojiButton) source).getEmojiText();
 					int pos = textField.getCaretPosition();
 					try {
 						textField.getDocument().insertString(pos, str, null);
@@ -77,25 +80,42 @@ public class CharacterMap extends JButton {
 	 * @param listener action listener that should be attached to the menu items
 	 */
 	private void fillMenu(JComponent menu, ActionListener listener) {
-		String[][] characters = {
-				{ "☺", "☹", "😃", "😲", "😇", "😈", "😊", "😌", "😍", "😎", "😏", "😐", "😴" },
-				{ "🐭", "🐮", "🐱", "🐵", "🐯", "🐰", "🐴", "🐶", "🐷", "🐹", "🐺", "🐻", "🐼"  },
-				{ "♥", "♡", "💔", "💡", "☠" },
-				{ "£", "$", "€", "₤", "₱", "¥" },
-				{ "♩", "♪", "♫", "♬", "♭", "♮", "♯", "𝄞", "𝄢" } };
-		menu.setLayout(new GridLayout(0, characters[0].length));
+		//~ String[][] characters = {
+				//~ { "☺", "☹", "😃", "😲", "😇", "😈", "😊", "😌", "😍", "😎", "😏", "😐", "😴" },
+				//~ { "🐭", "🐮", "🐱", "🐵", "🐯", "🐰", "🐴", "🐶", "🐷", "🐹", "🐺", "🐻", "🐼"  },
+				//~ { "♥", "♡", "💔", "💡", "☠" },
+				//~ { "£", "$", "€", "₤", "₱", "¥" },
+				//~ { "♩", "♪", "♫", "♬", "♭", "♮", "♯", "𝄞", "𝄢" } };
+		//~ menu.setLayout(new GridLayout(0, characters[0].length));
+		menu.setLayout(new GridLayout(0, 13));
 
 		Insets insets = new Insets(1, 1, 1, 1);
 		setMargin(insets);
-		for (String[] row : characters) {
-			for (String chr : row) {
-				JMenuItem item = new JMenuItem(chr);
+		final EmojiStore emojis = EmojiStore.get();
+		for (String st: emojis.getEmojiList()) {
+			st = ":" + st + ":";
+			final ImageSprite emoji = (ImageSprite) emojis.create(st);
+			if (emoji != null) {
+				EmojiButton item = new EmojiButton(emoji, st);
 				item.setMargin(insets);
 				item.addActionListener(listener);
 				item.setBorder(null);
-				item.setHorizontalTextPosition(CENTER);
 				menu.add(item);
 			}
+		}
+	}
+
+	private class EmojiButton extends JMenuItem {
+		private final String emojiText;
+
+		public EmojiButton(final ImageSprite emoji, final String text) {
+			super(new ImageIcon(emoji.getImage()));
+			emojiText = text;
+			setIconTextGap(0);
+		}
+
+		public String getEmojiText() {
+			return emojiText;
 		}
 	}
 }
