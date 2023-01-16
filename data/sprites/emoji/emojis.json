@@ -2,6 +2,7 @@
   "emojilist":
   {
     "angermark": true,
+    "astonished": true,
     "confounded": true,
     "confused": true,
     "cry": true,
@@ -27,6 +28,17 @@
     ":anger:": "angermark",
     ":angry:": "angermark",
     "💢": "angermark",
+
+    "o.O": "astonished",
+    "O.o": "astonished",
+    "o_O": "astonished",
+    "O_o": "astonished",
+    ":astonish:": "astonished",
+    ":dumbfound:": "astonished",
+    ":dumbfounded:": "astonished",
+    "😲": "astonished",
+    "😮": "astonished",
+    "😯": "astonished",
 
     "><": "confounded",
     ">.<": "confounded",
