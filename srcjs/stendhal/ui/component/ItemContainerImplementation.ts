@@ -97,9 +97,6 @@ export class ItemContainerImplementation {
 	public render() {
 		let myobject = this.object || marauroa.me;
 		let cnt = 0;
-		if (this.slot == "trade") {
-			console.log(this.slot, myobject, myobject ? myobject[this.slot] : undefined);
-		}
 		if (myobject && myobject[this.slot]) {
 			for (let i = 0; i < myobject[this.slot].count(); i++) {
 				let o = myobject[this.slot].getByIndex(i);
