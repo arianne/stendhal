@@ -337,13 +337,31 @@ div.logcolR {
   width: 200px;
 }
 
-#trade-other-column {
+#trade-partner-column {
   float: left;
   margin-right: 20px;
 }
 
 .trade-column {
   text-align:center;
+}
+
+#trade-partner-status, #trade-my-status {
+  font-weight: bold;
+}
+
+.trade-NO_ACTIVE_TRADE {
+  color: #AAA;
+}
+
+.trade-MAKING_OFFERS {
+  color: #AAA;
+}
+.trade-LOCKED {
+  color: #FFF;
+}
+.trade-DEAL_WAITING_FOR_OTHER_DEAL {
+  color: #0A0;
 }
 
 #trade-cancel {
