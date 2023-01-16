@@ -23,6 +23,7 @@ export class SpeechBubble extends TextBubble {
 
 
 	constructor(text: string, entity: RPEntity) {
+		text = text.replace(/\\\\/g, "\\");
 		super((text.length > 30) ? (text.substring(0, 30) + "...") : text);
 		this.entity = entity;
 
