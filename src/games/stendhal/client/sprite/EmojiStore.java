@@ -148,7 +148,7 @@ public class EmojiStore {
 	 */
 	public boolean isAvailable(String name) {
 		if (name.startsWith(":") && name.endsWith(":")) {
-			name = name.substring(0, name.length() - 1).substring(1);
+			name = name.substring(1, name.length()-1);
 		}
 		return emojilist.contains(name);
 	}

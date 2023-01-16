@@ -117,7 +117,7 @@ export class EmojiStore {
 	 */
 	isAvailable(name: string): boolean {
 		if (name.startsWith(":") && name.endsWith(":")) {
-			name = name.substr(0, name.length - 1).substr(1);
+			name = name.substr(1, name.length-2)
 		}
 		return this.emojilist[name] == true;
 	}
