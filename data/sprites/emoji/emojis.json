@@ -13,6 +13,7 @@
     "smile": true,
     "smileinvert": true,
     "smileslight": true,
+    "smilingeyes": true,
     "sweat": true,
     "tongue": true,
     "wink": true,
@@ -80,6 +81,10 @@
 
     ":slightsmile:": "smileslight",
     "🙂": "smileslight",
+
+    "^^": "smilingeyes",
+    ":eyessmiling:": "smilingeyes",
+    "😊": "smilingeyes",
 
     ":sweating:": "sweat",
     ":nervous:": "sweat",
