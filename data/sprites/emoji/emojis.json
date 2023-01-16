@@ -12,6 +12,7 @@
     "grin",
     "happycry",
     "heart",
+    "heartbroken",
     "neutral",
     "savor",
     "smile",
@@ -92,6 +93,10 @@
     "<3": "heart",
     ":love:": "heart",
     "\u2764": "heart",
+
+    "</3": "heartbroken",
+    ":brokenheart:": "heartbroken",
+    "💔": "heartbroken",
 
     ":-|": "neutral",
     ":meh:": "neutral",
