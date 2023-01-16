@@ -68,7 +68,7 @@
     ":frowning:": "frown",
     ":-(": "frown",
     ")-:": "frown",
-    "\u2639": "frown",
+    "☹": "frown",
 
     ":slightfrown:": "frownslight",
     ":(": "frownslight",
@@ -92,7 +92,7 @@
 
     ":love:": "heart",
     "<3": "heart",
-    "\u2764": "heart",
+    "❤": "heart",
 
     ":brokenheart:": "heartbroken",
     "</3": "heartbroken",
@@ -110,8 +110,8 @@
     ":smiley:": "smile",
     ":)": "smile",
     ":-)": "smile",
-    "\u263a": "smile",
-    "\u263b": "smile",
+    "☺": "smile",
+    "☻": "smile",
 
     ":smileinverted:": "smileinvert",
     ":invertsmile:": "smileinvert",
