@@ -38,6 +38,38 @@ public class EmojiStore {
 
 	private static final String pathPrefix = "data/sprites/emoji/";
 
+	/* The Java client currently implements javax.swing.text.Document
+	 * which does not support displaying images, so this map is used to
+	 * display a character instead. Once the chat log does support
+	 * images this can be removed. It may be possible to switch to
+	 * javax.swing.text.html.HTMLDocument.
+	 */
+	public static final Map<String, String> chatLogChars = new HashMap<String, String>() {{
+		put("angermark", "💢");
+		put("astonished", "😲");
+		put("confounded", "😣");
+		put("confused", "😕");
+		put("cry", "😢");
+		put("expressionless", "😑");
+		put("frown", "☹");
+		put("frownslight", "🙁");
+		put("grin", "😀");
+		put("heart", "❤");
+		put("heartarrow", "💘");
+		put("heartbroken", "💔");
+		put("joy", "😂");
+		put("neutral", "😐");
+		put("savor", "😋");
+		put("smile", "☺");
+		put("smileinvert", "🙃");
+		put("smileslight", "🙂");
+		put("smilingeyes", "😊");
+		put("sweat", "💧");
+		put("tongue", "😛");
+		put("wink", "😉");
+		put("winktongue", "😜");
+	}};
+
 
 	public static EmojiStore get() {
 		if (instance == null) {

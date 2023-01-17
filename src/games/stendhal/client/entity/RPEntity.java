@@ -28,8 +28,10 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.EmojiEventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.client.sprite.EmojiStore;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
@@ -722,6 +724,10 @@ public abstract class RPEntity extends AudibleEntity {
 		ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
+	void nonCreatureClientAddEmojiEventLine(final String emojiPath) {
+		ClientSingletonRepository.getUserInterface().addEventLine(new EmojiEventLine(getTitle(), emojiPath));
+	}
+
 	/**
 	 * Called when this entity attacks target.
 	 *
@@ -959,6 +965,10 @@ public abstract class RPEntity extends AudibleEntity {
 		if (User.isAdmin()
 				|| (rangeSquared < 0)
 				|| (User.squaredDistanceTo(x, y) < rangeSquared)) {
+			final String ttext = trimText(text);
+			final EmojiStore emojiStore = ClientSingletonRepository.getEmojiStore();
+			final Sprite emoji = emojiStore.create(ttext);
+
 			//an emote action is changed server side to an chat action with a leading !me
 			//this supports also invoking an emote with !me instead of /me
 			if (text.startsWith("!me")) {
@@ -967,25 +977,27 @@ public abstract class RPEntity extends AudibleEntity {
 
 				return;
 			} else {
-				//add the original version
-				nonCreatureClientAddEventLine(text);
+				if (emoji != null) {
+					final String emojiPath = emojiStore.absPath(ttext);
+					nonCreatureClientAddEmojiEventLine(emojiPath);
+				} else {
+					//add the original version
+					nonCreatureClientAddEventLine(text);
+				}
 			}
 
-			text = trimText(text);
-
-			final Sprite emoji = ClientSingletonRepository.getEmojiStore().create(text);
 			if (emoji != null) {
 				ClientSingletonRepository.getScreenController().addEmoji(
 					this, emoji);
 			} else if (testclient) {
 				// add stationary speech bubble
 				ClientSingletonRepository.getScreenController().addText(
-					getX() + getWidth(), getY(), text,
+					getX() + getWidth(), getY(), ttext,
 					NotificationType.NORMAL, true);
 			} else {
 				// add speech bubble that follows entity
 				ClientSingletonRepository.getScreenController().addText(
-					this, text, NotificationType.NORMAL, true);
+					this, ttext, NotificationType.NORMAL, true);
 			}
 		}
 	}
