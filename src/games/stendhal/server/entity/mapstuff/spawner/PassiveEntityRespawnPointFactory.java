@@ -217,6 +217,10 @@ public class PassiveEntityRespawnPointFactory {
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("emerald", 6000);
 			passiveEntityrespawnPoint.setDescription("You see trace elements of the precious gem emerald.");
 			break;
+		case 3:
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("amethyst", 6000);
+			passiveEntityrespawnPoint.setDescription("You see trace elements of a brilliant amethyst.");
+			break;
 		default:
 			passiveEntityrespawnPoint = null;
 			break;
