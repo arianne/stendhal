@@ -12,7 +12,6 @@
 package games.stendhal.client.gui.chatlog;
 
 import games.stendhal.common.NotificationType;
-import games.stendhal.client.sprite.Sprite;
 
 
 public class EmojiEventLine extends EventLine {
