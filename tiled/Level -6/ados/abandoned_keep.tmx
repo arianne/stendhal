@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -54,6 +54,9 @@
  <tileset firstgid="291" name="furniture/light/flames" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/furniture/light/flames.png" width="192" height="32"/>
  </tileset>
+ <tileset firstgid="297" name="hybrid" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+  <image source="../../tileset/logic/creature/hybrid.png" width="256" height="64"/>
+ </tileset>
  <layer id="1" name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3VsQ2DMBSEYS+QBVLAEpksK1CmyBLUyRCZIT2jQCQKxwL77t6zEJKLK9H3A0YMIYThBHsuu4N7VLAv5LwaYvsGzqshvW/WtzRsPXPFVxr23rfqMw25s2bxkYbSObf6uQbkG/PwtxrQ79vLTxvGA/yX4Mfrll3X9cL1zW9+85v/2/sA/xP+/wFsg8VPbaVB9fdstkHxSzbTwPqojTYwPmsjDaiv2qUGxLfauYZvslp23DCB87ZrbgbRdzwQABAAAA==
@@ -76,7 +79,7 @@
  </layer>
  <layer id="5" name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjgDzAOdAOGAV0B0qMxImNglEwCkgH4jTMS7Q0exSMglEwCkbBKBgpgJkRgocyAAApn6JEABAAAA==
+   H4sIAAAAAAAACmNgGAVDEZgzYmfTE3AOjLWjYACBEpa0hk1sFIyCUUA6EKdhXqKl2aNgFIyCUTAKRsFIAcyMEDyUAQAjUfLtABAAAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="32" height="32" visible="0" opacity="0.25">
