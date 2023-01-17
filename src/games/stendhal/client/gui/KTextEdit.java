@@ -28,6 +28,7 @@ import java.io.Writer;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.swing.DefaultBoundedRangeModel;
@@ -67,6 +68,7 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
+import games.stendhal.client.sprite.EmojiStore;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
@@ -317,10 +319,21 @@ class KTextEdit extends JComponent {
 	 * @param text text contents
 	 * @param type type for formatting
 	 */
-	protected void insertText(final String text, final NotificationType type) {
+	protected void insertText(String text, final NotificationType type) {
 		ChatTextSink dest = new ChatTextSink(textPane.getDocument());
 		StyleSet set = new StyleSet(StyleContext.getDefaultStyleContext(), getStyle(type.getColor(), type.getStyleDescription()));
 		set.setAttribute(StyleConstants.Foreground, type.getColor());
+
+		if (type.equals(NotificationType.EMOJI)) {
+			// TODO: chat log does not support images
+			text = new File(text).getName().replaceFirst("[.][^.]+$", "");
+			final Map<String, String> chatLogChars = EmojiStore.get().chatLogChars;
+			if (chatLogChars.containsKey(text)) {
+				text = chatLogChars.get(text);
+			} else {
+				text = ":" + text + ":";
+			}
+		}
 
 		formatter.format(text, set, dest);
 	}

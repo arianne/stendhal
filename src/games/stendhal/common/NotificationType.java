@@ -157,7 +157,9 @@ public enum NotificationType {
 		public Color getColor() {
 			return COLOR_WARNING;
 		}
-	};
+	},
+	EMOJI("emoji");
+
 	public static final Color COLOR_CLIENT = Color.gray;
 
 	public static final Color COLOR_ERROR = Color.red;
