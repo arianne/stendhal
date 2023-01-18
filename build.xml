@@ -191,7 +191,7 @@
       </fileset>
     </schemavalidate>
     <schemavalidate>
-    <schema namespace="stendhal" file="${config_dir}/creatures.xsd"/>
+      <schema namespace="stendhal" file="${config_dir}/creatures.xsd"/>
       <fileset dir="${config_dir}/creatures">
         <include name="*.xml"/>
       </fileset>
@@ -221,17 +221,22 @@
       <fileset dir="data/conf/items">
         <include name="armors.xml"/>
         <include name="arrows.xml"/>
-        <include name="axes.xml"/>
         <include name="boots.xml"/>
         <include name="cloaks.xml"/>
-        <include name="clubs.xml"/>
         <include name="dummy_weapons.xml"/>
         <include name="helmets.xml"/>
         <include name="legs.xml"/>
         <include name="missiles.xml"/>
-        <include name="ranged.xml"/>
         <include name="rings.xml"/>
         <include name="shields.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/weapons.xsd"/>
+      <fileset dir="${config_dir}/items">
+        <include name="axes.xml"/>
+        <include name="clubs.xml"/>
+        <include name="ranged.xml"/>
         <include name="swords.xml"/>
       </fileset>
     </schemavalidate>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../items.xsd">
+    xsi:schemaLocation="stendhal ../weapons.xsd">
 
   <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
@@ -12,6 +12,7 @@
       <ratk condition="testing.combat" value="12"/>
       <range value="3"/>
       <min_level value="0"/>
+      <rate value="5"/>
     </attributes>
     <weight value="1.0"/>
     <value value="17280"/>
@@ -34,6 +35,7 @@
       <ratk condition="testing.combat" value="14"/>
       <range value="4"/>
       <min_level value="5"/>
+      <rate value="5"/>
     </attributes>
     <weight value="1.0"/>
     <value value="27440"/>
@@ -56,6 +58,7 @@
       <ratk condition="testing.combat" value="15"/>
       <range value="5"/>
       <min_level value="10"/>
+      <rate value="5"/>
     </attributes>
     <weight value="1.0"/>
     <value value="33750"/>
@@ -78,6 +81,7 @@
       <ratk condition="testing.combat" value="17"/>
       <range value="3"/>
       <min_level value="20"/>
+      <rate value="5"/>
     </attributes>
     <weight value="3.0"/>
     <value value="49130"/>
@@ -100,6 +104,7 @@
       <ratk condition="testing.combat" value="21"/>
       <range value="4"/>
       <min_level value="50"/>
+      <rate value="5"/>
     </attributes>
     <weight value="3.0"/>
     <value value="92610"/>
@@ -122,6 +127,7 @@
       <ratk condition="testing.combat" value="28"/>
       <range value="4"/>
       <min_level value="300"/>
+      <rate value="5"/>
     </attributes>
     <weight value="3.0"/>
     <value value="142610"/>
@@ -144,10 +150,10 @@
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
       <range value="3"/>
-      <rate value="1"/>
       <autobind value=""/>
       <durability value="800"/>
       <min_level value="20"/>
+      <rate value="1"/>
     </attributes>
     <weight value="0.5"/>
     <value value="17280"/>
@@ -169,10 +175,10 @@
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
       <range value="3"/>
-      <rate value="1"/>
       <autobind value=""/>
       <durability value="1400"/>
       <min_level value="20"/>
+      <rate value="1"/>
     </attributes>
     <weight value="0.5"/>
     <value value="17280"/>
@@ -194,10 +200,10 @@
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
       <range value="3"/>
-      <rate value="1"/>
       <autobind value=""/>
       <durability value="3600"/>
       <min_level value="20"/>
+      <rate value="1"/>
     </attributes>
     <weight value="0.5"/>
     <value value="17280"/>
