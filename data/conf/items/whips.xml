@@ -9,6 +9,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="30"/>
+      <range value="1"/>
       <min_level value="75"/>
       <statusattack value="15,cobra venom"/>
       <rate value="6"/>
