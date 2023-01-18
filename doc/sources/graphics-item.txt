@@ -707,3 +707,7 @@ rotary_cutter.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/116893
 sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)
+
+data/sprites/items/whip/
+
+poison_whip.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/

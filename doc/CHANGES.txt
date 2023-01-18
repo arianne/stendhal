@@ -27,7 +27,9 @@ Changelog
   - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
   - Floral Fondness: Help restock Nalwor flower shop 50 times
   - Challenge Accepted: Complete 5 rounds of deathmatch without help
-- new item: amethyst
+- new items:
+  - amethyst
+  - poison whip
 - Unicorn Horns for Zelan quest is now repeatable
 - Restock the Flower Shop quest now tracks completions
 - weapons can now inflict status effects

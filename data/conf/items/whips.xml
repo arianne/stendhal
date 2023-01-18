@@ -3,4 +3,27 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../weapons.xsd">
 
+  <item name="poison whip">
+    <type class="whip" subclass="poison_whip" tileid="-1"/>
+    <description>The thong of this poison whip is saturated with cobra venom.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <unattainable>true</unattainable>
+    <attributes>
+      <atk value="30"/>
+      <min_level value="75"/>
+      <statusattack value="15,cobra venom"/>
+      <rate value="6"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="17280"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
 </items>
