@@ -114,22 +114,22 @@
     <description>You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-     <atk value="7"/>
-     <lifesteal value="0.1"/>
-     <min_level value="150"/>
-     <rate value="2"/>
+      <atk value="7"/>
+      <lifesteal value="0.1"/>
+      <min_level value="150"/>
+      <rate value="2"/>
     </attributes>
     <weight value="1"/>
     <value value="10400"/>
     <equipable>
-    <slot name="ground"/>
-    <slot name="content"/>
-     <slot name="bag"/>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
-     <slot name="lhand"/>
-   <slot name="rhand"/>
-  </equipable>
- </item>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 
   <item name="chaos sword">
     <type class="sword" subclass="chaos_sword" tileid="-1"/>
