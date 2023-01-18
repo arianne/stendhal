@@ -266,11 +266,11 @@
     <type class="club" subclass="rod_of_the_gm" tileid="-1"/>
     <description>You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <unattainable>true</unattainable>
     <attributes>
       <atk value="100"/>
       <def value="100"/>
       <rate value="2"/>
-      <unattainable>true</unattainable>
       <min_level value="0"/>
     </attributes>
     <weight value="0.01"/>

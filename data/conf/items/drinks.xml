@@ -355,13 +355,13 @@
     <type class="drink" subclass="mana" tileid="-1"/>
     <description>You see an bottle of mana, to increase your mana rapidly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="20"/>
       <frequency value="1"/>
       <quantity value="1"/>
       <regen value="0"/>
       <menu value="Drink|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

@@ -35,13 +35,13 @@
     <type class="food" subclass="apple_special/apple_purple" tileid="-1"/>
     <description>You see a purple apple. It is loaded with memories</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="4"/>
       <frequency value="10"/>
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -60,13 +60,13 @@
     <type class="food" subclass="apple_special/apple_mauve" tileid="-1"/>
     <description>You see a mauve apple. It is loaded with memories</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="4"/>
       <frequency value="10"/>
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -85,13 +85,13 @@
     <type class="food" subclass="apple_special/apple_black" tileid="-1"/>
     <description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="4"/>
       <frequency value="10"/>
       <quantity value="1"/>
       <regen value="1"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -1614,13 +1614,13 @@
     <type class="food" subclass="candycane" tileid="-1"/>
     <description>You see a delicious candy cane.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
       </attributes>
       <weight value="1.0"/>
       <value value="150"/>
@@ -1638,13 +1638,13 @@
     <type class="food" subclass="greenmint" tileid="-1"/>
     <description>You see a green mint.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1662,13 +1662,13 @@
     <type class="food" subclass="gumdrops" tileid="-1"/>
     <description>You see a mix of gum drops.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1686,13 +1686,13 @@
     <type class="food" subclass="lemondrop" tileid="-1"/>
     <description>You see a sweet and tangy lemon drop.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1710,13 +1710,13 @@
     <type class="food" subclass="lollipop" tileid="-1"/>
     <description>You see a lollipop.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1734,13 +1734,13 @@
     <type class="food" subclass="peppermint" tileid="-1"/>
     <description>You see a sweet, little peppermint.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>
@@ -1758,13 +1758,13 @@
     <type class="food" subclass="taffy" tileid="-1"/>
     <description>You see some ooey gooey taffy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <unattainable>true</unattainable>
     <attributes>
       <amount value="90"/>
       <frequency value="5"/>
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="150"/>

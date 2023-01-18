@@ -129,8 +129,8 @@
     <type class="key" subclass="filigree" tileid="-1"/>
     <description>You see a key for the pet sanctuary in Ados.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <unattainable>true</unattainable>
     <attributes>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -183,8 +183,8 @@
     <type class="key" subclass="skeleton" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.MasterKey"/>
+    <unattainable>true</unattainable>
     <attributes>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

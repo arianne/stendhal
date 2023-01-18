@@ -127,10 +127,10 @@
     <type class="resource" subclass="wool" tileid="-1"/>
     <description>You see wool. It was recently shorn.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <unattainable>true</unattainable>
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -148,10 +148,10 @@
     <type class="resource" subclass="yarn" tileid="-1"/>
     <description>You see a ball of yarn. It was spun with care.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <unattainable>true</unattainable>
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -289,10 +289,10 @@
     <type class="resource" subclass="golden_egg" tileid="-1"/>
     <description>You see a valuable golden egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <unattainable>true</unattainable>
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
-      <unattainable>true</unattainable>
     </attributes>
     <weight value="1.0"/>
     <value value="1000"/>

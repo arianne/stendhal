@@ -18,6 +18,7 @@
       <element name="type" type="Q1:typeType"/>
       <element name="description" type="string"></element>
       <element name="implementation" type="Q1:implementation"></element>
+      <element name="unattainable" type="boolean" minOccurs="0" maxOccurs="1"></element>
       <element name="behavior" type="Q1:behavior" minOccurs="0" maxOccurs="1"></element>
       <element name="attributes" type="Q1:attributes"></element>
       <element name="weight" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
@@ -78,6 +79,7 @@
       <element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded"/>
       <element name="itemset" type="Q1:attribute" minOccurs="0"/>
       <element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
+      <!-- 1.43 deprecated: use itemType:unattainable -->
       <element name="unattainable" type="boolean" minOccurs="0" maxOccurs="1"/>
     </sequence>
   </complexType>

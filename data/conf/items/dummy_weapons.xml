@@ -11,10 +11,10 @@
     <type class="ranged" subclass="dummy_ranged" tileid="-1"/>
     <description>Ranged weapon. This description should not be seen.</description>
     <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>
+    <unattainable>true</unattainable>
     <attributes>
       <atk value="12"/>
       <range value="3"/>
-      <unattainable>true</unattainable>
       <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
@@ -27,10 +27,10 @@
     <type class="club" subclass="dummy_melee_8" tileid="-1"/>
     <description>Ranged weapon. This description should not be seen.</description>
     <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>
+    <unattainable>true</unattainable>
     <attributes>
       <atk value="22"/>
       <range value="8"/>
-      <unattainable>true</unattainable>
       <min_level value="9999"/>
     </attributes>
     <weight value="1.0"/>
