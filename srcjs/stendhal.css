@@ -27,14 +27,34 @@ ul.uniform {
   margin-left: -23px;
 }
 
-#buddyList {
-  border: 1px solid black;
-  width: 128px;
-  height: 175px;
-  float: left;
-  overflow-x: hidden;
-  overflow-y: auto;
+#leftColumn .tabpanel {
   flex: 1;
+}
+
+.tabpanel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.tabpanel-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #000;
+  flex: 1;
+}
+
+.tabpanel-tabs button {
+  background: url("/data/gui/panelwood003.jpg");
+  color: #FFF;
+  border-top: 0;
+}
+
+#buddyList {
+  width: 128px;
 }
 
 #buddyList ul {

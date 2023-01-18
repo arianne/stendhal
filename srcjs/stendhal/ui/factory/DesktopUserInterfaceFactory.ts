@@ -14,6 +14,7 @@ import { ui } from "../UI";
 
 import { Component } from "../toolkit/Component";
 import { Panel } from "../toolkit/Panel";
+import { TabPanelComponent } from "../toolkit/TabPanelComponent";
 
 import { BagComponent } from "../component/BagComponent";
 import { BuddyListComponent } from "../component/BuddyListComponent";
@@ -34,10 +35,15 @@ export class DesktopUserInterfaceFactory {
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
+		let socialPanel = new TabPanelComponent();
+
 		this.add(leftPanel, UIComponentEnum.MiniMap, new MiniMapComponent());
 		this.add(leftPanel, UIComponentEnum.ZoneInfo, new ZoneInfoComponent());
 		this.add(leftPanel, UIComponentEnum.PlayerStats, new PlayerStatsComponent());
-		this.add(leftPanel, UIComponentEnum.BuddyList, new BuddyListComponent());
+		leftPanel.add(socialPanel);
+
+		this.add(socialPanel, UIComponentEnum.BuddyList, new BuddyListComponent());
+		socialPanel.addTab("Friends");
 
 
 		let rightPanel = new Panel("rightColumn");

@@ -16,6 +16,7 @@ import { Component } from "./Component";
  */
 export class Panel extends Component {
 
+	protected containerElement: HTMLElement;
 	private children: Component[] = [];
 
 	/**
@@ -25,6 +26,7 @@ export class Panel extends Component {
 	 */
 	constructor(id: string) {
 		super(id);
+		this.containerElement = this.componentElement;
 	}
 
 	/**
@@ -37,8 +39,8 @@ export class Panel extends Component {
 			return;
 		}
 		this.children.push(child);
-		if (!this.componentElement.contains(child.componentElement)) {
-			this.componentElement.append(child.componentElement);
+		if (!this.containerElement.contains(child.componentElement)) {
+			this.containerElement.append(child.componentElement);
 		}
 	}
 
@@ -53,7 +55,7 @@ export class Panel extends Component {
 			return;
 		}
 		this.children.splice(index, 1);
-		if (this.componentElement.contains(child.componentElement)) {
+		if (this.containerElement.contains(child.componentElement)) {
 			child.componentElement.remove();
 		}
 	}
