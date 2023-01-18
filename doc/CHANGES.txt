@@ -41,6 +41,7 @@ Changelog
 - added music & looped sounds support
 - added HP bar to stats panel
 - added karma bar to stats panel
+- added trade dialog
 
 *java client*
 - added emoji support
