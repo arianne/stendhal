@@ -14,10 +14,10 @@
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
       <min_level value="0"/>
+      <damagetype value="ice"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
-    <damage type="ice"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -137,10 +137,10 @@
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
       <min_level value="50"/>
+      <damagetype value="fire"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
-    <damage type="fire"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>

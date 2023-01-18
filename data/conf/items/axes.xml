@@ -74,10 +74,10 @@
       <atk value="57"/>
       <rate value="9"/>
       <min_level value="150"/>
+      <damagetype value="dark"/>
     </attributes>
     <weight value="10.0"/>
     <value value="1028850"/>
-    <damage type="dark"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -96,10 +96,10 @@
       <atk value="42"/>
       <rate value="6"/>
       <min_level value="200"/>
+      <damagetype value="dark"/>
     </attributes>
     <weight value="10.0"/>
     <value value="617400"/>
-    <damage type="dark"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -224,10 +224,10 @@
       <atk value="40"/>
       <rate value="7"/>
       <min_level value="150"/>
+      <damagetype value="light"/>
     </attributes>
     <weight value="3.0"/>
     <value value="457142"/>
-    <damage type="light"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>

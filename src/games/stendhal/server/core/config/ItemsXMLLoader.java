@@ -180,7 +180,9 @@ public final class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("attributes")) {
 			attributesTag = true;
 		} else if (attributesTag) {
-			if (qName.equals("status_resist")) {
+			if (qName.equals("damagetype")) {
+				damageType = attrs.getValue("value");
+			} else if (qName.equals("status_resist")) {
 				this.resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 				this.activeSlots = attrs.getValue("slots");
 			} else if (qName.equals("statusattack")) {
@@ -192,6 +194,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 				attributes.put(qName, attrs.getValue("value"));
 			}
 		} else if (qName.equals("damage")) {
+			LOGGER.warn("\"item->damage\" is deprecated, use \"item->attributes->damagetype\"");
 			damageType = attrs.getValue("type");
 		} else if (qName.equals("susceptibility")) {
 			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));

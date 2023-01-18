@@ -182,10 +182,10 @@
       <atk value="45"/>
       <rate value="10"/>
       <min_level value="60"/>
+      <damagetype value="ice"/>
     </attributes>
     <weight value="8.0"/>
     <value value="455625"/>
-    <damage type="ice"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -357,10 +357,10 @@
       <atk value="48"/>
       <rate value="9"/>
       <min_level value="90"/>
+      <damagetype value="fire"/>
     </attributes>
     <weight value="8.0"/>
     <value value="614400"/>
-    <damage type="fire"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
