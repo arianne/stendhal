@@ -2535,6 +2535,16 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public Item getRangeWeapon() {
 		for (final Item weapon : getWeapons()) {
+			if (weapon.has("range")) {
+				return weapon;
+			}
+		}
+
+		return null;
+	}
+
+	public Item getProjectileLauncher() {
+		for (final Item weapon: getWeapons()) {
 			if (weapon.isOfClass("ranged")) {
 				return weapon;
 			}
@@ -2936,7 +2946,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final StackableItem ammunition = getAmmunition();
 		final StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
 		int maxRange;
-		if ((rangeWeapon != null) && (ammunition != null)
+		if ((rangeWeapon != null) && (!rangeWeapon.isNonMeleeWeapon())) {
+			// long reaching melee weapons
+			maxRange = rangeWeapon.getInt("range");
+		} else if ((rangeWeapon != null) && (ammunition != null)
 				&& (ammunition.getQuantity() > 0)) {
 			maxRange = rangeWeapon.getInt("range") + ammunition.getInt("range");
 		} else if ((missiles != null) && (missiles.getQuantity() > 0)) {
@@ -3129,6 +3142,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		defender.rememberAttacker(this);
 
+		// Weapon for the use in the attack event
+		Item attackWeapon = getWeapon();
+		String weaponName = null;
+		if (attackWeapon != null) {
+			weaponName = attackWeapon.getWeaponType();
+		}
+
 		final int maxRange = getMaxRangeForArcher();
 		/*
 		 * The second part (damage type check) ensures that normal archers need
@@ -3137,7 +3157,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		 * powers (yes, it's a bit of a hack).
 		 */
 		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange))
-			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0));
+			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0))
+			&& attackWeapon.isNonMeleeWeapon();
 
 		Nature nature;
 		final float itemAtk;
@@ -3153,13 +3174,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final List<StatusAttacker> allStatusAttackers = getAllStatusAttackers();
 		for (StatusAttacker statusAttacker : allStatusAttackers) {
 			statusAttacker.onAttackAttempt(defender, this);
-		}
-
-		// Weapon for the use in the attack event
-		Item attackWeapon = getWeapon();
-		String weaponName = null;
-		if (attackWeapon != null) {
-			weaponName = attackWeapon.getWeaponType();
 		}
 
 		if (this.canHit(defender)) {
