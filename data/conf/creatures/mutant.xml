@@ -197,6 +197,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="placid ring" quantity="[1,1]" probability="0.5"/>
+      <item value="poison whip" quantity="1" probability="0.9"/>
     </drops>
     <equips>
     </equips>

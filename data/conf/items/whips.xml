@@ -7,7 +7,6 @@
     <type class="whip" subclass="poison_whip" tileid="-1"/>
     <description>The thong of this poison whip is saturated with cobra venom.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <unattainable>true</unattainable>
     <attributes>
       <atk value="30"/>
       <min_level value="75"/>
