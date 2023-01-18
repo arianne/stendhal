@@ -214,6 +214,7 @@
         <exclude name="rings.xml"/>
         <exclude name="shields.xml"/>
         <exclude name="swords.xml"/>
+        <exclude name="whips.xml"/>
       </fileset>
     </schemavalidate>
     <schemavalidate>
@@ -238,6 +239,7 @@
         <include name="clubs.xml"/>
         <include name="ranged.xml"/>
         <include name="swords.xml"/>
+        <include name="whips.xml"/>
       </fileset>
     </schemavalidate>
     <schemavalidate>

@@ -2478,7 +2478,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *         left hand.
 	 */
 	public Item getWeapon() {
-		final String[] weaponsClasses = {"club", "sword", "axe", "ranged", "missile"};
+		final String[] weaponsClasses = {"club", "sword", "axe", "ranged", "missile", "whip"};
 
 		for (final String weaponClass : weaponsClasses) {
 			final String[] slots = { "lhand", "rhand" };
