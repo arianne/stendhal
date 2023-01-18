@@ -59,6 +59,7 @@ public class EmojiStore {
 		put("heartbroken", "💔");
 		put("joy", "😂");
 		put("neutral", "😐");
+		put("rolledeyes", "🙄");
 		put("savor", "😋");
 		put("smile", "☺");
 		put("smileinvert", "🙃");

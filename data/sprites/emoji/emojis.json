@@ -16,6 +16,7 @@
     "heartbroken",
     "joy",
     "neutral",
+    "rolledeyes",
     "savor",
     "smile",
     "smileinvert",
@@ -111,6 +112,12 @@
     ":unamused:": "neutral",
     ":-|": "neutral",
     "😐": "neutral",
+
+    ":eyeroll:": "rolledeyes",
+    ":eyesroll:": "rolledeyes",
+    ":rolleyes:": "rolledeyes",
+    ":rollseyes:": "rolledeyes",
+    "🙄": "rolledeyes",
 
     ":yum:": "savor",
     "😋": "savor",
