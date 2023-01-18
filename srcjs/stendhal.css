@@ -2,6 +2,8 @@
 :root {
   --text-color-online: #0a0;
   --text-color-offline: #aaa;
+  --text-color: #FFF;
+  --background-url: url(/data/gui/panelwood003.jpg)
   overflow: hidden;
 }
 
@@ -48,8 +50,8 @@ ul.uniform {
 }
 
 .tabpanel-tabs button {
-  background: url("/data/gui/panelwood003.jpg");
-  color: #FFF;
+  background: var(--background-url);
+  color: var(--text-color);
   border-top: 0;
 }
 
@@ -323,8 +325,8 @@ div.logcolR {
 }
 
 .background {
-  background: url(/data/gui/panelwood003.jpg);
-  color: #FFF;
+  background: var(--background-url);
+  color: var(--text-color);
 }
 
 .inlineblock {

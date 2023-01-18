@@ -228,13 +228,19 @@ export class ConfigManager {
 			this.applyTheme(<HTMLElement> elem, undefined, undefined, updateBG);
 		}
 
-		// buddy list text color
+		const current = this.getTheme();
+
+		let rootStyle = document.documentElement.style;
+		rootStyle.setProperty("--background-url", 
+			"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
 		if (this.usingDarkTheme()) {
-			document.documentElement.style.setProperty("--text-color-online", "#0a0");
-			document.documentElement.style.setProperty("--text-color-offline", "#aaa");
+			rootStyle.setProperty("--text-color", "#fff");
+			rootStyle.setProperty("--text-color-online", "#0a0");
+			rootStyle.setProperty("--text-color-offline", "#aaa");
 		} else {
-			document.documentElement.style.setProperty("--text-color-online", "#070");
-			document.documentElement.style.setProperty("--text-color-offline", "#777");
+			rootStyle.setProperty("--text-color", "#000");
+			rootStyle.setProperty("--text-color-online", "#070");
+			rootStyle.setProperty("--text-color-offline", "#777");
 		}
 
 		const buddyList = <BuddyListComponent> ui.get(UIComponentEnum.BuddyList);
