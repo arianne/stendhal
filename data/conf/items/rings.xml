@@ -10,8 +10,8 @@
     <description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <status_resist slots="finger;" type="poisoned" value="0.25"/>
       <min_level value="0"/>
+      <statusresist slots="finger;" type="poisoned" value="0.25"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -30,8 +30,8 @@
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <status_resist slots="finger;" type="poisoned" value="0.5"/>
       <min_level value="0"/>
+      <statusresist slots="finger;" type="poisoned" value="0.5"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -51,8 +51,8 @@
     <description>You see an antitoxin ring. It is highly resistant to poison when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <status_resist slots="finger;" type="poisoned" value="0.75"/>
       <min_level value="0"/>
+      <statusresist slots="finger;" type="poisoned" value="0.75"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -72,8 +72,8 @@
     <description>You see a placid ring. It may reduce the effects of being shocked when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <status_resist slots="finger;" type="shocked" value="0.33"/>
       <min_level value="0"/>
+      <statusresist slots="finger;" type="shocked" value="0.33"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -92,8 +92,8 @@
     <description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <status_resist slots="finger;" type="shocked" value="0.66"/>
       <min_level value="0"/>
+      <statusresist slots="finger;" type="shocked" value="0.66"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>

@@ -182,7 +182,10 @@ public final class ItemsXMLLoader extends DefaultHandler {
 		} else if (attributesTag) {
 			if (qName.equals("damagetype")) {
 				damageType = attrs.getValue("value");
-			} else if (qName.equals("status_resist")) {
+			} else if (qName.equals("statusresist") || qName.equals("status_resist")) {
+				if (qName.equals("status_resist")) {
+					LOGGER.warn("\"item->attributes->status_resist\" is deprecated, use \"item->attributes->statusresist\"");
+				}
 				this.resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 				this.activeSlots = attrs.getValue("slots");
 			} else if (qName.equals("statusattack")) {

@@ -77,7 +77,8 @@
       <element name="slot_size" type="Q1:attribute" minOccurs="0"/>
       <element name="menu" type="Q1:attribute" minOccurs="0"/>
       <element name="durability" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
-      <element name="status_resist" type="Q1:stresist" minOccurs="0" maxOccurs="unbounded"/>
+      <!-- 1.43 deprecated: use item->attributes->statusresist -->
+      <element name="status_resist" type="Q1:statusresist" minOccurs="0" maxOccurs="unbounded"/>
       <element name="itemset" type="Q1:attribute" minOccurs="0"/>
       <element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
       <!-- 1.43 deprecated: use item->unattainable -->
@@ -109,7 +110,7 @@
     <attribute name="value" type="decimal"/>
   </complexType>
 
-  <complexType name="stresist">
+  <complexType name="statusresist">
     <attribute name="type" type="string"/>
     <attribute name="value" type="decimal"/>
     <attribute name="slots" type="string"/>
