@@ -16,6 +16,7 @@ import { Panel } from "./Panel";
  * a tabbed panel
  */
 export class TabPanelComponent extends Panel {
+	private currentIndex = 0;
 
 	/**
 	 * creates a new panel
@@ -27,9 +28,26 @@ export class TabPanelComponent extends Panel {
 		this.containerElement = this.componentElement.querySelector(".tabpanel-content")!;
 	}
 
+	override add(child: Component) {
+		if (this.children.length != this.currentIndex) {
+			child.componentElement.style.display = "none";
+		}
+		super.add(child);
+	}
+
 	addTab(label: string) {
 		let button = document.createElement("button");
 		button.innerText = label;
+		button.dataset.index = "" + this.componentElement.querySelector(".tabpanel-tabs")!.children.length;
+		button.addEventListener("click", (e) => {
+			this.onTabClick(e);
+		})
 		this.componentElement.querySelector(".tabpanel-tabs")!.append(button);
+	}
+
+	onTabClick(event: Event) {
+		this.children[this.currentIndex].componentElement.style.display = "none";
+		this.currentIndex = Number.parseInt((event.target as HTMLElement).dataset.index!, 10);
+		this.children[this.currentIndex].componentElement.style.display = "block";
 	}
 }

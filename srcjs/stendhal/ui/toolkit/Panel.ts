@@ -17,7 +17,7 @@ import { Component } from "./Component";
 export class Panel extends Component {
 
 	protected containerElement: HTMLElement;
-	private children: Component[] = [];
+	protected children: Component[] = [];
 
 	/**
 	 * creates a new panel
