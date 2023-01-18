@@ -1621,18 +1621,18 @@
       <quantity value="1"/>
       <regen value="10"/>
       <menu value="Eat|Use"/>
-      </attributes>
-      <weight value="1.0"/>
-      <value value="150"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-      </equipable>
-    </item>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="150"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
   <item name="greenmint">
     <type class="food" subclass="greenmint" tileid="-1"/>
