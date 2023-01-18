@@ -284,7 +284,7 @@ public class DefaultItem {
 			if (statusAttacks != null) {
 				for (final String statk: statusAttacks) {
 					StatusAttacker statusAttacker;
-					if (statk.contains("poison")) {
+					if (statk.contains("poison") || statk.contains("cobra venom") || statk.contains("fierywater")) {
 						statusAttacker = PoisonAttackerFactory.get(statk);
 					} else {
 						statusAttacker = StatusAttackerFactory.get(statk);
