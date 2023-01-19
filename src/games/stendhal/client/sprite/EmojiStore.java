@@ -45,6 +45,7 @@ public class EmojiStore {
 	 * javax.swing.text.html.HTMLDocument.
 	 */
 	public static final Map<String, String> chatLogChars = new HashMap<String, String>() {{
+		put("angel", "😇");
 		put("angermark", "💢");
 		put("astonished", "😲");
 		put("confounded", "😣");
@@ -53,18 +54,30 @@ public class EmojiStore {
 		put("expressionless", "😑");
 		put("frown", "☹");
 		put("frownslight", "🙁");
+		put("glasses", "🤓");
 		put("grin", "😀");
 		put("heart", "❤");
 		put("heartarrow", "💘");
+		put("heartblue", "💙");
 		put("heartbroken", "💔");
+		put("heartgreen", "💚");
+		put("heartviolet", "💜");
+		put("heartyellow", "💛");
 		put("joy", "😂");
+		put("lips", "🗢");
+		put("musicnoteeighth", "♪");
+		put("musicnotequarter", "♩");
+		put("musicnotesasc", "🎜");
+		put("musicnotesdesc", "🎝");
 		put("neutral", "😐");
+		put("nomouth", "😶");
 		put("rolledeyes", "🙄");
 		put("savor", "😋");
 		put("smile", "☺");
 		put("smileinvert", "🙃");
 		put("smileslight", "🙂");
 		put("smilingeyes", "😊");
+		put("sunglasses", "😎");
 		put("sweat", "💧");
 		put("tongue", "😛");
 		put("wink", "😉");

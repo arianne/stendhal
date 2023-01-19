@@ -1,6 +1,7 @@
 {
   "emojilist":
   [
+    "angel",
     "angermark",
     "astonished",
     "confounded",
@@ -9,19 +10,31 @@
     "expressionless",
     "frown",
     "frownslight",
+    "glasses",
     "grin",
     "happycry",
     "heart",
     "heartarrow",
+    "heartblue",
     "heartbroken",
+    "heartgreen",
+    "heartviolet",
+    "heartyellow",
     "joy",
+    "lips",
+    "musicnoteeighth",
+    "musicnotequarter",
+    "musicnotesasc",
+    "musicnotesdesc",
     "neutral",
+    "nomouth",
     "rolledeyes",
     "savor",
     "smile",
     "smileinvert",
     "smileslight",
     "smilingeyes",
+    "sunglasses",
     "sweat",
     "tongue",
     "wink",
@@ -30,6 +43,18 @@
 
   "emojimap":
   {
+    ":halo:": "angel",
+    "O:-)": "angel",
+    "(-:O": "angel",
+    "O:)": "angel",
+    "(:O": "angel",
+    "0:)": "angel",
+    "(:0": "angel",
+    "0=)": "angel",
+    "(=0": "angel",
+    "😇": "angel",
+    "👼": "angel",
+
     ":anger:": "angermark",
     ":angry:": "angermark",
     "💢": "angermark",
@@ -78,6 +103,13 @@
     "):": "frownslight",
     "🙁": "frownslight",
 
+    ":nerd:": "glasses",
+    "8)": "glasses",
+    "(8": "glasses",
+    "8-)": "glasses",
+    "(-8": "glasses",
+    "🤓": "glasses",
+
     ":grinning:": "grin",
     ":D": "grin",
     ":-D": "grin",
@@ -100,18 +132,64 @@
     ":arrowheart:": "heartarrow",
     "💘": "heartarrow",
 
+    ":blueheart:": "heartblue",
+    "💙": "heartblue",
+
     ":brokenheart:": "heartbroken",
     "</3": "heartbroken",
     "💔": "heartbroken",
+
+    ":greenheart:": "heartgreen",
+    "💚": "heartgreen",
+
+    ":heartpurple:": "heartviolet",
+    ":purpleheart:": "heartviolet",
+    ":violetheart:": "heartviolet",
+    "💜": "heartviolet",
+
+    ":yellowheart:": "heartyellow",
+    "💛": "heartyellow",
 
     ":joytears:": "joy",
     ":tearsjoy:": "joy",
     "😂": "joy",
 
+    ":kiss:": "lips",
+    ":kissmark:": "lips",
+    ":mouth:": "lips",
+    ":-*": "lips",
+    "*-:": "lips",
+    ":*": "lips",
+    "*:": "lips",
+    "🗢": "lips",
+    "👄": "lips",
+    "💋": "lips",
+
+    ":eighthnote:": "musicnoteeighth",
+    ":musiceighthnote:": "musicnoteeighth",
+    "♪": "musicnoteeighth",
+
+    ":quarternote:": "musicnotequarter",
+    ":musicquarternote:": "musicnotequarter",
+    "♩": "musicnotequarter",
+
+    "🎜": "musicnotesasc",
+
+    "🎝": "musicnotesdesc",
+
     ":meh:": "neutral",
     ":unamused:": "neutral",
     ":-|": "neutral",
     "😐": "neutral",
+
+    ":blankface:": "nomouth",
+    ":mouthless:": "nomouth",
+    ":silence:": "nomouth",
+    ":silent:": "nomouth",
+    ":speechless:": "nomouth",
+    "=#": "nomouth",
+    "#=": "nomouth",
+    "😶": "nomouth",
 
     ":eyeroll:": "rolledeyes",
     ":eyesroll:": "rolledeyes",
@@ -146,6 +224,11 @@
     "^_^": "smilingeyes",
     "😊": "smilingeyes",
 
+    ":cool:": "sunglasses",
+    "B)": "sunglasses",
+    "B-)": "sunglasses",
+    "😎": "sunglasses",
+
     ":sweating:": "sweat",
     ":nervous:": "sweat",
     "💧": "sweat",
@@ -161,6 +244,7 @@
     ";-)": "wink",
     "😉": "wink",
 
+    ":tonguewink:": "winktongue",
     ";p": "winktongue",
     ";P": "winktongue",
     ";-p": "winktongue",
