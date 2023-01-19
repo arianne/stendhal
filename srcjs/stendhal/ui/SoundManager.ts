@@ -18,7 +18,6 @@ stendhal.config = stendhal.config || singletons.getConfigManager();
 
 
 export interface Sound extends HTMLAudioElement {
-	hasplayed: boolean;
 	basevolume: number;
 	radius: number;
 	x: number;
@@ -30,8 +29,8 @@ export class SoundManager {
 	private static instance: SoundManager;
 
 	public readonly layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
-	private cacheGlobal: {[source: string]: Sound} = {};
-	private cache: {[source: string]: Sound} = {};
+	private cacheGlobal: {[source: string]: HTMLAudioElement} = {};
+	private cache: {[source: string]: HTMLAudioElement} = {};
 	private active: {[layer: string]: Sound[]} = {
 		["music"]: [],
 		["ambient"]: [],
@@ -83,11 +82,12 @@ export class SoundManager {
 	 * @return
 	 *     New audio object.
 	 */
-	private load(id: string, filename: string, global=false): Sound {
-		const snd = <Sound> new Audio(filename);
+	private load(id: string, filename: string, global=false): HTMLAudioElement {
+		const snd = new Audio(filename);
 		snd.autoplay = false;
 		// load into cache
 		if (global) {
+			// globally cached sounds are not removed on map change
 			this.cacheGlobal[id] = snd;
 		} else {
 			this.cache[id] = snd;
@@ -147,47 +147,27 @@ export class SoundManager {
 		const actualvolume = volume * this.getVolume();
 
 		// check cache first
-		let sound = this.cache[soundName] || this.cacheGlobal[soundName];
-		if (sound) {
-			// TODO: handle HTMLAudioElement.error
-			if (!sound.paused && !sound.ended) {
-				// create a temporary sound instead of interrupting the cached one
-				const addSound = <Sound> new Audio(sound.src);
-				addSound.autoplay = true;
-				addSound.basevolume = volume;
-				addSound.volume = actualvolume;
-				addSound.muted = muted;
-				this.onSoundAdded(layer, addSound);
-				return addSound;
-			}
-		} else {
+		let snd = this.cache[soundName] || this.cacheGlobal[soundName];
+		if (!snd) {
 			// add new sound to cache
-			sound = this.load(soundName,
+			snd = this.load(soundName,
 					stendhal.paths.sounds + "/" + soundName + ".ogg");
 		}
 		if (!this.cache[soundName]) {
 			// add globally cached sound to map cache
-			this.cache[soundName] = sound;
+			this.cache[soundName] = snd;
 		}
 
-		sound.autoplay = true;
-		sound.basevolume = volume;
-		sound.volume = actualvolume;
-		sound.loop = loop;
-		sound.muted = muted;
+		// create a copy so multiple instances can be played simultaneously
+		const scopy = <Sound> snd.cloneNode();
+		scopy.autoplay = true;
+		scopy.basevolume = volume;
+		scopy.volume = actualvolume;
+		scopy.loop = loop;
+		scopy.muted = muted;
 
-		// must be started manually if autoplay has already ocurred
-		if (sound.hasplayed) {
-			if (!sound.paused && !sound.ended) {
-				sound.pause();
-			}
-			sound.currentTime = 0;
-			sound.play();
-		}
-
-		sound.hasplayed = true;
-		this.onSoundAdded(layer, sound);
-		return sound;
+		this.onSoundAdded(layer, scopy);
+		return scopy;
 	}
 
 	/**
