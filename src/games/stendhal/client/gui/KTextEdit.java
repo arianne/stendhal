@@ -249,6 +249,15 @@ class KTextEdit extends JComponent {
 		}
 		StyleConstants.setFontSize(s, mainTextSize - 1);
 
+		// FIXME: emoji font size does not get updated with changes to settings
+		s = textPane.getStyle("emoji");
+		if (s == null) {
+			s = textPane.addStyle("emoji", regular);
+			StyleConstants.setFontFamily(s, "Noto Emoji");
+			StyleConstants.setBold(s, true);
+		}
+		StyleConstants.setFontSize(s, mainTextSize + 2);
+
 		//****** Styles used by the string formatter ******
 		StyleSet defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
 
@@ -321,8 +330,8 @@ class KTextEdit extends JComponent {
 	 */
 	protected void insertText(String text, final NotificationType type) {
 		ChatTextSink dest = new ChatTextSink(textPane.getDocument());
-		StyleSet set = new StyleSet(StyleContext.getDefaultStyleContext(), getStyle(type.getColor(), type.getStyleDescription()));
-		set.setAttribute(StyleConstants.Foreground, type.getColor());
+		final Color c = type.getColor();
+		Style s = getStyle(c, type.getStyleDescription());
 
 		if (type.equals(NotificationType.EMOJI)) {
 			// TODO: chat log does not support images
@@ -331,9 +340,13 @@ class KTextEdit extends JComponent {
 			if (chatLogChars.containsKey(text)) {
 				text = chatLogChars.get(text);
 			} else {
+				s = getStyle(c, NotificationType.NORMALSTYLE);
 				text = ":" + text + ":";
 			}
 		}
+
+		final StyleSet set = new StyleSet(StyleContext.getDefaultStyleContext(), s);
+		set.setAttribute(StyleConstants.Foreground, c);
 
 		formatter.format(text, set, dest);
 	}

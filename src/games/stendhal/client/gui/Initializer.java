@@ -44,6 +44,7 @@ class Initializer {
 			initFont("Amaranth-" + ftype);
 			initFont("Carlito-" + ftype);
 		}
+		initFont("NotoEmoji-Regular"); // supports all unicode emoji characters
 		initApplicationName();
 	}
 

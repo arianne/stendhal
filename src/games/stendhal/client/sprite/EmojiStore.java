@@ -56,6 +56,7 @@ public class EmojiStore {
 		put("frownslight", "🙁");
 		put("glasses", "🤓");
 		put("grin", "😀");
+		put("happycry", "🥲");
 		put("heart", "❤");
 		put("heartarrow", "💘");
 		put("heartblue", "💙");
