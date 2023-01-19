@@ -381,8 +381,6 @@ export class SoundManager {
 	/**
 	 * Mutes all currently playing sounds.
 	 *
-	 * FIXME: some non-looping sounds do not stop immediatly
-	 *
 	 * @return
 	 *     <code>true</code> if all sounds were muted.
 	 */
@@ -390,13 +388,8 @@ export class SoundManager {
 		let muted = true;
 		for (const layerName of this.layers) {
 			for (const snd of this.active[layerName]) {
-				if (snd.loop) {
-					snd.muted = true;
-					muted = muted && snd.muted;
-				} else {
-					// finite sounds are removed
-					muted = muted && this.stop(this.layers.indexOf(layerName), snd);
-				}
+				snd.muted = true;
+				muted = muted && snd.muted;
 			}
 		}
 		return muted;
