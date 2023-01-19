@@ -12,6 +12,7 @@
 package games.stendhal.client.gui.settings;
 
 import static games.stendhal.client.gui.settings.SettingsProperties.HP_BAR_PROPERTY;
+import static games.stendhal.client.gui.settings.SettingsProperties.OVERRIDE_AA;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -180,6 +181,20 @@ class VisualSettings {
 			}
 		});
 		page.add(showHPBarToggle);
+
+		// system font antialiasing
+		final JCheckBox overrideSystemFontAA = SettingsComponentFactory.createSettingsToggle(
+				OVERRIDE_AA, false, "Override system font antialiasing settings",
+				"Enable this if the client does not recognize your desktop font antialising configuration.");
+		overrideSystemFontAA.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(final ItemEvent e) {
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
+					"Changes will take effect after the client is restarted.",
+					NotificationType.CLIENT));
+			}
+		});
+		page.add(overrideSystemFontAA);
 
 		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
 
