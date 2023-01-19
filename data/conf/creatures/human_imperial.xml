@@ -5,7 +5,7 @@
 
   <creature name="imperial defender">
     <type class="human" subclass="imperial_defender" tileid="human_imperial.png:5"/>
-    <description/>
+    <description>You see an imperial defender. He and his comrades won't let you walk into their territory easily.</description>
     <attributes>
       <atk value="325"/>
       <def value="36"/>
