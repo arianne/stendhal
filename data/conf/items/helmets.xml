@@ -139,7 +139,7 @@
 
   <item name="aventail">
     <type class="helmet" subclass="aventail" tileid="-1"/>
-    <description>You see a aventail. It's a clever design.</description>
+    <description>You see an aventail. It's a clever design.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="6"/>

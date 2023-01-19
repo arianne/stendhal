@@ -374,7 +374,7 @@
 
   <item name="silk thread">
     <type class="resource" subclass="silkthread" tileid="-1"/>
-    <description>You see a spool of silk thread, spun from the glands of a giant spider..</description>
+    <description>You see a spool of silk thread, spun from the glands of a giant spider.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>

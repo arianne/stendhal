@@ -126,7 +126,7 @@
 
   <item name="ados city scroll">
     <type class="scroll" subclass="ados" tileid="-1"/>
-    <description>You see a ados city scroll, it will take you back to ados city.</description>
+    <description>You see an ados city scroll, it will take you back to ados city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
       <infostring value="0_ados_city_n 50 50"/>

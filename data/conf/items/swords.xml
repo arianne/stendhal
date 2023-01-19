@@ -26,7 +26,7 @@
 
   <item name="biting sword">
     <type class="sword" subclass="biting_sword" tileid="-1"/>
-    <description>The point of this biting sword is chiseled to a lethal point. It will serve you well.</description>
+    <description>The tip of this biting sword is chiseled to a lethal point. It will serve you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="25"/>
@@ -587,7 +587,7 @@
 
   <item name="obsidian knife">
     <type class="sword" subclass="obsidian_knife" tileid="-1"/>
-    <description>You see a knife whose blade is crafted to a lethal edge from finest obsidian.</description>
+    <description>You see a knife whose blade is crafted to a lethal edge from the finest obsidian.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="4"/>

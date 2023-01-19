@@ -201,7 +201,7 @@
 
   <item name="mainio legs">
     <type class="legs" subclass="mainio_legs" tileid="-1"/>
-    <description>You see a pair of odd looking mainio legs. They are somewhat startling but they give you a good protection.</description>
+    <description>You see a pair of odd looking mainio legs. They are somewhat startling but they give you good protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="10"/>
@@ -325,7 +325,7 @@
 
   <item name="studded legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
-    <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.</description>
+    <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner... or his enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="2"/>

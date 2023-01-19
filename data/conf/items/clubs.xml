@@ -176,7 +176,7 @@
 
   <item name="ice war hammer">
     <type class="club" subclass="ice_grand_warhammer" tileid="-1"/>
-    <description>You see a ice war hammer. The last owner must have been huge, to wield it.</description>
+    <description>You see an ice war hammer. The last owner must have been huge to wield it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="45"/>
@@ -373,7 +373,7 @@
 
   <item name="war hammer">
     <type class="club" subclass="grand_warhammer" tileid="-1"/>
-    <description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often..</description>
+    <description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="38"/>

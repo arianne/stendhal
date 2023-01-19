@@ -130,7 +130,7 @@
 
   <item name="banana">
     <type class="food" subclass="banana" tileid="-1"/>
-    <description>You see a banana. Take care of monkeys when you have them in your bag!</description>
+    <description>You see a banana. Be careful of monkeys when you have them in your bag!</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="10"/>
@@ -200,7 +200,7 @@
   <!-- from spawners -->
   <item name="corn">
     <type class="food" subclass="corn" tileid="-1"/>
-    <description>You see a pannocchia of real corn. It could be eated raw, grilled or turned into flour... Your choice.</description>
+    <description>You see an ear of corn. It could be eaten raw, grilled or turned into flour... Your choice.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="15"/>
@@ -315,7 +315,7 @@
 
   <item name="pomegranate">
     <type class="food" subclass="pomegranate" tileid="-1"/>
-    <description>You see a pomegranate. If you eat it, you will be in a great shape soon.</description>
+    <description>You see a pomegranate. If you eat it, you will be in great shape soon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="15"/>
@@ -338,7 +338,7 @@
 
   <item name="watermelon">
     <type class="food" subclass="watermelon" tileid="-1"/>
-    <description>You see a watermelon. It freshes your throat during hot summer days.</description>
+    <description>You see a watermelon. It refreshes your throat during hot summer days.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="15"/>
@@ -1238,7 +1238,7 @@
 
   <item name="icecream">
     <type class="food" subclass="icecream" tileid="-1"/>
-    <description>You see a wafer cone with vanilla ice cream and a chocolate flake.</description>
+    <description>You see a wafer cone with vanilla ice cream and chocolate flakes.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="40"/>
@@ -1376,7 +1376,7 @@
 
   <item name="tuna sandwich">
     <type class="food" subclass="tuna_sandwich" tileid="-1"/>
-    <description>You see what looks like tuna sandwich.</description>
+    <description>You see what looks like a tuna sandwich.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
       <amount value="130"/>

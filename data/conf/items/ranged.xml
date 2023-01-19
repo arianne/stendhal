@@ -74,7 +74,7 @@
 
   <item name="crossbow">
     <type class="ranged" subclass="crossbow" tileid="-1"/>
- <description>You see a crossbow. The attack is high but it has a very short range, what do you prefer?</description>
+ <description>You see a crossbow. The attack is high but it has a very short range. What do you prefer?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk condition="!testing.combat" value="17"/>

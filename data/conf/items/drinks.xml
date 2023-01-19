@@ -5,7 +5,7 @@
 
   <item name="olive oil">
     <type class="drink" subclass="olive_oil" tileid="-1"/>
-    <description>You see a bottle of olive oil. Do not drink it pure, will make you feel sick!</description>
+    <description>You see a bottle of olive oil. Do not drink it pure, it will make you feel sick!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
       <amount value="-1"/>
@@ -28,7 +28,7 @@
 
   <item name="vinegar">
     <type class="drink" subclass="vinegar" tileid="-1"/>
-    <description>You see a bottle of vinegar. Do not drink it pure, will make you feel sick!</description>
+    <description>You see a bottle of vinegar. Do not drink it pure, it will make you feel sick!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
       <amount value="-1"/>
