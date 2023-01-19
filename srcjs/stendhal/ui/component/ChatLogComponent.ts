@@ -153,7 +153,8 @@ export class ChatLogComponent extends Component {
 		if (orator) {
 			rcol.innerHTML += orator + ": ";
 		}
-		rcol.appendChild(emoji);
+		// create a copy so old emoji line isn't removed
+		rcol.appendChild(emoji.cloneNode());
 
 		const row = document.createElement("div");
 		row.className = "logrow";
