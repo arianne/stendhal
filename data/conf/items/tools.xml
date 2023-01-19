@@ -171,7 +171,7 @@
 
   <item name="pick">
     <type class="tool" subclass="pick" tileid="-1"/>
-    <description>You see a pick. It is a tool which helps you to get some coal.</description>
+    <description>You see a pick. It is a tool for excavating coal.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
