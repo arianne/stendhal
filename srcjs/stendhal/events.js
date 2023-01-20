@@ -127,7 +127,9 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 		if (ttype === "server" && msg.includes("\n")) {
 			Chat.log(ttype, msg.split("\n"), undefined, profile);
 		} else {
-			Chat.log(ttype, msg, undefined, profile);
+			// scene settings messages should not disturb playing, just create some atmosphere
+			const headed = ttype !== "scene_setting";
+			Chat.log(ttype, msg, undefined, profile, headed);
 		}
 
 		// play notification sound
