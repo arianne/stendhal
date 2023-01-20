@@ -1522,16 +1522,10 @@ public abstract class RPEntity extends AudibleEntity {
 		statTypes.put("atk", getAtk());
 		statTypes.put("ratk", getRatk());
 
-		String statChange = null;
-		for (final String stype: statTypes.keySet()) {
-			if (changes.has(stype) && object.has(stype)) {
-				statChange = stype;
-				break;
+		for (final String stat: statTypes.keySet()) {
+			if (changes.has(stat) && object.has(stat)) {
+				onLevelChanged(stat, statTypes.get(stat), object.getInt(stat));
 			}
-		}
-
-		if (statChange != null) {
-			onLevelChanged(statChange, statTypes.get(statChange), object.getInt(statChange));
 		}
 	}
 
