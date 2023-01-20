@@ -270,8 +270,12 @@ stendhal.slashActionRepository = {
 
 	"emojilist": {
 		execute: function(type, params, remainder) {
-			const emojis = singletons.getEmojiStore().getEmojiList();
-			Chat.log("client", emojis);
+			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
+			for (const idx in emojilist) {
+				emojilist[idx] = "&nbsp;&nbsp;- :" + emojilist[idx] + ":";
+			}
+			emojilist.splice(0, 0, emojilist.length + " emojis available:");
+			Chat.log("client", emojilist);
 		},
 		minParams: 0,
 		maxParams: 0

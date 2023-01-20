@@ -124,8 +124,11 @@ export class EmojiStore {
 
 	/**
 	 * Get a list of available emojis.
+	 *
+	 * @return
+	 *     A copy of the emoji list.
 	 */
 	getEmojiList(): string[] {
-		return this.emojilist;
+		return [...this.emojilist];
 	}
 }
