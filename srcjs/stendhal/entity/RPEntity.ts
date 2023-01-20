@@ -83,11 +83,12 @@ export class RPEntity extends ActiveEntity {
 			this.addFloater("Away", "#ffff00");
 		} else if (key === "grumpy") {
 			this.addFloater("Grumpy", "#ffff00");
-		} else if (key === "xp" && oldValue != undefined) {
+		} else if (key === "xp" && typeof(oldValue) !== "undefined") {
 			this.onXPChanged(this[key] - oldValue);
-		} else if (key === "level" && typeof(oldValue) !== "undefined") {
+		} else if (["level", "atk", "ratk", "def"].indexOf(key) > -1
+				&& typeof(oldValue) !== "undefined") {
 			// FIXME: xp change should be printed before level
-			this.onLevelChanged("level", value, oldValue);
+			this.onLevelChanged(key, value, oldValue);
 		} else if (["title", "name", "class", "type"].indexOf(key) >-1) {
 			this.createTitleTextSprite();
 		}
@@ -670,7 +671,7 @@ export class RPEntity extends ActiveEntity {
 		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/missed.png");
 	}
 
-	onHPChanged(change: number) {
+	protected onHPChanged(change: number) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#00ff00");
 		} else if (change < 0) {
@@ -678,7 +679,7 @@ export class RPEntity extends ActiveEntity {
 		}
 	}
 
-	onXPChanged(change: number) {
+	protected onXPChanged(change: number) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
 			Chat.log("significant_positive", this.getTitle() + " earns " + change + " experience points.");
