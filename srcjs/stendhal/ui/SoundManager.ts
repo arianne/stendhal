@@ -96,6 +96,13 @@ export class SoundManager {
 	}
 
 	/**
+	 * Retrieves list of valid layer string identifiers.
+	 */
+	public getLayerNames(): string[] {
+		return this.layers;
+	}
+
+	/**
 	 * Retrieves the string identifier of the associated layer index.
 	 */
 	public getLayerName(layer: number): string {
@@ -494,6 +501,7 @@ export class SoundManager {
 		let actualvol = basevol * stendhal.config.getFloat("ui.sound.master.volume");
 		const lvol = stendhal.config.getFloat("ui.sound." + layername + ".volume");
 		if (typeof(lvol) !== "number") {
+			console.warn("cannot adjust volume for layer \"" + layername + "\"");
 			return actualvol;
 		}
 		return actualvol * lvol;
@@ -529,10 +537,15 @@ export class SoundManager {
 			return false;
 		}
 
-		vol = this.normVolume(vol);
-		stendhal.config.set("ui.sound." + layername + ".volume", vol);
-		for (const layerName of this.layers) {
-			for (const snd of this.active[layerName]) {
+		stendhal.config.set("ui.sound." + layername + ".volume", this.normVolume(vol));
+
+		const layerset = layername === "master" ? this.layers : [layername];
+		for (const l of layerset) {
+			const layersounds = this.active[l];
+			if (typeof(layersounds) === "undefined") {
+				continue;
+			}
+			for (const snd of layersounds) {
 				if (typeof(snd.radius) === "number"
 						&& typeof(snd.x) === "number"
 						&& typeof(snd.y) === "number") {
