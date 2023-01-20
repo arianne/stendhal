@@ -58,7 +58,7 @@ stendhal.main = {
 	 */
 	registerMarauroaEventHandlers: function() {
 		marauroa.clientFramework.onDisconnect = function(reason, error){
-			Chat.log("error", "Disconnected: " + error);
+			Chat.logH("error", "Disconnected: " + error);
 		};
 
 		marauroa.clientFramework.onLoginRequired = function() {

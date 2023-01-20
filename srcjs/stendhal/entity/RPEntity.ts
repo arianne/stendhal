@@ -85,6 +85,9 @@ export class RPEntity extends ActiveEntity {
 			this.addFloater("Grumpy", "#ffff00");
 		} else if (key === "xp" && oldValue != undefined) {
 			this.onXPChanged(this[key] - oldValue);
+		} else if (key === "level" && typeof(oldValue) !== "undefined") {
+			// FIXME: xp change should be printed before level
+			this.onLevelChanged("level", value, oldValue);
 		} else if (["title", "name", "class", "type"].indexOf(key) >-1) {
 			this.createTitleTextSprite();
 		}
@@ -678,10 +681,29 @@ export class RPEntity extends ActiveEntity {
 	onXPChanged(change: number) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
-			Chat.log("significant_positive", this.getTitle() + " earns " + change + " experience points.");
+			Chat.logH("significant_positive", this.getTitle() + " earns " + change + " experience points.");
 		} else if (change < 0) {
 			this.addFloater(change.toString(), "#ff8f8f");
-			Chat.log("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
+			Chat.logH("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
+		}
+	}
+
+	protected onLevelChanged(stat: string, newlevel: number, oldlevel: number) {
+		if (!marauroa.me || newlevel === oldlevel) {
+			return;
+		}
+
+		if (marauroa.me.isInHearingRange(this)) {
+			let msg = this.getTitle();
+			let msgtype = "significant_positive";
+			if (newlevel > oldlevel ) {
+				msg += " reaches ";
+			} else if (newlevel < oldlevel) {
+				msg += " drops to ";
+				msgtype = "significant_negative";
+			}
+			msg += stat + " " + newlevel;
+			Chat.logH(msgtype, msg);
 		}
 	}
 

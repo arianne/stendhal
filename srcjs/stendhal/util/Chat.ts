@@ -16,14 +16,14 @@ import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 declare let marauroa: any;
 declare let stendhal: any;
 
-const headless_types = ["normal", "regular",
-		"significant_positive", "client", "emoji", 'emote'];
-
 
 /**
  * chat logger
  */
 export class Chat {
+
+	private static clog: ChatLogComponent;
+
 
 	/**
 	 * Adds a line to the chat log.
@@ -36,33 +36,55 @@ export class Chat {
 	 *     Name of entity making the expression (default: <code>undefined</code>).
 	 * @param profile
 	 *     Optional entity image filename to show as the speaker.
+	 * @param headed
+	 *     Set to <code>true</code> to show a notification bubble.
 	 */
-	public static log(type: string, message: string|string[]|HTMLElement, orator?: string,
-			profile?: string) {
-		const ChatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+	public static log(type: string, message: string|string[]|HTMLElement,
+			orator?: string, profile?: string, headed=false) {
+		headed = headed || typeof(profile) !== "undefined";
+
+		if (!Chat.clog) {
+			Chat.clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+		}
 
 		if (type === "emoji" && message instanceof HTMLImageElement) {
-			ChatLog.addEmojiLine(message, orator);
+			Chat.clog.addEmojiLine(message, orator);
 		} else {
 			if (typeof(message) === "string") {
-				ChatLog.addLine(type, message, orator);
+				Chat.clog.addLine(type, message, orator);
 			} else if (Object.prototype.toString.call(message) === "[object Array]") {
-				ChatLog.addLines(type, message as string[], orator);
+				Chat.clog.addLines(type, message as string[], orator);
 			}
 		}
 
-		if (marauroa.me && !(headless_types.indexOf(type) >= 0)) {
+		// shows a notification bubble
+		if (marauroa.me && headed) {
 			let messages = [];
 			if (typeof(message) === "string") {
 				messages.push(message);
 			} else {
 				messages = message as string[];
 			}
-
 			for (const m of messages) {
 				stendhal.ui.gamewindow.addNotifSprite(type, m, profile);
 			}
 		}
 	}
 
+	/**
+	 * Adds a line to the chat log & a notification bubble to gamewindow.
+	 *
+	 * @param type
+	 *     Message type.
+	 * @param message
+	 *     Message to log.
+	 * @param orator
+	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 * @param profile
+	 *     Optional entity image filename to show as the speaker.
+	 */
+	public static logH(type: string, message: string|string[]|HTMLElement,
+			orator?: string, profile?: string) {
+		Chat.log(type, message, orator, profile, true);
+	}
 }
