@@ -33,7 +33,7 @@ export class DebugAction extends Action {
 
 	execute(_type: string, params: string[], _remainder: string) {
 		if (params.length < 1) {
-			Chat.log("error", "Expected parameters")
+			Chat.logH("error", "Expected parameters")
 			this.showUsage();
 		} else if (["help", "?"].indexOf(params[0]) > -1) {
 			this.showUsage();
@@ -113,14 +113,14 @@ export class DebugAction extends Action {
 			return;
 		}
 		if (!stendhal.config.getBoolean("gamescreen.weather")) {
-			Chat.log("warning", "Weather is disabled.");
+			Chat.logH("warning", "Weather is disabled.");
 		}
 
 		if (weather) {
 			weather = weather.replace(/ /g, "_");
 			const wfilename = stendhal.paths.weather + "/" + weather + ".png";
 			if (!stendhal.data.sprites.getCached(wfilename)) {
-				Chat.log("error", "unknown weather: " + wfilename);
+				Chat.logH("error", "unknown weather: " + wfilename);
 				return;
 			}
 		}

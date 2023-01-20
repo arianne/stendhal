@@ -58,7 +58,7 @@ stendhal.main = {
 	 */
 	registerMarauroaEventHandlers: function() {
 		marauroa.clientFramework.onDisconnect = function(reason, error){
-			Chat.log("error", "Disconnected: " + error);
+			Chat.logH("error", "Disconnected: " + error);
 		};
 
 		marauroa.clientFramework.onLoginRequired = function() {
@@ -98,6 +98,9 @@ stendhal.main = {
 			var body = document.getElementById("body");
 			body.style.cursor = "auto";
 			Chat.log("client", "Loading world...");
+
+			// play login sound for this user
+			singletons.getSoundManager().playGlobalizedEffect("ui/login");
 		};
 
 

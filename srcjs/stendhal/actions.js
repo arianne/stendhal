@@ -270,8 +270,12 @@ stendhal.slashActionRepository = {
 
 	"emojilist": {
 		execute: function(type, params, remainder) {
-			const emojis = singletons.getEmojiStore().getEmojiList();
-			Chat.log("client", emojis);
+			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
+			for (const idx in emojilist) {
+				emojilist[idx] = "&nbsp;&nbsp;- :" + emojilist[idx] + ":";
+			}
+			emojilist.splice(0, 0, emojilist.length + " emojis available:");
+			Chat.log("client", emojilist);
 		},
 		minParams: 0,
 		maxParams: 0
@@ -801,24 +805,27 @@ stendhal.slashActionRepository = {
 
 	"volume": {
 		execute: function(type, params, remainder) {
-			const chan = params[0];
+			const layername = params[0];
 			let vol = params[1];
-			if (typeof(chan) === "undefined") {
-				Chat.log("info", "Please use /volume <name> <value> to adjust the volume.");
-				Chat.log("client", "<name> is an item from the following list. \"master\" refers to the global volume setting.");
-				Chat.log("client", "<value> is in the range from 0 to 100.");
-				Chat.log("client", "master -> " + soundMan.getVolume() * 100);
-				// TODO: list all channels
+			if (typeof(layername) === "undefined") {
+				const layers = ["master", ...soundMan.getLayerNames()];
+				Chat.log("info", "Please use /volume <layer> <value> to adjust the volume.");
+				Chat.log("client", "<layer> is one of \"" + layers.join("\", \"") + "\"");
+				Chat.log("client", "<value> is a number in the range 0 to 100.");
+				Chat.log("client", "Current volume levels:");
+				for (const l of layers) {
+					Chat.log("client", "&nbsp;&nbsp;- " + l + " -> " + soundMan.getVolume(l) * 100);
+				}
 			} else if (typeof(vol) !== "undefined") {
 				if (!/^\d+$/.test(vol)) {
 					Chat.log("error", "Value must be a number.");
 					return true;
 				}
-				if (soundMan.setVolume(chan, parseInt(vol, 10) / 100)) {
-					Chat.log("client", "Channel \"" + chan + "\" volume set to "
-							+ (soundMan.getVolume(chan) * 100) + ".");
+				if (soundMan.setVolume(layername, parseInt(vol, 10) / 100)) {
+					Chat.log("client", "Channel \"" + layername + "\" volume set to "
+							+ (soundMan.getVolume(layername) * 100) + ".");
 				} else {
-					Chat.log("error", "Unknown channel \"" + chan + "\".");
+					Chat.log("error", "Unknown layer \"" + layername + "\".");
 				}
 			} else {
 				Chat.log("error", "Please use /volume for help.");

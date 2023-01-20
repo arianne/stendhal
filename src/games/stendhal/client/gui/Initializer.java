@@ -40,6 +40,11 @@ class Initializer {
 	static {
 		initFont(DECORATIVE_FONT_NAME);
 		initFont(TALLY_FONT_NAME);
+		for (final String ftype: new String[]{"Bold", "BoldItalic", "Italic", "Regular"}) {
+			initFont("Amaranth-" + ftype);
+			initFont("Carlito-" + ftype);
+		}
+		initFont("NotoEmoji-Regular"); // supports all unicode emoji characters
 		initApplicationName();
 	}
 

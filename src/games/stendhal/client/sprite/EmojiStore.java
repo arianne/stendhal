@@ -56,6 +56,7 @@ public class EmojiStore {
 		put("frownslight", "🙁");
 		put("glasses", "🤓");
 		put("grin", "😀");
+		put("happycry", "🥲");
 		put("heart", "❤");
 		put("heartarrow", "💘");
 		put("heartblue", "💙");
@@ -201,8 +202,11 @@ public class EmojiStore {
 
 	/**
 	 * Get a list of available emojis.
+	 *
+	 * @return
+	 *     A copy of the emoji list.
 	 */
 	public List<String> getEmojiList() {
-		return emojilist;
+		return new LinkedList<String>() {{ addAll(emojilist); }};
 	}
 }

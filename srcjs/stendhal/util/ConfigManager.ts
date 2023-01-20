@@ -22,6 +22,11 @@ export class ConfigManager {
 	private readonly defaults = {
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",
+		"ui.sound.ambient.volume": "100",
+		"ui.sound.creature.volume": "100",
+		"ui.sound.gui.volume": "100",
+		"ui.sound.music.volume": "100",
+		"ui.sound.sfx.volume": "100",
 		"ui.font.body": "Carlito",
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",
@@ -231,7 +236,7 @@ export class ConfigManager {
 		const current = this.getTheme();
 
 		let rootStyle = document.documentElement.style;
-		rootStyle.setProperty("--background-url", 
+		rootStyle.setProperty("--background-url",
 			"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
 		if (this.usingDarkTheme()) {
 			rootStyle.setProperty("--text-color", "#fff");

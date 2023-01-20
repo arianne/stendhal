@@ -95,9 +95,6 @@ marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeven
 marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		// TODO: new PlayerLoggedOnEvent();
-
-		// FIXME: master volume is not applied to this
-		soundMan.playGlobalizedEffect("ui/login");
 	}
 });
 
@@ -130,7 +127,9 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 		if (ttype === "server" && msg.includes("\n")) {
 			Chat.log(ttype, msg.split("\n"), undefined, profile);
 		} else {
-			Chat.log(ttype, msg, undefined, profile);
+			// scene settings messages should not disturb playing, just create some atmosphere
+			const headed = ttype !== "scene_setting";
+			Chat.log(ttype, msg, undefined, profile, headed);
 		}
 
 		// play notification sound

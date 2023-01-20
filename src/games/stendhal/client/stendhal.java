@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.OVERRIDE_AA;
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import static java.io.File.separator;
 
@@ -263,6 +264,11 @@ public final class stendhal {
 		StendhalFirstScreen splash;
 
 		Startup(String[] args) {
+			WtWindowManager wm = WtWindowManager.getInstance();
+
+			if (wm.getPropertyBoolean(OVERRIDE_AA, false)) {
+				System.setProperty("awt.useSystemAAFontSettings", "on");
+			}
 			// initialize emoji data
 			ClientSingletonRepository.getEmojiStore().init();
 
@@ -271,7 +277,6 @@ public final class stendhal {
 			final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
 			try {
-				WtWindowManager wm = WtWindowManager.getInstance();
 				String style = wm.getProperty("ui.style", "Wood (default)");
 				StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(style));
 				UIManager.setLookAndFeel(look);

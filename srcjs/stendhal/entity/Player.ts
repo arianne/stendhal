@@ -129,7 +129,7 @@ export class Player extends RPEntity {
 				}
 			});
 		}
-		
+
 		if (marauroa.me !== this) {
 			list.push({
 				title: "Trade",
@@ -249,6 +249,10 @@ export class Player extends RPEntity {
 	 *     represents entire map).
 	 */
 	isInHearingRange(entity: Entity, rangeSquared?: number) {
+		if (entity === marauroa.me) {
+			return true;
+		}
+
 		let hearingRange = 15; // default
 		if (typeof rangeSquared !== "undefined") {
 			if (rangeSquared < 0) {

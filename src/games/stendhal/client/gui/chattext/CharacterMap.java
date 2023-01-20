@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.chattext;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -31,13 +32,26 @@ import games.stendhal.client.sprite.ImageSprite;
  * use in chat.
  */
 public class CharacterMap extends JButton {
+
+	private static final EmojiStore emojis = EmojiStore.get();
+
+
 	/**
 	 * Create a new CharacterMap.
 	 */
 	public CharacterMap() {
-		super("☺");
+		super();
+		final Font origFont = getFont();
+		setFont(new Font("Noto Emoji", origFont.getStyle(), origFont.getSize()+2));
 		setFocusable(false);
 		setToolTipText("Emojis");
+
+		final ImageSprite icon = (ImageSprite) emojis.create(":smile:");
+		if (icon != null) {
+			setIcon(new ImageIcon(icon.getImage()));
+		} else {
+			setText("☺");
+		}
 
 		final JPopupMenu menu = new JPopupMenu();
 
@@ -80,7 +94,6 @@ public class CharacterMap extends JButton {
 
 		Insets insets = new Insets(1, 1, 1, 1);
 		setMargin(insets);
-		final EmojiStore emojis = EmojiStore.get();
 		for (String st: emojis.getEmojiList()) {
 			st = ":" + st + ":";
 			final ImageSprite emoji = (ImageSprite) emojis.create(st);
