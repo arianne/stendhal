@@ -681,10 +681,10 @@ export class RPEntity extends ActiveEntity {
 	onXPChanged(change: number) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
-			Chat.logH("significant_positive", this.getTitle() + " earns " + change + " experience points.");
+			Chat.log("significant_positive", this.getTitle() + " earns " + change + " experience points.");
 		} else if (change < 0) {
 			this.addFloater(change.toString(), "#ff8f8f");
-			Chat.logH("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
+			Chat.log("significant_negative", this.getTitle() + " loses " + Math.abs(change) + " experience points.");
 		}
 	}
 
