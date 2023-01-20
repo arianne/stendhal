@@ -184,7 +184,7 @@ class VisualSettings {
 
 		// system font antialiasing
 		final JCheckBox overrideSystemFontAA = SettingsComponentFactory.createSettingsToggle(
-				OVERRIDE_AA, false, "Override system font antialiasing settings",
+				OVERRIDE_AA, false, "Force font antialiasing",
 				"Enable this if the client does not recognize your desktop font antialising configuration.");
 		overrideSystemFontAA.addItemListener(new ItemListener() {
 			@Override

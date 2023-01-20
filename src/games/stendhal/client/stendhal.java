@@ -266,8 +266,9 @@ public final class stendhal {
 		Startup(String[] args) {
 			WtWindowManager wm = WtWindowManager.getInstance();
 
-			System.setProperty("awt.useSystemAAFontSettings",
-					wm.getPropertyBoolean(OVERRIDE_AA, false) ? "on" : "off");
+			if (wm.getPropertyBoolean(OVERRIDE_AA, false)) {
+				System.setProperty("awt.useSystemAAFontSettings", "on");
+			}
 			// initialize emoji data
 			ClientSingletonRepository.getEmojiStore().init();
 
