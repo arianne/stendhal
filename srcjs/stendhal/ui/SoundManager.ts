@@ -137,9 +137,10 @@ export class SoundManager {
 			return;
 		}
 		// default to GUI layer
+		const layerGui = this.layers.indexOf("gui");
 		if (layer < 0 || layer >= this.layers.length) {
 			console.warn("tried to add sound to non-existent layer: " + layer);
-			layer = this.layers.indexOf("gui");
+			layer = layerGui;
 		}
 		// check volume sanity
 		volume = this.normVolume(volume);
@@ -153,9 +154,15 @@ export class SoundManager {
 			snd = this.load(soundName,
 					stendhal.paths.sounds + "/" + soundName + ".ogg");
 		}
+
 		if (!this.cache[soundName]) {
-			// add globally cached sound to map cache
+			// add globally cached sounds to map cache
 			this.cache[soundName] = snd;
+		}
+
+		if (layer === layerGui && !this.cacheGlobal[soundName]) {
+			// keep gui sounds in global cache
+			this.cacheGlobal[soundName] = snd;
 		}
 
 		// create a copy so multiple instances can be played simultaneously
