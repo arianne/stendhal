@@ -552,10 +552,8 @@
     </attributes>
 
     <entity x="124" y="122">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">loop/wind-01</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
         <parameter name="radius">70</parameter>
         <parameter name="volume">60</parameter>
       </implementation>
@@ -597,10 +595,8 @@
     </attributes>
 
     <entity x="5" y="124">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">loop/wind-01</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
         <parameter name="radius">80</parameter>
         <parameter name="volume">60</parameter>
       </implementation>
@@ -4501,10 +4497,8 @@ My fee:
 
     <!-- Music/Ambiance -->
     <entity x="123" y="43">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">loop/wind-01</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
         <parameter name="radius">120</parameter>
         <parameter name="volume">60</parameter>
       </implementation>
@@ -4550,10 +4544,8 @@ Southeast: Docks
 
     <!-- Music ambiance -->
     <entity x="3" y="35">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">loop/wind-01</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
         <parameter name="radius">90</parameter>
         <parameter name="volume">60</parameter>
       </implementation>
