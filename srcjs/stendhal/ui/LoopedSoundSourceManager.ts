@@ -208,8 +208,10 @@ export class LoopedSoundSourceManager {
 	onDistanceChanged(x: number, y: number) {
 		for (const ent of this.getZoneEntities()) {
 			if (ent.isLoaded()) {
-				this.sndMan.adjustForDistance(this.sources[ent["id"]].sound,
-						ent["radius"], ent["x"], ent["y"], x, y);
+				const layername = this.sndMan.getLayerName(ent["layer"]);
+				const snd = this.sources[ent["id"]].sound;
+				this.sndMan.adjustForDistance(layername, snd, ent["radius"],
+						ent["x"], ent["y"], x, y);
 			}
 		}
 	}
