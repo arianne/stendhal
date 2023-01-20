@@ -840,7 +840,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param amount change amount
 	 */
 	private void onHPChange(final int amount) {
-		if (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ) {
+		if (isInHearingRange()) {
 			if (amount > 0) {
 				addTextIndicator("+" + amount, NotificationType.POSITIVE);
 			} else {
@@ -865,7 +865,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param amount lost HP
 	 */
 	private void onPoisoned(final int amount) {
-		if ((amount > 0) && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+		if ((amount > 0) && (isInHearingRange())) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
 							getTitle() + " is poisoned, losing "
@@ -944,6 +944,24 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 
 	/**
+	 * Can the player hear this chat message?
+	 *
+	 * @param rangeSquared
+	 *     Distance squared within which the entity can be heard (-1
+	 *     represents entire map).
+	 */
+	public boolean isInHearingRange(final int rangeSquared) {
+		return User.isAdmin() || User.squaredDistanceTo(x, y) < rangeSquared;
+	}
+
+	/**
+	 * Can the player hear this chat message?
+	 */
+	public boolean isInHearingRange() {
+		return isInHearingRange(HEARING_DISTANCE_SQ);
+	}
+
+	/**
 	 * Called when entity says something.
 	 *
 	 * @param text message contents
@@ -964,7 +982,7 @@ public abstract class RPEntity extends AudibleEntity {
 	public void onTalk(String text, final int rangeSquared) {
 		if (User.isAdmin()
 				|| (rangeSquared < 0)
-				|| (User.squaredDistanceTo(x, y) < rangeSquared)) {
+				|| (isInHearingRange(rangeSquared))) {
 			final String ttext = trimText(text);
 			final EmojiStore emojiStore = ClientSingletonRepository.getEmojiStore();
 			final Sprite emoji = emojiStore.create(ttext);
@@ -1472,7 +1490,7 @@ public abstract class RPEntity extends AudibleEntity {
 		if (changes.has("xp")) {
 			int newXp = changes.getInt("xp");
 
-			if (object.has("xp") && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+			if (object.has("xp") && (isInHearingRange())) {
 				final int amount = newXp - xp;
 				if (amount > 0) {
 					addTextIndicator("+" + amount,
@@ -1512,20 +1530,30 @@ public abstract class RPEntity extends AudibleEntity {
 			}
 		}
 
-		if (statChange != null && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
-			final StringBuilder sb = new StringBuilder(getTitle());
-			if (!statChange.equals("level")) {
-				sb.append("'s " + statChange.toUpperCase());
+		if (statChange != null) {
+			onLevelChanged(statChange, statTypes.get(statChange), object.getInt(statChange));
+		}
+	}
+
+	protected void onLevelChanged(final String stat, final int newlevel, final int oldlevel) {
+		if (newlevel == oldlevel) {
+			return;
+		}
+
+		if (isInHearingRange()) {
+			String msg = this.getTitle();
+			NotificationType msgtype = NotificationType.SIGNIFICANT_POSITIVE;
+			if (newlevel > oldlevel ) {
+				msg += " reaches ";
+			} else if (newlevel < oldlevel) {
+				msg += " drops to ";
+				msgtype = NotificationType.SIGNIFICANT_NEGATIVE;
 			}
-			sb.append(" reaches level " + Integer.toString(statTypes.get(statChange)));
-
-			final String text = sb.toString();
-			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
-					NotificationType.SIGNIFICANT_POSITIVE));
-
+			msg += stat + " " + newlevel;
+			ClientSingletonRepository.getUserInterface().addEventLine(
+					new HeaderLessEventLine(msg, msgtype));
 			ClientSingletonRepository.getScreenController().addText(
-					getX() + (getWidth() / 2.0), getY(),
-					text, NotificationType.SIGNIFICANT_POSITIVE, false);
+					getX() + (getWidth() / 2.0), getY(), msg, msgtype, false);
 		}
 	}
 
