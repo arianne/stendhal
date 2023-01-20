@@ -82,12 +82,12 @@ public abstract class CombatEntity extends GuidedEntity {
 			// stats
 			rpclass.addAttribute("level", Type.SHORT);
 			rpclass.addAttribute("xp", Type.INT);
-			rpclass.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
+			rpclass.addAttribute("atk", Type.SHORT);
 			rpclass.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			// TODO: volatile flag should be removed when ready for main server
-			rpclass.addAttribute("ratk", Type.SHORT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+			rpclass.addAttribute("ratk", Type.SHORT, Definition.VOLATILE);
 			rpclass.addAttribute("ratk_xp", Type.INT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
-			rpclass.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+			rpclass.addAttribute("def", Type.SHORT);
 			rpclass.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 
 			rpclass.addAttribute("atk_item", Type.INT,
