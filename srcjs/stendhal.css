@@ -3,6 +3,7 @@
   --text-color-online: #0a0;
   --text-color-offline: #aaa;
   --text-color: #FFF;
+  --text-color-inactive: #AAA;
   --background-url: url(/data/gui/panelwood003.jpg)
   overflow: hidden;
 }
@@ -51,9 +52,14 @@ ul.uniform {
 
 .tabpanel-tabs button {
   background: var(--background-url);
-  color: var(--text-color);
+  color: var(--text-color-inactive);
   border-top: 0;
 }
+
+.tabpanel-tabs button.active {
+  color: var(--text-color);
+}
+
 
 #buddyList {
   width: 128px;
