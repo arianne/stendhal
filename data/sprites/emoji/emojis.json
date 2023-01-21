@@ -37,8 +37,8 @@
     "lips",
     "sweat",
 
-    "musicnoteeighth",
     "musicnotequarter",
+    "musicnoteeighth",
     "musicnotesasc",
     "musicnotesdesc"
   ],
@@ -169,14 +169,19 @@
 
     ":eighthnote:": "musicnoteeighth",
     ":musiceighthnote:": "musicnoteeighth",
+    ":musicnote:": "musicnoteeighth",
     "♪": "musicnoteeighth",
 
     ":quarternote:": "musicnotequarter",
     ":musicquarternote:": "musicnotequarter",
     "♩": "musicnotequarter",
 
+    ":music:": "musicnotesasc",
+    ":musicnoteasc:": "musicnotesasc",
+    ":musicnotes:": "musicnotesasc",
     "🎜": "musicnotesasc",
 
+    ":musicnotedesc:": "musicnotesdesc",
     "🎝": "musicnotesdesc",
 
     ":meh:": "neutral",
