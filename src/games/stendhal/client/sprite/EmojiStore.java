@@ -66,8 +66,8 @@ public class EmojiStore {
 		put("heartyellow", "💛");
 		put("joy", "😂");
 		put("lips", "🗢");
-		put("musicnoteeighth", "♪");
-		put("musicnotequarter", "♩");
+		put("musicnoteeighth", "𝅘𝅥𝅮");
+		put("musicnotequarter", "𝅘𝅥");
 		put("musicnotesasc", "🎜");
 		put("musicnotesdesc", "🎝");
 		put("neutral", "😐");
