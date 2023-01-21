@@ -56,8 +56,8 @@ public class StorageNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(35, 23));
-				nodes.add(new Node(35, 15));
-				nodes.add(new Node(21, 15));
+				nodes.add(new Node(35, 16));
+				nodes.add(new Node(21, 16));
 				nodes.add(new Node(21, 23));
 				nodes.add(new Node(18, 23));
 				nodes.add(new Node(18, 12));
@@ -68,8 +68,8 @@ public class StorageNPC implements ZoneConfigurator {
 				nodes.add(new Node(15, 13));
 				nodes.add(new Node(15, 20));
 				nodes.add(new Node(21, 20));
-				nodes.add(new Node(21, 15));
-				nodes.add(new Node(35, 15));
+				nodes.add(new Node(21, 16));
+				nodes.add(new Node(35, 16));
 				nodes.add(new Node(35, 23));
 				setPath(new FixedPath(nodes, true));
 			}
