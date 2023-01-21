@@ -15,12 +15,13 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 var ExamineEvent = require("../../build/ts/event/ExamineEvent").ExamineEvent;
+var GroupChangeEvent = require("../../build/ts/event/GroupChangeEvent").GroupChangeEvent;
+var GroupInviteEvent = require("../../build/ts/event/GroupInviteEvent").GroupInviteEvent;
 var ProgressStatusEvent = require("../../build/ts/event/ProgressStatusEvent").ProgressStatusEvent;
 var TradeEvent = require("../../build/ts/event/TradeEvent").TradeEvent;
 
 var SoundId = require("../../build/ts/util/SoundId").SoundId;
 var ui = require("../../build/ts/ui/UI").ui;
-var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var DialogContentComponent = require("../../build/ts/ui/toolkit/DialogContentComponent").DialogContentComponent;
 
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
@@ -58,30 +59,8 @@ marauroa.rpeventFactory["global_visual_effect"] = marauroa.util.fromProto(maraur
 });
 
 
-marauroa.rpeventFactory["group_change_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		if (rpobject !== marauroa.me) {
-			return;
-		}
-		stendhal.data.group.updateGroupStatus(this["members"], this["leader"], this["lootmode"]);
-	}
-});
-
-
-marauroa.rpeventFactory["group_invite_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-	execute: function(rpobject) {
-		if (rpobject !== marauroa.me) {
-			return;
-		}
-		if (this["expire"]) {
-			Chat.log("normal", "Your group invite by " + this["leader"] + " has expired.");
-		} else {
-			Chat.log("normal", "Your have been invited by " + this["leader"] + " to join a group.");
-			Chat.log("normal", "To join, type: /group join " + this["leader"]);
-			Chat.log("normal", "To leave the group at any time, type: /group part " + this["leader"]);
-		}
-	}
-});
+marauroa.rpeventFactory["group_change_event"] = new GroupChangeEvent();
+marauroa.rpeventFactory["group_invite_event"] = new GroupInviteEvent();
 
 
 marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
