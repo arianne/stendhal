@@ -29,11 +29,12 @@ export class UIComponentEnum {
 	public static readonly BuddyList = 102;
 	public static readonly ChatInput = 103;
 	public static readonly ChatLog = 104;
-	public static readonly PlayerEquipment = 105;
-	public static readonly Keyring = 106;
-	public static readonly MiniMap = 107;
-	public static readonly ZoneInfo = 108;
-	public static readonly PlayerStats = 109;
+	public static readonly GroupPanel = 105;
+	public static readonly PlayerEquipment = 106;
+	public static readonly Keyring = 107;
+	public static readonly MiniMap = 108;
+	public static readonly ZoneInfo = 109;
+	public static readonly PlayerStats = 110;
 
 
 	// Dialog

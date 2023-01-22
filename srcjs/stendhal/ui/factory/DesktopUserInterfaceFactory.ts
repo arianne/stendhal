@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2022 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,6 +20,7 @@ import { BagComponent } from "../component/BagComponent";
 import { BuddyListComponent } from "../component/BuddyListComponent";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 import { ChatLogComponent } from "../component/ChatLogComponent";
+import { GroupPanelComponent } from "../component/GroupPanelComponent";
 import { KeyringComponent } from "../component/KeyringComponent";
 import { MiniMapComponent } from "../component/MiniMapComponent";
 import { ZoneInfoComponent } from "../component/ZoneInfoComponent";
@@ -43,8 +44,9 @@ export class DesktopUserInterfaceFactory {
 		leftPanel.add(socialPanel);
 
 		this.add(socialPanel, UIComponentEnum.BuddyList, new BuddyListComponent());
+		this.add(socialPanel, UIComponentEnum.GroupPanel, new GroupPanelComponent());
 		socialPanel.addTab("Friends");
-
+		// socialPanel.addTab("Group");
 
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
