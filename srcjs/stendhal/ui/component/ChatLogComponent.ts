@@ -64,7 +64,7 @@ export class ChatLogComponent extends Component {
 
 	private add(row: HTMLDivElement) {
 		const chatElement = this.componentElement;
-		const isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
+		const isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) <= chatElement.scrollTop + 5;
 		chatElement.appendChild(row);
 
 		if (isAtBottom) {

@@ -44,7 +44,9 @@ public class EmojiStore {
 	 * images this can be removed. It may be possible to switch to
 	 * javax.swing.text.html.HTMLDocument.
 	 */
+	@Deprecated
 	public static final Map<String, String> chatLogChars = new HashMap<String, String>() {{
+		/*
 		put("angel", "😇");
 		put("angermark", "💢");
 		put("astonished", "😲");
@@ -66,8 +68,8 @@ public class EmojiStore {
 		put("heartyellow", "💛");
 		put("joy", "😂");
 		put("lips", "🗢");
-		put("musicnoteeighth", "♪");
-		put("musicnotequarter", "♩");
+		put("musicnoteeighth", "𝅘𝅥𝅮");
+		put("musicnotequarter", "𝅘𝅥");
 		put("musicnotesasc", "🎜");
 		put("musicnotesdesc", "🎝");
 		put("neutral", "😐");
@@ -83,6 +85,7 @@ public class EmojiStore {
 		put("tongue", "😛");
 		put("wink", "😉");
 		put("winktongue", "😜");
+		*/
 	}};
 
 

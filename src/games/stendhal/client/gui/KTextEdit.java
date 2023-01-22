@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,6 +32,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -69,6 +71,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
 import games.stendhal.client.sprite.EmojiStore;
+import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
@@ -83,6 +86,7 @@ class KTextEdit extends JComponent {
 
 	/** The actual text component for showing the chat log. */
 	JTextPane textPane;
+	private JScrollPane scrollPane;
 	/** Name of the log. */
 	private String name = "";
 	/** Background color when not highlighting unread messages. */
@@ -156,7 +160,21 @@ class KTextEdit extends JComponent {
 	 * This method builds the Gui.
 	 */
 	private void buildGUI() {
-		textPane = new JTextPane();
+		textPane = new JTextPane() {
+			@Override
+			public void insertIcon(Icon g) {
+				final JScrollBar scrollbar = scrollPane.getVerticalScrollBar();
+				final int oldpos = scrollbar.getValue();
+				setCaretPosition(textPane.getDocument().getLength());
+				super.insertIcon(g);
+				if (oldpos == scrollbar.getMaximum() - scrollbar.getVisibleAmount()) {
+					scrollbar.setValue(scrollbar.getMaximum());
+				} else {
+					// FIXME: scrollbar position is overridden to new caret position
+					scrollbar.setValue(oldpos);
+				}
+			}
+		};
 		textPane.setEditorKit(new WrapEditorKit());
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
@@ -174,7 +192,7 @@ class KTextEdit extends JComponent {
 		initStylesForTextPane(textPane, textPane.getFont().getSize());
 		setLayout(new BorderLayout());
 
-		JScrollPane scrollPane = new JScrollPane(textPane) {
+		scrollPane = new JScrollPane(textPane) {
 			@Override
 			public JScrollBar createVerticalScrollBar() {
 				JScrollBar bar = super.createVerticalScrollBar();
@@ -334,14 +352,18 @@ class KTextEdit extends JComponent {
 		Style s = getStyle(c, type.getStyleDescription());
 
 		if (type.equals(NotificationType.EMOJI)) {
-			// TODO: chat log does not support images
+			// get file path basename
 			text = new File(text).getName().replaceFirst("[.][^.]+$", "");
-			final Map<String, String> chatLogChars = EmojiStore.get().chatLogChars;
+			final Map<String, String> chatLogChars = EmojiStore.chatLogChars;
 			if (chatLogChars.containsKey(text)) {
 				text = chatLogChars.get(text);
 			} else {
 				s = getStyle(c, NotificationType.NORMALSTYLE);
 				text = ":" + text + ":";
+				final ImageSprite emoji = (ImageSprite) EmojiStore.get().create(text);
+				// FIXME: should icons get cached?
+				textPane.insertIcon(new ImageIcon(emoji.getImage()));
+				return;
 			}
 		}
 

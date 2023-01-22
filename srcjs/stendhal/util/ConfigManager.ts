@@ -240,10 +240,12 @@ export class ConfigManager {
 			"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
 		if (this.usingDarkTheme()) {
 			rootStyle.setProperty("--text-color", "#fff");
+			rootStyle.setProperty("--text-color-inactive", "#aaa");
 			rootStyle.setProperty("--text-color-online", "#0a0");
 			rootStyle.setProperty("--text-color-offline", "#aaa");
 		} else {
 			rootStyle.setProperty("--text-color", "#000");
+			rootStyle.setProperty("--text-color-inactive", "#555");
 			rootStyle.setProperty("--text-color-online", "#070");
 			rootStyle.setProperty("--text-color-offline", "#777");
 		}

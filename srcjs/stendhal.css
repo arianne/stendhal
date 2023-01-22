@@ -3,6 +3,7 @@
   --text-color-online: #0a0;
   --text-color-offline: #aaa;
   --text-color: #FFF;
+  --text-color-inactive: #AAA;
   --background-url: url(/data/gui/panelwood003.jpg)
   overflow: hidden;
 }
@@ -51,9 +52,14 @@ ul.uniform {
 
 .tabpanel-tabs button {
   background: var(--background-url);
-  color: var(--text-color);
+  color: var(--text-color-inactive);
   border-top: 0;
 }
+
+.tabpanel-tabs button.active {
+  color: var(--text-color);
+}
+
 
 #buddyList {
   width: 128px;
@@ -207,7 +213,7 @@ div.logcolR {
 .mainColumn {
   display: flex;
   flex-direction: column;
-  height: 99vh;
+  height: 99dvh;
 }
 
 #leftColumn {
@@ -246,8 +252,8 @@ div.logcolR {
 
 #gamewindow {
   display: block;
-  max-height: calc(100vh - 5em);
-  max-width: calc((100vh - 5em) * 640 / 480);
+  max-height: calc(100dvh - 5em);
+  max-width: calc((100dvh - 5em) * 640 / 480);
 }
 
 
@@ -436,9 +442,9 @@ div.logcolR {
 #loginpopup {
 	left: 15vw;
 	width: 70vw;
-	top: 30vh;
-	height: 20vh;
-	line-height: 10vh;
+	top: 30dvh;
+	height: 20dvh;
+	line-height: 10dvh;
 	position: absolute;
 	z-index: 1000000;
 	color: #000;
@@ -486,7 +492,7 @@ div.logcolR {
 
 .progressbar {
 	border: 1px solid #005;
-	line-height: 5Vh;
+	line-height: 5dvh;
 }
 
 .progressbarvalue {

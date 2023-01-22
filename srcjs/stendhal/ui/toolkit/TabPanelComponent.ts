@@ -17,6 +17,7 @@ import { Panel } from "./Panel";
  */
 export class TabPanelComponent extends Panel {
 	private currentIndex = 0;
+	private buttons: HTMLButtonElement[] = [];
 
 	/**
 	 * creates a new panel
@@ -42,12 +43,24 @@ export class TabPanelComponent extends Panel {
 		button.addEventListener("click", (e) => {
 			this.onTabClick(e);
 		})
+		if (this.buttons.length === 0) {
+			button.classList.add("active");
+		}
+		this.buttons.push(button);
 		this.componentElement.querySelector(".tabpanel-tabs")!.append(button);
 	}
 
 	onTabClick(event: Event) {
+
+		// hide
 		this.children[this.currentIndex].componentElement.style.display = "none";
+		this.buttons[this.currentIndex].classList.remove("active");
+
+		// select
 		this.currentIndex = Number.parseInt((event.target as HTMLElement).dataset.index!, 10);
+
+		// show
 		this.children[this.currentIndex].componentElement.style.display = "block";
+		this.buttons[this.currentIndex].classList.add("active");
 	}
 }
