@@ -34,10 +34,6 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.PlayerNextToCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -59,9 +55,6 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 		final ShopList shops = SingletonRepository.getShopList();
 		final Map<String, Integer> pricesBuy = shops.get("deniranpotionsbuy");
 		final Map<String, Integer> pricesSell = shops.get("deniranpotionssell");
-
-		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy));
-		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell));
 
 		npc.addGreeting("Welcome to Deniran's potion shop.");
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");

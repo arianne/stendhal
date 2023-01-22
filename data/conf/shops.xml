@@ -623,7 +623,7 @@
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionsbuy" type="buy">
+  <shop name="deniranpotionsbuy" type="buy" npcs="Wanda">
     <item name="mandragora" price="300" />
     <!--<item name="kokuda" price="5000" />-->
     <item name="toadstool" price="60" />
@@ -637,7 +637,7 @@
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionssell" type="sell">
+  <shop name="deniranpotionssell" type="sell" npcs="Wanda">
     <item name="minor potion" price="150" />
     <item name="potion" price="300" />
     <item name="greater potion" price="600" />
