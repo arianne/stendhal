@@ -19,6 +19,7 @@
     <attribute name="name" type="string" use="required"/>
     <attribute name="type" type="Q2:ShopType" use="required"/>
     <attribute name="condition" type="string" use="optional"/>
+    <attribute name="npcs" type="string" use="optional"/>
   </complexType>
 
   <simpleType name="ShopType">

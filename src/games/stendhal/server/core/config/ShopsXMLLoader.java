@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2023 - Arianne                          *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 
 public class ShopsXMLLoader extends DefaultHandler {
@@ -43,7 +50,8 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private String shopName;
 	private Map<String, Integer> items;
-	//private boolean seller = true;
+	private Boolean seller;
+	private String npcNames;
 
 
 	/**
@@ -113,7 +121,9 @@ public class ShopsXMLLoader extends DefaultHandler {
 			items = new LinkedHashMap<>();
 
 			shopName = attrs.getValue("name");
-			//seller = attrs.getValue("type").equals("sells");
+			final String shopType = attrs.getValue("type");
+			seller = shopType.equals("sell") ? true : shopType.equals("buy") ? false : null;
+			npcNames = attrs.getValue("npcs");
 		} else if (qName.equals("item")) {
 			items.put(attrs.getValue("name"), Integer.parseInt(attrs.getValue("price")));
 		}
@@ -122,8 +132,42 @@ public class ShopsXMLLoader extends DefaultHandler {
 	@Override
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
 		if (qName.equals("shop")) {
-			for (final Entry<String, Integer> e: items.entrySet()) {
-				shops.add(shopName, e.getKey(), e.getValue());
+			if (seller != null && npcNames != null) {
+				if (shops.get(seller, shopName) != null) {
+					logger.warn("Tried to add duplicate shop \"" + shopName + "\" with contents " + items.toString());
+					return;
+				}
+
+				for (final Entry<String, Integer> e: items.entrySet()) {
+					shops.add(seller, shopName, e.getKey(), e.getValue());
+				}
+
+				final String shopNameCopy = shopName;
+				final String npcNamesCopy = npcNames;
+				final String stype = seller ? "sell" : "buy";
+				SingletonRepository.getCachedActionManager().register(new Runnable() {
+					public void run() {
+						final NPCList npcs = NPCList.get();
+						for (final String npcName: npcNamesCopy.split(",")) {
+							final SpeakerNPC npc = npcs.get(npcName);
+							if (npc == null) {
+								logger.error("Cannot create " + stype + "er shop for non-existing NPC " + npcName);
+								continue;
+							}
+
+							logger.info("Adding " + stype + "er shop \"" + shopNameCopy + "\" to NPC " + npcName);
+							if (stype.equals("sell")) {
+								new SellerAdder().addSeller(npc, new SellerBehaviour(shops.getSeller(shopNameCopy)));
+							} else {
+								new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shops.getBuyer(shopNameCopy)));
+							}
+						}
+					}
+				});
+			} else {
+				for (final Entry<String, Integer> e: items.entrySet()) {
+					shops.add(shopName, e.getKey(), e.getValue());
+				}
 			}
 		}
 	}
