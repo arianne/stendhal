@@ -671,4 +671,18 @@
     <item name="r hand sword" price="250000" />
   </shop>
 
+  <shop name="adostavernbarmaid" type="sell" npcs="Coralia">
+    <item name="beer" price="15" />
+    <item name="pie" price="160" />
+    <item name="bread" price="50" />
+    <item name="cheese" price="20" />
+    <item name="tomato" price="30" />
+  </shop>
+
+  <shop name="adostavernbarman" type="sell" npcs="Dale">
+    <item name="wine" price="20" />
+    <item name="pina colada" price="100" />
+    <item name="chocolate bar" price="100" />
+  </shop>
+
 </shops>

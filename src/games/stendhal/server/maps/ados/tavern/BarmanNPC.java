@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.tavern;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +21,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 /**
  * Ados Tavern (Inside / Level 0).
@@ -69,11 +66,6 @@ public class BarmanNPC implements ZoneConfigurator {
 				addJob("I keep the ladies happy. How you doin'?");
 				addQuest("Just sit back, relax and enjoy the show.");
 				addHelp("This is the room for the ladies. Guys hang out in the other bar, Coralia serves the gents.");
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("wine", 20);
-				offerings.put("pina colada", 100);
-				offerings.put("chocolate bar", 100);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 				addGoodbye("See you around, sweetcheeks.");
 			}
 		};
