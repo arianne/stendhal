@@ -11,7 +11,9 @@
 
 
 import { RPEvent } from "./RPEvent";
-import { Chat } from "../util/Chat";
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
+import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
 declare var marauroa: any;
 
@@ -26,12 +28,12 @@ export class GroupInviteEvent extends RPEvent {
 		if (entity !== marauroa.me) {
 			return;
 		}
+
+		
 		if (this["expire"]) {
-			Chat.log("normal", "Your group invite by " + this["leader"] + " has expired.");
+			(ui.get(UIComponentEnum.GroupPanel) as GroupPanelComponent).expiredInvite(this["leader"]);
 		} else {
-			Chat.log("normal", "Your have been invited by " + this["leader"] + " to join a group.");
-			Chat.log("normal", "To join, type: /group join " + this["leader"]);
-			Chat.log("normal", "To leave the group at any time, type: /group part " + this["leader"]);
+			(ui.get(UIComponentEnum.GroupPanel) as GroupPanelComponent).receivedInvite(this["leader"]);
 		}
 	}
 }

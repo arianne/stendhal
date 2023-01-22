@@ -10,6 +10,9 @@
  ***************************************************************************/
 
 import { RPEvent } from "./RPEvent";
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
+import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
 declare var stendhal: any;
 declare var marauroa: any;
@@ -27,6 +30,7 @@ export class GroupChangeEvent extends RPEvent {
 			return;
 		}
 		stendhal.data.group.updateGroupStatus(this["members"], this["leader"], this["lootmode"]);
+		(ui.get(UIComponentEnum.GroupPanel) as GroupPanelComponent).updateGroupStatus();
 	}
 
 }
