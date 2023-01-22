@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -79,22 +79,22 @@ public class BarMaidNPC implements ZoneConfigurator {
 
 		//coupon for free beer
 
-        margaret.add(ConversationStates.ATTENDING,
-                (Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
-                new PlayerHasItemWithHimCondition("coupon"),
-                ConversationStates.ATTENDING,
-                "Oh you found one of the coupons which I spread around some time ago. Enjoy the beer!",
-                new MultipleActions(new DropItemAction("coupon"),
-                					new EquipItemAction("beer"))
-                );
+		margaret.add(ConversationStates.ATTENDING,
+				(Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
+				new PlayerHasItemWithHimCondition("coupon"),
+				ConversationStates.ATTENDING,
+				"Oh you found one of the coupons which I spread around some time ago. Enjoy the beer!",
+				new MultipleActions(new DropItemAction("coupon"),
+									new EquipItemAction("beer"))
+				);
 
-        margaret.add(ConversationStates.ATTENDING,
-        		(Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
-                new NotCondition(new PlayerHasItemWithHimCondition("coupon")),
-                ConversationStates.ATTENDING,
-                "Don't lie, you don't own one of the rare coupons. It's hard to run a tavern nowadays, don't lie to me!",
-                null
-                );
+		margaret.add(ConversationStates.ATTENDING,
+				(Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
+				new NotCondition(new PlayerHasItemWithHimCondition("coupon")),
+				ConversationStates.ATTENDING,
+				"Don't lie, you don't own one of the rare coupons. It's hard to run a tavern nowadays, don't lie to me!",
+				null
+				);
 
 		margaret.setEntityClass("tavernbarmaidnpc");
 		margaret.setDescription("Margaret looks so warm and welcoming that you can't help but want to buy something from her.");
