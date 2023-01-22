@@ -27,6 +27,7 @@ declare let stendhal: any;
  * group management
  */
 export class GroupPanelComponent extends Component {
+	private invites: Record<string, HTMLButtonElement> = {}
 
 
 	constructor() {
@@ -34,19 +35,48 @@ export class GroupPanelComponent extends Component {
 	}
 
 	receivedInvite(leader: string) {
-		// TODO:
-		Chat.log("normal", "You have been invited by " + leader + " to join a group.");
-		Chat.log("normal", "To join, type: /group join " + leader);
-		Chat.log("normal", "To leave the group at any time, type: /group part");
+		if (this.invites[leader]) {
+			return;
+		}
+
+		let button = document.createElement("button");
+		button.innerText = "Join " + leader;
+		button.title = "Join the group led by " + leader;
+		button.addEventListener("click", () => {
+			this.join(leader);
+		});
+		this.invites[leader] = button;
+		this.componentElement.querySelector(".group-nogroup")!.append(button);
+		// TODO: activte Group-tab in TabPanelComponent
+	}
+
+	join(leader: string) {
+		let action = {
+			"type": "group_management",
+			"action": "join",
+			"params": leader,
+			"zone": marauroa.currentZoneName
+		};
+		marauroa.clientFramework.sendAction(action);
 	}
 
 	expiredInvite(leader: string) {
-		// TODO:
-		Chat.log("normal", "Your group invite by " + leader + " has expired.");
+		let button = this.invites[leader];
+		if (button) {
+			button.remove();
+			delete this.invites[leader];
+		}
 	}
 
 	updateGroupStatus() {
+		if (!stendhal.data.group.members) {
+			this.componentElement.querySelector(".group-nogroup")!.classList.remove("hidden");
+			this.componentElement.querySelector(".group-group")!.classList.add("hidden");
+			return;
+		}
 
+		this.componentElement.querySelector(".group-nogroup")!.classList.add("hidden");
+		this.componentElement.querySelector(".group-group")!.classList.remove("hidden");
 	}
 
 }
