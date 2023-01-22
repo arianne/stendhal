@@ -23,8 +23,8 @@
 
   <simpleType name="ShopType">
     <restriction base="string">
-      <enumeration value="buys"/>
-      <enumeration value="sells"/>
+      <enumeration value="buy"/>
+      <enumeration value="sell"/>
     </restriction>
   </simpleType>
 

@@ -3,7 +3,7 @@
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal shops.xsd">
 
-  <shop name="food&amp;drinks" type="sells">
+  <shop name="food&amp;drinks" type="sell">
     <item name="beer" price="10" />
     <item name="wine" price="15" />
     <item name="flask" price="5" />
@@ -14,14 +14,14 @@
     <item name="ham" price="80" />
   </shop>
 
-  <shop name="adosfoodseller" type="sells">
+  <shop name="adosfoodseller" type="sell">
     <item name="apple" price="50" />
     <item name="carrot" price="50" />
     <item name="olive oil" price="135" />
     <item name="vinegar" price="135" />
   </shop>
 
-  <shop name="buyfood" type="buys">
+  <shop name="buyfood" type="buy">
     <item name="cheese" price="5" />
     <item name="meat" price="10" />
     <item name="spinach" price="15" />
@@ -30,14 +30,14 @@
     <item name="porcini" price="30" />
   </shop>
 
-  <shop name="healing" type="sells">
+  <shop name="healing" type="sell">
     <item name="antidote" price="50" />
     <item name="minor potion" price="100" />
     <item name="potion" price="250" />
     <item name="greater potion" price="500" />
   </shop>
 
-  <shop name="superhealing" type="sells">
+  <shop name="superhealing" type="sell">
     <item name="antidote" price="50" />
     <item name="greater antidote" price="100" />
     <item name="potion" price="250" />
@@ -45,34 +45,34 @@
     <item name="mega potion" price="1500" />
   </shop>
 
-  <shop name="scrolls" type="sells">
+  <shop name="scrolls" type="sell">
     <item name="home scroll" price="250" />
     <item name="summon scroll" price="200" />
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="fadoscrolls" type="sells">
+  <shop name="fadoscrolls" type="sell">
     <item name="fado city scroll" price="600" />
     <item name="empty scroll" price="2200" />
   </shop>
 
-  <shop name="nalworscrolls" type="sells">
+  <shop name="nalworscrolls" type="sell">
     <item name="nalwor city scroll" price="400" />
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="adosscrolls" type="sells">
+  <shop name="adosscrolls" type="sell">
     <item name="ados city scroll" price="400" />
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="kirdnehscrolls" type="sells">
+  <shop name="kirdnehscrolls" type="sell">
     <item name="kirdneh city scroll" price="400" />
     <item name="home scroll" price="400" />
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="allscrolls" type="sells">
+  <shop name="allscrolls" type="sell">
     <item name="home scroll" price="250" />
     <item name="summon scroll" price="200" />
     <item name="empty scroll" price="2000" />
@@ -83,7 +83,7 @@
     <item name="deniran city scroll" price="800" />
   </shop>
 
-  <shop name="sellstuff" type="sells">
+  <shop name="sellstuff" type="sell">
     <item name="knife" price="15" />
     <item name="club" price="10" />
     <item name="dagger" price="25" />
@@ -94,7 +94,7 @@
     <item name="leather legs" price="35" />
   </shop>
 
-  <shop name="sellbetterstuff1" type="sells">
+  <shop name="sellbetterstuff1" type="sell">
     <item name="blue armor" price="14000" />
     <item name="blue boots" price="3000" />
     <item name="blue striped cloak" price="5000" />
@@ -104,7 +104,7 @@
     <item name="assassin dagger" price="12000" />
   </shop>
 
-  <shop name="sellbetterstuff2" type="sells">
+  <shop name="sellbetterstuff2" type="sell">
     <item name="shadow armor" price="18000" />
     <item name="shadow boots" price="4000" />
     <item name="shadow cloak" price="7000" />
@@ -114,12 +114,12 @@
     <item name="hell dagger" price="20000" />
   </shop>
 
-  <shop name="sellrangedstuff" type="sells">
+  <shop name="sellrangedstuff" type="sell">
     <item name="wooden bow" price="300" />
     <item name="wooden arrow" price="2" />
   </shop>
 
-  <shop name="buystuff" type="buys">
+  <shop name="buystuff" type="buy">
     <item name="short sword" price="15" />
     <item name="sword" price="60" />
     <item name="studded shield" price="20" />
@@ -131,7 +131,7 @@
     <item name="chain legs" price="27" />
   </shop>
 
-  <shop name="selltools" type="sells">
+  <shop name="selltools" type="sell">
     <item name="small axe" price="15" />
     <item name="hand axe" price="25" />
     <item name="axe" price="40" />
@@ -144,20 +144,20 @@
     <item name="gold pan" price="230" />
   </shop>
 
-  <shop name="buyiron" type="buys">
+  <shop name="buyiron" type="buy">
     <item name="iron" price="75" />
   </shop>
 
-  <shop name="buygrain" type="buys">
+  <shop name="buygrain" type="buy">
     <item name="grain" price="1" />
   </shop>
 
-  <shop name="sellrings" type="sells">
+  <shop name="sellrings" type="sell">
     <item name="engagement ring" price="5000" />
   </shop>
 
   <!-- gold and gemstones -->
-  <shop name="buyprecious" type="buys">
+  <shop name="buyprecious" type="buy">
     <item name="gold bar" price="250" />
     <item name="emerald" price="200" />
     <item name="sapphire" price="400" />
@@ -168,7 +168,7 @@
     <item name="mithril bar" price="2500" />
   </shop>
 
-  <shop name="buyrare" type="buys">
+  <shop name="buyrare" type="buy">
     <!-- rare weapons -->
     <item name="scimitar" price="65" />
     <item name="katana" price="70" />
@@ -184,7 +184,7 @@
   </shop>
 
   <!-- rare elf weapons buyer -->
-  <shop name="elfbuyrare" type="buys">
+  <shop name="elfbuyrare" type="buy">
     <item name="battle axe" price="70" />
     <item name="twoside axe" price="80" />
     <item name="claymore" price="90" />
@@ -195,7 +195,7 @@
   </shop>
 
   <!-- more rare weapons shop (fado) -->
-  <shop name="buyrare2" type="buys">
+  <shop name="buyrare2" type="buy">
     <item name="war hammer" price="120" />
     <item name="biting sword" price="150" />
     <item name="crossbow" price="175" />
@@ -206,7 +206,7 @@
   </shop>
 
   <!-- very rare armor shop (ados) -->
-  <shop name="buyrare3" type="buys">
+  <shop name="buyrare3" type="buy">
     <item name="golden legs" price="3000" />
     <item name="shadow legs" price="5000" />
     <item name="golden armor" price="7000" />
@@ -216,7 +216,7 @@
   </shop>
 
   <!-- less rare armor shop (kobold city - kobolds drop some of these things) -->
-  <shop name="buystuff2" type="buys">
+  <shop name="buystuff2" type="buy">
     <item name="leather scale armor" price="65" />
     <item name="studded legs" price="70" />
     <item name="studded boots" price="75" />
@@ -226,7 +226,7 @@
     <item name="viking helmet" price="250" />
   </shop>
 
-  <shop name="sellstuff2" type="sells">
+  <shop name="sellstuff2" type="sell">
     <item name="leather boots" price="50" />
     <item name="studded helmet" price="60" />
     <item name="studded shield" price="80" />
@@ -235,7 +235,7 @@
   </shop>
 
   <!-- cloaks shop -->
-  <shop name="buycloaks" type="buys">
+  <shop name="buycloaks" type="buy">
     <item name="blue elf cloak" price="300" />
     <item name="green dragon cloak" price="400" />
     <item name="blue dragon cloak" price="2000" />
@@ -246,7 +246,7 @@
     <item name="black cloak" price="20000" />
   </shop>
 
-  <shop name="boots&amp;helm" type="buys">
+  <shop name="boots&amp;helm" type="buy">
     <!--
       boots (mithrilbourgh)
       Note the shop sign is done by hand in
@@ -276,7 +276,7 @@
   </shop>
 
   <!-- buy axes (woodcutter) -->
-  <shop name="buyaxe" type="buys">
+  <shop name="buyaxe" type="buy">
     <item name="halberd" price="2000" />
     <item name="golden twoside axe" price="4000" />
     <item name="magic twoside axe" price="6000" />
@@ -287,7 +287,7 @@
   </shop>
 
   <!-- buy chaos items (scared dwarf, after quest) -->
-  <shop name="buychaos" type="buys">
+  <shop name="buychaos" type="buy">
     <item name="chaos legs" price="8000" />
     <item name="chaos sword" price="12000" />
     <item name="chaos shield" price="18000" />
@@ -295,7 +295,7 @@
   </shop>
 
   <!-- buy elvish items (albino elf, after quest) -->
-  <shop name="buyelvish" type="buys">
+  <shop name="buyelvish" type="buy">
     <item name="elvish boots" price="300" />
     <item name="elvish legs" price="300" />
     <item name="elvish sword" price="800" />
@@ -307,7 +307,7 @@
   </shop>
 
   <!-- magic items or 'relics' (witch in magic city) -->
-  <shop name="buymagic" type="buys">
+  <shop name="buymagic" type="buy">
     <item name="demon sword" price="4000" />
     <item name="dark dagger" price="8000" />
     <item name="liberty helmet" price="8000" />
@@ -318,7 +318,7 @@
   </shop>
 
   <!-- red items (supplier in sedah city) -->
-  <shop name="buyred" type="buys">
+  <shop name="buyred" type="buy">
     <item name="red armor" price="300" />
     <item name="red boots" price="200" />
     <item name="red cloak" price="250" />
@@ -328,7 +328,7 @@
   </shop>
 
   <!-- mainio items (despot in mithrilbourgh throne room) -->
-  <shop name="buymainio" type="buys">
+  <shop name="buymainio" type="buy">
     <item name="mainio armor" price="22000" />
     <item name="mainio boots" price="4000" />
     <item name="mainio cloak" price="12000" />
@@ -338,7 +338,7 @@
   </shop>
 
   <!-- assassinhq principal Femme Fatale -->
-  <shop name="buy4assassins" type="buys">
+  <shop name="buy4assassins" type="buy">
     <item name="buckler" price="20" />
     <item name="aventail" price="25" />
     <item name="robins hat" price="30" />
@@ -350,7 +350,7 @@
   </shop>
 
   <!-- mountain dwarf buyer of odds and ends -3 ados abandoned keep -->
-  <shop name="buyoddsandends" type="buys">
+  <shop name="buyoddsandends" type="buy">
     <item name="shuriken" price="20" />
     <item name="amulet" price="800" />
     <item name="black pearl" price="100" />
@@ -366,7 +366,7 @@
   </shop>
 
   <!-- archery shop in nalwor -->
-  <shop name="buyarcherstuff" type="buys">
+  <shop name="buyarcherstuff" type="buy">
     <item name="wooden arrow" price="1" />
     <item name="steel arrow" price="5" />
     <item name="golden arrow" price="10" />
@@ -380,7 +380,7 @@
   </shop>
 
   <!-- selling arrows -->
-  <shop name="sellarrows" type="sells">
+  <shop name="sellarrows" type="sell">
     <item name="wooden arrow" price="2" />
     <item name="steel arrow" price="7" />
     <item name="golden arrow" price="25" />
@@ -391,7 +391,7 @@
     assassinhq chief falatheen the dishwasher and veggie buyer
     sign is hard coded so if you change this change the sign
   -->
-  <shop name="buyveggiesandherbs" type="buys">
+  <shop name="buyveggiesandherbs" type="buy">
     <item name="carrot" price="5" />
     <item name="salad" price="10" />
     <item name="leek" price="25" />
@@ -407,7 +407,7 @@
   </shop>
 
   <!-- gnome village buyer in 0 ados mountain n2 w2 -->
-  <shop name="buy4gnomes" type="buys">
+  <shop name="buy4gnomes" type="buy">
     <item name="leather armor" price="25" />
     <item name="club" price="3" />
     <item name="leather helmet" price="15" />
@@ -418,7 +418,7 @@
   </shop>
 
   <!-- hotdog lady in athor -->
-  <shop name="buy4hotdogs" type="buys">
+  <shop name="buy4hotdogs" type="buy">
     <item name="sausage" price="30" />
     <item name="cheese sausage" price="25" />
     <item name="bread" price="15" />
@@ -428,7 +428,7 @@
     <item name="cheese" price="5" />
   </shop>
 
-  <shop name="sellhotdogs" type="sells">
+  <shop name="sellhotdogs" type="sell">
     <item name="hotdog" price="160" />
     <item name="cheeseydog" price="180" />
     <item name="tuna sandwich" price="130" />
@@ -440,7 +440,7 @@
   </shop>
 
   <!-- magic city barmaid -->
-  <shop name="sellmagic" type="sells">
+  <shop name="sellmagic" type="sell">
     <item name="hotdog" price="160" />
     <item name="cheeseydog" price="180" />
     <item name="tuna sandwich" price="130" />
@@ -452,7 +452,7 @@
   </shop>
 
   <!-- kirdneh city armor -->
-  <shop name="buykirdneharmor" type="buys">
+  <shop name="buykirdneharmor" type="buy">
     <item name="blue armor" price="13000" />
     <item name="stone armor" price="18000" />
     <item name="ice armor" price="19000" />
@@ -463,7 +463,7 @@
   </shop>
 
   <!-- amazon cloaks shop -->
-  <shop name="buyamazoncloaks" type="buys">
+  <shop name="buyamazoncloaks" type="buy">
     <item name="vampire cloak" price="14000" />
     <item name="xeno cloak" price="18000" />
     <item name="elf cloak" price="50" />
@@ -475,7 +475,7 @@
   </shop>
 
   <!-- kirdneh city fishy market) -->
-  <shop name="buyfishes" type="buys">
+  <shop name="buyfishes" type="buy">
     <item name="perch" price="22" />
     <item name="mackerel" price="20" />
     <item name="roach" price="10" />
@@ -487,12 +487,12 @@
   </shop>
 
   <!-- Semos trading - swords (unused?) -->
-  <shop name="tradeswords" type="sells">
+  <shop name="tradeswords" type="sell">
     <item name="dagger" price="10" />
   </shop>
 
   <!-- party time! For maria for example. Bit more expensive than normal -->
-  <shop name="sellparty" type="sells">
+  <shop name="sellparty" type="sell">
     <item name="pina colada" price="100" />
     <item name="chocolate bar" price="100" />
     <item name="beer" price="10" />
@@ -504,7 +504,7 @@
   </shop>
 
   <!-- black items (balduin, when ultimate collector quest completed) -->
-  <shop name="buyblack" type="buys">
+  <shop name="buyblack" type="buy">
     <item name="black armor" price="60000" />
     <item name="black boots" price="10000" />
     <item name="black cloak" price="20000" />
@@ -517,7 +517,7 @@
   </shop>
 
   <!-- ados market -->
-  <shop name="buyadosarmors" type="buys">
+  <shop name="buyadosarmors" type="buy">
     <item name="blue helmet" price="900" />
     <item name="blue boots" price="200" />
     <item name="blue striped cloak" price="500" />
@@ -527,7 +527,7 @@
   </shop>
 
   <!-- Athor ferry -->
-  <shop name="buypoisons" type="buys">
+  <shop name="buypoisons" type="buy">
     <item name="poison" price="40" />
     <item name="toadstool" price="60" />
     <item name="greater poison" price="60" />
@@ -539,12 +539,12 @@
   </shop>
 
   <!-- Scuba Instructor Edward -->
-  <shop name="sellScubaStuff" type="sells">
+  <shop name="sellScubaStuff" type="sell">
     <item name="scuba gear" price="22000" />
   </shop>
 
   <!-- Mine Town Revival Weeks Caroline -->
-  <shop name="sellrevivalweeks" type="sells">
+  <shop name="sellrevivalweeks" type="sell">
     <item name="cherry pie" price="195" />
     <item name="apple pie" price="195" />
     <item name="vanilla shake" price="120" />
@@ -565,7 +565,7 @@
     for ados botanical gardens or if you like, other cafes.
     expensive prices to make sure that the npc production of these items isn't compromised
   -->
-  <shop name="cafe" type="sells">
+  <shop name="cafe" type="sell">
     <item name="tea" price="80" />
     <item name="water" price="50" />
     <item name="chocolate shake" price="150" />
@@ -575,7 +575,7 @@
   </shop>
 
   <!-- atlantis potions shop prices are twice as much as magic city -->
-  <shop name="atlantispotions" type="sells">
+  <shop name="atlantispotions" type="sell">
     <item name="antidote" price="100" />
     <item name="greater antidote" price="200" />
     <item name="potion" price="500" />
@@ -585,7 +585,7 @@
     <item name="empty scroll" price="4000" />
   </shop>
 
-  <shop name="deniranpawnbuy" type="buys">
+  <shop name="deniranpawnbuy" type="buy">
     <item name="skull ring" price="250" />
     <item name="engagement ring" price="1000" />
     <item name="medicinal ring" price="2500" />
@@ -596,7 +596,7 @@
     <item name="imperial ring" price="50000" />
   </shop>
 
-  <shop name="buyanimalmaterials" type="buys">
+  <shop name="buyanimalmaterials" type="buy">
     <!--<item name="wool" price="50" /> is this item obtainable? -->
     <item name="leather thread" price="7" />
     <item name="bat entrails" price="10" />
@@ -608,11 +608,11 @@
     <item name="mythical egg" price="2500" />
   </shop>
 
-  <shop name="denirankingsell" type="sells">
+  <shop name="denirankingsell" type="sell">
     <item name="deniran city scroll" price="800" />
   </shop>
 
-  <shop name="denirankingbuy" type="buys">
+  <shop name="denirankingbuy" type="buy">
     <item name="royal boots" price="8000" />
     <item name="royal helmet" price="13000" />
     <item name="royal dagger" price="100000" />
@@ -623,7 +623,7 @@
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionsbuy" type="buys">
+  <shop name="deniranpotionsbuy" type="buy">
     <item name="mandragora" price="300" />
     <!--<item name="kokuda" price="5000" />-->
     <item name="toadstool" price="60" />
@@ -637,7 +637,7 @@
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionssell" type="sells">
+  <shop name="deniranpotionssell" type="sell">
     <item name="minor potion" price="150" />
     <item name="potion" price="300" />
     <item name="greater potion" price="600" />
@@ -648,25 +648,25 @@
   </shop>
 
   <!-- broker in Semos Plains that purchases misc. items at a low values -->
-  <shop name="brokermisc" type="buys">
+  <shop name="brokermisc" type="buy">
     <item name="bat entrails" price="5" />
     <item name="pelt" price="10" />
     <item name="vampirette entrails" price="20" />
   </shop>
 
   <!-- Deniran weapons shop -->
-  <shop name="deniranequipbuy" type="buys">
+  <shop name="deniranequipbuy" type="buy">
     <item name="ugmash" price="1200" />
     <item name="magic cloak" price="12000" />
   </shop>
 
-  <shop name="deniranequipsell" type="sells">
+  <shop name="deniranequipsell" type="sell">
     <item name="shuriken" price="77" />
     <item name="fire shuriken" price="99" />
     <item name="wooden spear" price="110" />
   </shop>
 
-  <shop name="twohandswords" type="sells">
+  <shop name="twohandswords" type="sell">
     <item name="l hand sword" price="250000" />
     <item name="r hand sword" price="250000" />
   </shop>
