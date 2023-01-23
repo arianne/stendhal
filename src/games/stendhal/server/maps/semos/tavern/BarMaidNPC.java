@@ -18,27 +18,23 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+
 
 /*
  * Food and drink seller,  Inside Semos Tavern - Level 0 (ground floor)
  * Sells the flask required for Tad's quest IntroducePlayers
  */
 public class BarMaidNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -71,7 +67,6 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addQuest("Oh nice that you ask me. Unfortunately I have nothing to do for you.");
 				addJob("I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));
 
 				addGoodbye();
 			}

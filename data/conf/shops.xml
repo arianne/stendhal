@@ -3,7 +3,7 @@
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal shops.xsd">
 
-  <shop name="food&amp;drinks" type="sell">
+  <shop name="food&amp;drinks" type="sell" npcs="Margaret">
     <item name="beer" price="10" />
     <item name="wine" price="15" />
     <item name="flask" price="5" />
@@ -83,7 +83,7 @@
     <item name="deniran city scroll" price="800" />
   </shop>
 
-  <shop name="sellstuff" type="sell">
+  <shop name="sellstuff" type="sell" npcs="Xin Blanca">
     <item name="knife" price="15" />
     <item name="club" price="10" />
     <item name="dagger" price="25" />
@@ -114,12 +114,12 @@
     <item name="hell dagger" price="20000" />
   </shop>
 
-  <shop name="sellrangedstuff" type="sell">
+  <shop name="sellrangedstuff" type="sell" npcs="Ouchit">
     <item name="wooden bow" price="300" />
     <item name="wooden arrow" price="2" />
   </shop>
 
-  <shop name="buystuff" type="buy">
+  <shop name="buystuff" type="buy" npcs="Xin Blanca">
     <item name="short sword" price="15" />
     <item name="sword" price="60" />
     <item name="studded shield" price="20" />
@@ -168,7 +168,7 @@
     <item name="mithril bar" price="2500" />
   </shop>
 
-  <shop name="buyrare" type="buy">
+  <shop name="buyrare" type="buy" npcs="McPegleg">
     <!-- rare weapons -->
     <item name="scimitar" price="65" />
     <item name="katana" price="70" />

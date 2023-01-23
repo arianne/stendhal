@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,20 +17,16 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /*
  * Inside Semos Tavern - Level 1 (upstairs)
  */
 public class BowAndArrowSellerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -63,7 +59,6 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I sell bows and arrows.");
 				addHelp("I sell several items, ask me for my #offer.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrangedstuff")));
 				addGoodbye();
 			}
 		};
