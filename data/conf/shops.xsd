@@ -9,6 +9,7 @@
   <complexType name="ShopGroup">
     <sequence>
       <element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="shopref" type="Q2:ShopRef" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 
@@ -20,6 +21,14 @@
     <attribute name="type" type="Q2:ShopType" use="required"/>
     <attribute name="condition" type="string" use="optional"/>
     <attribute name="npcs" type="string" use="optional"/>
+  </complexType>
+
+  <complexType name="ShopRef">
+    <sequence>
+      <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="type" type="Q2:ShopType" use="required"/>
+    <attribute name="npcs" type="string" use="required"/>
   </complexType>
 
   <simpleType name="ShopType">
