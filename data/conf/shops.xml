@@ -685,4 +685,30 @@
     <item name="chocolate bar" price="100" />
   </shop>
 
+
+  <!-- the following are configured in the NPC source & are included here only to be read by the website -->
+
+  <shopref type="sell" npcs="Jenny">
+    <item name="daisy seed" price="20"/>
+    <item name="lilia seed" price="10"/>
+    <item name="pansy seed" price="10"/>
+    <item name="zantedeschia bulb" price="15"/>
+  </shopref>
+
+  <shopref type="sell" npcs="Nishiya">
+    <item name="sheep" price="30"/>
+  </shopref>
+
+  <shopref type="sell" npcs="Mrs. Yeti">
+    <item name="roach" price="10"/>
+  </shopref>
+
+  <shopref type="buy" npcs="Sato">
+    <item name="sheep" price="150"/>
+  </shopref>
+
+  <shopref type="buy" npcs="Tor'Koom">
+    <item name="sheep" price="15" pricemax="1500"/>
+  </shopref>
+
 </shops>
