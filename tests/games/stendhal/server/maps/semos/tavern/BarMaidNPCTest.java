@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,6 +71,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBuyHam() {
 		final SpeakerNPC npc = getNPC("Margaret");
 		final Engine en = npc.getEngine();
+
+		// configure Margaret's shop
+		SingletonRepository.getShopList().configureNPC("Margaret", "food&drinks", true);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", getReply(npc));

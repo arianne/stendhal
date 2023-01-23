@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.bar.BarMaidNPC;
@@ -184,6 +185,9 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 	public void testSellShields() {
 		final SpeakerNPC npc = getNPC("McPegleg");
 		final Engine en = npc.getEngine();
+
+		// configure shops
+		SingletonRepository.getShopList().configureNPC("McPegleg", "buyrare", false);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Yo matey! You look like you need #help.", getReply(npc));

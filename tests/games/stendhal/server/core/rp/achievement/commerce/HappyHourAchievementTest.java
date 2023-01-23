@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                   Copyright © 2020-2023 - Arianne                       *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -48,6 +49,8 @@ public class HappyHourAchievementTest extends ZonePlayerAndNPCTestImpl {
 		setNpcNames(npcName);
 		setupZone("testzone", new BarMaidNPC());
 		setZoneForPlayer("testzone");
+		// configure Margaret's shop
+		SingletonRepository.getShopList().configureNPC("Margaret", "food&drinks", true);
 		super.setUp();
 	}
 

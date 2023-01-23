@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,6 +70,9 @@ public class HatForMonogenesTest {
 		zoneConf.configureZone(new StendhalRPZone("int_semos_tavern"), null);
 		npcXin = SingletonRepository.getNPCList().get("Xin Blanca");
 		enXin = npcXin.getEngine();
+
+		// configure Xin Blanca's shop
+		SingletonRepository.getShopList().configureNPC("Xin Blanca", "sellstuff", true);
 
 		quest = new MeetMonogenes();
 		quest.addToWorld();
