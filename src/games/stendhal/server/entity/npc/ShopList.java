@@ -21,7 +21,6 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
