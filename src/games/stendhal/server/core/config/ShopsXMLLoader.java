@@ -30,13 +30,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 
 public class ShopsXMLLoader extends DefaultHandler {
@@ -142,25 +136,14 @@ public class ShopsXMLLoader extends DefaultHandler {
 					shops.add(seller, shopName, e.getKey(), e.getValue());
 				}
 
-				final String shopNameCopy = shopName;
-				final String npcNamesCopy = npcNames;
-				final String stype = seller ? "sell" : "buy";
 				SingletonRepository.getCachedActionManager().register(new Runnable() {
-					public void run() {
-						final NPCList npcs = NPCList.get();
-						for (final String npcName: npcNamesCopy.split(",")) {
-							final SpeakerNPC npc = npcs.get(npcName);
-							if (npc == null) {
-								logger.error("Cannot create " + stype + "er shop for non-existing NPC " + npcName);
-								continue;
-							}
+					private final String _shop = shopName;
+					private final String _names = npcNames;
+					private final boolean _seller = seller;
 
-							logger.info("Adding " + stype + "er shop \"" + shopNameCopy + "\" to NPC " + npcName);
-							if (stype.equals("sell")) {
-								new SellerAdder().addSeller(npc, new SellerBehaviour(shops.getSeller(shopNameCopy)));
-							} else {
-								new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shops.getBuyer(shopNameCopy)));
-							}
+					public void run() {
+						for (final String npcname: _names.split(",")) {
+							shops.configureNPC(npcname, _shop, _seller);
 						}
 					}
 				});

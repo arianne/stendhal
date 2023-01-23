@@ -18,10 +18,22 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
+
 /**
  * Singleton class that contains inventory and prices of NPC stores.
  */
 public final class ShopList {
+
+	private static final Logger logger = Logger.getLogger(ShopList.class);
 
 	/** The singleton instance. */
 	private static ShopList instance;
@@ -237,6 +249,42 @@ public final class ShopList {
 	 */
 	public void addBuyer(final String name, final String item, final int price) {
 		add(false, name, item, price);
+	}
+
+	/**
+	 * Configures an NPC for a shop.
+	 *
+	 * @param seller
+	 *     Seller or buyer shop.
+	 * @param shopname
+	 *     Shop string identifier.
+	 * @param npcname
+	 *     Name of NPC being configured.
+	 */
+	public void configureNPC(final String npcname, final String shopname,
+			final boolean seller) {
+		String stype = "sell";
+		if (!seller) {
+			stype = "buy";
+		}
+
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcname);
+		if (npc == null) {
+			logger.error("Cannot configure " + stype + "er shop for non-existing NPC " + npcname);
+			return;
+		}
+		final Map<String, Integer> shoplist = get(seller, shopname);
+		if (shoplist == null) {
+			logger.error("Cannot configure non-existing " + stype + "er shop for NPC " + npcname);
+			return;
+		}
+
+		logger.info("Adding " + stype + "er shop \"" + shopname + "\" to NPC " + npcname);
+		if (seller) {
+			new SellerAdder().addSeller(npc, new SellerBehaviour(shoplist));
+		} else {
+			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shoplist));
+		}
 	}
 
 	/**
