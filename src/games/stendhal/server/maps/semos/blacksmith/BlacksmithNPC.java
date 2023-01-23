@@ -19,15 +19,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * The blacksmith (original name: Xoderos). Brother of the goldsmith in Ados.
@@ -89,7 +87,6 @@ public class BlacksmithNPC implements ZoneConfigurator  {
 				addHelp("If you bring me #wood and #'iron ore', I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
 				addJob("I am a blacksmith. I #cast iron, and #trade tools.");
 				addGoodbye();
-				new SellerAdder().addSeller(this, new SellerBehaviour(SingletonRepository.getShopList().get("selltools")));
 
 				// Xoderos casts iron if you bring him wood and iron ore.
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,6 +70,9 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 
 		SpeakerNPC barbarus = SingletonRepository.getNPCList().get("Barbarus");
 		Engine barbarusEng = barbarus.getEngine();
+
+		// configure Barbarus's shop
+		SingletonRepository.getShopList().configureNPC("Barbarus", "minertools", true);
 
 		// -----------------------------------------------
 		// start with Haunchy

@@ -60,8 +60,11 @@ public class HealerNPCTest {
 		SingletonRepository.getRPWorld().addRPZone(srpz);
 		player = PlayerTestHelper.createPlayer("bob");
 		player.teleport(srpz, 10, 10, null, null);
+
+		// configure Carmen's shop
 		sl = ShopList.get();
 		slh = (LinkedHashMap<String, Integer>) sl.get("healing");
+		sl.configureNPC("Carmen", "healing", true);
 	}
 
 	@Test
@@ -79,8 +82,12 @@ public class HealerNPCTest {
 			final int price = it.getValue();
 
 			assertTrue(en.step(player, "offer"));
-			assertEquals("I sell "+ Grammar.enumerateCollection(items)
-					+ ". "+"I can #heal you.", getReply(npc));
+			//assertEquals("I sell "+ Grammar.enumerateCollection(items)
+					//+ ". "+"I can #heal you.", getReply(npc));
+			// healing & shop configuration order have changed
+			assertEquals("I can #heal you. I sell "
+					+ Grammar.enumerateCollection(items) + ".",
+					getReply(npc));
 
 			player.setBaseHP(100);
 			player.setHP(50);

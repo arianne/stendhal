@@ -30,7 +30,7 @@
     <item name="porcini" price="30" />
   </shop>
 
-  <shop name="healing" type="sell">
+  <shop name="healing" type="sell" npcs="Carmen,Ilisa">
     <item name="antidote" price="50" />
     <item name="minor potion" price="100" />
     <item name="potion" price="250" />
@@ -131,7 +131,7 @@
     <item name="chain legs" price="27" />
   </shop>
 
-  <shop name="selltools" type="sell">
+  <shop name="selltools" type="sell" npcs="Xoderos">
     <item name="small axe" price="15" />
     <item name="hand axe" price="25" />
     <item name="axe" price="40" />
@@ -287,7 +287,7 @@
   </shop>
 
   <!-- buy chaos items (scared dwarf, after quest) -->
-  <shop name="buychaos" type="buy">
+  <shop name="buychaos" type="buy" npcs="Hunel">
     <item name="chaos legs" price="8000" />
     <item name="chaos sword" price="12000" />
     <item name="chaos shield" price="18000" />
@@ -407,7 +407,7 @@
   </shop>
 
   <!-- gnome village buyer in 0 ados mountain n2 w2 -->
-  <shop name="buy4gnomes" type="buy">
+  <shop name="buy4gnomes" type="buy" npcs="Garbiddle">
     <item name="leather armor" price="25" />
     <item name="club" price="3" />
     <item name="leather helmet" price="15" />
@@ -683,6 +683,14 @@
     <item name="wine" price="20" />
     <item name="pina colada" price="100" />
     <item name="chocolate bar" price="100" />
+  </shop>
+
+  <shop name="minertools" type="sell" npcs="Barbarus">
+    <item name="pick" price="400"/>
+  </shop>
+
+  <shop name="semosbaker" type="buy" npcs="Leander">
+    <item name="cheese" price="5"/>
   </shop>
 
 

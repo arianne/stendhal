@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.JailedDwarf;
@@ -87,6 +88,10 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testQuest() {
 		final SpeakerNPC npc = getNPC("Hunel");
 		final Engine en = npc.getEngine();
+
+		// confugure Hunel's shop
+		// XXX: why can this not be configured in constructor where NPC is created?
+		SingletonRepository.getShopList().configureNPC("Hunel", "buychaos", false);
 
 		equipWithItem(player, "kanmararn prison key");
 

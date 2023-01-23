@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,14 +22,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 public class HealerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -58,7 +55,6 @@ public class HealerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
 				addHelp("I can #heal you here for a cost, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")));
 				// charge (2*the player level + 1) to heal
 				new HealerAdder().addHealer(this, -2);
 				addGoodbye();

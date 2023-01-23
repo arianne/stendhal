@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.mines;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +23,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds a NPC in Semos Mine (name:Barbarus) who is a miner and informs players about his job
@@ -71,9 +69,6 @@ public class MinerNPC implements ZoneConfigurator {
 				addReply("sounds","The sounds are very weird... Sometimes they sound like someone is shouting from far away... just like commanding soldiers or so... I also heard steps in the shadows a few times... that's really scary...");
 				addOffer("I can sell you a useful tool for getting some coal with. Most of my friends who used to work with me left me some time ago, so you can buy some #picks which they left here. I'd also like to give you some of my drink and food but there isn't much left... I still need to work some hours so I need it for myself, sorry... But I can show you a hand drawn #map of the mine if you want.");
 				addReply("picks", "You need a pick for getting some coal from places on the walls in Semos Mine.");
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("pick", 400);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal.");
 				addJob("I am a miner. Working in a mine is quite hard work. If you get deep and deeper into the earth it gets very warm and even more dusty. And you can hardly see anything in this low light...");
 				addReply("map","This is a map of the Semos Mine which I have drawn by myself some time ago. It may help you to find the way. But take care, not everything is exactly right!",
