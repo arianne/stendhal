@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,16 +48,16 @@ public class MinerNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(57, 78));
 				nodes.add(new Node(55, 78));
-                nodes.add(new Node(55, 80));
-                nodes.add(new Node(53, 80));
-                nodes.add(new Node(53, 82));
-                nodes.add(new Node(55, 82));
-                nodes.add(new Node(55, 84));
-                nodes.add(new Node(59, 84));
-                nodes.add(new Node(59, 78));
-                nodes.add(new Node(58, 78));
-                nodes.add(new Node(57, 78));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(55, 80));
+				nodes.add(new Node(53, 80));
+				nodes.add(new Node(53, 82));
+				nodes.add(new Node(55, 82));
+				nodes.add(new Node(55, 84));
+				nodes.add(new Node(59, 84));
+				nodes.add(new Node(59, 78));
+				nodes.add(new Node(58, 78));
+				nodes.add(new Node(57, 78));
+				setPath(new FixedPath(nodes, true));
 
 			}
 
@@ -72,8 +72,8 @@ public class MinerNPC implements ZoneConfigurator {
 				addOffer("I can sell you a useful tool for getting some coal with. Most of my friends who used to work with me left me some time ago, so you can buy some #picks which they left here. I'd also like to give you some of my drink and food but there isn't much left... I still need to work some hours so I need it for myself, sorry... But I can show you a hand drawn #map of the mine if you want.");
 				addReply("picks", "You need a pick for getting some coal from places on the walls in Semos Mine.");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-                offerings.put("pick", 400);
-                new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
+				offerings.put("pick", 400);
+				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal.");
 				addJob("I am a miner. Working in a mine is quite hard work. If you get deep and deeper into the earth it gets very warm and even more dusty. And you can hardly see anything in this low light...");
 				addReply("map","This is a map of the Semos Mine which I have drawn by myself some time ago. It may help you to find the way. But take care, not everything is exactly right!",
