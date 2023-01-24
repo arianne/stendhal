@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,22 +17,16 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /*
  * Inside the Kobold City, interior called house4
  */
 public class TraderNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -64,11 +58,8 @@ public class TraderNPC implements ZoneConfigurator {
 				addJob("I run a buying and selling #trade with kobolds - or whoever else passes by. I am one of the few Kobolds who can speak with non-Kobolds.");
 				addHelp("I #deal in all sorts of items.");
 				addQuest("Try Alrak the mountain dwarf who lives here with the kobolds. He'd probably have more than one task to give you.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff2")), false);
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buystuff2")), false);
 				addOffer("Please look at the each blackboard on the wall to see what I buy and sell at the moment.");
 				addGoodbye("Bye, and please don't attack too many of my friends.");
-
 			}
 		};
 

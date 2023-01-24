@@ -237,6 +237,7 @@
     <item name="skull shield" price="100" />
     <item name="unicorn shield" price="125" />
     <item name="viking helmet" price="250" />
+    <merchant name="Wrvil" configure="true" offer="false"/>
   </shop>
 
   <shop name="sellstuff2" type="sell">
@@ -245,6 +246,7 @@
     <item name="studded shield" price="80" />
     <item name="sword" price="90" />
     <item name="dwarf cloak" price="230" />
+    <merchant name="Wrvil" configure="true" offer="false"/>
   </shop>
 
   <!-- cloaks shop -->
@@ -779,6 +781,18 @@
     <item name="fado city scroll" price="480"/>
     <item name="empty scroll" price="1760"/>
     <merchant name="Orchiwald"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="beer" price="18"/>
+    <item name="wine" price="25"/>
+    <item name="mild koboldish torcibud" price="95">
+      <require name="slim bottle" count="1"/>
+    </item>
+    <item name="strong koboldish torcibud" price="195">
+      <require name="eared bottle" count="1"/>
+    </item>
+    <merchant name="Wrviliza"/>
   </shop>
 
 </shops>

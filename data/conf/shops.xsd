@@ -31,9 +31,17 @@
   </simpleType>
 
   <complexType name="ShopItem">
+    <sequence>
+      <element name="require" type="Q2:RequireAlso" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
     <attribute name="name" type="string" use="required"/>
     <attribute name="price" type="int" use="required"/>
     <attribute name="pricemax" type="int" use="optional"/>
+  </complexType>
+
+  <complexType name="RequireAlso">
+    <attribute name="name" type="string" use="required"/>
+    <attribute name="count" type="string" use="required"/>
   </complexType>
 
   <complexType name="Merchant">
