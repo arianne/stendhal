@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,7 @@ public class GreeterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Welcome to the humble dwellings of the albino elves.");
+				addGreeting("Welcome to the humble dwellings of the albino elves.");
 				addJob("I just wander around. In fact, albino elves wander around a lot. We're #nomadic, you know.");
 				addReply("nomadic", "We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
 				addReply("stones", "They have some mystical quality. We like to be by them for the changing of the seasons.");

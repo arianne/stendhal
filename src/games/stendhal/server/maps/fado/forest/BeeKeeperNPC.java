@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,14 +56,14 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 				nodes.add(new Node(56, 78));
 				nodes.add(new Node(57, 78));
 				nodes.add(new Node(57, 79));
-                nodes.add(new Node(58, 79));
-                nodes.add(new Node(58, 86));
-                nodes.add(new Node(43, 86));
-                nodes.add(new Node(43, 87));
-                nodes.add(new Node(59, 87));
-                nodes.add(new Node(59, 80));
-                nodes.add(new Node(58, 80));
-                nodes.add(new Node(58, 79));
+				nodes.add(new Node(58, 79));
+				nodes.add(new Node(58, 86));
+				nodes.add(new Node(43, 86));
+				nodes.add(new Node(43, 87));
+				nodes.add(new Node(59, 87));
+				nodes.add(new Node(59, 80));
+				nodes.add(new Node(58, 80));
+				nodes.add(new Node(58, 79));
 				nodes.add(new Node(57, 79));
 				nodes.add(new Node(57, 78));
 				nodes.add(new Node(56, 78));
