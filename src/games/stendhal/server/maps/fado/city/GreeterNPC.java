@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds the city greeter NPC.
@@ -32,7 +29,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author timothyb89
  */
 public class GreeterNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	//
 	// ZoneConfigurator
@@ -75,7 +71,6 @@ public class GreeterNPC implements ZoneConfigurator {
 				        "Deniran is the jewel of the crown. Deniran is the center of Faiumoni and supports the army that tries to defeat enemies that wants to conquer Faiumoni.");
 				addJob("I greet all of the new-comers to Fado. I can #offer you a scroll if you'd like to come back here again.");
 				addHelp("You can head into the tavern to buy food and drinks. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")));
 				addGoodbye("Bye.");
 			}
 		};

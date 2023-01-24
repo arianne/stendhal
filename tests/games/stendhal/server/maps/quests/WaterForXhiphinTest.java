@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,6 +58,9 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		super.setUp();
 
 		new WaterForXhiphin().addToWorld();
+
+		// configure shop
+		SingletonRepository.getShopList().configureNPC("Xhiphin Zohos", "fadoscrolls", true);
 	}
 
 	@Test

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Builds an NPC to buy previously un bought axes
@@ -33,7 +30,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
  * @author kymara
  */
 public class WoodCutterNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -72,8 +68,7 @@ public class WoodCutterNPC implements ZoneConfigurator {
 				addHelp("You can sometimes collect wood that's lying around the forest. Oh, and I take #offers of any good axe you might sell.");
 				addOffer("My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.");
 				addQuest("What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyaxe")), false);
- 				addGoodbye("Bye.");
+				addGoodbye("Bye.");
 			}
 		};
 

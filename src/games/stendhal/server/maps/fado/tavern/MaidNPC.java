@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.tavern;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +22,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds the tavern maid NPC.
@@ -79,15 +77,6 @@ public class MaidNPC implements ZoneConfigurator {
 				addHelp("Why not gather some friends and take a break together, you can put your food down and eat from that long table.");
 				addQuest("Oh, I don't have time for anything like that.");
 
-				final Map<String, Integer> offers = new HashMap<String, Integer>();
-				offers.put("beer", 10);
-				offers.put("wine", 15);
-				offers.put("cherry", 20);
-				offers.put("chicken", 50);
-				offers.put("bread", 50);
-				offers.put("sandwich", 150);
-
-				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};

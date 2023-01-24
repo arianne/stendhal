@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,6 +45,9 @@ public class LearnAboutKarmaTest {
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new SellerNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Sarzina");
+
+		// configure Sarzina's shop
+		SingletonRepository.getShopList().configureNPC("Sarzina", "superhealing", true);
 
 		final AbstractQuest quest = new LearnAboutKarma();
 		quest.addToWorld();

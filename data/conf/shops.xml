@@ -37,7 +37,7 @@
     <item name="greater potion" price="500" />
   </shop>
 
-  <shop name="superhealing" type="sell">
+  <shop name="superhealing" type="sell" npcs="Sarzina">
     <item name="antidote" price="50" />
     <item name="greater antidote" price="100" />
     <item name="potion" price="250" />
@@ -51,7 +51,7 @@
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="fadoscrolls" type="sell">
+  <shop name="fadoscrolls" type="sell" npcs="Xhiphin Zohos">
     <item name="fado city scroll" price="600" />
     <item name="empty scroll" price="2200" />
   </shop>
@@ -152,12 +152,12 @@
     <item name="grain" price="1" />
   </shop>
 
-  <shop name="sellrings" type="sell">
+  <shop name="sellrings" type="sell" npcs="Ognir">
     <item name="engagement ring" price="5000" />
   </shop>
 
   <!-- gold and gemstones -->
-  <shop name="buyprecious" type="buy">
+  <shop name="buyprecious" type="buy" npcs="Ognir">
     <item name="gold bar" price="250" />
     <item name="emerald" price="200" />
     <item name="sapphire" price="400" />
@@ -195,7 +195,7 @@
   </shop>
 
   <!-- more rare weapons shop (fado) -->
-  <shop name="buyrare2" type="buy">
+  <shop name="buyrare2" type="buy" npcs="Yorphin Baos">
     <item name="war hammer" price="120" />
     <item name="biting sword" price="150" />
     <item name="crossbow" price="175" />
@@ -276,7 +276,7 @@
   </shop>
 
   <!-- buy axes (woodcutter) -->
-  <shop name="buyaxe" type="buy">
+  <shop name="buyaxe" type="buy" npcs="Woody">
     <item name="halberd" price="2000" />
     <item name="golden twoside axe" price="4000" />
     <item name="magic twoside axe" price="6000" />
@@ -700,6 +700,20 @@
     <item name="pie" price="150"/>
   </shop>
 
+  <shop name="fadosoupmaker" type="sell" npcs="Old Mother Helena">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <item name="cherry" price="20"/>
+    <item name="chicken" price="50"/>
+    <item name="bread" price="50"/>
+    <item name="sandwich" price="150"/>
+  </shop>
+
+  <shop name="beekeeper" type="sell" npcs="Aldrin">
+    <item name="honey" price="50"/>
+    <item name="beeswax" price="80"/>
+  </shop>
+
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
@@ -727,5 +741,12 @@
   </shopref>
 
   <shopref type="sell" includes="sellScubaStuff" npcs="Edward"/>
+
+  <shopref type="buy" includes="buyelvish" npcs="Lupos"/>
+
+  <shopref type="sell" npcs="Orchiwald">
+    <item name="fado city scroll" price="480"/>
+    <item name="empty scroll" price="1760"/>
+  </shopref>
 
 </shops>

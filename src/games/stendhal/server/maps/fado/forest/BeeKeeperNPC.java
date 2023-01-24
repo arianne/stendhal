@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.forest;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Fado forest NPC - beekeeper.
@@ -78,10 +76,6 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 				addJob("I keep bees. I expect you've seen my hives around here.");
 				addQuest("I don't think I have any job for you to do. You have to work with bees alone, really.");
 				addHelp("Bees make honey and wax. I can sell you some if you like. Honey and wax that is, not bees!");
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("honey", 50);
-				offerings.put("beeswax", 80);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addOffer("I sell sweet honey and beeswax which I harvest myself.");
 				addGoodbye("Goodbye and be careful around the hives!");
 			}
