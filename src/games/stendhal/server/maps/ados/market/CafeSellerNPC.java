@@ -15,19 +15,15 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Mia works in the Botanical Gardens cafe.
  */
 public class CafeSellerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * region that this NPC can give information about
@@ -48,7 +44,6 @@ public class CafeSellerNPC implements ZoneConfigurator {
 				addQuest("You're so nice! You could try asking Calla, she always seems to know someone who needs help.");
 				addJob("I sell drinks and snacks here at the cafe. I'd love to be able to say I made the food, too, but unfortunately we have to import everything.");
 				addOffer("You can buy drinks and snacks, have a look at our menu here. Everything is imported in, so it's expensive but the best around!");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("cafe")), false);
 
 				// just to be nice :)
 				addEmotionReply("thanks", "warmly thanks");

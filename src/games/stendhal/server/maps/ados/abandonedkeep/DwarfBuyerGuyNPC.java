@@ -17,22 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Inside Ados Abandoned Keep - level -3 .
  */
 public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
-
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	@Override
 	public void configureZone(StendhalRPZone zone,
@@ -64,8 +59,6 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 				// see games.stendhal.server.maps.quests.mithrilcloak.GettingTools for further behaviour
 				addReply("buy", "I don't sell anything but you can look at my blackboard for what I buy. Or ask about #specials.");
 				addReply("YOU", "Yes, I am talking to YOU! Who else would I be talking to!");
-
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyoddsandends")), false);
 			}};
 
 			npc.setPosition(25, 32);

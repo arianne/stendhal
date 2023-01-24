@@ -271,12 +271,14 @@ public final class ShopList {
 
 		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcname);
 		if (npc == null) {
-			logger.error("Cannot configure " + stype + "er shop for non-existing NPC " + npcname);
+			logger.error("Cannot configure " + stype + "er shop \""
+					+ shopname + "\" for non-existing NPC " + npcname);
 			return;
 		}
 		final Map<String, Integer> shoplist = get(seller, shopname);
 		if (shoplist == null) {
-			logger.error("Cannot configure non-existing " + stype + "er shop for NPC " + npcname);
+			logger.error("Cannot configure non-existing " + stype
+					+ "er shop \"" + shopname + "\" for NPC " + npcname);
 			return;
 		}
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,20 +17,16 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Inside Ados Abandoned Keep - level -1 .
  */
 public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
-    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -66,7 +62,6 @@ public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am Salesman. What you?");
 				addHelp("I sell nice items, look at blackboard on wall.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellbetterstuff1")), false);
 				addOffer("Look at blackboard on wall to see my offer.");
 				addQuest("I am so happy as I am. I want nothing.");
 				addGoodbye();

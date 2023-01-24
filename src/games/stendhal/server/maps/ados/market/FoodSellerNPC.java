@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,20 +19,16 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Food and drink seller,  at Ados Market
  */
 public class FoodSellerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -57,7 +53,6 @@ public class FoodSellerNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("Semos Farm", "Semos", "Farm", "farms"), "We get all our food from different farms near Semos, but the route is #dangerous.");
 				addReply(Arrays.asList("dangerous", "expensive"), "With all the soldiers fighting in the great battle, the route to Semos is left unprotected. So I am afraid, the prices are relatively high.");
 				addJob("I sell goods from the #farms near Semos as soon as we get them.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("adosfoodseller")));
 				addGoodbye();
 			}
 		};

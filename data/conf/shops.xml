@@ -20,6 +20,7 @@
     <item name="carrot" price="50" />
     <item name="olive oil" price="135" />
     <item name="vinegar" price="135" />
+    <merchant name="Adena" configure="true" offer="true"/>
   </shop>
 
   <shop name="buyfood" type="buy">
@@ -29,6 +30,7 @@
     <item name="ham" price="20" />
     <item name="flour" price="25" />
     <item name="porcini" price="30" />
+    <merchant name="Siandra" configure="true" offer="true"/>
   </shop>
 
   <shop name="healing" type="sell">
@@ -110,6 +112,7 @@
     <item name="blue legs" price="6000" />
     <item name="blue shield" price="20000" />
     <item name="assassin dagger" price="12000" />
+    <merchant name="Hagnurk" configure="true" offer="false"/>
   </shop>
 
   <shop name="sellbetterstuff2" type="sell">
@@ -120,6 +123,7 @@
     <item name="shadow legs" price="10000" />
     <item name="shadow shield" price="30000" />
     <item name="hell dagger" price="20000" />
+    <merchant name="Gulimo" configure="true" offer="false"/>
   </shop>
 
   <shop name="sellrangedstuff" type="sell">
@@ -262,6 +266,7 @@
     <item name="golden cloak" price="5000" />
     <item name="chaos cloak" price="10000" />
     <item name="black cloak" price="20000" />
+    <merchant name="Ida" configure="true" offer="false"/>
   </shop>
 
   <shop name="boots&amp;helm" type="buy">
@@ -384,6 +389,7 @@
     <item name="magical needle" price="1500" />
     <item name="snowglobe" price="150" />
     <item name="silk gland" price="500" />
+    <merchant name="Ritati Dragontracker" configure="true" offer="false"/>
   </shop>
 
   <!-- archery shop in nalwor -->
@@ -550,6 +556,7 @@
     <item name="blue armor" price="13000" />
     <item name="blue legs" price="400" />
     <item name="blue shield" price="900" />
+    <merchant name="Alexander" configure="true" offer="true"/>
   </shop>
 
   <!-- Athor ferry -->
@@ -600,6 +607,7 @@
     <item name="sandwich" price="170" />
     <item name="tuna sandwich" price="180" />
     <item name="apple pie" price="250" />
+    <merchant name="Mia" configure="true" offer="false"/>
   </shop>
 
   <!-- atlantis potions shop prices are twice as much as magic city -->
@@ -756,6 +764,24 @@
     <item name="butter" price="40"/>
     <item name="milk" price="30"/>
     <merchant name="Philomena" configure="true" offer="true"/>
+  </shop>
+
+  <shop name="adosgroceryseller" type="sell">
+    <item name="egg" price="50"/>
+    <item name="onion" price="50"/>
+    <item name="garlic" price="50"/>
+    <item name="potato" price="50"/>
+    <item name="pinto beans" price="50"/>
+    <item name="habanero pepper" price="135"/>
+    <item name="olive oil" price="135"/>
+    <item name="vinegar" price="135"/>
+    <item name="kekik" price="135"/>
+    <item name="sclaria" price="135"/>
+    <item name="sugar" price="250"/>
+    <item name="honey" price="350"/>
+    <!-- disabled
+    <merchant name="Ambrogita" configure="true" offer="false"/>
+    -->
   </shop>
 
 

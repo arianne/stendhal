@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +21,8 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Provides Ambrogita, a grocery seller in Ados Market
@@ -64,21 +62,6 @@ public class GrocerySellerNPC implements ZoneConfigurator {
 					"And honey too if you really need it..." +
 					"If you want to #buy some stuff, tell me what you need... " +
 					"Oh, I should really set up one of those blackboards where offers are listed!");
-					//Offered items:
-					final Map<String, Integer> offerings = new HashMap<String, Integer>();
-					offerings.put("egg", 50);
-					offerings.put("onion", 50);
-					offerings.put("garlic", 50);
-					offerings.put("potato", 50);
-					offerings.put("pinto beans", 50);
-					offerings.put("habanero pepper", 135);
-					offerings.put("olive oil", 135);
-					offerings.put("vinegar", 135);
-					offerings.put("kekik", 135);
-					offerings.put("sclaria", 135);
-					offerings.put("sugar", 250);
-					offerings.put("honey", 350);
-					new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 
 				addJob(
 					"I am here to #offer grocery stuff to travelers like you... " +

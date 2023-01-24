@@ -18,13 +18,11 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Creates the NPCs and portals in Ados City.
@@ -62,7 +60,6 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 				nodes.add(new Node(44, 32));
 				nodes.add(new Node(52, 32));
 				setPath(new FixedPath(nodes, true));
-
 			}
 
 			@Override
@@ -75,12 +72,6 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 				addJob("I am a weaponry trader. I prefer to do my work alone.");
 				//addReply("offer", "Look at the blackboard to see my offers.");
 				addGoodbye("Bye, come back soon.");
-
-				final Map<String, Integer> pricelist =
-					SingletonRepository.getShopList().get("buyadosarmors");
-
-				final BuyerBehaviour behaviour = new BuyerBehaviour(pricelist);
-				new BuyerAdder().addBuyer(this, behaviour, true);
 			}
 		};
 

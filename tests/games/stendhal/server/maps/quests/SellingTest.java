@@ -73,6 +73,9 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC npc = getNPC("Siandra");
 		final Engine en = npc.getEngine();
 
+		// configure Siandra's shop
+		SingletonRepository.getShopList().configureNPC("Siandra", "buyfood", false, true);
+
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi!", getReply(npc));
 
@@ -135,6 +138,9 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 	public void testSellPorcini() {
 		final SpeakerNPC npc = getNPC("Siandra");
 		final Engine en = npc.getEngine();
+
+		// configure Siandra's shop
+		SingletonRepository.getShopList().configureNPC("Siandra", "buyfood", false, true);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi!", getReply(npc));

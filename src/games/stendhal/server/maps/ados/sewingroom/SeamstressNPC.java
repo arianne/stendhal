@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,21 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.CloneManager;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /*
  * Ados City, house with a woman who makes sails for the ships
  */
 public class SeamstressNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	// clone to be used in twilight zone
 	private static SpeakerNPC clone;
@@ -65,7 +61,6 @@ public class SeamstressNPC implements ZoneConfigurator {
 				addGreeting("Hello there.");
 				addJob("I'm a seamstress. I make sails for ships, like the Athor ferry. If you could #offer me material I'd be grateful.");
 				addHelp("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buycloaks")), false);
 				addOffer("I buy cloaks, because we are short of material to make sails with. The better the material, the more I pay. My notebook on the table has the price list.");
 				addGoodbye("Bye, thanks for stepping in.");
 			}
