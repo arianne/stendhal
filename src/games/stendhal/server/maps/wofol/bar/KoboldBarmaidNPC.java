@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,7 +45,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
+	 * @param	zone	The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
 	@Override
@@ -80,10 +80,10 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					}
 
 					/**
-					  * Wrviliza will sell her mild or strong koboldish torcibud
-					  * only when the player can afford the price and carries as many empty bottles
-					  * as the requested amount in his inventory.
-					  */
+					 * Wrviliza will sell her mild or strong koboldish torcibud
+					 * only when the player can afford the price and carries as many empty bottles
+					 * as the requested amount in his inventory.
+					 */
 					@Override
 					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 						String chosenItemName = res.getChosenItemName();
@@ -99,7 +99,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 
 						int price = getCharge(res, player);
 						if (player.isBadBoy()) {
-						        price = (int) (BAD_BOY_BUYING_PENALTY * price);
+							price = (int) (BAD_BOY_BUYING_PENALTY * price);
 						}
 
 						if ("slim bottle".equals(requiredContainer) || "eared bottle".equals(requiredContainer)) {
@@ -108,47 +108,47 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 									+ Grammar.plnoun(amount, chosenItemName)
 									+ " if you meet the price of " + price + " and have " + amount + " empty "
 									+ Grammar.plnoun(amount, requiredContainer) + ".");
-							        return false;
+								return false;
 							}
 						} else if (!player.isEquipped("money", price)) {
-								seller.say("Wruff! I can only sell you "
-									+ Grammar.plnoun(amount, chosenItemName)
-									+ " if you have enough money.");
-						        return false;
+							seller.say("Wruff! I can only sell you "
+								+ Grammar.plnoun(amount, chosenItemName)
+								+ " if you have enough money.");
+							return false;
 						}
 
-                        /**
-                         * If the user tries to buy several of a non-stackable item,
-                         * he is forced to buy only one.
-                         */
-                        if (item instanceof StackableItem) {
-                            ((StackableItem) item).setQuantity(amount);
-                        } else {
-                            res.setAmount(1);
-                        }
+						/**
+						 * If the user tries to buy several of a non-stackable item,
+						 * he is forced to buy only one.
+						 */
+						if (item instanceof StackableItem) {
+							((StackableItem) item).setQuantity(amount);
+						} else {
+							res.setAmount(1);
+						}
 
 						if (player.equipToInventoryOnly(item)) {
 							player.drop("money", price);
 							if (!"".equals(requiredContainer)) {
-						               	player.drop(requiredContainer, amount);
+								player.drop(requiredContainer, amount);
 							}
 							seller.say("Wroff! Here "
 									+ Grammar.isare(amount) + " your "
 									+ Grammar.plnoun(amount, chosenItemName) + "!");
 							updatePlayerTransactions(player, seller.getName(), res);
 							return true;
-                        } else {
-                            seller.say("Wruff.. You cannot carry any "
-                                    + Grammar.plnoun(amount, chosenItemName)
+						} else {
+							seller.say("Wruff.. You cannot carry any "
+									+ Grammar.plnoun(amount, chosenItemName)
 									+ " in your bag now.");
-                            return false;
-                        }
+							return false;
+						}
 					}
 				}
 
-                // edit prices here and they'll be correct everywhere else
-                final int MILD_KOBOLDISH_TORCIBUD_PRICE = 95;
-                final int STRONG_KOBOLDISH_TORCIBUD_PRICE = 195;
+				// edit prices here and they'll be correct everywhere else
+				final int MILD_KOBOLDISH_TORCIBUD_PRICE = 95;
+				final int STRONG_KOBOLDISH_TORCIBUD_PRICE = 195;
 
 				final Map<String, Integer> items = new HashMap<String, Integer>();
 				//beer and wine have higher than average prices here.
@@ -171,10 +171,10 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						"Wrof! It will quench your thirst for a few coins...");
 				addReply("mild",
 						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and "
-                            + MILD_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
+							+ MILD_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
 				addReply("strong",
 						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and "
-                            + STRONG_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
+							+ STRONG_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
 				addReply("torcibud",
 						"Wrof! Real stuff from a secret koboldish recipe! Ask me to #offer you some!");
 				addReply("wrvil",
@@ -184,9 +184,9 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 				addReply("slim bottle",
 						"Wrof! A bottle narrower at bottom and a bit wider at the shoulders ... I'm sure you've seen one already!");
 
-                /**
-                 * Additional behavior code is in games.stendhal.server.maps.quests.KoboldishTorcibud
-                 */
+				/**
+				 * Additional behavior code is in games.stendhal.server.maps.quests.KoboldishTorcibud
+				 */
 			}
 		};
 
@@ -195,6 +195,5 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		npc.setDescription("You see Wrviliza, the kobold barmaid.");
 		zone.add(npc);
-
 	}
 }
