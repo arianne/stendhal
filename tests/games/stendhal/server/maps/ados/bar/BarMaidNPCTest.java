@@ -31,17 +31,14 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
+import utilities.QuestHelper;
 
 public class BarMaidNPCTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Log4J.init();
-		MockStendlRPWorld.get();
-		SingletonRepository.getShopsXMLLoader().init();
+		QuestHelper.setUpBeforeClass();
 	}
 
 	/**
