@@ -25,9 +25,11 @@
 
   <complexType name="ShopRef">
     <sequence>
-      <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+      <element name="item" type="Q2:ShopItem" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
+    <attribute name="name" type="string" use="optional"/>
     <attribute name="type" type="Q2:ShopType" use="required"/>
+    <attribute name="includes" type="string" use="optional"/>
     <attribute name="npcs" type="string" use="required"/>
   </complexType>
 
