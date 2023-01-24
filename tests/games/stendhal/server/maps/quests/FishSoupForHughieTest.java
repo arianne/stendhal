@@ -71,6 +71,9 @@ public class FishSoupForHughieTest {
 		npc = SingletonRepository.getNPCList().get("Philomena");
 		en = npc.getEngine();
 
+		// configure Philomena's shop
+		SingletonRepository.getShopList().configureNPC("Philomena", "milkandbutter", true, true);
+
 		en.step(player, "hi");
 		assertEquals("Goeden dag!", getReply(npc));
 		en.step(player, "offer");

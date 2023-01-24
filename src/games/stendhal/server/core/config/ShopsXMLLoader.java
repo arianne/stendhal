@@ -119,7 +119,10 @@ public class ShopsXMLLoader extends DefaultHandler {
 			final String shopType = attrs.getValue("type");
 			seller = shopType.equals("sell") ? true : shopType.equals("buy") ? false : null;
 		} else if (qName.equals("item")) {
-			items.put(attrs.getValue("name"), Integer.parseInt(attrs.getValue("price")));
+			final String price = attrs.getValue("price");
+			if (price != null) {
+				items.put(attrs.getValue("name"), Integer.parseInt(price));
+			}
 		} else if (qName.equals("merchant")) {
 			final String confnpc = attrs.getValue("configure");
 			if (confnpc != null && confnpc.equals("true")) {

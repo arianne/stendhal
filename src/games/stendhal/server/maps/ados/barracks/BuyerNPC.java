@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,17 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 /**
  * Builds an NPC to buy previously unbought armor.
@@ -35,7 +29,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -72,8 +65,6 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I buy armor for the barracks here, make me an #offer. If you'll keep it quiet, I'll even sell you ammunition.");
 				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay. I also sell a variety of arrows.");
 				addQuest("Oh, thanks but no thanks. I don't need anything.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare3")), false);
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellarrows")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};

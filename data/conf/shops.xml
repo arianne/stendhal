@@ -53,6 +53,7 @@
     <item name="home scroll" price="250" />
     <item name="summon scroll" price="200" />
     <item name="empty scroll" price="2000" />
+    <merchant name="Haizen" configure="true" offer="true"/>
   </shop>
 
   <shop name="fadoscrolls" type="sell">
@@ -69,6 +70,7 @@
   <shop name="adosscrolls" type="sell">
     <item name="ados city scroll" price="400" />
     <item name="empty scroll" price="2000" />
+    <merchant name="Mayor Chalmers" configure="true" offer="true"/>
   </shop>
 
   <shop name="kirdnehscrolls" type="sell">
@@ -226,6 +228,7 @@
     <item name="shadow armor" price="9000" />
     <item name="golden shield" price="10000" />
     <item name="shadow shield" price="15000" />
+    <merchant name="Mrotho" configure="true" offer="false"/>
   </shop>
 
   <!-- less rare armor shop (kobold city - kobolds drop some of these things) -->
@@ -403,6 +406,7 @@
     <item name="steel arrow" price="7" />
     <item name="golden arrow" price="25" />
     <item name="power arrow" price="45" />
+    <merchant name="Mrotho" configure="true" offer="false"/>
   </shop>
 
   <!--
@@ -535,6 +539,7 @@
     <item name="black sword" price="20000" />
     <item name="black scythe" price="40000" />
     <item name="black halberd" price="30000" />
+    <merchant name="Balduin" note="after Ultimate Collector quest"/>
   </shop>
 
   <!-- ados market -->
@@ -694,6 +699,7 @@
   <shop name="twohandswords" type="sell">
     <item name="l hand sword" price="250000" />
     <item name="r hand sword" price="250000" />
+    <merchant name="Balduin" note="after Ultimate Collector quest"/>
   </shop>
 
   <shop name="adostavernbarmaid" type="sell">
@@ -746,6 +752,12 @@
     <merchant name="Aldrin" configure="true" offer="false"/>
   </shop>
 
+  <shop name="milkandbutter" type="sell">
+    <item name="butter" price="40"/>
+    <item name="milk" price="30"/>
+    <merchant name="Philomena" configure="true" offer="true"/>
+  </shop>
+
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
@@ -794,5 +806,41 @@
     </item>
     <merchant name="Wrviliza"/>
   </shop>
+
+  <shop type="sell">
+    <item name="antidote" price="40" />
+    <item name="minor potion" price="80" />
+    <item name="potion" price="200" />
+    <item name="greater potion" price="400" />
+    <merchant name="Dr. Feelgood" note="after Zoo Food quest"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="cat" price="100"/>
+    <merchant name="Felina"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="empty sack" price="10"/>
+    <merchant name="Karl"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="horse hair" price="20" note="after Bows for Ouchit quest"/>
+    <merchant name="Karl"/>
+  </shop>
+
+  <trade type="sell">
+    <item name="ice arrow">
+      <require name="black pearl" count="1"/>
+    </item>
+    <item name="fire arrow">
+      <require name="black pearl" count="1"/>
+    </item>
+    <item name="light arrow">
+      <require name="black pearl" count="2"/>
+    </item>
+    <merchant name="Mizuno"/>
+  </trade>
 
 </shops>

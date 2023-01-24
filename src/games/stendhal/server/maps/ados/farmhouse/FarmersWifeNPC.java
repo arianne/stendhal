@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.farmhouse;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * NPC to sell milk.
@@ -62,10 +60,6 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 				addJob("My husband runs this farm, and mostly I look after his younger sister and her boy, they are upstairs. If you could check on them that'd be a help, I heard her crying earlier.");
 				addQuest("If you can write Junit tests then my daughter needs you. Just ask Diogenes how to help the project.");
 				addHelp("I can sell you a bottle of milk or some butter from our dairy cows if you like.");
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("milk", 30);
-				offerings.put("butter", 40);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 
 				addGoodbye("Tot ziens.");
 			}
