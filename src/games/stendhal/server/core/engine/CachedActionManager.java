@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2022 - Arianne                    *
+ *                    (C) Copyright 2003-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -77,10 +77,10 @@ public class CachedActionManager {
 
 		if (cached.size() > 0) {
 			logger.info("Running cached startup actions");
-
 			for (final Runnable action: cached) {
 				action.run();
 			}
+			logger.info("Cached startup actions completed");
 		}
 
 		cached = null;
