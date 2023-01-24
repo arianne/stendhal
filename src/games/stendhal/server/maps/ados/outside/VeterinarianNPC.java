@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,7 +38,7 @@ import games.stendhal.server.entity.player.Player;
 public class VeterinarianNPC implements ZoneConfigurator {
 	private final ShopList shops = SingletonRepository.getShopList();
 
-		/**
+	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.

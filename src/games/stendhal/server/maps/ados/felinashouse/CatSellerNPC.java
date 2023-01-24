@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -129,8 +129,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 		// Also put a cat in her bedroom (people can't Own it as it is behind a fence)
 		final Cat hercat = new Cat();
-                hercat.setPosition(19, 3);
-                zone.add(hercat);
-
+		hercat.setPosition(19, 3);
+		zone.add(hercat);
 	}
 }

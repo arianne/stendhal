@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,10 +57,10 @@ public class CafeSellerNPC implements ZoneConfigurator {
 				addGoodbye("Come back soon!");
 			}
 
-	        @Override
-	        protected void onGoodbye(RPEntity player) {
-	        	setDirection(Direction.DOWN);
-	        }
+			@Override
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
+			}
 
 			@Override
 			protected void createPath() {
@@ -70,7 +70,7 @@ public class CafeSellerNPC implements ZoneConfigurator {
 		npc.setPosition(69, 114);
 		npc.setDescription("You see sweet Mia, ready to serve customers with a pretty smile.");
 		npc.setEntityClass("cafesellernpc");
-        npc.setDirection(Direction.DOWN);
+		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
 

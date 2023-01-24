@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,6 +74,6 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 		npc.setPosition(27, 4);
 		npc.initHP(100);
 		npc.setDescription("You see Philomena. She smells a bit of cows, but her milk is unique.");
-	    zone.add(npc);
+		zone.add(npc);
 	}
 }

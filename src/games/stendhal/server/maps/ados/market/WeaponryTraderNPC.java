@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -51,16 +51,16 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(52, 34));
 				nodes.add(new Node(56, 34));
-                nodes.add(new Node(56, 48));
-                nodes.add(new Node(26, 48));
-                nodes.add(new Node(26, 42));
-                nodes.add(new Node(10, 42));
-                nodes.add(new Node(10, 29));
-                nodes.add(new Node(27, 29));
-                nodes.add(new Node(27, 14));
-                nodes.add(new Node(44, 14));
-                nodes.add(new Node(44, 32));
-                nodes.add(new Node(52, 32));
+				nodes.add(new Node(56, 48));
+				nodes.add(new Node(26, 48));
+				nodes.add(new Node(26, 42));
+				nodes.add(new Node(10, 42));
+				nodes.add(new Node(10, 29));
+				nodes.add(new Node(27, 29));
+				nodes.add(new Node(27, 14));
+				nodes.add(new Node(44, 14));
+				nodes.add(new Node(44, 32));
+				nodes.add(new Node(52, 32));
 				setPath(new FixedPath(nodes, true));
 
 			}
