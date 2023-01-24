@@ -72,7 +72,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		Engine barbarusEng = barbarus.getEngine();
 
 		// configure Barbarus's shop
-		SingletonRepository.getShopList().configureNPC("Barbarus", "minertools", true);
+		SingletonRepository.getShopList().configureNPC("Barbarus", "minertools", true, false);
 
 		// -----------------------------------------------
 		// start with Haunchy

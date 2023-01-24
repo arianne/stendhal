@@ -44,8 +44,8 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private String shopName;
 	private Map<String, Integer> items;
+	private Map<String, Boolean> merchants;
 	private Boolean seller;
-	private String npcNames;
 
 
 	/**
@@ -113,20 +113,26 @@ public class ShopsXMLLoader extends DefaultHandler {
 			final Attributes attrs) {
 		if (qName.equals("shop")) {
 			items = new LinkedHashMap<>();
+			merchants = new LinkedHashMap<>();
 
 			shopName = attrs.getValue("name");
 			final String shopType = attrs.getValue("type");
 			seller = shopType.equals("sell") ? true : shopType.equals("buy") ? false : null;
-			npcNames = attrs.getValue("npcs");
 		} else if (qName.equals("item")) {
 			items.put(attrs.getValue("name"), Integer.parseInt(attrs.getValue("price")));
+		} else if (qName.equals("merchant")) {
+			final String confnpc = attrs.getValue("configure");
+			if (confnpc != null && confnpc.equals("true")) {
+				final String offer = attrs.getValue("offer");
+				merchants.put(attrs.getValue("name"), offer == null || offer.equals("true"));
+			}
 		}
 	}
 
 	@Override
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
-		if (qName.equals("shop")) {
-			if (seller != null && npcNames != null) {
+		if (qName.equals("shop") && shopName != null) {
+			if (seller != null && !merchants.isEmpty()) {
 				if (shops.get(seller, shopName) != null) {
 					logger.warn("Tried to add duplicate shop \"" + shopName + "\" with contents " + items.toString());
 					return;
@@ -138,12 +144,12 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 				SingletonRepository.getCachedActionManager().register(new Runnable() {
 					private final String _shop = shopName;
-					private final String _names = npcNames;
+					private final Map<String, Boolean> _merchants = merchants;
 					private final boolean _seller = seller;
 
 					public void run() {
-						for (final String npcname: _names.split(",")) {
-							shops.configureNPC(npcname, _shop, _seller);
+						for (final Map.Entry<String, Boolean> ent: _merchants.entrySet()) {
+							shops.configureNPC(ent.getKey(), _shop, _seller, ent.getValue());
 						}
 					}
 				});

@@ -9,28 +9,18 @@
   <complexType name="ShopGroup">
     <sequence>
       <element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
-      <element name="shopref" type="Q2:ShopRef" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 
   <complexType name="Shop">
     <sequence>
       <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+      <element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="type" type="Q2:ShopType" use="required"/>
-    <attribute name="condition" type="string" use="optional"/>
-    <attribute name="npcs" type="string" use="optional"/>
-  </complexType>
-
-  <complexType name="ShopRef">
-    <sequence>
-      <element name="item" type="Q2:ShopItem" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
+    <!-- "name" can be omitted if shop is listed for website reading only -->
     <attribute name="name" type="string" use="optional"/>
     <attribute name="type" type="Q2:ShopType" use="required"/>
-    <attribute name="includes" type="string" use="optional"/>
-    <attribute name="npcs" type="string" use="required"/>
+    <attribute name="condition" type="string" use="optional"/>
   </complexType>
 
   <simpleType name="ShopType">
@@ -44,6 +34,14 @@
     <attribute name="name" type="string" use="required"/>
     <attribute name="price" type="int" use="required"/>
     <attribute name="pricemax" type="int" use="optional"/>
+  </complexType>
+
+  <complexType name="Merchant">
+    <attribute name="name" type="string" use="required"/>
+    <!-- XML loader will configure NPC for shop at startup (default: false) -->
+    <attribute name="configure" type="boolean" use="optional"/>
+    <!-- XML loader will configure NPC with default "offer" replies (default: true) -->
+    <attribute name="offer" type="boolean" use="optional"/>
   </complexType>
 
 </schema>

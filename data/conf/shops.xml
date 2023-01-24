@@ -3,7 +3,7 @@
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal shops.xsd">
 
-  <shop name="food&amp;drinks" type="sell" npcs="Margaret">
+  <shop name="food&amp;drinks" type="sell">
     <item name="beer" price="10" />
     <item name="wine" price="15" />
     <item name="flask" price="5" />
@@ -12,6 +12,7 @@
     <item name="carrot" price="10" />
     <item name="meat" price="40" />
     <item name="ham" price="80" />
+    <merchant name="Margaret" configure="true" offer="true"/>
   </shop>
 
   <shop name="adosfoodseller" type="sell">
@@ -30,19 +31,22 @@
     <item name="porcini" price="30" />
   </shop>
 
-  <shop name="healing" type="sell" npcs="Carmen,Ilisa">
+  <shop name="healing" type="sell">
     <item name="antidote" price="50" />
     <item name="minor potion" price="100" />
     <item name="potion" price="250" />
     <item name="greater potion" price="500" />
+    <merchant name="Carmen" configure="true" offer="true"/>
+    <merchant name="Ilisa" configure="true" offer="true"/>
   </shop>
 
-  <shop name="superhealing" type="sell" npcs="Sarzina">
+  <shop name="superhealing" type="sell">
     <item name="antidote" price="50" />
     <item name="greater antidote" price="100" />
     <item name="potion" price="250" />
     <item name="greater potion" price="500" />
     <item name="mega potion" price="1500" />
+    <merchant name="Sarzina" configure="true" offer="true"/>
   </shop>
 
   <shop name="scrolls" type="sell">
@@ -51,9 +55,10 @@
     <item name="empty scroll" price="2000" />
   </shop>
 
-  <shop name="fadoscrolls" type="sell" npcs="Xhiphin Zohos">
+  <shop name="fadoscrolls" type="sell">
     <item name="fado city scroll" price="600" />
     <item name="empty scroll" price="2200" />
+    <merchant name="Xhiphin Zohos" configure="true" offer="true"/>
   </shop>
 
   <shop name="nalworscrolls" type="sell">
@@ -83,7 +88,7 @@
     <item name="deniran city scroll" price="800" />
   </shop>
 
-  <shop name="sellstuff" type="sell" npcs="Xin Blanca">
+  <shop name="sellstuff" type="sell">
     <item name="knife" price="15" />
     <item name="club" price="10" />
     <item name="dagger" price="25" />
@@ -92,6 +97,7 @@
     <item name="leather helmet" price="25" />
     <item name="cloak" price="30" />
     <item name="leather legs" price="35" />
+    <merchant name="Xin Blanca" configure="true" offer="false"/>
   </shop>
 
   <shop name="sellbetterstuff1" type="sell">
@@ -114,12 +120,13 @@
     <item name="hell dagger" price="20000" />
   </shop>
 
-  <shop name="sellrangedstuff" type="sell" npcs="Ouchit">
+  <shop name="sellrangedstuff" type="sell">
     <item name="wooden bow" price="300" />
     <item name="wooden arrow" price="2" />
+    <merchant name="Ouchit" configure="true" offer="true"/>
   </shop>
 
-  <shop name="buystuff" type="buy" npcs="Xin Blanca">
+  <shop name="buystuff" type="buy">
     <item name="short sword" price="15" />
     <item name="sword" price="60" />
     <item name="studded shield" price="20" />
@@ -129,9 +136,10 @@
     <item name="chain armor" price="29" />
     <item name="chain helmet" price="25" />
     <item name="chain legs" price="27" />
+    <merchant name="Xin Blanca" configure="true" offer="false"/>
   </shop>
 
-  <shop name="selltools" type="sell" npcs="Xoderos">
+  <shop name="selltools" type="sell">
     <item name="small axe" price="15" />
     <item name="hand axe" price="25" />
     <item name="axe" price="40" />
@@ -142,6 +150,7 @@
     <item name="old scythe" price="120" /> <!-- used for harvest grain. -->
     <item name="sickle" price="80" /> <!-- for harvesting cane fields -->
     <item name="gold pan" price="230" />
+    <merchant name="Xoderos" configure="true" offer="true"/>
   </shop>
 
   <shop name="buyiron" type="buy">
@@ -152,12 +161,13 @@
     <item name="grain" price="1" />
   </shop>
 
-  <shop name="sellrings" type="sell" npcs="Ognir">
+  <shop name="sellrings" type="sell">
     <item name="engagement ring" price="5000" />
+    <merchant name="Ognir" configure="true" offer="false"/>
   </shop>
 
   <!-- gold and gemstones -->
-  <shop name="buyprecious" type="buy" npcs="Ognir">
+  <shop name="buyprecious" type="buy">
     <item name="gold bar" price="250" />
     <item name="emerald" price="200" />
     <item name="sapphire" price="400" />
@@ -166,9 +176,10 @@
     <item name="diamond" price="800" />
     <item name="obsidian" price="1000" />
     <item name="mithril bar" price="2500" />
+    <merchant name="Ognir" configure="true" offer="false"/>
   </shop>
 
-  <shop name="buyrare" type="buy" npcs="McPegleg">
+  <shop name="buyrare" type="buy">
     <!-- rare weapons -->
     <item name="scimitar" price="65" />
     <item name="katana" price="70" />
@@ -181,6 +192,7 @@
     <item name="plate shield" price="40" />
     <item name="lion shield" price="50" />
     <item name="blue legs" price="500" />
+    <merchant name="McPegleg" configure="true" offer="false"/>
   </shop>
 
   <!-- rare elf weapons buyer -->
@@ -195,7 +207,7 @@
   </shop>
 
   <!-- more rare weapons shop (fado) -->
-  <shop name="buyrare2" type="buy" npcs="Yorphin Baos">
+  <shop name="buyrare2" type="buy">
     <item name="war hammer" price="120" />
     <item name="biting sword" price="150" />
     <item name="crossbow" price="175" />
@@ -203,6 +215,7 @@
     <item name="fire sword" price="2000" />
     <item name="ice sword" price="5000" />
     <item name="hell dagger" price="8000" />
+    <merchant name="Yorphin Baos" configure="true" offer="false"/>
   </shop>
 
   <!-- very rare armor shop (ados) -->
@@ -276,7 +289,7 @@
   </shop>
 
   <!-- buy axes (woodcutter) -->
-  <shop name="buyaxe" type="buy" npcs="Woody">
+  <shop name="buyaxe" type="buy">
     <item name="halberd" price="2000" />
     <item name="golden twoside axe" price="4000" />
     <item name="magic twoside axe" price="6000" />
@@ -284,14 +297,16 @@
     <item name="black scythe" price="9000" />
     <item name="chaos axe" price="10000" />
     <item name="black halberd" price="12000" />
+    <merchant name="Woody" configure="true" offer="false"/>
   </shop>
 
   <!-- buy chaos items (scared dwarf, after quest) -->
-  <shop name="buychaos" type="buy" npcs="Hunel">
+  <shop name="buychaos" type="buy">
     <item name="chaos legs" price="8000" />
     <item name="chaos sword" price="12000" />
     <item name="chaos shield" price="18000" />
     <item name="chaos armor" price="20000" />
+    <merchant name="Hunel" configure="true" offer="true"/>
   </shop>
 
   <!-- buy elvish items (albino elf, after quest) -->
@@ -304,6 +319,7 @@
     <item name="elvish cloak" price="400" />
     <item name="elvish armor" price="400" />
     <item name="elvish hat" price="150" />
+    <merchant name="Lupos"/>
   </shop>
 
   <!-- magic items or 'relics' (witch in magic city) -->
@@ -407,7 +423,7 @@
   </shop>
 
   <!-- gnome village buyer in 0 ados mountain n2 w2 -->
-  <shop name="buy4gnomes" type="buy" npcs="Garbiddle">
+  <shop name="buy4gnomes" type="buy">
     <item name="leather armor" price="25" />
     <item name="club" price="3" />
     <item name="leather helmet" price="15" />
@@ -415,10 +431,11 @@
     <item name="apple" price="5" />
     <item name="marbles" price="50" />
     <item name="wooden shield" price="20" />
+    <merchant name="Garbiddle" configure="true" offer="false"/>
   </shop>
 
   <!-- hotdog lady in athor -->
-  <shop name="buy4hotdogs" type="buy" npcs="Sara Beth">
+  <shop name="buy4hotdogs" type="buy">
     <item name="sausage" price="30" />
     <item name="cheese sausage" price="25" />
     <item name="bread" price="15" />
@@ -426,9 +443,10 @@
     <item name="canned tuna" price="15" />
     <item name="ham" price="15" />
     <item name="cheese" price="5" />
+    <merchant name="Sara Beth" configure="true" offer="false"/>
   </shop>
 
-  <shop name="sellhotdogs" type="sell" npcs="Sara Beth">
+  <shop name="sellhotdogs" type="sell">
     <item name="hotdog" price="160" />
     <item name="cheeseydog" price="180" />
     <item name="tuna sandwich" price="130" />
@@ -437,6 +455,7 @@
     <item name="chocolate shake" price="110" />
     <item name="chocolate bar" price="100" />
     <item name="snowglobe" price="200" />
+    <merchant name="Sara Beth" configure="true" offer="false"/>
   </shop>
 
   <!-- magic city barmaid -->
@@ -527,7 +546,7 @@
   </shop>
 
   <!-- Athor ferry -->
-  <shop name="buypoisons" type="buy" npcs="Klaas">
+  <shop name="buypoisons" type="buy">
     <item name="poison" price="40" />
     <item name="toadstool" price="60" />
     <item name="greater poison" price="60" />
@@ -536,11 +555,13 @@
     <item name="mega poison" price="500" />
     <item name="disease poison" price="2000" />
     <item name="rodent trap" price="50" />
+    <merchant name="Klaas" configure="true" offer="true"/>
   </shop>
 
   <!-- Scuba Instructor Edward -->
   <shop name="sellScubaStuff" type="sell">
     <item name="scuba gear" price="22000" />
+    <merchant name="Edward"/>
   </shop>
 
   <!-- Mine Town Revival Weeks Caroline -->
@@ -623,7 +644,7 @@
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionsbuy" type="buy" npcs="Wanda">
+  <shop name="deniranpotionsbuy" type="buy">
     <item name="mandragora" price="300" />
     <!--<item name="kokuda" price="5000" />-->
     <item name="toadstool" price="60" />
@@ -634,10 +655,11 @@
     <item name="disease poison" price="1200" />
     <item name="sedative" price="200" />
     <item name="venom gland" price="800" />
+    <merchant name="Wanda" configure="true" offer="true"/>
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
-  <shop name="deniranpotionssell" type="sell" npcs="Wanda">
+  <shop name="deniranpotionssell" type="sell">
     <item name="minor potion" price="150" />
     <item name="potion" price="300" />
     <item name="greater potion" price="600" />
@@ -645,6 +667,7 @@
     <item name="antidote" price="100" />
     <item name="greater antidote" price="150" />
     <item name="sedative" price="400" />
+    <merchant name="Wanda" configure="true" offer="true"/>
   </shop>
 
   <!-- broker in Semos Plains that purchases misc. items at a low values -->
@@ -671,82 +694,91 @@
     <item name="r hand sword" price="250000" />
   </shop>
 
-  <shop name="adostavernbarmaid" type="sell" npcs="Coralia">
+  <shop name="adostavernbarmaid" type="sell">
     <item name="beer" price="15" />
     <item name="pie" price="160" />
     <item name="bread" price="50" />
     <item name="cheese" price="20" />
     <item name="tomato" price="30" />
+    <merchant name="Coralia" configure="true" offer="true"/>
   </shop>
 
-  <shop name="adostavernbarman" type="sell" npcs="Dale">
+  <shop name="adostavernbarman" type="sell">
     <item name="wine" price="20" />
     <item name="pina colada" price="100" />
     <item name="chocolate bar" price="100" />
+    <merchant name="Dale" configure="true" offer="true"/>
   </shop>
 
-  <shop name="minertools" type="sell" npcs="Barbarus">
+  <shop name="minertools" type="sell">
     <item name="pick" price="400"/>
+    <merchant name="Barbarus" configure="true" offer="false"/>
   </shop>
 
-  <shop name="semosbaker" type="buy" npcs="Leander">
+  <shop name="semosbaker" type="buy">
     <item name="cheese" price="5"/>
+    <merchant name="Leander" configure="true" offer="false"/>
   </shop>
 
-  <shop name="athorshipgalley" type="sell" npcs="Laura">
+  <shop name="athorshipgalley" type="sell">
     <item name="beer" price="10"/>
     <item name="wine" price="15"/>
     <item name="ham" price="100"/>
     <item name="pie" price="150"/>
+    <merchant name="Laura" configure="true" offer="true"/>
   </shop>
 
-  <shop name="fadosoupmaker" type="sell" npcs="Old Mother Helena">
+  <shop name="fadosoupmaker" type="sell">
     <item name="beer" price="10"/>
     <item name="wine" price="15"/>
     <item name="cherry" price="20"/>
     <item name="chicken" price="50"/>
     <item name="bread" price="50"/>
     <item name="sandwich" price="150"/>
+    <merchant name="Old Mother Helena" configure="true" offer="true"/>
   </shop>
 
-  <shop name="beekeeper" type="sell" npcs="Aldrin">
+  <shop name="beekeeper" type="sell">
     <item name="honey" price="50"/>
     <item name="beeswax" price="80"/>
+    <merchant name="Aldrin" configure="true" offer="false"/>
   </shop>
 
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
-  <shopref type="sell" npcs="Jenny">
+  <shop type="sell">
     <item name="daisy seed" price="20"/>
     <item name="lilia seed" price="10"/>
     <item name="pansy seed" price="10"/>
     <item name="zantedeschia bulb" price="15"/>
-  </shopref>
+    <merchant name="Jenny"/>
+  </shop>
 
-  <shopref type="sell" npcs="Nishiya">
+  <shop type="sell">
     <item name="sheep" price="30"/>
-  </shopref>
+    <merchant name="Nishiya"/>
+  </shop>
 
-  <shopref type="sell" npcs="Mrs. Yeti">
+  <shop type="sell">
     <item name="roach" price="10"/>
-  </shopref>
+    <merchant name="Mrs. Yeti"/>
+  </shop>
 
-  <shopref type="buy" npcs="Sato">
+  <shop type="buy">
     <item name="sheep" price="150"/>
-  </shopref>
+    <merchant name="Sato"/>
+  </shop>
 
-  <shopref type="buy" npcs="Tor'Koom">
+  <shop type="buy">
     <item name="sheep" price="15" pricemax="1500"/>
-  </shopref>
+    <merchant name="Tor'Koom"/>
+  </shop>
 
-  <shopref type="sell" includes="sellScubaStuff" npcs="Edward"/>
-
-  <shopref type="buy" includes="buyelvish" npcs="Lupos"/>
-
-  <shopref type="sell" npcs="Orchiwald">
+  <shop type="sell">
     <item name="fado city scroll" price="480"/>
     <item name="empty scroll" price="1760"/>
-  </shopref>
+    <merchant name="Orchiwald"/>
+  </shop>
 
 </shops>

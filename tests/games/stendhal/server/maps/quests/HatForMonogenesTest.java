@@ -72,7 +72,7 @@ public class HatForMonogenesTest {
 		enXin = npcXin.getEngine();
 
 		// configure Xin Blanca's shop
-		SingletonRepository.getShopList().configureNPC("Xin Blanca", "sellstuff", true);
+		SingletonRepository.getShopList().configureNPC("Xin Blanca", "sellstuff", true, false);
 
 		quest = new MeetMonogenes();
 		quest.addToWorld();

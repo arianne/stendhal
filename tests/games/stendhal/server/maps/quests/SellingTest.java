@@ -187,7 +187,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure shops
-		SingletonRepository.getShopList().configureNPC("McPegleg", "buyrare", false);
+		SingletonRepository.getShopList().configureNPC("McPegleg", "buyrare", false, false);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Yo matey! You look like you need #help.", getReply(npc));

@@ -259,9 +259,11 @@ public final class ShopList {
 	 *     Shop string identifier.
 	 * @param npcname
 	 *     Name of NPC being configured.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
 	 */
 	public void configureNPC(final String npcname, final String shopname,
-			final boolean seller) {
+			final boolean seller, final boolean offer) {
 		String stype = "sell";
 		if (!seller) {
 			stype = "buy";
@@ -278,12 +280,34 @@ public final class ShopList {
 			return;
 		}
 
-		logger.info("Adding " + stype + "er shop \"" + shopname + "\" to NPC " + npcname);
-		if (seller) {
-			new SellerAdder().addSeller(npc, new SellerBehaviour(shoplist));
+		String msg = "Configuring " + stype + "er shop \"" + shopname
+				+ "\" for NPC " + npcname + " with offer ";
+		if (offer) {
+			msg += "enabled";
 		} else {
-			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shoplist));
+			msg += "disabled";
 		}
+		logger.info(msg);
+		if (seller) {
+			new SellerAdder().addSeller(npc, new SellerBehaviour(shoplist), offer);
+		} else {
+			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shoplist), offer);
+		}
+	}
+
+	/**
+	 * Configures an NPC for a shop.
+	 *
+	 * @param seller
+	 *     Seller or buyer shop.
+	 * @param shopname
+	 *     Shop string identifier.
+	 * @param npcname
+	 *     Name of NPC being configured.
+	 */
+	public void configureNPC(final String npcname, final String shopname,
+			final boolean seller) {
+		configureNPC(npcname, shopname, seller, true);
 	}
 
 	/**
