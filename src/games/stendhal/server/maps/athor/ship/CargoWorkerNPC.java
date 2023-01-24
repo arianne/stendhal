@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,16 +17,15 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
-/** Factory for cargo worker on Athor Ferry. */
 
+/**
+ * Factory for cargo worker on Athor Ferry.
+ */
 public class CargoWorkerNPC implements ZoneConfigurator  {
 
 	@Override
@@ -63,9 +62,6 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
 				addReply(Arrays.asList("rat", "rats"),
 				"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
-
-				new BuyerAdder().addBuyer(this,
-						new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
 
 				addGoodbye("Please kill some rats on your way up!");
 			}

@@ -418,7 +418,7 @@
   </shop>
 
   <!-- hotdog lady in athor -->
-  <shop name="buy4hotdogs" type="buy">
+  <shop name="buy4hotdogs" type="buy" npcs="Sara Beth">
     <item name="sausage" price="30" />
     <item name="cheese sausage" price="25" />
     <item name="bread" price="15" />
@@ -428,7 +428,7 @@
     <item name="cheese" price="5" />
   </shop>
 
-  <shop name="sellhotdogs" type="sell">
+  <shop name="sellhotdogs" type="sell" npcs="Sara Beth">
     <item name="hotdog" price="160" />
     <item name="cheeseydog" price="180" />
     <item name="tuna sandwich" price="130" />
@@ -527,7 +527,7 @@
   </shop>
 
   <!-- Athor ferry -->
-  <shop name="buypoisons" type="buy">
+  <shop name="buypoisons" type="buy" npcs="Klaas">
     <item name="poison" price="40" />
     <item name="toadstool" price="60" />
     <item name="greater poison" price="60" />
@@ -535,7 +535,7 @@
     <item name="deadly poison" price="100" />
     <item name="mega poison" price="500" />
     <item name="disease poison" price="2000" />
-    <item name="rodent trap" price="50" /> <!-- Should have its own shop (buytraps) -->
+    <item name="rodent trap" price="50" />
   </shop>
 
   <!-- Scuba Instructor Edward -->
@@ -693,6 +693,13 @@
     <item name="cheese" price="5"/>
   </shop>
 
+  <shop name="athorshipgalley" type="sell" npcs="Laura">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <item name="ham" price="100"/>
+    <item name="pie" price="150"/>
+  </shop>
+
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
@@ -718,5 +725,7 @@
   <shopref type="buy" npcs="Tor'Koom">
     <item name="sheep" price="15" pricemax="1500"/>
   </shopref>
+
+  <shopref type="sell" includes="sellScubaStuff" npcs="Edward"/>
 
 </shops>

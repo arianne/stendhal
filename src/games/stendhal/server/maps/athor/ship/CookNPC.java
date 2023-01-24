@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +21,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 /** Factory for cargo worker on Athor Ferry. */
@@ -58,14 +55,6 @@ public class CookNPC implements ZoneConfigurator  {
 				addGreeting("Ahoy! Welcome to the galley!");
 				addJob("I'm running the galley on this ship. I #offer fine foods for the passengers and alcohol for the crew.");
 				addHelp("The crew mates drink beer and grog all day. But if you want some more exclusive drinks, go to the cocktail bar at Athor beach.");
-
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("beer", 10);
-				offerings.put("wine", 15);
-				// more expensive than in normal taverns
-				offerings.put("ham", 100);
-				offerings.put("pie", 150);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 
 				addGoodbye();
 
