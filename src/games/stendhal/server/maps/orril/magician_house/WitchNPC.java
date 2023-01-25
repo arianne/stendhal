@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -85,29 +85,29 @@ public class WitchNPC implements ZoneConfigurator {
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 				new HealerAdder().addHealer(this, 250);
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("magic", "scroll", "scrolls"),
-				        null,
-				        ConversationStates.ATTENDING,
-				        "I #offer scrolls that help you to travel faster: #'home scrolls' and the #markable #'empty scrolls'. For the more advanced customer, I also have #'summon scrolls'!",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("magic", "scroll", "scrolls"),
+						null,
+						ConversationStates.ATTENDING,
+						"I #offer scrolls that help you to travel faster: #'home scrolls' and the #markable #'empty scrolls'. For the more advanced customer, I also have #'summon scrolls'!",
+						null);
 				add(ConversationStates.ATTENDING, Arrays.asList("home", "home scroll"), null,
-				        ConversationStates.ATTENDING,
-				        "Home scrolls take you home immediately, a good way to escape danger!", null);
+						ConversationStates.ATTENDING,
+						"Home scrolls take you home immediately, a good way to escape danger!", null);
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("empty", "marked", "empty scroll", "markable", "marked scroll"),
-				        null,
-				        ConversationStates.ATTENDING,
-				        "Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("empty", "marked", "empty scroll", "markable", "marked scroll"),
+						null,
+						ConversationStates.ATTENDING,
+						"Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
+						null);
 				add(
-				        ConversationStates.ATTENDING,
-				        "summon",
-				        null,
-				        ConversationStates.ATTENDING,
-				        "A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
-				        null);
+						ConversationStates.ATTENDING,
+						"summon",
+						null,
+						ConversationStates.ATTENDING,
+						"A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
+						null);
 				addGoodbye("Goodbye - and careful not to touch that orb, it leads somewhere very dangerous!");
 			}
 		};
