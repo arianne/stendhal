@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds the post office elf NPC.
@@ -33,7 +30,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author kymara
  */
 public class PostNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -73,7 +69,6 @@ public class PostNPC implements ZoneConfigurator {
 				addGreeting("Hi, can I #help you?");
 				addJob("I work in this post office. But I'm new and I haven't been trusted with much yet.");
 				addHelp("I've not had this #job long ... come back soon and I might have been given something interesting to do.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("nalworscrolls")));
 				addGoodbye("Bye - nice to meet you!");
 			}
 		};

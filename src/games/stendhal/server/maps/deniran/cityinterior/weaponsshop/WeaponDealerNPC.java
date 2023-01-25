@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2019 - Stendhal                      *
+ *                   (C) Copyright 2019-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,15 +20,10 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 public class WeaponDealerNPC implements ZoneConfigurator  {
-
 
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
@@ -54,12 +49,6 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-
-		final ShopList shops = ShopList.get();
-		final Map<String, Integer> pricesBuy = shops.get("deniranequipbuy");
-		final Map<String, Integer> pricesSell = shops.get("deniranequipsell");
-		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy), false);
-		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell), false);
 
 		npc.setPosition(11, 5);
 		npc.setEntityClass("wellroundedguynpc");

@@ -14,7 +14,6 @@ package games.stendhal.server.maps.kalavan.citygardens;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +32,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -197,12 +194,6 @@ public class GardenerNPC implements ZoneConfigurator {
 						"My tomatoes and garlic are doing well, I have enough that I am selling some... " +
 						"I could also *cough* spare some habanero peppers and pinto beans... " +
 						"If you were interested to #buy some special ingredients for a decent meal!");
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-				offerings.put("tomato", 30);
-				offerings.put("garlic", 50);
-				offerings.put("pinto beans", 55);
-				offerings.put("habanero pepper", 60);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
 				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");

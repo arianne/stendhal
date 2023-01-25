@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,6 @@
 
 local brokerName = "Sawyer"
 local broker = nil
-local shopName = "deniranpawnbuy"
 
 local function initNPC()
 	broker = entities:createSpeakerNPC(brokerName)
@@ -49,10 +48,8 @@ local function initNPC()
 end
 
 local function initShop()
-	merchants:addBuyer(broker, merchants.shops:get(shopName), false)
-
 	-- shop sign
-	local sign = entities:createShopSign(shopName, "Deniran Pawn Shop", brokerName .. " buys the following items", false)
+	local sign = entities:createShopSign("deniranpawnbuy", "Deniran Pawn Shop", brokerName .. " buys the following items", false)
 	sign:setEntityClass("blackboard")
 	sign:setPosition(18, 8)
 

@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,6 @@
 
 local buyer = nil
 local buyerName = "Harley"
-local shopName = "buyanimalmaterials"
 
 
 local function initNPC()
@@ -37,10 +36,8 @@ local function initNPC()
 end
 
 local function initShop()
-	merchants:addBuyer(buyer, merchants.shops:get(shopName), false)
-
 	-- shop sign
-	local sign = entities:createShopSign(shopName, "Animal Materials Barter", buyerName .. " buys the following items", false)
+	local sign = entities:createShopSign("buyanimalmaterials", "Animal Materials Barter", buyerName .. " buys the following items", false)
 	sign:setEntityClass("blackboard")
 	sign:setPosition(19, 20)
 

@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,23 +31,6 @@ local function addNPC()
 	grocer:addOffer("Check the blackboard for the items I sell and their prices.")
 	grocer:addHelp(grocer:getReply("offer"))
 	grocer:addQuest("Sorry, there is nothing I need help with at this time.")
-
-	local sellPrices = {
-		{"olive oil", 135},
-		{"vinegar", 135},
-		{"lamp", 100},
-	}
-	-- FIXME: not working for Lua table as argument
-	--merchants:addSeller(grocer, sellPrices, false)
-
-	local shopName = "denirangrocerysell"
-
-	-- add to shop list
-	for _, item in pairs(sellPrices) do
-		merchants.shops:add(shopName, item[1], item[2])
-	end
-
-	merchants:addSeller(grocer, merchants.shops:get(shopName), false)
 
 	game:add(grocer)
 end

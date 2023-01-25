@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,13 +16,10 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds a Curator NPC in Kirdneh museum .
@@ -30,7 +27,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author kymara
  */
 public class CuratorNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
+
 	//
 	// ZoneConfigurator
 	//
@@ -64,7 +61,6 @@ public class CuratorNPC implements ZoneConfigurator {
 				addHelp("This is a place for rare artefacts and special #exhibits.");
 				addReply("exhibits","Perhaps you'd have a knack for finding rare items and would like to do a #task for me.");
 				// remaining behaviour defined in games.stendhal.server.maps.quests.WeeklyItemQuest
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("kirdnehscrolls")));
 				addGoodbye("Good bye, it was pleasant talking with you.");
 			}
 

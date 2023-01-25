@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,20 +17,16 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Inside Nalwor Assassin Headquarters - Level 0 .
  */
 public class PrincipalNPC implements ZoneConfigurator {
-    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -65,7 +61,6 @@ public class PrincipalNPC implements ZoneConfigurator {
 				addOffer("Look at blackboard on wall to see my offer.");
 				addQuest("Other than selling me what I need, I don't require anything from you.");
 				addGoodbye();
- 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buy4assassins")), false);
 			}
 		};
 

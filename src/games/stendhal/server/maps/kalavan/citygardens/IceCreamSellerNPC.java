@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -25,8 +24,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -82,9 +79,6 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 							}
 						} );
 
-				final Map<String, Integer> offers = new HashMap<String, Integer>();
-				offers.put("icecream", 30);
-				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Bye, enjoy your day!");
 
 			}

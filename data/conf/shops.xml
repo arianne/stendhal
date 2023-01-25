@@ -69,6 +69,7 @@
   <shop name="nalworscrolls" type="sell">
     <item name="nalwor city scroll" price="400" />
     <item name="empty scroll" price="2000" />
+    <merchant name="Lorithien" configure="true" offer="true"/>
   </shop>
 
   <shop name="adosscrolls" type="sell">
@@ -81,6 +82,7 @@
     <item name="kirdneh city scroll" price="400" />
     <item name="home scroll" price="400" />
     <item name="empty scroll" price="2000" />
+    <merchant name="Hazel" configure="true" offer="true"/>
   </shop>
 
   <shop name="allscrolls" type="sell">
@@ -214,6 +216,7 @@
     <item name="staff" price="75" />
     <item name="enhanced lion shield" price="100" />
     <item name="crown shield" price="120" />
+    <merchant name="Elodrin" configure="true" offer="false"/>
   </shop>
 
   <!-- more rare weapons shop (fado) -->
@@ -357,6 +360,7 @@
     <item name="red helmet" price="200" />
     <item name="red legs" price="200" />
     <item name="red shield" price="750" />
+    <merchant name="Pjotr Yearl" configure="true" offer="false"/>
   </shop>
 
   <!-- mainio items (despot in mithrilbourgh throne room) -->
@@ -380,6 +384,7 @@
     <item name="dwarvish armor" price="17000" />
     <item name="dwarvish legs" price="15000" />
     <item name="assassin dagger" price="7000" />
+    <merchant name="Femme Fatale" configure="true" offer="false"/>
   </shop>
 
   <!-- mountain dwarf buyer of odds and ends -3 ados abandoned keep -->
@@ -411,6 +416,7 @@
     <item name="composite bow" price="350" />
     <item name="hunter crossbow" price="800" />
     <item name="mithril bow" price="2000" />
+    <merchant name="Merenwen" configure="true" offer="false"/>
   </shop>
 
   <!-- selling arrows -->
@@ -440,6 +446,7 @@
     <item name="kokuda" price="200" />
     <item name="kekik" price="25" />
     <item name="sclaria" price="25" />
+    <merchant name="Chief Falatheen Humble Dishwasher" configure="true" offer="false"/>
   </shop>
 
   <!-- gnome village buyer in 0 ados mountain n2 w2 -->
@@ -500,6 +507,7 @@
     <item name="barbarian armor" price="5000" />
     <item name="green dragon shield" price="13000" />
     <item name="xeno shield" price="20000" />
+    <merchant name="Lawrence" configure="true" offer="false"/>
   </shop>
 
   <!-- amazon cloaks shop -->
@@ -512,6 +520,7 @@
     <item name="blue striped cloak" price="280" />
     <item name="red dragon cloak" price="4000" />
     <item name="bone dragon cloak" price="1500" />
+    <merchant name="Nicklesworth" configure="true" offer="false"/>
   </shop>
 
   <!-- kirdneh city fishy market) -->
@@ -524,6 +533,7 @@
     <item name="surgeonfish" price="15" />
     <item name="trout" price="45" />
     <item name="cod" price="10" />
+    <merchant name="Fishmonger" configure="true" offer="false"/>
   </shop>
 
   <!-- Semos trading - swords (unused?) -->
@@ -603,6 +613,7 @@
     <item name="wine" price="25" />
     <item name="beer" price="20" />
     <item name="water" price="15" />
+    <merchant name="Caroline" note="during Minetown Weeks"/>
   </shop>
 
   <!--
@@ -640,6 +651,7 @@
     <item name="insulated ring" price="25000" />
     <item name="turtle shell ring" price="25000" />
     <item name="imperial ring" price="50000" />
+    <merchant name="Sawyer" configure="true" offer="false"/>
   </shop>
 
   <shop name="buyanimalmaterials" type="buy">
@@ -652,10 +664,12 @@
     <item name="silk gland" price="400" />
     <item name="unicorn horn" price="1500" />
     <item name="mythical egg" price="2500" />
+    <merchant name="Harley" configure="true" offer="false"/>
   </shop>
 
   <shop name="denirankingsell" type="sell">
     <item name="deniran city scroll" price="800" />
+    <merchant name="King Edward of Deniran" configure="true" offer="true"/>
   </shop>
 
   <shop name="denirankingbuy" type="buy">
@@ -666,6 +680,7 @@
     <item name="royal legs" price="38000" />
     <item name="royal armor" price="58000" />
     <item name="royal shield" price="73000" />
+    <merchant name="King Edward of Deniran" configure="true" offer="true"/>
   </shop>
 
   <!-- Wanda: Deniran Potions Shop -->
@@ -700,18 +715,21 @@
     <item name="bat entrails" price="5" />
     <item name="pelt" price="10" />
     <item name="vampirette entrails" price="20" />
+    <merchant name="Emeric" configure="true" offer="true"/>
   </shop>
 
   <!-- Deniran weapons shop -->
   <shop name="deniranequipbuy" type="buy">
     <item name="ugmash" price="1200" />
     <item name="magic cloak" price="12000" />
+    <merchant name="D J Smith" configure="true" offer="false"/>
   </shop>
 
   <shop name="deniranequipsell" type="sell">
     <item name="shuriken" price="77" />
     <item name="fire shuriken" price="99" />
     <item name="wooden spear" price="110" />
+    <merchant name="D J Smith" configure="true" offer="false"/>
   </shop>
 
   <shop name="twohandswords" type="sell">
@@ -794,6 +812,41 @@
     -->
   </shop>
 
+  <shop name="kirdnehflowerseller" type="sell">
+    <item name="rose" price="50"/>
+    <merchant name="Fleur" configure="true" offer="true"/>
+  </shop>
+
+  <shop name="kirdnehinn" type="sell">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <!-- more expensive than in normal taverns -->
+    <item name="bread" price="50"/>
+    <item name="cheese" price="20"/>
+    <item name="pie" price="160"/>
+    <merchant name="Ruarhi" configure="true" offer="true"/>
+  </shop>
+
+  <shop name="kalavangardener" type="sell">
+    <item name="tomato" price="30"/>
+    <item name="garlic" price="50"/>
+    <item name="pinto beans" price="55"/>
+    <item name="habanero pepper" price="60"/>
+    <merchant name="Sue" configure="true" offer="false"/>
+  </shop>
+
+  <shop name="icecreamseller" type="sell">
+    <item name="icecream" price="30"/>
+    <merchant name="Sam" configure="true" offer="true"/>
+  </shop>
+
+  <shop name="denirangrocer" type="sell">
+    <item name="olive oil" price="135"/>
+    <item name="vinegar" price="135"/>
+    <item name="lamp" price="100"/>
+    <merchant name="Jimbo" configure="true" offer="false"/>
+  </shop>
+
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
@@ -864,6 +917,18 @@
   <shop type="sell">
     <item name="horse hair" price="20" note="after Bows for Ouchit quest"/>
     <merchant name="Karl"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="training sword" price="2100"/>
+    <item name="shuriken" price="80"/>
+    <item name="fire shuriken" price="105"/>
+    <merchant name="Akutagawa"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="bestiary" price="500000"/>
+    <merchant name="Rengard" note="after Collect Enemy Data quest"/>
   </shop>
 
   <trade type="sell">

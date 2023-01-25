@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2022 - Arianne                        *
+ *                    Copyright © 2022-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,8 +32,6 @@ if game:setZone(zone_name) then
 	broker:addQuest("There is nothing I need help with, other than gathering materials to make a profit " ..
 		"off shops around Faimouni.")
 	broker:addHelp("I will buy certain items from you at a very reasonable price.... for me.")
-
-	merchants:addBuyer(broker, merchants.shops:get("brokermisc"), true)
 
 	game:add(broker)
 else

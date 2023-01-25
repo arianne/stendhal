@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,20 +17,16 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * In Amazon Island ne .
  */
 public class AmazonMermaidArmorNPC implements ZoneConfigurator {
-    private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -74,7 +70,6 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 				nodes.add(new Node(9, 82));
 				nodes.add(new Node(8, 82));
 				setPath(new FixedPath(nodes, true));
-
 			}
 
 			@Override
@@ -82,11 +77,9 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 				addGreeting("Howdy! You've come a very long way to be here. Welcome.");
 				addJob("I buy good, quality cloaks. Can't get these women to wear them yet, but I am trying.");
 				addHelp("Not much I can really help you with unless you have some of the cloaks I am looking for.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyamazoncloaks")), false);
 				addOffer("I hate to say it, but look at the blackboard over yonder to see my prices and what I buy.");
 				addQuest("There's not a thing you can do for me, thanks.");
 				addGoodbye("Bye. Don't you just HATE this place? ;) Say hey to the amazoness giant while you are here.");
-
 			}
 		};
 
