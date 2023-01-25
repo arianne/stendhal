@@ -72,6 +72,8 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		speaker.setOutfit(1, 34, 1, null, 0, null, 5, null, 0);
 		speaker.initHP(100);
 		speaker.setDescription("Harold is a friendly guy who is waiting for setting up some offers...");
+		// add icon denoting merchant
+		speaker.put("job_merchant", "");
 		zone.add(speaker);
 	}
 
