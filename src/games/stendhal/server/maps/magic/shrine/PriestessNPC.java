@@ -16,16 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextAction;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+
 
 /**
  * Builds a priestess NPC.
@@ -34,7 +31,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author kymara
  */
 public class PriestessNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -65,7 +61,6 @@ public class PriestessNPC implements ZoneConfigurator {
 				addGreeting(null, new SayTextAction("Hello, [name]."));
 				addJob("As a priestess I can #offer you a number of potions and antidotes.");
 				addHelp("My sister Salva has the gift of healing. She is out for a walk by the aqueduct, you should find her there if you need her.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("superhealing")), true);
 				addGoodbye("Bye, for now.");
 			}
 		};

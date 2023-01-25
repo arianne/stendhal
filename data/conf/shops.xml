@@ -48,6 +48,7 @@
     <item name="potion" price="250" />
     <item name="greater potion" price="500" />
     <item name="mega potion" price="1500" />
+    <merchant name="Kendra Mattori" configure="true" offer="true"/>
     <merchant name="Sarzina" configure="true" offer="true"/>
   </shop>
 
@@ -56,6 +57,7 @@
     <item name="summon scroll" price="200" />
     <item name="empty scroll" price="2000" />
     <merchant name="Haizen" configure="true" offer="true"/>
+    <merchant name="Jynath" configure="true" offer="true"/>
   </shop>
 
   <shop name="fadoscrolls" type="sell">
@@ -90,6 +92,7 @@
     <item name="fado city scroll" price="600" />
     <item name="kirdneh city scroll" price="600" />
     <item name="deniran city scroll" price="800" />
+    <merchant name="Erodel Bmud"/>
   </shop>
 
   <shop name="sellstuff" type="sell">
@@ -161,6 +164,7 @@
 
   <shop name="buyiron" type="buy">
     <item name="iron" price="75" />
+    <merchant name="Loretta" configure="true" offer="true"/>
   </shop>
 
   <shop name="buygrain" type="buy">
@@ -296,6 +300,7 @@
     <item name="magic chain helmet" price="8000" />
     <item name="xeno helmet" price="8000" />
     <item name="black helmet" price="10000" />
+    <merchant name="Diehelm Brui" configure="true" offer="false"/>
   </shop>
 
   <!-- buy axes (woodcutter) -->
@@ -341,6 +346,7 @@
     <item name="jewelled legs" price="12000" />
     <item name="magic plate shield" price="16000" />
     <item name="magic plate armor" price="20000" />
+    <merchant name="Vonda" configure="true" offer="false"/>
   </shop>
 
   <!-- red items (supplier in sedah city) -->
@@ -361,6 +367,7 @@
     <item name="mainio helmet" price="8000" />
     <item name="mainio legs" price="7000" />
     <item name="mainio shield" price="16000" />
+    <merchant name="Despot Halb Errvl" configure="true" offer="true"/>
   </shop>
 
   <!-- assassinhq principal Femme Fatale -->
@@ -412,6 +419,7 @@
     <item name="steel arrow" price="7" />
     <item name="golden arrow" price="25" />
     <item name="power arrow" price="45" />
+    <merchant name="Diehelm Brui" configure="true" offer="false"/>
     <merchant name="Mrotho" configure="true" offer="false"/>
   </shop>
 
@@ -480,6 +488,7 @@
     <item name="chocolate shake" price="110" />
     <item name="chocolate bar" price="100" />
     <item name="licorice" price="100" />
+    <merchant name="Trillium" configure="true" offer="false"/>
   </shop>
 
   <!-- kirdneh city armor -->
@@ -619,6 +628,7 @@
     <item name="mega potion" price="3000" />
     <item name="sedative" price="800" />
     <item name="empty scroll" price="4000" />
+    <merchant name="Mirielle" configure="true" offer="false"/>
   </shop>
 
   <shop name="deniranpawnbuy" type="buy">

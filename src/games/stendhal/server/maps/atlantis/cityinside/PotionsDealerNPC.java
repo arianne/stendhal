@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,10 +24,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
@@ -83,11 +80,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 	}
 
 	private void initShop(final StendhalRPZone zone) {
-		final String shopName = "atlantispotions";
-
-		new SellerAdder().addSeller(seller, new SellerBehaviour(ShopList.get().get(shopName)), false);
-
-		final ShopSign sign = new ShopSign(shopName, "Atlantis Potions Shop", seller.getName() + " sells the following items", true);
+		final ShopSign sign = new ShopSign("atlantispotions", "Atlantis Potions Shop", seller.getName() + " sells the following items", true);
 		sign.setEntityClass("blackboard");
 		sign.setPosition(11, 12);
 

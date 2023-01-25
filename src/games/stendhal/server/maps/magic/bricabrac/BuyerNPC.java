@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Builds an witch NPC She is a trader for bric-a-brac items.
@@ -32,7 +29,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -101,7 +97,6 @@ public class BuyerNPC implements ZoneConfigurator {
 						"sewing machine",
 						"Oh you know that is my favourite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
 				addQuest("I have no favour to ask of you.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buymagic")), false);
 				addOffer("There is a list of prices for relics and magic items I would buy, over on that large book.");
 				addGoodbye("Bye.");
 			}

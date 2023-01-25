@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,14 +16,11 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /**
  * Builds an NPC to buy previously un bought mainio weapons.
@@ -32,7 +29,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
-	private final ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.
@@ -62,8 +58,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addReply("mainio", "My advisors tell me the word means 'excellent' in some foreign language. If it is so, my men must wear it! I do not think Diehelm Brui is equipping them well enough!");
 				addHelp("My army must have the best items. #Offer me some of the rare #mainio armor I have heard tell of, and I will pay you handsomely.");
 				//addQuest("The Mithrilbourgh Army and I are not in need of your services at present.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buymainio")), true);
- 				addGoodbye("Bye.");
+				addGoodbye("Bye.");
 			}
 
 			@Override

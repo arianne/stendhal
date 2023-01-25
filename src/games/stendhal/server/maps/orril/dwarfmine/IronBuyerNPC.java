@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,25 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
 
 /*
  * Configure Orril Dwarf Mine (Underground/Level -2).
  */
 public class IronBuyerNPC implements ZoneConfigurator {
-	private final ShopList shops;
-
-	public IronBuyerNPC() {
-		this.shops = SingletonRepository.getShopList();
-	}
 
 	/**
 	 * Configure a zone.
@@ -67,7 +59,6 @@ public class IronBuyerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I'm the supervisor responsible for maintaining the mine-cart rails in this mine. But, ironically, we ran out of cast iron to fix them with! Maybe you can #offer me some?");
 				addHelp("If you want some good advice, you'll not go further south; there's an evil dragon living down there!");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyiron")), true);
 				addGoodbye("Farewell - and be careful: the other dwarves don't like strangers running around here!");
 			}
 		};
