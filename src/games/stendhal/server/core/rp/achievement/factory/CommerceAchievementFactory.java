@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.HasSpentMoneyCondition;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -128,7 +129,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			ID_BUY_ALL, "Community Supporter",
 			"Spend money around the world",
 			Achievement.MEDIUM_BASE_SCORE, true,
-			new HasSpentAmountAtSellers()));
+			new HasSpentMoneyCondition(TRADE_ALL_AMOUNTS)));
 
 
 		// add responses to sellers so player has an idea of how much they need to spend
@@ -175,21 +176,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		return achievements;
 	}
 
-
-	private static class HasSpentAmountAtSellers implements ChatCondition {
-
-		@Override
-		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			for (final String name: TRADE_ALL_AMOUNTS.keySet()) {
-				if (!player.has("npc_purchases", name) || !(player.getInt("npc_purchases", name)
-						>= TRADE_ALL_AMOUNTS.get(name))) {
-					return false;
-				}
-			}
-
-			return true;
-		}
-	}
 
 	private static class RespondToPurchaseAmountInquiry implements ChatAction {
 		private int req_purchase = 0;
