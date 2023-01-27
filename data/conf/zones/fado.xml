@@ -1686,114 +1686,193 @@ For example say:  11  if you want the room called Water of Love.
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="69" y="92" ref="house1_entrance">
-      <destination zone="int_sedah_house1" ref="entrance"/>
+    <portal x="69" y="92" ref="house1_west_entrance">
+      <destination zone="int_sedah_house1" ref="house1_entrance_west"/>
+      <attribute name="move.continuous"/>
+    </portal>
+    
+     <portal x="70" y="92" ref="house1_east_entrance">
+       <destination zone="int_sedah_house1" ref="house1_entrance_east"/>
+       <attribute name="move.continuous"/>
+     </portal>
+
+    <portal x="39" y="94" ref="house0_west_entrance">
+      <destination zone="int_sedah_house0" ref="house0_entrance_west"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="39" y="94" ref="house0_entrance">
-      <destination zone="int_sedah_house0" ref="entrance_right"/>
+    <portal x="40" y="94" ref="house0_east_entrance">
+      <destination zone="int_sedah_house0" ref="house0_entrance_east"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="99" y="103" ref="house2_entrance">
-      <destination zone="int_sedah_house2" ref="entrance"/>
+    <portal x="99" y="103" ref="house2_west_entrance">
+      <destination zone="int_sedah_house2" ref="house2_entrance_west"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="91" y="115" ref="mausoleum_entrance">
-      <destination zone="int_sedah_mausoleum" ref="entrance"/>
+     <portal x="100" y="103" ref="house2_east_entrance">
+      <destination zone="int_sedah_house2" ref="house2_entrance_east"/>
+      <attribute name="move.continuous"/>
+    </portal>
+ 
+    <portal x="91" y="115" ref="mausoleum_west_entrance">
+      <destination zone="int_sedah_mausoleum" ref="mausoleum_entrance_west"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="121" y="105" ref="house3_entrance">
-      <destination zone="int_sedah_barracks_0" ref="entrance"/>
+     <portal x="92" y="115" ref="mausoleum_east_entrance">
+      <destination zone="int_sedah_mausoleum" ref="mausoleum_entrance_east"/>
+      <attribute name="move.continuous"/>
+    </portal>
+ 
+    <portal x="121" y="105" ref="house3_west_entrance">
+      <destination zone="int_sedah_barracks_0" ref="house3_entrance_west"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="12" y="108" ref="house4_entrance">
-      <destination zone="int_sedah_house4_0" ref="entrance"/>
+    <portal x="122" y="105" ref="house3_east_entrance">
+      <destination zone="int_sedah_barracks_0" ref="house3_entrance_east"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="12" y="108" ref="house4_west_entrance">
+      <destination zone="int_sedah_house4_0" ref="house4_entrance_west"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="13" y="108" ref="house4_east_entrance">
+      <destination zone="int_sedah_house4_0" ref="house4_entrance_east"/>
       <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
-    <portal x="19" y="30" ref="entrance_left">
-      <destination zone="-1_fado_great_cave_w2" ref="house0_entrance"/>
+    <portal x="19" y="30" ref="house0_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="house0_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="20" y="30" ref="entrance_right">
-      <destination zone="-1_fado_great_cave_w2" ref="house0_entrance"/>
+    <portal x="20" y="30" ref="house0_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="house0_east_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_sedah_house1" file="interiors/sedah/house1.tmx">
-    <portal x="6" y="13" ref="entrance">
-      <destination zone="-1_fado_great_cave_w2" ref="house1_entrance"/>
+    <portal x="6" y="13" ref="house1_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="house1_west_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="7" y="13" ref="house1_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="house1_east_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_sedah_house2" file="interiors/sedah/house2.tmx">
-    <portal x="6" y="13" ref="entrance">
-      <destination zone="-1_fado_great_cave_w2" ref="house2_entrance"/>
+    <portal x="6" y="13" ref="house2_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="house2_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
+
+    <portal x="7" y="13" ref="house2_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="house2_east_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
 
   </zone>
 
   <zone name="int_sedah_house4_0" file="interiors/sedah/house4.tmx">
-    <portal x="15" y="28" ref="entrance">
-      <destination zone="-1_fado_great_cave_w2" ref="house4_entrance"/>
+    <portal x="14" y="28" ref="house4_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="house4_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="13" y="13" ref="up">
-      <destination zone="int_sedah_house4_1" ref="down"/>
+    <portal x="15" y="28" ref="house4_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="house4_east_entrance"/>
+      <attribute name="move.continuous"/>
     </portal>
 
+    <portal x="13" y="13" ref="house40_stairs_west">
+      <destination zone="int_sedah_house4_1" ref="house41_stairs_west"/>
+    </portal>
+
+     <portal x="14" y="13" ref="house40_stairs_east">
+      <destination zone="int_sedah_house4_1" ref="house41_stairs_east"/>
+    </portal>
+ 
   </zone>
 
   <zone name="int_sedah_house4_1" file="interiors/sedah/house4_1.tmx">
     <configurator class-name="games.stendhal.server.maps.sedah.house.WannaBeKingNPC"/>
-    <portal x="3" y="3" ref="down">
-      <destination zone="int_sedah_house4_0" ref="up"/>
+    <portal x="3" y="3" ref="house41_stairs_west">
+      <destination zone="int_sedah_house4_0" ref="house40_stairs_west"/>
+    </portal>
+
+    <portal x="4" y="3" ref="house41_stairs_east">
+      <destination zone="int_sedah_house4_0" ref="house40_stairs_east"/>
     </portal>
 
   </zone>
 
+
+
   <zone name="int_sedah_mausoleum" file="interiors/sedah/mausoleum.tmx">
-    <portal x="6" y="14" ref="entrance">
-      <destination zone="-1_fado_great_cave_w2" ref="mausoleum_entrance"/>
+    <portal x="6" y="14" ref="mausoleum_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="mausoleum_west_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="7" y="14" ref="mausoleum_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="mausoleum_east_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
   </zone>
 
   <zone name="int_sedah_barracks_0" file="interiors/sedah/house3.tmx">
-    <portal x="16" y="28" ref="entrance">
-      <destination zone="-1_fado_great_cave_w2" ref="house3_entrance"/>
+  
+    <portal x="16" y="28" ref="house3_entrance_west">
+      <destination zone="-1_fado_great_cave_w2" ref="house3_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="4" y="4" ref="up">
-      <destination zone="int_sedah_barracks_1" ref="down"/>
+    <portal x="17" y="28" ref="house3_entrance_east">
+      <destination zone="-1_fado_great_cave_w2" ref="house3_east_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal> 
+
+    <portal x="4" y="4" ref="house30_stairs1_west">
+      <destination zone="int_sedah_barracks_1" ref="house31_stairs1_west"/>
     </portal>
 
+    <portal x="5" y="4" ref="house30_stairs1_east">
+      <destination zone="int_sedah_barracks_1" ref="house31_stairs1_east"/>
+    </portal>
+ 
   </zone>
 
   <zone name="int_sedah_barracks_1" file="interiors/sedah/house3_1.tmx">
-    <portal x="4" y="4" ref="down">
-      <destination zone="int_sedah_barracks_0" ref="up"/>
+    <portal x="4" y="4" ref="house31_stairs1_west">
+      <destination zone="int_sedah_barracks_0" ref="house30_stairs1_west"/>
+    </portal>
+    
+    <portal x="5" y="4" ref="house31_stairs1_east">
+      <destination zone="int_sedah_barracks_0" ref="house30_stairs1_east"/>
+    </portal>    
+
+    <portal x="15" y="26" ref="house31_stairs2_west">
+      <destination zone="int_sedah_barracks_2" ref="house32_stairs2_west"/>
     </portal>
 
-    <portal x="15" y="26" ref="up">
-      <destination zone="int_sedah_barracks_2" ref="down"/>
+    <portal x="16" y="26" ref="house31_stairs2_east">
+      <destination zone="int_sedah_barracks_2" ref="house32_stairs2_east"/>
     </portal>
 
     <entity x="15" y="3">
@@ -1810,25 +1889,44 @@ it back as you got it!
   </zone>
 
   <zone name="int_sedah_barracks_2" file="interiors/sedah/house3_2.tmx">
-    <portal x="15" y="26" ref="down">
-      <destination zone="int_sedah_barracks_1" ref="up"/>
+    <portal x="15" y="26" ref="house32_stairs2_west">
+      <destination zone="int_sedah_barracks_1" ref="house31_stairs2_west"/>
+    </portal>
+
+    <portal x="16" y="26" ref="house32_stairs2_east">
+      <destination zone="int_sedah_barracks_1" ref="house31_stairs2_east"/>
     </portal>
 
   </zone>
 
   <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
-    <portal x="52" y="96" ref="shop_in">
-      <destination zone="int_sedah_storage" ref="out"/>
+    <portal x="52" y="96" ref="storage_west_entrance">
+      <destination zone="int_sedah_storage" ref="storage_entrance_west"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="37" y="116" ref="house5_in">
-      <destination zone="int_sedah_house5" ref="out"/>
+    <portal x="53" y="96" ref="storage_east_entrance">
+      <destination zone="int_sedah_storage" ref="storage_entrance_east"/>
       <attribute name="move.continuous"/>
     </portal>
 
-    <portal x="92" y="102" ref="house6_in">
-      <destination zone="int_sedah_house6" ref="out"/>
+    <portal x="37" y="116" ref="house5_west_entrance">
+      <destination zone="int_sedah_house5" ref="house5_entrance_west"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="38" y="116" ref="house5_east_entrance">
+      <destination zone="int_sedah_house5" ref="house5_entrance_east"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="92" y="102" ref="house6_west_entrance">
+      <destination zone="int_sedah_house6" ref="house6_entrance_west"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="93" y="102" ref="house6_east_entrance">
+      <destination zone="int_sedah_house6" ref="house6_entrance_east"/>
       <attribute name="move.continuous"/>
     </portal>
 
@@ -1838,24 +1936,39 @@ it back as you got it!
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.sedah.storage.StorageNPC"/>
 
-    <portal x="17" y="28" ref="out">
-      <destination zone="-1_fado_great_cave_w" ref="shop_in"/>
+    <portal x="17" y="28" ref="storage_entrance_west">
+      <destination zone="-1_fado_great_cave_w" ref="storage_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
+    <portal x="18" y="28" ref="storage_entrance_east">
+      <destination zone="-1_fado_great_cave_w" ref="storage_east_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal> 
+ 
   </zone>
 
   <zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
-    <portal x="6" y="13" ref="out">
-      <destination zone="-1_fado_great_cave_w" ref="house5_in"/>
+    <portal x="6" y="13" ref="house5_entrance_west">
+      <destination zone="-1_fado_great_cave_w" ref="house5_west_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
+     <portal x="7" y="13" ref="house5_entrance_east">
+      <destination zone="-1_fado_great_cave_w" ref="house5_east_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+ 
   </zone>
 
   <zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
-    <portal x="6" y="13" ref="out">
-      <destination zone="-1_fado_great_cave_w" ref="house6_in"/>
+    <portal x="6" y="13" ref="house6_entrance_west">
+      <destination zone="-1_fado_great_cave_w" ref="house6_west_entrance"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <portal x="7" y="13" ref="house6_entrance_east">
+      <destination zone="-1_fado_great_cave_w" ref="house6_east_entrance"/>
       <attribute name="move.continuous"/>
     </portal>
 
