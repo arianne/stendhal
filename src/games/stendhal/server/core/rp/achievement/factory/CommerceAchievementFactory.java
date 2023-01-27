@@ -50,7 +50,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	public static final int COUNT_HAPPY_HOUR = 100;
 
 	// NPCs involved in "Community Supporter"
-	private static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
+	public static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
 		put("Adena", 500);
 		put("Akutagawa", 1000);
 		put("Aldrin", 2000);
