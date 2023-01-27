@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -27,15 +28,6 @@ public class ItemAchievementFactoryTest extends AchievementTestHelper {
 
 	private final Player player;
 
-	private final String[] items_royal = {
-		"royal armor", "royal helmet", "royal cloak",
-		"royal legs", "royal boots", "royal shield"
-	};
-	private final String[] items_magic = {
-		"magic plate armor", "magic chain helmet", "magic plate legs",
-		"magic plate boots", "magic cloak", "magic plate shield"
-	};
-
 
 	public ItemAchievementFactoryTest() {
 		player = createPlayer("player");
@@ -47,23 +39,141 @@ public class ItemAchievementFactoryTest extends AchievementTestHelper {
 		init(player);
 	}
 
-	@Test
-	public void testRoyallyEndowed() {
-		assertTrue(achievementEnabled(ItemAchievementFactory.ID_ROYAL));
-		for (final String item: items_royal) {
-			assertFalse(achievementReached(player, ItemAchievementFactory.ID_ROYAL));
+	private void checkSingleItemLoot(final String id, final String item,
+			final int amount, final int inc) {
+		assertTrue(achievementEnabled(id));
+		while (player.getNumberOfLootsForItem(item) < amount) {
+			assertFalse(achievementReached(player, id));
+			player.incLootForItem(item, inc);
+		}
+		assertTrue(achievementReached(player, id));
+	}
+
+	private void checkSingleItemLoot(final String id, final String item,
+			final int amount) {
+		checkSingleItemLoot(id, item, amount, 1);
+	}
+
+	private void checkItemSetLoot(final String id, final String[] items) {
+		assertTrue(achievementEnabled(id));
+		for (final String item: items) {
+			assertFalse(achievementReached(player, id));
 			player.incLootForItem(item, 1);
 		}
-		assertTrue(achievementReached(player, ItemAchievementFactory.ID_ROYAL));
+		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testFirstPocketMoney() {
+		checkSingleItemLoot("item.money.100", "money", 100, 10);
+	}
+
+	@Test
+	public void testGoldshower() {
+		checkSingleItemLoot("item.money.10000", "money", 10000, 100);
+	}
+
+	@Test
+	public void testMovingUpInTheWorld() {
+		checkSingleItemLoot("item.money.100000", "money", 100000, 1000);
+	}
+
+	@Test
+	public void testYouDontNeedItAnymore() {
+		checkSingleItemLoot("item.money.1000000", "money", 1000000, 10000);
+	}
+
+	@Test
+	public void testCheeseWiz() {
+		checkSingleItemLoot("item.cheese.2000", "cheese", 2000, 100);
+	}
+
+	@Test
+	public void testHamHocks() {
+		checkSingleItemLoot("item.ham.2500", "ham", 2500, 100);
+	}
+
+	@Test
+	public void testAmazonsMenace() {
+		checkItemSetLoot("item.set.red", new String[] {
+				"red armor", "red helmet", "red cloak",
+				"red legs", "red boots", "red shield"});
+	}
+
+	@Test
+	public void testFeelingBlue() {
+		checkItemSetLoot("item.set.blue", new String[] {
+				"blue armor", "blue helmet", "blue striped cloak",
+				"blue legs", "blue boots", "blue shield"});
+	}
+
+	@Test
+	public void testNalworsBane() {
+		checkItemSetLoot("item.set.elvish", new String[] {
+				"elvish armor", "elvish hat", "elvish cloak",
+				"elvish legs", "elvish boots", "elvish shield"});
+	}
+
+	@Test
+	public void testShadowDweller() {
+		checkItemSetLoot("item.set.shadow", new String[] {
+				"shadow armor", "shadow helmet", "shadow cloak",
+				"shadow legs", "shadow boots", "shadow shield"});
+	}
+
+	@Test
+	public void testChaoticLooter() {
+		checkItemSetLoot("item.set.chaos", new String[] {
+				"chaos armor", "chaos helmet", "chaos cloak",
+				"chaos legs", "chaos boots", "chaos shield"});
+	}
+
+	@Test
+	public void testGoldenBoy() {
+		checkItemSetLoot("item.set.golden", new String[] {
+				"golden armor", "golden helmet", "golden cloak",
+				"golden legs", "golden boots", "golden shield"});
+	}
+
+	@Test
+	public void testComeToTheDarkSide() {
+		checkItemSetLoot("item.set.black", new String[] {
+				"black armor", "black helmet", "black cloak",
+				"black legs", "black boots", "black shield"});
+	}
+
+	@Test
+	public void testExcellentStuff() {
+		checkItemSetLoot("item.set.mainio", new String[] {
+				"mainio armor", "mainio helmet", "mainio cloak",
+				"mainio legs", "mainio boots", "mainio shield"});
+	}
+
+	@Test
+	public void testABitXeno() {
+		checkItemSetLoot("item.set.xeno", new String[] {
+				"xeno armor", "xeno helmet", "xeno cloak",
+				"xeno legs", "xeno boots", "xeno shield"});
+	}
+
+	@Test
+	public void testDragonSlayer() {
+		checkItemSetLoot("item.cloak.dragon", new String[] {
+				"black dragon cloak", "blue dragon cloak", "bone dragon cloak",
+				"green dragon cloak", "red dragon cloak"});
+	}
+
+	@Test
+	public void testRoyallyEndowed() {
+		checkItemSetLoot(ItemAchievementFactory.ID_ROYAL, new String[] {
+				"royal armor", "royal helmet", "royal cloak",
+				"royal legs", "royal boots", "royal shield"});
 	}
 
 	@Test
 	public void testMagicSupplies() {
-		assertTrue(achievementEnabled(ItemAchievementFactory.ID_MAGIC));
-		for (final String item: items_magic) {
-			assertFalse(achievementReached(player, ItemAchievementFactory.ID_MAGIC));
-			player.incLootForItem(item, 1);
-		}
-		assertTrue(achievementReached(player, ItemAchievementFactory.ID_MAGIC));
+		checkItemSetLoot(ItemAchievementFactory.ID_MAGIC, new String[] {
+				"magic plate armor", "magic chain helmet", "magic plate legs",
+				"magic plate boots", "magic cloak", "magic plate shield"});
 	}
 }
