@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,11 +17,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.server.game.db.DatabaseFactory;
 
 
 public abstract class AchievementTestHelper {
@@ -34,6 +38,12 @@ public abstract class AchievementTestHelper {
 
 	private static boolean initialized = false;
 
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		new DatabaseFactory().initializeDatabase();
+		MockStendlRPWorld.get();
+	}
 
 	public static void init(final Player player) {
 		if (!initialized) {
