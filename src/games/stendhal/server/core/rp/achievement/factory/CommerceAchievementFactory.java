@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.HasEarnedTotalMoneyCondition;
 import games.stendhal.server.entity.npc.condition.HasSpentMoneyCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -43,7 +44,8 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	private static final Logger logger = Logger.getLogger(CommerceAchievementFactory.class);
 
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
-	public static final String ID_MARKET_S10K = "commerce.market.sell.10K";
+	public static final String ID_MARKET_S10K = "commerce.market.sell.10k";
+	public static final String ID_SELL_20K = "commerce.sell.20k";
 	public static final String ID_BUY_ALL = "commerce.buy.all";
 
 	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
@@ -124,6 +126,12 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 					return (player.getCommerceTransactionAmount("Harold", true) > 9999);
 				}
 			}));
+
+		achievements.add(createAchievement(
+			ID_SELL_20K, "Traveling Peddler",
+			"Make 20000 money in sales to NPCs",
+			Achievement.EASY_BASE_SCORE, true,
+			new HasEarnedTotalMoneyCondition(20000)));
 
 		achievements.add(createAchievement(
 			ID_BUY_ALL, "Community Supporter",

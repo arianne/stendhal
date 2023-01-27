@@ -27,6 +27,7 @@ Changelog
   - Patiently Waiting on Grumpy: Serve up 50 decent meals to Groongo Rahnnt
   - Floral Fondness: Help restock Nalwor flower shop 50 times
   - Challenge Accepted: Complete 5 rounds of deathmatch without help
+  - Traveling Peddler: Make 20000 money in sales to NPCs
 - new items:
   - amethyst
   - poison whip
