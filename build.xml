@@ -1545,6 +1545,7 @@
         <pathelement path="${easymockclassextension_jar}"/>
         <pathelement path="${build_server_script}"/>
         <pathelement path="${tiled_jar}"/>
+        <pathelement path="${guava_jar}"/>
       </classpath>
     </javac>
   </target> <!-- compile_tests -->

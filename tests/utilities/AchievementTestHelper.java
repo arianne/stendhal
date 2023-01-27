@@ -20,6 +20,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
@@ -63,6 +64,23 @@ public abstract class AchievementTestHelper {
 		assertFalse(player.arePlayerAchievementsLoaded());
 		player.initReachedAchievements();
 		assertTrue(player.arePlayerAchievementsLoaded());
+	}
+
+	/**
+	 * Checks if an achievement is enabled.
+	 *
+	 * @param id
+	 *     Achievement string identifier.
+	 * @return
+	 *     <code>true</code> if achievement is loaded & enabled.
+	 */
+	public static boolean achievementEnabled(final String id) {
+		for (final Achievement ac: an.getAchievements()) {
+			if (id.equals(ac.getIdentifier())) {
+				return ac.isActive();
+			}
+		}
+		return false;
 	}
 
 	/**
