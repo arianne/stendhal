@@ -48,9 +48,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_SELL_20K = "commerce.sell.20k";
 	public static final String ID_BUY_ALL = "commerce.buy.all";
 
-	public static final String[] ITEMS_HAPPY_HOUR = {"beer", "wine"};
-	public static final int COUNT_HAPPY_HOUR = 100;
-
 	// NPCs involved in "Community Supporter"
 	public static final Map<String, Integer> TRADE_ALL_AMOUNTS = new HashMap<String, Integer>() {{
 		put("Adena", 500);
@@ -113,7 +110,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			ID_HAPPY_HOUR, "It's Happy Hour Somewhere",
 			"Purchase 100 bottles of beer & 100 glasses of wine",
 			Achievement.EASY_BASE_SCORE, true,
-			new BoughtNumberOfCondition(COUNT_HAPPY_HOUR, ITEMS_HAPPY_HOUR)));
+			new BoughtNumberOfCondition(100, Arrays.asList("beer", "wine"))));
 
 		// DISABLED: players can buy their own things from Harold
 		achievements.add(createAchievement(
