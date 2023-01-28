@@ -15,15 +15,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static utilities.PlayerTestHelper.equipWithItem;
-import static utilities.PlayerTestHelper.equipWithStackableItem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +41,24 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.quests.*;
+import games.stendhal.server.maps.quests.AGrandfathersWish;
+import games.stendhal.server.maps.quests.Campfire;
+import games.stendhal.server.maps.quests.ChocolateForElisabeth;
+import games.stendhal.server.maps.quests.CodedMessageFromFinnFarmer;
+import games.stendhal.server.maps.quests.EggsForMarianne;
+import games.stendhal.server.maps.quests.FindGhosts;
+import games.stendhal.server.maps.quests.FindJefsMom;
+import games.stendhal.server.maps.quests.FindRatChildren;
+import games.stendhal.server.maps.quests.FishSoupForHughie;
+import games.stendhal.server.maps.quests.IQuest;
+import games.stendhal.server.maps.quests.IcecreamForAnnie;
+import games.stendhal.server.maps.quests.MedicineForTad;
+import games.stendhal.server.maps.quests.MeetBunny;
+import games.stendhal.server.maps.quests.MeetSanta;
+import games.stendhal.server.maps.quests.MineTownRevivalWeeks;
+import games.stendhal.server.maps.quests.PlinksToy;
+import games.stendhal.server.maps.quests.SevenCherubs;
+import games.stendhal.server.maps.quests.ToysCollector;
 import marauroa.common.game.RPObject;
 import utilities.AchievementTestHelper;
 
