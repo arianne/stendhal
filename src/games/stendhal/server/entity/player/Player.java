@@ -1494,6 +1494,16 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Increments number of counted solo kills by 1.
+	 *
+	 * @param name
+	 *     Name of victim.
+	 */
+	public void incSoloKillCount(final String name) {
+		setSoloKillCount(name, getSoloKill(name) + 1);
+	}
+
+	/**
 	 * Changes shared kills count to specified value.
 	 *
 	 * @param name
@@ -1503,6 +1513,16 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public void setSharedKillCount(final String name, final int count) {
 		killRec.setSharedKillCount(name, count);
+	}
+
+	/**
+	 * Increments number of counted shared kills by 1.
+	 *
+	 * @param name
+	 *     Name of victim.
+	 */
+	public void incSharedKillCount(final String name) {
+		setSharedKillCount(name, getSharedKill(name) + 1);
 	}
 
 	/**
@@ -1518,6 +1538,18 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Retrieves number of creatures killed alone by this player.
+	 *
+	 * @param name
+	 *     Name of victim.
+	 * @return
+	 *     Number of solo kills.
+	 */
+	public int getSoloKillCount(final String name) {
+		return getSoloKill(name);
+	}
+
+	/**
 	 * Retrieves number of creatures killed by this player with help
 	 * from others.
 	 *
@@ -1528,6 +1560,32 @@ public class Player extends DressedEntity implements UseListener {
 	 */
 	public int getSharedKill(final String name) {
 		return killRec.getSharedKill(name);
+	}
+
+	/**
+	 * Retrieves number of creatures killed by this player with help
+	 * from others.
+	 *
+	 * @param name
+	 *     Name of victim.
+	 * @return
+	 *     Number of shared kills.
+	 */
+	public int getSharedKillCount(final String name) {
+		return getSharedKill(name);
+	}
+
+	/**
+	 * Retrieves number of creatures kill by this player alone and/or
+	 * with help from others.
+	 *
+	 * @param name
+	 *     Name of victim.
+	 * @return
+	 *     Total number of kills.
+	 */
+	public int getAllKillCount(final String name) {
+		return getSoloKill(name) + getSharedKill(name);
 	}
 
 	@Override
