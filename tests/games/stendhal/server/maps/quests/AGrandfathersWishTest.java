@@ -149,7 +149,11 @@ public class AGrandfathersWishTest extends QuestHelper {
 	}
 
 	private void checkBeforeQuest() {
-		assertFalse(quests.isLoaded(quests.getQuestFromSlot(QUEST_SLOT)));
+		final IQuest q = quests.getQuestFromSlot(QUEST_SLOT);
+		if (q != null) {
+			quests.unloadQuest(q.getName());
+		}
+		assertFalse(quests.isLoaded(q));
 
 		// quest not added to world
 		Engine en = elias.getEngine();
