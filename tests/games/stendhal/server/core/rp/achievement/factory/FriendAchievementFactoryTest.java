@@ -220,4 +220,71 @@ public class FriendAchievementFactoryTest extends AchievementTestHelper {
 
 		assertTrue(achievementReached(player, id));
 	}
+
+	@Test
+	public void testPrivateDetective() {
+		final String id = "friend.quests.find";
+		assertFalse(achievementReached(player, id));
+
+		loadConfigurators(
+			// Agnus
+			new games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC(),
+			// Opal
+			new games.stendhal.server.maps.orril.dungeon.RatChild1NPC(),
+			// Mariel
+			new games.stendhal.server.maps.orril.dungeon.RatChild2NPC(),
+			// Cody
+			new games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC(),
+			// Avalon
+			new games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC());
+		loadQuests(new FindRatChildren());
+		PrivateDetectiveStub.doQuestAgnus(player);
+		assertFalse(achievementReached(player, id));
+
+		loadConfigurators(
+			// Carena
+			new games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC(),
+			// Mary
+			new games.stendhal.server.maps.athor.cave.GhostNPC(),
+			// Ben
+			new games.stendhal.server.maps.ados.city.KidGhostNPC(),
+			// Zak
+			new games.stendhal.server.maps.wofol.house5.GhostNPC(),
+			// Goran
+			new games.stendhal.server.maps.orril.dungeon.GhostNPC());
+		loadQuests(new FindGhosts());
+		PrivateDetectiveStub.doQuestCarena(player);
+		assertFalse(achievementReached(player, id));
+
+		addZones("0_semos_village_w", "0_nalwor_city", "0_orril_river_s",
+			"0_orril_river_s_w2", "0_orril_mountain_w2", "0_semos_mountain_n2_w2",
+			"0_ados_rock");
+		loadQuests(new SevenCherubs());
+		PrivateDetectiveStub.doQuestCherubs(player);
+		assertFalse(achievementReached(player, id));
+
+		loadConfigurators(
+			// Jef
+			new games.stendhal.server.maps.kirdneh.city.GossipNPC(),
+			// Amber
+			new games.stendhal.server.maps.fado.forest.OldWomanNPC());
+		loadQuests(new FindJefsMom());
+		PrivateDetectiveStub.doQuestJef(player);
+		assertFalse(achievementReached(player, id));
+
+		loadConfigurators(
+			// Niall Breland
+			new games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandsonNPC(),
+			// Elias Breland
+			new games.stendhal.server.maps.deniran.cityinterior.brelandhouse.GrandfatherNPC(),
+			// Marianne
+			new games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC(),
+			// Father Calenus
+			new games.stendhal.server.maps.ados.church.PriestNPC());
+		addZones("-1_myling_well");
+		loadQuests(new AGrandfathersWish());
+		PrivateDetectiveStub.doQuestNiall(player);
+
+		assertTrue(achievementReached(player, id));
+	}
 }
