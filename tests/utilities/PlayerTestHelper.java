@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -299,6 +299,7 @@ public abstract class PlayerTestHelper {
 		player.addSlot(new PlayerSlot("finger"));
 		player.addSlot(new PlayerSlot("cloak"));
 		player.addSlot(new PlayerSlot("keyring"));
+		player.addSlot(new PlayerSlot("pouch"));
 		player.addSlot(new RPSlot("!quests"));
 		player.getSlot("!quests").add(new RPObject());
 		player.addSlot(new RPSlot("!kills"));
