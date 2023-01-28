@@ -37,6 +37,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.achievement.factory.stub.ChildrensFriendStub;
 import games.stendhal.server.core.rp.achievement.factory.stub.PrivateDetectiveStub;
+import games.stendhal.server.core.rp.achievement.factory.stub.StillBelievingStub;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -81,7 +82,8 @@ public class FriendAchievementFactoryTest extends AchievementTestHelper {
 		assertNotNull(testzone);
 		assertTrue(testzone.isEmpty());
 		assertTrue(zonelist.isEmpty());
-		player = createPlayer("player");
+		// dress player for Meet Santa
+		player = createPlayerWithOutFit("player");
 		assertNotNull(player);
 		init(player);
 	}
@@ -341,5 +343,21 @@ public class FriendAchievementFactoryTest extends AchievementTestHelper {
 		an.onFinishQuest(player);
 
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	@Test
+	public void testStillBelieving() {
+		final String id = "friend.meet.seasonal";
+		assertFalse(achievementReached(player, id));
+
+		addZones("int_admin_playground");
+		System.setProperty("stendhal.easterbunny", "");
+		System.setProperty("stendhal.santa", "");
+		loadQuests(new MeetBunny(), new MeetSanta());
+		StillBelievingStub.doQuestBunny(player);
+		assertFalse(achievementReached(player, id));
+		StillBelievingStub.doQuestSanta(player);
+
+		assertTrue(achievementReached(player, id));
 	}
 }
