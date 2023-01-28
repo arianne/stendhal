@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *					(C) Copyright 2003-2015 - Arianne					   *
+ *                    (C) Copyright 2003-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
- *																		   *
- *	 This program is free software; you can redistribute it and/or modify  *
- *	 it under the terms of the GNU General Public License as published by  *
- *	 the Free Software Foundation; either version 2 of the License, or	   *
- *	 (at your option) any later version.								   *
- *																		   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
@@ -1389,10 +1389,12 @@ public class Player extends DressedEntity implements UseListener {
 	 * Is the named quest in one of the listed states?
 	 *
 	 * @param name
-	 *            quest
+	 *     Quest name.
 	 * @param states
-	 *            valid states
-	 * @return true, if the quest is in one of theses states, false otherwise
+	 *     Valid states.
+	 * @return
+	 *     <code>true</code> if the quest is in one of theses states,
+	 *     <code>false</code> otherwise.
 	 */
 	public boolean isQuestInState(final String name, final String... states) {
 		return quests.isQuestInState(name, states);
@@ -1402,12 +1404,14 @@ public class Player extends DressedEntity implements UseListener {
 	 * Is the named quest in one of the listed states?
 	 *
 	 * @param name
-	 *            quest
+	 *     Quest name.
 	 * @param index
-	 *            quest index
+	 *     Quest index.
 	 * @param states
-	 *            valid states
-	 * @return true, if the quest is in one of theses states, false otherwise
+	 *     Valid states.
+	 * @return
+	 *     <code>true</code> if the quest is in one of theses states,
+	 *     <code>false</code> otherwise.
 	 */
 	public boolean isQuestInState(final String name, final int index,
 			final String... states) {
@@ -1419,32 +1423,37 @@ public class Player extends DressedEntity implements UseListener {
 	 * of any other player.
 	 *
 	 * @param name
-	 *            of the creature to check.
-	 * @return true iff this player has ever killed this creature.
+	 *     Name of creature to check.
+	 * @return
+	 *     <code>true</code> if this player has ever killed this creature.
 	 */
 	public boolean hasKilled(final String name) {
 		return killRec.hasKilled(name);
 	}
 
 	/**
-	 * Checks if the player has ever 'solo killed' a creature, i.e. without the
-	 * help of any other player.
+	 * Checks if the player has ever 'solo killed' a creature, i.e.
+	 * without the help of any other player.
 	 *
 	 * @param name
-	 *            of the creature to check.
-	 * @return true iff this player has ever killed this creature on his own.
+	 *     Name of creature to check.
+	 * @return
+	 *     <code>true</code> if this player has ever killed this creature
+	 *     without help.
 	 */
 	public boolean hasKilledSolo(final String name) {
 		return killRec.hasKilledSolo(name);
 	}
 
 	/**
-	 * Checks if the player has ever 'shared killed' a creature, i.e. with the
-	 * help of any other player.
+	 * Checks if the player has ever 'shared killed' a creature, i.e.
+	 * with the help of any other player.
 	 *
 	 * @param name
-	 *            of the creature to check.
-	 * @return true iff this player has ever killed this creature in a team.
+	 *     Name of creature to check.
+	 * @return
+	 *     <code>true</code> if this player has ever killed this creature
+	 *     with help.
 	 */
 	public boolean hasKilledShared(final String name) {
 		return killRec.hasKilledShared(name);
@@ -1452,10 +1461,10 @@ public class Player extends DressedEntity implements UseListener {
 
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
-	 * 'name'
+	 * 'name'.
 	 *
 	 * @param name
-	 *            of the victim
+	 *     Name of the victim.
 	 */
 	public void setSoloKill(final String name) {
 		killRec.setSoloKill(name);
@@ -1463,11 +1472,10 @@ public class Player extends DressedEntity implements UseListener {
 
 	/**
 	 * Stores that the player has killed 'name' with help of others. Does not
-	 * overwrite solo kills of 'name'
+	 * overwrite solo kills of 'name'.
 	 *
 	 * @param name
-	 *            of victim
-	 *
+	 *     Name of victim.
 	 */
 	public void setSharedKill(final String name) {
 		killRec.setSharedKill(name);
@@ -1476,8 +1484,10 @@ public class Player extends DressedEntity implements UseListener {
 	/**
 	 * Changes solo kills count to specified value.
 	 *
-	 * @param name name of killed entity
-	 * @param count value to set
+	 * @param name
+	 *     Name of victim.
+	 * @param count
+	 *     Value to set.
 	 */
 	public void setSoloKillCount(final String name, final int count) {
 		killRec.setSoloKillCount(name, count);
@@ -1486,30 +1496,35 @@ public class Player extends DressedEntity implements UseListener {
 	/**
 	 * Changes shared kills count to specified value.
 	 *
-	 * @param name name of killed entity
-	 * @param count value to set
+	 * @param name
+	 *     Name of victim.
+	 * @param count
+	 *     Value to set.
 	 */
 	public void setSharedKillCount(final String name, final int count) {
 		killRec.setSharedKillCount(name, count);
 	}
 
 	/**
-	 * Returns how much the player has killed 'name' solo.
+	 * Retrieves number of creatures killed alone by this player.
 	 *
 	 * @param name
-	 *            of the victim
-	 * @return number of solo kills
+	 *     Name of victim.
+	 * @return
+	 *     Number of solo kills.
 	 */
 	public int getSoloKill(final String name) {
 		return killRec.getSoloKill(name);
 	}
 
 	/**
-	 * Returns how much the player has killed 'name' with help of others.
+	 * Retrieves number of creatures killed by this player with help
+	 * from others.
 	 *
 	 * @param name
-	 *            of victim
-	 * @return number of shared kills
+	 *     Name of victim.
+	 * @return
+	 *     Number of shared kills.
 	 */
 	public int getSharedKill(final String name) {
 		return killRec.getSharedKill(name);
