@@ -29,7 +29,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
 
 
-public abstract class AchievementTestHelper {
+public abstract class AchievementTestHelper extends PlayerTestHelper {
 
 	protected static AchievementNotifier an = AchievementNotifier.get();
 
