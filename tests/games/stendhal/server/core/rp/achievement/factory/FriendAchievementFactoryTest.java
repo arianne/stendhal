@@ -11,9 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.PlayerTestHelper.equipWithItem;
+import static utilities.PlayerTestHelper.equipWithStackableItem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,6 +39,8 @@ import games.stendhal.server.core.rp.achievement.factory.stub.ChildrensFriendStu
 import games.stendhal.server.core.rp.achievement.factory.stub.PrivateDetectiveStub;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.quests.*;
@@ -286,5 +291,55 @@ public class FriendAchievementFactoryTest extends AchievementTestHelper {
 		PrivateDetectiveStub.doQuestNiall(player);
 
 		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testGoodSamaritan() {
+		final String id = "friend.karma.250";
+		assertEquals(10, player.getKarma(), 0);
+
+		// Mayor Chalmers
+		loadConfigurators(new games.stendhal.server.maps.ados.townhall.MayorNPC());
+		loadQuests(new games.stendhal.server.maps.quests.DailyItemQuest());
+		while (player.getKarma() < 251) {
+			assertFalse(achievementReached(player, id));
+			doDailyMonsterQuest();
+		}
+		assertTrue(achievementReached(player, id));
+	}
+
+	private void doDailyMonsterQuest() {
+		final String questSlot = "daily_item";
+
+		final SpeakerNPC mayor = npcs.get("Mayor Chalmers");
+		assertNotNull(mayor);
+		final Engine en = mayor.getEngine();
+
+		String questState = player.getQuest(questSlot, 0);
+		if (questState != null && questState.equals("done")) {
+			player.setQuest(questSlot, 1, "0");
+		}
+
+		en.step(player, "hi");
+		en.step(player, "quest");
+
+		questState = player.getQuest(questSlot, 0);
+		assertNotNull(questState);
+		final String itemName = questState.split("=")[0];
+		final int quantity = Integer.parseInt(questState.split("=")[1]);
+
+		if (quantity > 1) {
+			equipWithStackableItem(player, itemName, quantity);
+		} else {
+			equipWithItem(player, itemName);
+		}
+
+		en.step(player, "hi");
+		en.step(player, "done");
+		en.step(player, "bye");
+		// not called internally from Daily Monster quest
+		an.onFinishQuest(player);
+
+		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 }
