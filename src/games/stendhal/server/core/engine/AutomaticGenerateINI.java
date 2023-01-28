@@ -26,7 +26,7 @@ import games.stendhal.server.core.engine.generateini.ServerIniConfiguration;
  * path to database files of H2.
  */
 public class AutomaticGenerateINI {
-	
+
 	private static final String STENDHAL_KEY_SIZE = "STENDHAL_KEY_SIZE";
 	private static final String STENDHAL_DB_TYPE = "STENDHAL_DB_TYPE";
 	private static final String STENDHAL_DB_PATH = "STENDHAL_DB_PATH";
@@ -35,28 +35,28 @@ public class AutomaticGenerateINI {
 	static final String STENDHAL_DB_USER = "STENDHAL_DB_USER";
 	static final String STENDHAL_DB_PASSWORD = "STENDHAL_DB_PASSWORD";
 
-    private String databasePath;
-    private Integer keySize;
-    private DatabaseType databaseType;
-    private String databaseHost;
+	private String databasePath;
+	private Integer keySize;
+	private DatabaseType databaseType;
+	private String databaseHost;
 	private String databaseName;
 	private String databaseUser;
 	private String databasePassword;
 
-    public AutomaticGenerateINI(Map<String, String> environment) {
-        this.keySize = Integer.parseInt(environment.getOrDefault(STENDHAL_KEY_SIZE, "512"));
-        this.databaseType = DatabaseType.valueOf(environment.getOrDefault(STENDHAL_DB_TYPE, "h2db").toUpperCase());
-        this.databasePath = environment.getOrDefault(STENDHAL_DB_PATH, "/stendhal/data/h2db");
-        this.databaseHost = environment.get(STENDHAL_DB_HOST);
-    	this.databaseName = environment.get(STENDHAL_DB_NAME);
-    	this.databaseUser = environment.get(STENDHAL_DB_USER);
-    	this.databasePassword = environment.get(STENDHAL_DB_PASSWORD);
-    }
+	public AutomaticGenerateINI(Map<String, String> environment) {
+		this.keySize = Integer.parseInt(environment.getOrDefault(STENDHAL_KEY_SIZE, "512"));
+		this.databaseType = DatabaseType.valueOf(environment.getOrDefault(STENDHAL_DB_TYPE, "h2db").toUpperCase());
+		this.databasePath = environment.getOrDefault(STENDHAL_DB_PATH, "/stendhal/data/h2db");
+		this.databaseHost = environment.get(STENDHAL_DB_HOST);
+		this.databaseName = environment.get(STENDHAL_DB_NAME);
+		this.databaseUser = environment.get(STENDHAL_DB_USER);
+		this.databasePassword = environment.get(STENDHAL_DB_PASSWORD);
+	}
 
-    public void write(OutputStream outputStream) {
-        final PrintWriter out = new PrintWriter(outputStream);
-        DatabaseConfiguration db;
-        switch (this.databaseType) {
+	public void write(OutputStream outputStream) {
+		final PrintWriter out = new PrintWriter(outputStream);
+		DatabaseConfiguration db;
+		switch (this.databaseType) {
 		case MYSQL:
 			db = new MySqlDatabaseConfiguration(this.databaseHost, this.databaseName, this.databaseUser, this.databasePassword);
 			break;
@@ -64,10 +64,10 @@ public class AutomaticGenerateINI {
 		default:
 			db = new H2DatabaseConfiguration(databasePath);
 			break;
-        }
-        ServerIniConfiguration configuration = new ServerIniConfiguration(db , keySize);
-        configuration.write(out);
-        out.close();
-    }
+		}
+		ServerIniConfiguration configuration = new ServerIniConfiguration(db , keySize);
+		configuration.write(out);
+		out.close();
+	}
 
 }
