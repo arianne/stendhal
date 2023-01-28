@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,196 +9,32 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.friend;
+package games.stendhal.server.core.rp.achievement.factory.stub;
 
-import static games.stendhal.server.core.rp.achievement.factory.FriendAchievementFactory.ID_CHILD_FRIEND;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.PlayerTestHelper.equipWithItem;
+import static utilities.PlayerTestHelper.equipWithStackableItem;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.city.KidsNPCs;
-import games.stendhal.server.maps.ados.farmhouse.MotherNPC;
-import games.stendhal.server.maps.ados.wall.HolidayingBoyNPC;
-import games.stendhal.server.maps.fado.forest.OldWomanNPC;
-import games.stendhal.server.maps.kirdneh.city.GossipNPC;
-import games.stendhal.server.maps.orril.river.CampingGirlNPC;
-import games.stendhal.server.maps.quests.Campfire;
-import games.stendhal.server.maps.quests.ChocolateForElisabeth;
-import games.stendhal.server.maps.quests.CodedMessageFromFinnFarmer;
-import games.stendhal.server.maps.quests.EggsForMarianne;
-import games.stendhal.server.maps.quests.FindJefsMom;
-import games.stendhal.server.maps.quests.FishSoupForHughie;
-import games.stendhal.server.maps.quests.IcecreamForAnnie;
-import games.stendhal.server.maps.quests.MedicineForTad;
-import games.stendhal.server.maps.quests.MineTownRevivalWeeks;
-import games.stendhal.server.maps.quests.PlinksToy;
-import games.stendhal.server.maps.quests.ToysCollector;
-import games.stendhal.server.maps.semos.plains.LittleBoyNPC;
-import games.stendhal.server.maps.semos.temple.HealerNPC;
-import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
-import marauroa.server.game.db.DatabaseFactory;
-import utilities.AchievementTestHelper;
-import utilities.PlayerTestHelper;
-import utilities.ZonePlayerAndNPCTestImpl;
 
 
-public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
+public class ChildrensFriendStub {
 
-	private Player player;
-
-	private static final StendhalRPWorld world = MockStendlRPWorld.get();
-	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
-
-	private static final NPCList npcs = SingletonRepository.getNPCList();
-
-	private final String[] questSlots = {
-			"susi", "introduce_players", "plinks_toy", "toys_collector", "campfire",
-			"icecream_for_annie", "chocolate_for_elisabeth", "find_jefs_mom",
-			"fishsoup_for_hughie", "coded_message", "eggs_for_marianne"
-	};
+	private static final NPCList npcs = NPCList.get();
 
 
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		new DatabaseFactory().initializeDatabase();
-	}
-
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		final Map<String, ZoneConfigurator> configurators = new HashMap<>();
-		configurators.put("Susi", new games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC());
-		configurators.put("Tad", new games.stendhal.server.maps.semos.hostel.BoyNPC());
-		configurators.put("Ilisa", new HealerNPC());
-		configurators.put("Ketteh Wehoh", new DecencyAndMannersWardenNPC());
-		configurators.put("Plink", new LittleBoyNPC());
-		configurators.put("Anna", new KidsNPCs());
-		configurators.put("Sally", new CampingGirlNPC());
-		configurators.put("Annie Jones", new games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC());
-		configurators.put("Mrs Jones", new games.stendhal.server.maps.kalavan.citygardens.MummyNPC());
-		configurators.put("Elisabeth", new games.stendhal.server.maps.kirdneh.city.LittleGirlNPC());
-		configurators.put("Carey", new games.stendhal.server.maps.kirdneh.city.MummyNPC());
-		configurators.put("Jef", new GossipNPC());
-		configurators.put("Amber", new OldWomanNPC());
-		//configurators.put("Hughie", new games.stendhal.server.maps.ados.farmhouse.BoyNPC());
-		configurators.put("Anastasia", new MotherNPC());
-		configurators.put("Finn Farmer", new HolidayingBoyNPC());
-		configurators.put("Marianne", new games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC());
-
-		final String zoneName = "testzone";
-		for (final ZoneConfigurator zc: configurators.values()) {
-			addZoneConfigurator(zc, zoneName);
-		}
-
-		Set<String> allNPCs = new HashSet<>();
-		allNPCs.addAll(configurators.keySet());
-		allNPCs.add("George"); // games.stendhal.server.maps.ados.city.KidsNPCs
-
-		// zones required for Susi's quest
-		world.addRPZone("none", new StendhalRPZone("int_semos_frank_house"));
-		world.addRPZone("none", new StendhalRPZone("0_semos_mountain_n2"));
-		// zone required for Plink's Toy quest
-		world.addRPZone("none", new StendhalRPZone("0_semos_plains_n"));
-		// zone required for Fish Soup for Hughie quest
-		world.addRPZone("none", new StendhalRPZone("int_ados_farm_house_1"));
-
-		setNpcNames(allNPCs.toArray(new String[0]));
-		zone = setupZone(zoneName);
-		setZoneForPlayer(zoneName);
-
-		super.setUp();
-
-		// load quests
-		questSystem.loadQuest(new MineTownRevivalWeeks());
-		questSystem.loadQuest(new MedicineForTad());
-		questSystem.loadQuest(new PlinksToy());
-		questSystem.loadQuest(new ToysCollector());
-		questSystem.loadQuest(new Campfire());
-		questSystem.loadQuest(new IcecreamForAnnie());
-		questSystem.loadQuest(new ChocolateForElisabeth());
-		questSystem.loadQuest(new FindJefsMom());
-		questSystem.loadQuest(new FishSoupForHughie());
-		questSystem.loadQuest(new CodedMessageFromFinnFarmer());
-		questSystem.loadQuest(new EggsForMarianne());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		PlayerTestHelper.removeAllPlayers();
-	}
-
-	@Test
-	public void init() {
-		resetPlayer();
-
-		doQuestSusi();
-		assertFalse(achievementReached());
-		doQuestTad();
-		assertFalse(achievementReached());
-		doQuestPlink();
-		assertFalse(achievementReached());
-		doQuestAnna();
-		assertFalse(achievementReached());
-		doQuestSally();
-		assertFalse(achievementReached());
-		doQuestAnnie();
-		assertFalse(achievementReached());
-		doQuestElisabeth();
-		assertFalse(achievementReached());
-		doQuestJef();
-		assertFalse(achievementReached());
-		doQuestHughie();
-		assertFalse(achievementReached());
-		doQuestFinn();
-		assertFalse(achievementReached());
-		doQuestMarianne();
-
-		assertTrue(achievementReached());
-	}
-
-	private boolean achievementReached() {
-		return AchievementTestHelper.achievementReached(player, ID_CHILD_FRIEND);
-	}
-
-	private void resetPlayer() {
-		player = PlayerTestHelper.createPlayer("player");
-		assertNotNull(player);
-
-		for (final String quest: questSlots) {
-			assertNull(player.getQuest(quest));
-		}
-
-		AchievementTestHelper.init(player);
-		assertFalse(achievementReached());
-	}
-
-	private void doQuestSusi() {
+	public static void doQuestSusi(final Player player) {
 		final String questSlot = "susi";
 		assertNull(player.getQuest(questSlot));
 
@@ -215,9 +51,12 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "That's how long,");
 		en.step(player, "I will be your friend.");
 		en.step(player, "bye");
+
+		// note: quest slot is set to year of completion
+		assertTrue(player.hasQuest(questSlot));
 	}
 
-	private void doQuestTad() {
+	public static void doQuestTad(final Player player) {
 		final String questSlot = "introduce_players";
 		assertNull(player.getQuest(questSlot));
 
@@ -233,7 +72,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithItem(player, "flask");
+		equipWithItem(player, "flask");
 
 		en.step(player, "hi");
 		en.step(player, "bye");
@@ -244,7 +83,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithItem(player, "arandula");
+		equipWithItem(player, "arandula");
 
 		en.step(player, "hi");
 		en.step(player, "bye");
@@ -257,7 +96,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestPlink() {
+	public static void doQuestPlink(final Player player) {
 		final String questSlot = "plinks_toy";
 		assertNull(player.getQuest(questSlot));
 
@@ -272,7 +111,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		// don't need to say "bye"
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
-		PlayerTestHelper.equipWithItem(player, "teddy");
+		equipWithItem(player, "teddy");
 
 		en.step(player, "hi");
 		en.step(player, "bye");
@@ -280,7 +119,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestAnna() {
+	public static void doQuestAnna(final Player player) {
 		final String questSlot = "toys_collector";
 		assertNull(player.getQuest(questSlot));
 
@@ -300,7 +139,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 
 		for (final String toy: Arrays.asList("teddy", "dice", "dress")) {
-			PlayerTestHelper.equipWithItem(player, toy);
+			equipWithItem(player, toy);
 			en.step(player, toy);
 		}
 
@@ -309,7 +148,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestSally() {
+	public static void doQuestSally(final Player player) {
 		final String questSlot = "campfire";
 		assertNull(player.getQuest(questSlot));
 
@@ -323,7 +162,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithStackableItem(player, "wood", 10);
+		equipWithStackableItem(player, "wood", 10);
 
 		en.step(player, "hi");
 		en.step(player, "yes");
@@ -333,7 +172,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertNotEquals("start", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestAnnie() {
+	public static void doQuestAnnie(final Player player) {
 		final String questSlot = "icecream_for_annie";
 		assertNull(player.getQuest(questSlot));
 
@@ -356,7 +195,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 		en = annie.getEngine();
 
-		PlayerTestHelper.equipWithItem(player, "icecream");
+		equipWithItem(player, "icecream");
 
 		en.step(player, "hi");
 		en.step(player, "yes");
@@ -365,7 +204,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("eating", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestElisabeth() {
+	public static void doQuestElisabeth(final Player player) {
 		final String questSlot = "chocolate_for_elisabeth";
 		assertNull(player.getQuest(questSlot));
 
@@ -386,7 +225,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithItem(player, "chocolate bar");
+		equipWithItem(player, "chocolate bar");
 
 		en = elisabeth.getEngine();
 
@@ -397,7 +236,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("eating", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestJef() {
+	public static void doQuestJef(final Player player) {
 		final String questSlot = "find_jefs_mom";
 		assertNull(player.getQuest(questSlot));
 
@@ -430,7 +269,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestHughie() {
+	public static void doQuestHughie(final Player player) {
 		final String questSlot = "fishsoup_for_hughie";
 		assertNull(player.getQuest(questSlot));
 
@@ -446,7 +285,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithItem(player, "fish soup");
+		equipWithItem(player, "fish soup");
 
 		en.step(player, "hi");
 		en.step(player, "yes");
@@ -456,7 +295,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertNotEquals("start", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestFinn() {
+	public static void doQuestFinn(final Player player) {
 		final String questSlot = "coded_message";
 		assertNull(player.getQuest(questSlot));
 
@@ -494,7 +333,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
-	private void doQuestMarianne() {
+	public static void doQuestMarianne(final Player player) {
 		final String questSlot = "eggs_for_marianne";
 		assertNull(player.getQuest(questSlot));
 
@@ -508,7 +347,7 @@ public class ChildrensFriendAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		en.step(player, "bye");
 
-		PlayerTestHelper.equipWithStackableItem(player, "egg", 12);
+		equipWithStackableItem(player, "egg", 12);
 
 		en.step(player, "hi");
 		en.step(player, "yes");
