@@ -11,7 +11,7 @@
       <atk value="30"/>
       <range value="1"/>
       <min_level value="75"/>
-      <statusattack value="15,cobra venom"/>
+      <statusattack value="10,cobra venom"/>
       <rate value="6"/>
     </attributes>
     <weight value="2.0"/>
