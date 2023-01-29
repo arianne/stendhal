@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -153,5 +153,12 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 
 	public void onItemPickedUp(Player player) {
 		player.incHarvestedForItem(growingItemName, 1);
+	}
+
+	/**
+	 * Retrieves name of item that is grown/spawned.
+	 */
+	public String getItemName() {
+		return growingItemName;
 	}
 }

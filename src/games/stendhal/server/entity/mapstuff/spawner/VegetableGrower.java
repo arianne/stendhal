@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -138,4 +138,8 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		return false;
 	}
 
+	@Override
+	public String getItemName() {
+		return vegetableName;
+	}
 }

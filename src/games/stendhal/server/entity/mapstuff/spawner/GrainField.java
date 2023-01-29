@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -41,6 +41,11 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 
 	protected String getGrainName() {
 		return grainName;
+	}
+
+	@Override
+	public String getItemName() {
+		return getGrainName();
 	}
 
 	/**
