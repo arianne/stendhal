@@ -11,9 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
@@ -54,28 +52,24 @@ public class SpawnCreature extends AbstractAdminScript {
 			return;
 		}
 
-		CreatureRespawnPoint spawnPoint = null;
-		final List<String> zoneSpawns = new ArrayList<>();
+		final String zoneName = zone.getName();
+		boolean spawned = false;
 		for (final CreatureRespawnPoint p: zone.getRespawnPointList()) {
-			zoneSpawns.add("- " + p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")");
 			if (p.getX() == x && p.getY() == y) {
-				spawnPoint = p;
+				admin.sendPrivateText("Spawning " + p.getPrototypeCreature().getName()
+						+ " at " + zoneName + " " + x + "," + y);
+				p.spawnNow();
+				spawned = true;
 			}
 		}
-		Collections.sort(zoneSpawns);
-
-		final String zoneName = zone.getName();
-		if (spawnPoint == null) {
-			admin.sendPrivateText(NotificationType.ERROR,
-					"Spawn point not found at " + zoneName + " " + x + "," + y
-					+ ". Available spawn points: \n"
-					+ String.join("\n", zoneSpawns));
+		if (spawned) {
 			return;
 		}
 
-		admin.sendPrivateText("Spawning " + spawnPoint.getPrototypeCreature().getName()
-				+ " at " + zoneName + " " + x + "," + y);
-		spawnPoint.spawnNow();
+		admin.sendPrivateText(NotificationType.ERROR, "Spawn point not found at "
+				+ zoneName + " " + x + "," + y + ". Execute `/script "
+				+ ListSpawnPoints.class.getSimpleName()
+				+ ".class` for a list of available points.");
 	}
 
 	@Override
