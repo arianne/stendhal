@@ -40,9 +40,16 @@
     <xsd:attribute name="probability" type="xsd:double"/>
   </xsd:complexType>
 
+  <xsd:complexType name="SpecialItem">
+    <xsd:attribute name="value" type="xsd:string" use="required"/>
+    <xsd:attribute name="note" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+
   <xsd:complexType name="Drops">
     <xsd:sequence>
       <xsd:element name="item" type="Q2:Item" minOccurs="0"
+        maxOccurs="unbounded"/>
+      <xsd:element name="special" type="Q2:SpecialItem" minOccurs="0"
         maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
