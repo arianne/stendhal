@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
@@ -59,22 +61,21 @@ public class SpawnCreature extends ScriptImpl {
 		}
 
 		CreatureRespawnPoint spawnPoint = null;
-		String zoneSpawns = "";
+		final List<String> zoneSpawns = new ArrayList<>();
 		for (final CreatureRespawnPoint p: zone.getRespawnPointList()) {
-			if (zoneSpawns.equals("")) {
-				zoneSpawns = p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")";
-			} else {
-				zoneSpawns += ", " + p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")";
-			}
-
+			zoneSpawns.add("- " + p.getPrototypeCreature().getName() + " (" + p.getX() + "," + p.getY() + ")");
 			if (p.getX() == x && p.getY() == y) {
 				spawnPoint = p;
 			}
 		}
+		Collections.sort(zoneSpawns);
 
 		final String zoneName = zone.getName();
 		if (spawnPoint == null) {
-					+ " " + x + "," + y + ". Available spawn points: " + zoneSpawns);
+			admin.sendPrivateText(NotificationType.ERROR,
+					"Spawn point not found at " + zoneName + " " + x + "," + y
+					+ ". Available spawn points: \n"
+					+ String.join("\n", zoneSpawns));
 			return;
 		}
 
