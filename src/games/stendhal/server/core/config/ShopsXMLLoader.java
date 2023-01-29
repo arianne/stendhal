@@ -39,6 +39,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	/** The singleton instance. */
 	private static ShopsXMLLoader instance;
+	private static boolean initialized = false;
 
 	private final static ShopList shops = ShopList.get();
 
@@ -68,6 +69,11 @@ public class ShopsXMLLoader extends DefaultHandler {
 	private ShopsXMLLoader() {}
 
 	public void init() {
+		if (initialized) {
+			logger.warn("Tried to re-initialize shops loader");
+			return;
+		}
+
 		final String xml = "/data/conf/shops.xml";
 		final InputStream in = getClass().getResourceAsStream(xml);
 
@@ -79,6 +85,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		try {
 			load(new URI(xml));
 			in.close();
+			initialized = true;
 		} catch (final SAXException | URISyntaxException | IOException e) {
 			logger.error(e);
 		}
