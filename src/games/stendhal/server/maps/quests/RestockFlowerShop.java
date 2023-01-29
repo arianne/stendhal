@@ -155,20 +155,20 @@ public class RestockFlowerShop extends AbstractQuest {
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 3, "I still need [items]. Did you bring any of those?"));
 
-        npc.add(ConversationStates.QUESTION_1,
-                Arrays.asList("flower", "remind", "what", "item", "list", "something"),
-                new QuestActiveCondition(QUEST_SLOT),
-                ConversationStates.QUESTION_1,
-                null,
-                new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 3, "I still need [items]. Did you bring any of those?"));
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("flower", "remind", "what", "item", "list", "something"),
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 3, "I still need [items]. Did you bring any of those?"));
 
-        // Player asks to be reminded of remaining flowers required
-        npc.add(ConversationStates.QUESTION_1,
-                Arrays.asList("flower", "remind", "what", "item", "list"),
-                new QuestActiveCondition(QUEST_SLOT),
-                ConversationStates.QUESTION_1,
-                null,
-                new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 3, "I still need [items]. Did you bring any of those?"));
+		// Player asks to be reminded of remaining flowers required
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("flower", "remind", "what", "item", "list"),
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 3, "I still need [items]. Did you bring any of those?"));
 
 		List<List<String>> keywords = Arrays.asList(
 				Arrays.asList("daisy", "bunch of daisies", "bunches of daisies", "lilia", "pansy"),

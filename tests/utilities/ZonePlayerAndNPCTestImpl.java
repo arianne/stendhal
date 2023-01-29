@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -105,5 +105,5 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 		for (final String npcName : npcNames) {
 			this.npcNames.add(npcName);
 		}
-    }
+	}
 }

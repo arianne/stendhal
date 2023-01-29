@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -1559,11 +1559,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 		for (final Portal portal : portals) {
-		    try {
-		        portal.logic();
-		    } catch (final Exception e) {
-		        logger.error("Error in portal logic for zone " + getID().getID(), e);
-		    }
+			try {
+				portal.logic();
+			} catch (final Exception e) {
+				logger.error("Error in portal logic for zone " + getID().getID(), e);
+			}
 		}
 	}
 
@@ -1572,7 +1572,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return true if there are no objects in zone
 	 */
 	public boolean isEmpty() {
-	    return objects.isEmpty();
+		return objects.isEmpty();
 	}
 
 	/**
@@ -1580,56 +1580,56 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return if there are players in zone
 	 */
 	public boolean containsPlayer() {
-	    for (final RPObject obj : objects.values()) {
-	        if (obj instanceof Player) {
-	            return true;
-            }
-	    }
+		for (final RPObject obj : objects.values()) {
+			if (obj instanceof Player) {
+				return true;
+			}
+		}
 
-	    return false;
+		return false;
 	}
 
-    /**
-     * Return whether the zone contains one or more animals.
-     * @return true if there are domesticalanimals in zone
-     */
-    public boolean containsAnimal() {
-        for (final RPObject obj : objects.values()) {
-            if (obj instanceof DomesticAnimal) {
-                return true;
-            }
-        }
+	/**
+	 * Return whether the zone contains one or more animals.
+	 * @return true if there are domesticalanimals in zone
+	 */
+	public boolean containsAnimal() {
+		for (final RPObject obj : objects.values()) {
+			if (obj instanceof DomesticAnimal) {
+				return true;
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     * Return whether the zone contains any creature including players and animals.
-     * @return true if there are creatures in zone
-     */
-    public boolean containsCreature() {
-        for (final RPObject obj : objects.values()) {
-            if (obj instanceof Creature) {
-                return true;
-            }
-        }
+	/**
+	 * Return whether the zone contains any creature including players and animals.
+	 * @return true if there are creatures in zone
+	 */
+	public boolean containsCreature() {
+		for (final RPObject obj : objects.values()) {
+			if (obj instanceof Creature) {
+				return true;
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
 
 	public List<Entity> getFilteredEntities(final FilterCriteria<Entity> criteria) {
 		final List <Entity> result = new LinkedList<Entity>();
 
 		for (final RPObject obj : objects.values()) {
-	            if (obj instanceof Entity) {
+				if (obj instanceof Entity) {
 					final Entity entity = (Entity) obj;
 					if (criteria.passes(entity)) {
 						result.add(entity);
 					}
 
 				}
-	        }
+			}
 
 		return result;
 

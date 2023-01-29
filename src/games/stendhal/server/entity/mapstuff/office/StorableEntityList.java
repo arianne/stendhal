@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,17 +48,17 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 	}
 
 	public StorableEntityList(final StendhalRPZone zone, final Shape shape, final Class<T> clazz) {
-	    this(zone, clazz);
-	    this.shape = shape;
-    }
+		this(zone, clazz);
+		this.shape = shape;
+	}
 
 	/**
-     * Adds a storable entity.
-     *
-     * @param entity storable entity
-     * @return true in case the entity was added successfully;
-     * 				false in case no free spot for it was found
-     */
+	 * Adds a storable entity.
+	 *
+	 * @param entity storable entity
+	 * @return true in case the entity was added successfully;
+	 * 				false in case no free spot for it was found
+	 */
 	public boolean add(final T entity) {
 		final boolean success = calculatePosition(entity);
 		if (!success) {
@@ -94,82 +94,82 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 		}
 
 		return false;
-    }
+	}
 
 	/**
-     * Returns the storable entity for the specified identifier.
-     *
-     * @param identifier name of entity
-     * @return storable entity or <code>null</code> in case there is none
-     */
-    public T getByName(final String identifier) {
-    	final List<T> entities = getList();
-    	for (final T entity : entities) {
-    		if (getName(entity).equals(identifier)) {
-    			return entity;
-    		}
-    	}
-    	return null;
-    }
+	 * Returns the storable entity for the specified identifier.
+	 *
+	 * @param identifier name of entity
+	 * @return storable entity or <code>null</code> in case there is none
+	 */
+	public T getByName(final String identifier) {
+		final List<T> entities = getList();
+		for (final T entity : entities) {
+			if (getName(entity).equals(identifier)) {
+				return entity;
+			}
+		}
+		return null;
+	}
 
 	/**
-     * Removes all storable entities for this identifier.
-     *
-     * @param identifier name of entity
+	 * Removes all storable entities for this identifier.
+	 *
+	 * @param identifier name of entity
 	 * @return if removed successfully
-     */
-    public boolean removeByName(final String identifier) {
-    	final List<T> entities = getList();
-    	boolean changed = false;
-    	for (final T entity : entities) {
-    		if (getName(entity).equals(identifier)) {
-    			zone.remove(entity);
-    			zone.storeToDatabase();
-    			changed = true;
-    		}
-    	}
-    	return changed;
-    }
+	 */
+	public boolean removeByName(final String identifier) {
+		final List<T> entities = getList();
+		boolean changed = false;
+		for (final T entity : entities) {
+			if (getName(entity).equals(identifier)) {
+				zone.remove(entity);
+				zone.storeToDatabase();
+				changed = true;
+			}
+		}
+		return changed;
+	}
 
 	/**
-     * gets a list of storable entities from the zone storage. Note: This is only a
-     * temporary snapshot, do not save it outside the scope of a method.
-     *
-     * @return List of storable entities.
-     */
-    protected List<T> getList() {
-    	final List<T> res = new LinkedList<T>();
-    	for (final RPObject object : zone) {
-    		if (clazz.isInstance(object)) {
-    			final T entity = clazz.cast(object);
-    			res.add(entity);
-    		}
-    	}
-    	return res;
-    }
+	 * gets a list of storable entities from the zone storage. Note: This is only a
+	 * temporary snapshot, do not save it outside the scope of a method.
+	 *
+	 * @return List of storable entities.
+	 */
+	protected List<T> getList() {
+		final List<T> res = new LinkedList<T>();
+		for (final RPObject object : zone) {
+			if (clazz.isInstance(object)) {
+				final T entity = clazz.cast(object);
+				res.add(entity);
+			}
+		}
+		return res;
+	}
 
 	protected void setupTurnNotifier(final int notifyDelta) {
 		this.notifyDelta = notifyDelta;
 		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
 	}
 
-    @Override
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		boolean modified = false;
-    	final List<T> entities = getList();
-    	for (final T entity : entities) {
-    		if (shouldExpire(entity)) {
-    			zone.remove(entity);
-    			modified = true;
-    		}
-    	}
+		final List<T> entities = getList();
+		for (final T entity : entities) {
+			if (shouldExpire(entity)) {
+				zone.remove(entity);
+				modified = true;
+			}
+		}
 
-    	if (modified) {
-    		zone.storeToDatabase();
-    	}
+		if (modified) {
+			zone.storeToDatabase();
+		}
 
 		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
-    }
+	}
 
 	protected abstract String getName(T entity);
 

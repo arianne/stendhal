@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,7 +74,7 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 		for (final ZoneConfigurator zoneConfigurator : zoneConfigurators) {
 			zoneConfigurator.configureZone(zone, null);
 		}
-    }
+	}
 
 	/**
 	 * Creates zone and adds it to RPWorld.
@@ -89,7 +89,7 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 		} else {
 			return setupZone(zoneName, true);
 		}
-    }
+	}
 
 	/**
 	 * Creates zone and adds it to RPWorld.
@@ -110,7 +110,7 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		return zone;
-    }
+	}
 
 	/**
 	 * Create the player to be used in the test.
