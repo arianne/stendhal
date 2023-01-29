@@ -261,7 +261,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	 */
 	private boolean listScripts(final Player player, List<String> filterTerm) {
 
-		StringBuilder stringBuilder = new StringBuilder("list of available scripts:\n");
+		StringBuilder stringBuilder = new StringBuilder("Available scripts");
 		List<String> allScripts = new LinkedList<String>();
 
 		// *.groovy scripts in data/script/
@@ -334,13 +334,14 @@ public class ScriptRunner extends StendhalServerExtension implements
 		allScripts.addAll(scriptsLua);
 		allScripts.addAll(scriptsJava);
 
-		stringBuilder.append("results for /script ");
 		if (!filterTerm.isEmpty()) {
+			stringBuilder.append(" (results for ");
 			for (int i = 0; i < filterTerm.size(); i++) {
 				stringBuilder.append(" " + filterTerm.get(i));
 			}
-			stringBuilder.append(":\n");
+			stringBuilder.append(")");
 		}
+		stringBuilder.append(":");
 
 		final List<String> scriptExcludes = Arrays.asList(
 			"package-info.class", "AbstractOfflineAction.class");
@@ -356,15 +357,15 @@ public class ScriptRunner extends StendhalServerExtension implements
 				int j = 0;
 				for (j = 0; j < filterTerm.size(); j++) {
 					if (allScripts.get(i).matches(searchTermToRegex(filterTerm.get(j)))) {
-						stringBuilder.append(scriptName + "\n");
+						stringBuilder.append("\n- " + scriptName);
 					}
 				}
 			} else {
-				stringBuilder.append(scriptName + "\n");
+				stringBuilder.append("\n- " + scriptName);
 			}
 		}
 
-		stringBuilder.append("(end of listing).");
+		stringBuilder.append("\n(end of listing).");
 		player.sendPrivateText(stringBuilder.toString());
 		return true;
 	}
