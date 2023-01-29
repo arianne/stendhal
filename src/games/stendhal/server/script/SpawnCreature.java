@@ -12,12 +12,13 @@
 package games.stendhal.server.script;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
@@ -27,16 +28,10 @@ import games.stendhal.server.entity.player.Player;
  *
  * Usage: /script SpawnCreature.class <x> <y>
  */
-public class SpawnCreature extends ScriptImpl {
+public class SpawnCreature extends AbstractAdminScript {
 
 	@Override
-	public void execute(final Player admin, final List<String> args) {
-		if (args.size() < 2) {
-			admin.sendPrivateText(NotificationType.ERROR,
-					"Missing parameter: " + getClass().getSimpleName() + ".class <x> <y>");
-			return;
-		}
-
+	protected void run(final Player admin, final List<String> args) {
 		int x;
 		int y;
 		try {
@@ -81,5 +76,20 @@ public class SpawnCreature extends ScriptImpl {
 		admin.sendPrivateText("Spawning " + spawnPoint.getPrototypeCreature().getName()
 				+ " at " + zoneName + " " + x + "," + y);
 		spawnPoint.spawnNow();
+	}
+
+	@Override
+	protected int getMinParams() {
+		return 2;
+	}
+
+	@Override
+	protected int getMaxParams() {
+		return 2;
+	}
+
+	@Override
+	protected List<String> getParamStrings() {
+		return Arrays.asList("<x> <y>");
 	}
 }
