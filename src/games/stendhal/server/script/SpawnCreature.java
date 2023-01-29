@@ -21,39 +21,40 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
 
+/**
+ * Script for invoking spawning of creature spawn point.
+ *
+ * Usage: /script SpawnCreature.class <x> <y>
+ */
 public class SpawnCreature extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		if (args.size() < 3) {
+		if (args.size() < 2) {
 			admin.sendPrivateText(NotificationType.ERROR,
-					"Missing parameter: " + getClass().getSimpleName() + ".class <zone> <x> <y>");
+					"Missing parameter: " + getClass().getSimpleName() + ".class <x> <y>");
 			return;
 		}
-
-		final String zoneName = args.get(0);
-		final String sx = args.get(1);
-		final String sy = args.get(2);
 
 		int x;
 		int y;
 		try {
-			x = Integer.parseInt(sx);
+			x = Integer.parseInt(args.get(0));
 		} catch (final NumberFormatException e) {
 			admin.sendPrivateText(NotificationType.ERROR, "X coordinate must be a number");
 			return;
 		}
 		try {
-			y = Integer.parseInt(sy);
+			y = Integer.parseInt(args.get(1));
 		} catch (final NumberFormatException e) {
 			admin.sendPrivateText(NotificationType.ERROR, "Y coordinate must be a number");
 			return;
 		}
 
-		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
-
+		final StendhalRPZone zone = admin.getZone();
 		if (zone == null) {
-			admin.sendPrivateText(NotificationType.ERROR, "Unknown zone: " + zoneName);
+			admin.sendPrivateText(NotificationType.ERROR, "You are not in a"
+					+ " suitable location for spawning creatures");
 			return;
 		}
 
@@ -71,14 +72,14 @@ public class SpawnCreature extends ScriptImpl {
 			}
 		}
 
+		final String zoneName = zone.getName();
 		if (spawnPoint == null) {
-			admin.sendPrivateText(NotificationType.ERROR, "Spawn point not found at " + zoneName
-					+ " " + sx + "," + sy + ". Available spawn points: " + zoneSpawns);
+					+ " " + x + "," + y + ". Available spawn points: " + zoneSpawns);
 			return;
 		}
 
 		admin.sendPrivateText("Spawning " + spawnPoint.getPrototypeCreature().getName()
-				+ " at " + zoneName + " " + sx + "," + sy);
+				+ " at " + zoneName + " " + x + "," + y);
 		spawnPoint.spawnNow();
 	}
 }
