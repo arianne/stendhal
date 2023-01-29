@@ -332,17 +332,25 @@ public class ScriptRunner extends StendhalServerExtension implements
 			stringBuilder.append(":\n");
 		}
 
+		final List<String> scriptExcludes = Arrays.asList(
+			"package-info.class", "AbstractOfflineAction.class");
+
 		for (int i = 0; i < allScripts.size(); i++) {
+			final String scriptName = allScripts.get(i);
+			if (scriptExcludes.contains(scriptName)) {
+				continue;
+			}
+
 			// if arguments given, will look for matches.
 			if (!filterTerm.isEmpty()) {
 				int j = 0;
 				for (j = 0; j < filterTerm.size(); j++) {
 					if (allScripts.get(i).matches(searchTermToRegex(filterTerm.get(j)))) {
-						stringBuilder.append(allScripts.get(i) + "\n");
+						stringBuilder.append(scriptName + "\n");
 					}
 				}
 			} else {
-				stringBuilder.append(allScripts.get(i) + "\n");
+				stringBuilder.append(scriptName + "\n");
 			}
 		}
 
