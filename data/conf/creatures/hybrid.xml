@@ -247,7 +247,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="medicinal ring" quantity="[1,1]" probability="0.5"/>
-      <item value="poison whip" quantity="1" probability="0.3"/>
+      <item value="venom whip" quantity="1" probability="0.3"/>
     </drops>
     <equips>
     </equips>
@@ -363,7 +363,7 @@
     <corpse name="humanoid_2x2"/>
     <drops>
       <item value="medicinal ring" quantity="[1,1]" probability="1.5"/>
-      <item value="poison whip" quantity="1" probability="1.75"/>
+      <item value="venom whip" quantity="1" probability="1.75"/>
     </drops>
     <equips>
     </equips>

@@ -710,4 +710,4 @@ sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)
 
 data/sprites/items/whip/
 
-poison_whip.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+venom_whip.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
