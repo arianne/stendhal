@@ -208,7 +208,7 @@
       <item value="chaos hammer" quantity="[1,1]" probability="0.25"/>
       <item value="vulcano hammer" quantity="[1,1]" probability="0.0050"/>
       <item value="greater potion" quantity="[1,2]" probability="1.5"/>
-      <special value="kokuda" note="(added to player inventory)"/>
+      <special value="kokuda"/>
     </drops>
     <equips>
     </equips>
