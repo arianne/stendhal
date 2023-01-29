@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright © 2003-2022 - Arianne                       *
+ *                   Copyright © 2003-2023 - Arianne                       *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,12 +21,13 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
 
-public class ExecuteCreatureSpawn extends ScriptImpl {
+public class SpawnCreature extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		if (args.size() < 3) {
-			admin.sendPrivateText(NotificationType.ERROR, "Missing parameter: ExecuteCreatureSpawn.class <zone> <x> <y>");
+			admin.sendPrivateText(NotificationType.ERROR,
+					"Missing parameter: " + getClass().getSimpleName() + ".class <zone> <x> <y>");
 			return;
 		}
 
