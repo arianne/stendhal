@@ -68,6 +68,15 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		setupZone("testzone", zc);
 	}
 
+	/* TODO:
+	 * - Pathfinder
+	 * - Fairgoer
+	 * - Patiently Waiting on Grumpy
+	 * - Aide to Semos Folk
+	 * - Helper of Ados City Dwellers
+	 * - Quest Junkie
+	 */
+
 	@Test
 	public void testFaiumonisCasanova() {
 		final int required = 25;
@@ -84,6 +93,7 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			assertFalse(achievementReached(player, id));
 			QuestRunner.doQuestElfPrincess(player);
 		}
+		assertEquals(String.valueOf(required), player.getQuest("elf_princess", 2));
 		assertTrue(achievementReached(player, id));
 	}
 
@@ -99,6 +109,21 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			QuestRunner.doQuestRestockFlowerShop(player);
 		}
 		assertEquals(String.valueOf(required), player.getQuest("restock_flowershop", 2));
+		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testHeretic() {
+		final int required = 25;
+		final String id = "quest.special.kill_monks.00" + required;
+		loadConfigurators(new games.stendhal.server.maps.ados.city.ManWithHatNPC());
+		assertNotNull(getSpeakerNPC("Andy"));
+		loadQuests(new KillMonks());
+		for (int completions = 0; completions < required; completions++) {
+			assertFalse(achievementReached(player, id));
+			QuestRunner.doQuestKillMonks(player);
+		}
+		assertEquals(String.valueOf(required), player.getQuest("kill_monks", 2));
 		assertTrue(achievementReached(player, id));
 	}
 }

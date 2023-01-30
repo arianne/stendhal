@@ -46,7 +46,9 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.ados.city.ManWithHatNPC;
 import games.stendhal.server.util.KillsForQuestCounter;
+import games.stendhal.server.util.ResetSpeakerNPC;
 import marauroa.common.Pair;
 
 /**
@@ -203,6 +205,11 @@ public class KillMonks extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new ManWithHatNPC(), "Andy");
 	}
 
 	@Override

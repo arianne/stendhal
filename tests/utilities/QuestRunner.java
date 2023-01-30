@@ -30,7 +30,6 @@ public class QuestRunner {
 			player.setQuest(questSlot, 1, "0");
 		}
 		final SpeakerNPC princess = getSpeakerNPC("Tywysoga");
-		final SpeakerNPC rose = getSpeakerNPC("Rose Leigh");
 		assertEquals(ConversationStates.IDLE, princess.getEngine().getCurrentState());
 		Engine en = princess.getEngine();
 		en.step(player, "hi");
@@ -38,7 +37,7 @@ public class QuestRunner {
 		en.step(player, "yes");
 		assertEquals("start", player.getQuest(questSlot, 0));
 		en.step(player, "bye");
-		en = rose.getEngine();
+		en = getSpeakerNPC("Rose Leigh").getEngine();
 		en.step(player, "hi");
 		assertEquals(1, player.getNumberOfEquipped("rhosyd"));
 		en = princess.getEngine();
@@ -48,14 +47,29 @@ public class QuestRunner {
 		en.step(player, "bye");
 	}
 
+	public static void doQuestKillMonks(final Player player) {
+		final String questSlot = "kill_monks";
+		if (player.getQuest(questSlot, 1) != null) {
+			// reset timestamp to do quest again
+			player.setQuest(questSlot, 1, "0");
+		}
+		final Engine en = getSpeakerNPC("Andy").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		player.setSoloKillCount("monk", player.getSoloKillCount("monk") + 25);
+		player.setSoloKillCount("darkmonk", player.getSoloKillCount("darkmonk") + 25);
+		en.step(player, "done");
+		en.step(player, "bye");
+	}
+
 	public static void doQuestRestockFlowerShop(final Player player) {
 		final String questSlot = "restock_flowershop";
 		if (player.getQuest(questSlot, 1) != null) {
 			// reset timestamp to do quest again
 			player.setQuest(questSlot, 1, "0");
 		}
-		final SpeakerNPC seremela = getSpeakerNPC("Seremela");
-		final Engine en = seremela.getEngine();
+		final Engine en = getSpeakerNPC("Seremela").getEngine();
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		en.step(player, "hi");
 		en.step(player, "quest");
