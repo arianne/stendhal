@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,6 +39,8 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.fado.city.SmallBoyNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Balloon for Bobby
@@ -84,6 +86,11 @@ public class BalloonForBobby extends AbstractQuest {
 		prepareGreetWithBalloonStep();
 		prepareAttendingWithBalloonStep();
 		prepareQuestItemQuestionStep();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new SmallBoyNPC(), "Bobby");
 	}
 
 	// Load the different outfits into the list
