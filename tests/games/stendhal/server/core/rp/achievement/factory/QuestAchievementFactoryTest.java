@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -92,12 +93,31 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 	}
 
 	/* TODO:
-	 * - Fairgoer
 	 * - Patiently Waiting on Grumpy
 	 * - Aide to Semos Folk
 	 * - Helper of Ados City Dwellers
 	 * - Quest Junkie
 	 */
+
+	@Test
+	public void testFairgoer() {
+		final int required = 5;
+		final String id = "quest.bobby.balloons.000" + required;
+		loadConfigurators(new games.stendhal.server.maps.fado.city.SmallBoyNPC());
+		final SpeakerNPC bobby = getSpeakerNPC("Bobby");
+		assertNotNull(bobby);
+		loadQuests(new BalloonForBobby());
+		final Engine en = bobby.getEngine();
+		for (int completions = 0; completions < required; completions++) {
+			assertFalse(achievementReached(player, id));
+			player.setOutfit(new Outfit("detail=1"));
+			en.step(player, "hi");
+			en.step(player, "yes");
+			en.step(player, "bye");
+		}
+		assertEquals(String.valueOf(required), player.getQuest("balloon_bobby", 1));
+		assertTrue(achievementReached(player, id));
+	}
 
 	@Test
 	public void testFaiumonisCasanova() {
