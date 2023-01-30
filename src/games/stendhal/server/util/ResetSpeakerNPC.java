@@ -20,6 +20,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * Utility class to restoring SpeakerNPC to startup state.
+ *
+ * NOTE: Be mindful that resetting NPCs will erase ALL quest
+ * transitions. If the NPC is associated with multiple quests
+ * be sure to reload any quests that should remain active.
  */
 public class ResetSpeakerNPC {
 
