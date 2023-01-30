@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 import static utilities.ZoneAndPlayerTestImpl.setupZone;
@@ -23,10 +24,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
 import utilities.AchievementTestHelper;
 import utilities.NPCTestHelper;
+import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.QuestRunner;
 
@@ -41,6 +47,9 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		player = createPlayer("player");
 		assertNotNull(player);
 		init(player);
+		setupZone("testzone");
+		PlayerTestHelper.registerPlayer(player, "testzone");
+		assertNotNull(player.getZone());
 	}
 
 	@After
@@ -49,6 +58,7 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		assertEquals(0, QuestHelper.getLoadedSlots().size());
 		// clean up NPCs
 		assertTrue(NPCTestHelper.removeAllNPCs());
+		PlayerTestHelper.removePlayer(player);
 	}
 
 	private void loadQuests(final IQuest... qs) {
@@ -69,7 +79,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 	}
 
 	/* TODO:
-	 * - Pathfinder
 	 * - Fairgoer
 	 * - Patiently Waiting on Grumpy
 	 * - Aide to Semos Folk
@@ -124,6 +133,32 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			QuestRunner.doQuestKillMonks(player);
 		}
 		assertEquals(String.valueOf(required), player.getQuest("kill_monks", 2));
+		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testPathfinder() {
+		final String id = "quest.special.maze";
+		loadConfigurators(new games.stendhal.server.maps.ados.magician_house.WizardNPC());
+		final SpeakerNPC haizen = getSpeakerNPC("Haizen");
+		assertNotNull(haizen);
+		loadQuests(new Maze());
+		assertFalse(achievementReached(player, id));
+		final Engine en = haizen.getEngine();
+		en.step(player, "hi");
+		en.step(player, "maze");
+		en.step(player, "yes");
+		final StendhalRPZone maze = player.getZone();
+		assertNotNull(maze);
+		// check that player is in maze
+		assertEquals("player_maze", maze.getName());
+		final Portal exit = maze.getPortals().get(0);
+		player.setPosition(exit.getX(), exit.getY());
+		assertEquals(exit.getX(), player.getX());
+		assertEquals(exit.getY(), player.getY());
+		exit.onUsed(player);
+		// portal doesn't teleport in tests
+		//~ assertEquals("testzone", player.getZone().getName());
 		assertTrue(achievementReached(player, id));
 	}
 }

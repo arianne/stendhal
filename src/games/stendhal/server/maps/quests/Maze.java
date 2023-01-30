@@ -33,8 +33,10 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.ados.magician_house.WizardNPC;
 import games.stendhal.server.maps.quests.maze.MazeGenerator;
 import games.stendhal.server.maps.quests.maze.MazeSign;
+import games.stendhal.server.util.ResetSpeakerNPC;
 import games.stendhal.server.util.TimeUtil;
 
 public class Maze extends AbstractQuest {
@@ -51,6 +53,11 @@ public class Maze extends AbstractQuest {
 				false);
 		addMazeSign();
 		setupConversation();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new WizardNPC(), "Haizen");
 	}
 
 	@Override
