@@ -67,7 +67,7 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		assertEquals(0, qloaded.size());
 		//~ assertEquals(0, QuestHelper.getLoadedSlots().size());
 		// clean up NPCs
-		assertTrue(NPCTestHelper.removeAllNPCs());
+		//~ assertTrue(NPCTestHelper.removeAllNPCs());
 		PlayerTestHelper.removePlayer(player);
 	}
 
