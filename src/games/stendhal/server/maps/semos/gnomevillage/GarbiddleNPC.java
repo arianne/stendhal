@@ -45,8 +45,8 @@ public class GarbiddleNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(37, 112));
-				nodes.add(new Node(41, 112));
+				nodes.add(new Node(46, 125));
+				nodes.add(new Node(50, 125));
 				setPath(new FixedPath(nodes, true));
 
 			}
@@ -63,7 +63,7 @@ public class GarbiddleNPC implements ZoneConfigurator {
 		};
 
 		garbiddle.setEntityClass("gnomenpc");
-		garbiddle.setPosition(37, 112);
+		garbiddle.setPosition(46, 125);
 		garbiddle.initHP(100);
 		garbiddle.setDescription("You see Garbiddle, the tiny gnome lady. She waits for customers.");
 		zone.add(garbiddle);

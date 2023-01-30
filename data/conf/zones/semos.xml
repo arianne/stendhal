@@ -587,7 +587,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
     </entity>
-    <entity x="40" y="111">
+    <entity x="44" y="125">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
         <parameter name="shop">buy4gnomes</parameter>
