@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -41,6 +42,7 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC;
 import games.stendhal.server.util.ItemCollection;
 
 /**
@@ -87,7 +89,7 @@ public class RestockFlowerShop extends AbstractQuest {
 	private static final int WAIT_TIME = 3 * MathHelper.MINUTES_IN_ONE_DAY;
 
 	// Quest NPC
-	private final SpeakerNPC npc = npcs.get("Seremela");
+	private SpeakerNPC npc;
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -363,6 +365,7 @@ public class RestockFlowerShop extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
+		npc = npcs.get("Seremela");
 		fillQuestInfo(
 				getTitle(),
 				getNPCName() + " needs to restock the flower shop in Nalwor City.",
@@ -371,5 +374,15 @@ public class RestockFlowerShop extends AbstractQuest {
 		setupActiveQuestResponses();
 		prepareRequestingStep();
 		prepareBringingStep();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		// reset Seremela
+		final StendhalRPZone zone = npc.getZone();
+		zone.remove(npc);
+		final boolean reset = npcs.get("Seremela") == null;
+		new FlowerGrowerNPC().configureZone(zone, zone.getAttributes().toMap());
+		return reset && npcs.get("Seremela") != null;
 	}
 }
