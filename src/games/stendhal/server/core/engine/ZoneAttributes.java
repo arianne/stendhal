@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@ package games.stendhal.server.core.engine;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -181,4 +182,14 @@ public class ZoneAttributes {
 		valid = true;
 	}
 
+	/**
+	 * Retrieves all attributes as a map.
+	 */
+	public Map<String, String> toMap() {
+		final Map<String, String> found = new HashMap<>();
+		for (final String key: attr) {
+			found.put(key, get(key));
+		}
+		return found;
+	}
 }
