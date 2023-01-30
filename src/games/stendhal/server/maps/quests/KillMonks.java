@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -72,9 +72,7 @@ import marauroa.common.Pair;
  * REPETITIONS: <ul><li>once in two weeks</ul>
  *
  * @author Vanessa Julius, idea by anoyyou
-
  */
-
 public class KillMonks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
@@ -92,13 +90,8 @@ public class KillMonks extends AbstractQuest {
 
 	public KillMonks() {
 		super();
-
-		 creaturestokill.put("monk",
-				 new Pair<Integer, Integer>(0, 25));
-
-		 creaturestokill.put("darkmonk",
-				 new Pair<Integer, Integer>(0, 25));
-
+		creaturestokill.put("monk", new Pair<Integer, Integer>(0, 25));
+		creaturestokill.put("darkmonk", new Pair<Integer, Integer>(0, 25));
 	}
 
 	private void step_1() {
@@ -146,8 +139,8 @@ public class KillMonks extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"That is a pity... Maybe you'll change your mind soon and help a sad man then.",
 				new MultipleActions(
-				        new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-				        new DecreaseKarmaAction(5)));
+						new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+						new DecreaseKarmaAction(5)));
 	}
 
 	private void step_2() {
@@ -173,7 +166,7 @@ public class KillMonks extends AbstractQuest {
 		};
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-	    actions.add(addRandomNumberOfItemsAction);
+		actions.add(addRandomNumberOfItemsAction);
 		actions.add(new IncreaseXPAction(15000));
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "killed"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
@@ -279,7 +272,6 @@ public class KillMonks extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "KillMonks";
-
 	}
 
 	@Override
