@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,25 +27,24 @@ import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
  * @author kymara
  */
 public class FlowerSellerNPC implements ZoneConfigurator {
+
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-
-        	new TeleporterBehaviour(buildSemosHouseArea(), null, "0", "Flowers! Get your fresh flowers here!");
+		new TeleporterBehaviour(buildSemosHouseArea(), null, "0", "Flowers! Get your fresh flowers here!");
 	}
 
 	private SpeakerNPC buildSemosHouseArea() {
-
-	    final SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
-	                @Override
+		final SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
+			@Override
 			protected void createPath() {
 				// npc does not move
 				setPath(null);
 			}
-	                @Override
+			@Override
 			protected void createDialog() {
-			    addJob("I'm a wandering flower woman.");
-			    addGoodbye("Everything's coming up roses ... bye ...");
-			    // the rest is in the ElfPrincess quest
+				addJob("I'm a wandering flower woman.");
+				addGoodbye("Everything's coming up roses ... bye ...");
+				// the rest is in the ElfPrincess quest
 			}
 		};
 
