@@ -51,6 +51,9 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.nalwor.tower.PrincessNPC;
+import games.stendhal.server.maps.semos.house.FlowerSellerNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 
 /**
@@ -279,6 +282,13 @@ public class ElfPrincess extends AbstractQuest {
 		offerQuestStep();
 		getFlowerStep();
 		bringFlowerStep();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		// reset Tywysoga & Rose Leigh
+		return ResetSpeakerNPC.reload(new PrincessNPC(), "Tywysoga")
+			&& ResetSpeakerNPC.reload(new FlowerSellerNPC(), null, "Rose Leigh");
 	}
 
 	@Override
