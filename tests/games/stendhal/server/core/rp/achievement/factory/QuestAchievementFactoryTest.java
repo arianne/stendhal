@@ -15,7 +15,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static utilities.QuestRunner.doQuestRestockFlowerShop;
+import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
+import static utilities.ZoneAndPlayerTestImpl.setupZone;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,7 +28,7 @@ import games.stendhal.server.maps.quests.*;
 import utilities.AchievementTestHelper;
 import utilities.NPCTestHelper;
 import utilities.QuestHelper;
-import utilities.ZoneAndPlayerTestImpl;
+import utilities.QuestRunner;
 
 
 public class QuestAchievementFactoryTest extends AchievementTestHelper {
@@ -50,27 +51,52 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		assertTrue(NPCTestHelper.removeAllNPCs());
 	}
 
-	public void loadQuests(final IQuest... qs) {
+	private void loadQuests(final IQuest... qs) {
 		QuestHelper.loadQuests(qs);
 		for (final IQuest q: qs) {
 			assertTrue(QuestHelper.isLoaded(q));
 		}
 	}
 
-	public void loadConfigurators(final ZoneConfigurator... zc) {
-		ZoneAndPlayerTestImpl.setupZone("testzone", zc);
+	private void setupZones(final String... zones) {
+		for (final String zone: zones) {
+			setupZone(zone);
+		}
+	}
+
+	private void loadConfigurators(final ZoneConfigurator... zc) {
+		setupZone("testzone", zc);
+	}
+
+	@Test
+	public void testFaiumonisCasanova() {
+		final int required = 25;
+		final String id = "quest.special.elf_princess.00" + required;
+		setupZones("int_semos_house");
+		loadConfigurators(
+			new games.stendhal.server.maps.nalwor.tower.PrincessNPC(),
+			new games.stendhal.server.maps.semos.house.FlowerSellerNPC()
+		);
+		assertNotNull(getSpeakerNPC("Tywysoga"));
+		assertNotNull(getSpeakerNPC("Rose Leigh"));
+		loadQuests(new ElfPrincess());
+		for (int completions = 0; completions < required; completions++) {
+			assertFalse(achievementReached(player, id));
+			QuestRunner.doQuestElfPrincess(player);
+		}
+		assertTrue(achievementReached(player, id));
 	}
 
 	@Test
 	public void testFloralFondness() {
 		final int required = 50;
 		final String id = "quest.flowershop.00" + required;
-		// Seremela
 		loadConfigurators(new games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC());
+		assertNotNull(getSpeakerNPC("Seremela"));
 		loadQuests(new RestockFlowerShop());
 		for (int completions = 0; completions < required; completions++) {
 			assertFalse(achievementReached(player, id));
-			doQuestRestockFlowerShop(player);
+			QuestRunner.doQuestRestockFlowerShop(player);
 		}
 		assertEquals(String.valueOf(required), player.getQuest("restock_flowershop", 2));
 		assertTrue(achievementReached(player, id));
