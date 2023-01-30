@@ -571,8 +571,8 @@ public class StendhalQuestSystem {
 	 *     Quest instance.
 	 */
 	public void unloadQuest(final IQuest quest) {
+		logger.info("Unloading Quest: " + quest.getName());
 		if (quest.removeFromWorld()) {
-			logger.info("Unloading Quest: " + quest.getName());
 			quests.remove(quest);
 		} else {
 			logger.error(quest.getClass().getName() + " cannot be removed from the world");
