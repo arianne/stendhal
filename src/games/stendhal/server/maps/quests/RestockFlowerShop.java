@@ -17,7 +17,6 @@ import java.util.List;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -44,6 +43,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC;
 import games.stendhal.server.util.ItemCollection;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Restock the Flower Shop
@@ -379,10 +379,6 @@ public class RestockFlowerShop extends AbstractQuest {
 	@Override
 	public boolean removeFromWorld() {
 		// reset Seremela
-		final StendhalRPZone zone = npc.getZone();
-		zone.remove(npc);
-		final boolean reset = npcs.get("Seremela") == null;
-		new FlowerGrowerNPC().configureZone(zone, zone.getAttributes().toMap());
-		return reset && npcs.get("Seremela") != null;
+		return ResetSpeakerNPC.reload(new FlowerGrowerNPC(), "Seremela");
 	}
 }
