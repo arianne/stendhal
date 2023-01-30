@@ -282,8 +282,8 @@ public abstract class PlayerTestHelper {
 	 *
 	 * @param npcName
 	 */
-	public static void removeNPC(final String npcName) {
-		SingletonRepository.getNPCList().remove(npcName);
+	public static boolean removeNPC(final String npcName) {
+		return SpeakerNPCTestHelper.removeSpeakerNPC(npcName);
 	}
 
 	public static void addEmptySlots(final Player player) {

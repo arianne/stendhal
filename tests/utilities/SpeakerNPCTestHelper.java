@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.constants.Events;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.game.RPEvent;
 
@@ -27,7 +28,7 @@ import marauroa.common.game.RPEvent;
  * avoid database access
  *
  */
-public abstract class SpeakerNPCTestHelper {
+public abstract class SpeakerNPCTestHelper extends NPCTestHelper {
 
 	public static SpeakerNPC createSpeakerNPC() {
 		return createSpeakerNPC("bob");
@@ -36,6 +37,18 @@ public abstract class SpeakerNPCTestHelper {
 	public static SpeakerNPC createSpeakerNPC(final String name) {
 		PlayerTestHelper.generateNPCRPClasses();
 		return new SpeakerNPC(name);
+	}
+
+	public static SpeakerNPC getSpeakerNPC(final String name) {
+		return SingletonRepository.getNPCList().get(name);
+	}
+
+	public static boolean removeSpeakerNPC(final SpeakerNPC npc) {
+		return removeNPC(npc);
+	}
+
+	public static boolean removeSpeakerNPC(final String name) {
+		return removeSpeakerNPC(getSpeakerNPC(name));
 	}
 
 	/**
