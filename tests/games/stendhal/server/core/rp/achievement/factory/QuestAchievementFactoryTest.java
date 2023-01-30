@@ -19,6 +19,9 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 import static utilities.ZoneAndPlayerTestImpl.setupZone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +44,8 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 
 	private Player player;
 
+	private List<IQuest> qloaded = new ArrayList<>();
+
 
 	@Before
 	public void setUp() {
@@ -54,18 +59,26 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 
 	@After
 	public void tearDown() {
-		QuestHelper.unloadQuests();
-		assertEquals(0, QuestHelper.getLoadedSlots().size());
+		QuestHelper.unloadQuests(qloaded);
+		for (int idx = qloaded.size()-1; idx >= 0; idx--) {
+			assertFalse(QuestHelper.isLoaded(qloaded.get(idx)));
+			qloaded.remove(idx);
+		}
+		assertEquals(0, qloaded.size());
+		//~ assertEquals(0, QuestHelper.getLoadedSlots().size());
 		// clean up NPCs
 		assertTrue(NPCTestHelper.removeAllNPCs());
 		PlayerTestHelper.removePlayer(player);
 	}
 
 	private void loadQuests(final IQuest... qs) {
+		final int qcount = qloaded.size();
 		QuestHelper.loadQuests(qs);
 		for (final IQuest q: qs) {
 			assertTrue(QuestHelper.isLoaded(q));
+			qloaded.add(q);
 		}
+		assertEquals(qcount + qs.length, qloaded.size());
 	}
 
 	private void setupZones(final String... zones) {

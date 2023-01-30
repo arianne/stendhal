@@ -51,18 +51,36 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		SingletonRepository.getNPCList().clear();
 	}
 
+	/**
+	 * Loads quest instances.
+	 */
 	public static void loadQuests(final IQuest... qs) {
 		for (final IQuest q: qs) {
 			quests.loadQuest(q);
 		}
 	}
 
+	/**
+	 * Unloads quest instances.
+	 */
 	public static void unloadQuests(final IQuest... qs) {
 		for (final IQuest q: qs) {
 			quests.unloadQuest(q);
 		}
 	}
 
+	/**
+	 * Unloads quest instances.
+	 */
+	public static void unloadQuests(final List<IQuest> qs) {
+		for (final IQuest q: qs) {
+			quests.unloadQuest(q);
+		}
+	}
+
+	/**
+	 * Unloads quests using slot identifier strings.
+	 */
 	public static void unloadQuests(final String... slots) {
 		for (final String slot: slots) {
 			quests.unloadQuestSlot(slot);
@@ -78,11 +96,22 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		}
 	}
 
+	/**
+	 * Retrieves a list of loaded quest slot identifiers.
+	 */
 	public static List<String> getLoadedSlots() {
 		return quests.getLoadedSlots();
 	}
 
-	public static boolean isLoaded(final IQuest q) {
-		return quests.isLoaded(q);
+	/**
+	 * Checks if quest instances are loaded.
+	 */
+	public static boolean isLoaded(final IQuest... qs) {
+		for (final IQuest q: qs) {
+			if (!quests.isLoaded(q)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
