@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -190,9 +190,9 @@ public class GoodiesForRudolph extends AbstractQuest {
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-        reward.add(new DropItemAction("reindeer moss", 5));
-        reward.add(new DropItemAction("carrot", 10));
-        reward.add(new DropItemAction("apple", 10));
+		reward.add(new DropItemAction("reindeer moss", 5));
+		reward.add(new DropItemAction("carrot", 10));
+		reward.add(new DropItemAction("apple", 10));
 		reward.add(new EquipItemAction("money", 50));
 		reward.add(new EquipItemAction("snowglobe"));
 		reward.add(new IncreaseXPAction(100));

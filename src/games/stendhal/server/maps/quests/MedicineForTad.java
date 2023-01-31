@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2015 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -220,13 +220,13 @@ public class MedicineForTad extends AbstractQuest {
 				TAD_TALK_WAIT_FOR_FLASK,
 				null);
 
-        // Remind player about the quest
-        npc.add(ConversationStates.ATTENDING,
-                ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, STATE_START),
-                ConversationStates.ATTENDING,
-                TAD_TALK_WAIT_FOR_FLASK,
-                null);
+		// Remind player about the quest
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, STATE_START),
+				ConversationStates.ATTENDING,
+				TAD_TALK_WAIT_FOR_FLASK,
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				"margaret",
@@ -259,10 +259,10 @@ public class MedicineForTad extends AbstractQuest {
 
 		// player said hi with flask on ground then picked it up and said flask
 		npc.add(ConversationStates.ATTENDING, "flask",
-                new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, STATE_START), new PlayerHasItemWithHimCondition("flask")),
-                ConversationStates.ATTENDING,
-                TAD_TALK_GOT_FLASK + " " + TAD_TALK_REWARD_MONEY + " " + TAD_TALK_FLASK_ILISA,
-                new MultipleActions(processStep));
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, STATE_START), new PlayerHasItemWithHimCondition("flask")),
+				ConversationStates.ATTENDING,
+				TAD_TALK_GOT_FLASK + " " + TAD_TALK_REWARD_MONEY + " " + TAD_TALK_FLASK_ILISA,
+				new MultipleActions(processStep));
 
 		// remind the player to take the flask to Ilisa.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -274,11 +274,11 @@ public class MedicineForTad extends AbstractQuest {
 				null);
 
 		// another reminder in case player says task again
-        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, STATE_ILISA),
-                ConversationStates.ATTENDING,
-                TAD_TALK_REMIND_FLASK_ILISA,
-                null);
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, STATE_ILISA),
+				ConversationStates.ATTENDING,
+				TAD_TALK_REMIND_FLASK_ILISA,
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("ilisa", "iiisa", "llisa"),
@@ -359,7 +359,7 @@ public class MedicineForTad extends AbstractQuest {
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
 		processStep.add(new IncreaseXPAction(50));
-        processStep.add(new IncreaseKarmaAction(4));
+		processStep.add(new IncreaseKarmaAction(4));
 		processStep.add(new SetQuestAction(QUEST_SLOT, 0, STATE_POTION));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -379,13 +379,13 @@ public class MedicineForTad extends AbstractQuest {
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-        // another reminder in case player says task again
-        npc.add(ConversationStates.ATTENDING,
-        		ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, STATE_HERB),
-                ConversationStates.ATTENDING,
-                TAD_TALK_REMIND_MEDICINE,
-                null);
+		// another reminder in case player says task again
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, STATE_HERB),
+				ConversationStates.ATTENDING,
+				TAD_TALK_REMIND_MEDICINE,
+				null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new IncreaseXPAction(200));
@@ -406,21 +406,21 @@ public class MedicineForTad extends AbstractQuest {
 		 */
 		npc = npcs.get("Ketteh Wehoh");
 
-        npc.add(ConversationStates.ATTENDING,
-        		ConversationPhrases.GOODBYE_MESSAGES,
-        		new AndCondition(
-        				new QuestStartedCondition(QUEST_SLOT),
-        				new QuestNotCompletedCondition(QUEST_SLOT)),
-                ConversationStates.IDLE,
-                KETTEH_TALK_BYE_REMINDS_OF_TAD,
-                null);
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				new AndCondition(
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotCompletedCondition(QUEST_SLOT)),
+				ConversationStates.IDLE,
+				KETTEH_TALK_BYE_REMINDS_OF_TAD,
+				null);
 
-        npc.add(ConversationStates.ATTENDING,
-        		ConversationPhrases.GOODBYE_MESSAGES,
-        		new QuestNotStartedCondition(QUEST_SLOT),
-                ConversationStates.IDLE,
-                KETTEH_TALK_BYE_INTRODUCES_TAD,
-                null);
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.IDLE,
+				KETTEH_TALK_BYE_INTRODUCES_TAD,
+				null);
 
 	}
 

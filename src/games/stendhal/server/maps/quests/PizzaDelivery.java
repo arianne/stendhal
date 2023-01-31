@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -429,17 +429,17 @@ public class PizzaDelivery extends AbstractQuest {
 		pizza.setBoundTo(name);
 
 		if (player.equipToInventoryOnly(pizza)) {
-    		npc.say("You must bring this "
-    			+ data.flavor
-    			+ " to "
-    			+ Grammar.quoteHash("#" + name)
-    			+ " within "
-    			+ Grammar.quantityplnoun(data.expectedMinutes, "minute", "one")
-    			+ ". Say \"pizza\" so that "
-    			+ name
-    			+ " knows that I sent you. Oh, and please wear this uniform on your way and don't drop this " + data.flavor + " on the ground! Our customers want it fresh.");
-    		player.setOutfit(UNIFORM, true);
-    		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
+			npc.say("You must bring this "
+				+ data.flavor
+				+ " to "
+				+ Grammar.quoteHash("#" + name)
+				+ " within "
+				+ Grammar.quantityplnoun(data.expectedMinutes, "minute", "one")
+				+ ". Say \"pizza\" so that "
+				+ name
+				+ " knows that I sent you. Oh, and please wear this uniform on your way and don't drop this " + data.flavor + " on the ground! Our customers want it fresh.");
+			player.setOutfit(UNIFORM, true);
+			player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
 		} else {
 			npc.say("Come back when you have space to carry the pizza!");
 		}

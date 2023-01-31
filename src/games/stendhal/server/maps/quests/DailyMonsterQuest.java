@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -130,7 +130,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 
-            String previousCreature = null;
+			String previousCreature = null;
 
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -435,7 +435,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotCompletedCondition(QUEST_SLOT),
 						new NotCondition(
-						        new KilledForQuestCondition(QUEST_SLOT, 0))),
+								new KilledForQuestCondition(QUEST_SLOT, 0))),
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
@@ -453,7 +453,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				new AndCondition(
 						new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotCompletedCondition(QUEST_SLOT),
-				        new KilledForQuestCondition(QUEST_SLOT, 0)),
+						new KilledForQuestCondition(QUEST_SLOT, 0)),
 				ConversationStates.ATTENDING,
 				"Good work! Let me thank you in the name of the people of Semos!",
 				new MultipleActions(

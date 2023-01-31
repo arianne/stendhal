@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,10 +120,10 @@ public class MeetHackim extends AbstractQuest {
 					ConversationStates.INFORMATION_2,
 					ConversationStates.INFORMATION_3 },
 				ConversationPhrases.NO_MESSAGES,
-    			null,
-    			ConversationStates.ATTENDING,
-    			"Remember, all the weapons are counted; best to leave them alone.",
-    			null);
+				null,
+				ConversationStates.ATTENDING,
+				"Remember, all the weapons are counted; best to leave them alone.",
+				null);
 
 	}
 

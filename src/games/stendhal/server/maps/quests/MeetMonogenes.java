@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,9 +58,9 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
 
 		// A little trick to make NPC remember if it has met
-        // player before and react accordingly
-        // NPC_name quest doesn't exist anywhere else neither is
-        // used for any other purpose
+		// player before and react accordingly
+		// NPC_name quest doesn't exist anywhere else neither is
+		// used for any other purpose
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
@@ -127,13 +127,13 @@ public class MeetMonogenes extends AbstractQuest {
 			"I have marked the following locations on my map:\n"
 			+ "1 Townhall, Mayor lives here,   2 Library,   3 Bank,   4 Bakery,\n"
 			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
-        	+ "8 Temple, Ilisa,   9 Dangerous Dungeon,\n"
-        	+ "10 Public Chest, \n"
-        	+ "A Semos Village,   B Northern Plains and Mine, \n"
-        	+ "C Very long path to Ados, \n"
-        	+ "D Southern Plains and Nalwor Forest, \n"
-        	+ "E Semos Village Open Field",
-        	new ExamineChatAction("map-semos-city.png", "Semos City", "Map of Semos City"));
+			+ "8 Temple, Ilisa,   9 Dangerous Dungeon,\n"
+			+ "10 Public Chest, \n"
+			+ "A Semos Village,   B Northern Plains and Mine, \n"
+			+ "C Very long path to Ados, \n"
+			+ "D Southern Plains and Nalwor Forest, \n"
+			+ "E Semos Village Open Field",
+			new ExamineChatAction("map-semos-city.png", "Semos City", "Map of Semos City"));
 
 		npc.addReply(
 			"bank",

@@ -304,7 +304,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 				}
 			});
 		if(lj != null) {
-		    scriptsJava = Arrays.asList(lj);
+			scriptsJava = Arrays.asList(lj);
 		} else {
 			scriptsJava = new LinkedList<String>();
 		}
@@ -321,7 +321,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 			});
 
 			for (final Class<?> clazz : dir) {
-				    scriptsJava.add(clazz.getSimpleName() + ".class");
+					scriptsJava.add(clazz.getSimpleName() + ".class");
 			}
 
 		} catch (final ClassNotFoundException e) {

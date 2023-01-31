@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,11 +70,11 @@ public class MeetKetteh extends AbstractQuest {
 								new AndCondition(
 										new QuestInStateCondition(QUEST_SLOT, 0,"seen_naked"),
 										new TimePassedCondition(QUEST_SLOT,1,GRACE_PERIOD)),
-						        new QuestInStateCondition(QUEST_SLOT,"seen"),
-						        new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
-						        // done was an old state that was used when naked but then clothed,
-						        // but they should do learnt_manners too
-						        new QuestInStateCondition(QUEST_SLOT,"done"))),
+										new QuestInStateCondition(QUEST_SLOT,"seen"),
+										new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
+										// done was an old state that was used when naked but then clothed,
+										// but they should do learnt_manners too
+										new QuestInStateCondition(QUEST_SLOT,"done"))),
 				new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -213,8 +213,8 @@ public class MeetKetteh extends AbstractQuest {
 		if ("done".equals(questState) || "learnt_manners".equals(questState)) {
 			res.add("She has been very polite and she has taught me the basics of proper behaviour in Faiumoni.");
 		}
-        if (isCompleted(player)) {
-            res.add("I can meet and have a chat with her again anytime. I better remain on good behaviour though!");
+		if (isCompleted(player)) {
+			res.add("I can meet and have a chat with her again anytime. I better remain on good behaviour though!");
 		}
 		return res;
 	}
@@ -227,8 +227,8 @@ public class MeetKetteh extends AbstractQuest {
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new OrCondition(
-            new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
-            new QuestInStateCondition(QUEST_SLOT,"done")).fire(player, null, null);
+				new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
+				new QuestInStateCondition(QUEST_SLOT,"done")).fire(player, null, null);
 	}
 
 	@Override
