@@ -24,6 +24,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -31,6 +33,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -40,6 +43,10 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
+import games.stendhal.server.maps.semos.bakery.ChefNPC;
+import games.stendhal.server.util.QuestUtils;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Pizza Delivery
@@ -652,6 +659,66 @@ public class PizzaDelivery extends AbstractQuest {
 		buildCustomerDatabase();
 		prepareBaker();
 		prepareCustomers();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		customerDB = null;
+		boolean res = ResetSpeakerNPC.reload(new ChefNPC(), getNPCName())
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(), "Balduin")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.coast.FerryConveyerNPC(), "Eliza")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.city.MakeupArtistNPC(), "Fidorea")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.magician_house.WizardNPC(), "Haizen")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.semos.plains.MillerNPC(), "Jenny")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.orril.magician_house.WitchNPC(), "Jynath")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.outside.AnimalKeeperNPC(), "Katinka")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.semos.jail.GuardNPC(), "Marcus")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.semos.village.SheepSellerNPC(), "Nishiya")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC(), "Ouchit")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC(), "Tor'Koom")
+			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.wall.HolidayingManNPC(), "Martin Farmer");
+		final StendhalQuestSystem quests = SingletonRepository.getStendhalQuestSystem();
+		// reload other quests associated with NPCs
+		quests.reloadQuestSlots(
+			// Balduin
+			"weapons_collector", "weapons_collector2", "ultimate_collector",
+			// Fidorea
+			QuestUtils.evaluateQuestSlotName("paper_chase_20[year]"),
+			// Haizen
+			"maze",
+			// Jenny
+			"kill_gnomes",
+			// Jynath
+			"ceryl_book",
+			// Katinka
+			"zoo_food",
+			// Nishiya
+			"sheep_growing",
+			// Ouchit
+			"bows_ouchit"
+		);
+		final NPCList npcs = SingletonRepository.getNPCList();
+		// Cyk & Ramon are not loaded via zone configurators
+		SpeakerNPC npc = npcs.get("Ramon");
+		StendhalRPZone npczone;
+		if (npc != null) {
+			npczone = npc.getZone();
+			if (npczone != null) {
+				npczone.remove(npc);
+				res = res && npcs.get("Ramon") == null;
+				quests.reloadQuestSlots("blackjack");
+			}
+		}
+		npc = npcs.get("Cyk");
+		if (npc != null) {
+			npczone = npc.getZone();
+			if (npczone != null) {
+				npczone.remove(npc);
+				res = res && npcs.get("Cyk") == null;
+				new HouseBuyingMain().createAthorNPC(npczone);
+			}
+		}
+		return res;
 	}
 
 	@Override
