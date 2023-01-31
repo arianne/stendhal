@@ -51,6 +51,8 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.townhall.MayorNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Daily Monster Kill Quest.
@@ -509,6 +511,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 		step_2();
 		step_3();
 		step_4();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		final boolean res = ResetSpeakerNPC.reload(new MayorNPC(), npcName);
+		// reload other quests associated with Mayor Sakhs
+		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("sad_scientist");
+		return res;
 	}
 
 	@Override
