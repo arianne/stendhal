@@ -150,7 +150,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	 */
 	public static void unloadQuests(final IQuest... qs) {
 		for (final IQuest q: qs) {
-			quests.unloadQuest(q);
+			quests.unloadQuestSlot(q.getSlotName());
 		}
 	}
 
@@ -159,7 +159,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	 */
 	public static void unloadQuests(final List<IQuest> qs) {
 		for (final IQuest q: qs) {
-			quests.unloadQuest(q);
+			quests.unloadQuestSlot(q.getSlotName());
 		}
 	}
 

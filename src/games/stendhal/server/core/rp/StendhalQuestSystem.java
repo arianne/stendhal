@@ -627,6 +627,19 @@ public class StendhalQuestSystem {
 	}
 
 	/**
+	 * Retrieves all loaded instances with slot.
+	 */
+	private List<IQuest> _getAllBySlot(final String slot) {
+		final List<IQuest> qfound = new ArrayList<>();
+		for (final IQuest q: quests) {
+			if (q.getSlotName().equals(slot)) {
+				qfound.add(q);
+			}
+		}
+		return qfound;
+	}
+
+	/**
 	 * Unloads a quest and removes the things related to it from world.
 	 * <p>Note: The quest in question has to support this</p>
 	 *
@@ -636,12 +649,20 @@ public class StendhalQuestSystem {
 	 *     <code>true</code> if quest was unloaded.
 	 */
 	public boolean unloadQuestSlot(final String slot) {
-		final IQuest quest = getQuestFromSlot(slot);
-		if (quest == null) {
+		final List<IQuest> qfound = _getAllBySlot(slot);
+		final int qcount = qfound.size();
+		if (qcount == 0) {
 			logger.error("Quest " + slot + " is not loaded", new Throwable());
 			return true;
 		}
-		return unloadQuest(quest);
+		if (qcount > 1) {
+			logger.warn("Multiple instances of " + slot + " were loaded");
+		}
+		boolean unloaded = true;
+		for (final IQuest q: qfound) {
+			unloaded = unloaded && unloadQuest(q);
+		}
+		return unloaded;
 	}
 
 	/**
