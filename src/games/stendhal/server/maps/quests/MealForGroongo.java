@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -59,7 +59,10 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.fado.hotel.HotelChefNPC;
+import games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC;
 import games.stendhal.server.util.ItemCollection;
+import games.stendhal.server.util.ResetSpeakerNPC;
 import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
@@ -280,6 +283,15 @@ public class MealForGroongo extends AbstractQuest {
         stageCollectIngredientsForDessert();
         stageWaitForMeal();
         stageDeliverMeal();
+    }
+
+    @Override
+    public boolean removeFromWorld() {
+      boolean res = ResetSpeakerNPC.reload(new TroublesomeCustomerNPC(), "Groongo Rahnnt");
+      res = ResetSpeakerNPC.reload(new HotelChefNPC(), "Stefan");
+      // Stefan is also associated with Water for Xhiphin Zohos
+      SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("water_for_xhiphin");
+      return res;
     }
 
     @Override
