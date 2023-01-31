@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -36,6 +37,9 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.orril.magician_house.WitchNPC;
+import games.stendhal.server.maps.semos.library.LibrarianNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Look for a book for Ceryl
@@ -252,6 +256,15 @@ public class LookBookforCeryl extends AbstractQuest {
 		step1LearnAboutQuest();
 		step2getBook();
 		step3returnBook();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		final boolean res = ResetSpeakerNPC.reload(new LibrarianNPC(), getNPCName())
+			&& ResetSpeakerNPC.reload(new WitchNPC(), "Jynath");
+		// reload other quests associated with Ceryl
+		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("obsidian_knife");
+		return res;
 	}
 
 	@Override
