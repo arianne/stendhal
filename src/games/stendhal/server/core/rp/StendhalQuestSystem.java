@@ -260,6 +260,27 @@ public class StendhalQuestSystem {
 	}
 
 	/**
+	 * Reloads quests & resets entities. Quest must support
+	 * `IQuest.removeFromWorld`.
+	 *
+	 * @param slots
+	 *     Slot identifiers of quests to reload.
+	 * @return
+	 *     <code>true</code> if quests reloaded successfully.
+	 */
+	public void reloadQuestSlots(final String... slots) {
+		for (final String slot: slots) {
+			if (!isLoadedSlot(slot)) {
+				continue;
+			}
+			final IQuest q = getQuestFromSlot(slot);
+			// unload then reload
+			unloadQuest(q);
+			initQuestAndAddToWorld(q);
+		}
+	}
+
+	/**
 	 * Caches a quest for loading later.
 	 *
 	 * @param quest
