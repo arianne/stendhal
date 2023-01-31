@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -36,6 +37,8 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Speak with Hayunn
@@ -237,6 +240,14 @@ public class MeetHayunn extends AbstractQuest {
 				"Hayunn Naratha can teach young heroes important basics of the Stendhal world.",
 				false);
 		prepareHayunn();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		final boolean res = ResetSpeakerNPC.reload(new RetiredAdventurerNPC(), getNPCName());
+		// reload other associated quests
+		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("beer_hayunn");
+		return res;
 	}
 
 	@Override
