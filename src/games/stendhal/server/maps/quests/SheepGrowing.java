@@ -37,7 +37,10 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.city.SheepBuyerNPC;
 import games.stendhal.server.maps.semos.city.SheepBuyerNPC.SheepBuyerSpeakerNPC;
+import games.stendhal.server.maps.semos.village.SheepSellerNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Sheep Growing for Nishiya
@@ -85,6 +88,12 @@ public class SheepGrowing extends AbstractQuest {
 		preparePlayerGetsSheepStep();
 		preparePlayerHandsOverSheepStep();
 		preparePlayerReturnsStep();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new SheepSellerNPC(), "Nishiya")
+			&& ResetSpeakerNPC.reload(new SheepBuyerNPC(), "Sato");
 	}
 
 	@Override
