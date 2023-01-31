@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -34,6 +35,9 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.ados.forest.FarmerNPC;
+import games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Bows for Ouchit
@@ -280,6 +284,15 @@ and ask for horse hair.
 				"Bows for Ouchit",
 				"Ouchit is running out of bows and arrows to sell!",
 				false);
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		final boolean res = ResetSpeakerNPC.reload(new BowAndArrowSellerNPC(), getNPCName())
+			&& ResetSpeakerNPC.reload(new FarmerNPC(), "Karl");
+		// reload other quests associated with Karl
+		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("helpwiththeharvest");
+		return res;
 	}
 
 	@Override
