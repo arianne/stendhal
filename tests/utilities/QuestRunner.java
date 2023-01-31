@@ -12,6 +12,7 @@
 package utilities;
 
 import static org.junit.Assert.assertEquals;
+import static utilities.PlayerTestHelper.equipWithItem;
 import static utilities.PlayerTestHelper.equipWithStackableItem;
 import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 
@@ -26,6 +27,50 @@ public class QuestRunner {
 	// for debugging
 	private static String getReply(final SpeakerNPC npc) {
 		return utilities.SpeakerNPCTestHelper.getReply(npc);
+	}
+
+	public static void doQuestBeerForHayunn(final Player player) {
+		final String questSlot = "beer_hayunn";
+		Engine en = getSpeakerNPC("Hayunn Naratha").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		equipWithItem(player, "beer");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestBowsForOuchit(final Player player) {
+		final String questSlot = "bows_ouchit";
+		final Engine en = getSpeakerNPC("Ouchit").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		equipWithStackableItem(player, "wood", 10);
+		en.step(player, "wood");
+		equipWithItem(player, "horse hair");
+		en.step(player, "horse hair");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestDailyMonster(final Player player) {
+		final String questSlot = "daily";
+		if (player.getQuest(questSlot, 1) != null) {
+			// reset timestamp to do quest again
+			player.setQuest(questSlot, 1, "0");
+		}
+		final Engine en = getSpeakerNPC("Mayor Sakhs").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		player.incSoloKillCount(player.getQuest(questSlot, 0).split(",")[0]);
+		en.step(player, "done");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
 	public static void doQuestElfPrincess(final Player player) {
@@ -52,6 +97,85 @@ public class QuestRunner {
 		en.step(player, "bye");
 	}
 
+	public static void doQuestGoodiesForRudolph(final Player player) {
+		final String questSlot = "goodies_rudolph";
+		final Engine en = getSpeakerNPC("Rudolph").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		equipWithStackableItem(player, "apple", 10);
+		equipWithStackableItem(player, "carrot", 10);
+		for (int idx = 0; idx < 5; idx++) {
+			equipWithItem(player, "reindeer moss");
+		}
+		assertEquals(5, player.getNumberOfEquipped("reindeer moss"));
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestHatForMonogenes(final Player player) {
+		final String questSlot = "hat_monogenes";
+		final Engine en = getSpeakerNPC("Monogenes").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		equipWithItem(player, "leather helmet");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestHerbsForCarmen(final Player player) {
+		final String questSlot = "herbs_for_carmen";
+		final Engine en = getSpeakerNPC("Carmen").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "no");
+		en.step(player, "ingredients");
+		en.step(player, "yes");
+		en.step(player, "ingredients");
+		en.step(player, "yes");
+		equipWithItem(player, "porcini");
+		en.step(player, "porcini");
+		equipWithItem(player, "button mushroom");
+		en.step(player, "button mushroom");
+		equipWithStackableItem(player, "arandula", 5);
+		en.step(player, "arandula");
+		equipWithStackableItem(player, "apple", 3);
+		en.step(player, "apple");
+		equipWithStackableItem(player, "wood", 2);
+		en.step(player, "wood");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestHungryJoshua(final Player player) {
+		final String questSlot = "hungry_joshua";
+		final SpeakerNPC xoderos = getSpeakerNPC("Xoderos");
+		Engine en = xoderos.getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "food");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		equipWithStackableItem(player, "sandwich", 5);
+		en = getSpeakerNPC("Joshua").getEngine();
+		en.step(player, "hi");
+		en.step(player, "sandwich");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		en = xoderos.getEngine();
+		en.step(player, "hi");
+		en.step(player, "Joshua");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
 	public static void doQuestKillMonks(final Player player) {
 		final String questSlot = "kill_monks";
 		if (player.getQuest(questSlot, 1) != null) {
@@ -66,6 +190,39 @@ public class QuestRunner {
 		player.setSoloKillCount("darkmonk", player.getSoloKillCount("darkmonk") + 25);
 		en.step(player, "done");
 		en.step(player, "bye");
+	}
+
+	public static void doQuestLearnAboutOrbs(final Player player) {
+		final String questSlot = "learn_scrying";
+		if (player.getLevel() < 11) {
+			player.setLevel(11);
+		}
+		final Engine en = getSpeakerNPC("Ilisa").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "use");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestLookBookforCeryl(final Player player) {
+		final String questSlot = "ceryl_book";
+		final SpeakerNPC ceryl = getSpeakerNPC("Ceryl");
+		Engine en = ceryl.getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "book");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		en = getSpeakerNPC("Jynath").getEngine();
+		en.step(player, "hi");
+		en.step(player, "book");
+		en.step(player, "bye");
+		en = ceryl.getEngine();
+		en.step(player, "hi");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
 	private static void groongoEquipIngredients(final Player player, final String questSlot) {
@@ -123,6 +280,113 @@ public class QuestRunner {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
+	public static void doQuestMedicineForTad(final Player player) {
+		final String questSlot = "introduce_players";
+		final SpeakerNPC tad = getSpeakerNPC("Tad");
+		Engine en = tad.getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		equipWithItem(player, "flask");
+		en.step(player, "flask");
+		en.step(player, "bye");
+		en = getSpeakerNPC("Ilisa").getEngine();
+		en.step(player, "hi");
+		en.step(player, "bye");
+		equipWithItem(player, "arandula");
+		en.step(player, "hi");
+		en.step(player, "bye");
+		en = tad.getEngine();
+		en.step(player, "hi");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetHackim(final Player player) {
+		final String questSlot = "meet_hackim";
+		final Engine en = getSpeakerNPC("Hackim Easso").getEngine();
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "offer");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetHayunn(final Player player) {
+		final String questSlot = "meet_hayunn";
+		final Engine en = getSpeakerNPC("Hayunn Naratha").getEngine();
+		en.step(player, "hi");
+		en.step(player, "bye");
+		player.incSoloKillCount("rat");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetIo(final Player player) {
+		final String questSlot = "meet_io";
+		final Engine en = getSpeakerNPC("Io Flotto").getEngine();
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		en.step(player, "yes");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetKetteh(final Player player) {
+		final String questSlot = "Ketteh";
+		final Engine en = getSpeakerNPC("Ketteh Wehoh").getEngine();
+		en.step(player, "hi");
+		en.step(player, "manners");
+		en.step(player, "bye");
+		assertEquals("learnt_manners", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetMonogenes(final Player player) {
+		final String questSlot = "Monogenes";
+		final Engine en = getSpeakerNPC(questSlot).getEngine();
+		en.step(player, "hi");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestPizzaDelivery(final Player player) {
+		final String questSlot = "pizza_delivery";
+		Engine en = getSpeakerNPC("Leander").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		en = getSpeakerNPC(player.getQuest(questSlot, 0)).getEngine();
+		en.step(player, "hi");
+		en.step(player, "pizza");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestNewsFromHackim(final Player player) {
+		final String questSlot = "news_hackim";
+		Engine en = getSpeakerNPC("Hackim Easso").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		en.step(player, "bye");
+		en = getSpeakerNPC("Xin Blanca").getEngine();
+		en.step(player, "hi");
+		en.step(player, "bye");
+		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
 	public static void doQuestRestockFlowerShop(final Player player) {
 		final String questSlot = "restock_flowershop";
 		if (player.getQuest(questSlot, 1) != null) {
@@ -151,5 +415,18 @@ public class QuestRunner {
 		}
 		assertEquals("done", player.getQuest(questSlot, 0));
 		en.step(player, "bye");
+	}
+
+	public static void doQuestSheepGrowing(final Player player) {
+		final String questSlot = "sheep_growing";
+		final Engine en = getSpeakerNPC("Nishiya").getEngine();
+		en.step(player, "hi");
+		en.step(player, "quest");
+		en.step(player, "yes");
+		// StendhalRPAction         (653 ) - Unable to place sheep at testzone[33,45]
+		player.setQuest(questSlot, 0, "handed_over");
+		en.step(player, "hi");
+		en.step(player, "yes");
+		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 }

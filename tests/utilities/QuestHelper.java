@@ -80,6 +80,8 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	/**
 	 * Loads quests for a region.
 	 *
+	 * FIXME: does not always load quest from resource
+	 *
 	 * @param region
 	 *     Region identifier.
 	 * @return
@@ -98,6 +100,8 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 
 	/**
 	 * Loads quests using slot identifiers.
+	 *
+	 * FIXME: does not always load quest from resource
 	 *
 	 * @param slots
 	 *     List of slot identifiers.

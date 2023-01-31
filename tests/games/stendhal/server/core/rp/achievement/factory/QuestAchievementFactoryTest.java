@@ -27,6 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -34,9 +35,9 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
+import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 import utilities.AchievementTestHelper;
 import utilities.NPCTestHelper;
-import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.QuestRunner;
 
@@ -44,17 +45,17 @@ import utilities.QuestRunner;
 public class QuestAchievementFactoryTest extends AchievementTestHelper {
 
 	private Player player;
-
+	private StendhalRPZone testzone;
 	private List<IQuest> qloaded = new ArrayList<>();
 
 
 	@Before
 	public void setUp() {
-		player = createPlayer("player");
+		player = createPlayerWithOutFit("player");
 		assertNotNull(player);
 		init(player);
-		setupZone("testzone");
-		PlayerTestHelper.registerPlayer(player, "testzone");
+		testzone = setupZone("testzone");
+		registerPlayer(player, "testzone");
 		assertNotNull(player.getZone());
 	}
 
@@ -69,7 +70,7 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		//~ assertEquals(0, QuestHelper.getLoadedSlots().size());
 		// clean up NPCs
 		//~ assertTrue(NPCTestHelper.removeAllNPCs());
-		PlayerTestHelper.removePlayer(player);
+		removePlayer(player);
 	}
 
 	private void loadQuests(final IQuest... qs) {
@@ -93,7 +94,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 	}
 
 	/* TODO:
-	 * - Aide to Semos Folk
 	 * - Helper of Ados City Dwellers
 	 * - Quest Junkie
 	 */
@@ -210,6 +210,234 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			QuestRunner.doQuestMealForGroongo(player);
 		}
 		assertEquals(String.valueOf(required), player.getQuest("meal_for_groongo", 7));
+		assertTrue(achievementReached(player, id));
+	}
+
+	// FIXME: this may not be accurate until dynamically loading quests from region is fixed
+	@Test
+	public void testAideToSemosFolk() {
+		final String id = "quest.special.semos";
+		loadConfigurators(
+			// Balduin
+			new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(),
+			// Carmen
+			new games.stendhal.server.maps.semos.city.HealerNPC(),
+			// Ceryl
+			new games.stendhal.server.maps.semos.library.LibrarianNPC(),
+			// Eliza
+			new games.stendhal.server.maps.ados.coast.FerryConveyerNPC(),
+			// Fidorea
+			new games.stendhal.server.maps.ados.city.MakeupArtistNPC(),
+			// Hackim Easso
+			new games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC(),
+			// Haizen
+			new games.stendhal.server.maps.ados.magician_house.WizardNPC(),
+			// Hayunn Naratha
+			new games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC(),
+			// Ilisa
+			new games.stendhal.server.maps.semos.temple.HealerNPC(),
+			// Io Flotto
+			new games.stendhal.server.maps.semos.temple.TelepathNPC(),
+			// Jenny
+			new games.stendhal.server.maps.semos.plains.MillerNPC(),
+			// Joshua
+			new games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC(),
+			// Jynath
+			new games.stendhal.server.maps.orril.magician_house.WitchNPC(),
+			// Karl
+			new games.stendhal.server.maps.ados.forest.FarmerNPC(),
+			// Katinka
+			new games.stendhal.server.maps.ados.outside.AnimalKeeperNPC(),
+			// Ketteh Wehoh
+			new games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC(),
+			// Leander
+			new games.stendhal.server.maps.semos.bakery.ChefNPC(),
+			// Marcus
+			new games.stendhal.server.maps.semos.jail.GuardNPC(),
+			// Martin Farmer
+			new games.stendhal.server.maps.ados.wall.HolidayingManNPC(),
+			// Mayor Sakhs
+			new games.stendhal.server.maps.semos.townhall.MayorNPC(),
+			// Monogenes
+			new games.stendhal.server.maps.semos.city.GreeterNPC(),
+			// Nishiya
+			new games.stendhal.server.maps.semos.village.SheepSellerNPC(),
+			// Ouchit
+			new games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC(),
+			// Rudolph
+			new games.stendhal.server.maps.semos.city.RudolphNPC(),
+			// Sato
+			new games.stendhal.server.maps.semos.city.SheepBuyerNPC(),
+			// Tad
+			new games.stendhal.server.maps.semos.hostel.BoyNPC(),
+			// Tor'Koom
+			new games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC(),
+			// Xin Blanca
+			new games.stendhal.server.maps.semos.tavern.TraderNPC(),
+			// Xoderos
+			new games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC()
+		);
+		// Cyk
+		new HouseBuyingMain().createAthorNPC(testzone);
+		// Ramon
+		setupZone("-1_athor_ship_w2");
+		loadQuests(new Blackjack());
+
+		// FIXME: loading quests from resource broken
+		//~ qloaded.addAll(QuestHelper.loadRegionalQuests(Region.SEMOS_CITY));
+		loadQuests(
+			new MeetHayunn(),
+			new BeerForHayunn(),
+			new MeetMonogenes(),
+			new HatForMonogenes(),
+			new SheepGrowing(),
+			new MedicineForTad(),
+			new MeetIo(),
+			new MeetHackim(),
+			new NewsFromHackim(),
+			new BowsForOuchit(),
+			new HungryJoshua(),
+			new LookBookforCeryl(),
+			new MeetKetteh(),
+			new PizzaDelivery(),
+			new HerbsForCarmen(),
+			new LearnAboutOrbs(),
+			new DailyMonsterQuest(),
+			new GoodiesForRudolph()
+		);
+
+		// Meet Hayunn Naratha
+		assertNotNull(getSpeakerNPC("Hayunn Naratha"));
+		//~ assertTrue(QuestHelper.isLoaded("meet_hayunn"));
+		QuestRunner.doQuestMeetHayunn(player);
+		assertFalse(achievementReached(player, id));
+		player.drop("studded shield");
+		assertFalse(player.isEquipped("studded shield"));
+
+		// Beer for Hayunn
+		//~ assertTrue(QuestHelper.isLoaded("beer_hayunn"));
+		QuestRunner.doQuestBeerForHayunn(player);
+		assertFalse(achievementReached(player, id));
+
+		// Meet Monogenes
+		assertNotNull(getSpeakerNPC("Monogenes"));
+		//~ assertTrue(QuestHelper.isLoaded("Monogenes"));
+		QuestRunner.doQuestMeetMonogenes(player);
+		assertFalse(achievementReached(player, id));
+
+		// Hat for Monogenes
+		//~ assertTrue(QuestHelper.isLoaded("hat_monogenes"));
+		QuestRunner.doQuestHatForMonogenes(player);
+		assertFalse(achievementReached(player, id));
+
+		// Sheep Growing for Nishiya
+		assertNotNull(getSpeakerNPC("Nishiya"));
+		assertNotNull(getSpeakerNPC("Sato"));
+		//~ assertTrue(QuestHelper.isLoaded("sheep_growing"));
+		QuestRunner.doQuestSheepGrowing(player);
+		assertFalse(achievementReached(player, id));
+
+		// Medicine for Tad
+		assertNotNull(getSpeakerNPC("Tad"));
+		assertNotNull(getSpeakerNPC("Ilisa"));
+		//~ assertTrue(QuestHelper.isLoaded("introduce_players"));
+		QuestRunner.doQuestMedicineForTad(player);
+		assertFalse(achievementReached(player, id));
+
+		// Meet Io
+		assertNotNull(getSpeakerNPC("Io Flotto"));
+		//~ assertTrue(QuestHelper.isLoaded("meet_io"));
+		QuestRunner.doQuestMeetIo(player);
+		assertFalse(achievementReached(player, id));
+
+		// Meet Hackim
+		assertNotNull(getSpeakerNPC("Hackim Easso"));
+		//~ assertTrue(QuestHelper.isLoaded("meet_hackim"));
+		QuestRunner.doQuestMeetHackim(player);
+		assertFalse(achievementReached(player, id));
+
+		// News from Hackim
+		assertNotNull(getSpeakerNPC("Xin Blanca"));
+		//~ assertTrue(QuestHelper.isLoaded("news_hackim"));
+		QuestRunner.doQuestNewsFromHackim(player);
+		assertFalse(achievementReached(player, id));
+		player.drop("leather legs");
+		assertFalse(player.isEquipped("leather legs"));
+
+		// Bows for Ouchit
+		assertNotNull(getSpeakerNPC("Ouchit"));
+		//~ assertNotNull(getSpeakerNPC("Karl"));
+		//~ assertTrue(QuestHelper.isLoaded("bows_ouchit"));
+		QuestRunner.doQuestBowsForOuchit(player);
+		assertFalse(achievementReached(player, id));
+
+		// Hungry Joshua
+		assertNotNull(getSpeakerNPC("Xoderos"));
+		assertNotNull(getSpeakerNPC("Joshua"));
+		//~ assertTrue(QuestHelper.isLoaded("hungry_joshua"));
+		QuestRunner.doQuestHungryJoshua(player);
+		assertFalse(achievementReached(player, id));
+
+		// Look for a Book for Ceryl
+		assertNotNull(getSpeakerNPC("Ceryl"));
+		assertNotNull(getSpeakerNPC("Jynath"));
+		//~ assertTrue(QuestHelper.isLoaded("ceryl_book"));
+		QuestRunner.doQuestLookBookforCeryl(player);
+		assertFalse(achievementReached(player, id));
+
+		// Meet Ketteh Wehoh
+		assertNotNull(getSpeakerNPC("Ketteh Wehoh"));
+		//~ assertTrue(QuestHelper.isLoaded("Ketteh"));
+		QuestRunner.doQuestMeetKetteh(player);
+		assertFalse(achievementReached(player, id));
+
+		// Pizza Delivery
+		assertNotNull(getSpeakerNPC("Leander"));
+		assertNotNull(getSpeakerNPC("Jenny"));
+		assertNotNull(getSpeakerNPC("Tor'Koom"));
+		assertNotNull(getSpeakerNPC("Martin Farmer"));
+		assertNotNull(getSpeakerNPC("Haizen"));
+		assertNotNull(getSpeakerNPC("Fidorea"));
+		assertNotNull(getSpeakerNPC("Eliza"));
+		assertNotNull(getSpeakerNPC("Katinka"));
+		assertNotNull(getSpeakerNPC("Cyk"));
+		assertNotNull(getSpeakerNPC("Marcus"));
+		assertNotNull(getSpeakerNPC("Ramon"));
+		assertNotNull(getSpeakerNPC("Balduin"));
+		//~ assertTrue(QuestHelper.isLoaded("pizza_delivery"));
+		QuestRunner.doQuestPizzaDelivery(player);
+		assertFalse(achievementReached(player, id));
+
+		// Herbs for Carmen
+		assertNotNull(getSpeakerNPC("Carmen"));
+		//~ assertTrue(QuestHelper.isLoaded("herbs_for_carmen"));
+		QuestRunner.doQuestHerbsForCarmen(player);
+		assertFalse(achievementReached(player, id));
+		player.drop("minor potion", player.getNumberOfEquipped("minor potion"));
+		assertFalse(player.isEquipped("minor potion"));
+
+		// Learn About Orbs
+		assertNotNull(getSpeakerNPC("Ilisa"));
+		//~ assertTrue(QuestHelper.isLoaded("learn_scrying"));
+		QuestRunner.doQuestLearnAboutOrbs(player);
+		assertFalse(achievementReached(player, id));
+
+		// initialize creatures
+		if (SingletonRepository.getEntityManager().getCreatures().size() == 0) {
+			SingletonRepository.getEntityManager().populateCreatureList();
+		}
+
+		// Daily Monster
+		assertNotNull(getSpeakerNPC("Mayor Sakhs"));
+		//~ assertTrue(QuestHelper.isLoaded("daily"));
+		QuestRunner.doQuestDailyMonster(player);
+		assertFalse(achievementReached(player, id));
+
+		// Goodies for Rudolph
+		assertNotNull(getSpeakerNPC("Rudolph"));
+		//~ assertTrue(QuestHelper.isLoaded("goodies_rudolph"));
+		QuestRunner.doQuestGoodiesForRudolph(player);
+
 		assertTrue(achievementReached(player, id));
 	}
 }
