@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC;
+import games.stendhal.server.maps.semos.tavern.TraderNPC;
 import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
@@ -177,7 +178,8 @@ public class NewsFromHackim extends AbstractQuest {
 
 	@Override
 	public boolean removeFromWorld() {
-		final boolean res = ResetSpeakerNPC.reload(new BlacksmithAssistantNPC(), getNPCName());
+		final boolean res = ResetSpeakerNPC.reload(new BlacksmithAssistantNPC(), getNPCName())
+			&& ResetSpeakerNPC.reload(new TraderNPC(), "Xin Blanca");
 		// reload other quests associated with Hackim
 		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("meet_hackim", "mrsyeti");
 		return res;
