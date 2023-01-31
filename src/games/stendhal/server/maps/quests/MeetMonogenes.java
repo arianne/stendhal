@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -29,6 +30,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.city.GreeterNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Speak with Monogenes PARTICIPANTS: - Monogenes
@@ -47,6 +50,7 @@ public class MeetMonogenes extends AbstractQuest {
 	public String getSlotName() {
 		return "Monogenes";
 	}
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -186,6 +190,14 @@ public class MeetMonogenes extends AbstractQuest {
 		// }
 		// });
 		npc.addGoodbye();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		final boolean res = ResetSpeakerNPC.reload(new GreeterNPC(), getNPCName());
+		// reload other quests associated with Monogenes
+		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("hat_monogenes");
+		return res;
 	}
 
 	@Override
