@@ -49,7 +49,7 @@ public class BalloonForBobbyTest {
 
 
 		AbstractQuest quest = new BalloonForBobby();
-		quest.addToWorld();
+		QuestHelper.loadQuests(quest);
 
 		questSlot = quest.getSlotName();
 
