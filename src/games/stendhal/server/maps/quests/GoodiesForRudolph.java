@@ -40,6 +40,8 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.city.RudolphNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Christmas Goodies For Rudolph
@@ -234,6 +236,11 @@ public class GoodiesForRudolph extends AbstractQuest {
 				false);
 		prepareRequestingStep();
 		prepareBringingStep();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new RudolphNPC(), getNPCName());
 	}
 
 	@Override
