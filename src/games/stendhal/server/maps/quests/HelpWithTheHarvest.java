@@ -1,6 +1,14 @@
-/**
- *
- */
+/***************************************************************************
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
@@ -84,7 +92,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 			result.add("I want to help Eheneumniranin with his harvest.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "rejected")) {
-		    result.add("Farm work is too hard for me at the moment.");
+			result.add("Farm work is too hard for me at the moment.");
 		}
 
 		if(constructHayCartsNotYetCompletedCondition().fire(player, null, null)) {
@@ -136,7 +144,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-                        "That is really nice. I was getting tired of bringing carts to Karl. Please #push two straw carts to Karl's #barn and tell me that you are #done afterwards.",
+						"That is really nice. I was getting tired of bringing carts to Karl. Please #push two straw carts to Karl's #barn and tell me that you are #done afterwards.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
 		npc.addReply("push", "You can easily move the carts by pushing them in front of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
@@ -228,10 +236,10 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				"Erna is the assistant to #Leander in the bakery. If you bring her #flour, she will bake #bread for you.",
 				null);
 
-        /*
-         * Add a reply on the trigger phrase "quest" after it is finished
-         */
-        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, createFinishedCondition(), ConversationStates.ATTENDING, "We already brought in the complete harvest, thanks again for your help.", null);
+		/*
+		 * Add a reply on the trigger phrase "quest" after it is finished
+		 */
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, createFinishedCondition(), ConversationStates.ATTENDING, "We already brought in the complete harvest, thanks again for your help.", null);
 	}
 
 
@@ -252,7 +260,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		cartTwo.setPosition(79, 106);
 		cartTwo.setDescription(cartDescription);
 
-        ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
+		ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
 
 		zone.add(cartOne);
 		zone.add(cartTwo);
