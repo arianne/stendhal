@@ -93,7 +93,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 	}
 
 	/* TODO:
-	 * - Patiently Waiting on Grumpy
 	 * - Aide to Semos Folk
 	 * - Helper of Ados City Dwellers
 	 * - Quest Junkie
@@ -192,6 +191,25 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		exit.onUsed(player);
 		// portal doesn't teleport in tests
 		//~ assertEquals("testzone", player.getZone().getName());
+		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testPatientlyWaitingOnGrumpy() {
+		final int required = 50;
+		final String id = "quest.groongo.meals.00" + required;
+		loadConfigurators(
+			new games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC(),
+			new games.stendhal.server.maps.fado.hotel.HotelChefNPC()
+		);
+		assertNotNull(getSpeakerNPC("Groongo Rahnnt"));
+		assertNotNull(getSpeakerNPC("Stefan"));
+		loadQuests(new MealForGroongo());
+		for (int completions = 0; completions < required; completions++) {
+			assertFalse(achievementReached(player, id));
+			QuestRunner.doQuestMealForGroongo(player);
+		}
+		assertEquals(String.valueOf(required), player.getQuest("meal_for_groongo", 7));
 		assertTrue(achievementReached(player, id));
 	}
 }
