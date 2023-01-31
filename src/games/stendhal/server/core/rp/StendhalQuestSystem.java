@@ -275,8 +275,9 @@ public class StendhalQuestSystem {
 			}
 			final IQuest q = getQuestFromSlot(slot);
 			// unload then reload
-			unloadQuest(q);
-			initQuestAndAddToWorld(q);
+			if (unloadQuest(q)) {
+				initQuestAndAddToWorld(q);
+			}
 		}
 	}
 
@@ -590,14 +591,21 @@ public class StendhalQuestSystem {
 	 *
 	 * @param quest
 	 *     Quest instance.
+	 * @return
+	 *     <code>true</code> if quest was unloaded.
 	 */
-	public void unloadQuest(final IQuest quest) {
+	public boolean unloadQuest(final IQuest quest) {
 		logger.info("Unloading Quest: " + quest.getName());
+		// remove from loaded list before calling removeFromWorld to prevent redundancies
+		quests.remove(quest);
 		if (quest.removeFromWorld()) {
-			quests.remove(quest);
+			return true;
 		} else {
 			logger.error(quest.getClass().getName() + " cannot be removed from the world");
 		}
+		// removal failed, re-add to loaded list
+		quests.add(quest);
+		return false;
 	}
 
 	/**
@@ -606,14 +614,16 @@ public class StendhalQuestSystem {
 	 *
 	 * @param questName
 	 *     Name of quest to unload.
+	 * @return
+	 *     <code>true</code> if quest was unloaded.
 	 */
-	public void unloadQuest(String questName) {
+	public boolean unloadQuest(String questName) {
 		final IQuest quest = getQuest(questName);
 		if (quest == null) {
 			logger.error("Quest " + questName + " is not loaded", new Throwable());
-			return;
+			return true;
 		}
-		unloadQuest(quest);
+		return unloadQuest(quest);
 	}
 
 	/**
@@ -622,14 +632,16 @@ public class StendhalQuestSystem {
 	 *
 	 * @param slot
 	 *     Quest slot identifier.
+	 * @return
+	 *     <code>true</code> if quest was unloaded.
 	 */
-	public void unloadQuestSlot(final String slot) {
+	public boolean unloadQuestSlot(final String slot) {
 		final IQuest quest = getQuestFromSlot(slot);
 		if (quest == null) {
 			logger.error("Quest " + slot + " is not loaded", new Throwable());
-			return;
+			return true;
 		}
-		unloadQuest(quest);
+		return unloadQuest(quest);
 	}
 
 	/**
