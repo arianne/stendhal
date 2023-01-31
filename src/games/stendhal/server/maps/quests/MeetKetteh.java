@@ -36,6 +36,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Speak with Ketteh
@@ -194,6 +196,11 @@ public class MeetKetteh extends AbstractQuest {
 				"An elegant lady waits in the town hall in Semos and takes care that new inhabitants of Faiumoni will walk around without freezing. She is the town Decency and Manners Warden.",
 				false);
 		step1();
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		return ResetSpeakerNPC.reload(new DecencyAndMannersWardenNPC(), getNPCName());
 	}
 
 	@Override
