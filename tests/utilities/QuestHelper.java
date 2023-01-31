@@ -87,6 +87,37 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	 */
 	public static List<IQuest> loadRegionalQuests(final String region) {
 		final List<IQuest> loaded = new ArrayList<>();
+		for (final IQuest q: getQuestResources()) {
+			if (region.equals(q.getRegion())) {
+				loaded.add(q);
+			}
+		}
+		loadQuests(loaded);
+		return loaded;
+	}
+
+	/**
+	 * Loads quests using slot identifiers.
+	 *
+	 * @param slots
+	 *     List of slot identifiers.
+	 * @return
+	 *     List of quests loaded that match slot list.
+	 */
+	public static List<IQuest> loadQuestsBySlot(final String... slots) {
+		final List<String> slotlist = Arrays.asList(slots);
+		final List<IQuest> loaded = new ArrayList<>();
+		for (final IQuest q: getQuestResources()) {
+			if (slotlist.contains(q.getSlotName())) {
+				loaded.add(q);
+			}
+		}
+		loadQuests(loaded);
+		return loaded;
+	}
+
+	private static List<IQuest> getQuestResources() {
+		final List<IQuest> resources = new ArrayList<>();
 		final String packagename = IQuest.class.getPackage().getName();
 		// this only works for non-jar packaged resources
 		final URL dirquests = ClassLoader.getSystemClassLoader().getResource(packagename.replace(".", "/"));
@@ -107,13 +138,9 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 			if (!(obj instanceof IQuest)) {
 				continue;
 			}
-			final IQuest q = (IQuest) obj;
-			if (region.equals(q.getRegion())) {
-				loaded.add(q);
-			}
+			resources.add((IQuest) obj);
 		}
-		loadQuests(loaded);
-		return loaded;
+		return resources;
 	}
 
 	/**
