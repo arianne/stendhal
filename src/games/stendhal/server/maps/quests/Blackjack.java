@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -422,6 +422,23 @@ public class Blackjack extends AbstractQuest {
 				"Blackjack",
 				"While away your time on Athor Ferry with a challenging game of Blackjack.",
 				true);
+	}
+
+	@Override
+	public boolean removeFromWorld() {
+		boolean res = true;
+		if (ramon != null) {
+			zone.remove(ramon);
+			res = SingletonRepository.getNPCList().get(ramon.getName()) == null;
+		}
+		if (res) {
+			cleanUpTable();
+			playerCards.clear();
+			bankCards.clear();
+			cardValues = null;
+			deck = null;
+		}
+		return res;
 	}
 
 	@Override
