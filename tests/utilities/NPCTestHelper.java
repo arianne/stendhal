@@ -14,8 +14,8 @@ package utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.IRPZone;

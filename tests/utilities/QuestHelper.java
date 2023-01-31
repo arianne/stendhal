@@ -20,14 +20,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
 import org.junit.BeforeClass;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.IQuest;
 import marauroa.common.Log4J;
 import marauroa.server.game.db.DatabaseFactory;
