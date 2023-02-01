@@ -32,9 +32,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.rp.achievement.factory.stub.ChildrensFriendStub;
-import games.stendhal.server.core.rp.achievement.factory.stub.PrivateDetectiveStub;
-import games.stendhal.server.core.rp.achievement.factory.stub.StillBelievingStub;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -61,6 +58,9 @@ import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.quests.ToysCollector;
 import marauroa.common.game.RPObject;
 import utilities.AchievementTestHelper;
+import utilities.quest_runner.ChildrensFriendStub;
+import utilities.quest_runner.PrivateDetectiveStub;
+import utilities.quest_runner.StillBelievingStub;
 
 
 public class FriendAchievementFactoryTest extends AchievementTestHelper {

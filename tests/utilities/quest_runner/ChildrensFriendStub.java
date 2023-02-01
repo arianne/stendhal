@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.factory.stub;
+package utilities.quest_runner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -19,11 +19,11 @@ import static org.junit.Assert.assertTrue;
 import static utilities.PlayerTestHelper.equipWithItem;
 import static utilities.PlayerTestHelper.equipWithStackableItem;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 
 import java.util.Arrays;
 
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -31,14 +31,11 @@ import games.stendhal.server.entity.player.Player;
 
 public class ChildrensFriendStub {
 
-	private static final NPCList npcs = NPCList.get();
-
-
 	public static void doQuestSusi(final Player player) {
 		final String questSlot = "susi";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC susi = npcs.get("Susi");
+		final SpeakerNPC susi = getSpeakerNPC("Susi");
 		assertNotNull(susi);
 
 		final Engine en = susi.getEngine();
@@ -58,41 +55,23 @@ public class ChildrensFriendStub {
 
 	public static void doQuestTad(final Player player) {
 		final String questSlot = "introduce_players";
-		assertNull(player.getQuest(questSlot));
-
-		final SpeakerNPC tad = npcs.get("Tad");
-		final SpeakerNPC ilisa = npcs.get("Ilisa");
-		assertNotNull(tad);
-		assertNotNull(ilisa);
-
+		final SpeakerNPC tad = getSpeakerNPC("Tad");
 		Engine en = tad.getEngine();
-
 		en.step(player, "hi");
 		en.step(player, "quest");
 		en.step(player, "yes");
-		en.step(player, "bye");
-
 		equipWithItem(player, "flask");
-
+		en.step(player, "flask");
+		en.step(player, "bye");
+		en = getSpeakerNPC("Ilisa").getEngine();
 		en.step(player, "hi");
 		en.step(player, "bye");
-
-		en = ilisa.getEngine();
-
-		en.step(player, "hi");
-		en.step(player, "yes");
-		en.step(player, "bye");
-
 		equipWithItem(player, "arandula");
-
 		en.step(player, "hi");
 		en.step(player, "bye");
-
 		en = tad.getEngine();
-
 		en.step(player, "hi");
 		en.step(player, "bye");
-
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
@@ -100,7 +79,7 @@ public class ChildrensFriendStub {
 		final String questSlot = "plinks_toy";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC plink = npcs.get("Plink");
+		final SpeakerNPC plink = getSpeakerNPC("Plink");
 		assertNotNull(plink);
 
 		final Engine en = plink.getEngine();
@@ -123,7 +102,7 @@ public class ChildrensFriendStub {
 		final String questSlot = "toys_collector";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC anna = npcs.get("Anna");
+		final SpeakerNPC anna = getSpeakerNPC("Anna");
 		assertNotNull(anna);
 
 		final Engine en = anna.getEngine();
@@ -152,7 +131,7 @@ public class ChildrensFriendStub {
 		final String questSlot = "campfire";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC sally = npcs.get("Sally");
+		final SpeakerNPC sally = getSpeakerNPC("Sally");
 		assertNotNull(sally);
 
 		final Engine en = sally.getEngine();
@@ -176,8 +155,8 @@ public class ChildrensFriendStub {
 		final String questSlot = "icecream_for_annie";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC annie = npcs.get("Annie Jones");
-		final SpeakerNPC mrsjones = npcs.get("Mrs Jones");
+		final SpeakerNPC annie = getSpeakerNPC("Annie Jones");
+		final SpeakerNPC mrsjones = getSpeakerNPC("Mrs Jones");
 		assertNotNull(annie);
 		assertNotNull(mrsjones);
 
@@ -208,8 +187,8 @@ public class ChildrensFriendStub {
 		final String questSlot = "chocolate_for_elisabeth";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC elisabeth = npcs.get("Elisabeth");
-		final SpeakerNPC carey = npcs.get("Carey");
+		final SpeakerNPC elisabeth = getSpeakerNPC("Elisabeth");
+		final SpeakerNPC carey = getSpeakerNPC("Carey");
 		assertNotNull(elisabeth);
 		assertNotNull(carey);
 
@@ -240,8 +219,8 @@ public class ChildrensFriendStub {
 		final String questSlot = "find_jefs_mom";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC jef = npcs.get("Jef");
-		final SpeakerNPC amber = npcs.get("Amber");
+		final SpeakerNPC jef = getSpeakerNPC("Jef");
+		final SpeakerNPC amber = getSpeakerNPC("Amber");
 		assertNotNull(jef);
 		assertNotNull(amber);
 
@@ -273,8 +252,8 @@ public class ChildrensFriendStub {
 		final String questSlot = "fishsoup_for_hughie";
 		assertNull(player.getQuest(questSlot));
 
-		//final SpeakerNPC hughie = npcs.get("Hughie");
-		final SpeakerNPC anastasia = npcs.get("Anastasia");
+		//final SpeakerNPC hughie = getSpeakerNPC("Hughie");
+		final SpeakerNPC anastasia = getSpeakerNPC("Anastasia");
 		//assertNotNull(hughie);
 		assertNotNull(anastasia);
 
@@ -299,8 +278,8 @@ public class ChildrensFriendStub {
 		final String questSlot = "coded_message";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC finn = npcs.get("Finn Farmer");
-		final SpeakerNPC george = npcs.get("George");
+		final SpeakerNPC finn = getSpeakerNPC("Finn Farmer");
+		final SpeakerNPC george = getSpeakerNPC("George");
 		assertNotNull(finn);
 		assertNotNull(george);
 
@@ -337,7 +316,7 @@ public class ChildrensFriendStub {
 		final String questSlot = "eggs_for_marianne";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC marianne = npcs.get("Marianne");
+		final SpeakerNPC marianne = getSpeakerNPC("Marianne");
 		assertNotNull(marianne);
 
 		final Engine en = marianne.getEngine();

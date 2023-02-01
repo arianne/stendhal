@@ -20,6 +20,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import utilities.quest_runner.StillBelievingStub;
+import utilities.quest_runner.ChildrensFriendStub;
+import utilities.quest_runner.PrivateDetectiveStub;
 
 
 public class QuestRunner {
@@ -58,6 +61,18 @@ public class QuestRunner {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
+	public static void doQuestCampfire(final Player player) {
+		ChildrensFriendStub.doQuestSally(player);
+	}
+
+	public static void doQuestChocolateForElisabeth(final Player player) {
+		ChildrensFriendStub.doQuestElisabeth(player);
+	}
+
+	public static void doQuestCodedMessage(final Player player) {
+		ChildrensFriendStub.doQuestFinn(player);
+	}
+
 	public static void doQuestDailyMonster(final Player player) {
 		final String questSlot = "daily";
 		if (player.getQuest(questSlot, 1) != null) {
@@ -71,6 +86,10 @@ public class QuestRunner {
 		en.step(player, "done");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestEggsForMarianne(final Player player) {
+		ChildrensFriendStub.doQuestMarianne(player);
 	}
 
 	public static void doQuestElfPrincess(final Player player) {
@@ -97,6 +116,22 @@ public class QuestRunner {
 		en.step(player, "bye");
 	}
 
+	public static void doQuestFindGhosts(final Player player) {
+		PrivateDetectiveStub.doQuestCarena(player);
+	}
+
+	public static void doQuestFindJefsMom(final Player player) {
+		ChildrensFriendStub.doQuestJef(player);
+	}
+
+	public static void doQuestFishSoupForHughie(final Player player) {
+		ChildrensFriendStub.doQuestHughie(player);
+	}
+
+	public static void doQuestFindRatKids(final Player player) {
+		PrivateDetectiveStub.doQuestAgnus(player);
+	}
+
 	public static void doQuestGoodiesForRudolph(final Player player) {
 		final String questSlot = "goodies_rudolph";
 		final Engine en = getSpeakerNPC("Rudolph").getEngine();
@@ -114,6 +149,10 @@ public class QuestRunner {
 		en.step(player, "yes");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestGrandfathersWish(final Player player) {
+		PrivateDetectiveStub.doQuestNiall(player);
 	}
 
 	public static void doQuestHatForMonogenes(final Player player) {
@@ -174,6 +213,10 @@ public class QuestRunner {
 		en.step(player, "Joshua");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestIcecreamForAnnie(final Player player) {
+		ChildrensFriendStub.doQuestAnnie(player);
 	}
 
 	public static void doQuestKillMonks(final Player player) {
@@ -281,25 +324,11 @@ public class QuestRunner {
 	}
 
 	public static void doQuestMedicineForTad(final Player player) {
-		final String questSlot = "introduce_players";
-		final SpeakerNPC tad = getSpeakerNPC("Tad");
-		Engine en = tad.getEngine();
-		en.step(player, "hi");
-		en.step(player, "quest");
-		en.step(player, "yes");
-		equipWithItem(player, "flask");
-		en.step(player, "flask");
-		en.step(player, "bye");
-		en = getSpeakerNPC("Ilisa").getEngine();
-		en.step(player, "hi");
-		en.step(player, "bye");
-		equipWithItem(player, "arandula");
-		en.step(player, "hi");
-		en.step(player, "bye");
-		en = tad.getEngine();
-		en.step(player, "hi");
-		en.step(player, "bye");
-		assertEquals("done", player.getQuest(questSlot, 0));
+		ChildrensFriendStub.doQuestTad(player);
+	}
+
+	public static void doQuestMeetBunny(final Player player) {
+		StillBelievingStub.doQuestBunny(player);
 	}
 
 	public static void doQuestMeetHackim(final Player player) {
@@ -360,6 +389,10 @@ public class QuestRunner {
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
 
+	public static void doQuestPlinksToy(final Player player) {
+		ChildrensFriendStub.doQuestPlink(player);
+	}
+
 	public static void doQuestPizzaDelivery(final Player player) {
 		final String questSlot = "pizza_delivery";
 		Engine en = getSpeakerNPC("Leander").getEngine();
@@ -372,6 +405,10 @@ public class QuestRunner {
 		en.step(player, "pizza");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestMeetSanta(final Player player) {
+		StillBelievingStub.doQuestSanta(player);
 	}
 
 	public static void doQuestNewsFromHackim(final Player player) {
@@ -417,6 +454,10 @@ public class QuestRunner {
 		en.step(player, "bye");
 	}
 
+	public static void doQuestSevenCherubs(final Player player) {
+		PrivateDetectiveStub.doQuestCherubs(player);
+	}
+
 	public static void doQuestSheepGrowing(final Player player) {
 		final String questSlot = "sheep_growing";
 		final Engine en = getSpeakerNPC("Nishiya").getEngine();
@@ -428,5 +469,13 @@ public class QuestRunner {
 		en.step(player, "hi");
 		en.step(player, "yes");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestSusi(final Player player) {
+		ChildrensFriendStub.doQuestSusi(player);
+	}
+
+	public static void doQuestToysCollector(final Player player) {
+		ChildrensFriendStub.doQuestAnna(player);
 	}
 }

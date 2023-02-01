@@ -9,11 +9,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.factory.stub;
+package utilities.quest_runner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -24,18 +25,15 @@ import games.stendhal.server.entity.player.Player;
 
 public class PrivateDetectiveStub {
 
-	private static final NPCList npcs = NPCList.get();
-
-
 	public static void doQuestAgnus(final Player player) {
 		final String questSlot = "find_rat_kids";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC agnus = npcs.get("Agnus");
-		final SpeakerNPC opal = npcs.get("Opal");
-		final SpeakerNPC mariel = npcs.get("Mariel");
-		final SpeakerNPC cody = npcs.get("Cody");
-		final SpeakerNPC avalon = npcs.get("Avalon");
+		final SpeakerNPC agnus = getSpeakerNPC("Agnus");
+		final SpeakerNPC opal = getSpeakerNPC("Opal");
+		final SpeakerNPC mariel = getSpeakerNPC("Mariel");
+		final SpeakerNPC cody = getSpeakerNPC("Cody");
+		final SpeakerNPC avalon = getSpeakerNPC("Avalon");
 		assertNotNull(agnus);
 		assertNotNull(opal);
 		assertNotNull(mariel);
@@ -75,11 +73,11 @@ public class PrivateDetectiveStub {
 		final String questSlot = "find_ghosts";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC carena = npcs.get("Carena");
-		final SpeakerNPC mary = npcs.get("Mary");
-		final SpeakerNPC ben = npcs.get("Ben");
-		final SpeakerNPC zak = npcs.get("Zak");
-		final SpeakerNPC goran = npcs.get("Goran");
+		final SpeakerNPC carena = getSpeakerNPC("Carena");
+		final SpeakerNPC mary = getSpeakerNPC("Mary");
+		final SpeakerNPC ben = getSpeakerNPC("Ben");
+		final SpeakerNPC zak = getSpeakerNPC("Zak");
+		final SpeakerNPC goran = getSpeakerNPC("Goran");
 		assertNotNull(carena);
 		assertNotNull(mary);
 		assertNotNull(ben);
@@ -128,7 +126,7 @@ public class PrivateDetectiveStub {
 		final StringBuilder sb = new StringBuilder();
 
 		for (final String name: nameList) {
-			cherub = npcs.get(name);
+			cherub = getSpeakerNPC(name);
 			en = cherub.getEngine();
 
 			en.step(player, "hi");
@@ -150,7 +148,7 @@ public class PrivateDetectiveStub {
 		final String questSlot = "a_grandfathers_wish";
 		assertNull(player.getQuest(questSlot));
 
-		final SpeakerNPC niall = npcs.get("Niall Breland");
+		final SpeakerNPC niall = getSpeakerNPC("Niall Breland");
 		assertNotNull(niall);
 
 		// set quest to final step
