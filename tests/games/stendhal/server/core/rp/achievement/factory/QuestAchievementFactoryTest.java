@@ -34,6 +34,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.maps.quests.BalloonForBobby;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 import games.stendhal.server.maps.quests.Blackjack;
@@ -119,7 +120,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 
 	/* TODO:
 	 * - Helper of Ados City Dwellers
-	 * - Quest Junkie
 	 */
 
 	// FIXME:
@@ -465,5 +465,45 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		QuestRunner.doQuestGoodiesForRudolph(player);
 
 		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void testQuestJunkie() {
+		final int required = 80;
+		final String id = "quest.count." + required;
+		for (int idx = 0; idx < required; idx++) {
+			assertFalse(achievementReached(player, id));
+			final String questSlot = "dummy_quest_" + (idx + 1);
+			loadQuests(new DummyQuest(questSlot));
+			player.setQuest(questSlot, "done");
+		}
+		assertTrue(achievementReached(player, id));
+	}
+
+	private class DummyQuest extends AbstractQuest {
+		private final String slotName;
+
+		public DummyQuest(final String slotName) {
+			this.slotName = slotName;
+		}
+		@Override
+		public String getSlotName() {
+			return slotName;
+		}
+		@Override
+		public String getName() {
+			return slotName.toUpperCase();
+		}
+		@Override
+		public List<String> getHistory(final Player player) {
+			return new ArrayList<String>();
+		}
+		@Override
+		public void addToWorld() {
+		}
+		@Override
+		public boolean removeFromWorld() {
+			return true;
+		}
 	}
 }
