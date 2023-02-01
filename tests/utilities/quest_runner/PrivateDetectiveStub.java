@@ -17,7 +17,6 @@ import static org.junit.Assert.assertNull;
 import static utilities.SpeakerNPCTestHelper.getSpeakerNPC;
 
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;

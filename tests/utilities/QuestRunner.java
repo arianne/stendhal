@@ -20,9 +20,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import utilities.quest_runner.StillBelievingStub;
 import utilities.quest_runner.ChildrensFriendStub;
 import utilities.quest_runner.PrivateDetectiveStub;
+import utilities.quest_runner.StillBelievingStub;
 
 
 public class QuestRunner {
