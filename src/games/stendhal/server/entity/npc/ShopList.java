@@ -253,23 +253,23 @@ public final class ShopList {
 	/**
 	 * Configures an NPC for a shop.
 	 *
-	 * @param seller
-	 *     Seller or buyer shop.
+	 * @param npc
+	 *     NPC being configured.
 	 * @param shopname
 	 *     Shop string identifier.
-	 * @param npcname
-	 *     Name of NPC being configured.
+	 * @param seller
+	 *     Seller or buyer shop.
 	 * @param offer
 	 *     If <code>true</code>, adds reply to "offer".
 	 */
-	public void configureNPC(final String npcname, final String shopname,
+	public void configureNPC(final SpeakerNPC npc, final String shopname,
 			final boolean seller, final boolean offer) {
 		String stype = "sell";
 		if (!seller) {
 			stype = "buy";
 		}
 
-		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcname);
+		final String npcname = npc.getName();
 		if (npc == null) {
 			logger.error("Cannot configure " + stype + "er shop \""
 					+ shopname + "\" for non-existing NPC " + npcname);
@@ -295,6 +295,24 @@ public final class ShopList {
 		} else {
 			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(shoplist), offer);
 		}
+	}
+
+	/**
+	 * Configures an NPC for a shop.
+	 *
+	 * @param npcname
+	 *     Name of NPC being configured.
+	 * @param shopname
+	 *     Shop string identifier.
+	 * @param seller
+	 *     Seller or buyer shop.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
+	 */
+	public void configureNPC(final String npcname, final String shopname,
+			final boolean seller, final boolean offer) {
+		configureNPC(SingletonRepository.getNPCList().get(npcname),
+				shopname, seller, offer);
 	}
 
 	/**
