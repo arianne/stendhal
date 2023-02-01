@@ -57,7 +57,7 @@ public class CommerceAchievementFactoryTest extends AchievementTestHelper {
 	}
 
 	@Test
-	public void testBeginningEntrepreneurship() {
+	public void testTravelingPeddler() {
 		final String id = CommerceAchievementFactory.ID_SELL_20K;
 		assertTrue(achievementEnabled(id));
 		final SpeakerNPC npc = new SpeakerNPC("tester");
@@ -80,20 +80,6 @@ public class CommerceAchievementFactoryTest extends AchievementTestHelper {
 		en.step(player, "yes");
 		en.step(player, "bye");
 		assertTrue(achievementReached(player, id));
-	}
-
-	@Test
-	public void testTravelingPeddler() {
-		assertTrue(achievementEnabled(CommerceAchievementFactory.ID_SELL_20K));
-		for (final String npcname: new String[] {"foo", "bar"}) {
-			assertEquals(0, player.getCommerceTransactionAmount(npcname, true));
-			while (player.getCommerceTransactionAmount(npcname, true) < 10000) {
-				assertFalse(achievementReached(player, CommerceAchievementFactory.ID_SELL_20K));
-				player.incCommerceTransaction(npcname, 1000, true);
-			}
-			assertEquals(10000, player.getCommerceTransactionAmount(npcname, true));
-		}
-		assertTrue(achievementReached(player, CommerceAchievementFactory.ID_SELL_20K));
 	}
 
 	@Test
