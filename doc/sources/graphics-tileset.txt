@@ -1199,9 +1199,9 @@ view_wizards_tower.*  ???; ???; ??? (from multiple tilesets)
 tiled/tileset/sky/cloud/
 
 clouds.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cloudtile.png      janay; ???; Stendhal
-friendlycloud.png  janay; ???; Stendhal
-white_clouds.png   janay; ???; Stendhal
+cloudtile.png      janay; CC BY-SA 3.0; Stendhal
+friendlycloud.png  janay; CC BY-SA 3.0; Stendhal
+white_clouds.png   janay; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/terrain/
 

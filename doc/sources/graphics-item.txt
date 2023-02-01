@@ -395,8 +395,8 @@ sclaria.png        martinix; CC0; https://openclipart.org/detail/3558
 data/sprites/items/holiday/
 
 mint.png       ???; ???; ???
-ornament.png   ???; ???; ???
-ornaments.png  ???; ???; ???
+ornament.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/88910
+ornaments.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/88910
 
 data/sprites/items/jewellery/
 
