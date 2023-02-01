@@ -44,7 +44,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 	private static final Logger logger = Logger.getLogger(CommerceAchievementFactory.class);
 
 	public static final String ID_HAPPY_HOUR = "buy.drink.alcohol";
-	public static final String ID_MARKET_S10K = "commerce.market.sell.10k";
 	public static final String ID_SELL_20K = "commerce.sell.20k";
 	public static final String ID_BUY_ALL = "commerce.buy.all";
 
@@ -111,18 +110,6 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 			"Purchase 100 bottles of beer & 100 glasses of wine",
 			Achievement.EASY_BASE_SCORE, true,
 			new BoughtNumberOfCondition(100, Arrays.asList("beer", "wine"))));
-
-		// DISABLED: players can buy their own things from Harold
-		achievements.add(createAchievement(
-			ID_MARKET_S10K, "Beginning Entrepreneurship",
-			"Make 10000 in sales with Harold",
-			Achievement.EASY_BASE_SCORE, false,
-			new ChatCondition() {
-				@Override
-				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-					return (player.getCommerceTransactionAmount("Harold", true) > 9999);
-				}
-			}));
 
 		achievements.add(createAchievement(
 			ID_SELL_20K, "Traveling Peddler",
