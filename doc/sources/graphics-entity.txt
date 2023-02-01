@@ -712,7 +712,7 @@ unicorn*.png          bluecarrot16, bleutailfly, Jordan Irwin (AntumDeluge); OGA
 
 data/sprites/entity/northpole/
 
-northpole_elf_*.png  bleutailfly; ???; ???
+northpole_elf_*.png  bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/98374
 
 
 data/sprites/entity/ogre/
