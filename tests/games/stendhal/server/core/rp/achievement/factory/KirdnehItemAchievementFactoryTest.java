@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,13 +9,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.quest;
+package games.stendhal.server.core.rp.achievement.factory;
 
-import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_HOARDER;
-import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_PROVIDER;
-import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_STOCKPILER;
-import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_SUPPLIER;
-import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_SUPPORTER;
+import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_ARCHAEOLOGIST;
+import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_DEDICATED;
+import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_MASTER;
+import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_SENIOR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -38,24 +37,26 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
+import games.stendhal.server.maps.kirdneh.museum.CuratorNPC;
 import games.stendhal.server.maps.quests.DailyItemQuest;
+import games.stendhal.server.maps.quests.WeeklyItemQuest;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 
-public class DailyItemAchievementTest extends ZonePlayerAndNPCTestImpl {
+public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player;
 	private SpeakerNPC npc;
 
-	private static final DailyItemQuest questInstance = DailyItemQuest.getInstance();
+	private static final WeeklyItemQuest questInstance = WeeklyItemQuest.getInstance();
 	private final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	private final List<String> idList = Arrays.asList(ID_SUPPORTER, ID_PROVIDER, ID_SUPPLIER,
-			ID_STOCKPILER, ID_HOARDER);
+	private final List<String> idList = Arrays.asList(ID_ARCHAEOLOGIST, ID_DEDICATED, ID_SENIOR,
+			ID_MASTER);
 
 
 	@BeforeClass
@@ -73,15 +74,23 @@ public class DailyItemAchievementTest extends ZonePlayerAndNPCTestImpl {
 	@Override
 	@Before
 	public void setUp() throws Exception {
-		final String npcName = "Mayor Chalmers";
+		/* Kirdneh Musem quest depends on Daily item quest for some checks, so
+		 * Mayor Chalmers & DailyItemQuest must be loaded
+		 */
+
+		final String[] npcNames = {"Hazel", "Mayor Chalmers"};
 
 		zone = setupZone("testzone");
+		addZoneConfigurator(new CuratorNPC(), "testzone");
 		addZoneConfigurator(new MayorNPC(), "testzone");
-		setNpcNames(npcName);
+		setNpcNames(npcNames);
 
 		super.setUp();
 
-		npc = getNPC(npcName);
+		npc = getNPC(npcNames[0]);
+		if (!questSystem.isLoaded(DailyItemQuest.getInstance())) {
+			questSystem.loadQuest(DailyItemQuest.getInstance());
+		}
 		if (!questSystem.isLoaded(questInstance)) {
 			questSystem.loadQuest(questInstance);
 		}
@@ -89,15 +98,17 @@ public class DailyItemAchievementTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void init() {
+		// check NPC & quest have been loaded
 		assertNotNull(npc);
+		assertTrue(questSystem.isLoaded(DailyItemQuest.getInstance()));
 		assertTrue(questSystem.isLoaded(questInstance));
+
 		resetPlayer();
 
-		doCycle(ID_SUPPORTER, 10);
-		doCycle(ID_PROVIDER, 50);
-		doCycle(ID_SUPPLIER, 100);
-		doCycle(ID_STOCKPILER, 250);
-		doCycle(ID_HOARDER, 500);
+		doCycle(ID_ARCHAEOLOGIST, 5);
+		doCycle(ID_DEDICATED, 25);
+		doCycle(ID_SENIOR, 50);
+		doCycle(ID_MASTER, 100);
 	}
 
 	/**

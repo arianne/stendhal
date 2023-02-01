@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.quest;
+package games.stendhal.server.core.rp.achievement.factory;
 
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_DICTATOR;
 import static games.stendhal.server.core.rp.achievement.factory.KillBlordroughsAchievementFactory.COUNT_DOMINATOR;
@@ -48,7 +48,7 @@ import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 
-public class KillBlordroughsAchievementTest extends ZonePlayerAndNPCTestImpl {
+public class KillBlordroughsAchievementFactoryTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player;
 	private SpeakerNPC npc;

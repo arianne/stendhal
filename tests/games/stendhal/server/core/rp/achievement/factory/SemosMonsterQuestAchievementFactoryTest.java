@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,14 +9,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.quest;
+package games.stendhal.server.core.rp.achievement.factory;
 
-import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_ARCHAEOLOGIST;
-import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_DEDICATED;
-import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_MASTER;
-import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_SENIOR;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_CHAMPION;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_GUARDIAN;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_HERO;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_PROTECTOR;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_VANQUISHER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -29,34 +31,38 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.townhall.MayorNPC;
-import games.stendhal.server.maps.kirdneh.museum.CuratorNPC;
-import games.stendhal.server.maps.quests.DailyItemQuest;
-import games.stendhal.server.maps.quests.WeeklyItemQuest;
+import games.stendhal.server.maps.quests.DailyMonsterQuest;
+import games.stendhal.server.maps.semos.townhall.MayorNPC;
 import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
+import utilities.RPClass.CreatureTestHelper;
 
 
-public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
+public class SemosMonsterQuestAchievementFactoryTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player;
 	private SpeakerNPC npc;
 
-	private static final WeeklyItemQuest questInstance = WeeklyItemQuest.getInstance();
+	private static final DailyMonsterQuest questInstance = DailyMonsterQuest.getInstance();
 	private final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	private final List<String> idList = Arrays.asList(ID_ARCHAEOLOGIST, ID_DEDICATED, ID_SENIOR,
-			ID_MASTER);
+	private final List<String> idList = Arrays.asList(ID_PROTECTOR, ID_GUARDIAN, ID_HERO,
+			ID_CHAMPION, ID_VANQUISHER);
+
+	private static EntityManager em;
 
 
 	@BeforeClass
@@ -64,6 +70,8 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 		new DatabaseFactory().initializeDatabase();
 		// initialize world
 		MockStendlRPWorld.get();
+		em = SingletonRepository.getEntityManager();
+		em.populateCreatureList();
 	}
 
 	@AfterClass
@@ -74,41 +82,45 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 	@Override
 	@Before
 	public void setUp() throws Exception {
-		/* Kirdneh Musem quest depends on Daily item quest for some checks, so
-		 * Mayor Chalmers & DailyItemQuest must be loaded
-		 */
-
-		final String[] npcNames = {"Hazel", "Mayor Chalmers"};
+		final String npcName = "Mayor Sakhs";
 
 		zone = setupZone("testzone");
-		addZoneConfigurator(new CuratorNPC(), "testzone");
 		addZoneConfigurator(new MayorNPC(), "testzone");
-		setNpcNames(npcNames);
+		setNpcNames(npcName);
 
 		super.setUp();
 
-		npc = getNPC(npcNames[0]);
-		if (!questSystem.isLoaded(DailyItemQuest.getInstance())) {
-			questSystem.loadQuest(DailyItemQuest.getInstance());
-		}
-		if (!questSystem.isLoaded(questInstance)) {
-			questSystem.loadQuest(questInstance);
-		}
+		npc = getNPC(npcName);
+		CreatureTestHelper.generateRPClasses();
+		questSystem.loadQuest(questInstance);
 	}
 
 	@Test
 	public void init() {
+		// check creatures have been loaded
+		assertNotEquals(0, em.getCreatures().size());
+
 		// check NPC & quest have been loaded
 		assertNotNull(npc);
-		assertTrue(questSystem.isLoaded(DailyItemQuest.getInstance()));
 		assertTrue(questSystem.isLoaded(questInstance));
 
+		// solo kills
 		resetPlayer();
 
-		doCycle(ID_ARCHAEOLOGIST, 5);
-		doCycle(ID_DEDICATED, 25);
-		doCycle(ID_SENIOR, 50);
-		doCycle(ID_MASTER, 100);
+		doCycle(ID_PROTECTOR, 10, false);
+		doCycle(ID_GUARDIAN, 50, false);
+		doCycle(ID_HERO, 100, false);
+		doCycle(ID_CHAMPION, 250, false);
+		doCycle(ID_VANQUISHER, 500, false);
+
+		// shared kills
+		resetPlayer();
+
+		doCycle(ID_PROTECTOR, 10, true);
+		doCycle(ID_GUARDIAN, 50, true);
+		doCycle(ID_HERO, 100, true);
+		doCycle(ID_CHAMPION, 250, true);
+		doCycle(ID_VANQUISHER, 500, true);
 	}
 
 	/**
@@ -120,6 +132,9 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 		player = PlayerTestHelper.createPlayer("player");
 		assertNotNull(player);
 
+		player.setLevel(10);
+		assertEquals(10, player.getLevel());
+
 		assertNull(player.getQuest(QUEST_SLOT));
 
 		AchievementTestHelper.init(player);
@@ -128,10 +143,10 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 		}
 	}
 
-	private void doCycle(final String id, final int reqCount) {
+	private void doCycle(final String id, final int reqCount, final boolean shared) {
 		while (getCompletedCount() < reqCount) {
 			assertFalse(achievementReached(id));
-			doQuest();
+			doQuest(shared);
 		}
 		assertTrue(achievementReached(id));
 	}
@@ -139,7 +154,7 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 	/**
 	 * Completes quest one time.
 	 */
-	private void doQuest() {
+	private void doQuest(final boolean shared) {
 		final Engine en = npc.getEngine();
 
 		final int completedCount = getCompletedCount();
@@ -147,7 +162,7 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(questIsActive());
 
 		// make sure we can do quest again
-		String questState = player.getQuest(QUEST_SLOT, 0);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if (questState != null && questState.equals("done")) {
 			player.setQuest(QUEST_SLOT, 1, "0");
 		}
@@ -155,26 +170,30 @@ public class KirdnehMuseumAchievementTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		en.step(player, "quest");
+
 		assertTrue(questIsActive());
 
-		questState = player.getQuest(QUEST_SLOT, 0);
-		assertNotNull(questState);
+		final String enemyName = player.getQuest(QUEST_SLOT, 0).split(",")[0];
+		assertNotNull(enemyName);
 
-		final String itemName = questState.split("=")[0];
-		final int quantity = Integer.parseInt(questState.split("=")[1]);
-
-		if (quantity > 1) {
-			PlayerTestHelper.equipWithStackableItem(player, itemName, quantity);
-		} else {
-			PlayerTestHelper.equipWithItem(player, itemName);
-		}
-		assertTrue(player.isEquipped(itemName, quantity));
+		onKill(enemyName, shared);
 
 		en.step(player, "done");
 		en.step(player, "bye");
 
 		assertFalse(questIsActive());
 		assertEquals(completedCount + 1, getCompletedCount());
+	}
+
+	private void onKill(final String enemy, final boolean shared) {
+		if (shared) {
+			player.setSharedKillCount(enemy, player.getSharedKill(enemy) + 1);
+		} else {
+			player.setSoloKillCount(enemy, player.getSoloKill(enemy) + 1);
+		}
+		AchievementNotifier.get().onKill(player);
+
+		assertTrue(player.hasKilled(enemy));
 	}
 
 	private int getCompletedCount() {
