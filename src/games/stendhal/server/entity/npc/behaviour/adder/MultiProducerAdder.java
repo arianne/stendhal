@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,7 +74,7 @@ public class MultiProducerAdder {
         producerRegister.add(npcName, behaviour);
 
         /* The Player greets the NPC.
-        * The NPC is not currently producing for player (not started, is rejected, or is complete) */
+         * The NPC is not currently producing for player (not started, is rejected, or is complete) */
         engine.add(ConversationStates.IDLE,
                 ConversationPhrases.GREETING_MESSAGES,
                 new AndCondition(new GreetingMatchesNameCondition(npcName),
@@ -88,8 +88,8 @@ public class MultiProducerAdder {
                 null, new ComplainAboutSentenceErrorAction());
 
         /* In the behaviour a production activity is defined, e.g. 'cast' or 'mill'
-        * and this is used as the trigger to start the production,
-        * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */
+         * and this is used as the trigger to start the production,
+         * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */
         engine.add(
                 ConversationStates.ATTENDING,
                 behaviour.getProductionActivity(),
@@ -127,7 +127,7 @@ public class MultiProducerAdder {
                 false, ConversationStates.ATTENDING,
                 null, new ChatAction() {
                     @Override
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                    public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                         behaviour.transactAgreedDeal(currentBehavRes, npc, player);
 
                         currentBehavRes = null;
@@ -167,7 +167,7 @@ public class MultiProducerAdder {
                 false, ConversationStates.ATTENDING,
                 null, new ChatAction() {
                     @Override
-					public void fire(final Player player, final Sentence sentence,
+                    public void fire(final Player player, final Sentence sentence,
                             final EventRaiser npc) {
                         behaviour.giveProduct(npc, player);
                     }
