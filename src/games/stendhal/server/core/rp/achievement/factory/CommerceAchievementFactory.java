@@ -76,7 +76,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		put("Mia", 2000);
 		put("Mirielle", 20000);
 		put("Mrotho", 2500);
-		put("Nishiya", 60); // 2 sheep (need to update so buying animals is supported)
+		put("Nishiya", 60); // 2 sheep
 		put("Old Mother Helena", 2500);
 		put("Orchiwald", 9000);
 		put("Ouchit", 400);
