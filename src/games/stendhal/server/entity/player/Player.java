@@ -2985,20 +2985,24 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
-	 * This hack increases chance that a player can hit an enemy
-	 * to make the game feel more fair. Hit chance is based on
-	 * raw atk stat, which is much higher for creatues. In order
-	 * to avoid drastic changes to the game's balance, we also
-	 * need to reduce the amount of damage done by players. See:
+	 * This handicap increases chance that a player can hit an enemy to
+	 * make the game feel more fair. Hit chance is based on raw atk stat,
+	 * which is much higher for creatues. In order to avoid drastic
+	 * changes to the game's balance, we also need to reduce the amount
+	 * of damage done by players. See:
 	 *     Player.damageDone.
 	 */
 	@Override
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
-		// use 30 as multiple for players instead of 20
-		return ((int) Math.round(HIT_CHANCE_MULTIPLIER * 1.5)) * attackerATK - roll * defenderDEF;
+		// use 33 as multiple for players instead of 20
+		return ((int) Math.round(HIT_CHANCE_MULTIPLIER * 1.65)) * attackerATK - roll * defenderDEF;
 	}
 
+	/**
+	 * This is overridden to reduce damage done by players to creatures
+	 * to make up for the increased hit chance.
+	 */
 	@Override
 	public int damageDone(final RPEntity defender, double attackingWeaponsValue,
 			final Nature damageType) {
