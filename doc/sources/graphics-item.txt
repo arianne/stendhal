@@ -135,7 +135,7 @@ golden_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 green_dragon_cloak.*    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 lich_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 lion_clan_cloak.*       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-mainio_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 magic_cloak.*           Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
