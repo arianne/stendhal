@@ -1265,7 +1265,7 @@ public class Grammar {
 			} else if (isVowel(last)) {
 				// word finishes with a vowel
 				return word.substring(0, word.length() - 1) + "ing";
-			} else if (isVowel(word.charAt(word.length()-2))) {
+			} else if (isVowel(word.charAt(word.length()-2)) && !isVowel(word.charAt(word.length()-3))) {
 				// word finishes with a single consonant
 				// duplicate the last character
 				return word + word.charAt(word.length()-1) + "ing";
