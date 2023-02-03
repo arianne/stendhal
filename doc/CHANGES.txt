@@ -31,6 +31,9 @@ Changelog
 - new items:
   - amethyst
   - poison whip
+  - poison arrow
+- new NPCs:
+  - Fletcher
 - Unicorn Horns for Zelan quest is now repeatable
 - Restock the Flower Shop quest now tracks completions
 - weapons can now inflict status effects

@@ -203,7 +203,6 @@
     <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
     <description>You see a poison arrow. The tip has been saturated with a poisonous compound.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-    <unattainable>true</unattainable>
     <attributes>
       <atk condition="!testing.combat" value="2"/>
       <ratk condition="testing.combat" value="2"/>

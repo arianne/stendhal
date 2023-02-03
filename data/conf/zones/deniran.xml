@@ -327,7 +327,8 @@
     </portal>
 
     <!-- NPCs -->
-    <!--<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.FletcherNPC"/>-->
+    <!-- TODO: move inside building -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.FletcherNPC"/>
   </zone>
 
 
