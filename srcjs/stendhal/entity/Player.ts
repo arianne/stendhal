@@ -42,7 +42,9 @@ export class Player extends RPEntity {
 
 
 	override destroy(parent: any) {
-		this.onExitZone(marauroa.currentZoneName);
+		if (this == marauroa.me) {
+			this.onExitZone(marauroa.currentZoneName);
+		}
 		super.destroy(parent);
 	}
 
