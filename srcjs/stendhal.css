@@ -248,7 +248,7 @@ div.logcolR {
   height: 1em;
   width: 0px;
   margin: auto;
-  background: url(data/gui/danger.png) repeat;
+  background: url(/data/gui/danger.png) repeat;
 }
 
 #gamewindow {
