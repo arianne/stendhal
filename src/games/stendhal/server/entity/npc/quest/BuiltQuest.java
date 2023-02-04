@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                (C) Copyright 2022-2023 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,13 +65,19 @@ public class BuiltQuest extends AbstractQuest {
 		if (isRepeatable(player)){
 			res.add(history.getWhenQuestCanBeRepeated());
 		}
-		final String completionsShown = history.getWhenCompletionsShown();
+		String completionsShown = history.getWhenCompletionsShown();
 		if (completionsShown != null) {
 			final String tmp = player.getQuest(questSlot, 2);
 			final int count = tmp != "" ? Integer.parseInt(tmp) : 0;
 			if (count > 0) {
-				res.add(completionsShown.replace("[count]", String.valueOf(count))
-						.replaceAll("\\[(.*?)\\]", Grammar.plnoun(count, "$1")));
+				completionsShown = completionsShown.replace("[count]", String.valueOf(count));
+				final int idx1 = completionsShown.indexOf("[");
+				final int idx2 = completionsShown.indexOf("]");
+				if (idx1 > -1 && idx2 > -1) {
+					final String ctype = completionsShown.substring(idx1+1, idx2);
+					completionsShown = completionsShown.replace("[" + ctype + "]", Grammar.plnoun(count, ctype));
+				}
+				res.add(completionsShown);
 			}
 		}
 		return res;
