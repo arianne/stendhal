@@ -73,7 +73,7 @@ public class BuiltQuest extends AbstractQuest {
 				completionsShown = completionsShown.replace("[count]", String.valueOf(count));
 				final int idx1 = completionsShown.indexOf("[");
 				final int idx2 = completionsShown.indexOf("]");
-				if (idx1 > -1 && idx2 > -1) {
+				if (idx1 > -1 && idx2 > idx1+1) {
 					final String ctype = completionsShown.substring(idx1+1, idx2);
 					completionsShown = completionsShown.replace("[" + ctype + "]", Grammar.plnoun(count, ctype));
 				}
