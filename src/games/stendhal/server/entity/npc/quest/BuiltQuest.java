@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.quest;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -67,8 +68,7 @@ public class BuiltQuest extends AbstractQuest {
 		}
 		String completionsShown = history.getWhenCompletionsShown();
 		if (completionsShown != null) {
-			final String tmp = player.getQuest(questSlot, 2);
-			final int count = tmp != "" ? Integer.parseInt(tmp) : 0;
+			final int count = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
 			if (count > 0) {
 				completionsShown = completionsShown.replace("[count]", String.valueOf(count));
 				final int idx1 = completionsShown.indexOf("[");
