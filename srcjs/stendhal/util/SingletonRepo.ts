@@ -15,6 +15,8 @@ import { WeatherRenderer } from "./WeatherRenderer";
 
 import { EmojiStore } from "../data/EmojiStore";
 
+import { Animation } from "../data/tileset/Animation";
+
 import { KeyHandler } from "../ui/KeyHandler";
 import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
 import { SoundManager } from "../ui/SoundManager";
@@ -48,6 +50,10 @@ export class SingletonRepo {
 
 	static getWeatherRenderer(): WeatherRenderer {
 		return WeatherRenderer.get();
+	}
+
+	static getTileAnimation(): Animation {
+		return Animation.get();
 	}
 }
 
