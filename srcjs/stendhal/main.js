@@ -14,6 +14,8 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+var PerceptionListener = require("../../build/ts/PerceptionListener").PerceptionListener;
+
 var Animation = require("../../build/ts/data/tileset/Animation").Animation;
 
 var Chat = require("../../build/ts/util/Chat").Chat;
@@ -131,6 +133,8 @@ stendhal.main = {
 
 		// update user interface on perceptions
 		if (document.getElementById("gamewindow")) {
+			// override perception listener
+			marauroa.perceptionListener = new PerceptionListener(marauroa.perceptionListener);
 			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 				stendhal.zone.sortEntities();
 				ui.get(UIComponentEnum.MiniMap).draw();

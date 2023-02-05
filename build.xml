@@ -1119,7 +1119,7 @@
     <property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js srcjs/stendhal/ui/settings.js"/>
     <property name="js-files-main2"    value="srcjs/stendhal/main.js"/>
     <property name="js-files-main3"    value=""/>
-    <property name="js-files-ts"       value="build/ts/**/*.js"/>
+    <property name="js-files-ts"       value="build/ts/*.js build/ts/**/*.js"/>
 
 
     <java jar="buildtools/closure-compiler/compiler.jar"

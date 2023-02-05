@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,6 +31,7 @@ import { Sign } from "./Sign";
 import { TrainingDummy } from "./TrainingDummy";
 import { UnknownEntity } from "./UnknownEntity";
 import { UseableEntity } from "./UseableEntity";
+import { User } from "./User";
 import { VisibleEntity } from "./VisibleEntity";
 import { WalkBlocker } from "./WalkBlocker";
 
@@ -67,6 +68,7 @@ marauroa.rpobjectFactory["tiled_entity"] = InvisibleEntity;
 marauroa.rpobjectFactory["training_dummy"] = TrainingDummy;
 marauroa.rpobjectFactory["unknown"] = UnknownEntity;
 marauroa.rpobjectFactory["useable_entity"] = UseableEntity;
+marauroa.rpobjectFactory["user"] = User;
 marauroa.rpobjectFactory["visible_entity"] = VisibleEntity;
 marauroa.rpobjectFactory["walkblocker"] = WalkBlocker;
 marauroa.rpobjectFactory["wall"] = InvisibleEntity;
