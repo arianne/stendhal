@@ -13,6 +13,7 @@
 export class SessionManager {
 
 	private storage = window.sessionStorage;
+	private charname?: string;
 	private initialized = false;
 
 	private static instance: SessionManager;
@@ -77,7 +78,7 @@ export class SessionManager {
 	 *     Player's character name.
 	 */
 	setCharName(charname: string) {
-		this.set("charname", charname);
+		this.charname = charname;
 	}
 
 	/**
@@ -87,6 +88,6 @@ export class SessionManager {
 	 *     Player's character name.
 	 */
 	getCharName(): string {
-		return this.get("charname") || "";
+		return this.charname || "";
 	}
 }
