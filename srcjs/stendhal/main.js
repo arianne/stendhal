@@ -16,6 +16,8 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var Main = require("../../build/ts/Main").Main;
 
+var Ground = require("../../build/ts/entity/Ground").Ground;
+
 var Chat = require("../../build/ts/util/Chat").Chat;
 
 var ui = require("../../build/ts/ui/UI").ui;
@@ -37,6 +39,9 @@ var singletons = singletons || require("../../build/ts/util/SingletonRepo").Sing
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
 stendhal.session = stendhal.session || singletons.getSessionManager();
+
+stendhal.zone = stendhal.zone || {}
+stendhal.zone.ground = new Ground();
 
 stendhal.main = new Main();
 
