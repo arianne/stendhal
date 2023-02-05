@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { ConfigManager } from "./ConfigManager";
+import { SessionManager } from "./SessionManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
 import { EmojiStore } from "../data/EmojiStore";
@@ -23,6 +24,10 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
+	}
+
+	static getSessionManager(): SessionManager {
+		return SessionManager.get();
 	}
 
 	static getEmojiStore(): EmojiStore {

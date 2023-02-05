@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2022-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -84,9 +84,9 @@ export class ConfigManager {
 		"Carlito": ""
 	} as {[name: string]: string};
 
-	private dialogstates: any = {};
-	private character?: string;
 	private storage = window.localStorage;
+	private dialogstates: any = {};
+	private initialized = false;
 
 	private static instance: ConfigManager;
 
@@ -103,7 +103,10 @@ export class ConfigManager {
 	}
 
 	init(args: any) {
-		this.character = args.get("char") || args.get("character") || args.get("name");
+		if (this.initialized) {
+			console.warn("tried to re-initialize ConfigManager");
+			return;
+		}
 
 		// store window information for this session
 		// TODO: move this into "session" file
@@ -114,6 +117,7 @@ export class ConfigManager {
 		this.dialogstates["settings"] = {x: 20, y: 20};
 		this.dialogstates["trade"] = {x: 200, y: 100};
 		this.dialogstates["travellog"] = {x: 160, y: 50};
+		this.initialized = true;
 	}
 
 	set(key: string, value: any) {

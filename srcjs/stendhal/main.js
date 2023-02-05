@@ -36,6 +36,7 @@ var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").Outfi
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
+stendhal.session = stendhal.session || singletons.getSessionManager();
 
 
 stendhal.main = {
@@ -77,10 +78,9 @@ stendhal.main = {
 			let name = null;
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
-				stendhal.config.character = name;
+				stendhal.session.setCharName(name);
 			} else {
-				name = stendhal.config.character;
-
+				name = stendhal.session.getCharName();
 				if (name == null || typeof(name) === "undefined" || name === "") {
 					name = marauroa.util.first(characters)["a"]["name"];
 					var admin = 0;
@@ -92,6 +92,7 @@ stendhal.main = {
 							}
 						}
 					}
+					stendhal.session.setCharName(name);
 				}
 			}
 			marauroa.clientFramework.chooseCharacter(name);
@@ -244,7 +245,10 @@ stendhal.main = {
 	startup: function() {
 		stendhal.main.devWarning();
 
-		stendhal.config.init(new URL(document.location).searchParams);
+		// initialize configuration & session managers
+		const sparams = new URL(document.location).searchParams;
+		stendhal.config.init(sparams);
+		stendhal.session.init(sparams);
 
 		// update user interface after config is loaded
 		stendhal.config.refreshTheme();
