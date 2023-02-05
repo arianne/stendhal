@@ -1116,7 +1116,7 @@
     <property name="js-files-ui2"      value=""/>
     <property name="js-files-ui3"      value=""/>
     <property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js"/>
-    <property name="js-files-ui4"      value="srcjs/stendhal/ui/itemcontainer.js"/>
+    <property name="js-files-ui4"      value=""/>
     <property name="js-files-main2"    value="srcjs/stendhal/main.js"/>
     <property name="js-files-main3"    value=""/>
     <property name="js-files-ts"       value="build/ts/*.js build/ts/**/*.js"/>
