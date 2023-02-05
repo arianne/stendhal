@@ -43,7 +43,7 @@ export class User extends Player {
 
 
 	override destroy(parent: any) {
-		this.onExitZone(marauroa.currentZoneName);
+		this.onExitZone();
 		super.destroy(parent);
 	}
 
@@ -128,11 +128,8 @@ export class User extends Player {
 
 	/**
 	 * Actions when player leaves a zone.
-	 *
-	 * @param oldZone
-	 *     Name of zone player is leaving.
 	 */
-	onExitZone(oldZone?: string) {
+	onExitZone() {
 		// stop sounds & clear map sounds cache on zone change
 		const msgs: string[] = [];
 		if (!this.lssMan.removeAll()) {
@@ -162,11 +159,8 @@ export class User extends Player {
 
 	/**
 	 * Actions when player enters a zone.
-	 *
-	 * @param newZone
-	 *     Name of zone player is entering.
 	 */
-	onEnterZone(newZone?: string) {
+	onEnterZone() {
 		// play looped sound sources
 		this.lssMan.onZoneReady();
 	}

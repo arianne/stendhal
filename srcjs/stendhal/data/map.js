@@ -154,7 +154,7 @@ stendhal.data.map = {
 
 		stendhal.data.map.strategy.onMapLoaded(stendhal.data.map);
 
-		marauroa.me.onEnterZone(marauroa.currentZoneName);
+		marauroa.me.onEnterZone();
 	},
 
 	decodeTileset: function(content, name) {
