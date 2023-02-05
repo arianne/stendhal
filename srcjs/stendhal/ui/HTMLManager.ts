@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,16 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var stendhal: any;
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
 
 /**
  * HTML code manipulation.
  */
-stendhal.ui.html = {
-	esc: function(msg, filter=[]){
+export class HTMLManager {
+
+	esc(msg: string, filter=[]) {
 		msg = msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, "<br>");
 		// restore filtered tags
 		for (const tag of filter) {
@@ -27,25 +26,25 @@ stendhal.ui.html = {
 		}
 
 		return msg;
-	},
+	}
 
-	extractKeyCode: function(event) {
-		if (event.which) {
-			return event.which;
+	extractKeyCode(e: KeyboardEvent): number {
+		if (e.which) {
+			return e.which;
 		} else {
 			return e.keyCode;
 		}
-	},
+	}
 
-	niceName: function(s) {
+	niceName(s: string): string {
 		if (!s) {
 			return "";
 		}
 		let temp = s.replace(/_/g, " ").trim();
 		return temp.charAt(0).toUpperCase() + temp.slice(1);
-	},
+	}
 
-	extractPosition: function(event) {
+	extractPosition(event: any): any {
 		let pos = event;
 		if (event.changedTouches) {
 			pos = {
@@ -56,13 +55,13 @@ stendhal.ui.html = {
 			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
 			pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
 		}
-		let canvas = event.target;
+		let canvas = event.target as HTMLCanvasElement;
 		pos.canvasRelativeX = Math.round(pos.offsetX * canvas.width / canvas.clientWidth);
 		pos.canvasRelativeY = Math.round(pos.offsetY * canvas.height / canvas.clientHeight);
 		return pos;
-	},
+	}
 
-	formatTallyMarks: function(line) {
+	formatTallyMarks(line: string): any {
 		let tmp = line.split("<tally>");
 		const pre = tmp[0];
 		tmp = tmp[1].split("</tally>");
@@ -93,4 +92,4 @@ stendhal.ui.html = {
 
 		return [pre, tally, post];
 	}
-};
+}

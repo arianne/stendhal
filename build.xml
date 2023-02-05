@@ -1112,7 +1112,7 @@
     <property name="js-files-data2"    value=""/>
     <property name="js-files-entity5"  value=""/>
     <property name="js-files-entity6"  value=""/>
-    <property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js"/>
+    <property name="js-files-ui1"      value="srcjs/stendhal/ui/gamewindow.js"/>
     <property name="js-files-ui2"      value=""/>
     <property name="js-files-ui3"      value=""/>
     <property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js"/>
