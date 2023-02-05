@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,25 +9,26 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var marauroa: any;
+declare var stendhal: any;
 
-var Animation = require("../../../build/ts/data/tileset/Animation").Animation;
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.zone = stendhal.zone || {};
+import { Entity } from "./Entity";
 
 
 /**
  * stendhal zone
  */
-stendhal.zone = {
-	getEntitiesAt: function(x, y, filter) {
+export class Zone {
+
+	private entities: Entity[] = [];
+
+
+	getEntitiesAt(x: number, y: number, filter: boolean): Entity[] {
 		const xGrid = x / 32;
 		const yGrid = y / 32;
-		const entities = [];
-		for (const i in stendhal.zone.entities) {
-			const obj = stendhal.zone.entities[i];
+		const entities = [] as Entity[];
+		for (const i in this.entities) {
+			const obj = this.entities[i];
 			if (obj.isVisibleToAction(filter)
 					&& (obj["_x"] <= xGrid) && (obj["_y"] <= yGrid)
 					&& (obj["_x"] + (obj["width"] || 1) >= xGrid)
@@ -38,11 +39,11 @@ stendhal.zone = {
 		}
 
 		return entities;
-	},
+	}
 
-	entityAt: function(x, y, filter) {
+	entityAt(x: number, y: number, filter: boolean): Entity {
 		let res = stendhal.zone.ground;
-		for (const obj of stendhal.zone.getEntitiesAt(x, y, filter)) {
+		for (const obj of this.getEntitiesAt(x, y, filter)) {
 			res = obj;
 		}
 
@@ -52,8 +53,8 @@ stendhal.zone = {
 		}
 
 		// Otherwise we check the draw area
-		for (var i in stendhal.zone.entities) {
-			let obj = stendhal.zone.entities[i];
+		for (var i in this.entities) {
+			let obj = this.entities[i];
 			if (!obj.isVisibleToAction(filter) || !obj["drawHeight"]) {
 				continue;
 			}
@@ -72,9 +73,9 @@ stendhal.zone = {
 		}
 
 		return res;
-	},
+	}
 
-	sortEntities: function() {
+	sortEntities() {
 		this.entities = [];
 		for (var i in marauroa.currentZone) {
 			if (marauroa.currentZone.hasOwnProperty(i) && typeof(marauroa.currentZone[i]) != "function") {
@@ -94,4 +95,4 @@ stendhal.zone = {
 			return rv;
 		});
 	}
-};
+}
