@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,38 +9,38 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
-
-window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+declare var stendhal: any;
 
 
-stendhal.ui.touch = {
-	longTouchDuration: 300,
-	timestampTouchStart: 0,
-	timestampTouchEnd: 0,
+export class TouchHandler {
+
+	private readonly longTouchDuration = 300;
+	private timestampTouchStart = 0;
+	private timestampTouchEnd = 0;
+	private held?: any;
+
 
 	/**
 	 * Sets timestamp when touch applied.
 	 */
-	onTouchStart: function() {
-		stendhal.ui.touch.timestampTouchStart = +new Date();
-	},
+	onTouchStart() {
+		this.timestampTouchStart = +new Date();
+	}
 
 	/**
 	 * Sets timestamp when touch released.
 	 */
-	onTouchEnd: function() {
-		stendhal.ui.touch.timestampTouchEnd = +new Date();
-	},
+	onTouchEnd() {
+		this.timestampTouchEnd = +new Date();
+	}
 
 	/**
 	 * Checks if a touch event represents a long touch after release.
 	 */
-	isLongTouch: function() {
-		return (stendhal.ui.touch.timestampTouchEnd - stendhal.ui.touch.timestampTouchStart
-				> stendhal.ui.touch.longTouchDuration);
-	},
+	isLongTouch(): boolean {
+		return (this.timestampTouchEnd - this.timestampTouchStart
+				> this.longTouchDuration);
+	}
 
 	/**
 	 * Sets information for a held item representation.
@@ -48,20 +48,20 @@ stendhal.ui.touch = {
 	 * @param img
 	 *     Sprite <code>Image</code> to be drawn.
 	 */
-	setHeldItem: function(img) {
-		stendhal.ui.touch.held = {
+	setHeldItem(img: HTMLImageElement) {
+		this.held = {
 			image: img,
-			offsetX: document.getElementById("gamewindow").offsetWidth - 32,
+			offsetX: document.getElementById("gamewindow")!.offsetWidth - 32,
 			offsetY: 0
-		}
-	},
+		};
+	}
 
 	/**
 	 * Clears information for a held item representation.
 	 */
-	unsetHeldItem: function() {
-		stendhal.ui.touch.held = undefined;
-	},
+	unsetHeldItem() {
+		this.held = undefined;
+	}
 
 	/**
 	 * Draws representation of a held item.
@@ -69,11 +69,11 @@ stendhal.ui.touch = {
 	 * @param ctx
 	 *     Canvas context where representation is drawn.
 	 */
-	drawHeld: function(ctx) {
+	drawHeld(ctx: CanvasRenderingContext2D) {
 		ctx.globalAlpha = 0.5;
-		ctx.drawImage(stendhal.ui.touch.held.image,
-				stendhal.ui.touch.held.offsetX + stendhal.ui.gamewindow.offsetX,
-				stendhal.ui.touch.held.offsetY + stendhal.ui.gamewindow.offsetY);
+		ctx.drawImage(this.held.image,
+				this.held.offsetX + stendhal.ui.gamewindow.offsetX,
+				this.held.offsetY + stendhal.ui.gamewindow.offsetY);
 		ctx.globalAlpha = 1.0;
 	}
 }

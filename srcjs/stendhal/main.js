@@ -23,6 +23,7 @@ var Chat = require("../../build/ts/util/Chat").Chat;
 
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+var TouchHandler = require("../../build/ts/ui/TouchHandler").TouchHandler;
 var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
 
 var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
@@ -40,6 +41,9 @@ var singletons = singletons || require("../../build/ts/util/SingletonRepo").Sing
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
 stendhal.session = stendhal.session || singletons.getSessionManager();
+
+stendhal.ui = stendhal.ui || {}
+stendhal.ui.touch = new TouchHandler();
 
 stendhal.zone = new Zone();
 stendhal.zone.ground = new Ground();
