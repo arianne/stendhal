@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,30 +9,17 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Entity } from "./Entity";
-import { RPEntity } from "./RPEntity";
-
-import { MenuItem} from "../action/MenuItem";
-
-import { ui } from "../ui/UI";
-import { UIComponentEnum } from "../ui/UIComponentEnum";
-
-import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
-
-import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
-import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
-import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
-
-import { Color } from "../util/Color";
-import singletons from "../util/SingletonRepo";
-
 declare var marauroa: any;
 declare var stendhal: any;
 
+import { RPEntity } from "./RPEntity";
+
+import { MenuItem } from "../action/MenuItem";
+
+import { Color } from "../util/Color";
+
 
 export class Player extends RPEntity {
-
-	private readonly lssMan = singletons.getLoopedSoundSourceManager();
 
 	override minimapShow = true;
 	override minimapStyle = Color.PLAYER;
@@ -41,37 +28,11 @@ export class Player extends RPEntity {
 	override titleDrawYOffset = 6;
 
 
-	override destroy(parent: any) {
-		if (this == marauroa.me) {
-			this.onExitZone(marauroa.currentZoneName);
-		}
-		super.destroy(parent);
-	}
-
 	override set(key: string, value: any) {
-		const oldX = this["x"];
-		const oldY = this["y"];
-
 		super.set(key, value);
 		if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
-
-		// stats
-		if (marauroa.me !== this) {
-			return;
-		}
-
-		if ((key === "x" || key === "y") && this["x"] && this["y"]
-				&& (this["x"] !== oldX || this["y"] !== oldY)) {
-			this.lssMan.onDistanceChanged(this["x"], this["y"]);
-		}
-
-		queueMicrotask( () => {
-			(ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent).update(key);
-			(ui.get(UIComponentEnum.Bag) as ItemInventoryComponent).update();
-			(ui.get(UIComponentEnum.Keyring) as ItemInventoryComponent).update();
-		});
 	}
 
 	override createTitleTextSprite() {
@@ -146,42 +107,6 @@ export class Player extends RPEntity {
 					}
 			});
 		}
-
-		if (marauroa.me === this) {
-			let walk_label = "Walk";
-			if (!this.stopped()) {
-				walk_label = "Stop";
-			}
-
-			list.push({
-				title: walk_label,
-				action: function(_entity: any) {
-					marauroa.clientFramework.sendAction({"type": "walk"});
-				}
-			});
-
-			list.push({
-				title: "Set outfit",
-				action: function(_entity: any) {
-					let outfitDialog = ui.get(UIComponentEnum.OutfitDialog);
-					if (!outfitDialog) {
-						const dstate = stendhal.config.dialogstates["outfit"];
-						outfitDialog = new OutfitDialog();
-						new FloatingWindow("Choose outfit", outfitDialog, dstate.x, dstate.y);
-					}
-				}
-			});
-			list.push({
-				title: "Where",
-				action: function(_entity: any) {
-					var action = {
-						"type": "where",
-						"target": playerName,
-					};
-					marauroa.clientFramework.sendAction(action);
-				}
-			});
-		}
 		/*
 		list.push({
 			title: "Trade",
@@ -200,10 +125,11 @@ export class Player extends RPEntity {
 	}
 
 	public override onMiniMapDraw() {
-		if (marauroa.me === this) {
-			// FIXME: is it possible to do this in constructor or after construction
-			this.minimapStyle = Color.USER;
-		} else if (stendhal.data.group.members[this["name"]]) {
+		if (this === marauroa.me) {
+			// handled in User class
+			return;
+		}
+		if (stendhal.data.group.members[this["name"]]) {
 			this.minimapStyle = Color.GROUP;
 		} else {
 			this.minimapStyle = Color.PLAYER;
@@ -241,90 +167,10 @@ export class Player extends RPEntity {
 		super.say(text, rangeSquared);
 	}
 
-	/**
-	 * Can the player hear this chat message?
-	 *
-	 * @param entity
-	 *     The speaking entity.
-	 * @param rangeSquared
-	 *     Distance squared within which the entity can be heard (-1
-	 *     represents entire map).
-	 */
-	isInHearingRange(entity: Entity, rangeSquared?: number) {
-		if (entity === marauroa.me) {
-			return true;
-		}
-
-		let hearingRange = 15; // default
-		if (typeof rangeSquared !== "undefined") {
-			if (rangeSquared < 0) {
-				hearingRange = -1;
-			} else {
-				hearingRange = Math.sqrt(rangeSquared);
-			}
-		}
-
-		return (this.isAdmin()
-			|| (hearingRange < 0)
-			|| ((Math.abs(this["x"] - entity["x"]) < hearingRange)
-				&& (Math.abs(this["y"] - entity["y"]) < hearingRange)));
-	}
-
 	override getCursor(_x: number, _y: number) {
 		if (this.isVisibleToAction(false)) {
 			return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
 		}
 		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
-	}
-
-	public autoWalkEnabled(): boolean {
-		return typeof(this["autowalk"]) !== "undefined";
-	}
-
-	/**
-	 * Actions when player leaves a zone.
-	 *
-	 * @param oldZone
-	 *     Name of zone player is leaving.
-	 */
-	onExitZone(oldZone?: string) {
-		// stop sounds & clear map sounds cache on zone change
-		const msgs: string[] = [];
-		const lssMan = singletons.getLoopedSoundSourceManager();
-		const soundMan = singletons.getSoundManager();
-		if (!lssMan.removeAll()) {
-			let tmp = "LoopedSoundSourceManager reported not all sources stopped on zone change:";
-			const loopSources = lssMan.getSources();
-			for (const id in loopSources) {
-				const snd = loopSources[id].sound;
-				tmp += "\n- ID: " + id + " (" + snd.src + ")";
-			}
-			msgs.push(tmp);
-		}
-		if (!soundMan.stopAll()) {
-			let tmp = "SoundManager reported not all sounds stopped on zone change:";
-			for (const snd of soundMan.getActive()) {
-				tmp += "\n- " + snd.src;
-				if (snd.loop) {
-					tmp += " (loop)";
-				}
-			}
-			msgs.push(tmp);
-		}
-
-		for (const msg of msgs) {
-			console.warn(msg);
-		}
-	}
-
-	/**
-	 * Actions when player enters a zone.
-	 *
-	 * @param newZone
-	 *     Name of zone player is entering.
-	 */
-	onEnterZone(newZone?: string) {
-		// play looped sound sources
-		singletons.getLoopedSoundSourceManager().onZoneReady();
 	}
 }
