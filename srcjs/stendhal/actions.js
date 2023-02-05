@@ -13,6 +13,7 @@
 
 var DebugAction = require("../../build/ts/action/DebugAction").DebugAction;
 var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenWebsiteAction;
+var SettingsAction = require("../../build/ts/action/SettingsAction").SettingsAction;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 
 var stendhal = window.stendhal = window.stendhal || {};
@@ -781,14 +782,7 @@ stendhal.slashActionRepository = {
 		maxParams: 0
 	},
 
-	"settings": {
-		execute: function(type, params, remainder) {
-			stendhal.ui.settings.onOpenSettingsMenu();
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	},
+	"settings": new SettingsAction(),
 
 	"stopwalk": {
 		execute: function(type, params, remainder) {

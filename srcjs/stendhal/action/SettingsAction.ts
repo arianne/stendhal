@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                       Copyright © 2023 - Stendhal                       *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,18 +9,20 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var stendhal: any;
 
-let SettingsDialog = require("../../../build/ts/ui/dialog/SettingsDialog").SettingsDialog;
+import { Action } from "./Action";
 
-window.marauroa = window.marauroa || {};
-window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+import { ui } from "../ui/UI";
+
+import { SettingsDialog } from "../ui/dialog/SettingsDialog";
 
 
-stendhal.ui.settings = {
+export class SettingsAction extends Action {
+	readonly minParams = 0;
+	readonly maxParams = 0;
 
-	onOpenSettingsMenu: function(e) {
+	execute(_type: string, _params: string[], _remainder: string): void {
 		const wstate = stendhal.config.dialogstates["settings"];
 		const offset = stendhal.ui.getPageOffset();
 
@@ -28,7 +30,6 @@ stendhal.ui.settings = {
 		const dialog = ui.createSingletonFloatingWindow(
 			"Settings", content,
 			wstate.x - offset.x, wstate.y - offset.y);
-
 		content.setFrame(dialog);
 	}
 }
