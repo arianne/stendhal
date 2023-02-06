@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2017 - Faiumoni e. V.                   *
+ *                (C) Copyright 2017-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,17 +9,35 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var stendhal: any;
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.data = stendhal.data || {};
 
-stendhal.data.group = {
-	members: [],
-	lootmode: "",
-	leader: "",
+export class GroupManager {
 
-	updateGroupStatus: function(members, leader, lootmode) {
+	private members: string[] = [];
+	private lootmode = "";
+	private leader = "";
+
+	/** Singleton instance. */
+	private static instance: GroupManager;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): GroupManager {
+		GroupManager.instance = GroupManager.instance ? GroupManager.instance : new GroupManager();
+		return GroupManager.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
+
+	updateGroupStatus(members?: string, leader?: string, lootmode?: string) {
 		if (members) {
 			var memberArray = members.substring(1, members.length - 1).split("\t");
 			stendhal.data.group.members = {};

@@ -49,6 +49,7 @@ stendhal.data.cache = new CacheManager();
 stendhal.data.cache.init();
 stendhal.data.cstatus = new CStatus();
 stendhal.data.cstatus.init();
+stendhal.data.group = singletons.getGroupManager();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;

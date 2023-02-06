@@ -17,6 +17,7 @@ import { EventRegistry } from "../EventRegistry";
 import { SlashActionRepo } from "../SlashActionRepo";
 
 import { EmojiStore } from "../data/EmojiStore";
+import { GroupManager } from "../data/GroupManager";
 
 import { Animation } from "../data/tileset/Animation";
 
@@ -29,6 +30,10 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
+	}
+
+	static getGroupManager(): GroupManager {
+		return GroupManager.get();
 	}
 
 	static getSessionManager(): SessionManager {
