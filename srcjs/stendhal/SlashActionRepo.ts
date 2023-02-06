@@ -665,9 +665,6 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	/* FIXME:
-	 * - settings/config doesn't get updated
-	 */
 	"movecont": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
@@ -675,15 +672,16 @@ export class SlashActionRepo {
 			};
 
 			const state = params[0].toLowerCase();
-
-			if (state == "on") {
+			if (state === "on") {
 				action["move.continuous"] = "";
-			} else if (state != "off") {
+			} else if (state !== "off") {
 				Chat.log("error", "Argument must be either \"on\" or \"off\".");
 				return false;
 			};
 
 			this.sendAction(action);
+			// update config
+			stendhal.config.set("input.movecont", state === "on");
 
 			var msg = "Continuous movement ";
 			if (state == "on") {
