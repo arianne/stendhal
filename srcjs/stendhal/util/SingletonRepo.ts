@@ -13,6 +13,7 @@ import { ConfigManager } from "./ConfigManager";
 import { SessionManager } from "./SessionManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
+import { EventRegistry } from "../EventRegistry";
 import { SlashActionRepo } from "../SlashActionRepo";
 
 import { EmojiStore } from "../data/EmojiStore";
@@ -36,6 +37,10 @@ export class SingletonRepo {
 
 	static getEmojiStore(): EmojiStore {
 		return EmojiStore.get();
+	}
+
+	static getEventRegistry(): EventRegistry {
+		return EventRegistry.get();
 	}
 
 	static getKeyHandler(): KeyHandler {

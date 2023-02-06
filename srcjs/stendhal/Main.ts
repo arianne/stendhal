@@ -52,6 +52,9 @@ export class Main {
 		stendhal.config.refreshTheme();
 		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("ui.font.body"));
 
+		// initialize events
+		singletons.getEventRegistry().init();
+
 		// cache tileset animations
 		singletons.getTileAnimation().loadAnimations();
 		// initialize emoji data
