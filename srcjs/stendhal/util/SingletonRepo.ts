@@ -13,6 +13,8 @@ import { ConfigManager } from "./ConfigManager";
 import { SessionManager } from "./SessionManager";
 import { WeatherRenderer } from "./WeatherRenderer";
 
+import { SlashActionRepo } from "../SlashActionRepo";
+
 import { EmojiStore } from "../data/EmojiStore";
 
 import { Animation } from "../data/tileset/Animation";
@@ -50,6 +52,10 @@ export class SingletonRepo {
 
 	static getWeatherRenderer(): WeatherRenderer {
 		return WeatherRenderer.get();
+	}
+
+	static getSlashActionRepository(): SlashActionRepo {
+		return SlashActionRepo.get();
 	}
 
 	static getTileAnimation(): Animation {

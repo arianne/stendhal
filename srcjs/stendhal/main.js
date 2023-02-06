@@ -44,10 +44,13 @@ stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
 stendhal.session = stendhal.session || singletons.getSessionManager();
 
+stendhal.slashActionRepository = stendhal.slashActionRepository || singletons.getSlashActionRepository();
+
 stendhal.ui = stendhal.ui || {}
 stendhal.ui.equip = new InventoryManager();
 stendhal.ui.html = new HTMLManager();
 stendhal.ui.touch = new TouchHandler();
+stendhal.ui.soundMan = singletons.getSoundManager();
 
 stendhal.zone = new Zone();
 stendhal.zone.ground = new Ground();

@@ -9,99 +9,133 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var marauroa: any;
+declare var stendhal: any;
 
-var DebugAction = require("../../build/ts/action/DebugAction").DebugAction;
-var OpenWebsiteAction = require("../../build/ts/action/OpenWebsiteAction").OpenWebsiteAction;
-var SettingsAction = require("../../build/ts/action/SettingsAction").SettingsAction;
-var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
+import { DebugAction } from "./action/DebugAction";
+import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
+import { SettingsAction } from "./action/SettingsAction";
+import { SlashAction } from "./action/SlashAction";
 
-var stendhal = window.stendhal = window.stendhal || {};
-var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
-var soundMan = soundMan || singletons.getSoundManager();
+import { ui } from "./ui/UI";
+import { UIComponentEnum } from "./ui/UIComponentEnum";
 
-stendhal.slashActionRepository = {
-	"add": {
-		execute: function(type, params, remainder) {
+import { ChatLogComponent } from "./ui/component/ChatLogComponent";
+
+import { Chat } from "./util/Chat";
+import singletons from "./util/SingletonRepo";
+
+
+interface Action {
+	[key: string]: string;
+	type: string;
+}
+
+export class SlashActionRepo {
+	[index: string]: any;
+
+	private static instance: SlashActionRepo;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): SlashActionRepo {
+		SlashActionRepo.instance = SlashActionRepo.instance ? SlashActionRepo.instance : new SlashActionRepo();
+		return SlashActionRepo.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
+
+	private sendAction(action: Action) {
+		marauroa.clientFramework.sendAction(action);
+	}
+
+	"add": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
 			};
 
-			const action = {
+			const action: Action = {
 				"type": "addbuddy",
 				"target": params[0]
 			};
-
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"adminnote": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"adminnote": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type,
 				"target": params[0],
 				"note": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"adminlevel": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"adminlevel": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type,
 				"target": params[0],
 			};
 			if (params.length >= 2) {
 				action["newlevel"] = params[1];
 			}
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 2
-	},
+	};
 
-	"alter": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"alter": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type,
 				"target": params[0],
 				"stat": params[1],
 				"mode": params[2],
 				"value": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 3,
 		maxParams: 3
-	},
+	};
 
-	"altercreature": {
-		execute: function(type, params, remainder) {
-			const action = {
+	"altercreature": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "altercreature",
 				"target": params[0],
 				"text": params[1]
 			};
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 2
-	},
+	};
 
-	"alterkill": {
-		execute: function(type, params, remainder) {
+	"alterkill": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			const target = params[0];
 			const killtype = params[1];
 			const count = params[2];
@@ -112,7 +146,7 @@ stendhal.slashActionRepository = {
 				creature = remainder;
 			}
 
-			const action = {
+			const action: Action = {
 				"type": "alterkill",
 				"target": target,
 				"killtype": killtype,
@@ -122,16 +156,16 @@ stendhal.slashActionRepository = {
 				action["creature"] = creature;
 			}
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 3,
 		maxParams: 3
-	},
+	};
 
-	"alterquest": {
-		execute: function(type, params, remainder) {
-			const action = {
+	"alterquest": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "alterquest",
 				"target": params[0],
 				"name": params[1]
@@ -141,90 +175,86 @@ stendhal.slashActionRepository = {
 				action["state"] = stendhal.slashActionRepository.checkQuoted(params[2], remainder);
 			}
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 3
-	},
+	};
 
-	"answer": {
-		execute: function(type, params, remainder) {
+	"answer": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (remainder == null || remainder == "") {
 				return false;
 			};
 
-			const action = {
+			const action: Action = {
 				"type": "answer",
 				"text": remainder
 			};
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 0
-	},
+	};
 
-	"away": {
-		execute: function(type, params, remainder) {
-			var msg = null;
-			if (remainder.length != 0) {
-				msg = remainder;
-			};
-
-			var action = {
+	"away": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "away",
-				"message": msg
 			};
-
-			marauroa.clientFramework.sendAction(action);
+			if (remainder.length != 0) {
+				action["message"] = remainder;
+			};
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"ban": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"ban": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "ban",
 				"target": params[0],
 				"hours": params[1],
 				"reason": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 2
-	},
+	};
 
-	"chat": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"chat": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type,
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"clear": {
-		execute: function(type, params, remainder) {
-			ui.get(UIComponentEnum.ChatLog).clear();
+	"clear": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).clear();
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
 	/*
-	"clickmode": {
-		execute: function(type, params, remainder) {
+	"clickmode": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			const newMode = !stendhal.config.getBoolean("input.doubleclick");
 			stendhal.config.set("input.doubleclick", newMode);
 			stendhal.ui.gamewindow.updateClickMode();
@@ -238,13 +268,16 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 	*/
 
-	"debug": new DebugAction(),
+	"debug" = new DebugAction();
 
-	"drop": {
-		execute: function(type, params, remainder) {
+	/* FIXME:
+	 * - not in help output
+	 */
+	"drop": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			console.log(type, params, remainder);
 			let name = remainder;
 			let quantity = parseInt(params[0], 10);
@@ -254,7 +287,7 @@ stendhal.slashActionRepository = {
 				quantity = 0;
 			}
 			console.log(name, quantity);
-			var action = {
+			const action: Action = {
 				"type": "drop",
 				"source_name": name,
 				"quantity": "" + quantity,
@@ -262,77 +295,77 @@ stendhal.slashActionRepository = {
 				"y": "" + marauroa.me.y
 			};
 			console.log(action);
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 1
-	},
+	};
 
-	"emojilist": {
-		execute: function(type, params, remainder) {
+	"emojilist": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
 			for (const idx in emojilist) {
 				emojilist[idx] = "&nbsp;&nbsp;- :" + emojilist[idx] + ":";
 			}
 			emojilist.splice(0, 0, emojilist.length + " emojis available:");
 			Chat.log("client", emojilist);
+			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"gag": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"gag": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "gag",
 				"target": params[0],
 				"minutes": params[1],
 				"reason": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 2
-	},
+	};
 
-	"group": {
-		execute: function(type, params, remainder) {
-			var action = {
+	/* FIXME:
+	 * - not included in help info
+	 * - invite message says that group invite has expired (same in Java client?)
+	 */
+	"group": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "group_management",
 				"action": params[0],
 				"params": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"grumpy": {
-		execute: function(type, params, remainder) {
-			var reason = null;
-			if (remainder.length != 0) {
-				reason = remainder;
-			};
-
-			var action = {
+	"grumpy": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "grumpy",
-				"reason": reason
 			};
-
-			marauroa.clientFramework.sendAction(action);
+			if (remainder.length != 0) {
+				action["reason"] = remainder;
+			};
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-
-	"help": {
-		execute: function(type, params, remainder) {
+	"help": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			var msg = [
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
 				"Here are the most-used commands:",
@@ -387,11 +420,10 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-
-	"gmhelp": {
-		execute: function(type, params, remainder) {
+	"gmhelp": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			var msg = null;
 
 			if (params[0] == null) {
@@ -507,12 +539,12 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 1
-	},
+	};
 
 
-	"ignore": {
-		execute: function(type, params, remainder) {
-			const action = {
+	"ignore": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 					"type": "ignore"
 			};
 
@@ -530,7 +562,7 @@ stendhal.slashActionRepository = {
 						/*
 						 * Validate it's a number
 						 */
-						if (isNaN(duration)) {
+						if (isNaN(parseInt(duration, 10))) {
 							return false;
 						}
 
@@ -543,15 +575,15 @@ stendhal.slashActionRepository = {
 				}
 			}
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 2
-	},
+	};
 
-	"inspectkill": {
-		execute: function(type, params, remainder) {
+	"inspectkill": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			const target = params[0];
 			var creature = null;
 			if (remainder != null && remainder != "") {
@@ -559,7 +591,7 @@ stendhal.slashActionRepository = {
 				creature = remainder;
 			}
 
-			const action = {
+			const action: Action = {
 				"type": "inspectkill",
 				"target": target
 			};
@@ -567,75 +599,78 @@ stendhal.slashActionRepository = {
 				action["creature"] = creature;
 			}
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"inspectquest": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"inspectquest": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 					"type": "inspectquest",
 					"target": params[0],
 					"quest_slot": params[1]
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 2
-	},
+	};
 
 
-	"jail": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"jail": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "jail",
 				"target": params[0],
 				"minutes": params[1],
 				"reason": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 2,
 		maxParams: 2
-	},
+	};
 
-	"/" : {
-		execute: function(type, params, remainder) {
+	"/": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (typeof(stendhal.slashActionRepository.lastPlayerTell) != "undefined") {
-				var action = {
+				const action: Action = {
 					"type": "tell",
 					"target": stendhal.slashActionRepository.lastPlayerTell,
 					"text": remainder
 				};
-				marauroa.clientFramework.sendAction(action);
-				return true;
+				this.sendAction(action);
 			}
-		},
-		minParams: 0,
-		maxParams: 0
-	},
-
-	"me": {
-		execute: function(type, params, remainder) {
-			var action = {
-				"type": "emote",
-				"text": remainder
-			};
-			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"movecont": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"me": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "emote",
+				"text": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0
+	};
+
+	/* FIXME:
+	 * - settings/config doesn't get updated
+	 */
+	"movecont": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "move.continuous",
 			};
 
@@ -648,7 +683,7 @@ stendhal.slashActionRepository = {
 				return false;
 			};
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 
 			var msg = "Continuous movement ";
 			if (state == "on") {
@@ -663,25 +698,25 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"msg" : {
-		execute: function(type, params, remainder) {
+	"msg": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.slashActionRepository.lastPlayerTell = params[0];
-			var action = {
+			const action: Action = {
 				"type": "tell",
 				"target": params[0],
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"mute": {
-		execute: function(type, params, remainder) {
+	"mute": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.main.toggleSound();
 			if (stendhal.config.getBoolean("ui.sound")) {
 				Chat.log("info", "Sounds are now on.");
@@ -692,24 +727,27 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"p": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"p": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "group_message",
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"progressstatus": {
-		execute: function(type, params, remainder) {
-			var action = {
+	/* FIXME:
+	 * - parameters don'e work
+	 */
+	"progressstatus": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type
 			}
 
@@ -730,94 +768,94 @@ stendhal.slashActionRepository = {
 					action["item"] = remainder;
 				}
 			}
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"remove": {
-		execute: function(type, params, remainder) {
+	"remove": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
 			}
 
-			const action = {
+			const action: Action = {
 				"type": "removebuddy",
 				"target": params[0]
 			};
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"screenshot": {
-		execute: function(type, params, remainder) {
+	"screenshot": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.ui.gamewindow.createScreenshot();
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"sentence": {
-		execute: function(type, params, remainder) {
+	"sentence": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
 			};
 
-			const action = {
+			const action: Action = {
 				"type": "sentence",
 				"value": remainder
 			};
 
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"settings": new SettingsAction(),
+	"settings" = new SettingsAction();
 
-	"stopwalk": {
-		execute: function(type, params, remainder) {
-			const action = {
+	"stopwalk": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "walk",
 				"mode": "stop"
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"volume": {
-		execute: function(type, params, remainder) {
+	"volume": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			const layername = params[0];
 			let vol = params[1];
 			if (typeof(layername) === "undefined") {
-				const layers = ["master", ...soundMan.getLayerNames()];
+				const layers = ["master", ...stendhal.ui.soundMan.getLayerNames()];
 				Chat.log("info", "Please use /volume <layer> <value> to adjust the volume.");
 				Chat.log("client", "<layer> is one of \"" + layers.join("\", \"") + "\"");
 				Chat.log("client", "<value> is a number in the range 0 to 100.");
 				Chat.log("client", "Current volume levels:");
 				for (const l of layers) {
-					Chat.log("client", "&nbsp;&nbsp;- " + l + " -> " + soundMan.getVolume(l) * 100);
+					Chat.log("client", "&nbsp;&nbsp;- " + l + " -> " + stendhal.ui.soundMan.getVolume(l) * 100);
 				}
 			} else if (typeof(vol) !== "undefined") {
 				if (!/^\d+$/.test(vol)) {
 					Chat.log("error", "Value must be a number.");
 					return true;
 				}
-				if (soundMan.setVolume(layername, parseInt(vol, 10) / 100)) {
+				if (stendhal.ui.soundMan.setVolume(layername, parseInt(vol, 10) / 100)) {
 					Chat.log("client", "Channel \"" + layername + "\" volume set to "
-							+ (soundMan.getVolume(layername) * 100) + ".");
+							+ (stendhal.ui.soundMan.getVolume(layername) * 100) + ".");
 				} else {
 					Chat.log("error", "Unknown layer \"" + layername + "\".");
 				}
@@ -829,10 +867,10 @@ stendhal.slashActionRepository = {
 		},
 		minParams: 0,
 		maxParams: 2
-	},
+	};
 
-	"summon": {
-		execute: function(type, params, remainder) {
+	"summon": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			var x = null;
 			var y = null;
 			var quantity = null;
@@ -868,25 +906,25 @@ stendhal.slashActionRepository = {
 				y = marauroa.me.y.toString();
 			}
 
-			var action = {
+			const action: Action = {
 				"type": type,
 				"creature": creature,
 				"x": x,
 				"y": y,
-				"quantity": quantity
+				"quantity": quantity || "0"
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
-	},
+	};
 
-	"summonat": {
-		execute: function(type, params, remainder) {
+	"summonat": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			var amount = params[2];
 			// don't require first parameter to be integer amount
-			if (isNaN(amount)) {
+			if (isNaN(parseInt(amount, 10))) {
 				if (remainder) {
 					remainder = amount + " " + remainder;
 				} else {
@@ -895,175 +933,173 @@ stendhal.slashActionRepository = {
 				amount = "1";
 			}
 
-			var action = {
+			const action: Action = {
 				"type": type,
 				"target": params[0],
 				"slot": params[1],
 				"amount": amount,
 				"item": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 3,
 		maxParams: 3
-	},
+	};
 
-	"support": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"support": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "support",
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"supportanswer" : {
-		execute: function(type, params, remainder) {
-			var action = {
+	"supportanswer": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "supportanswer",
 				"target": params[0],
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"teleport": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"teleport": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "teleport",
 				"target": params[0],
 				"zone": params[1],
 				"x": params[2],
 				"y": params[3]
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 4,
 		maxParams: 4
-	},
+	};
 
-	"teleportto": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"teleportto": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "teleportto",
 				"target": remainder,
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"tellall": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"tellall": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "tellall",
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"walk": {
-		execute: function(type, params, remainder) {
-			const action = {
+	"walk": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "walk"
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"atlas": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/world/atlas.html?me="
+	"atlas": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			window.location.href = "https://stendhalgame.org/world/atlas.html?me="
 				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y;
+			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"beginnersguide": {
-		execute: function(type, params, remainder) {
-			window.location = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
+	"beginnersguide": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			window.location.href = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
+			return true;
 		},
 		minParams: 0,
 		maxParams: 0
-	},
+	};
 
-	"characterselector": new OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html"),
+	"characterselector" = new OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html");
 
-	"faq": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_FAQ"),
+	"faq" = new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_FAQ");
 
-	"manual": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings"),
+	"manual" = new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
 
-	"profile": {
-		execute: function(type, params, remainder) {
+	"profile": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
 			var url = "https://stendhalgame.org/character/";
-			var name = null;
+			var name = marauroa.me["_name"] || singletons.getSessionManager().getCharName();
 
 			if (params.length > 0 && params[0] != null) {
 				name = params[0];
-			} else {
-				name = marauroa.me["_name"];
-				if (name == null) {
-					// DEBUG:
-					console.log("Getting default username failed!");
-
-					return true;
-				}
+			}
+			if (!name) {
+				console.warn("failed to get default character name!");
+				return true;
 			}
 
 			url += name + ".html";
 			Chat.log("info", "Trying to open #" + url + " in your browser.");
-			window.location = url;
+			window.location.href = url;
 			return true;
 		},
 		minParams: 0,
 		maxParams: 1
-	},
+	};
 
-	"rules": new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules"),
+	"rules" = new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules");
 
-	"changepassword": new OpenWebsiteAction("https://stendhalgame.org/account/change-password.html"),
+	"changepassword" = new OpenWebsiteAction("https://stendhalgame.org/account/change-password.html");
 
-	"loginhistory": new OpenWebsiteAction("https://stendhalgame.org/account/history.html"),
+	"loginhistory" = new OpenWebsiteAction("https://stendhalgame.org/account/history.html");
 
-	"halloffame": new OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html"),
+	"halloffame" = new OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html");
 
-	"storemessage": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"storemessage": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": "storemessage",
 				"target": params[0],
 				"text": remainder
 			};
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 1,
 		maxParams: 1
-	},
+	};
 
-	"_default": {
-		execute: function(type, params, remainder) {
-			var action = {
+	"_default": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
 				"type": type
 			};
 			if (typeof(params[0] != "undefined")) {
@@ -1072,14 +1108,14 @@ stendhal.slashActionRepository = {
 					action["args"] = remainder;
 				}
 			}
-			marauroa.clientFramework.sendAction(action);
+			this.sendAction(action);
 			return true;
 		},
 		minParams: 0,
 		maxParams: 1
-	},
+	};
 
-	execute: function(line) {
+	execute(line: string): boolean {
 		line = line.trim();
 
 		// double slash is a special command, that should work without
@@ -1091,8 +1127,8 @@ stendhal.slashActionRepository = {
 		var array = line.split(" ");
 
 		// clean whitespace
-		for (var i in array) {
-			array[i] = array[i].trim();
+		for (var el in array) {
+			array[el] = array[el].trim();
 		}
 		array = array.filter(Boolean);
 		if (array.length == 0) {
@@ -1106,7 +1142,7 @@ stendhal.slashActionRepository = {
 			array.shift();
 		}
 		name = name.substr(1);
-		var action;
+		var action: SlashAction;
 		if (typeof(stendhal.slashActionRepository[name]) == "undefined") {
 			action = stendhal.slashActionRepository["_default"];
 		} else {
@@ -1129,7 +1165,8 @@ stendhal.slashActionRepository = {
 			Chat.log("error", "Missing arguments. Try /help");
 			return false;
 		}
-	},
+		return true;
+	}
 
 	/**
 	 * Checks for quoted whitepace to be included in parameter.
@@ -1141,7 +1178,7 @@ stendhal.slashActionRepository = {
 	 * @return
 	 *     Amended parameter.
 	 */
-	checkQuoted: function(p, remainder) {
+	checkQuoted(p: string, remainder: string): string {
 		if (p.includes("\"") && remainder.includes("\"")) {
 			let endQuote = false;
 			let paramEnd = 0;
@@ -1158,7 +1195,10 @@ stendhal.slashActionRepository = {
 		}
 		return p;
 	}
-};
+}
+
+stendhal.slashActionRepository = stendhal.slashActionRepository || SlashActionRepo.get();
+
 // answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, settings
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
 stendhal.slashActionRepository["tell"] = stendhal.slashActionRepository["msg"];
