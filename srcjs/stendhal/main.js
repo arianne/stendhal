@@ -16,6 +16,8 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var Main = require("../../build/ts/Main").Main;
 
+var Cache = require("../../build/ts/data/Cache").Cache;
+
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
 
@@ -40,6 +42,11 @@ var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").Im
 var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
 
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
+
+stendhal.data = stendhal.data || {};
+stendhal.data.cache = new Cache();
+stendhal.data.cache.init();
+
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
 stendhal.session = stendhal.session || singletons.getSessionManager();

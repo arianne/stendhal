@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2017 - Faiumoni e. V.                   *
+ *                (C) Copyright 2017-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,32 +9,33 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var stendhal: any;
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.data = stendhal.data || {};
 
 /**
  * setup a cache that is powered by IndexedDB, but allow synchronous access
  * for simplicity of use.
  */
-stendhal.data.cache = {
-	init: function() {
+export class Cache {
 
+	/**
+	 * Initializes cache.
+	 */
+	init() {
 		// https://dzone.com/articles/getting-all-stored-items
-		function requestAllItems(storeName, callback) {
-			var tx = stendhal.data.cache.db.transaction(storeName, IDBTransaction.READ_ONLY);
+		function requestAllItems(storeName: string, callback: Function) {
+			var tx = stendhal.data.cache.db.transaction(storeName, "readonly");
 			var store = tx.objectStore(storeName);
-			var items = [];
+			var items: any[] = [];
 
-			tx.oncomplete = function(evt) {
+			tx.oncomplete = function(evt: Event) {
 				callback(items);
 			};
 			var cursorRequest = store.openCursor();
-			cursorRequest.onerror = function(error) {
+			cursorRequest.onerror = function(error: any) {
 				console.log(error);
 			};
-			cursorRequest.onsuccess = function(evt) {
+			cursorRequest.onsuccess = function(evt: any) {
 				var cursor = evt.target.result;
 				if (cursor) {
 					items.push(cursor.value);
@@ -65,7 +66,7 @@ stendhal.data.cache = {
 
 		open.onsuccess = function() {
 			stendhal.data.cache.db = open.result;
-			requestAllItems("cache", function(items) {
+			requestAllItems("cache", function(items: any[]) {
 				var len = items.length;
 				for (var i = 0; i < len; i += 1) {
 					stendhal.data.cache.sync[items[i].key] = items[i].data;
@@ -83,13 +84,13 @@ stendhal.data.cache = {
 		open.onerror = function() {
 			stendhal.data.cache.put("cid", (Math.random()*1e48).toString(36));
 		};
-	},
+	}
 
-	get: function(key) {
+	get(key: string) {
 		return stendhal.data.cache.sync[key];
-	},
+	}
 
-	put: function(key, value) {
+	put(key: string, value: any) {
 		if (stendhal.data.cache.sync[key] === value) {
 			return;
 		}
@@ -101,5 +102,3 @@ stendhal.data.cache = {
 		}
 	}
 }
-
-stendhal.data.cache.init();
