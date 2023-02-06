@@ -30,6 +30,7 @@ import { ApplicationMenuDialog } from "./ui/dialog/ApplicationMenuDialog";
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
 import { Chat } from "./util/Chat";
+import { DialogHandler } from "./util/DialogHandler";
 import singletons from "./util/SingletonRepo";
 
 
@@ -68,12 +69,8 @@ export class Main {
 		this.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
 
-		if (stendhal.ui.dialogHandler) {
-			stendhal.ui.actionContextMenu = stendhal.ui.dialogHandler.copy();
-			stendhal.ui.globalInternalWindow = stendhal.ui.dialogHandler.copy();
-		} else {
-			console.error("stendhal.ui.dialogHandler not found, some dialogs may not function");
-		}
+		stendhal.ui.actionContextMenu = new DialogHandler();
+		stendhal.ui.globalInternalWindow = new DialogHandler();
 
 		// pre-cache images & sounds
 		stendhal.data.sprites.startupCache();
