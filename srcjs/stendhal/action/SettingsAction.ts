@@ -22,7 +22,7 @@ export class SettingsAction extends SlashAction {
 	readonly minParams = 0;
 	readonly maxParams = 0;
 
-	execute(_type: string, _params: string[], _remainder: string): void {
+	execute(_type: string, _params: string[], _remainder: string): boolean {
 		const wstate = stendhal.config.dialogstates["settings"];
 		const offset = stendhal.ui.getPageOffset();
 
@@ -31,5 +31,6 @@ export class SettingsAction extends SlashAction {
 			"Settings", content,
 			wstate.x - offset.x, wstate.y - offset.y);
 		content.setFrame(dialog);
+		return true;
 	}
 }

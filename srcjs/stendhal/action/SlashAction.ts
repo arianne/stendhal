@@ -14,6 +14,6 @@
  */
 export abstract class SlashAction {
 
-    abstract execute(type: string, params: string[], remainder: string): void;
+    abstract execute(type: string, params: string[], remainder: string): boolean;
 
 };

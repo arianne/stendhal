@@ -27,8 +27,9 @@ export class OpenWebsiteAction extends SlashAction {
         super();
     }
 
-    execute(_type: string, _params: string[], _remainder: string) {
+    execute(_type: string, _params: string[], _remainder: string): boolean {
         window.location.href = this.url;
+        return true;
     }
 
 };

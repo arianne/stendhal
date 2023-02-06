@@ -31,7 +31,7 @@ export class DebugAction extends SlashAction {
 	readonly maxParams = 0;
 	private uiPopped = false;
 
-	execute(_type: string, params: string[], _remainder: string) {
+	execute(_type: string, params: string[], _remainder: string): boolean {
 		if (params.length < 1) {
 			Chat.logH("error", "Expected parameters")
 			this.showUsage();
