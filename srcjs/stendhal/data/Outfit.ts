@@ -24,31 +24,11 @@ export class Outfit {
 		"body": 3
 	};
 
-	private busty_dress: {[index: string]: boolean} = {
-		"001": true,
-		"004": true,
-		"006": true,
-		"007": true,
-		"010": true,
-		"011": true,
-		"013": true,
-		"016": true,
-		"029": true,
-		"037": true,
-		"040": true,
-		"053": true,
-		"054": true,
-		"056": true,
-		"061": true,
-		"064": true,
-		"967": true,
-		"968": true,
-		"977": true,
-		"980": true,
-		"989": true,
-		"990": true,
-		"999": true
-	};
+	private busty_dress: number[] = [
+		  1,   4,   6,   7,  10,  11,  13,  16,
+		 29,  37,  40,  53,  54,  56,  61,  64,
+		967, 968, 977, 980, 989, 990, 999
+	];
 
 	// hair should not be drawn with hat indexes in this list
 	private hats_no_hair: number[] = [
@@ -66,5 +46,20 @@ export class Outfit {
 	 */
 	drawHair(hat: number): boolean {
 		return this.hats_no_hair.indexOf(hat) < 0;
+	}
+
+	/**
+	 * Determines if a busty alternative dress layer should be drawn.
+	 *
+	 * @param dress
+	 *     Dress index.
+	 * @param body
+	 *     Body index.
+	 * @return
+	 *     <code>true</code> if body type is busty & a busty dress
+	 *     alternative is available.
+	 */
+	drawBustyDress(dress: number, body: number): boolean {
+		return body == 1 && this.busty_dress.indexOf(dress) > -1;
 	}
 }

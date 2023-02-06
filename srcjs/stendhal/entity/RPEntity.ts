@@ -206,16 +206,16 @@ export class RPEntity extends ActiveEntity {
 
 	drawMultipartOutfit(ctx: CanvasRenderingContext2D) {
 		// layers in draw order
-		var layers = [];
+		var layers: string[] = [];
 
-		var outfit: any = {};
+		var outfit: {[key: string]: number} = {};
 		if ("outfit_ext" in this) {
 			layers = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
 
 			for (const part of this["outfit_ext"].split(",")) {
 				if (part.includes("=")) {
 					var tmp = part.split("=");
-					outfit[tmp[0]] = tmp[1];
+					outfit[tmp[0]] = parseInt(tmp[1], 10);
 				}
 			}
 		} else {
@@ -227,9 +227,6 @@ export class RPEntity extends ActiveEntity {
 			outfit["hair"] = Math.floor(this["outfit"]/1000000) % 100;
 			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
 		}
-
-		// for "busty" dress variants
-		const busty = parseInt(outfit["body"], 10) == 1;
 
 		if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
@@ -247,11 +244,11 @@ export class RPEntity extends ActiveEntity {
 		}
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
-			if (layer == "hair" && !stendhal.data.outfit.drawHair(parseInt(outfit["hat"], 10))) {
+			if (layer == "hair" && !stendhal.data.outfit.drawHair(outfit["hat"])) {
 				continue;
 			}
 
-			const lsprite = this.getOutfitPart(layer, outfit[layer], busty);
+			const lsprite = this.getOutfitPart(layer, outfit[layer], outfit["body"]);
 			if (lsprite && lsprite.complete && lsprite.height) {
 				if (!this.octx) {
 					let ocanvas = document.createElement("canvas");
@@ -272,10 +269,10 @@ export class RPEntity extends ActiveEntity {
 	 * Get an outfit part (Image or a Promise)
 	 *
 	 * @param {string}  part
-	 * @param {Number} index
-	 * @param {boolean} busty
+	 * @param {number} index
+	 * @param {number} body
 	 */
-	getOutfitPart(part: string, index: number, busty: boolean=false) {
+	getOutfitPart(part: string, index: number, body: number) {
 		if (typeof(index) === "undefined" || index < 0) {
 			return null;
 		}
@@ -289,7 +286,7 @@ export class RPEntity extends ActiveEntity {
 
 		if (part === "body" && index < 3 && stendhal.config.getBoolean("gamescreen.nonude")) {
 			n += "-nonude";
-		} else if (part === "dress" && busty && stendhal.data.outfit.busty_dress[n]) {
+		} else if (part === "dress" && stendhal.data.outfit.drawBustyDress(index, body)) {
 			n += "b";
 		}
 
