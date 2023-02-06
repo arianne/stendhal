@@ -526,7 +526,7 @@ stendhal.slashActionRepository = {
 					/*
 					 * Ignore "forever" values
 					 */
-					if (duration != "*" || duration != "-") {
+					if (duration != "*" && duration != "-") {
 						/*
 						 * Validate it's a number
 						 */
