@@ -60,6 +60,7 @@ export class EventRegistry {
 			console.warn("tried to re-initialize EventRegistry");
 			return;
 		}
+		this.initialized = true;
 
 		this.register("examine", new ExamineEvent());
 		this.register("group_change_event", new GroupChangeEvent());
