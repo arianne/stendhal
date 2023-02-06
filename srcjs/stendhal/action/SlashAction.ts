@@ -13,6 +13,8 @@
  * abstract base class for user actions
  */
 export abstract class SlashAction {
+    abstract minParams: number;
+    abstract maxParams: number;
 
     abstract execute(type: string, params: string[], remainder: string): boolean;
 
