@@ -17,6 +17,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 var Main = require("../../build/ts/Main").Main;
 
 var Cache = require("../../build/ts/data/Cache").Cache;
+var CStatus = require("../../build/ts/data/CStatus").CStatus;
 
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
@@ -46,6 +47,8 @@ var singletons = singletons || require("../../build/ts/util/SingletonRepo").Sing
 stendhal.data = stendhal.data || {};
 stendhal.data.cache = new Cache();
 stendhal.data.cache.init();
+stendhal.data.cstatus = new CStatus();
+stendhal.data.cstatus.init();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;

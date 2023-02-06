@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,16 +9,27 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var marauroa: any;
+declare var stendhal: any;
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.data = stendhal.data || {};
-stendhal.data.cstatus = {
 
-	send: function() {
+export class CStatus {
+
+	private initialized = false;
+
+
+	init() {
+		if (this.initialized) {
+			console.warn("tried to re-initialize CStatus");
+			return;
+		}
+		this.initialized = true;
+		this.send();
+	}
+
+	send() {
 		if (!marauroa.me) {
-			window.setTimeout(stendhal.data.cstatus.send, 1000);
+			window.setTimeout(this.send, 1000);
 			return;
 		}
 
@@ -46,5 +57,3 @@ stendhal.data.cstatus = {
 		marauroa.clientFramework.sendAction(action);
 	}
 }
-
-window.setTimeout(stendhal.data.cstatus.send, 1000);
