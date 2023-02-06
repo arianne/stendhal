@@ -29,7 +29,7 @@ export class CStatus {
 
 	send() {
 		if (!marauroa.me) {
-			window.setTimeout(this.send, 1000);
+			window.setTimeout(stendhal.data.cstatus.send, 1000);
 			return;
 		}
 
