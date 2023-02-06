@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2003-2022 - Arianne                     *
+ *                     Copyright © 2003-2023 - Arianne                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,15 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.data = stendhal.data || {};
+export class Outfit {
 
-
-stendhal.data.outfit = {
 	// player pickable layers
-	count: {
+	private count: {[key: string]: number} = {
 		"hat": 19,
 		"hair": 57,
 		"mask": 9,
@@ -26,9 +22,9 @@ stendhal.data.outfit = {
 		"head": 4,
 		"dress": 65,
 		"body": 3
-	},
+	};
 
-	busty_dress: {
+	private busty_dress: {[index: string]: boolean} = {
 		"001": true,
 		"004": true,
 		"006": true,
@@ -52,10 +48,13 @@ stendhal.data.outfit = {
 		"989": true,
 		"990": true,
 		"999": true
-	},
+	};
 
 	// hair should not be drawn with hat indexes in this list
-	hats_no_hair: [3, 4, 13, 16, 992, 993, 994, 996, 997],
+	private hats_no_hair: number[] = [
+		3, 4, 13, 16, 992, 993, 994, 996, 997
+	];
+
 
 	/**
 	 * Determines if hair should be drawn under a determinted hat index.
@@ -65,7 +64,7 @@ stendhal.data.outfit = {
 	 * @return
 	 *     <code>true</code> if hair should be drawn, <code>false</code> otherwise.
 	 */
-	drawHair: function(hat) {
-		return !stendhal.data.outfit.hats_no_hair.includes(hat);
+	drawHair(hat: number): boolean {
+		return this.hats_no_hair.indexOf(hat) < 0;
 	}
 }

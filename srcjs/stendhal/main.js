@@ -18,6 +18,7 @@ var Main = require("../../build/ts/Main").Main;
 
 var CacheManager = require("../../build/ts/data/CacheManager").CacheManager;
 var CStatus = require("../../build/ts/data/CStatus").CStatus;
+var Outfit = require("../../build/ts/data/Outfit").Outfit;
 
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
@@ -50,6 +51,7 @@ stendhal.data.cache.init();
 stendhal.data.cstatus = new CStatus();
 stendhal.data.cstatus.init();
 stendhal.data.group = singletons.getGroupManager();
+stendhal.data.outfit = new Outfit();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
