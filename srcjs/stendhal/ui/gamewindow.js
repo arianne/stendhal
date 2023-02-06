@@ -497,9 +497,9 @@ stendhal.ui.gamewindow = {
 			ts.ms = "0" + ts.ms;
 		}
 
-		const filename = "stendhal_" + ts.yyyy + ts.mm
-				+ ts.dd + "_" + ts.HH + "." + ts.MM + "."
-				+ ts.SS + "." + ts.ms + ".png";
+		const filename = "stendhal-" + ts.yyyy + "." + ts.mm + "."
+				+ ts.dd + "-" + ts.HH + "." + ts.MM + "."
+				+ ts.SS + ".png";
 
 		const anchor = document.createElement("a");
 		anchor.download = filename;
