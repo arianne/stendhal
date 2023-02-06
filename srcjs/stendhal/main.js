@@ -16,7 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 var Main = require("../../build/ts/Main").Main;
 
-var Cache = require("../../build/ts/data/Cache").Cache;
+var CacheManager = require("../../build/ts/data/CacheManager").CacheManager;
 var CStatus = require("../../build/ts/data/CStatus").CStatus;
 
 var Ground = require("../../build/ts/entity/Ground").Ground;
@@ -45,7 +45,7 @@ var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").Outfi
 var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
 
 stendhal.data = stendhal.data || {};
-stendhal.data.cache = new Cache();
+stendhal.data.cache = new CacheManager();
 stendhal.data.cache.init();
 stendhal.data.cstatus = new CStatus();
 stendhal.data.cstatus.init();

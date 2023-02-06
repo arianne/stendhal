@@ -16,7 +16,7 @@ declare var stendhal: any;
  * setup a cache that is powered by IndexedDB, but allow synchronous access
  * for simplicity of use.
  */
-export class Cache {
+export class CacheManager {
 
 	/**
 	 * Initializes cache.
