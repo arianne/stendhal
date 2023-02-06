@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     (C) Copyright 2021 - Stendhal                       *
+ *                   (C) Copyright 2021-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -12,7 +12,7 @@
 /**
  * abstract base class for user actions
  */
-export abstract class Action {
+export abstract class SlashAction {
 
     abstract execute(type: string, params: string[], remainder: string): void;
 

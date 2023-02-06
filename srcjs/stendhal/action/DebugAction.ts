@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022-2022 - Stendhal                    *
+ *                   (C) Copyright 2022-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,7 +13,7 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
-import { Action } from "./Action";
+import { SlashAction } from "./SlashAction";
 import { Chat } from "../util/Chat";
 import { ShowFloatingWindowComponent } from "../ui/component/ShowFloatingWindowComponent";
 import { Panel } from "ui/toolkit/Panel";
@@ -26,7 +26,7 @@ declare var stendhal: any;
 /**
  * performances debugging actions
  */
-export class DebugAction extends Action {
+export class DebugAction extends SlashAction {
 	readonly minParams = 0;
 	readonly maxParams = 0;
 	private uiPopped = false;
