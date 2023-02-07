@@ -40,6 +40,26 @@ export class Client {
 	private zoneFile?: any;
 	private loaded = false;
 
+	/** Singleton instance. */
+	private static instance: Client;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): Client {
+		if (!Client.instance) {
+			Client.instance = new Client();
+		}
+		return Client.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	startup() {
 		this.devWarning();

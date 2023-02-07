@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Client } from "./Client";
 import { EventRegistry } from "./EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
@@ -43,6 +44,10 @@ export class SingletonRepo {
 
 	static getCacheManager(): CacheManager {
 		return CacheManager.get();
+	}
+
+	static getClient(): Client {
+		return Client.get();
 	}
 
 	static getConfigManager(): ConfigManager {
