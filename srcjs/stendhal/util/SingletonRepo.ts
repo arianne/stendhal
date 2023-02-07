@@ -18,6 +18,7 @@ import { SlashActionRepo } from "../SlashActionRepo";
 
 import { EmojiStore } from "../data/EmojiStore";
 import { GroupManager } from "../data/GroupManager";
+import { SpriteStore, store } from "../data/SpriteStore";
 
 import { Animation } from "../data/tileset/Animation";
 
@@ -38,6 +39,10 @@ export class SingletonRepo {
 
 	static getSessionManager(): SessionManager {
 		return SessionManager.get();
+	}
+
+	static getSpriteStore(): SpriteStore {
+		return store;
 	}
 
 	static getEmojiStore(): EmojiStore {

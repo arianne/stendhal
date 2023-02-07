@@ -52,6 +52,7 @@ stendhal.data.cstatus = new CStatus();
 stendhal.data.cstatus.init();
 stendhal.data.group = singletons.getGroupManager();
 stendhal.data.outfit = new Outfit();
+stendhal.data.sprites = singletons.getSpriteStore();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;

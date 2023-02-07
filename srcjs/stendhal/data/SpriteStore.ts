@@ -9,18 +9,21 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var stendhal: any;
 
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.data = stendhal.data || {};
+import { Paths } from "./Paths";
 
-stendhal.paths = stendhal.paths || require("../../../build/ts/data/Paths").Paths;
 
-stendhal.data.sprites = {
+class SpriteImage extends Image {
+	counter = 0;
+}
 
-	knownBrokenUrls: {},
-	images: {},
-	knownShadows: {
+export class SpriteStore {
+
+	private knownBrokenUrls: {[url: string]: boolean} = {};
+	private images: {[filename: string]: SpriteImage} = {};
+
+	private knownShadows: {[key: string]: boolean} = {
 		"24x32": true,
 		"32x32": true,
 		"32x48": true,
@@ -44,54 +47,83 @@ stendhal.data.sprites = {
 		"192x256": true,
 		"320x440": true,
 		"ent": true
-	},
+	};
 
-	get: function(filename) {
+	// alternatives for known images that may be considered violent or mature
+	private knownSafeSprites: {[filename: string]: boolean} = {
+		[Paths.sprites + "/monsters/huge_animal/thing"]: true,
+		[Paths.sprites + "/monsters/mutant/imperial_mutant"]: true,
+		[Paths.sprites + "/monsters/undead/bloody_zombie"]: true,
+		[Paths.sprites + "/npc/deadmannpc"]: true
+	};
+
+	// TODO: move to animation.json
+	private animations: {[key: string]: any} = {
+		idea: {
+			"love": {delay: 100, offsetX: 24, offsetY: -8}
+		}
+	};
+
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	protected constructor() {
+		// do nothing
+	}
+
+	get(filename: string): any {
 		if (!filename) {
 			return {};
 		}
 		if (filename.indexOf("undefined") > -1) {
-			if (!stendhal.data.sprites.knownBrokenUrls[filename]) {
+			if (!this.knownBrokenUrls[filename]) {
 				console.log("Broken image path: ", filename, new Error());
 			}
-			stendhal.data.sprites.knownBrokenUrls[filename] = true;
+			this.knownBrokenUrls[filename] = true;
 			return {};
 		}
-		if (stendhal.data.sprites.images[filename]) {
-			stendhal.data.sprites.images[filename].counter++;
-			return stendhal.data.sprites.images[filename];
+		if (this.images[filename]) {
+			this.images[filename].counter++;
+			return this.images[filename];
 		}
-		var temp = new Image;
+		var temp = new Image() as SpriteImage;
+		// TypeError: Image constructor: 'new' is required
+		//~ var temp = new SpriteImage();
 		temp.counter = 0;
-		temp.onerror = function() {
-			if (this.src && !stendhal.data.sprites.knownBrokenUrls[this.src]) {
-				console.log("Broken image path:", this.src, new Error());
-				stendhal.data.sprites.knownBrokenUrls[this.src] = true;
-			}
-			const failsafe = stendhal.data.sprites.getFailsafe();
-			if (failsafe.src && this.src !== failsafe.src) {
-				this.src = failsafe.src;
-			}
-		}
+		temp.onerror = (function(t: SpriteImage, store: SpriteStore) {
+			return function() {
+				if (t.src && !store.knownBrokenUrls[t.src]) {
+					console.log("Broken image path:", t.src, new Error());
+					store.knownBrokenUrls[t.src] = true;
+				}
+				const failsafe = store.getFailsafe();
+				if (failsafe.src && t.src !== failsafe.src) {
+					t.src = failsafe.src;
+				}
+			};
+		})(temp, this);
 		temp.src = filename;
-		stendhal.data.sprites.images[filename] = temp;
+		this.images[filename] = temp;
 		return temp;
-	},
+	}
 
-	getWithPromise: function(filename) {
+	getWithPromise(filename: string): any {
 		return new Promise((resolve) => {
-			if (typeof(stendhal.data.sprites.images[filename]) != "undefined") {
-				stendhal.data.sprites.images[filename].counter++;
-				resolve(stendhal.data.sprites.images[filename]);
+			if (typeof(this.images[filename]) != "undefined") {
+				this.images[filename].counter++;
+				resolve(this.images[filename]);
 			}
 
-			const image = new Image();
+			const image = new Image() as SpriteImage;
+			// TypeError: Image constructor: 'new' is required
+			//~ const image = new SpriteImage();
 			image.counter = 0;
-			stendhal.data.sprites.images[filename] = image;
+			this.images[filename] = image;
 			image.onload = () => resolve(image);
 			image.src = filename;
 		});
-	},
+	}
 
 	/**
 	 * Used when we only want an image if it was previously cached.
@@ -101,9 +133,9 @@ stendhal.data.sprites = {
 	 * @return
 	 *     HTMLImageElement or undefined.
 	 */
-	getCached: function(filename) {
-		return stendhal.data.sprites.images[filename];
-	},
+	getCached(filename: string): any {
+		return this.images[filename];
+	}
 
 	/**
 	 * Retrieves the failsafe sprite.
@@ -111,19 +143,21 @@ stendhal.data.sprites = {
 	 * @return
 	 *     HTMLImageElement with failsafe image data.
 	 */
-	getFailsafe: function() {
-		const filename = stendhal.paths.sprites + "/failsafe.png";
-		let failsafe = stendhal.data.sprites.images[filename];
+	getFailsafe(): HTMLImageElement {
+		const filename = Paths.sprites + "/failsafe.png";
+		let failsafe = this.images[filename];
 		if (failsafe) {
 			failsafe.counter++;
 		} else {
-			failsafe = new Image();
+			failsafe = new Image() as SpriteImage;
+			// TypeError: Image constructor: 'new' is required
+			//~ failsafe = new SpriteImage();
 			failsafe.counter = 0;
 			failsafe.src = filename;
-			stendhal.data.sprites.images[filename] = failsafe;
+			this.images[filename] = failsafe;
 		}
 		return failsafe;
-	},
+	}
 
 	/**
 	 * Checks cached images for a valid filename.
@@ -133,24 +167,24 @@ stendhal.data.sprites = {
 	 * @return
 	 *     Path to image or failsafe image file.
 	 */
-	checkPath: function(filename) {
-		return stendhal.data.sprites.get(filename).src;
-	},
+	checkPath(filename: string): string {
+		return this.get(filename).src;
+	}
 
 	/** deletes all objects that have not been accessed since this method was called last time */
 	// TODO: call clean on map change
-	clean: function() {
-		for (var i in stendhal.data.sprites.images) {
-			console.log(typeof(stendhal.data.sprites.images[i]));
-			if (stendhal.data.sprites.images[i] instanceof HTMLImageElement) {
-				if (stendhal.data.sprites.images[i].counter > 0) {
-					stendhal.data.sprites.images[i].counter--;
+	clean() {
+		for (var i in this.images) {
+			console.log(typeof(this.images[i]));
+			if (this.images[i] instanceof SpriteImage) {
+				if (this.images[i].counter > 0) {
+					this.images[i].counter--;
 				} else {
-					delete(stendhal.data.sprites.images[i]);
+					delete(this.images[i]);
 				}
 			}
 		}
-	},
+	}
 
 	/**
 	 * Get an image element whose image data is an area of a specified image.
@@ -164,7 +198,8 @@ stendhal.data.sprites = {
 	 * @param {number=} offsetX optional. left x coordinate of the area
 	 * @param {number=} offsetY optional. top y coordinate of the area
 	 */
-	getAreaOf: function(image, width, height, offsetX, offsetY) {
+	getAreaOf(image: HTMLImageElement, width: number, height: number,
+			offsetX?: number, offsetY?: number): any {
 		try {
 			offsetX = offsetX || 0;
 			offsetY = offsetY || 0;
@@ -172,10 +207,10 @@ stendhal.data.sprites = {
 					&& (offsetX === 0) && (offsetY === 0)) {
 				return image;
 			}
-			var canvas = document.createElement("canvas");
+			var canvas = document.createElement("canvas") as HTMLCanvasElement;
 			canvas.width  = width;
 			canvas.height = height;
-			var ctx = canvas.getContext("2d");
+			var ctx = canvas.getContext("2d")!;
 			ctx.drawImage(image, offsetX, offsetY, width, height, 0, 0, width, height);
 			// Firefox would be able to use the canvas directly as a drag image, but
 			// Chrome does not. This should work in any standards compliant browser.
@@ -192,89 +227,83 @@ stendhal.data.sprites = {
 		}
 
 		return {};
-	},
+	}
 
 	/**
 	 * @param {string} fileName
 	 * @param {string} filter
 	 * @param {number=} param
 	 */
-	getFiltered: function(fileName, filter, param) {
-		const img = stendhal.data.sprites.get(fileName);
+	getFiltered(fileName: string, filter: string, param?: number) {
+		const img = this.get(fileName);
 		let filterFn;
 		if (typeof(filter) === "undefined"
-			|| !(filterFn = stendhal.data.sprites.filter[filter])
+			|| !(filterFn = this.filter[filter])
 			|| !img.complete || img.width === 0 || img.height === 0) {
 			return img;
 		}
 		const filteredName = fileName + " " + filter + " " + param;
-		let filtered = stendhal.data.sprites.images[filteredName];
+		let filtered: SpriteImage = this.images[filteredName];
 		if (typeof(filtered) === "undefined") {
-			const canvas = document.createElement("canvas");
+			const canvas = document.createElement("canvas") as any;
 			canvas.width  = img.width;
 			canvas.height = img.height;
-			const ctx = canvas.getContext("2d");
+			const ctx = canvas.getContext("2d")!;
 			ctx.drawImage(img, 0, 0);
 			const imgData = ctx.getImageData(0, 0, img.width, img.height);
 			const data = imgData.data;
 			filterFn(data, param);
 			ctx.putImageData(imgData, 0, 0);
 			canvas.complete = true;
-			//~ stendhal.data.sprites.images[filteredName] = filtered = canvas;
-			filtered = new Image();
-			filtered.src = canvas.toDataURL("image/png");
-			stendhal.data.sprites.images[filteredName] = filtered;
+			this.images[filteredName] = filtered = canvas as SpriteImage;
 		}
 
 		return filtered;
-	},
+	}
 
 	/**
 	 * @param {string} fileName
 	 * @param {string} filter
 	 * @param {number=} param
 	 */
-	getFilteredWithPromise: function(fileName, filter, param) {
-		const imgPromise = stendhal.data.sprites.getWithPromise(fileName);
-		return imgPromise.then(function (img) {
-			let filterFn;
+	getFilteredWithPromise(fileName: string, filter: string, param?: number) {
+		const imgPromise = this.getWithPromise(fileName);
+		return imgPromise.then(function (img: HTMLImageElement) {
+			let filterFn: Function;
 			if (typeof(filter) === "undefined"
 				|| !(filterFn = stendhal.data.sprites.filter[filter])
 				|| !img.complete || img.width === 0 || img.height === 0) {
 				return img;
 			}
 			const filteredName = fileName + " " + filter + " " + param;
-			let filtered = stendhal.data.sprites.images[filteredName];
+			let filtered: SpriteImage = stendhal.data.sprites.images[filteredName];
 			if (typeof(filtered) === "undefined") {
-				const canvas = document.createElement("canvas");
+				const canvas = document.createElement("canvas") as any;
 				canvas.width  = img.width;
 				canvas.height = img.height;
-				const ctx = canvas.getContext("2d");
+				const ctx = canvas.getContext("2d")!;
 				ctx.drawImage(img, 0, 0);
 				const imgData = ctx.getImageData(0, 0, img.width, img.height);
 				const data = imgData.data;
 				filterFn(data, param);
 				ctx.putImageData(imgData, 0, 0);
 				canvas.complete = true;
-				//~ stendhal.data.sprites.images[filteredName] = filtered = canvas;
-				filtered = new Image();
-				filtered.src = canvas.toDataURL("image/png");
-				stendhal.data.sprites.images[filteredName] = filtered;
+				stendhal.data.sprites.images[filteredName] = filtered = canvas as SpriteImage;
 			}
 
 			return filtered;
 		});
-	},
+	}
 
 
 	/** Image filters */
-	filter: {
+	filter: {[key: string]: Function} = {
 		// Helper functions
 		/**
 		 * @param {Number} rgb
 		 * @return {Array<Number>}
 		 */
-		splitrgb: function(rgb) {
+		splitrgb: function(rgb: number): number[] {
 			rgb &= 0xffffff;
 			var b = rgb & 0xff;
 			rgb >>>= 8;
@@ -283,7 +312,7 @@ stendhal.data.sprites = {
 			return [rgb, g, b];
 		},
 
-		mergergb: function(rgbArray) {
+		mergergb: function(rgbArray: number[]): number {
 			const r = rgbArray[0] << 16;
 			const g = rgbArray[1] << 8;
 			return 0xffffff & (r | g | rgbArray[2]);
@@ -293,7 +322,7 @@ stendhal.data.sprites = {
 		 * @param {Array<Number>} rgb
 		 * @return {Array<Number>}
 		 */
-		rgb2hsl: function(rgb) {
+		rgb2hsl: function(rgb: number[]): number[] {
 			var r = rgb[0] / 255;
 			var g = rgb[1] / 255;
 			var b = rgb[2] / 255;
@@ -352,7 +381,7 @@ stendhal.data.sprites = {
 		 * @param {Array<Number>} hsl
 		 * @return {Array<Number>}
 		 */
-		hsl2rgb: function(hsl) {
+		hsl2rgb: function(hsl: number[]): number[] {
 			var r, g, b;
 			var h = hsl[0];
 			var s = hsl[1];
@@ -386,7 +415,7 @@ stendhal.data.sprites = {
 		 * @param {Number} val1
 		 * @param {Number} val2
 		 */
-		hue2rgb: function(hue, val1, val2) {
+		hue2rgb: function(hue: number, val1: number, val2: number): number {
 			var res = hue;
 			if (6 * hue < 1) {
 				res = val1 + (val2 - val1) * 6 * hue;
@@ -404,7 +433,7 @@ stendhal.data.sprites = {
 		/**
 		 * @param {Number} hue
 		 */
-		limitHue: function(hue) {
+		limitHue: function(hue: number): number {
 			var res = hue;
 			if (res < 0) {
 				res += 1;
@@ -413,7 +442,7 @@ stendhal.data.sprites = {
 			}
 			return res;
 		}
-	},
+	}
 
 	/**
 	 * Retrieves a shadow sprite if the style is available.
@@ -423,15 +452,14 @@ stendhal.data.sprites = {
 	 * @return
 	 *     Image sprite or <code>undefined</code>.
 	 */
-	getShadow: function(shadowStyle) {
+	getShadow(shadowStyle: string): any {
 		if (this.knownShadows[shadowStyle]) {
 			const img = new Image();
-			img.src = stendhal.paths.sprites + "/shadow/" + shadowStyle + ".png";
+			img.src = Paths.sprites + "/shadow/" + shadowStyle + ".png";
 			return img;
 		}
-
 		return undefined;
-	},
+	}
 
 	/**
 	 * Checks if there is a "safe" image available for sprite.
@@ -441,35 +469,54 @@ stendhal.data.sprites = {
 	 * @return
 	 *     <code>true</code> if a known safe image is available.
 	 */
-	hasSafeImage: function(filename) {
+	hasSafeImage(filename: string): boolean {
 		return this.knownSafeSprites[filename] == true;
-	},
+	}
 
 	/**
 	 * Called at startup to pre-cache certain images.
 	 */
-	startupCache: function() {
+	startupCache() {
 		// tutorial profile
-		this.get(stendhal.paths.sprites + "/npc/floattingladynpc.png");
+		this.get(Paths.sprites + "/npc/floattingladynpc.png");
 		// achievement assets
-		this.get(stendhal.paths.gui + "/banner_background.png");
+		this.get(Paths.gui + "/banner_background.png");
 		for (const cat of ["commerce", "deathmatch", "experience", "fighting", "friend",
 				"interior_zone", "item", "obtain", "outside_zone", "production", "quest",
 				"quest_ados_items", "quest_kill_blordroughs", "quest_kirdneh_item",
 				"quest_mithrilbourgh_enemy_army", "quest_semos_monster", "special",
 				"underground_zone"]) {
-			this.get(stendhal.paths.achievements + "/" + cat + ".png");
+			this.get(Paths.achievements + "/" + cat + ".png");
 		}
 		// weather
 		for (const weather of ["fog", "fog_heavy", "rain", "rain_heavy",
 				"rain_light", "snow", "snow_heavy", "snow_light", "wave"]) {
-			this.get(stendhal.paths.weather + "/" + weather + ".png");
+			this.get(Paths.weather + "/" + weather + ".png");
 		}
 	}
 }
 
+/**
+ * Hidden class to create the singleton instance internally.
+ */
+class SpriteStoreInternal extends SpriteStore {
+
+	/** Singleton instance. */
+	private static instance: SpriteStore;
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): SpriteStore {
+		SpriteStoreInternal.instance = SpriteStoreInternal.instance ? SpriteStoreInternal.instance : new SpriteStore();
+		return SpriteStoreInternal.instance;
+	}
+}
+
+// SpriteStore singleton instance
+export const store = SpriteStoreInternal.get();
 // *** Image filters. Prevent the closure compiler from mangling the names. ***
-stendhal.data.sprites.filter['trueColor'] = function(data, color) {
+store.filter['trueColor'] = function(data: any, color: number) {
 	var hslColor = stendhal.data.sprites.filter.rgb2hsl(stendhal.data.sprites.filter.splitrgb(color));
 	var end = data.length;
 	for (var i = 0; i < end; i += 4) {
@@ -487,18 +534,4 @@ stendhal.data.sprites.filter['trueColor'] = function(data, color) {
 		data[i+1] = resultRgb[1];
 		data[i+2] = resultRgb[2];
 	}
-}
-
-// alternatives for known images that may be considered violent or mature
-stendhal.data.sprites.knownSafeSprites = {
-	[stendhal.paths.sprites + "/monsters/huge_animal/thing"]: true,
-	[stendhal.paths.sprites + "/monsters/mutant/imperial_mutant"]: true,
-	[stendhal.paths.sprites + "/monsters/undead/bloody_zombie"]: true,
-	[stendhal.paths.sprites + "/npc/deadmannpc"]: true
-}
-
-stendhal.data.sprites.animations = {
-	idea: {
-		"love": {delay: 100, offsetX: 24, offsetY: -8}
-	}
-}
+};
