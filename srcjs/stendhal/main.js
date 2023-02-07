@@ -14,7 +14,7 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
-var Main = require("../../build/ts/Main").Main;
+var Client = require("../../build/ts/Client").Client;
 var singletons = singletons || require("../../build/ts/SingletonRepo").SingletonRepo;
 
 var CacheManager = require("../../build/ts/data/CacheManager").CacheManager;
@@ -70,7 +70,7 @@ stendhal.ui.gamewindow = singletons.getViewPort();
 stendhal.zone = new Zone();
 stendhal.zone.ground = new Ground();
 
-stendhal.main = new Main();
+stendhal.main = new Client();
 
 document.addEventListener('DOMContentLoaded', stendhal.main.startup);
 window.addEventListener('error', stendhal.main.onerror);

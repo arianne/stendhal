@@ -34,7 +34,7 @@ import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
 
 
-export class Main {
+export class Client {
 
 	private errorCounter = 0;
 	private zoneFile?: any;
