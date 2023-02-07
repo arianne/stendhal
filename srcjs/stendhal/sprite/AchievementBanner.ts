@@ -36,7 +36,7 @@ export class AchievementBanner extends TextBubble {
 		/* keep achievements on the screen a bit longer since they
 		 * don't leave a line in the chat log
 		 */
-		this.duration = TextBubble.STANDARD_DUR * 2;
+		this.duration = TextBubble.STANDARD_DUR * 4;
 
 		const gamewindow =
 				<HTMLCanvasElement> document.getElementById("gamewindow")!;

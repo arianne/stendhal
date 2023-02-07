@@ -948,7 +948,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		 * a line to the chat log, so we give the player a bit more time to
 		 * admire her prowess.
 		 */
-		addStaticSprite(sprite, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME, 0);
+		addStaticSprite(sprite, 4 * RemovableSprite.STANDARD_PERSISTENCE_TIME, 0);
 	}
 
 	/**

@@ -22,7 +22,7 @@ export abstract class TextBubble {
 	protected y = -1;
 	protected width = -1;
 	protected height = -1;
-	protected duration = 5000;
+	protected duration = TextBubble.STANDARD_DUR;
 
 	protected onRemovedAction?: Function;
 
