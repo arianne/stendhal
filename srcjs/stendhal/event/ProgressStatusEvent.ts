@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2005-2021 - Stendhal                    *
+ *                   (C) Copyright 2005-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
