@@ -52,7 +52,7 @@ export class SingletonRepo {
 		return Inventory.get();
 	}
 
-	static getKeyHandler(): KeyHandler {
+	static getKeyHandler(): typeof KeyHandler {
 		return KeyHandler;
 	}
 

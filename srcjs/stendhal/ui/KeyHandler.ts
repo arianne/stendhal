@@ -25,6 +25,13 @@ export class KeyHandler {
 
 
 	/**
+	 * Static members & methods only.
+	 */
+	private constructor() {
+		// do nothing
+	}
+
+	/**
 	 * Checks if any direction key is currently pressed.
 	 *
 	 * @return
