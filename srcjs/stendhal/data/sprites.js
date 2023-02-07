@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -141,8 +141,8 @@ stendhal.data.sprites = {
 	// TODO: call clean on map change
 	clean: function() {
 		for (var i in stendhal.data.sprites.images) {
-			console.log(typeof(i));
-			if (typeof(i) == "Image") {
+			console.log(typeof(stendhal.data.sprites.images[i]));
+			if (stendhal.data.sprites.images[i] instanceof HTMLImageElement) {
 				if (stendhal.data.sprites.images[i].counter > 0) {
 					stendhal.data.sprites.images[i].counter--;
 				} else {
