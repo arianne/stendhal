@@ -23,6 +23,7 @@ import { Map } from "./data/Map";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 
+import { Inventory } from "./ui/Inventory";
 import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
@@ -45,6 +46,10 @@ export class SingletonRepo {
 
 	static getGroupManager(): GroupManager {
 		return GroupManager.get();
+	}
+
+	static getInventory(): Inventory {
+		return Inventory.get();
 	}
 
 	static getKeyHandler(): KeyHandler {

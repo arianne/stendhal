@@ -15,7 +15,29 @@ import { ItemContainerImplementation } from "./component/ItemContainerImplementa
 
 
 export class Inventory {
+
 	private inventory: ItemContainerImplementation[] = [];
+
+	/** Singleton instance. */
+	private static instance: Inventory;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): Inventory {
+		if (!Inventory.instance) {
+			Inventory.instance = new Inventory();
+		}
+		return Inventory.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	update() {
 		for (var i in this.inventory) {

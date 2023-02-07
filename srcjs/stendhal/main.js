@@ -27,7 +27,6 @@ var Zone = require("../../build/ts/entity/Zone").Zone;
 var Chat = require("../../build/ts/util/Chat").Chat;
 
 var HTMLManager = require("../../build/ts/ui/HTMLManager").HTMLManager;
-var Inventory = require("../../build/ts/ui/Inventory").Inventory;
 var ui = require("../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var TouchHandler = require("../../build/ts/ui/TouchHandler").TouchHandler;
@@ -61,7 +60,7 @@ stendhal.session = stendhal.session || singletons.getSessionManager();
 stendhal.slashActionRepository = stendhal.slashActionRepository || singletons.getSlashActionRepository();
 
 stendhal.ui = stendhal.ui || {}
-stendhal.ui.equip = new Inventory();
+stendhal.ui.equip = singletons.getInventory();
 stendhal.ui.html = new HTMLManager();
 stendhal.ui.touch = new TouchHandler();
 stendhal.ui.soundMan = singletons.getSoundManager();
