@@ -14,7 +14,7 @@ declare var stendhal: any;
 import { ItemContainerImplementation } from "./component/ItemContainerImplementation";
 
 
-export class InventoryManager {
+export class Inventory {
 	private inventory: ItemContainerImplementation[] = [];
 
 	update() {
