@@ -14,8 +14,6 @@ import { singletons } from "../SingletonRepo";
 declare var marauroa: any;
 declare var stendhal: any;
 
-stendhal.config = stendhal.config || singletons.getConfigManager();
-
 
 export interface Sound extends HTMLAudioElement {
 	basevolume: number;
