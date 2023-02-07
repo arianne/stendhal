@@ -22,8 +22,6 @@ var Outfit = require("../../build/ts/data/Outfit").Outfit;
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
 
-var HTMLManager = require("../../build/ts/ui/HTMLManager").HTMLManager;
-var TouchHandler = require("../../build/ts/ui/TouchHandler").TouchHandler;
 
 stendhal.data = stendhal.data || {};
 stendhal.data.cache = singletons.getCacheManager();
@@ -41,8 +39,8 @@ stendhal.session = stendhal.session || singletons.getSessionManager();
 
 stendhal.ui = stendhal.ui || {}
 stendhal.ui.equip = singletons.getInventory();
-stendhal.ui.html = new HTMLManager();
-stendhal.ui.touch = new TouchHandler();
+stendhal.ui.html = singletons.getHTMLManager();
+stendhal.ui.touch = singletons.getTouchHandler();
 stendhal.ui.soundMan = singletons.getSoundManager();
 stendhal.ui.gamewindow = singletons.getViewPort();
 

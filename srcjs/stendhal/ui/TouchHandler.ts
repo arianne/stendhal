@@ -19,6 +19,26 @@ export class TouchHandler {
 	private timestampTouchEnd = 0;
 	private held?: any;
 
+	/** Singleton instance. */
+	private static instance: TouchHandler;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): TouchHandler {
+		if (!TouchHandler.instance) {
+			TouchHandler.instance = new TouchHandler();
+		}
+		return TouchHandler.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	/**
 	 * Sets timestamp when touch applied.

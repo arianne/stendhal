@@ -17,6 +17,27 @@ declare var stendhal: any;
  */
 export class HTMLManager {
 
+	/** Singleton instance. */
+	private static instance: HTMLManager;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): HTMLManager {
+		if (!HTMLManager.instance) {
+			HTMLManager.instance = new HTMLManager();
+		}
+		return HTMLManager.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
+
 	esc(msg: string, filter=[]) {
 		msg = msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, "<br>");
 		// restore filtered tags

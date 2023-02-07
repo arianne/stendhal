@@ -25,10 +25,12 @@ import { Map } from "./data/Map";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 
+import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
+import { TouchHandler } from "./ui/TouchHandler";
 import { ViewPort } from "./ui/ViewPort";
 
 
@@ -56,6 +58,10 @@ export class SingletonRepo {
 
 	static getGroupManager(): GroupManager {
 		return GroupManager.get();
+	}
+
+	static getHTMLManager(): HTMLManager {
+		return HTMLManager.get();
 	}
 
 	static getInventory(): Inventory {
@@ -96,6 +102,10 @@ export class SingletonRepo {
 
 	static getTileAnimation(): Animation {
 		return Animation.get();
+	}
+
+	static getTouchHandler(): TouchHandler {
+		return TouchHandler.get();
 	}
 
 	static getViewPort(): ViewPort {
