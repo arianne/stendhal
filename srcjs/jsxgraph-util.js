@@ -227,7 +227,7 @@ JXG.Util.Unzip = function (barray){
         var curplace = Places[treepos];
         var tmp;
         if (debug)
-    		document.write("<br>len:"+len+" treepos:"+treepos);
+            document.write("<br>len:"+len+" treepos:"+treepos);
         if(len==17) { //war 17
             return -1;
         }
@@ -236,16 +236,16 @@ JXG.Util.Unzip = function (barray){
 
         tmp = IsPat();
         if (debug)
-        	document.write("<br>IsPat "+tmp);
+            document.write("<br>IsPat "+tmp);
         if(tmp >= 0) {
             curplace.b0 = tmp;    /* leaf cell for 0-bit */
             if (debug)
-            	document.write("<br>b0 "+curplace.b0);
+                document.write("<br>b0 "+curplace.b0);
         } else {
         /* Not a Leaf cell */
         curplace.b0 = 0x8000;
         if (debug)
-        	document.write("<br>b0 "+curplace.b0);
+            document.write("<br>b0 "+curplace.b0);
         if(Rec())
             return -1;
         }
@@ -253,13 +253,13 @@ JXG.Util.Unzip = function (barray){
         if(tmp >= 0) {
             curplace.b1 = tmp;    /* leaf cell for 1-bit */
             if (debug)
-            	document.write("<br>b1 "+curplace.b1);
+                document.write("<br>b1 "+curplace.b1);
             curplace.jump = null;    /* Just for the display routine */
         } else {
             /* Not a Leaf cell */
             curplace.b1 = 0x8000;
             if (debug)
-            	document.write("<br>b1 "+curplace.b1);
+                document.write("<br>b1 "+curplace.b1);
             curplace.jump = Places[treepos];
             curplace.jumppos = treepos;
             if(Rec())
@@ -274,7 +274,7 @@ JXG.Util.Unzip = function (barray){
         /* Create the Huffman decode tree/table */
         //document.write("<br>createtree<br>");
         if (debug)
-        	document.write("currentTree "+currentTree+" numval "+numval+" lengths "+lengths+" show "+show);
+            document.write("currentTree "+currentTree+" numval "+numval+" lengths "+lengths+" show "+show);
         Places = currentTree;
         treepos=0;
         flens = lengths;
@@ -285,15 +285,15 @@ JXG.Util.Unzip = function (barray){
         if(Rec()) {
             //fprintf(stderr, "invalid huffman tree\n");
             if (debug)
-            	alert("invalid huffman tree\n");
+                alert("invalid huffman tree\n");
             return -1;
         }
         if (debug){
-        	document.write('<br>Tree: '+Places.length);
-        	for (var a=0;a<32;a++){
-            	document.write("Places["+a+"].b0="+Places[a].b0+"<br>");
-            	document.write("Places["+a+"].b1="+Places[a].b1+"<br>");
-        	}
+            document.write('<br>Tree: '+Places.length);
+            for (var a=0;a<32;a++){
+                document.write("Places["+a+"].b0="+Places[a].b0+"<br>");
+                document.write("Places["+a+"].b1="+Places[a].b1+"<br>");
+            }
         }
 
         /*if(show) {
@@ -324,11 +324,11 @@ JXG.Util.Unzip = function (barray){
         while(1) {
             b=readBit();
             if (debug)
-            	document.write("b="+b);
+                document.write("b="+b);
             if(b) {
                 if(!(X.b1 & 0x8000)){
-                	if (debug)
-                    	document.write("ret1");
+                    if (debug)
+                        document.write("ret1");
                     return X.b1;    /* If leaf node, return data */
                 }
                 X = X.jump;
@@ -342,8 +342,8 @@ JXG.Util.Unzip = function (barray){
                 //xtreepos++;
             } else {
                 if(!(X.b0 & 0x8000)){
-                	if (debug)
-                    	document.write("ret2");
+                    if (debug)
+                        document.write("ret2");
                     return X.b0;    /* If leaf node, return data */
                 }
                 //X++; //??????????????????
@@ -352,250 +352,115 @@ JXG.Util.Unzip = function (barray){
             }
         }
         if (debug)
-        	document.write("ret3");
+            document.write("ret3");
         return -1;
     };
 
     function DeflateLoop() {
-    var last, c, type, i, len;
+        var last, c, type, i, len;
 
-    do {
-        /*if((last = readBit())){
-            fprintf(errfp, "Last Block: ");
-        } else {
-            fprintf(errfp, "Not Last Block: ");
-        }*/
-        last = readBit();
-        type = readBits(2);
-        switch(type) {
-            case 0:
-            	if (debug)
-                	alert("Stored\n");
-                break;
-            case 1:
-            	if (debug)
-                	alert("Fixed Huffman codes\n");
-                break;
-            case 2:
-            	if (debug)
-                	alert("Dynamic Huffman codes\n");
-                break;
-            case 3:
-            	if (debug)
-                	alert("Reserved block type!!\n");
-                break;
-            default:
-            	if (debug)
-                	alert("Unexpected value %d!\n", type);
-                break;
-        }
-
-        if(type==0) {
-            var blockLen, cSum;
-
-            // Stored
-            byteAlign();
-            blockLen = readByte();
-            blockLen |= (readByte()<<8);
-
-            cSum = readByte();
-            cSum |= (readByte()<<8);
-
-            if(((blockLen ^ ~cSum) & 0xffff)) {
-                document.write("BlockLen checksum mismatch\n");
-            }
-            while(blockLen--) {
-                c = readByte();
-                addBuffer(c);
-            }
-        } else if(type==1) {
-            var j;
-
-            /* Fixed Huffman tables -- fixed decode routine */
-            while(1) {
-            /*
-                256    0000000        0
-                :   :     :
-                279    0010111        23
-                0   00110000    48
-                :    :      :
-                143    10111111    191
-                280 11000000    192
-                :    :      :
-                287 11000111    199
-                144    110010000    400
-                :    :       :
-                255    111111111    511
-
-                Note the bit order!
-                */
-
-            j = (bitReverse[readBits(7)]>>1);
-            if(j > 23) {
-                j = (j<<1) | readBit();    /* 48..255 */
-
-                if(j > 199) {    /* 200..255 */
-                    j -= 128;    /*  72..127 */
-                    j = (j<<1) | readBit();        /* 144..255 << */
-                } else {        /*  48..199 */
-                    j -= 48;    /*   0..151 */
-                    if(j > 143) {
-                        j = j+136;    /* 280..287 << */
-                        /*   0..143 << */
-                    }
-                }
-            } else {    /*   0..23 */
-                j += 256;    /* 256..279 << */
-            }
-            if(j < 256) {
-                addBuffer(j);
-                //document.write("out:"+String.fromCharCode(j));
-                /*fprintf(errfp, "@%d %02x\n", SIZE, j);*/
-            } else if(j == 256) {
-                /* EOF */
-                break;
+        do {
+            /*if((last = readBit())){
+                fprintf(errfp, "Last Block: ");
             } else {
-                var len, dist;
+                fprintf(errfp, "Not Last Block: ");
+            }*/
+            last = readBit();
+            type = readBits(2);
+            switch(type) {
+                case 0:
+                    if (debug)
+                        alert("Stored\n");
+                    break;
+                case 1:
+                    if (debug)
+                        alert("Fixed Huffman codes\n");
+                    break;
+                case 2:
+                    if (debug)
+                        alert("Dynamic Huffman codes\n");
+                    break;
+                case 3:
+                    if (debug)
+                        alert("Reserved block type!!\n");
+                    break;
+                default:
+                    if (debug)
+                        alert("Unexpected value %d!\n", type);
+                    break;
+            }
 
-                j -= 256 + 1;    /* bytes + EOF */
-                len = readBits(cplext[j]) + cplens[j];
+            if(type==0) {
+                var blockLen, cSum;
 
-                j = bitReverse[readBits(5)]>>3;
-                if(cpdext[j] > 8) {
-                    dist = readBits(8);
-                    dist |= (readBits(cpdext[j]-8)<<8);
-                } else {
-                    dist = readBits(cpdext[j]);
+                // Stored
+                byteAlign();
+                blockLen = readByte();
+                blockLen |= (readByte()<<8);
+
+                cSum = readByte();
+                cSum |= (readByte()<<8);
+
+                if(((blockLen ^ ~cSum) & 0xffff)) {
+                    document.write("BlockLen checksum mismatch\n");
                 }
-                dist += cpdist[j];
-
-                /*fprintf(errfp, "@%d (l%02x,d%04x)\n", SIZE, len, dist);*/
-                for(j=0;j<len;j++) {
-                    var c = buf32k[(bIdx - dist) & 0x7fff];
+                while(blockLen--) {
+                    c = readByte();
                     addBuffer(c);
                 }
-            }
-            } // while
-        } else if(type==2) {
-            var j, n, literalCodes, distCodes, lenCodes;
-            var ll = new Array(288+32);    // "static" just to preserve stack
+            } else if(type==1) {
+                var j;
 
-            // Dynamic Huffman tables
+                /* Fixed Huffman tables -- fixed decode routine */
+                while(1) {
+                /*
+                    256    0000000        0
+                    :   :     :
+                    279    0010111        23
+                    0   00110000    48
+                    :    :      :
+                    143    10111111    191
+                    280 11000000    192
+                    :    :      :
+                    287 11000111    199
+                    144    110010000    400
+                    :    :       :
+                    255    111111111    511
 
-            literalCodes = 257 + readBits(5);
-            distCodes = 1 + readBits(5);
-            lenCodes = 4 + readBits(4);
-            //document.write("<br>param: "+literalCodes+" "+distCodes+" "+lenCodes+"<br>");
-            for(j=0; j<19; j++) {
-                ll[j] = 0;
-            }
+                    Note the bit order!
+                    */
 
-            // Get the decode tree code lengths
+                j = (bitReverse[readBits(7)]>>1);
+                if(j > 23) {
+                    j = (j<<1) | readBit();    /* 48..255 */
 
-            //document.write("<br>");
-            for(j=0; j<lenCodes; j++) {
-                ll[border[j]] = readBits(3);
-                //document.write(ll[border[j]]+" ");
-            }
-            //fprintf(errfp, "\n");
-            //document.write('<br>ll:'+ll);
-            len = distanceTree.length;
-            for (i=0; i<len; i++)
-                distanceTree[i]=new HufNode();
-            if(CreateTree(distanceTree, 19, ll, 0)) {
-                flushBuffer();
-                return 1;
-            }
-            if (debug){
-            	document.write("<br>distanceTree");
-            	for(var a=0;a<distanceTree.length;a++){
-                	document.write("<br>"+distanceTree[a].b0+" "+distanceTree[a].b1+" "+distanceTree[a].jump+" "+distanceTree[a].jumppos);
-                	/*if (distanceTree[a].jumppos!=-1)
-                    	document.write(" "+distanceTree[a].jump.b0+" "+distanceTree[a].jump.b1);
-                	*/
-            	}
-            }
-            //document.write('<BR>tree created');
-
-            //read in literal and distance code lengths
-            n = literalCodes + distCodes;
-            i = 0;
-            var z=-1;
-            if (debug)
-            	document.write("<br>n="+n+" bits: "+bits+"<br>");
-            while(i < n) {
-                z++;
-                j = DecodeValue(distanceTree);
-                if (debug)
-                	document.write("<br>"+z+" i:"+i+" decode: "+j+"    bits "+bits+"<br>");
-                if(j<16) {    // length of code in bits (0..15)
-                       ll[i++] = j;
-                } else if(j==16) {    // repeat last length 3 to 6 times
-                       var l;
-                    j = 3 + readBits(2);
-                    if(i+j > n) {
-                        flushBuffer();
-                        return 1;
+                    if(j > 199) {    /* 200..255 */
+                        j -= 128;    /*  72..127 */
+                        j = (j<<1) | readBit();        /* 144..255 << */
+                    } else {        /*  48..199 */
+                        j -= 48;    /*   0..151 */
+                        if(j > 143) {
+                            j = j+136;    /* 280..287 << */
+                            /*   0..143 << */
+                        }
                     }
-                    l = i ? ll[i-1] : 0;
-                    while(j--) {
-                        ll[i++] = l;
-                    }
-                } else {
-                    if(j==17) {        // 3 to 10 zero length codes
-                        j = 3 + readBits(3);
-                    } else {        // j == 18: 11 to 138 zero length codes
-                        j = 11 + readBits(7);
-                    }
-                    if(i+j > n) {
-                        flushBuffer();
-                        return 1;
-                    }
-                    while(j--) {
-                        ll[i++] = 0;
-                    }
+                } else {    /*   0..23 */
+                    j += 256;    /* 256..279 << */
                 }
-            }
-            /*for(j=0; j<literalCodes+distCodes; j++) {
-                //fprintf(errfp, "%d ", ll[j]);
-                if ((j&7)==7)
-                    fprintf(errfp, "\n");
-            }
-            fprintf(errfp, "\n");*/
-            // Can overwrite tree decode tree as it is not used anymore
-            len = literalTree.length;
-            for (i=0; i<len; i++)
-                literalTree[i]=new HufNode();
-            if(CreateTree(literalTree, literalCodes, ll, 0)) {
-                flushBuffer();
-                return 1;
-            }
-            len = literalTree.length;
-            for (i=0; i<len; i++)
-                distanceTree[i]=new HufNode();
-            var ll2 = new Array();
-            for (i=literalCodes; i <ll.length; i++){
-                ll2[i-literalCodes]=ll[i];
-            }
-            if(CreateTree(distanceTree, distCodes, ll2, 0)) {
-                flushBuffer();
-                return 1;
-            }
-            if (debug)
-           		document.write("<br>literalTree");
-            while(1) {
-                j = DecodeValue(literalTree);
-                if(j >= 256) {        // In C64: if carry set
+                if(j < 256) {
+                    addBuffer(j);
+                    //document.write("out:"+String.fromCharCode(j));
+                    /*fprintf(errfp, "@%d %02x\n", SIZE, j);*/
+                } else if(j == 256) {
+                    /* EOF */
+                    break;
+                } else {
                     var len, dist;
-                    j -= 256;
-                    if(j == 0) {
-                        // EOF
-                        break;
-                    }
-                    j--;
+
+                    j -= 256 + 1;    /* bytes + EOF */
                     len = readBits(cplext[j]) + cplens[j];
 
-                    j = DecodeValue(distanceTree);
+                    j = bitReverse[readBits(5)]>>3;
                     if(cpdext[j] > 8) {
                         dist = readBits(8);
                         dist |= (readBits(cpdext[j]-8)<<8);
@@ -603,304 +468,436 @@ JXG.Util.Unzip = function (barray){
                         dist = readBits(cpdext[j]);
                     }
                     dist += cpdist[j];
-                    while(len--) {
+
+                    /*fprintf(errfp, "@%d (l%02x,d%04x)\n", SIZE, len, dist);*/
+                    for(j=0;j<len;j++) {
                         var c = buf32k[(bIdx - dist) & 0x7fff];
                         addBuffer(c);
                     }
-                } else {
-                    addBuffer(j);
+                }
+                } // while
+            } else if(type==2) {
+                var j, n, literalCodes, distCodes, lenCodes;
+                var ll = new Array(288+32);    // "static" just to preserve stack
+
+                // Dynamic Huffman tables
+
+                literalCodes = 257 + readBits(5);
+                distCodes = 1 + readBits(5);
+                lenCodes = 4 + readBits(4);
+                //document.write("<br>param: "+literalCodes+" "+distCodes+" "+lenCodes+"<br>");
+                for(j=0; j<19; j++) {
+                    ll[j] = 0;
+                }
+
+                // Get the decode tree code lengths
+
+                //document.write("<br>");
+                for(j=0; j<lenCodes; j++) {
+                    ll[border[j]] = readBits(3);
+                    //document.write(ll[border[j]]+" ");
+                }
+                //fprintf(errfp, "\n");
+                //document.write('<br>ll:'+ll);
+                len = distanceTree.length;
+                for (i=0; i<len; i++)
+                    distanceTree[i]=new HufNode();
+                if(CreateTree(distanceTree, 19, ll, 0)) {
+                    flushBuffer();
+                    return 1;
+                }
+                if (debug){
+                    document.write("<br>distanceTree");
+                    for(var a=0;a<distanceTree.length;a++){
+                        document.write("<br>"+distanceTree[a].b0+" "+distanceTree[a].b1+" "+distanceTree[a].jump+" "+distanceTree[a].jumppos);
+                        /*if (distanceTree[a].jumppos!=-1)
+                            document.write(" "+distanceTree[a].jump.b0+" "+distanceTree[a].jump.b1);
+                        */
+                    }
+                }
+                //document.write('<BR>tree created');
+
+                //read in literal and distance code lengths
+                n = literalCodes + distCodes;
+                i = 0;
+                var z=-1;
+                if (debug)
+                    document.write("<br>n="+n+" bits: "+bits+"<br>");
+                while(i < n) {
+                    z++;
+                    j = DecodeValue(distanceTree);
+                    if (debug)
+                        document.write("<br>"+z+" i:"+i+" decode: "+j+"    bits "+bits+"<br>");
+                    if(j<16) {    // length of code in bits (0..15)
+                           ll[i++] = j;
+                    } else if(j==16) {    // repeat last length 3 to 6 times
+                           var l;
+                        j = 3 + readBits(2);
+                        if(i+j > n) {
+                            flushBuffer();
+                            return 1;
+                        }
+                        l = i ? ll[i-1] : 0;
+                        while(j--) {
+                            ll[i++] = l;
+                        }
+                    } else {
+                        if(j==17) {        // 3 to 10 zero length codes
+                            j = 3 + readBits(3);
+                        } else {        // j == 18: 11 to 138 zero length codes
+                            j = 11 + readBits(7);
+                        }
+                        if(i+j > n) {
+                            flushBuffer();
+                            return 1;
+                        }
+                        while(j--) {
+                            ll[i++] = 0;
+                        }
+                    }
+                }
+                /*for(j=0; j<literalCodes+distCodes; j++) {
+                    //fprintf(errfp, "%d ", ll[j]);
+                    if ((j&7)==7)
+                        fprintf(errfp, "\n");
+                }
+                fprintf(errfp, "\n");*/
+                // Can overwrite tree decode tree as it is not used anymore
+                len = literalTree.length;
+                for (i=0; i<len; i++)
+                    literalTree[i]=new HufNode();
+                if(CreateTree(literalTree, literalCodes, ll, 0)) {
+                    flushBuffer();
+                    return 1;
+                }
+                len = literalTree.length;
+                for (i=0; i<len; i++)
+                    distanceTree[i]=new HufNode();
+                var ll2 = new Array();
+                for (i=literalCodes; i <ll.length; i++){
+                    ll2[i-literalCodes]=ll[i];
+                }
+                if(CreateTree(distanceTree, distCodes, ll2, 0)) {
+                    flushBuffer();
+                    return 1;
+                }
+                if (debug)
+                    document.write("<br>literalTree");
+                while(1) {
+                    j = DecodeValue(literalTree);
+                    if(j >= 256) {        // In C64: if carry set
+                        var len, dist;
+                        j -= 256;
+                        if(j == 0) {
+                            // EOF
+                            break;
+                        }
+                        j--;
+                        len = readBits(cplext[j]) + cplens[j];
+
+                        j = DecodeValue(distanceTree);
+                        if(cpdext[j] > 8) {
+                            dist = readBits(8);
+                            dist |= (readBits(cpdext[j]-8)<<8);
+                        } else {
+                            dist = readBits(cpdext[j]);
+                        }
+                        dist += cpdist[j];
+                        while(len--) {
+                            var c = buf32k[(bIdx - dist) & 0x7fff];
+                            addBuffer(c);
+                        }
+                    } else {
+                        addBuffer(j);
+                    }
                 }
             }
-        }
-    } while(!last);
-    flushBuffer();
+        } while(!last);
+        flushBuffer();
 
-    byteAlign();
-    return 0;
-};
-
-JXG.Util.Unzip.prototype.unzipFile = function(name) {
-    var i;
-	this.unzip();
-	//alert(unzipped[0][1]);
-	for (i=0;i<unzipped.length;i++){
-		if(unzipped[i][1]==name) {
-			return unzipped[i][0];
-		}
-	}
-
-  };
-
-
-JXG.Util.Unzip.prototype.unzip = function() {
-	//convertToByteArray(input);
-	if (debug)
-		alert(bA);
-	/*for (i=0;i<bA.length*8;i++){
-		document.write(readBit());
-		if ((i+1)%8==0)
-			document.write(" ");
-	}*/
-	/*for (i=0;i<bA.length;i++){
-		document.write(readByte()+" ");
-		if ((i+1)%8==0)
-			document.write(" ");
-	}
-	for (i=0;i<bA.length;i++){
-		document.write(bA[i]+" ");
-		if ((i+1)%16==0)
-			document.write("<br>");
-	}
-	*/
-	//alert(bA);
-	nextFile();
-	return unzipped;
-  };
-
- function nextFile(){
- 	if (debug)
- 		alert("NEXTFILE");
- 	outputArr = [];
- 	var tmp = [];
- 	modeZIP = false;
-	tmp[0] = readByte();
-	tmp[1] = readByte();
-	if (debug)
-		alert("type: "+tmp[0]+" "+tmp[1]);
-	if (tmp[0] == parseInt("78",16) && tmp[1] == parseInt("da",16)){ //GZIP
-		if (debug)
-			alert("GEONExT-GZIP");
-		DeflateLoop();
-		if (debug)
-			alert(outputArr.join(''));
-		unzipped[files] = new Array(2);
-    	unzipped[files][0] = outputArr.join('');
-    	unzipped[files][1] = "geonext.gxt";
-    	files++;
-	}
-	if (tmp[0] == parseInt("1f",16) && tmp[1] == parseInt("8b",16)){ //GZIP
-		if (debug)
-			alert("GZIP");
-		//DeflateLoop();
-		skipdir();
-		if (debug)
-			alert(outputArr.join(''));
-		unzipped[files] = new Array(2);
-    	unzipped[files][0] = outputArr.join('');
-    	unzipped[files][1] = "file";
-    	files++;
-	}
-	if (tmp[0] == parseInt("50",16) && tmp[1] == parseInt("4b",16)){ //ZIP
-		modeZIP = true;
-		tmp[2] = readByte();
-		tmp[3] = readByte();
-		if (tmp[2] == parseInt("3",16) && tmp[3] == parseInt("4",16)){
-			//MODE_ZIP
-			tmp[0] = readByte();
-			tmp[1] = readByte();
-			if (debug)
-				alert("ZIP-Version: "+tmp[1]+" "+tmp[0]/10+"."+tmp[0]%10);
-
-			gpflags = readByte();
-			gpflags |= (readByte()<<8);
-			if (debug)
-				alert("gpflags: "+gpflags);
-
-			var method = readByte();
-			method |= (readByte()<<8);
-			if (debug)
-				alert("method: "+method);
-
-			readByte();
-			readByte();
-			readByte();
-			readByte();
-
-			var crc = readByte();
-			crc |= (readByte()<<8);
-			crc |= (readByte()<<16);
-			crc |= (readByte()<<24);
-
-			var compSize = readByte();
-			compSize |= (readByte()<<8);
-			compSize |= (readByte()<<16);
-			compSize |= (readByte()<<24);
-
-			var size = readByte();
-			size |= (readByte()<<8);
-			size |= (readByte()<<16);
-			size |= (readByte()<<24);
-
-			if (debug)
-				alert("local CRC: "+crc+"\nlocal Size: "+size+"\nlocal CompSize: "+compSize);
-
-			var filelen = readByte();
-			filelen |= (readByte()<<8);
-
-			var extralen = readByte();
-			extralen |= (readByte()<<8);
-
-			if (debug)
-				alert("filelen "+filelen);
-			i = 0;
-			nameBuf = [];
-			while (filelen--){
-				var c = readByte();
-				if (c == "/" | c ==":"){
-					i = 0;
-				} else if (i < NAMEMAX-1)
-					nameBuf[i++] = String.fromCharCode(c);
-			}
-			if (debug)
-				alert("nameBuf: "+nameBuf);
-
-			//nameBuf[i] = "\0";
-			if (!fileout)
-				fileout = nameBuf;
-
-			var i = 0;
-			while (i < extralen){
-				c = readByte();
-				i++;
-			}
-
-			CRC = 0xffffffff;
-			SIZE = 0;
-
-			if (size = 0 && fileOut.charAt(fileout.length-1)=="/"){
-				//skipdir
-				if (debug)
-					alert("skipdir");
-			}
-			if (method == 8){
-				DeflateLoop();
-				if (debug)
-					alert(outputArr.join(''));
-				unzipped[files] = new Array(2);
-				unzipped[files][0] = outputArr.join('');
-    			unzipped[files][1] = nameBuf.join('');
-    			files++;
-				//return outputArr.join('');
-			}
-			skipdir();
-		}
-	}
- };
-
-function skipdir(){
-    var crc,
-        tmp = [],
-        compSize, size, os, i, c;
-
-	if ((gpflags & 8)) {
-		tmp[0] = readByte();
-		tmp[1] = readByte();
-		tmp[2] = readByte();
-		tmp[3] = readByte();
-
-		if (tmp[0] == parseInt("50",16) &&
-            tmp[1] == parseInt("4b",16) &&
-            tmp[2] == parseInt("07",16) &&
-            tmp[3] == parseInt("08",16))
-        {
-            crc = readByte();
-            crc |= (readByte()<<8);
-            crc |= (readByte()<<16);
-            crc |= (readByte()<<24);
-		} else {
-			crc = tmp[0] | (tmp[1]<<8) | (tmp[2]<<16) | (tmp[3]<<24);
-		}
-
-		compSize = readByte();
-		compSize |= (readByte()<<8);
-		compSize |= (readByte()<<16);
-		compSize |= (readByte()<<24);
-
-		size = readByte();
-		size |= (readByte()<<8);
-		size |= (readByte()<<16);
-		size |= (readByte()<<24);
-
-		if (debug)
-			alert("CRC:");
-	}
-
-	if (modeZIP)
-		nextFile();
-
-	tmp[0] = readByte();
-	if (tmp[0] != 8) {
-		if (debug)
-			alert("Unknown compression method!");
+        byteAlign();
         return 0;
-	}
+    };
 
-	gpflags = readByte();
-	if (debug){
-		if ((gpflags & ~(parseInt("1f",16))))
-			alert("Unknown flags set!");
-	}
+    JXG.Util.Unzip.prototype.unzipFile = function(name) {
+        var i;
+        this.unzip();
+        //alert(unzipped[0][1]);
+        for (i=0;i<unzipped.length;i++){
+            if(unzipped[i][1]==name) {
+                return unzipped[i][0];
+            }
+        }
+    };
 
-	readByte();
-	readByte();
-	readByte();
-	readByte();
 
-	readByte();
-	os = readByte();
+    JXG.Util.Unzip.prototype.unzip = function() {
+        //convertToByteArray(input);
+        if (debug)
+            alert(bA);
+        /*for (i=0;i<bA.length*8;i++){
+            document.write(readBit());
+            if ((i+1)%8==0)
+                document.write(" ");
+        }*/
+        /*for (i=0;i<bA.length;i++){
+            document.write(readByte()+" ");
+            if ((i+1)%8==0)
+                document.write(" ");
+        }
+        for (i=0;i<bA.length;i++){
+            document.write(bA[i]+" ");
+            if ((i+1)%16==0)
+                document.write("<br>");
+        }
+        */
+        //alert(bA);
+        nextFile();
+        return unzipped;
+    };
 
-	if ((gpflags & 4)){
-		tmp[0] = readByte();
-		tmp[2] = readByte();
-		len = tmp[0] + 256*tmp[1];
-		if (debug)
-			alert("Extra field size: "+len);
-		for (i=0;i<len;i++)
-			readByte();
-	}
+    function nextFile(){
+        if (debug)
+            alert("NEXTFILE");
+        outputArr = [];
+        var tmp = [];
+        modeZIP = false;
+        tmp[0] = readByte();
+        tmp[1] = readByte();
+        if (debug)
+            alert("type: "+tmp[0]+" "+tmp[1]);
+        if (tmp[0] == parseInt("78",16) && tmp[1] == parseInt("da",16)){ //GZIP
+            if (debug)
+                alert("GEONExT-GZIP");
+            DeflateLoop();
+            if (debug)
+                alert(outputArr.join(''));
+            unzipped[files] = new Array(2);
+            unzipped[files][0] = outputArr.join('');
+            unzipped[files][1] = "geonext.gxt";
+            files++;
+        }
+        if (tmp[0] == parseInt("1f",16) && tmp[1] == parseInt("8b",16)){ //GZIP
+            if (debug)
+                alert("GZIP");
+            //DeflateLoop();
+            skipdir();
+            if (debug)
+                alert(outputArr.join(''));
+            unzipped[files] = new Array(2);
+            unzipped[files][0] = outputArr.join('');
+            unzipped[files][1] = "file";
+            files++;
+        }
+        if (tmp[0] == parseInt("50",16) && tmp[1] == parseInt("4b",16)){ //ZIP
+            modeZIP = true;
+            tmp[2] = readByte();
+            tmp[3] = readByte();
+            if (tmp[2] == parseInt("3",16) && tmp[3] == parseInt("4",16)){
+                //MODE_ZIP
+                tmp[0] = readByte();
+                tmp[1] = readByte();
+                if (debug)
+                    alert("ZIP-Version: "+tmp[1]+" "+tmp[0]/10+"."+tmp[0]%10);
 
-	if ((gpflags & 8)){
-		i=0;
-		nameBuf=[];
-		while (c=readByte()){
-			if(c == "7" || c == ":")
-				i=0;
-			if (i<NAMEMAX-1)
-				nameBuf[i++] = c;
-		}
-		//nameBuf[i] = "\0";
-		if (debug)
-			alert("original file name: "+nameBuf);
-	}
+                gpflags = readByte();
+                gpflags |= (readByte()<<8);
+                if (debug)
+                    alert("gpflags: "+gpflags);
 
-	if ((gpflags & 16)){
-		while (c=readByte()){
-			//FILE COMMENT
-		}
-	}
+                var method = readByte();
+                method |= (readByte()<<8);
+                if (debug)
+                    alert("method: "+method);
 
-	if ((gpflags & 2)){
-		readByte();
-		readByte();
-	}
+                readByte();
+                readByte();
+                readByte();
+                readByte();
 
-	DeflateLoop();
+                var crc = readByte();
+                crc |= (readByte()<<8);
+                crc |= (readByte()<<16);
+                crc |= (readByte()<<24);
 
-	crc = readByte();
-	crc |= (readByte()<<8);
-	crc |= (readByte()<<16);
-	crc |= (readByte()<<24);
+                var compSize = readByte();
+                compSize |= (readByte()<<8);
+                compSize |= (readByte()<<16);
+                compSize |= (readByte()<<24);
 
-	size = readByte();
-	size |= (readByte()<<8);
-	size |= (readByte()<<16);
-	size |= (readByte()<<24);
+                var size = readByte();
+                size |= (readByte()<<8);
+                size |= (readByte()<<16);
+                size |= (readByte()<<24);
 
-	if (modeZIP)
-		nextFile();
+                if (debug)
+                    alert("local CRC: "+crc+"\nlocal Size: "+size+"\nlocal CompSize: "+compSize);
 
-};
+                var filelen = readByte();
+                filelen |= (readByte()<<8);
 
+                var extralen = readByte();
+                extralen |= (readByte()<<8);
+
+                if (debug)
+                    alert("filelen "+filelen);
+                i = 0;
+                nameBuf = [];
+                while (filelen--){
+                    var c = readByte();
+                    if (c == "/" | c ==":"){
+                        i = 0;
+                    } else if (i < NAMEMAX-1)
+                        nameBuf[i++] = String.fromCharCode(c);
+                }
+                if (debug)
+                    alert("nameBuf: "+nameBuf);
+
+                //nameBuf[i] = "\0";
+                if (!fileout)
+                    fileout = nameBuf;
+
+                var i = 0;
+                while (i < extralen){
+                    c = readByte();
+                    i++;
+                }
+
+                CRC = 0xffffffff;
+                SIZE = 0;
+
+                if (size = 0 && fileOut.charAt(fileout.length-1)=="/"){
+                    //skipdir
+                    if (debug)
+                        alert("skipdir");
+                }
+                if (method == 8){
+                    DeflateLoop();
+                    if (debug)
+                        alert(outputArr.join(''));
+                    unzipped[files] = new Array(2);
+                    unzipped[files][0] = outputArr.join('');
+                    unzipped[files][1] = nameBuf.join('');
+                    files++;
+                    //return outputArr.join('');
+                }
+                skipdir();
+            }
+        }
+    };
+
+    function skipdir(){
+        var crc,
+            tmp = [],
+            compSize, size, os, i, c;
+
+        if ((gpflags & 8)) {
+            tmp[0] = readByte();
+            tmp[1] = readByte();
+            tmp[2] = readByte();
+            tmp[3] = readByte();
+
+            if (tmp[0] == parseInt("50",16) &&
+                tmp[1] == parseInt("4b",16) &&
+                tmp[2] == parseInt("07",16) &&
+                tmp[3] == parseInt("08",16))
+            {
+                crc = readByte();
+                crc |= (readByte()<<8);
+                crc |= (readByte()<<16);
+                crc |= (readByte()<<24);
+            } else {
+                crc = tmp[0] | (tmp[1]<<8) | (tmp[2]<<16) | (tmp[3]<<24);
+            }
+
+            compSize = readByte();
+            compSize |= (readByte()<<8);
+            compSize |= (readByte()<<16);
+            compSize |= (readByte()<<24);
+
+            size = readByte();
+            size |= (readByte()<<8);
+            size |= (readByte()<<16);
+            size |= (readByte()<<24);
+
+            if (debug)
+                alert("CRC:");
+        }
+
+        if (modeZIP)
+            nextFile();
+
+        tmp[0] = readByte();
+        if (tmp[0] != 8) {
+            if (debug)
+                alert("Unknown compression method!");
+            return 0;
+        }
+
+        gpflags = readByte();
+        if (debug){
+            if ((gpflags & ~(parseInt("1f",16))))
+                alert("Unknown flags set!");
+        }
+
+        readByte();
+        readByte();
+        readByte();
+        readByte();
+
+        readByte();
+        os = readByte();
+
+        if ((gpflags & 4)){
+            tmp[0] = readByte();
+            tmp[2] = readByte();
+            len = tmp[0] + 256*tmp[1];
+            if (debug)
+                alert("Extra field size: "+len);
+            for (i=0;i<len;i++)
+                readByte();
+        }
+
+        if ((gpflags & 8)){
+            i=0;
+            nameBuf=[];
+            while (c=readByte()){
+                if(c == "7" || c == ":")
+                    i=0;
+                if (i<NAMEMAX-1)
+                    nameBuf[i++] = c;
+            }
+            //nameBuf[i] = "\0";
+            if (debug)
+                alert("original file name: "+nameBuf);
+        }
+
+        if ((gpflags & 16)){
+            while (c=readByte()){
+                //FILE COMMENT
+            }
+        }
+
+        if ((gpflags & 2)){
+            readByte();
+            readByte();
+        }
+
+        DeflateLoop();
+
+        crc = readByte();
+        crc |= (readByte()<<8);
+        crc |= (readByte()<<16);
+        crc |= (readByte()<<24);
+
+        size = readByte();
+        size |= (readByte()<<8);
+        size |= (readByte()<<16);
+        size |= (readByte()<<24);
+
+        if (modeZIP)
+            nextFile();
+    };
 };
 
 /**
@@ -1076,68 +1073,68 @@ JXG.Util.Base64 = {
  * @private
  */
 JXG.Util.asciiCharCodeAt = function(str,i){
-	var c = str.charCodeAt(i);
-	if (c>255){
-    	switch (c) {
-			case 8364: c=128;
-	    	break;
-	    	case 8218: c=130;
-	    	break;
-	    	case 402: c=131;
-	    	break;
-	    	case 8222: c=132;
-	    	break;
-	    	case 8230: c=133;
-	    	break;
-	    	case 8224: c=134;
-	    	break;
-	    	case 8225: c=135;
-	    	break;
-	    	case 710: c=136;
-	    	break;
-	    	case 8240: c=137;
-	    	break;
-	    	case 352: c=138;
-	    	break;
-	    	case 8249: c=139;
-	    	break;
-	    	case 338: c=140;
-	    	break;
-	    	case 381: c=142;
-	    	break;
-	    	case 8216: c=145;
-	    	break;
-	    	case 8217: c=146;
-	    	break;
-	    	case 8220: c=147;
-	    	break;
-	    	case 8221: c=148;
-	    	break;
-	    	case 8226: c=149;
-	    	break;
-	    	case 8211: c=150;
-	    	break;
-	    	case 8212: c=151;
-	    	break;
-	    	case 732: c=152;
-	    	break;
-	    	case 8482: c=153;
-	    	break;
-	    	case 353: c=154;
-	    	break;
-	    	case 8250: c=155;
-	    	break;
-	    	case 339: c=156;
-	    	break;
-	    	case 382: c=158;
-	    	break;
-	    	case 376: c=159;
-	    	break;
-	    	default:
-	    	break;
-	    }
-	}
-	return c;
+    var c = str.charCodeAt(i);
+    if (c>255){
+        switch (c) {
+            case 8364: c=128;
+            break;
+            case 8218: c=130;
+            break;
+            case 402: c=131;
+            break;
+            case 8222: c=132;
+            break;
+            case 8230: c=133;
+            break;
+            case 8224: c=134;
+            break;
+            case 8225: c=135;
+            break;
+            case 710: c=136;
+            break;
+            case 8240: c=137;
+            break;
+            case 352: c=138;
+            break;
+            case 8249: c=139;
+            break;
+            case 338: c=140;
+            break;
+            case 381: c=142;
+            break;
+            case 8216: c=145;
+            break;
+            case 8217: c=146;
+            break;
+            case 8220: c=147;
+            break;
+            case 8221: c=148;
+            break;
+            case 8226: c=149;
+            break;
+            case 8211: c=150;
+            break;
+            case 8212: c=151;
+            break;
+            case 732: c=152;
+            break;
+            case 8482: c=153;
+            break;
+            case 353: c=154;
+            break;
+            case 8250: c=155;
+            break;
+            case 339: c=156;
+            break;
+            case 382: c=158;
+            break;
+            case 376: c=159;
+            break;
+            default:
+            break;
+        }
+    }
+    return c;
 };
 
 /**
