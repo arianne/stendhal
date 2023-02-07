@@ -25,6 +25,7 @@ import { SpriteStore, store } from "./data/SpriteStore";
 import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
+import { ViewPort } from "./ui/ViewPort";
 
 
 export class SingletonRepo {
@@ -75,6 +76,10 @@ export class SingletonRepo {
 
 	static getTileAnimation(): Animation {
 		return Animation.get();
+	}
+
+	static getViewPort(): ViewPort {
+		return ViewPort.get();
 	}
 
 	static getWeatherRenderer(): WeatherRenderer {

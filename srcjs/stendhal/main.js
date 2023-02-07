@@ -64,6 +64,7 @@ stendhal.ui.equip = new InventoryManager();
 stendhal.ui.html = new HTMLManager();
 stendhal.ui.touch = new TouchHandler();
 stendhal.ui.soundMan = singletons.getSoundManager();
+stendhal.ui.gamewindow = singletons.getViewPort();
 
 stendhal.zone = new Zone();
 stendhal.zone.ground = new Ground();

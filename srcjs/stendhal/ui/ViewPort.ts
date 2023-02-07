@@ -9,36 +9,68 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+declare var marauroa: any;
+declare var stendhal: any;
 
-var singletons = singletons || require("../../../build/ts/SingletonRepo").SingletonRepo;
-var ui = require("../../../build/ts/ui/UI").ui;
-var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
-const AchievementBanner = require("../../../build/ts/sprite/AchievementBanner").AchievementBanner;
-const NotificationBubble = require("../../../build/ts/sprite/NotificationBubble").NotificationBubble;
+import { ui } from "./UI";
+import { UIComponentEnum } from "./UIComponentEnum";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
+import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 
-/** Represents an item being transferred from one container slot to another. */
-stendhal.ui.heldItem = undefined;
+import { ActionContextMenu } from "./dialog/ActionContextMenu";
+import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
+
+import { singletons } from "../SingletonRepo";
+
+import { AchievementBanner } from "../sprite/AchievementBanner";
+import { EmojiSprite } from "../sprite/EmojiSprite";
+import { NotificationBubble } from "../sprite/NotificationBubble";
+import { SpeechBubble } from "../sprite/SpeechBubble";
+import { TextBubble } from "../sprite/TextBubble";
+
+import { Chat } from "../util/Chat";
 
 
 /**
  * game window aka world view
  */
-stendhal.ui.gamewindow = {
-	/** screen offsets in pixels. */
-	offsetX: 0,
-	offsetY: 0,
-	timeStamp: Date.now(),
-	textSprites: [],
-	notifSprites: [],
-	emojiSprites: [],
-	weatherRenderer: singletons.getWeatherRenderer(),
+export class ViewPort {
 
-	draw: function() {
+	/** screen offsets in pixels. */
+	private offsetX = 0;
+	private offsetY = 0;
+	private timeStamp = Date.now();
+
+	private ctx: CanvasRenderingContext2D;
+	private readonly targetTileWidth = 32;
+	private readonly targetTileHeight = 32;
+	private drawingError = false;
+
+	private textSprites: SpeechBubble[] = [];
+	private notifSprites: TextBubble[] = [];
+	private emojiSprites: EmojiSprite[] = [];
+	private weatherRenderer = singletons.getWeatherRenderer();
+
+	/** Singleton instance. */
+	private static instance: ViewPort;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): ViewPort {
+		ViewPort.instance = ViewPort.instance ? ViewPort.instance : new ViewPort();
+		return ViewPort.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		this.ctx = (document.getElementById("gamewindow")! as HTMLCanvasElement).getContext("2d")!;
+	}
+
+	draw() {
 		var startTime = new Date().getTime();
 
 		if (marauroa.me && document.visibilityState === "visible") {
@@ -46,21 +78,17 @@ stendhal.ui.gamewindow = {
 				|| stendhal.data.map.currentZoneName === "int_vault"
 				|| stendhal.data.map.currentZoneName === "int_adventure_island"
 				|| stendhal.data.map.currentZoneName === "tutorial_island") {
-				var canvas = document.getElementById("gamewindow");
-				this.targetTileWidth = 32;
-				this.targetTileHeight = 32;
 				this.drawingError = false;
 
-				this.ctx = canvas.getContext("2d");
 				this.ctx.globalAlpha = 1.0;
-				this.adjustView(canvas);
+				this.adjustView(this.ctx.canvas);
 				this.ctx.fillStyle = "black";
 				this.ctx.fillRect(0, 0, 10000, 10000);
 
 				var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
-				stendhal.data.map.strategy.render(canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
+				stendhal.data.map.strategy.render(this.ctx.canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.weatherRenderer.draw(this.ctx);
 				this.drawEntitiesTop();
@@ -75,17 +103,16 @@ stendhal.ui.gamewindow = {
 
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
-				ui.get(UIComponentEnum.PlayerEquipment).update();
+				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
 			}
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
+	}
 
-	},
 
-
-	drawEntities: function() {
+	drawEntities() {
 		var currentTime = new Date().getTime();
 		var time = currentTime - this.timeStamp;
 		this.timeStamp = currentTime;
@@ -96,9 +123,9 @@ stendhal.ui.gamewindow = {
 				entity.draw(this.ctx);
 			}
 		}
-	},
+	}
 
-	drawEntitiesTop: function() {
+	drawEntitiesTop() {
 		var i;
 		for (i in stendhal.zone.entities) {
 			const entity = stendhal.zone.entities[i];
@@ -109,9 +136,9 @@ stendhal.ui.gamewindow = {
 				entity.drawTop(this.ctx);
 			}
 		}
-	},
+	}
 
-	drawTextSprites: function(sgroup=this.textSprites) {
+	drawTextSprites(sgroup: TextBubble[]=this.textSprites) {
 		for (var i = 0; i < sgroup.length; i++) {
 			var sprite = sgroup[i];
 			var remove = sprite.draw(this.ctx);
@@ -121,7 +148,7 @@ stendhal.ui.gamewindow = {
 				i--;
 			}
 		}
-	},
+	}
 
 	/**
 	 * Adds a sprite to be drawn on screen.
@@ -129,11 +156,11 @@ stendhal.ui.gamewindow = {
 	 * @param sprite
 	 *     Sprite definition.
 	 */
-	addEmojiSprite: function(sprite) {
+	addEmojiSprite(sprite: EmojiSprite) {
 		this.emojiSprites.push(sprite);
-	},
+	}
 
-	drawEmojiSprites: function() {
+	drawEmojiSprites() {
 		for (let i = 0; i < this.emojiSprites.length; i++) {
 			const sprite = this.emojiSprites[i];
 			const remove = sprite.draw(this.ctx);
@@ -142,9 +169,9 @@ stendhal.ui.gamewindow = {
 				i--;
 			}
 		}
-	},
+	}
 
-	adjustView: function(canvas) {
+	adjustView(canvas: HTMLCanvasElement) {
 		// IE does not support ctx.resetTransform(), so use the following workaround:
 		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
 
@@ -162,7 +189,7 @@ stendhal.ui.gamewindow = {
 		this.offsetX = Math.round(centerX);
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);
-	},
+	}
 
 	/**
 	 * Adds a text bubble sprite to screen.
@@ -170,9 +197,9 @@ stendhal.ui.gamewindow = {
 	 * @param sprite
 	 *     Text sprite to display.
 	 */
-	addTextSprite: function(sprite) {
+	addTextSprite(sprite: SpeechBubble) {
 		this.textSprites.push(sprite);
-	},
+	}
 
 	/**
 	 * Adds a notification bubble to screen.
@@ -184,9 +211,9 @@ stendhal.ui.gamewindow = {
 	 * @param profile
 	 *     Optional entity image filename to show as the speaker.
 	 */
-	addNotifSprite: function(mtype, text, profile) {
+	addNotifSprite(mtype: string, text: string, profile?: string) {
 		this.notifSprites.push(new NotificationBubble(mtype, text, profile));
-	},
+	}
 
 	/**
 	 * Adds a notification bubble to window.
@@ -198,9 +225,9 @@ stendhal.ui.gamewindow = {
 	 * @param desc
 	 *     Achievement description.
 	 */
-	addAchievementNotif: function(cat, title, desc) {
+	addAchievementNotif(cat: string, title: string, desc: string) {
 		this.notifSprites.push(new AchievementBanner(cat, title, desc));
-	},
+	}
 
 	/**
 	 * Removes a text bubble. Looks for topmost sprite at
@@ -214,7 +241,7 @@ stendhal.ui.gamewindow = {
 	 * @param y
 	 *     Y coordinate to check for overlapping sprite.
 	 */
-	removeTextBubble(sprite, x, y) {
+	removeTextBubble(sprite: SpeechBubble, x: number, y: number) {
 		for (let idx = this.notifSprites.length-1; idx >= 0; idx--) {
 			const topSprite = this.notifSprites[idx];
 			if (topSprite == sprite || topSprite.clipsPoint(x, y)) {
@@ -232,7 +259,7 @@ stendhal.ui.gamewindow = {
 				return;
 			}
 		}
-	},
+	}
 
 	/**
 	 * Checks for an active text bubble.
@@ -244,7 +271,7 @@ stendhal.ui.gamewindow = {
 	 * @return
 	 *     <code>true</code> if there is a text bubble at position.
 	 */
-	textBubbleAt(x, y) {
+	textBubbleAt(x: number, y: number) {
 		for (const sprite of this.notifSprites) {
 			if (sprite.clipsPoint(x, y)) {
 				return true;
@@ -255,17 +282,18 @@ stendhal.ui.gamewindow = {
 				return true;
 			}
 		}
-
 		return false;
-	},
+	}
 
 	// Mouse click handling
-	onMouseDown: (function() {
-		var entity;
-		var startX;
-		var startY;
+	onMouseDown = (function() {
+		var entity: any;
+		var startX: number;
+		var startY: number;
 
-		function _onMouseDown(e) {
+		const mHandle: any = {};
+
+		mHandle._onMouseDown = function(e: MouseEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
@@ -285,17 +313,17 @@ stendhal.ui.gamewindow = {
 			entity = stendhal.zone.entityAt(x, y);
 			stendhal.ui.timestampMouseDown = +new Date();
 
-			if (e.type !== "dblclick") {
-				e.target.addEventListener("mousemove", onDrag);
-				e.target.addEventListener("mouseup", onMouseUp);
-				e.target.addEventListener("touchmove", onDrag);
-				e.target.addEventListener("touchend", onMouseUp);
+			if (e.type !== "dblclick" && e.target) {
+				e.target.addEventListener("mousemove", mHandle.onDrag);
+				e.target.addEventListener("mouseup", mHandle.onMouseUp);
+				e.target.addEventListener("touchmove", mHandle.onDrag);
+				e.target.addEventListener("touchend", mHandle.onMouseUp);
 			} else if (entity == stendhal.zone.ground) {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY, true);
 			}
 		}
 
-		function isRightClick(e) {
+		mHandle.isRightClick = function(e: MouseEvent) {
 			if (+new Date() - stendhal.ui.timestampMouseDown > 300) {
 				return true;
 			}
@@ -306,9 +334,9 @@ stendhal.ui.gamewindow = {
 			}
 		}
 
-		function onMouseUp(e) {
+		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
-			if (isRightClick(e)) {
+			if (e instanceof MouseEvent && mHandle.isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5));
@@ -316,45 +344,48 @@ stendhal.ui.gamewindow = {
 			} else {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
 			}
-			cleanUp(pos);
+			mHandle.cleanUp(pos);
 			pos.target.focus();
 			e.preventDefault();
 		}
 
-		function onDrag(e) {
+		mHandle.onDrag = function(e: MouseEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			var xDiff = startX - pos.offsetX;
 			var yDiff = startY - pos.offsetY;
 			// It's not really a click if the mouse has moved too much.
 			if (xDiff * xDiff + yDiff * yDiff > 5) {
-				cleanUp(e);
+				mHandle.cleanUp(e);
 			}
 		}
 
-		function cleanUp(e) {
+		mHandle.cleanUp = function(e: Event) {
 			entity = null;
-			e.target.removeEventListener("mouseup", onMouseUp);
-			e.target.removeEventListener("mousemove", onDrag);
-			e.target.removeEventListener("touchend", onMouseUp);
-			e.target.removeEventListener("touchmove", onDrag);
+			if (!e.target) {
+				return;
+			}
+			e.target.removeEventListener("mouseup", mHandle.onMouseUp);
+			e.target.removeEventListener("mousemove", mHandle.onDrag);
+			e.target.removeEventListener("touchend", mHandle.onMouseUp);
+			e.target.removeEventListener("touchmove", mHandle.onDrag);
 		}
 
-		return _onMouseDown;
-	})(),
+		return mHandle._onMouseDown;
+	})()
 
-	onMouseMove: function(e) {
+	onMouseMove(e: MouseEvent) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
 		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 		var entity = stendhal.zone.entityAt(x, y);
-		document.getElementById("gamewindow").style.cursor = entity.getCursor(x, y);
-	},
+		document.getElementById("gamewindow")!.style.cursor = entity.getCursor(x, y);
+	}
 
 	/**
 	 * Changes character facing direction dependent on direction
 	 * of wheel scroll.
 	 */
-	onMouseWheel: function(e) {
+	onMouseWheel(e: WheelEvent) {
 		if (marauroa.me) {
 			e.preventDefault();
 
@@ -382,10 +413,10 @@ stendhal.ui.gamewindow = {
 				marauroa.clientFramework.sendAction({"type": "face", "dir": ""+newDir});
 			}
 		}
-	},
+	}
 
 	// ***************** Drag and drop ******************
-	onDragStart: function(e) {
+	onDragStart(e: DragEvent) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		let draggedEntity;
 		for (const obj of stendhal.zone.getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
@@ -417,24 +448,24 @@ stendhal.ui.gamewindow = {
 			window.event = e; // required by setDragImage polyfil
 			e.dataTransfer.setDragImage(img, 0, 0);
 		}
-	},
+	}
 
-	onDragOver: function(e) {
+	onDragOver(e: DragEvent): boolean {
 		e.preventDefault(); // Necessary. Allows us to drop.
 		if (e.dataTransfer) {
 			e.dataTransfer.dropEffect = "move";
 		}
 		return false;
-	},
+	}
 
-	onDrop: function(e) {
+	onDrop(e: DragEvent) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		if (stendhal.ui.heldItem) {
 			var action = {
 				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
 				"zone": stendhal.ui.heldItem.zone
-			}
+			} as any;
 
 			var id = stendhal.ui.heldItem.path.substr(1, stendhal.ui.heldItem.path.length - 2);
 			var drop = /\t/.test(id);
@@ -458,9 +489,9 @@ stendhal.ui.gamewindow = {
 		}
 		e.stopPropagation();
 		e.preventDefault();
-	},
+	}
 
-	onTouchEnd: function(e) {
+	onTouchEnd(e: TouchEvent) {
 		if (stendhal.ui.touch.held) {
 			// don't call this.onMouseUp
 			e.preventDefault();
@@ -468,16 +499,16 @@ stendhal.ui.gamewindow = {
 			stendhal.ui.gamewindow.onDrop(e);
 			stendhal.ui.touch.unsetHeldItem();
 		}
-	},
+	}
 
-	onContentMenu: function(e) {
+	onContentMenu(e: MouseEvent) {
 		e.preventDefault();
-	},
+	}
 
 	/**
 	 * Creates a screenshot of game screen to download.
 	 */
-	createScreenshot: function() {
+	createScreenshot() {
 		Chat.log("client", "creating screenshot ...");
 		const uri = this.ctx.canvas.toDataURL("image/png");
 
@@ -506,4 +537,4 @@ stendhal.ui.gamewindow = {
 		anchor.href = uri;
 		anchor.click();
 	}
-};
+}
