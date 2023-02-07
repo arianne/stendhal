@@ -24,24 +24,8 @@ var Outfit = require("../../build/ts/data/Outfit").Outfit;
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
 
-var Chat = require("../../build/ts/util/Chat").Chat;
-
 var HTMLManager = require("../../build/ts/ui/HTMLManager").HTMLManager;
-var ui = require("../../build/ts/ui/UI").ui;
-var UIComponentEnum = require("../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 var TouchHandler = require("../../build/ts/ui/TouchHandler").TouchHandler;
-var DesktopUserInterfaceFactory = require("../../build/ts/ui/factory/DesktopUserInterfaceFactory").DesktopUserInterfaceFactory;
-
-var FloatingWindow = require("../../build/ts/ui/toolkit/FloatingWindow").FloatingWindow;
-
-var ChatLogComponent = require("../../build/ts/ui/component/ChatLogComponent").ChatLogComponent;
-var ItemInventoryComponent = require("../../build/ts/ui/component/ItemInventoryComponent").ItemInventoryComponent;
-
-var ActionContextMenu = require("../../build/ts/ui/dialog/ActionContextMenu").ActionContextMenu;
-var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDialog").ApplicationMenuDialog;
-var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
-var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
-var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
 
 stendhal.data = stendhal.data || {};
 stendhal.data.cache = new CacheManager();
