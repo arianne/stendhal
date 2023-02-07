@@ -176,7 +176,7 @@ export class SlashActionRepo {
 			};
 
 			if (params[2] != null) {
-				action["state"] = stendhal.slashActionRepository.checkQuoted(params[2], remainder);
+				action["state"] = this.checkQuoted(params[2], remainder);
 			}
 
 			this.sendAction(action);
@@ -639,22 +639,6 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"/": SlashAction = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			if (typeof(stendhal.slashActionRepository.lastPlayerTell) != "undefined") {
-				const action: Action = {
-					"type": "tell",
-					"target": stendhal.slashActionRepository.lastPlayerTell,
-					"text": remainder
-				};
-				this.sendAction(action);
-			}
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-
 	"me": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
@@ -688,9 +672,12 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
+	// name of player most recently messaged
+	private lastPlayerTell?: string;
+
 	"msg": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			stendhal.slashActionRepository.lastPlayerTell = params[0];
+			this.lastPlayerTell = params[0];
 			const action: Action = {
 				"type": "tell",
 				"target": params[0],
@@ -701,6 +688,23 @@ export class SlashActionRepo {
 		},
 		minParams: 1,
 		maxParams: 1
+	};
+	"tell": SlashAction = this["msg"];
+
+	"/": SlashAction = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			if (typeof(this.lastPlayerTell) != "undefined") {
+				const action: Action = {
+					"type": "tell",
+					"target": this.lastPlayerTell,
+					"text": remainder
+				};
+				this.sendAction(action);
+			}
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0
 	};
 
 	"mute": SlashAction = {
@@ -961,6 +965,7 @@ export class SlashActionRepo {
 		minParams: 1,
 		maxParams: 1
 	};
+	"supporta": SlashAction = this["supportanswer"];
 
 	"teleport": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
@@ -1131,10 +1136,10 @@ export class SlashActionRepo {
 		}
 		name = name.substr(1);
 		var action: SlashAction;
-		if (typeof(stendhal.slashActionRepository[name]) == "undefined") {
-			action = stendhal.slashActionRepository["_default"];
+		if (typeof(this[name]) == "undefined") {
+			action = this["_default"];
 		} else {
-			action = stendhal.slashActionRepository[name];
+			action = this[name];
 		}
 
 		// use executing character if name parameter not supplied
@@ -1184,9 +1189,3 @@ export class SlashActionRepo {
 		return p;
 	}
 }
-
-stendhal.slashActionRepository = stendhal.slashActionRepository || SlashActionRepo.get();
-
-// answer, sentence, drop, add, remove, away, grumpy, profile, walk, stopwalk, movecont, settings
-stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
-stendhal.slashActionRepository["tell"] = stendhal.slashActionRepository["msg"];

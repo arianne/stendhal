@@ -9,12 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
-
-import { KeyHandler } from "../KeyHandler";
-
 declare let marauroa: any;
 declare let stendhal: any;
+
+import { KeyHandler } from "../KeyHandler";
+import { Component } from "../toolkit/Component";
+import { singletons } from "../../SingletonRepo";
+
+
+const slashActions = singletons.getSlashActionRepo();
 
 /**
  * chat input text field
@@ -96,7 +99,7 @@ export class ChatInputComponent extends Component {
 		} else if (val === '/close') {
 			marauroa.clientFramework.close();
 		} else {
-			if (stendhal.slashActionRepository.execute(val)) {
+			if (slashActions.execute(val)) {
 				this.remember(val);
 			}
 		}

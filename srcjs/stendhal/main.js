@@ -41,8 +41,6 @@ stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || singletons.getPaths();
 stendhal.session = stendhal.session || singletons.getSessionManager();
 
-stendhal.slashActionRepository = stendhal.slashActionRepository || singletons.getSlashActionRepository();
-
 stendhal.ui = stendhal.ui || {}
 stendhal.ui.equip = singletons.getInventory();
 stendhal.ui.html = new HTMLManager();

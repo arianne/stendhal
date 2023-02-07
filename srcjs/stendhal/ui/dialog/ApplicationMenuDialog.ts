@@ -9,9 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { DialogContentComponent } from "../toolkit/DialogContentComponent";
-
 declare var stendhal: any;
+
+import { DialogContentComponent } from "../toolkit/DialogContentComponent";
+import { singletons } from "../../SingletonRepo";
+
+
+const slashActions = singletons.getSlashActionRepo();
 
 export class ApplicationMenuDialog extends DialogContentComponent {
 
@@ -123,7 +127,7 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 
 		var cmd = (event.target as HTMLInputElement).id?.substring(11);
 		if (cmd) {
-			stendhal.slashActionRepository.execute("/" + cmd);
+			slashActions.execute("/" + cmd);
 		}
 		this.componentElement.dispatchEvent(new Event("close"));
 		event.preventDefault();

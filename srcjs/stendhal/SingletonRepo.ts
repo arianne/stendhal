@@ -72,7 +72,7 @@ export class SingletonRepo {
 		return SessionManager.get();
 	}
 
-	static getSlashActionRepository(): SlashActionRepo {
+	static getSlashActionRepo(): SlashActionRepo {
 		return SlashActionRepo.get();
 	}
 
