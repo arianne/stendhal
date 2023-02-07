@@ -113,7 +113,30 @@ export abstract class TextBubble {
 	}
 
 	/**
-	 * Action to execute when the sprite is removed.
+	 * Action to execute when sprite is added to viewport.
+	 *
+	 * Adds a listener to remove sprite with mouse click.
+	 *
+	 * @param ctx
+	 */
+	onAdded(ctx: CanvasRenderingContext2D) {
+		// prevent multiple listeners from being added
+		if (typeof(this.onRemovedAction) === "undefined") {
+			// add click listener to remove chat bubble
+			const listener = (e: MouseEvent) => {
+				this.onClick(e);
+			}
+			ctx.canvas.addEventListener("click", listener);
+			this.onRemovedAction = function() {
+				ctx.canvas.removeEventListener("click", listener);
+			};
+		}
+	}
+
+	/**
+	 * Action to execute when sprite is removed from viewport.
+	 *
+	 * Removes the listener added with TextBubble.onAdded.
 	 */
 	onRemoved() {
 		if (typeof(this.onRemovedAction) !== "undefined") {

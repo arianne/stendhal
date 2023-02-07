@@ -72,20 +72,6 @@ export class AchievementBanner extends TextBubble {
 		ctx.font = this.font;
 		ctx.fillText(this.text, textX, textY);
 
-		// prevent new listener being added for every redraw
-		/* FIXME:
-		if (typeof(this.onRemovedAction) === "undefined") {
-			// add click listener to remove achievement banner
-			const listener = (e: MouseEvent) => {
-				this.onClick(e);
-			}
-			ctx.canvas.addEventListener("click", listener);
-			this.onRemovedAction = function() {
-				ctx.canvas.removeEventListener("click", listener);
-			};
-		}
-		*/
-
 		return this.expired();
 	}
 }

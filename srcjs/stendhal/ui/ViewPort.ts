@@ -201,6 +201,7 @@ export class ViewPort {
 	 */
 	addTextSprite(sprite: SpeechBubble) {
 		this.textSprites.push(sprite);
+		sprite.onAdded(this.ctx);
 	}
 
 	/**
@@ -214,7 +215,9 @@ export class ViewPort {
 	 *     Optional entity image filename to show as the speaker.
 	 */
 	addNotifSprite(mtype: string, text: string, profile?: string) {
-		this.notifSprites.push(new NotificationBubble(mtype, text, profile));
+		const bubble = new NotificationBubble(mtype, text, profile);
+		this.notifSprites.push(bubble);
+		bubble.onAdded(this.ctx);
 	}
 
 	/**
@@ -228,7 +231,9 @@ export class ViewPort {
 	 *     Achievement description.
 	 */
 	addAchievementNotif(cat: string, title: string, desc: string) {
-		this.notifSprites.push(new AchievementBanner(cat, title, desc));
+		const banner = new AchievementBanner(cat, title, desc);
+		this.notifSprites.push(banner);
+		banner.onAdded(this.ctx);
 	}
 
 	/**

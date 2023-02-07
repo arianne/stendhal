@@ -59,18 +59,6 @@ export class SpeechBubble extends TextBubble {
 		ctx.fillStyle = "#000000";
 		ctx.fillText(this.text, x + 4, y);
 
-		// prevent new listener being added for every redraw
-		if (typeof(this.onRemovedAction) === "undefined") {
-			// add click listener to remove chat bubble
-			const listener = (e: MouseEvent) => {
-				this.onClick(e);
-			}
-			ctx.canvas.addEventListener("click", listener);
-			this.onRemovedAction = function() {
-				ctx.canvas.removeEventListener("click", listener);
-			};
-		}
-
 		return this.expired();
 	}
 
