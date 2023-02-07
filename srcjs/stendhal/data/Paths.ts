@@ -29,5 +29,3 @@ export class Paths {
 		// do nothing
 	}
 }
-
-export { Paths as default };
