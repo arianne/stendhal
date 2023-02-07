@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,7 +11,7 @@
 
 
 export class Paths {
-	public static readonly data = document.getElementsByTagName("html")[0].getAttribute("data-data-path");
+	public static readonly data = document.getElementsByTagName("html")[0].getAttribute("data-data-path")!;
 	public static readonly font = Paths.data + "/font";
 	public static readonly gui = Paths.data + "/gui";
 	public static readonly music = Paths.data + "/music";
@@ -19,7 +19,15 @@ export class Paths {
 	public static readonly sprites = Paths.data + "/sprites";
 	public static readonly weather = Paths.sprites + "/weather";
 	public static readonly achievements = Paths.sprites + "/achievements";
-	public static readonly tileset = document.getElementsByTagName("html")[0].getAttribute("data-tileset-path");
+	public static readonly tileset = document.getElementsByTagName("html")[0].getAttribute("data-tileset-path")!;
+
+
+	/**
+	 * Static members & methods only.
+	 */
+	private constructor() {
+		// do nothing
+	}
 }
 
 export { Paths as default };
