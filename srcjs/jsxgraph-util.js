@@ -1,5 +1,6 @@
 /*
     From: http://jsxgraph.uni-bayreuth.de/wp/tag/gunzip/
+    From: https://jsxgraph.org/wp/
 
     Copyright 2008,2009
         Matthias Ehmann,
