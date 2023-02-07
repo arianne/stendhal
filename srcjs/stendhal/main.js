@@ -17,7 +17,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 var Client = require("../../build/ts/Client").Client;
 var singletons = singletons || require("../../build/ts/SingletonRepo").SingletonRepo;
 
-var Outfit = require("../../build/ts/data/Outfit").Outfit;
+var OutfitStore = require("../../build/ts/data/Outfit").OutfitStore;
 
 var Ground = require("../../build/ts/entity/Ground").Ground;
 var Zone = require("../../build/ts/entity/Zone").Zone;
@@ -29,7 +29,7 @@ stendhal.data.cache.init();
 stendhal.data.cstatus = singletons.getCStatus();
 stendhal.data.cstatus.init();
 stendhal.data.group = singletons.getGroupManager();
-stendhal.data.outfit = new Outfit();
+stendhal.data.outfit = new OutfitStore();
 stendhal.data.sprites = singletons.getSpriteStore();
 stendhal.data.map = singletons.getMap();
 

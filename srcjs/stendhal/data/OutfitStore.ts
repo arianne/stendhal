@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 
-export class Outfit {
+export class OutfitStore {
 
 	// player pickable layers
 	private count: {[key: string]: number} = {
