@@ -88,9 +88,13 @@ export class ConfigManager {
 	private dialogstates: any = {};
 	private initialized = false;
 
+	/** Singleton instance. */
 	private static instance: ConfigManager;
 
 
+	/**
+	 * Retrieves singleton instance.
+	 */
 	static get(): ConfigManager {
 		if (!ConfigManager.instance) {
 			ConfigManager.instance = new ConfigManager();
@@ -98,6 +102,9 @@ export class ConfigManager {
 		return ConfigManager.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private constructor() {
 		// do nothing
 	}

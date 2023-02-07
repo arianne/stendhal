@@ -59,7 +59,9 @@ export class ViewPort {
 	 * Retrieves singleton instance.
 	 */
 	static get(): ViewPort {
-		ViewPort.instance = ViewPort.instance ? ViewPort.instance : new ViewPort();
+		if (!ViewPort.instance) {
+			ViewPort.instance = new ViewPort();
+		}
 		return ViewPort.instance;
 	}
 

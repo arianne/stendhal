@@ -16,6 +16,7 @@ export class SessionManager {
 	private charname?: string;
 	private initialized = false;
 
+	/** Singleton instance. */
 	private static instance: SessionManager;
 
 
@@ -23,7 +24,9 @@ export class SessionManager {
 	 * Retrieves singleton instance.
 	 */
 	static get(): SessionManager {
-		SessionManager.instance = SessionManager.instance ? SessionManager.instance : new SessionManager();
+		if (!SessionManager.instance) {
+			SessionManager.instance = new SessionManager();
+		}
 		return SessionManager.instance;
 	}
 

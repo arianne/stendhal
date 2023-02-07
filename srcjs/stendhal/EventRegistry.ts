@@ -34,6 +34,7 @@ export class EventRegistry {
 
 	private initialized = false;
 
+	/** Singleton instance. */
 	private static instance: EventRegistry;
 
 
@@ -41,7 +42,9 @@ export class EventRegistry {
 	 * Retrieves singleton instance.
 	 */
 	static get(): EventRegistry {
-		EventRegistry.instance = EventRegistry.instance ? EventRegistry.instance : new EventRegistry();
+		if (!EventRegistry.instance) {
+			EventRegistry.instance = new EventRegistry();
+		}
 		return EventRegistry.instance;
 	}
 

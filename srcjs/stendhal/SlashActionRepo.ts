@@ -35,6 +35,7 @@ interface Action {
 export class SlashActionRepo {
 	[index: string]: any;
 
+	/** Singleton instance. */
 	private static instance: SlashActionRepo;
 
 
@@ -42,7 +43,9 @@ export class SlashActionRepo {
 	 * Retrieves singleton instance.
 	 */
 	static get(): SlashActionRepo {
-		SlashActionRepo.instance = SlashActionRepo.instance ? SlashActionRepo.instance : new SlashActionRepo();
+		if (!SlashActionRepo.instance) {
+			SlashActionRepo.instance = new SlashActionRepo();
+		}
 		return SlashActionRepo.instance;
 	}
 

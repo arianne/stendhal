@@ -26,8 +26,6 @@ export interface Sound extends HTMLAudioElement {
 
 export class SoundManager {
 
-	private static instance: SoundManager;
-
 	public readonly layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
 	private cacheGlobal: {[source: string]: HTMLAudioElement} = {};
 	private cache: {[source: string]: HTMLAudioElement} = {};
@@ -39,7 +37,13 @@ export class SoundManager {
 		["gui"]: []
 	};
 
+	/** Singleton instance. */
+	private static instance: SoundManager;
 
+
+	/**
+	 * Retrieves singleton instance.
+	 */
 	static get(): SoundManager {
 		if (!SoundManager.instance) {
 			SoundManager.instance = new SoundManager();
@@ -47,6 +51,9 @@ export class SoundManager {
 		return SoundManager.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private constructor() {
 		// do nothing
 	}

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,9 +29,11 @@ const sfxLoops: {[name: string]: boolean} = {
 export class LoopedSoundSourceManager {
 
 	private readonly sndMan = SoundManager.get();
-	private static instance?: LoopedSoundSourceManager;
 
 	private sources: {[id: string]: any} = {};
+
+	/** Singleton instance. */
+	private static instance: LoopedSoundSourceManager;
 
 
 	/**
@@ -47,6 +49,9 @@ export class LoopedSoundSourceManager {
 		return LoopedSoundSourceManager.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private constructor() {
 		// do nothing
 	}

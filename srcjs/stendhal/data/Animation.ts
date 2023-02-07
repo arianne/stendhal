@@ -20,14 +20,19 @@ type AnimationMap = {
 
 
 export class Animation {
-	private static instance?: Animation;
 
 	private readonly DEFAULT_DELAY = 500;
 
 	private landscapeMap?: AnimationMap;
 	private weatherMap?: AnimationMap;
 
+	/** Singleton instance. */
+	private static instance: Animation;
 
+
+	/**
+	 * Retrieves singleton instance.
+	 */
 	static get(): Animation {
 		if (!this.instance) {
 			this.instance = new Animation();
@@ -35,6 +40,9 @@ export class Animation {
 		return this.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private constructor() {
 		// do nothing
 	}

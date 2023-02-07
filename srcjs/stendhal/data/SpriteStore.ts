@@ -508,7 +508,9 @@ class SpriteStoreInternal extends SpriteStore {
 	 * Retrieves singleton instance.
 	 */
 	static get(): SpriteStore {
-		SpriteStoreInternal.instance = SpriteStoreInternal.instance ? SpriteStoreInternal.instance : new SpriteStore();
+		if (!SpriteStoreInternal.instance) {
+			SpriteStoreInternal.instance = new SpriteStore();
+		}
 		return SpriteStoreInternal.instance;
 	}
 }

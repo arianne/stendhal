@@ -26,7 +26,9 @@ export class GroupManager {
 	 * Retrieves singleton instance.
 	 */
 	static get(): GroupManager {
-		GroupManager.instance = GroupManager.instance ? GroupManager.instance : new GroupManager();
+		if (!GroupManager.instance) {
+			GroupManager.instance = new GroupManager();
+		}
 		return GroupManager.instance;
 	}
 

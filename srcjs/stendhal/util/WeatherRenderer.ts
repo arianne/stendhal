@@ -30,8 +30,6 @@ interface WeatherSprite extends HTMLImageElement {
 
 export class WeatherRenderer {
 
-	private static instance: WeatherRenderer;
-
 	private enabled = true;
 	private warned: {[key: string]: boolean} = {};
 	private sprite?: WeatherSprite;
@@ -41,6 +39,9 @@ export class WeatherRenderer {
 	private tilesY = 0;
 	private audio?: Sound;
 	private soundLayer = singletons.getSoundManager().layers.indexOf("ambient");
+
+	/** Singleton instance. */
+	private static instance: WeatherRenderer;
 
 
 	/**
@@ -57,7 +58,7 @@ export class WeatherRenderer {
 	}
 
 	/**
-	 * Private singleton constructor.
+	 * Hidden singleton constructor.
 	 *
 	 * Use <code>WeatherRenderer.get()</code>.
 	 */
