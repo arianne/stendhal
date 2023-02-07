@@ -18,6 +18,7 @@ import { WeatherRenderer } from "./util/WeatherRenderer";
 
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
+import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 import { Animation } from "./data/tileset/Animation";
 
@@ -50,6 +51,10 @@ export class SingletonRepo {
 
 	static getLoopedSoundSourceManager(): LoopedSoundSourceManager {
 		return LoopedSoundSourceManager.get();
+	}
+
+	static getPaths(): typeof Paths {
+		return Paths;
 	}
 
 	static getSessionManager(): SessionManager {

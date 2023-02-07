@@ -54,7 +54,7 @@ stendhal.data.outfit = new Outfit();
 stendhal.data.sprites = singletons.getSpriteStore();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
-stendhal.paths = stendhal.paths || require("../../build/ts/data/Paths").Paths;
+stendhal.paths = stendhal.paths || singletons.getPaths();
 stendhal.session = stendhal.session || singletons.getSessionManager();
 
 stendhal.slashActionRepository = stendhal.slashActionRepository || singletons.getSlashActionRepository();
