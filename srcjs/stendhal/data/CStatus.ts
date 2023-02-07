@@ -17,6 +17,26 @@ export class CStatus {
 
 	private initialized = false;
 
+	/** Singleton instance. */
+	private static instance: CStatus;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): CStatus {
+		if (!CStatus.instance) {
+			CStatus.instance = new CStatus();
+		}
+		return CStatus.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	init() {
 		if (this.initialized) {

@@ -17,8 +17,6 @@ var stendhal = window.stendhal = window.stendhal || {};
 var Client = require("../../build/ts/Client").Client;
 var singletons = singletons || require("../../build/ts/SingletonRepo").SingletonRepo;
 
-var CacheManager = require("../../build/ts/data/CacheManager").CacheManager;
-var CStatus = require("../../build/ts/data/CStatus").CStatus;
 var Outfit = require("../../build/ts/data/Outfit").Outfit;
 
 var Ground = require("../../build/ts/entity/Ground").Ground;
@@ -28,9 +26,9 @@ var HTMLManager = require("../../build/ts/ui/HTMLManager").HTMLManager;
 var TouchHandler = require("../../build/ts/ui/TouchHandler").TouchHandler;
 
 stendhal.data = stendhal.data || {};
-stendhal.data.cache = new CacheManager();
+stendhal.data.cache = singletons.getCacheManager();
 stendhal.data.cache.init();
-stendhal.data.cstatus = new CStatus();
+stendhal.data.cstatus = singletons.getCStatus();
 stendhal.data.cstatus.init();
 stendhal.data.group = singletons.getGroupManager();
 stendhal.data.outfit = new Outfit();

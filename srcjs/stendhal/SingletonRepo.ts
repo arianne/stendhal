@@ -17,6 +17,8 @@ import { SessionManager } from "./util/SessionManager";
 import { WeatherRenderer } from "./util/WeatherRenderer";
 
 import { Animation } from "./data/Animation";
+import { CStatus } from "./data/CStatus";
+import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
 import { Map } from "./data/Map";
@@ -31,6 +33,14 @@ import { ViewPort } from "./ui/ViewPort";
 
 
 export class SingletonRepo {
+
+	static getCStatus(): CStatus {
+		return CStatus.get();
+	}
+
+	static getCacheManager(): CacheManager {
+		return CacheManager.get();
+	}
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();

@@ -18,6 +18,27 @@ declare var stendhal: any;
  */
 export class CacheManager {
 
+	/** Singleton instance. */
+	private static instance: CacheManager;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): CacheManager {
+		if (!CacheManager.instance) {
+			CacheManager.instance = new CacheManager();
+		}
+		return CacheManager.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
+
 	/**
 	 * Initializes cache.
 	 */
