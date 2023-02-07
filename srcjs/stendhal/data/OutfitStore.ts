@@ -35,6 +35,26 @@ export class OutfitStore {
 		3, 4, 13, 16, 992, 993, 994, 996, 997
 	];
 
+	/** Singleton instance. */
+	private static instance: OutfitStore;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	static get(): OutfitStore {
+		if (!OutfitStore.instance) {
+			OutfitStore.instance = new OutfitStore();
+		}
+		return OutfitStore.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	/**
 	 * Determines if hair should be drawn under a determinted hat index.

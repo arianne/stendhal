@@ -22,6 +22,7 @@ import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
 import { Map } from "./data/Map";
+import { OutfitStore } from "./data/OutfitStore";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 
@@ -78,6 +79,10 @@ export class SingletonRepo {
 
 	static getMap(): Map {
 		return Map.get();
+	}
+
+	static getOutfitStore(): OutfitStore {
+		return OutfitStore.get();
 	}
 
 	static getPaths(): typeof Paths {
