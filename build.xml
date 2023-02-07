@@ -1108,7 +1108,7 @@
     <property name="js-files-config"   value="build/js/build.js"/>
     <property name="js-files-lib1"     value="srcjs/jsxgraph-util.js"/>
     <property name="js-files-lib2"     value=""/>
-    <property name="js-files-data1"    value="srcjs/stendhal/data/imagepreloader.js srcjs/stendhal/data/sha3.js"/>
+    <property name="js-files-data1"    value="srcjs/stendhal/data/sha3.js"/>
     <property name="js-files-data2"    value=""/>
     <property name="js-files-entity5"  value=""/>
     <property name="js-files-entity6"  value=""/>

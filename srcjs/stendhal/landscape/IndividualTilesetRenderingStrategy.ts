@@ -9,11 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Chat } from "../util/Chat";
-import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
-
 declare var stendhal: any;
-declare var ImagePreloader: any;
+
+import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
+import { ImagePreloader } from "../data/ImagePreloader";
+import { Chat } from "../util/Chat";
+
 
 export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrategy {
 
