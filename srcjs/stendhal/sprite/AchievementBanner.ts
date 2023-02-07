@@ -74,4 +74,12 @@ export class AchievementBanner extends TextBubble {
 
 		return this.expired();
 	}
+
+	override getX(): number {
+		return stendhal.ui.gamewindow.offsetX + this.x;
+	}
+
+	override getY(): number {
+		return stendhal.ui.gamewindow.offsetY + this.y;
+	}
 }
