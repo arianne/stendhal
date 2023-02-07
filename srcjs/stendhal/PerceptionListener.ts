@@ -11,10 +11,7 @@
 
 declare var stendhal: any;
 
-import { singletons } from "./SingletonRepo";
 import { RPObject } from "./entity/RPObject";
-
-stendhal.session = stendhal.session || singletons.getSessionManager();
 
 
 /**

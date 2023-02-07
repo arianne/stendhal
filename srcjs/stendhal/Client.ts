@@ -15,9 +15,10 @@ declare var stendhal: any;
 import { PerceptionListener } from "./PerceptionListener";
 import { singletons } from "./SingletonRepo";
 
+import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
+import { Zone } from "./entity/Zone";
 
-import { KeyHandler } from "./ui/KeyHandler";
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
 
@@ -36,9 +37,11 @@ import { DialogHandler } from "./util/DialogHandler";
 
 export class Client {
 
-	private errorCounter = 0;
-	private zoneFile?: any;
+	private initialized = false;
 	private loaded = false;
+	private errorCounter = 0;
+
+	private zoneFile?: any;
 
 	/** Singleton instance. */
 	private static instance: Client;
@@ -59,6 +62,52 @@ export class Client {
 	 */
 	private constructor() {
 		// do nothing
+	}
+
+	/**
+	 * Initializations to be called before startup.
+	 */
+	init() {
+		if (this.initialized) {
+			console.warn("tried to re-initialize client");
+			return;
+		}
+		this.initialized = true;
+
+		stendhal.paths = singletons.getPaths();
+		stendhal.config = singletons.getConfigManager();
+		stendhal.session = singletons.getSessionManager();
+
+		this.initData();
+		this.initUI();
+		this.initZone();
+	}
+
+	private initData() {
+		// build info is stored in build/js/build.js
+		stendhal.data = stendhal.data || {};
+		stendhal.data.cache = singletons.getCacheManager();
+		stendhal.data.cache.init();
+		stendhal.data.cstatus = singletons.getCStatus();
+		stendhal.data.cstatus.init();
+		stendhal.data.group = singletons.getGroupManager();
+		stendhal.data.outfit = singletons.getOutfitStore();
+		stendhal.data.sprites = singletons.getSpriteStore();
+		stendhal.data.map = singletons.getMap();
+	}
+
+	private initUI() {
+		stendhal.ui = stendhal.ui || {};
+		stendhal.ui.equip = singletons.getInventory();
+		stendhal.ui.html = singletons.getHTMLManager();
+		stendhal.ui.touch = singletons.getTouchHandler();
+		stendhal.ui.soundMan = singletons.getSoundManager();
+		stendhal.ui.gamewindow = singletons.getViewPort();
+	}
+
+	private initZone() {
+		stendhal.zone = new Zone();
+		stendhal.zone.ground = new Ground();
 	}
 
 	startup() {
@@ -270,8 +319,9 @@ export class Client {
 	 * registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers() {
-		document.addEventListener("keydown", KeyHandler.onKeyDown);
-		document.addEventListener("keyup", KeyHandler.onKeyUp);
+		const keyHandler = singletons.getKeyHandler();
+		document.addEventListener("keydown", keyHandler.onKeyDown);
+		document.addEventListener("keyup", keyHandler.onKeyUp);
 		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
 		// handles closing the context menu

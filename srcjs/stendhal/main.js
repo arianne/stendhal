@@ -14,37 +14,9 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
-var singletons = singletons || require("../../build/ts/SingletonRepo").SingletonRepo;
 
-var Ground = require("../../build/ts/entity/Ground").Ground;
-var Zone = require("../../build/ts/entity/Zone").Zone;
-
-
-stendhal.data = stendhal.data || {};
-stendhal.data.cache = singletons.getCacheManager();
-stendhal.data.cache.init();
-stendhal.data.cstatus = singletons.getCStatus();
-stendhal.data.cstatus.init();
-stendhal.data.group = singletons.getGroupManager();
-stendhal.data.outfit = singletons.getOutfitStore();
-stendhal.data.sprites = singletons.getSpriteStore();
-stendhal.data.map = singletons.getMap();
-
-stendhal.config = stendhal.config || singletons.getConfigManager();
-stendhal.paths = stendhal.paths || singletons.getPaths();
-stendhal.session = stendhal.session || singletons.getSessionManager();
-
-stendhal.ui = stendhal.ui || {}
-stendhal.ui.equip = singletons.getInventory();
-stendhal.ui.html = singletons.getHTMLManager();
-stendhal.ui.touch = singletons.getTouchHandler();
-stendhal.ui.soundMan = singletons.getSoundManager();
-stendhal.ui.gamewindow = singletons.getViewPort();
-
-stendhal.zone = new Zone();
-stendhal.zone.ground = new Ground();
-
-stendhal.main = singletons.getClient();
+stendhal.main = require("../../build/ts/Client").Client.get();
+stendhal.main.init();
 
 document.addEventListener('DOMContentLoaded', stendhal.main.startup);
 window.addEventListener('error', stendhal.main.onerror);
