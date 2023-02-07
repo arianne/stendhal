@@ -13,7 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { PerceptionListener } from "./PerceptionListener";
-import singletons from "./SingletonRepo";
+import { singletons } from "./SingletonRepo";
 
 import { RPObject } from "./entity/RPObject";
 

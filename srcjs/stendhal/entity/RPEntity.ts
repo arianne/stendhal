@@ -11,6 +11,7 @@
 
 import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
+import { singletons } from "../SingletonRepo";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Color } from "../util/Color";
@@ -20,8 +21,6 @@ import { EmojiSprite } from "../sprite/EmojiSprite";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 import { SoundManager } from "../ui/SoundManager";
-
-import singletons from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;

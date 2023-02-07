@@ -14,7 +14,7 @@ import { KarmaBar } from "./KarmaBar";
 
 import { Component } from "../toolkit/Component";
 
-import singletons from "../../SingletonRepo";
+import { singletons } from "../../SingletonRepo";
 
 import { Item } from "../../entity/Item";
 

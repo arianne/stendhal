@@ -77,4 +77,4 @@ export class SingletonRepo {
 	}
 }
 
-export { SingletonRepo as default };
+export const singletons = SingletonRepo;

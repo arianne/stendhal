@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import singletons from "../SingletonRepo";
+import { singletons } from "../SingletonRepo";
 import { Animation } from "../data/tileset/Animation";
 import { Sound } from "../ui/SoundManager";
 

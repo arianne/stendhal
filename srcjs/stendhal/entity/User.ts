@@ -15,7 +15,7 @@ declare var stendhal: any;
 import { Entity } from "./Entity";
 import { Player } from "./Player";
 
-import singletons from "../SingletonRepo";
+import { singletons } from "../SingletonRepo";
 
 import { MenuItem } from "../action/MenuItem";
 

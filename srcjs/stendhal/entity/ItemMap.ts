@@ -10,8 +10,8 @@
  ***************************************************************************/
 
 import { Entity } from "./Entity";
+import { singletons } from "../SingletonRepo";
 import { MenuItem } from "../action/MenuItem";
-import singletons from "../SingletonRepo";
 
 const config = singletons.getConfigManager();
 

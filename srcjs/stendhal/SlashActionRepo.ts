@@ -12,7 +12,7 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import singletons from "./SingletonRepo";
+import { singletons } from "./SingletonRepo";
 
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";

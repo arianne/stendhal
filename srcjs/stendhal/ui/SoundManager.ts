@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import singletons from "../SingletonRepo";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;

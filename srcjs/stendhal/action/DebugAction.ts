@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import singletons from "../SingletonRepo";
+import { singletons } from "../SingletonRepo";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
