@@ -248,7 +248,7 @@ export class ViewPort {
 	 * @param y
 	 *     Y coordinate to check for overlapping sprite.
 	 */
-	removeTextBubble(sprite: SpeechBubble, x: number, y: number) {
+	removeTextBubble(sprite: TextBubble, x: number, y: number) {
 		for (let idx = this.notifSprites.length-1; idx >= 0; idx--) {
 			const topSprite = this.notifSprites[idx];
 			if (topSprite == sprite || topSprite.clipsPoint(x, y)) {
