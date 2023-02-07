@@ -4,7 +4,7 @@
  HMAC implementation as defined in FIPS PUB 198a
  Copyright Brian Turek 2008-2017
  Distributed under the BSD License
- See http://caligatio.github.com/jsSHA/ for more information
+ See https://caligatio.github.io/jsSHA/ for more information
  Several functions taken from Paul Johnston
 */
 'use strict';(function(L){function u(d,b,h){var c=0,a=[],l=0,e,m,k,f,n,g,q,v,A=!1,p=[],u=[],w,z=!1,x=!1,t=-1;h=h||{};e=h.encoding||"UTF8";w=h.numRounds||1;if(w!==parseInt(w,10)||1>w)throw Error("numRounds must a integer >= 1");if(0===d.lastIndexOf("SHA3-",0)||0===d.lastIndexOf("SHAKE",0)){var C=6;g=B;v=function(c){var a=[],e;for(e=0;5>e;e+=1)a[e]=c[e].slice();return a};t=1;if("SHA3-224"===d)n=1152,f=224;else if("SHA3-256"===d)n=1088,f=256;else if("SHA3-384"===d)n=832,f=384;else if("SHA3-512"===d)n=
