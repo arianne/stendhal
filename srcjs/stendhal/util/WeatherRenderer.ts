@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { singletons } from "../SingletonRepo";
-import { Animation } from "../data/tileset/Animation";
+import { Animation } from "../data/Animation";
 import { Sound } from "../ui/SoundManager";
 
 declare var stendhal: any;

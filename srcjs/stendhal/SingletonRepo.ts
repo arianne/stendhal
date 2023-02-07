@@ -16,11 +16,11 @@ import { ConfigManager } from "./util/ConfigManager";
 import { SessionManager } from "./util/SessionManager";
 import { WeatherRenderer } from "./util/WeatherRenderer";
 
+import { Animation } from "./data/Animation";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
-import { Animation } from "./data/tileset/Animation";
 
 import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
