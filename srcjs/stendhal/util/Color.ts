@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2023 - Arianne                      *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -47,6 +47,13 @@ export class Color {
 	public static readonly PORTALOUTLINE = Color.BLACK;
 	public static readonly CHEST = Color.VIOLET;
 
+
+	/**
+	 * Static members & methods only.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	public static getStatBarColor(ratio: number): string {
 		const red = Math.floor(Math.min((1 - ratio) * 2, 1) * 255);
