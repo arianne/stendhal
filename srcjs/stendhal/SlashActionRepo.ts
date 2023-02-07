@@ -337,7 +337,6 @@ export class SlashActionRepo {
 
 	/* FIXME:
 	 * - not included in help info
-	 * - invite message says that group invite has expired (same in Java client?)
 	 */
 	"group": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
