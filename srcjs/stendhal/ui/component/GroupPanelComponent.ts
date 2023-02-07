@@ -37,7 +37,7 @@ export class GroupPanelComponent extends Component {
 		// TODO:
 		Chat.log("normal", "You have been invited by " + leader + " to join a group.");
 		Chat.log("normal", "To join, type: /group join " + leader);
-		Chat.log("normal", "To leave the group at any time, type: /group part " + leader);
+		Chat.log("normal", "To leave the group at any time, type: /group part");
 	}
 
 	expiredInvite(leader: string) {
