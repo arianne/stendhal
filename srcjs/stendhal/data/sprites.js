@@ -220,7 +220,10 @@ stendhal.data.sprites = {
 			filterFn(data, param);
 			ctx.putImageData(imgData, 0, 0);
 			canvas.complete = true;
-			stendhal.data.sprites.images[filteredName] = filtered = canvas;
+			//~ stendhal.data.sprites.images[filteredName] = filtered = canvas;
+			filtered = new Image();
+			filtered.src = canvas.toDataURL("image/png");
+			stendhal.data.sprites.images[filteredName] = filtered;
 		}
 
 		return filtered;
@@ -253,7 +256,10 @@ stendhal.data.sprites = {
 				filterFn(data, param);
 				ctx.putImageData(imgData, 0, 0);
 				canvas.complete = true;
-				stendhal.data.sprites.images[filteredName] = filtered = canvas;
+				//~ stendhal.data.sprites.images[filteredName] = filtered = canvas;
+				filtered = new Image();
+				filtered.src = canvas.toDataURL("image/png");
+				stendhal.data.sprites.images[filteredName] = filtered;
 			}
 
 			return filtered;
