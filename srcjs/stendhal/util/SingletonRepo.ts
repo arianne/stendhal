@@ -33,24 +33,16 @@ export class SingletonRepo {
 		return ConfigManager.get();
 	}
 
-	static getGroupManager(): GroupManager {
-		return GroupManager.get();
-	}
-
-	static getSessionManager(): SessionManager {
-		return SessionManager.get();
-	}
-
-	static getSpriteStore(): SpriteStore {
-		return store;
-	}
-
 	static getEmojiStore(): EmojiStore {
 		return EmojiStore.get();
 	}
 
 	static getEventRegistry(): EventRegistry {
 		return EventRegistry.get();
+	}
+
+	static getGroupManager(): GroupManager {
+		return GroupManager.get();
 	}
 
 	static getKeyHandler(): KeyHandler {
@@ -61,20 +53,28 @@ export class SingletonRepo {
 		return LoopedSoundSourceManager.get();
 	}
 
-	static getSoundManager(): SoundManager {
-		return SoundManager.get();
-	}
-
-	static getWeatherRenderer(): WeatherRenderer {
-		return WeatherRenderer.get();
+	static getSessionManager(): SessionManager {
+		return SessionManager.get();
 	}
 
 	static getSlashActionRepository(): SlashActionRepo {
 		return SlashActionRepo.get();
 	}
 
+	static getSoundManager(): SoundManager {
+		return SoundManager.get();
+	}
+
+	static getSpriteStore(): SpriteStore {
+		return store;
+	}
+
 	static getTileAnimation(): Animation {
 		return Animation.get();
+	}
+
+	static getWeatherRenderer(): WeatherRenderer {
+		return WeatherRenderer.get();
 	}
 }
 
