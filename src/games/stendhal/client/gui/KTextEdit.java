@@ -167,11 +167,8 @@ class KTextEdit extends JComponent {
 				final int oldpos = scrollbar.getValue();
 				setCaretPosition(textPane.getDocument().getLength());
 				super.insertIcon(g);
-				if (oldpos == scrollbar.getMaximum() - scrollbar.getVisibleAmount()) {
-					scrollbar.setValue(scrollbar.getMaximum());
-				} else {
-					// FIXME: scrollbar position is overridden to new caret position
-					scrollbar.setValue(oldpos);
+				if (!isAtMaximum(scrollbar)) {
+					SwingUtilities.invokeLater(() -> scrollbar.setValue(oldpos));
 				}
 			}
 		};
