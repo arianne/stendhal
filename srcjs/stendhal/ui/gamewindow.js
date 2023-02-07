@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,6 +11,7 @@
 
 "use strict";
 
+var singletons = singletons || require("../../../build/ts/SingletonRepo").SingletonRepo;
 var ui = require("../../../build/ts/ui/UI").ui;
 var UIComponentEnum = require("../../../build/ts/ui/UIComponentEnum").UIComponentEnum;
 const AchievementBanner = require("../../../build/ts/sprite/AchievementBanner").AchievementBanner;
@@ -19,8 +20,6 @@ const NotificationBubble = require("../../../build/ts/sprite/NotificationBubble"
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
-
-var singletons = singletons || require("../../../build/ts/util/SingletonRepo").SingletonRepo;
 
 /** Represents an item being transferred from one container slot to another. */
 stendhal.ui.heldItem = undefined;

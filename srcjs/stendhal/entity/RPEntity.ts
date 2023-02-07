@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,7 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 import { SoundManager } from "../ui/SoundManager";
 
-import singletons from "../util/SingletonRepo";
+import singletons from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;

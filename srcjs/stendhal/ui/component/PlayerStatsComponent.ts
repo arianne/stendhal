@@ -9,13 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
 import { StatBar } from "./StatBar";
 import { KarmaBar } from "./KarmaBar";
 
-import { Item } from "../../entity/Item";
+import { Component } from "../toolkit/Component";
 
-import singletons from "../../util/SingletonRepo";
+import singletons from "../../SingletonRepo";
+
+import { Item } from "../../entity/Item";
 
 declare var marauroa: any;
 

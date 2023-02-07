@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,9 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+import singletons from "../SingletonRepo";
 import { Animation } from "../data/tileset/Animation";
 import { Sound } from "../ui/SoundManager";
-import singletons from "./SingletonRepo";
 
 declare var stendhal: any;
 

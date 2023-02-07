@@ -15,6 +15,8 @@ declare var stendhal: any;
 import { Entity } from "./Entity";
 import { Player } from "./Player";
 
+import singletons from "../SingletonRepo";
+
 import { MenuItem } from "../action/MenuItem";
 
 import { ui } from "../ui/UI";
@@ -28,7 +30,6 @@ import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { Color } from "../util/Color";
-import singletons from "../util/SingletonRepo";
 
 
 /**

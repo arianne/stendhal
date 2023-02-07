@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { PerceptionListener } from "./PerceptionListener";
+import singletons from "./SingletonRepo";
 
 import { RPObject } from "./entity/RPObject";
 
@@ -31,7 +32,6 @@ import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFa
 
 import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
-import singletons from "./util/SingletonRepo";
 
 
 export class Main {

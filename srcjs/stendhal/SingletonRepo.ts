@@ -9,22 +9,21 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ConfigManager } from "./ConfigManager";
-import { SessionManager } from "./SessionManager";
-import { WeatherRenderer } from "./WeatherRenderer";
+import { EventRegistry } from "./EventRegistry";
+import { SlashActionRepo } from "./SlashActionRepo";
 
-import { EventRegistry } from "../EventRegistry";
-import { SlashActionRepo } from "../SlashActionRepo";
+import { ConfigManager } from "./util/ConfigManager";
+import { SessionManager } from "./util/SessionManager";
+import { WeatherRenderer } from "./util/WeatherRenderer";
 
-import { EmojiStore } from "../data/EmojiStore";
-import { GroupManager } from "../data/GroupManager";
-import { SpriteStore, store } from "../data/SpriteStore";
+import { EmojiStore } from "./data/EmojiStore";
+import { GroupManager } from "./data/GroupManager";
+import { SpriteStore, store } from "./data/SpriteStore";
+import { Animation } from "./data/tileset/Animation";
 
-import { Animation } from "../data/tileset/Animation";
-
-import { KeyHandler } from "../ui/KeyHandler";
-import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
-import { SoundManager } from "../ui/SoundManager";
+import { KeyHandler } from "./ui/KeyHandler";
+import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
+import { SoundManager } from "./ui/SoundManager";
 
 
 export class SingletonRepo {

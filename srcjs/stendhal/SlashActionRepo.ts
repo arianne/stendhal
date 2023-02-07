@@ -12,6 +12,8 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
+import singletons from "./SingletonRepo";
+
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { SettingsAction } from "./action/SettingsAction";
@@ -23,7 +25,6 @@ import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { ChatLogComponent } from "./ui/component/ChatLogComponent";
 
 import { Chat } from "./util/Chat";
-import singletons from "./util/SingletonRepo";
 
 
 interface Action {

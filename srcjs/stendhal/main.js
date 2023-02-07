@@ -15,6 +15,7 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 var Main = require("../../build/ts/Main").Main;
+var singletons = singletons || require("../../build/ts/SingletonRepo").SingletonRepo;
 
 var CacheManager = require("../../build/ts/data/CacheManager").CacheManager;
 var CStatus = require("../../build/ts/data/CStatus").CStatus;
@@ -42,8 +43,6 @@ var ApplicationMenuDialog = require("../../build/ts/ui/dialog/ApplicationMenuDia
 var DropQuantitySelectorDialog = require("../../build/ts/ui/dialog/DropQuantitySelectorDialog").DropQuantitySelectorDialog;
 var ImageViewerDialog = require("../../build/ts/ui/dialog/ImageViewerDialog").ImageViewerDialog;
 var OutfitDialog = require("../../build/ts/ui/dialog/outfit/OutfitDialog").OutfitDialog;
-
-var singletons = singletons || require("../../build/ts/util/SingletonRepo").SingletonRepo;
 
 stendhal.data = stendhal.data || {};
 stendhal.data.cache = new CacheManager();

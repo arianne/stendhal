@@ -11,7 +11,7 @@
 
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
-import singletons from "../util/SingletonRepo";
+import singletons from "../SingletonRepo";
 
 const config = singletons.getConfigManager();
 

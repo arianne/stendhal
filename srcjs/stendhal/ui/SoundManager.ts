@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import singletons from "../util/SingletonRepo";
+import singletons from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;

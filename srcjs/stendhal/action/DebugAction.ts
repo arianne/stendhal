@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import singletons from "../SingletonRepo";
+
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
@@ -17,8 +19,6 @@ import { SlashAction } from "./SlashAction";
 import { Chat } from "../util/Chat";
 import { ShowFloatingWindowComponent } from "../ui/component/ShowFloatingWindowComponent";
 import { Panel } from "ui/toolkit/Panel";
-
-import singletons from "../util/SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
