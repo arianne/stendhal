@@ -52,6 +52,7 @@ stendhal.data.cstatus.init();
 stendhal.data.group = singletons.getGroupManager();
 stendhal.data.outfit = new Outfit();
 stendhal.data.sprites = singletons.getSpriteStore();
+stendhal.data.map = singletons.getMap();
 
 stendhal.config = stendhal.config || singletons.getConfigManager();
 stendhal.paths = stendhal.paths || singletons.getPaths();

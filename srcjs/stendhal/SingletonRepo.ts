@@ -19,6 +19,7 @@ import { WeatherRenderer } from "./util/WeatherRenderer";
 import { Animation } from "./data/Animation";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
+import { Map } from "./data/Map";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 
@@ -52,6 +53,10 @@ export class SingletonRepo {
 
 	static getLoopedSoundSourceManager(): LoopedSoundSourceManager {
 		return LoopedSoundSourceManager.get();
+	}
+
+	static getMap(): Map {
+		return Map.get();
 	}
 
 	static getPaths(): typeof Paths {
