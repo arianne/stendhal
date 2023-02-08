@@ -17,6 +17,7 @@ import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
 
 
+const config = singletons.getConfigManager();
 const slashActions = singletons.getSlashActionRepo();
 
 /**
@@ -24,8 +25,8 @@ const slashActions = singletons.getSlashActionRepo();
  */
 export class ChatInputComponent extends Component {
 
-	private history: string[] = [];
-	private historyIndex = 0;
+	private history: string[];
+	private historyIndex: number;
 	private inputElement: HTMLInputElement;
 
 	constructor() {
@@ -37,6 +38,9 @@ export class ChatInputComponent extends Component {
 		this.componentElement.addEventListener("keypress", (event: KeyboardEvent) => {
 			this.onKeyPress(event);
 		});
+		// restore from previous session
+		this.history = config.getObject("chat.history") || [];
+		this.historyIndex = config.getInt("chat.history.index", 0);
 	}
 
 	public clear() {
@@ -89,6 +93,10 @@ export class ChatInputComponent extends Component {
 		}
 		this.history[this.history.length] = text;
 		this.historyIndex = this.history.length;
+		// preserve across sessions
+		// XXX: should this be done at logout/destruction for performance?
+		config.set("chat.history", this.history);
+		config.set("chat.history.index", this.historyIndex);
 	}
 
 	private send() {
