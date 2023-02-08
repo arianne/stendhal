@@ -136,6 +136,9 @@ export class ConfigManager {
 	 *     Item to be stored.
 	 */
 	set(key: string, value: any) {
+		if (typeof(value) === "object") {
+			value = JSON.stringify(value);
+		}
 		this.storage.setItem(key, value);
 	}
 
