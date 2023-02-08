@@ -140,13 +140,30 @@ export class ConfigManager {
 		return ret;
 	}
 
+	/**
+	 * Retrieves an integer number value from storage.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @return
+	 *     Integer or undefined.
+	 */
 	getInt(key: string): number|undefined {
 		const value = this.getFloat(key);
-		if (value) {
-			return Math.trunc(value);
+		if (typeof(value) === "undefined") {
+			return;
 		}
+		return Math.trunc(value);
 	}
 
+	/**
+	 * Retrieves a float number value from storage.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @return
+	 *     Float or undefined.
+	 */
 	getFloat(key: string): number|undefined {
 		const value = Number(this.get(key));
 		if (!Number.isNaN(value)) {
