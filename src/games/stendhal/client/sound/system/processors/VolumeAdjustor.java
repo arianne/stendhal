@@ -28,14 +28,14 @@ public class VolumeAdjustor extends SignalProcessor
 {
     private final AtomicInteger mCurrentVolume      = new AtomicInteger();
     private final AtomicInteger mTargetVolume       = new AtomicInteger();
-	private final AtomicInteger mVolumeBeforeFading = new AtomicInteger();
+    private final AtomicInteger mVolumeBeforeFading = new AtomicInteger();
     private final AtomicLong    mFadingDuration     = new AtomicLong();
 
     public VolumeAdjustor()
     {
         mCurrentVolume.set(floatToInt(1.0f));
         mTargetVolume.set(floatToInt(1.0f));
-		mVolumeBeforeFading.set(floatToInt(1.0f));
+        mVolumeBeforeFading.set(floatToInt(1.0f));
         mFadingDuration.set(0);
     }
 
@@ -43,25 +43,25 @@ public class VolumeAdjustor extends SignalProcessor
     {
         mCurrentVolume.set(floatToInt(volume));
         mTargetVolume.set(floatToInt(volume));
-		mVolumeBeforeFading.set(floatToInt(volume));
+        mVolumeBeforeFading.set(floatToInt(volume));
         mFadingDuration.set(0);
     }
 
     public void setVolume(float volume)
     {
         mCurrentVolume.set(floatToInt(volume));
-		mVolumeBeforeFading.set(floatToInt(volume));
+        mVolumeBeforeFading.set(floatToInt(volume));
         mFadingDuration.set(0);
     }
 
-	public float getVolume()
-	{
-		return intToFloat(mCurrentVolume.get());
-	}
+    public float getVolume()
+    {
+        return intToFloat(mCurrentVolume.get());
+    }
 
     public void startFading(float volume, Time duration)
     {
-		mVolumeBeforeFading.set(mCurrentVolume.get());
+        mVolumeBeforeFading.set(mCurrentVolume.get());
 
         if(duration.getInNanoSeconds() <= 0)
         {
@@ -75,7 +75,7 @@ public class VolumeAdjustor extends SignalProcessor
         }
     }
 
-	public void startFading(Time duration)
+    public void startFading(Time duration)
     {
         if(duration.getInNanoSeconds() <= 0)
         {
@@ -100,17 +100,17 @@ public class VolumeAdjustor extends SignalProcessor
 
             // if volume is zero we return without processing the audio data
             if(Algebra.isEqual_Scalf(volume, 0.0f)) {
-				return;
-			}
+                return;
+            }
 
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
                 for(int i=0; i<(frames*channels); ++i) {
-					data[i] *= volume;
-				}
+                    data[i] *= volume;
+                }
             }
 
-			// else if volume is 1 we propagate the unmodified audio data
+            // else if volume is 1 we propagate the unmodified audio data
         }
         else
         {
@@ -122,10 +122,10 @@ public class VolumeAdjustor extends SignalProcessor
             float volumeSegment = intToFloat(mTargetVolume.get()) - intToFloat(mCurrentVolume.get());
 
             if(segmentDuration.getInNanoSeconds() > fadingDuration.getInNanoSeconds()) {
-				numSamples = (int)fadingDuration.getInSamples(rate);
-			} else {
-				volumeSegment *= (float)((double)segmentDuration.getInNanoSeconds() / (double)fadingDuration.getInNanoSeconds());
-			}
+                numSamples = (int)fadingDuration.getInSamples(rate);
+            } else {
+                volumeSegment *= (float)((double)segmentDuration.getInNanoSeconds() / (double)fadingDuration.getInNanoSeconds());
+            }
 
             for(int i=0; i<numSamples; ++i)
             {
@@ -133,13 +133,13 @@ public class VolumeAdjustor extends SignalProcessor
                 double vol   = volume + (volumeSegment * i / numSamples);
 
                 for(int c=0; c<channels; ++c) {
-					data[index + c] *= (float) vol;
-				}
+                    data[index + c] *= (float) vol;
+                }
             }
 
             for(int i=(numSamples * channels); i<(frames * channels); ++i) {
-				data[i] *= volume + volumeSegment;
-			}
+                data[i] *= volume + volumeSegment;
+            }
 
             mCurrentVolume.addAndGet(floatToInt(volumeSegment));
             mFadingDuration.addAndGet(-segmentDuration.getInNanoSeconds());
