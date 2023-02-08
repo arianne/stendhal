@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -133,7 +133,7 @@ public class VolumeAdjustor extends SignalProcessor
                 double vol   = volume + (volumeSegment * i / numSamples);
 
                 for(int c=0; c<channels; ++c) {
-					data[index + c] *= vol;
+					data[index + c] *= (float) vol;
 				}
             }
 

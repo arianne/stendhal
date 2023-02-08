@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,7 +89,7 @@ class HouseTax implements TurnListener {
 		int debt = 0;
 
 		for (int i = 0; i < periods; i++) {
-			debt += BASE_TAX * Math.pow(1 + INTEREST_RATE, i);
+			debt += (int) (BASE_TAX * Math.pow(1 + INTEREST_RATE, i));
 		}
 		logger.debug(debt + " was the debt for periods " + periods);
 		return debt;

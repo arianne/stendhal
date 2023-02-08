@@ -2724,7 +2724,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Retrieves total ATK value of held weapons.
 	 */
 	public float getItemAtk() {
-		int weapon = 0;
+		float weapon = 0;
 		int ring = 0;
 
 		final List<Item> weapons = getWeapons();
@@ -2832,7 +2832,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		final List<Item> targetWeapons = getWeapons();
 		for (final Item weaponItem : targetWeapons) {
-			weapon += weaponItem.getDefense() / getItemLevelModifier(weaponItem);
+			weapon += (int) (weaponItem.getDefense() / getItemLevelModifier(weaponItem));
 		}
 
 		return SHIELD_DEF_MULTIPLIER * shield + ARMOR_DEF_MULTIPLIER * armor
@@ -3262,8 +3262,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			for (final Item weaponItem : attackerWeapons) {
 				sumAll += weaponItem.getAttack();
 				if (weaponItem.has("lifesteal")) {
-					sumLifesteal += weaponItem.getAttack()
-							* weaponItem.getDouble("lifesteal");
+					sumLifesteal += (int) (weaponItem.getAttack()
+							* weaponItem.getDouble("lifesteal"));
 				}
 			}
 		}
