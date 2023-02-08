@@ -169,7 +169,7 @@ export class ConfigManager {
 	 * @return
 	 *     Integer or undefined.
 	 */
-	getInt(key: string, dval?: number): number|undefined {
+	getInt(key: string, dval?: number): any {
 		let value = this.getFloat(key);
 		if (typeof(value) === "undefined") {
 			if (typeof(dval) === "undefined") {
@@ -190,11 +190,11 @@ export class ConfigManager {
 	 * @return
 	 *     Float or undefined.
 	 */
-	getFloat(key: string, dval?: number): number|undefined {
+	getFloat(key: string, dval?: number): any {
 		let value = Number(this.get(key));
 		if (Number.isNaN(value)) {
 			if (typeof(dval) === "undefined") {
-				return value;
+				return;
 			}
 			value = dval;
 		}
