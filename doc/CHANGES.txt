@@ -20,6 +20,7 @@ Changelog
   - fixed sounds not stopping when audio is turned off
   - fixed apostrophe's being removed in chat log
   - chat log copy option only copies selection if text is highlighted
+  - chat input history is preserved across sessions
 
 *world*
 - new achievements:
@@ -39,6 +40,7 @@ Changelog
 - weapons can now inflict status effects
 - players can now inflict status effects
 - melee weapons can have longer range
+- increased player hit chance handicap from 50% to 65%
 
 *web client*
 - added support for drawing weather effects
