@@ -222,7 +222,7 @@ export class EventRegistry {
 
 			execute: function(rpobject: RPObject) {
 				const ttype = this["texttype"].toLowerCase();
-				const msg = this["text"].replace("\r\n", "\n").replace("\r", "\n");
+				const msg = this["text"].replace(/\\r\\n/g, "\n").replace(/\\r/g, "\n");
 
 				let profile;
 				if (this.hasOwnProperty("profile")) {
