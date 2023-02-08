@@ -127,10 +127,26 @@ export class ConfigManager {
 		this.initialized = true;
 	}
 
+	/**
+	 * Stores a configuration setting.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @param value
+	 *     Item to be stored.
+	 */
 	set(key: string, value: any) {
 		this.storage.setItem(key, value);
 	}
 
+	/**
+	 * Retrieves a configuration setting value.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @return
+	 *     Stored value identified by key or undefined if key not found.
+	 */
 	get(key: string): string|null|undefined {
 		const ret = this.storage.getItem(key) || this.defaults[key];
 		// allow null to be a value
@@ -171,6 +187,14 @@ export class ConfigManager {
 		}
 	}
 
+	/**
+	 * Retrieves a boolean value from storage.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @return
+	 *     Boolean value of key or false if key not found.
+	 */
 	getBoolean(key: string): boolean {
 		const value = this.get(key);
 		if (value) {
@@ -179,6 +203,14 @@ export class ConfigManager {
 		return false;
 	}
 
+	/**
+	 * Retrieves a JSON type object or array from storage.
+	 *
+	 * @param key
+	 *     String identifier.
+	 * @return
+	 *     Object, array, or undefined.
+	 */
 	getObject(key: string): any|undefined {
 		let value = this.get(key);
 		if (!value) {
@@ -190,22 +222,49 @@ export class ConfigManager {
 		}
 	}
 
+	/**
+	 * Removes a key & its value from storage.
+	 *
+	 * @param key
+	 *     String identifier.
+	 */
 	remove(key: string) {
 		this.storage.removeItem(key);
 	}
 
+	/**
+	 * Removes all data from storage.
+	 */
 	clear() {
 		this.storage.clear();
 	}
 
+	/**
+	 * Sets the UI theme.
+	 *
+	 * @param value
+	 *     Theme string identifier.
+	 */
 	setTheme(value: string) {
 		this.set("ui.theme", value);
 	}
 
+	/**
+	 * Retrieves the identifier of current theme.
+	 *
+	 * @return
+	 *     String identifier.
+	 */
 	getTheme(): string {
 		return this.get("ui.theme") || "wood";
 	}
 
+	/**
+	 * Retrieves image filename of current theme.
+	 *
+	 * @return
+	 *     String filename.
+	 */
 	getThemeBG(): string {
 		return this.themes.map[this.getTheme()] || this.themes.map["wood"];
 	}
