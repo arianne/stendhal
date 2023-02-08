@@ -164,13 +164,18 @@ export class ConfigManager {
 	 *
 	 * @param key
 	 *     String identifier.
+	 * @param dval
+	 *     Default value if key is not found.
 	 * @return
 	 *     Integer or undefined.
 	 */
-	getInt(key: string): number|undefined {
-		const value = this.getFloat(key);
+	getInt(key: string; dval?: number): number|undefined {
+		let value = this.getFloat(key);
 		if (typeof(value) === "undefined") {
-			return;
+			if (typeof(dval) === "undefined") {
+				return;
+			}
+			value = dval;
 		}
 		return Math.trunc(value);
 	}
@@ -180,14 +185,20 @@ export class ConfigManager {
 	 *
 	 * @param key
 	 *     String identifier.
+	 * @param dval
+	 *     Default value if key is not found.
 	 * @return
 	 *     Float or undefined.
 	 */
-	getFloat(key: string): number|undefined {
-		const value = Number(this.get(key));
-		if (!Number.isNaN(value)) {
-			return value;
+	getFloat(key: string; dval?: number): number|undefined {
+		let value = Number(this.get(key));
+		if (Number.isNaN(value)) {
+			if (typeof(dval) === "undefined") {
+				return value;
+			}
+			value = dval;
 		}
+		return value;
 	}
 
 	/**
