@@ -20,7 +20,7 @@ type AnimationMap = {
 }
 
 
-export class Animation {
+export class TileStore {
 
 	private readonly DEFAULT_DELAY = 500;
 
@@ -28,15 +28,15 @@ export class Animation {
 	private weatherMap?: AnimationMap;
 
 	/** Singleton instance. */
-	private static instance: Animation;
+	private static instance: TileStore;
 
 
 	/**
 	 * Retrieves singleton instance.
 	 */
-	static get(): Animation {
+	static get(): TileStore {
 		if (!this.instance) {
-			this.instance = new Animation();
+			this.instance = new TileStore();
 		}
 		return this.instance;
 	}

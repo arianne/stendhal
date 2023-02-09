@@ -126,7 +126,7 @@ export class Client {
 		singletons.getEventRegistry().init();
 
 		// initialize tileset animation data
-		singletons.getTileAnimation().init();
+		singletons.getTileStore().init();
 		// initialize emoji data
 		singletons.getEmojiStore().init();
 

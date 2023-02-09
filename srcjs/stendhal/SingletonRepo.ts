@@ -17,7 +17,6 @@ import { ConfigManager } from "./util/ConfigManager";
 import { SessionManager } from "./util/SessionManager";
 import { WeatherRenderer } from "./util/WeatherRenderer";
 
-import { Animation } from "./data/Animation";
 import { CStatus } from "./data/CStatus";
 import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
@@ -26,6 +25,7 @@ import { Map } from "./data/Map";
 import { OutfitStore } from "./data/OutfitStore";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
+import { TileStore } from "./data/TileStore";
 
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
@@ -110,8 +110,8 @@ export class SingletonRepo {
 		return store;
 	}
 
-	static getTileAnimation(): Animation {
-		return Animation.get();
+	static getTileStore(): TileStore {
+		return TileStore.get();
 	}
 
 	static getTouchHandler(): TouchHandler {

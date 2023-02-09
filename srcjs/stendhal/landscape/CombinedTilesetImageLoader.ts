@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Animation } from "../data/Animation";
+import { TileStore } from "../data/TileStore";
 import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
 
@@ -26,7 +26,7 @@ export class CombinedTilesetImageLoader {
 		private map: any,
 		private indexToCombinedTiles: Map<number, number[]>,
 		private combinedTileset: CombinedTileset) {
-			this.landscapeAnimationMap = Animation.get().getLandscapeMap();
+			this.landscapeAnimationMap = TileStore.get().getLandscapeMap();
 		}
 
 

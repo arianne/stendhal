@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { singletons } from "../SingletonRepo";
-import { Animation } from "../data/Animation";
+import { TileStore } from "../data/TileStore";
 import { Sound } from "../ui/SoundManager";
 
 declare var stendhal: any;
@@ -93,10 +93,10 @@ export class WeatherRenderer {
 			this.sprite = <WeatherSprite> stendhal.data.sprites.get(img);
 			/* FIXME:
 			 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$
-			 *   is undefined". Animation.weatherMap is not always loaded
+			 *   is undefined". TileStore.weatherMap is not always loaded
 			 *   before this is called.
 			 */
-			const animationMap = Animation.get().getWeatherMap()[img];
+			const animationMap = TileStore.get().getWeatherMap()[img];
 
 			if (!this.sprite || !this.sprite.src) {
 				console.error("weather sprite for '" + weather + "' not found");
