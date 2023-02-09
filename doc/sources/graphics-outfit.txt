@@ -31,6 +31,14 @@ data/sprites/outfit/detail/
 005     (flag)      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 006     (cane)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 007     (umbrella)  Diligent Dodo (soniccuz), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/
+008     (sword)     LordNeo; CC0; https://opengameart.org/node/10878
+009     (knife)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+010     (spear)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+011     (bow)       Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/66349
+012     (axe)       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+013     (axe)       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+014     (shield)    Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/64857
+015     (bone)      Bart Kelsey; CC0; https://opengameart.org/node/3755
 
 
 data/sprites/outfit/dress/

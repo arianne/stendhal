@@ -20,8 +20,8 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-//~ import games.stendhal.server.entity.npc.OutfitShopsList;
-//~ import games.stendhal.server.entity.npc.OutfitShopInventory;
+import games.stendhal.server.entity.npc.OutfitShopsList;
+import games.stendhal.server.entity.npc.OutfitShopInventory;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
@@ -67,22 +67,22 @@ public class DealerNPC implements ZoneConfigurator {
 
 	private void buildShop(final SpeakerNPC gwen) {
 		/* TODO:
-		 * - configure shop
+		 * - configure shop in xml
 		 * - add shop sign
 		 */
-		gwen.addOffer("I'm sorry but my shop is not quite set up yet. Come back in the future and I"
-				+ " will have some accessories for you.");
-		//~ final OutfitShopsList shops = OutfitShopsList.get();
-		//~ final OutfitShopInventory inventory = new OutfitShopInventory();
-		//~ inventory.put("sword", "detail=sword", 100000);
-		//~ inventory.put("knife", "detail=9", 100000);
-		//~ inventory.put("spear", "detail=10", 100000);
-		//~ inventory.put("bow", "detail=11", 100000);
-		//~ inventory.put("axe1", "detail=12", 100000);
-		//~ inventory.put("axe2", "detail=13", 100000);
-		//~ inventory.put("shield", "detail=14", 100000);
-		//~ inventory.put("bone", "detail=15", 100000);
-		//~ shops.register("deniran_accessories", inventory);
-		//~ shops.configureSeller(gwen, "deniran_accessories", "buy", true, false);
+		//~ gwen.addOffer("I'm sorry but my shop is not quite set up yet. Come back in the future and I"
+				//~ + " will have some accessories for you.");
+		final OutfitShopsList shops = OutfitShopsList.get();
+		final OutfitShopInventory inventory = new OutfitShopInventory();
+		inventory.put("sword", "detail=8", 100000);
+		inventory.put("knife", "detail=9", 100000);
+		inventory.put("spear", "detail=10", 100000);
+		inventory.put("bow", "detail=11", 100000);
+		inventory.put("axe1", "detail=12", 100000);
+		inventory.put("axe2", "detail=13", 100000);
+		inventory.put("shield", "detail=14", 100000);
+		inventory.put("bone", "detail=15", 100000);
+		shops.register("deniran_accessories", inventory);
+		shops.configureSeller(gwen, "deniran_accessories", "buy", true, false);
 	}
 }
