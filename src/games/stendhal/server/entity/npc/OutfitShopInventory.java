@@ -10,8 +10,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.util.Map;
-
 import games.stendhal.server.entity.Outfit;
 import marauroa.common.Pair;
 
