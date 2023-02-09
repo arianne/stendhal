@@ -24,6 +24,7 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.CloneManager;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.OutfitShopsList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
@@ -178,6 +179,10 @@ public class SingletonRepository {
 	 */
 	public static ShopList getShopList() {
 		return ShopList.get();
+	}
+
+	public static OutfitShopsList getOutfitShopsList() {
+		return OutfitShopsList.get();
 	}
 
 	/**
