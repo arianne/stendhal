@@ -40,7 +40,7 @@ Changelog
 - weapons can now inflict status effects
 - players can now inflict status effects
 - melee weapons can have longer range
-- increased player hit chance handicap from 50% to 65%
+- descreased damage penalty compensating for player hit chance handicap
 
 *web client*
 - added support for drawing weather effects
