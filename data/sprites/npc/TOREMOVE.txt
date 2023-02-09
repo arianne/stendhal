@@ -1,6 +1,0 @@
-The following images can be removed after version 1.41 release:
-
-- fireelementalnpc
-- marmaidnpc
-- orientalwizardnpc
-- reddemonnpc
