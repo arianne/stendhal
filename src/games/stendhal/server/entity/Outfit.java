@@ -47,6 +47,8 @@ import games.stendhal.common.Rand;
  */
 public class Outfit {
 
+	// TODO: support named layers, e.g. "sword", "human", etc.
+
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Outfit.class);
 
