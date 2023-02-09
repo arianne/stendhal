@@ -17,7 +17,7 @@ import java.util.TreeMap;
 /**
  * Represents contents & prices of a shop.
  */
-public abstract class ShopInventory<String, V> extends TreeMap<String, V> {
+public abstract class ShopInventory<T, V> extends TreeMap<String, V> {
 
   /**
    * Retrieves the price of an item sold by a shop.
