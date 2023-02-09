@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+ <tileset firstgid="1" name="wallpapers" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+  <image source="../../tileset/building/wall/wallpapers.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="26" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="27" name="carpets_2" tilewidth="32" tileheight="32" tilecount="20" columns="4">
+  <image source="../../tileset/furniture/carpet/carpets_2.png" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="47" name="floors_3" tilewidth="32" tileheight="32" tilecount="12" columns="6">
+  <image source="../../tileset/ground/indoor/floors_3.png" width="192" height="64"/>
+ </tileset>
+ <tileset firstgid="59" name="white_trim" tilewidth="32" tileheight="32" tilecount="50" columns="10">
+  <image source="../../tileset/building/wall/white_trim.png" width="320" height="160"/>
+ </tileset>
+ <tileset firstgid="109" name="logic/portal" tilewidth="32" tileheight="32" tilecount="24" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="96"/>
+ </tileset>
+ <tileset firstgid="133" name="int_windows_wood_centered" tilewidth="32" tileheight="32" tilecount="30" columns="10">
+  <image source="../../tileset/building/window/int_windows_wood_centered.png" width="320" height="96"/>
+ </tileset>
+ <tileset firstgid="163" name="fancy_gate" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+  <image source="../../tileset/building/decoration/fancy_gate.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="175" name="sheep_picture" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/furniture/picture/sheep_picture.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="179" name="chair/wooden_rustic" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../tileset/furniture/chair/wooden_rustic.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="187" name="table/white" tilewidth="32" tileheight="32" tilecount="30" columns="6">
+  <image source="../../tileset/furniture/table/white.png" width="192" height="160"/>
+ </tileset>
+ <tileset firstgid="217" name="cactuspotted" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="../../tileset/plant/indoor/cactuspotted.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="223" name="chest_2" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="../../tileset/item/chest/chest_2.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="229" name="bazaar_produce" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/bazaar_produce.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="233" name="doors" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../../tileset/building/door/doors.png" width="512" height="512"/>
+ </tileset>
+ <layer id="1" name="0_floor" width="20" height="14">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+NgYGDgoDIWoBJGNs8YiE3IxMZYzCPXLBgmxTxpIJZBw7JkmgcySweIFdCwIhnm4TJLHYhVSTQPm1kgc1SwmEWMefJEuIlc8wiZRYx5ylC/4fIfIfOonZ6RsQkWMVLyGzqOZWQ4QG5ZAABCkpF1YAQAAA==
+  </data>
+ </layer>
+ <layer id="2" name="1_terrain" width="20" height="14">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA3NgYGBwohJ2AeJwIPYGYh8KsS8Q+0HNA9HEgh1QjA680MxbC8XrSDAbn3mUAlqbt5vK5lEC7mMx7ykF5j2isnkMWMyjFJBr3lMG7H5BNi+CATUfcjOQnndDoOYlAnEclXA8EAMAyi0JHmAEAAA=
+  </data>
+ </layer>
+ <layer id="3" name="2_object" width="20" height="14">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgQAVTGbCDDQwMDehiuNQig/k4xDdBzdsCxfjUjgLywWQgngLE9yg0pwuIuyl3ziigMbCF0vZo4pOwqMUmhg7cgdgDiD3RxOdgUYtNDADKpoooYAQAAA==
+  </data>
+ </layer>
+ <layer id="4" name="3_roof" width="20" height="14">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGBpgFRSvHmiH0AncHmgHjIJRQAUAAFQeCU9gBAAA
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="20" height="14" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBQMJ1A40A5AAgAtMw41YAQAAA==
+  </data>
+ </layer>
+ <layer id="6" name="collision" width="20" height="14" visible="0" opacity="0.18">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA5NiYGCQGgKYWIBLPTXMxmcepYDW5lFqJi3NotRMapuHzUxKAb3T80DnVxgGAD3DYXNgBAAA
+  </data>
+ </layer>
+ <layer id="7" name="protection" width="20" height="14">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMAtoAAJ6NLZJgBAAA
+  </data>
+ </layer>
+</map>

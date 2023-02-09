@@ -182,6 +182,16 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <portal x="9" y="66" ref="accessory_shop">
+      <destination zone="int_deniran_accessory_shop" ref="exit"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+    <entity x="10" y="67">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">Accessories</attribute>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC"/>
 
@@ -1196,6 +1206,14 @@ Entrance fee is 10 money</attribute>
 
   </zone>
 
+  <zone name="int_deniran_accessory_shop" file="interiors/deniran/accessory_shop.tmx">
+
+    <portal x="5" y="12" ref="exit">
+      <destination zone="0_deniran_city_s" ref="accessory_shop"/>
+      <attribute name="move.continuous"/>
+    </portal>
+
+  </zone>
 
   <zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
 
