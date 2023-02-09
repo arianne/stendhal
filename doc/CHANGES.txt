@@ -43,6 +43,9 @@ Changelog
 - melee weapons can have longer range
 - descreased damage penalty compensating for player hit chance handicap
 
+*clients*
+- support "rear" layers
+
 *web client*
 - added support for drawing weather effects
 - added login sound

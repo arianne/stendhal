@@ -241,6 +241,10 @@ export class RPEntity extends ActiveEntity {
 		if (this.octx) {
 			this.octx.clearRect(0, 0, this.octx.canvas.width, this.octx.canvas.height);
 		}
+		if (stendhal.data.outfit.detailHasRearLayer(outfit["detail"])) {
+			layers.splice(0, 0, "detail-rear");
+			outfit["detail-rear"] = outfit["detail"];
+		}
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
 			if (layer == "hair" && !stendhal.data.outfit.drawHair(outfit["hat"])) {
@@ -287,6 +291,9 @@ export class RPEntity extends ActiveEntity {
 			n += "-nonude";
 		} else if (part === "dress" && stendhal.data.outfit.drawBustyDress(index, body)) {
 			n += "b";
+		} else if (part.endsWith("-rear")) {
+			n += "-rear";
+			part = part.replace(/-rear$/, "");
 		}
 
 		const filename = stendhal.paths.sprites + "/outfit/" + part + "/" + n + ".png";

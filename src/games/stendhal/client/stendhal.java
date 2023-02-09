@@ -274,6 +274,8 @@ public final class stendhal {
 			TileStore.init();
 			// initialize emoji data
 			ClientSingletonRepository.getEmojiStore().init();
+			// initialize outfit data
+			OutfitStore.get().init();
 
 			final UserContext userContext = UserContext.get();
 			final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();

@@ -21,12 +21,16 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import games.stendhal.client.gui.OutfitColor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -35,6 +39,7 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.util.JSONLoader;
 
 /**
  * An outfit store.
@@ -48,11 +53,16 @@ public class OutfitStore {
 	// these layers should return an empty sprite for index "0"
 	final List<String> emptyForZeroIndex = Arrays.asList("dress", "mouth", "mask", "hair", "hat", "detail");
 
+	private List<Integer> detailRearLayers;
+
+	private boolean initialized = false;
+
 	/**
 	 * The singleton.
 	 */
 	private static final OutfitStore sharedInstance = new OutfitStore(
 			SpriteStore.get());
+
 
 	/**
 	 * The sprite store.
@@ -67,11 +77,48 @@ public class OutfitStore {
 	 */
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
+		detailRearLayers = new ArrayList<>();
+	}
+
+	public void init() {
+		if (initialized) {
+			logger.warn("tried to re-initialize OutfitStore");
+			return;
+		}
+		initialized = true;
+
+		final JSONLoader loader = new JSONLoader();
+		loader.onDataReady = new Runnable() {
+			public void run() {
+				final JSONObject document = (JSONObject) loader.data;
+				final JSONArray detailRear = (JSONArray) ((JSONObject) document.get("detail")).get("rear");
+				for (final Object o: detailRear) {
+					try {
+						detailRearLayers.add(Integer.parseInt(o.toString()));
+					} catch (final NumberFormatException e) {
+						logger.error("Couldn't parse rear detail layer \"" + o.toString() + "\"", e);
+					}
+				}
+			}
+		};
+		loader.load(OUTFITS + "/outfits.json");
 	}
 
 	//
 	// OutfitStore
 	//
+
+	/**
+	 * Checks if we can draw a "rear" detail layer.
+	 *
+	 * @param detail
+	 *     Detail index.
+	 * @return
+	 *     <code>true</code> if a rear sprite is available.
+	 */
+	private boolean detailHasRearLayer(final int detail) {
+		return detailRearLayers.contains(detail);
+	}
 
 	/**
 	 * Build an outfit sprite.
@@ -84,8 +131,12 @@ public class OutfitStore {
 	private Sprite buildOutfit(final String strcode, final OutfitColor color) {
 		final Map<String, Integer> layer_map = new HashMap<>();
 
+		// make a copy of layer names so it can be amended in cases of special layers
+		final List<String> lnames = new LinkedList<>();
+		lnames.addAll(LAYER_NAMES);
+
 	    // initialize outfit parts to 0 in case some haven't been specified
-		for (String n: LAYER_NAMES) {
+		for (String n: lnames) {
 			layer_map.put(n, 0);
 		}
 
@@ -99,6 +150,13 @@ public class OutfitStore {
 		ImageSprite sprite;
 
 		Sprite layer;
+
+		// detail rear layer
+		final int detailIndex = layer_map.get("detail");
+		if (detailHasRearLayer(detailIndex)) {
+			lnames.add(0, "detail-rear");
+			layer_map.put("detail-rear", detailIndex);
+		}
 
 		// Body layer
 		final int bodyIndex = layer_map.get("body");
@@ -120,7 +178,7 @@ public class OutfitStore {
 		sprite = new ImageSprite(layer);
 		final Graphics g = sprite.getGraphics();
 
-		for (String lname: LAYER_NAMES) {
+		for (String lname: lnames) {
 			// hair is not drawn under certain hats/helmets
 			if (lname.equals("hair") && HATS_NO_HAIR.contains(layer_map.get("hat"))) {
 				continue;
@@ -195,7 +253,7 @@ public class OutfitStore {
 	 * @return
 	 *     The Sprite or <code>null</code>.
 	 */
-	public Sprite getLayerSprite(final String layer, final int index, final OutfitColor color,
+	public Sprite getLayerSprite(String layer, final int index, final OutfitColor color,
 				final boolean busty) {
 		if (emptyForZeroIndex.contains(layer)) {
 			if (index <= 0) {
@@ -207,7 +265,13 @@ public class OutfitStore {
 			}
 		}
 
-		String ref = OUTFITS + "/" + layer + "/" + getSpriteSuffix(index);
+		String ref = getSpriteSuffix(index);
+		if (layer.endsWith("-rear")) {
+			ref += "-rear";
+			layer = layer.replaceFirst("-rear$", "");
+		}
+
+		ref = OUTFITS + "/" + layer + "/" + ref;
 		if (layer.equals("body") && WtWindowManager.getInstance().getPropertyBoolean("gamescreen.nonude", true)) {
 			final URL nonudeURL = DataLoader.getResource(ref + "-nonude.png");
 			if (nonudeURL != null) {

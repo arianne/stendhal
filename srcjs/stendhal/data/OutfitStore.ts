@@ -9,8 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "./Paths";
+import { JSONLoader } from "../util/JSONLoader";
+
 
 export class OutfitStore {
+
+	private detailRearLayers: number[] = [];
+
 
 	// player pickable layers
 	private count: {[key: string]: number} = {
@@ -56,6 +62,14 @@ export class OutfitStore {
 		// do nothing
 	}
 
+	init() {
+		const loader = new JSONLoader();
+		loader.onDataReady = () => {
+			this.detailRearLayers = loader.data["detail"]["rear"];
+		}
+		loader.load(Paths.sprites + "/outfit/outfits.json");
+	}
+
 	/**
 	 * Determines if hair should be drawn under a determinted hat index.
 	 *
@@ -81,5 +95,17 @@ export class OutfitStore {
 	 */
 	drawBustyDress(dress: number, body: number): boolean {
 		return body == 1 && this.busty_dress.indexOf(dress) > -1;
+	}
+
+	/**
+	 * Checks if we can draw a "rear" detail layer.
+	 *
+	 * @param detail
+	 *     Detail index.
+	 * @return
+	 *     <code>true</code> if a rear sprite is available.
+	 */
+	detailHasRearLayer(detail: number): boolean {
+		return this.detailRearLayers.indexOf(detail) > -1;
 	}
 }

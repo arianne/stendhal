@@ -129,6 +129,8 @@ export class Client {
 		singletons.getTileStore().init();
 		// initialize emoji data
 		singletons.getEmojiStore().init();
+		// initialize outfit data
+		stendhal.data.outfit.init();
 
 		new DesktopUserInterfaceFactory().create();
 
