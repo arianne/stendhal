@@ -11,25 +11,18 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.util.JSONLoader;
 
 
 public class EmojiStore {
-
-	private static final Logger logger = Logger.getLogger(EmojiStore.class);
 
 	private static EmojiStore instance;
 
@@ -108,32 +101,25 @@ public class EmojiStore {
 	 * Loads emoji data from JSON.
 	 */
 	public void init() {
-		final String path = pathPrefix + "emojis.json";
-		final URL url = DataLoader.getResource(path);
-		if (url != null) {
-			try {
-				final InputStreamReader isr = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8);
-				final JSONObject document = (JSONObject) JSONValue.parse(isr);
-				if (document == null) {
-					logger.error("Failed to read emoji data file: " + path);
-				} else {
-					final Object el = document.get("emojilist");
-					if (el != null && el instanceof List<?>) {
-						for (final Object k: (List<?>) el) {
-							emojilist.add((String) k);
-						}
-					}
-					final Object em = document.get("emojimap");
-					if (em != null && em instanceof Map<?, ?>) {
-						for (final Map.Entry<?, ?> e: ((Map<?, ?>) em).entrySet()) {
-							emojimap.put((String) e.getKey(), (String) e.getValue());
-						}
+		final JSONLoader loader = new JSONLoader();
+		loader.onDataReady = new Runnable() {
+			public void run() {
+				final JSONObject document = (JSONObject) loader.data;
+				final Object el = document.get("emojilist");
+				final Object em = document.get("emojimap");
+				if (el != null && el instanceof List<?>) {
+					for (final Object k: (List<?>) el) {
+						emojilist.add((String) k);
 					}
 				}
-			} catch (final IOException e) {
-				logger.error("Error loading JSON emoji data from file: " + path, e);
+				if (em != null && em instanceof Map<?, ?>) {
+					for (final Map.Entry<?, ?> e: ((Map<?, ?>) em).entrySet()) {
+						emojimap.put((String) e.getKey(), (String) e.getValue());
+					}
+				}
 			}
-		}
+		};
+		loader.load(pathPrefix + "emojis.json");
 	}
 
 	/**

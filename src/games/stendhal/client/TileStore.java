@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,6 +37,7 @@ import games.stendhal.client.sprite.SpriteTileset;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.client.sprite.TilesetAnimationMap;
 import games.stendhal.client.sprite.TilesetGroupAnimationMap;
+import games.stendhal.client.util.JSONLoader;
 import games.stendhal.common.tiled.TileSetDefinition;
 import marauroa.common.net.InputSerializer;
 
@@ -60,13 +61,11 @@ class TileStore implements Tileset {
 	/**
 	 * The tileset animation map.
 	 */
-	private static final TilesetGroupAnimationMap landscapeAnimationMap = createAnimationMap(
-			"landscape", "tileset/");
+	private static TilesetGroupAnimationMap landscapeAnimationMap;
 	/**
 	 * The weather animation map.
 	 */
-	private static final TilesetGroupAnimationMap weatherAnimationMap = createAnimationMap(
-			"weather", "data/sprites/weather/");
+	private static TilesetGroupAnimationMap weatherAnimationMap;
 
 	/**
 	 * A cache of loaded tilesets.
@@ -115,6 +114,32 @@ class TileStore implements Tileset {
 	 */
 	public TileStore() {
 		this(SpriteStore.get());
+	}
+
+	/**
+	 * Initializes landscape & weather tile animations.
+	 */
+	public static void init() {
+		if (landscapeAnimationMap != null && weatherAnimationMap != null) {
+			logger.warn("tried to re-initialize TileStore");
+			return;
+		}
+
+		final JSONLoader loader = new JSONLoader();
+		loader.onDataReady = new Runnable() {
+			public void run() {
+				final JSONObject document = (JSONObject) loader.data;
+				if (document.containsKey("landscape")) {
+					landscapeAnimationMap = loadAnimations(
+							(Map<String, List<String>>) document.get("landscape"), "tileset/");
+				}
+				if (document.containsKey("weather")) {
+					weatherAnimationMap = loadAnimations(
+							(Map<String, List<String>>) document.get("weather"), "data/sprites/weather/");
+				}
+			}
+		};
+		loader.load(baseFolder + "tileset/animation.json");
 	}
 
 	/**
@@ -287,6 +312,39 @@ class TileStore implements Tileset {
 	}
 
 	/**
+	 * Animations are stored using the tileset name as key with value
+	 * being a map indexed by initial frames. Frame map contains two
+	 * lists: <code>frames</code> (a list of frames used in animation)
+	 * & <code>delays</code> (a list of delay values for the
+	 * corresponding frame of each index).
+	 *
+	 * ani = animationMap[tileset_name];
+	 * frames = ani[0].frames
+	 * delays = ani[0].delays
+	 *
+	 * @param def
+	 *     Unformatted animations lists indexed by tileset name.
+	 *     Example: {ts1: [ani1, ani2, ...], ts2: [ani1, ani2, ...], ...}
+	 * @param prefix
+	 *     Parent directory containing the target tileset images.
+	 * @return
+	 *     Map of animations.
+	 */
+	private static TilesetGroupAnimationMap loadAnimations(final Map<String, List<String>> def,
+			final String prefix) {
+		final Map<String, List<String>> animations = new HashMap<>();
+		for (final Map.Entry entry: def.entrySet()) {
+			animations.put((String) entry.getKey(), (List<String>) entry.getValue());
+		}
+		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
+		final List<String> lines = formatLines(animations, prefix);
+		if (lines.size() > 0) {
+			map.load(lines);
+		}
+		return map;
+	}
+
+	/**
 	 * Loads animations from <code>tileset/animation.json</code>.
 	 *
 	 * TODO: fix unchecked casts
@@ -296,6 +354,8 @@ class TileStore implements Tileset {
 	 * @return
 	 *     Animations listed under <code>id</code>.
 	 */
+	@SuppressWarnings("unused")
+	@Deprecated
 	private static Map<String, List<String>> loadAnimations(final String id) {
 		final Map<String, List<String>> animations = new HashMap<>();
 
@@ -358,6 +418,8 @@ class TileStore implements Tileset {
 	 * @return
 	 *     A tileset animation map.
 	 */
+	@SuppressWarnings("unused")
+	@Deprecated
 	private static TilesetGroupAnimationMap createAnimationMap(final String id,
 			final String prefix) {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();

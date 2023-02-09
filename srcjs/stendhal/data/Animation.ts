@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Paths } from "./Paths";
+import { JSONLoader } from "../util/JSONLoader";
 
 declare var stendhal: any;
 
@@ -56,18 +57,22 @@ export class Animation {
 	}
 
 	/**
-	 * Initializes the <code>landscapeAnimationMap</code> &
-	 * <code>weatherAnimationMap</code> objects.
+	 * Initializes landscape & weather tile animations.
 	 */
-	loadAnimations() {
-		fetch(Paths.tileset + "/animation.json", {
-				headers: {"Content-Type": "application/json"}
-		}).then(resp => resp.json()).then(animations => {
-			this.landscapeMap = this.formatAnimations(
-					animations["landscape"], Paths.tileset + "/");
-			this.weatherMap = this.formatAnimations(
-					animations["weather"], stendhal.paths.weather + "/");
-		});
+	init() {
+		if (this.landscapeMap && this.weatherMap) {
+			console.warn("tried to re-initialize tile animations");
+			return;
+		}
+
+		const loader = new JSONLoader();
+		loader.onDataReady = () => {
+			this.landscapeMap = this.loadAnimations(
+					loader.data["landscape"], Paths.tileset + "/");
+			this.weatherMap = this.loadAnimations(
+					loader.data["weather"], stendhal.paths.weather + "/");
+		};
+		loader.load(Paths.tileset + "/animation.json");
 	}
 
 	/**
@@ -81,7 +86,7 @@ export class Animation {
 	 * frames = ani[0].frames
 	 * delays = ani[0].delays
 	 *
-	 * @param animations
+	 * @param def
 	 *     Unformatted animations lists indexed by tileset name.
 	 *     Example: {ts1: [ani1, ani2, ...], ts2: [ani1, ani2, ...], ...}
 	 * @param prefix
@@ -89,11 +94,11 @@ export class Animation {
 	 * @return
 	 *     Map of animations.
 	 */
-	formatAnimations(animations: any, prefix: string): AnimationMap {
+	private loadAnimations(def: any, prefix: string): AnimationMap {
 		const ani: AnimationMap = {};
-		for (const tsname of Object.keys(animations)) {
-			const def: {[index: number]: any} = {};
-			for (let li of animations[tsname]) {
+		for (const tsname of Object.keys(def)) {
+			const entry: {[index: number]: any} = {};
+			for (let li of def[tsname]) {
 				// clean whitespace
 				li = li.trim();
 				li = li.replace(/\t/g, " ");
@@ -134,14 +139,14 @@ export class Animation {
 						first_frame = parseInt(id, 10);
 					}
 
-					def[first_frame] = {
+					entry[first_frame] = {
 						frames: frames,
 						delays: delays
 					};
 				}
 			}
 
-			ani[prefix + tsname + ".png"] = def;
+			ani[prefix + tsname + ".png"] = entry;
 		}
 
 		return ani;

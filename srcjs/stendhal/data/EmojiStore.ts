@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Paths } from "./Paths";
+import { JSONLoader } from "../util/JSONLoader";
 
 declare var stendhal: any;
 
@@ -49,12 +50,12 @@ export class EmojiStore {
 	 * Loads emoji data from JSON.
 	 */
 	public init() {
-		fetch(Paths.sprites + "/emoji/emojis.json", {
-				headers: {"Content-Type": "application/json"}
-		}).then(resp => resp.json()).then(emojidata => {
-				this.emojilist = emojidata["emojilist"];
-				this.emojimap = emojidata["emojimap"];
-		});
+		const loader = new JSONLoader();
+		loader.onDataReady = () => {
+			this.emojilist = loader.data["emojilist"];
+			this.emojimap = loader.data["emojimap"];
+		}
+		loader.load(Paths.sprites + "/emoji/emojis.json");
 	}
 
 	/**
