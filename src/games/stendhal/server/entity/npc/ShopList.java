@@ -269,12 +269,12 @@ public final class ShopList {
 			stype = "buy";
 		}
 
-		final String npcname = npc.getName();
 		if (npc == null) {
 			logger.error("Cannot configure " + stype + "er shop \""
-					+ shopname + "\" for non-existing NPC " + npcname);
+					+ shopname + "\" for non-existing NPC");
 			return;
 		}
+		final String npcname = npc.getName();
 		final Map<String, Integer> shoplist = get(seller, shopname);
 		if (shoplist == null) {
 			logger.error("Cannot configure non-existing " + stype
