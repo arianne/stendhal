@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Paths } from "../data/Paths";
+import { Paths } from "./Paths";
 
 declare var stendhal: any;
 
