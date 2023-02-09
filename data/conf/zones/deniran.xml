@@ -1213,6 +1213,9 @@ Entrance fee is 10 money</attribute>
       <attribute name="move.continuous"/>
     </portal>
 
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.accessoryshop.DealerNPC"/>
+
   </zone>
 
   <zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">

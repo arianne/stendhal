@@ -35,6 +35,7 @@ Changelog
   - poison arrow
 - new NPCs:
   - Fletcher
+  - Gwen
 - Unicorn Horns for Zelan quest is now repeatable
 - Restock the Flower Shop quest now tracks completions
 - weapons can now inflict status effects
