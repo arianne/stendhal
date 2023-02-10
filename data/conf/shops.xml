@@ -931,6 +931,9 @@
     <merchant name="Rengard" note="after Collect Enemy Data quest"/>
   </shop>
 
+
+  <!-- TRADE FOR ITEMS INSTEAD OF MONEY -->
+
   <trade type="sell">
     <item name="ice arrow">
       <require name="black pearl" count="1"/>
@@ -943,5 +946,21 @@
     </item>
     <merchant name="Mizuno"/>
   </trade>
+
+
+  <!-- OUTFIT SELLERS/LENDERS -->
+
+  <outfitshop name="deniran_accessories">
+    <outfit name="umbrella" layers="detail=7" price="600"/>
+    <outfit name="sword" layers="detail=8" price="100000"/>
+    <outfit name="knife" layers="detail=9" price="100000"/>
+    <outfit name="spear" layers="detail=10" price="100000"/>
+    <outfit name="bow" layers="detail=11" price="100000"/>
+    <outfit name="axe1" layers="detail=12" price="100000"/>
+    <outfit name="axe2" layers="detail=13" price="100000"/>
+    <outfit name="shield" layers="detail=14" price="100000"/>
+    <outfit name="bone" layers="detail=15" price="100000"/>
+    <merchant name="Gwen" configure="true" offer="true"/> <!-- TODO: create sign instead of offer -->
+  </outfitshop>
 
 </shops>

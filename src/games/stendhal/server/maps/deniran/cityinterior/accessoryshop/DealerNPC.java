@@ -21,8 +21,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
-import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 
 
 /**
@@ -32,10 +30,7 @@ public class DealerNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		final SpeakerNPC gwen = buildNPC();
-		buildShop(gwen);
-
-		zone.add(gwen);
+		zone.add(buildNPC());
 	}
 
 	private SpeakerNPC buildNPC() {
@@ -64,27 +59,5 @@ public class DealerNPC implements ZoneConfigurator {
 		gwen.addSuspend(MathHelper.TURNS_IN_ONE_MINUTE / 2, Direction.DOWN, 4);
 
 		return gwen;
-	}
-
-	private void buildShop(final SpeakerNPC gwen) {
-		/* TODO:
-		 * - configure shop in xml
-		 * - add shop sign
-		 */
-		//~ gwen.addOffer("I'm sorry but my shop is not quite set up yet. Come back in the future and I"
-				//~ + " will have some accessories for you.");
-		final OutfitShopsList shops = OutfitShopsList.get();
-		final OutfitShopInventory inventory = new OutfitShopInventory();
-		inventory.put("umbrella", "detail=7", 600);
-		inventory.put("sword", "detail=8", 100000);
-		inventory.put("knife", "detail=9", 100000);
-		inventory.put("spear", "detail=10", 100000);
-		inventory.put("bow", "detail=11", 100000);
-		inventory.put("axe1", "detail=12", 100000);
-		inventory.put("axe2", "detail=13", 100000);
-		inventory.put("shield", "detail=14", 100000);
-		inventory.put("bone", "detail=15", 100000);
-		shops.register("deniran_accessories", inventory);
-		shops.configureSeller(gwen, "deniran_accessories", "buy", true, false);
 	}
 }
