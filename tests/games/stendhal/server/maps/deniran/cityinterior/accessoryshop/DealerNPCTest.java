@@ -17,6 +17,7 @@ import static utilities.ZoneAndPlayerTestImpl.setupZone;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -39,6 +40,10 @@ public class DealerNPCTest extends SpeakerNPCTestHelper {
 		assertNotNull(player);
 		final SpeakerNPC gwen = getSpeakerNPC("Gwen");
 		assertNotNull(gwen);
+
+		// configure Gwen's shop
+		SingletonRepository.getOutfitShopsList().configureNPC(gwen, "deniran_accessories", "buy", true,
+				false);
 
 		final Engine en = gwen.getEngine();
 		en.step(player, "hi");
