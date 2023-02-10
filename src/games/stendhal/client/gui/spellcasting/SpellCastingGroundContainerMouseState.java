@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.spellcasting;
 
 import java.awt.Point;
@@ -9,6 +20,7 @@ import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import marauroa.common.game.RPObject;
+
 /**
  * State of the GroundContainer that is switched to, when a spell is selected.
  *
