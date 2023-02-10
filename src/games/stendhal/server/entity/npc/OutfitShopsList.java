@@ -11,8 +11,8 @@
 package games.stendhal.server.entity.npc;
 
 import java.util.HashMap;
-import java.util.TreeMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
