@@ -10,14 +10,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.shop;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.TreeMap;
 
 
 /**
  * Represents contents & prices of a shop.
  */
-public abstract class ShopInventory<T, V> extends TreeMap<String, V> {
+public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
 
   /**
    * Retrieves the price of an item sold by a shop.
