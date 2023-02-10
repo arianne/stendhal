@@ -74,6 +74,7 @@ public class DealerNPC implements ZoneConfigurator {
 				//~ + " will have some accessories for you.");
 		final OutfitShopsList shops = OutfitShopsList.get();
 		final OutfitShopInventory inventory = new OutfitShopInventory();
+		inventory.put("umbrella", "detail=7", 600);
 		inventory.put("sword", "detail=8", 100000);
 		inventory.put("knife", "detail=9", 100000);
 		inventory.put("spear", "detail=10", 100000);

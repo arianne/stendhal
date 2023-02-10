@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,7 +83,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		// NOTE: use negative numbers for layers that should not be drawn (use 998 for body layer)
 		final Pair<Outfit, Boolean> GOBLIN_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 988, -1, -1, -1, -1, -1, null), true);
 		final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 987, -1, -1, -1, -1, -1, null), true);
-		final Pair<Outfit, Boolean> Umbrella = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, null, null, 7), true);
+		// umbrella moved to Gwen's shop in Deniran City
+		//~ final Pair<Outfit, Boolean> Umbrella = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, null, null, 7), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
 		final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(993, -1, -1, -1, -1, -1, -1, -1, null), false);
@@ -96,7 +97,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 
 		outfitTypes.put("goblin face", GOBLIN_FACE);
 		outfitTypes.put("thing face", THING_FACE);
-		outfitTypes.put("umbrella", Umbrella);
+		//~ outfitTypes.put("umbrella", Umbrella);
 		outfitTypes.put("purple slime", PURPLE_SLIME);
 		outfitTypes.put("green slime", GREEN_SLIME);
 		outfitTypes.put("red slime", RED_SLIME);
@@ -199,7 +200,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("blue slime", (int) (N * 3000));
 				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
-				priceList.put("umbrella", (int) (N * 300));
+				//~ priceList.put("umbrella", (int) (N * 300));
 				priceList.put("black cat", (int) (N * 4500));
 				priceList.put("white cat", (int) (N * 4500));
 
@@ -212,7 +213,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					"Please tell me which outfit you would like,"
 					+ " ask to #hire a #goblin #face,"
-					+ " #hire a #thing #face, #hire a #umbrella,"
+					//~ + " #hire a #thing #face, #hire a #umbrella,"
+					+ " #hire a #thing #face,"
 					+ " #hire a #purple #slime outfit, #hire a #green #slime,"
 					+ " #hire a #red #slime, #hire a #blue #slime,"
 					+ " #hire a #gingerbread #man outfit,"
