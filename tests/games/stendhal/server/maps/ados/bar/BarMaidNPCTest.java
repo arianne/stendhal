@@ -129,7 +129,7 @@ public class BarMaidNPCTest {
 		assertThat(barMaid.getName(), is("Siandra"));
 
 		// configure Siandra's shop
-		SingletonRepository.getShopList().configureNPC("Siandra", "buyfood", false, true);
+		SingletonRepository.getShopsList().configureNPC("Siandra", "buyfood", false, true);
 
 		final Engine engine = barMaid.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);

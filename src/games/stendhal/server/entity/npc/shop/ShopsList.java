@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.shop;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -21,6 +21,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -30,12 +31,12 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 /**
  * Singleton class that contains inventory and prices of NPC stores.
  */
-public final class ShopList {
+public final class ShopsList {
 
-	private static final Logger logger = Logger.getLogger(ShopList.class);
+	private static final Logger logger = Logger.getLogger(ShopsList.class);
 
 	/** The singleton instance. */
-	private static ShopList instance;
+	private static ShopsList instance;
 
 	@Deprecated
 	private final Map<String, Map<String, Integer>> contents;
@@ -49,9 +50,9 @@ public final class ShopList {
 	 *
 	 * @return The instance
 	 */
-	public static ShopList get() {
+	public static ShopsList get() {
 		if (instance == null) {
-			instance = new ShopList();
+			instance = new ShopsList();
 		}
 		return instance;
 	}
@@ -59,7 +60,7 @@ public final class ShopList {
 	/**
 	 * Hidden singleton constructor.
 	 */
-	private ShopList() {
+	private ShopsList() {
 		contents = new HashMap<String, Map<String, Integer>>();
 		sellerContents = new HashMap<String, Map<String, Integer>>();
 		buyerContents = new HashMap<String, Map<String, Integer>>();

@@ -21,11 +21,11 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
 
 
@@ -85,7 +85,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 		pricesSell.put("shuriken", 80);
 		pricesSell.put("fire shuriken", 105);
 
-		final ShopList shops = ShopList.get();
+		final ShopsList shops = ShopsList.get();
 		for (final String itemName: pricesSell.keySet()) {
 			shops.add("dojosell", itemName, pricesSell.get(itemName));
 		}

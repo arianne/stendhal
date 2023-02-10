@@ -19,17 +19,17 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.maps.ados.market.FishermansDaughterNPC;
 
 /**
  * Caroline during the Mine Town Revival Weeks
  */
 public class FishermansDaughterSellingNPC implements LoadableContent {
-	private final ShopList shops = SingletonRepository.getShopList();
+	private final ShopsList shops = SingletonRepository.getShopsList();
 	private void createFishermansDaughterSellingNPC() {
 		final StendhalRPZone zone2 = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		final SpeakerNPC npc2 = new SpeakerNPC("Caroline") {

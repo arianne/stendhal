@@ -91,7 +91,7 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		// confugure Hunel's shop
 		// XXX: why can this not be configured in constructor where NPC is created?
-		SingletonRepository.getShopList().configureNPC("Hunel", "buychaos", false);
+		SingletonRepository.getShopsList().configureNPC("Hunel", "buychaos", false);
 
 		equipWithItem(player, "kanmararn prison key");
 

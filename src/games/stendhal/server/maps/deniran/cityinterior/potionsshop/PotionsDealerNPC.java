@@ -28,13 +28,13 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.PlayerNextToCondition;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 
 public class PotionsDealerNPC implements ZoneConfigurator {
@@ -52,7 +52,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 				new Node(9, 5)
 		);
 
-		final ShopList shops = SingletonRepository.getShopList();
+		final ShopsList shops = SingletonRepository.getShopsList();
 		final Map<String, Integer> pricesBuy = shops.get("deniranpotionsbuy");
 		final Map<String, Integer> pricesSell = shops.get("deniranpotionssell");
 

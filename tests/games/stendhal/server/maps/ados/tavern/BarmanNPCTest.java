@@ -59,7 +59,7 @@ public class BarmanNPCTest {
 		zoneconfig.configureZone(testzone , null);
 		SpeakerNPC dale = SingletonRepository.getNPCList().get("dale");
 		// configure Dale's shop
-		SingletonRepository.getShopList().configureNPC("Dale", "adostavernbarman", true);
+		SingletonRepository.getShopsList().configureNPC("Dale", "adostavernbarman", true);
 
 		Engine engine = dale.getEngine();
 		Player player = PlayerTestHelper.createPlayer("monsterdhal");

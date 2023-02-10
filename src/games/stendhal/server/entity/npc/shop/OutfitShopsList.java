@@ -8,7 +8,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.shop;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +17,8 @@ import java.util.TreeMap;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;

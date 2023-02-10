@@ -27,9 +27,9 @@ import org.junit.Test;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
@@ -41,7 +41,7 @@ public class HealerNPCTest {
 	private SpeakerNPC npc;
 	private Player player;
 	private Engine en;
-	private ShopList sl;
+	private ShopsList sl;
 	private LinkedHashMap<String, Integer> slh;
 
 	@BeforeClass
@@ -62,7 +62,7 @@ public class HealerNPCTest {
 		player.teleport(srpz, 10, 10, null, null);
 
 		// configure Carmen's shop
-		sl = ShopList.get();
+		sl = ShopsList.get();
 		slh = (LinkedHashMap<String, Integer>) sl.get("healing");
 		sl.configureNPC("Carmen", "healing", true);
 	}

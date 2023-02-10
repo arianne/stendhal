@@ -57,7 +57,7 @@ public class BowsForOuchitTest {
 		// this is Karl
 		new FarmerNPC().configureZone(zone, null);
 		// configure shops
-		SingletonRepository.getShopList().configureNPC("Ouchit", "sellrangedstuff", true);
+		SingletonRepository.getShopsList().configureNPC("Ouchit", "sellrangedstuff", true);
 
 		AbstractQuest quest = new BowsForOuchit();
 		quest.addToWorld();

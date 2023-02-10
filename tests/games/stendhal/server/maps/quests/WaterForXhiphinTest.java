@@ -60,7 +60,7 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		new WaterForXhiphin().addToWorld();
 
 		// configure shop
-		SingletonRepository.getShopList().configureNPC("Xhiphin Zohos", "fadoscrolls", true);
+		SingletonRepository.getShopsList().configureNPC("Xhiphin Zohos", "fadoscrolls", true);
 	}
 
 	@Test

@@ -14,7 +14,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.JailAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -27,6 +26,7 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -77,7 +77,7 @@ public class Maria extends ScriptImpl {
 		int x = 11;
 		int y = 4;
 		String shop = "food&drinks";
-		final ShopList shops = SingletonRepository.getShopList();
+		final ShopsList shops = SingletonRepository.getShopsList();
 		if (args.size() > 0 ) {
 			if (shops.get(args.get(0))!= null) {
 				shop = args.get(0);
@@ -109,7 +109,7 @@ public class Maria extends ScriptImpl {
 				"You can see what I #offer and take a break to meet new people!");
 		npc.behave("bye", "Bye bye!");
 		try {
-			npc.behave("sell", SingletonRepository.getShopList().get(shop));
+			npc.behave("sell", SingletonRepository.getShopsList().get(shop));
 		} catch (final NoSuchMethodException e) {
 			logger.error(e, e);
 		}

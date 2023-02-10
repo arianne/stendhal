@@ -69,7 +69,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC npc = getNPC("Fleur");
 		final Engine en = npc.getEngine();
 
-		SingletonRepository.getShopList().configureNPC("Fleur", "kirdnehflowerseller", true, true);
+		SingletonRepository.getShopsList().configureNPC("Fleur", "kirdnehflowerseller", true, true);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Are you here to #trade?", getReply(npc));

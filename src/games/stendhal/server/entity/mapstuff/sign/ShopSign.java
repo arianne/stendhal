@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                    (C) Copyright 2003-2010 - Stendhal                   *
+ *                    (C) Copyright 2003-2023 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
-import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.events.ShowItemListEvent;
 
 /**
@@ -32,7 +32,7 @@ import games.stendhal.server.events.ShowItemListEvent;
 public class ShopSign extends Sign implements UseListener {
 
 	/** The shop list. */
-	protected ShopList shops = SingletonRepository.getShopList();
+	protected ShopsList shops = SingletonRepository.getShopsList();
 
 	/** Name of shop */
 	protected String shopName;

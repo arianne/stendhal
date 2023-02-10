@@ -30,7 +30,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 
 
 public class ShopsXMLLoader extends DefaultHandler {
@@ -41,7 +41,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 	private static ShopsXMLLoader instance;
 	private static boolean initialized = false;
 
-	private final static ShopList shops = ShopList.get();
+	private final static ShopsList shops = ShopsList.get();
 
 	private String shopName;
 	private Map<String, Integer> items;

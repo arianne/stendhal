@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,12 +20,12 @@ import org.luaj.vm2.LuaValue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 
 
 /**
@@ -40,7 +40,7 @@ public class LuaMerchantHelper {
 
 	private final static EntityManager eManager = SingletonRepository.getEntityManager();
 
-	public static ShopList shops = ShopList.get();
+	public static ShopsList shops = ShopsList.get();
 
 
 	/**

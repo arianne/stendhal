@@ -8,7 +8,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.shop;
 
 import games.stendhal.server.entity.Outfit;
 import marauroa.common.Pair;

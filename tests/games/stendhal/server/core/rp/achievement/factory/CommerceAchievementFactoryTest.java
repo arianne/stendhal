@@ -20,9 +20,9 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 import utilities.AchievementTestHelper;
 
@@ -61,7 +61,7 @@ public class CommerceAchievementFactoryTest extends AchievementTestHelper {
 		final SpeakerNPC npc = new SpeakerNPC("tester");
 		npc.addGreeting();
 		npc.addGoodbye();
-		final ShopList shops = ShopList.get();
+		final ShopsList shops = ShopsList.get();
 		shops.addBuyer("buygrain", "grain", 1);
 		shops.configureNPC(npc, "buygrain", false, false);
 		final Engine en = npc.getEngine();

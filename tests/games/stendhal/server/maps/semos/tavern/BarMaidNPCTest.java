@@ -73,7 +73,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure Margaret's shop
-		SingletonRepository.getShopList().configureNPC("Margaret", "food&drinks", true);
+		SingletonRepository.getShopsList().configureNPC("Margaret", "food&drinks", true);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", getReply(npc));

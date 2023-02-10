@@ -103,7 +103,7 @@ public class IcecreamForAnnieTest {
 		npc = SingletonRepository.getNPCList().get("Sam");
 		en = npc.getEngine();
 
-		SingletonRepository.getShopList().configureNPC("Sam", "icecreamseller", true, true);
+		SingletonRepository.getShopsList().configureNPC("Sam", "icecreamseller", true, true);
 
 		Item item = ItemTestHelper.createItem("money", 30);
 		player.getSlot("bag").add(item);

@@ -47,7 +47,7 @@ public class LearnAboutKarmaTest {
 		npc = SingletonRepository.getNPCList().get("Sarzina");
 
 		// configure Sarzina's shop
-		SingletonRepository.getShopList().configureNPC("Sarzina", "superhealing", true);
+		SingletonRepository.getShopsList().configureNPC("Sarzina", "superhealing", true);
 
 		final AbstractQuest quest = new LearnAboutKarma();
 		quest.addToWorld();
