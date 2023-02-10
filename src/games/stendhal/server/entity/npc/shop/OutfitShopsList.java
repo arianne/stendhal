@@ -64,7 +64,7 @@ public class OutfitShopsList {
    * @param inventory
    *     Outfits inventory with prices.
    */
-  public void register(final String id, final OutfitShopInventory inventory) {
+  public void add(final String id, final OutfitShopInventory inventory) {
     registry.put(id, inventory);
   }
 
@@ -96,19 +96,23 @@ public class OutfitShopsList {
    * @param expiration
    *     Amount of time player can wear outfit.
    */
-  public void configureSeller(final SpeakerNPC npc, final String id, final String action,
+  public void configureNPC(final SpeakerNPC npc, final String id, final String action,
       final boolean offer, final boolean canReturn, final int expiration) {
     if (npc == null) {
       logger.error("Cannot configure outfit shop \"" + id + "\" for non-existing NPC ");
       return;
     }
+
     final String name = npc.getName();
     final OutfitShopInventory inventory = get(id);
     if (inventory == null) {
       logger.error("Cannot configure non-existing outfit shop for NPC " + name);
       return;
     }
-    logger.info("Configuring outfit shop \"" + id + "\" for NPC " + name);
+
+    String msg = "Configuring outfit shop \"" + id + "\" for NPC " + name + " with offer "
+      + (offer ? "enabled" : "disabled");
+    logger.info(msg);
     final Map<String, Integer> pricelist = new TreeMap<String, Integer>();
     for (final Map.Entry<String, Pair<Outfit, Integer>> entry: inventory.entrySet()) {
       pricelist.put(entry.getKey(), entry.getValue().second());
@@ -142,9 +146,9 @@ public class OutfitShopsList {
    * @param canReturn
    *     If true, player can say "return" to get original outfit back.
    */
-  public void configureSeller(final SpeakerNPC npc, final String id, final String action,
+  public void configureNPC(final SpeakerNPC npc, final String id, final String action,
       final boolean offer, final boolean canReturn) {
-    configureSeller(npc, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);
+    configureNPC(npc, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);
   }
 
   /**
@@ -163,9 +167,9 @@ public class OutfitShopsList {
    * @param expiration
    *     Amount of time player can wear outfit.
    */
-  public void configureSeller(final String name, final String id, final String action,
+  public void configureNPC(final String name, final String id, final String action,
       final boolean offer, final boolean canReturn, final int expiration) {
-    configureSeller(NPCList.get().get(name), id, action, offer, canReturn, expiration);
+    configureNPC(NPCList.get().get(name), id, action, offer, canReturn, expiration);
   }
 
   /**
@@ -182,8 +186,8 @@ public class OutfitShopsList {
    * @param canReturn
    *     If true, player can say "return" to get original outfit back.
    */
-  public void configureSeller(final String name, final String id, final String action,
+  public void configureNPC(final String name, final String id, final String action,
       final boolean offer, final boolean canReturn) {
-    configureSeller(name, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);
+    configureNPC(name, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);
   }
 }
