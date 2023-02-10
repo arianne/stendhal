@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
 
@@ -87,7 +88,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 
 		final ShopsList shops = ShopsList.get();
 		for (final String itemName: pricesSell.keySet()) {
-			shops.add("dojosell", itemName, pricesSell.get(itemName));
+			shops.add("dojosell", ShopType.ITEM_SELL, itemName, pricesSell.get(itemName));
 		}
 
 		final String rejectedMessage = "Only members of the assassin guild can trade here.";

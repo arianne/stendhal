@@ -10,6 +10,7 @@
     <sequence>
       <element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
       <element name="trade" type="Q2:Trade" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="outfitshop" type="Q2:OutfitShop" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 
@@ -31,6 +32,16 @@
     </sequence>
     <attribute name="name" type="string" use="optional"/>
     <attribute name="type" type="Q2:ShopType" use="required"/>
+    <attribute name="condition" type="string" use="optional"/>
+  </complexType>
+
+  <complexType name="OutfitShop">
+    <sequence>
+      <element name="outfit" type="Q2:OutfitItem" minOccurs="1" maxOccurs="unbounded"/>
+      <element name="merchant" type="Q2:OutfitMerchant" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="name" type="string" use="optional"/>
+    <attribute name="condition" type="string" use="optional"/>
   </complexType>
 
   <simpleType name="ShopType">
@@ -58,6 +69,15 @@
     <attribute name="note" type="string" use="optional"/>
   </complexType>
 
+  <complexType name="OutfitItem">
+    <complexContent>
+      <extension base="Q2:ShopItem">
+        <attribute name="layers" type="string" use="required"/>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <!-- items required for purchase other than money -->
   <complexType name="RequireAlso">
     <attribute name="name" type="string" use="required"/>
     <attribute name="count" type="string" use="required"/>
@@ -69,7 +89,21 @@
     <attribute name="configure" type="boolean" use="optional"/>
     <!-- XML loader will configure NPC with default "offer" replies (default: true) -->
     <attribute name="offer" type="boolean" use="optional"/>
+    <!-- used by website only -->
     <attribute name="note" type="string" use="optional"/>
+  </complexType>
+
+  <complexType name="OutfitMerchant">
+    <complexContent>
+      <extension base="Q2:Merchant">
+        <!-- defaults to "buy" if not set -->
+        <attribute name="action" type="string" use="optional"/>
+        <!-- default is to never expire -->
+        <attribute name="expires" type="int" use="optional"/>
+        <!-- default is not reternable -->
+        <attribute name="returnable" type="boolean" use="optional"/>
+      </extension>
+    </complexContent>
   </complexType>
 
 </schema>
