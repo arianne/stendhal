@@ -15,7 +15,7 @@ import marauroa.common.Pair;
 
 
 /**
- * Represents contents & prices of an outfit shop shop.
+ * Represents contents & prices of an outfit shop.
  */
 public class OutfitShopInventory extends ShopInventory<String, Pair<Outfit, Integer>> {
 
