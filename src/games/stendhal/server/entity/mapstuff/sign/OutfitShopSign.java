@@ -10,11 +10,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopsList;

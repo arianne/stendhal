@@ -16,7 +16,6 @@ import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
