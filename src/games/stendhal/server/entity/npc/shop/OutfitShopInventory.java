@@ -17,21 +17,7 @@ import marauroa.common.Pair;
 /**
  * Represents contents & prices of an outfit shop.
  */
-public class OutfitShopInventory extends ShopInventory<String, Pair<Outfit, Integer>> {
-
-  /**
-   * Adds an outfit to shop.
-   *
-   * @param name
-   *     String identifier.
-   * @param outfit
-   *     Outfit to be sold.
-   * @param price
-   *     Amount of money required to buy outfit.
-   */
-  public void put(final String name, final Outfit outfit, final int price) {
-    put(name, new Pair<Outfit, Integer>(outfit, price));
-  }
+public class OutfitShopInventory extends ShopInventory<String, Pair<String, Integer>> {
 
   /**
    * Adds an outfit to shop.
@@ -44,7 +30,36 @@ public class OutfitShopInventory extends ShopInventory<String, Pair<Outfit, Inte
    *     Amount of money required to buy outfit.
    */
   public void put(final String name, final String outfit, final int price) {
-    put(name, new Outfit(outfit), price);
+    put(name, new Pair<String, Integer>(outfit, price));
+  }
+
+  /**
+   * Adds an outfit to shop.
+   *
+   * @param name
+   *     String identifier.
+   * @param outfit
+   *     Outfit to be sold.
+   * @param price
+   *     Amount of money required to buy outfit.
+   */
+  public void put(final String name, final Outfit outfit, final int price) {
+    put(name, outfit.toString(), price);
+  }
+
+  /**
+   * Retrieves a string representation of an outfit sold by shop.
+   *
+   * @param name
+   *     String identifier.
+   * @return
+   *     Outfit string or null if name not found.
+   */
+  public String getOutfitString(final String name) {
+    if (containsKey(name)) {
+      return get(name).first();
+    }
+    return null;
   }
 
   /**
@@ -56,8 +71,9 @@ public class OutfitShopInventory extends ShopInventory<String, Pair<Outfit, Inte
    *     Outfit or null if name not found.
    */
   public Outfit getOutfit(final String name) {
-    if (containsKey(name)) {
-      return get(name).first();
+    final String ost = getOutfitString(name);
+    if (ost != null) {
+      return new Outfit(ost);
     }
     return null;
   }

@@ -114,7 +114,7 @@ public class OutfitShopsList {
       + (offer ? "enabled" : "disabled");
     logger.info(msg);
     final Map<String, Integer> pricelist = new TreeMap<String, Integer>();
-    for (final Map.Entry<String, Pair<Outfit, Integer>> entry: inventory.entrySet()) {
+    for (final Map.Entry<String, Pair<String, Integer>> entry: inventory.entrySet()) {
       pricelist.put(entry.getKey(), entry.getValue().second());
     }
     final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(pricelist, expiration,
