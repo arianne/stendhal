@@ -49,10 +49,9 @@ public class DealerNPCTest extends SpeakerNPCTestHelper {
 		en.step(player, "hi");
 		en.step(player, "offer");
 		assertEquals(
-			//~ "I'm sorry but my shop is not quite set up yet. Come back in the future and I"
-				//~ + " will have some accessories for you.",
-			"You can #buy axe1, axe2, black balloon, bone, bow, kite shield, knife, shield, spear, sword,"
-					+ " umbrella, and white balloon.",
+			//~ "You can #buy axe1, axe2, black balloon, bone, bow, kite shield, knife, shield, spear, sword,"
+					//~ + " umbrella, and white balloon.",
+			"Please see the catalog on the chair for a list of accessories that I offer.",
 			getReply(gwen));
 		en.step(player, "bye");
 	}

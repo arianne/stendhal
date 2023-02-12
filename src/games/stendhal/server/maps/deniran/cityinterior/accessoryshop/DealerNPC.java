@@ -50,6 +50,7 @@ public class DealerNPC implements ZoneConfigurator {
 		gwen.setDescription("You see Gwen. She deals in fashionable accessories.");
 		gwen.addGreeting();
 		gwen.addGoodbye();
+		gwen.addOffer("Please see the catalog on the chair for a list of accessories that I offer.");
 
 		gwen.setPathAndPosition(new FixedPath(Arrays.asList(
 				new Node(14, 4),
