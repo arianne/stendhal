@@ -22,6 +22,24 @@ import marauroa.common.game.RPEvent;
 import marauroa.common.game.SyntaxException;
 
 
+/**
+ * By default the client hides the "body", "head", & "eyes" layers. To override this behavior
+ * include the desired layers prefixed with "show" in the `overrides`, e.g. "showbody,showhead,
+ * showeyes" or "showall".
+ *
+ * Event string format:
+ *   <label>;<layers>;<price>[;<overrides>;<xIndex>;<yIndex>][:<label>;<layers>;<price>[;<overrides>;<xIndex>;<yIndex>]...]
+ *
+ * Options:
+ *   label: Name or identifier.
+ *   layers: Layer names with indexes, e.g. "body=0,head=0,eyes=2,dress=5,hair=1".
+ *   overrides: Comma-separated list of default hidden layers to override prefixed with "show".
+ *   xIndex: Use x index for display (default: 1 (center-frame)).
+ *   yIndex: Use y index for display (default: 2 (front-facing)).
+ *
+ * TODO:
+ * - add option to show player's outfit as base
+ */
 public class ShowOutfitListEvent extends RPEvent {
 
 	private static final Logger logger = Logger.getLogger(ShowOutfitListEvent.class);
