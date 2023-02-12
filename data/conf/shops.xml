@@ -966,4 +966,41 @@
     <merchant name="Gwen" configure="true" offer="true"/> <!-- TODO: create sign instead of offer -->
   </outfitshop>
 
+  <!-- Pierre in Deniran Dress Shop -->
+  <outfitshop>
+    <outfit name="blue bear" layers="hat=993" price="2500"/>
+    <outfit name="brown bear" layers="hat=994" price="2500"/>
+    <outfit name="superstendhal" layers="dress=973,hat=992" price="5000"/>
+    <merchant name="Pierre"/>
+  </outfitshop>
+
+  <!-- Liliana in Magic Clothing Boutique -->
+  <outfitshop>
+    <outfit name="jumpsuit" layers="dress=983" price="500"/>
+    <outfit name="dungarees" layers="dress=984" price="500"/>
+    <outfit name="green dress" layers="dress=978" price="500"/>
+    <outfit name="gown" layers="dress=982" price="750"/>
+    <outfit name="orange" layers="dress=980" price="500"/>
+    <outfit name="bunny" layers="dress=981" price="800"/>
+    <outfit name="jester" layers="dress=976,hat=995" price="400"/>
+    <outfit name="horse" layers="body=997" price="1200"/>
+    <outfit name="girl horse" layers="body=996" price="1200"/>
+    <outfit name="alien" layers="body=995" price="1200"/>
+    <merchant name="Liliana"/>
+  </outfitshop>
+
+  <!-- Saski in Magic Clothing Boutique -->
+  <outfitshop>
+    <outfit name="goblin face" layers="head=988" price="500"/>
+    <outfit name="thing face" layers="head=987" price="500"/>
+    <outfit name="purple slime" layers="body=993" price="3000"/>
+    <outfit name="green slime" layers="body=989" price="3000"/>
+    <outfit name="red slime" layers="body=988" price="3000"/>
+    <outfit name="blue slime" layers="body=991" price="3000"/>
+    <outfit name="gingerbread man" layers="body=992" price="1200"/>
+    <outfit name="white cat" layers="body=978" price="4500"/>
+    <outfit name="black cat" layers="body=979" price="4500"/>
+    <merchant name="Saskia"/>
+  </outfitshop>
+
 </shops>
