@@ -27,7 +27,7 @@ data/sprites/outfit/body/
 data/sprites/outfit/detail/
 
 000     (empty)
-00[1-4] (balloon)   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/101299
+00[1-3] (balloon)   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/101299
 005     (flag)      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 006     (cane)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 007     (umbrella)  Diligent Dodo (soniccuz), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/

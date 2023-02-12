@@ -951,6 +951,8 @@
   <!-- OUTFIT SELLERS/LENDERS -->
 
   <outfitshop name="deniran_accessories">
+    <outfit name="white balloon" layers="detail=2" price="50000"/>
+    <outfit name="black balloon" layers="detail=3" price="50000"/>
     <outfit name="umbrella" layers="detail=7" price="50000"/>
     <outfit name="sword" layers="detail=8" price="250000"/>
     <outfit name="knife" layers="detail=9" price="125000"/>
