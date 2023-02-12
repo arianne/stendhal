@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,5 +32,7 @@ public class RemoveDetailAction implements ActionListener {
 		final Outfit outfit = player.getOutfit();
 		outfit.setLayer("detail", 0);
 		player.setOutfit(outfit);
+		// remove layer coloring
+		player.unsetOutfitColor("detail");
 	}
 }
