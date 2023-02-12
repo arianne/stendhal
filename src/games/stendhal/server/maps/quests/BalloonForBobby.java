@@ -16,10 +16,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ChangePlayerOutfitAndPreserveTempAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -241,7 +243,14 @@ public class BalloonForBobby extends AbstractQuest {
 		// Rewards to give to the player if he gives Bobby the balloon
 		// NOTE: Also changes the players outfit to get rid of the balloon
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new ChangePlayerOutfitAndPreserveTempAction(balloonOutfit, false));
+		reward.add(new ChangePlayerOutfitAndPreserveTempAction(balloonOutfit, false) {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				super.fire(player, sentence, npc);
+				// remove detail layer coloring
+				player.unsetOutfitColor("detail");
+			}
+		});
 		reward.add(new IncreaseXPAction(200));
 		reward.add(new IncreaseKarmaAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
