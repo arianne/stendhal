@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerIsWearingOutfitCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
@@ -166,6 +167,10 @@ public class BalloonForBobby extends AbstractQuest {
 
 		SpeakerNPC npc = npcs.get(NPCName);
 
+		final OrCondition wearsColorlessBalloon = new OrCondition(
+				new PlayerIsWearingOutfitCondition(new Outfit("detail=2")),
+				new PlayerIsWearingOutfitCondition(new Outfit("detail=3")));
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				"balloon",
@@ -186,15 +191,29 @@ public class BalloonForBobby extends AbstractQuest {
 						new NotCondition(
 								new SystemPropertyCondition("stendhal.minetown")),
 						new NotCondition(
-								new PlayerIsWearingOutfitCondition(balloonOutfit))),
+								new PlayerIsWearingOutfitCondition(balloonOutfit)),
+						new NotCondition(wearsColorlessBalloon)),
 				ConversationStates.ATTENDING,
 				"You don't even have a balloon for me :(",
+				null);
+
+		// make sure player knows they need to get a colorful balloon
+		npc.add(
+				ConversationStates.ATTENDING,
+				"balloon",
+				new AndCondition(
+						new QuestStartedCondition(QUEST_SLOT),
+						wearsColorlessBalloon),
+				ConversationStates.ATTENDING,
+				"Um, I would like a balloon with a little more color. :(",
 				null);
 
 		npc.add(
 				ConversationStates.ATTENDING,
 				"balloon",
-				new SystemPropertyCondition("stendhal.minetown"),
+				new AndCondition(
+					new SystemPropertyCondition("stendhal.minetown"),
+					new NotCondition(wearsColorlessBalloon)),
 				ConversationStates.ATTENDING,
 				"The clouds told me that the mine town weeks are still going -"
 				+ " I can get my own balloons."

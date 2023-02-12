@@ -37,6 +37,10 @@ public class BalloonForBobbyTest {
 
 	private String questSlot = null;
 
+	private static final Outfit outfitWithWhiteBalloon = new Outfit(10, 9, 8, 7, 6, 5, 4, 3, 2);
+	private static final Outfit outfitWithBlackBalloon = new Outfit(11, 10, 9, 8, 7, 6, 5, 4, 3, 2);
+
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -143,6 +147,24 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 
+		// black & white balloons
+		player.setOutfit(outfitWithWhiteBalloon);
+		en.step(player, "hi");
+		assertEquals("Hm?", getReply(npc));
+		en.step(player, "balloon");
+		assertEquals(
+			"Um, I would like a balloon with a little more color. :(",
+			getReply(npc));
+		en.step(player, "bye");
+		player.setOutfit(outfitWithBlackBalloon);
+		en.step(player, "hi");
+		assertEquals("Hm?", getReply(npc));
+		en.step(player, "balloon");
+		assertEquals(
+			"Um, I would like a balloon with a little more color. :(",
+			getReply(npc));
+		en.step(player, "bye");
+
 
 		// Player HAS balloon; NO Mine Town Weeks
 		// Player says "No" first
@@ -231,6 +253,36 @@ public class BalloonForBobbyTest {
 		}
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
+
+		// black & white balloons
+		player.setOutfit(outfitWithWhiteBalloon);
+		en.step(player, "hi");
+		assertEquals("Hm?", getReply(npc));
+		en.step(player, "balloon");
+		if (player.getQuest(questSlot) == null || player.getQuest(questSlot, 0).equals("rejected")) {
+			assertEquals(
+				"One day, i will have enough balloons to fly away!",
+				getReply(npc));
+		} else {
+			assertEquals(
+				"Um, I would like a balloon with a little more color. :(",
+				getReply(npc));
+		}
+		en.step(player, "bye");
+		player.setOutfit(outfitWithBlackBalloon);
+		en.step(player, "hi");
+		assertEquals("Hm?", getReply(npc));
+		en.step(player, "balloon");
+		if (player.getQuest(questSlot) == null || player.getQuest(questSlot, 0).equals("rejected")) {
+			assertEquals(
+				"One day, i will have enough balloons to fly away!",
+				getReply(npc));
+		} else {
+			assertEquals(
+				"Um, I would like a balloon with a little more color. :(",
+				getReply(npc));
+		}
+		en.step(player, "bye");
 
 		System.getProperties().remove("stendhal.minetown");
 	}
