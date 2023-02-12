@@ -51,7 +51,7 @@ public class JSONLoader extends DataLoader {
 				final InputStreamReader isr = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8);
 				data = JSONValue.parse(isr);
 				if (data == null) {
-					logger.error("Failed to read emoji data file: " + path);
+					logger.error("Failed to read JSON data file: " + path);
 				} else {
 					if (onDataReady != null) {
 						onDataReady.run();
