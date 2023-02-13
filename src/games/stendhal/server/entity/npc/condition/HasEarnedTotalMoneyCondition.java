@@ -23,7 +23,7 @@ import games.stendhal.server.entity.player.Player;
 
 public class HasEarnedTotalMoneyCondition extends AbstractChatCondition {
 
-	private final int hashModifier = AbstractChatCondition.getNextUniqueHashModifier();
+	private static final int hashModifier = AbstractChatCondition.getNextUniqueHashModifier();
 	private final int required;
 	private List<String> npcs;
 
