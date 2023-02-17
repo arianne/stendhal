@@ -78,7 +78,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 	 * @return
 	 *     The static instance.
 	 */
-	@Deprecated(since="1.43", forRemoval=true)
+	@Deprecated
 	public static ShopsXMLLoader get() {
 		if (instance == null) {
 			instance = new ShopsXMLLoader();
@@ -87,7 +87,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		return instance;
 	}
 
-	@Deprecated(since="1.43", forRemoval=true)
+	@Deprecated
 	public void init() {
 		if (initialized) {
 			logger.warn("Tried to re-initialize shops loader");
