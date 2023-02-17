@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,21 +89,51 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nKarma:  " + inspected.getKarma());
 			st.append("\nMana:  " + inspected.getMana() + " / "
 					+ inspected.getBaseMana());
+			if (inspected.has("age")) {
+				st.append("\nAge: " + inspected.get("age"));
+			}
 
+			boolean outfit_temp_orig = false;
+			String outfit_str = null;
+			String outfit_str_temp = null;
 			if (inspected.has("outfit_ext")) {
-				st.append("\nOutfit: ");
+				st.append("\n\nOutfit: ");
+				outfit_str = inspected.get("outfit_ext");
 				if (inspected.has("outfit_ext_orig")) {
-					st.append(inspected.get("outfit_ext_orig") + "\nOutfit (temp): ");
+					outfit_temp_orig = true;
+					outfit_str_temp = outfit_str;
+					outfit_str = inspected.get("outfit_ext_orig");
 				}
-				st.append(inspected.get("outfit_ext"));
-			}
-			if (inspected.has("outfit")) {
-				st.append("\nOutfit code: ");
+				st.append(outfit_str);
+				if (outfit_str_temp != null) {
+					st.append("\nTemporary outfit: " + outfit_str_temp);
+				}
+			} else if (inspected.has("outfit")) {
+				st.append("\n\nOutfit code: ");
+				outfit_str = inspected.get("outfit");
 				if (inspected.has("outfit_org")) {
-					st.append(inspected.get("outfit_org") + "\nOutfit code (temp): ");
+					outfit_temp_orig = true;
+					outfit_str_temp = outfit_str;
+					outfit_str = inspected.get("outfit_org");
 				}
-				st.append(inspected.get("outfit"));
+				st.append(outfit_str);
+				if (outfit_str_temp != null) {
+					st.append("\nTemporary outfit code: " + outfit_str_temp);
+				}
 			}
+			if (inspected instanceof Player) {
+				final Player iplayer = (Player) inspected;
+				final boolean outfit_temp_expire = iplayer.has("outfit_expire_age");
+				if (outfit_temp_expire) {
+					st.append("\nOutfit expire age: " + iplayer.get("outfit_expire_age"));
+				}
+				if (outfit_temp_orig != outfit_temp_expire) {
+					st.append("\nWARNING: original outfit and outfit expire age attributes do not match:"
+						+ " has original outfit=" + outfit_temp_orig + ", has outfit expire time="
+						+ outfit_temp_expire);
+				}
+			}
+
 			if (inspected.has("class")) {
 				st.append("\nOutfit (class): " + inspected.get("class"));
 			}
