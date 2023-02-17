@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,7 +49,7 @@ public class StendhalServer {
 				serverIni = args[i + 1];
 			}
 			if (args[i].equals("-auto-config")) {
-			    automatic = true;
+				automatic = true;
 			}
 			i++;
 		}
@@ -64,17 +64,17 @@ public class StendhalServer {
 	public static void main(String[] args) throws FileNotFoundException {
 		parseCommandLine(args);
 		if (!new File(serverIni).exists()) {
-		    if (!automatic) {
-		        System.out.println("Welcome to your own Stendhal Server.");
-		        System.out.println("");
-		        System.out.println("This seems to be the very first start because we could not find a server.ini.");
-		        System.out.println("So there are some simple questions for you to create it...");
-		        System.out.println("");
-		        GenerateINI.main(args, serverIni);
-		    } else {
-		        Map<String, String> environment = getFilteredEnvironment();
+			if (!automatic) {
+				System.out.println("Welcome to your own Stendhal Server.");
+				System.out.println("");
+				System.out.println("This seems to be the very first start because we could not find a server.ini.");
+				System.out.println("So there are some simple questions for you to create it...");
+				System.out.println("");
+				GenerateINI.main(args, serverIni);
+			} else {
+				Map<String, String> environment = getFilteredEnvironment();
 				new AutomaticGenerateINI(environment).write(new FileOutputStream(serverIni));
-		    }
+			}
 		}
 		marauroa.server.marauroad.main(args);
 
@@ -94,7 +94,7 @@ public class StendhalServer {
 	}
 
 	/**
-	 * @return {@link Map} with STENDHAL_ fixed key value pairs read from the environment. 
+	 * @return {@link Map} with STENDHAL_ fixed key value pairs read from the environment.
 	 */
 	private static Map<String, String> getFilteredEnvironment() {
 		return System.getenv().entrySet()
