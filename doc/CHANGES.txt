@@ -6,6 +6,7 @@ Changelog
 1.43
 
 *bugfixes*
+- fixed bug where Maltos made temp outfits permanent when adding balloon
 - java client:
   - fixed error where drawing stalled when weather sprite not found
 - web client

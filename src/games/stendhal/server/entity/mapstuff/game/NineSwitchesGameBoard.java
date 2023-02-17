@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,10 +18,9 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.DressedEntity;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * The game board for the 9 switches game.
@@ -81,29 +80,11 @@ public class NineSwitchesGameBoard implements TurnListener {
 		switchGameSwitch(gameSwitch);
 		boolean completed = checkBoard();
 		if (completed) {
-
-			if (user instanceof DressedEntity) {
-
-
+			if (user instanceof Player) {
 				npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
 
-				final DressedEntity dressed = (DressedEntity) user;
-				final Outfit balloonOutfit = new Outfit(null, null, null, null, null, null, null, null, 1);
-
-				// FIXME: temp hack to preserve original outfit
-				String outfit_org = null;
-				if (dressed.has("outfit_org")) {
-					outfit_org = dressed.get("outfit_org");
-				}
-
-				dressed.setOutfit(balloonOutfit);
-
-				if (outfit_org != null) {
-					user.put("outfit_org", outfit_org);
-				}
-
-
-
+				final Player dressed = (Player) user;
+				dressed.setPerpetualOutfitLayer("detail", 1);
 				user.put("outfit_colors", "detail", Rand.rand(balloonColors));
 			} else {
 				npc.say("Umm... I'm sorry but I don't think you can wear this balloon.");

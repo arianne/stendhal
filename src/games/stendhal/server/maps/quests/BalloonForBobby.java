@@ -23,7 +23,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ChangePlayerOutfitAndPreserveTempAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -243,10 +242,10 @@ public class BalloonForBobby extends AbstractQuest {
 		// Rewards to give to the player if he gives Bobby the balloon
 		// NOTE: Also changes the players outfit to get rid of the balloon
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new ChangePlayerOutfitAndPreserveTempAction(balloonOutfit, false) {
+		reward.add(new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				super.fire(player, sentence, npc);
+				player.setPerpetualOutfitLayer("detail", 0);
 				// remove detail layer coloring
 				player.unsetOutfitColor("detail");
 			}
