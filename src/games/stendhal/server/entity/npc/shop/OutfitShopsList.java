@@ -11,6 +11,7 @@
 package games.stendhal.server.entity.npc.shop;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -88,6 +89,96 @@ public class OutfitShopsList {
    *     Shop identifier.
    * @param action
    *     NPC action trigger, e.g. "lend", "borrow", "buy", etc.
+   * @param expiration
+   *     Amount of time player can wear outfit.
+   * @param wearOffMessage
+   *     Message to player when outfit expires.
+   * @param flags
+   *     Optional flags. Currently supported are 'resetOrig', 'noOffer', & 'returnable'.
+   */
+  public void configureNPC(final SpeakerNPC npc, final String id, final String action,
+      final int expiration, final String wearOffMessage, final List<String> flags) {
+    if (npc == null) {
+      logger.error("Cannot configure outfit shop \"" + id + "\" for non-existing NPC ");
+      return;
+    }
+
+    final String name = npc.getName();
+    final OutfitShopInventory inventory = get(id);
+    if (inventory == null) {
+      logger.error("Cannot configure non-existing outfit shop for NPC " + name);
+      return;
+    }
+    logger.info("Configuring outfit shop \"" + id + "\" for NPC " + name + " with flags `"
+        + flags + "`");
+
+    // parse flags
+    final Map<String, String> fl = new HashMap<>();
+    if (flags != null) {
+      for (final String flag: flags) {
+        if (flag.contains("=")) {
+          final String[] tmp = flag.split("=");
+          fl.put(tmp[0], tmp[1]);
+        } else {
+          fl.put(flag, "");
+        }
+      }
+    }
+
+    final Map<String, Integer> pricelist = new TreeMap<String, Integer>();
+    for (final Map.Entry<String, Pair<String, Integer>> entry: inventory.entrySet()) {
+      pricelist.put(entry.getKey(), entry.getValue().second());
+    }
+    final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(pricelist, expiration,
+        wearOffMessage, fl.containsKey("resetOrig")) {
+      @Override
+      public void putOnOutfit(final Player player, final String oname) {
+        // TODO: update OutfitChangerBehaviour to not set outfit list internally
+        if (this.resetBeforeChange) {
+          player.returnToOriginalOutfit();
+        }
+        final int expiration = this.getEndurance();
+        if (expiration == OutfitChangerBehaviour.NEVER_WEARS_OFF) {
+          player.setOriginalOutfit(inventory.getOutfit(oname));
+        } else {
+          player.setTemporaryOutfit(inventory.getOutfit(oname), expiration);
+        }
+      }
+    };
+    new OutfitChangerAdder().addOutfitChanger(npc, behaviour, action, !fl.containsKey("noOffer"),
+        fl.containsKey("returnable"));
+  }
+
+  /**
+   * Configures an NPC to use a shop.
+   *
+   * @param npc
+   *     Name of NPC to configure.
+   * @param id
+   *     Shop identifier.
+   * @param action
+   *     NPC action trigger, e.g. "lend", "borrow", "buy", etc.
+   * @param expiration
+   *     Amount of time player can wear outfit.
+   * @param wearOffMessage
+   *     Message to player when outfit expires.
+   * @param flags
+   *     Optional flags. Currently supported are 'resetOrig', 'noOffer', & 'returnable'.
+   */
+  public void configureNPC(final String npc, final String id, final String action,
+      final int expiration, final String wearOffMessage, final List<String> flags) {
+    configureNPC(NPCList.get().get(npc), id, action, expiration, wearOffMessage, flags);
+  }
+
+  /**
+   * Configures an NPC to use a shop.
+   *
+   * @param npc
+   *     NPC to configure.
+   * @param id
+   *     Shop identifier.
+   * @param action
+   *     NPC action trigger, e.g. "lend", "borrow", "buy", etc.
    * @param offer
    *     Defines if the NPC should react to the word "offer".
    * @param canReturn
@@ -95,6 +186,7 @@ public class OutfitShopsList {
    * @param expiration
    *     Amount of time player can wear outfit.
    */
+  @Deprecated
   public void configureNPC(final SpeakerNPC npc, final String id, final String action,
       final boolean offer, final boolean canReturn, final int expiration) {
     if (npc == null) {
@@ -145,6 +237,7 @@ public class OutfitShopsList {
    * @param canReturn
    *     If true, player can say "return" to get original outfit back.
    */
+  @Deprecated
   public void configureNPC(final SpeakerNPC npc, final String id, final String action,
       final boolean offer, final boolean canReturn) {
     configureNPC(npc, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);
@@ -166,6 +259,7 @@ public class OutfitShopsList {
    * @param expiration
    *     Amount of time player can wear outfit.
    */
+  @Deprecated
   public void configureNPC(final String name, final String id, final String action,
       final boolean offer, final boolean canReturn, final int expiration) {
     configureNPC(NPCList.get().get(name), id, action, offer, canReturn, expiration);
@@ -185,6 +279,7 @@ public class OutfitShopsList {
    * @param canReturn
    *     If true, player can say "return" to get original outfit back.
    */
+  @Deprecated
   public void configureNPC(final String name, final String id, final String action,
       final boolean offer, final boolean canReturn) {
     configureNPC(name, id, action, offer, canReturn, OutfitChangerBehaviour.NEVER_WEARS_OFF);

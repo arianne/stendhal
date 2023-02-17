@@ -11,15 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
-import static games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.NEVER_WEARS_OFF;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,7 +31,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.config.ShopGroupsXMLLoader.MerchantConfigurator;
 import games.stendhal.server.entity.npc.shop.ItemShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopsList;
@@ -61,6 +61,13 @@ public class ShopsXMLLoader extends DefaultHandler {
 	// determines if outfits are returnable
 	private Map<String, Boolean> returnables;
 
+	private Map<ShopType, Map<String, ShopInventory>> inventories;
+	private List<MerchantConfigurator> configurators;
+
+	private ShopType currentType;
+	private String currentName;
+	private ShopInventory currentInventory;
+
 	/** The singleton instance. */
 	private static ShopsXMLLoader instance;
 
@@ -71,6 +78,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 	 * @return
 	 *     The static instance.
 	 */
+	@Deprecated(since="1.43", forRemoval=true)
 	public static ShopsXMLLoader get() {
 		if (instance == null) {
 			instance = new ShopsXMLLoader();
@@ -79,11 +87,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		return instance;
 	}
 
-	/**
-	 * Private singleton constructor.
-	 */
-	private ShopsXMLLoader() {}
-
+	@Deprecated(since="1.43", forRemoval=true)
 	public void init() {
 		if (initialized) {
 			logger.warn("Tried to re-initialize shops loader");
@@ -109,6 +113,10 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	public void load(final URI uri) throws SAXException {
 		try {
+			// reset data
+			inventories = new HashMap<>();
+			configurators = new ArrayList<>();
+
 			// parse the input
 			final SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
 			final InputStream is = ShopsXMLLoader.class.getResourceAsStream(uri.getPath());
@@ -135,114 +143,76 @@ public class ShopsXMLLoader extends DefaultHandler {
 	public void startElement(final String namespaceURI, final String lName, final String qName,
 			final Attributes attrs) {
 		if (qName.equals("shop")) {
-			shopType = attrs.getValue("type").equals("sell") ? ShopType.ITEM_SELL : ShopType.ITEM_BUY;
-			shopName = attrs.getValue("name");
-			inventory = new ItemShopInventory();
-			offers = new LinkedHashMap<>();
-		} else if (qName.equals("outfitshop")) {
-			shopType = ShopType.OUTFIT;
-			shopName = attrs.getValue("name");
-			inventory = new OutfitShopInventory();
-			offers = new LinkedHashMap<>();
-			actions = new HashMap<>();
-			expirations = new HashMap<>();
-			returnables = new HashMap<>();
-		} else if (qName.equals("trade")) {
-			shopType = ShopType.TRADE;
-		}
-
-		if (shopType == null) {
-			return;
-		}
-
-		String merchant = null;
-		if (qName.equals("merchant")) {
-			if (!"true".equals(attrs.getValue("configure"))) {
-				return;
+			final String tmp = attrs.getValue("type");
+			if (tmp != null) {
+				currentType = ShopType.fromString(tmp);
 			}
-			merchant = attrs.getValue("name");
-			offers.put(attrs.getValue("name"), !"false".equals(attrs.getValue("offer")));
-		}
-
-		if (isItemShop()) {
-			if (qName.equals("item")) {
-				((ItemShopInventory) inventory).put(attrs.getValue("name"), Integer.parseInt(attrs.getValue("price")));
+			currentName = attrs.getValue("name");
+		} else if (qName.equals("item") && isItemShop()) {
+			if (currentInventory == null) {
+				currentInventory = new ItemShopInventory();
 			}
-		} else if (isOutfitShop()) {
-			if (qName.equals("outfit")) {
-				((OutfitShopInventory) inventory).put(attrs.getValue("name"), attrs.getValue("layers"),
-						Integer.parseInt(attrs.getValue("price")));
-			} else if (merchant != null) {
-				final String action = attrs.getValue("action");
-				// "buy" is default
-				actions.put(merchant, action != null ? action : "buy");
-				int expires = NEVER_WEARS_OFF;
-				final String tmp = attrs.getValue("expires");
-				if (tmp != null) {
-					expires = Integer.parseInt(tmp);
-				}
-				expirations.put(merchant, expires);
-				// default is not returnable
-				returnables.put(merchant, "true".equals(attrs.getValue("returnable")));
+			final String iname = attrs.getValue("name");
+			final String iprice = attrs.getValue("price");
+			if (iprice == null) {
+				logger.error("Cannot add item \"" + iname + "\" to shop without price");
+			} else {
+				((ItemShopInventory) currentInventory).put(iname, Integer.parseInt(iprice));
 			}
+		} else if (qName.equals("outfit") && isOutfitShop()) {
+			if (currentInventory == null) {
+				currentInventory = new OutfitShopInventory();
+			}
+			((OutfitShopInventory) currentInventory).put(attrs.getValue("name"), attrs.getValue("layers"),
+					Integer.parseInt(attrs.getValue("price")));
+		} else if (qName.equals("merchant")) {
+			final MerchantConfigurator mc = new MerchantConfigurator();
+			mc.npc = attrs.getValue("name");
+			mc.id = currentName;
+			mc.stype = currentType;
+			final String flags = attrs.getValue("flags");
+			if (flags != null) {
+				mc.flags = Arrays.asList(flags.split(","));
+			}
+			mc.action = attrs.getValue("action");
+			final String expiration = attrs.getValue("expiration");
+			if (expiration != null) {
+				mc.expiration = Integer.parseInt(expiration);
+			}
+			mc.wearOffMessage = attrs.getValue("wearOffMessage");
+			configurators.add(mc);
 		}
 	}
 
 	@Override
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
-		if (shopName == null) {
-			// cannot configure shops without identifiers
-			return;
-		}
-		if (!qName.equals("shop") && !qName.equals("outfitshop")) {
+		if (!qName.equals("shop")) {
 			return;
 		}
 
-		if (isItemShop()) {
-			if (shops.get(shopName, shopType) != null) {
-				logger.warn("Tried to add duplicate " + shopType.toString() + "er shop \"" + shopName
-						+ "\" with contents " + inventory.toString());
-				return;
-			}
-			shops.add(shopName, shopType, (ItemShopInventory) inventory);
-		} else if (isOutfitShop()) {
-			if (oshops.get(shopName) != null) {
-				logger.warn("Tried to add duplicate outfit shop \"" + shopName + "\" with contents "
-						+ inventory.toString());
-				return;
-			}
-			oshops.add(shopName, (OutfitShopInventory) inventory);
+		if (!inventories.containsKey(currentType)) {
+			inventories.put(currentType, new HashMap<String, ShopInventory>());
 		}
+		inventories.get(currentType).put(currentName, currentInventory);
 
-		if (!offers.isEmpty()) {
-			SingletonRepository.getCachedActionManager().register(new Runnable() {
-				private final String _name = shopName;
-				private final ShopType _type = shopType;
-				private final Map<String, Boolean> _offers = offers;
-				private final Map<String, String> _actions = actions;
-				private final Map<String, Integer> _expirations = expirations;
-				private final Map<String, Boolean> _returnables = returnables;
-
-				public void run() {
-					for (final Map.Entry<String, Boolean> entry: _offers.entrySet()) {
-						if (ShopType.ITEM_SELL.equals(_type) || ShopType.ITEM_BUY.equals(_type)) {
-							shops.configureNPC(entry.getKey(), _name, _type, entry.getValue());
-						} else if (ShopType.OUTFIT.equals(_type)) {
-							final String npc = entry.getKey();
-							oshops.configureNPC(npc, _name, _actions.get(npc), entry.getValue(),
-									_returnables.get(npc), _expirations.get(npc));
-						}
-					}
-				}
-			});
-		}
+		currentType = null;
+		currentName = null;
+		currentInventory = null;
 	}
 
 	private boolean isItemShop() {
-		return ShopType.ITEM_SELL.equals(shopType) || ShopType.ITEM_BUY.equals(shopType);
+		return ShopType.ITEM_SELL.equals(currentType) || ShopType.ITEM_BUY.equals(currentType);
 	}
 
 	private boolean isOutfitShop() {
-		return ShopType.OUTFIT.equals(shopType);
+		return ShopType.OUTFIT.equals(currentType);
+	}
+
+	public Map<ShopType, Map<String, ShopInventory>> getInventories() {
+		return inventories;
+	}
+
+	public List<MerchantConfigurator> getConfigurators() {
+		return configurators;
 	}
 }

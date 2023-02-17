@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../shops.xsd">
+
+  <shop name="food&amp;drinks" type="sell">
+    <item name="beer" price="10" />
+    <item name="wine" price="15" />
+    <item name="flask" price="5" />
+    <item name="cheese" price="20" />
+    <item name="apple" price="10" />
+    <item name="carrot" price="10" />
+    <item name="meat" price="40" />
+    <item name="ham" price="80" />
+    <merchant name="Margaret" flags="configure"/>
+  </shop>
+
+  <shop name="adosfoodseller" type="sell">
+    <item name="apple" price="50" />
+    <item name="carrot" price="50" />
+    <item name="olive oil" price="135" />
+    <item name="vinegar" price="135" />
+    <merchant name="Adena" flags="configure"/>
+  </shop>
+
+  <shop name="healing" type="sell">
+    <item name="antidote" price="50" />
+    <item name="minor potion" price="100" />
+    <item name="potion" price="250" />
+    <item name="greater potion" price="500" />
+    <merchant name="Carmen" flags="configure"/>
+    <merchant name="Ilisa" flags="configure"/>
+  </shop>
+
+  <shop name="superhealing" type="sell">
+    <item name="antidote" price="50" />
+    <item name="greater antidote" price="100" />
+    <item name="potion" price="250" />
+    <item name="greater potion" price="500" />
+    <item name="mega potion" price="1500" />
+    <merchant name="Kendra Mattori" flags="configure"/>
+    <merchant name="Sarzina" flags="configure"/>
+  </shop>
+
+  <shop name="scrolls" type="sell">
+    <item name="home scroll" price="250" />
+    <item name="summon scroll" price="200" />
+    <item name="empty scroll" price="2000" />
+    <merchant name="Haizen" flags="configure"/>
+    <merchant name="Jynath" flags="configure"/>
+  </shop>
+
+  <shop name="fadoscrolls" type="sell">
+    <item name="fado city scroll" price="600" />
+    <item name="empty scroll" price="2200" />
+    <merchant name="Xhiphin Zohos" flags="configure"/>
+  </shop>
+
+  <shop name="nalworscrolls" type="sell">
+    <item name="nalwor city scroll" price="400" />
+    <item name="empty scroll" price="2000" />
+    <merchant name="Lorithien" flags="configure"/>
+  </shop>
+
+  <shop name="adosscrolls" type="sell">
+    <item name="ados city scroll" price="400" />
+    <item name="empty scroll" price="2000" />
+    <merchant name="Mayor Chalmers" flags="configure"/>
+  </shop>
+
+  <shop name="kirdnehscrolls" type="sell">
+    <item name="kirdneh city scroll" price="400" />
+    <item name="home scroll" price="400" />
+    <item name="empty scroll" price="2000" />
+    <merchant name="Hazel" flags="configure"/>
+  </shop>
+
+  <shop name="allscrolls" type="sell">
+    <item name="home scroll" price="250" />
+    <item name="summon scroll" price="200" />
+    <item name="empty scroll" price="2000" />
+    <item name="ados city scroll" price="400" />
+    <item name="nalwor city scroll" price="400" />
+    <item name="fado city scroll" price="600" />
+    <item name="kirdneh city scroll" price="600" />
+    <item name="deniran city scroll" price="800" />
+    <merchant name="Erodel Bmud"/>
+  </shop>
+
+  <shop name="sellstuff" type="sell">
+    <item name="knife" price="15" />
+    <item name="club" price="10" />
+    <item name="dagger" price="25" />
+    <item name="wooden shield" price="25" />
+    <item name="dress" price="25" />
+    <item name="leather helmet" price="25" />
+    <item name="cloak" price="30" />
+    <item name="leather legs" price="35" />
+    <merchant name="Xin Blanca" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="sellbetterstuff1" type="sell">
+    <item name="blue armor" price="14000" />
+    <item name="blue boots" price="3000" />
+    <item name="blue striped cloak" price="5000" />
+    <item name="blue helmet" price="6000" />
+    <item name="blue legs" price="6000" />
+    <item name="blue shield" price="20000" />
+    <item name="assassin dagger" price="12000" />
+    <merchant name="Hagnurk" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="sellbetterstuff2" type="sell">
+    <item name="shadow armor" price="18000" />
+    <item name="shadow boots" price="4000" />
+    <item name="shadow cloak" price="7000" />
+    <item name="shadow helmet" price="8000" />
+    <item name="shadow legs" price="10000" />
+    <item name="shadow shield" price="30000" />
+    <item name="hell dagger" price="20000" />
+    <merchant name="Gulimo" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="sellrangedstuff" type="sell">
+    <item name="wooden bow" price="300" />
+    <item name="wooden arrow" price="2" />
+    <merchant name="Ouchit" flags="configure"/>
+  </shop>
+
+  <shop name="selltools" type="sell">
+    <item name="small axe" price="15" />
+    <item name="hand axe" price="25" />
+    <item name="axe" price="40" />
+    <!-- enable these if you need them for a quest or something -->
+    <!-- <item name="pick" price="50" /> -->
+    <!-- <item name="shovel" price="50" /> -->
+    <item name="hammer" price="60" />
+    <item name="old scythe" price="120" /> <!-- used for harvest grain. -->
+    <item name="sickle" price="80" /> <!-- for harvesting cane fields -->
+    <item name="gold pan" price="230" />
+    <merchant name="Xoderos" flags="configure"/>
+  </shop>
+
+  <shop name="sellrings" type="sell">
+    <item name="engagement ring" price="5000" />
+    <merchant name="Ognir" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="sellstuff2" type="sell">
+    <item name="leather boots" price="50" />
+    <item name="studded helmet" price="60" />
+    <item name="studded shield" price="80" />
+    <item name="sword" price="90" />
+    <item name="dwarf cloak" price="230" />
+    <merchant name="Wrvil" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- selling arrows -->
+  <shop name="sellarrows" type="sell">
+    <item name="wooden arrow" price="2" />
+    <item name="steel arrow" price="7" />
+    <item name="golden arrow" price="25" />
+    <item name="power arrow" price="45" />
+    <merchant name="Diehelm Brui" flags="configure,noOffer"/>
+    <merchant name="Mrotho" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="sellhotdogs" type="sell">
+    <item name="hotdog" price="160" />
+    <item name="cheeseydog" price="180" />
+    <item name="tuna sandwich" price="130" />
+    <item name="sandwich" price="120" />
+    <item name="vanilla shake" price="110" />
+    <item name="chocolate shake" price="110" />
+    <item name="chocolate bar" price="100" />
+    <item name="snowglobe" price="200" />
+    <merchant name="Sara Beth" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- magic city barmaid -->
+  <shop name="sellmagic" type="sell">
+    <item name="hotdog" price="160" />
+    <item name="cheeseydog" price="180" />
+    <item name="tuna sandwich" price="130" />
+    <item name="sandwich" price="120" />
+    <item name="vanilla shake" price="110" />
+    <item name="chocolate shake" price="110" />
+    <item name="chocolate bar" price="100" />
+    <item name="licorice" price="100" />
+    <merchant name="Trillium" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- Semos trading - swords (unused?) -->
+  <shop name="tradeswords" type="sell">
+    <item name="dagger" price="10" />
+  </shop>
+
+  <!-- party time! For maria for example. Bit more expensive than normal -->
+  <shop name="sellparty" type="sell">
+    <item name="pina colada" price="100" />
+    <item name="chocolate bar" price="100" />
+    <item name="beer" price="10" />
+    <item name="wine" price="15" />
+    <item name="vanilla shake" price="150" />
+    <item name="icecream" price="50" />
+    <item name="hotdog" price="180" />
+    <item name="sandwich" price="140" />
+  </shop>
+
+  <!-- Scuba Instructor Edward -->
+  <shop name="sellScubaStuff" type="sell">
+    <item name="scuba gear" price="22000" />
+    <merchant name="Edward"/>
+  </shop>
+
+  <!-- Mine Town Revival Weeks Caroline -->
+  <shop name="sellrevivalweeks" type="sell">
+    <item name="cherry pie" price="195" />
+    <item name="apple pie" price="195" />
+    <item name="vanilla shake" price="120" />
+    <item name="chocolate shake" price="120" />
+    <item name="icecream" price="60" />
+    <item name="chocolate bar" price="100" />
+    <item name="grilled steak" price="250" />
+    <item name="hotdog" price="170" />
+    <item name="cheeseydog" price="175" />
+    <item name="tuna sandwich" price="140" />
+    <item name="sandwich" price="130" />
+    <item name="wine" price="25" />
+    <item name="beer" price="20" />
+    <item name="water" price="15" />
+    <merchant name="Caroline" note="during Minetown Weeks"/>
+  </shop>
+
+  <!--
+    for ados botanical gardens or if you like, other cafes.
+    expensive prices to make sure that the npc production of these items isn't compromised
+  -->
+  <shop name="cafe" type="sell">
+    <item name="tea" price="80" />
+    <item name="water" price="50" />
+    <item name="chocolate shake" price="150" />
+    <item name="sandwich" price="170" />
+    <item name="tuna sandwich" price="180" />
+    <item name="apple pie" price="250" />
+    <merchant name="Mia" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- atlantis potions shop prices are twice as much as magic city -->
+  <shop name="atlantispotions" type="sell">
+    <item name="antidote" price="100" />
+    <item name="greater antidote" price="200" />
+    <item name="potion" price="500" />
+    <item name="greater potion" price="1000" />
+    <item name="mega potion" price="3000" />
+    <item name="sedative" price="800" />
+    <item name="empty scroll" price="4000" />
+    <merchant name="Mirielle" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="denirankingsell" type="sell">
+    <item name="deniran city scroll" price="800" />
+    <merchant name="King Edward of Deniran" flags="configure"/>
+  </shop>
+
+  <!-- Wanda: Deniran Potions Shop -->
+  <shop name="deniranpotionssell" type="sell">
+    <item name="minor potion" price="150" />
+    <item name="potion" price="300" />
+    <item name="greater potion" price="600" />
+    <item name="mega potion" price="1650" />
+    <item name="antidote" price="100" />
+    <item name="greater antidote" price="150" />
+    <item name="sedative" price="400" />
+    <merchant name="Wanda" flags="configure"/>
+  </shop>
+
+  <shop name="deniranequipsell" type="sell">
+    <item name="shuriken" price="77" />
+    <item name="fire shuriken" price="99" />
+    <item name="wooden spear" price="110" />
+    <merchant name="D J Smith" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="twohandswords" type="sell">
+    <item name="l hand sword" price="250000" />
+    <item name="r hand sword" price="250000" />
+    <merchant name="Balduin" note="after Ultimate Collector quest"/>
+  </shop>
+
+  <shop name="adostavernbarmaid" type="sell">
+    <item name="beer" price="15" />
+    <item name="pie" price="160" />
+    <item name="bread" price="50" />
+    <item name="cheese" price="20" />
+    <item name="tomato" price="30" />
+    <merchant name="Coralia" flags="configure"/>
+  </shop>
+
+  <shop name="adostavernbarman" type="sell">
+    <item name="wine" price="20" />
+    <item name="pina colada" price="100" />
+    <item name="chocolate bar" price="100" />
+    <merchant name="Dale" flags="configure"/>
+  </shop>
+
+  <shop name="minertools" type="sell">
+    <item name="pick" price="400"/>
+    <merchant name="Barbarus" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="athorshipgalley" type="sell">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <item name="ham" price="100"/>
+    <item name="pie" price="150"/>
+    <merchant name="Laura" flags="configure"/>
+  </shop>
+
+  <shop name="fadosoupmaker" type="sell">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <item name="cherry" price="20"/>
+    <item name="chicken" price="50"/>
+    <item name="bread" price="50"/>
+    <item name="sandwich" price="150"/>
+    <merchant name="Old Mother Helena" flags="configure"/>
+  </shop>
+
+  <shop name="beekeeper" type="sell">
+    <item name="honey" price="50"/>
+    <item name="beeswax" price="80"/>
+    <merchant name="Aldrin" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="milkandbutter" type="sell">
+    <item name="butter" price="40"/>
+    <item name="milk" price="30"/>
+    <merchant name="Philomena" flags="configure"/>
+  </shop>
+
+  <shop name="adosgroceryseller" type="sell">
+    <item name="egg" price="50"/>
+    <item name="onion" price="50"/>
+    <item name="garlic" price="50"/>
+    <item name="potato" price="50"/>
+    <item name="pinto beans" price="50"/>
+    <item name="habanero pepper" price="135"/>
+    <item name="olive oil" price="135"/>
+    <item name="vinegar" price="135"/>
+    <item name="kekik" price="135"/>
+    <item name="sclaria" price="135"/>
+    <item name="sugar" price="250"/>
+    <item name="honey" price="350"/>
+    <!-- disabled
+    <merchant name="Ambrogita" flags="configure,noOffer"/>
+    -->
+  </shop>
+
+  <shop name="kirdnehflowerseller" type="sell">
+    <item name="rose" price="50"/>
+    <merchant name="Fleur" flags="configure"/>
+  </shop>
+
+  <shop name="kirdnehinn" type="sell">
+    <item name="beer" price="10"/>
+    <item name="wine" price="15"/>
+    <!-- more expensive than in normal taverns -->
+    <item name="bread" price="50"/>
+    <item name="cheese" price="20"/>
+    <item name="pie" price="160"/>
+    <merchant name="Ruarhi" flags="configure"/>
+  </shop>
+
+  <shop name="kalavangardener" type="sell">
+    <item name="tomato" price="30"/>
+    <item name="garlic" price="50"/>
+    <item name="pinto beans" price="55"/>
+    <item name="habanero pepper" price="60"/>
+    <merchant name="Sue" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="icecreamseller" type="sell">
+    <item name="icecream" price="30"/>
+    <merchant name="Sam" flags="configure"/>
+  </shop>
+
+  <shop name="denirangrocer" type="sell">
+    <item name="olive oil" price="135"/>
+    <item name="vinegar" price="135"/>
+    <item name="lamp" price="100"/>
+    <merchant name="Jimbo" flags="configure,noOffer"/>
+  </shop>
+
+
+  <!-- the following are configured in the NPC source & are included here only to be read by the website -->
+
+  <shop type="sell">
+    <item name="daisy seed" price="20"/>
+    <item name="lilia seed" price="10"/>
+    <item name="pansy seed" price="10"/>
+    <item name="zantedeschia bulb" price="15"/>
+    <merchant name="Jenny"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="sheep" price="30"/>
+    <merchant name="Nishiya"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="roach" price="10"/>
+    <merchant name="Mrs. Yeti"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="fado city scroll" price="480"/>
+    <item name="empty scroll" price="1760"/>
+    <merchant name="Orchiwald"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="beer" price="18"/>
+    <item name="wine" price="25"/>
+    <item name="mild koboldish torcibud" price="95">
+      <for name="slim bottle" count="1"/>
+    </item>
+    <item name="strong koboldish torcibud" price="195">
+      <for name="eared bottle" count="1"/>
+    </item>
+    <merchant name="Wrviliza"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="antidote" price="40" />
+    <item name="minor potion" price="80" />
+    <item name="potion" price="200" />
+    <item name="greater potion" price="400" />
+    <merchant name="Dr. Feelgood" note="after Zoo Food quest"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="cat" price="100"/>
+    <merchant name="Felina"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="empty sack" price="10"/>
+    <merchant name="Karl"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="horse hair" price="20" note="after Bows for Ouchit quest"/>
+    <merchant name="Karl"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="training sword" price="2100"/>
+    <item name="shuriken" price="80"/>
+    <item name="fire shuriken" price="105"/>
+    <merchant name="Akutagawa"/>
+  </shop>
+
+  <shop type="sell">
+    <item name="bestiary" price="500000"/>
+    <merchant name="Rengard" note="after Collect Enemy Data quest"/>
+  </shop>
+
+</shops>

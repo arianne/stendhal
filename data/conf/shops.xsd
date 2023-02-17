@@ -9,14 +9,19 @@
   <complexType name="ShopGroup">
     <sequence>
       <element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
-      <element name="trade" type="Q2:Trade" minOccurs="0" maxOccurs="unbounded"/>
-      <element name="outfitshop" type="Q2:OutfitShop" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
   </complexType>
 
   <complexType name="Shop">
     <sequence>
-      <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+      <choice minOccurs="1" maxOccurs="1">
+        <sequence>
+          <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+        <sequence>
+          <element name="outfit" type="Q2:OutfitItem" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+      </choice>
       <element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <!-- "name" can be omitted if shop is listed for website reading only -->
@@ -25,85 +30,66 @@
     <attribute name="condition" type="string" use="optional"/>
   </complexType>
 
-  <complexType name="Trade">
-    <sequence>
-      <element name="item" type="Q2:TradeItem" minOccurs="1" maxOccurs="unbounded"/>
-      <element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-    <attribute name="name" type="string" use="optional"/>
-    <attribute name="type" type="Q2:ShopType" use="required"/>
-    <attribute name="condition" type="string" use="optional"/>
-  </complexType>
-
-  <complexType name="OutfitShop">
-    <sequence>
-      <element name="outfit" type="Q2:OutfitItem" minOccurs="1" maxOccurs="unbounded"/>
-      <element name="merchant" type="Q2:OutfitMerchant" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-    <attribute name="name" type="string" use="optional"/>
-    <attribute name="condition" type="string" use="optional"/>
-  </complexType>
-
   <simpleType name="ShopType">
     <restriction base="string">
       <enumeration value="buy"/>
       <enumeration value="sell"/>
+      <enumeration value="trade"/>
+      <enumeration value="outfit"/>
     </restriction>
   </simpleType>
 
-  <complexType name="ShopItem">
+  <complexType name="BaseItem">
     <sequence>
-      <element name="require" type="Q2:RequireAlso" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="for" type="Q2:TradeFor" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <attribute name="name" type="string" use="required"/>
-    <attribute name="price" type="int" use="required"/>
-    <attribute name="pricemax" type="int" use="optional"/>
     <attribute name="note" type="string" use="optional"/>
   </complexType>
 
-  <complexType name="TradeItem">
-    <sequence>
-      <element name="require" type="Q2:RequireAlso" minOccurs="1" maxOccurs="unbounded"/>
-    </sequence>
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="note" type="string" use="optional"/>
+  <complexType name="ShopItem">
+    <complexContent>
+      <extension base="Q2:BaseItem">
+        <attribute name="price" type="int" use="optional"/>
+        <attribute name="pricemax" type="int" use="optional"/>
+      </extension>
+    </complexContent>
   </complexType>
 
   <complexType name="OutfitItem">
     <complexContent>
-      <extension base="Q2:ShopItem">
+      <extension base="Q2:BaseItem">
+        <attribute name="price" type="int" use="required"/>
         <attribute name="layers" type="string" use="required"/>
       </extension>
     </complexContent>
   </complexType>
 
   <!-- items required for purchase other than money -->
-  <complexType name="RequireAlso">
+  <complexType name="TradeFor">
     <attribute name="name" type="string" use="required"/>
     <attribute name="count" type="string" use="required"/>
   </complexType>
 
+  <!--
+    Merchant flags are a comma-separated string.
+    Valid merchant flags are:
+      * configure:  XML loader will configure NPC for shop at startup.
+      * noOffer:    Will not add default replies to "offer".
+      * returnable: Outfits can be returned to vendor.
+      * resetOrig:  Temporary outfits will be reset to original before updating.
+  -->
+
   <complexType name="Merchant">
     <attribute name="name" type="string" use="required"/>
-    <!-- XML loader will configure NPC for shop at startup (default: false) -->
-    <attribute name="configure" type="boolean" use="optional"/>
-    <!-- XML loader will configure NPC with default "offer" replies (default: true) -->
-    <attribute name="offer" type="boolean" use="optional"/>
+    <attribute name="flags" type="string" use="optional"/>
     <!-- used by website only -->
     <attribute name="note" type="string" use="optional"/>
-  </complexType>
-
-  <complexType name="OutfitMerchant">
-    <complexContent>
-      <extension base="Q2:Merchant">
-        <!-- defaults to "buy" if not set -->
-        <attribute name="action" type="string" use="optional"/>
-        <!-- default is to never expire -->
-        <attribute name="expires" type="int" use="optional"/>
-        <!-- default is not reternable -->
-        <attribute name="returnable" type="boolean" use="optional"/>
-      </extension>
-    </complexContent>
+    <!-- defaults to "buy" if not set (outfits) -->
+    <attribute name="action" type="string" use="optional"/>
+    <!-- default is to never expire (outfits) -->
+    <attribute name="expires" type="int" use="optional"/>
+    <attribute name="wearOffMessage" type="string" use="optional"/>
   </complexType>
 
 </schema>

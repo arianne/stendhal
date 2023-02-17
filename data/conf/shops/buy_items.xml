@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../shops.xsd">
+
+  <shop name="buyfood" type="buy">
+    <item name="cheese" price="5" />
+    <item name="meat" price="10" />
+    <item name="spinach" price="15" />
+    <item name="ham" price="20" />
+    <item name="flour" price="25" />
+    <item name="porcini" price="30" />
+    <merchant name="Siandra" flags="configure"/>
+  </shop>
+
+  <shop name="buystuff" type="buy">
+    <item name="short sword" price="15" />
+    <item name="sword" price="60" />
+    <item name="studded shield" price="20" />
+    <item name="studded armor" price="22" />
+    <item name="studded helmet" price="17" />
+    <item name="studded legs" price="20" />
+    <item name="chain armor" price="29" />
+    <item name="chain helmet" price="25" />
+    <item name="chain legs" price="27" />
+    <merchant name="Xin Blanca" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="buyiron" type="buy">
+    <item name="iron" price="75" />
+    <merchant name="Loretta" flags="configure"/>
+  </shop>
+
+  <shop name="buygrain" type="buy">
+    <item name="grain" price="1" />
+  </shop>
+
+  <!-- gold and gemstones -->
+  <shop name="buyprecious" type="buy">
+    <item name="gold bar" price="250" />
+    <item name="emerald" price="200" />
+    <item name="sapphire" price="400" />
+    <item name="amethyst" price="500" />
+    <item name="carbuncle" price="600" />
+    <item name="diamond" price="800" />
+    <item name="obsidian" price="1000" />
+    <item name="mithril bar" price="2500" />
+    <merchant name="Ognir" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="buyrare" type="buy">
+    <!-- rare weapons -->
+    <item name="scimitar" price="65" />
+    <item name="katana" price="70" />
+    <item name="bardiche" price="75" />
+    <item name="golden hammer" price="80" />
+    <!-- rare armor -->
+    <item name="enhanced chainmail" price="32" />
+    <item name="golden chainmail" price="52" />
+    <item name="plate armor" price="62" />
+    <item name="plate shield" price="40" />
+    <item name="lion shield" price="50" />
+    <item name="blue legs" price="500" />
+    <merchant name="McPegleg" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- rare elf weapons buyer -->
+  <shop name="elfbuyrare" type="buy">
+    <item name="battle axe" price="70" />
+    <item name="twoside axe" price="80" />
+    <item name="claymore" price="90" />
+    <item name="broadsword" price="100" />
+    <item name="staff" price="75" />
+    <item name="enhanced lion shield" price="100" />
+    <item name="crown shield" price="120" />
+    <merchant name="Elodrin" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- more rare weapons shop (fado) -->
+  <shop name="buyrare2" type="buy">
+    <item name="war hammer" price="120" />
+    <item name="biting sword" price="150" />
+    <item name="crossbow" price="175" />
+    <item name="great sword" price="250" />
+    <item name="fire sword" price="2000" />
+    <item name="ice sword" price="5000" />
+    <item name="hell dagger" price="8000" />
+    <merchant name="Yorphin Baos" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- very rare armor shop (ados) -->
+  <shop name="buyrare3" type="buy">
+    <item name="golden legs" price="3000" />
+    <item name="shadow legs" price="5000" />
+    <item name="golden armor" price="7000" />
+    <item name="shadow armor" price="9000" />
+    <item name="golden shield" price="10000" />
+    <item name="shadow shield" price="15000" />
+    <merchant name="Mrotho" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- less rare armor shop (kobold city - kobolds drop some of these things) -->
+  <shop name="buystuff2" type="buy">
+    <item name="leather scale armor" price="65" />
+    <item name="studded legs" price="70" />
+    <item name="studded boots" price="75" />
+    <item name="chain boots" price="100" />
+    <item name="skull shield" price="100" />
+    <item name="unicorn shield" price="125" />
+    <item name="viking helmet" price="250" />
+    <merchant name="Wrvil" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- cloaks shop -->
+  <shop name="buycloaks" type="buy">
+    <item name="blue elf cloak" price="300" />
+    <item name="green dragon cloak" price="400" />
+    <item name="blue dragon cloak" price="2000" />
+    <item name="shadow cloak" price="3000" />
+    <item name="black dragon cloak" price="4000" />
+    <item name="golden cloak" price="5000" />
+    <item name="chaos cloak" price="10000" />
+    <item name="black cloak" price="20000" />
+    <merchant name="Ida" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="boots&amp;helm" type="buy">
+    <!--
+      boots (mithrilbourgh)
+      Note the shop sign is done by hand in
+      games.stendhal.server.maps.mithrilbourgh.stores
+      Because I wanted to split boots and helmets
+      Please if you change anything, change also the sign (by hand)
+    -->
+    <item name="steel boots" price="1000" />
+    <item name="golden boots" price="1500" />
+    <item name="shadow boots" price="2000" />
+    <item name="stone boots" price="2500" />
+    <item name="chaos boots" price="4000" />
+    <item name="green thing boots" price="6000" />
+    <item name="xeno boots" price="8000" />
+    <!--
+      helmet (mithrilbourgh)
+      Note the shop sign is done by hand in
+      games.stendhal.server.maps.mithrilbourgh.stores
+    -->
+    <item name="golden helmet" price="3000" />
+    <item name="shadow helmet" price="4000" />
+    <item name="horned golden helmet" price="5000" />
+    <item name="chaos helmet" price="6000" />
+    <item name="magic chain helmet" price="8000" />
+    <item name="xeno helmet" price="8000" />
+    <item name="black helmet" price="10000" />
+    <merchant name="Diehelm Brui" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- buy axes (woodcutter) -->
+  <shop name="buyaxe" type="buy">
+    <item name="halberd" price="2000" />
+    <item name="golden twoside axe" price="4000" />
+    <item name="magic twoside axe" price="6000" />
+    <item name="durin axe" price="8000" />
+    <item name="black scythe" price="9000" />
+    <item name="chaos axe" price="10000" />
+    <item name="black halberd" price="12000" />
+    <merchant name="Woody" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- buy chaos items (scared dwarf, after quest) -->
+  <shop name="buychaos" type="buy">
+    <item name="chaos legs" price="8000" />
+    <item name="chaos sword" price="12000" />
+    <item name="chaos shield" price="18000" />
+    <item name="chaos armor" price="20000" />
+    <merchant name="Hunel" flags="configure"/>
+  </shop>
+
+  <!-- buy elvish items (albino elf, after quest) -->
+  <shop name="buyelvish" type="buy">
+    <item name="elvish boots" price="300" />
+    <item name="elvish legs" price="300" />
+    <item name="elvish sword" price="800" />
+    <item name="elvish shield" price="1000" />
+    <item name="drow sword" price="1200" />
+    <item name="elvish cloak" price="400" />
+    <item name="elvish armor" price="400" />
+    <item name="elvish hat" price="150" />
+    <merchant name="Lupos"/>
+  </shop>
+
+  <!-- magic items or 'relics' (witch in magic city) -->
+  <shop name="buymagic" type="buy">
+    <item name="demon sword" price="4000" />
+    <item name="dark dagger" price="8000" />
+    <item name="liberty helmet" price="8000" />
+    <item name="immortal sword" price="10000" />
+    <item name="jewelled legs" price="12000" />
+    <item name="magic plate shield" price="16000" />
+    <item name="magic plate armor" price="20000" />
+    <merchant name="Vonda" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- red items (supplier in sedah city) -->
+  <shop name="buyred" type="buy">
+    <item name="red armor" price="300" />
+    <item name="red boots" price="200" />
+    <item name="red cloak" price="250" />
+    <item name="red helmet" price="200" />
+    <item name="red legs" price="200" />
+    <item name="red shield" price="750" />
+    <merchant name="Pjotr Yearl" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- mainio items (despot in mithrilbourgh throne room) -->
+  <shop name="buymainio" type="buy">
+    <item name="mainio armor" price="22000" />
+    <item name="mainio boots" price="4000" />
+    <item name="mainio cloak" price="12000" />
+    <item name="mainio helmet" price="8000" />
+    <item name="mainio legs" price="7000" />
+    <item name="mainio shield" price="16000" />
+    <merchant name="Despot Halb Errvl" flags="configure"/>
+  </shop>
+
+  <!-- assassinhq principal Femme Fatale -->
+  <shop name="buy4assassins" type="buy">
+    <item name="buckler" price="20" />
+    <item name="aventail" price="25" />
+    <item name="robins hat" price="30" />
+    <item name="leather boots" price="30" />
+    <item name="dwarf cloak" price="60" />
+    <item name="dwarvish armor" price="17000" />
+    <item name="dwarvish legs" price="15000" />
+    <item name="assassin dagger" price="7000" />
+    <merchant name="Femme Fatale" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- mountain dwarf buyer of odds and ends -3 ados abandoned keep -->
+  <shop name="buyoddsandends" type="buy">
+    <item name="shuriken" price="20" />
+    <item name="amulet" price="800" />
+    <item name="black pearl" price="100" />
+    <item name="lucky charm" price="60" />
+    <item name="knife" price="5" />
+    <item name="dagger" price="20" />
+    <item name="skull ring" price="250" />
+    <item name="greater antidote" price="80" />
+    <item name="marbles" price="80" />
+    <item name="magical needle" price="1500" />
+    <item name="snowglobe" price="150" />
+    <item name="silk gland" price="500" />
+    <merchant name="Ritati Dragontracker" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- archery shop in nalwor -->
+  <shop name="buyarcherstuff" type="buy">
+    <item name="wooden arrow" price="1" />
+    <item name="steel arrow" price="5" />
+    <item name="golden arrow" price="10" />
+    <item name="power arrow" price="35" />
+    <item name="wooden bow" price="250" />
+    <item name="crossbow" price="400" />
+    <item name="longbow" price="300" />
+    <item name="composite bow" price="350" />
+    <item name="hunter crossbow" price="800" />
+    <item name="mithril bow" price="2000" />
+    <merchant name="Merenwen" flags="configure,noOffer"/>
+  </shop>
+
+  <!--
+    assassinhq chief falatheen the dishwasher and veggie buyer
+    sign is hard coded so if you change this change the sign
+  -->
+  <shop name="buyveggiesandherbs" type="buy">
+    <item name="carrot" price="5" />
+    <item name="salad" price="10" />
+    <item name="leek" price="25" />
+    <item name="broccoli" price="30" />
+    <item name="courgette" price="10" />
+    <item name="cauliflower" price="30" />
+    <item name="tomato" price="20" />
+    <item name="onion" price="20" />
+    <item name="arandula" price="10" />
+    <item name="kokuda" price="200" />
+    <item name="kekik" price="25" />
+    <item name="sclaria" price="25" />
+    <merchant name="Chief Falatheen Humble Dishwasher" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- gnome village buyer in 0 ados mountain n2 w2 -->
+  <shop name="buy4gnomes" type="buy">
+    <item name="leather armor" price="25" />
+    <item name="club" price="3" />
+    <item name="leather helmet" price="15" />
+    <item name="cloak" price="25" />
+    <item name="apple" price="5" />
+    <item name="marbles" price="50" />
+    <item name="wooden shield" price="20" />
+    <merchant name="Garbiddle" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- hotdog lady in athor -->
+  <shop name="buy4hotdogs" type="buy">
+    <item name="sausage" price="30" />
+    <item name="cheese sausage" price="25" />
+    <item name="bread" price="15" />
+    <item name="onion" price="20" />
+    <item name="canned tuna" price="15" />
+    <item name="ham" price="15" />
+    <item name="cheese" price="5" />
+    <merchant name="Sara Beth" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- kirdneh city armor -->
+  <shop name="buykirdneharmor" type="buy">
+    <item name="blue armor" price="13000" />
+    <item name="stone armor" price="18000" />
+    <item name="ice armor" price="19000" />
+    <item name="xeno armor" price="21000" />
+    <item name="barbarian armor" price="5000" />
+    <item name="green dragon shield" price="13000" />
+    <item name="xeno shield" price="20000" />
+    <merchant name="Lawrence" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- amazon cloaks shop -->
+  <shop name="buyamazoncloaks" type="buy">
+    <item name="vampire cloak" price="14000" />
+    <item name="xeno cloak" price="18000" />
+    <item name="elf cloak" price="50" />
+    <item name="lich cloak" price="10000" />
+    <item name="stone cloak" price="350" />
+    <item name="blue striped cloak" price="280" />
+    <item name="red dragon cloak" price="4000" />
+    <item name="bone dragon cloak" price="1500" />
+    <merchant name="Nicklesworth" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- kirdneh city fishy market) -->
+  <shop name="buyfishes" type="buy">
+    <item name="perch" price="22" />
+    <item name="mackerel" price="20" />
+    <item name="roach" price="10" />
+    <item name="char" price="30" />
+    <item name="clownfish" price="30" />
+    <item name="surgeonfish" price="15" />
+    <item name="trout" price="45" />
+    <item name="cod" price="10" />
+    <merchant name="Fishmonger" flags="configure,noOffer"/>
+  </shop>
+
+  <!-- black items (balduin, when ultimate collector quest completed) -->
+  <shop name="buyblack" type="buy">
+    <item name="black armor" price="60000" />
+    <item name="black boots" price="10000" />
+    <item name="black cloak" price="20000" />
+    <item name="black helmet" price="15000" />
+    <item name="black legs" price="40000" />
+    <item name="black shield" price="75000" />
+    <item name="black sword" price="20000" />
+    <item name="black scythe" price="40000" />
+    <item name="black halberd" price="30000" />
+    <merchant name="Balduin" note="after Ultimate Collector quest"/>
+  </shop>
+
+  <!-- ados market -->
+  <shop name="buyadosarmors" type="buy">
+    <item name="blue helmet" price="900" />
+    <item name="blue boots" price="200" />
+    <item name="blue striped cloak" price="500" />
+    <item name="blue armor" price="13000" />
+    <item name="blue legs" price="400" />
+    <item name="blue shield" price="900" />
+    <merchant name="Alexander" flags="configure"/>
+  </shop>
+
+  <!-- Athor ferry -->
+  <shop name="buypoisons" type="buy">
+    <item name="poison" price="40" />
+    <item name="toadstool" price="60" />
+    <item name="greater poison" price="60" />
+    <item name="red lionfish" price="50" />
+    <item name="deadly poison" price="100" />
+    <item name="mega poison" price="500" />
+    <item name="disease poison" price="2000" />
+    <item name="rodent trap" price="50" />
+    <merchant name="Klaas" flags="configure"/>
+  </shop>
+
+  <shop name="deniranpawnbuy" type="buy">
+    <item name="skull ring" price="250" />
+    <item name="engagement ring" price="1000" />
+    <item name="medicinal ring" price="2500" />
+    <item name="placid ring" price="2800" />
+    <!--<item name="emerald ring" price="9000" /> should avoid selling bound rings -->
+    <item name="insulated ring" price="25000" />
+    <item name="turtle shell ring" price="25000" />
+    <item name="imperial ring" price="50000" />
+    <merchant name="Sawyer" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="buyanimalmaterials" type="buy">
+    <!--<item name="wool" price="50" /> is this item obtainable? -->
+    <item name="leather thread" price="7" />
+    <item name="bat entrails" price="10" />
+    <item name="pelt" price="25" />
+    <item name="vampirette entrails" price="70" />
+    <item name="venom gland" price="800" />
+    <item name="silk gland" price="400" />
+    <item name="unicorn horn" price="1500" />
+    <item name="mythical egg" price="2500" />
+    <merchant name="Harley" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="denirankingbuy" type="buy">
+    <item name="royal boots" price="8000" />
+    <item name="royal helmet" price="13000" />
+    <item name="royal dagger" price="100000" />
+    <item name="royal cloak" price="18000" />
+    <item name="royal legs" price="38000" />
+    <item name="royal armor" price="58000" />
+    <item name="royal shield" price="73000" />
+    <merchant name="King Edward of Deniran" flags="configure"/>
+  </shop>
+
+  <!-- Wanda: Deniran Potions Shop -->
+  <shop name="deniranpotionsbuy" type="buy">
+    <item name="mandragora" price="300" />
+    <!--<item name="kokuda" price="5000" />-->
+    <item name="toadstool" price="60" />
+    <item name="poison" price="40" />
+    <item name="greater poison" price="60" />
+    <item name="mega poison" price="500" />
+    <item name="deadly poison" price="1000" />
+    <item name="disease poison" price="1200" />
+    <item name="sedative" price="200" />
+    <item name="venom gland" price="800" />
+    <merchant name="Wanda" flags="configure"/>
+  </shop>
+
+  <!-- broker in Semos Plains that purchases misc. items at a low values -->
+  <shop name="brokermisc" type="buy">
+    <item name="bat entrails" price="5" />
+    <item name="pelt" price="10" />
+    <item name="vampirette entrails" price="20" />
+    <merchant name="Emeric" flags="configure"/>
+  </shop>
+
+  <!-- Deniran weapons shop -->
+  <shop name="deniranequipbuy" type="buy">
+    <item name="ugmash" price="1200" />
+    <item name="magic cloak" price="12000" />
+    <merchant name="D J Smith" flags="configure,noOffer"/>
+  </shop>
+
+  <shop name="semosbaker" type="buy">
+    <item name="cheese" price="5"/>
+    <merchant name="Leander" flags="configure,noOffer"/>
+  </shop>
+
+
+  <!-- the following are configured in the NPC source & are included here only to be read by the website -->
+
+  <shop type="buy">
+    <item name="sheep" price="150"/>
+    <merchant name="Sato"/>
+  </shop>
+
+  <shop type="buy">
+    <item name="sheep" price="15" pricemax="1500"/>
+    <merchant name="Tor'Koom"/>
+  </shop>
+
+</shops>
