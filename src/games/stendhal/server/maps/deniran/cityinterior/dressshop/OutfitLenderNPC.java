@@ -183,11 +183,16 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				player.drop("money", price);
 				seller.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 
+				// preserve detail layer coloring
+				final String detailColor = player.getOutfitColor("detail");
 				if (resetBeforeChange) {
 					// remove temp outfit before changing
 					player.returnToOriginalOutfit();
 				}
 				player.setOutfit(selected.getOutfit().putOver(player.getOutfit()), true);
+				if (detailColor != null) {
+					player.setOutfitColor("detail", detailColor);
+				}
 				player.registerOutfitExpireTime(endurance);
 
 				return true;

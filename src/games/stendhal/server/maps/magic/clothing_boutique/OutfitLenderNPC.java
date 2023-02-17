@@ -135,6 +135,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final Outfit outfit = outfitPair.first();
 						final boolean type = outfitPair.second();
+						// preserve color of detail layer
+						final String detailColor = player.getOutfitColor("detail");
 
 						// remove temporary outfits to avoid visual conflicts
 						player.returnToOriginalOutfit();
@@ -150,6 +152,10 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						}
 						if (dressLayerOutfits.contains(outfitType)) {
 							player.unsetOutfitColor("dress");
+						}
+
+						if (detailColor != null) {
+							player.setOutfitColor("detail", detailColor);
 						}
 
 						player.registerOutfitExpireTime(endurance);
