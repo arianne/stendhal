@@ -13,7 +13,6 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -29,9 +28,7 @@ public class RemoveDetailAction implements ActionListener {
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
-		final Outfit outfit = player.getOutfit();
-		outfit.setLayer("detail", 0);
-		player.setOutfit(outfit);
+		player.setPerpetualOutfitLayer("detail", 0);
 		// remove layer coloring
 		player.unsetOutfitColor("detail");
 	}

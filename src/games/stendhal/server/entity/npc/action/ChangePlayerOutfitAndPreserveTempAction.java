@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Arianne                          *
+ *                    (C) Copyright 2018-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ public class ChangePlayerOutfitAndPreserveTempAction implements ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		final boolean isTemp = player.has("outfit_org");
+		final boolean isTemp = player.outfitIsTemporary();
 		if (!isTemp) {
 			(new ChangePlayerOutfitAction(outfitChange, addOutfit, false)).fire(player, sentence, npc);
 			return;

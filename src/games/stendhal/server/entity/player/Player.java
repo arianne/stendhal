@@ -23,10 +23,12 @@ import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
@@ -1711,6 +1713,211 @@ public class Player extends DressedEntity implements UseListener {
 						- turnOfLastPush > 10;
 	}
 
+	//
+	// DressedEntity
+	//
+
+	/**
+	 * Sets the player's original outfit. Useful for updating original outfit information while
+	 * wearing a temporary outfit.
+	 *
+	 * @param outfit
+	 *     The new outfit.
+	 * @param colors
+	 *     New outfit colors.
+	 */
+	public void setOriginalOutfit(final Outfit outfit, final Map<String, Integer> colors) {
+		String oattr = "outfit_ext";
+		String csuffix = "";
+		if (outfitIsTemporary()) {
+			oattr += "_orig";
+			csuffix = "_orig";
+		}
+		if (colors != null) {
+			for (final String part: getColorableLayers()) {
+				// clear old color
+				remove("outfit_colors", part + csuffix);
+				if (colors.containsKey(part)) {
+					put("outfit_colors", part + csuffix, colors.get(part));
+				}
+			}
+		}
+		put(oattr, outfit.putOver(getOriginalOutfit()).toString());
+		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Sets the player's original outfit. Useful for updating original outfit information while
+	 * wearing a temporary outfit.
+	 *
+	 * @param outfit
+	 *     The new outfit.
+	 */
+	public void setOriginalOutfit(final Outfit outfit) {
+		setOriginalOutfit(outfit, null);
+	}
+
+	/**
+	 * Sets the player's original outfit. Useful for updating original outfit information while
+	 * wearing a temporary outfit.
+	 *
+	 * @param outfit
+	 *     The new outfit string representation.
+	 * @param colors
+	 *     New outfit colors string representation.
+	 */
+	public void setOriginalOutfit(final String outfit, final String colors) {
+		Map<String, Integer> colorMap = null;
+		if (colors != null) {
+			colorMap = new HashMap<>();
+			for (final String tmp1: colors.split(",")) {
+				try {
+					final String[] tmp2 = tmp1.split("=");
+					colorMap.put(tmp2[0], Integer.parseInt(tmp2[1]));
+				} catch (final NumberFormatException e) {
+					logger.error("Cannot convert outfit color", e);
+				}
+			}
+		}
+		setOriginalOutfit(new Outfit(outfit), colorMap);
+	}
+
+	/**
+	 * Sets the player's original outfit. Useful for updating original outfit information while
+	 * wearing a temporary outfit.
+	 *
+	 * @param outfit
+	 *     The new outfit string representation.
+	 */
+	public void setOriginalOutfit(final String outfit) {
+		setOriginalOutfit(outfit, null);
+	}
+
+	/**
+	 * Use this method to add a new temporary outfit or override an old one.
+	 *
+	 * @param outfit
+	 *     The temporary outfit to be worn.
+	 * @param expireAge
+	 *     Player age when outfit will expire.
+	 * @param clearColors
+	 *     Should layer color information be forgotten? (default: true)
+	 */
+	public void setTemporaryOutfit(final Outfit outfit, final int expireAge, final boolean clearColors) {
+		// update original outfit only if not currently wearing a temporary one
+		if (!has("outfit_ext_orig")) {
+			storeOriginalOutfit();
+		}
+		if (clearColors) {
+			clearColors();
+		}
+		// - combine the old outfit with the new one, as the new one might
+		//   contain null parts.
+		// - new temporary outfits must remove old ones.
+		put("outfit_ext", outfit.putOver(getOriginalOutfit()).toString());
+		registerOutfitExpireTime(expireAge);
+		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Use this method to add a new temporary outfit or override an old one.
+	 *
+	 * @param outfit
+	 *     The temporary outfit to be worn.
+	 * @param expireAge
+	 *     Player age when outfit will expire.
+	 */
+	public void setTemporaryOutfit(final Outfit outfit, final int expireAge) {
+		setTemporaryOutfit(outfit, expireAge, true);
+	}
+
+	/**
+	 * Use this method to add a new temporary outfit or override an old one.
+	 *
+	 * @param outfit
+	 *     Temporary outfit string representation.
+	 * @param expireAge
+	 *     Player age when outfit will expire.
+	 * @param clearColors
+	 *     Should layer color information be forgotten? (default: true);
+	 */
+	public void setTemporaryOutfit(final String outfit, final int expireAge, final boolean clearColors) {
+		setTemporaryOutfit(new Outfit(outfit), expireAge, clearColors);
+	}
+
+	/**
+	 * Use this method to add a new temporary outfit or override an old one. Layer color information
+	 * is removed.
+	 *
+	 * @param outfit
+	 *     Temporary outfit string representation.
+	 * @param expireAge
+	 *     Player age when outfit will expire.
+	 */
+	public void setTemporaryOutfit(final String outfit, final int expireAge) {
+		setTemporaryOutfit(outfit, expireAge, true);
+	}
+
+	/**
+	 * Sets a layer for both the player's original & temporary outfits without changing temporary
+	 * expiration.
+	 *
+	 * @param layer
+	 *     Layer name.
+	 * @param index
+	 *     Index to set layer to.
+	 */
+	public void setPerpetualOutfitLayer(final String layer, final int index) {
+		final Outfit newLayer = new Outfit(layer + "=" + index);
+		put("outfit_ext", newLayer.putOver(getOutfit()).toString());
+		if (outfitIsTemporary()) {
+			put("outfit_ext_orig", newLayer.putOver(getOriginalOutfit()).toString());
+		}
+		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Checks if entity is wearnig a temporary outfit.
+	 *
+	 * @return
+	 *     True if the entiry has stored an original outfit.
+	 */
+	public boolean outfitIsTemporary() {
+		return has("outfit_ext_orig") || has("outfit_org");
+	}
+
+	/**
+	 * sets the time a outfit wears off
+	 *
+	 * @param expire
+	 *            expire age
+	 */
+	public void registerOutfitExpireTime(int expire) {
+		// ignore outfits that do not expire
+		if (expire < 0) {
+			return;
+		}
+
+		// currently we keep only track of one expire, so takes the smallest
+		// to prevent players from keeping a highly special outfit longer
+		// by renting an outfit with a longer expire time later
+		int oldExpire = Integer.MAX_VALUE;
+		if (has("outfit_expire_age")) {
+			oldExpire = getInt("outfit_expire_age");
+		}
+		if (oldExpire < age) {
+			logger.error("oldExpire " + oldExpire + " for age " + age);
+			oldExpire = Integer.MAX_VALUE;
+		}
+		int newExpire = Math.min(expire + age, oldExpire);
+		put("outfit_expire_age", newExpire);
+
+		ExpireOutfit expireOutfit = new ExpireOutfit(getName());
+		SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(
+				(newExpire - age) * 60, expireOutfit);
+	}
+
 	/**
 	 * Tries to give the player his original outfit back after he has put on a
 	 * temporary outfit. This will only be successful if the original outfit has
@@ -2835,38 +3042,6 @@ public class Player extends DressedEntity implements UseListener {
 			return false;
 		}
 		return useListener.onUsed(user);
-	}
-
-	/**
-	 * sets the time a outfit wears off
-	 *
-	 * @param expire
-	 *            expire age
-	 */
-	public void registerOutfitExpireTime(int expire) {
-		// ignore outfits that do not expire
-		if (expire < 0) {
-			return;
-		}
-
-		// currently we keep only track of one expire, so takes the smallest
-		// to prevent players from keeping a highly special outfit longer
-		// by renting an outfit with a longer expire time later
-		int oldExpire = Integer.MAX_VALUE;
-		if (has("outfit_expire_age")) {
-			oldExpire = getInt("outfit_expire_age");
-		}
-		if (oldExpire < age) {
-			logger.error("oldExpire " + oldExpire + " for age " + age);
-			oldExpire = Integer.MAX_VALUE;
-		}
-		int newExpire = Math.min(expire + age, oldExpire);
-		put("outfit_expire_age", newExpire);
-
-		ExpireOutfit expireOutfit = new ExpireOutfit(super.getName());
-		SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
-		SingletonRepository.getTurnNotifier().notifyInSeconds(
-				(newExpire - age) * 60, expireOutfit);
 	}
 
 	/**
