@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Arianne                          *
+ *                    (C) Copyright 2018-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -112,6 +112,20 @@ public abstract class DressedEntity extends RPEntity {
 	 */
 	public Map<String, String> getOutfitColors() {
 		return getMap("outfit_colors");
+	}
+
+	/**
+	 * Retrieves color info for a single layer.
+	 *
+	 * @param layer
+	 *     Layer name.
+	 */
+	public String getOutfitColor(final String layer) {
+		final Map<String, String> ocolors = getOutfitColors();
+		if (ocolors.containsKey(layer)) {
+			return ocolors.get(layer);
+		}
+		return null;
 	}
 
 
