@@ -31,7 +31,6 @@ import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.player.Player;
 import utilities.AchievementTestHelper;
-import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 
