@@ -42,6 +42,7 @@ Changelog
 - players can now inflict status effects
 - melee weapons can have longer range
 - descreased damage penalty compensating for player hit chance handicap
+- replaced music in Nalwor River maps
 
 *clients*
 - support "rear" layers

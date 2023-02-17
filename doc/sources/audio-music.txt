@@ -14,7 +14,6 @@ dark_quest.*                    Alexandr Zhelanov; CC BY 4.0; https://soundcloud
 deep_forest.ogg                 Storyteller; GPL
 dungeon_entrance.ogg            Storyteller; GPL
 eerie_curious.ogg               Leerie; CC BY 3.0; https://opengameart.org/node/43367
-ghost_woods.ogg                 Aron Ben Elal (ONE ABE); CC BY-SA 4.0; https://iamoneabe.itch.io/sonic-eternity-project, https://opengameart.org/node/109276
 ice_cave.*                      Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
 kings_feast.ogg                 RandomMind; CC0; https://opengameart.org/node/88287
 lost_in_the_fog.ogg             Storyteller; GPL
@@ -31,6 +30,7 @@ sewers.ogg                      Norien; GPL
 snowflakelittlewhiteskirt.*     Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
 spinning_tavern.ogg             Jonathan Shaw (InspectorJ); CC BY 3.0; https://opengameart.org/node/98041 (Composed by Jonathan Shaw (www.jshaw.co.uk))
 spooky_forest.ogg               Bendzer; CC BY 4.0; https://opengameart.org/node/94146
+sylvan_waltz.ogg                Otto Halmén; OGA BY 3.0; https://opengameart.org/node/39388
 the_forsaken_mine.ogg           Storyteller; GPL
 the_magical_tower.ogg           Storyteller; GPL
 the_old_tavern.ogg              Storyteller; GPL
