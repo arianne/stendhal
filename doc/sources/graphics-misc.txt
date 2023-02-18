@@ -237,11 +237,11 @@ data/sprites/signs/
 
 blackboard.png        ???; ???; ???
 book_black.png        bleutailfly; OGA BY 3.0; Stendhal
-book_blue.png         ???; ???; ???
+book_blue.png         Jetrel; CC0; https://opengameart.org/node/4531
 book_gray.png         bleutailfly; OGA BY 3.0; Stendhal
 book_green.png        bleutailfly; OGA BY 3.0; Stendhal
 book_purple.png       bleutailfly; OGA BY 3.0; Stendhal
-book_red.png          ???; ???; ???
+book_red.png          Jetrel; CC0; https://opengameart.org/node/4531
 book_turquoise.png    bleutailfly; OGA BY 3.0; Stendhal
 book_white.png        bleutailfly; OGA BY 3.0; Stendhal
 book_yellow.png       bleutailfly; OGA BY 3.0; Stendhal
