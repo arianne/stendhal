@@ -477,11 +477,11 @@ hotdog_stand.*             tigertoes, Katie Russell (kymara), bleutailfly, theki
 long_front_on.png          bleutailfly; OGA BY 3.0; Stendhal
 long_front_on_pale.png     bleutailfly; OGA BY 3.0; Stendhal
 long_side_on_pale.png      bleutailfly; OGA BY 3.0; Stendhal
-orb_table.*                ???, ETTiNGRiNDER; ???; https://opengameart.org/node/10660 (CC0) (table is taken from square_pale.png)
+orb_table.*                bleutailfly, ETTiNGRiNDER; OGA BY 3.0; Stendhal, https://opengameart.org/node/10660
 oriental_table.png         bleutailfly; OGA BY 3.0; Stendhal
 rectangular_with_meals.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square.png                 bleutailfly; OGA BY 3.0; Stendhal
-square_pale.png            ???; ???; ??? (committed by kymara: 331d6b0)
+square_pale.png            bleutailfly; OGA BY 3.0; Stendhal
 stone_desk.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_copper.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_linen.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
