@@ -669,7 +669,7 @@ water.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 water_bubbles.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 water_corners.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 waterfall.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-whirlpool.png            Kimmo Rundelin (original tiles), ???; ???; ??? (tiles from wading_whirlpool.png committed by tigertoes: fbf7ba2)
+whirlpool.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/water/waterfall/
 
