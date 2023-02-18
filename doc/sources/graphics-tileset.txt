@@ -72,7 +72,7 @@ numbers.png               ???; ???; ??? (committed by kymara: f790b0f)
 numbers_higher.png        ???; ???; ??? (committed by kymara: 69aca29)
 orbpedestal.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 platform.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-pool.*                    ???, Kimmo Rundelin (kiheru); ???; ???
+pool.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 realworldcafe.png         madmetzger; ???; ???
 rocks.png                 patvanmackelberg; CC0; https://opengameart.org/node/49850
 rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://opengameart.org/node/11758
