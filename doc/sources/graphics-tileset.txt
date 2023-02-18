@@ -515,7 +515,7 @@ brownground2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 cobbled_paving.png           ???; ???; ??? (committed by kiheru: 234f74d)
 cobblestones.png             n4; CC0; https://opengameart.org/node/44169
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-drain.png                    rubberduck, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/30389
+drain.png                    rubberduck, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/30389
 dry_grass.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges_yellowgreen.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -678,7 +678,7 @@ empty
 tiled/tileset/item/
 
 awning_1.png               tigertoes; CC BY-SA; Stendhal
-awning_2.*                 Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/11117
+awning_2.*                 Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/14914
 bazaar_produce.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 black_board.png            gummipferd?; ???; ??? (committed by kymara: 243d45a)
 boxes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -818,7 +818,7 @@ tiled/tileset/item/food/
 beehive1.png            bleutailfly; OGA BY 3.0; Stendhal
 beehive2.png            bleutailfly; OGA BY 3.0; Stendhal
 bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cookies.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+cookies.*               Jordan Irwin (AntumDeluge); CC0; Stendhal
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meals_1.png             ???; ???; ??? (committed by Astrid Sawatzky: 0d2cf4e)
@@ -1074,7 +1074,7 @@ bushes.*               Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stend
 bush_mult_colored.png  Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71770
 bush_pinks.png         ???; ???; ??? (committed by bleutailfly: a0bd93e)
 fern.png               rubberduck; CC BY 4.0; https://opengameart.org/node/94403
-flowering.*            Josh Maines (Tap); CC BY-SA 4.0; https://opengameart.org/node/76904
+flowering.*            Josh Maines (Tap); CC BY-SA 4.0; joshmaines.com, https://opengameart.org/node/76904
 hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
 large_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -1104,7 +1104,7 @@ red_blue_clusters.png   Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-stone_edge_beds.png     bleutailfly, Josh Maines (Tap); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/76904
+stone_edge_beds.png     bleutailfly, Josh Maines (Tap); CC BY-SA 4.0; joshmaines.com, Stendhal, https://opengameart.org/node/76904
 vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/plant/indoor/
@@ -1119,7 +1119,7 @@ plant_potted_2.png    Megajack64?; ???; ??? (committed by bleutailfly: 7a73b14)
 pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
 pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
 pot_plant_sprout.png  ???; ???; ??? (committed by kymara: 76e7ad6)
-potted_plants1.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/lilly-plant, https://freesvg.org/vector-image-of-plant-in-two-pots
+potted_plants1.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/lilly-plant
 potted_plants_2.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/vector-image-of-simple-plant-in-a-terracotta-pot, https://freesvg.org/sunflower-vector-graphics
 skull_pot.png         Megajack64; ???; ??? (committed by bluetailfly: a151ae8)
 small_flowerpots.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
