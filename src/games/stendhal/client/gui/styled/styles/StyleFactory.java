@@ -182,7 +182,7 @@ public class StyleFactory {
 			Style create() {
 				Color highlight = new Color(50, 50, 50); // Dark Grey (also text shadow)
 				Color shadow = new Color(175, 175, 175); // Light rey (also inactive text color)
-				PixmapStyle style = new PixmapStyle("data/gui/paneldrock048.jpg",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_stone.png",
 						false, highlight, shadow, Color.white, Color.white);
 				Color bhighout = new Color(130, 130, 130);
 				Color bhighin = new Color(100, 100, 100);
