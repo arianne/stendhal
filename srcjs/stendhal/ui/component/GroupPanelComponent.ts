@@ -32,6 +32,9 @@ export class GroupPanelComponent extends Component {
 
 	constructor() {
 		super("group-panel");
+		this.componentElement.querySelector(".group-lootmode")!.addEventListener("click", () => {
+			this.onLootmodeClick();
+		})
 	}
 
 	receivedInvite(leader: string) {
@@ -43,14 +46,14 @@ export class GroupPanelComponent extends Component {
 		button.innerText = "Join " + leader;
 		button.title = "Join the group led by " + leader;
 		button.addEventListener("click", () => {
-			this.join(leader);
+			this.onJoinClicked(leader);
 		});
 		this.invites[leader] = button;
 		this.componentElement.querySelector(".group-nogroup")!.append(button);
 		// TODO: activte Group-tab in TabPanelComponent
 	}
 
-	join(leader: string) {
+	onJoinClicked(leader: string) {
 		let action = {
 			"type": "group_management",
 			"action": "join",
@@ -78,6 +81,23 @@ export class GroupPanelComponent extends Component {
 		this.componentElement.querySelector(".group-nogroup")!.classList.add("hidden");
 		this.componentElement.querySelector(".group-group")!.classList.remove("hidden");
 
+		(this.componentElement.querySelector(".group-lootmode") as HTMLElement).innerText = stendhal.data.group.lootmode;
+		(this.componentElement.querySelector(".group-leader") as HTMLElement).innerText = stendhal.data.group.leader;
+		(this.componentElement.querySelector(".group-members") as HTMLElement).innerText = Object.keys(stendhal.data.group.members).join(", ");
+
 	}
 
+	onLootmodeClick() {
+		let newMode = "shared";
+		if (stendhal.data.group.lootmode === "shared") {
+			newMode = "single";
+		}
+		let action = {
+			"type": "group_management",
+			"action": "lootmode",
+			"params": newMode,
+			"zone": marauroa.currentZoneName
+		};
+		marauroa.clientFramework.sendAction(action);
+	}
 }
