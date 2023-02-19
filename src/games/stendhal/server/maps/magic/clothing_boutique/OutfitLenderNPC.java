@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -180,6 +180,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 						if (player.isEquipped("money", charge)) {
 							player.drop("money", charge);
 							putOnOutfit(player, outfitType);
+							// remember purchases
+							updatePlayerTransactions(player, seller.getName(), res);
 							return true;
 						} else {
 							seller.say("Sorry, you don't have enough money!");
