@@ -19,7 +19,7 @@ panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail
 panel_brick_brown_001.png    nicubunu; CC0; https://openclipart.org/detail/9520
 panel_honeycomb_001.png      kuba; CC0; https://openclipart.org/detail/325323
 panel_leather_black_001.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/fabric/leather-4
-panel_parquet_brown_001.png  OCAL; CC0; http://www.clker.com/clipart-6778.html
+panel_parquet_brown_001.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/wood_parquet_65
 panel_tile_aqua_001.png      Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal
 paneldrock048.jpg            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20050910155913/http://www.grsites.com/modperl/tile.cgi?dir=drock&fn=drock048&ext=jpg)
 panelmetal003.gif            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108023825/http://www.grsites.com/modperl/tile.cgi?dir=metal&fn=metal003&ext=gif)
