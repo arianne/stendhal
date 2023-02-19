@@ -18,7 +18,7 @@ offline.png                  ???; ???; ??? (committed by Miguel: 973bf6ee68)
 panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
 panel_brick_brown_001.png    nicubunu; CC0; https://openclipart.org/detail/9520
 panel_honeycomb_001.png      ???; ???; ??? (committed by AntumDeluge: 9e025f789a)
-panel_leather_black_001.png  Duion; CC0; https://opengameart.org/node/15132
+panel_leather_black_001.png  Duion; CC0; https://opengameart.org/node/15132 (has been removed from OGA: https://web.archive.org/web/20150429105156/http://opengameart.org/content/leather-black)
 panel_parquet_brown_001.png  ???; ???; ??? (committed by AntumDeluge: 76734500e3)
 panel_tile_aqua_001.png      Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal
 paneldrock048.jpg            ???; ???; ??? (committed by Miguel: d9791e5622)
