@@ -15,7 +15,7 @@ karma_scale.png              ???; ???; ??? (committed by Chad F: e03a756ec3)
 keyring.png                  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 mana_scale.png               ???; ???; ??? (committed by Red Queen: 1c127af583)
 offline.png                  ???; ???; ??? (committed by Miguel: 973bf6ee68)
-panel_aubergine_001.png      ???; ???; ??? (committed by AntumDeluge: cf09d6c722)
+panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
 panel_brick_brown_001.png    ???; ???; ??? (committed by AntumDeluge: 6e17f3293c)
 panel_honeycomb_001.png      ???; ???; ??? (committed by AntumDeluge: 9e025f789a)
 panel_leather_black_001.png  Duion; CC0; https://opengameart.org/node/15132
