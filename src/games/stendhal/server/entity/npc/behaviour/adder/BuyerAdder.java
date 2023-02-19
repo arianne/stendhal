@@ -73,6 +73,7 @@ public class BuyerAdder {
 		final Engine engine = npc.getEngine();
 
 		merchantsRegister.add(npc, buyerBehaviour);
+		npc.put("job_merchant", "");
 
 		if (offer) {
 			engine.add(
