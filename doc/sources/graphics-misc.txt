@@ -21,11 +21,11 @@ panel_honeycomb_001.png      ???; ???; ??? (committed by AntumDeluge: 9e025f789a
 panel_leather_black_001.png  Duion; CC0; https://opengameart.org/node/15132 (has been removed from OGA: https://web.archive.org/web/20150429105156/http://opengameart.org/content/leather-black)
 panel_parquet_brown_001.png  OCAL; CC0; http://www.clker.com/clipart-6778.html
 panel_tile_aqua_001.png      Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal
-paneldrock048.jpg            ???; ???; ??? (committed by Miguel: d9791e5622)
-panelmetal003.gif            ???; ???; ??? (committed by Miguel: d9791e5622)
-panelwood003.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
-panelwood006.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
-panelwood119.jpg             ???; ???; ??? (committed by Miguel: d9791e5622)
+paneldrock048.jpg            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20050910155913/http://www.grsites.com/modperl/tile.cgi?dir=drock&fn=drock048&ext=jpg)
+panelmetal003.gif            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108023825/http://www.grsites.com/modperl/tile.cgi?dir=metal&fn=metal003&ext=gif)
+panelwood003.jpg             grsites.com; original commit labels as "freeware"; ???
+panelwood006.jpg             grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108011941/http://www.grsites.com/modperl/tile.cgi?dir=wood&fn=wood006&ext=jpg)
+panelwood119.jpg             grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108014216/http://www.grsites.com/modperl/tile.cgi?dir=wood&fn=wood119&ext=jpg)
 rp.png                       David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 scroll_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 settings.png                 Katie Russell (kymara); GPL 2.0 or newer; Stendhal
