@@ -81,6 +81,7 @@ public class OutfitChangerAdder {
 			final boolean offer, final boolean canReturn) {
 
 		servicersRegister.add(npc.getName(), outfitBehaviour);
+		npc.put("job_merchant", "");
 
 		final Engine engine = npc.getEngine();
 		if (offer) {
