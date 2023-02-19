@@ -432,11 +432,18 @@ export class RPEntity extends ActiveEntity {
 			drawAnimatedIcon(stendhal.paths.sprites + "/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
 		}
 		// NPC job icons
+		let nextX = x;
 		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/healer.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/healer.png"), nextX, y - 10);
+			nextX += 12;
 		}
 		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/merchant.png"), x + 12, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/merchant.png"), nextX, y - 10);
+			nextX += 12;
+		}
+		if (this.hasOwnProperty("job_producer")) {
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/producer.png"), nextX, y - 16);
+			nextX += 16;
 		}
 	}
 

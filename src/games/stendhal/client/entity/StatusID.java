@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ public enum StatusID {
 	// Jobs
 	HEALER("job_healer"),
 	MERCHANT("job_merchant"),
+	PRODUCER("job_producer"),
 
 	// Statuses
 	CONFUSE("status_confuse"),

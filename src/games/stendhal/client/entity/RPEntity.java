@@ -99,6 +99,8 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Merchant
 	 */
 	public static final Property PROP_MERCHANT = new Property();
+	/** Producer */
+	public static final Property PROP_PRODUCER = new Property();
 
 	// Status properties
 	/**

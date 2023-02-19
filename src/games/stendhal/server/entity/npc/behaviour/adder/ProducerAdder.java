@@ -71,6 +71,7 @@ public class ProducerAdder {
 
 		/* add to producer register */
 		producerRegister.add(npcName, behaviour);
+		npc.put("job_producer", "");
 
 		/* The Player greets the NPC.
 		* The NPC is not currently producing for player (not started, is rejected, or is complete) */

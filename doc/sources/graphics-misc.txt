@@ -286,6 +286,7 @@ healer.png    rejon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/de
 heavy.*       migranerp, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/190320
 merchant.png  gnokii, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/171507
 poison.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+producer.png  david_benjamin; CC0; https://openclipart.org/detail/4793
 shock.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 zombie.png    quadrochave; CC0; https://openclipart.org/detail/201838
 

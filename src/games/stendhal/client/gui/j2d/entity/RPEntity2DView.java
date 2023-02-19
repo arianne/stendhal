@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -67,6 +67,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	// Job icons
 	private static final Sprite healerSprite;
 	private static final Sprite merchantSprite;
+	private static final Sprite producerSprite;
 
 	// Status icons
 	private static final Sprite chokingSprite;
@@ -139,6 +140,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		// Job icons
 		healerSprite = st.getStatusSprite("healer.png");
 		merchantSprite = st.getStatusSprite("merchant.png");
+		producerSprite = st.getStatusSprite("producer.png");
 
 		// Status icons
 		confusedSprite = st.getAnimatedSprite(st.getStatusSprite("confuse.png"), 200);
@@ -158,6 +160,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.HEALER));
 		addIconManager(new StatusIconManager(RPEntity.PROP_MERCHANT, merchantSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
+		addIconManager(new StatusIconManager(RPEntity.PROP_PRODUCER, producerSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.PRODUCER));
 
 		// Status icons
 		/* choking status */

@@ -44,6 +44,7 @@ Changelog
 - melee weapons can have longer range
 - descreased damage penalty compensating for player hit chance handicap
 - replaced music in Nalwor River maps
+- producer NPCs now have an icon
 
 *clients*
 - support "rear" layers
