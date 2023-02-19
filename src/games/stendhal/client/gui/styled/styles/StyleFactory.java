@@ -60,7 +60,7 @@ public class StyleFactory {
 		WOOD("Wood (default)") {
 			@Override
 			Style create() {
-				return new PixmapStyle("data/gui/panelwood119.jpg", true,
+				return new PixmapStyle("data/gui/panel_wood_v.png", true,
 						new Color(163, 120, 97), new Color(50, 25, 12),
 						new Color(107, 72, 50), Color.white);
 			}

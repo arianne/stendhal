@@ -57,8 +57,8 @@ export class ConfigManager {
 			"parquet": "panel_parquet_brown_001.png",
 			"stone": "paneldrock048.jpg",
 			"tile": "panel_tile_aqua_001.png",
-			"wood": "panelwood003.jpg",
-			"wood2": "panelwood006.jpg"
+			"wood": "panel_wood_v.png",
+			"wood2": "panel_wood_h.png"
 		},
 
 		/**
