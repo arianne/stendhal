@@ -14,7 +14,7 @@ help.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; S
 karma_scale.png              ???; ???; ??? (committed by Chad F: e03a756ec3)
 keyring.png                  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 mana_scale.png               ???; ???; ??? (committed by Red Queen: 1c127af583)
-offline.png                  ???; ???; ??? (committed by Miguel: 973bf6ee68)
+offline.*                    Jordan Irwin (AntumDeluge), dannya; OGA BY 3.0; Stendhal, https://openclipart.org/detail/200582
 panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
 panel_brick_brown_001.png    nicubunu; CC0; https://openclipart.org/detail/9520
 panel_honeycomb_001.png      ???; ???; ??? (committed by AntumDeluge: 9e025f789a)
