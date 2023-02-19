@@ -173,7 +173,7 @@ data/sprites/emoji/
 
 data/sprites/examine/
 
-arandula.png               ???; ???; ???
+arandula.*                 Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge), rg1024; CC BY-SA 3.0; Stendhal, https://openclipart.org/detail/50251
 dark-elves-wanted.*        ???; ???; ???
 map-ados-city.*            ???; ???; ???
 map-orril-castle.png       ???; ???; ???

@@ -330,7 +330,7 @@ watermelon.png           RedQueen; OGA BY 3.0; Stendhal
 
 data/sprites/items/grower/
 
-arandula_grower.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
+arandula_grower.png         Jordan Irwin (AntumDeluge), rg1024; OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
 artichoke_grower.png        omero; CC BY-SA 3.0; Stendhal
 broccoli_grower.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 button_mushroom_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -385,7 +385,7 @@ xeno_helmet.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 
 data/sprites/items/herb/
 
-arandula.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
+arandula.png       Jordan Irwin (AntumDeluge), rg1024; OGA BY 3.0; Stendhal, https://openclipart.org/detail/50251, https://freesvg.org/nature-in-spring
 kekik.png          frankes; CC0; https://openclipart.org/detail/264098
 kokuda.png         Firkin; CC0; https://openclipart.org/detail/297464
 mandragora.png     omero; CC BY-SA 3.0; Stendhal
