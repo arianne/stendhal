@@ -7,13 +7,13 @@ banner_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddy.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 buddy_offline.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 buddy_online.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-chat.png                     ???; ???; ??? (source: https://sourceforge.net/p/arianne/patches/433/, committed by kymara: 332bb9c0bc)
+chat.png                     Katie Russell (kymara); GPL 2.0 or newer; Stendhal, https://sf.net/p/arianne/patches/433/
 danger.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 forbidden.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 help.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal
-karma_scale.png              ???; ???; ??? (committed by Chad F: e03a756ec3)
+karma_scale.png              Chad F?; ???; ??? (https://github.com/arianne/stendhal/commit/e03a756ec3472abeb17bf5d873c5d9bf43f57069)
 keyring.png                  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
-mana_scale.png               ???; ???; ??? (committed by Red Queen: 1c127af583)
+mana_scale.png               Red Queen?; ???; ??? (https://github.com/arianne/stendhal/commit/1c127af58346025de2fcb7af7ab347bbfa0b0a79)
 offline.*                    Jordan Irwin (AntumDeluge), dannya; OGA BY 3.0; Stendhal, https://openclipart.org/detail/200582
 panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
 panel_brick_brown_001.png    nicubunu; CC0; https://openclipart.org/detail/9520
@@ -154,13 +154,13 @@ data/sprites/doors/
 fence_gate_*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone.*        Jordan Irwin (AntumDeluge; OGA BY 3.0; Stendhal
 housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ice_path_h.png     ???; ???; ??? (committed by laguz: d397492)
+ice_path_h.png     laguz?; ???; ??? (https://github.com/arianne/stendhal/commits/master/data/sprites/doors/ice_path_b.png)
 palisade_gate_*    Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-skulldoor_e.png    ???; ???; ??? (committed by Miguel: a37b28b)
-skulldoor_n.png    ???; ???; ??? (committed by Miguel: c4c57b4)
-skulldoor_s.png    ???; ???; ??? (committed by Miguel: c4c57b4)
-skulldoor_w.png    ???; ???; ??? (committed by Miguel: a37b28b)
-wooden_door_h.png  ???; ???; ??? (committed by laguz: d523852)
+skulldoor_e.png    Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_n.png    Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_s.png    Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_w.png    Katie Russell (kymara); GPL 3.0; Stendhal
+wooden_door_h.png  laguz?; ???; ??? (https://github.com/arianne/stendhal/commit/d52385270c0659ec5a386c6559e1cb60e7635d3a)
 
 data/sprites/effects/
 
@@ -174,18 +174,16 @@ data/sprites/emoji/
 data/sprites/examine/
 
 arandula.*                 Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge), rg1024; CC BY-SA 3.0; Stendhal, https://openclipart.org/detail/50251
-dark-elves-wanted.*        ???; ???; ???
-map-ados-city.*            ???; ???; ???
-map-orril-castle.png       ???; ???; ???
-map-semos-ados.png         ???; ???; ???
-map-semos-city.*           ???; ???; ???
-map-semos-mine.png         ???; ???; ???
-map-wofol.png              ???; ???; ???
-monogenes.*                ???; ???; ???
-outfits1.*                 ???; ???; ???
-outfits2.*                 ???; ???; ???
+dark-elves-wanted.*        Jordan Irwin (AntumDeluge), Arvin61r58, see also: dark elf sources; CC BY-SA 3.0; Stendhal, https://openclipart.org/detail/233273
+map-ados-city.*            see: tileset sources
+map-orril-castle.png       see: tileset sources
+map-semos-ados.png         see: tileset sources
+map-semos-city.*           see: tileset sources
+map-semos-mine.png         Storyteller?; ???; ???
+map-wofol.png              see: tileset sources
+monogenes.*                see: tileset & NPC sources
 parchment_background.svgz  Arvin61r48; CC0; https://openclipart.org/detail/233273
-wizards-parchment.*        ???; ???; ???
+wizards-parchment.*        laguz?; ???; ???
 
 data/sprites/furniture/
 
