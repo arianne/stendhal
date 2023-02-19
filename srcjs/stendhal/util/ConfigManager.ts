@@ -50,13 +50,13 @@ export class ConfigManager {
 		 * Theme backgrounds indexed by ID.
 		 */
 		map: {
-			"aubergine": "panel_aubergine_001.png",
-			"brick": "panel_brick_brown_001.png",
-			"honeycomb": "panel_honeycomb_001.png",
+			"aubergine": "panel_aubergine.png",
+			"brick": "panel_brick.png",
+			"honeycomb": "panel_honeycomb.png",
 			"metal": "panelmetal003.gif",
-			"parquet": "panel_parquet_brown_001.png",
+			"parquet": "panel_wood_parquet.png",
 			"stone": "paneldrock048.jpg",
-			"tile": "panel_tile_aqua_001.png",
+			"tile": "panel_aqua_tile.png",
 			"wood": "panel_wood_v.png",
 			"wood2": "panel_wood_h.png"
 		},

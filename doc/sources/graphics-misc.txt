@@ -1,49 +1,50 @@
 
 data/gui/
 
-accountcontrol.png           Stendhal; GPL 2.0 or newer; Stendhal (based on sheep.png)
-bag.png                      rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
-banner_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-buddy.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-buddy_offline.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-buddy_online.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-chat.png                     Katie Russell (kymara); GPL 2.0 or newer; Stendhal, https://sf.net/p/arianne/patches/433/
-danger.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-forbidden.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-help.png                     Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal
-karma_scale.png              Chad F?; ???; ??? (https://github.com/arianne/stendhal/commit/e03a756ec3472abeb17bf5d873c5d9bf43f57069)
-keyring.png                  Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
-mana_scale.png               Red Queen?; ???; ??? (https://github.com/arianne/stendhal/commit/1c127af58346025de2fcb7af7ab347bbfa0b0a79)
-offline.*                    Jordan Irwin (AntumDeluge), dannya; OGA BY 3.0; Stendhal, https://openclipart.org/detail/200582
-panel_aubergine_001.png      Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
-panel_brick_brown_001.png    nicubunu; CC0; https://openclipart.org/detail/9520
-panel_honeycomb_001.png      kuba; CC0; https://openclipart.org/detail/325323
-panel_leather_black_001.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/fabric/leather-4
-panel_parquet_brown_001.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/wood_parquet_65
-panel_tile_aqua_001.png      Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal
-paneldrock048.jpg            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20050910155913/http://www.grsites.com/modperl/tile.cgi?dir=drock&fn=drock048&ext=jpg)
-panelmetal003.gif            grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108023825/http://www.grsites.com/modperl/tile.cgi?dir=metal&fn=metal003&ext=gif)
-panel_wood_*.png             sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/american_oak_1
-rp.png                       David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
-scroll_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-settings.png                 Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-slot.png                     ???; ???; ??? (committed by Miguel: d9791e5622)
-slot-armor.png               ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-bag.png                 CC0; Stendhal (based on bag sprite)
-slot-boots.png               David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
-slot-cloak.png               CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
-slot-helmet.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9) (based on old golden helmet)
-slot-key.png                 ???; ???; ??? (committed by kiheru: 9445bdc645)
-slot-legs.png                ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-portfolio.png           Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-slot-pouch.png               Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (based on money/gold.png)
-slot-ring.png                ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-shield.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-weapon.png              ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-StendhalIcon.png             ???; ???; ??? (committed by Miguel: d9791e5622)
-StendhalSplash.jpg           Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
-trash.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tutorial_background.*        Svetlana Kushnariova (Cabbit), Nila122, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/83626, https://opengameart.org/node/29293
+accountcontrol.png      Stendhal; GPL 2.0 or newer; Stendhal (based on sheep.png)
+bag.png                 rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
+banner_background.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+buddy.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+buddy_offline.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+buddy_online.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+chat.png                Katie Russell (kymara); GPL 2.0 or newer; Stendhal, https://sf.net/p/arianne/patches/433/
+danger.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+forbidden.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+help.png                Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal
+karma_scale.png         Chad F?; ???; ??? (https://github.com/arianne/stendhal/commit/e03a756ec3472abeb17bf5d873c5d9bf43f57069)
+keyring.png             Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
+mana_scale.png          Red Queen?; ???; ??? (https://github.com/arianne/stendhal/commit/1c127af58346025de2fcb7af7ab347bbfa0b0a79)
+offline.*               Jordan Irwin (AntumDeluge), dannya; OGA BY 3.0; Stendhal, https://openclipart.org/detail/200582
+panel_aqua_tile.png     Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal
+panel_aubergine.png     Viscious-Speed; CC0; https://openclipart.org/detail/122653, https://www.deviantart.com/viscious-speed/art/Inkscape-Patterns-Aubergine-188942588
+panel_brick.png         nicubunu; CC0; https://openclipart.org/detail/9520
+panel_honeycomb.png     kuba; CC0; https://openclipart.org/detail/325323
+panel_leather.png       sharetextures.com; CC0; https://www.sharetextures.com/textures/fabric/leather-4
+paneldrock048.jpg       grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20050910155913/http://www.grsites.com/modperl/tile.cgi?dir=drock&fn=drock048&ext=jpg)
+panelmetal003.gif       grsites.com; original commit labels as "freeware"; site no longer available (https://web.archive.org/web/20060108023825/http://www.grsites.com/modperl/tile.cgi?dir=metal&fn=metal003&ext=gif)
+panel_wood_h.png        sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/american_oak_1
+panel_wood_parquet.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/wood_parquet_65
+panel_wood_v.png        sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/american_oak_1
+rp.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
+scroll_background.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+settings.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal
+slot.png                ???; ???; ??? (committed by Miguel: d9791e5622)
+slot-armor.png          ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-bag.png            CC0; Stendhal (based on bag sprite)
+slot-boots.png          David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
+slot-cloak.png          CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
+slot-helmet.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9) (based on old golden helmet)
+slot-key.png            ???; ???; ??? (committed by kiheru: 9445bdc645)
+slot-legs.png           ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-portfolio.png      Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+slot-pouch.png          Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (based on money/gold.png)
+slot-ring.png           ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-shield.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-weapon.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+StendhalIcon.png        ???; ???; ??? (committed by Miguel: d9791e5622)
+StendhalSplash.jpg      Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
+trash.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+tutorial_background.*   Svetlana Kushnariova (Cabbit), Nila122, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/83626, https://opengameart.org/node/29293
 
 data/sprites/
 

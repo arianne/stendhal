@@ -81,7 +81,7 @@ public class StyleFactory {
 				// Text
 				Color highlight = new Color(184, 149, 193);
 				Color shadow = new Color(42, 7, 51);
-				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine.png",
 						false, highlight, shadow, Color.white, Color.white);
 
 				// Border
@@ -102,7 +102,7 @@ public class StyleFactory {
 				// Text
 				Color highlight = new Color(219, 191, 130);
 				Color shadow = new Color(36, 14, 0); // Light brown (also inactive text)
-				PixmapStyle style = new PixmapStyle("data/gui/panel_brick_brown_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_brick.png",
 						false, highlight, shadow, Color.white, Color.white);
 				// Border
 				Color blightin = new Color(181, 140, 50);
@@ -122,7 +122,7 @@ public class StyleFactory {
 				Color highlight = new Color(184, 142, 64); // light brown (also text shadow)
 				Color shadow = new Color(39, 26, 4); // dark brown
 				Color plain = new Color(129, 104, 58); // light brown
-				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb.png",
 						false, highlight, shadow, plain, Color.white);
 
 				// Border
@@ -144,7 +144,7 @@ public class StyleFactory {
 				// Text
 				Color foreground = Color.white;
 				Color highlight = new Color(130, 130, 130); // Grey
-				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_leather.png",
 						false, highlight, Color.black, Color.white, foreground);
 
 				// Border
@@ -162,9 +162,9 @@ public class StyleFactory {
 		PARQUET_BROWN("Parquet Brown") {
 			@Override
 			Style create() {
-				Color highlight = new Color(59, 25, 0); // Dark brwon
+				Color highlight = new Color(59, 25, 0); // Dark brown
 				Color shadow = new Color(225, 173, 110);
-				PixmapStyle style = new PixmapStyle("data/gui/panel_parquet_brown_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_wood_parquet.png",
 						false, highlight, shadow, Color.white, Color.white);
 
 				// Border
@@ -201,7 +201,7 @@ public class StyleFactory {
 			Style create() {
 				// Text
 				Color highlight = new Color(137, 157, 157);
-				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
+				PixmapStyle style = new PixmapStyle("data/gui/panel_aqua_tile.png",
 						false, highlight, Color.black, Color.white, Color.white);
 
 				// Border
