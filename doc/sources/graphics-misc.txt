@@ -152,7 +152,7 @@ walkborder.png          zoli111, Hendrik Brummermann, Jordan Irwin (AntumDeluge)
 data/sprites/doors/
 
 fence_gate_*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-headstone.png      ???; ???; ??? (committed by kymara: 87b361f)
+headstone.*        Jordan Irwin (AntumDeluge; OGA BY 3.0; Stendhal
 housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ice_path_h.png     ???; ???; ??? (committed by laguz: d397492)
 palisade_gate_*    Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
