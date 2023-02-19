@@ -122,8 +122,6 @@ export class Map {
 		this.layerGroupIndexes = this.mapLayerGroup();
 
 		this.strategy.onMapLoaded(this);
-
-		marauroa.me.onEnterZone();
 	}
 
 	decodeTileset(content: any, name: string) {

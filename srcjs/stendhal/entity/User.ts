@@ -43,6 +43,13 @@ export class User extends Player {
 	override minimapStyle = Color.USER;
 
 
+	constructor() {
+		super();
+		queueMicrotask(() => {
+			this.onEnterZone();
+		});
+	}
+
 	override destroy(parent: any) {
 		this.onExitZone();
 		super.destroy(parent);
