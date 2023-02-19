@@ -53,6 +53,7 @@ export class ConfigManager {
 			"aubergine": "panel_aubergine.png",
 			"brick": "panel_brick.png",
 			"honeycomb": "panel_honeycomb.png",
+			"leather": "panel_leather.png",
 			"metal": "panelmetal003.gif",
 			"parquet": "panel_wood_parquet.png",
 			"stone": "paneldrock048.jpg",
@@ -67,6 +68,7 @@ export class ConfigManager {
 		dark: {
 			"aubergine": true,
 			"brick": true,
+			"leather": true,
 			"metal": true,
 			"parquet": true,
 			"stone": true,
