@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -110,10 +110,11 @@ public class StyleFactory {
 			@Override
 			Style create() {
 				// Font
-				Color foreground = new Color(42, 18, 0); // Brown
-				Color highlight = new Color(142, 90, 0); // Light brown (also text shadow)
+				Color highlight = new Color(184, 142, 64); // light brown (also text shadow)
+				Color shadow = new Color(39, 26, 4); // dark brown
+				Color plain = new Color(129, 104, 58); // light brown
 				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
-						false, highlight, Color.white, Color.white, foreground);
+						false, highlight, shadow, plain, Color.white);
 
 				// Border
 				Color blightout = new Color(255, 255, 180);
