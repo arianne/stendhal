@@ -66,6 +66,15 @@ public class StyleFactory {
 			}
 		},
 
+		WOOD2("Wood 2") {
+			@Override
+			Style create() {
+				return new PixmapStyle("data/gui/panel_wood_h.png", true,
+						new Color(163, 120, 97), new Color(50, 25, 12),
+						new Color(107, 72, 50), Color.white);
+			}
+		},
+
 		AUBERGINE("Aubergine") {
 			@Override
 			Style create() {
