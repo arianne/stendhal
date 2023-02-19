@@ -100,41 +100,41 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public static final Property PROP_MERCHANT = new Property();
 
-    // Status properties
-    /**
-     * Confused property
-     */
-    public static final Property PROP_CONFUSED = new Property();
-    /**
-     * Eating property
-     */
-    public static final Property PROP_EATING = new Property();
-    /**
-     * Poisoned property
-     */
-    public static final Property PROP_POISONED = new Property();
-    /**
-     * Shock property
-     */
-    public static final Property PROP_SHOCK = new Property();
-    /**
-     * Zombie property
-     */
-    public static final Property PROP_ZOMBIE = new Property();
-    /**
-     * Heavy property
-     */
-    public static final Property PROP_HEAVY = new Property();
+	// Status properties
+	/**
+	 * Confused property
+	 */
+	public static final Property PROP_CONFUSED = new Property();
+	/**
+	 * Eating property
+	 */
+	public static final Property PROP_EATING = new Property();
+	/**
+	 * Poisoned property
+	 */
+	public static final Property PROP_POISONED = new Property();
+	/**
+	 * Shock property
+	 */
+	public static final Property PROP_SHOCK = new Property();
+	/**
+	 * Zombie property
+	 */
+	public static final Property PROP_ZOMBIE = new Property();
+	/**
+	 * Heavy property
+	 */
+	public static final Property PROP_HEAVY = new Property();
 
-    private static final Map<StatusID, Property> statusProp;
-    static {
-        statusProp = new EnumMap<StatusID, Property>(StatusID.class);
-        statusProp.put(StatusID.CONFUSE, PROP_CONFUSED);
-        statusProp.put(StatusID.POISON, PROP_POISONED);
-        statusProp.put(StatusID.SHOCK, PROP_SHOCK);
-        statusProp.put(StatusID.ZOMBIE, PROP_ZOMBIE);
-        statusProp.put(StatusID.HEAVY, PROP_HEAVY);
-    }
+	private static final Map<StatusID, Property> statusProp;
+	static {
+		statusProp = new EnumMap<StatusID, Property>(StatusID.class);
+		statusProp.put(StatusID.CONFUSE, PROP_CONFUSED);
+		statusProp.put(StatusID.POISON, PROP_POISONED);
+		statusProp.put(StatusID.SHOCK, PROP_SHOCK);
+		statusProp.put(StatusID.ZOMBIE, PROP_ZOMBIE);
+		statusProp.put(StatusID.HEAVY, PROP_HEAVY);
+	}
 
 	/**
 	 * Attacking property. (for attack events)
@@ -705,7 +705,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * 	<code>false</code>.
 	 */
 	public boolean hasStatus(final StatusID status) {
-	    return statuses.contains(status);
+		return statuses.contains(status);
 	}
 
 	/**
@@ -770,7 +770,7 @@ public abstract class RPEntity extends AudibleEntity {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.BLOCKED;
 		combatIconTime = System.currentTimeMillis();
-	    playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
+		playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
 
 	/**
@@ -874,22 +874,22 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 
-    /**
-     * Set the status.
-     *
-     * @param status
-     *         New status
-     * @param show
-     *         Show status overlay
-     */
-    private void setStatus(final StatusID status, final boolean show) {
-        if (show) {
-            statuses.add(status);
-        } else {
-            statuses.remove(status);
-        }
-        fireChange(statusProp.get(status));
-    }
+	/**
+	 * Set the status.
+	 *
+	 * @param status
+	 *         New status
+	 * @param show
+	 *         Show status overlay
+	 */
+	private void setStatus(final StatusID status, final boolean show) {
+		if (show) {
+			statuses.add(status);
+		} else {
+			statuses.remove(status);
+		}
+		fireChange(statusProp.get(status));
+	}
 
 	/**
 	 * Called when entity listen to text from talker.
@@ -1130,7 +1130,7 @@ public abstract class RPEntity extends AudibleEntity {
 		 */
 		setEatAndChoke(true, object.has("eating"), object.has("choking"));
 
-        /* Statuses */
+		/* Statuses */
 		for (StatusID id : StatusID.values()) {
 			if (object.has(id.getAttribute())) {
 				setStatus(id, true);
@@ -1555,7 +1555,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Called when the entity dies.
 	 */
 	private void onDeath() {
-	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
+		playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
 	}
 
 	/**
