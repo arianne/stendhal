@@ -214,6 +214,18 @@ public class StyleFactory {
 						highlight, blightout, bshadowout, bshadowin));
 				return style;
 			}
+		},
+
+		METAL("Metal") {
+			@Override
+			Style create() {
+				PixmapStyle style = new PixmapStyle("data/gui/panel_metal.png", true,
+						new Color(120, 160, 120), // disabled text/element background
+						new Color(30, 60, 30), // selection & disabled text/element foreground
+						new Color(126, 126, 126), // some borders
+						Color.white); // enabled text/element foreground
+				return style;
+			}
 		};
 
 		// ---- implementation ----

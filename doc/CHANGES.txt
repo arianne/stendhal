@@ -62,7 +62,7 @@ Changelog
 
 *java client*
 - added emoji support
-- added second wood theme
+- added second wood theme & metal theme
 
 
 1.42
