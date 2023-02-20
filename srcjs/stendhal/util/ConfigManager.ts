@@ -54,7 +54,7 @@ export class ConfigManager {
 			"brick": "panel_brick.png",
 			"honeycomb": "panel_honeycomb.png",
 			"leather": "panel_leather.png",
-			"metal": "panelmetal003.gif",
+			"metal": "panel_metal.png",
 			"parquet": "panel_wood_parquet.png",
 			"stone": "panel_stone.png",
 			"tile": "panel_aqua_tile.png",
