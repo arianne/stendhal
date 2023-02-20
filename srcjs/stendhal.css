@@ -251,6 +251,10 @@ div.logcolR {
   background: url(/data/gui/danger.png) repeat;
 }
 
+.group-buttons {
+	text-align: right;
+}
+
 #gamewindow {
   display: block;
   max-height: calc(100vh - 5em);

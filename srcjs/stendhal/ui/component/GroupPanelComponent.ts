@@ -14,7 +14,6 @@ import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Component } from "../toolkit/Component";
 
-import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { ChatInputComponent } from "./ChatInputComponent";
 
 import { Chat } from "../../util/Chat";
@@ -34,7 +33,16 @@ export class GroupPanelComponent extends Component {
 		super("group-panel");
 		this.componentElement.querySelector(".group-lootmode")!.addEventListener("click", () => {
 			this.onLootmodeClick();
-		})
+		});
+		this.componentElement.querySelector(".group-chat")!.addEventListener("click", () => {
+			this.onGroupChatButtonClick();
+		});
+		this.componentElement.querySelector(".group-invite")!.addEventListener("click", () => {
+			this.onGroupInviteButtonClick();
+		});
+		this.componentElement.querySelector(".group-part")!.addEventListener("click", () => {
+			this.onGroupPartButtonClick();
+		});
 	}
 
 	receivedInvite(leader: string) {
@@ -49,8 +57,8 @@ export class GroupPanelComponent extends Component {
 			this.onJoinClicked(leader);
 		});
 		this.invites[leader] = button;
-		this.componentElement.querySelector(".group-nogroup")!.append(button);
-		// TODO: activte Group-tab in TabPanelComponent
+		this.componentElement.querySelector(".group-invites")!.append(button);
+		Chat.log("client", "You received an invite to join a group. Please use the group panel to accept the invite.")
 	}
 
 	onJoinClicked(leader: string) {
@@ -71,13 +79,19 @@ export class GroupPanelComponent extends Component {
 		}
 	}
 
+	isInGroup() {
+		return stendhal.data.group.members && Object.keys(stendhal.data.group.members).length > 0;
+	}
+
 	updateGroupStatus() {
-		if (!stendhal.data.group.members) {
+		if (!this.isInGroup()) {
 			this.componentElement.querySelector(".group-nogroup")!.classList.remove("hidden");
 			this.componentElement.querySelector(".group-group")!.classList.add("hidden");
 			return;
 		}
 
+		this.invites = {};
+		this.componentElement.querySelector(".group-invites")!.innerHTML = "";
 		this.componentElement.querySelector(".group-nogroup")!.classList.add("hidden");
 		this.componentElement.querySelector(".group-group")!.classList.remove("hidden");
 
@@ -100,4 +114,37 @@ export class GroupPanelComponent extends Component {
 		};
 		marauroa.clientFramework.sendAction(action);
 	}
+
+	onGroupChatButtonClick() {
+		if (!this.isInGroup()) {
+			Chat.log("error", "Please invite someone into a group before trying to send group messages.");
+			return;
+		}
+		(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/p ");
+	}
+
+	onGroupInviteButtonClick() {
+		if (this.isInGroup() && (stendhal.data.group.leader !== marauroa.me["_name"])) {
+			Chat.log("error", "Only the leader may invite people into the group.");
+			return;
+		}
+		Chat.log("client", "Please Fill in the name of the player you want to invite");
+
+		(ui.get(UIComponentEnum.ChatInput) as ChatInputComponent).setText("/group invite ");
+	}
+
+	onGroupPartButtonClick() {
+		if (!this.isInGroup()) {
+			Chat.log("error", "You cannot leave a group because your are not a member of a group");
+			return;
+		}
+		const action = {
+			"type": "group_management",
+			"action": "part",
+			"params": "",
+			"zone": marauroa.currentZoneName
+		};
+		marauroa.clientFramework.sendAction(action);
+	}
+
 }
