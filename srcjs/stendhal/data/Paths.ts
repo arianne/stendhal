@@ -11,7 +11,7 @@
 
 
 export class Paths {
-	public static readonly data = document.getElementsByTagName("html")[0].getAttribute("data-data-path")!;
+	public static readonly data = Paths.extractPath("data-data-path");
 	public static readonly font = Paths.data + "/font";
 	public static readonly gui = Paths.data + "/gui";
 	public static readonly music = Paths.data + "/music";
@@ -19,8 +19,20 @@ export class Paths {
 	public static readonly sprites = Paths.data + "/sprites";
 	public static readonly weather = Paths.sprites + "/weather";
 	public static readonly achievements = Paths.sprites + "/achievements";
-	public static readonly tileset = document.getElementsByTagName("html")[0].getAttribute("data-tileset-path")!;
+	public static readonly tileset = Paths.extractPath("data-tileset-path");
 
+	/**
+	 * extract the path information from DOM
+	 */
+	private static extractPath(ref: string) {
+		let path = document.getElementsByTagName("html")[0].getAttribute(ref);
+
+		// make sure that there is no javascript:// or similary shinanigans
+		if (!path || !path.startsWith("/")) {
+			throw new Error("Path reference " + ref + " is not a relative path.");
+		}
+		return path;
+	}
 
 	/**
 	 * Static members & methods only.
