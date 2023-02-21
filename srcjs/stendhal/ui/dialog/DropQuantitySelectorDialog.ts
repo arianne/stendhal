@@ -18,11 +18,11 @@ export class DropQuantitySelectorDialog extends Component {
 	constructor(private action: any) {
 		super("dropquantityselectordialog-template");
 
-		this.componentElement.querySelector(".quantityselectorbutton")?.addEventListener("click", (event) => {
+		this.child(".quantityselectorbutton")?.addEventListener("click", (event) => {
 			this.onDrop(event);
 		});
 
-		let valueInput = this.componentElement.querySelector(".quantityselectorvalue") as HTMLInputElement
+		let valueInput = this.child(".quantityselectorvalue") as HTMLInputElement
 		queueMicrotask( () => {
 			valueInput.select();
 			valueInput.focus();
@@ -30,7 +30,7 @@ export class DropQuantitySelectorDialog extends Component {
 	}
 
 	private onDrop(event: Event) {
-		let quantityStr = (this.componentElement.querySelector(".quantityselectorvalue") as HTMLInputElement).value;
+		let quantityStr = (this.child(".quantityselectorvalue") as HTMLInputElement).value;
 		let quantity = parseInt(quantityStr);
 		if (quantity > 0) {
 			this.action["quantity"] = quantityStr;

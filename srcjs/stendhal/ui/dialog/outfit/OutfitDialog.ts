@@ -81,10 +81,10 @@ export class OutfitDialog extends DialogContentComponent {
 
 		this.drawComposite();
 
-		this.componentElement.querySelector("#setoutfitcancel")!.addEventListener("click", (event) => {
+		this.child("#setoutfitcancel")!.addEventListener("click", (event) => {
 			this.onCancel(event);
 		});
-		this.componentElement.querySelector("#setoutfitapply")!.addEventListener("click", (event) => {
+		this.child("#setoutfitapply")!.addEventListener("click", (event) => {
 			this.onApply(event);
 		});
 	}

@@ -74,7 +74,7 @@ export class BuddyListComponent extends Component {
 		}
 
 		if (this.lastHtml !== html) {
-			let buddyListUL = this.componentElement.querySelector("#buddyListUL")!;
+			let buddyListUL = this.child("#buddyListUL")!;
 			buddyListUL.innerHTML = html;
 			this.lastHtml = html;
 		}

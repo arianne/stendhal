@@ -21,7 +21,7 @@ export class ImageViewerDialog extends Component {
 
 	constructor(caption: string, imageFilename: string) {
 		super("imageviewer-template");
-		this.componentElement.querySelector("h3")!.textContent = caption;
+		this.child("h3")!.textContent = caption;
 		this.componentElement.querySelector("img")!.src = imageFilename;
 	}
 

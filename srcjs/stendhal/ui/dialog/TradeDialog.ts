@@ -57,13 +57,13 @@ export class TradeDialog extends DialogContentComponent {
 
 	updateTradeState(me: Player, partner: Player, myState: string, partnerState: string) {
 		if (partner) {
-			(this.componentElement.querySelector("#trade-partner-name") as HTMLElement).innerText = partner["_name"];
+			this.child("#trade-partner-name")!.innerText = partner["_name"];
 		}
-		this.showState(this.componentElement.querySelector("#trade-partner-status")!, partnerState);
-		this.showState(this.componentElement.querySelector("#trade-my-status")!, myState);
+		this.showState(this.child("#trade-partner-status")!, partnerState);
+		this.showState(this.child("#trade-my-status")!, myState);
 
-		(this.componentElement.querySelector("#trade-offer") as HTMLButtonElement).disabled = !(myState === "MAKING_OFFERS");
-		(this.componentElement.querySelector("#trade-accept") as HTMLButtonElement).disabled
+		(this.child("#trade-offer") as HTMLButtonElement).disabled = !(myState === "MAKING_OFFERS");
+		(this.child("#trade-accept") as HTMLButtonElement).disabled
 			= !(myState === "LOCKED" && (partnerState === "LOCKED" || partnerState === "DEAL_WAITING_FOR_OTHER_DEAL"));
 		
 		this.otherItemsComponent.setObject(partner ? partner : TradeDialog.empty);
@@ -80,15 +80,15 @@ export class TradeDialog extends DialogContentComponent {
 
 	private createHtml() {
 		
-		this.componentElement.querySelector("#trade-partner-items")!.append(this.otherItemsComponent.componentElement);
-		this.componentElement.querySelector("#trade-my-items")!.append(this.myItemsComponent.componentElement);
-		this.componentElement.querySelector("#trade-accept")!.addEventListener("click", () => {
+		this.child("#trade-partner-items")!.append(this.otherItemsComponent.componentElement);
+		this.child("#trade-my-items")!.append(this.myItemsComponent.componentElement);
+		this.child("#trade-accept")!.addEventListener("click", () => {
 			this.onAcceptClicked();
 		});
-		this.componentElement.querySelector("#trade-offer")!.addEventListener("click", () => {
+		this.child("#trade-offer")!.addEventListener("click", () => {
 			this.onOfferClicked();
 		});
-		this.componentElement.querySelector("#trade-cancel")!.addEventListener("click", () => {
+		this.child("#trade-cancel")!.addEventListener("click", () => {
 			this.onCancelClicked();
 		})
 	}

@@ -217,7 +217,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 *     HTMLInputElement.
 	 */
 	private createCheckBoxSkel(id: string, tooltip?: string): HTMLInputElement {
-		const checkbox = <HTMLInputElement> this.componentElement.querySelector(
+		const checkbox = <HTMLInputElement> this.child(
 			"input[type=checkbox][id=" + id + "]")!;
 		if (tooltip) {
 			checkbox.title = tooltip;
@@ -285,7 +285,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 *     HTMLButtonElement.
 	 */
 	private createButton(id: string, tooltip?: string): HTMLButtonElement {
-		const button = <HTMLButtonElement> this.componentElement.querySelector(
+		const button = <HTMLButtonElement> this.child(
 			"button[id=" + id + "]")!;
 		if (tooltip) {
 			button.title = tooltip;
@@ -312,7 +312,7 @@ export class SettingsDialog extends DialogContentComponent {
 	private createSelect(id: string, options: {[index: string]: string},
 			idx: number, tooltip?: string): HTMLSelectElement {
 
-		const sel = <HTMLSelectElement> this.componentElement.querySelector(
+		const sel = <HTMLSelectElement> this.child(
 			"select[id=" + id + "]")!;
 		sel.style.setProperty("width", "9em");
 		sel.parentElement!.style.setProperty("margin-right", "0");

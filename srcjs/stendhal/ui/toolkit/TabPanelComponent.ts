@@ -26,7 +26,7 @@ export class TabPanelComponent extends Panel {
 	 */
 	constructor() {
 		super("tabpanel-template");
-		this.containerElement = this.componentElement.querySelector(".tabpanel-content")!;
+		this.containerElement = this.child(".tabpanel-content")!;
 	}
 
 	override add(child: Component) {
@@ -39,7 +39,7 @@ export class TabPanelComponent extends Panel {
 	addTab(label: string) {
 		let button = document.createElement("button");
 		button.innerText = label;
-		button.dataset.index = "" + this.componentElement.querySelector(".tabpanel-tabs")!.children.length;
+		button.dataset.index = "" + this.child(".tabpanel-tabs")!.children.length;
 		button.addEventListener("click", (e) => {
 			this.onTabClick(e);
 		})
@@ -47,7 +47,7 @@ export class TabPanelComponent extends Panel {
 			button.classList.add("active");
 		}
 		this.buttons.push(button);
-		this.componentElement.querySelector(".tabpanel-tabs")!.append(button);
+		this.child(".tabpanel-tabs")!.append(button);
 	}
 
 	onTabClick(event: Event) {

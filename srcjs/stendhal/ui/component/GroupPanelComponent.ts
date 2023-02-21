@@ -31,16 +31,16 @@ export class GroupPanelComponent extends Component {
 
 	constructor() {
 		super("group-panel");
-		this.componentElement.querySelector(".group-lootmode")!.addEventListener("click", () => {
+		this.child(".group-lootmode")!.addEventListener("click", () => {
 			this.onLootmodeClick();
 		});
-		this.componentElement.querySelector(".group-chat")!.addEventListener("click", () => {
+		this.child(".group-chat")!.addEventListener("click", () => {
 			this.onGroupChatButtonClick();
 		});
-		this.componentElement.querySelector(".group-invite")!.addEventListener("click", () => {
+		this.child(".group-invite")!.addEventListener("click", () => {
 			this.onGroupInviteButtonClick();
 		});
-		this.componentElement.querySelector(".group-part")!.addEventListener("click", () => {
+		this.child(".group-part")!.addEventListener("click", () => {
 			this.onGroupPartButtonClick();
 		});
 	}
@@ -57,7 +57,7 @@ export class GroupPanelComponent extends Component {
 			this.onJoinClicked(leader);
 		});
 		this.invites[leader] = button;
-		this.componentElement.querySelector(".group-invites")!.append(button);
+		this.child(".group-invites")!.append(button);
 		Chat.log("client", "You received an invite to join a group. Please use the group panel to accept the invite.")
 	}
 
@@ -85,19 +85,19 @@ export class GroupPanelComponent extends Component {
 
 	updateGroupStatus() {
 		if (!this.isInGroup()) {
-			this.componentElement.querySelector(".group-nogroup")!.classList.remove("hidden");
-			this.componentElement.querySelector(".group-group")!.classList.add("hidden");
+			this.child(".group-nogroup")!.classList.remove("hidden");
+			this.child(".group-group")!.classList.add("hidden");
 			return;
 		}
 
 		this.invites = {};
-		this.componentElement.querySelector(".group-invites")!.innerHTML = "";
-		this.componentElement.querySelector(".group-nogroup")!.classList.add("hidden");
-		this.componentElement.querySelector(".group-group")!.classList.remove("hidden");
+		this.child(".group-invites")!.innerHTML = "";
+		this.child(".group-nogroup")!.classList.add("hidden");
+		this.child(".group-group")!.classList.remove("hidden");
 
-		(this.componentElement.querySelector(".group-lootmode") as HTMLElement).innerText = stendhal.data.group.lootmode;
-		(this.componentElement.querySelector(".group-leader") as HTMLElement).innerText = stendhal.data.group.leader;
-		(this.componentElement.querySelector(".group-members") as HTMLElement).innerText = Object.keys(stendhal.data.group.members).join(", ");
+		this.child(".group-lootmode")!.innerText = stendhal.data.group.lootmode;
+		this.child(".group-leader")!.innerText = stendhal.data.group.leader;
+		this.child(".group-members")!.innerText = Object.keys(stendhal.data.group.members).join(", ");
 
 	}
 

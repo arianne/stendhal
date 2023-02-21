@@ -86,4 +86,8 @@ export abstract class Component {
 	public toggleVisibility() {
 		this.setVisible(!this.isVisible());
 	}
+
+	protected child(selector: string) {
+		return this.componentElement.querySelector(selector) as HTMLElement|undefined;
+	}
 }

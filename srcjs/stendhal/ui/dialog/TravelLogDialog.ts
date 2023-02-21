@@ -54,7 +54,7 @@ export class TravelLogDialog extends DialogContentComponent {
 				 + "\" class=\"progressTypeButton\">"
 				+ stendhal.ui.html.esc(dataItems[i]) + "</button>";
 		}
-		this.componentElement.querySelector(".tavellogtabpanel")!.innerHTML = buttons;
+		this.child(".tavellogtabpanel")!.innerHTML = buttons;
 
 		this.componentElement.querySelectorAll(".progressTypeButton").forEach((button) => {
 			button.addEventListener("click", (event) => {
@@ -62,7 +62,7 @@ export class TravelLogDialog extends DialogContentComponent {
 			});
 		});
 
-		this.componentElement.querySelector(".travellogitems")!.addEventListener("change", (event) => {
+		this.child(".travellogitems")!.addEventListener("change", (event) => {
 			this.onTravelLogItemsChange(event);
 		});
 	}
@@ -114,11 +114,11 @@ export class TravelLogDialog extends DialogContentComponent {
 			}
 			html += "</option>";
 		}
-		this.componentElement.querySelector(".travellogitems")!.innerHTML = html;
+		this.child(".travellogitems")!.innerHTML = html;
 
 		// trigger loading of content for first entry
 		if (dataItems) {
-			// this.componentElement.querySelector(".travellogitems")!.value = dataItems[0];
+			// this.child(".travellogitems")!.value = dataItems[0];
 			var action = {
 				"type":           "progressstatus",
 				"progress_type":  progressType,
@@ -176,7 +176,7 @@ export class TravelLogDialog extends DialogContentComponent {
 	}
 
 	private refreshDetails(html: string="", newDetails?: HTMLElement) {
-		const details = this.componentElement.querySelector(".travellogdetails")!;
+		const details = this.child(".travellogdetails")!;
 		details.innerHTML = html;
 
 		if (newDetails) {
