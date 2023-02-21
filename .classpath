@@ -27,6 +27,7 @@
 	<classpathentry kind="lib" path="libs/websocket-servlet-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="libs/java-hamcrest-2.0.0.0.jar" sourcepath="/home/brummermann/.m2/repository/org/hamcrest/java-hamcrest/2.0.0.0/java-hamcrest-2.0.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="libs/marauroa.jar" sourcepath="/marauroa"/>
 	<classpathentry kind="lib" path="libs/jetty-client-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-continuation-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-http-9.2.14.v20151106.jar"/>
@@ -38,6 +39,5 @@
 	<classpathentry kind="lib" path="libs/jetty-webapp-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-xml-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/luaj-jse-3.0.1.jar" sourcepath="/luaj"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/marauroa"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
