@@ -282,7 +282,11 @@ public class Bootstrap {
 			Certificate[] certs = (Certificate[]) objects;
 			for (Certificate cert : certs) {
 				byte[] key = cert.getPublicKey().getEncoded();
-				String keyStr = toHexString(hash(key));
+				// Security Note: Since SourceForge has added support for https, 
+				// we do not depend on verifying the signature anymore. But we need
+				// to tell an official and a self-build client apart in order not to
+				// add incompatible .jar files to the later and break it.
+				String keyStr = toHexString(insecureHash(key));
 				if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
 					return true;
 				}
@@ -309,7 +313,7 @@ public class Bootstrap {
 	 * @return the hash of an array of bytes.
 	 * @throws NoSuchAlgorithmException
 	 */
-	private static final byte[] hash(final byte[] value) throws NoSuchAlgorithmException {
+	private static final byte[] insecureHash(final byte[] value) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		md.reset();
 		md.update(value);
