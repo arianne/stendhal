@@ -175,6 +175,10 @@ public class ShopsXMLLoader extends DefaultHandler {
 				mc.flags = Arrays.asList(flags.split(","));
 			}
 			mc.action = attrs.getValue("action");
+			if (mc.action == null) {
+				// default action
+				mc.action = "buy";
+			}
 			final String expiration = attrs.getValue("expiration");
 			if (expiration != null) {
 				mc.expiration = Integer.parseInt(expiration);
