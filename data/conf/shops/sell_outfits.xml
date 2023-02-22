@@ -68,4 +68,45 @@
     <merchant name="Saskia"/>
   </shop>
 
+  <!-- Fidorea in Ados City -->
+  <shop type="outfit">
+    <outfit name="babybear mask" layers="mask=994,hair=-1,hat=-1" price="20"/>
+    <outfit name="frog mask" layers="mask=995,hair=-1,hat=-1" price="20"/>
+    <outfit name="penguin mask" layers="mask=996,hair=-1,hat=-1" price="20"/>
+    <outfit name="monkey mask" layers="mask=997,hair=-1,hat=-1" price="20"/>
+    <outfit name="dog mask" layers="mask=998,hair=-1,hat=-1" price="20"/>
+    <outfit name="kobold mask" layers="mask=999,hair=-1,hat=-1" price="20"/>
+    <merchant name="Fidorea" note="selected mask is random"/>
+  </shop>
+
+  <!-- men's swim trunks on Athor Island -->
+  <shop type="outfit">
+    <outfit name="black trunks" layers="dress=995" price="5"/>
+    <outfit name="blue trunks" layers="dress=996" price="5"/>
+    <outfit name="green trunks" layers="dress=997" price="5"/>
+    <outfit name="yellow trunks" layers="dress=998" price="5"/>
+    <merchant name="David" note="selected trunks is random"/>
+  </shop>
+
+  <!-- women's swimsuits on Athor Island -->
+  <shop type="outfit">
+    <outfit name="violet two-piece swimsuit" layers="dress=991" price="5"/>
+    <outfit name="blue two-piece swimsuit" layers="dress=992" price="5"/>
+    <outfit name="tan one-piece swimsuit" layers="dress=993" price="5"/>
+    <outfit name="red one-piece swimsuit" layers="dress=994" price="5"/>
+    <merchant name="Pam" note="selected swimsuit is random"/>
+  </shop>
+
+  <!-- Tamara in Fado Hotel -->
+  <shop type="outfit">
+    <outfit name="gown" layers="dress=988,hat=991" price="100"/>
+    <merchant name="Tamara"/>
+  </shop>
+
+  <!-- Timothy in Fado Hotel -->
+  <shop type="outfit">
+    <outfit name="suit" layers="dress=987" price="50"/>
+    <merchant name="Timothy"/>
+  </shop>
+
 </shops>
