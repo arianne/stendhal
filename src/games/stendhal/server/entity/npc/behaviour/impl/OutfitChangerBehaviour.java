@@ -196,7 +196,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 		final String outfitType = res.getChosenItemName();
 
-		if (!player.getOutfit().isCompatibleWithClothes()) {
+		if (!flagIsSet("resetBeforeChange") && !player.getOutfit().isCompatibleWithClothes()) {
 			// if the player is wearing a non standard player base
 			// then swimsuits, masks and many other outfits wouldn't look good mixed with it
 			seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
