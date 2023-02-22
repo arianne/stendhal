@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -25,6 +27,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 
 public class HealerAdder {
 
@@ -101,8 +104,9 @@ public class HealerAdder {
 						// (low atk, low def AND low level)
 						raiser.say("Sorry, but you have a bad aura, so that I am unable to heal you right now.");
 					} else {
-						raiser.say("There, you are healed. How else may I help you?");
 						healerBehaviour.heal(player);
+						raiser.addEvent(new SoundEvent(SoundID.HEAL, SoundLayer.CREATURE_NOISE));
+						raiser.say("There, you are healed. How else may I help you?");
 					}
 				}
 			}
@@ -117,6 +121,7 @@ public class HealerAdder {
 				}
 				if (player.drop("money", cost)) {
 					healerBehaviour.heal(player);
+					raiser.addEvent(new SoundEvent(SoundID.HEAL, SoundLayer.CREATURE_NOISE));
 					raiser.say("There, you are healed. How else may I help you?");
 				} else {
 					raiser.say("I'm sorry, but it looks like you can't afford it.");

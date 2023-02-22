@@ -45,6 +45,7 @@ Changelog
 - descreased damage penalty compensating for player hit chance handicap
 - replaced music in Nalwor River maps
 - producer NPCs now have an icon
+- added healer sound effect
 
 *clients*
 - support "rear" layers
