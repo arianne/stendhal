@@ -26,7 +26,7 @@
     <outfit name="axe2" layers="detail=13" price="250000"/>
     <outfit name="kite shield" layers="detail=14" price="225000"/>
     <outfit name="shield" layers="detail=15" price="225000"/>
-    <merchant name="Gwen" flags="configure,noOffer"/>
+    <merchant name="Gwen" flags="configure,noOffer,removeDetailColor"/>
   </shop>
 
   <!-- Pierre in Deniran Dress Shop -->
