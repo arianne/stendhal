@@ -1877,6 +1877,33 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Sets a layer color for both the player's original & temporary outfits.
+	 *
+	 * @param layer
+	 *     Layer name.
+	 * @param color
+	 *     New color.
+	 */
+	public void setPerpetualOutfitColor(final String layer, final String color) {
+		put("outfit_colors", layer, color);
+		if (outfitIsTemporary()) {
+			put("outfit_colors", layer + "_orig", color);
+		}
+	}
+
+	/**
+	 * Sets a layer color for both the player's original & temporary outfits.
+	 *
+	 * @param layer
+	 *     Layer name.
+	 * @param color
+	 *     New color.
+	 */
+	public void setPerpetualOutfitColor(final String layer, final int color) {
+		setPerpetualOutfitColor(layer, String.valueOf(color));
+	}
+
+	/**
 	 * Checks if entity is wearnig a temporary outfit.
 	 *
 	 * @return
