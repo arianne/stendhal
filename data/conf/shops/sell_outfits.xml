@@ -4,7 +4,6 @@
     xsi:schemaLocation="stendhal ../shops.xsd">
 
   <!-- OUTFIT SELLERS/LENDERS -->
-  <!-- TODO: outfit shops should add to player commerce transactions -->
 
   <!--
     Merchant flags descriptions:
