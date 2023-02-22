@@ -122,7 +122,7 @@ public abstract class DressedEntity extends RPEntity {
 	 */
 	public String getOutfitColor(final String layer) {
 		final Map<String, String> ocolors = getOutfitColors();
-		if (ocolors.containsKey(layer)) {
+		if (ocolors != null && ocolors.containsKey(layer)) {
 			return ocolors.get(layer);
 		}
 		return null;
