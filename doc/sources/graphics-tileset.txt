@@ -1098,9 +1098,9 @@ vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 tiled/tileset/plant/indoor/
 
 cactuspotted.png      ???; ???; ??? (committed by sshk5: 2dd3f77)
-flowering_plant.png   bleutailfly; OGA BY 3.0; Stendhal
 flower_baskets.png    kymara?, bleutailfly; ???; ??? (committed by kymara: d6de63d & kiheru: e906b0b)
 flower_vase.png       bleutailfly; OGA BY 3.0; Stendhal
+flowering_plant.png   bleutailfly; OGA BY 3.0; Stendhal
 oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
 plant_pots.*          ???; ???; ??? (committed by AntumDeluge: d2db445, mixture of tiles from different images)
 plant_potted_2.png    Megajack64?; ???; ??? (committed by bleutailfly: 7a73b14)
