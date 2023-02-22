@@ -188,7 +188,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 				detailColor = player.getOutfitColor("detail");
 			}
 			putOnOutfit(player, outfitType);
-			player.setOutfitColor("detail", detailColor);
+			if (detailColor == null) {
+				player.unsetOutfitColor("detail");
+			} else {
+				player.setOutfitColor("detail", detailColor);
+			}
 			// remember purchases
 			updatePlayerTransactions(player, seller.getName(), res);
 			return true;
