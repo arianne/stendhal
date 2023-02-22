@@ -63,7 +63,6 @@ public class LifeguardNPC implements ZoneConfigurator {
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("trunks", 5);
 				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
-				behaviour.setPreserveDetailColor(true);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "borrow");
 
 				// stuff needed for the SuntanCreamForZara quest

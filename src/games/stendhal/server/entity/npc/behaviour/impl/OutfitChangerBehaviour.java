@@ -78,7 +78,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		outfitTypes.put("suit", Arrays.asList(new Outfit("dress=987")));
 	}
 
-	private boolean preserveDetailColor = false;
+	private boolean preserveDetailColor = true;
 
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
@@ -151,7 +151,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * Sets handling detail layer color.
 	 *
 	 * @param preserve
-	 *     Set to <code>true</code> to preserve detail layer color when changing outfit.
+	 *     Set to <code>false</code> to remove detail layer color when changing outfit.
 	 */
 	public void setPreserveDetailColor(final boolean preserve) {
 		preserveDetailColor = preserve;
@@ -188,9 +188,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 				detailColor = player.getOutfitColor("detail");
 			}
 			putOnOutfit(player, outfitType);
-			if (detailColor != null) {
-				player.setOutfitColor("detail", detailColor);
-			}
+			player.setOutfitColor("detail", detailColor);
 			// remember purchases
 			updatePlayerTransactions(player, seller.getName(), res);
 			return true;

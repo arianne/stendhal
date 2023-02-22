@@ -76,7 +76,6 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 20);
 				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, MINUTES_BEFORE_WEAR_OFF, "Your mask has worn off.");
-				behaviour.setPreserveDetailColor(true);
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 
