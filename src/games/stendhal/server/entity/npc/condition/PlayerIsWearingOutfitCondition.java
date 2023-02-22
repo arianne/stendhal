@@ -36,9 +36,18 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 	 * @param outfit
 	 * 			an outfit to be checked if it is worn by the player
 	 */
-
 	public PlayerIsWearingOutfitCondition(Outfit outfit) {
 		this.outfitToCheck = outfit;
+	}
+
+	/**
+	 * Creates a new PlayerIsWearingOutfitCondition.
+	 *
+	 * @param outfit
+	 *     String outfit representation.
+	 */
+	public PlayerIsWearingOutfitCondition(final String outfit) {
+		this.outfitToCheck = new Outfit(outfit);
 	}
 
 	@Override
