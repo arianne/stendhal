@@ -20,7 +20,7 @@ panel_aubergine.png     Viscious-Speed; CC0; https://openclipart.org/detail/1226
 panel_brick.png         nicubunu; CC0; https://openclipart.org/detail/9520
 panel_honeycomb.png     kuba; CC0; https://openclipart.org/detail/325323
 panel_leather.png       sharetextures.com; CC0; https://www.sharetextures.com/textures/fabric/leather-4
-panel_metal.png         Kenten Fina; CC BY 3.0; https://opengameart.org/node/16874
+panel_metal.png         looneybits; CC0; https://opengameart.org/node/93788
 panel_stone.png         p0ss; CC BY 3.0; https://opengameart.org/node/5203
 panel_wood_h.png        sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/american_oak_1
 panel_wood_parquet.png  sharetextures.com; CC0; https://www.sharetextures.com/textures/wood/wood_parquet_65
