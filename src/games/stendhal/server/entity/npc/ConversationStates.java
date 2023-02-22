@@ -70,6 +70,11 @@ public enum ConversationStates {
 	REPAIR_OFFERED,
 
 	/**
+	 * NPC is asking for confirmation before executing an action.
+	 */
+	CONFIRM_REQUESTED,
+
+	/**
 	 * The SpeakerNPC is simply telling something to the player.
 	 */
 	INFORMATION_1,
