@@ -187,7 +187,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 				// preserve detail layer coloring
 				final String detailColor = player.getOutfitColor("detail");
-				if (resetBeforeChange) {
+				if (flagIsSet("resetBeforeChange")) {
 					// remove temp outfit before changing
 					player.returnToOriginalOutfit();
 				}

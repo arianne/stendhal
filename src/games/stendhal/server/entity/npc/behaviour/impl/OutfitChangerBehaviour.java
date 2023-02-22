@@ -12,6 +12,7 @@
 
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -35,9 +36,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	private int endurance;
 
 	private final String wearOffMessage;
-
-	/** if <code>true</code>, return player to original outfit before setting new temp outfit */
-	protected boolean resetBeforeChange = false;
 
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
@@ -78,7 +76,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		outfitTypes.put("suit", Arrays.asList(new Outfit("dress=987")));
 	}
 
-	private boolean preserveDetailColor = true;
+	private final List<String> flags = new ArrayList<>();
 
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
@@ -101,6 +99,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * 		If <code>true</code>, player's original outfit will be restored before setting
 	 * 		setting the new one.
 	 */
+	@Deprecated
 	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final boolean reset) {
 		this(priceList, NEVER_WEARS_OFF, null, reset);
 	}
@@ -121,10 +120,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * 		If <code>true</code>, player's original outfit will be restored before setting
 	 * 		setting the new one.
 	 */
+	@Deprecated
 	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final int endurance,
 			final String wearOffMessage, final boolean reset) {
 		this(priceList, endurance, wearOffMessage);
-		resetBeforeChange = reset;
+		setFlag("resetBeforeChange");
 	}
 
 	/**
@@ -148,13 +148,37 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	}
 
 	/**
-	 * Sets handling detail layer color.
+	 * Sets a flag to be used by this behaviour.
 	 *
-	 * @param preserve
-	 *     Set to <code>false</code> to remove detail layer color when changing outfit.
+	 * @param flag
+	 *     New flag to be enabled.
 	 */
-	public void setPreserveDetailColor(final boolean preserve) {
-		preserveDetailColor = preserve;
+	public void setFlag(final String flag) {
+		if (!flags.contains(flag)) {
+			flags.add(flag);
+		}
+	}
+
+	/**
+	 * Unsets a flag used by this behaviour.
+	 *
+	 * @param flag
+	 *     Flag to be disabled.
+	 */
+	public void unsetFlag(final String flag) {
+		if (flags.contains(flag)) {
+			flags.remove(flag);
+		}
+	}
+
+	/**
+	 * Checks if a flag is set.
+	 *
+	 * @return
+	 *     <code>true</code> if 'flag' found in flags list.
+	 */
+	public boolean flagIsSet(final String flag) {
+		return flags.contains(flag);
 	}
 
 	/**
@@ -184,7 +208,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		if (player.isEquipped("money", charge)) {
 			player.drop("money", charge);
 			String detailColor = null;
-			if (preserveDetailColor) {
+			if (!flagIsSet("removeDetailColor")) {
 				detailColor = player.getOutfitColor("detail");
 			}
 			putOnOutfit(player, outfitType);
@@ -254,7 +278,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * @param outfitType the outfit to wear
 	 */
 	public void putOnOutfit(final Player player, final String outfitType) {
-		if (resetBeforeChange) {
+		if (flagIsSet("resetBeforeChange")) {
 			// cannot use OutfitChangerBehaviour.returnToOriginalOutfit(player) as it checks if the outfit was rented from here
 			player.returnToOriginalOutfit();
 		}

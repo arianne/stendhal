@@ -6,6 +6,14 @@
   <!-- OUTFIT SELLERS/LENDERS -->
   <!-- TODO: outfit shops should add to player commerce transactions -->
 
+  <!--
+    Merchant flags descriptions:
+      configure: merchant will be configured at startup with shop
+      noOffer: disable default replies to "offer"
+      removeDetailColor: do not preserve detail color when changing outfit
+      resetBeforeChange: remove temp outfit & restore original before change
+  -->
+
   <shop name="deniran_accessories" type="outfit">
     <outfit name="white balloon" layers="detail=2" price="50000"/>
     <outfit name="black balloon" layers="detail=3" price="50000"/>
