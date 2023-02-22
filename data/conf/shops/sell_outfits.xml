@@ -11,6 +11,8 @@
       noOffer: disable default replies to "offer"
       removeDetailColor: do not preserve detail color when changing outfit
       resetBeforeChange: remove temp outfit & restore original before change
+      confirmTemp: ask for confirmation if player is wearing temp outfit
+      confirmBalloon: confirmation if player is wearing balloon
   -->
 
   <shop name="deniran_accessories" type="outfit">

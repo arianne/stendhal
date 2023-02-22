@@ -10,6 +10,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.shop;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,8 +149,10 @@ public class OutfitShopsList {
     if (fl.containsKey("removeDetailColor") || fl.containsKey("removeDetailColour")) {
       behaviour.setFlag("removeDetailColor");
     }
-    if (fl.containsKey("resetBeforeChange")) {
-      behaviour.setFlag("resetBeforeChange");
+    for (final String flag: Arrays.asList("resetBeforeChange", "confirmTemp", "confirmBalloon")) {
+      if (fl.containsKey(flag)) {
+        behaviour.setFlag(flag);
+      }
     }
     new OutfitChangerAdder().addOutfitChanger(npc, behaviour, action, !fl.containsKey("noOffer"),
         fl.containsKey("returnable"));
