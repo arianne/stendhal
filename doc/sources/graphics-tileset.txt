@@ -1018,7 +1018,7 @@ tent.png                ??; ???; ??? (committed by sshk5: ca86422)
 testgrid.png            tigertoes; CC BY-SA 3.0; Stendhal made for testing creature spacing
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ??? (committed by kiheru: 234f74d)
-well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
+well_hoist.*            Xenodora, ???; CC BY 3.0, ???; https://opengameart.org/node/17451
 well_with_rope.png      (placeholder) (committed by bleutailfly: 62dadc2)
 
 tiled/tileset/object/rock/
