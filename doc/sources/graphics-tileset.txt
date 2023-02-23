@@ -408,7 +408,7 @@ piano-baby_grand.*         Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengam
 piano.png                  bleutailfly; OGA BY 3.0; Stendhal
 spinningwheel.png          Firkin, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/232288
 stick.png                  ???; ???; ??? (committed by kymara: f3f3790)
-tools_rack.png             Juan?; ???; ??? (committed by kymara: 175a76d)
+tools_rack.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 tiled/tileset/furniture/picture/
 
