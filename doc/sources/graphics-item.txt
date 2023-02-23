@@ -260,7 +260,7 @@ artichoke.png            omero; CC BY-SA 3.0; Stendhal
 baguette.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 banana.png               RedQueen; OGA BY 3.0; Stendhal
 broccoli.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-butter.png               omero; CC BY-SA 3.0; Stendhal
+butter.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button_mushroom.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 carrot.png               frankes; CC0; https://openclipart.org/detail/215799
 cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -305,9 +305,11 @@ pear.png                 RedQueen; OGA BY 3.0; Stendhal
 perch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 piesmall.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 pineapple.png            nicubunu; CC0; https://openclipart.org/detail/12995
+pinto_beans.png          Jordan Irwin (AntumDeluge); CC0; Stendhal, https://www.photos-public-domain.com/2012/04/23/pinto-beans-texture/
 pizza.png                Alex Jackson (PancInteractive); CC BY 3.0; https://opengameart.org/node/22243
 pomegranate.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://commons.wikimedia.org/wiki/File:Afghan_pomegranate_Kandahar.jpg
 porcini.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+potato.png               Jordan Irwin (AntumDeluge); CC0; Stendhal, https://commons.wikimedia.org/wiki/File:Potatoes.jpg
 red-lionfish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 salad.png                bluecarrot16; CC0; https://opengameart.org/node/98209
@@ -479,8 +481,6 @@ metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
 olive_oil.png            omero; CC BY-SA 3.0; Stendhal
 pelt.png                 Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
-pinto_beans.png          omero; CC BY-SA 3.0; Stendhal
-potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
 seed.png                 Katie Russell (kymara), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
