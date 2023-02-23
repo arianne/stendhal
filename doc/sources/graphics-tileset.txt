@@ -1040,8 +1040,8 @@ leaves.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lily_pads.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 mistletoe.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mosses.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-mushroom.png             durkham?; ???; ??? (committed by kymara: cf55548)
-mushroom2.png            durkham?; ???; ??? (committed by kymara: cf55548)
+mushroom.png             Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
+mushroom2.png            Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
 mushroom3.*              Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 pineapple_plant.png      ???; ???; ??? (committed by kymara: 4b7035f)
 pumpkin_halloween.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
