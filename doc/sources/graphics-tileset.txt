@@ -587,7 +587,7 @@ floors_3.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_4.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 floor_tan.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floor_tiles.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-floor_tiles2.*            durkham, Jordan Irwin (AntumDeluge); ???; Stendhal
+floor_tiles2.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 grey_gradients.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_hole.png             ???; ???; ??? (committed by kymara: a1362b6)
 grey_skull.*              Angry Amish, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81446
