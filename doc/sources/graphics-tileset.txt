@@ -278,7 +278,7 @@ tiled/tileset/furniture/carpet/
 
 black_grey.png     ???; ???; ??? (committed by kymara: cdd51b6)
 black_red.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
-blue.png           ???; ???; ??? (committed by Astrid Sawatzky: 2bbf9db)
+blue.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 border.png         Juan?; ???; ??? (committed by kymara: 216fd50)
 border2.png        Juan?; ???; ??? (committed by kymara: c8c3eac)
 brown_rug.png      Daniel Armstrong (HughSpectrum); CC BY-SA 3.0; https://opengameart.org/node/13470
