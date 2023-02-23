@@ -113,7 +113,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			// set flag to false to prevent abuse by adding to a stackable in a corpse
 			// leading to a too high number awarded when looting
 			this.setFromCorpse(false);
-			DebugInterface.get().onRPOBjectInteraction(this, other);
+			DebugInterface.get().onRPObjectInteraction(this, other);
 		}
 		return getQuantity();
 	}
