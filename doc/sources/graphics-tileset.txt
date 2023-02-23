@@ -79,7 +79,7 @@ rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://openg
 shop_banners.*            ???; ???; Stendhal, ???
 stone_details.png         bleutailfly; OGA BY 3.0; Stendhal
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
-toolset.png               ???; ???; ??? (committed by kymara: 165842e)
+toolset.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 weapon_banner.*           ???, Dungeon Crawl Stone Soup; ??? (don't know who author of wooden board is); ???, https://opengameart.org/node/12210
 webs.png                  ???; ???; ??? (committed by miguel: 9f10715)
 wood_coal_fire.xcf.bz2    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
