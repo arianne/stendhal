@@ -1122,6 +1122,7 @@
     <property name="js-files-main2"    value="srcjs/stendhal/main.js"/>
     <property name="js-files-main3"    value=""/>
     <property name="js-files-ts"       value="build/ts/*.js build/ts/**/*.js"/>
+    <property name="js-files-ts2"      value=""/>
 
 
     <java jar="buildtools/closure-compiler/compiler.jar"
@@ -1133,6 +1134,8 @@
       <arg value="--compilation_level"/>
       <arg value="ADVANCED"/>
       <arg line="${js-debug}"/>
+      <arg value="--output_wrapper" />
+      <arg value="function a() {%output%};a();" />
       <arg value="--process_common_js_modules"/>
       <arg value="--module_resolution=node"/>
       <arg value="--jscomp_off=checkVars"/>
@@ -1158,12 +1161,19 @@
       <arg line="${js-files-main2}"/>
       <arg line="${js-files-main3}"/>
       <arg line="${js-files-ts}"/>
+      <arg line="${js-files-ts2}"/>
     </java>
 
     <echo file="srcjs/stendhal-compiled.js" append="true">
 //# sourceMappingURL=stendhal-compiled.js.map
     </echo>
+
+    <antcall target="compilejs-hook" />
   </target> <!-- js-invoke-compiler -->
+
+  <target name="compilejs-hook" if="compilejs-hook">
+    <exec executable="${compilejs-hook}" />
+  </target>
 
   <target name="compilejs" depends="cleanjs">
     <antcall target="js-prepare" unless:set="exclude.webclient"/>

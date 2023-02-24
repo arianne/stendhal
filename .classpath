@@ -8,7 +8,7 @@
 	<classpathentry kind="lib" path="libs/easymock.jar"/>
 	<classpathentry kind="lib" path="libs/easymockclassextension.jar"/>
 	<classpathentry kind="lib" path="libs/groovy-3.0.9.jar"/>
-	<classpathentry kind="lib" path="libs/guava.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/guava.jar"/>
 	<classpathentry kind="lib" path="libs/h2.jar"/>
 	<classpathentry kind="lib" path="libs/jardiff.jar"/>
 	<classpathentry kind="lib" path="libs/jcurses.jar"/>
@@ -19,8 +19,8 @@
 	<classpathentry kind="lib" path="libs/simple.jar"/>
 	<classpathentry kind="lib" path="libs/swing-layout.jar"/>
 	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/servlet-api-3.1.jar"/>
-	<classpathentry kind="lib" path="libs/websocket-api-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/servlet-api-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/websocket-api-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/websocket-client-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/websocket-common-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/websocket-server-9.2.5.v20141112.jar"/>
