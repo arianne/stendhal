@@ -724,7 +724,7 @@ sign_large.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snowman.*                  ???; ???; ??? (committed by kymara: 62d73ad)
 swing.png                  bleutailfly; OGA BY 3.0; Stendhal
 tools.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-toys.png                   ???, David E. Gervais, PrinterKiller, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/166981, https://openclipart.org/detail/64909, https://opengameart.org/node/6622
+toys.png                   Daniel Herding (mort), SpiderDave, Peileppe, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/64909, https://opengameart.org/node/15250, https://openclipart.org/detail/11341
 
 tiled/tileset/item/armor/
 
