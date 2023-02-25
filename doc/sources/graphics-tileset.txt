@@ -883,7 +883,7 @@ crates.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_barrel.png         bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 empty_pot.png           ???; ???; ??? (committed by tigertoes: e15b381)
 huge_pot.png            Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79171
-oriental_jar.png        bleutailfly?; ???; ??? (committed by kymara: 6112c8f)
+oriental_jar.png        bleutailfly; OGA BY 3.0; Stendhal
 pots_elegant.png        bleutailfly; OGA BY 3.0; Stendhal
 pot_burgundy.png        bleutailfly; OGA BY 3.0; Stendhal
 pot_golden.png          Katie Russell (kymara); GPL 2.0+; Stendhal
