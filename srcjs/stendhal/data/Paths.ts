@@ -20,6 +20,7 @@ export class Paths {
 	public static readonly weather = Paths.sprites + "/weather";
 	public static readonly achievements = Paths.sprites + "/achievements";
 	public static readonly tileset = Paths.extractPath("data-tileset-path");
+	public static readonly ws = Paths.extractPath("data-ws");
 
 	/**
 	 * extract the path information from DOM

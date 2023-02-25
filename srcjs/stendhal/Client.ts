@@ -15,6 +15,8 @@ declare var stendhal: any;
 import { PerceptionListener } from "./PerceptionListener";
 import { singletons } from "./SingletonRepo";
 
+import { Paths } from "./data/Paths";
+
 import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
 import { Zone } from "./entity/Zone";
@@ -138,7 +140,7 @@ export class Client {
 
 		this.registerMarauroaEventHandlers();
 		this.registerBrowserEventHandlers();
-		marauroa.clientFramework.connect(null, null);
+		marauroa.clientFramework.connect(null, null, Paths.ws.substring(1));
 
 		stendhal.ui.actionContextMenu = new DialogHandler();
 		stendhal.ui.globalInternalWindow = new DialogHandler();
