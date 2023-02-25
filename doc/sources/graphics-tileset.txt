@@ -829,7 +829,7 @@ pies.png                ???; ???; ??? (committed by omero: 5b73f2c)
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
 rustic_meals.png        Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal
-steak.png               ???; ???; ??? (committed by sshk5: 087461e)
+steak.*                 Henrique Lazarini (7Soul1), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/39455
 torte.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 tiled/tileset/item/gothic/
