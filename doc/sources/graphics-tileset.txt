@@ -881,7 +881,7 @@ cauldron.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 clay_pot.png            bleutailfly; OGA BY 3.0; Stendhal
 crates.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_barrel.png         bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-empty_pot.png           ???; ???; ??? (committed by tigertoes: e15b381)
+empty_pot.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 huge_pot.png            Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79171
 oriental_jar.png        bleutailfly; OGA BY 3.0; Stendhal
 pots_elegant.png        bleutailfly; OGA BY 3.0; Stendhal
