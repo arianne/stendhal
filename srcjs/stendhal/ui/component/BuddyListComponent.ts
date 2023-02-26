@@ -198,8 +198,8 @@ export class BuddyListComponent extends Component {
 		}
 
 		if (this.current) {
-			ui.createSingletonFloatingWindow("Action", new ActionContextMenu(this),
-				Math.max(10, event.pageX - 50), event.pageY - 5);
+			stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
+				new ActionContextMenu(this), Math.max(10, event.pageX - 50), event.pageY - 5));
 		}
 	}
 }
