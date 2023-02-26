@@ -953,7 +953,7 @@ throw_3.png            bleutailfly; OGA BY 3.0; Stendhal
 throw_4.png            bleutailfly; OGA BY 3.0; Stendhal
 throw_pillows.png      bleutailfly; OGA BY 3.0; Stendhal
 towels.png             bleutailfly; OGA BY 3.0; Stendhal
-trousers.png           ???; ???; ??? (committed by kymara: c68f448)
+trousers.png           Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/73112
 
 tiled/tileset/item/weapon/
 
