@@ -18,7 +18,10 @@ export class StatBarComponent extends Component {
 	protected readonly ctx: CanvasRenderingContext2D;
 
 
-	constructor(id: string) {
+	constructor(id?: string) {
+		if (!id) {
+			id = "statbar-template";
+		}
 		super(id);
 		this.canvas = <HTMLCanvasElement> this.componentElement;
 		this.ctx = this.canvas.getContext("2d")!;
