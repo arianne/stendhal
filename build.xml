@@ -1134,8 +1134,6 @@
       <arg value="--compilation_level"/>
       <arg value="ADVANCED"/>
       <arg line="${js-debug}"/>
-      <arg value="--output_wrapper" />
-      <arg value="function a() {%output%};a();" />
       <arg value="--process_common_js_modules"/>
       <arg value="--module_resolution=node"/>
       <arg value="--jscomp_off=checkVars"/>

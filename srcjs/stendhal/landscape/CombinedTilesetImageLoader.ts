@@ -165,6 +165,7 @@ export class CombinedTilesetImageLoader {
 
 
 	load() {
+		console.log("CombinedTilesetImageLoader.load()");
 		this.calculateTileUsedAtIndex();
 		let usedTilesets = this.calculateUsedTilesets(this.tileUsedAtIndex.keys());
 		for (let tileset of usedTilesets) {
