@@ -99,7 +99,7 @@ door_s.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_w.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 doors.png                 ???; CC BY-SA 3.0; https://opengameart.org/node/41378 (need to sort out author names)
 stone_doorway.*           Hyptosis, Zachariah Husiar (Zabin), Jetrel; CC BY 3.0; https://opengameart.org/node/13500
-wooden_doors.png          Laguz; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
+wooden_doors.*            Miloslav Číž (drummyfish); CC0; https://opengameart.org/node/84121
 
 tiled/tileset/building/entrance/
 

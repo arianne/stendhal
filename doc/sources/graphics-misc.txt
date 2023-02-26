@@ -149,16 +149,16 @@ walkborder.png          zoli111, Hendrik Brummermann, Jordan Irwin (AntumDeluge)
 
 data/sprites/doors/
 
-fence_gate_*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-headstone.*        Jordan Irwin (AntumDeluge; OGA BY 3.0; Stendhal
-housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ice_path_h.png     Spring, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/98565
-palisade_gate_*    Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-skulldoor_e.png    Katie Russell (kymara); GPL 3.0; Stendhal
-skulldoor_n.png    Katie Russell (kymara); GPL 3.0; Stendhal
-skulldoor_s.png    Katie Russell (kymara); GPL 3.0; Stendhal
-skulldoor_w.png    Katie Russell (kymara); GPL 3.0; Stendhal
-wooden_door_h.png  laguz?; ???; ??? (https://github.com/arianne/stendhal/commit/d52385270c0659ec5a386c6559e1cb60e7635d3a)
+fence_gate_*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+headstone.*      Jordan Irwin (AntumDeluge; OGA BY 3.0; Stendhal
+housedoor.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ice_path_h.png   Spring, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/98565
+palisade_gate_*  Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+skulldoor_e.png  Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_n.png  Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_s.png  Katie Russell (kymara); GPL 3.0; Stendhal
+skulldoor_w.png  Katie Russell (kymara); GPL 3.0; Stendhal
+wooden_door_h.*  Miloslav Číž (drummyfish); CC0; https://opengameart.org/node/84121
 
 data/sprites/effects/
 
