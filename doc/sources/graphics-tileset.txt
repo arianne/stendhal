@@ -749,7 +749,7 @@ tiled/tileset/item/blood/
 
 floor_stain.png          ???; ???; ??? (committed by kymara: acf1ecb)
 floor_stain-safe.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
-floor_stains_2.png       ???; ???; ??? (committed by kymara: acf1ecb)
+floor_stains_2.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
 floor_stains_2-safe.png  Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
 nsew_stains.png          ???; ???; ??? (committed by kymara: acf1ecb)
 nsew_stains-safe.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
