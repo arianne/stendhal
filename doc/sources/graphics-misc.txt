@@ -294,7 +294,7 @@ zombie.png   quadrochave; CC0; https://openclipart.org/detail/201838
 
 data/sprites/switch/
 
-arrow_switch.png  ???; ???; ???
+arrow_switch.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/weather/
 
