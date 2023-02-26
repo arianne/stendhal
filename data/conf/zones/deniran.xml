@@ -338,7 +338,9 @@
 
     <!-- NPCs -->
     <!-- TODO: move inside building -->
+    <!--
     <configurator class-name="games.stendhal.server.maps.deniran.cityoutside.FletcherNPC"/>
+    -->
   </zone>
 
 

@@ -7,6 +7,7 @@
     <type class="whip" subclass="venom_whip" tileid="-1"/>
     <description>You see a venom whip. Its thong has been saturated with cobra venom.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <unattainable>true</unattainable>
     <attributes>
       <atk value="30"/>
       <range value="1"/>
