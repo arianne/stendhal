@@ -229,7 +229,7 @@ int_windows_purple.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 int_windows_white_centered.png  bleutailfly; OGA BY 3.0; Stendhal
 int_windows_wood_centered.png   bleutailfly; OGA BY 3.0; Stendhal
 lighted_window.png              bleutailfly; OGA BY 3.0; Stendhal
-painted.png                     Juan; ???; ??? (committed by kymara: 5af1506)
+painted.*                       Jordan Irwin (AntumDeluge), gustavorezende; OGA BY 3.0; Stendhal, https://openclipart.org/detail/211369
 window_below.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_centered.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_left.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
