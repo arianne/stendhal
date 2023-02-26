@@ -177,7 +177,7 @@ map-ados-city.*            see: tileset sources
 map-orril-castle.png       see: tileset sources
 map-semos-ados.png         see: tileset sources
 map-semos-city.*           see: tileset sources
-map-semos-mine.png         Storyteller?; ???; ???
+map-semos-mine.png         Storyteller; GPL 2.0 or newer; Stendhal
 map-wofol.png              see: tileset sources
 monogenes.*                see: tileset & NPC sources
 parchment_background.svgz  Arvin61r48; CC0; https://openclipart.org/detail/233273
