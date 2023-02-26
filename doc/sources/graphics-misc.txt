@@ -228,7 +228,7 @@ data/sprites/shadow/
 
 data/sprites/signs/
 
-blackboard.png        ???; ???; ???
+blackboard.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 book_black.png        bleutailfly; OGA BY 3.0; Stendhal
 book_blue.png         Jetrel; CC0; https://opengameart.org/node/4531
 book_gray.png         bleutailfly; OGA BY 3.0; Stendhal
