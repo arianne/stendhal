@@ -13,7 +13,6 @@ tileset/furniture/bed/bb_pink.png
 tileset/furniture/bed/bb_red.png
 tileset/furniture/bed/double_blue_brass.png
 tileset/furniture/chair/sofa_grey.png
-tileset/ground/sand.png
 tileset/ground/water/pool_icy.png
 tileset/item/caution_ns.png
 tileset/item/chapter.png
