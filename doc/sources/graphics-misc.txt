@@ -152,7 +152,7 @@ data/sprites/doors/
 fence_gate_*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone.*        Jordan Irwin (AntumDeluge; OGA BY 3.0; Stendhal
 housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ice_path_h.png     laguz?; ???; ??? (https://github.com/arianne/stendhal/commits/master/data/sprites/doors/ice_path_b.png)
+ice_path_h.png     Spring, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/98565
 palisade_gate_*    Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 skulldoor_e.png    Katie Russell (kymara); GPL 3.0; Stendhal
 skulldoor_n.png    Katie Russell (kymara); GPL 3.0; Stendhal
