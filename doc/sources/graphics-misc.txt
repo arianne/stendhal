@@ -39,7 +39,7 @@ slot-legs.png           Jordan Irwin (AntumDeluge); CC0; Stendhal
 slot-portfolio.png      Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 slot-pouch.png          Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (based on money/gold.png)
 slot-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-slot-shield.png         Jordan Irwin (AntumDeluge); CC0; Stendhal
+slot-shield.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 slot-weapon.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 StendhalIcon.png        ???; ???; ??? (committed by Miguel: d9791e5622)
 StendhalSplash.jpg      Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
