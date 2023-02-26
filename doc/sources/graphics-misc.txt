@@ -63,7 +63,6 @@ shorn-sheep.png           Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep_more_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep_some_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
 sugar_cane_field.png      ???; ???; ??? (committed by kymara, drawn by geomac: d36cebb)
-watersplash.png           ???; ???; ??? (committed by danter: 5c087df)
 
 data/sprites/achievements/
 
