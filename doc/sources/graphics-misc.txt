@@ -240,11 +240,11 @@ book_white.png        bleutailfly; OGA BY 3.0; Stendhal
 book_yellow.png       bleutailfly; OGA BY 3.0; Stendhal
 danger_sign.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 default.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-map-orril-castle.png  ???; ???; ???
-map-semos-ados.png    ???; ???; ???
-map-wofol.png         ???; ???; ???
+map-orril-castle.png  see: tilesets
+map-semos-ados.png    see: tilesets
+map-wofol.png         see: tilesets
 notice.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-signpost.png          ???; ???; ???
+signpost.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/source/
 
