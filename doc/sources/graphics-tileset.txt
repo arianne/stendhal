@@ -946,7 +946,7 @@ halloween_bunting.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 lace.png               bleutailfly; OGA BY 3.0; Stendhal
 large_dress.png        ???; ???; ??? (committed by kymara: c68f448)
 laundry.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_hat.png            ???; ???; ??? (committed by kymara: c68f448)
+red_hat.png            Jordan Irwin (AntumDeluge); CC0; Stendhal
 throw_1.png            bleutailfly; OGA BY 3.0; Stendhal
 throw_2.png            bleutailfly; OGA BY 3.0; Stendhal
 throw_3.png            bleutailfly; OGA BY 3.0; Stendhal
