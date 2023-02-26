@@ -254,29 +254,25 @@ gold_source.png   Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 water_source.png  Daniel Herding (mort), Bluelads4; GPL 2.0 or newer; Stendhal
 well_source.png   Daniel Herding (mort), Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
-data/sprites/spells/
-
-spells.xcf.bz2  ???; ???; ???
-
 data/sprites/spells/dark/
 
-lifedrain.png    ???; ???; ???
-necromancer.png  ???; ???; ???
+lifedrain.png    J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/5878, www.jwbjerk.com/art
+necromancer.png  Cethiel; CC0; https://opengameart.org/node/118178
 
 data/sprites/spells/fire/
 
-fireball.png  ???; ???; ???
-power.png     ???; ???; ???
+fireball.png  J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/4413, www.jwbjerk.com/art
+power.png     J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/5045, www.jwbjerk.com/art
 
 data/sprites/spells/ice/
 
-freeze.png  ???; ???; ???
+freeze.png  HorrorPen; CC BY 3.0; https://opengameart.org/node/6355
 
 data/sprites/spells/light/
 
-heal.png     ???; ???; ???
-knowing.png  ???; ???; ???
-shield.png   ???; ???; ???
+heal.png     J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/4413, www.jwbjerk.com/art
+knowing.png  liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/2658
+shield.png   J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/4413, www.jwbjerk.com/art
 
 data/sprites/status/
 
