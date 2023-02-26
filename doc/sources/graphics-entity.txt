@@ -364,7 +364,7 @@ fire_demon.*                Svetlana Kushnariova (Cabbit), olonu, Carl Olsson (s
 imp.png                     Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20926
 imperial_demon_lord.png     Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Andrew Kelley (superjoe), johnny_automatic, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/78, https://openclipart.org/detail/4365
 imperial_demon_servant.png  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Bertram, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/120, https://opengameart.org/node/12858
-water_demon.*               Svetlana Kushnariova (Cabbit), ???, Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/72969, ???
+water_demon.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 winged_blue_imp.*           Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20926
 
 
