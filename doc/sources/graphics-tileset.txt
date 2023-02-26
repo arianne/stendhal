@@ -651,7 +651,7 @@ tiled/tileset/ground/water/
 
 channels_grassy.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dungeon_water.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-foaming.*                ???; ???; ??? (committed by AntumDeluge: 33a8cc6)
+foaming.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 golden_corners.png       ???; ???; ??? (committed by kymara: fbbcf3b)
 golden_shimmery.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 golden_waterfall.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
