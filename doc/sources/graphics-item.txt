@@ -49,6 +49,7 @@ mainio_armor.png              Dungeon Crawl Stone Soup; CC0; https://opengameart
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 red_armor.png                 bleutailfly; OGA BY 3.0; Stendhal
+royal_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 shadow_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -106,6 +107,7 @@ magic_plate_boots.*        Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge);
 mainio_boots.png           ScratchIO; CC0; https://opengameart.org/node/108295
 mithril_boots.png          janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
+royal_boots.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108295
@@ -141,6 +143,7 @@ mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoe
 red_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 red_dragon_cloak.png    Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 rift_cloak.png          Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+royal_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 shadow_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 stone_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 vampire_cloak.png       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -381,6 +384,7 @@ mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.o
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
 red_helmet.*                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 robins_hat.*                bluecarrot16 Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/130086
+royal_helmet.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 shadow_helmet.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 studded_helmet.*            Ragewortt, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84013
 xeno_helmet.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -459,6 +463,7 @@ magic_plate_legs.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mainio_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
+royal_legs.png            bleutailfly; OGA BY 3.0; Stendhal
 shadow_legs.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.*            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
@@ -622,6 +627,7 @@ mainio_shield.png             ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0;
 mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heather Lee Harvey (Emerald) EmeraldActivities.com & https://opengameart.org/users/emerald
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
+royal_shield.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 shadow_shield.png             Hernandack; CC0; https://opengameart.org/node/91222
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -676,6 +682,7 @@ nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 orc_sword.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
+royal_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 scimitar.png                 David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 short_sword.png              David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 soul_dagger.*                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
