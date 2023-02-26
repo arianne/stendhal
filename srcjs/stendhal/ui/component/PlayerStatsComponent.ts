@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-import { StatBar } from "./StatBar";
-import { KarmaBar } from "./KarmaBar";
+import { StatBarComponent } from "./StatBarComponent";
+import { KarmaBarComponent } from "./KarmaBarComponent";
 
 import { Component } from "../toolkit/Component";
 
@@ -52,16 +52,14 @@ export class PlayerStatsComponent extends Component {
 			this.xp[i + 1] = exp;
 		}
 
-		this.hpText = <HTMLElement> this.componentElement
-				.querySelector("#hptext")!;
-		this.otherText = <HTMLElement> this.componentElement
-				.querySelector("#otherstats")!;
+		this.hpText = this.child("#hptext")!;
+		this.otherText = this.child("#otherstats")!;
 
-		this.bars["karma"] = new KarmaBar();
+		this.bars["karma"] = new KarmaBarComponent();
 		// hide karma bar by default
 		this.enableBar("karma", false);
 
-		this.bars["hp"] = new StatBar("hpbar");
+		this.bars["hp"] = new StatBarComponent("hpbar");
 		// use config to determine if HP bar should be visible
 		this.enableBar("hp", singletons.getConfigManager()
 				.getBoolean("ui.stats.hpbar"));

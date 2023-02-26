@@ -9,25 +9,18 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Component } from "../toolkit/Component";
 import { Color } from "../../util/Color";
 
-// TODO: refactor into a Component
-export class StatBar {
+export class StatBarComponent extends Component {
 
 	readonly canvas: HTMLCanvasElement;
 	protected readonly ctx: CanvasRenderingContext2D;
 
 
 	constructor(id: string) {
-		const element = document.getElementById(id);
-		if (!element) {
-			throw new Error("Cannot create status bar because there is no HTML element with id " + id);
-		}
-		if (!(element instanceof HTMLCanvasElement)) {
-			throw new Error("Cannot create status bar because element with id " + id + " is not a canvas");
-		}
-
-		this.canvas = <HTMLCanvasElement> element;
+		super(id);
+		this.canvas = <HTMLCanvasElement> this.componentElement;
 		this.ctx = this.canvas.getContext("2d")!;
 	}
 
@@ -39,15 +32,4 @@ export class StatBar {
 		this.ctx.fillRect(0, 0, this.canvas.width * ratio, this.canvas.height);
 	}
 
-	setVisible(visible=true) {
-		if (visible) {
-			this.canvas.style.display = "";
-		} else {
-			this.canvas.style.display = "none";
-		}
-	}
-
-	isVisible() {
-		return this.canvas.style.display !== "none";
-	}
 }

@@ -9,11 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { StatBar } from "./StatBar";
+import { StatBarComponent } from "./StatBarComponent";
 
 
-// TODO: refactor into a Component
-export class KarmaBar extends StatBar {
+export class KarmaBarComponent extends StatBarComponent {
 
 	private karma = 0;
 	private lastChange = 0;
