@@ -664,7 +664,7 @@ pool_grassy.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pool_icy.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pool_small.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pool_straight_edges.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-swamp_water.png          ???; ???; ??? (committed by Laguz: d2593bd)
+swamp_water.png          Kimmo Rundelin (kiheru), laguz; CC BY-SA 3.0; Stendhal
 water.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 water_bubbles.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 water_corners.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
