@@ -28,7 +28,7 @@ panel_wood_v.png        sharetextures.com; CC0; https://www.sharetextures.com/te
 rp.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 scroll_background.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 settings.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal
-slot.png                ???; ???; ??? (committed by Miguel: d9791e5622)
+slot.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 slot-armor.png          ???; ???; ??? (committed by kiheru: 12f1c8aea9)
 slot-bag.png            CC0; Stendhal (based on bag sprite)
 slot-boots.png          David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
