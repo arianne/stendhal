@@ -825,7 +825,7 @@ fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meals_1.png             ???; ???; ??? (committed by Astrid Sawatzky: 0d2cf4e)
 meals_2.png             ???; ???; ??? (committed by Miguel: 12d51cd)
 meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
-pies.png                ???; ???; ??? (committed by omero: 5b73f2c)
+pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
 rustic_meals.png        Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal

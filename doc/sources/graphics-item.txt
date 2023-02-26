@@ -254,7 +254,7 @@ data/sprites/items/food/
 
 apple.png                Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
 apple_special/*          Glitch; CC0; https://www.glitchthegame.com/, https://opengameart.org/node/20149
-applepie.png             omero; CC BY-SA 3.0; Stendhal
+applepie.png             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 arctic_char.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png            omero; CC BY-SA 3.0; Stendhal
 baguette.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
@@ -268,7 +268,7 @@ cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
 cheese_sausage_on_bun.*  thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 cheesesausage.*          thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 cherry.png               Glitch; CC0; https://opengameart.org/node/20149
-cherrypie.png            omero; CC BY-SA 3.0; Stendhal
+cherrypie.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 chicken.png              Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
 chinese-cabbage.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chocolatebar.png         tigertoes; CC BY-SA 3.0; Stendhal
@@ -552,7 +552,7 @@ shovelhandle.png    tigertoes; CC0; Stendhal, derived from shovel.png
 shovellog.png       tigertoes; CC0; Stendhal, derived from shovel.png
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
 silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
-sugarcane.png       wmbec7718; ???; ??? (committed by kiheru: 3edcf3d)
+sugarcane.png       bluecarrot16; CC0; https://opengameart.org/node/98209
 wood.png            Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 wool.png            Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 yarn.png            tiborius; GPL 2.0 or newer; Stendhal
@@ -706,7 +706,8 @@ rope.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rotary_cutter.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 scrolleraser.*        crisg, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/188214, https://freesvg.org/vector-clip-artof-speedy-eraser
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/116893
-sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)
+sugarmill.png         Alejandro Linares Garcia, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://commons.wikimedia.org/wiki/File:SugarCaneMillTapachula.jpg
+wiresnips.*           rones, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/216787
 
 data/sprites/items/whip/
 
