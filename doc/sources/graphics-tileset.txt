@@ -293,7 +293,7 @@ lilac.png          Juan; ???; Stendhal (committed by kiheru: 68fbe6a)
 nain_rug.png       ???; ???; ??? (committed by Astrid Sawatzky: 3d01bfb)
 orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pink_rug.png       bleutailfly; OGA BY 3.0; Stendhal
-plain_colours.png  ???; ???; ??? (committed by kymara: e425abd)
+plain_colours.png  Katie Russell (kymara); CC0; Stendhal
 purple.png         Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 red_purple.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
