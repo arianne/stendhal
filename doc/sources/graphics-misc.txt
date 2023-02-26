@@ -206,7 +206,7 @@ grumpy.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 love.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 pk.png         ???; ???; ??? (original image committed by Miguel: 165ec23)
 stop.png       ???; ???; ??? (committed by Miguel: fd2401a)
-walk.png       ???; ???; ??? (committed by Miguel: fd2401a)
+walk.png       Miguel Angel Blanch Lardin; CC0; Stendhal (too simple to be copyrighted)
 
 data/sprites/runes/
 
