@@ -31,7 +31,7 @@ settings.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 slot.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 slot-armor.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 slot-bag.png            CC0; Stendhal (based on bag sprite)
-slot-boots.png          David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
+slot-boots.png          bleutailfly; OGA BY 3.0; Stendhal
 slot-cloak.png          CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
 slot-helmet.png         David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
 slot-key.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal (based on item/key/blue.png)
