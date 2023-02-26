@@ -450,14 +450,14 @@ yellow.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 
 data/sprites/items/legs/
 
-black_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara: 775c4eb)
+black_legs.png            Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_legs.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_legs.png            ScratchIO; CC0; https://opengameart.org/node/108448
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 elvish_legs.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
-jewelled_legs.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ modded (committed by kymara: 69cbfee)
+jewelled_legs.png         Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 leather_legs.png          Clint Bellanger, Justin Nichol; CC0; https://opengameart.org/node/13879
 magic_plate_legs.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mainio_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
@@ -467,7 +467,7 @@ royal_legs.png            bleutailfly; OGA BY 3.0; Stendhal
 shadow_legs.*             ScratchIO, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/108781
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.*            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
-xeno_legs.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+xeno_legs.png             bleutailfly; OGA BY 3.0; Stendhal
 
 data/sprites/items/misc/
 
