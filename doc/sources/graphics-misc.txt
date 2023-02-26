@@ -110,7 +110,7 @@ blade_strike_dark.*          Anders Asplund (Danter), Kimmo Rundelin (kiheru); G
 blade_strike_fire.*          Anders Asplund (Danter), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 blade_strike_ice.*           Anders Asplund (Danter), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 blade_strike_light.*         Anders Asplund (Danter), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
-blocked.png                  ???; ???; ???
+blocked.png                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 blood_green.png              ???; ???; ???
 blood_red.png                ???; ???; ???
 blood_leaf.png               sandcat01; CC0; https://openclipart.org/detail/69757
@@ -119,8 +119,8 @@ club_dark.png                David E. Gervais, Jordan Irwin (AntumDeluge); CC BY
 club_fire.png                David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
 club_ice.png                 David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
 club_light.png               David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/6622 (based on items/club/hammer.png)
-hitted.png                   ???; ???; ???
-missed.png                   ???; ???; ???
+hitted.png                   Jordan Irwin (AntumDeluge); CC0; Stendhal
+missed.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 ranged.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sword_dark.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
