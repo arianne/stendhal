@@ -40,7 +40,7 @@ zekiel.*          etcgood1, Robert C. (Mumu); CC BY 4.0; https://opengameart.org
 
 tiled/tileset/building/decoration/
 
-arrows.png                ???; ???; ??? (committed by kymara: 4691de2)
+arrows.*                  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 balcony.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 banner.*                  ???, Dungeon Crawl Stone Soup, Michael Williams (BizmasterStudios); ???; ???, https://opengameart.org/node/12210, https://opengameart.org/node/77334
 banner_long.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
