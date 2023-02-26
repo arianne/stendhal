@@ -890,8 +890,8 @@ pot_golden.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 pot_golden_centred.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 pot_green.png           bleutailfly; OGA BY 3.0; Stendhal
 pot_grey.png            bleutailfly; OGA BY 3.0; Stendhal
-pot_on_metal.png        ???; ???; ??? (committed by kymara: 62fc392)
-pot_on_stone.png        ???; ???; ??? (committed by kymara: 62fc392)
+pot_on_metal.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+pot_on_stone.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 pot_purple.png          bleutailfly; OGA BY 3.0; Stendhal
 pot_tall.png            bleutailfly, Katie Russel (kymara); CC BY-SA 3.0; Stendhal
 small_barrel.png        bleutailfly; OGA BY 3.0; Stendhal
