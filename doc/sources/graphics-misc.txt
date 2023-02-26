@@ -191,22 +191,22 @@ stool.png  bleutailfly; OGA BY 3.0; Stendhal (copied from tiled/tileset/furnitur
 
 data/sprites/ideas/
 
-admin.png      ???; ???; ??? (committed by Miguel: fd2401a)
-agressive.png  ???; ???; ??? (committed by amano: 8c4a701)
-attack.png     ???; ???; ??? (committed by Miguel: fd2401a)
+admin.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+agressive.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
+attack.png     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 attending.png  nicubunu, Katie Russell (kymara); GPL 2.0 or newer; Stendhal, http://clipart.nicubunu.ro/svg/people/ear.svg, http://www.clker.com/clipart-4337.html
 awaiting.png   nicubunu, Katie Russell (kymara); GPL 2.0 or newer; Stendhal, http://clipart.nicubunu.ro/svg/people/ear.svg, http://www.clker.com/clipart-4337.html
 away.png       ???; ???; ??? (committed by Miguel: c237536)
 choking.png    Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 defence.png    Yoriy Krawtsow; GPL 2.0 or newer; Stendhal
-eat.png        ???; ???; ??? (committed by Miguel: fd2401a)
-follow.png     ???; ???; ??? (committed by Miguel: fd2401a)
-food.png       ???; ???; ??? (committed by Miguel: fd2401a)
+eat.png        Gerald_G, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/9079
+follow.*       Miguel Angel Blanch Lardin, Jordan Irwin (AntumDeluge); CC0; Stendhal
+food.*         Miguel Angel Blanch Lardin, Gerald_G, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/9079
 grumpy.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 love.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 pk.png         ???; ???; ??? (original image committed by Miguel: 165ec23)
-stop.png       ???; ???; ??? (committed by Miguel: fd2401a)
-walk.png       Miguel Angel Blanch Lardin; CC0; Stendhal (too simple to be copyrighted)
+stop.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
+walk.png       Miguel Angel Blanch Lardin; CC0; Stendhal
 
 data/sprites/runes/
 
