@@ -401,7 +401,7 @@ drawer_without_runner.png  bleutailfly; OGA BY 3.0; Stendhal
 drawer_with_mirror.png     bleutailfly; OGA BY 3.0; Stendhal
 furniture_pine.png         bleutailfly; OGA BY 3.0; Stendhal
 loom.png                   bleutailfly; OGA BY 3.0; Stendhal
-mannequins.png             amaranthia, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51660, https://opengameart.org/node/73112, https://opengameart.org/node/80916
+mannequins.*               Katherine Fitch (amaranthia), Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51660, https://opengameart.org/node/73112, https://opengameart.org/node/80916
 oriental_screen.png        bleutailfly; OGA BY 3.0; Stendhal
 pedestal.png               ???; ???; ??? (committed by sshk5: e7ad755)
 piano-baby_grand.*         Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/36189
@@ -941,10 +941,10 @@ tiled/tileset/item/textile/
 
 blankets.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bunting.png            Katie Russell (kymara); GPL 2.0+; Stendhal
-dress.png              ???; ???; ??? (committed by kymara: c68f448)
+dress.png              Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
 halloween_bunting.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 lace.png               bleutailfly; OGA BY 3.0; Stendhal
-large_dress.png        ???; ???; ??? (committed by kymara: c68f448)
+large_dress.png        Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
 laundry.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_hat.png            Jordan Irwin (AntumDeluge); CC0; Stendhal
 throw_1.png            bleutailfly; OGA BY 3.0; Stendhal
