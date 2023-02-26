@@ -29,18 +29,18 @@ rp.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/nod
 scroll_background.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 settings.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 slot.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
-slot-armor.png          ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-armor.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 slot-bag.png            CC0; Stendhal (based on bag sprite)
 slot-boots.png          David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
 slot-cloak.png          CC0; Stendhal (based on cloak from Dungeon Crawl Stone Soup)
-slot-helmet.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9) (based on old golden helmet)
-slot-key.png            ???; ???; ??? (committed by kiheru: 9445bdc645)
-slot-legs.png           ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-helmet.png         David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622
+slot-key.png            Katie Russell (kymara); GPL 2.0 or newer; Stendhal (based on item/key/blue.png)
+slot-legs.png           Jordan Irwin (AntumDeluge); CC0; Stendhal
 slot-portfolio.png      Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 slot-pouch.png          Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (based on money/gold.png)
-slot-ring.png           ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-shield.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9)
-slot-weapon.png         ???; ???; ??? (committed by kiheru: 12f1c8aea9)
+slot-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+slot-shield.png         Jordan Irwin (AntumDeluge); CC0; Stendhal
+slot-weapon.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 StendhalIcon.png        ???; ???; ??? (committed by Miguel: d9791e5622)
 StendhalSplash.jpg      Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
 trash.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
