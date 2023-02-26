@@ -542,7 +542,7 @@ red_paving.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, h
 sand_1.*                     Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 sand_2.*                     Rayane Félix (RayaneFLX), Hyptosis, bluecarrot16, Leonard Pabin, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/70104, https://opengameart.org/node/80156, https://opengameart.org/node/47566, https://opengameart.org/node/5712
 sand_edges.png               Rayane Félix (RayaneFLX), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/70104
-sand_red.png                 durkham?, Jordan Irwin (AntumDeluge); ???; ??? (committed by AntumDeluge: 687623e, based on sand.png)
+sand_red.*                   Rayane Félix (RayaneFLX), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/70104
 scratches.png                durkham?; ???; ??? (committed by kymara: 1de18c7)
 scratches2_edges.png         ???; ???; ??? (committed by bluelads: 8e6be79)
 scratches_corners.png        ???; ???; ??? (committed by bluelads: a9c11b1)
