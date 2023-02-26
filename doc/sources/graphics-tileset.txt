@@ -996,7 +996,6 @@ birds.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                johnnnny?; ???; ??? (committed by kymara: 9c6764a)
 creep_large.*           StumpyStrust, Charlie; CC0; https://opengameart.org/node/20435, https://opengameart.org/node/20363
-creep_med.*             StumpyStrust, Charlie; CC0; https://opengameart.org/node/20435, https://opengameart.org/node/20363
 ents.*                  Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/291622
 hay_cart.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
