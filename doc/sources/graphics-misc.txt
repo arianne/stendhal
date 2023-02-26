@@ -204,7 +204,7 @@ follow.*       Miguel Angel Blanch Lardin, Jordan Irwin (AntumDeluge); CC0; Sten
 food.*         Miguel Angel Blanch Lardin, Gerald_G, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/9079
 grumpy.png     Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 love.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-pk.png         ???; ???; ??? (original image committed by Miguel: 165ec23)
+pk.*           Angry Amish, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/79522
 stop.png       Jordan Irwin (AntumDeluge); CC0; Stendhal
 walk.png       Miguel Angel Blanch Lardin; CC0; Stendhal
 
