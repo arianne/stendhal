@@ -55,14 +55,14 @@ chest.png                 bleutailfly, Katie Russell (kymara); OGA BY 3.0; Stend
 corn_field.png            bleutailfly; OGA BY 3.0; Stendhal
 failsafe.png              Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 fire.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-food.png                  ???; ???; ???
+food.png                  Miguel Angel Blanch Lardin; GPL 2.0 or newer; Stendhal
 grain_field.png           Daniel Herding (mort), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sheep.png                 Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep.png           Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep_more_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
 shorn-sheep_some_fur.png  Stendhal; GPL 2.0 or newer; Stendhal
-sugar_cane_field.png      ???; ???; ??? (committed by kymara, drawn by geomac: d36cebb)
+sugar_cane_field.png      geomac; GPL 2.0 or newer; Stendhal
 
 data/sprites/achievements/
 
