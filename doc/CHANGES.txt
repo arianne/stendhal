@@ -57,6 +57,7 @@ Changelog
 - added karma bar to stats panel
 - added trade dialog
 - added leather theme
+- added group panel
 
 *java client*
 - added emoji support
