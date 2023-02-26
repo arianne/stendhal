@@ -396,7 +396,7 @@ sclaria.png        martinix; CC0; https://openclipart.org/detail/3558
 
 data/sprites/items/holiday/
 
-mint.png       ???; ???; ???
+mint.png       bleutailfly; CC0; https://opengameart.org/node/97796
 ornament.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/88910
 ornaments.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/88910
 
@@ -564,7 +564,7 @@ antitoxin_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://openga
 antivenom_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 aquamarine-ring.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 emerald-ring.png          Kimmo Rundelin (kiheru), Katie Russell (kymara); CC BY-SA 3.0; Stendhal
-engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
+engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gold-ring.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 imperial_ring*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/88263
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
