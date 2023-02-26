@@ -182,7 +182,7 @@ map-semos-mine.png         Storyteller?; ???; ???
 map-wofol.png              see: tileset sources
 monogenes.*                see: tileset & NPC sources
 parchment_background.svgz  Arvin61r48; CC0; https://openclipart.org/detail/233273
-wizards-parchment.*        laguz?; ???; ???
+wizards-parchment.*        parchment background by Gerald_G (CC0): https://openclipart.org/detail/57367; see NPC sprites for remaining attributions
 
 data/sprites/furniture/
 
