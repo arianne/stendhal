@@ -60,4 +60,11 @@ export class Panel extends Component {
 		}
 	}
 
+	/**
+	 * removes all children
+	 */
+	public clear() {
+		this.children = [];
+		this.containerElement.innerHTML = "";
+	}
 }
