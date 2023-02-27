@@ -12,11 +12,12 @@
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
-import { Component } from "../toolkit/Component";
+import { Panel } from "../toolkit/Panel";
 
 import { ChatInputComponent } from "./ChatInputComponent";
 
 import { Chat } from "../../util/Chat";
+import { GroupMemberComponent } from "./GroupMemberComponent";
 
 
 declare let marauroa: any;
@@ -25,12 +26,13 @@ declare let stendhal: any;
 /**
  * group management
  */
-export class GroupPanelComponent extends Component {
+export class GroupPanelComponent extends Panel {
 	private invites: Record<string, HTMLButtonElement> = {}
 
 
 	constructor() {
 		super("group-panel");
+		this.containerElement = this.child(".group-members")!;
 		this.child(".group-lootmode")!.addEventListener("click", () => {
 			this.onLootmodeClick();
 		});
@@ -97,8 +99,14 @@ export class GroupPanelComponent extends Component {
 
 		this.child(".group-lootmode")!.innerText = stendhal.data.group.lootmode;
 		this.child(".group-leader")!.innerText = stendhal.data.group.leader;
-		this.child(".group-members")!.innerText = Object.keys(stendhal.data.group.members).join(", ");
+		this.renderGroupMembers();
+	}
 
+	renderGroupMembers() {
+		this.clear();
+		for (let member of Object.keys(stendhal.data.group.members)) {
+			this.add(new GroupMemberComponent(member));
+		}
 	}
 
 	onLootmodeClick() {
