@@ -68,15 +68,15 @@ library_banner.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 longhorn_skull.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magician_banner.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mill_sail.png             ???; ???; ??? (committed by Astrid Sawatzky: 4d7e047)
-numbers.png               ???; ???; ??? (committed by kymara: f790b0f)
-numbers_higher.png        ???; ???; ??? (committed by kymara: 69aca29)
+numbers.png               Kimmo Rundelin (kiheru), Katie Russell (kymara); CC BY-SA 3.0; Stendhal
+numbers_higher.png        Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 orbpedestal.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 platform.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pool.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 realworldcafe.png         madmetzger; ???; ???
 rocks.png                 patvanmackelberg; CC0; https://opengameart.org/node/49850
 rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://opengameart.org/node/11758
-shop_banners.*            ???; ???; Stendhal, ???
+shop_banners.*            Kimmo Rundelin (kiheru), ???; ???; Stendhal, ???
 stone_details.png         bleutailfly; OGA BY 3.0; Stendhal
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
 toolset.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
