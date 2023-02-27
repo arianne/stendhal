@@ -25,15 +25,15 @@ export class AchievementBanner extends TextBubble {
 	private fontT = "normal 20px " + stendhal.config.get("ui.font.tlog");
 
 	private innerWidth = 0;
-	//~ private innerHeight = 0;
+	private innerHeight = 0;
 	private readonly padding = 32;
 
 
 	constructor(cat: string, title: string, desc: string) {
 		super(desc);
 		this.title = title;
-		this.banner = new BackgroundPainter(stendhal.paths.gui
-				+ "/banner_background.png");
+		const bg = stendhal.data.sprites.get(stendhal.paths.gui + "/banner_background.png");
+		this.banner = new BackgroundPainter(bg);
 		this.icon = stendhal.data.sprites.get(stendhal.paths.achievements
 				+ "/" + cat.toLowerCase() + ".png");
 
@@ -47,8 +47,9 @@ export class AchievementBanner extends TextBubble {
 
 		const td = this.getTextDimensions();
 		this.innerWidth = td.width + this.padding; // add padding between icon & text
+		this.innerHeight = td.height;
 		this.width = this.innerWidth + (this.padding * 2); // add left & right padding
-		this.height = td.height;
+		this.height = bg.height || this.innerHeight;
 
 		this.x = (gamewindow.width / 2) - (this.width / 2);
 		this.y = gamewindow.height - this.height;
@@ -61,6 +62,7 @@ export class AchievementBanner extends TextBubble {
 		const iconX = targetX + (this.width / 2) - (this.innerWidth / 2);
 		const iconY = targetY + (this.height / 2) - (this.icon.height * 0.75);
 		const textX = iconX + this.icon.width + this.padding;
+		// TODO: user inner height (text height) for centering vertically
 		const textY = targetY + (this.height / 2) + 10;
 
 		this.banner.paint(ctx, targetX, targetY, this.width,

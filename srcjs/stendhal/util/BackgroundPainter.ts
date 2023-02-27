@@ -9,8 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-declare const stendhal: any;
-
 
 export class BackgroundPainter {
 
@@ -22,8 +20,8 @@ export class BackgroundPainter {
 	private warned = false;
 
 
-	constructor(img: string) {
-		this.bg = stendhal.data.sprites.get(img);
+	constructor(img: HTMLImageElement) {
+		this.bg = img;
 		this.tileW = this.bg.width / 3;
 		this.tileH = this.bg.height / 3;
 
