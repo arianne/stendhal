@@ -17,6 +17,7 @@ export class GroupManager {
 	private members: string[] = [];
 	private lootmode = "";
 	private leader = "";
+	private count = 0;
 
 	/** Singleton instance. */
 	private static instance: GroupManager;
@@ -40,18 +41,34 @@ export class GroupManager {
 	}
 
 	updateGroupStatus(members?: string, leader?: string, lootmode?: string) {
+		this.count = 0;
 		if (members) {
 			var memberArray = members.substring(1, members.length - 1).split("\t");
 			stendhal.data.group.members = {};
 			for (var i = 0; i < memberArray.length; i++) {
 				stendhal.data.group.members[memberArray[i]] = true;
+				this.count++;
 			}
 			stendhal.data.group.leader = leader;
 			stendhal.data.group.lootmode = lootmode;
 		} else {
-			stendhal.data.group.members = [];
+			stendhal.data.group.members = []; // XXX: should this be an object instead of an array?
 			stendhal.data.group.leader = "";
 			stendhal.data.group.lootmode = "";
 		}
+	}
+
+	/**
+	 * Retrieves the name of the leader of this group or an empty string.
+	 */
+	getLeader(): string {
+		return this.leader;
+	}
+
+	/**
+	 * Retrieves number of members in group.
+	 */
+	getMemberCount(): number {
+		return this.count;
 	}
 }

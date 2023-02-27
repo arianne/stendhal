@@ -106,14 +106,19 @@ export class Player extends RPEntity {
 						marauroa.clientFramework.sendAction(action);
 					}
 			});
+			if (marauroa.me.canInviteToGroup()) {
+				list.push({
+					title: "Invite",
+					action: (_entity: any) => {
+						marauroa.clientFramework.sendAction({
+							"type": "group_management",
+							"action": "invite",
+							"params": this["name"]
+						});
+					}
+				});
+			}
 		}
-		/*
-		list.push({
-			title: "Trade",
-			type: "trade"
-		})
-		list.add(ActionType.INVITE.getRepresentation());
-		*/
 	}
 
 	isIgnored() {
