@@ -1,6 +1,14 @@
-/**
- *
- */
+/***************************************************************************
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
 import java.util.Arrays;
@@ -34,43 +42,44 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 
 		// player is not old enough
 		add(ConversationStates.ATTENDING,
-				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
-				 ConversationStates.ATTENDING,
-				 "The cost of a new apartment in Athor is "
-						 + getCost()
-				 + " money. But, you'll have to come back when you have spent at least "
-				 + Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni. Maybe I'll have managed to get a suntan by then.",
-				 null);
+				Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
+				new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
+				ConversationStates.ATTENDING,
+				"The cost of a new apartment in Athor is "
+						+ getCost()
+						+ " money. But, you'll have to come back when you have spent at least "
+						+ Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60))
+						+ " hours on Faiumoni. Maybe I'll have managed to get a suntan by then.",
+				null);
 
 		// player is old enough and hasn't got a house but has not done required quest
 		add(ConversationStates.ATTENDING,
-				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
-								  new QuestNotCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT),
-								  new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT)),
-				 ConversationStates.ATTENDING,
-				 "What do you want with an apartment on Athor when you're not even a good #fisherman? We are trying to attract owners who will spend time on the island. Come back when you have proved yourself a better fisherman.",
-				 null);
+				Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
+				new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
+						new QuestNotCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT),
+						new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"What do you want with an apartment on Athor when you're not even a good #fisherman? We are trying to attract owners who will spend time on the island. Come back when you have proved yourself a better fisherman.",
+				null);
 
 		// player is eligible to buy a apartment
 		add(ConversationStates.ATTENDING,
-				 Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
-				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
-								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
-								  new QuestCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT)),
-					ConversationStates.QUEST_OFFERED,
-				 "The cost of a new apartment is "
-				 + getCost()
-				 + " money.  Also, you must pay a monthly tax of " + HouseTax.BASE_TAX
-				 + " money. If you have an apartment in mind, please tell me the number now. I will check availability. "
-				 + "Athor Apartments are numbered "
-				 + getLowestHouseNumber() + " to " + getHighestHouseNumber() + ".",
-				 null);
+				Arrays.asList("cost", "house", "buy", "purchase", "apartment"),
+				new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
+						new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
+						new QuestCompletedCondition(AthorHouseSeller.FISHLICENSE2_QUEST_SLOT)),
+				ConversationStates.QUEST_OFFERED,
+				"The cost of a new apartment is "
+						+ getCost()
+						+ " money.  Also, you must pay a monthly tax of " + HouseTax.BASE_TAX
+						+ " money. If you have an apartment in mind, please tell me the number now. I will check availability. "
+						+ "Athor Apartments are numbered "
+						+ getLowestHouseNumber() + " to " + getHighestHouseNumber() + ".",
+				null);
 
 		// handle house numbers 101 to 108
 		addMatching(ConversationStates.QUEST_OFFERED,
-				 // match for all numbers as trigger expression
+				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 				ConversationStates.ATTENDING,
