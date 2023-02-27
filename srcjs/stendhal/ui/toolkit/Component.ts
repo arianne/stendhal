@@ -9,8 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-declare let stendhal: any;
-
 
 export abstract class Component {
 
