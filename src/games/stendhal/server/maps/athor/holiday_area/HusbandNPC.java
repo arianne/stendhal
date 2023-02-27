@@ -1,7 +1,6 @@
 /* $Id$ */
-
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,6 +54,7 @@ public class HusbandNPC implements ZoneConfigurator  {
 		npc.setEntityClass("swimmer5npc");
 		npc.setDescription ("You see John at the beach. He enjoys his holidays with his wife, Jane.");
 		npc.setDirection(Direction.DOWN);
+		npc.put("no_shadow", ""); // sunbather laying down
 		zone.add(npc);
 	}
 }

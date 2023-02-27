@@ -94,7 +94,7 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 		setEntityClass("swimmer1npc");
 		setPosition(44, 40);
 		initHP(100);
-
+		put("no_shadow", ""); // sunbather laying down
 	}
 
 	@Override

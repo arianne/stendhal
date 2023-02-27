@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,6 +55,7 @@ public class TouristFromAdosNPC implements ZoneConfigurator  {
 		npc.setEntityClass("swimmer8npc");
 		npc.setDirection(Direction.DOWN);
 		npc.setDescription("You see Zara, sunbathing, and worry that she is looking a little hot.");
+		npc.put("no_shadow", ""); // sunbather laying down
 		zone.add(npc);
 	}
 }

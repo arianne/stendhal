@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -52,6 +52,7 @@ public class WifeNPC implements ZoneConfigurator  {
 		npc.setEntityClass("swimmer6npc");
 		npc.setDescription ("Jane is on holiday with her husband, John.");
 		npc.setDirection(Direction.DOWN);
+		npc.put("no_shadow", ""); // sunbather laying down
 		zone.add(npc);
 	}
 }
