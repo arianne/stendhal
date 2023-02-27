@@ -45,7 +45,7 @@ export class AchievementBanner extends TextBubble {
 		const gamewindow =
 				<HTMLCanvasElement> document.getElementById("gamewindow")!;
 
-		const td = this.getTextDimensions();
+		const td = this.getTextDimensions(gamewindow.getContext("2d")!);
 		this.innerWidth = td.width + this.padding; // add padding between icon & text
 		this.innerHeight = td.height;
 		this.width = this.innerWidth + (this.padding * 2); // add left & right padding
@@ -81,15 +81,13 @@ export class AchievementBanner extends TextBubble {
 		return this.expired();
 	}
 
-	getTextDimensions(): any {
+	private getTextDimensions(ctx: CanvasRenderingContext2D): any {
 		const ret = {} as any;
-		// XXX: is this safe? garbage collection?
-		const ctemp = (document.createElement("canvas") as HTMLCanvasElement).getContext("2d")!;
-		ctemp.font = this.font;
-		let m = ctemp.measureText(this.text);
+		ctx.font = this.font;
+		let m = ctx.measureText(this.text);
 		ret.width = m.width;
-		ctemp.font = this.fontT;
-		m = ctemp.measureText(this.title);
+		ctx.font = this.fontT;
+		m = ctx.measureText(this.title);
 		ret.width = Math.max(ret.width, m.width);
 		// FIXME: how to find text height
 		ret.height = 96;
