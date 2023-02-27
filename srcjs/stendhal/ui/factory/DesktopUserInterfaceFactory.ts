@@ -37,6 +37,7 @@ export class DesktopUserInterfaceFactory {
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
 		let socialPanel = new TabPanelComponent();
+		ui.registerComponent(UIComponentEnum.SocialPanel, socialPanel);
 
 		this.add(leftPanel, UIComponentEnum.MiniMap, new MiniMapComponent());
 		this.add(leftPanel, UIComponentEnum.ZoneInfo, new ZoneInfoComponent());

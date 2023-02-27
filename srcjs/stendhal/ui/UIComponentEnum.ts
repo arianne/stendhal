@@ -35,6 +35,7 @@ export class UIComponentEnum {
 	public static readonly MiniMap = 108;
 	public static readonly ZoneInfo = 109;
 	public static readonly PlayerStats = 110;
+	public static readonly SocialPanel = 111;
 
 
 	// Dialog

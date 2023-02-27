@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2022 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,6 +13,7 @@ import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Panel } from "../toolkit/Panel";
+import { TabPanelComponent } from "../toolkit/TabPanelComponent";
 
 import { ChatInputComponent } from "./ChatInputComponent";
 
@@ -60,7 +61,10 @@ export class GroupPanelComponent extends Panel {
 		});
 		this.invites[leader] = button;
 		this.child(".group-invites")!.append(button);
-		Chat.log("client", "You received an invite to join a group. Please use the group panel to accept the invite.")
+		Chat.log("client", "You received an invite to join a group. Please use the group panel to accept the invite.");
+		// show group panel
+		// FIXME: should get tab index dynamically
+		(ui.get(UIComponentEnum.SocialPanel) as TabPanelComponent).setCurrentTab(1);
 	}
 
 	onJoinClicked(leader: string) {

@@ -50,17 +50,30 @@ export class TabPanelComponent extends Panel {
 		this.child(".tabpanel-tabs")!.append(button);
 	}
 
-	onTabClick(event: Event) {
+	/**
+	 * Sets the visible child panel.
+	 *
+	 * @param idx
+	 *     Index of child panel to show.
+	 */
+	setCurrentTab(idx: number) {
+		if (idx == this.currentIndex) {
+			return;
+		}
 
 		// hide
 		this.children[this.currentIndex].componentElement.style.display = "none";
 		this.buttons[this.currentIndex].classList.remove("active");
 
 		// select
-		this.currentIndex = Number.parseInt((event.target as HTMLElement).dataset.index!, 10);
+		this.currentIndex = idx;
 
 		// show
 		this.children[this.currentIndex].componentElement.style.display = "block";
 		this.buttons[this.currentIndex].classList.add("active");
+	}
+
+	onTabClick(event: Event) {
+		this.setCurrentTab(Number.parseInt((event.target as HTMLElement).dataset.index!, 10));
 	}
 }
