@@ -105,7 +105,7 @@ export class GroupPanelComponent extends Panel {
 	renderGroupMembers() {
 		this.clear();
 		for (let member of Object.keys(stendhal.data.group.members)) {
-			this.add(new GroupMemberComponent(member));
+			this.add(new GroupMemberComponent(member, stendhal.data.group.leader === marauroa.me["_name"]));
 		}
 	}
 
