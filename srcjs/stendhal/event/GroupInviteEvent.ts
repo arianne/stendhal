@@ -29,7 +29,6 @@ export class GroupInviteEvent extends RPEvent {
 			return;
 		}
 
-		
 		if (this["expire"]) {
 			(ui.get(UIComponentEnum.GroupPanel) as GroupPanelComponent).expiredInvite(this["leader"]);
 		} else {
