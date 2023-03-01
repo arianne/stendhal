@@ -288,7 +288,10 @@ brown_rug.png      Daniel Armstrong (HughSpectrum); CC BY-SA 3.0; https://openga
 brown_rug2.png     bleutailfly; OGA BY 3.0; Stendhal
 brown_rug3.png     Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 carpets.png        durkham?, juan?; ???; Stendhal; Need to verify all authors
-carpets_2.png      ???; ???; ??? (committed by kymara: 6f5f862)
+carpets_2.*:
+- edge             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+- marble           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- wood             bleutailfly; OGA BY 3.0; Stendhal
 dark_blue.*        Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 dark_red.png       Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 green.png          ???; ???; ??? (committed by kymara: fda7efa)
