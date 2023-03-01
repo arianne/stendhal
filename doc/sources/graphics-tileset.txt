@@ -1211,7 +1211,7 @@ cave_edges_blue.png  Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengamear
 cave_opening.png     Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/82635
 dark_caves.png       Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 desert.png           Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
-grassland.png        Rayane Félix (RayaneFLX), ???; ???; https://opengameart.org/node/70104
+grassland.png        Rayane Félix (RayaneFLX), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/70104
 mine.png             Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 outdoor.png          Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 snow.png             Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
