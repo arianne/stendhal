@@ -703,6 +703,7 @@ data/sprites/items/tool/
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0 or newer; Stendhal
 foodmill.png          Astrid Sawatzky (Durkham); GPL 2.0 or newer; Stendhal
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+lamp.png              Curt, Sharm, William.Thompsonj, mold, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81455
 leather_needle.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

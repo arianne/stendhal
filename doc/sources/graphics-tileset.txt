@@ -391,8 +391,8 @@ lamp_bronze.png      Curt, Lanea Zimmerman (Sharm), William Thompson (William.Th
 lights_candle.*      Lanea Zimmerman (Sharm), William Thompson, mold, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81455, https://commons.wikimedia.org/wiki/File:Pair_of_candelabra_MET_DP-13853-081.jpg, https://commons.wikimedia.org/wiki/File:Pair_of_three-light_candelabra_MET_DP148336.jpg
 menorah.*            Katie Russel (kymara), Ben P L, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://commons.wikimedia.org/wiki/File:Tabernacle_Menorah_(24955675447).jpg
 roots_lamp.*         ???; ???; ??? (committed by lumocra: 8ffd427)
-ship_lamps.*         ???; ???; ??? (committed by lumocra: f990529)
-small_lamp.*         ???; ???; ??? (committed by lumocra: 6d9e16e)
+ship_lamps.png       Curt, Sharm, William.Thompsonj, mold, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81455
+small_lamp.png       Curt, Sharm, William.Thompsonj, mold, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81455
 small_oil_lamp.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sparkle.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sparkle_middle.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
