@@ -100,7 +100,7 @@ door_e.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_n.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_s.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_w.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-doors.png                 ???; CC BY-SA 3.0; https://opengameart.org/node/41378 (need to sort out author names)
+doors.png                 bluecarrot16, Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), Casper Nilsson, Anamaris, Krusmira, Keith Karnage, Guido Bos, Talosaurus; CC BY-SA 3.0; https://opengameart.org/node/41378
 stone_doorway.*           Hyptosis, Zachariah Husiar (Zabin), Jetrel; CC BY 3.0; https://opengameart.org/node/13500
 wooden_doors.*            Miloslav Číž (drummyfish); CC0; https://opengameart.org/node/84121
 
@@ -239,7 +239,7 @@ window_left.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_long.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_long_below.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_right.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
-windows.png                     ???; CC BY-SA 3.0; https://opengameart.org/node/41378 (need to sort out author names)
+windows.png                     bluecarrot16, Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), Casper Nilsson, Anamaris, Krusmira, Keith Karnage, Guido Bos, Talosaurus; CC BY-SA 3.0; https://opengameart.org/node/41378
 windows_with_flowerboxes.*      Lanea Zimmerman (Sharm), bluecarrot16, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81885, https://opengameart.org/content/lpc-cnilsson
 
 tiled/tileset/furniture/
