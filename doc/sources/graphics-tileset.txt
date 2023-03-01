@@ -431,7 +431,7 @@ city_picture.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/d
 gnome_sweet_gome.png  tigertoes; CC BY-SA 3.0; Stendhal made for future internal gnome home
 large_island.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/138349, https://opengameart.org/node/79120
 oil_paintings.png     tigertoes; CC BY-SA 3.0; Stendhal mostly from my own photos of europe
-projectleader.*       Miguel?, Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal
+projectleader.*       Miguel Angel Blanch Lardin, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal
 sheep_picture.*       Jordan Irwin (AntumDeluge), ???; ???; Stendhal
 small.*               Jordan Irwin (AntumDeluge), Kisscc0; OGA BY 3.0; Stendhal, https://www.kisscc0.com/clipart/sunset-computer-icons-dusk-sunset-daily-sketch-4rv9zm/, https://www.kisscc0.com/photo/waterbed-mattress-bed-sheets-bedding-nature-y7v3tz/, https://www.kisscc0.com/photo/hair-loss-sunset-hair-care-human-hair-growth-beaut-vu6cvg/
 small_2.png           bleutailfly; OGA BY 3.0; Stendhal
