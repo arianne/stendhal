@@ -1,0 +1,4 @@
+The following tilesets can be removed after 1.43:
+
+building/decoration/
+- weapon_banner.*

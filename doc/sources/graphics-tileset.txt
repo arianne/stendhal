@@ -76,11 +76,14 @@ pool.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 realworldcafe.png         madmetzger; ???; ???
 rocks.png                 patvanmackelberg; CC0; https://opengameart.org/node/49850
 rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://opengameart.org/node/11758
-shop_banners.*            Kimmo Rundelin (kiheru), ???; ???; Stendhal, ???
+shop_banners.*:
+- wood panel              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- potion                  Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+- weapon                  Dungeon Crawl Stone Stoup; CC0; https://opengameart.org/node/12210
 stone_details.png         bleutailfly; OGA BY 3.0; Stendhal
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
 toolset.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-weapon_banner.*           ???, Dungeon Crawl Stone Soup; ??? (don't know who author of wooden board is); ???, https://opengameart.org/node/12210
+weapon_banner.*           Kimmo Rundelin (kiheru), Dungeon Crawl Stone Soup; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/12210
 webs.png                  ???; ???; ??? (committed by miguel: 9f10715)
 wood_coal_fire.xcf.bz2    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wood_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
