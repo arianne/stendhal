@@ -282,8 +282,8 @@ tiled/tileset/furniture/carpet/
 black_grey.png     Katie Russell (kymara); CC0; Stendhal
 black_red.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/4712
 blue.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-border.png         Juan?; ???; ??? (committed by kymara: 216fd50)
-border2.png        Juan?; ???; ??? (committed by kymara: c8c3eac)
+border.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+border2.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 brown_rug.png      Daniel Armstrong (HughSpectrum); CC BY-SA 3.0; https://opengameart.org/node/13470
 brown_rug2.png     bleutailfly; OGA BY 3.0; Stendhal
 brown_rug3.png     Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
@@ -293,9 +293,9 @@ carpets.*:
 - blue mesh        bleutailfly; OGA BY 3.0; Stendhal
 - plain grey       Katie Russel (kymara); CC0; Stendhal;
 - marble           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-- border           juan; ???; Stendhal
+- border           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 carpets_2.*:
-- edge             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+- border           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 - marble           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 - wood             bleutailfly; OGA BY 3.0; Stendhal
 dark_blue.*        Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
