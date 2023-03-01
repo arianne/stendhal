@@ -300,7 +300,7 @@ carpets_2.*:
 - wood             bleutailfly; OGA BY 3.0; Stendhal
 dark_blue.*        Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 dark_red.png       Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
-green.png          ???; ???; ??? (committed by kymara: fda7efa)
+green.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 lilac.png          Juan; ???; Stendhal (committed by kiheru: 68fbe6a)
 nain_rug.png       ???; ???; ??? (committed by Astrid Sawatzky: 3d01bfb)
 orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
