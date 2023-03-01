@@ -253,6 +253,7 @@ bathtub.*  extradave; CC0; https://opengameart.org/node/4726
 toilet.*   bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/furniture/bed/
+
 bb_blue.png            bleutailfly; OGA BY 3.0; Stendhal
 bb_dk_blue.png         bleutailfly; OGA BY 3.0; Stendhal
 bb_mixed.png           bleutailfly; OGA BY 3.0; Stendhal
@@ -388,7 +389,7 @@ iron_lamp.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lamp_blue.png        Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
 lamp_bronze.png      Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
 lights_candle.*      Lanea Zimmerman (Sharm), William Thompson, mold, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81455, https://commons.wikimedia.org/wiki/File:Pair_of_candelabra_MET_DP-13853-081.jpg, https://commons.wikimedia.org/wiki/File:Pair_of_three-light_candelabra_MET_DP148336.jpg
-menorah.png          ???; GPL; Stendhal, Wikipedia (committed by kymara: d4dd379)
+menorah.*            Katie Russel (kymara), Ben P L, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://commons.wikimedia.org/wiki/File:Tabernacle_Menorah_(24955675447).jpg
 roots_lamp.*         ???; ???; ??? (committed by lumocra: 8ffd427)
 ship_lamps.*         ???; ???; ??? (committed by lumocra: f990529)
 small_lamp.*         ???; ???; ??? (committed by lumocra: 6d9e16e)
