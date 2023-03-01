@@ -287,7 +287,13 @@ border2.png        Juan?; ???; ??? (committed by kymara: c8c3eac)
 brown_rug.png      Daniel Armstrong (HughSpectrum); CC BY-SA 3.0; https://opengameart.org/node/13470
 brown_rug2.png     bleutailfly; OGA BY 3.0; Stendhal
 brown_rug3.png     Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
-carpets.png        durkham?, juan?; ???; Stendhal; Need to verify all authors
+carpets.*:
+- black/grey mesh  bleutailfly; OGA BY 3.0; Stendhal
+- red plaid        bleutailfly; OGA BY 3.0; Stendhal
+- blue mesh        bleutailfly; OGA BY 3.0; Stendhal
+- plain grey       Katie Russel (kymara); CC0; Stendhal;
+- marble           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- border           juan; ???; Stendhal
 carpets_2.*:
 - edge             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 - marble           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
