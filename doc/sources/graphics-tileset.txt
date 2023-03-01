@@ -407,7 +407,7 @@ tiled/tileset/furniture/other/
 
 birdcage.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chess.png                  ???; ???; ??? (committed by sshk5: c68d192)
-clothes_rack.png           ???; ???; ??? (committed by sshk5: 47d6c30)
+clothes_rack.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 costumes.*                 bleutailfly, Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851, https://opengameart.org/node/88413, https://opengameart.org/node/24944
 drawer.png                 bleutailfly; OGA BY 3.0; Stendhal
 drawer_without_runner.png  bleutailfly; OGA BY 3.0; Stendhal
