@@ -405,7 +405,7 @@ xmas_lights.png      bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/furniture/other/
 
-birdcage.png               ???; ???; ??? (committed by kiheru: a26cd7b)
+birdcage.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chess.png                  ???; ???; ??? (committed by sshk5: c68d192)
 clothes_rack.png           ???; ???; ??? (committed by sshk5: 47d6c30)
 costumes.*                 bleutailfly, Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851, https://opengameart.org/node/88413, https://opengameart.org/node/24944
