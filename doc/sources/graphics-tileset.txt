@@ -1192,7 +1192,7 @@ umbrella_thorn.png       Carl Olsson (surt); CC0; https://opengameart.org/node/1
 
 tiled/tileset/sky/
 
-haze.*                ???; ???; ??? (committed by kymara: 0ca4e76)
+haze.*                Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 stars.png             Laguz?; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
 view_wizards_tower.*  ???; ???; ??? (from multiple tilesets)
 
