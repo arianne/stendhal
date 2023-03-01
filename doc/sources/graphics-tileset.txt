@@ -416,7 +416,7 @@ furniture_pine.png         bleutailfly; OGA BY 3.0; Stendhal
 loom.png                   bleutailfly; OGA BY 3.0; Stendhal
 mannequins.*               Katherine Fitch (amaranthia), Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51660, https://opengameart.org/node/73112, https://opengameart.org/node/80916
 oriental_screen.png        bleutailfly; OGA BY 3.0; Stendhal
-pedestal.png               ???; ???; ??? (committed by sshk5: e7ad755)
+pedestal.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 piano-baby_grand.*         Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/36189
 piano.png                  bleutailfly; OGA BY 3.0; Stendhal
 spinningwheel.png          Firkin, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/232288
