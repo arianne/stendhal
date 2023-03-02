@@ -1139,7 +1139,7 @@ stump_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_pale_brown.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_pale_purple.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_purple.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-stump_rectangular.png  Mascht?; ???; ??? (committed by kymara: 9d6bd0b)
+stump_rectangular.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_snow1.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_vertical.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
