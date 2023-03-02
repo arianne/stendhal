@@ -1186,7 +1186,7 @@ tree_fluffy.png          Megajack64; ???; ??? (committed by kymara: 39bbe76)
 tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_green.png           ???; ???; ??? (committed by Miguel: 12d51cd)
-tree_realistic.png       tiborious?; ???; ??? (committed by Kymara: ded2708)
+tree_realistic.*         Remos Turcuman (Bleed), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/35323
 trees_1.*                Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 umbrella_thorn.png       Carl Olsson (surt); CC0; https://opengameart.org/node/15082
 
