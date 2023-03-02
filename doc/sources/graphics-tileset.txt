@@ -1114,7 +1114,7 @@ flower_baskets.png    kymara?, bleutailfly; ???; ??? (committed by kymara: d6de6
 flower_vase.png       bleutailfly; OGA BY 3.0; Stendhal
 flowering_plant.png   bleutailfly; OGA BY 3.0; Stendhal
 oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
-plant_pots.*          ???; ???; ??? (committed by AntumDeluge: d2db445, mixture of tiles from different images)
+plant_pots.png        Jordan Irwin (AntumDeluge), Bryan Nielsen, Lindsay William Bradford; OGA BY 3.0; Stendhal, https://openclipart.org/detail/33889, https://openclipart.org/detail/174186
 plant_potted_2.png    Megajack64?; ???; ??? (committed by bleutailfly: 7a73b14)
 pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
 pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
