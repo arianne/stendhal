@@ -1077,9 +1077,9 @@ flowering.*            Josh Maines (Tap); CC BY-SA 4.0; joshmaines.com, https://
 hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
 large_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-large_dead.png         ???; ???; ??? (committed by omero: 94ba573)
+large_dead.png         Luís Filipe Figueiredo Alves Gaspar, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://commons.wikimedia.org/wiki/File:Dead_plant_grown_in_plastic_bottle,_April_2013.jpg
 large_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-large_wide_dead.png    ???; ???; ??? (committed by omero: 94ba573)
+large_wide_dead.png    Luís Filipe Figueiredo Alves Gaspar, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://commons.wikimedia.org/wiki/File:Dead_plant_grown_in_plastic_bottle,_April_2013.jpg
 leafy.png              Yar; CC BY 3.0; https://opengameart.org/node/3012
 leafy_2.png            Daniel Cook; CC BY 3.0; https://opengameart.org/node/1003, https://opengameart.org/node/981, https://opengameart.org/node/994
 various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
