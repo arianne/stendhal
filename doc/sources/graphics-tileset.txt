@@ -519,7 +519,7 @@ tiled/tileset/ground/
 blueblur.png                 durkham?; ???; ??? (committed by kymara: e04ef43)
 blue_paving.png              ???; ???; ??? (committed by kymara: b392f32 & kiheru: f3fd9bc)
 bricked_paving.png           tigertoes?; ???; ??? (committed by kymara: 89adddb)
-brown.png                    durkham?; ???; ??? (committed by kymara: f0f6e05)
+brown.png                    Jordan Irwin (AntumDeluge), Katie Russel (kymara); OGA BY 3.0; Stendhal
 brown_2.png                  Rachel J Morris (Moosader), Katie Russel (kymara); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 brown_corners.png            ???; ???; ??? (committed by kymara: 61e8add)
 brown_edges.png              ???; ???; ??? (committed by kymara: 61e8add)
