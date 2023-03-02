@@ -1167,7 +1167,7 @@ fir_trees.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 locust_tree.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 maple_tree.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oak_tree.png             airockstar; CC0; https://opengameart.org/node/50913
-palm_tree.png            Megajack64?; ???; ??? (committed by kymara: 740990b)
+palm_tree.png            Remos Turcuman (Bleed), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/35323
 palm_trees.*             bluecarrot16, Alex Smith (cynicmusic); CC BY-SA 3.0; https://opengameart.org/node/80156, https://opengameart.org/node/55328
 pine_snowy.png           Megajack64; ???; ??? (committed by kymara: bc488db)
 pine_tree*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
