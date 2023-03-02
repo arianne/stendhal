@@ -1047,7 +1047,6 @@ cactus_2.*               Johann C; CC BY-SA 3.0; https://opengameart.org/node/11
 grasses.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grasses_swamp.png        ???; ???; ??? (committed by Laguz: 63c64f0)
 grasses_wildland.png     ???; ???; ??? (committed by omero: a5c1ee7)
-hemp.png                 rubberduck; CC0; https://opengameart.org/node/20191
 leaves.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lily_pads.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 mistletoe.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -1083,7 +1082,6 @@ large_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 large_wide_dead.png    ???; ???; ??? (committed by omero: 94ba573)
 leafy.png              Yar; CC BY 3.0; https://opengameart.org/node/3012
 leafy_2.png            Daniel Cook; CC BY 3.0; https://opengameart.org/node/1003, https://opengameart.org/node/981, https://opengameart.org/node/994
-tropical.png           rubberduck; CC0; https://opengameart.org/node/20191
 various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/flower/
@@ -1188,7 +1186,6 @@ tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_green.png           Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 tree_realistic.*         Remos Turcuman (Bleed), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/35323
-trees_1.*                Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
 umbrella_thorn.png       Carl Olsson (surt); CC0; https://opengameart.org/node/15082
 
 tiled/tileset/sky/
