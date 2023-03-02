@@ -1116,7 +1116,7 @@ flowering_plant.png   bleutailfly; OGA BY 3.0; Stendhal
 oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
 plant_pots.png        Jordan Irwin (AntumDeluge), Bryan Nielsen, Lindsay William Bradford; OGA BY 3.0; Stendhal, https://openclipart.org/detail/33889, https://openclipart.org/detail/174186
 plant_potted_2.*      Jordan Irwin (AntumDeluge), Firkin; OGA BY 3.0; Stendhal, https://openclipart.org/detail/267641, '"Die Giftpflanzen Deutschlands", Peter Esser, 1910'
-pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
+pot_plant.*           bleutailfly, A. Almeida, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/248087
 pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
 pot_plant_sprout.png  bleutailfly, Katie Russel (kymara); OGA BY 3.0; Stendhal
 potted_plants1.*      Jordan Irwin (AntumDeluge), Firkin; OGA BY 3.0; Stendhal, https://openclipart.org/detail/265567, '"Die Giftpflanzen Deutschlands", Peter Esser, 1910'
