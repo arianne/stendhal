@@ -1054,7 +1054,7 @@ mosses.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mushroom.png             Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
 mushroom2.png            Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
 mushroom3.*              Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079; Pouf-Pouf Production https://poufpoufproduction.fr/
-pineapple_plant.png      ???; ???; ??? (committed by kymara: 4b7035f)
+pineapple_plant.png      Kaweesaesther, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://commons.wikimedia.org/wiki/File:Pineapple_plant_in_my_garden.jpg
 pumpkin_halloween.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 round_cactuses.png       Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71279
 small_berried_plant.png  bleutailfly; OGA BY 3.0; Stendhal
