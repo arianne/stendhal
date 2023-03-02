@@ -1155,9 +1155,9 @@ dead_tree_1.png          Yar, Jordan Irwin (AntumDeluge); CC BY 3.0; https://ope
 dead_tree_2.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dead_tree_3.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dead_tree_4.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dead_tree_5.png          ???; ???; ??? (committed by omero: 4da39f4)
-dead_tree_6.png          ???; ???; ??? (committed by omero: 4da39f4)
-dead_tree_7.png          ???; ???; ??? (committed by omero: 4da39f4)
+dead_tree_5.png          rubberduck; CC0; https://opengameart.org/node/110439
+dead_tree_6.png          rubberduck; CC0; https://opengameart.org/node/110439
+dead_tree_7.png          rubberduck; CC0; https://opengameart.org/node/110439
 deadtree_snow.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 evergreen.*              Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://opengameart.org/node/13470
 fall_trees.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
