@@ -1120,7 +1120,7 @@ pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
 pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
 pot_plant_sprout.png  ???; ???; ??? (committed by kymara: 76e7ad6)
 potted_plants1.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/lilly-plant
-potted_plants_2.png   Jordan Irwin (AntumDeluge), Bryan Nielsen, Machovka; OGA BY 3.0; Stendhal, https://openclipart.org/detail/33889, https://openclipart.org/detail/2737
+potted_plants_2.png   Jordan Irwin (AntumDeluge), Bryan Nielsen, Machovka, Anonymous; OGA BY 3.0; Stendhal, https://openclipart.org/detail/33889, https://openclipart.org/detail/2737, https://openclipart.org/detail/24374
 skull_pot.png         Megajack64; ???; ??? (committed by bluetailfly: a151ae8)
 small_flowerpots.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_tree.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
