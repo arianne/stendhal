@@ -503,7 +503,7 @@ table_with_beer_dark.png   bleutailfly; OGA BY 3.0; Stendhal
 table_with_hob.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_with_hob_pale.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_wooden_brown.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tree_stump_table.png       ???; ???; ??? (committed by kymara: 38ce77c)
+tree_stump_table.png       Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
 white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
 white_counter_top.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
@@ -542,7 +542,7 @@ green_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_paving_4.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 greenGround2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ground_2.png                 ???; ???; ??? (committed by kymara: 75b5e35)
+ground_2.png                 Katie Russel (kymara); CC0; Stendhal
 ground_3.png                 Rachel J Morris (Moosader); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 ground_4.png                 durkham?; ???; ??? (committed by AntumDeluge: 394898f & kymara: 500d43a)
 hexagramm.png                Laguz?; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
