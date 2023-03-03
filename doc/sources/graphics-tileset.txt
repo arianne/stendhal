@@ -717,7 +717,7 @@ firewood.*                 Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; S
 fishing_nets.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fishrods.png               sshk5?; ???; ??? (committed by Miguel: 8699690)
 flagpole.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-flat_button.png            Juan?; ???; ??? (committed by kymara: 9deca84)
+flat_button.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
 grill_top.png              bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png         bleutailfly; OGA BY 3.0; Stendhal
 hen_nest.png               omero; OGA BY 3.0; Stendhal
