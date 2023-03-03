@@ -517,7 +517,7 @@ wooden_with_candles.*      Lanea Zimmerman (Sharm), liftarn, Jordan Irwin (Antum
 tiled/tileset/ground/
 
 blueblur.png                 durkham?; ???; ??? (committed by kymara: e04ef43)
-blue_paving.png              ???; ???; ??? (committed by kymara: b392f32 & kiheru: f3fd9bc)
+blue_paving.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bricked_paving.png           tigertoes?; ???; ??? (committed by kymara: 89adddb)
 brown.png                    Jordan Irwin (AntumDeluge), Katie Russel (kymara); OGA BY 3.0; Stendhal
 brown_2.png                  Rachel J Morris (Moosader), Katie Russel (kymara); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
@@ -525,7 +525,7 @@ brown_corners.png            ???; ???; ??? (committed by kymara: 61e8add)
 brown_edges.png              ???; ???; ??? (committed by kymara: 61e8add)
 brown_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brownground2.png             Rachel J Morris (Moosader); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
-cobbled_paving.png           ???; ???; ??? (committed by kiheru: 234f74d)
+cobbled_paving.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cobblestones.png             n4; CC0; https://opengameart.org/node/44169
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 drain.png                    rubberduck, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/30389
