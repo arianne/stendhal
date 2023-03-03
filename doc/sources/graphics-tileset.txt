@@ -1,4 +1,10 @@
 
+tiled/tileset/
+
+placehold_tile.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
+plain_colors.png    Jordan Irwin (AntumDeluge); CC0; Stendhal
+
+
 tiled/tileset/building/
 
 barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
