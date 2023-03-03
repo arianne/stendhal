@@ -41,7 +41,7 @@ slot-pouch.png          Anders Asplund (Danter); GPL 2.0 or newer; Stendhal (bas
 slot-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 slot-shield.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 slot-weapon.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-StendhalIcon.png        ???; ???; ??? (committed by Miguel: d9791e5622)
+StendhalIcon.png        Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
 StendhalSplash.jpg      Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendhal
 trash.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tutorial_background.*   Svetlana Kushnariova (Cabbit), Nila122, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/83626, https://opengameart.org/node/29293

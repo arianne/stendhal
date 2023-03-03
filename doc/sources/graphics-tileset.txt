@@ -708,7 +708,7 @@ bullseye.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button.png                 Juan?; ???; ??? (committed by kymara: b5b8001)
 button_gold.png            Juan?; ???; ??? (committed by kymara: 371d9f6)
 button_grey.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
-buzzing_bees.png           tigertoes; ???; ??? not sure whether needs replaced
+buzzing_bees.png           tigertoes; CC BY-SA 3.0; Stendhal
 campfires.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 caution_ns.png             bleutailfly; OGA BY 3.0; Stendhal
 caution_sign.png           bleutailfly; OGA BY 3.0; Stendhal
@@ -919,7 +919,7 @@ tiled/tileset/item/statue/
 
 archway-wide-red.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 archway.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bird.png                 ???; ???; ??? (committed by kiheru: 234f74d)
+bird.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blackened_column.png     ???; ???; ??? (committed by kiheru: e075fa1)
 blobcreature.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broken_green_column.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -936,14 +936,14 @@ girl_with_bird.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 goddess_icon.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_2.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-green_stone_3.png        ???; ???; ??? (committed by kiheru: 234f74d)
+green_stone_3.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_stone.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 horned_man.png           (placeholder)
 lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_and_stone.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nymph_*.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 plants_potted_stone.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_stone_3.png          ???; ???; ??? (committed by AntumDeluge: 7f83da7, re-color of green_stone_3.png)
+red_stone_3.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 romanic_art1.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 seahorse.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skull_carving.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -997,13 +997,13 @@ dim_yellow_light_5x5.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dim_yellow_light_7x5.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_light.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 door_light_ew.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-green_light_5x5.png             ???; ???; ??? (committed by kymara: 895effe)
+green_light_5x5.png             Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 light_1x1.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 light_5x5.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_light_5x5.png               ???; ???; ??? (committed by kymara: 895effe)
-square_inverse_light_10x10.png  ???; ???; ??? (committed by kymara: cee03ba)
+red_light_5x5.png               Katie Russel (kymara); GPL 2.0 or newer; Stendhal
+square_inverse_light_10x10.png  Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 torchlight_5x4.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-white_1x1.png                   ???; ???; ??? (committed by kymara: 692fb64)
+white_1x1.png                   Katie Russel (kymara); CC0; Stendhal
 yellow_light_5x5.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/object/
@@ -1019,22 +1019,22 @@ hay_cart.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://openga
 letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mine_rails_2.png        Xenodora; CC BY-SA 3.0; https://opengameart.org/node/17247
-question_marks.png      ???; ???; ??? (committed by kymara: 2b3fbca)
+question_marks.png      Katie Russel (kymara); GPL 2.0 or newer; Stendhal
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; https://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
 row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
 scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ship.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skullsonspikes_*.png    ???; ???; ??? (committed by omero: fb45826)
-stalactite.png          ???; ???; ??? (committed by kymara: 7dcd26f)
+stalactite.png          (empty placeholder)
 stone_well.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 tent.png                ??; ???; ??? (committed by sshk5: ca86422)
 testgrid.png            tigertoes; CC BY-SA 3.0; Stendhal made for testing creature spacing
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-well.png                ???; ???; ??? (committed by kiheru: 234f74d)
-well_hoist.*            Xenodora, ???; CC BY 3.0, ???; https://opengameart.org/node/17451
+well.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+well_hoist.*            Xenodora, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/17451
 well_with_rope.png      (placeholder) (committed by bleutailfly: 62dadc2)
 
 tiled/tileset/object/rock/
@@ -1112,7 +1112,10 @@ vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 tiled/tileset/plant/indoor/
 
 cactuspotted.png      ???; ???; ??? (committed by sshk5: 2dd3f77)
-flower_baskets.png    kymara?, bleutailfly; ???; ??? (committed by kymara: d6de63d & kiheru: e906b0b)
+flower_baskets.png:
+- basket 1            ???; ???; ??? (committed by kymara: d6de63dd)
+- basket 2            ???; ???; ??? (committed by kymara: d6de63dd)
+- basket 3            bleutailfly; OGA BY 3.0; Stendhal
 flower_vase.png       bleutailfly; OGA BY 3.0; Stendhal
 flowering_plant.png   bleutailfly; OGA BY 3.0; Stendhal
 oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
