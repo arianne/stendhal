@@ -697,7 +697,7 @@ tiled/tileset/item/
 awning_1.png               tigertoes; CC BY-SA; Stendhal
 awning_2.*                 Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/14914
 bazaar_produce.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-black_board.png            (placeholder)
+black_board.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 boxes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broom.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brush.png                  bleutailfly; OGA BY 3.0; Stendhal
