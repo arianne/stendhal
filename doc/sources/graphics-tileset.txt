@@ -599,7 +599,7 @@ blue_green.png            n4; CC0; https://opengameart.org/node/44169
 blue_hole.png             Katie Russell (kymara); GPL 2.0+; Stendhal
 brown.png                 ???; ???; ??? (committed by Miguel: 859dfe8)
 brown_hole.png            ???; ???; ??? (committed by kymara: a1362b6)
-church_tiles.png          ???; ???; ??? (committed by kymara: a1362b6)
+church_tiles.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 floor.png                 ???; ???; ??? (committed by kiheru: 2396739)
 floors_3.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_4.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
