@@ -709,7 +709,7 @@ bulletin_board_items2.png  bleutailfly; OGA BY 3.0; https://opengameart.org/node
 bullseye.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button.png                 Juan?; ???; ??? (committed by kymara: b5b8001)
 button_gold.png            Juan?; ???; ??? (committed by kymara: 371d9f6)
-button_grey.png            Juan?; ???; ??? (committed by kymara: 453499f)
+button_grey.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
 buzzing_bees.png           tigertoes; ???; ??? not sure whether needs replaced
 campfires.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 caution_ns.png             bleutailfly; OGA BY 3.0; Stendhal
