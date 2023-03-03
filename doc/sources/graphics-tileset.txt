@@ -614,7 +614,7 @@ purple_tile.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 raised_platform.png       ???; ???; ??? (committed by tigertoes: 3898134)
 raised_platform_blue.png  ???; ???; ??? (committed by tigertoes: 3898134)
 raised_platform_purple.*  ???; ???; ??? (committed by tigertoes: 3898134)
-soft_blue.png             ???; ???; ??? (committed by kiheru: a68087f)
+soft_blue.png             (placeholder)
 tiles.*                   Kimmo Rundelin (kiheru), Viktor Hahn (Viktor.Hahn@web.de), compmend, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/82895, https://opengameart.org/node/100854
 
 tiled/tileset/ground/ladder/
