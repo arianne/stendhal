@@ -129,7 +129,7 @@ blue_elf_cloak.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 blue_striped_cloak.*    Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 bone_dragon_cloak.png   Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 chaos_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
-cloak.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
+cloak.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 dwarf_cloak.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 elf_cloak.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 elvish_cloak.png        sandcat01, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
