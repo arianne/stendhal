@@ -697,7 +697,7 @@ tiled/tileset/item/
 awning_1.png               tigertoes; CC BY-SA; Stendhal
 awning_2.*                 Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/14914
 bazaar_produce.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-black_board.png            gummipferd?; ???; ??? (committed by kymara: 243d45a)
+black_board.png            (placeholder)
 boxes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broom.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brush.png                  bleutailfly; OGA BY 3.0; Stendhal
@@ -938,7 +938,7 @@ green_stone.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_2.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_3.png        ???; ???; ??? (committed by kiheru: 234f74d)
 grey_stone.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-horned_man.png           ???; ???; ??? (committed by kiheru: 6d8807f)
+horned_man.png           (placeholder)
 lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_and_stone.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nymph_*.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
