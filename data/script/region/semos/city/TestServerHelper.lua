@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,11 @@
  ***************************************************************************
 ]]
 
+
+-- enabled on testserver only
+if not properties:enabled("stendhal.testserver") then
+  do return end
+end
 
 local zone = "0_semos_city"
 local npc = nil
@@ -478,18 +483,16 @@ local function createNPC()
 end
 
 
-if properties:enabled("stendhal.testserver") then
-	logger:info("Creating test server helper NPC")
+logger:info("Creating test server helper NPC")
 
-	if game:setZone(zone) then
-		createNPC()
+if game:setZone(zone) then
+	createNPC()
 
-		if npc ~= nil then
-			game:add(npc)
-		else
-			logger:error("Could not create test server helper NPC")
-		end
+	if npc ~= nil then
+		game:add(npc)
 	else
-		logger:error("Could not set zone: " .. zone)
+		logger:error("Could not create test server helper NPC")
 	end
+else
+	logger:error("Could not set zone: " .. zone)
 end
