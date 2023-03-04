@@ -1,0 +1,63 @@
+--[[
+ ***************************************************************************
+ *                       Copyright © 2023 - Stendhal                       *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************
+]]
+
+
+logger:info("Loading quest manuscript example with Lua")
+
+
+local itemBuilder = quests:createBuilder("BringItemTask")
+
+itemBuilder:info()
+  :name("Cheese for Lua")
+  :description("Lua wants some cheese.")
+  :internalName("cheese_for_lua")
+  :repeatableAfterMinutes(15)
+  :minLevel(0)
+  :region(Region.SEMOS_CITY)
+  :questGiverNpc("Lua")
+
+itemBuilder:history()
+  :whenNpcWasMet("Lua is hungry and wants a piece of cheese.")
+  :whenQuestWasRejected("Cheese is gross.")
+  :whenQuestWasAccepted("I am a cheese aficionado myself. I will get her some.")
+  :whenTaskWasCompleted("I found some cheese.")
+  :whenQuestWasCompleted("I gave Lua a nice slice of cheese. I'm sure she will be hungry again soon.")
+  :whenQuestCanBeRepeated("I wonder if Lua would like some more cheese.")
+
+itemBuilder:offer()
+  :respondToRequest("I am getting hungry but I'm too young to go into the tavern. Would you get me some cheese?")
+  :respondToUnrepeatableRequest("Oh, I am still satisfied from the cheese you brought me before.")
+  :respondToRepeatedRequest("I'm getting hungry again but I'm still not old enough to go into the tavern. Would you get me some more cheese?")
+  :respondToAccept("Thanks! I'll be right here waiting.")
+  :respondTo({"cheese"}):saying("Margaret in the tavern sells it... or you could just kill a rat. Yuck!")
+  :respondToReject("Oh, nevermind then. I'll wait for someone else who is willing to help.")
+  :rejectionKarmaPenalty(15.0)
+  :remind("I'm so hungry. Please hurry with that cheese.")
+
+itemBuilder:task()
+  :requestItem(1, "cheese")
+
+itemBuilder:complete()
+  :greet("Is that cheese for me? Yum!")
+  :respondToReject("Oh, so you got it for yourself. Please hurry with my cheese, my stomach is rumbling.")
+  :respondToAccept("Oh thank you! I was starving. Here is some money for your trouble.")
+  :rewardWith(actions:create("IncreaseXPAction", {100}))
+  :rewardWith(actions:create("IncreaseKarmaAction", {25.0}))
+  :rewardWith(actions:create("EquipItemAction", {"money", 20}))
+
+quests:register(quests:createManuscript(itemBuilder))
+
+--~ local creatureBuilder = quests:createBuilder("KillCreaturesTask")
+
+--~ quests:register(quests:createManuscript(creatureBuilder))

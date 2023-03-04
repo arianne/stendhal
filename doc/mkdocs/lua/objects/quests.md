@@ -20,6 +20,24 @@ Adds helper functions for creating & manipulating quests & exposes select public
 - Returns: New [LuaQuest][] instance.
 
 ---
+### quests:createManuscript
+<span style="color:green; font-weight:bold;">quests:createManuscript</span>(builder)
+
+- Creates a new quest in manuscript format.
+- Parameters:
+    - ***builder:*** A [QuestBuilder](../../../java/games/stendhal/server/entity/npc/quest/QuestBuilder.html) instance that defines quest.
+- Returns: New [QuestManuscript](../../../java/games/stendhal/server/entity/npc/quest/QuestManuscript.html) instance.
+
+---
+### quests:createBuilder
+<span style="color:green; font-weight:bold;">quests:createBuilder</span>(task)
+
+- Creates a quest builder to pass to `quests:createManuscript`.
+- Parameters:
+    - ***task:*** Task type identifier. Supported are "BringItemTask" & "KillCreaturesTask".
+- Returns: New [QuestBuilder](../../../java/games/stendhal/server/entity/npc/quest/QuestBuilder.html) instance.
+
+---
 ### quests:load
 <span style="color:green; font-weight:bold;">quests:load</span>(quest)
 
@@ -225,18 +243,59 @@ end
 quests:register(myQuest)
 ```
 
-Quest manuscript example (TODO):
+Example of [CoalForHaunchy][] quest manuscript converted to Lua:
 ```
 local itemBuilder = quests:createBuilder("BringItemTask")
-local itemQuest = quests:createManuscript(itemBuilder)
 
-quests:register(itemQuest)
+itemBuilder:info()
+  :name("Coal for Haunchy")
+  :description("Haunchy Meatoch is afraid of his BBQ grillfire. Will his coal last till the steaks are ready or will he need some more?")
+  :internalName("coal_for_haunchy")
+  :repeatableAfterMinutes(2 * 24 * 60)
+  :minLevel(0)
+  :region(Region.ADOS_CITY)
+  :questGiverNpc("Haunchy Meatoch")
+
+itemBuilder:history()
+  :whenNpcWasMet("Haunchy Meatoch welcomed me to the Ados market.")
+  :whenQuestWasRejected("He asked me to fetch him some pieces of coal but I don't have time to collect some.")
+  :whenQuestWasAccepted("The BBQ grill-heat is low and I promised Haunchy to help him out with 25 pieces of coal.")
+  :whenTaskWasCompleted("I found 25 pieces of coal for the Haunchy and think he will be happy.")
+  :whenQuestWasCompleted("Haunchy Meatoch was really happy when I gave him the coal, he has enough for now. He gave me some of the best steaks which I ever ate!")
+  :whenQuestCanBeRepeated("But I'd bet his amount is low again and needs more. Maybe I'll get more grilled tasty steaks.")
+
+itemBuilder:offer()
+  :respondToRequest("I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?")
+  :respondToUnrepeatableRequest("The coal amount behind my counter is still high enough. I will not need more for some time.")
+  :respondToRepeatedRequest("The last coal you brought me is mostly gone again. Will you bring me some more?")
+  :respondToAccept("Thank you! I'll be sure to give you a nice and tasty reward.")
+  :respondTo({"coal"}):saying("Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels... Will you help me?")
+  :respondToReject("Oh, never mind. I thought you love BBQs like I do. Bye then.")
+  :rejectionKarmaPenalty(10.0)
+  :remind("Luckily my BBQ is still going. But please hurry up to bring me 25 coal as you promised.")
+
+entities:getNPC("Haunchy Meatoch"):addReply("coal", "Sometime you could do me a #favour ...")
+
+itemBuilder:task()
+  :requestItem(25, "coal")
+
+itemBuilder:complete()
+  :greet("Ah, I see, you have enough coal to keep my BBQ on! Is it for me?")
+  :respondToReject("Well then, hopefully someone else will help me before my BBQ goes out.")
+  :respondToAccept(nil)
+  :rewardWith(actions:create("IncreaseXPAction", {200}))
+  :rewardWith(actions:create("IncreaseKarmaAction", {20}))
+  :rewardWith(actions:create("EquipRandomAmountOfItemAction", {"grilled steak", 1, 4, 1,
+      "Thank you! Take [this_these] [number_item] from my grill!"}))
+
+quests:register(quests:createManuscript(itemBuilder))
 ```
 
 
 [java.lang.String]: https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
 [java.util.List]: https://docs.oracle.com/javase/8/docs/api/java/util/List.html
 
+[CoalForHaunchy]: https://github.com/arianne/stendhal/blob/master/src/games/stendhal/server/maps/quests/CoalForHaunchy.java
 [InspectAction]: ../../../java/games/stendhal/server/actions/admin/InspectAction.html
 [IQuest]: ../../../java/games/stendhal/server/maps/quests/IQuest.html
 [LuaQuest]: ../../../java/games/stendhal/server/core/scripting/lua/LuaQuestHelper.LuaQuest.html
