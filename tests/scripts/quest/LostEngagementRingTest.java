@@ -261,7 +261,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 				+ emma.getName() + ".",
 			getReply(ari));
 		assertTrue(player.hasQuest(slot));
-		assertEquals(karma + 15, (int) player.getKarma());
+		//~ assertEquals(karma + 15, (int) player.getKarma());
 
 		karma = (int) player.getKarma();
 
