@@ -1075,7 +1075,7 @@ blue_green.png         Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart.
 bricked_bushes.*       Daniel Cook, bleutailfly; CC BY 3.0; Stendhal, https://opengameart.org/node/1003
 bushes.*               Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 bush_mult_colored.png  Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71770
-bush_pinks.png         (placeholder)
+bush_pinks.*           Daniel Cook, Zachariah Husiar (Zabin), Bertram, Jetrel, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, https://opengameart.org/node/11758, https://lostgarden.com/2006/07/more-free-game-graphics.html
 fern.png               rubberduck; CC BY 4.0; https://opengameart.org/node/94403
 flowering.*            Josh Maines (Tap); CC BY-SA 4.0; joshmaines.com, https://opengameart.org/node/76904
 hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
