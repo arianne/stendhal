@@ -3,7 +3,7 @@
 
 # Introduction
 
-Adds helper functions for creating & manipulating quests & exposes select public methods of the {@link games.stendhal.server.core.rp.StendhalQuestSystem} class.
+Adds helper functions for creating & manipulating quests & exposes select public methods of the [StendhalQuestSystem][] class.
 
 # quests
 
@@ -17,7 +17,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 - Parameters:
     - ***slotName:*** (optional) The string identifier for the quest.
     - ***name:*** (optional) The human-readable name that can be shown in travel log.
-- Returns: New {@link games.stendhal.server.core.scripting.lua.LuaQuestHelper.LuaQuest LuaQuest} instance.
+- Returns: New [LuaQuest][] instance.
 
 ---
 ### quests:load
@@ -25,7 +25,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Adds a quest to the world.
 - Parameters:
-    - ***quest:*** The {@link games.stendhal.server.maps.quests.IQuest IQuest} instance to be loaded.
+    - ***quest:*** The [IQuest][] instance to be loaded.
 
 ---
 ### quests:unload
@@ -41,7 +41,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Caches a quest for loading at server startup.
 - Parameters:
-    - ***quest:*** {@link games.stendhal.server.maps.quests.IQuest IQuest} instance to be loaded.
+    - ***quest:*** [IQuest][] instance to be loaded.
 - Aliases:
     - <span style="color:green; font-style:italic;">quests:register</span>
 
@@ -51,8 +51,8 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Checks if a quest has been loaded.
 - Parameters:
-    - ***quest:*** {@link games.stendhal.server.maps.quests.IQuest IQuest} instance to check.
-- Returns: <code>true</code> if the instance matches stored quests.
+    - ***quest:*** [IQuest][] instance to check.
+- Returns: `true` if the instance matches stored quests.
 
 ---
 ### quests:listAll
@@ -77,7 +77,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 ### quests:listStates
 <span style="color:green; font-weight:bold;">quests:listStates</span>(player)
 
-- Dumps the internal quest states for the specified player. This is used for the {@link games.stendhal.server.action.admin.InspectAction InspectAction}.
+- Dumps the internal quest states for the specified player. This is used for the [InspectAction][].
 - Parameters:
     - ***player:*** Player to create the report for.
 - Returns: String report.
@@ -86,19 +86,19 @@ Adds helper functions for creating & manipulating quests & exposes select public
 ### quests:getQuest
 <span style="color:green; font-weight:bold;">quests:getQuest</span>(questName)
 
-- Retrieves the {@link games.stendhal.server.maps.quests.IQuest IQuest} object for a named quest.
+- Retrieves the [IQuest][] object for a named quest.
 - Parameters:
     - ***questName:*** Name of quest.
-- Returns: <code>IQuest</code> or <code>null</code> if doesn't exist.
+- Returns: `IQuest` or `null` if doesn't exist.
 
 ---
 ### quests:getQuestFromSlot
 <span style="color:green; font-weight:bold;">quests:getQuestFromSlot</span>(questSlot)
 
-- Retrieves the {@link games.stendhal.server.maps.quests.IQuest IQuest} object for a quest.
+- Retrieves the [IQuest][] object for a quest.
 - Parameters:
     - ***questSlot:*** Quest identifier string.
-- Returns: <code>IQuest</code> or <code>null</code> if doesn't exist.
+- Returns: `IQuest` or `null` if doesn't exist.
 
 ---
 ### quests:getOpen
@@ -106,7 +106,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves a list of open quests from a player.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
 - Returns: List of string identifiers for open quests.
 
 ---
@@ -115,7 +115,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves a list of completed quests from a player.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
 - Returns: List of string identifiers for completed quests.
 
 ---
@@ -124,7 +124,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves a list of incomplete quests in a specified region.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***region:*** Region name/identifier.
 - Returns: List of string identifiers of incomplete quests in region.
 
@@ -134,7 +134,7 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves a list of quests a player has completed, and can now do again.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
 - Returns:
 
 ---
@@ -143,9 +143,9 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves the description of a quest.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***questName:*** Name of the quest.
-- Returns: <code>{@link java.lang.String String}</code> description.
+- Returns: String description.
 
 ---
 ### quests:getLevelWarning
@@ -153,9 +153,9 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - If the quest is too dangerous, add a warning unless the player has already completed it.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***questName:*** Name of the quest.
-- Returns: <code>{@link java.lang.String String}</code>
+- Returns: String
 
 ---
 ### quests:getProgressDetails
@@ -163,9 +163,9 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves details on the progress of the quest.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***questName:*** Name of the quest.
-- Returns: <code>{@link java.util.List List}<{@link java.lang.String String}></code>
+- Returns: [java.util.List][]<[java.lang.String][]>
 
 ---
 ### quests:getNPCNamesForUnstartedInRegionForLevel
@@ -173,9 +173,9 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves a list of the unique npc names for unstarted quests in a specified region.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***region:*** Region to check in.
-- Returns: <code>{@link java.util.List List}<{@link java.lang.String String}></code>
+- Returns: [java.util.List][]<[java.lang.String][]>
 
 ---
 ### quests:getDescriptionForUnstartedInRegionFromNPCName
@@ -183,43 +183,62 @@ Adds helper functions for creating & manipulating quests & exposes select public
 
 - Retrieves quest descriptions for unstarted quests in a specified region matching a specific NPC name.
 - Parameters:
-    - ***player:*** {@link games.stendhal.server.entity.player.Player Player} instance to be checked.
+    - ***player:*** [Player][] instance to be checked.
     - ***region:*** Region to check in.
     - ***name:*** Name of NPC.
-- Returns: <code>{@link java.util.List List}<{@link java.lang.String String}></code>
+- Returns: [java.util.List][]<[java.lang.String][]>
 
 # Classes
 
 ## LuaQuest
 
-See: {@link games.stendhal.server.core.scripting.lua.LuaQuestHelper.LuaQuest LuaQuest}
+See: [LuaQuest][]
 
 ### Public Members
 
 #### LuaQuest.init
 <span style="color:darkblue; font-weight:bold;">LuaQuest.init</span>
 
-- Called by {@link games.stendhal.server.maps.quests.IQuest#addToWorld}.
+- Called by [IQuest.addToWorld](../../../java/games/stendhal/server/maps/quests/IQuest.html#addToWorld()).
 - Type: function
 
 ### Public Methods
 
 ### Usage
 
+Standard quest example:
 ```
 local loadStep1 = function()
-	...
+  ...
 end
 
 local loadStep2 = function()
-	...
+  ...
 end
 
 local myQuest = quests:create("my_quest", "My Quest")
 myQuest.init = function()
-	loadStep1()
-	loadStep2()
+  loadStep1()
+  loadStep2()
 end
 
 quests:register(myQuest)
 ```
+
+Quest manuscript example (TODO):
+```
+local itemBuilder = quests:createBuilder("BringItemTask")
+local itemQuest = quests:createManuscript(itemBuilder)
+
+quests:register(itemQuest)
+```
+
+
+[java.lang.String]: https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+[java.util.List]: https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+
+[InspectAction]: ../../../java/games/stendhal/server/actions/admin/InspectAction.html
+[IQuest]: ../../../java/games/stendhal/server/maps/quests/IQuest.html
+[LuaQuest]: ../../../java/games/stendhal/server/core/scripting/lua/LuaQuestHelper.LuaQuest.html
+[Player]: ../../../java/games/stendhal/server/entity/player/Player.html
+[StendhalQuestSystem]: ../../../java/games/stendhal/server/core/rp/StendhalQuestSystem.html

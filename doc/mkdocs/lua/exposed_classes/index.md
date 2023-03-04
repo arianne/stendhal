@@ -6,7 +6,7 @@ Static Classes & Enumerations
 
 ## ConversationStates
 
-The {@link games.stendhal.server.entity.npc.ConversationStates} enum.
+The [ConversationStates][] enum.
 
 Example usage:
 ```
@@ -16,7 +16,7 @@ npc:setCurrentState(ConversationStates.IDLE)
 
 ## ConversationPhrases
 
-The {@link games.stendhal.server.entity.npc.ConversationPhrases} class.
+The [ConversationPhrases][] class.
 
 Example usage:
 ```
@@ -31,7 +31,7 @@ npc:add(ConversationStates.IDLE,
 
 ## CollisionAction
 
-The {@link games.stendhal.server.entity.CollisionAction} enum.
+The [CollisionAction][] enum.
 
 Example usage:
 ```
@@ -41,7 +41,7 @@ npc:setCollisionAction(CollisionAction.STOP)
 
 ## SkinColor
 
-The {@link games.stendhal.common.constants.SkinColor} enum.
+The [SkinColor][] enum.
 
 Example usage:
 ```
@@ -52,7 +52,7 @@ npc:setOutfitColor("skin", SkinColor.DARK)
 
 ## Direction
 
-The {@link games.stendhal.common.Direction} enum.
+The [Direction][] enum.
 
 Example usage:
 ```
@@ -62,19 +62,19 @@ npc:setDirection(Direction.DOWN)
 
 ## DaylightPhase
 
-The {@link games.stendhal.server.core.rp.DaylightPhase} enum.
+The [DaylightPhase][] enum.
 
 ## Region
 
-The {@link games.stendhal.server.maps.Region} class.
+The [Region][] class.
 
 ## MathHelper
 
-The {@link games.stendhal.common.MathHelper} class.
+The [MathHelper][] class.
 
 ## Color
 
-The {@link java.awt.Color} class.
+The [java.awt.Color][] class.
 
 Example usage:
 ```
@@ -85,13 +85,13 @@ npc:setOutfitColor("dress", Color.BLUE)
 
 ## SingletonRepository
 
-The {@link game.stendhal.server.core.engine.SingletonRepository} static instance.
+The [SingletonRepository][] static instance.
 
 Implemented as <code>singletons</code> object.
 
 ## CloneManager
 
-The {@link games.stendhal.server.entity.npc.CloneManager} static instance.
+The [CloneManager][] static instance.
 
 Implemented as <code>clones</code> object.
 
@@ -102,6 +102,21 @@ local myClone = clones:clone(orig)
 
 ## Rand
 
-The {@link games.stendhal.common.Rand} random number generator.
+The [Rand][] random number generator.
 
 Implemented as <code>random</code> object.
+
+
+[java.awt.Color]: https://docs.oracle.com/javase/8/docs/api/java/awt/Color.html
+
+[CloneManager]: ../../java/games/stendhal/server/entity/npc/CloneManager.html
+[CollisionAction]: ../../java/games/stendhal/server/entity/CollisionAction.html
+[ConversationPhrases]: ../../java/games/stendhal/server/entity/npc/ConversationPhrases.html
+[ConversationStates]: ../../java/games/stendhal/server/entity/npc/ConversationStates.html
+[DaylightPhase]: ../../java/games/stendhal/server/core/rp/DaylightPhase.html
+[Direction]: ../../java/games/stendhal/common/Direction.html
+[MathHelper]: ../../java/games/stendhal/common/MathHelper.html
+[Rand]: ../../java/games/stendhal/common/Rand.html
+[Region]: ../../java/games/stendhal/server/maps/Region.html
+[SingletonRepository]: ../../java/games/stendhal/server/core/engine/SingletonRepository.html
+[SkinColor]: ../../java/games/stendhal/common/constants/SkinColor.html

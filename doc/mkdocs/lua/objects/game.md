@@ -11,19 +11,19 @@ The main object that handles setting zone & adding entities to game.
 ### game:add
 <span style="color:green; font-weight:bold;">game:add</span>(object)
 
-- Adds an {@link marauroa.common.game.RPObject} instance to the current zone.
+- Adds an [RPObject][] instance to the current zone.
 - Parameters:
     - ***object:*** Object to add.
 
 <span style="color:green; font-weight:bold;">game:add</span>(npc)
 
-- Adds an {@link games.stendhal.server.entity.npc.NPC} instance to the current zone.
+- Adds an [NPC][] instance to the current zone.
 - Parameters:
     - ***npc:*** NPC to add.
 
 <span style="color:green; font-weight:bold;">game:add</span>(creature, x, y)
 
-- Adds a {@link games.stendhal.server.entity.creature.Creature} instance to the current zone.
+- Adds a [Creature][] instance to the current zone.
 - Parameters:
     - ***creature:*** Creature to add.
     - ***x:*** Horizontal position of where to add creature.
@@ -45,7 +45,7 @@ The main object that handles setting zone & adding entities to game.
 ### game:addGameEvent
 <span style="color:green; font-weight:bold;">game:addGameEvent</span>(source, event, params)
 
-- Adds a new {@link games.stendhal.server.core.engine.GameEvent}.
+- Adds a new [GameEvent][].
 - Parameters:
     - ***source:***
     - ***event:***
@@ -58,29 +58,29 @@ The main object that handles setting zone & adding entities to game.
 - Sets the current zone.
 - Parameters:
     - ***name:*** String identifier for zone to be set as current zone.
-- Returns: <code>true</code> if zone was successfully set.
+- Returns: `true` if zone was successfully set.
 
 <span style="color:green; font-weight:bold;">game:setZone</span>(zone)
 
 - Sets the current zone.
 - Parameters:
-    - ***zone:*** {@link games.stendhal.server.core.engine.StendhalRPZone} instance to set as current zone.
-- Returns: <code>true</code> if zone was successfully set.
+    - ***zone:*** [StendhalRPZone][] instance to set as current zone.
+- Returns: `true` if zone was successfully set.
 
 ---
 ### game:getZone
 <span style="color:green; font-weight:bold;">game:getZone</span>(object)
 
-- Retrieves the zone where <code>object</code> is located.
+- Retrieves the zone where `object` is located.
 - Parameters:
-    - ***object:*** The {@link marauroa.common.game.RPObject} from which the zone should be retrieved.
-- Returns: {@link games.stendhal.server.core.engine.StendhalRPZone} or <code>null</code> if it doesn't exists
+    - ***object:*** The [RPObject][] from which the zone should be retrieved.
+- Returns: [StendhalRPZone][] or `null` if it doesn't exists
 
 <span style="color:green; font-weight:bold;">game:getZone</span>(name)
 
 - Retrieves a zone by string ID.
     - ***zoneName:*** Name of zone to retrieve.
-- Returns: {@link games.stendhal.server.core.engine.StendhalRPZone} or <code>null</code> if it doesn't exist.
+- Returns: [StendhalRPZone][] or `null` if it doesn't exist.
 
 ---
 ### game:setMusic
@@ -103,7 +103,7 @@ The main object that handles setting zone & adding entities to game.
 - Parameters:
     - ***player:***
     - ***zoneName:***
-- Returns: <code>boolean</code>
+- Returns: `boolean`
 
 ---
 ### game:getCreatures
@@ -115,9 +115,9 @@ The main object that handles setting zone & adding entities to game.
 ### game:getCreature
 <span style="color:green; font-weight:bold;">game:getCreature</span>(clazz)
 
-- Retrieves a {@link games.stendhal.server.entity.creature.Creature} instance.
+- Retrieves a [Creature][] instance.
     - ***clazz:*** String name of the creature.
-- Returns: Creature or <code>null</code> if doesn't exist.
+- Returns: Creature or `null` if doesn't exist.
 
 ---
 ### game:getItems
@@ -131,7 +131,7 @@ The main object that handles setting zone & adding entities to game.
 
 - Parameters:
     - ***name:***
-- Returns: Item instance or <code>null</code> if doesn't exist.
+- Returns: Item instance or `null` if doesn't exist.
 
 ---
 ### game:modify
@@ -153,4 +153,11 @@ The main object that handles setting zone & adding entities to game.
 ### game:getMessage
 <span style="color:green; font-weight:bold;">game:getMessage</span>()
 
-- Returns: <code>String</code>
+- Returns: `String`
+
+
+[Creature]: ../../java/games/stendhal/server/entity/creature/Creature.html
+[GameEvent]: ../../java/games/stendhal/server/core/engine/GameEvent.html
+[NPC]: ../../java/games/stendhal/server/entity/npc/NPC.html
+[RPObject]: ../../java/marauroa/common/game/RPObject.html
+[StendhalRPZone]: ../../java/games/stendhal/server/core/engine/StendhalRPZone.html

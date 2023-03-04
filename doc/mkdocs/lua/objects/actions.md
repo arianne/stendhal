@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Object for creating {@link games.stendhal.server.entity.npc.ChatAction} instances.
+Object for creating [ChatAction][] instances.
 
 ## Methods
 
@@ -11,18 +11,20 @@ Object for creating {@link games.stendhal.server.entity.npc.ChatAction} instance
 ### actions:create
 <span style="color:green; font-weight:bold;">actions:create</span>(function)
 
-- Creates a custom {@link games.stendhal.server.entity.npc.ChatAction}.
+- Creates a custom [ChatAction][].
 - Parameters:
-    - ***function:*** A Lua function to be executed when <code>ChatAction.fire</code> is called.
-- Returns: New <code>ChatAction</code> instance.
+    - ***function:*** A Lua function to be executed when `ChatAction.fire` is called.
+- Returns: New `ChatAction` instance.
 
 ---
 ### actions:multiple
 <span style="color:green; font-weight:bold;">actions:multiple</span>(actionList)
 
-- Helper method for creating a {@link games.stendhal.server.entity.npc.action.MultipleActions} instance.
+- Helper method for creating a [MultipleActions][] instance.
 - Parameters:
     - ***actionList:*** A Lua table containing ChatAction instances.
-- Returns: New <code>MultipleActions</code> instance.
+- Returns: New `MultipleActions` instance.
 
-[ChatAction]: https://stendhalgame.org/reference/java/
+
+[ChatAction]: ../../java/games/stendhal/server/entity/npc/ChatAction.html
+[MultipleActions]: ../../java/games/stendhal/server/entity/npc/action/MultipleActions.html
