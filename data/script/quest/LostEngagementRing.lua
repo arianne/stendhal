@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2022 - Arianne                        *
+ *                    Copyright © 2022-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,7 +32,6 @@ local ari
 local bride_name = "Emma"
 
 local minLevel = 50
-local karmaAcceptReward = 15
 local karmaCompleteReward = 50
 
 local ring_infostring = "Ari's ring"
@@ -79,8 +78,6 @@ local chooseRingLocation = function()
 end
 
 local setQuestAction = function(player, sentence, npc)
-	player:addKarma(karmaAcceptReward)
-
 	-- choose random location
 	local selected = chooseRingLocation()
 	player:setQuest(quest_slot, 0, selected[1])
@@ -235,7 +232,7 @@ local prepareRequestStep = function()
 		nil,
 		ConversationStates.IDLE,
 		"I don't want to leave " .. bride_name .. "'s side. I hope I can find someone to help me.",
-		actions:create("DecreaseKarmaAction", {karmaAcceptReward}))
+		actions:create("DecreaseKarmaAction", {15}))
 
 	-- player accepts quest
 	ari:add(
