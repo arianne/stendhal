@@ -938,7 +938,7 @@ green_stone.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_2.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_3.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_stone.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-horned_man.png           (placeholder)
+horned_man.*             diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/89094
 lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_and_stone.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nymph_*.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
