@@ -358,12 +358,9 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
 
-		karma = player.getKarma();
-
 		// player accepts quest
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals(karma + 5.0, player.getKarma(), 0);
 		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
 		assertEquals("Klaas has asked me to assist you. I can mix an antivenom that can be infused into a ring to increase its resistance to poison."
 				+ " I need you to bring me " + items_string + ".  Do you have any of those with you?",

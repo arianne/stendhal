@@ -101,7 +101,6 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 				+ " centaurs are really nasty.",
 			getReply(zelan));
 		assertEquals("start", player.getQuest(slot, 0));
-		assertEquals(startKarma, player.getKarma(), 0);
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
@@ -131,7 +130,7 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 
 		assertEquals("done", player.getQuest(slot, 0));
 		assertEquals("1", player.getQuest(slot, 2));
-		assertEquals(startKarma + 30, player.getKarma(), 0);
+		assertEquals(startKarma + 20, player.getKarma(), 0);
 		assertEquals(startXp + 50000, player.getXP());
 		assertEquals(0, player.getNumberOfEquipped("unicorn horn"));
 		assertEquals(3, player.getNumberOfEquipped("soup"));

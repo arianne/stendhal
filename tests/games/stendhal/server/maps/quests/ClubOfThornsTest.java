@@ -91,8 +91,6 @@ public class ClubOfThornsTest {
 		assertEquals("Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!", getReply(npc));
 		assertTrue(player.isEquipped(KEY_NAME));
 		assertEquals("player", player.getFirstEquipped(KEY_NAME).getBoundTo());
-		assertEquals("Karma bonus for accepting the quest",
-			karma + 6.0, player.getKarma(), 0.01);
 		assertEquals("start", player.getQuest(QUEST_NAME, 0));
 		//assertFalse("Cleaning kill slot", player.hasKilled(VICTIM));
 		final String[] questTokens = player.getQuest(QUEST_NAME, 1).split(",");

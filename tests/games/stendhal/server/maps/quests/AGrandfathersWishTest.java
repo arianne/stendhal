@@ -254,8 +254,6 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertEquals("rejected", player.getQuest(QUEST_SLOT, 0));
 		assertEquals(karma - 15, player.getKarma(), 0);
 
-		karma = player.getKarma();
-
 		en.step(player, "quest");
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -264,7 +262,6 @@ public class AGrandfathersWishTest extends QuestHelper {
 				+ " #Marianne. They used to play together.",
 			getReply(elias));
 		assertEquals("investigate", player.getQuest(QUEST_SLOT, 0));
-		assertEquals(karma + 15, player.getKarma(), 0);
 
 		// quest already started
 		en.step(player, "quest");

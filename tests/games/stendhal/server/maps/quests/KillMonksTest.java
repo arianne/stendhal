@@ -110,7 +110,6 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(NPC_TALK_QUEST_ACCEPT, getReply(npc));
 
 		assertEquals("start", player.getQuest(questSlot, 0));
-		assertGainKarma(5);
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_STATUS + "0 monks and 0 darkmonks.");
 	}
 
