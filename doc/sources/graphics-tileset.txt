@@ -1035,7 +1035,6 @@ testgrid.png            tigertoes; CC BY-SA 3.0; Stendhal made for testing creat
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well_hoist.*            Xenodora, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/17451
-well_with_rope.png      (placeholder) (committed by bleutailfly: 62dadc2)
 
 tiled/tileset/object/rock/
 
