@@ -134,8 +134,7 @@ public class ElfPrincess extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.",
-			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "start"),
-					new IncreaseKarmaAction(10.0)));
+			new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,

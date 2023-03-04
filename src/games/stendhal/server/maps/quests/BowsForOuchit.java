@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -119,7 +120,7 @@ public class BowsForOuchit extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Nice :-) Come back when you have them and say #wood.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "wood", 2.0));
+				new SetQuestAction(QUEST_SLOT, "wood"));
 
 		/*
 		 * Player asks about wood.

@@ -136,9 +136,7 @@ public class WaterForXhiphin extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you! Natural spring water is best, the river that runs from Fado to Nal'wor might provide a source.",
-				new MultipleActions(
-				        new SetQuestAction(QUEST_SLOT, 0, "start"),
-				        new IncreaseKarmaAction(5.0)));
+				new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,

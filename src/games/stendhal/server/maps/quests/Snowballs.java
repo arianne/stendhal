@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -204,7 +205,7 @@ public class Snowballs extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,

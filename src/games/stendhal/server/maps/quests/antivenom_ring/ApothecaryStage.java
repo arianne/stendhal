@@ -125,7 +125,6 @@ public class ApothecaryStage extends AVRStage {
 				null,
 				new MultipleActions(
 						new SetQuestAction(questName, MIX_ITEMS),
-						new IncreaseKarmaAction(5.0),
 						new DropInfostringItemAction("note", NOTE_INFOSTRING),
 						new SayRequiredItemsFromCollectionAction(questName,
 								"Klaas has asked me to assist you. I can mix an antivenom that can be infused into a ring to increase its resistance to poison."

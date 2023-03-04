@@ -282,9 +282,7 @@ public class AGrandfathersWish extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Oh thank you! My grandson's name is #Niall. You could talk"
 					+ " to #Marianne. They used to play together.",
-				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "investigate"),
-					new IncreaseKarmaAction(15)));
+				new SetQuestAction(QUEST_SLOT, "investigate"));
 
 			// ask about Niall
 			elias.add(

@@ -149,9 +149,7 @@ public class EmotionCrystals extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. I would like to gather five #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
-			new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, 0, "start"),
-					new IncreaseKarmaAction(5)));
+			new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// Player rejects quest
 		npc.add(

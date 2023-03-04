@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,6 +30,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -217,7 +217,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         "My stepsister Vlamyklela will give you something that I need to recover my memory..." + " " +
                         "Once you return back to me, here... I will reward your efforts!");
                         new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
-                        new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+                        new SetQuestAction(getSlotName(), "start").fire(player, sentence, npc);
                    }
                }
             )

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2022-2023 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,7 +22,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -45,7 +44,6 @@ public class QuestOfferBuilder {
 	private String respondToAccept = "Thank you";
 	private String respondToReject = "Ohh. Too bad";
 	private String remind = "Please keep your promise";
-	private Double acceptedKarmaReward = null;
 	private double rejectionKarmaPenalty = 2.0;
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
@@ -91,11 +89,6 @@ public class QuestOfferBuilder {
 
 	public QuestOfferBuilder remind(String remind) {
 		this.remind = remind;
-		return this;
-	}
-
-	public QuestOfferBuilder acceptedKarmaReward(double acceptedKarmaReward) {
-		this.acceptedKarmaReward = acceptedKarmaReward;
 		return this;
 	}
 
@@ -201,9 +194,6 @@ public class QuestOfferBuilder {
 		start.add(new SetQuestAction(questSlot, 0, "start"));
 		if (startQuestAction != null) {
 			start.add(startQuestAction);
-		}
-		if (acceptedKarmaReward != null) {
-			start.add(new IncreaseKarmaAction(acceptedKarmaReward));
 		}
 
 		npc.add(

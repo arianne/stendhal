@@ -145,7 +145,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 						"That is really nice. I was getting tired of bringing carts to Karl. Please #push two straw carts to Karl's #barn and tell me that you are #done afterwards.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
+				new SetQuestAction(QUEST_SLOT, "start;2"));
 
 		npc.addReply("push", "You can easily move the carts by pushing them in front of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
 

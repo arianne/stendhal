@@ -181,7 +181,6 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public String respondToQuestAcception() {
-		// player.addKarma(5.0);
 		return "Brilliant! I'm so excited!";
 	}
 
@@ -192,7 +191,6 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public String respondToQuestRefusal() {
-		// player.addKarma(-5.0);
 		return "Oh ... you're not very friendly. Bye then.";
 	}
 

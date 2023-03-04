@@ -90,10 +90,7 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.respondToAccept("Great! Be careful out there lots of large"
 					+ " monsters, and those centaurs are really nasty.")
 			.respondToReject("Thats ok, I will find someone else to help me.")
-			.acceptedKarmaReward(10.0)
 			.rejectionKarmaPenalty(10.0)
-			//~ .remind("I have already asked you to get " + quantity
-					//~ + " " + plItemName + ". Are you #done?");
 			.remind("I asked you to bring me " + quantity + " " + plItemName
 					+ ".")
 			.respondToUnrepeatableRequest("Thanks, but I don't need any more"

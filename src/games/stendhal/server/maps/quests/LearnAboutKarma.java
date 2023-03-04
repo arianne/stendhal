@@ -96,7 +96,6 @@ public class LearnAboutKarma extends AbstractQuest {
 			+ "I know another girl called Annie who loves icecream, well, I know many people who needs tasks doing for them regularly and I'm sure if you help them you will be rewarded, that's how karma works after all.", null);
 
 		// player is willing to help other people
-		// player gets a little karma bonus
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,

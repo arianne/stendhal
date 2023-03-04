@@ -238,7 +238,6 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						new IncreaseKarmaAction(5.0),
 						new SetQuestAction(QUEST_SLOT, 0, "start"),
 						new StartItemsCollectionWithLimitAction(QUEST_SLOT, 3, flowerTypes, MAX_FLOWERS),
 						new AddItemToCollectionAction(QUEST_SLOT, "water", REQ_WATER),
