@@ -195,7 +195,7 @@ agressive.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
 attack.png     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 attending.png  nicubunu, Katie Russell (kymara); GPL 2.0 or newer; Stendhal, http://clipart.nicubunu.ro/svg/people/ear.svg, http://www.clker.com/clipart-4337.html
 awaiting.png   nicubunu, Katie Russell (kymara); GPL 2.0 or newer; Stendhal, http://clipart.nicubunu.ro/svg/people/ear.svg, http://www.clker.com/clipart-4337.html
-away.png       (placeholder)
+away.*         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 choking.png    Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 defence.png    Yoriy Krawtsow; GPL 2.0 or newer; Stendhal
 eat.png        Gerald_G, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/9079
