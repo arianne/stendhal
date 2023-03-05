@@ -8,7 +8,7 @@
   <!-- fruits -->
   <!-- apple -->
   <item name="apple">
-    <type class="food" subclass="apple" tileid="-1"/>
+    <type class="food" subclass="apple" tileid="vegetable.png:0"/>
     <description>You see a nice shiny apple.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -129,7 +129,7 @@
   </item>
 
   <item name="banana">
-    <type class="food" subclass="banana" tileid="-1"/>
+    <type class="food" subclass="banana" tileid="fruits.png:4"/>
     <description>You see a banana. Be careful of monkeys when you have them in your bag!</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -152,7 +152,7 @@
   </item>
 
   <item name="cherry">
-    <type class="food" subclass="cherry" tileid="-1"/>
+    <type class="food" subclass="cherry" tileid="fruits.png:9"/>
     <description>You see a cherry. Its tangy taste revives you a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -175,7 +175,7 @@
   </item>
 
   <item name="coconut">
-    <type class="food" subclass="coconut" tileid="-1"/>
+    <type class="food" subclass="coconut" tileid="fruits.png:0"/>
     <description>You see a coconut. Luckily it's already cracked and you can drink from it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
     <attributes>
@@ -199,7 +199,7 @@
 
   <!-- from spawners -->
   <item name="corn">
-    <type class="food" subclass="corn" tileid="-1"/>
+    <type class="food" subclass="corn" tileid="corn.png:2"/>
     <description>You see an ear of corn. It could be eaten raw, grilled or turned into flour... Your choice.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -222,7 +222,7 @@
   </item>
 
   <item name="grapes">
-    <type class="food" subclass="grapes" tileid="-1"/>
+    <type class="food" subclass="grapes" tileid="fruits.png:5"/>
     <description>You see a bunch of grapes. They look quite juicy and tasty.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -245,7 +245,7 @@
   </item>
 
   <item name="olive">
-    <type class="food" subclass="olive" tileid="-1"/>
+    <type class="food" subclass="olive" tileid="fruits.png:8"/>
     <description>You see a small ripe olive. It can be eaten or used to create olive oil.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -268,7 +268,7 @@
   </item>
 
   <item name="pear">
-    <type class="food" subclass="pear" tileid="-1"/>
+    <type class="food" subclass="pear" tileid="fruits.png:6"/>
     <description>You see a pear. Its lovely smell convinces you of taking it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -291,7 +291,7 @@
   </item>
 
   <item name="pineapple">
-    <type class="food" subclass="pineapple" tileid="-1"/>
+    <type class="food" subclass="pineapple" tileid="fruits.png:2"/>
     <description>You see a tropical pineapple.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -314,7 +314,7 @@
   </item>
 
   <item name="pomegranate">
-    <type class="food" subclass="pomegranate" tileid="-1"/>
+    <type class="food" subclass="pomegranate" tileid="fruits.png:7"/>
     <description>You see a pomegranate. If you eat it, you will be in great shape soon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -337,7 +337,7 @@
   </item>
 
   <item name="watermelon">
-    <type class="food" subclass="watermelon" tileid="-1"/>
+    <type class="food" subclass="watermelon" tileid="fruits.png:3"/>
     <description>You see a watermelon. It refreshes your throat during hot summer days.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -360,7 +360,7 @@
   </item>
 
   <item name="artichoke">
-    <type class="food" subclass="artichoke" tileid="-1"/>
+    <type class="food" subclass="artichoke" tileid="vegetable.png:12"/>
     <description>You see an artichoke. It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -383,7 +383,7 @@
   </item>
 
   <item name="broccoli">
-    <type class="food" subclass="broccoli" tileid="-1"/>
+    <type class="food" subclass="broccoli" tileid="vegetable.png:3"/>
     <description>You see a bunch of broccoli.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -406,7 +406,7 @@
   </item>
 
   <item name="carrot">
-    <type class="food" subclass="carrot" tileid="-1"/>
+    <type class="food" subclass="carrot" tileid="vegetable.png:1"/>
     <description>You see a carrot. It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -429,7 +429,7 @@
   </item>
 
   <item name="cauliflower">
-    <type class="food" subclass="cauliflower" tileid="-1"/>
+    <type class="food" subclass="cauliflower" tileid="vegetable.png:4"/>
     <description>You see a fresh head of cauliflower.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -452,7 +452,7 @@
   </item>
 
   <item name="courgette">
-    <type class="food" subclass="courgette" tileid="-1"/>
+    <type class="food" subclass="courgette" tileid="vegetable.png:8"/>
     <description>You see a courgette. It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -475,7 +475,7 @@
   </item>
 
   <item name="collard">
-    <type class="food" subclass="collard" tileid="-1"/>
+    <type class="food" subclass="collard" tileid="vegetable.png:10"/>
     <description>You see a collard. It's rare and strangely magical.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -498,7 +498,7 @@
   </item>
 
   <item name="garlic">
-    <type class="food" subclass="garlic" tileid="-1"/>
+    <type class="food" subclass="garlic" tileid="vegetable.png:11"/>
     <description>You see some fresh garlic.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -521,7 +521,7 @@
   </item>
 
   <item name="leek">
-    <type class="food" subclass="leek" tileid="-1"/>
+    <type class="food" subclass="leek" tileid="vegetable.png:6"/>
     <description>You see a fresh leek.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -544,7 +544,7 @@
   </item>
 
   <item name="onion">
-    <type class="food" subclass="onion" tileid="-1"/>
+    <type class="food" subclass="onion" tileid="vegetable.png:7"/>
     <description>You see an onion.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -567,7 +567,7 @@
   </item>
 
   <item name="salad">
-    <type class="food" subclass="salad" tileid="-1"/>
+    <type class="food" subclass="salad" tileid="vegetable.png:2"/>
     <description>You see a salad.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -590,7 +590,7 @@
   </item>
 
   <item name="spinach">
-    <type class="food" subclass="spinach" tileid="-1"/>
+    <type class="food" subclass="spinach" tileid="vegetable.png:9"/>
     <description>You see spinach. It is enriched with vitamins.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -613,7 +613,7 @@
   </item>
 
   <item name="tomato">
-    <type class="food" subclass="tomato" tileid="-1"/>
+    <type class="food" subclass="tomato" tileid="fruits.png:1"/>
     <description>You see a tomato, put it in a salad or eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -636,7 +636,7 @@
   </item>
 
   <item name="egg">
-    <type class="food" subclass="egg" tileid="-1"/>
+    <type class="food" subclass="egg" tileid="dairy.png:0"/>
     <description>You see an egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -659,7 +659,7 @@
   </item>
 
   <item name="button mushroom">
-    <type class="food" subclass="button_mushroom" tileid="-1"/>
+    <type class="food" subclass="button_mushroom" tileid="mushroom.png:0"/>
     <description>You see a button mushroom. It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -682,7 +682,7 @@
   </item>
 
   <item name="porcini">
-    <type class="food" subclass="porcini" tileid="-1"/>
+    <type class="food" subclass="porcini" tileid="mushroom.png:1"/>
     <description>You see a porcini. It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -705,7 +705,7 @@
   </item>
 
   <item name="toadstool">
-    <type class="food" subclass="toadstool" tileid="-1"/>
+    <type class="food" subclass="toadstool" tileid="mushroom.png:2"/>
     <description>You see a toadstool. Beware!</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -729,7 +729,7 @@
 
   <!-- fish -->
   <item name="char">
-    <type class="food" subclass="arctic_char" tileid="-1"/>
+    <type class="food" subclass="arctic_char" tileid="meat_and_fish.png:4"/>
     <description>You see a char, with a fleshy pink belly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -844,7 +844,7 @@
   </item>
 
   <item name="roach">
-    <type class="food" subclass="roach" tileid="-1"/>
+    <type class="food" subclass="roach" tileid="meat_and_fish.png:3"/>
     <description>You see a roach.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -1564,7 +1564,7 @@
   </item>
 
   <item name="chicken">
-    <type class="food" subclass="chicken" tileid="-1"/>
+    <type class="food" subclass="chicken" tileid="meat_and_fish.png:2"/>
     <description>You see a tasty leg of chicken.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -1803,7 +1803,7 @@
   </item>
 
   <item name="ham">
-    <type class="food" subclass="ham" tileid="-1"/>
+    <type class="food" subclass="ham" tileid="meat_and_fish.png:1"/>
     <description>You see a juicy ham.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>
@@ -1826,7 +1826,7 @@
   </item>
 
   <item name="meat">
-    <type class="food" subclass="meat" tileid="-1"/>
+    <type class="food" subclass="meat" tileid="meat_and_fish.png:0"/>
     <description>You see a piece of meat.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>
     <attributes>

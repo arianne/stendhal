@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../items.xsd">
 
   <item name="emerald">
-    <type class="jewellery" subclass="emerald" tileid="-1"/>
+    <type class="jewellery" subclass="emerald" tileid="jewelry.png:2"/>
     <description>You see an emerald, a precious gemstone.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
@@ -24,7 +24,7 @@
   </item>
 
   <item name="sapphire">
-    <type class="jewellery" subclass="sapphire" tileid="-1"/>
+    <type class="jewellery" subclass="sapphire" tileid="jewelry.png:1"/>
     <description>You see a sapphire, a precious gemstone.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
@@ -44,7 +44,7 @@
   </item>
 
   <item name="carbuncle">
-    <type class="jewellery" subclass="carbuncle" tileid="-1"/>
+    <type class="jewellery" subclass="carbuncle" tileid="jewelry.png:0"/>
     <description>You see a carbuncle, a precious gemstone related to the garnet.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
@@ -82,9 +82,9 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
     <item name="amethyst">
-    <type class="jewellery" subclass="amethyst" tileid="-1"/>
+    <type class="jewellery" subclass="amethyst" tileid="jewelry.png:3"/>
     <description>You see an amethyst, a precious gemstone.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
