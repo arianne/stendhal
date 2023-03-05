@@ -17,8 +17,9 @@ from PIL import Image, ImageDraw
 
 
 os.chdir(os.path.dirname(__file__))
-dir_target = os.getcwd()
-os.chdir("../../../../")
+dir_logic = os.getcwd()
+dir_target = os.path.join(dir_logic, "item")
+os.chdir("../../../")
 dir_root = os.getcwd()
 dir_config = os.path.normpath(os.path.join(dir_root, "data/conf/items"))
 dir_sprites = os.path.normpath(os.path.join(dir_root, "data/sprites/items"))
