@@ -1184,13 +1184,13 @@ spruce_xmas4.png         bleutailfly; OGA BY 3.0; Stendhal
 spruce_xmas5.png         bleutailfly; OGA BY 3.0; Stendhal
 spruce_xmas6.png         bleutailfly; OGA BY 3.0; Stendhal
 taller_trees.*           rubberduck, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/94897, https://www.blendswap.com/blend/14674
-tree_blue.png            Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
-tree_darkblue.png        Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
-tree_darkgreen.*         Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
+tree_blue.*              Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
+tree_darkblue.*          Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
+tree_darkgreen*          Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 tree_fluffy.png          Megajack64; ???; ??? (committed by kymara: 39bbe76)
 tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tree_green.png           Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
+tree_green.*             Jordan Irwin (AntumDeluge), sandcat01; OGA BY 3.0; Stendhal, https://openclipart.org/detail/69757
 tree_realistic.*         Remos Turcuman (Bleed), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/35323
 umbrella_thorn.png       Carl Olsson (surt); CC0; https://opengameart.org/node/15082
 
