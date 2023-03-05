@@ -156,10 +156,20 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
             newHeight = math.floor(sprite.height / dfactor)
             sprite = sprite.resize((newWidth, newHeight), Image.BICUBIC)
 
+          sliceX = 1
+          sliceY = 2
+          try:
+            if "sliceX" in conf:
+              sliceX = int(conf["sliceX"])
+            if "sliceY" in conf:
+              sliceY = int(conf["sliceY"])
+          except ValueError:
+            print("ERROR: \"slice\" parameter must be an integer")
+
           sliceW = math.floor(sprite.width / 3)
           sliceH = math.floor(sprite.height / 4)
-          sliceX = sliceW
-          sliceY = sliceH * (2 if "sliceY" not in conf else int(conf["sliceY"]))
+          sliceX = sliceW * sliceX
+          sliceY = sliceH * sliceY
           sprite = sprite.crop((sliceX, sliceY, sliceX + sliceW, sliceY + sliceH))
 
           # trim transparent pixels
