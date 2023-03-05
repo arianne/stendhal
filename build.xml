@@ -209,6 +209,7 @@
         <exclude name="dummy_weapons.xml"/>
         <exclude name="helmets.xml"/>
         <exclude name="legs.xml"/>
+        <exclude name="meta.xml"/>
         <exclude name="missiles.xml"/>
         <exclude name="ranged.xml"/>
         <exclude name="rings.xml"/>
@@ -616,6 +617,7 @@
         <include name="spells/*.xml"/>
         <include name="shops.xml"/>
         <include name="shops/*.xml"/>
+        <exclude name="items/meta.xml"/>
       </fileset>
     </copy>
     <copy todir="${build_server_xmlconf}/data/languages">
@@ -790,6 +792,7 @@
         <exclude name="templates/"/>
         <exclude name="placeholder-*.png"/>
         <exclude name="cursor/*.svg"/>
+        <exclude name="items/meta/"/>
       </fileset>
     </copy>
     <copy todir="${build_client_data}/data/tileset">

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- this is a helper configuration for use with supplemental scripts & utilities, it is not read by the server -->
+
+<items>
+
+  <item name="empty">
+    <type class="meta" subclass="logic_empty" tileid="corn.png:4"/>
+  </item>
+
+  <item name="grain grower">
+    <type class="meta" subclass="logic_grain_grower" tileid="corn.png:3"/>
+  </item>
+
+  <item name="unused mushroom 1">
+    <type class="meta" subclass="logic_unused" tileid="mushroom.png:3"/>
+  </item>
+
+  <item name="unused mushroom 2">
+    <type class="meta" subclass="logic_unused" tileid="mushroom.png:4"/>
+  </item>
+
+  <item name="unused mushroom 3">
+    <type class="meta" subclass="logic_unused" tileid="mushroom.png:5"/>
+  </item>
+
+  <item name="chinese cabbage">
+    <!-- this item is parsed in PassiveEntityRespawnPointFactory but does not exist in game -->
+    <type class="meta" subclass="logic_empty" tileid="vegetable.png:5"/>
+  </item>
+
+</items>

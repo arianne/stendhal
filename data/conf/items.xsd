@@ -35,7 +35,7 @@
   <complexType name="typeType">
     <attribute name="class" type="string"></attribute>
     <attribute name="subclass" type="string"></attribute>
-    <attribute name="tileid" type="int"></attribute>
+    <attribute name="tileid" type="string"></attribute>
   </complexType>
 
   <complexType name="implementation">
