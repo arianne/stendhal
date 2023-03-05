@@ -94,7 +94,7 @@ for xml in os.listdir(dir_config):
 img_bg = Image.new("RGB", (32, 32))
 # draw white background image with black border
 ImageDraw.Draw(img_bg).rectangle(((0, 0), (31, 31)), (255, 255, 255), (0, 0, 0))
-tilesPerRow = 13
+tilesPerRow = 8
 
 for tileSet in tilesets:
   print("\nCreating item tileset \"{}\" for items:".format(tileSet))
