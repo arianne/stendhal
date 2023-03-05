@@ -103,7 +103,9 @@ export class NotificationBubble extends TextBubble {
 			if (!this.profile.complete || !this.profile.height) {
 				this.loadProfileSprite();
 			}
-			ctx.drawImage(this.profile, this.x - 48, this.y - 16);
+			if (this.profile.complete && this.profile.height) {
+				ctx.drawImage(this.profile, this.x - 48, this.y - 16);
+			}
 			Speech.drawBubbleRounded(ctx, this.x, this.y - 15,
 					this.width, this.height);
 		} else {
