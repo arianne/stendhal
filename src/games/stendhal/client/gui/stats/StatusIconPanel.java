@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,8 +27,8 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 class StatusIconPanel extends JComponent {
-    /** Status bar icons */
-    private static final String iconFolder = "data/sprites/status/panel/";
+	/** Status bar icons */
+	private static final String iconFolder = "data/sprites/status/panel/";
 
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
@@ -42,7 +42,7 @@ class StatusIconPanel extends JComponent {
 
 	final JLabel eating, choking;
 	final AnimatedIcon away, grumpy;
-    private final Map<StatusID, JLabel> statusIDMap;
+	private final Map<StatusID, JLabel> statusIDMap;
 
 	protected StatusIconPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
@@ -65,12 +65,12 @@ class StatusIconPanel extends JComponent {
 		grumpy.setVisible(false);
 
 		/** Initialize map */
-        statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class);
-        statusIDMap.put(StatusID.CONFUSE, createStatusIndicator("confuse"));
-        statusIDMap.put(StatusID.POISON, createStatusIndicator("poison"));
-        statusIDMap.put(StatusID.SHOCK, createStatusIndicator("shock"));
-        statusIDMap.put(StatusID.ZOMBIE, createStatusIndicator("zombie"));
-        statusIDMap.put(StatusID.HEAVY, createStatusIndicator("heavy"));
+		statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class);
+		statusIDMap.put(StatusID.CONFUSE, createStatusIndicator("confuse"));
+		statusIDMap.put(StatusID.POISON, createStatusIndicator("poison"));
+		statusIDMap.put(StatusID.SHOCK, createStatusIndicator("shock"));
+		statusIDMap.put(StatusID.ZOMBIE, createStatusIndicator("zombie"));
+		statusIDMap.put(StatusID.HEAVY, createStatusIndicator("heavy"));
 	}
 
 	/**
@@ -123,31 +123,31 @@ class StatusIconPanel extends JComponent {
 		}
 	}
 
-    /**
-     * Display or hide a status icon.
-     *
-     * @param ID
-     *      The ID value of the status
-     * @param visible
-     *      Show the icon
-     */
-    void setStatus(final StatusID ID, final boolean visible) {
-        final JLabel status = statusIDMap.get(ID);
-        if (status.isVisible() != visible) {
-            status.setVisible(visible);
-        }
-    }
+	/**
+	 * Display or hide a status icon.
+	 *
+	 * @param ID
+	 *      The ID value of the status
+	 * @param visible
+	 *      Show the icon
+	 */
+	void setStatus(final StatusID ID, final boolean visible) {
+		final JLabel status = statusIDMap.get(ID);
+		if (status.isVisible() != visible) {
+			status.setVisible(visible);
+		}
+	}
 
-    /**
-     * Hide all status icons. This is called when the user entity is deleted.
-     */
-    void resetStatuses() {
-    	for (JLabel status : statusIDMap.values()) {
-    		if (status.isVisible()) {
-    			status.setVisible(false);
-    		}
-    	}
-    }
+	/**
+	 * Hide all status icons. This is called when the user entity is deleted.
+	 */
+	void resetStatuses() {
+		for (JLabel status : statusIDMap.values()) {
+			if (status.isVisible()) {
+				status.setVisible(false);
+			}
+		}
+	}
 
 	/**
 	 * Set the away status message. null value will hide the icon.
