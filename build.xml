@@ -804,6 +804,7 @@
         <exclude name="**/*.xcf.*"/>
         <exclude name="README.animation.txt"/>
         <exclude name="logic/generatetiles.py"/>
+        <exclude name="logic/layer/"/>
       </fileset>
     </copy>
     <copy todir="${build_client_data}/data/font">

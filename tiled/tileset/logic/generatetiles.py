@@ -41,7 +41,30 @@ tile_nouse = Image.open(_file_nouse) if os.path.isfile(_file_nouse) else Image.n
 tile_bg = Image.new("RGB", (32, 32))
 # draw white background image with black border
 ImageDraw.Draw(tile_bg).rectangle(((0, 0), (31, 31)), (255, 255, 255), (0, 0, 0))
+_file_bg_checkered = os.path.normpath(os.path.join(dir_logic, "layer/bg_checkered.png"))
+tile_bg_checkered = Image.open(_file_bg_checkered).convert("RGB") if os.path.isfile(_file_bg_checkered) else tile_bg.copy()
 tilesPerRow = 8
+
+
+warn_count = 0
+err_count = 0
+
+def message(mtype, text=None):
+  global warn_count, err_count
+
+  if text == None:
+    text = mtype
+    mtype = "info"
+
+  mtype = mtype.lower()
+  if mtype == "warn":
+    text = "WARNING: " + text
+    warn_count += 1
+  elif mtype == "error":
+    text = "ERROR: " + text
+    err_count += 1
+
+  print(text)
 
 
 ## Reads config text.
@@ -73,10 +96,10 @@ if os.path.isfile(file_creature_conf):
     key = line[0:idx].strip()
     value = line[idx+1:].strip()
     if not key:
-      print("WARNING: empty key in creatures.conf")
+      message("warn", "empty key in creatures.conf")
       continue
     if not value:
-      print("WARNING: empty value for \"{}\" in creatures.conf".format(key))
+      message("warn", "empty value for \"{}\" in creatures.conf".format(key))
       continue
 
     conf = {}
@@ -116,12 +139,11 @@ if os.path.isfile(file_creature_conf):
 #      Root path of sprite images tree.
 #  @param defs
 #      Entities or items definitions.
-#  @param itemType
-#      `True` for items, `False` for creatures.
+#  @param flags
 #  @return
 #      Generated tileset image.
-def buildTileSet(tiles, spriteDir, defs, itemType=True):
-  global tile_unused, tile_nouse, tile_bg, tilesPerRow, creature_conf
+def buildTileSet(tiles, spriteDir, defs, flags=()):
+  global tile_unused, tile_nouse, tile_bg, tile_bg_checkered, tilesPerRow, creature_conf, dir_logic
 
   tileRows = []
   currentRow = []
@@ -136,6 +158,10 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
   if not tileRows:
     return None
 
+  bgTile = tile_bg
+  if "checkered" in flags:
+    bgTile = tile_bg_checkered
+
   # create base image with pink background
   tileSetImage = Image.new("RGB", (len(tileRows[0]) * 32, len(tileRows) * 32), (255, 0, 255))
   tileIdx = -1
@@ -146,33 +172,37 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
       tileIdx += 1
       offsetX = col * 32
       tileId = tileRows[row][col]
-      tileImage = tile_bg.copy()
+      tileImage = bgTile.copy()
+      text = None
       if tileId in tiles:
         name = tiles[tileIdx]
-        refit = not itemType
+        refit = "creature_type" in flags
         sprite = None
         if name == "_nouse":
           refit = False
           sprite = tile_nouse.copy().convert("RGBA")
+        elif name == "_unknown":
+          refit = False
+          text = "unknown"
         else:
           spritePath = os.path.normpath(os.path.join(spriteDir, defs[name]["image"]))
           sprite = Image.open(spritePath).convert("RGBA")
 
         if refit:
           conf = {"flags": []} if name not in creature_conf else creature_conf[name]
-          noscale = "noscale" in conf["flags"]
+          nofit = "nofit" in conf["flags"]
           nopad = "nopad" in conf["flags"]
-          alignX = "left" if "alignX" not in conf else conf["alignX"]
-          alignY = "center" if "alignY" not in conf else conf["alignY"]
-          # TODO: add text
-          text = None if "text" not in conf else conf["text"]
+          alignX = "center" if "alignX" not in conf else conf["alignX"]
+          alignY = "top" if "alignY" not in conf else conf["alignY"]
+          if "text" in conf:
+            text = conf["text"]
 
           if "downscale" in conf:
             dfactor = 1
             try:
               dfactor = int(conf["downscale"])
             except ValueError:
-              print("ERROR: downscale factor for \"{}\" must be an integer")
+              message("error", "invalid tile ID: \"{}\"".format(value))
             newWidth = math.floor(sprite.width / dfactor)
             newHeight = math.floor(sprite.height / dfactor)
             sprite = sprite.resize((newWidth, newHeight), Image.BICUBIC)
@@ -185,7 +215,7 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
             if "sliceY" in conf:
               sliceY = int(conf["sliceY"])
           except ValueError:
-            print("ERROR: \"slice\" parameter must be an integer")
+            message("error", "\"slice\" parameter must be an integer")
 
           sliceW = math.floor(sprite.width / 3)
           sliceH = math.floor(sprite.height / 4)
@@ -194,7 +224,8 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
           sprite = sprite.crop((sliceX, sliceY, sliceX + sliceW, sliceY + sliceH))
 
           # trim transparent pixels
-          sprite = sprite.crop(sprite.getbbox())
+          if "notrim" not in conf["flags"]:
+            sprite = sprite.crop(sprite.getbbox())
 
           # make square
           if sprite.width != sprite.height:
@@ -217,7 +248,7 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
 
           # scale down to 30x30 to fit inside border
           if sprite.width > 30:
-            if not noscale:
+            if not nofit:
               sprite = sprite.resize((30, 30), Image.BICUBIC)
             else:
               adjustX = math.floor((sprite.width - 30) / 2)
@@ -238,17 +269,26 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
           if sprite.height < 32:
             sprite = ImageOps.pad(sprite, (sprite.width, 32))
 
-        # remove semi-transparent pixels
-        # ~ alpha = sprite.getchannel("A").point(lambda p: p > 128 and 255)
-        channels = sprite.split()
-        if len(channels) > 3:
-          alpha = channels[3].point(lambda p: p > 128 and 255)
-          sprite.putalpha(alpha)
+        if sprite:
+          # remove semi-transparent pixels
+          # ~ alpha = sprite.getchannel("A").point(lambda p: p > 128 and 255)
+          channels = sprite.split()
+          if len(channels) > 3:
+            alpha = channels[3].point(lambda p: p > 128 and 255)
+            sprite.putalpha(alpha)
 
-        tileImage.paste(sprite, None, sprite)
-        sprite.close()
+          tileImage.paste(sprite, None, sprite)
+          sprite.close()
       else:
         tileImage = tile_unused.copy()
+
+      if text:
+        _file_text = os.path.normpath(os.path.join(dir_logic, "layer/text/{}.png".format(text)))
+        if not os.path.isfile(_file_text):
+          message("warn", "text image not found: {}".format(_file_text))
+        else:
+          tile_text = Image.open(_file_text).convert("RGBA")
+          tileImage.paste(tile_text, None, tile_text)
 
       tileSetImage.paste(tileImage, (offsetX, offsetY))
       tileImage.close()
@@ -263,7 +303,7 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
 #      Image data to be exported.
 def writeTileSet(filepath, image):
   # convert to indexed color & save
-  image.convert("P").save(filepath)
+  image.convert("RGB").save(filepath)
   image.close()
 
 
@@ -330,7 +370,7 @@ for xml in os.listdir(dir_config_item):
               raise ValueError
             tileId = int(vtmp[1])
           except ValueError:
-            print("WARNING: invalid tile ID: \"{}\"".format(value))
+            message("warn", "invalid tile ID: \"{}\"".format(value))
 
       if spritePath.endswith(".png") and tileId > -1:
         itemData["image"] = spritePath
@@ -368,17 +408,26 @@ def buildCreatureTiles(tileSet, creatures):
     print("  " + creatureName)
     tiles[creatures[creatureName]["tileid"]] = creatureName
 
+  flags = []
   group_name = tileSet.split(".png")[0]
   if group_name in creature_conf["groups"]:
     gconf = creature_conf["groups"][group_name]
+    flags = gconf["flags"]
     if "nouse" in gconf:
       try:
         for nid in gconf["nouse"].split(","):
           tiles[int(nid)] = "_nouse"
       except ValueError:
-        print("ERROR: \"nouse\" value must be colon-separated list of integers")
+        message("error", "\"nouse\" value must be a list of integers")
+    if "unknown" in gconf:
+      try:
+        for nid in gconf["unknown"].split(","):
+          tiles[int(nid)] = "_unknown"
+      except ValueError:
+        message("error", "\"unknown\" value must be a list of integers")
 
-  tileSetImage = buildTileSet(tiles, dir_sprite_creature, creatures, False)
+  flags.append("creature_type")
+  tileSetImage = buildTileSet(tiles, dir_sprite_creature, creatures, tuple(flags))
   if not tileSetImage:
     return
   writeTileSet(os.path.join(dir_target_creature, tileSet), tileSetImage)
@@ -390,10 +439,13 @@ for xml in os.listdir(dir_config_creature):
   creatureName = None
   tileSet = None
   creatureData = {}
+  conf = {}
   for line in lines:
     line = line.strip()
     if not creatureName and line.startswith("<creature name=\""):
       creatureName = line.split("\"")[1]
+      if creatureName in creature_conf:
+        conf = creature_conf[creatureName]
       continue
 
     if not creatureName:
@@ -411,8 +463,12 @@ for xml in os.listdir(dir_config_creature):
 
         if key == "class":
           spritePath = value
-        elif spritePath and key == "subclass":
-          spritePath = os.path.join(spritePath, value) + ".png"
+        elif key == "subclass":
+          if "subclass" in conf:
+            # custom image
+            value = conf["subclass"]
+          if spritePath:
+            spritePath = os.path.join(spritePath, value) + ".png"
         elif key == "tileid":
           if ":" not in value:
             continue
@@ -423,7 +479,7 @@ for xml in os.listdir(dir_config_creature):
               raise ValueError
             tileId = int(vtmp[1])
           except ValueError:
-            print("WARNING: invalid tile ID: \"{}\"".format(value))
+            message("warn", "invalid tile ID: \"{}\"".format(value))
 
       if spritePath.endswith(".png") and tileId > -1:
         creatureData["image"] = spritePath
@@ -438,6 +494,7 @@ for xml in os.listdir(dir_config_creature):
       creatureName = None
       tileSet = None
       creatureData = {}
+      conf = {}
       continue
 
 for tileSet in creature_tilesets:
@@ -447,3 +504,8 @@ for tileSet in creature_tilesets:
 tile_unused.close()
 tile_nouse.close()
 tile_bg.close()
+tile_bg_checkered.close()
+
+print()
+print("{} warnings".format(warn_count))
+print("{} errors".format(err_count))
