@@ -83,7 +83,7 @@ if os.path.isfile(file_creature_conf):
     if "flags" not in conf:
       conf["flags"] = []
 
-    for v in value.split(","):
+    for v in value.split(";"):
       v = v.strip()
       if "=" in v:
         tmp = v.split("=")
