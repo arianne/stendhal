@@ -13,7 +13,11 @@
 
 import codecs, math, os
 
-from PIL import Image, ImageDraw, ImageOps
+try:
+  from PIL import Image, ImageDraw, ImageOps
+except ModuleNotFoundError:
+  print("ERROR: please install Python Imaging Library (PIL)")
+  quit(1)
 
 
 os.chdir(os.path.dirname(__file__))
