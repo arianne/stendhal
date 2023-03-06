@@ -35,6 +35,8 @@ dir_target_creature = os.path.join(dir_logic, "creature")
 
 _file_unused = os.path.normpath(os.path.join(dir_sprite_item, "meta/logic_unused.png"))
 tile_unused = Image.open(_file_unused) if os.path.isfile(_file_unused) else Image.new("RGB", (32, 32), (255, 0, 255))
+_file_nouse = os.path.normpath(os.path.join(dir_sprite_item, "meta/logic_nouse.png"))
+tile_nouse = Image.open(_file_nouse) if os.path.isfile(_file_nouse) else Image.new("RGB", (32, 32), (255, 0, 0))
 
 tile_bg = Image.new("RGB", (32, 32))
 # draw white background image with black border
@@ -60,7 +62,7 @@ def readConfig(filepath):
 
 
 # special instructions for creature tiles
-creature_conf = {}
+creature_conf = {"groups": {}}
 file_creature_conf = os.path.join(dir_logic, "creatures.conf")
 if os.path.isfile(file_creature_conf):
   for line in readConfig(file_creature_conf):
@@ -77,9 +79,18 @@ if os.path.isfile(file_creature_conf):
       print("WARNING: empty value for \"{}\" in creatures.conf".format(key))
       continue
 
-    if key not in creature_conf:
-      creature_conf[key] = {}
-    conf = creature_conf[key]
+    conf = {}
+    group_name = None
+    if key.startswith("group_"):
+      group_name = key[key.index("_")+1:]
+      if group_name not in creature_conf["groups"]:
+        creature_conf["groups"][group_name] = {}
+      conf = creature_conf["groups"][group_name]
+    else:
+      if key not in creature_conf:
+        creature_conf[key] = {}
+      conf = creature_conf[key]
+
     if "flags" not in conf:
       conf["flags"] = []
 
@@ -91,7 +102,10 @@ if os.path.isfile(file_creature_conf):
       else:
         conf["flags"].append(v)
 
-    creature_conf[key] = conf
+    if group_name:
+      creature_conf["groups"][group_name] = conf
+    else:
+      creature_conf[key] = conf
 
 
 ## Builds an image from tiles data.
@@ -107,7 +121,7 @@ if os.path.isfile(file_creature_conf):
 #  @return
 #      Generated tileset image.
 def buildTileSet(tiles, spriteDir, defs, itemType=True):
-  global tile_unused, tile_bg, tilesPerRow, creature_conf
+  global tile_unused, tile_nouse, tile_bg, tilesPerRow, creature_conf
 
   tileRows = []
   currentRow = []
@@ -135,9 +149,16 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
       tileImage = tile_bg.copy()
       if tileId in tiles:
         name = tiles[tileIdx]
-        spritePath = os.path.normpath(os.path.join(spriteDir, defs[name]["image"]))
-        sprite = Image.open(spritePath).convert("RGBA")
-        if not itemType:
+        refit = not itemType
+        sprite = None
+        if name == "_nouse":
+          refit = False
+          sprite = tile_nouse.copy().convert("RGBA")
+        else:
+          spritePath = os.path.normpath(os.path.join(spriteDir, defs[name]["image"]))
+          sprite = Image.open(spritePath).convert("RGBA")
+
+        if refit:
           conf = {"flags": []} if name not in creature_conf else creature_conf[name]
           noscale = "noscale" in conf["flags"]
           nopad = "nopad" in conf["flags"]
@@ -339,13 +360,23 @@ for tileSet in item_tilesets:
 #  @param creatures
 #      creatures definitions.
 def buildCreatureTiles(tileSet, creatures):
-  global dir_target_creature, dir_sprite_creature
+  global dir_target_creature, dir_sprite_creature, creature_conf
 
   print("\nCreating creature tileset \"{}\" for creatures:".format(tileSet))
   tiles = {}
   for creatureName in tuple(sorted(creatures.keys())):
     print("  " + creatureName)
     tiles[creatures[creatureName]["tileid"]] = creatureName
+
+  group_name = tileSet.split(".png")[0]
+  if group_name in creature_conf["groups"]:
+    gconf = creature_conf["groups"][group_name]
+    if "nouse" in gconf:
+      try:
+        for nid in gconf["nouse"].split(","):
+          tiles[int(nid)] = "_nouse"
+      except ValueError:
+        print("ERROR: \"nouse\" value must be colon-separated list of integers")
 
   tileSetImage = buildTileSet(tiles, dir_sprite_creature, creatures, False)
   if not tileSetImage:
@@ -414,4 +445,5 @@ for tileSet in creature_tilesets:
 
 # cleanup
 tile_unused.close()
+tile_nouse.close()
 tile_bg.close()
