@@ -218,8 +218,11 @@ def buildTileSet(tiles, spriteDir, defs, itemType=True):
             sprite = ImageOps.pad(sprite, (sprite.width, 32))
 
         # remove semi-transparent pixels
-        alpha = sprite.getchannel("A").point(lambda p: p > 128 and 255)
-        sprite.putalpha(alpha)
+        # ~ alpha = sprite.getchannel("A").point(lambda p: p > 128 and 255)
+        channels = sprite.split()
+        if len(channels) > 3:
+          alpha = channels[3].point(lambda p: p > 128 and 255)
+          sprite.putalpha(alpha)
 
         tileImage.paste(sprite, None, sprite)
         sprite.close()
