@@ -6,9 +6,6 @@ item/
 - ropes.png
 - tools.png
 
-item/document/
-- notes2.png
-
 item/drink/
 - bottle_and_glass.png
 - bottles_and_cups.png

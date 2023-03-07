@@ -815,7 +815,7 @@ kids_art_2.png  bleutailfly; OGA BY 3.0; Stendhal
 letter.png      ???; ???; ??? (committed by kymara: b6a354f)
 note_board.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 notes.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-notes2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+notes2.*        Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 worldmap.png    gummipferd; ???; Stendhal
 
 tiled/tileset/item/drink/
