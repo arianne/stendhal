@@ -2,7 +2,6 @@
 --- tilesets with placeholders that need replacements ---
 
 item/
-- ropes.png
 - tools.png
 
 item/drink/
