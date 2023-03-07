@@ -1,0 +1,8 @@
+
+--- tilesets with placeholders that need replacements ---
+
+item/drink/
+- bottle_and_glass.png
+- bottles_and_cups.png
+- casks.png
+- red_wine.png

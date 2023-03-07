@@ -815,20 +815,20 @@ kids_art_2.png  bleutailfly; OGA BY 3.0; Stendhal
 letter.png      ???; ???; ??? (committed by kymara: b6a354f)
 note_board.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 notes.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-notes2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+notes2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
 worldmap.png    gummipferd; ???; Stendhal
 
 tiled/tileset/item/drink/
 
-beers_and_flasks.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bottle_and_glass.png  ???; ???; ??? (committed by kymara: 9a51ad4)
-bottles_and_cups.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-casks.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cognac.png            ???; ???; ??? (committed by Miguel: 12d51cd)
-fierywater.png        omero; CC BY-SA 3.0; Stendhal
-juice_glass.*         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
-red_wine.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-white_wine.png        ???; ???; ??? (committed by Miguel: 12d51cd)
+beers_and_flasks.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+bottle_and_glass.*  (placeholder)
+bottles_and_cups.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+casks.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+cognac.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fierywater.png      omero; CC BY-SA 3.0; Stendhal
+juice_glass.*       Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
+red_wine.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+white_wine.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/food/
 
