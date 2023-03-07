@@ -1,8 +1,15 @@
 
 --- tilesets with placeholders that need replacements ---
 
+item/
+- hen_nest.png
+- tools.png
+
 item/drink/
 - bottle_and_glass.png
 - bottles_and_cups.png
 - casks.png
 - red_wine.png
+
+item/food/
+- rustic_meals.png

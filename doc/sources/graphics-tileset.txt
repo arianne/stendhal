@@ -720,7 +720,7 @@ flagpole.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flat_button.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
 grill_top.png              bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png         bleutailfly; OGA BY 3.0; Stendhal
-hen_nest.png               omero; OGA BY 3.0; Stendhal
+hen_nest.png               (placeholder)
 hot_iron_piece.png         Juan?, Katie Russell (kymara); ???; ??? (committed by kymara: 36eaeba)
 huge_orb.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -739,7 +739,7 @@ sign.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sign_large.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snowman.*                  ???; ???; ??? (committed by kymara: 62d73ad)
 swing.png                  bleutailfly; OGA BY 3.0; Stendhal
-tools.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+tools.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
 toys.png                   Daniel Herding (mort), SpiderDave, Peileppe, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/64909, https://opengameart.org/node/15250, https://openclipart.org/detail/11341
 
 tiled/tileset/item/armor/
@@ -843,7 +843,7 @@ meals_2.png             ???; ???; ??? (committed by Miguel: 12d51cd)
 meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
-rustic_meals.png        Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rustic_meals.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
 smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal
 steak.*                 Henrique Lazarini (7Soul1), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/39455
 torte.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
