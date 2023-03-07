@@ -12,8 +12,5 @@ item/drink/
 - casks.png
 - red_wine.png
 
-item/food/
-- rustic_meals.png
-
 item/household/
 - food_preparation.png
