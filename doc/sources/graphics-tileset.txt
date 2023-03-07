@@ -838,9 +838,18 @@ bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               Jordan Irwin (AntumDeluge); CC0; Stendhal
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-meals_1.*               Astrid Sawatzky, Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
-meals_2.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
-meals_3.png             bleutailfly; OGA BY 3.0; Stendhal (partial placeholder)
+meals_1.*:              GPL 2.0 or newer
+- plate                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- food                  Astrid Sawatzky; GPL 2.0 or newer; Stendhal
+meals_2.*:              CC BY-SA 3.0
+- plate                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
+- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+meals_3.*:              CC BY-SA 3.0
+- plates (top)          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
+- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+- plates/food (bottom)  bleutailfly; OGA BY 3.0; Stendhal
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
 rustic_meals.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)

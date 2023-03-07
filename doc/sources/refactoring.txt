@@ -13,8 +13,6 @@ item/drink/
 - red_wine.png
 
 item/food/
-- meals_2.png
-- meals_3.png
 - rustic_meals.png
 
 item/household/
