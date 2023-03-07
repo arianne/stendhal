@@ -838,7 +838,7 @@ bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               Jordan Irwin (AntumDeluge); CC0; Stendhal
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-meals_1.png             ???; ???; ??? (committed by Astrid Sawatzky: 0d2cf4e)
+meals_1.*               Astrid Sawatzky, Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 meals_2.png             ???; ???; ??? (committed by Miguel: 12d51cd)
 meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
