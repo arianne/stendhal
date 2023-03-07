@@ -2,7 +2,6 @@
 --- tilesets with placeholders that need replacements ---
 
 item/
-- hen_nest.png
 - ropes.png
 - tools.png
 

@@ -720,7 +720,7 @@ flagpole.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flat_button.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
 grill_top.png              bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png         bleutailfly; OGA BY 3.0; Stendhal
-hen_nest.png               (placeholder)
+hen_nest.png               j4p4n, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/147986, https://openclipart.org/detail/311733
 hot_iron_piece.png         Juan?, Katie Russell (kymara); ???; ??? (committed by kymara: 36eaeba)
 huge_orb.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
