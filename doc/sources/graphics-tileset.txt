@@ -702,7 +702,7 @@ boxes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broom.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brush.png                  bleutailfly; OGA BY 3.0; Stendhal
 bulletin_board.png         tigertoes; ???; working on replacement
-bulletin_board_items.png   tigertoes; ???; working on replacement
+bulletin_board_items.png   tigertoes; ???; working on replacement (partial placeholder)
 bulletin_board_items2.png  bleutailfly; OGA BY 3.0; https://opengameart.org/node/107311
 bullseye.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button.png                 Juan?; ???; ??? (committed by kymara: b5b8001)
@@ -731,7 +731,7 @@ pelt.png                   OCAL; CC0; https://freesvg.org/vintage-sign-board
 pelts.png                  Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
 postbox.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 postbox_2.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ropes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ropes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
 sacks.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 scrying_orb.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sewing_machine.png         bleutailfly; OGA BY 3.0; Stendhal
@@ -839,8 +839,8 @@ cookies.*               Jordan Irwin (AntumDeluge); CC0; Stendhal
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meals_1.*               Astrid Sawatzky, Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
-meals_2.png             ???; ???; ??? (committed by Miguel: 12d51cd)
-meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
+meals_2.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+meals_3.png             bleutailfly; OGA BY 3.0; Stendhal (partial placeholder)
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
 rustic_meals.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
@@ -872,7 +872,7 @@ wooden_crosses.*     Carlo Enrico Victoria (Nemisys), Tuomo Untinen (Reemax), bl
 
 tiled/tileset/item/household/
 
-food_preparation.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+food_preparation.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
 food_preparation_2.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/instrument/
