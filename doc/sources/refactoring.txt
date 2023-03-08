@@ -1,5 +1,5 @@
 
 --- tilesets with placeholders that need replacements ---
 
-item/
-- tools.png
+item/household/
+- food_preparation.png
