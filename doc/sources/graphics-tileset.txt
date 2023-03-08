@@ -742,6 +742,7 @@ swing.png                  bleutailfly; OGA BY 3.0; Stendhal
 tools.*                    CC BY-SA 3.0 (partial placeholder)
 - shovel & broom           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 - anvil                    nightowl, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83720
+- hanging tools & hammer   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 toys.png                   Daniel Herding (mort), SpiderDave, Peileppe, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/64909, https://opengameart.org/node/15250, https://openclipart.org/detail/11341
 
 tiled/tileset/item/armor/
