@@ -566,10 +566,22 @@
       </fileset>
     </copy>
 
+    <path id="serverclasspathlist">
+      <fileset dir="libs">
+        <include name="**/*.jar" />
+        <exclude name="**/marauroa-client-only.jar" />
+      </fileset>
+    </path>
+
+    <pathconvert property="serverclasspath" pathsep=" ">
+        <path refid="serverclasspathlist" />
+        <regexpmapper from="^.*/([^/]*)$$" to="libs/\1"/>
+    </pathconvert>
+
     <jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
       <manifest>
         <attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
-        <attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} guava.jar log4j.jar ${groovy_jarname} ${mysqldriver_jarname} mysql.jar h2.jar ${luaj_jarname}"/>
+        <attribute name="Class-path" value=". ${maps_jarname} ${xmlconf_jarname} ${serverclasspath}"/>
       </manifest>
     </jar>
     <chmod file="${lib}/${server_jarname}" perm="+x"/>
@@ -684,22 +696,14 @@
     </copy>
     -->
 
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${guava_jar}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${h2_jar}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${luaj_jar}"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-    <copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
-    <copy todir="${buildroot}/stendhal-server-${version}/lib">
+    <copy todir="${buildroot}/stendhal-server-${version}/libs">
       <fileset dir="libs">
-        <include name="*.txt"/>
-        <include name="*.html"/>
+        <exclude name="marauroa-client-only.jar"/>
       </fileset>
     </copy>
     <copy todir="${buildroot}/stendhal-server-${version}/doc">
