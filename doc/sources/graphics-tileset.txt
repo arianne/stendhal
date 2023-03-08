@@ -857,11 +857,11 @@ meals_1.*:              GPL 2.0 or newer
 meals_2.*:              CC BY-SA 3.0
 - plate                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 - ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
-- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+- sandwich              Glitch; CC0; https://openclipart.org/detail/209592
 meals_3.*:              CC BY-SA 3.0
 - plates (top)          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 - ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
-- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+- sandwich              Glitch; CC0; https://openclipart.org/detail/209592
 - plates/food (bottom)  bleutailfly; OGA BY 3.0; Stendhal
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
