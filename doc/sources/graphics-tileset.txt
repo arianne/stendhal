@@ -821,13 +821,21 @@ worldmap.png    gummipferd; ???; Stendhal
 tiled/tileset/item/drink/
 
 beers_and_flasks.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bottle_and_glass.*  (placeholder)
-bottles_and_cups.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
-casks.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+bottle_and_glass.*  CC BY-SA 3.0
+- glass             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- bottle            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+bottles_and_cups.*  CC BY-SA 3.0 (partial placeholder)
+- red bottles       filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- everything else   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+casks.*             CC BY-SA 3.0
+- red wine          filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- everything else   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cognac.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fierywater.png      omero; CC BY-SA 3.0; Stendhal
 juice_glass.*       Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
-red_wine.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+red_wine.*:         CC BY-SA 3.0
+- glass             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- bottle            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
 white_wine.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/food/
@@ -881,7 +889,9 @@ wooden_crosses.*     Carlo Enrico Victoria (Nemisys), Tuomo Untinen (Reemax), bl
 
 tiled/tileset/item/household/
 
-food_preparation.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (partial placeholder)
+food_preparation.*    CC BY-SA 3.0 (partial placeholder)
+- red wine            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- everything else     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 food_preparation_2.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/instrument/

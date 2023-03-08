@@ -5,10 +5,4 @@ item/
 - tools.png
 
 item/drink/
-- bottle_and_glass.png
 - bottles_and_cups.png
-- casks.png
-- red_wine.png
-
-item/household/
-- food_preparation.png
