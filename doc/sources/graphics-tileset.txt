@@ -702,7 +702,7 @@ boxes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broom.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brush.png                  bleutailfly; OGA BY 3.0; Stendhal
 bulletin_board.png         tigertoes; ???; working on replacement
-bulletin_board_items.png   tigertoes; ???; working on replacement
+bulletin_board_items.png   tigertoes; ???; working on replacement (partial placeholder)
 bulletin_board_items2.png  bleutailfly; OGA BY 3.0; https://opengameart.org/node/107311
 bullseye.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button.png                 Juan?; ???; ??? (committed by kymara: b5b8001)
@@ -720,7 +720,7 @@ flagpole.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flat_button.*              Jordan Irwin (AntumDeluge), looneybits; OGA BY 3.0; Stendhal, https://opengameart.org/node/93788
 grill_top.png              bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png         bleutailfly; OGA BY 3.0; Stendhal
-hen_nest.png               omero; OGA BY 3.0; Stendhal
+hen_nest.png               j4p4n, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/147986, https://openclipart.org/detail/311733
 hot_iron_piece.png         Juan?, Katie Russell (kymara); ???; ??? (committed by kymara: 36eaeba)
 huge_orb.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -731,7 +731,7 @@ pelt.png                   OCAL; CC0; https://freesvg.org/vintage-sign-board
 pelts.png                  Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
 postbox.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 postbox_2.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ropes.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ropes.*                    Kimmo Rundelin (kiheru), frankes, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://openclipart.org/detail/213899
 sacks.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 scrying_orb.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sewing_machine.png         bleutailfly; OGA BY 3.0; Stendhal
@@ -739,7 +739,11 @@ sign.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sign_large.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snowman.*                  ???; ???; ??? (committed by kymara: 62d73ad)
 swing.png                  bleutailfly; OGA BY 3.0; Stendhal
-tools.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+tools.*                    CC BY-SA 3.0 (partial placeholder)
+- shovel & broom           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- anvil                    nightowl, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83720
+- hanging tools & hammer   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+- pick                     johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/985
 toys.png                   Daniel Herding (mort), SpiderDave, Peileppe, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/64909, https://opengameart.org/node/15250, https://openclipart.org/detail/11341
 
 tiled/tileset/item/armor/
@@ -815,20 +819,29 @@ kids_art_2.png  bleutailfly; OGA BY 3.0; Stendhal
 letter.png      ???; ???; ??? (committed by kymara: b6a354f)
 note_board.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 notes.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-notes2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+notes2.*        Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 worldmap.png    gummipferd; ???; Stendhal
 
 tiled/tileset/item/drink/
 
-beers_and_flasks.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bottle_and_glass.png  ???; ???; ??? (committed by kymara: 9a51ad4)
-bottles_and_cups.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-casks.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cognac.png            ???; ???; ??? (committed by Miguel: 12d51cd)
-fierywater.png        omero; CC BY-SA 3.0; Stendhal
-juice_glass.*         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
-red_wine.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-white_wine.png        ???; ???; ??? (committed by Miguel: 12d51cd)
+beers_and_flasks.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+bottle_and_glass.*  CC BY-SA 3.0
+- glass             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- bottle            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+bottles_and_cups.*  CC BY-SA 3.0
+- red bottles       filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- beer bottles      Keistutis; CC0; https://openclipart.org/detail/171402
+- everything else   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+casks.*             CC BY-SA 3.0
+- red wine          filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- everything else   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+cognac.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fierywater.png      omero; CC BY-SA 3.0; Stendhal
+juice_glass.*       Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, https://openclipart.org/detail/12865
+red_wine.*:         CC BY-SA 3.0
+- glass             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- bottle            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+white_wine.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/food/
 
@@ -838,12 +851,21 @@ bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               Jordan Irwin (AntumDeluge); CC0; Stendhal
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-meals_1.png             ???; ???; ??? (committed by Astrid Sawatzky: 0d2cf4e)
-meals_2.png             ???; ???; ??? (committed by Miguel: 12d51cd)
-meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
+meals_1.*:              GPL 2.0 or newer
+- plate                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- food                  Astrid Sawatzky; GPL 2.0 or newer; Stendhal
+meals_2.*:              CC BY-SA 3.0
+- plate                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
+- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+meals_3.*:              CC BY-SA 3.0
+- plates (top)          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+- ham                   David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
+- sandwich              magdum; CC BY 3.0; https://opengameart.org/node/65127
+- plates/food (bottom)  bleutailfly; OGA BY 3.0; Stendhal
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
-rustic_meals.png        Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rustic_meals.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal
 steak.*                 Henrique Lazarini (7Soul1), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/39455
 torte.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
@@ -872,7 +894,9 @@ wooden_crosses.*     Carlo Enrico Victoria (Nemisys), Tuomo Untinen (Reemax), bl
 
 tiled/tileset/item/household/
 
-food_preparation.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+food_preparation.*    CC BY-SA 3.0 (partial placeholder)
+- red wine            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- everything else     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 food_preparation_2.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/instrument/
