@@ -824,8 +824,9 @@ beers_and_flasks.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bottle_and_glass.*  CC BY-SA 3.0
 - glass             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 - bottle            filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
-bottles_and_cups.*  CC BY-SA 3.0 (partial placeholder)
+bottles_and_cups.*  CC BY-SA 3.0
 - red bottles       filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793
+- beer bottles      Keistutis; CC0; https://openclipart.org/detail/171402
 - everything else   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 casks.*             CC BY-SA 3.0
 - red wine          filtre, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/81793

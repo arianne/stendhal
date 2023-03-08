@@ -3,6 +3,3 @@
 
 item/
 - tools.png
-
-item/drink/
-- bottles_and_cups.png
