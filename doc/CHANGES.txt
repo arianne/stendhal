@@ -38,7 +38,6 @@ Changelog
 - Restock the Flower Shop quest now tracks completions
 - weapons can now inflict status effects
 - players can now inflict status effects
-- melee weapons can have longer range
 - descreased damage penalty compensating for player hit chance handicap
 - replaced music in Nalwor River maps
 - producer NPCs now have an icon
