@@ -323,8 +323,6 @@ public class StendhalRPAction {
 		if (attackWeapon != null) {
 			weaponClass = attackWeapon.getWeaponType();
 		}
-		// player may be using a melee weapon with longer reach
-		isRanged = isRanged && attackWeapon.isNonMeleeWeapon();
 
 		final boolean beaten;
 		final boolean usesTrainingDummy = defender instanceof TrainingDummy;
@@ -485,7 +483,7 @@ public class StendhalRPAction {
 	private static void useMissile(Player player) {
 		// Get the projectile that will be thrown/shot.
 		StackableItem projectilesItem = null;
-		if (player.getProjectileLauncher() != null) {
+		if (player.getRangeWeapon() != null) {
 			projectilesItem = player.getAmmunition();
 		}
 		if (projectilesItem == null) {
