@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2022 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -493,7 +493,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 						 * small one trying to run right through it.
 						 */
 						double part = intersect.getWidth() * intersect.getHeight() / size;
-						r *= (int) part;
+						r *= part;
 
 						/*
 						 * Add up like probabilities to avoid small resistance
