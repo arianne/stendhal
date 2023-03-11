@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,14 +16,25 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.config.factory.ConfigurableFactory;
+import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 import marauroa.common.game.IRPZone.ID;
 
 /**
  * creates a PassiveEntityRespawnPoint.
  */
-public class PassiveEntityRespawnPointFactory {
+public class PassiveEntityRespawnPointFactory implements ConfigurableFactory {
 	private static Logger logger = Logger
 			.getLogger(PassiveEntityRespawnPointFactory.class);
+
+
+	@Override
+	public Object create(final ConfigurableFactoryContext ctx) {
+		final String itemName = ctx.getRequiredString("item");
+		final int meanTurns = ctx.getRequiredInt("meanTurnsForRegrow");
+		final boolean initOnAdded = ctx.getBoolean("initOnAdded", false);
+		return new PassiveEntityRespawnPoint(itemName, meanTurns, initOnAdded);
+	}
 
 	/**
 	 * creates a PassiveEntityRespawnPoint.
