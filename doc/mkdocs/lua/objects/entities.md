@@ -107,6 +107,18 @@ ShopSign type:
 
 
 ---
+### entities:createItemSpawner
+<span style="color:green; font-weight:bold;">entities:createItemSpawner</span>(name, meanTurns)
+
+- Creates an item spawner.
+- Parameters:
+    - ***name:*** (`string`) Name of item to be spawned.
+    - ***meanTurns:*** Average number of turns for item to respawn.
+- Returns:
+    - [PassiveEntityRespawnPoint][] instance.
+
+
+---
 ### entities:getPlayer
 <span style="color:green; font-weight:bold;">entities:getPlayer</span>(name)
 
@@ -304,6 +316,7 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 [ConversationStates]: ../../java/games/stendhal/server/entity/npc/ConversationStates.html
 [DefaultEntityManager]: ../../java/games/stendhal/server/core/rule/defaultruleset/DefaultEntityManager.html
 [Item]: ../../java/games/stendhal/server/entity/item/Item.html
+[PassiveEntityRespawnPoint]: ../../java/games/stendhal/server/entity/mapstuff/spawnwer/PassiveEntityRespawnPoint.html
 [Player]: ../../java/games/stendhal/server/entity/player/Player.html
 [RaidCreature]: ../../java/games/stendhal/server/entity/creature/RaidCreature.html
 [Reader]: ../../java/games/stendhal/server/entity/mapstuff/sign/Reader.html

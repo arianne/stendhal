@@ -43,6 +43,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.sign.Reader;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -657,6 +658,20 @@ public class LuaEntityHelper {
 	@Deprecated
 	public LuaSilentNPC createSilentNPC() {
 		return new LuaSilentNPC();
+	}
+
+	/**
+	 * Creates an item spawner.
+	 *
+	 * @param name
+	 *     Name of item to be spawned.
+	 * @param meanTurns
+	 *     Average number of turns for item to respawn.
+	 * @return
+	 *     PassiveEntityRespawnPoint instance.
+	 */
+	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns) {
+		return new PassiveEntityRespawnPoint(name, meanTurns);
 	}
 
 	/**
