@@ -349,8 +349,31 @@ public class StendhalRPZone extends MarauroaRPZone {
 		respawnPoints.remove(point);
 	}
 
+	/**
+	 * Retrieves growers in this zone.
+	 */
 	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
 		return plantGrowers;
+	}
+
+	/**
+	 * Registers a grower in this zone.
+	 *
+	 * @param grower
+	 *     Grower being added.
+	 */
+	public void addPlantGrower(final PassiveEntityRespawnPoint grower) {
+		plantGrowers.add(grower);
+	}
+
+	/**
+	 * Unregisters a grower in this zone.
+	 *
+	 * @param grower
+	 *     Grower being removed.
+	 */
+	public void removePlantGrower(final PassiveEntityRespawnPoint grower) {
+		plantGrowers.remove(grower);
 	}
 
 	/** We reserve the first 64 portals ids for hand made portals. */
@@ -923,13 +946,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 			itemsOnGround.add(item);
 		}
 
-		/*
-		 * Eventually move to <Entity>.onAdded().
-		 */
-		if (object instanceof PassiveEntityRespawnPoint) {
-			plantGrowers.add((PassiveEntityRespawnPoint) object);
-		}
-
 		if (object instanceof Blood) {
 			bloods.add((Blood) object);
 		} else if (object instanceof Player) {
@@ -1001,13 +1017,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (object instanceof NPC) {
 			npcs.remove(object);
-		}
-
-		/*
-		 * Eventually move to <Entity>.onRemoved().
-		 */
-		if (object instanceof PassiveEntityRespawnPoint) {
-			plantGrowers.remove(object);
 		}
 
 		if (object instanceof Blood) {

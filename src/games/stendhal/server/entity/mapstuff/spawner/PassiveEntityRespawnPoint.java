@@ -90,6 +90,18 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		grower.addAttribute("class", Type.STRING);
 	}
 
+	@Override
+	public void onAdded(final StendhalRPZone zone) {
+		super.onAdded(zone);
+		zone.addPlantGrower(this);
+	}
+
+	@Override
+	public void onRemoved(final StendhalRPZone zone) {
+		super.onRemoved(zone);
+		zone.removePlantGrower(this);
+	}
+
 	/**
 	 * Is called when a fruit has been picked from this plant grower.
 	 *
