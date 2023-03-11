@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                    Copyright © 2022-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -667,11 +667,28 @@ public class LuaEntityHelper {
 	 *     Name of item to be spawned.
 	 * @param meanTurns
 	 *     Average number of turns for item to respawn.
+	 * @param initOnAdded
+	 *     If <code>true</code>, sets to full grown and initializes respawn timer when added to zone.
+	 * @return
+	 *     PassiveEntityRespawnPoint instance.
+	 */
+	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns,
+			final boolean initOnAdded) {
+		return new PassiveEntityRespawnPoint(name, meanTurns, initOnAdded);
+	}
+
+	/**
+	 * Creates an item spawner.
+	 *
+	 * @param name
+	 *     Name of item to be spawned.
+	 * @param meanTurns
+	 *     Average number of turns for item to respawn.
 	 * @return
 	 *     PassiveEntityRespawnPoint instance.
 	 */
 	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns) {
-		return new PassiveEntityRespawnPoint(name, meanTurns);
+		return createItemSpawner(name, meanTurns, false);
 	}
 
 	/**

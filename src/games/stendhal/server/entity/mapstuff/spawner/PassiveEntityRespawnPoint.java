@@ -56,11 +56,25 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 */
 	private final String growingItemName;
 
+	/** Initializes spawner & sets to full growth when added to zone if <code>true</code>. */
+	private final boolean initOnAdded;
+
+
+	/**
+	 * Creates an item spawner.
+	 *
+	 * @param object
+	 * @param growingItemName
+	 *     Name of item to be spawned.
+	 * @param meanTurnsForRegrow
+	 *     Average number of turns for item to spawn.
+	 */
 	public PassiveEntityRespawnPoint(final RPObject object, final String growingItemName,
 			final int meanTurnsForRegrow) {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
+		this.initOnAdded = false;
 		setDescription("It looks like there's "
 				+ Grammar.a_noun(growingItemName) + " sprout growing here.");
 
@@ -71,10 +85,33 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		// update();
 	}
 
-	public PassiveEntityRespawnPoint(final String growingItemName,
-			final int meanTurnsForRegrow) {
+	/**
+	 * Creates an item spawner.
+	 *
+	 * @param growingItemName
+	 *     Name of item to be spawned.
+	 * @param meanTurnsForRegrow
+	 *     Average number of turns for item to spawn.
+	 */
+	public PassiveEntityRespawnPoint(final String growingItemName, final int meanTurnsForRegrow) {
+		this(growingItemName, meanTurnsForRegrow, false);
+	}
+
+	/**
+	 * Creates an item spawner.
+	 *
+	 * @param growingItemName
+	 *     Name of item to be spawned.
+	 * @param meanTurnsForRegrow
+	 *     Average number of turns for item to spawn.
+	 * @param initOnAdded
+	 *     If <code>true</code>, sets to full grown and initializes respawn timer when added to zone.
+	 */
+	public PassiveEntityRespawnPoint(final String growingItemName, final int meanTurnsForRegrow,
+			final boolean initOnAdded) {
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
+		this.initOnAdded = initOnAdded;
 		setDescription("It looks like there's "
 				+ Grammar.a_noun(growingItemName) + " sprout growing here.");
 
@@ -94,6 +131,9 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
 		zone.addPlantGrower(this);
+		if (initOnAdded) {
+			setToFullGrowth();
+		}
 	}
 
 	@Override

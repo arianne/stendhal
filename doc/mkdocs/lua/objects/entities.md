@@ -113,7 +113,8 @@ ShopSign type:
 - Creates an item spawner.
 - Parameters:
     - ***name:*** (`string`) Name of item to be spawned.
-    - ***meanTurns:*** Average number of turns for item to respawn.
+    - ***meanTurns:*** (`int`) Average number of turns for item to respawn.
+    - ***initOnAdded:*** (`boolean`) If `true` initializes spawner when added to zone.
 - Returns:
     - [PassiveEntityRespawnPoint][] instance.
 
