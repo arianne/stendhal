@@ -1192,11 +1192,17 @@
 
   <target name="dist_webclient_binary" depends="compilejs,clean_client_data,build_client_data">
     <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
-      <zipfileset dir="${buildroot}/js" prefix="js"/>
-      <zipfileset dir="${buildroot}/ts" prefix="ts"/>
+      <zipfileset dir="${buildroot}/js" prefix="build/js"/>
+      <zipfileset dir="${buildroot}/ts" prefix="build/ts"/>
       <zipfileset dir="${build_client_data}"/>
       <zipfileset dir="${build_client_music_data}"/>
       <zipfileset dir="${build_client_sound_data}"/>
+      <zipfileset dir="${srcjs}" prefix="srcjs">
+        <include name="stendhal.html"/>
+        <include name="stendhal.css"/>
+        <include name="stendhal-compiled.js*"/>
+        <include name="favicon.ico"/>
+      </zipfileset>
       <zipfileset dir="doc" prefix="doc">
         <include name="contributors.md"/>
         <include name="Licenses/**"/>
