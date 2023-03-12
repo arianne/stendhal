@@ -3,6 +3,12 @@ Changelog
 ---------
 
 
+1.43.3
+
+*bugfixes*
+- fixed balloon detail layer index for players carrying balloons before layer coloring implemented
+
+
 1.43
 
 *bugfixes*
