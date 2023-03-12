@@ -1205,13 +1205,23 @@
     </copy>
 
     <replaceregexp file="${build_webclient}/stendhal.html"
-      match="data-tileset-path=&quot;/tileset&quot;"
-      replace="data-tileset-path=&quot;/data/tileset&quot;"
-      byline="false"/>
+        match="data-tileset-path=&quot;/tileset&quot;"
+        replace="data-tileset-path=&quot;/data/tileset&quot;"
+        byline="false"/>
+    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
+        match="build/js/"
+        replace="js/marauroa/"
+        byline="true"
+        flags="g"/>
+    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
+        match="build/ts/"
+        replace="js/stendhal/"
+        byline="true"
+        flags="g"/>
 
     <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
-      <zipfileset dir="${buildroot}/js" prefix="build/js"/>
-      <zipfileset dir="${buildroot}/ts" prefix="build/ts"/>
+      <zipfileset dir="${buildroot}/js" prefix="js/marauroa"/>
+      <zipfileset dir="${buildroot}/ts" prefix="js/stendhal"/>
       <zipfileset dir="${build_client_data}"/>
       <zipfileset dir="${build_client_music_data}"/>
       <zipfileset dir="${build_client_sound_data}"/>
