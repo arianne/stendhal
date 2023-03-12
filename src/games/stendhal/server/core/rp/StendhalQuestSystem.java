@@ -82,6 +82,7 @@ public class StendhalQuestSystem {
 		//deactivated AdMemoriaInPortfolio
 		//loadQuest(new AdMemoriaInPortfolio());
 		loadQuest(new AdosDeathmatch());
+		loadQuest(new AdventureIsland());
 		loadQuest(new AmazonPrincess());
 		loadQuest(new AntivenomRing());
 		loadQuest(new ArmorForDagobert());

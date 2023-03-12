@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,13 +50,13 @@ public class ChallengerNPC implements ZoneConfigurator  {
 	/** how many creatures will be spawned.*/
 	private static final int NUMBER_OF_CREATURES = 5;
 	/** lowest level allowed to island.*/
-	private static final int MIN_LEVEL = 50;
+	public static final int MIN_LEVEL = 50;
 	/** Cost multiplier for getting to island. */
 	private static final int COST_FACTOR = 300;
 	/** How long to wait before visiting island again. */
-	private static final int DAYS_BEFORE_REPEAT = 3;
+	public static final int DAYS_BEFORE_REPEAT = 3;
 	/** The name of the quest slot where we store the time last visited. */
-	private static final String QUEST_SLOT = "adventure_island";
+	public static final String QUEST_SLOT = "adventure_island";
 
 	private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 

@@ -3,6 +3,12 @@ Changelog
 ---------
 
 
+1.44
+
+*world*
+- Adventure Island state is shown in travel log
+
+
 1.43
 
 *bugfixes*
