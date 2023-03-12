@@ -34,6 +34,8 @@
   <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
   <property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
 
+  <property name="build_webclient" value="${buildroot}/build_webclient"/>
+
   <property name="build_docker" value="${buildroot}/build_docker"/>
   <property name="buildtools_docker" value="buildtools/docker"/>
 
@@ -1191,18 +1193,29 @@
   </target> <!-- compilejs -->
 
   <target name="dist_webclient_binary" depends="compilejs,clean_client_data,build_client_data">
+    <mkdir dir="${build_webclient}"/>
+
+    <copy todir="${build_webclient}">
+      <fileset dir="${srcjs}">
+        <include name="stendhal.html"/>
+        <include name="stendhal.css"/>
+        <include name="stendhal-compiled.js*"/>
+        <include name="favicon.ico"/>
+      </fileset>
+    </copy>
+
+    <replaceregexp file="${build_webclient}/stendhal.html"
+      match="data-tileset-path=&quot;/tileset&quot;"
+      replace="data-tileset-path=&quot;/data/tileset&quot;"
+      byline="false"/>
+
     <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
       <zipfileset dir="${buildroot}/js" prefix="build/js"/>
       <zipfileset dir="${buildroot}/ts" prefix="build/ts"/>
       <zipfileset dir="${build_client_data}"/>
       <zipfileset dir="${build_client_music_data}"/>
       <zipfileset dir="${build_client_sound_data}"/>
-      <zipfileset dir="${srcjs}" prefix="srcjs">
-        <include name="stendhal.html"/>
-        <include name="stendhal.css"/>
-        <include name="stendhal-compiled.js*"/>
-        <include name="favicon.ico"/>
-      </zipfileset>
+      <zipfileset dir="${build_webclient}" prefix="srcjs"/>
       <zipfileset dir="doc" prefix="doc">
         <include name="contributors.md"/>
         <include name="Licenses/**"/>
