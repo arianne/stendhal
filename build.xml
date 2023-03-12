@@ -1215,7 +1215,7 @@
       <zipfileset dir="${build_client_data}"/>
       <zipfileset dir="${build_client_music_data}"/>
       <zipfileset dir="${build_client_sound_data}"/>
-      <zipfileset dir="${build_webclient}" prefix="srcjs"/>
+      <zipfileset dir="${build_webclient}" prefix="js"/>
       <zipfileset dir="doc" prefix="doc">
         <include name="contributors.md"/>
         <include name="Licenses/**"/>
