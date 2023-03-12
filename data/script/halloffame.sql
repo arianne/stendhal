@@ -16,6 +16,7 @@
 -- S  Sokoban score
 
 SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+SET sql_notes = 0;
 
 UPDATE achievement SET reached =
 (SELECT count(*) as cnt
