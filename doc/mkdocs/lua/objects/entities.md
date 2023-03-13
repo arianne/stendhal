@@ -19,7 +19,7 @@ See also: for public methods that can be performed on `Entity` objects.
 
 ---
 ### entities:create
-<span style="color:green; font-weight:bold;">entities:create</span>(name)
+<span style="color:green; font-weight:bold;">entities:create</span>(def)
 
 - Creates a new entity.
 - Parameters:
