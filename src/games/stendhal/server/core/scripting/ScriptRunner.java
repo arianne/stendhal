@@ -201,7 +201,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 					script = new ScriptInGroovy(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".lua")) {
-					script = new ScriptInLua(rootDir + trimmedName);
+					script = ScriptInLua.get().createScript(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".class")) {
 					script = new ScriptInJava(trimmedName);

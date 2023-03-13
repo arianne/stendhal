@@ -42,6 +42,7 @@ import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
 import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
 import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
 import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
+import games.stendhal.server.core.scripting.lua.LuaScript;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.LuaTableHelper;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
@@ -95,6 +96,7 @@ public class ScriptInLua extends ScriptingSandbox {
 		luaScript = null;
 	}
 
+	@Deprecated
 	ScriptInLua(final String filename) {
 		super(filename);
 
@@ -150,6 +152,7 @@ public class ScriptInLua extends ScriptingSandbox {
 	 * @return
 	 * 		<code>true</code> if loading succeeded.
 	 */
+	@Deprecated
 	public boolean load(final String filename, final Player player, final List<String> args) {
 		luaScript = filename;
 		return load(player, args);
@@ -220,6 +223,24 @@ public class ScriptInLua extends ScriptingSandbox {
 		}
 	}
 
+	/**
+	 * Create new script instance.
+	 *
+	 * @param filename
+	 *     Path to Lua script.
+	 * @return
+	 *     Loadable script representation.
+	 */
+	public LuaScript createScript(final String filename) {
+		return new LuaScript(filename);
+	}
+
+	/**
+	 * Retrieves Lua global objects.
+	 */
+	public Globals getGlobals() {
+		return globals;
+	}
 
 	/**
 	 * Sets the background music for the current zone.

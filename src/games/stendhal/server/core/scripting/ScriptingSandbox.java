@@ -46,7 +46,7 @@ public abstract class ScriptingSandbox {
 
 	private StendhalRPZone zone;
 
-	private final String filename;
+	protected final String filename;
 
 	private static final Logger logger = Logger.getLogger(ScriptingSandbox.class);
 
