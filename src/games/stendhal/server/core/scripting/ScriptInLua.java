@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      Copyright 2019 (C) - Arianne                       *
+ *                    Copyright © 2019-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.Lua;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaInteger;
 import org.luaj.vm2.LuaTable;
@@ -158,7 +159,7 @@ public class ScriptInLua extends ScriptingSandbox {
 	 * Loads lua master script.
 	 */
 	public void init() {
-		logger.info("Initializing Lua scripting engine");
+		logger.info("Initializing Lua environment (" + Lua._VERSION + ")");
 
 		globals = JsePlatform.standardGlobals();
 
