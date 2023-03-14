@@ -34,14 +34,15 @@ public class LuaScript extends ScriptingSandbox {
 
 	@Override
 	public boolean load(final Player player, final List<String> args) {
+		// run script
 		final LuaValue result = ScriptInLua.get().getGlobals().loadfile(filename).call();
-		if (result.isint()) {
+		if (result.isint() || result.isnil()) {
 			return result.toint() == 0;
 		} else if (result.isboolean()) {
 			return result.toboolean();
 		}
 
-		logger.warn("Lua script return non-zero or \"false\": " + filename);
+		logger.warn("Lua script returned non-zero or \"false\" (" + filename + "): " + String.valueOf(result));
 		return false;
 	}
 }
