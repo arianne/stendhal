@@ -10,6 +10,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -25,11 +29,17 @@ import games.stendhal.server.entity.player.Player;
  */
 public class LuaScript extends ScriptingSandbox {
 
-	private static final Logger logger = Logger.getLogger(LuaScript.class);
+	final InputStream istream;
 
 
 	public LuaScript(final String filename) {
 		super(filename);
+		this.istream = null;
+	}
+
+	public LuaScript(final InputStream istream, final String chunkname) {
+		super(chunkname);
+		this.istream = istream;
 	}
 
 	@Override
@@ -38,13 +48,17 @@ public class LuaScript extends ScriptingSandbox {
 	}
 
 	public boolean load() {
+		final LuaLogger luaLogger = LuaLogger.get();
 		// update logger with current script
-		LuaLogger luaLogger = LuaLogger.get();
 		luaLogger.setFilename(filename);
-		// run script
-		final LuaValue result = ScriptInLua.get().getGlobals().loadfile(filename).call();
-		// reset logger script filename
-		luaLogger.setFilename(null);
+
+		LuaValue result = LuaValue.NIL;
+		if (istream != null) {
+			result = loadStream();
+		} else {
+			result = loadFile();
+		}
+
 		boolean success = true;
 		if (result.isint() || result.isnil()) {
 			success = result.toint() == 0;
@@ -53,8 +67,41 @@ public class LuaScript extends ScriptingSandbox {
 		}
 
 		if (!success) {
-			logger.warn("Lua script returned non-zero or \"false\" (" + filename + "): " + String.valueOf(result));
+			luaLogger.warn("Script returned \"" + String.valueOf(result) + "\"");
 		}
+		// reset logger script filename
+		luaLogger.setFilename(null);
 		return success;
+	}
+
+	/**
+	 * Load Lua script from file.
+	 *
+	 * @return
+	 *     LuaValue result returned by the executed script.
+	 */
+	private LuaValue loadFile() {
+		// run script
+		return ScriptInLua.get().getGlobals().loadfile(filename).call();
+	}
+
+	/**
+	 * Load Lua data from resource stream.
+	 *
+	 * @return
+	 *     LuaValue result returned by the executed script.
+	 */
+	private LuaValue loadStream() {
+		LuaValue result = LuaValue.NIL;
+		try {
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
+			// run data chunk
+			result = ScriptInLua.get().getGlobals().load(reader, filename).call();
+			reader.close();
+		} catch (final IOException e) {
+			Logger.getLogger(LuaScript.class).error(e, e);
+			result = LuaValue.ONE;
+		}
+		return result;
 	}
 }

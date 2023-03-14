@@ -11,10 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -206,18 +203,10 @@ public class ScriptInLua extends ScriptingSandbox {
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
 		if (is != null) {
-			try {
-				final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-				final LuaValue result = globals.load(reader, "init.lua").call();
-				reader.close();
-
-				if (!result.toboolean()) {
-					logger.warn("Loading Lua master script failed: " + getClass().getPackage().getName() + ".lua/init.lua");
-				} else {
-					logger.info("Lua master script loaded: " + getClass().getPackage().getName() + ".lua/init.lua");
-				}
-			} catch (final IOException e) {
-				logger.error(e, e);
+			if (new LuaScript(is, "init.lua").load()) {
+				logger.info("Lua master script loaded: " + getClass().getPackage().getName() + ".lua/init.lua");
+			} else {
+				logger.warn("Loading Lua master script failed: " + getClass().getPackage().getName() + ".lua/init.lua");
 			}
 		} else {
 			logger.warn("Could not retrieve Lua master script as resource: " + getClass().getPackage().getName() + ".lua/init.lua");
