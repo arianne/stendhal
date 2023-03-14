@@ -34,6 +34,10 @@ public class LuaScript extends ScriptingSandbox {
 
 	@Override
 	public boolean load(final Player player, final List<String> args) {
+		return load();
+	}
+
+	public boolean load() {
 		// update logger with current script
 		LuaLogger luaLogger = LuaLogger.get();
 		luaLogger.setFilename(filename);
