@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +20,6 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.scripting.ScriptInLua.LuaLogger;
 import games.stendhal.server.entity.npc.quest.BringItemTask;
 import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.npc.quest.KillCreaturesTask;

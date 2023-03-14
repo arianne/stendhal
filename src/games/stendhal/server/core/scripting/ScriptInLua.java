@@ -39,6 +39,7 @@ import games.stendhal.server.core.scripting.lua.LuaActionHelper;
 import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
 import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
 import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
+import games.stendhal.server.core.scripting.lua.LuaLogger;
 import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
 import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
 import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
@@ -308,63 +309,5 @@ public class ScriptInLua extends ScriptingSandbox {
 				func.call();
 			}
 		});
-	}
-
-
-	/**
-	 * Handles logging from Lua.
-	 */
-	public static class LuaLogger {
-
-		private static LuaLogger instance;
-
-
-		/**
-		 * Retrieves the static instance.
-		 *
-		 * @return
-		 * 		Static LuaLogger instance.
-		 */
-		public static LuaLogger get() {
-			if (instance == null) {
-				instance = new LuaLogger();
-			}
-
-			return instance;
-		}
-
-		private void formatMessage(String message) {
-			message = message.trim();
-
-			if (luaScript == null) {
-				message = "(unknown source) " + message;
-			} else {
-				message = "(" + luaScript + ") " + message;
-			}
-		}
-
-		public void info(String message) {
-			formatMessage(message);
-			logger.info(message);
-		}
-
-		public void warn(String message) {
-			formatMessage(message);
-			logger.warn(message);
-		}
-
-		public void error(String message) {
-			formatMessage(message);
-			logger.error(message);
-		}
-
-		public void error(final Object obj, final Throwable throwable) {
-			logger.error(obj, throwable);
-		}
-
-		public void debug(String message) {
-			formatMessage(message);
-			logger.debug(message);
-		}
 	}
 }

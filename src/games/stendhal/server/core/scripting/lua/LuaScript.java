@@ -34,8 +34,13 @@ public class LuaScript extends ScriptingSandbox {
 
 	@Override
 	public boolean load(final Player player, final List<String> args) {
+		// update logger with current script
+		LuaLogger luaLogger = LuaLogger.get();
+		luaLogger.setFilename(filename);
 		// run script
 		final LuaValue result = ScriptInLua.get().getGlobals().loadfile(filename).call();
+		// reset logger script filename
+		luaLogger.setFilename(null);
 		boolean success = true;
 		if (result.isint() || result.isnil()) {
 			success = result.toint() == 0;
