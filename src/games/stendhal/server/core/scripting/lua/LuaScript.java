@@ -36,13 +36,16 @@ public class LuaScript extends ScriptingSandbox {
 	public boolean load(final Player player, final List<String> args) {
 		// run script
 		final LuaValue result = ScriptInLua.get().getGlobals().loadfile(filename).call();
+		boolean success = true;
 		if (result.isint() || result.isnil()) {
-			return result.toint() == 0;
+			success = result.toint() == 0;
 		} else if (result.isboolean()) {
-			return result.toboolean();
+			success = result.toboolean();
 		}
 
-		logger.warn("Lua script returned non-zero or \"false\" (" + filename + "): " + String.valueOf(result));
-		return false;
+		if (!success) {
+			logger.warn("Lua script returned non-zero or \"false\" (" + filename + "): " + String.valueOf(result));
+		}
+		return success;
 	}
 }
