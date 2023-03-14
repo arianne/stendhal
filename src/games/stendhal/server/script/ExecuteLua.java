@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ public class ExecuteLua extends ScriptImpl {
 			return;
 		}
 
-		if (!ScriptInLua.get().load(script.toString(), admin, null)) {
+		if (!ScriptInLua.get().createScript(script.toString()).load(admin, null)) {
 			admin.sendPrivateText(NotificationType.ERROR, "An error occured when trying to load Lua script: " + script.toString().replace("\\", "\\\\"));
 		}
 	}

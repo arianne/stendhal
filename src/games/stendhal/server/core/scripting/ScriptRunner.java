@@ -78,8 +78,6 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	@Override
 	public void init() {
-		initLua();
-
 		final URL url = getClass().getClassLoader().getResource(scriptDir);
 		if (url != null) {
 			final File dir = new File(url.getFile());
@@ -514,14 +512,6 @@ public class ScriptRunner extends StendhalServerExtension implements
 		}
 
 		player.sendPrivateText(text);
-	}
-
-	/**
-	 * Initializes Lua globals & loads built-in scripts.
-	 */
-	private void initLua() {
-		ScriptInLua.get().init();
-		//initLuaMods();
 	}
 
 	/**

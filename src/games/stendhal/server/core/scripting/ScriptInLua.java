@@ -13,13 +13,11 @@ package games.stendhal.server.core.scripting;
 
 import java.io.InputStream;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.Lua;
 import org.luaj.vm2.LuaFunction;
-import org.luaj.vm2.LuaInteger;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.PackageLib;
@@ -31,7 +29,6 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.lua.LuaActionHelper;
 import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
 import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
@@ -43,37 +40,33 @@ import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaScript;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.LuaTableHelper;
-import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
-import games.stendhal.server.entity.player.Player;
+
 
 /**
  * Manages scripts written in Lua.
  */
-public class ScriptInLua extends ScriptingSandbox {
+public class ScriptInLua {
 
 	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
 
-	/** The singleton instance. */
-	private static ScriptInLua instance;
-
-	private static final SingletonRepository singletons = SingletonRepository.get();
-
+	/** Global objects accessible within Lua scripts. */
 	private static Globals globals;
+	/** Original `dofile` Lua function. */
+	private static LuaFunction dofileOrig;
+	/** Script that is currently loaded. */
+	private LuaScript currentScript;
 
-	private static String luaScript;
+	/** Singleton instance. */
+	private static ScriptInLua instance;
 
 
 	/**
-	 * Singleton access method.
-	 *
-	 * @return
-	 *     The static instance.
+	 * Retrieves the singleton instance.
 	 */
 	public static ScriptInLua get() {
 		if (instance == null) {
 			instance = new ScriptInLua();
 		}
-
 		return instance;
 	}
 
@@ -86,80 +79,21 @@ public class ScriptInLua extends ScriptingSandbox {
 		return get();
 	}
 
-	ScriptInLua() {
-		super(null);
-
-		// assign singleton instance for safety
-		instance = this;
-		luaScript = null;
-	}
-
-	@Deprecated
-	ScriptInLua(final String filename) {
-		super(filename);
-
-		// assign singleton instance for safety
-		instance = this;
-		luaScript = filename;
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private ScriptInLua() {
+		init();
 	}
 
 	/**
-	 * Initial load of the script.
-	 *
-	 * @param player
-	 * 			The admin who loads script or <code>null</code> on server start.
-	 * @param args
-	 * 			The arguments the admin specified or <code>null</code> on server start.
+	 * Sets up Lua environment & loads master script.
 	 */
-	@Override
-	public boolean load(final Player player, final List<String> args) {
-		if (luaScript == null) {
-			logger.error("Attempted to load null Lua script");
-			return false;
+	private void init() {
+		if (globals != null) {
+			logger.warn("Tried to re-initialize Lua environment");
+			return;
 		}
-
-		final LuaFunction chunk = (LuaFunction) globals.loadfile(luaScript);
-		final LuaValue lresult = chunk.call();
-
-		boolean result = true;
-		if (lresult.isint()) {
-			result = lresult.toint() == 0;
-		} else if (lresult.isboolean()) {
-			result = lresult.toboolean();
-		}
-
-		if (!result) {
-			logger.warn("Lua script return non-zero or \"false\": " + luaScript);
-		}
-
-		// reset member back to null state after loaded
-		luaScript = null;
-
-		return result;
-	}
-
-	/**
-	 * For manually loading an external Lua script.
-	 *
-	 * @param filename
-	 * 		Relative path to script (usually in "data/script").
-	 * @param player
-	 * 		The admin who loads the script.
-	 * @param args
-	 * 		The arguments the admin specified.
-	 * @return
-	 * 		<code>true</code> if loading succeeded.
-	 */
-	@Deprecated
-	public boolean load(final String filename, final Player player, final List<String> args) {
-		luaScript = filename;
-		return load(player, args);
-	}
-
-	/**
-	 * Loads lua master script.
-	 */
-	public void init() {
 		logger.info("Initializing Lua environment (" + Lua._VERSION + ")");
 
 		globals = JsePlatform.standardGlobals();
@@ -168,7 +102,9 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		globals.set("game", CoerceJavaToLua.coerce(get()));
+		// store original "dofile" function
+		dofileOrig = globals.get("dofile").checkfunction();
+
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(LuaPropertiesHelper.get()));
@@ -178,27 +114,13 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("merchants", CoerceJavaToLua.coerce(LuaMerchantHelper.get()));
 		globals.set("arrays", CoerceJavaToLua.coerce(LuaArrayHelper.get()));
 		globals.set("grammar", CoerceJavaToLua.coerce(Grammar.get()));
-		globals.set("singletons", CoerceJavaToLua.coerce(singletons));
-		globals.set("clones", CoerceJavaToLua.coerce(singletons.getCloneManager()));
+		globals.set("singletons", CoerceJavaToLua.coerce(SingletonRepository.get()));
+		globals.set("clones", CoerceJavaToLua.coerce(SingletonRepository.getCloneManager()));
 		globals.set("random", CoerceJavaToLua.coerce(new Rand()));
 
 		// initialize supplemental string & table functions
 		LuaStringHelper.get().init((LuaTable) globals.get("string"));
 		LuaTableHelper.get().init((LuaTable) globals.get("table"));
-
-		// override dofile function to use relative paths
-		// FIXME: this only works at script initialization because it depends on "luaScript" variable
-		final LuaFunction dofileOrig = globals.get("dofile").checkfunction();
-		globals.set("dofile", new LuaFunction() {
-			@Override
-			public LuaValue call(final LuaValue lv) {
-				if (luaScript == null) {
-					return dofileOrig.call(lv);
-				}
-
-				return dofileOrig.call(Paths.get(Paths.get(luaScript).getParent().toString(), lv.checkjstring()).toString());
-			}
-		});
 
 		// load built-in master script
 		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
@@ -233,70 +155,35 @@ public class ScriptInLua extends ScriptingSandbox {
 	}
 
 	/**
-	 * Sets the background music for the current zone.
-	 *
-	 * @param filename
-	 * 		File basename excluding .ogg extension.
-	 * @param args
-	 * 		Lua table of key=value integer values. Valid keys are `volume`,
-	 * 		`x`, `y`, & `radius`.
+	 * Action when a new script is being loaded.
 	 */
-	public void setMusic(final String filename, final LuaTable args) {
-		// default values
-		int volume = 100;
-		int x = 1;
-		int y = 1;
-		int radius = 10000;
+	public void onLoadScript(final LuaScript script) {
+		currentScript = script;
+		// set global game object
+		globals.set("game", CoerceJavaToLua.coerce(script));
 
-		for (final LuaValue lkey: args.keys()) {
-			final String key = lkey.tojstring();
-			final LuaInteger lvalue = (LuaInteger) args.get(lkey);
-
-			if (!lvalue.isnil()) {
-				if (key.equals("volume")) {
-					volume = lvalue.toint();
-				} else if (key.equals("x")) {
-					x = lvalue.toint();
-				} else if (key.equals("y")) {
-					y = lvalue.toint();
-				} else if (key.equals("radius")) {
-					radius = lvalue.toint();
-				} else {
-					logger.warn("Unknown table key in game:setMusic: " + key);
+		final String chunkname = script.getChunkName();
+		if (!script.isResource()) {
+			// override dofile function to use paths relative to the executing script
+			// FIXME: this will fail if called inside scripts called by "dofile"
+			globals.set("dofile", new LuaFunction() {
+				@Override
+				public LuaValue call(final LuaValue lv) {
+					if (chunkname == null) {
+						return dofileOrig.call(lv);
+					}
+					return dofileOrig.call(Paths.get(Paths.get(chunkname).getParent().toString(), lv.checkjstring()).toString());
 				}
-			}
+			});
 		}
-
-		final BackgroundMusicSource musicSource = new BackgroundMusicSource(filename, radius, volume);
-		musicSource.setPosition(x, y);
-		add(musicSource);
 	}
 
 	/**
-	 * Sets the background music for the current zone.
-	 *
-	 * @param filename
-	 * 		File basename excluding .ogg extension.
+	 * Action when a script has finished executing.
 	 */
-	public void setMusic(final String filename) {
-		setMusic(filename, new LuaTable());
-	}
-
-	/**
-	 * Executes a function after a specified number of turns.
-	 *
-	 * FIXME: how to invoke with parameters
-	 *
-	 * @param turns
-	 *     Number of turns to wait.
-	 * @param func
-	 *     The function to be executed.
-	 */
-	public void runAfter(final int turns, final LuaFunction func) {
-		SingletonRepository.getTurnNotifier().notifyInTurns(turns, new TurnListener() {
-			public void onTurnReached(final int currentTurn) {
-				func.call();
-			}
-		});
+	public void onUnloadScript(final LuaScript script) {
+		currentScript = null;
+		// clear global game object
+		globals.set("game", LuaValue.NIL);
 	}
 }
