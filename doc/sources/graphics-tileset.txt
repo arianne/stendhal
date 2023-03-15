@@ -551,7 +551,7 @@ ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground_2.png                 Katie Russel (kymara); CC0; Stendhal
 ground_3.png                 Rachel J Morris (Moosader); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 ground_4.png                 Rachel J Morris (Moosader); CC0; https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
-hexagramm.png                Laguz?; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
+hexagramm.*                  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 marble.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 marble_2.png                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mossy_brick_paving.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
