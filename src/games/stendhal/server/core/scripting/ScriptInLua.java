@@ -40,6 +40,7 @@ import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
 import games.stendhal.server.core.scripting.lua.LuaScript;
 import games.stendhal.server.core.scripting.lua.LuaStringHelper;
 import games.stendhal.server.core.scripting.lua.LuaTableHelper;
+import games.stendhal.server.core.scripting.lua.LuaWorldHelper;
 
 
 /**
@@ -106,6 +107,7 @@ public class ScriptInLua {
 		dofileOrig = globals.get("dofile").checkfunction();
 
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
+		globals.set("game", CoerceJavaToLua.coerce(LuaWorldHelper.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
 		globals.set("properties", CoerceJavaToLua.coerce(LuaPropertiesHelper.get()));
 		globals.set("quests", CoerceJavaToLua.coerce(LuaQuestHelper.get()));
@@ -159,9 +161,6 @@ public class ScriptInLua {
 	 */
 	public void onLoadScript(final LuaScript script) {
 		currentScript = script;
-		// set global game object
-		globals.set("game", CoerceJavaToLua.coerce(script));
-
 		final String chunkname = script.getChunkName();
 		if (!script.isResource()) {
 			// override dofile function to use paths relative to the executing script
@@ -183,7 +182,5 @@ public class ScriptInLua {
 	 */
 	public void onUnloadScript(final LuaScript script) {
 		currentScript = null;
-		// clear global game object
-		globals.set("game", LuaValue.NIL);
 	}
 }
