@@ -600,7 +600,7 @@ blue_hole.png             Katie Russell (kymara); GPL 2.0+; Stendhal
 brown.png                 ???; ???; ??? (committed by Miguel: 859dfe8)
 brown_hole.png            ???; ???; ??? (committed by kymara: a1362b6)
 church_tiles.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-floor.png                 ???; ???; ??? (committed by kiheru: 2396739)
+floor.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_3.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_4.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 floor_tan.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
