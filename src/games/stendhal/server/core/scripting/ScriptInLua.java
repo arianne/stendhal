@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.Lua;
+import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
@@ -103,9 +104,57 @@ public class ScriptInLua {
 		globals.load(new PackageLib());
 		globals.load(new LuajavaLib());
 
-		// store original "dofile" function
+		// store original 'dofile' function
 		dofileOrig = globals.get("dofile").checkfunction();
+		// override 'dofile' function to allow relative paths & use within subscripts
+		// TODO: allow use for loading from resource
+		final LuaFunction dofile = new LuaFunction() {
+			@Override
+			public LuaValue call(final LuaValue filename) {
+				String filepath = filename.checkjstring();
+				// prepend parent caller script's directory for absolute path
+				if (currentScript != null && !currentScript.isResource()) {
+					final String parentDirname = currentScript.getDirName().toString();
+					filepath = Paths.get(parentDirname, filepath).toString();
+				}
 
+				// strip parent directory nodes from absolute path
+				final String pdelim = "/../";
+				if (filepath.contains(pdelim)) {
+					try {
+						String truncated = filepath;
+						final int pdlen = pdelim.length();
+						int iter = 0;
+						for (int idx = truncated.indexOf(pdelim); idx > -1; idx = truncated.indexOf(pdelim)) {
+							final String first = Paths.get(truncated.substring(0, idx)).getParent().toString();
+							final String second = truncated.substring(idx + pdlen);
+							truncated = Paths.get(first, second).toString();
+							// safety
+							iter++;
+							if (iter > 100) {
+								LuaLogger.get().error(new LuaError(
+										"Cannot process file path in 'dofile', too many parent nodes: " + filepath));
+								return LuaValue.ONE;
+							}
+						}
+						filepath = truncated;
+					} catch (final NullPointerException e) {
+						LuaLogger.get().error(new LuaError("Invalid file path in 'dofile': " + filepath));
+						return LuaValue.ONE;
+					}
+				}
+
+				final LuaScript script = new LuaScript(currentScript, filepath);
+				// don't allow scripts to be run outside of data/script directory
+				if (!filepath.startsWith("data/script/") && !script.isResource()) {
+					LuaLogger.get().error(new LuaError("'dofile' cannot run scripts outside of data/script directory"));
+					return LuaValue.ONE;
+				}
+				return LuaValue.valueOf(script.load());
+			}
+		};
+
+		globals.set("dofile", CoerceJavaToLua.coerce(dofile));
 		globals.set("logger", CoerceJavaToLua.coerce(LuaLogger.get()));
 		globals.set("game", CoerceJavaToLua.coerce(LuaWorldHelper.get()));
 		globals.set("entities", CoerceJavaToLua.coerce(LuaEntityHelper.get()));
@@ -161,26 +210,16 @@ public class ScriptInLua {
 	 */
 	public void onLoadScript(final LuaScript script) {
 		currentScript = script;
-		final String chunkname = script.getChunkName();
-		if (!script.isResource()) {
-			// override dofile function to use paths relative to the executing script
-			// FIXME: this will fail if called inside scripts called by "dofile"
-			globals.set("dofile", new LuaFunction() {
-				@Override
-				public LuaValue call(final LuaValue lv) {
-					if (chunkname == null) {
-						return dofileOrig.call(lv);
-					}
-					return dofileOrig.call(Paths.get(Paths.get(chunkname).getParent().toString(), lv.checkjstring()).toString());
-				}
-			});
-		}
 	}
 
 	/**
 	 * Action when a script has finished executing.
 	 */
 	public void onUnloadScript(final LuaScript script) {
-		currentScript = null;
+		if (script.hasParent()) {
+			currentScript = script.getParent();
+		} else {
+			currentScript = null;
+		}
 	}
 }
