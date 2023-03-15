@@ -20,12 +20,12 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -37,63 +37,70 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final Logger logger = Logger.getLogger(LuaTest.class);
 
-	private static StendhalRPZone zone;
-	private static SpeakerNPC npc;
-	private Engine en;
-	private static final String npcName = "Lua";
+	private SpeakerNPC lua;
+
+	private static final String propKey = "stendhal.testserver";
+	private static String propValue;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		zone = setupZone("0_semos_city");
-		new ScriptRunner().perform("npc/example/init.lua");
+		propValue = System.getProperty(propKey);
+		System.setProperty(propKey, "junk");
+	}
 
-		npc = SingletonRepository.getNPCList().get(npcName);
+	@AfterClass
+	public static void tearDownAfterClass() {
+		if (propValue == null) {
+			System.clearProperty(propKey);
+		} else {
+			System.setProperty(propKey, propValue);
+		}
 	}
 
 	@Override
 	@Before
 	public void setUp() throws Exception {
-		setNpcNames(npcName);
-		setZoneForPlayer(zone.getName());
+		// load zone, NPC, & Player
+		setZoneForPlayer(setupZone("0_semos_city").getName());
+		assertNotNull(zone);
+		assertEquals("0_semos_city", zone.getName());
+		// check that zone was added to world
+		assertNotNull(SingletonRepository.getRPWorld().getZone("0_semos_city"));
+		new ScriptRunner().perform("region/semos/city/ExampleNPC.lua");
+		assertEquals(1, zone.getNPCList().size());
+		// FIXME: zone doesn't exist in world when ZonePlayerAndNPCTestImpl.tearDown is called
+		setNpcNames("Lua");
 
 		super.setUp();
-	}
 
-	@Test
-	public void runTests() {
-		if (npc == null) {
-			logger.info("Lua example disabled, not running Lua tests");
-			return;
-		}
+		lua = SingletonRepository.getNPCList().get("Lua");
+		assertNotNull(lua);
+		assertEquals("0_semos_city", lua.getZone().getName());
+		assertEquals(10, lua.getX());
+		assertEquals(55, lua.getY());
 
-		// stop entity's movement
-		npc.stop();
-		en = npc.getEngine();
-
-		testEntities();
-		testDialogue();
-	}
-
-	private void testEntities() {
 		assertNotNull(player);
-		assertNotNull(npc);
-
-		// NPC position
-		assertEquals(10, npc.getX());
-		assertEquals(55, npc.getY());
-
-		// player position
+		assertEquals("0_semos_city", player.getZone().getName());
 		assertEquals(0, player.getX());
 		assertEquals(0, player.getY());
 	}
 
-	private void testDialogue() {
+	@Test
+	public void testDialogue() {
+		final Engine en = lua.getEngine();
+
 		assertTrue(en.step(player, "hi"));
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("I am sad, because I do not have a job.", getReply(npc));
+		assertEquals("Hi there!", getReply(lua));
 		assertTrue(en.step(player, "job"));
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Actually, I am jobless.", getReply(npc));
+		assertEquals("I am an example of how to create an entity using the Lua scripting interface.", getReply(lua));
+		assertTrue(en.step(player, "help"));
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("How can I help you? I am just a kid.", getReply(lua));
+		assertTrue(en.step(player, "offer"));
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("I have a small #task you could help me with.", getReply(lua));
 
 		// NPC has multiple events for the following responses
 		List<String> replies;
@@ -102,7 +109,7 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "Lua"));
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 
-		replies = getReplies(npc);
+		replies = getReplies(lua);
 		assertEquals(2, replies.size());
 
 		assertEquals("That's my name, don't wear it out!", replies.get(0));
@@ -113,12 +120,12 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(0, replies.size());
 
 		// player standing next to NPC
-		player.setPosition(npc.getX() - 1, npc.getY());
-		assertTrue(player.nextTo(npc));
+		player.setPosition(lua.getX() - 1, lua.getY());
+		assertTrue(player.nextTo(lua));
 
 		assertTrue(en.step(player, "Lua"));
 
-		replies = getReplies(npc);
+		replies = getReplies(lua);
 		assertEquals(2, replies.size());
 
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -127,6 +134,6 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Buh bye!", getReply(lua));
 	}
 }
