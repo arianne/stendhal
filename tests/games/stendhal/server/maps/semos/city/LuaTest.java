@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2019 - Arianne                          *
+ *                    Copyright © 2019-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,7 +26,6 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.scripting.ScriptInLua;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -46,8 +45,6 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		zone = setupZone("0_semos_city");
-		// initialize Lua globals
-		ScriptInLua.get().init();
 		new ScriptRunner().perform("npc/example/init.lua", true);
 
 		npc = SingletonRepository.getNPCList().get(npcName);

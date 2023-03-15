@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Arianne                     *
+ *                    Copyright © 2019-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,6 @@ public class LuaTestHelper {
 		mrp = MockStendhalRPRuleProcessor.get();
 		qs = StendhalQuestSystem.get();
 		luaEngine = ScriptInLua.get();
-		luaEngine.init();
 	}
 
 	@After
@@ -64,7 +63,7 @@ public class LuaTestHelper {
 	 */
 	public static void load(final String script) {
 		if (script != null) {
-			luaEngine.load(script, null, null);
+			luaEngine.createScript(script).load();
 		}
 	}
 
