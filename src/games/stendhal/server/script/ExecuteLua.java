@@ -17,7 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.core.scripting.ScriptInLua;
+import games.stendhal.server.core.scripting.lua.LuaLoader;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -39,7 +39,7 @@ public class ExecuteLua extends ScriptImpl {
 			return;
 		}
 
-		if (!ScriptInLua.get().createScript(script.toString()).load(admin, null)) {
+		if (!LuaLoader.get().createScript(script.toString()).load(admin, null)) {
 			admin.sendPrivateText(NotificationType.ERROR, "An error occured when trying to load Lua script: " + script.toString().replace("\\", "\\\\"));
 		}
 	}

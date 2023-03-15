@@ -21,7 +21,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.luaj.vm2.LuaValue;
 
-import games.stendhal.server.core.scripting.ScriptInLua;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.player.Player;
 
@@ -49,7 +48,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * @param filename
 	 *     Path to external script to be loaded (data/script).
 	 */
-	public LuaScript(final LuaScript parent, final String filename) {
+	LuaScript(final LuaScript parent, final String filename) {
 		super(filename);
 		this.parent = parent;
 		this.istream = null;
@@ -61,7 +60,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * @param filename
 	 *     Path to external script (data/script).
 	 */
-	public LuaScript(final String filename) {
+	LuaScript(final String filename) {
 		super(filename);
 		this.parent = null;
 		this.istream = null;
@@ -77,7 +76,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * @param chunkname
 	 *     Identifier for this script.
 	 */
-	public LuaScript(final LuaScript parent, final InputStream istream, final String chunkname) {
+	LuaScript(final LuaScript parent, final InputStream istream, final String chunkname) {
 		super(chunkname);
 		this.parent = parent;
 		this.istream = istream;
@@ -91,7 +90,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * @param chunkname
 	 *     Identifier for this script.
 	 */
-	public LuaScript(final InputStream istream, final String chunkname) {
+	LuaScript(final InputStream istream, final String chunkname) {
 		this(null, istream, chunkname);
 	}
 
@@ -187,9 +186,9 @@ public class LuaScript extends ScriptingSandbox {
 	 * @return
 	 *     LuaValue result returned by the executed script.
 	 */
-	private LuaValue loadFile() {
+	LuaValue loadFile() {
 		// run script
-		return ScriptInLua.get().getGlobals().loadfile(filename).call();
+		return LuaLoader.get().getGlobals().loadfile(filename).call();
 	}
 
 	/**
@@ -198,12 +197,12 @@ public class LuaScript extends ScriptingSandbox {
 	 * @return
 	 *     LuaValue result returned by the executed script.
 	 */
-	private LuaValue loadStream() {
+	LuaValue loadStream() {
 		LuaValue result = LuaValue.NIL;
 		try {
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
 			// run data chunk
-			result = ScriptInLua.get().getGlobals().load(reader, filename).call();
+			result = LuaLoader.get().getGlobals().load(reader, filename).call();
 			reader.close();
 		} catch (final IOException e) {
 			Logger.getLogger(LuaScript.class).error(e, e);
@@ -217,7 +216,7 @@ public class LuaScript extends ScriptingSandbox {
 	 */
 	private void onLoad() {
 		// notify loader
-		ScriptInLua.get().onLoadScript(this);
+		LuaLoader.get().onLoadScript(this);
 	}
 
 	/**
@@ -225,6 +224,6 @@ public class LuaScript extends ScriptingSandbox {
 	 */
 	private void onUnload() {
 		// notify loader
-		ScriptInLua.get().onUnloadScript(this);
+		LuaLoader.get().onUnloadScript(this);
 	}
 }

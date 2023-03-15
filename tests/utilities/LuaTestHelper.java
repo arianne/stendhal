@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.scripting.ScriptInLua;
+import games.stendhal.server.core.scripting.lua.LuaLoader;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -28,7 +28,7 @@ public class LuaTestHelper {
 	protected static StendhalRPWorld world;
 	protected static MockStendhalRPRuleProcessor mrp;
 	protected static StendhalQuestSystem qs;
-	protected static ScriptInLua luaEngine;
+	protected static LuaLoader luaLoader;
 
 	protected StendhalRPZone zone;
 	protected Player player;
@@ -39,7 +39,7 @@ public class LuaTestHelper {
 		world = MockStendlRPWorld.get();
 		mrp = MockStendhalRPRuleProcessor.get();
 		qs = StendhalQuestSystem.get();
-		luaEngine = ScriptInLua.get();
+		luaLoader = LuaLoader.get();
 	}
 
 	@After
@@ -63,7 +63,7 @@ public class LuaTestHelper {
 	 */
 	public static void load(final String script) {
 		if (script != null) {
-			luaEngine.createScript(script).load();
+			luaLoader.createScript(script).load();
 		}
 	}
 

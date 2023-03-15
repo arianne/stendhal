@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Arianne                     *
+ *                    Copyright © 2019-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,7 @@ public class LuaTestHelperTest extends LuaTestHelper {
 		assertNotNull(world);
 		assertNotNull(mrp);
 		assertNotNull(qs);
-		assertNotNull(luaEngine);
+		assertNotNull(luaLoader);
 	}
 
 	private void testSetUp() {

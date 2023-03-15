@@ -43,6 +43,7 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.scripting.lua.LuaLoader;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 import marauroa.common.game.RPAction;
@@ -199,7 +200,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 					script = new ScriptInGroovy(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".lua")) {
-					script = ScriptInLua.get().createScript(rootDir + trimmedName);
+					script = LuaLoader.get().createScript(rootDir + trimmedName);
 					ignoreExecute = true;
 				} else if (trimmedName.endsWith(".class")) {
 					script = new ScriptInJava(trimmedName);

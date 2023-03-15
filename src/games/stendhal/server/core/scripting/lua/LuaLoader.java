@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.scripting;
+package games.stendhal.server.core.scripting.lua;
 
 import java.io.InputStream;
 import java.nio.file.Paths;
@@ -30,26 +30,14 @@ import org.luaj.vm2.lib.jse.LuajavaLib;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.lua.LuaActionHelper;
-import games.stendhal.server.core.scripting.lua.LuaArrayHelper;
-import games.stendhal.server.core.scripting.lua.LuaConditionHelper;
-import games.stendhal.server.core.scripting.lua.LuaEntityHelper;
-import games.stendhal.server.core.scripting.lua.LuaLogger;
-import games.stendhal.server.core.scripting.lua.LuaMerchantHelper;
-import games.stendhal.server.core.scripting.lua.LuaPropertiesHelper;
-import games.stendhal.server.core.scripting.lua.LuaQuestHelper;
-import games.stendhal.server.core.scripting.lua.LuaScript;
-import games.stendhal.server.core.scripting.lua.LuaStringHelper;
-import games.stendhal.server.core.scripting.lua.LuaTableHelper;
-import games.stendhal.server.core.scripting.lua.LuaWorldHelper;
 
 
 /**
  * Manages scripts written in Lua.
  */
-public class ScriptInLua {
+public class LuaLoader {
 
-	private static final Logger logger = Logger.getLogger(ScriptInLua.class);
+	private static final Logger logger = Logger.getLogger(LuaLoader.class);
 
 	/** Global objects accessible within Lua scripts. */
 	private static Globals globals;
@@ -59,32 +47,23 @@ public class ScriptInLua {
 	private LuaScript currentScript;
 
 	/** Singleton instance. */
-	private static ScriptInLua instance;
+	private static LuaLoader instance;
 
 
 	/**
 	 * Retrieves the singleton instance.
 	 */
-	public static ScriptInLua get() {
+	public static LuaLoader get() {
 		if (instance == null) {
-			instance = new ScriptInLua();
+			instance = new LuaLoader();
 		}
 		return instance;
 	}
 
 	/**
-	 * @deprecated
-	 *     Use @ref ScriptInLua.get().
-	 */
-	@Deprecated
-	public static ScriptInLua getInstance() {
-		return get();
-	}
-
-	/**
 	 * Hidden singleton constructor.
 	 */
-	private ScriptInLua() {
+	private LuaLoader() {
 		init();
 	}
 
