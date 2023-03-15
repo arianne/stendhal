@@ -163,15 +163,16 @@ public class LuaLoader {
 		LuaTableHelper.get().init((LuaTable) globals.get("table"));
 
 		// load built-in master script
-		final InputStream is = getClass().getResourceAsStream("lua/init.lua");
+		final InputStream is = getClass().getResourceAsStream("init.lua");
+		final String chunkname = getClass().getPackage().getName() + "/init.lua";
 		if (is != null) {
-			if (new LuaScript(is, "init.lua").load()) {
-				logger.info("Lua master script loaded: " + getClass().getPackage().getName() + ".lua/init.lua");
+			if (new LuaScript(is, chunkname).load()) {
+				logger.info("Lua master script loaded: " + chunkname);
 			} else {
-				logger.warn("Loading Lua master script failed: " + getClass().getPackage().getName() + ".lua/init.lua");
+				logger.warn("Loading Lua master script failed: " + chunkname);
 			}
 		} else {
-			logger.warn("Could not retrieve Lua master script as resource: " + getClass().getPackage().getName() + ".lua/init.lua");
+			logger.warn("Could not retrieve Lua master script as resource: " + chunkname);
 		}
 	}
 
