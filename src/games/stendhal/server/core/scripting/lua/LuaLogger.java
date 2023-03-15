@@ -73,6 +73,10 @@ public class LuaLogger {
 		logger.error(formatMessage(message), throwable);
 	}
 
+	public void error(final Throwable throwable) {
+		logger.error(formatMessage(throwable.getMessage()), throwable);
+	}
+
 	public void debug(final String message) {
 		logger.debug(formatMessage(message));
 	}
