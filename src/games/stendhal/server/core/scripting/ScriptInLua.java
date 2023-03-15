@@ -210,6 +210,8 @@ public class ScriptInLua {
 	 */
 	public void onLoadScript(final LuaScript script) {
 		currentScript = script;
+		// pass new script ID to logger
+		LuaLogger.get().setScript(script);
 	}
 
 	/**
@@ -221,5 +223,7 @@ public class ScriptInLua {
 		} else {
 			currentScript = null;
 		}
+		// restore parent script ID or unset ID used with logger messages
+		LuaLogger.get().setScript(currentScript);
 	}
 }

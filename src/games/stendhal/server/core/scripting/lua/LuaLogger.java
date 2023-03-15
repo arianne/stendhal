@@ -20,8 +20,8 @@ public class LuaLogger {
 
 	private static final Logger logger = Logger.getLogger(LuaLogger.class);
 
-	/** Filename of script currently being executed. */
-	private String filename;
+	/** Identifier of script chunk currently being executed. */
+	private String chunkname;
 	/** Singleton instance. */
 	private static LuaLogger instance;
 
@@ -43,16 +43,26 @@ public class LuaLogger {
 		// do nothing
 	}
 
-	public void setFilename(final String filename) {
-		this.filename = filename;
+	/**
+	 * Sets the identifier to be used in log messages.
+	 *
+	 * @param script
+	 *     Script with ID to be used.
+	 */
+	public void setScript(final LuaScript script) {
+		if (script == null) {
+			chunkname = null;
+		} else {
+			chunkname = script.getChunkName();
+		}
 	}
 
 	private String formatMessage(String message) {
 		message = message.trim();
-		if (filename == null) {
+		if (chunkname == null) {
 			message = "(unknown source) " + message;
 		} else {
-			message = "(" + filename + ") " + message;
+			message = "(" + chunkname + ") " + message;
 		}
 		return message;
 	}

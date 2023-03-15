@@ -215,9 +215,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * Action(s) when script is being loaded.
 	 */
 	private void onLoad() {
-		// set chunk or file name used with logger
-		LuaLogger.get().setFilename(filename);
-		// notify environment
+		// notify loader
 		ScriptInLua.get().onLoadScript(this);
 	}
 
@@ -225,9 +223,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * Action(s) when script has completed executing & should be unloaded.
 	 */
 	private void onUnload() {
-		// notify environment
+		// notify loader
 		ScriptInLua.get().onUnloadScript(this);
-		// clear chunk or file name used with logger
-		LuaLogger.get().setFilename(null);
 	}
 }
