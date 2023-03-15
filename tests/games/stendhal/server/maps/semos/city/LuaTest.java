@@ -45,7 +45,7 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		zone = setupZone("0_semos_city");
-		new ScriptRunner().perform("npc/example/init.lua", true);
+		new ScriptRunner().perform("npc/example/init.lua");
 
 		npc = SingletonRepository.getNPCList().get(npcName);
 	}

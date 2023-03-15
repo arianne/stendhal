@@ -11,8 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting.lua;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 import org.luaj.vm2.Globals;
@@ -42,6 +51,7 @@ public class LuaLoader {
 	/** Global objects accessible within Lua scripts. */
 	private static Globals globals;
 	/** Original `dofile` Lua function. */
+	@SuppressWarnings("unused")
 	private static LuaFunction dofileOrig;
 	/** Script that is currently loaded. */
 	private LuaScript currentScript;
@@ -204,5 +214,55 @@ public class LuaLoader {
 		}
 		// restore parent script ID or unset ID used with logger messages
 		LuaLogger.get().setScript(currentScript);
+	}
+
+	/**
+	 * Retrieves Lua module initialization scripts from "data/mods/" directory.
+	 *
+	 * Note: These modules are separate from the regular "data/script" scripts & must
+	 *       be named "init.lua".
+	 *
+	 * @return
+	 * 		List of loadable Lua scripts.
+	 */
+	private List<String> getMods() {
+		final List<String> modlist = new ArrayList<String>();
+
+		final URL url = getClass().getClassLoader().getResource("data/mods/");
+		if (url != null) {
+			final String modroot = url.getFile();
+
+			// regular files in root mod directory are ignored
+			for (final File dir: new File(modroot).listFiles(File::isDirectory)) {
+				try {
+					final Stream<Path> paths = Files.walk(Paths.get(dir.toString())).filter(Files::isRegularFile);
+					for (String filepath: paths.map(s -> s.toString()).collect(Collectors.toList())) {
+						// trim absolute path prefix
+						filepath = filepath.substring(modroot.length() - 1);
+
+						// mods must use an initialization script name "init.lua"
+						if (new File(filepath).getName().equals("init.lua")) {
+							modlist.add(filepath);
+						}
+					}
+				} catch (final IOException e1) {
+					logger.error("Error while recursing mods");
+					e1.printStackTrace();
+					return null;
+				}
+			}
+		}
+
+		return modlist;
+	}
+
+	/**
+	 * Initializes Lua init scripts in mods directory.
+	 */
+	@SuppressWarnings("unused")
+	private void initMods() {
+		for (final String modpath: getMods()) {
+			new LuaScript(modpath).load();
+		}
 	}
 }
