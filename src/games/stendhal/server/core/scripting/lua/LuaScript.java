@@ -173,7 +173,8 @@ public class LuaScript extends ScriptingSandbox {
 		} else if (result.isboolean()) {
 			success = result.toboolean();
 		}
-		if (!success) {
+		if (!hasParent() && !success) {
+			// only show return value warnings for first parent script
 			LuaLogger.get().warn("Script returned \"" + String.valueOf(result) + "\"");
 		}
 		onUnload();
