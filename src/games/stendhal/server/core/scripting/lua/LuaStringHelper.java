@@ -174,6 +174,22 @@ public class LuaStringHelper {
 				return (LuaBoolean) CoerceJavaToLua.coerce(orig.tojstring().endsWith(suffix.tojstring()));
 			}
 		});
+
+		/** add string.valueOf method */
+		stringTable.set("valueOf", new LuaFunction() {
+			/**
+			 * Retrieves string value of an object.
+			 *
+			 * @param obj
+			 *     Object instance to be converted.
+			 * @return
+			 *     String value of object.
+			 */
+			@Override
+			public LuaString call(final LuaValue obj) {
+				return (LuaString) CoerceJavaToLua.coerce(String.valueOf(obj));
+			}
+		});
 	}
 
 	/**

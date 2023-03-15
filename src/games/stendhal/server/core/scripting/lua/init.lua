@@ -110,6 +110,7 @@ string.startswith = string.startsWith
 string.beginsWith = string.startsWith
 string.beginswith = string.startsWith
 string.endswith = string.endsWith
+string.valueof = string.valueOf
 
 
 return true

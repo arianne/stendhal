@@ -42,6 +42,15 @@ The following methods have been added to the built-in Lua [string library](https
     - <span style="color:green; font-style:italic;">string.isNumeric</span>
 
 ---
+### string.valueOf
+<span style="color:green; font-weight:bold;">string.valueOf</span>(obj)
+
+- Retrieves string value of an object.
+- Parameters:
+    - ***obj:*** Object instance to be converted.
+- Returns: String value of object.
+
+---
 ### string.trim
 <span style="color:green; font-weight:bold;">string.trim</span>(st)
 
