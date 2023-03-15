@@ -620,7 +620,7 @@ tiled/tileset/ground/ladder/
 horizontal_dark.png  bleutailfly; OGA BY 3.0; Stendhal
 horizontal_pale.png  bleutailfly; OGA BY 3.0; Stendhal
 rope_ladder.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79116
-small.png            deusfigendi, durkham; ???; ??? (committed by kymara: f0f6e05)
+small.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal;
 steps.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vertical_dark.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vertical_pale.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
