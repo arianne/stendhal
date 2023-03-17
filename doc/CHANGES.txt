@@ -7,6 +7,7 @@ Changelog
 
 *world*
 - Adventure Island state is shown in travel log
+- new achievement: Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
 
 
 1.43.3

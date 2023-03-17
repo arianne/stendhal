@@ -60,6 +60,15 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 				"carrot", "salad", "broccoli", "cauliflower", "leek",
 				"onion", "courgette", "spinach", "collard", "garlic", "artichoke")));
 
+		// fruit harvest achievement
+		achievements.add(createAchievement(
+			"obtain.harvest.fruit", "Fruit Salad",
+			"Harvest 3 of all fruit that grow in Faiumoni",
+			Achievement.EASY_BASE_SCORE, true,
+			new PlayerHasHarvestedNumberOfItemsCondition(3,
+				"apple", "banana", "cherry", "coconut", "grapes", "olive", "pear",
+				"pineapple", "pomegranate", "tomato", "watermelon")));
+
 		// Fishing achievement
 		achievements.add(createAchievement(
 			"obtain.fish", "Fisherman",

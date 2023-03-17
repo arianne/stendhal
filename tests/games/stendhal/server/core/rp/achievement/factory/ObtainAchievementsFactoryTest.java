@@ -36,6 +36,10 @@ public class ObtainAchievementsFactoryTest extends AchievementTestHelper {
 		"carrot", "salad", "broccoli", "cauliflower", "leek", "onion",
 		"courgette", "spinach", "collard", "garlic", "artichoke"
 	};
+	private final String[] allFruit = {
+		"apple", "banana", "cherry", "coconut", "grapes", "olive", "pear",
+		"pineapple", "pomegranate", "tomato", "watermelon"
+	};
 	private final String[] allFish = {
 		"char", "clownfish", "cod", "mackerel", "perch", "red lionfish",
 		"roach", "surgeonfish", "trout"
@@ -72,6 +76,11 @@ public class ObtainAchievementsFactoryTest extends AchievementTestHelper {
 	@Test
 	public void testFarmer() {
 		runHarvestTest("obtain.harvest.vegetable", allVeggie, 3);
+	}
+
+	@Test
+	public void testFruitSalad() {
+		runHarvestTest("obtain.harvest.fruit", allFruit, 3);
 	}
 
 	@Test
