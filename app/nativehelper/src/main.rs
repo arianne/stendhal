@@ -1,5 +1,20 @@
+use clap::Parser;
+
 use steamworks::AuthSessionTicketResponse;
 use steamworks::Client;
+
+#[derive(Parser)]
+struct Cli {
+    /// The websocket port
+    #[arg(long = "nl-port")]
+    nl_port: String,
+    /// The authentication token to use the native API
+    #[arg(long = "nl-token")]
+    nl_token: String,
+    // The extension id
+    #[arg(long = "nl-extension-id")]
+    nl_extension_id: String
+}
 
 fn authenticate() {
     match Client::init() {
@@ -22,5 +37,7 @@ fn authenticate() {
 }
 
 fn main() {
+    let args = Cli::parse();
+    println!("{}", args.nl_port);
     authenticate();
 }
