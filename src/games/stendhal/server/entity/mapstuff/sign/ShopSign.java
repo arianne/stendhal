@@ -47,8 +47,8 @@ public class ShopSign extends Sign implements UseListener {
 	/** Caption to display above the table */
 	protected String caption;
 
-	/** true, if this sign is for items sold by an NPC */
-	private boolean seller;
+	/** Type of shop this sign represents. */
+	private ShopType shopType;
 
 	/**
 	 * Create a shop list sign.
@@ -67,7 +67,7 @@ public class ShopSign extends Sign implements UseListener {
 		this.shopName = name;
 		this.title = title;
 		this.caption = caption;
-		this.seller = seller;
+		this.shopType = seller ? ShopType.ITEM_SELL : ShopType.ITEM_BUY;
 
 		put(Actions.ACTION, Actions.LOOK_CLOSELY);
 		setResistance(100);
@@ -91,7 +91,7 @@ public class ShopSign extends Sign implements UseListener {
 	 * @return ItemList
 	 */
 	protected List<Item> generateItemList() {
-		return generateItemList(shops.get(shopName, seller ? ShopType.ITEM_SELL : ShopType.ITEM_BUY));
+		return generateItemList(shops.get(shopName, shopType));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class ShopSign extends Sign implements UseListener {
 	private Item prepareItem(String name, int price) {
 		Item prototype = SingletonRepository.getEntityManager().getItem(name);
 		Item item = new ItemInformation(prototype);
-		if (seller) {
+		if (ShopType.ITEM_SELL.equals(shopType)) {
 			item.put("price", -price);
 		} else {
 			item.put("price", price);
