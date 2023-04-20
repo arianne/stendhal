@@ -145,6 +145,9 @@ CREATE TABLE IF NOT EXISTS npcs (
   description   VARCHAR(1000),
   job           VARCHAR(1000),
   cloned        VARCHAR(64),
+  buys          VARCHAR(1000),
+  sells         VARCHAR(1000),
+  sells_outfit  VARCHAR(1000),
   PRIMARY KEY (id)
 );
 
