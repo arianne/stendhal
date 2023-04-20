@@ -102,14 +102,14 @@ public class ShopSign extends Sign implements UseListener {
 	 * @return ItemList
 	 */
 	protected List<Item> generateItemList(final Map<String, Integer> items) {
-		if (items == null) {
-			logger.warn("Unknown shop '" + shopName + "'");
-		}
 		final List<Item> itemList = new LinkedList<>();
-		for (Map.Entry<String, Integer> entry : items.entrySet()) {
-			itemList.add(prepareItem(entry.getKey(), entry.getValue()));
+		if (items == null) {
+			logger.error("Unknown shop '" + shopName + "'");
+		} else {
+			for (Map.Entry<String, Integer> entry : items.entrySet()) {
+				itemList.add(prepareItem(entry.getKey(), entry.getValue()));
+			}
 		}
-
 		return itemList;
 	}
 
