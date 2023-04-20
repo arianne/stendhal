@@ -643,6 +643,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public LuaSpeakerNPC createSpeakerNPC(final String name) {
+		logger.deprecated("entities:createSpeakerNPC", "entities:create");
+
 		return new LuaSpeakerNPC(name);
 	}
 
@@ -656,6 +658,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public LuaSilentNPC createSilentNPC() {
+		logger.deprecated("entities:createSilentNPC", "entities:create");
+
 		return new LuaSilentNPC();
 	}
 
@@ -702,7 +706,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public void setPath(final RPEntity entity, final LuaTable table, Boolean loop) {
-		logger.warn("entities:setPath is deprecated. Call \"setPath\" directly from the entity instance.");
+		logger.warn("'entities:setPath' is deprecated"
+				+ ", call 'setPath' directly from the entity instance.");
 
 		if (loop == null) {
 			loop = false;
@@ -723,7 +728,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public void setPathAndPosition(final RPEntity entity, final LuaTable table, Boolean loop) {
-		logger.warn("entities:setPathAndPosition is deprecated. Call \"setPathAndPosition\" directly from the entity instance.");
+		logger.warn("'entities:setPathAndPosition' is deprecated"
+				+ ", call 'setPathAndPosition' directly from the entity instance.");
 
 		if (loop == null) {
 			loop = false;
@@ -774,6 +780,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public Sign createSign() {
+		logger.deprecated("entities:createSign", "entities:create");
+
 		return createSign(true);
 	}
 
@@ -789,6 +797,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public Sign createSign(final boolean visible) {
+		logger.deprecated("entities:createSign", "entities:create");
+
 		if (visible) {
 			return new Sign();
 		}
@@ -814,6 +824,8 @@ public class LuaEntityHelper {
 	 */
 	@Deprecated
 	public ShopSign createShopSign(final String name, final String title, final String caption, Boolean seller) {
+		logger.deprecated("entities:createShopSign", "entities:create");
+
 		// default to seller
 		if (seller == null) {
 			seller = true;

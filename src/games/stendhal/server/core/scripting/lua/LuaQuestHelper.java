@@ -177,7 +177,7 @@ public class LuaQuestHelper {
 	 */
 	@Deprecated
 	public void cache(final IQuest quest) {
-		logger.debug("LuaQuestHelper.cache deprecated. Use LuaQuest.register.");
+		logger.deprecated("quests:cache", "LuaQuest:register");
 
 		questSystem.cacheQuest(quest);
 	}
@@ -192,6 +192,8 @@ public class LuaQuestHelper {
 	 */
 	@Deprecated
 	public void register(final IQuest quest) {
+		logger.deprecated("quests:register", "LuaQuest:register");
+
 		cache(quest);
 	}
 
@@ -717,7 +719,7 @@ public class LuaQuestHelper {
 		 */
 		@Deprecated
 		public void setAddFunction(final LuaFunction func) {
-			logger.debug("LuaQuest.setAddFunction deprecated. Set LuaQuest.init directly.");
+			logger.warn("'quests:setAddFunction' is deprecated, set 'LuaQuest:init' directly.");
 
 			this.init = func;
 		}
@@ -732,7 +734,7 @@ public class LuaQuestHelper {
 		 */
 		@Deprecated
 		public void setRemoveFunction(final LuaFunction func) {
-			logger.debug("LuaQuest.setRemoveFunction deprected. Set LuaQuest.remove directly.");
+			logger.warn("'quests:setRemoveFunction' is deprected, set 'LuaQuest:remove' directly.");
 
 			this.remove = func;
 		}
