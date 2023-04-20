@@ -36,74 +36,74 @@ General:
 | type        | string | "SpeakerNPC", "SilentNPC", "Sign", "ShopSign", or "Reader". |
 | pos         | table  | Entity position relative to zone ({x, y}).                  |
 | description | string | Information for "look" command.                             |
-| class       | string | |
-| subclass    | string | |
-| resistance  | int    | |
+| class       | string | Entity class (for signs, image to be used).                 |
+| subclass    | string | Entity sub-class (usually image to be used).                |
+| resistance  | int    | Amount of resistance when colliding with another entity.    |
 | size        | table  | {w, h}                                                      |
-| cursor      | string | |
-| visibility  | int    | |
-| menu        | string | |
+| cursor      | string | Cursor to display over entity.                              |
+| visibility  | int    | Level of visibility (0-100).                                |
+| menu        | string | Alternate text for menu.                                    |
 
 
 SpeakerNPC & SilentNPC types:
 
-| Key | Type | Description |
-| --- | ---- | ----------- |
-| dir | Direction | Entity's initial facing direction. |
-| ignoresCollision | boolean | |
-| path             | table   | |
-| path.nodes       | table   | |
-| path.loop        | boolean | |
-| path.retrace     | boolean | |
-| path.collisionAction | CollisionAction | |
-| speed                | double          | |
-| basehp               | int             | |
-| hp                   | int             | |
-| outfit               | table           | |
-| outfit.layers        | string          | |
-| outfit.colors        | table           | |
-| idea                 | string          | |
-| sounds               | table<string>   | |
-| teleports            | boolean         | |
+| Key                  | Type            | Description                                                    |
+| -------------------- | --------------- | -------------------------------------------------------------- |
+| dir                  | Direction       | Entity's initial facing direction.                             |
+| ignoresCollision     | boolean         | If `false`, movement won't be halted on collision.             |
+| path                 | table           |                                                                |
+| path.nodes           | table           | List of positions the entity will traverse.                    |
+| path.loop            | boolean         | If `true`, entity will restart path unpon completion.          |
+| path.retrace         | boolean         | If `true`, entity will retrace path backwards upon completion. |
+| path.collisionAction | CollisionAction | Action when entity collides.                                   |
+| speed                | double          | Entity movement speed.                                         |
+| basehp               | int             | Entity base HP.                                                |
+| hp                   | int             | Entity actual HP.                                              |
+| outfit               | table           |                                                                |
+| outfit.layers        | string          | Entity's outfit.                                               |
+| outfit.colors        | table           | Entity's outfit colors.                                        |
+| idea                 | string          | Icon shown representing entity's state.                        |
+| sounds               | table<string>   | Randomly played sounds emitted from entity.                    |
+| teleports            | boolean         |                                                                |
 
 
 SpeakerNPC type:
 
-| Key              | Type               | Description |
-| ---------------- | ------------------ | ----------- |
-| name             | string             | |
-| idleDir          | Direction          | |
-| chatTimeout      | long               | |
-| perceptionRange  | int                | |
-| currentState     | ConversationStates | |
-| greeting         | table              | |
-| greeting.text    | string             | |
-| greeting.action  | ChatAction         | |
-| replies          | table              | |
-| replies.quest    | string             | Reply to "quest"/"task".                      |
-| replies.job      | string             | Reply to "job".                               |
-| replies.help     | string             | Reply to "help".                              |
-| replies.offer    | string             | Reply to "offer".                             |
-| replies.bye      | string             | Reply to "bye"/"goodbye".                     |
-| alternativeImage | string             | Image that will be displayed on NPCs webpage. |
+| Key              | Type               | Description                                       |
+| ---------------- | ------------------ | ------------------------------------------------- |
+| name             | string             | Name of the NPC.                                  |
+| idleDir          | Direction          | Facing direction when NPC is idle.                |
+| chatTimeout      | long               | Amount of idle time before NPC ends conversation. |
+| perceptionRange  | int                | Distance at which NPC will hear players.          |
+| currentState     | ConversationStates | Converstion state NPC is initialized with.        |
+| greeting         | table              | Responses to keywords.                            |
+| greeting.text    | string             |                                                   |
+| greeting.action  | ChatAction         |                                                   |
+| replies          | table              | Responses to keywords.                            |
+| replies.quest    | string             | Reply to "quest"/"task".                          |
+| replies.job      | string             | Reply to "job".                                   |
+| replies.help     | string             | Reply to "help".                                  |
+| replies.offer    | string             | Reply to "offer".                                 |
+| replies.bye      | string             | Reply to "bye"/"goodbye".                         |
+| alternativeImage | string             | Image that will be displayed on NPCs webpage.     |
 
 
 Sign type:
 
-| Key     | Type    | Description |
-| ------- | ------- | ----------- |
-| text    | string  | |
-| visible | boolean | |
+| Key     | Type    | Description                                            |
+| ------- | ------- | ------------------------------------------------------ |
+| text    | string  | Text shown when sign is read.                          |
+| visible | boolean | Whether or not a sprite should be drawn for this sign. |
 
 
 ShopSign type:
 
-| Key     | Type    | Description |
-| ------- | ------- | ----------- |
-| name    | string  | |
-| title   | string  | |
-| caption | string  | |
-| seller  | boolean | |
+| Key     | Type    | Description                                    |
+| ------- | ------- | ---------------------------------------------- |
+| name    | string  | Shop name/identfier associated with this sign. |
+| title   | string  | Title displayed at top of window.              |
+| caption | string  | Caption displayed at top of window.            |
+| seller  | boolean | Whether sign represents a seller shop or not.  |
 
 
 ---
