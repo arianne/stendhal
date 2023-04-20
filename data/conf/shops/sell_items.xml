@@ -385,7 +385,7 @@
     <merchant name="Sam" flags="configure"/>
   </shop>
 
-  <shop name="denirangrocer" type="sell">
+  <shop name="denirangrocersell" type="sell">
     <item name="olive oil" price="135"/>
     <item name="vinegar" price="135"/>
     <item name="lamp" price="100"/>
