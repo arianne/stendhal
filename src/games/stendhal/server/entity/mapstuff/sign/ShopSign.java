@@ -17,6 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
@@ -30,6 +32,7 @@ import games.stendhal.server.events.ShowItemListEvent;
  * A sign for a ShopList.
  */
 public class ShopSign extends Sign implements UseListener {
+	private static final Logger logger = Logger.getLogger(ShopSign.class);
 
 	/** The shop list. */
 	protected ShopsList shops = SingletonRepository.getShopsList();
@@ -98,6 +101,9 @@ public class ShopSign extends Sign implements UseListener {
 	 * @return ItemList
 	 */
 	protected List<Item> generateItemList(final Map<String, Integer> items) {
+		if (items == null) {
+			logger.warn("Unknown shop '" + shopName + "'");
+		}
 		final List<Item> itemList = new LinkedList<>();
 		for (Map.Entry<String, Integer> entry : items.entrySet()) {
 			itemList.add(prepareItem(entry.getKey(), entry.getValue()));
