@@ -90,4 +90,30 @@ public class LuaLogger {
 	public void debug(final String message) {
 		logger.debug(formatMessage(message));
 	}
+
+	/**
+	 * Prints a deprecation warning.
+	 *
+	 * @param old
+	 *   The deprecated object.
+	 * @param alt
+	 *   Alternative object to use.
+	 */
+	public void deprecated(final String old, final String alt) {
+		String msg = "'" + old + "' is deprecated";
+		if (alt != null) {
+			msg += ", use '" + alt + "' instead";
+		}
+		warn(msg);
+	}
+
+	/**
+	 * Prints a deprecation warning.
+	 *
+	 * @param old
+	 *   The deprecated object.
+	 */
+	public void deprecated(final String old) {
+		deprecated(old, null);
+	}
 }
