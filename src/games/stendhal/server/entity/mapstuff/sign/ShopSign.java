@@ -25,6 +25,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.events.ShowItemListEvent;
 
@@ -90,7 +91,7 @@ public class ShopSign extends Sign implements UseListener {
 	 * @return ItemList
 	 */
 	protected List<Item> generateItemList() {
-		return generateItemList(shops.get(shopName));
+		return generateItemList(shops.get(shopName, seller ? ShopType.ITEM_SELL : ShopType.ITEM_BUY));
 	}
 
 	/**
