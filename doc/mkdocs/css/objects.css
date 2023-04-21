@@ -1,0 +1,25 @@
+
+.member {
+  color: brown;
+}
+
+.function {
+  color: darkgreen;
+}
+
+.member, .function {
+  font-weight: bold;
+}
+
+.params {
+  color: black;
+}
+
+.table-attr {
+  color: darkblue;
+}
+
+.params, .table-attr {
+  font-weight: normal;
+  font-style: italic;
+}

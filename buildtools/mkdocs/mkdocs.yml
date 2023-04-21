@@ -7,3 +7,5 @@ nav:
   - Java: java/
   - Lua: lua/
   - Stendhal Homepage: https://stendhalgame.org/
+extra_css:
+  - css/objects.css
