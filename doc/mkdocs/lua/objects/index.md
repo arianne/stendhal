@@ -14,3 +14,6 @@ Contents:
 - [actions](actions.md)
 - [merchants](merchants.md)
 - [grammar](grammar.md)
+- [arrays](arrays.md)
+- [strings](strings.md)
+- [tables](tables.md)

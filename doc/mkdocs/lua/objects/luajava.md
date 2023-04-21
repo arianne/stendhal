@@ -1,11 +1,22 @@
 
 [TOC]
 
+---
 ## Introduction
 
-`luajava` is an object of the LuajavaLib library. It can be used to coerce Java static objects to Lua or create new Java object instances.
+Object instance: `luajava`
 
-Example of exposing a static object & enums to Lua:
+---
+### Description
+
+`luajava` is an object of the [LuajavaLib library][home.luaj]. It can be used to coerce Java static
+objects to Lua or create new Java object instances.
+
+---
+## Examples
+
+Example of exposing a static object &amp;enums to Lua:
+
 ```
 -- store a Java enum in a Lua global variable
 ConversationStates = luajava.bindClass("games.stendhal.server.entity.npc.ConversationStates")
@@ -15,6 +26,7 @@ ConversationStates.IDLE
 ```
 
 Example of creating an object instance:
+
 ```
 -- store instance in local variable
 local dog = luajava.newInstance("games.stendhal.server.entity.npc.SilentNPC")
@@ -28,4 +40,15 @@ speaker:setOutfit("body=0,head=0,eyes=0,hair=5,dress=5")
 speaker:setPosition(2, 6)
 ```
 
-To make scripting easier, Stendhal employs a [master script](https://github.com/arianne/stendhal/blob/master/src/games/stendhal/server/core/scripting/lua/init.lua) & some helper objects & methods to handle the functionality mentioned above.
+---
+## Synopsis
+
+To make scripting easier, Stendhal employs a [master script][init.lua] &amp; some
+[helper objects &amp; methods][objects] to handle the functionality mentioned above.
+
+
+[home.luaj]: http://luaj.org/luaj.html
+
+[init.lua]: https://github.com/arianne/stendhal/blob/master/src/games/stendhal/server/core/scripting/lua/init.lua
+
+[objects]: /reference/lua/objects
