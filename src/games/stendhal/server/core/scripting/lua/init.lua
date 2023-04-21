@@ -25,6 +25,7 @@ DaylightPhase = luajava.bindClass("games.stendhal.server.core.rp.DaylightPhase")
 Region = luajava.bindClass("games.stendhal.server.maps.Region")
 MathHelper = luajava.bindClass("games.stendhal.common.MathHelper")
 Color = luajava.bindClass("java.awt.Color")
+ShopType = luajava.bindClass("games.stendhal.server.entity.npc.shop.ShopType")
 
 
 
