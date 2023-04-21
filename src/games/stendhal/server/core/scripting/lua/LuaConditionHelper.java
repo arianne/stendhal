@@ -299,4 +299,18 @@ public class LuaConditionHelper {
 		logger.warn("failed to created OrCondition");
 		return null;
 	}
+
+	/**
+	 * Helper method to create an OrCondition instance.
+	 *
+	 * Alias of {@link LuaConditionHelper.orC(LuaTable)}.
+	 *
+	 * @param conditionList
+	 *   LuaTable containing a list of conditions.
+	 * @return
+	 *   New OrCondition instance or <code>null</code> if failed.
+	 */
+	public OrCondition orCondition(final LuaTable conditionList) {
+		return orC(conditionList);
+	}
 }
