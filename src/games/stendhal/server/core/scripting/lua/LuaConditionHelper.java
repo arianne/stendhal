@@ -96,9 +96,9 @@ public class LuaConditionHelper {
 	 * Creates an instance of a ChatCondition from the class name string.
 	 *
 	 * @param className
-	 *   Class basename.
+	 *   ChatCondition class basename.
 	 * @param args
-	 *   Lua table of objects that should be passed to the constructor.
+	 *   Lua table of objects passed to the constructor.
 	 * @return
 	 *   New <code>ChatCondition</code> instance or <code>null</code>.
 	 */

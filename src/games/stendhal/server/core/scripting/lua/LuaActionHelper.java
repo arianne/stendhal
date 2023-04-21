@@ -89,7 +89,7 @@ public class LuaActionHelper {
 	 * @param args
 	 * 		Lua table of objects that should be passed to the constructor.
 	 * @return
-	 * 		New <code>ChatAction</code> instance or <code>null</code>.
+	 * 		New <code>ChatAction</code> instance or <code>null</code> if failed.
 	 */
 	public ChatAction create(String className, final LuaTable args) {
 		className = "games.stendhal.server.entity.npc.action." + className;
@@ -181,9 +181,11 @@ public class LuaActionHelper {
 	 * a LuaTable.
 	 *
 	 * @param questSlot
-	 * 		Quest string identifier.
+	 *   Quest string identifier.
 	 * @return
-	 * 		New SetQuestAction that sets quest state to <code>null</code>.
+	 *   New SetQuestAction that sets quest state to <code>null</code>.
+	 * @todo
+	 *   Move to `games.stendhal.server.core.scripting.lua.LuaQuestHelper`.
 	 */
 	public SetQuestAction clearQuest(final String questSlot) {
 		return new SetQuestAction(questSlot, null);

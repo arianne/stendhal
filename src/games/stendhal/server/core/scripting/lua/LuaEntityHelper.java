@@ -78,7 +78,6 @@ public class LuaEntityHelper {
 		if (instance == null) {
 			instance = new LuaEntityHelper();
 		}
-
 		return instance;
 	}
 
@@ -93,9 +92,9 @@ public class LuaEntityHelper {
 	 * Creates a new `Entity` instance.
 	 *
 	 * @param lt
-	 *     Entity definition table.
+	 *   Entity definition table.
 	 * @return
-	 *     New `Entity` instance.
+	 *   New `Entity` instance.
 	 */
 	public Entity create(final LuaTable lt) {
 		lt.checktable();
@@ -129,9 +128,9 @@ public class LuaEntityHelper {
 	 * Adds attributes defined in {@link games.stendhal.server.entity.Entity}.
 	 *
 	 * @param ent
-	 *     The entity to whom attributes will be added.
+	 *   The entity to whom attributes will be added.
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 */
 	private void setEntityTraits(final Entity ent, final LuaTable lt) {
 		final LuaValue l_pos = lt.get("pos");
@@ -184,12 +183,11 @@ public class LuaEntityHelper {
 	 * Adds attributes defined in {@link games.stendhal.server.entity.npc.PassiveNPC}.
 	 *
 	 * @param npc
-	 *     The entity to whom attributes will be added.
+	 *   The entity to whom attributes will be added.
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 */
 	private void setNPCTraits(final PassiveNPC npc, final LuaTable lt) {
-
 		// *** Entity ***
 
 		setEntityTraits(npc, lt);
@@ -212,7 +210,7 @@ public class LuaEntityHelper {
 		final LuaValue l_path = lt.get("path");
 
 		// entity starts at first node of path
-		if (l_pos.isnil()) {
+		if (l_pos.isnil() && !l_path.isnil()) {
 			l_pos = l_path.get(1);
 		}
 
@@ -229,7 +227,9 @@ public class LuaEntityHelper {
 				loop = l_loop.checkboolean();
 			}
 
-			npc.setPath(tableToPath((LuaTable) l_path.get("nodes"), loop));
+			LuaValue nodes = l_path.get("nodes");
+			nodes.checktable();
+			npc.setPath(tableToPath((LuaTable) nodes, loop));
 
 			final LuaValue l_retrace = l_path.get("retrace");
 			if (!l_retrace.isnil() && l_retrace.checkboolean()) {
@@ -333,9 +333,9 @@ public class LuaEntityHelper {
 	 * Create a new interactive NPC.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @see
-	 *     games.stendhal.server.entity.npc.SpeakerNPC.
+	 *   games.stendhal.server.entity.npc.SpeakerNPC.
 	 */
 	private LuaSpeakerNPC buildSpeakerNPC(final LuaTable lt) {
 		final LuaSpeakerNPC npc = new LuaSpeakerNPC(lt.get("name").checkjstring());
@@ -364,6 +364,7 @@ public class LuaEntityHelper {
 			npc.setCurrentState((ConversationStates) l_currentState.checkuserdata(ConversationStates.class));
 		}
 
+		// TODO: put this in 'replies'
 		final LuaValue l_greeting = lt.get("greeting");
 		if (!l_greeting.isnil()) {
 			l_greeting.checktable();
@@ -409,7 +410,10 @@ public class LuaEntityHelper {
 
 		// TODO: addReply
 
-		final LuaValue l_altImage = lt.get("alternativeImage");
+		LuaValue l_altImage = lt.get("altImage");
+		if (l_altImage.isnil()) {
+			l_altImage = lt.get("alternativeImage");
+		}
 		if (!l_altImage.isnil()) {
 			npc.setAlternativeImage(l_altImage.checkjstring());
 		}
@@ -421,14 +425,13 @@ public class LuaEntityHelper {
 	 * Creates a new non-interactive NPC.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @see
-	 *     games.stendhal.server.entity.npc.SilentNPC
+	 *   games.stendhal.server.entity.npc.SilentNPC
 	 */
 	private LuaSilentNPC buildSilentNPC(final LuaTable lt) {
 		final LuaSilentNPC npc = new LuaSilentNPC() {};
 		setNPCTraits(npc, lt);
-
 		return npc;
 	}
 
@@ -436,13 +439,13 @@ public class LuaEntityHelper {
 	 * Creates a new sign.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @param visible
-	 *     Whether or not the sign should us a sprite visible to the player.
+	 *   Whether or not the sign should us a sprite visible to the player.
 	 * @see
-	 *     games.stendhal.server.entity.mapstuff.sign.Sign
+	 *   games.stendhal.server.entity.mapstuff.sign.Sign
 	 * @see
-	 *     games.stendhal.server.entity.mapstuff.sign.Reader
+	 *   games.stendhal.server.entity.mapstuff.sign.Reader
 	 */
 	private Sign buildSign(final LuaTable lt, final boolean visible) {
 		if (!visible) {
@@ -464,9 +467,9 @@ public class LuaEntityHelper {
 	 * Creates a new sign.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @see
-	 *     {@link #buildSign(LuaTable, boolean)}
+	 *   `LuaEntityHelper.buildSign(LuaTable, boolean)`
 	 */
 	private Sign buildSign(final LuaTable lt) {
 		boolean visible = true;
@@ -474,7 +477,6 @@ public class LuaEntityHelper {
 		if (!l_value.isnil()) {
 			visible = l_value.toboolean();
 		}
-
 		return buildSign(lt, visible);
 	}
 
@@ -482,21 +484,19 @@ public class LuaEntityHelper {
 	 * Creates a new invisible sign.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @see
-	 *     games.stendhal.server.entity.mapstuff.sign.Sign
+	 *   games.stendhal.server.entity.mapstuff.sign.Sign
 	 * @see
-	 *     games.stendhal.server.entity.mapstuff.sign.Reader
+	 *   games.stendhal.server.entity.mapstuff.sign.Reader
 	 */
 	private Reader buildReader(final LuaTable lt) {
 		final Reader reader = new Reader();
 		setEntityTraits(reader, lt);
-
 		final LuaValue l_text = lt.get("text");
 		if (!l_text.isnil()) {
 			reader.setText(l_text.checkjstring());
 		}
-
 		return reader;
 	}
 
@@ -504,9 +504,9 @@ public class LuaEntityHelper {
 	 * Creates a new shop sign.
 	 *
 	 * @param lt
-	 *     Lua table of attributes.
+	 *   Lua table of attributes.
 	 * @see
-	 *     games.stendhal.server.entity.mapstuff.sign.ShopSign
+	 *   games.stendhal.server.entity.mapstuff.sign.ShopSign
 	 */
 	private ShopSign buildShopSign(final LuaTable lt) {
 		final ShopSign sign = new ShopSign(
@@ -514,9 +514,7 @@ public class LuaEntityHelper {
 			lt.get("title").checkjstring(),
 			lt.get("caption").checkjstring(),
 			lt.get("seller").checkboolean());
-
 		setEntityTraits(sign, lt);
-
 		return sign;
 	}
 
@@ -524,11 +522,11 @@ public class LuaEntityHelper {
 	 * Converts a table of coordinates to a FixedPath instance.
 	 *
 	 * @param table
-	 * 		Table containing coordinates.
+	 *   Table containing coordinates.
 	 * @param loop
-	 * 		If <code>true</code>, the path should loop.
+	 *   If <code>true</code>, the path should loop.
 	 * @return
-	 * 		New FixedPath instance.
+	 *   New FixedPath instance.
 	 */
 	private static FixedPath tableToPath(final LuaTable table, final boolean loop) {
 		if (!table.istable()) {
@@ -568,9 +566,9 @@ public class LuaEntityHelper {
 	 * Retrieves a logged in Player.
 	 *
 	 * @param name
-	 * 		Name of player.
+	 *   Name of player.
 	 * @return
-	 * 		Logged in player or <code>null</code>.
+	 *   Logged in player or <code>null</code>.
 	 */
 	public Player getPlayer(final String name) {
 		return SingletonRepository.getRuleProcessor().getPlayer(name);
@@ -579,26 +577,24 @@ public class LuaEntityHelper {
 	/**
 	 * Retrieves an existing SpeakerNPC.
 	 *
-	 * FIXME: cannot cast to LuaSpeakerNPC, so specialized methods will not work
-	 * 			with entities retrieved from this method that are not instances
-	 * 			of LuaSpeakerNPC.
-	 *
 	 * @param name
-	 * 		Name of NPC.
+	 *   Name of NPC.
 	 * @return
-	 * 		SpeakerNPC instance or <code>null</code>.
+	 *   SpeakerNPC instance or <code>null</code>.
+	 * @todo
+	 *   FIXME: cannot cast to LuaSpeakerNPC, so specialized methods will not work with entities
+	 *   retrieved from this method that are not instances of LuaSpeakerNPC.
 	 */
 	public SpeakerNPC getNPC(final String name) {
 		final SpeakerNPC npc = SingletonRepository.getNPCList().get(name);
-
 		if (npc == null) {
 			logger.warn("NPC \"" + name + "\" not found");
 			return null;
 		}
 		if (!(npc instanceof LuaSpeakerNPC)) {
-			logger.warn("Lua call to entities:getNPC did not return LuaSpeakerNPC instance, specialized methods will fail with NPC \"" + npc.getName() + "\"");
+			logger.warn("Lua call to entities:getNPC did not return LuaSpeakerNPC instance, specialized"
+					+ " methods will fail with NPC \"" + npc.getName() + "\"");
 		}
-
 		return npc;
 	}
 
@@ -606,9 +602,9 @@ public class LuaEntityHelper {
 	 * Retrieves a registered Item.
 	 *
 	 * @param name
-	 * 		Name of the item.
+	 *   Name of the item.
 	 * @return
-	 * 		Item instance or <code>null</code> if not a registered item.
+	 *   Item instance or <code>null</code> if not a registered item.
 	 */
 	public Item getItem(final String name) {
 		return manager.getItem(name);
@@ -618,16 +614,15 @@ public class LuaEntityHelper {
 	 * Retrieves a registered StackableItem.
 	 *
 	 * @param name
-	 * 		Name of the item.
+	 *   Name of the item.
 	 * @return
-	 * 		StackableItem instance or <code>null</code> if not a registered stackable item.
+	 *   StackableItem instance or <code>null</code> if not a registered stackable item.
 	 */
 	public StackableItem getStackableItem(final String name) {
 		final Item item = getItem(name);
 		if (item instanceof StackableItem) {
 			return (StackableItem) item;
 		}
-
 		return null;
 	}
 
@@ -635,11 +630,11 @@ public class LuaEntityHelper {
 	 * Creates a new SpeakerNPC instance.
 	 *
 	 * @param name
-	 * 		Name of new NPC.
+	 *   Name of new NPC.
 	 * @return
-	 * 		New SpeakerNPC instance.
+	 *   New SpeakerNPC instance.
 	 * @deprecated
-	 *     Use {@link #create(LuaTable)}.
+	 *   Use `LuaEntityHelper.create`.
 	 */
 	@Deprecated
 	public LuaSpeakerNPC createSpeakerNPC(final String name) {
@@ -652,9 +647,9 @@ public class LuaEntityHelper {
 	 * Creates a new SilentNPC instance.
 	 *
 	 * @return
-	 * 		New SilentNPC instance.
+	 *   New SilentNPC instance.
 	 * @deprecated
-	 *     Use {@link #create(LuaTable)}.
+	 *   Use `LuaEntityHelper.create`.
 	 */
 	@Deprecated
 	public LuaSilentNPC createSilentNPC() {
@@ -667,13 +662,13 @@ public class LuaEntityHelper {
 	 * Creates an item spawner.
 	 *
 	 * @param name
-	 *     Name of item to be spawned.
+	 *   Name of item to be spawned.
 	 * @param meanTurns
-	 *     Average number of turns for item to respawn.
+	 *   Average number of turns for item to respawn.
 	 * @param initOnAdded
-	 *     If <code>true</code>, sets to full grown and initializes respawn timer when added to zone.
+	 *   If <code>true</code>, sets to full grown and initializes respawn timer when added to zone.
 	 * @return
-	 *     PassiveEntityRespawnPoint instance.
+	 *   PassiveEntityRespawnPoint instance.
 	 */
 	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns,
 			final boolean initOnAdded) {
@@ -684,11 +679,11 @@ public class LuaEntityHelper {
 	 * Creates an item spawner.
 	 *
 	 * @param name
-	 *     Name of item to be spawned.
+	 *   Name of item to be spawned.
 	 * @param meanTurns
-	 *     Average number of turns for item to respawn.
+	 *   Average number of turns for item to respawn.
 	 * @return
-	 *     PassiveEntityRespawnPoint instance.
+	 *   PassiveEntityRespawnPoint instance.
 	 */
 	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns) {
 		return createItemSpawner(name, meanTurns, false);
@@ -698,9 +693,11 @@ public class LuaEntityHelper {
 	 * Helper function for setting an NPCs path.
 	 *
 	 * @param entity
-	 * 		The NPC instance of which path is being set.
+	 *   The NPC instance of which path is being set.
 	 * @param table
-	 * 		Lua table with list of coordinates representing nodes.
+	 *   Lua table with list of coordinates representing nodes.
+	 * @param loop
+	 *   If `true` entity will restart path upon completion.
 	 * @deprecated
 	 *     Use {@link games.stendhal.server.entity.GuidedEntity#setPath(FixedPath).
 	 */
@@ -712,7 +709,6 @@ public class LuaEntityHelper {
 		if (loop == null) {
 			loop = false;
 		}
-
 		entity.setPath(tableToPath(table, loop));
 	}
 
@@ -720,9 +716,11 @@ public class LuaEntityHelper {
 	 * Helper function for setting an NPCs path & starting position.
 	 *
 	 * @param entity
-	 * 		The NPC instance of which path is being set.
+	 *   The NPC instance whose path is being set.
 	 * @param table
-	 * 		Lua table with list of coordinates representing nodes.
+	 *   Lua table with list of coordinates representing nodes.
+	 * @param loop
+	 *   If `true` entity will restart path upon completion.
 	 * @deprecated
 	 *     Use {@link games.stendhal.server.entity.GuidedEntity#setPathAndPosition(FixedPath)}.
 	 */
@@ -734,7 +732,6 @@ public class LuaEntityHelper {
 		if (loop == null) {
 			loop = false;
 		}
-
 		entity.setPathAndPosition(tableToPath(table, loop));
 	}
 
@@ -742,15 +739,21 @@ public class LuaEntityHelper {
 	 * Sets a LuaGuidedEntity's path using a table.
 	 *
 	 * @param entity
-	 * 		The NPC instance of which path is being set.
+	 *   The NPC instance whose path is being set.
 	 * @param table
-	 * 		Lua table with list of coordinates representing nodes.
+	 *   Lua table with list of coordinates representing nodes.
+	 * @param loop
+	 *   If `true` entity will restart path upon completion.
+	 * @deprecated
+	 *   Use `GuidedEntity.setPath`.
 	 */
 	private static void setEntityPath(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
+		logger.warn("'entities:setEntityPath' is deprecated"
+				+ ", call 'setPath' directly from the entity instance.");
+
 		if (loop == null) {
 			loop = false;
 		}
-
 		entity.setPath(tableToPath(table, loop));
 	}
 
@@ -758,15 +761,21 @@ public class LuaEntityHelper {
 	 * Sets a LuaGuidedEntity's path & starting position using a table.
 	 *
 	 * @param entity
-	 * 		The NPC instance of which path is being set.
+	 *   The NPC instance whose path is being set.
 	 * @param table
-	 * 		Lua table with list of coordinates representing nodes.
+	 *   Lua table with list of coordinates representing nodes.
+	 * @param loop
+	 *   If `true` entity will restart path upon completion.
+	 * @deprecated
+	 *   Use `GuidedEntity.setPathAndPosition`.
 	 */
 	private static void setEntityPathAndPosition(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
+		logger.warn("'entities:setEntityPathAndPosition' is deprecated"
+				+ ", call 'setPathAndPosition' directly from the entity instance.");
+
 		if (loop == null) {
 			loop = false;
 		}
-
 		entity.setPathAndPosition(tableToPath(table, loop));
 	}
 
@@ -774,9 +783,9 @@ public class LuaEntityHelper {
 	 * Creates a new Sign entity.
 	 *
 	 * @return
-	 * 		New Sign instance.
+	 *   New Sign instance.
 	 * @deprecated
-	 *     Use {@link #create(LuaTable)}.
+	 *   Use `LuaEntityHelper.create(LuaTable)`.
 	 */
 	@Deprecated
 	public Sign createSign() {
@@ -789,11 +798,11 @@ public class LuaEntityHelper {
 	 * Creates a new Sign entity.
 	 *
 	 * @param visible
-	 * 		If <code>false</code>, sign does not have a visual representation.
+	 *   If <code>false</code>, sign does not have a visual representation.
 	 * @return
-	 * 		New Sign instance.
+	 *   New Sign instance.
 	 * @deprecated
-	 *     Use {@link #create(LuaTable)}.
+	 *   Use `LuaEntityHelper.create(LuaTable)`.
 	 */
 	@Deprecated
 	public Sign createSign(final boolean visible) {
@@ -802,7 +811,6 @@ public class LuaEntityHelper {
 		if (visible) {
 			return new Sign();
 		}
-
 		return new Reader();
 	}
 
@@ -810,17 +818,17 @@ public class LuaEntityHelper {
 	 * Creates a new ShopSign entity.
 	 *
 	 * @param name
-	 * 		The shop name.
+	 *   The shop name.
 	 * @param title
-	 * 		The sign title.
+	 *   The sign title.
 	 * @param caption
-	 * 		The caption above the table.
+	 *   The caption above the table.
 	 * @param seller
-	 * 		<code>true</code>, if this sign is for items sold by an NPC (defaults to <code>true</code> if <code>null</code>).
+	 *   <code>true</code>, if this sign is for items sold by an NPC (defaults to <code>true</code> if <code>null</code>).
 	 * @return
-	 * 		New ShopSign instance.
+	 *   New ShopSign instance.
 	 * @deprecated
-	 *     Use {@link #create(LuaTable)}.
+	 *   Use `LuaEntityHelper.create(LuaTable)`.
 	 */
 	@Deprecated
 	public ShopSign createShopSign(final String name, final String title, final String caption, Boolean seller) {
@@ -830,31 +838,31 @@ public class LuaEntityHelper {
 		if (seller == null) {
 			seller = true;
 		}
-
 		return new ShopSign(name, title, caption, seller);
 	}
 
 	/**
 	 * Summons a creature into the world.
 	 *
-	 * FIXME: "coercion error java.lang.IllegalArgumentException: argument type mismatch" occurs if "raid" is LuaBoolean or LuaValue type
-	 *
 	 * @param name
-	 * 		Name of creature to be summoned.
-	 * @param zone
-	 * 		Name of zone where creature should be summoned.
+	 *   Name of creature to be summoned.
+	 * @param zoneName
+	 *   Name of zone where creature should be summoned.
 	 * @param x
-	 * 		Horizontal position of summon location.
+	 *   Horizontal position of summon location.
 	 * @param y
-	 * 		Vertical position of summon location.
+	 *   Vertical position of summon location.
 	 * @param summoner
-	 * 		Name of entity doing the summoning.
+	 *   Name of entity doing the summoning.
 	 * @param raid
-	 * 		(boolean) Whether or not the creature should be a RaidCreature instance (default: true)
+	 *   (boolean) Whether or not the creature should be a RaidCreature instance (default: true)
 	 * @return
-	 * 		0 = success
-	 * 		1 = creature not found
-	 * 		2 = zone not found
+	 *   0 = success
+	 *   1 = creature not found
+	 *   2 = zone not found
+	 * @todo
+	 *   FIXME: "coercion error java.lang.IllegalArgumentException: argument type mismatch" occurs if
+	 *   "raid" is LuaBoolean or LuaValue type.
 	 */
 	private int summonCreature(final String name, final String zoneName, final int x, final int y, String summoner, final boolean raid) {
 		if (summoner == null) {
@@ -880,7 +888,6 @@ public class LuaEntityHelper {
 		}
 
 		new GameEvent(summoner, SUMMON, name).raise();
-
 		return 0;
 	}
 
@@ -907,28 +914,24 @@ public class LuaEntityHelper {
 
 
 	/**
-	 * A special interface that overloads setPath & setPathAndPosition
-	 * methods to accept a Lua table as parameter argument.
+	 * A special interface that overloads setPath & setPathAndPosition methods to accept a Lua table
+	 * as parameter argument.
 	 *
 	 * @todo
-	 *     Merge functionality into {@link games.stendhal.server.entity.GuidedEntity}
-	 *     & delete this class.
+	 *   Merge functionality into {@link games.stendhal.server.entity.GuidedEntity} & delete this
+	 *   class.
 	 */
 	private interface LuaGuidedEntity {
-
 		public void setPath(final FixedPath path);
-
 		public void setPath(final LuaTable table, Boolean loop);
-
 		public void setPathAndPosition(final FixedPath path);
-
 		public void setPathAndPosition(final LuaTable table, Boolean loop);
 	}
 
 	/**
 	 * @todo
-	 *     Merge functionality into {@link games.stendhal.server.entity.npc.SpeakerNPC}
-	 *     & delete this class.
+	 *   Merge functionality into {@link games.stendhal.server.entity.npc.SpeakerNPC} & delete this
+	 *   class.
 	 */
 	private class LuaSpeakerNPC extends SpeakerNPC implements LuaGuidedEntity {
 
@@ -945,18 +948,18 @@ public class LuaEntityHelper {
 		 * Additional method to support transitions using Lua tables.
 		 *
 		 * @param states
-		 * 		The conversation state(s) the entity should be in to trigger response.
-		 * 		Can be ConversationStates enum value or LuaTable of ConversationStates.
+		 *   The conversation state(s) the entity should be in to trigger response. Can be
+		 *   ConversationStates enum value or LuaTable of ConversationStates.
 		 * @param triggers
-		 * 		String or LuaTable of strings to trigger response.
+		 *   String or LuaTable of strings to trigger response.
 		 * @param conditions
-		 * 		ChatCondition instance or LuaTable of ChatCondition instances.
+		 *   ChatCondition instance or LuaTable of ChatCondition instances.
 		 * @param nextState
-		 * 		Conversation state to set entity to after response.
+		 *   Conversation state to set entity to after response.
 		 * @param reply
-		 * 		The NPC's response or <code>null</code>
+		 *   The NPC's response or <code>null</code>
 		 * @param actions
-		 * 		ChatAction instance or LuaTable of ChatAction instances.
+		 *   ChatAction instance or LuaTable of ChatAction instances.
 		 */
 		@SuppressWarnings({ "unused", "unchecked" })
 		public void add(final Object states, final Object triggers, final Object conditions,
@@ -1071,8 +1074,8 @@ public class LuaEntityHelper {
 
 	/**
 	 * @todo
-	 *     Merge functionality into {@link games.stendhal.server.entity.npc.SilentNPC}
-	 *     & delete this class.
+	 *   Merge functionality into {@link games.stendhal.server.entity.npc.SilentNPC} & delete this
+	 *   class.
 	 */
 	private class LuaSilentNPC extends SilentNPC implements LuaGuidedEntity {
 
@@ -1085,6 +1088,5 @@ public class LuaEntityHelper {
 		public void setPathAndPosition(LuaTable table, Boolean loop) {
 			LuaEntityHelper.setEntityPathAndPosition(this, table, loop);
 		}
-
 	}
 }
