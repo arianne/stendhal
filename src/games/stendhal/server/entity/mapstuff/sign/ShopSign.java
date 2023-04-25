@@ -25,6 +25,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
+import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.events.ShowItemListEvent;
@@ -37,6 +38,7 @@ public class ShopSign extends Sign implements UseListener {
 
 	/** The shop list. */
 	protected ShopsList shops = SingletonRepository.getShopsList();
+	protected OutfitShopsList oshops = SingletonRepository.getOutfitShopsList();
 
 	/** Name of shop */
 	protected String shopName;
@@ -49,6 +51,42 @@ public class ShopSign extends Sign implements UseListener {
 
 	/** Type of shop this sign represents. */
 	private ShopType shopType;
+
+
+	/**
+	 * Create a shop list sign.
+	 *
+	 * @param name
+	 *            the shop name.
+	 * @param title
+	 *            the sign title.
+	 * @param caption
+	 *            the caption above the table
+	 * @param shopType
+	 *            the shop type
+	 */
+	public ShopSign(final String name, final String title, final String captions,
+			final ShopType shopType) {
+		super();
+		this.shopName = name;
+		this.title = title;
+		this.caption = caption;
+		this.shopType = shopType;
+
+		put(Actions.ACTION, Actions.LOOK_CLOSELY);
+		setResistance(100);
+
+		boolean registered = false;
+		if (ShopType.OUTFIT.equals(this.shopType)) {
+			registered = oshops.get(this.shopName) != null;
+		} else {
+			registered = shops.get(this.shopName, this.shopType) != null;
+		}
+		// show warning for unregistered shops
+		if (!registered) {
+			logger.warn("Unknown shop '" + this.shopName + "'");
+		}
+	}
 
 	/**
 	 * Create a shop list sign.
@@ -63,14 +101,7 @@ public class ShopSign extends Sign implements UseListener {
 	 *            true, if this sign is for items sold by an NPC
 	 */
 	public ShopSign(final String name, final String title, final String caption, final boolean seller) {
-		super();
-		this.shopName = name;
-		this.title = title;
-		this.caption = caption;
-		this.shopType = seller ? ShopType.ITEM_SELL : ShopType.ITEM_BUY;
-
-		put(Actions.ACTION, Actions.LOOK_CLOSELY);
-		setResistance(100);
+		this(name, title, caption, seller ? ShopType.ITEM_SELL : ShopType.ITEM_BUY);
 	}
 
 	/**

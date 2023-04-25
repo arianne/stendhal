@@ -14,7 +14,7 @@ import java.util.Map;
 
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
-import games.stendhal.server.entity.npc.shop.OutfitShopsList;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowOutfitListEvent;
 import marauroa.common.Pair;
@@ -24,8 +24,6 @@ import marauroa.common.Pair;
  * A shop sign representing contents of an outfit shop.
  */
 public class OutfitShopSign extends ShopSign {
-
-	private final OutfitShopsList oshops;
 
 	private Map<String, String> addLayers;
 	private final boolean showBase;
@@ -55,8 +53,7 @@ public class OutfitShopSign extends ShopSign {
 	public OutfitShopSign(final String name, final String title, final String caption,
 			final Map<String, String> addLayers, final boolean showBase,
 			final Map<String, String> hideOverrides, final Map<String, Map<String, Integer>> indexes) {
-		super(name, title, caption, true);
-		this.oshops = OutfitShopsList.get();
+		super(name, title, caption, ShopType.OUTFIT);
 		this.addLayers = addLayers;
 		this.showBase = showBase;
 		this.hideOverrides = hideOverrides;
