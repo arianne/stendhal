@@ -86,7 +86,7 @@ public class OracleNPC implements ZoneConfigurator {
 				nodes.add(new Node(54, 105));
 				nodes.add(new Node(27, 105));
 				nodes.add(new Node(27, 107));
-				nodes.add(new Node(22, 111));
+				nodes.add(new Node(22, 107));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
