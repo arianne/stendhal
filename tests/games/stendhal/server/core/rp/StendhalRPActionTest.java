@@ -136,7 +136,7 @@ public class StendhalRPActionTest {
 			jekyll.setLevel(level);
 			StendhalRPAction.startAttack(hyde, jekyll);
 			assertNull("Attacking player at protected area", hyde.getAttackTarget());
-			assertEquals("message at attacking at protected area",
+			assertEquals("message at attacking at protected area1",
 					"The powerful protective aura in this place prevents you from attacking jekyll.", getPrivateReply(hyde));
 			hyde.clearEvents();
 		}
