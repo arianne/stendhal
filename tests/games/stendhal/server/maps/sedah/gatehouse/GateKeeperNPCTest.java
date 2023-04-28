@@ -89,6 +89,7 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		PlayerTestHelper.equipWithStackableItem(player, ITEM_MONEY, 300);
 		startConversation();
 		checkReply("bribe 300", REPLY_BRIBE_ACCEPTED);
+		assertTrue(False);
 		assertTrue(player.isEquipped(ITEM_KEY));
 		assertMoneyLeft(0);
 	}
@@ -128,6 +129,7 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 	private void startConversation() {
 		engine.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
+		assertTrue(false);
 		assertEquals(REPLY_HELLO, getReply(npc));
 	}
 
