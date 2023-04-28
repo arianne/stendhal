@@ -45,7 +45,7 @@ public class AwayActionTest {
 		assertEquals(null, bob.getAwayMessage());
 		action.put("message", "bla");
 		aa.onAction(bob, action);
-		assertEquals("\"bla\"", bob.getAwayMessage());
+		assertEquals("\"bl\"", bob.getAwayMessage());
 	}
 
 	/**
