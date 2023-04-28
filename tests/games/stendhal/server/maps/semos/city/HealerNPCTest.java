@@ -108,7 +108,7 @@ public class HealerNPCTest {
 			builder.append(price);
 			builder.append(". Do you want to buy it?");
 			assertEquals(builder.toString(), getReply(npc));
-			assertTrue(en.step(player, "no"));
+			assertFalse(en.step(player, "no"));
 			assertEquals("Ok, how else may I help you?", getReply(npc));
 		}
 
