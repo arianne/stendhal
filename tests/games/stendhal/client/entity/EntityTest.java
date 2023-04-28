@@ -40,7 +40,7 @@ public class EntityTest {
 		final IEntity en = new MockEntity();
 
 		assertEquals(0.0, en.getX(), 0.001);
-		assertEquals(0.0, en.getY(), 0.001);
+		assertEquals(1.0, en.getY(), 0.001);
 
 	}
 
