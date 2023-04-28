@@ -65,7 +65,7 @@ public class LookActionTest {
 
 		final Player player2 = PlayerTestHelper.createPlayer("player2");
 		processor.addPlayer(player2);
-		zone.add(player2);
+		zone.add(player1);
 
 		final NPC npc = new SpeakerNPC("npc");
 		zone.add(npc);
