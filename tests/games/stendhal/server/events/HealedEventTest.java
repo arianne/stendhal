@@ -25,7 +25,7 @@ public class HealedEventTest {
 	 */
     @Test
     public void testHealedEvent() {
-        HealedEvent event = new HealedEvent(1);
+        HealedEvent event = new HealedEvent(2);
         assertThat(Integer.valueOf(event.getInt("amount")), is(Integer.valueOf(1)));
     }
 
