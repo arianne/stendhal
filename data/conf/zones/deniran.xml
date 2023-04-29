@@ -51,6 +51,14 @@
       <attribute name="move.continuous"/>
     </portal>
 
+    <!-- flower soil -->
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">52</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">24</parameter>
+      <parameter name="height">8</parameter>
+    </configurator>
+
   </zone>
 
 

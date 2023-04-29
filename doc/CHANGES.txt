@@ -11,6 +11,7 @@ Changelog
 - chicken & mother hen drop eggs
 - fixed Jimbo's shop sign
 - seeds aren't wasted if attempting to plant where another flower is already growing
+- added fertile ground to Deniran City W to plant flower seeds
 
 
 1.43.3
