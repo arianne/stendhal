@@ -11,18 +11,23 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerProducedNumberOfItemsCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.player.Player;
 
 
 /**
@@ -94,6 +99,22 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 			"Produce 1000 flour",
 			Achievement.EASY_BASE_SCORE, true,
 			new PlayerProducedNumberOfItemsCondition(1000, "flour")));
+
+		achievements.add(createAchievement(
+			"production.sow.flowers.all", "Sowing Seeds of Joy",
+			"Sow 1000 of each type of sowable flower seed",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new ChatCondition() {
+				@Override
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					for (final String flower: Arrays.asList("daisies", "lilia", "pansy", "zantedeschia")) {
+						if (player.getQuantityOfSownItems(flower) < 1000) {
+							return false;
+						}
+					}
+					return true;
+				}
+			}));
 
 		return achievements;
 	}
