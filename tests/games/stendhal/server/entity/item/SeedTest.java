@@ -24,6 +24,7 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -49,6 +50,10 @@ public class SeedTest {
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
+		final Allotment all = new Allotment();
+		all.setPosition(1, 0);
+		all.setSize(20, 20);
+		zone.add(all);
 		zone.add(player);
 
 		assertNotNull(seed);
@@ -56,10 +61,14 @@ public class SeedTest {
 		seed.setPosition(1, 0);
 
 		assertTrue(seed.onUsed(player));
-
-		assertNotNull(player.getZone().getEntityAt(1, 0));
-		assertTrue(player.getZone().getEntityAt(1, 0) instanceof FlowerGrower);
-
+		FlowerGrower grower = null;
+		for (final Entity ent: player.getZone().getEntitiesAt(1, 0)) {
+			if (ent instanceof FlowerGrower) {
+				grower = (FlowerGrower) ent;
+				break;
+			}
+		}
+		assertNotNull(grower);
 	}
 
 
@@ -73,6 +82,10 @@ public class SeedTest {
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
+		final Allotment all = new Allotment();
+		all.setPosition(0, 0);
+		all.setSize(20, 20);
+		zone.add(all);
 		zone.add(player);
 
 		assertNotNull(seed);
@@ -91,6 +104,10 @@ public class SeedTest {
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
+		final Allotment all = new Allotment();
+		all.setPosition(0, 0);
+		all.setSize(20, 20);
+		zone.add(all);
 		zone.add(player);
 
 		assertNotNull(seed);
@@ -99,19 +116,18 @@ public class SeedTest {
 
 		assertTrue(seed.onUsed(player));
 
-		final Entity entity = player.getZone().getEntityAt(1, 0);
-		assertNotNull(entity);
-		if (entity instanceof FlowerGrower) {
-			final FlowerGrower flg = (FlowerGrower) entity;
-			flg.setToFullGrowth();
-			flg.onUsed(player);
-			assertNull(player.getZone().getEntityAt(1, 0));
-			assertTrue(player.isEquipped("lilia"));
-		} else {
-			fail("seed produced non flowergrower");
+		FlowerGrower flg = null;
+		for (final Entity ent: player.getZone().getEntitiesAt(1, 0)) {
+			if (ent instanceof FlowerGrower) {
+				flg = (FlowerGrower) ent;
+				break;
+			}
 		}
-
-
+		assertNotNull(flg);
+		flg.setToFullGrowth();
+		flg.onUsed(player);
+		assertFalse(player.getZone().getEntitiesAt(1, 0).contains(flg));
+		assertTrue(player.isEquipped("lilia"));
 	}
 
 	/**
@@ -123,6 +139,10 @@ public class SeedTest {
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
+		final Allotment all = new Allotment();
+		all.setPosition(0, 0);
+		all.setSize(20, 20);
+		zone.add(all);
 		zone.add(player);
 
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
@@ -133,17 +153,17 @@ public class SeedTest {
 
 		assertTrue(seed.onUsed(player));
 
-		final Entity entity = player.getZone().getEntityAt(1, 0);
-		assertNotNull(entity);
-		if (entity instanceof FlowerGrower) {
-			final FlowerGrower flg = (FlowerGrower) entity;
-			flg.setToFullGrowth();
-			flg.onUsed(player);
-			assertNull(player.getZone().getEntityAt(1, 0));
-			assertTrue("player has daisies", player.isEquipped("daisies"));
-		} else {
-			fail("seed produced non flowergrower");
+		FlowerGrower flg = null;
+		for (final Entity ent: player.getZone().getEntitiesAt(1, 0)) {
+			if (ent instanceof FlowerGrower) {
+				flg = (FlowerGrower) ent;
+				break;
+			}
 		}
-
+		assertNotNull(flg);
+		flg.setToFullGrowth();
+		flg.onUsed(player);
+		assertFalse(player.getZone().getEntitiesAt(1, 0).contains(flg));
+		assertTrue("player has daisies", player.isEquipped("daisies"));
 	}
 }
