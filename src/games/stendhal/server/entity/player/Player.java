@@ -2743,6 +2743,18 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Retrieve the amount of items sown by player.
+	 *
+	 * @param item
+	 *   Item Name.
+	 * @return
+	 *   Integer sown quanity.
+	 */
+	public int getQuantityOfSownItems(String item) {
+		return itemCounter.getQuantityOfSownItems(item);
+	}
+
+	/**
 	 * Gets the amount a player has harvested of an item
 	 *
 	 * @param item
@@ -2847,6 +2859,20 @@ public class Player extends DressedEntity implements UseListener {
 		itemCounter.incMinedForItem(name, quantity);
 		// check achievements in obtain category
 		AchievementNotifier.get().onObtain(this);
+	}
+
+	/**
+	 * Increses the quanity an item was sown by player.
+	 *
+	 * @param item
+	 *   Item name.
+	 * @param count
+	 *   Increment amount.
+	 */
+	public void incSownForItem(String name, int quantity) {
+		itemCounter.incSownForItem(name, quantity);
+		// this isn't the same as producing with an NPC but production is the most appropriate category
+		AchievementNotifier.get().onProduction(this);
 	}
 
 	/**

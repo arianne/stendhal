@@ -34,6 +34,8 @@ public class PlayerLootedItemsHandler {
 
 	private final Map<String, Integer> mined;
 
+	private final Map<String, Integer> sown;
+
 	private final Map<String, Integer> harvested;
 
 	private final Map<String, Integer> bought;
@@ -51,6 +53,7 @@ public class PlayerLootedItemsHandler {
 		produced = new HashMap<String, Integer>();
 		obtained = new HashMap<String, Integer>();
 		mined = new HashMap<String, Integer>();
+		sown = new HashMap<String, Integer>();
 		harvested = new HashMap<String, Integer>();
 		bought = new HashMap<String, Integer>();
 		sold = new HashMap<String, Integer>();
@@ -104,6 +107,21 @@ public class PlayerLootedItemsHandler {
 	public int getQuantityOfProducedItems(String item) {
 		if(produced.containsKey(item)) {
 			return produced.get(item);
+		}
+		return 0;
+	}
+
+	/**
+	 * Retrieve the amount of items sown by player.
+	 *
+	 * @param item
+	 *   Item Name.
+	 * @return
+	 *   Integer sown quanity.
+	 */
+	public int getQuantityOfSownItems(String item) {
+		if (sown.containsKey(item)) {
+			return sown.get(item);
 		}
 		return 0;
 	}
@@ -198,6 +216,18 @@ public class PlayerLootedItemsHandler {
 	 */
 	public void incMinedForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "mined.", mined);
+	}
+
+	/**
+	 * Increses the quanity an item was sown.
+	 *
+	 * @param item
+	 *   Item name.
+	 * @param count
+	 *   Increment amount.
+	 */
+	public void incSownForItem(String item, int count) {
+		handlePrefixedCounting(item, count, "sown", sown);
 	}
 
 	/**

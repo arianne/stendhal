@@ -14,8 +14,11 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
 /**
@@ -59,13 +62,29 @@ public class Seed extends StackableItem {
 			} else {
 				flowerGrower = new FlowerGrower(this.getInfoString());
 			}
-			user.getZone().add(flowerGrower);
+			final StendhalRPZone userZone = user.getZone();
+			final int pos_x = this.getX();
+			final int pos_y = this.getY();
+			// check if we are overwriting another flower grower
+			boolean new_grower = true;
+			for (final Entity ent: userZone.getEntitiesAt(pos_x, pos_y)) {
+				if (ent instanceof FlowerGrower) {
+					new_grower = false;
+					break;
+				}
+			}
+			userZone.add(flowerGrower);
 			// add the FlowerGrower where the seed was on the ground
-			flowerGrower.setPosition(this.getX(), this.getY());
+			flowerGrower.setPosition(pos_x, pos_y);
 			// The first stage of growth happens almost immediately
 			TurnNotifier.get().notifyInTurns(3, flowerGrower);
 			// remove the seed now that it is planted
 			this.removeOne();
+			// don't allow infinite sowing in one spot
+			if (new_grower && user instanceof Player) {
+				// XXX: should this increment only after flower grower has fully ripened?
+				((Player) user).incSownForItem(infostring, 1);
+			}
 			return true;
 		}
 		// the seed was 'contained' in a slot and so it cannot be planted
