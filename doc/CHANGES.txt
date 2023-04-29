@@ -10,6 +10,7 @@ Changelog
 - new achievement: Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
 - chicken & mother hen drop eggs
 - fixed Jimbo's shop sign
+- seeds aren't wasted if attempting to plant where another flower is already growing
 
 
 1.43.3

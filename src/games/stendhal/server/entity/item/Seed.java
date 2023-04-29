@@ -53,6 +53,18 @@ public class Seed extends StackableItem {
 				return false;
 			}
 
+			final StendhalRPZone userZone = user.getZone();
+			final int pos_x = this.getX();
+			final int pos_y = this.getY();
+			// check if we are overwriting another flower grower
+			for (final Entity ent: userZone.getEntitiesAt(pos_x, pos_y)) {
+				if (ent instanceof FlowerGrower) {
+					// don't accidentally waste seeds & don't allow infinite sowing in one spot
+					user.sendPrivateText("There is already something growing there.");
+					return false;
+				}
+			}
+
 			// the infostring of the seed stores what it should grow
 			final String infostring = this.getInfoString();
 			FlowerGrower flowerGrower;
@@ -62,17 +74,6 @@ public class Seed extends StackableItem {
 			} else {
 				flowerGrower = new FlowerGrower(this.getInfoString());
 			}
-			final StendhalRPZone userZone = user.getZone();
-			final int pos_x = this.getX();
-			final int pos_y = this.getY();
-			// check if we are overwriting another flower grower
-			boolean new_grower = true;
-			for (final Entity ent: userZone.getEntitiesAt(pos_x, pos_y)) {
-				if (ent instanceof FlowerGrower) {
-					new_grower = false;
-					break;
-				}
-			}
 			userZone.add(flowerGrower);
 			// add the FlowerGrower where the seed was on the ground
 			flowerGrower.setPosition(pos_x, pos_y);
@@ -80,8 +81,7 @@ public class Seed extends StackableItem {
 			TurnNotifier.get().notifyInTurns(3, flowerGrower);
 			// remove the seed now that it is planted
 			this.removeOne();
-			// don't allow infinite sowing in one spot
-			if (new_grower && user instanceof Player) {
+			if (user instanceof Player) {
 				// XXX: should this increment only after flower grower has fully ripened?
 				((Player) user).incSownForItem(infostring, 1);
 			}
