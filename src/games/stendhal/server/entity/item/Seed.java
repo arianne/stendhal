@@ -19,6 +19,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.mapstuff.area.FertileGround;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
 /**
@@ -56,13 +57,23 @@ public class Seed extends StackableItem {
 			final StendhalRPZone userZone = user.getZone();
 			final int pos_x = this.getX();
 			final int pos_y = this.getY();
-			// check if we are overwriting another flower grower
+
+			boolean fertile = false;
 			for (final Entity ent: userZone.getEntitiesAt(pos_x, pos_y)) {
-				if (ent instanceof FlowerGrower) {
-					// don't accidentally waste seeds & don't allow infinite sowing in one spot
+				if (ent instanceof FertileGround) {
+					// check for fertile ground
+					fertile = true;
+				} else if (ent instanceof FlowerGrower) {
+					// check if we are overwriting another flower grower so seeds are not wasted & don't
+					// allow infinite sowing in one spot
 					user.sendPrivateText("There is already something growing there.");
 					return false;
 				}
+			}
+			if (!fertile) {
+				// don't waste seeds on infertile ground
+				user.sendPrivateText("The ground is infertile.");
+				return false;
 			}
 
 			// the infostring of the seed stores what it should grow

@@ -12,6 +12,7 @@ Changelog
 - fixed Jimbo's shop sign
 - seeds aren't wasted if attempting to plant where another flower is already growing
 - added fertile ground to Deniran City W to plant flower seeds
+- seeds are not wasted on infertile ground
 
 
 1.43.3
