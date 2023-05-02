@@ -65,7 +65,7 @@ public class ShopSign extends Sign implements UseListener {
 	 * @param shopType
 	 *            the shop type
 	 */
-	public ShopSign(final String name, final String title, final String captions,
+	public ShopSign(final String name, final String title, final String caption,
 			final ShopType shopType) {
 		super();
 		this.shopName = name;
