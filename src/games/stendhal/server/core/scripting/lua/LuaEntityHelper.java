@@ -747,6 +747,7 @@ public class LuaEntityHelper {
 	 * @deprecated
 	 *   Use `GuidedEntity.setPath`.
 	 */
+	@Deprecated
 	private static void setEntityPath(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
 		logger.warn("'entities:setEntityPath' is deprecated"
 				+ ", call 'setPath' directly from the entity instance.");
@@ -769,6 +770,7 @@ public class LuaEntityHelper {
 	 * @deprecated
 	 *   Use `GuidedEntity.setPathAndPosition`.
 	 */
+	@Deprecated
 	private static void setEntityPathAndPosition(final LuaGuidedEntity entity, final LuaTable table, Boolean loop) {
 		logger.warn("'entities:setEntityPathAndPosition' is deprecated"
 				+ ", call 'setPathAndPosition' directly from the entity instance.");
