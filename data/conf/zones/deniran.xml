@@ -52,7 +52,7 @@
     </portal>
 
     <!-- flower soil -->
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">52</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">24</parameter>

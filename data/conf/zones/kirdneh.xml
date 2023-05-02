@@ -337,7 +337,7 @@
       <parameter name="x">18</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">5</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -370,7 +370,7 @@
     </configurator>
 
     <!-- Planter box -->
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">37</parameter>
       <parameter name="y">18</parameter>
       <parameter name="width">1</parameter>
@@ -472,7 +472,7 @@
       <parameter name="x">15</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">37</parameter>
       <parameter name="y">19</parameter>
       <parameter name="width">1</parameter>
@@ -491,7 +491,7 @@
       <parameter name="x">18</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">36</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -523,7 +523,7 @@
       <parameter name="x">17</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">22</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -554,7 +554,7 @@
       <parameter name="x">17</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">2</parameter>
       <parameter name="y">19</parameter>
       <parameter name="width">1</parameter>
@@ -573,7 +573,7 @@
       <parameter name="x">20</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">2</parameter>
       <parameter name="y">19</parameter>
       <parameter name="width">1</parameter>
@@ -592,7 +592,7 @@
       <parameter name="x">29</parameter>
       <parameter name="y">2</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">29</parameter>
       <parameter name="y">9</parameter>
       <parameter name="width">1</parameter>
@@ -651,7 +651,7 @@
       <parameter name="x">22</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">22</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -691,7 +691,7 @@
       <parameter name="x">22</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">22</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -731,7 +731,7 @@
       <parameter name="x">2</parameter>
       <parameter name="y">10</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">2</parameter>
       <parameter name="y">8</parameter>
       <parameter name="width">1</parameter>
@@ -794,7 +794,7 @@
       <parameter name="x">2</parameter>
       <parameter name="y">10</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">2</parameter>
       <parameter name="y">8</parameter>
       <parameter name="width">1</parameter>
@@ -857,7 +857,7 @@
       <parameter name="x">22</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">17</parameter>
       <parameter name="y">14</parameter>
       <parameter name="width">3</parameter>
@@ -889,7 +889,7 @@
       <parameter name="x">2</parameter>
       <parameter name="y">17</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">6</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -981,7 +981,7 @@
       <parameter name="x">36</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">34</parameter>
       <parameter name="y">9</parameter>
       <parameter name="width">1</parameter>
@@ -1059,7 +1059,7 @@
       <parameter name="x">37</parameter>
       <parameter name="y">14</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">33</parameter>
       <parameter name="y">7</parameter>
       <parameter name="width">1</parameter>
@@ -1099,7 +1099,7 @@
       <parameter name="x">2</parameter>
       <parameter name="y">10</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">2</parameter>
       <parameter name="y">7</parameter>
       <parameter name="width">1</parameter>
@@ -1166,7 +1166,7 @@
       <parameter name="x">14</parameter>
       <parameter name="y">3</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">18</parameter>
       <parameter name="y">14</parameter>
       <parameter name="width">1</parameter>
@@ -1263,7 +1263,7 @@
       <parameter name="x">37</parameter>
       <parameter name="y">3</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">33</parameter>
       <parameter name="y">7</parameter>
       <parameter name="width">1</parameter>
@@ -1303,7 +1303,7 @@
       <parameter name="x">15</parameter>
       <parameter name="y">18</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">21</parameter>
       <parameter name="y">21</parameter>
       <parameter name="width">1</parameter>
@@ -1356,7 +1356,7 @@
       <parameter name="x">15</parameter>
       <parameter name="y">18</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">24</parameter>
       <parameter name="y">5</parameter>
       <parameter name="width">1</parameter>
@@ -1475,7 +1475,7 @@
       <parameter name="x">29</parameter>
       <parameter name="y">2</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">29</parameter>
       <parameter name="y">9</parameter>
       <parameter name="width">1</parameter>
@@ -1534,7 +1534,7 @@
       <parameter name="x">10</parameter>
       <parameter name="y">8</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">17</parameter>
       <parameter name="y">16</parameter>
       <parameter name="width">1</parameter>
@@ -1609,7 +1609,7 @@
       <parameter name="x">10</parameter>
       <parameter name="y">8</parameter>
     </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">17</parameter>
       <parameter name="y">16</parameter>
       <parameter name="width">1</parameter>
