@@ -13,8 +13,13 @@ Changelog
 - chicken & mother hen drop eggs
 - fixed Jimbo's shop sign
 - seeds aren't wasted if attempting to plant where another flower is already growing
-- added fertile ground to Deniran City W to plant flower seeds
 - seeds are not wasted on infertile ground
+- added fertile ground to more maps:
+  - Deniran City W
+  - Kalavan City
+  - Kalavan City Gardens
+  - Semos Plains N (more)
+  - Semos Plains NE
 
 
 1.43.3
