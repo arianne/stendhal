@@ -1517,6 +1517,13 @@ Southeast: Farmhouse
       <attribute name="class">signpost</attribute>
     </entity>
 
+    <!-- fertile ground for flowers -->
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
+      <parameter name="x">27</parameter>
+      <parameter name="y">61</parameter>
+      <parameter name="width">24</parameter>
+      <parameter name="height">17</parameter>
+    </configurator>
   </zone>
 
   <zone name="0_semos_plains_n_e2" level="0" x="500192" y="499872"
