@@ -53,10 +53,10 @@
 
     <!-- flower soil -->
     <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">52</parameter>
-      <parameter name="y">21</parameter>
-      <parameter name="width">24</parameter>
-      <parameter name="height">8</parameter>
+      <parameter name="x">51</parameter>
+      <parameter name="y">20</parameter>
+      <parameter name="width">26</parameter>
+      <parameter name="height">10</parameter>
     </configurator>
 
   </zone>

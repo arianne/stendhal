@@ -512,45 +512,31 @@ No access.</attribute>
 
     <!-- fertile ground for flowers -->
     <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">25</parameter>
-      <parameter name="y">42</parameter>
-      <parameter name="width">9</parameter>
-      <parameter name="height">12</parameter>
+      <parameter name="x">24</parameter>
+      <parameter name="y">41</parameter>
+      <parameter name="width">10</parameter>
+      <parameter name="height">15</parameter>
     </configurator>
 
     <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">34</parameter>
-      <parameter name="y">43</parameter>
-      <parameter name="width">2</parameter>
-      <parameter name="height">10</parameter>
+      <parameter name="y">42</parameter>
+      <parameter name="width">3</parameter>
+      <parameter name="height">12</parameter>
+    </configurator>
+
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
+      <parameter name="x">23</parameter>
+      <parameter name="y">51</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">7</parameter>
     </configurator>
 
     <configurator class-name="games.stendhal.server.maps.FertileGrounds">
       <parameter name="x">24</parameter>
-      <parameter name="y">51</parameter>
-      <parameter name="width">1</parameter>
-      <parameter name="height">6</parameter>
-    </configurator>
-
-    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">31</parameter>
-      <parameter name="y">54</parameter>
-      <parameter name="width">2</parameter>
-      <parameter name="height">1</parameter>
-    </configurator>
-
-    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">25</parameter>
-      <parameter name="y">54</parameter>
-      <parameter name="width">6</parameter>
-      <parameter name="height">2</parameter>
-    </configurator>
-
-    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">25</parameter>
       <parameter name="y">56</parameter>
-      <parameter name="width">5</parameter>
-      <parameter name="height">1</parameter>
+      <parameter name="width">7</parameter>
+      <parameter name="height">2</parameter>
     </configurator>
   </zone>
 
@@ -2166,10 +2152,10 @@ No access.</attribute>
 
     <!-- fertile ground for flowers -->
     <configurator class-name="games.stendhal.server.maps.FertileGrounds">
-      <parameter name="x">61</parameter>
-      <parameter name="y">11</parameter>
-      <parameter name="width">28</parameter>
-      <parameter name="height">18</parameter>
+      <parameter name="x">60</parameter>
+      <parameter name="y">10</parameter>
+      <parameter name="width">30</parameter>
+      <parameter name="height">20</parameter>
     </configurator>
   </zone>
 
