@@ -61,7 +61,7 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 		buys.setEntityClass("blackboard");
 		buys.setPosition(20, 4);
 
-		final ShopSign sells = new ShopSign("deniranequipsell", "D J Smith's Shop (selling)", "You can buy these things from D J Smith.", false);
+		final ShopSign sells = new ShopSign("deniranequipsell", "D J Smith's Shop (selling)", "You can buy these things from D J Smith.", true);
 		sells.setEntityClass("blackboard");
 		sells.setPosition(21, 4);
 
