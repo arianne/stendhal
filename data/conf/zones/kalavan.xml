@@ -2120,6 +2120,14 @@ No access.</attribute>
       <destination zone="int_kalavan_cottage_2" ref="entrance"/>
       <attribute name="move.continuous"/>
     </portal>
+
+    <!-- fertile ground for flowers -->
+    <configurator class-name="games.stendhal.server.maps.FertileGrounds">
+      <parameter name="x">61</parameter>
+      <parameter name="y">11</parameter>
+      <parameter name="width">28</parameter>
+      <parameter name="height">18</parameter>
+    </configurator>
   </zone>
 
   <zone name="int_kalavan_cottage_2" file="interiors/kalavan/cottage_2.tmx">
