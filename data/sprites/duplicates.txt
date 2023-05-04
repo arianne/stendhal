@@ -1,0 +1,6 @@
+
+
+| Duplicate                  | Original                  | Notes  |
+| -------------------------- | ------------------------- | ------ |
+| items/holiday/ornament.png | items/scroll/ornament.png | unused |
+| item/token/flag.png        | item/misc/teddy.png       |        |
