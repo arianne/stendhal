@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.BreakableItem;
+import games.stendhal.server.entity.item.BreakableWeapon;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -217,7 +217,7 @@ public class AssassinRepairerAdder {
 
 		int count = 0;
 		for (final Item item: player.getAllEquipped(currentRepairItem)) {
-			if (((BreakableItem) item).isUsed()) {
+			if (((BreakableWeapon) item).isUsed()) {
 				count++;
 			}
 		}
@@ -321,7 +321,7 @@ public class AssassinRepairerAdder {
 				player.drop("money", currentRepairFee);
 
 				for (final Item bow: player.getAllEquipped(currentRepairItem)) {
-					final BreakableItem breakable = (BreakableItem) bow;
+					final BreakableWeapon breakable = (BreakableWeapon) bow;
 					if (breakable.isUsed()) {
 						breakable.repair();
 					}

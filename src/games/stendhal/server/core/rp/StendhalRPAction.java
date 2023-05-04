@@ -40,7 +40,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.BreakableItem;
+import games.stendhal.server.entity.item.BreakableWeapon;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Projectile;
 import games.stendhal.server.entity.item.StackableItem;
@@ -346,7 +346,7 @@ public class StendhalRPAction {
 		}
 
 		// equipment that are broken are added to this list
-		final List<BreakableItem> broken = new ArrayList<>();
+		final List<BreakableWeapon> broken = new ArrayList<>();
 
 		boolean getsDefXp = false;
 		boolean getsAtkXp = player.recentlyDamagedBy(defender);
@@ -393,8 +393,8 @@ public class StendhalRPAction {
 			for (final Item weapon: weapons) {
 				weapon.deteriorate(player);
 
-				if (weapon instanceof BreakableItem) {
-					final BreakableItem breakable = (BreakableItem) weapon;
+				if (weapon instanceof BreakableWeapon) {
+					final BreakableWeapon breakable = (BreakableWeapon) weapon;
 					if (breakable.isBroken()) {
 						broken.add(breakable);
 					}
@@ -412,8 +412,8 @@ public class StendhalRPAction {
 				final Item equip = Rand.rand(defenseItems);
 				equip.deteriorate(defender);
 
-				if (equip instanceof BreakableItem) {
-					final BreakableItem breakable = (BreakableItem) equip;
+				if (equip instanceof BreakableWeapon) {
+					final BreakableWeapon breakable = (BreakableWeapon) equip;
 					if (breakable.isBroken()) {
 						broken.add(breakable);
 					}
@@ -449,7 +449,7 @@ public class StendhalRPAction {
 
 		player.notifyWorldAboutChanges();
 
-		for (final BreakableItem breakable: broken) {
+		for (final BreakableWeapon breakable: broken) {
 			if (breakable.isContained()) {
 				final RPObject slot = breakable.getContainer();
 				if (breakable.getContainerSlot().remove(breakable.getID()) != null) {
@@ -463,7 +463,7 @@ public class StendhalRPAction {
 							+ " times (durability: " + breakable.getDurability() + ")").raise();
 					player.sendPrivateText("Your " + event + "!");
 				} else {
-					logger.error("Could not remove BreakableItem \"" + breakable.getName()
+					logger.error("Could not remove BreakableWeapon \"" + breakable.getName()
 							+ "\" with ID " + breakable.getID().toString());
 				}
 			}

@@ -145,7 +145,7 @@
   <item name="auto crossbow" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow" tileid="-1"/>
     <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
@@ -170,7 +170,7 @@
   <item name="auto crossbow A" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow_a" tileid="-1"/>
     <description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>
@@ -195,7 +195,7 @@
   <item name="auto crossbow A+" condition="stendhal.testserver">
     <type class="ranged" subclass="auto_crossbow_aa" tileid="-1"/>
     <description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
     <attributes>
       <atk value="0" condition="!testing.combat"/>
       <ratk value="0" condition="testing.combat"/>

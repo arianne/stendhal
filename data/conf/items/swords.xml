@@ -823,7 +823,7 @@
   <item name="training sword">
     <type class="sword" subclass="training_sword" tileid="-1"/>
     <description>You see a wooden training sword not even useful for cutting butter. But it is light and easy to swing.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
     <attributes>
       <atk value="0"/>
       <autobind value=""/>

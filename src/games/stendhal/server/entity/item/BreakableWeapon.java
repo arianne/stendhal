@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Arianne                          *
+ *                    Copyright © 2018-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +21,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * An item that wears & breaks.
  */
-public class BreakableItem extends Weapon {
+public class BreakableWeapon extends Weapon {
 
 	private static final Map<String, Double> conditions = new LinkedHashMap<String, Double>() {{
 		put("new", 1.0);
@@ -34,11 +34,11 @@ public class BreakableItem extends Weapon {
 	private boolean notified = false;
 
 
-	public BreakableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public BreakableWeapon(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
-	public BreakableItem(final BreakableItem item) {
+	public BreakableWeapon(final BreakableWeapon item) {
 		super(item);
 	}
 
