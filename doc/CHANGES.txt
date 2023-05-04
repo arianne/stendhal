@@ -8,6 +8,7 @@ Changelog
 *bugfixes*
 - fixed Jimbo's shop sign
 - fixed Lobelia's path
+- fixed status effects inflicted by player weapons
 
 *world*
 - Adventure Island state is shown in travel log
