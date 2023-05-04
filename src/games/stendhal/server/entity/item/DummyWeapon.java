@@ -29,7 +29,7 @@ public class DummyWeapon extends Weapon {
 	 *
 	 * @param item copied item
 	 */
-	public DummyWeapon(Item item) {
+	public DummyWeapon(final DummyWeapon item) {
 		super(item);
 	}
 

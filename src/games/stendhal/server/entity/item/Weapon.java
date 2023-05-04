@@ -42,7 +42,7 @@ public class Weapon extends Item implements WeaponImpl {
    * @param item
    *   Item to be copied.
    */
-  public Weapon(final Item item) {
+  public Weapon(final Weapon item) {
     super(item);
   }
 

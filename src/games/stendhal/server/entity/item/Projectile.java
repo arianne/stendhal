@@ -42,7 +42,7 @@ public class Projectile extends StackableItem implements WeaponImpl {
    * @param item
    *   Item to be copied.
    */
-  public Projectile(final StackableItem item) {
+  public Projectile(final Projectile item) {
     super(item);
   }
 
