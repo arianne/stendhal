@@ -1,5 +1,5 @@
 /***************************************************************************
- *                  Copyright (C) 2003-2022 - Arianne                      *
+ *                  Copyright (C) 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 
 public class PrepareStepRules extends TutorialStep {
 
+	@Override
 	public void init(final String pname) {
 		final ChatCondition onRulesStep = new QuestInStateCondition(SLOT, 0, ST_RULES);
 

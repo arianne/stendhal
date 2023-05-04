@@ -28,6 +28,7 @@ import utilities.quest_runner.StillBelievingStub;
 public class QuestRunner {
 
 	// for debugging
+	@SuppressWarnings("unused")
 	private static String getReply(final SpeakerNPC npc) {
 		return utilities.SpeakerNPCTestHelper.getReply(npc);
 	}

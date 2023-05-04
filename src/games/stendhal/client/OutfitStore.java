@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,6 +89,7 @@ public class OutfitStore {
 
 		final JSONLoader loader = new JSONLoader();
 		loader.onDataReady = new Runnable() {
+			@Override
 			public void run() {
 				final JSONObject document = (JSONObject) loader.data;
 				final JSONArray detailRear = (JSONArray) ((JSONObject) document.get("detail")).get("rear");
@@ -392,6 +393,7 @@ public class OutfitStore {
 	 * 		Outfit reference.
 	 * @return outfit
 	 */
+	@SuppressWarnings("null")
 	private Sprite getOutfit(final String strcode, final OutfitColor color, final String reference) {
 		final SpriteCache cache = SpriteCache.get();
 
@@ -410,6 +412,7 @@ public class OutfitStore {
 	/**
 	 * Get an outfit with color adjustment, such as a player in colored light.
 	 */
+	@SuppressWarnings("null")
 	public Sprite getAdjustedOutfit(final String strcode, final OutfitColor color, final Color adjColor, final Composite blend) {
 		if (adjColor == null || blend == null) {
 			return getOutfit(strcode, color);

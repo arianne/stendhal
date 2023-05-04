@@ -1,5 +1,5 @@
 /***************************************************************************
- *                  Copyright (C) 2003-2022 - Arianne                      *
+ *                  Copyright (C) 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@ package games.stendhal.server.maps.quests.tutorial;
 
 public class PrepareStepQuests extends TutorialStep {
 
+	@Override
 	public void init(final String pname) {
 		// TODO: final ChatCondition onQuestsStep = new QuestInStateCondition(SLOT, 0, ST_QUESTS);
 	}

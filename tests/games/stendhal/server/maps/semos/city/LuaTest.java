@@ -19,7 +19,6 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -34,8 +33,6 @@ import utilities.ZonePlayerAndNPCTestImpl;
 
 
 public class LuaTest extends ZonePlayerAndNPCTestImpl {
-
-	private static final Logger logger = Logger.getLogger(LuaTest.class);
 
 	private SpeakerNPC lua;
 

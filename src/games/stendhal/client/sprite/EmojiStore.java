@@ -103,6 +103,7 @@ public class EmojiStore {
 	public void init() {
 		final JSONLoader loader = new JSONLoader();
 		loader.onDataReady = new Runnable() {
+			@Override
 			public void run() {
 				final JSONObject document = (JSONObject) loader.data;
 				final Object el = document.get("emojilist");

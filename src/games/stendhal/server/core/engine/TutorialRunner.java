@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,6 +47,7 @@ public class TutorialRunner implements LoginListener, LogoutListener {
 	 * Initializes tutorial sequence if player has not completed
 	 * tutorial quest.
 	 */
+	@Override
 	public void onLoggedIn(final Player player) {
 		if (!player.hasQuest(SLOT) || !player.getQuest(SLOT, 0).equals("done")) {
 			// make sure tutorial quest is loaded
@@ -63,6 +64,7 @@ public class TutorialRunner implements LoginListener, LogoutListener {
 	/**
 	 * Removes tutorial zone from world.
 	 */
+	@Override
 	public void onLoggedOut(final Player player) {
 		final TutorialIsland quest = (TutorialIsland) SingletonRepository
 			.getStendhalQuestSystem().getQuestFromSlot(SLOT);

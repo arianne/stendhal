@@ -124,6 +124,7 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 
 		// add responses to sellers so player has an idea of how much they need to spend
 		SingletonRepository.getCachedActionManager().register(new Runnable() {
+			@Override
 			public void run() {
 				logger.debug("Registering seller responses for Community Supporter achievement ...");
 				String csSellers = "";

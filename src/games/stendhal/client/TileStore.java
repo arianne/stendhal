@@ -127,6 +127,7 @@ class TileStore implements Tileset {
 
 		final JSONLoader loader = new JSONLoader();
 		loader.onDataReady = new Runnable() {
+			@Override
 			public void run() {
 				final JSONObject document = (JSONObject) loader.data;
 				if (document.containsKey("landscape")) {

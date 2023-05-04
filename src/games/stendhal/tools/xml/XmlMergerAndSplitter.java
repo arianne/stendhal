@@ -51,6 +51,7 @@ public class XmlMergerAndSplitter {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void writeSingleFile(String filename) throws IOException, ParserConfigurationException, TransformerException {
 		Document resultDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 		Element root = resultDocument.createElement("root");

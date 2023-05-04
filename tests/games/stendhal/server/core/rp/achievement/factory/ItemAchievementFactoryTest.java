@@ -47,6 +47,7 @@ public class ItemAchievementFactoryTest extends AchievementTestHelper {
 		assertTrue(achievementReached(player, id));
 	}
 
+	@SuppressWarnings("unused")
 	private void checkSingleItemLoot(final String id, final String item,
 			final int amount) {
 		checkSingleItemLoot(id, item, amount, 1);

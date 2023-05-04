@@ -1046,7 +1046,7 @@ public class LuaEntityHelper {
 			if (!ignorePlayers) {
 				super.setAttending(rpentity);
 
-				if (getEngine().getCurrentState().equals(ConversationStates.IDLE) && idleAction instanceof LuaFunction) {
+				if (getEngine().getCurrentState().equals(ConversationStates.IDLE) && idleAction != null) {
 					final LuaSpeakerNPC thisNPC = this;
 
 					SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {

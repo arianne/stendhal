@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,8 +63,6 @@ import utilities.quest_runner.StillBelievingStub;
 
 
 public class FriendAchievementFactoryTest extends AchievementTestHelper {
-
-	private static final Logger logger = Logger.getLogger(FriendAchievementFactoryTest.class);
 
 	private static final StendhalRPWorld world = MockStendlRPWorld.get();
 	private static final StendhalQuestSystem quests = SingletonRepository.getStendhalQuestSystem();

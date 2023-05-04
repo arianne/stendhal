@@ -86,6 +86,7 @@ public class OutfitShopInventory extends ShopInventory<String, Pair<String, Inte
    * @return
    *     Amount of money required to buy outfit or null if name not found.
    */
+  @Override
   public Integer getPrice(final String name) {
     if (containsKey(name)) {
       return get(name).second();

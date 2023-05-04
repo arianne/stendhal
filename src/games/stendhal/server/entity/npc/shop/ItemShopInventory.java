@@ -24,6 +24,7 @@ public class ItemShopInventory extends ShopInventory<String, Integer> {
    * @return
    *     Amount of money required to buy outfit or null if name not found.
    */
+    @Override
     public Integer getPrice(final String name) {
       return get(name);
     }

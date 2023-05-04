@@ -115,6 +115,7 @@ public class LuaWorldHelper extends ScriptingSandbox {
 	 */
 	public void runAfter(final int turns, final LuaFunction func) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(turns, new TurnListener() {
+			@Override
 			public void onTurnReached(final int currentTurn) {
 				func.call();
 			}

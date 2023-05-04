@@ -73,6 +73,7 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 
 			SingletonRepository.getCachedActionManager().register(new Runnable() {
 				private final List<MerchantConfigurator> _configurators = configurators;
+				@Override
 				public void run() {
 					for (final MerchantConfigurator mc: _configurators) {
 						mc.configure();

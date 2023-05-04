@@ -48,8 +48,6 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	/** Importance of the message to keep it above others. */
 	private int priority;
 
-	private static GameScreenSpriteHelper gsHelper;
-
 
 	/**
 	 * Creates a new text object.
@@ -65,8 +63,6 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public RemovableSprite(final Sprite sprite, final int x, final int y,
 			final long persistTime) {
-		gsHelper = GameScreenSpriteHelper.get();
-
 		this.sprite = sprite;
 		this.x = x;
 		this.y = y;
@@ -86,13 +82,11 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	 */
 	public RemovableSprite(final Sprite sprite, final Entity entity,
 			final long persistTime) {
-		gsHelper = GameScreenSpriteHelper.get();
-
 		this.sprite = sprite;
 		this.owner = entity;
 
 		final int sy = getAttachedY();
-		this.offsetY = gsHelper.findFreeTextBoxPosition(sprite,
+		this.offsetY = GameScreenSpriteHelper.findFreeTextBoxPosition(sprite,
 				getAttachedX(), sy) - sy;
 
 		setPersistTime(persistTime);
@@ -141,23 +135,23 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	}
 
 	public void drawEmoji(final Graphics g) {
-		final int svx = gsHelper.getScreenViewX();
-		final int svy = gsHelper.getScreenViewY();
-		final int sx = gsHelper.convertWorldToPixelUnits(owner.getX());
-		final int sy = gsHelper.convertWorldToPixelUnits(owner.getY());
+		final int svx = GameScreenSpriteHelper.getScreenViewX();
+		final int svy = GameScreenSpriteHelper.getScreenViewY();
+		final int sx = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getX());
+		final int sy = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getY());
 		sprite.draw(g, sx - svx - 16, sy - svy - 32);
 	}
 
 	private int getAttachedX() {
-		int sx = gsHelper.convertWorldXToScaledScreen(owner.getX() + owner.getWidth());
-		sx = gsHelper.keepSpriteOnMapX(sprite, sx);
+		int sx = GameScreenSpriteHelper.convertWorldXToScaledScreen(owner.getX() + owner.getWidth());
+		sx = GameScreenSpriteHelper.keepSpriteOnMapX(sprite, sx);
 		return sx;
 	}
 
 	private int getAttachedY() {
-		int sy = gsHelper.convertWorldYToScaledScreen(owner.getY());
+		int sy = GameScreenSpriteHelper.convertWorldYToScaledScreen(owner.getY());
 		sy -= sprite.getHeight();
-		sy = gsHelper.keepSpriteOnMapY(sprite, sy);
+		sy = GameScreenSpriteHelper.keepSpriteOnMapY(sprite, sy);
 		return sy + offsetY;
 	}
 

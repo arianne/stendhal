@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,8 +13,6 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import java.util.Collection;
 import java.util.LinkedList;
-
-import org.apache.log4j.Logger;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
@@ -31,8 +29,6 @@ import games.stendhal.server.entity.player.Player;
  * Deathmatch related achievements.
  */
 public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
-
-	private static final Logger logger = Logger.getLogger(DeathmatchAchievementFactory.class);
 
 	public static final String HELPER_SLOT = "deathmatch_helper";
 	public static final String SOLOER_SLOT = "deathmatch_soloer";

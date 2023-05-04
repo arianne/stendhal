@@ -1,5 +1,5 @@
 /***************************************************************************
- *                  Copyright (C) 2003-2022 - Arianne                      *
+ *                  Copyright (C) 2003-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,6 +32,7 @@ public class PrepareStepFinal extends TutorialStep {
 
 	private static final Logger logger = Logger.getLogger(PrepareStepFinal.class);
 
+	@Override
 	public void init(final String pname) {
 		final ChatCondition onFinalStep = new QuestInStateCondition(SLOT, 0, ST_FINAL);
 		final ChatCondition questDone = new QuestInStateCondition(SLOT, 0, "done");

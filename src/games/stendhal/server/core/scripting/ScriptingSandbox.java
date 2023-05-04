@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -202,6 +202,7 @@ public abstract class ScriptingSandbox {
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
 	 */
+	@SuppressWarnings("unused")
 	public void unload(final Player player, final List<String> args) {
 		final Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 
@@ -228,6 +229,7 @@ public abstract class ScriptingSandbox {
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
 	 */
+	@SuppressWarnings("unused")
 	protected void preExecute(final Player player, final List<String> args) {
 		TransitionContext.set(filename);
 	}
@@ -242,6 +244,7 @@ public abstract class ScriptingSandbox {
 	 *            server start.
 	 * @param result true, if the execution was successful; false otherwise
 	 */
+	@SuppressWarnings("unused")
 	protected void postExecute(final Player player, final List<String> args, boolean result) {
 		TransitionContext.set(null);
 	}
@@ -258,6 +261,7 @@ public abstract class ScriptingSandbox {
 	 * @return <code>true</code> at successful execution, otherwise
 	 * 	<code>false</code>
 	 */
+	@SuppressWarnings("unused")
 	public boolean execute(final Player player, final List<String> args) {
 		// do nothing
 		return true;

@@ -125,6 +125,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		final URL dirquests = ClassLoader.getSystemClassLoader().getResource(packagename.replace(".", "/"));
 		List<String> excludes = Arrays.asList("IQuest.class", "AbstractQuest.class", "package-info.class");
 		final String[] filenames = new File(dirquests.getFile()).list(new FilenameFilter() {
+			@Override
 			public boolean accept(final File dir, final String name) {
 				return name.endsWith(".class") && name.indexOf("$") < 0 && !excludes.contains(name);
 			}
