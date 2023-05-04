@@ -126,7 +126,7 @@
   <item name="fumble snowball">
     <type class="missile" subclass="snowball" tileid="-1"/>
     <description>You see a fumble snowball. With a supply of these, you can try to make a flag carrier drop the flag.</description>
-    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsProjectile"/>
     <attributes>
       <atk          value="-1"/>
       <range        value="3"/>
@@ -148,7 +148,7 @@
   <item name="slowdown snowball">
     <type class="missile" subclass="snowball" tileid="-1"/>
     <description>You see a slowdown snowball. With a supply of these, you can try to slow down any CTF player.</description>
-    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsProjectile"/>
     <attributes>
       <atk          value="-1"/>
       <range        value="3"/>

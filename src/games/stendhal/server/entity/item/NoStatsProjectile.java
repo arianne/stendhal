@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,9 +21,9 @@ import games.stendhal.common.grammar.Grammar;
  *
  * @author kymara
  */
-public class NoStatsStackableItem extends Projectile {
+public class NoStatsProjectile extends Projectile {
 
-	public NoStatsStackableItem(final String name, final String clazz, final String subclass,
+	public NoStatsProjectile(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		update();
@@ -35,7 +35,7 @@ public class NoStatsStackableItem extends Projectile {
 	 * @param item
 	 *            item to copy
 	 */
-	public NoStatsStackableItem(final NoStatsStackableItem item) {
+	public NoStatsProjectile(final NoStatsProjectile item) {
 		super(item);
 		this.setQuantity(item.getQuantity());
 		update();

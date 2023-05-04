@@ -6,7 +6,7 @@
   <item name="snowball">
     <type class="missile" subclass="snowball" tileid="-1"/>
     <description>You see a snowball. You can throw it at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsProjectile"/>
     <attributes>
       <atk condition="!testing.combat" value="-1"/>
       <ratk condition="testing.combat" value="-1"/>
@@ -31,7 +31,7 @@
   <item name="vomit">
     <type class="missile" subclass="vomit" tileid="-1"/>
     <description>You see a pile of vomit. Gross!</description>
-    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsProjectile"/>
     <attributes>
       <atk condition="!testing.combat" value="-1"/>
       <ratk condition="testing.combat" value="-1"/>
