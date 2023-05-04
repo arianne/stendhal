@@ -52,7 +52,6 @@ import games.stendhal.server.entity.item.CaptureTheFlagFlag;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.item.WeaponImpl;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
@@ -2485,7 +2484,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			final String[] slots = { "lhand", "rhand" };
 			for (final String slot : slots) {
 				final Item item = getEquippedItemClass(slot, weaponClass);
-				if (item != null && item instanceof WeaponImpl) {
+				// FIXME: should weapon always be instance of WeaponImpl?
+				if (item != null) {
 					return item;
 				}
 			}
