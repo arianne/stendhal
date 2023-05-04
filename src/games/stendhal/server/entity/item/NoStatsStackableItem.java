@@ -21,7 +21,7 @@ import games.stendhal.common.grammar.Grammar;
  *
  * @author kymara
  */
-public class NoStatsStackableItem extends StackableItem {
+public class NoStatsStackableItem extends Projectile {
 
 	public NoStatsStackableItem(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2015 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2023 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,7 @@ import java.util.Map;
  * without giving them a visible weapon. These should never be seen as actual
  * items in the game.
  */
-public class DummyWeapon extends Item {
+public class DummyWeapon extends Weapon {
 	public DummyWeapon(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);

@@ -21,7 +21,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * An item that wears & breaks.
  */
-public class BreakableItem extends Item {
+public class BreakableItem extends Weapon {
 
 	private static final Map<String, Double> conditions = new LinkedHashMap<String, Double>() {{
 		put("new", 1.0);

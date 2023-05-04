@@ -6,7 +6,7 @@
   <item name="wooden arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
     <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="1"/>
       <ratk condition="testing.combat" value="1"/>
@@ -30,7 +30,7 @@
   <item name="steel arrow">
     <type class="ammunition" subclass="steel_arrow" tileid="-1"/>
     <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="3"/>
       <ratk condition="testing.combat" value="3"/>
@@ -54,7 +54,7 @@
   <item name="golden arrow">
     <type class="ammunition" subclass="golden_arrow" tileid="-1"/>
     <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="4"/>
       <ratk condition="testing.combat" value="4"/>
@@ -78,7 +78,7 @@
   <item name="fire arrow">
     <type class="ammunition" subclass="fire_arrow" tileid="-1"/>
     <description>You see a fire arrow. The tip burns brightly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -103,7 +103,7 @@
   <item name="ice arrow">
     <type class="ammunition" subclass="ice_arrow" tileid="-1"/>
     <description>You see an ice arrow. It can deliver a bitter sting.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -128,7 +128,7 @@
   <item name="light arrow">
     <type class="ammunition" subclass="light_arrow" tileid="-1"/>
     <description>You see a light arrow. It shines with a holy radiance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -153,7 +153,7 @@
   <item name="dark arrow">
     <type class="ammunition" subclass="dark_arrow" tileid="-1"/>
     <description>You see a dark arrow. It's hard to describe.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -178,7 +178,7 @@
   <item name="power arrow">
     <type class="ammunition" subclass="power_arrow" tileid="-1"/>
     <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -202,7 +202,7 @@
   <item name="poison arrow">
     <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
     <description>You see a poison arrow. The tip has been saturated with a poisonous compound.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <unattainable>true</unattainable>
     <attributes>
       <atk condition="!testing.combat" value="2"/>

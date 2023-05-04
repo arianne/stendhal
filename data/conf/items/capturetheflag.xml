@@ -39,7 +39,7 @@
   <item name="ctf bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a ctf bow, specially made for use in Capture the Flag games. With this in one hand, and CTF arrows in the other, you may be able to cause fumbles or slow players down.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
     <attributes>
       <atk value="-1"/>
       <range value="3"/>
@@ -60,7 +60,7 @@
   <item name="fumble arrow">
     <type class="ammunition" subclass="fumble_arrow" tileid="-1"/>
     <description>You see a fumble arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk          value="-1"/>
       <range        value="2"/>
@@ -82,7 +82,7 @@
   <item name="slowdown arrow">
     <type class="ammunition" subclass="slowdown_arrow" tileid="-1"/>
     <description>You see a slowdown arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk          value="-1"/>
       <range        value="2"/>
@@ -104,7 +104,7 @@
   <item name="speedup arrow">
     <type class="ammunition" subclass="speedup_arrow" tileid="-1"/>
     <description>You see a speedup arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <attributes>
       <atk          value="-1"/>
       <range        value="2"/>
