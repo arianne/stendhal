@@ -5,13 +5,16 @@ Changelog
 
 1.44
 
+*bugfixes*
+- fixed Jimbo's shop sign
+- fixed Lobelia's path
+
 *world*
 - Adventure Island state is shown in travel log
 - new achievements:
   - Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
   - Sowing Seeds of Joy: Sow 1000 of each type of sowable flower seed
 - chicken & mother hen drop eggs
-- fixed Jimbo's shop sign
 - seeds aren't wasted if attempting to plant where another flower is already growing
 - seeds are not wasted on infertile ground
 - added fertile ground to more maps:
