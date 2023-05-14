@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BankTellerAdder;
 
 /**
  * Builds the nalwor bank npcs.
@@ -109,6 +110,10 @@ public class BankNPC implements ZoneConfigurator {
 		ladynpc.setDirection(Direction.DOWN);
 		ladynpc.setPosition(17, 31);
 		ladynpc.initHP(100);
+
+		// manage bank account balance
+		BankTellerAdder.addTeller(ladynpc);
+
 		zone.add(ladynpc);
 	}
 }
