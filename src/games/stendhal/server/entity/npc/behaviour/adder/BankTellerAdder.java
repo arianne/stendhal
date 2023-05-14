@@ -151,7 +151,7 @@ public class BankTellerAdder {
         if (deposit) {
           amount = player.getNumberOfEquipped("money");
         } else {
-          amount = BankTellerBehaviour.getBalance(player);
+          amount = BankTellerBehaviour.getBalanceAmount(player);
         }
       }
     }

@@ -33,9 +33,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 
 public class BankTellerBehaviourTest {
 
-  private static final String QUEST_SLOT = "bank_deposits";
-
-
   @BeforeClass
   public static void setUpBeforeClass() {
     MockStendlRPWorld.get();
@@ -48,7 +45,7 @@ public class BankTellerBehaviourTest {
    *   Current account balance of player.
    */
   private int getBalance(final Player player) {
-    return BankTellerBehaviour.getBalance(player);
+    return BankTellerBehaviour.getBalanceAmount(player);
   }
 
   /**
@@ -140,7 +137,6 @@ public class BankTellerBehaviourTest {
   public void testTransactions() {
     final Player player = createPlayer("player");
     assertNotNull(player);
-    assertFalse(player.hasQuest(QUEST_SLOT));
     assertEquals(0, getBalance(player));
     assertEquals(0, player.getNumberOfEquipped("money"));
 
@@ -180,21 +176,18 @@ public class BankTellerBehaviourTest {
 
     equipWithMoney(player, 5);
 
-    assertFalse(player.hasQuest(QUEST_SLOT));
     assertEquals(5, player.getNumberOfEquipped("money"));
     assertEquals(0, getBalance(player));
 
     en.step(player, "deposit 10");
     assertEquals("You aren't carrying that much money.", getReply(npc));
 
-    assertFalse(player.hasQuest(QUEST_SLOT));
     assertEquals(5, player.getNumberOfEquipped("money"));
     assertEquals(0, getBalance(player));
 
     en.step(player, "deposit 1");
     assertEquals("You deposited 1 money.", getReply(npc));
 
-    assertTrue(player.hasQuest(QUEST_SLOT));
     assertEquals(4, player.getNumberOfEquipped("money"));
     assertEquals(1, getBalance(player));
 
@@ -221,7 +214,6 @@ public class BankTellerBehaviourTest {
 
     assertEquals(5, player.getNumberOfEquipped("money"));
     assertEquals(0, getBalance(player));
-    assertTrue(player.hasQuest(QUEST_SLOT));
 
     en.step(player, "bye");
     assertEquals(ConversationStates.IDLE, en.getCurrentState());

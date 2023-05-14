@@ -17,10 +17,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 
 /**
@@ -30,8 +31,82 @@ public class BankTellerBehaviour {
 
   private static final Logger logger = Logger.getLogger(BankTellerBehaviour.class);
 
-  private static final String QUEST_SLOT = "bank_deposits";
+  private static final String slot_name = "money_balance";
 
+
+  /**
+   * Retrieves the deposited money in player bank account.
+   *
+   * @param player
+   *   Player requesting transaction.
+   * @return
+   *   Money in account.
+   */
+  private static StackableItem getBalance(final Player player) {
+    // get current deposits from slot
+    final RPSlot slot = player.getSlot(slot_name);
+    if (slot.isEmpty()) {
+      return null;
+    }
+    final RPObject obj = slot.getFirst();
+    if (obj instanceof StackableItem && obj.has("name") && "money".equals(obj.get("name"))) {
+      return (StackableItem) obj;
+    }
+    return null;
+  }
+
+  /**
+   * Sets the deposited money in player bank account.
+   *
+   * @param player
+   *   Player requesting transaction.
+   * @param money
+   *   Money to be set in account balance.
+   * @return
+   *   Money in account.
+   */
+  private static StackableItem setBalance(final Player player, final StackableItem money) {
+    final RPSlot slot = player.getSlot(slot_name);
+    if (money == null) {
+      slot.clear();
+      return null;
+    }
+    StackableItem balance = BankTellerBehaviour.getBalance(player);
+    if (!"money".equals(money.getName())) {
+      logger.error("Cannot deposit item '" + money.getName() + "' into slot '" + slot_name + "'");
+      return balance;
+    }
+    if (balance == null) {
+      balance = money;
+    }
+    balance.setQuantity(money.getQuantity());
+    if (!balance.equals(slot.getFirst())) {
+      if (!slot.isEmpty()) {
+        slot.clear();
+      }
+      slot.add(balance);
+    }
+    return BankTellerBehaviour.getBalance(player);
+  }
+
+  /**
+   * Sets contents of bank balance slot.
+   *
+   * @param player
+   *   Player requesting transaction.
+   * @param amount
+   *   Amount of money to be set in account balance.
+   * @return
+   *   Money in account.
+   */
+  private static StackableItem setBalance(final Player player, final int amount) {
+    StackableItem money = null;
+    if (amount > 0) {
+      money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+      money.setQuantity(amount);
+    }
+    return BankTellerBehaviour.setBalance(player, money);
+  }
 
   /**
    * Retrieves the amount of money player has deposited in bank account.
@@ -41,40 +116,9 @@ public class BankTellerBehaviour {
    * @return
    *   Amount of money in account.
    */
-  public static int getBalance(final Player player) {
-    // get current deposits from quest slot
-    String state = player.getQuest(QUEST_SLOT);
-    state = state != null ? state : "money=0";
-    for (final String item: state.split(";")) {
-      if (item.startsWith("money=")) {
-        return MathHelper.parseIntDefault(item.split("=")[1], 0);
-      }
-    }
-    return 0;
-  }
-
-  /**
-   * Sets the amount of deposited money in player bank account.
-   *
-   * @param player
-   *   Player requesting transaction.
-   * @param amount
-   *   Amount of money to be stored in account.
-   * @return
-   *   Amount of money in account.
-   */
-  private static int setBalance(final Player player, final int amount) {
-    int index = 0;
-    final String state = player.getQuest(QUEST_SLOT);
-    final List<String> tmp = state != null ? Arrays.asList(state.split(";")) : new ArrayList<>();
-    for (int idx = 0; idx < tmp.size(); idx++) {
-      if (tmp.get(idx).startsWith("money=")) {
-        index = idx;
-        break;
-      }
-    }
-    player.setQuest(QUEST_SLOT, index, "money=" + amount);
-    return getBalance(player);
+  public static int getBalanceAmount(final Player player) {
+    final StackableItem balance = BankTellerBehaviour.getBalance(player);
+    return balance != null ? balance.getQuantity() : 0;
   }
 
   /**
@@ -102,9 +146,9 @@ public class BankTellerBehaviour {
       return "You aren't carrying that much money.";
     }
 
-    final int balance_start = getBalance(player);
+    final int balance_start = BankTellerBehaviour.getBalanceAmount(player);
     final int deposited = BankTellerBehaviour.setBalance(player, balance_start + amount)
-        - balance_start;
+        .getQuantity() - balance_start;
     if (deposited != amount) {
       logger.error("Player " + player.getName() + " requested to deposit " + amount + " money, but"
           + " actual amount was " + deposited);
@@ -130,7 +174,7 @@ public class BankTellerBehaviour {
     if (amount < 1) {
       return "You cannot withdraw " + amount + " money.";
     }
-    final int balance_start = BankTellerBehaviour.getBalance(player);
+    final int balance_start = BankTellerBehaviour.getBalanceAmount(player);
     if (balance_start == 0) {
       return "You have no money in your account to withdraw.";
     }
@@ -138,8 +182,8 @@ public class BankTellerBehaviour {
       return "You don't have that much money in your bank account.";
     }
 
-    final int withdrawn = balance_start
-        - BankTellerBehaviour.setBalance(player, balance_start - amount);
+    final StackableItem balance = BankTellerBehaviour.setBalance(player, balance_start - amount);
+    final int withdrawn = balance_start - (balance != null ? balance.getQuantity() : 0);
     if (withdrawn != amount) {
       logger.error("Player " + player.getName() + " requested to withdraw " + amount + " money, but"
           + " actual amount was " + withdrawn);
@@ -160,7 +204,7 @@ public class BankTellerBehaviour {
    *   Response from teller NPC.
    */
   public static String queryBalance(final Player player) {
-    final int deposits = BankTellerBehaviour.getBalance(player);
+    final int deposits = BankTellerBehaviour.getBalanceAmount(player);
     if (deposits == 0) {
       return "You have no money in your account.";
     }

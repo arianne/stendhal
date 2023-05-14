@@ -255,7 +255,7 @@ public abstract class UpdateConverter {
 	public static void updatePlayerRPObject(final RPObject object) {
 		final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "bank", "bank_ados", "bank_deniran",
-				"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+				"zaras_chest_ados", "bank_fado", "bank_nalwor", "money_balance", "spells",
 				"keyring", /*"portfolio", */ "trade", "pouch" };
 
 		final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",

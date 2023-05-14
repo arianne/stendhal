@@ -68,7 +68,6 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
-import games.stendhal.server.entity.npc.behaviour.impl.BankTellerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusType;
@@ -3237,24 +3236,5 @@ public class Player extends DressedEntity implements UseListener {
 			final Nature damageType) {
 		// compensate for player hit chance handicap
 		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.35);
-	}
-
-	/**
-	 * Gets the number of items of the given name including bank.
-	 *
-	 * The item can either be stackable or non-stackable. Includes money deposits balance from bank.
-	 *
-	 * @param name
-	 *   Item name.
-	 * @return
-	 *   Total number owned by player.
-	 */
-	@Override
-	public int getTotalNumberOf(final String name) {
-		int total = super.getTotalNumberOf(name);
-		if ("money".equals(name)) {
-			total += BankTellerBehaviour.getBalance(this);
-		}
-		return total;
 	}
 }
