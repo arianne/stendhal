@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BankTellerAdder;
 
 /**
  * Builds the bank teller NPC.
@@ -71,6 +72,10 @@ public class TellerNPC implements ZoneConfigurator {
 		bankNPC.setPosition(15, 3);
 		bankNPC.initHP(1000);
 		bankNPC.setDescription("Yance is the Fado bank manager. He can give advice on how to use the chests.");
+
+		// manage bank account balance
+		BankTellerAdder.addTeller(bankNPC);
+
 		zone.add(bankNPC);
 	}
 }
