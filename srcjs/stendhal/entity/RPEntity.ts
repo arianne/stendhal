@@ -445,6 +445,10 @@ export class RPEntity extends ActiveEntity {
 			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/producer.png"), nextX, y - 16);
 			nextX += 16;
 		}
+		if (this.hasOwnProperty("job_teller")) {
+			ctx.drawImage(stendhal.data.sprites.get(stendhal.paths.sprites + "/status/job_teller.png"), nextX, y - 10);
+			nextX += 12;
+		}
 	}
 
 	/**

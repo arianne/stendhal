@@ -68,6 +68,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite healerSprite;
 	private static final Sprite merchantSprite;
 	private static final Sprite producerSprite;
+	private static final Sprite tellerSprite;
 
 	// Status icons
 	private static final Sprite chokingSprite;
@@ -141,6 +142,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		healerSprite = st.getStatusSprite("healer.png");
 		merchantSprite = st.getStatusSprite("merchant.png");
 		producerSprite = st.getStatusSprite("producer.png");
+		tellerSprite = st.getStatusSprite("job_teller.png");
 
 		// Status icons
 		confusedSprite = st.getAnimatedSprite(st.getStatusSprite("confuse.png"), 200);
@@ -162,6 +164,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
 		addIconManager(new StatusIconManager(RPEntity.PROP_PRODUCER, producerSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.PRODUCER));
+		addIconManager(new StatusIconManager(RPEntity.PROP_HEALER, tellerSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.JOB_TELLER));
 
 		// Status icons
 		/* choking status */

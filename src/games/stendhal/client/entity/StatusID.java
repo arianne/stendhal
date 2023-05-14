@@ -18,6 +18,7 @@ public enum StatusID {
 	HEALER("job_healer"),
 	MERCHANT("job_merchant"),
 	PRODUCER("job_producer"),
+	JOB_TELLER("job_teller"),
 
 	// Statuses
 	CONFUSE("status_confuse"),

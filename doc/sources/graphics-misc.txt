@@ -261,14 +261,15 @@ shield.png   J. W. Bjerk (eleazzaar); CC BY 3.0; https://opengameart.org/node/44
 
 data/sprites/status/
 
-confuse.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-healer.png    rejon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/35905
-heavy.*       migranerp, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/190320
-merchant.png  gnokii, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/171507
-poison.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-producer.png  david_benjamin; CC0; https://openclipart.org/detail/4793
-shock.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-zombie.png    quadrochave; CC0; https://openclipart.org/detail/201838
+confuse.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+healer.png      rejon, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/35905
+heavy.*         migranerp, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/190320
+job_teller.png  ernes; CC0; https://openclipart.org/detail/27389
+merchant.png    gnokii, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/171507
+poison.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+producer.png    david_benjamin; CC0; https://openclipart.org/detail/4793
+shock.*         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+zombie.png      quadrochave; CC0; https://openclipart.org/detail/201838
 
 data/sprites/status/panel/
 
