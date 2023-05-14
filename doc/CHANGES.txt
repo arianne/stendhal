@@ -24,6 +24,7 @@ Changelog
   - Kalavan City Gardens
   - Semos Plains N (more)
   - Semos Plains NE
+- bank tellers can be used to deposit & withdraw money as alternative to storing in chests
 
 
 1.43.3

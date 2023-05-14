@@ -54,6 +54,7 @@ public class RPEntityRPClass {
 		entity.addAttribute("job_merchant", Type.FLAG, Definition.VOLATILE);
 		entity.addAttribute("job_healer", Type.FLAG, Definition.VOLATILE);
 		entity.addAttribute("job_producer", Type.FLAG, Definition.VOLATILE);
+		entity.addAttribute("job_teller", Type.FLAG, Definition.VOLATILE);
 
 		/* Movement */
 		entity.addAttribute(PATHSET, Type.STRING, Definition.VOLATILE);
