@@ -1248,6 +1248,8 @@ Entrance fee is 10 money</attribute>
       <attribute name="move.continuous"/>
     </portal>
 
+    <configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bank.TellerNPC"/>
+
     <entity x="14" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
         <parameter name="slot">bank_deniran</parameter>

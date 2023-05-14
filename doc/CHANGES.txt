@@ -25,6 +25,9 @@ Changelog
   - Semos Plains N (more)
   - Semos Plains NE
 - bank tellers can be used to deposit & withdraw money as alternative to storing in chests
+- new NPCs:
+  - Ivonne: bank teller in Kirdneh
+  - Telly: bank teller in Deniran
 
 
 1.43.3
