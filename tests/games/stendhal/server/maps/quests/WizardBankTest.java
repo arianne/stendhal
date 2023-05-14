@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -172,7 +172,12 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "help me"));
-		assertEquals("This bank is suffused with #magic, and as such you may access any vault you own. There will be a #fee to pay for this privilege, as we are not a charity.", getReply(npc));
+		assertEquals("This bank is suffused with #magic, and as such you may access any vault you own."
+				+ " There will be a #fee to pay for this privilege, as we are not a charity."
+				+ " I can also help you manage your bank #balance. Tell me if you would like to"
+				+ " #deposit to or #withdraw from your account. If you want you can #'deposit all' or"
+				+ " #'withdraw all'.",
+				getReply(npc));
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "magic"));
