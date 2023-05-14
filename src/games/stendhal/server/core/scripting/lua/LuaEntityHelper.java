@@ -49,6 +49,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.PassiveNPC;
 import games.stendhal.server.entity.npc.SilentNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BankTellerAdder;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -912,6 +913,16 @@ public class LuaEntityHelper {
 		}
 
 		return summonCreature(name, zoneName, x, y, summoner, raid);
+	}
+
+	/**
+	 * Adds bank teller behaviour to an NPC.
+	 *
+	 * @param npc
+	 *   SpeakerNPC to receive behaviour.
+	 */
+	public void addBankTeller(final SpeakerNPC npc) {
+		BankTellerAdder.addTeller(npc);
 	}
 
 

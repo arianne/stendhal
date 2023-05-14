@@ -29,6 +29,16 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 ## Methods
 
 ---
+### entities:addBankTeller
+<div class="function">
+    entities:addBankTeller <span class="params">(npc)</span>
+</div>
+
+- Adds [bank teller behaviour][BankTellerBehaviour] to an NPC.
+- Parameters:
+    - ___npc:__ ([SpeakerNPC][])_ NPC to receive behaviour.
+
+---
 ### entities:create
 <div class="function">
     entities:create <span class="params">(def)</span>
@@ -453,6 +463,7 @@ This is simply the [entity manager][DefaultEntityManager] instance.
       path when reaching the end.
 
 
+[BankTellerBehaviour]: /reference/java/games/stendhal/server/entity/npc/behaviour/impl/BankTellerBehaviour.html
 [ChatAction]: /reference/java/games/stendhal/server/entity/npc/ChatAction.html
 [ChatCondition]: /reference/java/games/stendhal/server/entity/npc/ChatCondition.html
 [ConversationStates]: /reference/java/games/stendhal/server/entity/npc/ConversationStates.html
