@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BankTellerAdder;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -84,6 +85,10 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 		npc.setDescription("You see Dagobert. He looks like a safe, dependable type.");
 		npc.setHP(95);
 		npc.setEntityClass("youngnpc");
+
+		// manage bank account balance
+		BankTellerAdder.addTeller(npc);
+
 		zone.add(npc);
 	}
 }
