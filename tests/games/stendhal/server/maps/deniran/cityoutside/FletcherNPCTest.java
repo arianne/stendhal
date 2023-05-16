@@ -53,19 +53,19 @@ public class FletcherNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "soak");
 		assertEquals(
-			"I can only soak poison arrows in quantities divisible by 10.",
+			"I can only soak poison wooden arrows in quantities divisible by 10.",
 			getReply(fletcher));
 		en.step(player, "soak 9");
 		assertEquals(
-			"I can only soak poison arrows in quantities divisible by 10.",
+			"I can only soak poison wooden arrows in quantities divisible by 10.",
 			getReply(fletcher));
 		en.step(player, "soak 101");
 		assertEquals(
-			"I can only soak poison arrows in quantities divisible by 10.",
+			"I can only soak poison wooden arrows in quantities divisible by 10.",
 			getReply(fletcher));
 		en.step(player, "soak 10");
 		assertEquals(
-			"I can only soak 10 poison arrows if you bring me 10 #'wooden"
+			"I can only soak 10 poison wooden arrows if you bring me 10 #'wooden"
 				+ " arrows', 500 #money, and a #'bottle of poison'.",
 			getReply(fletcher));
 		equipWithStackableItem(player, "money", 500);
@@ -79,25 +79,23 @@ public class FletcherNPCTest extends ZonePlayerAndNPCTestImpl {
 			getReply(fletcher));
 		en.step(player, "yes");
 		assertEquals("10", player.getQuest(slotName, 0));
-		assertEquals("poison arrow", player.getQuest(slotName, 1));
+		assertEquals("poison wooden arrow", player.getQuest(slotName, 1));
 		for (final String itemName: ingredients) {
 			assertEquals(0, player.getNumberOfEquipped(itemName));
 		}
 		en.step(player, "bye");
 		en.step(player, "hi");
 		assertEquals(
-			"Welcome back! I'm still busy with your order to soak 10 poison"
-				+ " arrows for you",
+			"Welcome back! I'm still busy with your order to soak 10 poison wooden arrows for you",
 			getReply(fletcher).split("\\.")[0]);
 		en.step(player, "bye");
-		assertEquals(0, player.getNumberOfEquipped("poison arrow"));
+		assertEquals(0, player.getNumberOfEquipped("poison wooden arrow"));
 		player.setQuest(slotName, 2, "0");
 		en.step(player, "hi");
 		assertEquals(
-			"Welcome back! I'm done with your order. Here you have 10 poison"
-				+ " arrows.",
+			"Welcome back! I'm done with your order. Here you have 10 poison wooden arrows.",
 			getReply(fletcher));
-		assertEquals(10, player.getNumberOfEquipped("poison arrow"));
+		assertEquals(10, player.getNumberOfEquipped("poison wooden arrow"));
 		assertEquals("done", player.getQuest(slotName, 0));
 		en.step(player, "bye");
 		equipWithStackableItem(player, "money", 5000);
@@ -112,7 +110,7 @@ public class FletcherNPCTest extends ZonePlayerAndNPCTestImpl {
 			getReply(fletcher));
 		en.step(player, "yes");
 		assertEquals("100", player.getQuest(slotName, 0));
-		assertEquals("poison arrow", player.getQuest(slotName, 1));
+		assertEquals("poison wooden arrow", player.getQuest(slotName, 1));
 		for (final String itemName: ingredients) {
 			assertEquals(0, player.getNumberOfEquipped(itemName));
 		}
@@ -120,10 +118,9 @@ public class FletcherNPCTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(slotName, 2, "0");
 		en.step(player, "hi");
 		assertEquals(
-			"Welcome back! I'm done with your order. Here you have 100 poison"
-				+ " arrows.",
+			"Welcome back! I'm done with your order. Here you have 100 poison wooden arrows.",
 			getReply(fletcher));
-		assertEquals(110, player.getNumberOfEquipped("poison arrow"));
+		assertEquals(110, player.getNumberOfEquipped("poison wooden arrow"));
 		assertEquals("done", player.getQuest(slotName, 0));
 		en.step(player, "bye");
 	}
