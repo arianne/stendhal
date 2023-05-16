@@ -116,7 +116,7 @@
     <corpse name="small_winged" harmless="feathered"/>
     <drops>
       <item value="chicken" quantity="[1,2]" probability="70.0"/>
-      <item value="egg" quantity="2" probability="20.0"/>
+      <item value="egg" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
