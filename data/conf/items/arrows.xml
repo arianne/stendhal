@@ -199,9 +199,9 @@
     </equipable>
   </item>
 
-  <item name="poison arrow">
+  <item name="poison wooden arrow">
     <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
-    <description>You see a poison arrow. The tip has been saturated with a poisonous compound.</description>
+    <description>You see a poison wooden arrow. The tip has been saturated with a poisonous compound.</description>
     <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
     <unattainable>true</unattainable>
     <attributes>

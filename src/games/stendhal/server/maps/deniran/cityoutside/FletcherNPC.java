@@ -48,7 +48,7 @@ public class FletcherNPC implements ZoneConfigurator {
 				new ProducerBehaviour(
 						"fletcher_soak_arrows",
 						"soak",
-						"poison arrow",
+						"poison wooden arrow",
 						10,
 						required,
 						// 1 minute per 10 arrows
