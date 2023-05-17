@@ -47,7 +47,7 @@ public class LuaLogger {
 	 * Sets the identifier to be used in log messages.
 	 *
 	 * @param script
-	 *     Script with ID to be used.
+	 *   Script with ID to be used.
 	 */
 	public void setScript(final LuaScript script) {
 		if (script == null) {
@@ -57,6 +57,14 @@ public class LuaLogger {
 		}
 	}
 
+	/**
+	 * Formats a message for logging.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 * @return
+	 *   Formatted message text with source.
+	 */
 	private String formatMessage(String message) {
 		message = message.trim();
 		if (chunkname == null) {
@@ -67,37 +75,75 @@ public class LuaLogger {
 		return message;
 	}
 
+	/**
+	 * Logs a message at info level.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 */
 	public void info(final String message) {
 		logger.info(formatMessage(message));
 	}
 
+	/**
+	 * Logs a message at warning level.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 */
 	public void warn(final String message) {
 		logger.warn(formatMessage(message));
 	}
 
+	/**
+	 * Logs a message at error level.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 */
 	public void error(final String message) {
 		logger.error(formatMessage(message));
 	}
 
+	/**
+	 * Logs a message at error level & raises an exception.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 * @param throwable
+	 *   Exception to raise.
+	 */
 	public void error(final String message, final Throwable throwable) {
 		logger.error(formatMessage(message), throwable);
 	}
 
+	/**
+	 * Logs a message at error level & raises an exception.
+	 *
+	 * @param throwable
+	 *   Exception to raise.
+	 */
 	public void error(final Throwable throwable) {
 		logger.error(formatMessage(throwable.getMessage()), throwable);
 	}
 
+	/**
+	 * Logs a message at debug level.
+	 *
+	 * @param message
+	 *   Text in logged message.
+	 */
 	public void debug(final String message) {
 		logger.debug(formatMessage(message));
 	}
 
 	/**
-	 * Prints a deprecation warning.
+	 * Logs a deprecation warning.
 	 *
 	 * @param old
-	 *   The deprecated object.
+	 *   The deprecated item.
 	 * @param alt
-	 *   Alternative object to use.
+	 *   Alternative to use.
 	 */
 	public void deprecated(final String old, final String alt) {
 		String msg = "'" + old + "' is deprecated";
@@ -108,10 +154,10 @@ public class LuaLogger {
 	}
 
 	/**
-	 * Prints a deprecation warning.
+	 * Logs a deprecation warning.
 	 *
 	 * @param old
-	 *   The deprecated object.
+	 *   The deprecated item.
 	 */
 	public void deprecated(final String old) {
 		deprecated(old, null);

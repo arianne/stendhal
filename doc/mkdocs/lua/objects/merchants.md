@@ -49,11 +49,12 @@ Exposes merchant handling classes &amp; functions to Lua.
       buyer behavior, otherwise will be "seller".
     - <span class="param">npc:</span> _([SpeakerNPC])_ The NPC to add the behavior to.
     - <span class="param">prices:</span> List of items &amp; their prices (can be instance of either
-      [Map<String, Integer>][java.util.Map] or a [LuaTable]).
+      [Map<String, Integer>][java.util.Map] or a [table][LuaTable]).
     - <span class="param">addOffer:</span> _([bool][LuaBoolean])_ If `true`, will add default
       replies for "offer" (default: `true`).
 - TODO:
     - Use [ShopType] for ___merchantType___ parameter.
+    - __FIXME:__ Lua table not working for "prices" parameter
 
 
 ---
@@ -69,7 +70,7 @@ Exposes merchant handling classes &amp; functions to Lua.
 - Parameters:
     - <span class="param">npc:</span> _([SpeakerNPC])_ The NPC to add the behavior to.
     - <span class="param">prices:</span> List of items &amp; their prices (can be instance of either
-      [Map<String, Integer>][java.util.Map] or a [LuaTable]).
+      [Map<String, Integer>][java.util.Map] or a [table][LuaTable]).
     - <span class="param">addOffer:</span> _([bool][LuaBoolean])_ If `true`, will add default
       replies for "offer" (default: `true`).
 

@@ -35,13 +35,12 @@ public class LuaArrayHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 *    Static ArraysHelper instance.
+	 *   Static ArraysHelper instance.
 	 */
 	public static LuaArrayHelper get() {
 		if (instance == null) {
 			instance = new LuaArrayHelper();
 		}
-
 		return instance;
 	}
 
@@ -58,12 +57,11 @@ public class LuaArrayHelper {
 	 * @param list
 	 *   Array containing values.
 	 * @return
-	 *   New LuaTable.
+	 *   New `LuaTable` with contents of ___list___ added.
 	 */
 	public LuaTable toTable(final Object[] list) {
 		return toTable(Arrays.asList(list));
 	}
-
 
 	/**
 	 * Converts a Java array or `List` to Lua table.
@@ -71,7 +69,7 @@ public class LuaArrayHelper {
 	 * @param list
 	 *   List containing values.
 	 * @return
-	 *   New LuaTable.
+	 *   New `LuaTable`with contents of ___list___ added.
 	 */
 	public LuaTable toTable(final List<Object> list) {
 		final LuaTable table = new LuaTable();
@@ -129,9 +127,9 @@ public class LuaArrayHelper {
 	 * Converts an indexed Lua table to Java array.
 	 *
 	 * @param table
-	 *    Table with contents to be transferred to new array.
+	 *   Table with contents to be transferred to new array.
 	 * @return
-	 *    New <code>Object[]</code> instance.
+	 *   New `Object[]` instance.
 	 */
 	public Object[] fromTable(final LuaTable table) {
 		return toList(table).toArray();
@@ -143,7 +141,7 @@ public class LuaArrayHelper {
 	 * @param table
 	 *   Table with contents to be transferred to new array.
 	 * @return
-	 *   New <code>Object[]</code> instance.
+	 *   New `Object[]` instance.
 	 * @deprecated
 	 *   Use `LuaArrayHelper.fromTable`.
 	 */

@@ -53,8 +53,7 @@ the [StendhalQuestSystem] class.
     - <span class="param">name:</span> _([string][LuaString])_ The reader friendly name that can be
       shown in travel log.
     - <span class="param">desc:</span> _([string][LuaString]) Quest description.
-- Returns: _([LuaQuest])_
-  - New quest instance.
+- Returns: _([LuaQuest])_ New quest instance.
 
 
 ---
@@ -67,8 +66,7 @@ the [StendhalQuestSystem] class.
 - Parameters:
     - <span class="param">task:</span> _([string][LuaString])_ Quest task type. Supported are
       "BringItemTask" &amp; "KillCreaturesTask".
-- Returns: _([QuestBuilder])_
-  - New quest builder instance.
+- Returns: _([QuestBuilder])_ New quest builder instance.
 
 
 ---
@@ -81,8 +79,7 @@ the [StendhalQuestSystem] class.
 - Parameters:
     - <span class="param">builder:</span> _([QuestBuilder])_ A quest builder instance that defines
       quest.
-- Returns: _([QuestManuscript])_
-    - New quest instance.
+- Returns: _([QuestManuscript])_ New quest instance.
 
 
 ---
@@ -94,8 +91,8 @@ the [StendhalQuestSystem] class.
 - Retrieves a list of completed quests from a player.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player instance to be checked.
-- Returns: _([List][java.util.List]&lt;[String][java.lang.String]&gt;)_
-    - List of string identifiers for completed quests.
+- Returns: _([List][java.util.List]&lt;[String][java.lang.String]&gt;)_ List of string identifiers
+  for completed quests.
 - TODO:
     - Return [LuaTable] instead of Java list.
 
@@ -110,8 +107,7 @@ the [StendhalQuestSystem] class.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player instance to be checked.
     - <span class="param">questName:</span> _([string][LuaString])_ Name of the quest.
-- Returns: _([string][LuaString])_
-    - Description.
+- Returns: _([string][LuaString])_ Description.
 
 
 ---
@@ -142,8 +138,7 @@ the [StendhalQuestSystem] class.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player instance to be checked.
     - <span class="param">region:</span> _([string][LuaString])_ Region name/identifier.
-- Returns: _([java.util.List]<[java.lang.String]>)_
-    - List of string identifiers of incomplete quests in ___region___.
+- Returns: _([java.util.List]<[java.lang.String]>)_ List of string identifiers of incomplete quests in ___region___.
 - TODO:
     - Return [LuaTable] instead of Java list.
 
@@ -185,8 +180,8 @@ the [StendhalQuestSystem] class.
 - Retrieves a list of open quests from a player.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player instance to be checked.
-- Returns: _([java.util.List]&lt;[java.lang.String]&gt;)_
-    - List of string identifiers for open quests.
+- Returns: _([java.util.List]&lt;[java.lang.String]&gt;)_ List of string identifiers for open
+  quests.
 - TODO:
     - Return [LuaTable] instead of Java list.
 
@@ -215,8 +210,7 @@ the [StendhalQuestSystem] class.
 - Retrieves the [IQuest] object for a named quest.
 - Parameters:
     - <span class="param">questName:</span> _([string][LuaString])_ Name of quest.
-- Returns: _([IQuest])_
-    - Quest instance or [nil][LuaNil] if doesn't exist.
+- Returns: _([IQuest])_ Quest instance or [nil][LuaNil] if doesn't exist.
 
 
 ---
@@ -228,8 +222,7 @@ the [StendhalQuestSystem] class.
 - Retrieves the [IQuest] object for a quest.
 - Parameters:
     - <span class="param">questSlot:</span> _([string][LuaString])_ Quest identifier string.
-- Returns: _([IQuest])_
-    - Quest instance or [nil][LuaNil] if doesn't exist.
+- Returns: _([IQuest])_ Quest instance or [nil][LuaNil] if doesn't exist.
 
 
 ---
@@ -255,8 +248,7 @@ the [StendhalQuestSystem] class.
 - Checks if a quest has been loaded.
 - Parameters:
     - <span class="param">quest:</span> _([IQuest])_ Quest instance to check.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if the instance matches stored quests.
+- Returns: _([bool][LuaBoolean])_ `true` if the instance matches stored quests.
 
 
 ---
@@ -269,8 +261,7 @@ the [StendhalQuestSystem] class.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player to create the report for.
     - <span class="param">questName:</span> _([string][LuaString])_ Name of quest to be reported.
-- Returns: _([string][LuaString])_
-    - Report.
+- Returns: _([string][LuaString])_ Report.
 
 
 ---
@@ -282,8 +273,7 @@ the [StendhalQuestSystem] class.
 - List all quests the player knows about.
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player to create the report for.
-- Returns: _([string][LuaString])_
-    - Report.
+- Returns: _([string][LuaString])_ Report.
 
 
 ---
@@ -295,8 +285,7 @@ the [StendhalQuestSystem] class.
 - Dumps the internal quest states for the specified player. This is used for the [InspectAction].
 - Parameters:
     - <span class="param">player:</span> _([Player])_ Player to create the report for.
-- Returns: _([string][LuaString])_
-    - Report.
+- Returns: _([string][LuaString])_ Report.
 
 
 ---
@@ -824,6 +813,7 @@ quests:register(quests:createManuscript(itemBuilder))
 
 [LuaBoolean]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaBoolean.html
 [LuaFunction]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaFunction.html
+[LuaInteger]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaInteger.html
 [LuaNil]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaNil.html
 [LuaString]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaString.html
 [LuaTable]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaTable.html

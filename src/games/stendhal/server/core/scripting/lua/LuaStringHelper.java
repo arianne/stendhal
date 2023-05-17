@@ -21,7 +21,7 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 
 /**
- * Adds some useful string function members to Lua "string" object.
+ * Adds some useful function members to Lua "string" table.
  */
 public class LuaStringHelper {
 
@@ -35,13 +35,12 @@ public class LuaStringHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static LuaStringHelper instance.
+	 *   Static LuaStringHelper instance.
 	 */
 	public static LuaStringHelper get() {
 		if (instance == null) {
 			instance = new LuaStringHelper();
 		}
-
 		return instance;
 	}
 
@@ -53,21 +52,24 @@ public class LuaStringHelper {
 	}
 
 	/**
-	 * Adds custom functions to the Lua "string" object.
+	 * Adds custom functions to the Lua "string" table.
 	 *
 	 * @param stringTable
-	 * 		Lua "string" object.
+	 *   Lua "string" table.
 	 */
 	public void init(final LuaTable stringTable) {
 
-		/** add string.builder method */
+		// add string.builder method
 		stringTable.set("builder", new LuaFunction() {
 
 			/**
-			 * Creates a StringBuilder for use in Lua.
+			 *
+			 * string.builder
+			 *
+			 * Creates a `StringBuilder` for use in Lua.
 			 *
 			 * @return
-			 * 		New StringBuilder instance.
+			 *   New `StringBuilder` instance.
 			 */
 			@Override
 			public LuaUserdata call() {
@@ -75,30 +77,35 @@ public class LuaStringHelper {
 			}
 
 			/**
-			 * Creates a StringBuilder for use in Lua.
+			 * string.builder
+			 *
+			 * Creates a `StringBuilder` for use in Lua.
 			 *
 			 * @param arg
-			 * 		Lua string to initialize StringBuilder with or <code>null</code>.
+			 *   Lua string to initialize `StringBuilder` with or `LuaNil`.
 			 * @return
-			 * 		New StringBuilder instance.
+			 *   New `StringBuilder` instance.
 			 */
 			@Override
 			public LuaUserdata call(final LuaValue arg) {
 				if (arg.isnil()) {
-					logger.warn("Argument to string.builder is nil");
+					logger.warn("Argument of string.builder is nil");
 					return call();
 				}
-
 				return (LuaUserdata) CoerceJavaToLua.coerce(new StringBuilder(arg.tojstring()));
 			}
 		});
 
-		/** add string.split method */
+		// add string.split method
 		stringTable.set("split", new LuaFunction() {
 
 			/**
+			 * string.split
+			 *
 			 * @return
-			 * 		LuaStringHelper.split(arg1, arg2)
+			 *   List of strings.
+			 * @see
+			 *   LuaStringHelper.split
 			 */
 			@Override
 			public LuaValue call(final LuaValue arg1, final LuaValue arg2) {
@@ -106,19 +113,18 @@ public class LuaStringHelper {
 			}
 		});
 
-		/** add string.isNumber method */
+		// add string.isNumber method
 		stringTable.set("isNumber", new LuaFunction() {
 
 			/**
-			 * string.isnumber(arg)
+			 * string.isNumber
 			 *
 			 * Checks if a string contains numeric characters only.
 			 *
 			 * @param arg
-			 * 		The Lua string to be checked.
+			 *   The Lua string to be checked.
 			 * @return
-			 * 		<code>LuaBoolean.TRUE</code> if all characters are numeric,
-			 * 		<code>LuaBoolean.FALSE</code> otherwise.
+			 *   `LuaBoolean.TRUE` if all characters are numeric, `LuaBoolean.FALSE` otherwise.
 			 */
 			@Override
 			public LuaBoolean call(final LuaValue arg) {
@@ -128,25 +134,25 @@ public class LuaStringHelper {
 				} catch (final NumberFormatException e) {
 					return LuaBoolean.FALSE;
 				}
-
 				return LuaBoolean.TRUE;
 			}
 		});
 
-		/** add string.startsWith method */
+		// add string.startsWith method
 		stringTable.set("startsWith", new LuaFunction() {
 
 			/**
+			 * strings.startsWith
+			 *
 			 * Checks if a string begins with a specified set of characters.
 			 *
 			 * @param orig
-			 * 		The original Lua string to be checked.
+			 *   The original Lua string to be checked.
 			 * @param prefix
-			 * 		Prefix to compare against.
+			 *   Prefix to compare against.
 			 * @return
-			 * 		<code>LuaBoolean.TRUE</code> if the characters in prefix
-			 * 		match the beginning of orig, <code>LuaBoolean.FALSE</code>
-			 * 		otherwise.
+			 *   `LuaBoolean.TRUE` if the characters in prefix match the beginning of orig,
+			 *   `LuaBoolean.FALSE` otherwise.
 			 */
 			@Override
 			public LuaBoolean call(final LuaValue orig, final LuaValue prefix) {
@@ -154,20 +160,21 @@ public class LuaStringHelper {
 			}
 		});
 
-		/** add string.endsWith method */
+		// add string.endsWith method
 		stringTable.set("endsWith", new LuaFunction() {
 
 			/**
+			 * string.endsWith
+			 *
 			 * Checks if a string ends with a specified set of characters.
 			 *
 			 * @param orig
-			 * 		The original Lua string to be checked.
+			 *   The original Lua string to be checked.
 			 * @param suffix
-			 * 		Suffix to compare against.
+			 *   Suffix to compare against.
 			 * @return
-			 * 		<code>LuaBoolean.TRUE</code> if the characters in suffix
-			 * 		match the end of orig, <code>LuaBoolean.FALSE</code>
-			 * 		otherwise.
+			 *   `LuaBoolean.TRUE` if the characters in suffix match the end of orig, `LuaBoolean.FALSE`
+			 *    otherwise.
 			 */
 			@Override
 			public LuaBoolean call(final LuaValue orig, final LuaValue suffix) {
@@ -175,15 +182,17 @@ public class LuaStringHelper {
 			}
 		});
 
-		/** add string.valueOf method */
+		// add string.valueOf method
 		stringTable.set("valueOf", new LuaFunction() {
 			/**
+			 * string.valueOf
+			 *
 			 * Retrieves string value of an object.
 			 *
 			 * @param obj
-			 *     Object instance to be converted.
+			 *   Object instance to be converted.
 			 * @return
-			 *     String value of object.
+			 *   String value of object.
 			 */
 			@Override
 			public LuaString call(final LuaValue obj) {
@@ -196,20 +205,18 @@ public class LuaStringHelper {
 	 * Splits a string into a Lua table.
 	 *
 	 * @param str
-	 * 		The string to be split.
+	 *   The string to be split.
 	 * @param delim
-	 * 		The delimiter character(s) used to split the string.
+	 *   The delimiter character(s) used to split the string.
 	 * @return
-	 * 		Lua table containing string elements.
+	 *   Lua table containing string elements.
 	 */
 	private LuaTable split(final LuaString str, final LuaString delim) {
 		final LuaTable table = new LuaTable();
 		final String[] tmpArray = str.tojstring().split(delim.tojstring());
-
 		for (final String st: tmpArray) {
 			table.insert(table.length() + 1, LuaValue.valueOf(st));
 		}
-
 		return table;
 	}
 }

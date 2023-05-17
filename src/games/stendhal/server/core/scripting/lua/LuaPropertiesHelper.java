@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,13 +25,12 @@ public class LuaPropertiesHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static PropertiesHelper instance.
+	 *   Static PropertiesHelper instance.
 	 */
 	public static LuaPropertiesHelper get() {
 		if (instance == null) {
 			instance = new LuaPropertiesHelper();
 		}
-
 		return instance;
 	}
 
@@ -46,15 +45,14 @@ public class LuaPropertiesHelper {
 	 * Retrievies the value of a property.
 	 *
 	 * @param p
-	 * 		The property of which the value should be returned.
+	 *   The property of which the value should be returned.
 	 * @return
-	 * 		Value of the property or <code>null</code> if not set.
+	 *   Value of the property or `null` if not set.
 	 */
 	public String getValue(final String p) {
 		if (p == null) {
 			return null;
 		}
-
 		return System.getProperty(p);
 	}
 
@@ -62,15 +60,14 @@ public class LuaPropertiesHelper {
 	 * Checks if a property is set.
 	 *
 	 * @param p
-	 * 		The property string to check.
+	 *   The property string to check.
 	 * @return
-	 * 		<code>true</code> if the property is not <code>null</code>.
+	 *   `true` if the property is not `null`.
 	 */
 	public boolean enabled(final String p) {
 		if (p == null) {
 			return false;
 		}
-
 		return System.getProperty(p) != null;
 	}
 
@@ -78,11 +75,11 @@ public class LuaPropertiesHelper {
 	 * Compares a property value to a string.
 	 *
 	 * @param p
-	 * 		The property string to check.
+	 *   The property string to check.
 	 * @param v
-	 * 		The value to check the property against.
+	 *   The value to check the property against.
 	 * @return
-	 * 		<code>true</code> if the property value is equal to v.
+	 *   `true` if the property value is equal to v.
 	 */
 	public boolean equals(final String p, final String v) {
 		if (p == null || v == null) {

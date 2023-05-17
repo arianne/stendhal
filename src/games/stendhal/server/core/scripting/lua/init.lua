@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,7 @@
 -- master script for defining global values visible to scripts & mods
 
 
--- classes to be bound to Lua objects
+-- static classes & enumerations to be bound to Lua objects
 ConversationStates = luajava.bindClass("games.stendhal.server.entity.npc.ConversationStates")
 ConversationPhrases = luajava.bindClass("games.stendhal.server.entity.npc.ConversationPhrases")
 CollisionAction = luajava.bindClass("games.stendhal.server.entity.CollisionAction")
@@ -44,9 +44,9 @@ end
 --- Appends values of a table into another table.
 --
 -- @param tbl1
--- 		The table to receive the new values.
+--   The table to receive the new values.
 -- @param tbl2
--- 		The table containing the new values.
+--   The table containing the new values.
 table.concat = function(tbl1, tbl2)
 	if type(tbl1) == "userdata" then
 		tbl1 = arrays:arrayToTable(tbl1)
@@ -69,9 +69,9 @@ end
 -- http://lua-users.org/wiki/CommonFunctions
 --
 -- @param st
--- 		String to be manipulated.
+--   String to be manipulated.
 -- @return
--- 		Copy of string with leading & trailing whitespace removed.
+--   Copy of string with leading & trailing whitespace removed.
 function string.trim(st)
 	return (st:gsub("^%s*(.-)%s*$", "%1"))
 end
@@ -81,9 +81,9 @@ end
 -- http://lua-users.org/wiki/CommonFunctions
 --
 -- @param st
--- 		String to be manipulated.
+--   String to be manipulated.
 -- @return
--- 		Copy of string with leading whitespace removed.
+--   Copy of string with leading whitespace removed.
 function string.ltrim(st)
 	return (st:gsub("^%s*", ""))
 end
@@ -93,9 +93,9 @@ end
 -- http://lua-users.org/wiki/CommonFunctions
 --
 -- @param st
--- 		String to be manipulated.
+--   String to be manipulated.
 -- @return
--- 		Copy of string with trailing whitespace removed.
+--   Copy of string with trailing whitespace removed.
 function string.rtrim(st)
 	local n = #st
 	while n > 0 and st:find("^%s", n) do n = n - 1 end

@@ -45,13 +45,12 @@ public class LuaActionHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static ActionHelper instance.
+	 *   Static ActionHelper instance.
 	 */
 	public static LuaActionHelper get() {
 		if (instance == null) {
 			instance = new LuaActionHelper();
 		}
-
 		return instance;
 	}
 
@@ -66,13 +65,12 @@ public class LuaActionHelper {
 	 * Creates a custom ChatAction.
 	 *
 	 * @param lf
-	 * 		Function to be invoked when ChatAction.fire() is called.
+	 *   Function to be invoked when ChatAction.fire() is called.
 	 * @return
-	 * 		New ChatAction instance.
+	 *   New ChatAction instance.
 	 */
 	public ChatAction create(final LuaFunction lf) {
 		return new ChatAction() {
-
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				lf.invoke(new LuaValue[] {CoerceJavaToLua.coerce(player),
@@ -85,11 +83,11 @@ public class LuaActionHelper {
 	 * Creates an instance of a ChatAction from the class name string.
 	 *
 	 * @param className
-	 * 		Class basename.
+	 *   Class basename.
 	 * @param args
-	 * 		Lua table of objects that should be passed to the constructor.
+	 *   Lua table of objects that should be passed to the constructor.
 	 * @return
-	 * 		New <code>ChatAction</code> instance or <code>null</code> if failed.
+	 *   New `ChatAction` instance or `null` if failed.
 	 */
 	public ChatAction create(String className, final LuaTable args) {
 		className = "games.stendhal.server.entity.npc.action." + className;
@@ -137,7 +135,6 @@ public class LuaActionHelper {
 			exc = e1;
 		}
 
-
 		if (noArgs) {
 			logger.error("No default constructor for " + className, exc);
 		} else if (objects != null) {
@@ -154,9 +151,9 @@ public class LuaActionHelper {
 	 * Helper method for creating a MultipleActions instance.
 	 *
 	 * @param actionList
-	 * 		LuaTable containing list of ChatAction instances.
+	 *   LuaTable containing list of ChatAction instances.
 	 * @return
-	 * 		New MultipleActions instance.
+	 *   New `MultipleActions` instance.
 	 */
 	public MultipleActions multiple(final LuaTable actionList) {
 		final List<ChatAction> actions = new LinkedList<>();
@@ -170,15 +167,13 @@ public class LuaActionHelper {
 				logger.warn("Invalid data type. Must be ChatAction or LuaTable.");
 			}
 		}
-
 		return new MultipleActions(actions.toArray(new ChatAction[] {}));
 	}
 
 	/**
 	 * Removes quest slot from player.
 	 *
-	 * This is needed because it's impossible to pass <code>nil</code> values in
-	 * a LuaTable.
+	 * This is needed because it's impossible to pass `nil` values in a Lua table.
 	 *
 	 * @param questSlot
 	 *   Quest string identifier.

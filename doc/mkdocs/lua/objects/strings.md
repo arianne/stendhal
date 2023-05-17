@@ -8,15 +8,16 @@
 ---
 # String Manipulation
 
-Object instance: `string`
+Global table variable: `string`
 
 
 ---
 ## Description
 
 The following methods have been added to the built-in Lua
-[string library](https://www.lua.org/manual/5.3/manual.html#6.4).
+[`string` table](https://www.lua.org/manual/5.3/manual.html#6.4).
 
+---
 # Methods
 
 
@@ -29,11 +30,10 @@ The following methods have been added to the built-in Lua
     string.builder <span class="paramlist">(st)</span>
 </div>
 
-- Creates a new instance of [java.lang.StringBuilder].
+- Creates a [StringBuilder][java.lang.StringBuilder].
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ String to append on instantiation.
-- Returns: _([StringBuilder][java.lang.StringBuilder])_
-    - New StringBuilder instance.
+- Returns: _([StringBuilder][java.lang.StringBuilder])_ New `StringBuilder` instance.
 
 
 ---
@@ -46,8 +46,7 @@ The following methods have been added to the built-in Lua
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be checked.
     - <span class="param">suffix:</span> _([string][LuaString])_ The suffix to be compared with.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if ___suffix___ matches then end characters of ___st___.
+- Returns: _([bool][LuaBoolean])_ `true` if ___suffix___ matches the end characters of ___st___.
 - Aliases:
     - <span style="color:green; font-style:italic;">string.endswith</span>
 
@@ -61,8 +60,7 @@ The following methods have been added to the built-in Lua
 - Checks if a string contains numeric characters only.
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be checked.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if all characters are numeric, `false` otherwise.
+- Returns: _([bool][LuaBoolean])_ `true` if all characters are numeric, `false` otherwise.
 - Aliases:
     - <span style="color:green; font-style:italic;">string.isnumber</span>
     - <span style="color:green; font-style:italic;">string.isNumeric</span>
@@ -78,8 +76,7 @@ The following methods have been added to the built-in Lua
 - Removes leading whitespace from a string.
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be trimmed.
-- Returns: _([string][LuaString])_
-    - Trimmed string.
+- Returns: _([string][LuaString])_ Trimmed string.
 
 
 ---
@@ -91,8 +88,7 @@ The following methods have been added to the built-in Lua
 - Removes trailing whitespace from a string.
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be trimmed.
-- Returns: _([string][LuaString])_
-    - Trimmed string.
+- Returns: _([string][LuaString])_ Trimmed string.
 
 
 ---
@@ -103,11 +99,10 @@ The following methods have been added to the built-in Lua
 
 - Splits a string into a table.
 - Parameters:
-    - <span class="param">str:</span> _([string][LuaString])_ String to be split.
+    - <span class="param">str:</span> _([string][LuaString])_ The string to be split.
     - <span class="param">delim:</span> _([string][LuaString])_ The delimiter character(s) used to
       split the string.
-- Returns: _([table][LuaTable])_
-    - List of strings.
+- Returns: _([table][LuaTable])_ List of strings.
 
 
 ---
@@ -120,8 +115,8 @@ The following methods have been added to the built-in Lua
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be checked.
     - <span class="param">prefix:</span> _([string][LuaString])_ The prefix to be compared with.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if ___prefix___ matches the beginning characters of ___st___.
+- Returns: _([bool][LuaBoolean])_ `true` if ___prefix___ matches the beginning characters of
+  ___st___.
 - Aliases:
     - <span style="color:green; font-style:italic;">string.startswith</span>
     - <span style="color:green; font-style:italic;">string.beginsWith</span>
@@ -137,8 +132,7 @@ The following methods have been added to the built-in Lua
 - Removes leading &amp; trailing whitespace from a string.
 - Parameters:
     - <span class="param">st:</span> _([string][LuaString])_ The string to be trimmed.
-- Returns: _([string][LuaString])_
-    - Trimmed string.
+- Returns: _([string][LuaString])_ Trimmed string.
 
 
 ---
@@ -151,8 +145,7 @@ The following methods have been added to the built-in Lua
 - Parameters:
     - <span class="param">obj:</span> _([Object][java.lang.Object])_ Object instance to be
       converted.
-- Returns: _([string][LuaString])_
-    - String value of object.
+- Returns: _([string][LuaString])_ String value of object.
 - Aliases:
     - <span style="color:green; font-style:italic;">string.valueof</span>
 

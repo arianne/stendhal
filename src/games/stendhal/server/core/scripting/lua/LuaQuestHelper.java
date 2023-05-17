@@ -46,13 +46,12 @@ public class LuaQuestHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static QuestHelper instance.
+	 *   Static QuestHelper instance.
 	 */
 	public static LuaQuestHelper get() {
 		if (instance == null) {
 			instance = new LuaQuestHelper();
 		}
-
 		return instance;
 	}
 
@@ -67,7 +66,7 @@ public class LuaQuestHelper {
 	 * Creates a new quest instance.
 	 *
 	 * @return
-	 *     New LuaQuest instance.
+	 *   New LuaQuest instance.
 	 */
 	public LuaQuest create() {
 		return new LuaQuest();
@@ -77,9 +76,9 @@ public class LuaQuestHelper {
 	 * Creates a new quest instance.
 	 *
 	 * @param slotName
-	 *     The slot identifier.
+	 *   The slot identifier.
 	 * @return
-	 *     New LuaQuest instance.
+	 *   New LuaQuest instance.
 	 */
 	public LuaQuest create(final String slotName) {
 		return new LuaQuest(slotName);
@@ -89,13 +88,13 @@ public class LuaQuestHelper {
 	 * Creates a new quest instance.
 	 *
 	 * @param name
-	 *     The quest name.
+	 *   The quest name.
 	 * @param slotName
-	 *     The slot identifier.
+	 *   The slot identifier.
 	 * @param minLevel
-	 *     Recommended minimum level.
+	 *   Recommended minimum level.
 	 * @return
-	 *     New LuaQuest instance.
+	 *   New LuaQuest instance.
 	 */
 	public LuaQuest create(final String slotName, final String name) {
 		return new LuaQuest(slotName, name);
@@ -105,13 +104,13 @@ public class LuaQuestHelper {
 	 * Creates a new quest instance.
 	 *
 	 * @param slotName
-	 *     The slot identifier.
+	 *   The slot identifier.
 	 * @param name
-	 *     Reader friendly name.
+	 *   Reader friendly name.
 	 * @param desc
-	 *     Quest description.
+	 *   Quest description.
 	 * @return
-	 *     New LuaQuest instance.
+	 *   New LuaQuest instance.
 	 */
 	public LuaQuest create(final String slotName, final String name, final String desc) {
 		return new LuaQuest(slotName, name, desc);
@@ -121,9 +120,9 @@ public class LuaQuestHelper {
 	 * Creates a new quest manuscript.
 	 *
 	 * @param builder
-	 *     Quest builder.
+	 *   Quest builder.
 	 * @return
-	 *     New quest.
+	 *   New quest.
 	 */
 	public IQuest createManuscript(final QuestBuilder<?> builder) {
 		return new BuiltQuest(builder);
@@ -133,9 +132,9 @@ public class LuaQuestHelper {
 	 * Creates a new quest builder to be used for quest manuscript.
 	 *
 	 * @param task
-	 *     Quest task type.
+	 *   Quest task type.
 	 * @return
-	 *     New QuestBuilder.
+	 *   New QuestBuilder.
 	 */
 	public QuestBuilder<?> createBuilder(final String task) {
 		if ("BringItemTask".equals(task)) {
@@ -151,7 +150,7 @@ public class LuaQuestHelper {
 	 * Adds a quest to the world.
 	 *
 	 * @param quest
-	 * 		Quest to be loaded.
+	 *   Quest to be loaded.
 	 */
 	public void load(final IQuest quest) {
 		questSystem.loadQuest(quest);
@@ -161,7 +160,7 @@ public class LuaQuestHelper {
 	 * Removes a qeust from the world.
 	 *
 	 * @param questName
-	 * 		String name of the quest.
+	 *   String name of the quest.
 	 */
 	public void unload(final String questName) {
 		questSystem.unloadQuest(questName);
@@ -171,9 +170,9 @@ public class LuaQuestHelper {
 	 * Caches a quest for loading at startup.
 	 *
 	 * @param quest
-	 * 		Quest to be cached.
+	 *   Quest to be cached.
 	 * @deprecated
-	 *     Use {@link LuaQuest.register}.
+	 *   Use {@link LuaQuest.register}.
 	 */
 	@Deprecated
 	public void cache(final IQuest quest) {
@@ -186,9 +185,9 @@ public class LuaQuestHelper {
 	 * Caches a quest for loading at startup.
 	 *
 	 * @param quest
-	 * 		Quest to be cached.
+	 *   Quest to be cached.
 	 * @deprecated
-	 *     Use {@link LuaQuest.register}.
+	 *   Use {@link LuaQuest.register}.
 	 */
 	@Deprecated
 	public void register(final IQuest quest) {
@@ -201,9 +200,9 @@ public class LuaQuestHelper {
 	 * Checks if a quest has been loaded.
 	 *
 	 * @param quest
-	 * 		Quest instance to be checked.
+	 *   Quest instance to be checked.
 	 * @return
-	 * 		<code>true</code> if the instances matches stored quests.
+	 *   `true` if the instances matches stored quests.
 	 */
 	public boolean isLoaded(final IQuest quest) {
 		return questSystem.isLoaded(quest);
@@ -213,9 +212,9 @@ public class LuaQuestHelper {
 	 * List all quests the player knows about.
 	 *
 	 * @param player
-	 * 		Player to create the report for.
+	 *   Player to create the report for.
 	 * @return
-	 * 		Report.
+	 *   Report.
 	 */
 	public String listAll(final Player player) {
 		return questSystem.listQuests(player);
@@ -225,11 +224,11 @@ public class LuaQuestHelper {
 	 * Creates a report on a specified quest for a specified player.
 	 *
 	 * @param player
-	 * 		Player to create the report for.
+	 *   Player to create the report for.
 	 * @param questName
-	 * 		Name of quest to be reported.
+	 *   Name of quest to be reported.
 	 * @return
-	 * 		Report.
+	 *   Report.
 	 */
 	public String list(final Player player, final String questName) {
 		return questSystem.listQuest(player, questName);
@@ -239,9 +238,9 @@ public class LuaQuestHelper {
 	 * Dumps the internal quest states for the specified player. This is used for the InspectAction.
 	 *
 	 * @param player
-	 * 		Player to create report for.
+	 *   Player to create report for.
 	 * @return
-	 * 		Report.
+	 *   Report.
 	 */
 	public String listStates(final Player player) {
 		return questSystem.listQuestsStates(player);
@@ -251,9 +250,9 @@ public class LuaQuestHelper {
 	 * Retrieves the IQuest object for a named quest.
 	 *
 	 * @param questName
-	 * 		Name of quest.
+	 *   Name of quest.
 	 * @return
-	 * 		IQuest or <code>null</code> if it does not exist.
+	 *   IQuest or `null` if it does not exist.
 	 */
 	public IQuest getQuest(final String questName) {
 		return questSystem.getQuest(questName);
@@ -395,7 +394,7 @@ public class LuaQuestHelper {
 		 * Creates a new quest.
 		 *
 		 * @param slotName
-		 *     The slot identifier.
+		 *   The slot identifier.
 		 */
 		private LuaQuest(final String slotName) {
 			setSlotName(slotName);
@@ -407,9 +406,9 @@ public class LuaQuestHelper {
 		 * Creates a new quest.
 		 *
 		 * @param slotName
-		 *     The slot identifier.
+		 *   The slot identifier.
 		 * @param name
-		 *     Reader friendly name.
+		 *   Reader friendly name.
 		 */
 		private LuaQuest(final String slotName, final String name) {
 			setSlotName(slotName);
@@ -422,11 +421,11 @@ public class LuaQuestHelper {
 		 * Creates a new quest.
 		 *
 		 * @param slotName
-		 *     The slot identifier.
+		 *   The slot identifier.
 		 * @param name
-		 *     Reader friendly name.
+		 *   Reader friendly name.
 		 * @param desc
-		 *     Quest description.
+		 *   Quest description.
 		 */
 		private LuaQuest(final String slotName, final String name, final String desc) {
 			setSlotName(slotName);
@@ -459,7 +458,7 @@ public class LuaQuestHelper {
 		 * Registers quest to be added to world.
 		 *
 		 * @param func
-		 *     Function to execute when {@link StendhalQuestSystem.loadQuest} is called.
+		 *   Function to execute when {@link StendhalQuestSystem.loadQuest} is called.
 		 */
 		public void register(final LuaFunction func) {
 			this.init = func;
@@ -470,9 +469,9 @@ public class LuaQuestHelper {
 		 * Gets the boolean return value of a Lua function.
 		 *
 		 * @param lf
-		 * 		Lua function to be called.
+		 *   Lua function to be called.
 		 * @return
-		 * 		Returned value of the called Lua function.
+		 *   Returned value of the called Lua function.
 		 */
 		private boolean checkBoolFunction(final LuaFunction lf) {
 			final LuaValue result = lf.call();
@@ -507,7 +506,7 @@ public class LuaQuestHelper {
 		 * Retrieves unformatted quest name.
 		 *
 		 * @return
-		 * 		Unmodified quest name string.
+		 *   Unmodified quest name string.
 		 */
 		public String getOriginalName() {
 			return questInfo.getName();
@@ -626,7 +625,7 @@ public class LuaQuestHelper {
 		 * Sets the quest name string.
 		 *
 		 * @param name
-		 * 		Quest name string to be returned when getName() is called.
+		 *   Quest name string to be returned when getName() is called.
 		 */
 		public void setName(final String name) {
 			questInfo.setName(name);
@@ -636,7 +635,7 @@ public class LuaQuestHelper {
 		 * Sets the quest description string.
 		 *
 		 * @param desc
-		 * 		Quest description string.
+		 *   Quest description string.
 		 */
 		public void setDescription(final String desc) {
 			questInfo.setDescription(desc);
@@ -646,7 +645,7 @@ public class LuaQuestHelper {
 		 * Sets the quest identifier string.
 		 *
 		 * @param slotName
-		 * 		Slot identifier string to be returned when getSlotName() is called.
+		 *   Slot identifier string to be returned when getSlotName() is called.
 		 */
 		public void setSlotName(final String slotName) {
 			this.slotName = slotName;
@@ -656,7 +655,7 @@ public class LuaQuestHelper {
 		 * Sets the recommended minimum level.
 		 *
 		 * @param minLevel
-		 * 		Level to return when getMinLevel() is called.
+		 *   Level to return when getMinLevel() is called.
 		 */
 		public void setMinLevel(final Integer minLevel) {
 			if (minLevel != null) {
@@ -670,7 +669,7 @@ public class LuaQuestHelper {
 		 * Sets the quest region.
 		 *
 		 * @param region
-		 * 		Region string to be returned when getRegion() is called.
+		 *   Region string to be returned when getRegion() is called.
 		 */
 		public void setRegion(final String region) {
 			this.region = region;
@@ -680,7 +679,7 @@ public class LuaQuestHelper {
 		 * Sets the NPC name.
 		 *
 		 * @param npcName
-		 * 		NPC name to return when getNPCName() is called.
+		 *   NPC name to return when getNPCName() is called.
 		 */
 		public void setNPCName(final String npcName) {
 			this.npcName = npcName;
@@ -690,7 +689,7 @@ public class LuaQuestHelper {
 		 * Sets whether or not the quest should be shown in the travel log.
 		 *
 		 * @param visible
-		 * 		If <code>true</code>, quest will be displayed in travel log.
+		 *   If `true`, quest will be displayed in travel log.
 		 */
 		public void setVisibleOnQuestStatus(final boolean visible) {
 			this.visible = visible;
@@ -702,7 +701,7 @@ public class LuaQuestHelper {
 		 * (overrides setCompletedCheckFunction)
 		 *
 		 * @param repeatable
-		 * 		If <code>true</code>, the quest is repeatable.
+		 *   If `true`, the quest is repeatable.
 		 */
 		public void setRepeatable(final boolean repeatable) {
 			questInfo.setRepeatable(repeatable);
@@ -712,10 +711,9 @@ public class LuaQuestHelper {
 		 * Sets the function for adding the quest to the game.
 		 *
 		 * @param func
-		 * 		Function to invoke when addToWorld() is called.
-		 *
+		 *   Function to invoke when addToWorld() is called.
 		 * @deprecated
-		 *     Set LuaQuest.init directly.
+		 *   Set LuaQuest.init directly.
 		 */
 		@Deprecated
 		public void setAddFunction(final LuaFunction func) {
@@ -728,9 +726,9 @@ public class LuaQuestHelper {
 		 * Sets the function for removing the quest from the game.
 		 *
 		 * @param func
-		 * 		Function to invoke when removeFromWorld() is called.
+		 *   Function to invoke when removeFromWorld() is called.
 		 * @deprecated
-		 *     Set LuaQuest.remove directly.
+		 *   Set LuaQuest.remove directly.
 		 */
 		@Deprecated
 		public void setRemoveFunction(final LuaFunction func) {
@@ -743,7 +741,7 @@ public class LuaQuestHelper {
 		 * Sets the function for retrieving history of quest state.
 		 *
 		 * @param history
-		 * 		Function to invoke when getHistory() is called.
+		 *   Function to invoke when getHistory() is called.
 		 */
 		public void setHistoryFunction(final LuaFunction history) {
 			this.history = history;
@@ -753,7 +751,7 @@ public class LuaQuestHelper {
 		 * Sets the function for retrieving formatted history of quest state.
 		 *
 		 * @param formattedHistory
-		 * 		Function to invoke when getFormattedHistory() is called.
+		 *   Function to invoke when getFormattedHistory() is called.
 		 */
 		public void setFormattedHistoryFunction(final LuaFunction formattedHistory) {
 			this.formattedHistory = formattedHistory;
@@ -763,7 +761,7 @@ public class LuaQuestHelper {
 		 * Sets the function for checking if the quest is started.
 		 *
 		 * @param startedCheck
-		 * 		Function to invoke when isStarted() is called.
+		 *   Function to invoke when isStarted() is called.
 		 */
 		public void setStartedCheckFunction(final LuaFunction startedCheck) {
 			this.startedCheck = startedCheck;
@@ -773,7 +771,7 @@ public class LuaQuestHelper {
 		 * Sets the function for checking if the quest is repeatable.
 		 *
 		 * @param repeatableCheck
-		 * 		Function to invoke when isRepeatable() is called.
+		 *   Function to invoke when isRepeatable() is called.
 		 */
 		public void setRepeatableCheckFunction(final LuaFunction repeatableCheck) {
 			this.repeatableCheck = repeatableCheck;
@@ -783,7 +781,7 @@ public class LuaQuestHelper {
 		 * Sets the function for checking if the quest is completed.
 		 *
 		 * @param completedCheck
-		 * 		Function to invoke when isCompleted() is called.
+		 *   Function to invoke when isCompleted() is called.
 		 */
 		public void setCompletedCheckFunction(final LuaFunction completedCheck) {
 			this.completedCheck = completedCheck;

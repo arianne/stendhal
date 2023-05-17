@@ -52,7 +52,6 @@ public class LuaConditionHelper {
 		if (instance == null) {
 			instance = new LuaConditionHelper();
 		}
-
 		return instance;
 	}
 
@@ -67,13 +66,12 @@ public class LuaConditionHelper {
 	 * Creates a custom ChatCondition.
 	 *
 	 * @param lf
-	 *   LuaFunction to be invoked when ChatCondition.fire() is called.
+	 *   `LuaFunction` to be invoked when ChatCondition.fire() is called.
 	 * @return
 	 *   New ChatCondition.
 	 */
 	public ChatCondition create(final LuaFunction lf) {
 		return new ChatCondition() {
-
 			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				final LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
@@ -81,12 +79,10 @@ public class LuaConditionHelper {
 				final LuaValue luaNPC = CoerceJavaToLua.coerce(npc);
 
 				final LuaValue result = lf.call(luaPlayer, luaSentence, luaNPC);
-
 				if (!result.isboolean()) {
 					logger.warn("Lua function did not return boolean value");
 					return false;
 				}
-
 				return result.toboolean();
 			}
 		};
@@ -100,7 +96,7 @@ public class LuaConditionHelper {
 	 * @param args
 	 *   Lua table of objects passed to the constructor.
 	 * @return
-	 *   New <code>ChatCondition</code> instance or <code>null</code>.
+	 *   New `ChatCondition` instance or `null`.
 	 */
 	public ChatCondition create(String className, final LuaTable args) {
 		className = "games.stendhal.server.entity.npc.condition." + className;
@@ -202,7 +198,6 @@ public class LuaConditionHelper {
 		} else if (lv.isfunction()) {
 			return new NotCondition(create((LuaFunction) lv));
 		}
-
 		return this.notC((ChatCondition) lv.touserdata(ChatCondition.class));
 	}
 
@@ -242,7 +237,6 @@ public class LuaConditionHelper {
 				logger.warn("Invalid data type. Must be ChatCondition.");
 			}
 		}
-
 		return new AndCondition(conditions.toArray(new ChatCondition[] {}));
 	}
 

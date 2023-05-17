@@ -44,9 +44,9 @@ public class LuaScript extends ScriptingSandbox {
 	 * Creates a Lua script from a data file with a parent script.
 	 *
 	 * @param parent
-	 *     Parent Lua script instance.
+	 *   Parent Lua script instance.
 	 * @param filename
-	 *     Path to external script to be loaded (data/script).
+	 *   Path to external script to be loaded (data/script).
 	 */
 	LuaScript(final LuaScript parent, final String filename) {
 		super(filename);
@@ -58,7 +58,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * Creates a Lua script from a data file.
 	 *
 	 * @param filename
-	 *     Path to external script (data/script).
+	 *   Path to external script (data/script).
 	 */
 	LuaScript(final String filename) {
 		super(filename);
@@ -70,11 +70,11 @@ public class LuaScript extends ScriptingSandbox {
 	 * Creates a Lua script from a resource with a parent script.
 	 *
 	 * @param parent
-	 *     Parent Lua script instance.
+	 *   Parent Lua script instance.
 	 * @param istream
-	 *     Lua data to be loaded.
+	 *   Lua data to be loaded.
 	 * @param chunkname
-	 *     Identifier for this script.
+	 *   Identifier for this script.
 	 */
 	LuaScript(final LuaScript parent, final InputStream istream, final String chunkname) {
 		super(chunkname);
@@ -86,9 +86,9 @@ public class LuaScript extends ScriptingSandbox {
 	 * Creates a Lua script from a resource.
 	 *
 	 * @param istream
-	 *     Lua data to be loaded.
+	 *   Lua data to be loaded.
 	 * @param chunkname
-	 *     Identifier for this script.
+	 *   Identifier for this script.
 	 */
 	LuaScript(final InputStream istream, final String chunkname) {
 		this(null, istream, chunkname);
@@ -136,6 +136,9 @@ public class LuaScript extends ScriptingSandbox {
 		return filename;
 	}
 
+	/**
+	 * Retrieves directory path of script or `null` if script is a resource.
+	 */
 	public Path getDirName() {
 		if (isResource()) {
 			return null;
@@ -154,7 +157,8 @@ public class LuaScript extends ScriptingSandbox {
 	/**
 	 * Loads & executes the script.
 	 *
-	 * FIXME: should have a separate function for executing
+	 * @todo
+	 *   FIXME: should have a separate function for executing
 	 */
 	public boolean load() {
 		onLoad();
@@ -184,7 +188,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * Load Lua script from file.
 	 *
 	 * @return
-	 *     LuaValue result returned by the executed script.
+	 *   LuaValue result returned by the executed script.
 	 */
 	LuaValue loadFile() {
 		// run script
@@ -195,7 +199,7 @@ public class LuaScript extends ScriptingSandbox {
 	 * Load Lua data from resource stream.
 	 *
 	 * @return
-	 *     LuaValue result returned by the executed script.
+	 *   LuaValue result returned by the executed script.
 	 */
 	LuaValue loadStream() {
 		LuaValue result = LuaValue.NIL;

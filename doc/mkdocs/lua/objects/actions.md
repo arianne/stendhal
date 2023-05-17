@@ -25,7 +25,7 @@ Creates [`ChatAction`][ChatAction] instances.
 <span style="color:green; font-wegith:bold;">actions:clearQuest</span>(questSlot)
 
 - Removes quest slot from player. This is needed because it's impossible to pass [`nil`][LuaNil]
-  values in a [`LuaTable`][LuaTable].
+  values in a Lua [table][LuaTable].
 - Parameters:
     - <span class="param">questSlot:</span> Quest string identifier.
 - Returns: New [`SetQuestAction`][SetQuestAction] that sets quest state to `nil`.
@@ -36,17 +36,18 @@ Creates [`ChatAction`][ChatAction] instances.
 ---
 ## actions:create
 <div class="function">
-    actions:create <span class="paramlist">(function)</span>
+    actions:create <span class="paramlist">(func)</span>
 </div>
 <div class="function">
-    actions:create <span class="paramlist">(function, args)</span>
+    actions:create <span class="paramlist">(func, args)</span>
 </div>
 
 - Creates a custom [`ChatAction`][ChatAction].
 - Parameters:
-    - <span class="param">function:</span> A [`LuaFunction`][LuaFunction] to be executed when
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to be executed when
       `ChatAction.fire` is called.
-    - <span class="param">args:</span> [`LuaTable`][LuaTable] of objects passed to the constructor.
+    - <span class="param">args:</span> _([table][LuaTable])_ Table of objects passed to the
+      constructor.
 - Returns: New `ChatAction` instance or [`nil`][LuaNil] if failed.
 
 
@@ -58,7 +59,7 @@ Creates [`ChatAction`][ChatAction] instances.
 
 - Helper method for creating a [`MultipleActions`][MultipleActions] instance.
 - Parameters:
-    - <span class="param">actionList:</span> A [`LuaTable`][LuaTable] containing
+    - <span class="param">actionList:</span> _([table][LuaTable])_ Table containing
       [`ChatAction`][ChatAction] instances.
 - Returns: New `MultipleActions` instance.
 

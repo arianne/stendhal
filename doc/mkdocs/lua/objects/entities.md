@@ -46,8 +46,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Parameters:
     - <span class="param">def:</span> _([table][LuaTable])_ Entity definition table (see
       [Entity Definition Tables](#entity-definition-tables)).
-- Returns: _([Entity][Entity])_
-    - New entity instance.
+- Returns: _([Entity][Entity])_ New entity instance.
 
 
 ---
@@ -66,8 +65,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
       to respawn.
     - <span class="param">initOnAdded:</span> _([boolean][LuaBoolean])_ If `true` initializes
       spawner when added to zone.
-- Returns: ([PassiveEntityRespawnPoint])
-    - New spawn point instance.
+- Returns: _([PassiveEntityRespawnPoint])_ New spawn point instance.
 
 
 ---
@@ -84,8 +82,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
     - <span class="param">caption:</span> _([string][LuaString])_ The caption above the table.
     - <span class="param">seller:</span> _([boolean][LuaBoolean])_ `true`, if this sign is for items
       sold by an NPC (default: `true`).
-- Returns: _([ShopSign])_
-    - New shop sign instance.
+- Returns: _([ShopSign])_ New shop sign instance.
 
 
 ---
@@ -102,8 +99,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Parameters:
     - <span class="param">visible:</span> _([boolean][LuaBoolean])_ If `false`, the sign will not
       have a visual representation (default: `true`).
-- Returns: _([Sign]|[Reader])_
-    - New sign or reader (visible=false).
+- Returns: _([Sign]|[Reader])_ New sign or reader (visible=false).
 
 
 ---
@@ -114,8 +110,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 
 - ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
 - Creates a non-interactive NPC.
-- Returns: _([LuaSilentNPC](#luasilentnpc))_
-    - New silent NPC instance.
+- Returns: _([LuaSilentNPC](#luasilentnpc))_ New silent NPC instance.
 
 
 ---
@@ -126,9 +121,9 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 
 - ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
 - Creates an interactive NPC.
-- <span class="param">name:</span> _([string][LuaString])_ Name of new NPC.
-- Returns: _([LuaSpeakerNPC](#luaspeakernpc))_
-    - New speaker NPC instance.
+- Parameters:
+    - <span class="param">name:</span> _([string][LuaString])_ Name of new NPC.
+- Returns: _([LuaSpeakerNPC](#luaspeakernpc))_ New speaker NPC instance.
 
 
 ---
@@ -140,8 +135,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Retrieves a registered Item.
 - Parameters:
     - <span class="param">name:</span> _([string][LuaString])_ Name of the item.
-- Returns: _([Item])_
-    - Item instance or [`nil`][LuaNil] if ___name___ not registered.
+- Returns: _([Item])_ Item instance or [`nil`][LuaNil] if ___name___ not registered.
 
 
 ---
@@ -153,8 +147,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Retrieves an existing NPC.
 - Parameters:
     - <span class="param">name:</span> _([string][LuaString])_ Name of NPC.
-- Returns: _([SpeakerNPC])_
-    - NPC instance or [`nil`][LuaNil].
+- Returns: _([SpeakerNPC])_ NPC instance or [`nil`][LuaNil].
 
 
 ---
@@ -166,8 +159,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Retrieves a logged in player.
 - Parameters:
     - <span class="param">name:</span> _([string][LuaString])_ Name of player.
-- Returns: _([Player])_
-    - Logged in player or [`nil`][LuaNil].
+- Returns: _([Player])_ Logged in player or [`nil`][LuaNil].
 - Usage:
 
         local player = entities:getPlayer("foo")
@@ -182,8 +174,8 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Retrieves a registered stackable item.
 - Parameters:
     - <span class="param">name:</span> _([string][LuaString])_ Name of the item.
-- Returns: _([StackableItem])_
-    - Stackable item instance or [`nil`][LuaNil] if ___name___ not registered.
+- Returns: _([StackableItem])_ Stackable item instance or [`nil`][LuaNil] if ___name___ not
+  registered.
 
 
 ---
@@ -242,7 +234,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Adds attributes defined in [Entity].
 - Parameters:
     - <span class="param">entity:</span> _([Entity])_ The entity to whom attributes will be added.
-    - <span class="param">traints:</span> _([table][LuaTable])_ List of attributes.
+    - <span class="param">traits:</span> _([table][LuaTable])_ List of attributes.
 
 
 ---
@@ -254,8 +246,8 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
 - Adds attributes defined in [PassiveNPC].
 - Parameters:
-    - ___npc__: ([PassiveNPC])_ The entity to whom attributes will be added.
-    - ___traits__: ([table][LuaTable])_ table of attributes.
+    - <span class="param">npc:</span> _([PassiveNPC])_ The entity to whom attributes will be added.
+    - <span class="param">traits:</span> _([table][LuaTable])_ table of attributes.
 
 
 ---
@@ -280,6 +272,10 @@ For public methods that can be performed on [`Entity`][Entity] objects.
       a [RaidCreature] instance.
     - <span class="param">def:</span> _([table][LuaTable])_ Key-value table containing parameters
       for summoning creature (see [Summon Creature Table](#summon-creature-table)).
+- Returns: _([int][LuaInteger])_
+    - 0 = success
+    - 1 = creature not found
+    - 2 = zone not found
 
 
 ---

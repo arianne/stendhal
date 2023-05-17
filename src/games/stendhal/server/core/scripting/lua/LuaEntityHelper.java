@@ -72,7 +72,7 @@ public class LuaEntityHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static EntityHelper instance.
+	 *   Static EntityHelper instance.
 	 */
 	public static LuaEntityHelper get() {
 		if (instance == null) {
@@ -454,12 +454,10 @@ public class LuaEntityHelper {
 
 		final Sign sign = new Sign();
 		setEntityTraits(sign, lt);
-
 		final LuaValue l_text = lt.get("text");
 		if (!l_text.isnil()) {
 			sign.setText(l_text.checkjstring());
 		}
-
 		return sign;
 	}
 
@@ -524,9 +522,9 @@ public class LuaEntityHelper {
 	 * @param table
 	 *   Table containing coordinates.
 	 * @param loop
-	 *   If <code>true</code>, the path should loop.
+	 *   If `true`, the path should loop.
 	 * @return
-	 *   New FixedPath instance.
+	 *   New `FixedPath` instance.
 	 */
 	private static FixedPath tableToPath(final LuaTable table, final boolean loop) {
 		if (!table.istable()) {
@@ -568,7 +566,7 @@ public class LuaEntityHelper {
 	 * @param name
 	 *   Name of player.
 	 * @return
-	 *   Logged in player or <code>null</code>.
+	 *   Logged in player or `null`.
 	 */
 	public Player getPlayer(final String name) {
 		return SingletonRepository.getRuleProcessor().getPlayer(name);
@@ -580,7 +578,7 @@ public class LuaEntityHelper {
 	 * @param name
 	 *   Name of NPC.
 	 * @return
-	 *   SpeakerNPC instance or <code>null</code>.
+	 *   SpeakerNPC instance or `null`.
 	 * @todo
 	 *   FIXME: cannot cast to LuaSpeakerNPC, so specialized methods will not work with entities
 	 *   retrieved from this method that are not instances of LuaSpeakerNPC.
@@ -604,7 +602,7 @@ public class LuaEntityHelper {
 	 * @param name
 	 *   Name of the item.
 	 * @return
-	 *   Item instance or <code>null</code> if not a registered item.
+	 *   Item instance or `null` if not a registered item.
 	 */
 	public Item getItem(final String name) {
 		return manager.getItem(name);
@@ -616,7 +614,7 @@ public class LuaEntityHelper {
 	 * @param name
 	 *   Name of the item.
 	 * @return
-	 *   StackableItem instance or <code>null</code> if not a registered stackable item.
+	 *   StackableItem instance or `null` if not a registered stackable item.
 	 */
 	public StackableItem getStackableItem(final String name) {
 		final Item item = getItem(name);
@@ -666,7 +664,7 @@ public class LuaEntityHelper {
 	 * @param meanTurns
 	 *   Average number of turns for item to respawn.
 	 * @param initOnAdded
-	 *   If <code>true</code>, sets to full grown and initializes respawn timer when added to zone.
+	 *   If `true`, sets to full grown and initializes respawn timer when added to zone.
 	 * @return
 	 *   PassiveEntityRespawnPoint instance.
 	 */
@@ -683,7 +681,7 @@ public class LuaEntityHelper {
 	 * @param meanTurns
 	 *   Average number of turns for item to respawn.
 	 * @return
-	 *   PassiveEntityRespawnPoint instance.
+	 *   `PassiveEntityRespawnPoint` instance.
 	 */
 	public PassiveEntityRespawnPoint createItemSpawner(final String name, final int meanTurns) {
 		return createItemSpawner(name, meanTurns, false);
@@ -722,7 +720,7 @@ public class LuaEntityHelper {
 	 * @param loop
 	 *   If `true` entity will restart path upon completion.
 	 * @deprecated
-	 *     Use {@link games.stendhal.server.entity.GuidedEntity#setPathAndPosition(FixedPath)}.
+	 *   Use {@link games.stendhal.server.entity.GuidedEntity#setPathAndPosition(FixedPath)}.
 	 */
 	@Deprecated
 	public void setPathAndPosition(final RPEntity entity, final LuaTable table, Boolean loop) {
@@ -800,7 +798,7 @@ public class LuaEntityHelper {
 	 * Creates a new Sign entity.
 	 *
 	 * @param visible
-	 *   If <code>false</code>, sign does not have a visual representation.
+	 *   If `false`, sign does not have a visual representation.
 	 * @return
 	 *   New Sign instance.
 	 * @deprecated
@@ -826,7 +824,7 @@ public class LuaEntityHelper {
 	 * @param caption
 	 *   The caption above the table.
 	 * @param seller
-	 *   <code>true</code>, if this sign is for items sold by an NPC (defaults to <code>true</code> if <code>null</code>).
+	 *   `true`, if this sign is for items sold by an NPC (defaults to `true` if `null`).
 	 * @return
 	 *   New ShopSign instance.
 	 * @deprecated
@@ -893,6 +891,16 @@ public class LuaEntityHelper {
 		return 0;
 	}
 
+	/**
+	 * Summons a creature into the world.
+	 *
+	 * @param table
+	 *   Creature attributes.
+	 * @return
+	 *   0 = success
+	 *   1 = creature not found
+	 *   2 = zone not found
+	 */
 	public int summonCreature(final LuaTable table) {
 		final String name = table.get("name").tojstring();
 		final String zoneName = table.get("zone").tojstring();
@@ -959,7 +967,7 @@ public class LuaEntityHelper {
 		 * @param nextState
 		 *   Conversation state to set entity to after response.
 		 * @param reply
-		 *   The NPC's response or <code>null</code>
+		 *   The NPC's response or `null`
 		 * @param actions
 		 *   ChatAction instance or LuaTable of ChatAction instances.
 		 */

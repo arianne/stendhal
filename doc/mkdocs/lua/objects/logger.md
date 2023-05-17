@@ -20,49 +20,15 @@ Manages logging messages in Lua via the [org.apache.log4j.Logger][log4j.Logger] 
 ---
 # Methods
 
-
----
-## logger:info
-<div class="function">
-    logger:info <span class="paramlist">(message)</span>
-</div>
-
-- Prints an information message to the console.
-- Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
-
-
----
-## logger:warn
-<div class="function">
-    logger:warn <span class="paramlist">(message)</span>
-</div>
-
-- Prints a warning message to the console.
-- Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
-
-
----
-## logger:error
-<div class="function">
-    logger:error <span class="paramlist">(message)</span>
-</div>
-
-- Prints an error message to the console.
-- Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
-
-
 ---
 ## logger:debug
 <div class="function">
     logger:debug <span class="paramlist">(message)</span>
 </div>
 
-- Prints a debug message to the console.
+- Logs a message at debug level.
 - Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
+    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
 
 
 ---
@@ -74,16 +40,54 @@ Manages logging messages in Lua via the [org.apache.log4j.Logger][log4j.Logger] 
     logger:deprecated <span class="paramlist">(old, alt)</span>
 </div>
 
-- Prints a deprecation message to the console.
+- Logs a deprecation warning.
 - Parameters:
-    - <span class="param">old:</span> _([string][LuaString])_ The deprecated object.
-    - <span class="param">alt:</span> _([string][LuaString])_ Alternative object to use.
+    - <span class="param">old:</span> _([string][LuaString])_ The deprecated item.
+    - <span class="param">alt:</span> _([string][LuaString])_ Alternative to use.
 
 
 ---
-# Usage
+## logger:error
+<div class="function">
+    logger:error <span class="paramlist">(message)</span>
+</div>
+<div class="function">
+    logger:error <span class="paramlist">(message, throwable)</span>
+</div>
+<div class="function">
+    logger:error <span class="paramlist">(throwable)</span>
+</div>
 
-# Examples
+- Logs a message at error level &amp; optionally raises an exception.
+- Parameters:
+    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+    - <span class="param">throwable:</span> _([Throwable][java.lang.Throwable])_ Exception to raise.
+
+
+---
+## logger:info
+<div class="function">
+    logger:info <span class="paramlist">(message)</span>
+</div>
+
+- Logs a message at info level.
+- Parameters:
+    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+
+
+---
+## logger:warn
+<div class="function">
+    logger:warn <span class="paramlist">(message)</span>
+</div>
+
+- Logs a message at warning level.
+- Parameters:
+    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+
+
+---
+# Usage Examples
 
 ```lua
 local zone_name = "0_semos_city"
@@ -96,5 +100,7 @@ end
 
 
 [LuaString]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaString.html
+
+[java.lang.Throwable]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Throwable.html
 
 [log4j.Logger]: https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/Logger.html

@@ -30,7 +30,8 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
 
 - Converts an indexed [table][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
-    - <span class="param">table:</span> Table with contents to be transferred to new array.
+    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
+      to new array.
 - Returns: New `Object[]` instance.
 
 
@@ -43,7 +44,8 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
 - ___DEPRECATED:__ Use [arrays:fromTable](#arraysfromtable)._
 - Converts an indexed [table][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
-    - <span class="param">table:</span> Table with contents to be transferred to new array.
+    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
+      to new array.
 - Returns: New `Object[]` instance.
 
 
@@ -55,7 +57,8 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
 
 - Converts an indexed [table][LuaTable] to Java [`List`][java.util.List].
 - Parameters:
-    - <span class="param">table:</span> Table with contents to be transferred to new list.
+    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
+      to new list.
 - Returns: New `List` instance.
 - TODO:
     - __FIXME:__ this should be in [tables]

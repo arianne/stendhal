@@ -8,15 +8,16 @@
 ---
 # Table Manipulation
 
-Object instance: `table`
+Global table variable: `table`
 
 
 ---
 ## Description
 
 The following methods have been added to the built-in Lua
-[table library](https://www.lua.org/manual/5.3/manual.html#6.6).
+[`table` table](https://www.lua.org/manual/5.3/manual.html#6.6).
 
+---
 # Methods
 
 
@@ -66,7 +67,7 @@ The following methods have been added to the built-in Lua
     table.join <span class="paramlist">(table, delim)</span>
 </div>
 
-- Joins a table of strings into a string.
+- Converts a list of strings into a string.
 - Parameters:
     - <span class="param">table:</span> _([table][LuaTable])_ Table to be joined.
     - <span class="param">delim:</span> _([string][LuaString])_ Character(s) to be used as

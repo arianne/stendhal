@@ -30,8 +30,7 @@ Defines functions for accessing Java system properties.
 - Checks if a property is enabed.
 - Parameters:
     - <span class="param">p:</span> _([string][LuaString])_ Property name.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if enabled.
+- Returns: _([bool][LuaBoolean])_ `true` if enabled.
 
 
 ---
@@ -44,8 +43,7 @@ Defines functions for accessing Java system properties.
 - Parameters:
     - <span class="param">p:</span> _([string][LuaString])_ Property name.
     - <span class="param">v:</span> _([string][LuaString])_ Value to compare with.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if the value of the property is the same as ___v___.
+- Returns: _([bool][LuaBoolean])_ `true` if the value of the property is the same as ___v___.
 
 
 ---
@@ -57,9 +55,10 @@ Defines functions for accessing Java system properties.
 - Retrieves the value of a property.
 - Parameters:
     - <span class="param">p:</span> _([string][LuaString])_ Property name.
-- Returns: _([string][LuaString])_
-    - Property value or [nil][LuaNil].
+- Returns: _([string][LuaString])_ Property value or [nil][LuaNil].
 
+
+---
 # Usage Examples
 
 ```lua

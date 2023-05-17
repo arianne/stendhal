@@ -46,13 +46,12 @@ public class LuaMerchantHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static MerchantHelper instance.
+	 *   Static MerchantHelper instance.
 	 */
 	public static LuaMerchantHelper get() {
 		if (instance == null) {
 			instance = new LuaMerchantHelper();
 		}
-
 		return instance;
 	}
 
@@ -66,16 +65,16 @@ public class LuaMerchantHelper {
 	/**
 	 * Adds merchant behavior to a SpeakerNPC.
 	 *
-	 * FIXME: LuaTable not working for "prices" object
-	 *
 	 * @param merchantType
-	 * 		If set to "buyer", will add buyer behavior, otherwise will be "seller".
+	 *   If set to "buyer", will add buyer behavior, otherwise will be "seller".
 	 * @param npc
-	 * 		The SpeakerNPC to add the behavior to.
+	 *   The SpeakerNPC to add the behavior to.
 	 * @param prices
-	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 *   List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
 	 * @param addOffer
-	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
+	 *   If `true`, will add default replies for "offer" (default: `true`).
+	 * @todo
+	 *   FIXME: LuaTable not working for "prices" object
 	 */
 	@SuppressWarnings("unchecked")
 	public void add(final String merchantType, final SpeakerNPC npc, final Object prices, Boolean addOffer) {
@@ -123,11 +122,11 @@ public class LuaMerchantHelper {
 	 * Adds merchant seller behavior to a SpeakerNPC.
 	 *
 	 * @param npc
-	 * 		The SpeakerNPC to add the behavior to.
+	 *   The SpeakerNPC to add the behavior to.
 	 * @param prices
-	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 *   List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
 	 * @param addOffer
-	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
+	 *   If `true`, will add default replies for "offer" (default: `true`).
 	 */
 	public void addSeller(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
 		add("seller", npc, prices, addOffer);
@@ -137,11 +136,11 @@ public class LuaMerchantHelper {
 	 * Adds merchant buyer behavior to a SpeakerNPC.
 	 *
 	 * @param npc
-	 * 		The SpeakerNPC to add the behavior to.
+	 *   The SpeakerNPC to add the behavior to.
 	 * @param prices
-	 * 		List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
+	 *   List of items & their prices (can be instance of either Map<String, Int> or LuaTable).
 	 * @param addOffer
-	 * 		If <code>true</code>, will add default replies for "offer" (default: <code>true</code>).
+	 *   If `true`, will add default replies for "offer" (default: `true`).
 	 */
 	public void addBuyer(final SpeakerNPC npc, final Object prices, final boolean addOffer) {
 		add("buyer", npc, prices, addOffer);

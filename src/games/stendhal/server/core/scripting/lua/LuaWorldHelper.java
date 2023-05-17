@@ -59,9 +59,9 @@ public class LuaWorldHelper extends ScriptingSandbox {
 	 * Sets the background music for the current zone.
 	 *
 	 * @param filename
-	 *     File basename excluding .ogg extension.
+	 *   File basename excluding .ogg extension.
 	 * @param args
-	 *     Lua table of key=value integer values. Valid keys are `volume`, `x`, `y`, & `radius`.
+	 *   Lua table of key=value integer values. Valid keys are `volume`, `x`, `y`, & `radius`.
 	 */
 	public void setMusic(final String filename, final LuaTable args) {
 		// default values
@@ -98,7 +98,7 @@ public class LuaWorldHelper extends ScriptingSandbox {
 	 * Sets the background music for the current zone.
 	 *
 	 * @param filename
-	 *     File basename excluding .ogg extension.
+	 *   File basename excluding .ogg extension.
 	 */
 	public void setMusic(final String filename) {
 		setMusic(filename, new LuaTable());
@@ -107,12 +107,12 @@ public class LuaWorldHelper extends ScriptingSandbox {
 	/**
 	 * Executes a function after a specified number of turns.
 	 *
-	 * FIXME: how to invoke with parameters
-	 *
 	 * @param turns
-	 *     Number of turns to wait.
+	 *   Number of turns to wait.
 	 * @param func
-	 *     The function to be executed.
+	 *   The function to be executed.
+	 * @todo
+	 *   FIXME: how to invoke with parameters?
 	 */
 	public void runAfter(final int turns, final LuaFunction func) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(turns, new TurnListener() {
