@@ -21,7 +21,7 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 
 /**
- * Handles some conversion of Java arrays to Lua tables.
+ * Handles some conversion between Java arrays or lists & Lua tables.
  */
 public class LuaArrayHelper {
 
@@ -35,7 +35,7 @@ public class LuaArrayHelper {
 	 * Retrieves the static instance.
 	 *
 	 * @return
-	 * 		Static ArraysHelper instance.
+	 *    Static ArraysHelper instance.
 	 */
 	public static LuaArrayHelper get() {
 		if (instance == null) {
@@ -53,12 +53,12 @@ public class LuaArrayHelper {
 	}
 
 	/**
-	 * Creates a Lua table from a Java array.
+	 * Converts a Java array or `List` to Lua table.
 	 *
 	 * @param list
-	 * 		Array containing values.
+	 *   Array containing values.
 	 * @return
-	 * 		New LuaTable.
+	 *   New LuaTable.
 	 */
 	public LuaTable toTable(final Object[] list) {
 		return toTable(Arrays.asList(list));
@@ -66,12 +66,12 @@ public class LuaArrayHelper {
 
 
 	/**
-	 * Creates a Lua table from a Java list.
+	 * Converts a Java array or `List` to Lua table.
 	 *
 	 * @param list
-	 * 		List containing values.
+	 *   List containing values.
 	 * @return
-	 * 		New LuaTable.
+	 *   New LuaTable.
 	 */
 	public LuaTable toTable(final List<Object> list) {
 		final LuaTable table = new LuaTable();
@@ -87,9 +87,11 @@ public class LuaArrayHelper {
 	 * Converts a Lua table to Java list.
 	 *
 	 * @param table
-	 * 		Table with contents to be transferred to new list.
+	 *   Table with contents to be transferred to new list.
 	 * @return
-	 * 		New <code>List<Object></code> instance.
+	 *   New `List<Object>` instance.
+	 * @todo
+	 *   FIXME: this should be in `LuaTableHelper`
 	 */
 	public List<Object> toList(final LuaTable table) {
 		final List<Object> objectList = new LinkedList<>();
@@ -124,14 +126,32 @@ public class LuaArrayHelper {
 	}
 
 	/**
-	 * Converts a Lua table to Java array.
+	 * Converts an indexed Lua table to Java array.
 	 *
 	 * @param table
-	 * 		Table with contents to be transferred to new array.
+	 *    Table with contents to be transferred to new array.
 	 * @return
-	 * 		New <code>Object[]</code> instance.
+	 *    New <code>Object[]</code> instance.
 	 */
-	public Object[] toArray(final LuaTable table) {
+	public Object[] fromTable(final LuaTable table) {
 		return toList(table).toArray();
+	}
+
+	/**
+	 * Converts an indexed Lua table to Java array.
+	 *
+	 * @param table
+	 *   Table with contents to be transferred to new array.
+	 * @return
+	 *   New <code>Object[]</code> instance.
+	 * @deprecated
+	 *   Use `LuaArrayHelper.fromTable`.
+	 */
+	@Deprecated
+	public Object[] toArray(final LuaTable table) {
+		logger.deprecated(LuaArrayHelper.class.getName() + ".toArray", LuaArrayHelper.class.getName()
+				+ ".fromTable");
+
+		return fromTable(table);
 	}
 }
