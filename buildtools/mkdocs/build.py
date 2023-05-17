@@ -55,13 +55,12 @@ if "custom_theme" in config:
   theme.logo = None
   theme_def = config["custom_theme"]
   if type(theme_def) == dict:
-    if "name" not in theme_def:
-      raise ValueError("missing 'name' value in 'custom_theme'")
-    theme.name = theme_def["name"]
-    if "logo" in theme_def:
-      theme.logo = theme_def["logo"]
+    for key in theme_def:
+      setattr(theme, key, theme_def[key])
   else:
     theme.name = theme_def
+  if theme.name == None:
+    raise ValueError("missing 'name' value in 'custom_theme'")
 
   try:
     theme._load_theme_config(theme.name)
@@ -69,9 +68,12 @@ if "custom_theme" in config:
   except KeyError:
     print("WARNING: '{}' theme unavailable, falling back to '{}'".format(theme.name,
         config.theme.name))
+  except mkdocs.config.base.ValidationError as e:
+    print("WARNING: '{}' theme validation failed ({}), falling back to '{}'".format(theme.name, e,
+        config.theme.name))
   except Exception as e:
-    print("WARNING: '{}' theme broken ({}), falling back to '{}'".format(theme.name,
-        e.__class__.__name__, config.theme.name))
+    print("WARNING: '{}' theme broken ({}: {}), falling back to '{}'".format(theme.name,
+        e.__class__.__name__, e, config.theme.name))
 
 build.build(config)
 
