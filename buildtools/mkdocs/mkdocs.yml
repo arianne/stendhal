@@ -9,3 +9,5 @@ nav:
   - Home: /
 extra_css:
   - css/objects.css
+custom_theme:
+  name: cinder

@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-import os, shutil
+import os
+import shutil
 
-from mkdocs.commands import build
+import mkdocs
+
+from mkdocs.commands    import build
 from mkdocs.config.base import load_config
 
 
@@ -43,8 +46,32 @@ if not os.path.isdir("docs"):
   os.makedirs("docs")
 
 config = load_config()
-config["site_dir"] = dir_out
-config["docs_dir"] = dir_stage
+config.site_dir = dir_out
+config.docs_dir = dir_stage
+
+# workaround to use a custom theme & fallback to default if unavailable
+if "custom_theme" in config:
+  theme = mkdocs.theme.Theme()
+  theme.logo = None
+  theme_def = config["custom_theme"]
+  if type(theme_def) == dict:
+    if "name" not in theme_def:
+      raise ValueError("missing 'name' value in 'custom_theme'")
+    theme.name = theme_def["name"]
+    if "logo" in theme_def:
+      theme.logo = theme_def["logo"]
+  else:
+    theme.name = theme_def
+
+  try:
+    theme._load_theme_config(theme.name)
+    config.theme = theme
+  except KeyError:
+    print("WARNING: '{}' theme unavailable, falling back to '{}'".format(theme.name,
+        config.theme.name))
+  except Exception as e:
+    print("WARNING: '{}' theme broken ({}), falling back to '{}'".format(theme.name,
+        e.__class__.__name__, config.theme.name))
 
 build.build(config)
 
