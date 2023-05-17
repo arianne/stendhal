@@ -39,12 +39,13 @@ The main object that handles setting zone &amp; adding entities to game.
 - Adds an object or entity instance to the current zone.
 - Parameters:
     - <span class="param">obj:</span> _([RPObject])_ Object to add.
-    - <span class="param">expire:</span> _([bool][LuaBoolean])_
-    - <span class="param">npc:</span> NPC to add.
+    - <span class="param">expire:</span> _([bool][LuaBoolean])_ `true` if the item should expire
+      according to its normal behavior, `false` otherwise.
+    - <span class="param">npc:</span> _([NPC])_ NPC to add.
     - <span class="param">creature:</span> _([Creature])_ Creature to add.
     - <span class="param">x:</span> _([int][LuaInteger])_ Horizontal position of where to add
       creature.
-    - <span class="param">y:</span> _([int](LuaInteger])_ Vertical position of where to add
+    - <span class="param">y:</span> _([int][LuaInteger])_ Vertical position of where to add
       creature.
 - Returns: _([Creature]) `game:add(creature)` only_
 
@@ -55,13 +56,35 @@ The main object that handles setting zone &amp; adding entities to game.
     game:addGameEvent <span class="paramlist">(source, event, params)</span>
 </div>
 
-- Adds a new [GameEvent].
+- Raises a new [game event][GameEvent]. Same function as [game:raiseEvent](#gameraiseevent).
 - Parameters:
     - <span class="param">source:</span> _([string][LuaString])_ Source of the event, usually a
       character.
     - <span class="param">event:</span> _([string][LuaString])_ Name of event.
     - <span class="param">params:</span>
       _([List][java.util.List]&lt;[String][java.lang.String]&gt;)_ Event parameters.
+- See: [ScriptingSandbox.addGameEvent]
+
+
+---
+## game:createEvent
+<div class="function">
+    game:createEvent <span class="paramlist">(source, event, param, ...)</span>
+</div>
+<div class="function">
+    game:createEvent <span class="paramlist">(source, event, params)</span>
+</div>
+
+- Creates a new game event.
+- Parameters:
+    - <span class="param">source:</span> _([`string`][LuaString])_ Source of the event, usually a
+      character.
+    - <span class="param">event:</span> _([`string`][LuaString])_ Name of event.
+    - <span class="param">param:</span> _([`string`][LuaString])_ Event parameter.
+    - <span class="param">params:</span> _([`table<string>`][LuaTable])_ List of event parameters.
+- Returns: New [GameEvent] instance.
+- See also:
+    - [game:raiseEvent](#gameraiseevent)
 
 
 ---
@@ -72,8 +95,8 @@ The main object that handles setting zone &amp; adding entities to game.
 
 - Retrieves a registered creature.
     - <span class="param">clazz:</span> _([string][LuaString])_ Name of the creature.
-- Returns: _([Creature])_
-    - Creature or [nil][LuaNil] if not registered.
+- Returns: [Creature] or [nil][LuaNil] if not registered.
+- See: [ScriptingSandbox.getCreature]
 
 
 ---
@@ -83,8 +106,10 @@ The main object that handles setting zone &amp; adding entities to game.
 </div>
 
 - Retrieves all registered creatures.
-- Returns: _([Creature[]][java.util.Arrays])_
-    - An array of all available creatures.
+- Returns: _([Creature[]][java.util.Arrays])_ An array of all available creatures.
+- See: [ScriptingSandbox.getCreatures]
+- TODO:
+    - __FIXME:__ should return Lua table
 
 
 ---
@@ -176,6 +201,26 @@ The main object that handles setting zone &amp; adding entities to game.
 
 
 ---
+## game:raiseEvent
+<div class="function">
+    game:raiseEvent <span class="paramlist">(source, event, param, ...)</span>
+</div>
+<div class="function">
+    game:raiseEvent <span class="paramlist">(source, event, params)</span>
+</div>
+
+- Raises a new [game event][GameEvent].
+- Parameters:
+    - <span class="param">source:</span> _([`string`][LuaString])_ Source of the event, usually a
+      character.
+    - <span class="param">event:</span> _([`string`][LuaString])_ Name of event.
+    - <span class="param">param:</span> _([`string`][LuaString])_ Event parameter.
+    - <span class="param">params:</span> _([`table<string>`][LuaTable])_ List of event parameters.
+- See also:
+    - [game:createEvent](#gamecreateevent)
+
+
+---
 ## game:remove
 <div class="function">
     game:remove <span class="paramlist">(object)</span>
@@ -200,6 +245,8 @@ The main object that handles setting zone &amp; adding entities to game.
 - Parameters:
     - <span class="param">turns:</span> _([int][LuaInteger])_ Number of turns to wait.
     - <span class="param">func:</span> _([function][LuaFunction])_ Function to be executed.
+- TODO:
+    - __FIXME:__ how to invoke with parameters?
 
 
 ---
@@ -248,6 +295,9 @@ The main object that handles setting zone &amp; adding entities to game.
 [Player]: /reference/java/games/stendhal/server/entity/player/Player.html
 [RPEntity]: /reference/java/games/stendhal/server/entity/RPEntity.html
 [RPObject]: /reference/java/marauroa/common/game/RPObject.html
+[ScriptingSandbox.addGameEvent]: /reference/java/games/stendhal/server/core/scripting/ScriptingSandbox.html#addGameEvent(java.lang.String,java.lang.String,java.util.List)
+[ScriptingSandbox.getCreature]: /reference/java/games/stendhal/server/core/scripting/ScriptingSandbox.html#getCreature(java.lang.String)
+[ScriptingSandbox.getCreatures]: /reference/java/games/stendhal/server/core/scripting/ScriptingSandbox.html#getCreatures()
 [StendhalRPWorld]: /reference/java/games/stendhal/server/core/engine/StendhalRPWorld.html
 [StendhalRPZone]: /reference/java/games/stendhal/server/core/engine/StendhalRPZone.html
 

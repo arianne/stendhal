@@ -17,6 +17,7 @@ import org.luaj.vm2.LuaInteger;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
@@ -120,5 +121,69 @@ public class LuaWorldHelper extends ScriptingSandbox {
 				func.call();
 			}
 		});
+	}
+
+	/**
+	 * Creates a new game event.
+	 *
+	 * @param source
+	 *   Source of the event, usually a character.
+	 * @param event
+	 *   Name of event.
+	 * @param params
+	 *   List of event parameters.
+	 * @return
+	 *   New `games.stendhal.server.core.engine.GameEvent` instance.
+	 */
+	public GameEvent createEvent(final String source, final String event, final String... params) {
+		return new GameEvent(source, event, params);
+	}
+
+	/**
+	 * Creates a new game event.
+	 *
+	 * @param source
+	 *   Source of the event, usually a character.
+	 * @param event
+	 *   Name of event.
+	 * @param params
+	 *   List of event parameters.
+	 * @return
+	 *   New `games.stendhal.server.core.engine.GameEvent` instance.
+	 */
+	public GameEvent createEvent(final String source, final String event, final LuaTable params) {
+		return createEvent(source, event, (String[]) LuaArrayHelper.get().fromTable(params));
+	}
+
+	/**
+	 * Executes a new game event.
+	 *
+	 * @param source
+	 *   Source of the event, usually a character.
+	 * @param event
+	 *   Name of event.
+	 * @param params
+	 *   List of event parameters.
+	 * @see
+	 *   `games.stendhal.server.core.engine.GameEvent`
+	 */
+	public void raiseEvent(final String source, final String event, final String... params) {
+		createEvent(source, event, params).raise();
+	}
+
+	/**
+	 * Executes a new game event.
+	 *
+	 * @param source
+	 *   Source of the event, usually a character.
+	 * @param event
+	 *   Name of event.
+	 * @param params
+	 *   List of event parameters.
+	 * @see
+	 *   `games.stendhal.server.core.engine.GameEvent`
+	 */
+	public void raiseEvent(final String source, final String event, final LuaTable params) {
+		createEvent(source, event, params).raise();
 	}
 }
