@@ -33,12 +33,12 @@ ShopType = luajava.bindClass("games.stendhal.server.entity.npc.shop.ShopType")
 
 --- Cleans nil values from table.
 table.clean = function(tbl)
-	local tmp = {}
-	for _, v in pairs(tbl) do
-		tmp[#tmp+1] = v
-	end
+  local tmp = {}
+  for _, v in pairs(tbl) do
+    tmp[#tmp+1] = v
+  end
 
-	return tmp
+  return tmp
 end
 
 --- Appends values of a table into another table.
@@ -48,17 +48,17 @@ end
 -- @param tbl2
 --   The table containing the new values.
 table.concat = function(tbl1, tbl2)
-	if type(tbl1) == "userdata" then
-		tbl1 = arrays:arrayToTable(tbl1)
-	end
+  if type(tbl1) == "userdata" then
+    tbl1 = arrays:arrayToTable(tbl1)
+  end
 
-	if type(tbl2) == "userdata" then
-		tbl2 = arrays:arrayToTable(tbl2)
-	end
+  if type(tbl2) == "userdata" then
+    tbl2 = arrays:arrayToTable(tbl2)
+  end
 
-	for _, v in pairs(tbl2) do
-		table.insert(tbl1, v)
-	end
+  for _, v in pairs(tbl2) do
+    table.insert(tbl1, v)
+  end
 end
 
 
@@ -73,7 +73,7 @@ end
 -- @return
 --   Copy of string with leading & trailing whitespace removed.
 function string.trim(st)
-	return (st:gsub("^%s*(.-)%s*$", "%1"))
+  return (st:gsub("^%s*(.-)%s*$", "%1"))
 end
 
 --- Remove leading whitespace from string.
@@ -85,7 +85,7 @@ end
 -- @return
 --   Copy of string with leading whitespace removed.
 function string.ltrim(st)
-	return (st:gsub("^%s*", ""))
+  return (st:gsub("^%s*", ""))
 end
 
 --- Remove trailing whitespace from string.
@@ -97,9 +97,9 @@ end
 -- @return
 --   Copy of string with trailing whitespace removed.
 function string.rtrim(st)
-	local n = #st
-	while n > 0 and st:find("^%s", n) do n = n - 1 end
-	return st:sub(1, n)
+  local n = #st
+  while n > 0 and st:find("^%s", n) do n = n - 1 end
+  return st:sub(1, n)
 end
 
 
