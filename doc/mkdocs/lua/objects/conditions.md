@@ -1,79 +1,90 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `conditions`
 
+
 ---
-### Description
+## Description
 
 For creating [`ChatCondition`][ChatCondition] instances.
 
----
-## Methods
 
 ---
-### conditions:andCondition
+# Methods
+
+
+---
+## conditions:andCondition
 <div class="function">
-    conditions:andCondition <span class="params">(conditionList)</span>
+    conditions:andCondition <span class="paramlist">(conditionList)</span>
 </div>
 <div class="function">
-    conditions:andC <span class="params">(conditionList)</span>
+    conditions:andC <span class="paramlist">(conditionList)</span>
 </div>
 
 - Creates an [`AndCondition`][AndCondition].
 - Parameters:
-    - ___conditionList:___ Lua table containing [`ChatCondition`][ChatCondition] instances.
+    - <span class="param">conditionList:</span> Lua table containing
+      [`ChatCondition`][ChatCondition] instances.
 - Returns: New `AndCondition` instance.
 
+
 ---
-### conditions:create
+## conditions:create
 <div class="function">
-    conditions:create <span class="params">(function)</span>
+    conditions:create <span class="paramlist">(function)</span>
 </div>
 <div class="function">
-    conditions:create <span class="params">(className, args)</span>
+    conditions:create <span class="paramlist">(className, args)</span>
 </div>
 
 - Creates a custom [`ChatCondition`][ChatCondition].
 - Parameters:
-    - ___function:___ [`LuaFunction`][LuaFunction] to be invoked when `ChatCondition.fire` is
-      called.
-    - ___className:___ `ChatCondition` class basename.
-    - ___args:___ `LuaTabl` of objects passed to the constructor.
+    - <span class="param">function:</span> [`LuaFunction`][LuaFunction] to be invoked when
+      `ChatCondition.fire` is called.
+    - <span class="param">className:</span> `ChatCondition` class basename.
+    - <span class="param">args:</span> `LuaTabl` of objects passed to the constructor.
 - Returns: New `ChatCondition` instance.
 
+
 ---
-### conditions:notCondition
+## conditions:notCondition
 <div class="function">
-    conditions:notCondition <span class="params">(condition)</span>
+    conditions:notCondition <span class="paramlist">(condition)</span>
 </div>
 <div class="function">
-    conditions:notC <span class="params">(condition)</span>
+    conditions:notC <span class="paramlist">(condition)</span>
 </div>
 
 - Creates a [`NotCondition`][NotCondition].
 - Parameters:
-    - ___condition:___ Can be a [`ChatCondition`][ChatCondition], [`LuaValue`][LuaValue] containing
-      a `ChatCondition` instance, a [table][LuaTable] of `ChatCondition` instances, or a
-      [`LuaFunction`][LuaFunction].
+    - <span class="param">condition:</span> Can be a [`ChatCondition`][ChatCondition],
+      [`LuaValue`][LuaValue] containing a `ChatCondition` instance, a [table][LuaTable] of
+      `ChatCondition` instances, or a [`LuaFunction`][LuaFunction].
 - Returns: New `NotCondition` instance.
 
+
 ---
-### conditions:orCondition
+## conditions:orCondition
 <div class="function">
-    conditions:orCondition <span class="params">(conditionList)</span>
+    conditions:orCondition <span class="paramlist">(conditionList)</span>
 </div>
 <div class="function">
-    conditions:orC <span class="params">(conditionList)</span>
+    conditions:orC <span class="paramlist">(conditionList)</span>
 </div>
 
 - Creates an [`OrCondition`][OrCondition].
 - Parameters:
-    - ___conditionList:___ [`LuaTable`][LuaTable] containing [`ChatCondition`][ChatCondition]
-      instances.
+    - <span class="param">conditionList:</span> [`LuaTable`][LuaTable] containing
+      [`ChatCondition`][ChatCondition] instances.
 - Returns: New `OrCondition` instance or [`nil`][LuaNil] if failed.
 
 

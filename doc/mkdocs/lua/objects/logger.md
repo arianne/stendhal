@@ -1,78 +1,91 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `logger`
 
+
 ---
-### Description
+## Description
 
 Manages logging messages in Lua via the [org.apache.log4j.Logger][log4j.Logger] class.
 
----
-## Methods
 
 ---
-### logger:info
+# Methods
+
+
+---
+## logger:info
 <div class="function">
-    logger:info <span class="params">(message)</span>
+    logger:info <span class="paramlist">(message)</span>
 </div>
 
 - Prints an information message to the console.
 - Parameters:
-    - ___message:__ ([string][LuaString])_ Text to be printed.
+    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
+
 
 ---
-### logger:warn
+## logger:warn
 <div class="function">
-    logger:warn <span class="params">(message)</span>
+    logger:warn <span class="paramlist">(message)</span>
 </div>
 
 - Prints a warning message to the console.
 - Parameters:
-    - ___message:__ ([string][LuaString])_ Text to be printed.
+    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
+
 
 ---
-### logger:error
+## logger:error
 <div class="function">
-    logger:error <span class="params">(message)</span>
+    logger:error <span class="paramlist">(message)</span>
 </div>
 
 - Prints an error message to the console.
 - Parameters:
-    - ___message:__ ([string][LuaString])_ Text to be printed.
+    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
+
 
 ---
-### logger:debug
+## logger:debug
 <div class="function">
-    logger:debug <span class="params">(message)</span>
+    logger:debug <span class="paramlist">(message)</span>
 </div>
 
 - Prints a debug message to the console.
 - Parameters:
-    - ___message:__ ([string][LuaString])_ Text to be printed.
+    - <span class="param">message:</span> _([string][LuaString])_ Text to be printed.
+
 
 ---
-### logger:deprecated
+## logger:deprecated
 <div class="function">
-    logger:deprecated <span class="params">(old)</span>
+    logger:deprecated <span class="paramlist">(old)</span>
 </div>
 <div class="function">
-    logger:deprecated <span class="params">(old, alt)</span>
+    logger:deprecated <span class="paramlist">(old, alt)</span>
 </div>
 
 - Prints a deprecation message to the console.
 - Parameters:
-    - ___old:__ ([string][LuaString])_ The deprecated object.
-    - ___alt:__ ([string][LuaString])_ Alternative object to use.
+    - <span class="param">old:</span> _([string][LuaString])_ The deprecated object.
+    - <span class="param">alt:</span> _([string][LuaString])_ Alternative object to use.
 
+
+---
 # Usage
 
-## Examples
+# Examples
 
-```
+```lua
 local zone_name = "0_semos_city"
 if game:setZone(zone_name) then
     -- do something

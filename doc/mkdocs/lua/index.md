@@ -15,7 +15,6 @@ Contents:
     - [conditions](objects/conditions.md)
     - [actions](objects/actions.md)
     - [merchants](objects/merchants.md)
-    - [grammar](objects/grammar.md)
     - [arrays](objects/arrays.md)
     - [strings](objects/strings.md)
     - [tables](objects/tables.md)

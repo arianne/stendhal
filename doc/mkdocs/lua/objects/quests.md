@@ -1,321 +1,354 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `quests`
 
+
 ---
-### Description
+## Description
 
 Adds helper functions for creating &amp; manipulating quests &amp; exposes select public methods of
-the [StendhalQuestSystem][] class.
+the [StendhalQuestSystem] class.
 
-## Methods
+# Methods
+
 
 ---
-### quests:cache
+## quests:cache
 <div class="function">
-    quests:cache <span class="params">(quest)</span>
+    quests:cache <span class="paramlist">(quest)</span>
 </div>
 
 - ___DEPRECATED:__ Call `register` directly from the quest instance._
 - Caches a quest for loading at server startup.
 - Parameters:
-    - ___quest:__ ([IQuest][])_ Quest instance to be cached.
+    - <span class="param">quest:</span> _([IQuest])_ Quest instance to be cached.
+
 
 ---
-### quests:create
+## quests:create
 <div class="function">
-    quests:create <span class="params">()</span>
+    quests:create <span class="paramlist">()</span>
 </div>
 <div class="function">
-    quests:create <span class="params">(slotName)</span>
+    quests:create <span class="paramlist">(slotName)</span>
 </div>
 <div class="function">
-    quests:create <span class="params">(slotName, name)</span>
+    quests:create <span class="paramlist">(slotName, name)</span>
 </div>
 <div class="function">
-    quests:create <span class="params">(slotName, name, desc)</span>
+    quests:create <span class="paramlist">(slotName, name, desc)</span>
 </div>
 
 - Creates a new quest.
 - Parameters:
-    - ___slotName:__ ([string][LuaString])_ Quest slot identifier.
-    - ___name:__ ([string][LuaString])_ The reader friendly name that can be shown in
-      travel log.
-    - ___desc:__ ([string][LuaString]) Quest description.
-- Returns: _([LuaQuest][])_
+    - <span class="param">slotName:</span> _([string][LuaString])_ Quest slot identifier.
+    - <span class="param">name:</span> _([string][LuaString])_ The reader friendly name that can be
+      shown in travel log.
+    - <span class="param">desc:</span> _([string][LuaString]) Quest description.
+- Returns: _([LuaQuest])_
   - New quest instance.
 
+
 ---
-### quests:createBuilder
+## quests:createBuilder
 <div class="function">
-    quests:createBuilder <span class="params">(task)</span>
+    quests:createBuilder <span class="paramlist">(task)</span>
 </div>
 
 - Creates a quest builder to pass to `quests:createManuscript`.
 - Parameters:
-    - ___task:__ ([string][LuaString])_ Quest task type. Supported are "BringItemTask" &amp;
-      "KillCreaturesTask".
-- Returns: _([QuestBuilder][])_
+    - <span class="param">task:</span> _([string][LuaString])_ Quest task type. Supported are
+      "BringItemTask" &amp; "KillCreaturesTask".
+- Returns: _([QuestBuilder])_
   - New quest builder instance.
 
+
 ---
-### quests:createManuscript
+## quests:createManuscript
 <div class="function">
-    quests:createManuscript <span class="params">(builder)</span>
+    quests:createManuscript <span class="paramlist">(builder)</span>
 </div>
 
 - Creates a new quest in manuscript format.
 - Parameters:
-    - ___builder:__ ([QuestBuilder][])_ A quest builder instance that defines quest.
-- Returns: _([QuestManuscript][])_
+    - <span class="param">builder:</span> _([QuestBuilder])_ A quest builder instance that defines
+      quest.
+- Returns: _([QuestManuscript])_
     - New quest instance.
 
+
 ---
-### quests:getCompleted
+## quests:getCompleted
 <div class="function">
-    quests:getCompleted <span class="params">(player)</span>
+    quests:getCompleted <span class="paramlist">(player)</span>
 </div>
 
 - Retrieves a list of completed quests from a player.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
 - Returns: _([List][java.util.List]&lt;[String][java.lang.String]&gt;)_
     - List of string identifiers for completed quests.
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getDescription
+## quests:getDescription
 <div class="function">
-    quests:getDescription <span class="params">(player, questName)</span>
+    quests:getDescription <span class="paramlist">(player, questName)</span>
 </div>
 
 - Retrieves the description of a quest.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___questName:__ ([string][LuaString])_ Name of the quest.
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of the quest.
 - Returns: _([string][LuaString])_
     - Description.
 
+
 ---
-### quests:getDescriptionForUnstartedInRegionFromNPCName
+## quests:getDescriptionForUnstartedInRegionFromNPCName
 <div class="function">
-    quests:getDescriptionForUnstartedInRegionFromNPCName <span class="params">(player, region, name)</span>
+    quests:getDescriptionForUnstartedInRegionFromNPCName <span class="paramlist">(player, region,
+    name)</span>
 </div>
 
 - Retrieves quest descriptions for unstarted quests in a specified region matching a specific NPC
   name.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___region:__ ([string][LuaString])_ Region to check in.
-    - ___name:__ ([string][LuaString])_ Name of NPC.
-- Returns: _([java.util.List][]<[java.lang.String][]>)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">region:</span> _([string][LuaString])_ Region to check in.
+    - <span class="param">name:</span> _([string][LuaString])_ Name of NPC.
+- Returns: _([java.util.List]<[java.lang.String]>)_
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getIncomplete
+## quests:getIncomplete
 <div class="function">
-    quests:getIncomplete <span class="params">(player, region)</span>
+    quests:getIncomplete <span class="paramlist">(player, region)</span>
 </div>
 
 - Retrieves a list of incomplete quests in a specified region.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___region:__ ([string][LuaString])_ Region name/identifier.
-- Returns: _([java.util.List][]<[java.lang.String][]>)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">region:</span> _([string][LuaString])_ Region name/identifier.
+- Returns: _([java.util.List]<[java.lang.String]>)_
     - List of string identifiers of incomplete quests in ___region___.
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getLevelWarning
+## quests:getLevelWarning
 <div class="function">
-    quests:getLevelWarning <span class="params">(player, questName)</span>
+    quests:getLevelWarning <span class="paramlist">(player, questName)</span>
 </div>
 
 - If the quest is too dangerous, add a warning unless the player has already completed it.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___questName:__ ([string][LuaString])_ Name of the quest.
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of the quest.
 - Returns: _([string][LuaString])_
 
+
 ---
-### quests:getNPCNamesForUnstartedInRegionForLevel
+## quests:getNPCNamesForUnstartedInRegionForLevel
 <div class="function">
-    quests:getNPCNamesForUnstartedInRegionForLevel <span class="params">(player, region)</span>
+    quests:getNPCNamesForUnstartedInRegionForLevel <span class="paramlist">(player, region)</span>
 </div>
 
 - Retrieves a list of the unique npc names for unstarted quests in a specified region.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___region:__ ([string][LuaString])_ Region to check in.
-- Returns: _([java.util.List][]&lt;[java.lang.String][]&gt;)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">region:</span> _([string][LuaString])_ Region to check in.
+- Returns: _([java.util.List]&lt;[java.lang.String]&gt;)_
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getOpen
+## quests:getOpen
 <div class="function">
-    quests:getOpen <span class="params">(player)</span>
+    quests:getOpen <span class="paramlist">(player)</span>
 </div>
 
 - Retrieves a list of open quests from a player.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-- Returns: _([java.util.List][]&lt;[java.lang.String][]&gt;)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+- Returns: _([java.util.List]&lt;[java.lang.String]&gt;)_
     - List of string identifiers for open quests.
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getProgressDetails
+## quests:getProgressDetails
 <div class="function">
-    quests:getProgressDetails <span class="params">(player, questeName)</span>
+    quests:getProgressDetails <span class="paramlist">(player, questeName)</span>
 </div>
 
 - Retrieves details on the progress of the quest.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-    - ___questName:__ ([string][LuaString])_ Name of the quest.
-- Returns: _([java.util.List][]&gt;[java.lang.String][]&lt;)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of the quest.
+- Returns: _([java.util.List]&gt;[java.lang.String]&lt;)_
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:getQuest
+## quests:getQuest
 <div class="function">
-    quests:getQuest <span class="params">(questName)</span>
+    quests:getQuest <span class="paramlist">(questName)</span>
 </div>
 
-- Retrieves the [IQuest][] object for a named quest.
+- Retrieves the [IQuest] object for a named quest.
 - Parameters:
-    - ___questName:__ ([string][LuaString])_ Name of quest.
-- Returns: _([IQuest][])_
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of quest.
+- Returns: _([IQuest])_
     - Quest instance or [nil][LuaNil] if doesn't exist.
 
+
 ---
-### quests:getQuestFromSlot
+## quests:getQuestFromSlot
 <div class="function">
-    quests:getQuestFromSlot <span class="params">(questSlot)</span>
+    quests:getQuestFromSlot <span class="paramlist">(questSlot)</span>
 </div>
 
-- Retrieves the [IQuest][] object for a quest.
+- Retrieves the [IQuest] object for a quest.
 - Parameters:
-    - ___questSlot:__ ([string][LuaString])_ Quest identifier string.
-- Returns: _([IQuest][])_
+    - <span class="param">questSlot:</span> _([string][LuaString])_ Quest identifier string.
+- Returns: _([IQuest])_
     - Quest instance or [nil][LuaNil] if doesn't exist.
 
+
 ---
-### quests:getRepeatable
+## quests:getRepeatable
 <div class="function">
-    quests:getRepeatable <span class="params">(player)</span>
+    quests:getRepeatable <span class="paramlist">(player)</span>
 </div>
 
 - Retrieves a list of quests a player has completed, and can now do again.
 - Parameters:
-    - ___player:__ ([Player][])_ Player instance to be checked.
-- Returns: _([java.util.List][]&gt;[java.lang.String][]&lt;)_
+    - <span class="param">player:</span> _([Player])_ Player instance to be checked.
+- Returns: _([java.util.List]&gt;[java.lang.String]&lt;)_
 - TODO:
-    - Return [LuaTable][] instead of Java list.
+    - Return [LuaTable] instead of Java list.
+
 
 ---
-### quests:isLoaded
+## quests:isLoaded
 <div class="function">
-    quests:isLoaded <span class="params">(quest)</span>
+    quests:isLoaded <span class="paramlist">(quest)</span>
 </div>
 
 - Checks if a quest has been loaded.
 - Parameters:
-    - ___quest:__ ([IQuest][])_ Quest instance to check.
+    - <span class="param">quest:</span> _([IQuest])_ Quest instance to check.
 - Returns: _([bool][LuaBoolean])_
     - `true` if the instance matches stored quests.
 
+
 ---
-### quests:list
+## quests:list
 <div class="function">
-    quests:list <span class="params">(player, questName)</span>
+    quests:list <span class="paramlist">(player, questName)</span>
 </div>
 
 - Creates a report on a specified quest for a player.
 - Parameters:
-    - ___player:__ ([Player][])_ Player to create the report for.
-    - ___questName:__ ([string][LuaString])_ Name of quest to be reported.
+    - <span class="param">player:</span> _([Player])_ Player to create the report for.
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of quest to be reported.
 - Returns: _([string][LuaString])_
     - Report.
 
+
 ---
-### quests:listAll
+## quests:listAll
 <div class="function">
-    quests:listAll <span class="params">(player)</span>
+    quests:listAll <span class="paramlist">(player)</span>
 </div>
 
 - List all quests the player knows about.
 - Parameters:
-    - ___player:__ ([Player][])_ Player to create the report for.
+    - <span class="param">player:</span> _([Player])_ Player to create the report for.
 - Returns: _([string][LuaString])_
     - Report.
 
+
 ---
-### quests:listStates
+## quests:listStates
 <div class="function">
-    quests:listStates <span class="params">(player)</span>
+    quests:listStates <span class="paramlist">(player)</span>
 </div>
 
-- Dumps the internal quest states for the specified player. This is used for the [InspectAction][].
+- Dumps the internal quest states for the specified player. This is used for the [InspectAction].
 - Parameters:
-    - ___player:__ ([Player][])_ Player to create the report for.
+    - <span class="param">player:</span> _([Player])_ Player to create the report for.
 - Returns: _([string][LuaString])_
     - Report.
 
+
 ---
-### quests:load
+## quests:load
 <div class="function">
-    quests:load <span class="params">(quest)</span>
+    quests:load <span class="paramlist">(quest)</span>
 </div>
 
 - Adds a quest to the world.
 - Parameters:
-    - ___quest:__ ([IQuest][])_ The quest instance to be loaded.
+    - <span class="param">quest:</span> _([IQuest])_ The quest instance to be loaded.
+
 
 ---
-### quests:register
+## quests:register
 <div class="function">
-    quests:register <span class="params">(quest)</span>
+    quests:register <span class="paramlist">(quest)</span>
 </div>
 
 - ___DEPRECATED:__ Call `register` directly from the quest instance._
 - Caches a quest for loading at startup. Alias for `quests:cache`.
 - Parameters:
-    - ___quest__ ([IQuest][])_ Quest instance to be cached.
+    - ___quest__ ([IQuest])_ Quest instance to be cached.
+
 
 ---
-### quests:unload
+## quests:unload
 <div class="function">
-    quests:unload <span class="params">(questName)</span>
+    quests:unload <span class="paramlist">(questName)</span>
 </div>
 
 - Removes a quest from the world.
 - Parameters:
-    - ___questName:__ ([string][LuaString])_ Name of the quest to be removed.
+    - <span class="param">questName:</span> _([string][LuaString])_ Name of the quest to be removed.
+
 
 ---
-## Classes
+# Classes
+
 
 ---
-### LuaQuest
+## LuaQuest
 
-See: [LuaQuest][]
+See: [LuaQuest]
 
----
-#### Public Members
 
 ---
-##### LuaQuest.completedCheck
+### Public Members
+
+
+---
+#### LuaQuest.completedCheck
 <div class="member">
     LuaQuest.completedCheck
 </div>
@@ -323,8 +356,9 @@ See: [LuaQuest][]
 - Called by `LuaQuest.isCompleted`.
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.formattedHistory
+#### LuaQuest.formattedHistory
 <div class="member">
     LuaQuest.formattedHistory
 </div>
@@ -332,8 +366,9 @@ See: [LuaQuest][]
 - Called by `LuaQuest.getFormattedHistory`.
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.history
+#### LuaQuest.history
 <div class="member">
     LuaQuest.history
 </div>
@@ -341,26 +376,29 @@ See: [LuaQuest][]
 - Called by `LuaQuest.getHistory`.
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.init
+#### LuaQuest.init
 <div class="member">
     LuaQuest.init
 </div>
 
-- Called by [IQuest.addToWorld](/reference/java/games/stendhal/server/maps/quests/IQuest.html#addToWorld()).
+- Called by [IQuest.addToWorld].
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.remove
+#### LuaQuest.remove
 <div class="member">
     LuaQuest.remove
 </div>
 
-- Called by [IQuest.addToWorld](/reference/java/games/stendhal/server/maps/quests/IQuest.html#removeFromWorld()).
+- Called by [IQuest.removeFromWorld].
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.repeatableCheck
+#### LuaQuest.repeatableCheck
 <div class="member">
     LuaQuest.repeatableCheck
 </div>
@@ -368,8 +406,9 @@ See: [LuaQuest][]
 - Called by `LuaQuest.isRepeatable`.
 - Type: [function][LuaFunction]
 
+
 ---
-##### LuaQuest.startedCheck
+#### LuaQuest.startedCheck
 <div class="member">
     LuaQuest.startedCheck
 </div>
@@ -377,301 +416,342 @@ See: [LuaQuest][]
 - Called by `LuaQuest.isStarted`.
 - Type: [function][LuaFunction]
 
----
-#### Public Methods
 
 ---
-##### LuaQuest:addToWorld
+### Public Methods
+
+
+---
+#### LuaQuest:addToWorld
 <div class="method">
-    LuaQuest:addToWorld <span class="params">()</span>
+    LuaQuest:addToWorld <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.addToWorld](/reference/java/games/stendhal/server/maps/quests/IQuest.html#addToWorld())
+- See [IQuest.addToWorld].
+
 
 ---
-##### LuaQuest:getFormattedHistory
+#### LuaQuest:getFormattedHistory
 <div class="method">
-    LuaQuest:getFormattedHistory <span class="params">(player)</span>
+    LuaQuest:getFormattedHistory <span class="paramlist">(player)</span>
 </div>
 
-- See [IQuest.getFormattedHistory](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getFormattedHistory(games.stendhal.server.entity.player.Player))
+- See [IQuest.getFormattedHistory].
+
 
 ---
-##### LuaQuest:getHistory
+#### LuaQuest:getHistory
 <div class="method">
-    LuaQuest:getHistory <span class="params">(player)</span>
+    LuaQuest:getHistory <span class="paramlist">(player)</span>
 </div>
 
-- See [IQuest.getHistory](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getHistory(games.stendhal.server.entity.player.Player))
+- See [IQuest.getHistory]
+
 
 ---
-##### LuaQuest:getMinLevel
+#### LuaQuest:getMinLevel
 <div class="method">
-    LuaQuest:getMinLevel <span class="params">()</span>
+    LuaQuest:getMinLevel <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.getMinLevel](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getMinLevel())
+- See [IQuest.getMinLevel]
+
 
 ---
-##### LuaQuest:getNPCName
+#### LuaQuest:getNPCName
 <div class="method">
-    LuaQuest:getNPCName <span class="params">()</span>
+    LuaQuest:getNPCName <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.getNPCName](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getNPCName())
+- See [IQuest.getNPCName]
+
 
 ---
-##### LuaQuest:getName
+#### LuaQuest:getName
 <div class="method">
-    LuaQuest:getName <span class="params">()</span>
+    LuaQuest:getName <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.getName](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getName())
+- See [IQuest.getName]
+
 
 ---
-##### LuaQuest:getOriginalName
+#### LuaQuest:getOriginalName
 <div class="method">
-    LuaQuest:getOriginalName <span class="params">()</span>
+    LuaQuest:getOriginalName <span class="paramlist">()</span>
 </div>
 
 - Retrieves unformatted quest name.
 - Returns: _([string][LuaString])_
     - Unmodified quest name string.
 
----
-##### LuaQuest:getRegion
-<div class="method">
-    LuaQuest:getRegion <span class="params">()</span>
-</div>
-
-- See [IQuest.getRegion](/reference/java/games/stendhal/server/maps/quests/IQuest.html#getRegion())
 
 ---
-##### LuaQuest:getSlotName
+#### LuaQuest:getRegion
 <div class="method">
-    LuaQuest:getSlotName <span class="params">()</span>
+    LuaQuest:getRegion <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.getSlotName](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#getSlotName())
+- See [IQuest.getRegion]
+
 
 ---
-##### LuaQuest:isCompleted
+#### LuaQuest:getSlotName
 <div class="method">
-    LuaQuest:isCompleted <span class="params">(player)</span>
+    LuaQuest:getSlotName <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.isCompleted](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#isCompleted(games.stendhal.server.entity.player.Player))
+- See [IQuest.getSlotName]
+
 
 ---
-##### LuaQuest:isRepeatable
+#### LuaQuest:isCompleted
 <div class="method">
-    LuaQuest:isRepeatable <span class="params">()</span>
+    LuaQuest:isCompleted <span class="paramlist">(player)</span>
 </div>
 
-- See [IQuest.isRepeatable](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#isRepeatable(games.stendhal.server.entity.player.Player))
+- See [IQuest.isCompleted]
+
 
 ---
-##### LuaQuest:isStarted
+#### LuaQuest:isRepeatable
 <div class="method">
-    LuaQuest:isStarted <span class="params">(player)</span>
+    LuaQuest:isRepeatable <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.isStarted](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#isStarted(games.stendhal.server.entity.player.Player))
+- See [IQuest.isRepeatable]
+
 
 ---
-##### LuaQuest:isVisibleOnQuestStatus
+#### LuaQuest:isStarted
 <div class="method">
-    LuaQuest:isVisibleOnQuestStatus <span class="params">()</span>
+    LuaQuest:isStarted <span class="paramlist">(player)</span>
 </div>
 
-- See [IQuest.isVisibleOnQuestStatus](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#isVisibleOnQuestStatus())
+- See [IQuest.isStarted]
+
 
 ---
-##### LuaQuest:register
+#### LuaQuest:isVisibleOnQuestStatus
 <div class="method">
-    LuaQuest:register <span class="params">()</span>
+    LuaQuest:isVisibleOnQuestStatus <span class="paramlist">()</span>
+</div>
+
+- See [IQuest.isVisibleOnQuestStatus]
+
+
+---
+#### LuaQuest:register
+<div class="method">
+    LuaQuest:register <span class="paramlist">()</span>
 </div>
 <div class="method">
-    LuaQuest:register <span class="params">(func)</span>
+    LuaQuest:register <span class="paramlist">(func)</span>
 </div>
 
 - Registers quest to be added to world at server startup. `LuaQuest.init` must be set before this is
   called.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to execute when `quests:loadQuest` is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to execute when
+      `quests:loadQuest` is called.
+
 
 ---
-##### LuaQuest:removeFromWorld
+#### LuaQuest:removeFromWorld
 <div class="method">
-    LuaQuest:removeFromWorld <span class="params">()</span>
+    LuaQuest:removeFromWorld <span class="paramlist">()</span>
 </div>
 
-- See [IQuest.removeFromWorld](http://stendhal.localhost/reference/java/games/stendhal/server/maps/quests/IQuest.html#removeFromWorld())
+- See [IQuest.removeFromWorld]
+
 
 ---
-##### LuaQuest:setAddFunction
+#### LuaQuest:setAddFunction
 <div class="method">
-    LuaQuest:setAddFunction <span class="params">(func)</span>
+    LuaQuest:setAddFunction <span class="paramlist">(func)</span>
 </div>
 
 - ___DEPRECATED:__ Set `LuaQuest.init` directly._
 - Sets the function for adding the quest to the game.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.addToWorld` is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.addToWorld` is called.
+
 
 ---
-##### LuaQuest:setCompletedCheckFunction
+#### LuaQuest:setCompletedCheckFunction
 <div class="method">
-    LuaQuest:setCompletedCheckFunction <span class="params">(func)</span>
+    LuaQuest:setCompletedCheckFunction <span class="paramlist">(func)</span>
 </div>
 
 - Sets the function for checking if the quest is started.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.isCompleted` is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.isCompleted` is called.
+
 
 ---
-##### LuaQuest:setDescription
+#### LuaQuest:setDescription
 <div class="method">
-    LuaQuest:setDescription <span class="params">(desc)</span>
+    LuaQuest:setDescription <span class="paramlist">(desc)</span>
 </div>
 
 - Sets the quest description string.
 - Parameters:
-    - ___desc:__ ([string][LuaString])_ Quest description string.
+    - <span class="param">desc:</span> _([string][LuaString])_ Quest description string.
+
 
 ---
-##### LuaQuest:setFormattedHistoryFunction
+#### LuaQuest:setFormattedHistoryFunction
 <div class="method">
-    LuaQuest:setFormattedHistoryFunction <span class="params">(func)</span>
+    LuaQuest:setFormattedHistoryFunction <span class="paramlist">(func)</span>
 </div>
 
 - Sets the function for retrieving formatted history of quest state.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.getFormattedHistory`
-      is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.getFormattedHistory` is called.
+
 
 ---
-##### LuaQuest:setHistoryFunction
+#### LuaQuest:setHistoryFunction
 <div class="method">
-    LuaQuest:setHistoryFunction <span class="params">(func)</span>
+    LuaQuest:setHistoryFunction <span class="paramlist">(func)</span>
 </div>
 
 - Sets the function for retrieving history of quest state.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.getHistory` is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.getHistory` is called.
+
 
 ---
-##### LuaQuest:setMinLevel
+#### LuaQuest:setMinLevel
 <div class="method">
-    LuaQuest:setMinLevel <span class="params">(level)</span>
+    LuaQuest:setMinLevel <span class="paramlist">(level)</span>
 </div>
 
 - Sets the recommended minimum level.
 - Parameters:
-    - ___level:__ ([int][LuaInteger])_ Level to return when `LuaQuest.getMinLevel` is called.
+    - <span class="param">level:</span> _([int][LuaInteger])_ Level to return when
+      `LuaQuest.getMinLevel` is called.
+
 
 ---
-##### LuaQuest:setNPCName
+#### LuaQuest:setNPCName
 <div class="method">
-    LuaQuest:setNPCName <span class="params">(name)</span>
+    LuaQuest:setNPCName <span class="paramlist">(name)</span>
 </div>
 
 - Sets the NPC name.
 - Parameters:
-    - ___name:__ ([string][LuaString])_ NPC name to return when `LuaQuest.getNPCName` is called.
+    - <span class="param">name:</span> _([string][LuaString])_ NPC name to return when
+      `LuaQuest.getNPCName` is called.
+
 
 ---
-##### LuaQuest:setName
+#### LuaQuest:setName
 <div class="method">
-    LuaQuest:setName <span class="params">(name)</span>
+    LuaQuest:setName <span class="paramlist">(name)</span>
 </div>
 
 - Sets the quest name string.
 - Parameters:
-    - ___name:__ ([string][LuaString])_ Quest name string to be returned when `LuaQuest.getName` is
-      called.
+    - <span class="param">name:</span> _([string][LuaString])_ Quest name string to be returned when
+      `LuaQuest.getName` is called.
+
 
 ---
-##### LuaQuest:setRegion
+#### LuaQuest:setRegion
 <div class="method">
-    LuaQuest:setRegion <span class="params">(region)</span>
+    LuaQuest:setRegion <span class="paramlist">(region)</span>
 </div>
 
 - Sets the quest region.
 - Parameters:
-    - ___region:__ ([string][LuaString])_ Region string to be returned when `LuaQuest.getRegion` is
-      called.
+    - <span class="param">region:</span> _([string][LuaString])_ Region string to be returned when
+      `LuaQuest.getRegion` is called.
+
 
 ---
-##### LuaQuest:setRemoveFunction
+#### LuaQuest:setRemoveFunction
 <div class="method">
-    LuaQuest:setRemoveFunction <span class="params">(func)</span>
+    LuaQuest:setRemoveFunction <span class="paramlist">(func)</span>
 </div>
 
 - ___DEPRECATED:__ Set `LuaQuest.remove` directly._
 - Sets the function for removing the quest from the game.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.removeFromWorld` is
-      called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.removeFromWorld` is called.
+
 
 ---
-##### LuaQuest:setRepeatable
+#### LuaQuest:setRepeatable
 <div class="method">
-    LuaQuest:setRepeatable <span class="params">()</span>
+    LuaQuest:setRepeatable <span class="paramlist">()</span>
 </div>
 
 - Sets the repeatable status of the quest (overrides `LuaQuest.setCompletedCheckFunction`).
 - Parameters:
-    - ___repeatable:__ ([bool][LuaBoolean])_ If `true`, the quest is repeatable.
+    - <span class="param">repeatable:</span> _([bool][LuaBoolean])_ If `true`, the quest is
+      repeatable.
+
 
 ---
-##### LuaQuest:setRepeatableCheckFunction
+#### LuaQuest:setRepeatableCheckFunction
 <div class="method">
-    LuaQuest:setRepeatableCheckFunction <span class="params">(func)</span>
+    LuaQuest:setRepeatableCheckFunction <span class="paramlist">(func)</span>
 </div>
 
 - Sets the function for checking if the quest is repeatable.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.isRepeatable` is
-      called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.isRepeatable` is called.
+
 
 ---
-##### LuaQuest:setSlotName
+#### LuaQuest:setSlotName
 <div class="method">
-    LuaQuest:setSlotName <span class="params">(slot)</span>
+    LuaQuest:setSlotName <span class="paramlist">(slot)</span>
 </div>
 
 - Sets the quest identifier string.
 - Parameters:
-    - ___slot:__ ([string][LuaString])_ Slot identifier string to be returned when
-      `LuaQuest.getSlotName` is called.
+    - <span class="param">slot:</span> _([string][LuaString])_ Slot identifier string to be returned
+      when `LuaQuest.getSlotName` is called.
+
 
 ---
-##### LuaQuest:setStartedCheckFunction
+#### LuaQuest:setStartedCheckFunction
 <div class="method">
-    LuaQuest:setStartedCheckFunction <span class="params">(func)</span>
+    LuaQuest:setStartedCheckFunction <span class="paramlist">(func)</span>
 </div>
 
 - Sets the function for checking if the quest is started.
 - Parameters:
-    - ___func:__ ([function][LuaFunction])_ Function to invoke when `LuaQuest.isStarted` is called.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to invoke when
+      `LuaQuest.isStarted` is called.
+
 
 ---
-##### LuaQuest:setVisibleOnQuestStatus
+#### LuaQuest:setVisibleOnQuestStatus
 <div class="method">
-    LuaQuest:setVisibleOnQuestStatus <span class="params">(visible)</span>
+    LuaQuest:setVisibleOnQuestStatus <span class="paramlist">(visible)</span>
 </div>
 
 - Sets whether or not the quest should be shown in the travel log.
 - Parameters:
-    - ___visible:__ ([bool][LuaBoolean])_ If `true`, quest will be displayed in travel log.
+    - <span class="param">visible:</span> _([bool][LuaBoolean])_ If `true`, quest will be displayed
+      in travel log.
+
 
 ---
-## Usage Examples
+# Usage Examples
 
 Standard quest example:
 
-```
+```lua
 local loadStep1 = function()
     ...
 end
@@ -689,9 +769,9 @@ end
 quests:register(myQuest)
 ```
 
-Example of [CoalForHaunchy][] quest manuscript converted to Lua:
+Example of [CoalForHaunchy] quest manuscript converted to Lua:
 
-```
+```lua
 local itemBuilder = quests:createBuilder("BringItemTask")
 
 itemBuilder:info()
@@ -750,6 +830,19 @@ quests:register(quests:createManuscript(itemBuilder))
 
 [InspectAction]: /reference/java/games/stendhal/server/actions/admin/InspectAction.html
 [IQuest]: /reference/java/games/stendhal/server/maps/quests/IQuest.html
+[IQuest.addToWorld]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#addToWorld()
+[IQuest.getFormattedHistory]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getFormattedHistory(games.stendhal.server.entity.player.Player)
+[IQuest.getHistory]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getHistory(games.stendhal.server.entity.player.Player)
+[IQuest.getMinLevel]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getMinLevel()
+[IQuest.getName]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getName()
+[IQuest.getNPCName]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getNPCName()
+[IQuest.getRegion]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getRegion()
+[IQuest.getSlotName]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#getSlotName()
+[IQuest.isCompleted]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#isCompleted(games.stendhal.server.entity.player.Player)
+[IQuest.isRepeatable]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#isRepeatable(games.stendhal.server.entity.player.Player)
+[IQuest.isStarted]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#isStarted(games.stendhal.server.entity.player.Player)
+[IQuest.isVisibleOnQuestStatus]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#isVisibleOnQuestStatus()
+[IQuest.removeFromWorld]: /reference/java/games/stendhal/server/maps/quests/IQuest.html#removeFromWorld()
 [LuaQuest]: /reference/java/games/stendhal/server/core/scripting/lua/LuaQuestHelper.LuaQuest.html
 [Player]: /reference/java/games/stendhal/server/entity/player/Player.html
 [QuestBuilder]: /reference/java/games/stendhal/server/entity/npc/quest/QuestBuilder.html

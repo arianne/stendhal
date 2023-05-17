@@ -1,65 +1,76 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Table Manipulation
+# Table Manipulation
 
 Object instance: `table`
 
+
 ---
-### Description
+## Description
 
 The following methods have been added to the built-in Lua
 [table library](https://www.lua.org/manual/5.3/manual.html#6.6).
 
-## Methods
+# Methods
+
 
 ---
-### table.clean
+## table.clean
 <div class="function">
-    table.clean <span class="params">(tbl)</span>
+    table.clean <span class="paramlist">(tbl)</span>
 </div>
 
 - Removes [nil][LuaNil] values from a table.
 - Parameters:
-    - ___tbl:__ ([table][LuaTable])_ The table to be cleaned.
+    - <span class="param">tbl:</span> _([table][LuaTable])_ The table to be cleaned.
 - Returns: _([table][LuaTable])_
     - Copy of ___tbl___ with `nil` values removed.
 
+
 ---
-### table.concat
+## table.concat
 <div class="function">
-    table.concat <span class="params">(tbl1, tbl2)</span>
+    table.concat <span class="paramlist">(tbl1, tbl2)</span>
 </div>
 
 - Merges the contents of one table into another.
 - Parameters:
-    - ___tbl1:__ ([table][LuaTable])_ The table receiving the new content.
-    - ___tbl2:__ ([table][LuaTable])_ The table containing the content to be copied.
+    - <span class="param">tbl1:</span> _([table][LuaTable])_ The table receiving the new content.
+    - <span class="param">tbl2:</span> _([table][LuaTable])_ The table containing the content to be
+      copied.
+
 
 ---
-### table.contains
+## table.contains
 <div class="function">
-    table.contains <span class="params">(table, o)</span>
+    table.contains <span class="paramlist">(table, o)</span>
 </div>
 
 - Checks if a table contains a value.
 - Parameters:
-    - ___table:__ ([table][LuaTable])_ Table to be checked.
-    - ___obj:__ ([Object][java.lang.Object])_ The object to check for.
+    - <span class="param">table:</span> _([table][LuaTable])_ Table to be checked.
+    - <span class="param">obj:</span> _([Object][java.lang.Object])_ The object to check for.
 - Returns: _([bool][LuaBoolean])_
     - `true` if ___obj___ is in ___table___.
 
+
 ---
-### table.join
+## table.join
 <div class="function">
-    table.join <span class="params">(table, delim)</span>
+    table.join <span class="paramlist">(table, delim)</span>
 </div>
 
 - Joins a table of strings into a string.
 - Parameters:
-    - ___table:__ ([table][LuaTable])_ Table to be joined.
-    - ___delim:__ ([string][LuaString]) Character(s) to be used as separator.
+    - <span class="param">table:</span> _([table][LuaTable])_ Table to be joined.
+    - <span class="param">delim:</span> _([string][LuaString])_ Character(s) to be used as
+      separator.
 - Returns: ([string][LuaString])
     - The resulting string.
 

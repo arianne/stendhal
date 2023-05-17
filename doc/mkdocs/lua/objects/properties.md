@@ -1,59 +1,68 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `properties`
 
+
 ---
-### Description
+## Description
 
 Defines functions for accessing Java system properties.
 
----
-## Methods
 
 ---
-### poperties:enabled
+# Methods
+
+
+---
+## poperties:enabled
 <div class="function">
-    properties:enabled <span class="params">(p)</span>
+    properties:enabled <span class="paramlist">(p)</span>
 </div>
 
 - Checks if a property is enabed.
 - Parameters:
-    - ___p:__ ([string][LuaString])_ Property name.
+    - <span class="param">p:</span> _([string][LuaString])_ Property name.
 - Returns: _([bool][LuaBoolean])_
     - `true` if enabled.
 
+
 ---
-### poperties:equals
+## poperties:equals
 <div class="function">
-    properties:equals <span class="params">(p, v)</span>
+    properties:equals <span class="paramlist">(p, v)</span>
 </div>
 
 - Checks if a property is set to a specified value.
 - Parameters:
-    - ___p:__ ([string][LuaString])_ Property name.
-    - ___v:__ ([string][LuaString])_ Value to compare with.
+    - <span class="param">p:</span> _([string][LuaString])_ Property name.
+    - <span class="param">v:</span> _([string][LuaString])_ Value to compare with.
 - Returns: _([bool][LuaBoolean])_
     - `true` if the value of the property is the same as ___v___.
 
+
 ---
-### poperties:getValue
+## poperties:getValue
 <div class="function">
-    properties:getValue <span class="params">(p)</span>
+    properties:getValue <span class="paramlist">(p)</span>
 </div>
 
 - Retrieves the value of a property.
 - Parameters:
-    - ___p:__ ([string][LuaString])_ Property name.
+    - <span class="param">p:</span> _([string][LuaString])_ Property name.
 - Returns: _([string][LuaString])_
     - Property value or [nil][LuaNil].
 
-## Usage Examples
+# Usage Examples
 
-```
+```lua
 -- example of only executing script contents on test server
 
 if not properties:enabed("stendhal.testserver") then

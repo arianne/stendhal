@@ -1,51 +1,60 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `arrays`
 
+
 ---
-### Description
+## Description
 
 Handles some conversion of Java [arrays][java.util.Arrays] &amp; [lists][java.util.List] to
 [Lua tables][LuaTable].
 
----
-## Methods
 
 ---
-### arrays:toArray
+# Methods
+
+
+---
+## arrays:toArray
 <div class="function">
-    arrays:toArray <span class="params">(table)</span>
+    arrays:toArray <span class="paramlist">(table)</span>
 </div>
 
 - Converts a [`LuaTable`][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
-    - ___table:___ `LuaTable` with contents to be transferred to new array.
+    - <span class="param">table:</span> `LuaTable` with contents to be transferred to new array.
 - Returns: New `Object[]` instance.
 
+
 ---
-### arrays:toList
+## arrays:toList
 <div class="function">
-    arrays:toList <span class="params">(table)</span>
+    arrays:toList <span class="paramlist">(table)</span>
 </div>
 
 - Converts a [`LuaTable`][LuaTable] to Java [`List`][java.util.List].
 - Parameters:
-    - ___table:___ `LuaTable` with contents to be transferred to new list.
+    - <span class="param">table:</span> `LuaTable` with contents to be transferred to new list.
 - Returns: New `List<Object>` instance.
 
+
 ---
-### arrays:toTable
+## arrays:toTable
 <div class="function">
-    arrays:toTable <span class="params">(list)</span>
+    arrays:toTable <span class="paramlist">(list)</span>
 </div>
 
 - Converts a Java [array][java.util.Arrays] or [`List`][java.util.List] to a [`LuaTable`][LuaTable].
 - Parameters:
-    - ___list:___ Java array or `List`.
+    - <span class="param">list:</span> Java array or `List`.
 - Returns: New `LuaTable` with contents of ___list___ added.
 
 

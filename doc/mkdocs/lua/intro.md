@@ -1,24 +1,36 @@
 
-Introduction
-============
+<h1>Introduction to Lua</h1>
+
+
+---
+# Contents
 
 [TOC]
 
+
+---
+# About
+
 <span style="color: red; font-style: italic;">this page is a work-in progress</span>
 
-Stendhal supports [Lua scripting](https://www.lua.org/) via the [LuaJ library](https://sourceforge.net/projects/luaj/).
+Stendhal supports [Lua scripting](https://www.lua.org/) via the
+[LuaJ library](https://sourceforge.net/projects/luaj/).
 
-Lua scripts end in the `.lua` extension & are stored in the `data/script` directory.
+Lua scripts end with the `.lua` extension &amp; are stored in the `data/script` directory.
 
+
+---
 # Lua Basics
 
 For more detailed information, see the [Lua reference manual](https://www.lua.org/docs.html).
 
+
 ## Comments
 
-Lua uses double dashes (`--`) for single line comments & double dashes followed by double square brackets (`[[`) & closed with double square brackets (`]]`) for multi-line comments:
+Lua uses double dashes (`--`) for single line comments &amp; double dashes followed by double square
+brackets (`[[`) &amp; closed with double square brackets (`]]`) for multi-line comments:
 
-```
+```lua
 -- a single line comment
 
 --[[
@@ -26,11 +38,14 @@ a multi-line comment
 ]]
 ```
 
+
 ## Variables
 
-By default, Lua variables are set in [**global** scope](https://en.wikipedia.org/wiki/Global_variable) (meaning it is exposed to the entire Lua engine). To create a variable in [**local** scope](https://en.wikipedia.org/wiki/Local_variable), the `local` keyword must be used:
+By default, variables are set in [__global__ scope](https://en.wikipedia.org/wiki/Global_variable)
+(meaning it is exposed to the entire Lua engine). To create a variable in
+[__local__ scope](https://en.wikipedia.org/wiki/Local_variable), the `local` keyword must be used:
 
-```
+```lua
 -- a global variable
 var1 = "Hello world!"
 
@@ -38,12 +53,15 @@ var1 = "Hello world!"
 local var2 = "Hello world!"
 ```
 
+
 ## Data Types
 
-Some common data types in Lua are *string*, *integer*, *boolean*, & *table*. Type names do not need to be declared when setting variables.
+Some common data types in Lua are _string_, _integer_, _boolean_, &amp; _table_. Type names do not
+need to be declared when setting variables.
 
 Examples:
-```
+
+```lua
 -- string variable
 local var1 = "Hello world!"
 
@@ -57,14 +75,17 @@ local var3 = true
 local var4 = {}
 ```
 
+
 ### Strings
 
 #### String Concatenation
 
-String concatenation is simple, much like Java uses a plus operator (`+`) to join strings, Lua uses two periods (`..`).
+String concatenation is simple, much like Java uses a plus operator (`+`) to join strings, Lua uses
+two periods (`..`).
 
 Example:
-```
+
+```lua
 -- create a string variable
 local var = "Hello"
 
@@ -74,21 +95,26 @@ var = var .. " world!"
 print(var) -- prints "Hello world!"
 ```
 
+
 ### Tables
 
-A Lua table is a data type similar to a Java list or map. Tables can be indexed or use key=value pairs.
+A Lua table is a data type similar to a Java list or map. Tables can be indexed or use key=value
+pairs.
 
-(<span style="color:red; font-style:italic;">IMPORTANT NOTE: Lua table indexes begin at 1, not 0</span>)
+_(<span style="color:red;">__IMPORTANT NOTE:__ Lua table indexes begin at 1, not 0</span>)_
+
 
 #### Creating Tables
 
 An empty table is initialized with a pair of curly braces (`{}`):
-```
+
+```lua
 local mytable = {}
 ```
 
 You can add values to indexed tables at initialization or with the `table.insert` method:
-```
+
+```lua
 -- create a table with values
 local mytable = {"foo"}
 
@@ -97,28 +123,34 @@ table.insert(mytable, "bar")
 ```
 
 To create a key=value table, any of the following methods can be used to add values:
-```
+
+```lua
 -- all of these do the same thing, that is, assigning "bar" to mytable.foo
 local mytable {
-	foo = "bar",
-	["foo"] = "bar",
+    foo = "bar",
+    ["foo"] = "bar",
 }
 mytable.foo = "bar"
 mytable["foo"] = "bar"
 ```
 
+
 #### Accessing Table Values
 
-Square brackets (`[]`) enclosing an index number are used to access values in indexed tables (*remember that Lua table indexes start at "1" not "0"*):
-```
+Square brackets (`[]`) enclosing an index number are used to access values in indexed tables
+(_remember that Lua table indexes start at "1" not "0"_):
+
+```lua
 local mytable = {"foo", "bar"}
 
 print(mytable[1]) -- prints "foo"
 print(mytable[2]) -- prints "bar"
 ```
 
-In a key=value table, values can be accessed by either enclosing the key string in square brackets or concatenating the key member using a `.`:
-```
+In a key=value table, values can be accessed by either enclosing the key string in square brackets
+or concatenating the key member using a `.`:
+
+```lua
 local mytable = {foo="bar"}
 
 -- using square brackets
@@ -128,25 +160,29 @@ print(mytable["foo"]) -- prints "bar"
 print(mytable.foo) -- prints "bar"
 ```
 
+
 #### Iterating Tables
 
-Tables can be iterated in a `for` loop using the `pairs` or `ipairs` iterators. Loops are terminated with the `end` keyword:
-```
+Tables can be iterated in a `for` loop using the `pairs` or `ipairs` iterators. Loops are terminated
+with the `end` keyword:
+
+```lua
 local mytable = {"foo", "bar"}
 
 print("indexes:")
 for idx in pairs(mytable) do
-	print(idx)
+    print(idx)
 end
 
 print("\nvalues:")
 for idx, value in pairs(mytable) do
-	print(value)
+    print(value)
 end
 ```
 
 Output:
-```
+
+```lua
 indexes:
 1
 2
@@ -157,25 +193,27 @@ bar
 ```
 
 Using a key=value table:
-```
+
+```lua
 local mytable = {
-	["foo"] = "hello",
-	["bar"] = " world!",
+    ["foo"] = "hello",
+    ["bar"] = " world!",
 }
 
 print("keys:")
 for key in pairs(mytable) do
-	print(key)
+    print(key)
 end
 
 print("\nvalues:")
 for key, value in pairs(mytable) do
-	print(value)
+    print(value)
 end
 ```
 
 Output:
-```
+
+```lua
 keys:
 foo
 bar
@@ -187,51 +225,59 @@ hello
 
 See also: [Lua Tables Tutorial](http://lua-users.org/wiki/TablesTutorial)
 
+
 ### Functions
 
-Like normal variables, functions can be declared as **global** or **local** & must be terminated with the `end` keyword.
+Like normal variables, functions can be declared as __global__ or __local__ &amp; must be terminated
+with the `end` keyword.
 
 There are two ways to define functions with the `function` keyword:
-```
+
+```lua
 local function myFunction()
-	print("Hello world!")
+    print("Hello world!")
 end
 ```
 
 or
-```
+
+```lua
 local myFunction = function()
-	print("Hello world!")
+    print("Hello world!")
 end
 ```
 
 Functions can also be members of a table:
-```
+
+```lua
 local myTable = {}
 function myTable.myFunction()
-	print("Hello world!")
+    print("Hello world!")
 end
 ```
 
 or
-```
+
+```lua
 local myTable = {}
 myTable.myFunction = function()
-	print("Hello world!")
+    print("Hello world!")
 end
 ```
 
 or
-```
+
+```lua
 local myTable = {
-	myFunction = function()
-		print("Hello world!")
-	end,
+    myFunction = function()
+        print("Hello world!")
+    end,
 }
 
 -- execute with
 myTable.myFunction()
 ```
+
 
 ## Comparison Operators
 
@@ -239,9 +285,10 @@ myTable.myFunction()
 
 | Operator | Description        | Java Equivalent |
 | -------- | ------------------ | --------------- |
-| and      | logical *and*      | &amp;&amp;      |
-| or       | logical *or*       | \|\|            |
-| not      | logical *inverse*  | !               |
+| and      | logical _and_      | &amp;&amp;      |
+| or       | logical _or_       | \|\|            |
+| not      | logical _inverse_  | !               |
+
 
 ### Relational Operators
 
@@ -254,269 +301,307 @@ myTable.myFunction()
 | ==       | equal to                 | ==              |
 | ~=       | not equal to             | !=              |
 
+
+---
 # Stendhal Application
 
 ## Zones
 
 ### Setting Zone
 
-To set the zone to work with, use the `game` object:
+To set a zone to work with, use [game:setZone] object:
 
-```
+```lua
 game:setZone("0_semos_city")
 ```
 
+
 ### Create New Zone
 
-It is recommended to create new zones in the XML configurations in [data/conf/zones](https://github.com/arianne/stendhal/blob/master/data/conf/zones).
+It is recommended to create new zones in the XML configurations in
+[data/conf/zones](https://github.com/arianne/stendhal/blob/master/data/conf/zones).
 
 Currently creating new zones via Lua is not supported.
 
+
 ### Add Zone Music
 
-Music can be added to zones with the `game:setMusic` function. It supports the following arguments:
-* <span style="color:darkgreen; font-style:italic;">filename:</span> Basename of the OGG audio file to use stored in [data/music](https://github.com/arianne/stendhal/blob/master/data/music).
-* <span style="color:darkgreen; font-style:italic;">args:</span> A table of key=value integers.
-* Valid keys:
-  * <span style="color:darkblue; font-style:italic;">volume:</span> Volume level (default: 100).
-  * <span style="color:darkblue; font-style:italic;">x:</span> The horizontal point for the source of the music (default: 1).
-  * <span style="color:darkblue; font-style:italic;">y:</span> The vertical point for the source of the music (default: 1).
-  * <span style="color:darkblue; font-style:italic;">radius:</span> The radial range at which the music can be heard (default: 10000).
+Music can be added to zones with the [game:setMusic] function. It supports the following arguments:
+
+- <span class="param">filename:</span> Basename of the OGG audio file to use stored in
+  [data/music](https://github.com/arianne/stendhal/blob/master/data/music).
+- <span class="param">args:</span> A table of key=value integers.
+- Valid keys:
+    - <span class="table-attr">volume:</span> Volume level (default: 100).
+    - <span class="table-attr">x:</span> The horizontal point for the source of the music (default:
+      1).
+    - <span class="table-attr">y:</span> The vertical point for the source of the music (default:
+      1).
+    - <span class="table-attr">radius:</span> The radial range at which the music can be heard
+      (default: 10000).
 
 Example:
-```
+
+```lua
 if game:setZone("0_semos_plains_n") then
-	game:setMusic("pleasant_creek_loop", {volume=85, radius=100})
+    game:setMusic("pleasant_creek_loop", {volume=85, radius=100})
 end
 ```
+
 
 ## Adding Entities
 
 ### Signs
 
-Signs can be created with `entities:createSign` and `entities:createShopSign`:
+Signs can be created with [entities:createSign] and [entities:createShopSign]:
 
-```
+```lua
 local zone = "0_semos_city"
 if game:setZone(zone) then
-	-- create the sign instance
-	local sign = entities:createSign()
-	sign:setEntityClass("signpost")
-	sign:setPosition(12, 55)
-	sign:setText("Meet Lua!")
+    -- create the sign instance
+    local sign = entities:createSign()
+    sign:setEntityClass("signpost")
+    sign:setPosition(12, 55)
+    sign:setText("Meet Lua!")
 
-	-- Add it to the world
-	game:add(sign)
+    -- Add it to the world
+    game:add(sign)
 else
-	logger:error("Could not set zone: " .. zone)
+    logger:error("Could not set zone: " .. zone)
 end
 ```
+
 
 ### NPCs
 
-Use the `entities:createSpeakerNPC` method to create an interactive NPC:
+Use the [entities:createSpeakerNPC] method to create an interactive NPC:
 
-```
+```lua
 local zone = "0_semos_city"
 if game:setZone(zone) then
-	-- Use helper object to create a new NPC
-	local npc = entities:createSpeakerNPC("Lua")
-	npc:setEntityClass("littlegirlnpc")
-	npc:setPosition(10, 55)
-	npc:setBaseSpeed(0.1)
-	npc:setCollisionAction(CollisionAction.STOP)
+    -- Use helper object to create a new NPC
+    local npc = entities:createSpeakerNPC("Lua")
+    npc:setEntityClass("littlegirlnpc")
+    npc:setPosition(10, 55)
+    npc:setBaseSpeed(0.1)
+    npc:setCollisionAction(CollisionAction.STOP)
 
-	local nodes = {
-		{10, 55},
-		{11, 55},
-		{11, 56},
-		{10, 56},
-	}
+    local nodes = {
+        {10, 55},
+        {11, 55},
+        {11, 56},
+        {10, 56},
+    }
 
-	npc:setPath(nodes)
+    npc:setPath(nodes)
 
-	-- Dialogue
-	npc:addJob("Actually, I am jobless.")
-	npc:addGoodbye();
+    -- Dialogue
+    npc:addJob("Actually, I am jobless.")
+    npc:addGoodbye();
 
-	-- Add to the world
-	game:add(npc)
+    -- Add to the world
+    game:add(npc)
 else
-	logger:error("Could not set zone: " .. zone)
+    logger:error("Could not set zone: " .. zone)
 end
 ```
+
 
 #### Adding Transitions
 
 A simple example of adding a chat transition can be done without any special functionality:
-```
+
+```lua
 local frank = entities:createSpeakerNPC("Frank")
 frank:add(ConversationStates.IDLE,
-	ConversationPhrases.GREETING_MESSAGES,
-	nil,
-	ConversationStates.ATTENDING,
-	"Hello.",
-	nil)
+    ConversationPhrases.GREETING_MESSAGES,
+    nil,
+    ConversationStates.ATTENDING,
+    "Hello.",
+    nil)
 ```
 
-This simply adds a response to saying "hello" & sets the NPC to attend to the player (equivalent of `frank:addGreeting("Hello")`).
+This simply adds a response to saying "hello" &amp; sets the NPC to attend to the player (equivalent
+of `frank:addGreeting("Hello")`).
 
-For more complicated behavior, we need to use some helper methods. If we want to check a condition we use the `conditions:create` method. The first parameter is the string name of the ChatCondition we want to instantiate. The second parameter is a table that contains the values that should be passed to the ChatCondition constructor.
+For more complicated behavior, we need to use some helper methods. If we want to check a condition
+we use the [conditions:create] method. The first parameter is the string name of the [ChatCondition]
+we want to instantiate. The second parameter is a table that contains the values that should be
+passed to the ChatCondition constructor.
 
 Example:
-```
+
+```lua
 frank:add(ConversationStates.IDLE,
-	ConversationPhrases.GREETING_MESSAGES,
-	conditions:create("PlayerHasItemWithHimCondition", {"money"}),
-	ConversationStates.ATTENDING,
-	"Hello.",
-	nil)
+    ConversationPhrases.GREETING_MESSAGES,
+    conditions:create("PlayerHasItemWithHimCondition", {"money"}),
+    ConversationStates.ATTENDING,
+    "Hello.",
+    nil)
 ```
 
-In this scenario, the NPC will only respond if the player is carrying [money](https://stendhalgame.org/item/money/money.html).
+In this scenario, the NPC will only respond if the player is carrying
+[money](https://stendhalgame.org/item/money/money.html).
 
-A NotCondition instance can be created with the `actions:notCondition` method:
+A [NotCondition] instance can be created with the [actions:notCondition] method:
 
 Example usage:
-```
+
+```lua
 local condition = conditions.notCondition(conditions:create("PlayerHasItemWithHimCondition", {"money"})
 ```
 
-To add a ChatAction, we use the `actions:create` method. Its usage is identical to `conditions:create`.
+To add a ChatAction, we use the [actions:create] method. Its usage is identical to
+[conditions:create].
 
 Example:
-```
+
+```lua
 frank:add(ConversationStates.IDLE,
-	ConversationPhrases.GREETING_MESSAGES,
-	conditions:create("PlayerHasItemWithHimCondition", {"money"}),
-	ConversationStates.ATTENDING,
-	"Hello.",
-	actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}))
+    ConversationPhrases.GREETING_MESSAGES,
+    conditions:create("PlayerHasItemWithHimCondition", {"money"}),
+    ConversationStates.ATTENDING,
+    "Hello.",
+    actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}))
 ```
 
 Lua tables can be used to add multiple conditions or actions:
-```
+
+```lua
 frank:add(ConversationStates.IDLE,
-	ConversationPhrases.GREETING_MESSAGES,
-	{
-		conditions:create("PlayerHasItemWithHimCondition", {"money"}),
-		conditions:notCondition(conditions:create("NakedCondition")),
-	},
-	ConversationStates.ATTENDING,
-	nil,
-	{
-		actions:create("SayTextAction", {"Hello."}),
-		actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}),
-	})
+    ConversationPhrases.GREETING_MESSAGES,
+    {
+        conditions:create("PlayerHasItemWithHimCondition", {"money"}),
+        conditions:notCondition(conditions:create("NakedCondition")),
+    },
+    ConversationStates.ATTENDING,
+    nil,
+    {
+        actions:create("SayTextAction", {"Hello."}),
+        actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}),
+    })
 ```
 
-In this scenario, the NPC will respond if the player has money & is not naked.
+In this scenario, the NPC will respond if the player has money &amp; is not naked.
 
 Nested tables are supported as well:
-```
+
+```lua
 local conditions = {
-	conditions:create("PlayerHasItemWithHimCondition", {"money"}),
-	{
-		conditions:notCondition(conditions:create("NakedCondition")),
-	},
+    conditions:create("PlayerHasItemWithHimCondition", {"money"}),
+    {
+        conditions:notCondition(conditions:create("NakedCondition")),
+    },
 }
 
 frank:add(ConversationStates.IDLE,
-	ConversationPhrases.GREETING_MESSAGES,
-	conditions,
-	ConversationStates.ATTENDING,
-	nil,
-	{
-		actions:create("SayTextAction", {"Hello."}),
-		actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}),
-	})
+    ConversationPhrases.GREETING_MESSAGES,
+    conditions,
+    ConversationStates.ATTENDING,
+    nil,
+    {
+        actions:create("SayTextAction", {"Hello."}),
+        actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}),
+    })
 ```
+
 
 #### Adding Merchant Behavior
 
-The `merchants` object is used for adding merchant behavior (buying/selling) to an NPC.
+The [merchants] object is used for adding merchant behavior (buying/selling) to an NPC.
 
 Example of adding seller behavior to an NPC:
-```
-if game:setZone("0_semos_city") then
-	local frank = entities.createSpeakerNPC("Frank")
-	merchants:addSeller(frank, merchants.shops:get("shopname"), true)
 
-	game:add(frank)
+```lua
+if game:setZone("0_semos_city") then
+    local frank = entities.createSpeakerNPC("Frank")
+    merchants:addSeller(frank, merchants.shops:get("shopname"), true)
+
+    game:add(frank)
 end
 ```
 
-To create a custom shop list, you can use a Lua table (there are multiple ways to add elements to a Lua table):
+To create a custom shop list, you can use a Lua table (there are multiple ways to add elements to a
+Lua table):
 
 Method 1:
-```
+
+```lua
 local priceList = {
-	meat = 50,
-	["ham"] = 70,
+    meat = 50,
+    ["ham"] = 70,
 }
 ```
 
 Method 2:
-```
+
+```lua
 local priceList = {}
 priceList.meat = 50
 priceList["ham"] = 70
 ```
 
-The helper methods have special handling for underscore characters as well (the following are all the same):
-```
+The helper methods have special handling for underscore characters as well (the following are all
+the same):
+
+```lua
 local priceList = {
-	smoked_ham = 100,
-	["smoked ham"] = 100,
+    smoked_ham = 100,
+    ["smoked ham"] = 100,
 }
 priceList.smoked_ham = 100
 priceList["smoked ham"] = 100
 ```
 
 Then add the seller behavior using the custom list:
-```
+
+```lua
 merchants:addSeller(frank, priceList, true)
 ```
 
+
 ## System Properties
 
-Java's system properties are exposed to Lua with the `properties` object.
+Java's system properties are exposed to Lua with the [properties] object.
 
 Examples:
-```
+
+```lua
 -- property state
 if properties:enabled("stendhal.testserver") then
-	print("Test server enabled")
-	if properties:equals("stendhal.testserver", "junk") then
-		print("Junk enabled")
-	else
-		print("Junk disabled")
-	end
+    print("Test server enabled")
+    if properties:equals("stendhal.testserver", "junk") then
+        print("Junk enabled")
+    else
+        print("Junk disabled")
+    end
 else
-	print("Test server disabled")
+    print("Test server disabled")
 end
 
 -- property value
 local prop = properties:getValue("stendhal.testserver")
 if prop ~= nil then
-	print("Test server enabled")
-	if prop == "junk" then
-		print("Junk enabled")
-	else
-		print("Junk disabled")
-	end
+    print("Test server enabled")
+    if prop == "junk" then
+        print("Junk enabled")
+    else
+        print("Junk disabled")
+    end
 else
-	print("Test server disabled")
+    print("Test server disabled")
 end
 ```
+
 
 ## Misc
 
 ### Typecasting
 
-Lua does not support typecasting (as far as I know), but if the class you want to cast to has a copy constructor, achieving the same functionality is quite simple.
+Lua does not support typecasting (as far as I know), but if the class you want to cast to has a copy
+constructor, achieving the same functionality is quite simple.
 
-```
+```lua
 -- "entities:getItem" returns an instance of Item
 local bestiary = entities:getItem("bestiary")
 
@@ -524,3 +609,22 @@ local bestiary = entities:getItem("bestiary")
 bestiary = luajava.newInstance("games.stendhal.server.entity.item.OwnedItem", bestiary)
 bestiary:setOwner("Ted")
 ```
+
+
+[actions]: /reference/lua/objects/actions/
+[actions:create]: /reference/lua/objects/actions/#actionscreate
+[actions:notCondition]: /reference/lua/objects/actions/#actionsnotcondition
+[conditions]: /reference/lua/objects/conditions/
+[conditions:create]: /reference/lua/objects/conditions/#conditionscreate
+[entities]: /reference/lua/objects/entities/
+[entities:createShopSign]: /reference/lua/objects/entities/#entitiescreateshopsign
+[entities:createSign]: /reference/lua/objects/entities/#entitiescreatesign
+[entities:createSpeakerNPC]: /reference/lua/objects/entities/#entitiescreatespeakernpc
+[game]: /reference/lua/objects/game/
+[game:setMusic]: http://stendhal.localhost/reference/lua/objects/game/#gamesetmusic
+[game:setZone]: http://stendhal.localhost/reference/lua/objects/game/#gamesetzone
+[merchants]: /reference/lua/objects/merchants/
+[properties]: /reference/lua/objects/properties/
+
+[ChatCondition]: /reference/java/games/stendhal/server/entity/npc/ChatCondition.html
+[NotCondition]: /reference/java/games/stendhal/server/entity/npc/condition/NotCondition.html

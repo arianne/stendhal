@@ -1,56 +1,65 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `actions`
 
+
 ---
-### Description
+## Description
 
 Creates [`ChatAction`][ChatAction] instances.
 
----
-## Methods
 
 ---
-### actions:clearQuest
+# Methods
+
+---
+## actions:clearQuest
 <span style="color:green; font-wegith:bold;">actions:clearQuest</span>(questSlot)
 
 - Removes quest slot from player. This is needed because it's impossible to pass [`nil`][LuaNil]
   values in a [`LuaTable`][LuaTable].
 - Parameters:
-    ***questSlot:*** Quest string identifier.
+    - <span class="param">questSlot:</span> Quest string identifier.
 - Returns: New [`SetQuestAction`][SetQuestAction] that sets quest state to `nil`.
-- **TODO:**
+- __TODO:__
     - Move to [quests:clearQuest][quests].
 
+
 ---
-### actions:create
+## actions:create
 <div class="function">
-    actions:create <span class="params">(function)</span>
+    actions:create <span class="paramlist">(function)</span>
 </div>
 <div class="function">
-    actions:create <span class="params">(function, args)</span>
+    actions:create <span class="paramlist">(function, args)</span>
 </div>
 
 - Creates a custom [`ChatAction`][ChatAction].
 - Parameters:
-    - ***function:*** A [`LuaFunction`][LuaFunction] to be executed when `ChatAction.fire` is
-      called.
-    - ***args:*** [`LuaTable`][LuaTable] of objects passed to the constructor.
+    - <span class="param">function:</span> A [`LuaFunction`][LuaFunction] to be executed when
+      `ChatAction.fire` is called.
+    - <span class="param">args:</span> [`LuaTable`][LuaTable] of objects passed to the constructor.
 - Returns: New `ChatAction` instance or [`nil`][LuaNil] if failed.
 
+
 ---
-### actions:multiple
+## actions:multiple
 <div class="function">
-    actions:multiple <span class="params">(actionList)</span>
+    actions:multiple <span class="paramlist">(actionList)</span>
 </div>
 
 - Helper method for creating a [`MultipleActions`][MultipleActions] instance.
 - Parameters:
-    - ***actionList:*** A [`LuaTable`][LuaTable] containing [`ChatAction`][ChatAction] instances.
+    - <span class="param">actionList:</span> A [`LuaTable`][LuaTable] containing
+      [`ChatAction`][ChatAction] instances.
 - Returns: New `MultipleActions` instance.
 
 

@@ -1,215 +1,242 @@
 
+---
+# Contents
+
 [TOC]
 
+
 ---
-## Introduction
+# Introduction
 
 Object instance: `game`
 
+
 ---
-### Description
+## Description
 
 The main object that handles setting zone &amp; adding entities to game.
 
----
-## Methods
 
 ---
-### game:add
+# Methods
+
+
+---
+## game:add
 <div class="function">
-    game:add <span class="params">(obj)</span>
+    game:add <span class="paramlist">(obj)</span>
 </div>
 <div class="function">
-    game:add <span class="params">(obj, expire)</span>
+    game:add <span class="paramlist">(obj, expire)</span>
 </div>
 <div class="function">
-    game:add <span class="params">(npc)</span>
+    game:add <span class="paramlist">(npc)</span>
 </div>
 <div class="function">
-    game:add <span class="params">(creature, x, y)</span>
+    game:add <span class="paramlist">(creature, x, y)</span>
 </div>
 
 - Adds an object or entity instance to the current zone.
 - Parameters:
-    - ___obj:__ ([RPObject][])_ Object to add.
-    - ___expire:__ ([bool][LuaBoolean])_
-    - ___npc:___ NPC to add.
-    - ___creature:__ ([Creature][])_ Creature to add.
-    - ___x:__ ([int][LuaInteger])_ Horizontal position of where to add creature.
-    - ___y:__ ([int](LuaInteger])_ Vertical position of where to add creature.
-- Returns: _([Creature][]) `game:add(creature)` only_
+    - <span class="param">obj:</span> _([RPObject])_ Object to add.
+    - <span class="param">expire:</span> _([bool][LuaBoolean])_
+    - <span class="param">npc:</span> NPC to add.
+    - <span class="param">creature:</span> _([Creature])_ Creature to add.
+    - <span class="param">x:</span> _([int][LuaInteger])_ Horizontal position of where to add
+      creature.
+    - <span class="param">y:</span> _([int](LuaInteger])_ Vertical position of where to add
+      creature.
+- Returns: _([Creature]) `game:add(creature)` only_
+
 
 ---
-### game:addGameEvent
+## game:addGameEvent
 <div class="function">
-    game:addGameEvent <span class="params">(source, event, params)</span>
+    game:addGameEvent <span class="paramlist">(source, event, params)</span>
 </div>
 
-- Adds a new [GameEvent][].
+- Adds a new [GameEvent].
 - Parameters:
-    - ___source:__ ([string][LuaString])_ Source of the event, usually a character.
-    - ___event:__ ([string][LuaString])_ Name of event.
-    - ___params:__ ([List][java.util.List]&lt;[String][java.lang.String]&gt;)_ Event parameters.
+    - <span class="param">source:</span> _([string][LuaString])_ Source of the event, usually a
+      character.
+    - <span class="param">event:</span> _([string][LuaString])_ Name of event.
+    - <span class="param">params:</span>
+      _([List][java.util.List]&lt;[String][java.lang.String]&gt;)_ Event parameters.
+
 
 ---
-### game:getCreature
+## game:getCreature
 <div class="function">
-    game:getCreature <span class="params">(clazz)</span>
+    game:getCreature <span class="paramlist">(clazz)</span>
 </div>
 
 - Retrieves a registered creature.
-    - ___clazz:__ ([string][LuaString])_ Name of the creature.
-- Returns: _([Creature][])_
+    - <span class="param">clazz:</span> _([string][LuaString])_ Name of the creature.
+- Returns: _([Creature])_
     - Creature or [nil][LuaNil] if not registered.
 
+
 ---
-### game:getCreatures
+## game:getCreatures
 <div class="function">
-    game:getCreatures <span class="params">()</span>
+    game:getCreatures <span class="paramlist">()</span>
 </div>
 
 - Retrieves all registered creatures.
 - Returns: _([Creature[]][java.util.Arrays])_
     - An array of all available creatures.
 
+
 ---
-### game:getItem
+## game:getItem
 <div class="function">
-    game:getItem <span class="params">(name)</span>
+    game:getItem <span class="paramlist">(name)</span>
 </div>
 
 - Retrieves a registered item.
 - Parameters:
-    - ___name:__ ([string][LuaString])_ Name of the item.
-- Returns: _([Item][])_
+    - <span class="param">name:</span> _([string][LuaString])_ Name of the item.
+- Returns: _([Item])_
     - Item or [nil][LuaNil] if not registered.
 
+
 ---
-### game:getItems
+## game:getItems
 <div class="function">
-    game:getItems <span class="params">()</span>
+    game:getItems <span class="paramlist">()</span>
 </div>
 
 - Retrieves all registered items.
 - Returns: _([Item[]][java.util.Arrays])_
     - An array of all available items.
 
+
 ---
-### game:getMessage
+## game:getMessage
 <div class="function">
-    game:getMessage <span class="params">()</span>
+    game:getMessage <span class="paramlist">()</span>
 </div>
 
 - Retrieves exception message set by script.
 - Returns: _([string][LuaString])_
 
+
 ---
-### game:getZone
+## game:getZone
 <div class="function">
-    game:getZone <span class="params">(name)</span>
+    game:getZone <span class="paramlist">(name)</span>
 </div>
 <div class="function">
-    game:getZone <span class="params">(obj)</span>
+    game:getZone <span class="paramlist">(obj)</span>
 </div>
 
 - Retrieves a registered zone.
 - Parameters:
-    - ___name:__ ([string][LuaString])_ Retrieve zone by name.
-    - ___obj:__ ([RPObject][])_ Retreive zone where ***obj*** is located.
-- Returns: _([StendhalRPZone][])_
+    - <span class="param">name:</span> _([string][LuaString])_ Retrieve zone by name.
+    - <span class="param">obj:</span> _([RPObject])_ Retreive zone where ___obj___ is located.
+- Returns: _([StendhalRPZone])_
     - Zone or [nil][LuaNil] if not registered.
 
+
 ---
-### game:modify
+## game:modify
 <div class="function">
-    game:modify <span class="params">(entity)</span>
+    game:modify <span class="paramlist">(entity)</span>
 </div>
 
-- Notifies the [StendhalRPWorld][] that this entity's attributes have changed.
+- Notifies the [StendhalRPWorld] that this entity's attributes have changed.
 - Parameters:
-    - ___entity:__ ([RPEntity][])_ Entity being modified.
+    - <span class="param">entity:</span> _([RPEntity])_ Entity being modified.
+
 
 ---
-### game:playerIsInZone
+## game:playerIsInZone
 <div class="function">
-    game:playerIsInZone <span class="params">(player, zone)</span>
+    game:playerIsInZone <span class="paramlist">(player, zone)</span>
 </div>
 
 - Checks if a player is in a specific zone.
 - Parameters:
-    - ___player:__ ([Player][])_ Player to check.
-    - ___zone:__ ([string][LuaString])_ Name of zone.
+    - <span class="param">player:</span> _([Player])_ Player to check.
+    - <span class="param">zone:</span> _([string][LuaString])_ Name of zone.
 - Returns: _([bool][LuaBoolean])_
     - `true` if player's zone matches ___zone___.
 
+
 ---
-### game:privateText
+## game:privateText
 <div class="function">
-    game:privateText <span class="params">(player, text)</span>
+    game:privateText <span class="paramlist">(player, text)</span>
 </div>
 
 - Sends a private text to a player.
 - Parameters:
-    - ___player:__ ([Player][])_ Player to receive the message.
-    - ___text:__ ([string][LuaString])_ Message text to send to player.
+    - <span class="param">player:</span> _([Player])_ Player to receive the message.
+    - <span class="param">text:</span> _([string][LuaString])_ Message text to send to player.
+
 
 ---
-### game:remove
+## game:remove
 <div class="function">
-    game:remove <span class="params">(object)</span>
+    game:remove <span class="paramlist">(object)</span>
 </div>
 <div class="function">
-    game:remove <span class="params">(npc)</span>
+    game:remove <span class="paramlist">(npc)</span>
 </div>
 
 - Removes an object or entity from world.
 - Parameters:
-    - ___object:__ ([RPObject][])_ Object to remove.
-    - ___npc:__ ([NPC][])_ NPC to remove.
+    - <span class="param">object:</span> _([RPObject])_ Object to remove.
+    - <span class="param">npc:</span> _([NPC])_ NPC to remove.
+
 
 ---
-### game:runAfter
+## game:runAfter
 <div class="function">
-    game:runAfter <span class="params">(turns, func)</span>
+    game:runAfter <span class="paramlist">(turns, func)</span>
 </div>
 
 - Executes a function after a specified number of turns.
 - Parameters:
-    - ___turns:__ ([int][LuaInteger])_ Number of turns to wait.
-    - ___func:__ ([function][LuaFunction])_ Function to be executed.
+    - <span class="param">turns:</span> _([int][LuaInteger])_ Number of turns to wait.
+    - <span class="param">func:</span> _([function][LuaFunction])_ Function to be executed.
+
 
 ---
-### game:setMusic
+## game:setMusic
 <div class="function">
-    game:setMusic <span class="params">(filename)</span>
+    game:setMusic <span class="paramlist">(filename)</span>
 </div>
 <div class="function">
-    game:setMusic <span class="params">(filename, args)</span>
+    game:setMusic <span class="paramlist">(filename, args)</span>
 </div>
 
 - Sets the background music for the current zone.
 - Parameters:
-    - ___filename:__ ([string][LuaString])_ File basename excluding .ogg extension.
-    - ___args:__ ([table][LuaTable])_ Table of key=value integer values.
+    - <span class="param">filename:</span> _([string][LuaString])_ File basename excluding .ogg
+      extension.
+    - <span class="param">args:</span> _([table][LuaTable])_ Table of key=value integer values.
         - Keys:
             - <span class="table-attr">volume:</span> Volume level (default: 100).
             - <span class="table-attr">x:</span> The X coordinate of the sound source (default: 1).
             - <span class="table-attr">y:</span> The Y coordinate of the sound source (default: 1).
-            - <span class="table-attr">radius:</span> The radius from which the music can be heard (default: 10000).
+            - <span class="table-attr">radius:</span> The radius from which the music can be heard
+              (default: 10000).
+
 
 ---
-### game:setZone
+## game:setZone
 <div class="function">
-    game:setZone <span class="params">(name)</span>
+    game:setZone <span class="paramlist">(name)</span>
 </div>
 <div class="function">
-    game:setZone <span class="params">(zone)</span>
+    game:setZone <span class="paramlist">(zone)</span>
 </div>
 
 - Selects the zone to be configured.
 - Parameters:
-    - ___name:__ ([string][LuaString])_ String name identifier.
-    - ___zone:__ ([StendhalRPZone][])_ Zone instance.
+    - <span class="param">name:</span> _([string][LuaString])_ String name identifier.
+    - <span class="param">zone:</span> _([StendhalRPZone])_ Zone instance.
 - Returns: _([bool][LuaBoolean])_
     - `true` if zone was successfully set.
 

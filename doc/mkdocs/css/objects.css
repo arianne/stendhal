@@ -11,8 +11,12 @@
   font-weight: bold;
 }
 
-.params {
+.paramlist {
   color: black;
+}
+
+.param {
+  font-weight: bold;
 }
 
 .table-attr {
