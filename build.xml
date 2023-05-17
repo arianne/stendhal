@@ -296,15 +296,15 @@
     <delete dir="${buildroot}/ts"/>
   </target>
 
-  <target name="clean_docs" description="Delete javadoc generated HTML API reference.">
+  <target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
     <delete dir="${docs}"/>
   </target>
 
-  <target name="clean_mkdocs">
+  <target name="clean_mkdocs" description="Delete MkDocs generated HTML documentation.">
     <delete dir="${buildroot}/mkdocs/"/>
   </target>
 
-  <target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
+  <target name="clean_doxygen" description="Delete Doxygen generated HTML documentation.">
     <delete dir="${buildroot}/doxygen"/>
   </target>
 
@@ -1466,9 +1466,8 @@
 
   <!-- START: documentation -->
 
-  <target name="docs"
-      description="Generate HTML API reference with javadoc."
-      depends="clean_docs">
+  <target name="javadocs" description="Generate HTML documentation for Java API with javadoc."
+      depends="clean_javadocs">
     <condition property="include.marauroa" value="true">
       <available file="${marauroa_src}" type="dir"/>
     </condition>
@@ -1516,10 +1515,11 @@
             if:true="${include.marauroa}"/>
       </classpath>
     </javadoc>
-  </target> <!-- docs -->
+  </target> <!-- javadocs -->
 
-  <target name="mkdocs" description="Generate HTML reference." depends="clean_mkdocs">
-    <!-- call "docs" to include javadocs -->
+  <target name="mkdocs" description="Generate HTML documentation for Lua API with MkDocs."
+      depends="clean_mkdocs">
+    <!-- Note: call "javadocs" first to include Java documentation -->
 
     <echo unless:true="${python.present}"
       message="Python unavailable, cannot run mkdocs"/>
@@ -1532,7 +1532,8 @@
     </exec>
   </target> <!-- mkdocs -->
 
-  <target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
+  <target name="doxygen" description="Generate HTML documentation with Doxygen."
+      depends="clean_doxygen">
     <exec executable="doxygen" failonerror="true">
       <arg value="./buildtools/doxygen/Doxyfile"/>
     </exec>
@@ -1541,7 +1542,9 @@
     <exec if:set="doxygen.fix_urls" executable="python">
       <arg value="./buildtools/doxygen/fix_urls.py"/>
     </exec>
-  </target>
+  </target> <!-- doxygen -->
+
+  <target name="docs" description="Generate HTML documentation." depends="javadocs,mkdocs"/>
 
   <!-- END: documentation -->
 
