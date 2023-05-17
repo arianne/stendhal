@@ -1525,8 +1525,8 @@
       message="Python unavailable, cannot run mkdocs"/>
 
     <!--<antcall if:true="${python.present}" target="docs"/>-->
-    <exec if:true="${python.present}" failonerror="true"
-      executable="python" dir="./buildtools/mkdocs/">
+    <exec if:true="${python.present}" executable="python" failonerror="true"
+        dir="./buildtools/mkdocs/">
       <arg value="-u"/>
       <arg value="build.py"/>
     </exec>
