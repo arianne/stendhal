@@ -14,7 +14,6 @@ package games.stendhal.server.core.engine;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -222,13 +221,6 @@ public class StendhalPlayerDatabase {
 		// 1.38: entity is cloned from another NPC
 		if (!transaction.doesColumnExist("npcs", "cloned")) {
 			transaction.execute("ALTER TABLE npcs ADD COLUMN (cloned VARCHAR(64));", null);
-		}
-
-		// 1.44: NPC shops information
-		for (final String col: Arrays.asList("buys", "sells", "sells_outfit")) {
-			if (!transaction.doesColumnExist("npcs", col)) {
-				transaction.execute("ALTER TABLE npcs ADD COLUMN (" + col + " VARCHAR(1000));", null);
-			}
 		}
 	}
 
