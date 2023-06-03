@@ -223,6 +223,16 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("npcs", "cloned")) {
 			transaction.execute("ALTER TABLE npcs ADD COLUMN (cloned VARCHAR(64));", null);
 		}
+
+		// 1.44: active column for npcs
+		if (!transaction.doesColumnExist("npcs", "active")) {
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (active INT);", null);
+		}
+
+		// 1.44: active column for zones
+		if (!transaction.doesColumnExist("zoneinfo", "active")) {
+			transaction.execute("ALTER TABLE zoneinfo ADD COLUMN (active INT);", null);
+		}
 	}
 
 

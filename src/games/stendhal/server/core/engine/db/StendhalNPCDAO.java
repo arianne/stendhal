@@ -12,7 +12,10 @@
 package games.stendhal.server.core.engine.db;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -43,21 +46,22 @@ public class StendhalNPCDAO {
 	 *   SQLException in case a database error is thrown.
 	 */
 	private void dumpNPC(PreparedStatement stmt, SpeakerNPC npc) throws SQLException {
-		stmt.setString(1, npc.getName());
-		stmt.setString(2, npc.getTitle());
-		stmt.setString(3, npc.get("class"));
-		stmt.setString(4, getOutfit(npc));
-		stmt.setString(5, getOutfitLayer(npc));
-		stmt.setInt(6, npc.getHP());
-		stmt.setInt(7, npc.getBaseHP());
-		stmt.setString(8, npc.getZone().getName());
-		stmt.setInt(9, npc.getX());
-		stmt.setInt(10, npc.getY());
-		stmt.setInt(11, npc.getLevel());
-		stmt.setString(12, npc.getDescription());
-		stmt.setString(13, npc.getJob());
-		stmt.setString(14, npc.getAlternativeImage());
-		stmt.setString(15, npc.get("cloned"));
+		stmt.setInt(1, 1);
+		stmt.setString(2, npc.getName());
+		stmt.setString(3, npc.getTitle());
+		stmt.setString(4, npc.get("class"));
+		stmt.setString(5, getOutfit(npc));
+		stmt.setString(6, getOutfitLayer(npc));
+		stmt.setInt(7, npc.getHP());
+		stmt.setInt(8, npc.getBaseHP());
+		stmt.setString(9, npc.getZone().getName());
+		stmt.setInt(10, npc.getX());
+		stmt.setInt(11, npc.getY());
+		stmt.setInt(12, npc.getLevel());
+		stmt.setString(13, npc.getDescription());
+		stmt.setString(14, npc.getJob());
+		stmt.setString(15, npc.getAlternativeImage());
+		stmt.setString(16, npc.get("cloned"));
 		stmt.addBatch();
 	}
 
@@ -97,13 +101,32 @@ public class StendhalNPCDAO {
 	 */
 	public void dumpNPCs(DBTransaction transaction) throws SQLException {
 		long start = System.currentTimeMillis();
-		transaction.execute("DELETE FROM npcs", null);
-		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
-			"(name, title, class, outfit, outfit_layers, hp, base_hp, zone, x, y, " +
-			"level, description, job, image, cloned) " +
-			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
-
+		transaction.execute("UPDATE npcs SET active=0", null);
+		PreparedStatement stmt = transaction.prepareStatement("UPDATE npcs SET "
+				+ "active=?, name=?, title=?, class=?, outfit=?, outfit_layers=?, hp=?, base_hp=?, zone=?, x=?, y=?, "
+				+ "level=?, description=?, job=?, image=?, cloned=? "
+				+ "WHERE name=?", null);
+		Map<String, SpeakerNPC> unknown = new HashMap<>();
 		for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
+			unknown.put(npc.getName().trim(), npc);
+			stmt.setString(17, npc.getName());
+			dumpNPC(stmt, npc);
+		}
+		stmt.executeBatch();
+
+
+		// add new
+		ResultSet resultSet = transaction.query("SELECT name FROM npcs", null);
+		while (resultSet.next()) {
+			unknown.remove(resultSet.getString(1));
+		}
+
+		stmt = transaction.prepareStatement("INSERT INTO npcs " +
+			"(active, name, title, class, outfit, outfit_layers, hp, base_hp, zone, x, y, " +
+			"level, description, job, image, cloned) " +
+			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+
+		for (SpeakerNPC npc : unknown.values()) {
 			dumpNPC(stmt, npc);
 		}
 		stmt.executeBatch();

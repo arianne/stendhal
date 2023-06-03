@@ -120,27 +120,28 @@ public class StendhalCreatureDAO {
 
 		EntityManager entityManager = SingletonRepository.getEntityManager();
 		Collection<DefaultCreature> defaultCreatures = entityManager.getDefaultCreatures();
-		Map<String, DefaultCreature> creatures = new HashMap<>();
+		Map<String, DefaultCreature> unknown = new HashMap<>();
 		for (DefaultCreature creature : defaultCreatures) {
-			creatures.put(creature.getCreatureName().trim(), creature);
+			unknown.put(creature.getCreatureName().trim(), creature);
 			stmt.setString(27, creature.getCreatureName());
 			dump(stmt, creature);
 		}
 		stmt.executeBatch();
 
-		ResultSet resultSet = transaction.query("SELECT name FROM creatureinfo", null);
-		while (resultSet.next()) {
-			creatures.remove(resultSet.getString(1));
-		}
 
 		// add new
+		ResultSet resultSet = transaction.query("SELECT name FROM creatureinfo", null);
+		while (resultSet.next()) {
+			unknown.remove(resultSet.getString(1));
+		}
+
 		stmt = transaction.prepareStatement("INSERT INTO creatureinfo "
 				+ "(active, name, tile_id, class, subclass, shadow_style, width, height, description, "
 				+ "blood_class, corpse_name, harmless_corpse_name, corpse_width, corpse_height, "
 				+ "hp, atk, ratk, def, xp, level, respawn_time, speed, "
 				+ "status_attack, status_attack_probability, damage_type, ranged_damage_type) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
-		for (DefaultCreature creature : creatures.values()) {
+		for (DefaultCreature creature : unknown.values()) {
 			dump(stmt, creature);
 		}
 		stmt.executeBatch();

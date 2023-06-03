@@ -164,6 +164,7 @@ CREATE INDEX IF NOT EXISTS i_creatureinfo_name ON creatureinfo (name);
 
 CREATE TABLE IF NOT EXISTS npcs (
   id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
   name          VARCHAR(64),
   title         VARCHAR(64),
   class         VARCHAR(64),
@@ -186,6 +187,7 @@ CREATE INDEX IF NOT EXISTS i_npcs_name ON npcs (name);
 
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
   name          VARCHAR(64),
   level         INTEGER,
   iterior       INTEGER,
