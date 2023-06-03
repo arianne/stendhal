@@ -12,8 +12,11 @@
 package games.stendhal.server.core.engine.db;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -105,20 +108,43 @@ public class StendhalCreatureDAO {
 	 */
 	public void dump(DBTransaction transaction) throws SQLException {
 		long start = System.currentTimeMillis();
-		transaction.execute("DELETE FROM creatureinfo", null);
-		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO creatureinfo "
-			+ "(active, name, tile_id, class, subclass, shadow_style, width, height, description, "
-			+ "blood_class, corpse_name, harmless_corpse_name, corpse_width, corpse_height, "
-			+ "hp, atk, ratk, def, xp, level, respawn_time, speed, "
-			+ "status_attack, status_attack_probability, damage_type, ranged_damage_type) " +
-			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+
+		// update existing
+		transaction.execute("UPDATE creatureinfo SET active=0", null);
+		PreparedStatement stmt = transaction.prepareStatement("UPDATE creatureinfo SET "
+			+ "active=?, name=?, tile_id=?, class=?, subclass=?, shadow_style=?, width=?, height=?, description=?, "
+			+ "blood_class=?, corpse_name=?, harmless_corpse_name=?, corpse_width=?, corpse_height=?, "
+			+ "hp=?, atk=?, ratk=?, def=?, xp=?, level=?, respawn_time=?, speed=?, "
+			+ "status_attack=?, status_attack_probability=?, damage_type=?, ranged_damage_type=? "
+			+ "WHERE name=?", null);
 
 		EntityManager entityManager = SingletonRepository.getEntityManager();
 		Collection<DefaultCreature> defaultCreatures = entityManager.getDefaultCreatures();
+		Map<String, DefaultCreature> creatures = new HashMap<>();
 		for (DefaultCreature creature : defaultCreatures) {
+			creatures.put(creature.getCreatureName().trim(), creature);
+			stmt.setString(27, creature.getCreatureName());
 			dump(stmt, creature);
 		}
 		stmt.executeBatch();
+
+		ResultSet resultSet = transaction.query("SELECT name FROM creatureinfo", null);
+		while (resultSet.next()) {
+			creatures.remove(resultSet.getString(1));
+		}
+
+		// add new
+		stmt = transaction.prepareStatement("INSERT INTO creatureinfo "
+				+ "(active, name, tile_id, class, subclass, shadow_style, width, height, description, "
+				+ "blood_class, corpse_name, harmless_corpse_name, corpse_width, corpse_height, "
+				+ "hp, atk, ratk, def, xp, level, respawn_time, speed, "
+				+ "status_attack, status_attack_probability, damage_type, ranged_damage_type) " +
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+		for (DefaultCreature creature : creatures.values()) {
+			dump(stmt, creature);
+		}
+		stmt.executeBatch();
+
 		logger.debug("Completed dumping of creatures in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
