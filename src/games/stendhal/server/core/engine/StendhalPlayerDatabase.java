@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.db.PendingAchievementDAO;
 import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 import games.stendhal.server.core.engine.db.StendhalCharacterDAO;
+import games.stendhal.server.core.engine.db.StendhalCreatureDAO;
 import games.stendhal.server.core.engine.db.StendhalGroupQuestDAO;
 import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
@@ -266,6 +267,7 @@ public class StendhalPlayerDatabase {
 		// define additional DAOs
 		DAORegister.get().register(PostmanDAO.class, new PostmanDAO());
 		DAORegister.get().register(StendhalBuddyDAO.class, new StendhalBuddyDAO());
+		DAORegister.get().register(StendhalCreatureDAO.class, new StendhalCreatureDAO());
 		DAORegister.get().register(StendhalGroupQuestDAO.class, new StendhalGroupQuestDAO());
 		DAORegister.get().register(StendhalHallOfFameDAO.class, new StendhalHallOfFameDAO());
 		DAORegister.get().register(StendhalKillLogDAO.class, new StendhalKillLogDAO ());

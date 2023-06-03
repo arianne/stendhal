@@ -128,6 +128,40 @@ CREATE INDEX IF NOT EXISTS i_kills_day_killed ON kills (day, killed);
 CREATE INDEX IF NOT EXISTS i_kills_killer_day ON kills (killer, day);
 
 
+CREATE TABLE IF NOT EXISTS creatureinfo (
+  id               INTEGER AUTO_INCREMENT NOT NULL,
+  active           INT,
+  name             VARCHAR(64),
+  tile_id          VARCHAR(64),
+  class            VARCHAR(64),
+  subclass         VARCHAR(64),
+  shadow_style     VARCHAR(64),
+  width            INT,
+  height           INT,
+  description      VARCHAR(1000),
+  blood_class      VARCHAR(64),
+  corpse_name      VARCHAR(64),
+  harmless_corpse_name      VARCHAR(64),
+  corpse_width     INT,
+  corpse_height    INT,
+  hp               INT,
+  atk              INT,
+  ratk             INT,
+  def              INT,
+  xp               INT,
+  level            INT,
+  respawn_time     INT,
+  speed            FLOAT,
+  status_attack    VARCHAR(64),
+  status_attack_probability FLOAT,
+  damage_type      VARCHAR(64),
+  ranged_damage_type        VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_creatureinfo_name ON creatureinfo (name);
+
+
 CREATE TABLE IF NOT EXISTS npcs (
   id            INTEGER AUTO_INCREMENT NOT NULL,
   name          VARCHAR(64),
