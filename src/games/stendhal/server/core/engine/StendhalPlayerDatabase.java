@@ -14,7 +14,6 @@ package games.stendhal.server.core.engine;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +24,7 @@ import games.stendhal.server.core.engine.db.PendingAchievementDAO;
 import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 import games.stendhal.server.core.engine.db.StendhalCharacterDAO;
+import games.stendhal.server.core.engine.db.StendhalCreatureDAO;
 import games.stendhal.server.core.engine.db.StendhalGroupQuestDAO;
 import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
@@ -224,11 +224,14 @@ public class StendhalPlayerDatabase {
 			transaction.execute("ALTER TABLE npcs ADD COLUMN (cloned VARCHAR(64));", null);
 		}
 
-		// 1.44: NPC shops information
-		for (final String col: Arrays.asList("buys", "sells", "sells_outfit")) {
-			if (!transaction.doesColumnExist("npcs", col)) {
-				transaction.execute("ALTER TABLE npcs ADD COLUMN (" + col + " VARCHAR(1000));", null);
-			}
+		// 1.44: active column for npcs
+		if (!transaction.doesColumnExist("npcs", "active")) {
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (active INT);", null);
+		}
+
+		// 1.44: active column for zones
+		if (!transaction.doesColumnExist("zoneinfo", "active")) {
+			transaction.execute("ALTER TABLE zoneinfo ADD COLUMN (active INT);", null);
 		}
 	}
 
@@ -274,6 +277,7 @@ public class StendhalPlayerDatabase {
 		// define additional DAOs
 		DAORegister.get().register(PostmanDAO.class, new PostmanDAO());
 		DAORegister.get().register(StendhalBuddyDAO.class, new StendhalBuddyDAO());
+		DAORegister.get().register(StendhalCreatureDAO.class, new StendhalCreatureDAO());
 		DAORegister.get().register(StendhalGroupQuestDAO.class, new StendhalGroupQuestDAO());
 		DAORegister.get().register(StendhalHallOfFameDAO.class, new StendhalHallOfFameDAO());
 		DAORegister.get().register(StendhalKillLogDAO.class, new StendhalKillLogDAO ());

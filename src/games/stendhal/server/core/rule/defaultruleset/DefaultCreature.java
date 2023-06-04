@@ -46,7 +46,7 @@ public class DefaultCreature {
 	private String subclass;
 
 	/** shadow to use for entity */
-	private String shadow_style = null;
+	private String shadowStyle = null;
 
 	/** Creature name. */
 	private String name;
@@ -222,6 +222,74 @@ public class DefaultCreature {
 		return equipsItems;
 	}
 
+	public String getShadowStyle() {
+		return shadowStyle;
+	}
+
+	public String getBloodClass() {
+		return bloodClass;
+	}
+
+	public String getCorpseName() {
+		return corpseName;
+	}
+
+	public String getHarmlessCorpseName() {
+		return harmlessCorpseName;
+	}
+
+	public int getCorpseWidth() {
+		return corpseWidth;
+	}
+
+	public int getCorpseHeight() {
+		return corpseHeight;
+	}
+
+	public List<DropItem> getDropsItems() {
+		return dropsItems;
+	}
+
+	public List<EquipItem> getEquipsItems() {
+		return equipsItems;
+	}
+
+	public List<String> getSounds() {
+		return sounds;
+	}
+
+	public String getDeathSound() {
+		return deathSound;
+	}
+
+	public String getMovementSound() {
+		return movementSound;
+	}
+
+	public Map<String, String> getAiProfiles() {
+		return aiProfiles;
+	}
+
+	public Map<Nature, Double> getSusceptibilities() {
+		return susceptibilities;
+	}
+
+	public String getStatusAttack() {
+		return statusAttack;
+	}
+
+	public double getStatusAttackProbability() {
+		return statusAttackProbability;
+	}
+
+	public Nature getDamageType() {
+		return damageType;
+	}
+
+	public Nature getRangedDamageType() {
+		return rangedDamageType;
+	}
+
 	public void setBlood(final String name) {
 		this.bloodClass = name;
 	}
@@ -295,8 +363,8 @@ public class DefaultCreature {
 		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
 
-		if (shadow_style != null) {
-			creature.setShadowStyle(shadow_style);
+		if (shadowStyle != null) {
+			creature.setShadowStyle(shadowStyle);
 		}
 
 		// Status attack types
@@ -394,7 +462,7 @@ public class DefaultCreature {
 	 * 		Name of the style.
 	 */
 	public void setShadowStyle(final String style) {
-		shadow_style = style;
+		shadowStyle = style;
 	}
 
 	public boolean verifyItems(final EntityManager defaultEntityManager) {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2007-2020 - Faiumoni e. V.                *
+ *                 (C) Copyright 2007-2023 - Faiumoni e. V.                *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,11 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.util.StringUtils;
 import marauroa.common.game.RPObject;
@@ -29,6 +38,7 @@ import marauroa.server.db.DBTransaction;
 public class StendhalItemDAO {
 	/** attribute name of itemid */
 	public static final String ATTR_ITEM_LOGID = "logid";
+	private static final Logger logger = Logger.getLogger(StendhalItemDAO.class);
 
 	/**
 	 * Assigns the next logid to the specified item in case it does not already have one.
@@ -136,5 +146,132 @@ public class StendhalItemDAO {
 			return "null";
 		}
 	}
+	/**
+	 * Dumps the properties of the specified object into the prepared statement as an operation in
+	 * a batch.
+	 *
+	 * @param stmt
+	 *   PreparedStatement in batch mode.
+	 * @param item
+	 *   DefaultItem
+	 * @throws
+	 *   SQLException in case a database error is thrown.
+	 */
+	private void dump(PreparedStatement stmt, DefaultItem item) throws SQLException {
+		stmt.setInt(1, 1);
+		stmt.setString(2, item.getItemName());
+		stmt.setString(3, item.getItemClass());
+		stmt.setString(4, item.getItemSubclass());
+		stmt.setString(5, item.getDescription());
+		stmt.setDouble(6, item.getWeight());
+		stmt.setInt(7, item.getValue());
+		stmt.setString(8, item.getAttributes().get("min_level"));
+
+		stmt.setString(9, item.getAttributes().get("atk"));
+		stmt.setString(10, item.getAttributes().get("ratk"));
+		stmt.setString(11, item.getAttributes().get("rate"));
+		stmt.setString(12, item.getAttributes().get("def"));
+		stmt.setString(13, item.getAttributes().get("range"));
+		stmt.setString(14, toStringOrNull(item.getDamageType()));
+		stmt.setString(15, item.getAttributes().get("lifesteal"));
+
+		stmt.setString(16, item.getAttributes().get("amount"));
+		stmt.setString(17, item.getAttributes().get("regen"));
+		stmt.setString(18, item.getAttributes().get("frequency"));
+		stmt.setString(19, item.getAttributes().get("immunization"));
+		stmt.setString(20, item.getAttributes().get("antipoison"));
+		stmt.setString(21, item.getAttributes().get("life_support"));
+
+		stmt.setString(22, toStringOrNull(item.getImplementation()));
+		stmt.setString(23, toClassStringOrNull(item.getUseBehavior()));
+		stmt.setString(24, item.getAttributes().get("infostring"));
+		stmt.setString(25, item.getAttributes().get("menu"));
+		stmt.setString(26, item.getAttributes().get("use_sound"));
+		stmt.setString(27, item.getAttributes().get("persistent"));
+		stmt.setString(28, item.getAttributes().get("slot_name"));
+		stmt.setString(29, item.getAttributes().get("slot_size"));
+		
+		stmt.setString(30, item.getAttributes().get("undroppableondeath"));
+		stmt.setInt(31, MathHelper.parseIntDefault(item.getAttributes().get("autobind"), 0));
+		stmt.setString(32, item.getAttributes().get("max_quantity"));
+		stmt.setString(33, item.getAttributes().get("deterioration"));
+		stmt.setInt(34, item.isUnattainable() ? 1: 0);
+
+		/*
+		private List<String> slots = null;
+		private Map<String, String> attributes = null;
+		private Map<Nature, Double> susceptibilities;
+		private Map<StatusType, Double> resistances;
+		private String[] statusAttacks;
+		private List<String> activeSlotsList;
+		 */
+		stmt.addBatch();
+	}
+
+	public String toStringOrNull(Object o) {
+		if (o == null) {
+			return null;
+		}
+		return o.toString();
+	}
+
+	public String toClassStringOrNull(Object o) {
+		if (o == null) {
+			return null;
+		}
+		return o.getClass().getName();
+	}
+	
+
+	/**
+	 * dumps all NPCs
+	 *
+	 * @param transaction DBTransaction
+	 * @throws SQLException in case of an database error
+	 */
+	public void dump(DBTransaction transaction) throws SQLException {
+		long start = System.currentTimeMillis();
+		transaction.execute("UPDATE iteminfo SET active=0", null);
+		PreparedStatement stmt = transaction.prepareStatement("UPDATE iteminfo SET "
+				+ "active=?, name=?, class=?, subclass=?, description=?, weight=?, value=?, min_level=?, "
+				+ "atk=?, ratk=?, rate=?, def=?, projectile_range=?, damage_type=?, lifesteal=?, "
+				+ "amount=?, regen=?, frequency=?, immunization=?, antipoison=?, life_support=?, "
+				+ "implementation=?, use_behavior=?, infostring=?, menu=?, use_sound=?, persistent=?, "
+				+ "slot_name=?, slot_size=?, undroppableondeath=?, autobind=?, max_quantity=?, "
+				+ "deterioration=?, unattainable=? "
+				+ "WHERE name=?", null);
+		Map<String, DefaultItem> unknown = new HashMap<>();
+		EntityManager entityManager = SingletonRepository.getEntityManager();
+		Collection<DefaultItem> defaultItems = entityManager.getDefaultItems();
+		for (DefaultItem item : defaultItems) {
+			unknown.put(item.getItemName().trim(), item);
+			stmt.setString(35, item.getItemName());
+			dump(stmt, item);
+		}
+		stmt.executeBatch();
+
+
+		// add new
+		ResultSet resultSet = transaction.query("SELECT name FROM iteminfo", null);
+		while (resultSet.next()) {
+			unknown.remove(resultSet.getString(1));
+		}
+
+		stmt = transaction.prepareStatement("INSERT INTO iteminfo "
+				+ "(active, name, class, subclass, description, weight, value, min_level, "
+				+ "atk, ratk, rate, def, projectile_range, damage_type, lifesteal, "
+				+ "amount, regen, frequency, immunization, antipoison, life_support, "
+				+ "implementation, use_behavior, infostring, menu, use_sound, persistent, "
+				+ "slot_name, slot_size, undroppableondeath, autobind, max_quantity, "
+				+ "deterioration, unattainable) " +
+			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+
+		for (DefaultItem item : unknown.values()) {
+			dump(stmt, item);
+		}
+		stmt.executeBatch();
+		logger.debug("Completed dumping of items in " + (System.currentTimeMillis() - start) + " milliseconds.");
+	}
 
 }
+

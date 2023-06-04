@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
@@ -81,6 +80,8 @@ public class DefaultItem {
 
 	/* Slots where SlotActivatedItem can be activated when equipped. */
 	private List<String> activeSlotsList;
+
+	private boolean unattainable = false;
 
 	/**
 	 * Use behavior of the item, or <code>null</code> if no special behaviors
@@ -353,6 +354,46 @@ public class DefaultItem {
 
 	public void setItemName(final String val) {
 		name = val;
+	}
+
+	public AbstractCreator<Item> getCreator() {
+		return creator;
+	}
+
+	public List<String> getSlots() {
+		return slots;
+	}
+
+	public Nature getDamageType() {
+		return damageType;
+	}
+
+	public Map<Nature, Double> getSusceptibilities() {
+		return susceptibilities;
+	}
+
+	public Map<StatusType, Double> getResistances() {
+		return resistances;
+	}
+
+	public String[] getStatusAttacks() {
+		return statusAttacks;
+	}
+
+	public List<String> getActiveSlotsList() {
+		return activeSlotsList;
+	}
+
+	public UseBehavior getUseBehavior() {
+		return useBehavior;
+	}
+
+	public boolean isUnattainable() {
+		return unattainable;
+	}
+
+	public void setUnattainable(boolean unattainable) {
+		this.unattainable = unattainable;
 	}
 
 	public String toXML() {

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,8 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
+		item.setAttributes(new HashMap<>());
+		item.setUnattainable(true);
 		manager.addItem(item);
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("rat"), "golden key");
