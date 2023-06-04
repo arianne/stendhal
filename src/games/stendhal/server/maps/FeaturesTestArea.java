@@ -57,6 +57,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
 		item.setAttributes(new HashMap<>());
+		item.setUnattainable(true);
 		manager.addItem(item);
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("rat"), "golden key");

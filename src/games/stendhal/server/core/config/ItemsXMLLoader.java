@@ -159,6 +159,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			implementation = null;
 			useBehavior = null;
 			statusAttacks = null;
+			unattainable = false;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
