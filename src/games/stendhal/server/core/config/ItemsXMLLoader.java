@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
@@ -84,6 +83,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 
 	private String statusAttacks;
 
+	private boolean unattainable = false;
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
@@ -253,6 +253,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 
 			item.setImplementation(implementation);
 			item.setBehavior(useBehavior);
+			item.setUnattainable(unattainable);
 
 			list.add(item);
 		} else if (qName.equals("attributes")) {
@@ -267,6 +268,8 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			} catch (Exception e) {
 				LOGGER.error("Failed to construct use behavior.", e);
 			}
+		} else if (qName.equals("unattainable")) {
+			unattainable = Boolean.parseBoolean(text.trim());
 		}
 	}
 
