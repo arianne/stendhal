@@ -35,15 +35,13 @@ public class StendhalCreatureDAO {
 
 
 	/**
-	 * Dumps the properties of the specified SpeakerNPC into the prepared statement as an operation in
+	 * Dumps the properties of the specified object into the prepared statement as an operation in
 	 * a batch.
 	 *
 	 * @param stmt
 	 *   PreparedStatement in batch mode.
-	 * @param npc
-	 *   SpeakerNPC.
-	 * @param shopsInfo
-	 *   What the NPC buys & sells.
+	 * @param creature
+	 *   DefaultCreature
 	 * @throws
 	 *   SQLException in case a database error is thrown.
 	 */

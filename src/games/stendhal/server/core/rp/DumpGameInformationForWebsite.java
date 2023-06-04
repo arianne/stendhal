@@ -12,6 +12,7 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.server.core.engine.dbcommand.DumpCreaturesCommand;
+import games.stendhal.server.core.engine.dbcommand.DumpItemsCommand;
 import games.stendhal.server.core.engine.dbcommand.DumpSpeakerNPCsCommand;
 import games.stendhal.server.core.engine.dbcommand.DumpZonesCommand;
 import games.stendhal.server.core.engine.dbcommand.UpdateSearchIndexCommand;
@@ -29,6 +30,7 @@ public class DumpGameInformationForWebsite implements TurnListener {
 	@Override
 	public void onTurnReached(int currentTurn) {
 		DBCommandQueue.get().enqueue(new DumpCreaturesCommand(), DBCommandPriority.LOW);
+		DBCommandQueue.get().enqueue(new DumpItemsCommand(), DBCommandPriority.LOW);
 		DBCommandQueue.get().enqueue(new DumpSpeakerNPCsCommand(), DBCommandPriority.LOW);
 		DBCommandQueue.get().enqueue(new DumpZonesCommand(), DBCommandPriority.LOW);
 		DBCommandQueue.get().enqueue(new UpdateSearchIndexCommand(), DBCommandPriority.LOW);

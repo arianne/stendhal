@@ -162,6 +162,49 @@ CREATE TABLE IF NOT EXISTS creatureinfo (
 CREATE INDEX IF NOT EXISTS i_creatureinfo_name ON creatureinfo (name);
 
 
+
+CREATE TABLE IF NOT EXISTS iteminfo (
+  id                 INTEGER AUTO_INCREMENT NOT NULL,
+  active             INT,
+  name               VARCHAR(64),
+  class              VARCHAR(64),
+  subclass           VARCHAR(64),
+  description        VARCHAR(1000),
+  weight             INT,
+  value              INT,
+  min_level          INT,
+  atk                INT,
+  ratk               INT,
+  rate               INT,
+  def                INT,
+  projectile_range   INT,
+  damage_type        VARCHAR(64),
+  lifesteal          FLOAT,
+  amount             INT,
+  regen              INT,
+  frequency          INT,
+  immunization       VARCHAR(64),
+  antipoison         FLOAT,
+  life_support       VARCHAR(64),
+  implementation     VARCHAR(255),
+  use_behavior       VARCHAR(255),
+  infostring         VARCHAR(1000),
+  menu               VARCHAR(64),
+  use_sound          VARCHAR(255),
+  persistent         INT,
+  slot_name          VARCHAR(64),
+  slot_size          INT,
+  undroppableondeath INT,
+  autobind           INT,
+  max_quantity       INT,
+  deterioration      INT,
+  unattainable       INT,
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_iteminfo_name ON iteminfo (name);
+
+
 CREATE TABLE IF NOT EXISTS npcs (
   id            INTEGER AUTO_INCREMENT NOT NULL,
   active        INT,
