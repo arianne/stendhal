@@ -24,8 +24,7 @@
       </choice>
       <element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <!-- "name" can be omitted if shop is listed for website reading only -->
-    <attribute name="name" type="string" use="optional"/>
+    <attribute name="name" type="string" use="required"/>
     <attribute name="type" type="Q2:ShopType" use="required"/>
     <attribute name="condition" type="string" use="optional"/>
   </complexType>
