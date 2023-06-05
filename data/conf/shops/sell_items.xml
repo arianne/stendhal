@@ -395,7 +395,7 @@
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
-  <shop type="sell">
+  <shop name="flowerseeds" type="sell">
     <item name="daisy seed" price="20"/>
     <item name="lilia seed" price="10"/>
     <item name="pansy seed" price="10"/>
@@ -403,23 +403,23 @@
     <merchant name="Jenny"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="sellsheep" type="sell">
     <item name="sheep" price="30"/>
     <merchant name="Nishiya"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="sellroach" type="sell">
     <item name="roach" price="10"/>
     <merchant name="Mrs. Yeti"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="fadoscrolls" type="sell">
     <item name="fado city scroll" price="480"/>
     <item name="empty scroll" price="1760"/>
     <merchant name="Orchiwald"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="wofolbar" type="sell">
     <item name="beer" price="18"/>
     <item name="wine" price="25"/>
     <item name="mild koboldish torcibud" price="95">
@@ -431,7 +431,7 @@
     <merchant name="Wrviliza"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="animalsanctuary" type="sell">
     <item name="antidote" price="40" />
     <item name="minor potion" price="80" />
     <item name="potion" price="200" />
@@ -439,29 +439,29 @@
     <merchant name="Dr. Feelgood" note="after Zoo Food quest"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="cats" type="sell">
     <item name="cat" price="100"/>
     <merchant name="Felina"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="karl" type="sell">
     <item name="empty sack" price="10"/>
     <merchant name="Karl"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="karlhorsehair" type="sell">
     <item name="horse hair" price="20" note="after Bows for Ouchit quest"/>
     <merchant name="Karl"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="dojo" type="sell">
     <item name="training sword" price="2100"/>
     <item name="shuriken" price="80"/>
     <item name="fire shuriken" price="105"/>
     <merchant name="Akutagawa"/>
   </shop>
 
-  <shop type="sell">
+  <shop name="bestiary" type="sell">
     <item name="bestiary" price="500000"/>
     <merchant name="Rengard" note="after Collect Enemy Data quest"/>
   </shop>

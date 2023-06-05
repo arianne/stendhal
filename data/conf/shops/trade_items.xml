@@ -5,7 +5,7 @@
 
   <!-- TRADE FOR ITEMS INSTEAD OF MONEY -->
 
-  <shop type="trade">
+  <shop name="arrowsforpearls" type="trade">
     <item name="ice arrow">
       <for name="black pearl" count="1"/>
     </item>

@@ -461,12 +461,12 @@
 
   <!-- the following are configured in the NPC source & are included here only to be read by the website -->
 
-  <shop type="buy">
+  <shop name="buysheep" type="buy">
     <item name="sheep" price="150"/>
     <merchant name="Sato"/>
   </shop>
 
-  <shop type="buy">
+  <shop name="orcbuysheep" type="buy">
     <item name="sheep" price="15" pricemax="1500"/>
     <merchant name="Tor'Koom"/>
   </shop>
