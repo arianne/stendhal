@@ -11,7 +11,6 @@
 package games.stendhal.server.entity.npc.shop;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 
 /**
@@ -29,13 +28,4 @@ public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
    */
   public abstract Integer getPrice(final String name);
 
-  /**
-   * Retrieves list of names or identifiers of items sold by a shop.
-   *
-   * @return
-   *    Item list.
-   */
-  public List<String> getItemList() {
-    return (List<String>) keySet();
-  }
 }
