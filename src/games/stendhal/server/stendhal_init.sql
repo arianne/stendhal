@@ -228,6 +228,17 @@ CREATE TABLE IF NOT EXISTS npcs (
 
 CREATE INDEX IF NOT EXISTS i_npcs_name ON npcs (name);
 
+CREATE TABLE IF NOT EXISTS shopinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
+  name          VARCHAR(64),
+  shop_type     VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_shopinfo_name ON shopinfo (name);
+
+
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
   active        INT,

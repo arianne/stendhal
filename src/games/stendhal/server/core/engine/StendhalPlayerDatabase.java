@@ -32,6 +32,7 @@ import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.core.engine.db.StendhalNPCDAO;
 import games.stendhal.server.core.engine.db.StendhalRPZoneDAO;
 import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
+import games.stendhal.server.core.engine.db.StendhalShopDAO;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.entity.Outfit;
 import marauroa.server.db.DBTransaction;
@@ -287,6 +288,7 @@ public class StendhalPlayerDatabase {
 		DAORegister.get().register(PendingAchievementDAO.class, new PendingAchievementDAO());
 		DAORegister.get().register(StendhalItemDAO.class, new StendhalItemDAO());
 		DAORegister.get().register(StendhalRPZoneDAO.class, new StendhalRPZoneDAO());
+		DAORegister.get().register(StendhalShopDAO.class, new StendhalShopDAO());
 		DAORegister.get().register(StendhalSearchIndexDAO.class, new StendhalSearchIndexDAO());
 	}
 }

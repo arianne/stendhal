@@ -1,0 +1,117 @@
+/***************************************************************************
+ *                    (C) Copyright 2003-2023 - Stendhal                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.server.core.engine.db;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.npc.shop.OutfitShopsList;
+import games.stendhal.server.entity.npc.shop.ShopInventory;
+import games.stendhal.server.entity.npc.shop.ShopType;
+import games.stendhal.server.entity.npc.shop.ShopsList;
+import marauroa.server.db.DBTransaction;
+import marauroa.server.game.db.CharacterDAO;
+
+/**
+ * Dumps shops to the database for use by the website
+ */
+public class StendhalShopDAO extends CharacterDAO {
+	private static Logger logger = Logger.getLogger(StendhalCreatureDAO.class);
+
+	/*
+	 * Shop name type ["buy", "sell", "outfit"]
+	 * 
+	 * 
+	 * Item name price
+	 * 
+	 * Outfit name layers price
+	 * 
+	 * 
+	 * Merchant flag-configure flag-noOffer
+	 * 
+	 * outfit-flag-removeDetailColor outfit-flag-confirmTemp
+	 * outfit-flag-confirmBalloon outfit-flag-resetBeforeChange
+	 * 
+	 * note
+	 */
+
+	/**
+	 * Dumps the properties of the specified object into the prepared statement as
+	 * an operation in a batch.
+	 *
+	 * @param stmt PreparedStatement in batch mode.
+	 * @param shop Shop
+	 * @throws SQLException in case a database error is thrown.
+	 */
+	private void dump(PreparedStatement stmt, ShopInventory<?, ?> shop) throws SQLException {
+		stmt.setInt(1, 1);
+		stmt.setString(2, shop.getName());
+		stmt.setString(3, shop.getShopType().toString());
+		stmt.addBatch();
+	}
+
+	/**
+	 * dumps all creatures
+	 *
+	 * @param transaction DBTransaction
+	 * @throws SQLException in case of an database error
+	 */
+	public void dump(DBTransaction transaction) throws SQLException {
+		long start = System.currentTimeMillis();
+
+		// update existing
+		transaction.execute("UPDATE shopinfo SET active=0", null);
+		PreparedStatement stmt = transaction.prepareStatement("UPDATE shopinfo SET "
+				+ "active=?, name=?, shop_type=? "
+				+ "WHERE name=?", null);
+
+		Map<String, ShopInventory<?, ?>> unknown = new HashMap<>();
+		List<ShopInventory<?, ?>> shops = getShops();
+		for (ShopInventory<?, ?> shop : shops) {
+			unknown.put(shop.getName(), shop);
+			stmt.setString(4, shop.getName());
+			dump(stmt, shop);
+		}
+		stmt.executeBatch();
+
+		// add new
+		ResultSet resultSet = transaction.query("SELECT name FROM shopinfo", null);
+		while (resultSet.next()) {
+			unknown.remove(resultSet.getString(1));
+		}
+
+		stmt = transaction.prepareStatement("INSERT INTO shopinfo "
+				+ "(active, name, shop_type) "
+				+ "VALUES (?, ?, ?);", null);
+		for (ShopInventory<?, ?> shop : unknown.values()) {
+			dump(stmt, shop);
+		}
+		stmt.executeBatch();
+
+		logger.debug("Completed dumping of shops in " + (System.currentTimeMillis() - start) + " milliseconds.");
+	}
+
+	private List<ShopInventory<?, ?>> getShops() {
+		List<ShopInventory<?, ?>> shops = new LinkedList<>();
+		shops.addAll(ShopsList.get().getContents(ShopType.ITEM_BUY).values());
+		shops.addAll(ShopsList.get().getContents(ShopType.ITEM_SELL).values());
+		shops.addAll(OutfitShopsList.get().getContents().values());
+		return shops;
+	}
+}
