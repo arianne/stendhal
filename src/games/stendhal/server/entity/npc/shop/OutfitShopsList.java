@@ -69,6 +69,10 @@ public class OutfitShopsList {
     registry.put(id, inventory);
   }
 
+  public Map<String, OutfitShopInventory> getContents() {
+    return registry;
+  }
+
   /**
    * Retrieves a registered shop.
    *

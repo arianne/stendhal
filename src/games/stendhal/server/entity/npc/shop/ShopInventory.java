@@ -12,20 +12,34 @@ package games.stendhal.server.entity.npc.shop;
 
 import java.util.LinkedHashMap;
 
-
 /**
  * Represents contents & prices of a shop.
  */
 public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
 
-  /**
-   * Retrieves the price of an item sold by a shop.
-   *
-   * @param name
-   *     Name or identifier of item sold.
-   * @return
-   *     Amount of money required to buy item.
-   */
-  public abstract Integer getPrice(final String name);
+	private ShopType shopType;
+	private String name;
+
+	public ShopInventory(ShopType shopType, String name) {
+		super();
+		this.shopType = shopType;
+		this.name = name;
+	}
+
+	/**
+	 * Retrieves the price of an item sold by a shop.
+	 *
+	 * @param name Name or identifier of item sold.
+	 * @return Amount of money required to buy item.
+	 */
+	public abstract Integer getPrice(final String name);
+
+	public ShopType getShopType() {
+		return shopType;
+	}
+
+	public String getName() {
+		return name;
+	}
 
 }
