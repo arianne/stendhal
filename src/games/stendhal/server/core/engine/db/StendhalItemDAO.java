@@ -273,5 +273,9 @@ public class StendhalItemDAO {
 		logger.debug("Completed dumping of items in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
+
+	public Map<String, Integer> getItemInfoIdMap(DBTransaction transaction) throws SQLException {
+		return transaction.queryAsMap("SELECT name, id FROM iteminfo", null);
+	}
 }
 
