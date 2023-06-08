@@ -18,6 +18,15 @@ import marauroa.common.Pair;
  * Represents contents & prices of an outfit shop.
  */
 public class OutfitShopInventory extends ShopInventory<String, Pair<String, Integer>> {
+	/**
+	 * creates an OutfitShopInventory
+	 *
+	 * @param shopType type of shop
+	 * @param name name of shop
+	 */
+	public OutfitShopInventory(ShopType shopType, String name) {
+		super(shopType, name);
+	}
 
   /**
    * Adds an outfit to shop.

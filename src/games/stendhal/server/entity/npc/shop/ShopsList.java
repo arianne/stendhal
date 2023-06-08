@@ -67,7 +67,7 @@ public final class ShopsList {
 	 *     Seller or buyer shop list (or deprecated generic shop list if
 	 *     <code>seller</code> is null.
 	 */
-	private Map<String, ItemShopInventory> getContents(final ShopType stype) {
+	public Map<String, ItemShopInventory> getContents(final ShopType stype) {
 		if (ShopType.ITEM_SELL.equals(stype)) {
 			return sellerContents;
 		} else if (ShopType.ITEM_BUY.equals(stype)) {
@@ -136,9 +136,11 @@ public final class ShopsList {
 	 *     Name of item to add.
 	 * @param price
 	 *     Value of the item.
+	 * @deprecated Shops should be defined on data/conf/shops/*.xml
 	 */
+	@Deprecated
 	public void add(final String name, final ShopType stype, final String item, final int price) {
-		final ItemShopInventory inventory = new ItemShopInventory();
+		final ItemShopInventory inventory = new ItemShopInventory(stype, name);
 		inventory.put(item, price);
 		add(name, stype, inventory);
 	}

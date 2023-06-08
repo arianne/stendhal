@@ -228,6 +228,42 @@ CREATE TABLE IF NOT EXISTS npcs (
 
 CREATE INDEX IF NOT EXISTS i_npcs_name ON npcs (name);
 
+CREATE TABLE IF NOT EXISTS shopinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
+  name          VARCHAR(64),
+  shop_type     VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_shopinfo_name ON shopinfo (name);
+
+CREATE TABLE IF NOT EXISTS shopinventoryinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
+  shopinfo_id   INT,
+  name          VARCHAR(64),
+  price         INT,
+  iteminfo_id   INT,
+  outfit        VARCHAR(1000),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_name ON shopinventoryinfo (name);
+CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_iteminfo_id ON shopinventoryinfo (iteminfo_id);
+CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_shopinfo_id ON shopinventoryinfo (shopinfo_id);
+
+CREATE TABLE IF NOT EXISTS npcshopinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  shopinfo_id   INT,
+  npcinfo_id    INT,
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_npcshopinfo_shopinfo_id ON npcshopinfo (shopinfo_id);
+CREATE INDEX IF NOT EXISTS i_npcshopinfo_npcinfo_id ON npcshopinfo (npcinfo_id);
+
+
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
   active        INT,
