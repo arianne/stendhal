@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.config.ShopGroupsXMLLoader.MerchantConfigurator;
 import games.stendhal.server.entity.npc.shop.ItemShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopsList;
@@ -146,6 +147,38 @@ public class StendhalShopDAO extends CharacterDAO {
 		stmt.executeBatch();
 	}
 
+	private void dumpShopOwner(PreparedStatement stmt, ShopInventory<?, ?> shop,
+			Map<String, Integer> shopIdMap,
+			Map<String, Integer> npcIdMap) throws SQLException {
+
+		String shopName = shop.getName();
+		Integer shopId = shopIdMap.get(shopName);
+
+		for (MerchantConfigurator mc : shop.getMerchantConfigurators()) {
+			stmt.setInt(1, 1);
+			stmt.setObject(2, npcIdMap.get(mc.npc));
+			stmt.setObject(3, shopId);
+			stmt.addBatch();
+		}
+		stmt.executeBatch();
+		
+	}
+
+	private void dumpShopOwners(DBTransaction transaction) throws SQLException {
+		transaction.execute("DELETE FROM shopownerinfo", null);
+
+		List<ShopInventory<?, ?>> shops = getShops();
+		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO shopownerinfo "
+				+ "(active, npcinfo_id, shopinfo_id) "
+				+ "VALUES (?, ?, ?);", null);
+		Map<String, Integer> shopIdMap = getShopIdMap(transaction);
+		Map<String, Integer> npcIdMap = DAORegister.get().get(StendhalNPCDAO.class).getIdMap(transaction);
+		for (ShopInventory<?, ?> shop : shops) {
+			dumpShopOwner(stmt, shop, shopIdMap, npcIdMap);
+		}
+		stmt.executeBatch();
+	}
+
 	private List<ShopInventory<?, ?>> getShops() {
 		List<ShopInventory<?, ?>> shops = new LinkedList<>();
 		shops.addAll(ShopsList.get().getContents(ShopType.ITEM_BUY).values());
@@ -163,6 +196,7 @@ public class StendhalShopDAO extends CharacterDAO {
 		long start = System.currentTimeMillis();
 		dumpShops(transaction);
 		dumpShopIventories(transaction);
+		dumpShopOwners(transaction);
 		logger.debug("Completed dumping of shops in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 }

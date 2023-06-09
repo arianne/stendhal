@@ -133,4 +133,7 @@ public class StendhalNPCDAO {
 		logger.debug("Completed dumping of NPCs in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
+	public Map<String, Integer> getIdMap(DBTransaction transaction) throws SQLException {
+		return transaction.queryAsMap("SELECT name, id FROM npcs", null);
+	}
 }

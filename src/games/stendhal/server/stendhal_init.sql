@@ -253,6 +253,16 @@ CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_name ON shopinventoryinfo (name);
 CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_iteminfo_id ON shopinventoryinfo (iteminfo_id);
 CREATE INDEX IF NOT EXISTS i_shopinventoryinfo_shopinfo_id ON shopinventoryinfo (shopinfo_id);
 
+CREATE TABLE IF NOT EXISTS shopownerinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  active        INT,
+  npcinfo_id    INT,
+  shopinfo_id   INT,
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX IF NOT EXISTS i_shopownerinfo_shopinfo_id ON shopownerinfo (shopinfo_id);
+CREATE INDEX IF NOT EXISTS i_shopownerinfo_npcinfo_id ON shopownerinfo (npcinfo_id);
 
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
