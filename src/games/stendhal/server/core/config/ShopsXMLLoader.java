@@ -185,6 +185,9 @@ public class ShopsXMLLoader extends DefaultHandler {
 			}
 			mc.wearOffMessage = attrs.getValue("wearOffMessage");
 			configurators.add(mc);
+			if (currentInventory != null) {
+				currentInventory.addMerchantConfigurator(mc);
+			}
 		}
 	}
 
