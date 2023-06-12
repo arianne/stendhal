@@ -789,7 +789,7 @@ public class StendhalClient extends ClientFramework {
 	 * @throws IOException in case of an input/output error
 	 */
 	@Override
-	public void connect(final String host, final int port) throws IOException {
+	public void connect(String host, final int port) throws IOException {
 		String gameName = ClientGameConfiguration.get("GAME_NAME").toLowerCase(Locale.ENGLISH);
 
 		// include gamename, so that arianne.sf.net can ignore non stendhal games
@@ -806,6 +806,10 @@ public class StendhalClient extends ClientFramework {
 			JOptionPane.showMessageDialog(splashScreen,
 				new JLabel(message), "Version Check",
 				JOptionPane.WARNING_MESSAGE);
+		}
+
+		if (host.toLowerCase().endsWith("stendhalgame.org")) {
+			host = "arianne-project.org";
 		}
 
 		super.connect(host, port);
