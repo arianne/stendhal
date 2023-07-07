@@ -137,8 +137,8 @@ public class OutfitShopsList {
     for (final Map.Entry<String, Pair<String, Integer>> entry: inventory.entrySet()) {
       pricelist.put(entry.getKey(), entry.getValue().second());
     }
-    final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(pricelist, expiration,
-        wearOffMessage) {
+    final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(pricelist, priceFactor,
+        expiration, wearOffMessage) {
       @Override
       public void putOnOutfit(final Player player, final String oname) {
         // TODO: update OutfitChangerBehaviour to not set outfit list internally
