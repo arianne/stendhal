@@ -17,14 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-import games.stendhal.server.entity.npc.shop.ShopsList;
 
 /**
  * Builds a Wizard NPC who explains about the city.
@@ -32,7 +28,6 @@ import games.stendhal.server.entity.npc.shop.ShopsList;
  * @author kymara
  */
 public class GreeterNPC implements ZoneConfigurator {
-	private final ShopsList shops = SingletonRepository.getShopsList();
 
 	/**
 	 * Configure a zone.
@@ -83,15 +78,6 @@ public class GreeterNPC implements ZoneConfigurator {
 				addReply("magic", "Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
 				addReply("explain", "As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
 				addHelp("It is part of my #job to #offer you enchanted scrolls to travel to any major city in Faiumoni. I also have a supply of scrolls you may mark, and some scrolls to summon creatures. Be aware, they do not come cheap.");
-
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("allscrolls")) {
-					@Override
-					public int getUnitPrice(final String item) {
-						// Player pays 150 % of standard price
-						return (int) (1.50f * priceCalculator.calculatePrice(item, null));
-					}
-				});
-
 				addQuest("Neither can live while the other survives! The Dark Lord must be killed...no ... wait... that was some other time. Forgive me for confusing you, I need nothing.");
 				addGoodbye("Adieu.");
 			}

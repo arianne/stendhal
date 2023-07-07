@@ -84,7 +84,8 @@
     <item name="fado city scroll" price="600" />
     <item name="kirdneh city scroll" price="600" />
     <item name="deniran city scroll" price="800" />
-    <merchant name="Erodel Bmud"/>
+    <!-- Erodel Bmud sells for 150% of standard prices -->
+    <merchant name="Erodel Bmud" flags="configure" factor="1.5"/>
   </shop>
 
   <shop name="sellstuff" type="sell">
