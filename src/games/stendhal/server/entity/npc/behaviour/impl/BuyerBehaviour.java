@@ -27,8 +27,26 @@ import games.stendhal.server.entity.player.Player;
  */
 public class BuyerBehaviour extends MerchantBehaviour {
 
+	/**
+	 * Creates a new BuyerBehaviour with price list.
+	 *
+	 * @param priceList
+	 *   List of item names and their prices.
+	 */
 	public BuyerBehaviour(final Map<String, Integer> priceList) {
 		super(priceList);
+	}
+
+	/**
+	 * Creates a new BuyerBehaviour with price list & price factor.
+	 *
+	 * @param priceList
+	 *   List of item names and their prices.
+	 * @param priceFactor
+	 *   Skews prices of all items for this merchant.
+	 */
+	public BuyerBehaviour(final Map<String, Integer> priceList, final Float priceFactor) {
+		super(priceList, priceFactor);
 	}
 
 	/**

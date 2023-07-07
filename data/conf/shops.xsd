@@ -89,6 +89,8 @@
     <!-- default is to never expire (outfits) -->
     <attribute name="expires" type="int" use="optional"/>
     <attribute name="wearOffMessage" type="string" use="optional"/>
+    <!-- adjusts prices of all items in shop for this merchant -->
+    <attribute name="factor" type="float" use="optional"/>
   </complexType>
 
 </schema>

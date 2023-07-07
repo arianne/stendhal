@@ -108,6 +108,7 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 		public String id;
 		public ShopType stype;
 		public List<String> flags;
+		public Float factor; // skews prices for this merchant
 		// outfit shop exclusive
 		public String action;
 		public Integer expiration;
@@ -125,11 +126,11 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 		}
 
 		private void configureItemShop() {
-			shops.configureNPC(npc, id, stype, flags == null || !flags.contains("noOffer"));
+			shops.configureNPC(npc, id, stype, factor, flags == null || !flags.contains("noOffer"));
 		}
 
 		private void configureOutfitShop() {
-			oshops.configureNPC(npc, id, action,
+			oshops.configureNPC(npc, id, factor, action,
 					expiration != null ? expiration : OutfitChangerBehaviour.NEVER_WEARS_OFF,
 					wearOffMessage, flags);
 		}

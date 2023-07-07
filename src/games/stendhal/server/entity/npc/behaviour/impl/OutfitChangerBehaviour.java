@@ -128,6 +128,26 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	}
 
 	/**
+	 * Creates a new OutfitChangerBehaviour for outfits that wear off automatically after some time.
+	 *
+	 * @param priceList
+	 *   List of outfit types and their prices.
+	 * @param priceFactor
+	 *   Skews prices of all items for this merchant.
+	 * @param endurance
+	 *   Turns that outfit will remain on player or NEVER_WEARS_OFF if outfit should be kept
+	 *   indefinitely.
+	 * @param wearOffMessage
+	 *   Message that player receives after outfit wears off, or `null` if no message.
+	 */
+	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final Float priceFactor,
+			final int endurance, final String wearOffMessage) {
+		super(priceList, priceFactor);
+		this.endurance = endurance;
+		this.wearOffMessage = wearOffMessage;
+	}
+
+	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that wear off
 	 * automatically after some time.
 	 *
@@ -142,9 +162,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 */
 	public OutfitChangerBehaviour(final Map<String, Integer> priceList,
 			final int endurance, final String wearOffMessage) {
-		super(priceList);
-		this.endurance = endurance;
-		this.wearOffMessage = wearOffMessage;
+		this(priceList, null, endurance, wearOffMessage);
 	}
 
 	/**

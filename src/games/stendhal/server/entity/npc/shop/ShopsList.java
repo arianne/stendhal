@@ -168,11 +168,13 @@ public final class ShopsList {
 	 *     Shop string identifier.
 	 * @param stype
 	 *     Seller or buyer shop.
+	 * @param priceFactor
+	 *     Skews prices of all items for this merchant.
 	 * @param offer
 	 *     If <code>true</code>, adds reply to "offer".
 	 */
 	public void configureNPC(final SpeakerNPC npc, final String shopname, final ShopType stype,
-			final boolean offer) {
+			final Float priceFactor, final boolean offer) {
 		if (npc == null) {
 			logger.error("Cannot configure " + stype + "er shop \""
 					+ shopname + "\" for non-existing NPC");
@@ -191,10 +193,27 @@ public final class ShopsList {
 				+ " with offer " + (offer ? "enabled" : "disabled");
 		logger.info(msg);
 		if (ShopType.ITEM_SELL.equals(stype)) {
-			new SellerAdder().addSeller(npc, new SellerBehaviour(inventory), offer);
+			new SellerAdder().addSeller(npc, new SellerBehaviour(inventory, priceFactor), offer);
 		} else {
-			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(inventory), offer);
+			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(inventory, priceFactor), offer);
 		}
+	}
+
+	/**
+	 * Configures an NPC for a shop.
+	 *
+	 * @param npc
+	 *     NPC being configured.
+	 * @param shopname
+	 *     Shop string identifier.
+	 * @param stype
+	 *     Seller or buyer shop.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
+	 */
+	public void configureNPC(final SpeakerNPC npc, final String shopname, final ShopType stype,
+			final boolean offer) {
+		configureNPC(npc, shopname, stype, null, offer);
 	}
 
 	/**
@@ -224,12 +243,32 @@ public final class ShopsList {
 	 *     Shop string identifier.
 	 * @param stype
 	 *     Seller or buyer shop.
+	 * @param priceFactor
+	 *     Skews prices of all items for this merchant.
+	 * @param offer
+	 *     If <code>true</code>, adds reply to "offer".
+	 */
+	public void configureNPC(final String npcname, final String shopname, final ShopType stype,
+			final Float priceFactor, final boolean offer) {
+		configureNPC(SingletonRepository.getNPCList().get(npcname), shopname, stype, priceFactor,
+				offer);
+	}
+
+	/**
+	 * Configures an NPC for a shop.
+	 *
+	 * @param npcname
+	 *     Name of NPC being configured.
+	 * @param shopname
+	 *     Shop string identifier.
+	 * @param stype
+	 *     Seller or buyer shop.
 	 * @param offer
 	 *     If <code>true</code>, adds reply to "offer".
 	 */
 	public void configureNPC(final String npcname, final String shopname, final ShopType stype,
 			final boolean offer) {
-		configureNPC(SingletonRepository.getNPCList().get(npcname), shopname, stype, offer);
+		configureNPC(npcname, shopname, stype, null, offer);
 	}
 
 	/**

@@ -41,6 +41,9 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 	private SpeakerNPC merchant;
 
+	// skews prices of all items for this merchant
+	private Float priceFactor = null;
+
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
@@ -51,6 +54,21 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 		priceCalculator = new FixedPricePriceCalculationStrategy(priceList);
 		for (final String itemName : priceList.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
+		}
+	}
+
+	/**
+	 * Creates a new MerchantBehaviour with price list & price factor.
+	 *
+	 * @param priceList
+	 *   List of item names and their prices.
+	 * @param priceFactor
+	 *   Skews prices of all items for this merchant.
+	 */
+	public MerchantBehaviour(final Map<String, Integer> priceList, final Float priceFactor) {
+		this(priceList);
+		if (priceFactor != null && priceFactor != 1) {
+			this.priceFactor = priceFactor;
 		}
 	}
 
@@ -107,7 +125,11 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * @return the unit price
 	 */
 	public int getUnitPrice(final String item) {
-		return priceCalculator.calculatePrice(item, null);
+		int price = priceCalculator.calculatePrice(item, null);
+		if (priceFactor != null) {
+			price = (int) (price * priceFactor);
+		}
+		return price;
 	}
 
 	/**

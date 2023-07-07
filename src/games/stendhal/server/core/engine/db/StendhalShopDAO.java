@@ -158,6 +158,7 @@ public class StendhalShopDAO extends CharacterDAO {
 			stmt.setInt(1, 1);
 			stmt.setObject(2, npcIdMap.get(mc.npc));
 			stmt.setObject(3, shopId);
+			stmt.setObject(4, mc.factor);
 			stmt.addBatch();
 		}
 		stmt.executeBatch();
@@ -169,8 +170,8 @@ public class StendhalShopDAO extends CharacterDAO {
 
 		List<ShopInventory<?, ?>> shops = getShops();
 		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO shopownerinfo "
-				+ "(active, npcinfo_id, shopinfo_id) "
-				+ "VALUES (?, ?, ?);", null);
+				+ "(active, npcinfo_id, shopinfo_id, price_factor) "
+				+ "VALUES (?, ?, ?, ?);", null);
 		Map<String, Integer> shopIdMap = getShopIdMap(transaction);
 		Map<String, Integer> npcIdMap = DAORegister.get().get(StendhalNPCDAO.class).getIdMap(transaction);
 		for (ShopInventory<?, ?> shop : shops) {

@@ -258,11 +258,13 @@ CREATE TABLE IF NOT EXISTS shopownerinfo (
   active        INT,
   npcinfo_id    INT,
   shopinfo_id   INT,
+  price_factor  FLOAT,
   PRIMARY KEY (id)
 );
 
 CREATE INDEX IF NOT EXISTS i_shopownerinfo_shopinfo_id ON shopownerinfo (shopinfo_id);
 CREATE INDEX IF NOT EXISTS i_shopownerinfo_npcinfo_id ON shopownerinfo (npcinfo_id);
+CREATE INDEX IF NOT EXISTS i_shopownerinfo_price_factor ON shopownerinfo (price_factor);
 
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
