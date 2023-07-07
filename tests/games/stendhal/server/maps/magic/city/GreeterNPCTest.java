@@ -24,6 +24,7 @@ import org.junit.Test;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
+import utilities.ShopHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
@@ -109,6 +110,9 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBuyScroll() {
 		final SpeakerNPC npc = getNPC("Erodel Bmud");
 		final Engine en = npc.getEngine();
+
+		// FIXME: this should be set up before test is run
+		ShopHelper.initSeller("allscrolls");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Salutations, traveller.", getReply(npc));
