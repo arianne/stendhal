@@ -264,7 +264,6 @@ CREATE TABLE IF NOT EXISTS shopownerinfo (
 
 CREATE INDEX IF NOT EXISTS i_shopownerinfo_shopinfo_id ON shopownerinfo (shopinfo_id);
 CREATE INDEX IF NOT EXISTS i_shopownerinfo_npcinfo_id ON shopownerinfo (npcinfo_id);
-CREATE INDEX IF NOT EXISTS i_shopownerinfo_price_factor ON shopownerinfo (price_factor);
 
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
