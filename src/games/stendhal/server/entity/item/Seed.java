@@ -18,9 +18,9 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A seed can be planted.
