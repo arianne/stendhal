@@ -40,18 +40,18 @@ public class StendhalShopDAO extends CharacterDAO {
 
 	/*
 	 * Shop name type ["buy", "sell", "outfit"]
-	 * 
-	 * 
+	 *
+	 *
 	 * Item name price
-	 * 
+	 *
 	 * Outfit name layers price
-	 * 
-	 * 
+	 *
+	 *
 	 * Merchant flag-configure flag-noOffer
-	 * 
+	 *
 	 * outfit-flag-removeDetailColor outfit-flag-confirmTemp
 	 * outfit-flag-confirmBalloon outfit-flag-resetBeforeChange
-	 * 
+	 *
 	 * note
 	 */
 
@@ -108,7 +108,7 @@ public class StendhalShopDAO extends CharacterDAO {
 		stmt.executeBatch();
 	}
 
-	private void dumpShopInventory(PreparedStatement stmt, ShopInventory<?, ?> shop, 
+	private void dumpShopInventory(PreparedStatement stmt, ShopInventory<?, ?> shop,
 			Map<String, Integer> shopIdMap,
 			Map<String, Integer> itemInfoIdMap) throws SQLException {
 		String shopName = shop.getName();
@@ -161,7 +161,7 @@ public class StendhalShopDAO extends CharacterDAO {
 			stmt.addBatch();
 		}
 		stmt.executeBatch();
-		
+
 	}
 
 	private void dumpShopOwners(DBTransaction transaction) throws SQLException {
