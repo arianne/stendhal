@@ -150,7 +150,7 @@ public class LuaLogger {
 		if (alt != null) {
 			msg += ", use '" + alt + "' instead";
 		}
-		warn(msg);
+		debug(msg);
 	}
 
 	/**
