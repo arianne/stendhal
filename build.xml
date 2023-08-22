@@ -34,6 +34,8 @@
   <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
   <property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
 
+  <property name="build_webclient" value="${buildroot}/build_webclient"/>
+
   <property name="build_docker" value="${buildroot}/build_docker"/>
   <property name="buildtools_docker" value="buildtools/docker"/>
 
@@ -294,15 +296,15 @@
     <delete dir="${buildroot}/ts"/>
   </target>
 
-  <target name="clean_docs" description="Delete javadoc generated HTML API reference.">
+  <target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
     <delete dir="${docs}"/>
   </target>
 
-  <target name="clean_mkdocs">
+  <target name="clean_mkdocs" description="Delete MkDocs generated HTML documentation.">
     <delete dir="${buildroot}/mkdocs/"/>
   </target>
 
-  <target name="clean_doxygen" description="Delete Doxygen generated HTML API reference.">
+  <target name="clean_doxygen" description="Delete Doxygen generated HTML documentation.">
     <delete dir="${buildroot}/doxygen"/>
   </target>
 
@@ -678,7 +680,7 @@
 
   </target> <!-- server_build -->
 
-  <target name="dist_server_binary" depends="server_build,compilejs">
+  <target name="dist_server_binary" depends="server_build">
     <mkdir dir="${buildroot}/stendhal-server-${version}"/>
 
     <copy todir="${buildroot}/stendhal-server-${version}/data/script">
@@ -714,12 +716,8 @@
     </copy>
 
     <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
-<!--
-    <mkdir dir="${buildroot}/stendhal-server-${version}/js"/>
-    <copy todir="${buildroot}/stendhal-server-${version}/js">
-      <fileset dir="srcjs"/>
-    </copy>
--->
+
+    <antcall target="webclient_build" unless:set="exclude.webclient"/>
 
     <copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
     <mkdir dir="${buildroot}/stendhal-server-${version}/log"/>
@@ -727,8 +725,14 @@
     <zip destfile="${dist_server_binary}">
       <zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
       <zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
+      <!-- webclient files -->
+      <zipfileset dir="${build_client_data}" unless:set="exclude.webclient"/>
+      <zipfileset dir="${build_client_music_data}" unless:set="exclude.webclient"/>
+      <zipfileset dir="${build_client_sound_data}" unless:set="exclude.webclient"/>
+      <zipfileset dir="${build_webclient}" prefix="js" unless:set="exclude.webclient"/>
     </zip>
     <delete dir="${buildroot}/stendhal-server-${version}"/>
+    <delete dir="${build_webclient}"/>
 
   </target> <!-- dist_server_binary -->
 
@@ -1190,13 +1194,48 @@
       message="WARNING: Node.js is not installed, skipping web client build."/>
   </target> <!-- compilejs -->
 
-  <target name="dist_webclient_binary" depends="compilejs,clean_client_data,build_client_data">
+  <target name="webclient_build" depends="compilejs,clean_client_data,build_client_data">
+    <mkdir dir="${build_webclient}"/>
+
+    <copy todir="${build_webclient}">
+      <fileset dir="${srcjs}">
+        <include name="stendhal.html"/>
+        <include name="stendhal.css"/>
+        <include name="stendhal-compiled.js*"/>
+        <include name="favicon.ico"/>
+      </fileset>
+    </copy>
+    <copy todir="${build_webclient}/marauroa">
+      <fileset dir="${buildroot}/js"/>
+    </copy>
+    <copy todir="${build_webclient}/stendhal">
+      <fileset dir="${buildroot}/ts"/>
+    </copy>
+
+    <replaceregexp file="${build_webclient}/stendhal.html"
+        match="data-tileset-path=&quot;/tileset&quot;"
+        replace="data-tileset-path=&quot;/data/tileset&quot;"
+        byline="false"/>
+    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
+        match="build/js/"
+        replace="js/marauroa/"
+        byline="true"
+        flags="g"/>
+    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
+        match="build/ts/"
+        replace="js/stendhal/"
+        byline="true"
+        flags="g"/>
+  </target> <!-- webclient_build -->
+
+  <target name="build_webclient" depends="webclient_build"/>
+
+  <target name="dist_webclient_binary" depends="webclient_build">
     <zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
-      <zipfileset dir="${buildroot}/js" prefix="js"/>
-      <zipfileset dir="${buildroot}/ts" prefix="ts"/>
       <zipfileset dir="${build_client_data}"/>
       <zipfileset dir="${build_client_music_data}"/>
       <zipfileset dir="${build_client_sound_data}"/>
+      <zipfileset dir="${build_webclient}" prefix="js"/>
       <zipfileset dir="doc" prefix="doc">
         <include name="contributors.md"/>
         <include name="Licenses/**"/>
@@ -1204,6 +1243,7 @@
       </zipfileset>
       <zipfileset file="LICENSE.txt" prefix="doc"/>
     </zip>
+    <delete dir="${build_webclient}"/>
   </target> <!-- dist_webclient_binary -->
 
   <!-- END: web client -->
@@ -1426,9 +1466,8 @@
 
   <!-- START: documentation -->
 
-  <target name="docs"
-      description="Generate HTML API reference with javadoc."
-      depends="clean_docs">
+  <target name="javadocs" description="Generate HTML documentation for Java API with javadoc."
+      depends="clean_javadocs">
     <condition property="include.marauroa" value="true">
       <available file="${marauroa_src}" type="dir"/>
     </condition>
@@ -1476,23 +1515,25 @@
             if:true="${include.marauroa}"/>
       </classpath>
     </javadoc>
-  </target> <!-- docs -->
+  </target> <!-- javadocs -->
 
-  <target name="mkdocs" description="Generate HTML reference." depends="clean_mkdocs">
-    <!-- call "docs" to include javadocs -->
+  <target name="mkdocs" description="Generate HTML documentation for Lua API with MkDocs."
+      depends="clean_mkdocs">
+    <!-- Note: call "javadocs" first to include Java documentation -->
 
     <echo unless:true="${python.present}"
       message="Python unavailable, cannot run mkdocs"/>
 
     <!--<antcall if:true="${python.present}" target="docs"/>-->
-    <exec if:true="${python.present}" failonerror="true"
-      executable="python" dir="./buildtools/mkdocs/">
+    <exec if:true="${python.present}" executable="python" failonerror="true"
+        dir="./buildtools/mkdocs/">
       <arg value="-u"/>
       <arg value="build.py"/>
     </exec>
   </target> <!-- mkdocs -->
 
-  <target name="doxygen" description="Generate HTML API reference with Doxygen." depends="clean_doxygen">
+  <target name="doxygen" description="Generate HTML documentation with Doxygen."
+      depends="clean_doxygen">
     <exec executable="doxygen" failonerror="true">
       <arg value="./buildtools/doxygen/Doxyfile"/>
     </exec>
@@ -1501,7 +1542,9 @@
     <exec if:set="doxygen.fix_urls" executable="python">
       <arg value="./buildtools/doxygen/fix_urls.py"/>
     </exec>
-  </target>
+  </target> <!-- doxygen -->
+
+  <target name="docs" description="Generate HTML documentation." depends="javadocs,mkdocs"/>
 
   <!-- END: documentation -->
 
