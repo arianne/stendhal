@@ -42,7 +42,7 @@
 
   <creature name="neo kraken">
     <type class="huge_animal" subclass="kraken_neo" tileid="huge_animal.png:0"/>
-    <description></description>
+    <description>From the horrible darkness of the deep sea rises a giant NEO kraken!</description>
     <attributes>
       <atk value="992"/>
       <def value="122"/>
