@@ -20,6 +20,7 @@ import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
@@ -109,7 +110,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
-
+	
 	/**
 	 * The ground layer.
 	 */
@@ -179,7 +180,6 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	/** the singleton instance. */
 	private static GameScreen screen;
-
 
 	/**
 	 * Retrieves the singleton instance.
@@ -515,26 +515,26 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		speed = 0;
 	}
 
-	@Override
-	public void paintImmediately(int x, int y, int w, int h) {
-		/*
-		 * Try to keep the old screen while the user is switching maps.
-		 *
-		 * NOTE: Relies on the repaint() requests to eventually come to this,
-		 * so if swing internals change some time in the future, a new solution
-		 * may be needed.
-		 */
-		if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
-			try {
-				super.paintImmediately(x, y, w, h);
-			} finally {
-				StendhalClient.get().releaseDrawingSemaphore();
-			}
-		}
-	}
+    @Override
+    public void paintImmediately(int x, int y, int w, int h) {
+        /*
+         * Try to keep the old screen while the user is switching maps.
+         *
+         * NOTE: Relies on the repaint() requests to eventually come to this,
+         * so if swing internals change some time in the future, a new solution
+         * may be needed.
+         */
+        if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
+            try {
+                super.paintImmediately(x, y, w, h);
+            } finally {
+                StendhalClient.get().releaseDrawingSemaphore();
+            }
+        }
+    }
 
-	@Override
-	public void paintComponent(final Graphics g) {
+    @Override
+    public void paintComponent(final Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		if (StendhalClient.get().isInTransfer()) {
@@ -591,7 +591,11 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		drawEmojis(g2d);
 
 		paintOffLineIfNeeded(g2d);
-		graphics.dispose();
+
+		// Ask window manager to not skip frame drawing
+        Toolkit.getDefaultToolkit().sync();
+
+        graphics.dispose();
 	}
 
 	/**

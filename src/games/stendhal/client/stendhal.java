@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import static games.stendhal.client.gui.settings.SettingsProperties.OVERRIDE_AA;
+import static games.stendhal.client.gui.settings.SettingsProperties.UI_RENDERING;
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import static java.io.File.separator;
 
@@ -268,6 +269,34 @@ public final class stendhal {
 
 			if (wm.getPropertyBoolean(OVERRIDE_AA, false)) {
 				System.setProperty("awt.useSystemAAFontSettings", "on");
+			}
+			
+			String uiRendering = wm.getProperty(UI_RENDERING, "");
+			if (!"".equals(uiRendering)) {
+			    UiRenderingMethod renderingMethod = UiRenderingMethod.fromPropertyValue(uiRendering);
+			    switch (renderingMethod) {
+    			    case SOFTWARE: {
+                        System.setProperty("sun.java2d.noddraw", "true");
+    			        break;
+    			    }
+    			    case DIRECT_DRAW_SCALE: {
+                        System.setProperty("sun.java2d.translaccel", "true");
+                        System.setProperty("ddscale", "true");
+                        break;
+    			    }
+                    case OPEN_GL: {
+                        System.setProperty("sun.java2d.opengl", "true");
+                        break;
+                    }
+                    case XRENDER: {
+                        System.setProperty("sun.java2d.xrender", "true");
+                        break;
+                    }
+                    case METAL: {
+                        System.setProperty("sun.java2d.metal", "true");
+                        break;
+                    }
+			    }
 			}
 
 			// initialize tileset animation data
