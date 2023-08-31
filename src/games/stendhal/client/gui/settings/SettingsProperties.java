@@ -31,5 +31,5 @@ public class SettingsProperties {
 
 	public static final String OVERRIDE_AA = "ui.font.overrideaa";
 
-    public static final String UI_RENDERING = "ui.rendering";
+	public static final String UI_RENDERING = "ui.rendering";
 }
