@@ -14,7 +14,9 @@ package games.stendhal.client.gui;
 
 import static games.stendhal.client.gui.layout.SBoxLayout.COMMON_PADDING;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridBagConstraints;
@@ -22,12 +24,11 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.PointerInfo;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.net.URL;
 
 import javax.swing.AbstractAction;
@@ -37,7 +38,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
@@ -45,6 +46,7 @@ import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
+
 /**
  * Summary description for LoginGUI.
  *
@@ -59,10 +61,12 @@ public class StendhalFirstScreen extends JFrame {
 
 	private final StendhalClient client;
 
+	private BackgroundComponent backgroundComponent;
 	private JButton loginButton;
 	private JButton createAccountButton;
 	private JButton helpButton;
 	private JButton creditButton;
+    private final Point zeroPoint = new Point();
 
 	static {
 		// This is the initial window, when loaded at all.
@@ -105,11 +109,8 @@ public class StendhalFirstScreen extends JFrame {
 	 * Setup the window contents.
 	 */
 	private void initializeComponent() {
-		URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
-		ImageIcon icon = new ImageIcon(url);
-
-		JComponent contentPane = new ResizableLabel(icon);
-		setContentPane(contentPane);
+		backgroundComponent = new BackgroundComponent();
+		setContentPane(backgroundComponent);
 
 		Font font = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 
@@ -127,7 +128,7 @@ public class StendhalFirstScreen extends JFrame {
 		loginAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to login to a "
 				+ gameName + " server");
 
-		loginButton = new JButton();
+		loginButton = createTransparentButton();
 		loginButton.setAction(loginAction);
 		loginButton.setFont(font);
 
@@ -144,7 +145,7 @@ public class StendhalFirstScreen extends JFrame {
 		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to create an account on a "
 				+ gameName + " server.");
 
-		createAccountButton = new JButton();
+		createAccountButton = createTransparentButton();
 		createAccountButton.setFont(font);
 		createAccountButton.setAction(createAccountAction);
 
@@ -159,7 +160,7 @@ public class StendhalFirstScreen extends JFrame {
 		};
 		helpAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_H);
 
-		helpButton = new JButton();
+		helpButton = createTransparentButton();
 		helpButton.setFont(font);
 		helpButton.setAction(helpAction);
 
@@ -174,14 +175,14 @@ public class StendhalFirstScreen extends JFrame {
 		};
 		showCreditsAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_C);
 
-		creditButton = new JButton();
+		creditButton = createTransparentButton();
 		creditButton.setFont(font);
 		creditButton.setAction(showCreditsAction);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Add the buttons
-		contentPane.setLayout(new GridBagLayout());
+		backgroundComponent.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -190,24 +191,24 @@ public class StendhalFirstScreen extends JFrame {
 		gbc.ipadx = 2 * COMMON_PADDING;
 		gbc.ipady = 2;
 
-		// All extra space should be abobe
+		// All extra space should be above
 		gbc.weighty = 1.0;
-		contentPane.add(Box.createVerticalGlue(), gbc);
+		backgroundComponent.add(Box.createVerticalGlue(), gbc);
 		gbc.weighty = 0.0;
 
 		gbc.gridy++;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(COMMON_PADDING, COMMON_PADDING, COMMON_PADDING, COMMON_PADDING);
 
-		contentPane.add(loginButton, gbc);
+		backgroundComponent.add(loginButton, gbc);
 		gbc.gridy++;
-		contentPane.add(createAccountButton, gbc);
+		backgroundComponent.add(createAccountButton, gbc);
 		gbc.gridy++;
-		contentPane.add(helpButton, gbc);
+		backgroundComponent.add(helpButton, gbc);
 		gbc.gridy++;
-		contentPane.add(creditButton, gbc);
+		backgroundComponent.add(creditButton, gbc);
 		gbc.gridy++;
-		contentPane.add(Box.createVerticalStrut(2 * COMMON_PADDING), gbc);
+		backgroundComponent.add(Box.createVerticalStrut(2 * COMMON_PADDING), gbc);
 
 		getRootPane().setDefaultButton(loginButton);
 
@@ -217,7 +218,7 @@ public class StendhalFirstScreen extends JFrame {
 		setTitle(gameName + " " + stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
 
-		url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
+		URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}
@@ -230,55 +231,78 @@ public class StendhalFirstScreen extends JFrame {
 		helpButton.setEnabled(b);
 		creditButton.setEnabled(b);
 	}
+	
+	private JButton createTransparentButton() {
+		return new JButton() {
+            @Override
+            public void paint(Graphics g) {
+                super.paint(getWrapperGraphics(g, this));
+            }
+		};
+	}
+
+    private Graphics getWrapperGraphics(Graphics g, JComponent component) {
+        if (g instanceof TransparencyGraphicsWrapper) {
+            return g;
+        }
+
+        Dimension size = getSize();
+        Point relativePos = SwingUtilities.convertPoint(component, zeroPoint, this);
+        backgroundComponent.paintBgImage(g, size, -relativePos.x, -relativePos.y);
+        return BackgroundComponent.createGraphicsWrapper(g);
+    }
 
 	/**
-	 * A Resizable label with an icon.
+	 * Background component with automatically scaled background image.
 	 */
-	private static class ResizableLabel extends JLabel {
-		private final Image image;
-		private Rectangle bounds;
+	private static class BackgroundComponent extends JComponent {
 
-		/**
-		 * Create a new ResizableLabel.
-		 *
-		 * @param icon initial icon. The image of the icon will be used as the
-		 *  template for any scaled versions
-		 */
-		ResizableLabel(ImageIcon icon) {
-			super(icon);
-			this.image = icon.getImage();
+		private final ImageObserver emptyObserver = (Image img, int infoflags, int x, int y, int width,
+				int height) -> false;
+
+		private final Image bgImage;
+		private final Dimension bgImageSize;
+
+		public BackgroundComponent() {
+			URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
+			bgImage = new ImageIcon(url).getImage();
+			bgImageSize = new Dimension(bgImage.getWidth(emptyObserver), bgImage.getHeight(emptyObserver));
+			setPreferredSize(bgImageSize);
 		}
 
-		/*
-		 * A resize listener is run *after* the actual resizing happens, which
-		 * would result in layout being ready before the image is redrawn. The
-		 * effect looks ugly, so the resizing is done here instead for immediate
-		 * scaling.
-		 */
 		@Override
-		public void setBounds(int x, int y, int width, int height) {
-			super.setBounds(x, y, width, height);
-			scale();
+		public void paint(Graphics g) {
+			Dimension size = getSize();
+			paintBgImage(g, size, 0, 0);
+
+			Graphics gWrapper = getComponentGraphics(g);
+			super.paint(gWrapper);
 		}
 
-		/**
-		 * Scale the image to component size.
-		 */
-		private void scale() {
-			Rectangle newBounds = getBounds();
-			if (!newBounds.equals(bounds)) {
-				bounds = newBounds;
-				double scalingX = bounds.width / (double) image.getWidth(this);
-				double scalingY = bounds.height / (double) image.getHeight(this);
-				double scaling = Math.max(scalingX, scalingY);
-				BufferedImage copy = getGraphicsConfiguration().createCompatibleImage(bounds.width, bounds.height);
-				Graphics2D g = copy.createGraphics();
-				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-				g.scale(scaling, scaling);
-				g.drawImage(image, 0, 0, this);
-				g.dispose();
-				setIcon(new ImageIcon(copy));
+		public void paintBgImage(Graphics g, Dimension size, int bgX, int bgY) {
+			int bgWidth;
+			int bgHeight;
+			if (bgImageSize.width * size.height >= size.width * bgImageSize.height) {
+				bgWidth = size.height * bgImageSize.width / bgImageSize.height;
+				bgHeight = size.height;
+			} else {
+				bgWidth = size.width;
+				bgHeight = size.width * bgImageSize.height / bgImageSize.width;
 			}
+
+			g.drawImage(bgImage, bgX, bgY, bgWidth, bgHeight, emptyObserver);
+		}
+
+		@Override
+		protected Graphics getComponentGraphics(Graphics g) {
+			return BackgroundComponent.createGraphicsWrapper(g);
+		}
+
+		private static TransparencyGraphicsWrapper createGraphicsWrapper(Graphics g) {
+			if (g instanceof TransparencyGraphicsWrapper) {
+				return (TransparencyGraphicsWrapper) g;
+			}
+			return new TransparencyGraphicsWrapper((Graphics2D) g, 127);
 		}
 	}
 }
