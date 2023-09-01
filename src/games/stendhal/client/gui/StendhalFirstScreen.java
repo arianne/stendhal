@@ -66,7 +66,7 @@ public class StendhalFirstScreen extends JFrame {
 	private JButton createAccountButton;
 	private JButton helpButton;
 	private JButton creditButton;
-    private final Point zeroPoint = new Point();
+	private final Point zeroPoint = new Point();
 
 	static {
 		// This is the initial window, when loaded at all.
@@ -234,23 +234,23 @@ public class StendhalFirstScreen extends JFrame {
 	
 	private JButton createTransparentButton() {
 		return new JButton() {
-            @Override
-            public void paint(Graphics g) {
-                super.paint(getWrapperGraphics(g, this));
-            }
+			@Override
+			public void paint(Graphics g) {
+				super.paint(getWrapperGraphics(g, this));
+			}
 		};
 	}
 
-    private Graphics getWrapperGraphics(Graphics g, JComponent component) {
-        if (g instanceof TransparencyGraphicsWrapper) {
-            return g;
-        }
+	private Graphics getWrapperGraphics(Graphics g, JComponent component) {
+		if (g instanceof TransparencyGraphicsWrapper) {
+			return g;
+		}
 
-        Dimension size = getSize();
-        Point relativePos = SwingUtilities.convertPoint(component, zeroPoint, this);
-        backgroundComponent.paintBgImage(g, size, -relativePos.x, -relativePos.y);
-        return BackgroundComponent.createGraphicsWrapper(g);
-    }
+		Dimension size = getSize();
+		Point relativePos = SwingUtilities.convertPoint(component, zeroPoint, this);
+		backgroundComponent.paintBgImage(g, size, -relativePos.x, -relativePos.y);
+		return BackgroundComponent.createGraphicsWrapper(g);
+	}
 
 	/**
 	 * Background component with automatically scaled background image.
