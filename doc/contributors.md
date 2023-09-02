@@ -719,6 +719,8 @@ null</span> </td>
 💻</span> </td>
  <td align="center" width="0%"><a href="https://stendhalgame.org/character/Dragon.html"><img src="https://stendhalgame.org/images/profile/Dragon.png" width="64" height="64" alt=""><br /><sub><b>nudelchef</b></sub></a><br /><span title="graphics">
 🎨</span> </td>
+ <td align="center" width="0%"><a href="https://github.com/hajdam"><img src="https://avatars.githubusercontent.com/u/7817364" width="64" height="64" alt=""><br /><sub><b>Miroslav Hajda</b></sub></a><br /><span title="code">
+💻</span> </td>
 </tr>
 </table>
 

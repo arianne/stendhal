@@ -3594,6 +3594,18 @@
 					"type": "graphics"
 				}
 			]
+		},
+		{
+			"name": "hajdam",
+			"fullname": "Miroslav Hajda",
+			"link": "https://github.com/hajdam",
+			"image": "https://avatars.githubusercontent.com/u/7817364",
+			"country": "Czech Republic",
+			"contributions": [
+				{
+					"type": "code"
+				}
+			]
 		}
 	],
 	"other": [
