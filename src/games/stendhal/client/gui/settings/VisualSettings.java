@@ -36,6 +36,7 @@ import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.UiRenderingMethod;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
@@ -97,6 +98,7 @@ class VisualSettings {
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
 		page.add(createStyleTypeSelector(), SLayout.EXPAND_X);
+		page.add(createRenderingSelector(), SLayout.EXPAND_X);
 		page.add(createTransparencySelector(), SLayout.EXPAND_X);
 
 		// Disable widgets not in use
@@ -441,6 +443,61 @@ class VisualSettings {
 				});
 		*/
 		return styleBox;
+	}
+
+	/**
+	 * Create selector for choosing GUI rendering method.
+	 *
+	 * @return component
+	 */
+	private JComponent createRenderingSelector() {
+		final JComboBox<UiRenderingMethod> selector = new JComboBox<>();
+		selector.setRenderer(new DefaultListCellRenderer() {
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				return super.getListCellRendererComponent(list, ((UiRenderingMethod) value).getDisplayName(), index,
+						isSelected, cellHasFocus);
+			}
+		});
+
+		final WtWindowManager wm = WtWindowManager.getInstance();
+		String currentMethod = wm.getProperty(SettingsProperties.UI_RENDERING, "");
+
+		// Fill with available methods
+		for (UiRenderingMethod method : UiRenderingMethod.getAvailableMethods()) {
+			selector.addItem(method);
+			if (method.getPropertyValue().equals(currentMethod))
+				selector.setSelectedItem(method);
+		}
+
+		selector.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UiRenderingMethod selected = (UiRenderingMethod) selector.getSelectedItem();
+				wm.setProperty(SettingsProperties.UI_RENDERING, selected.getPropertyValue());
+				ClientSingletonRepository.getUserInterface()
+						.addEventLine(new EventLine("",
+								"The new rendering will be used the next time you start the game client.",
+								NotificationType.CLIENT));
+			}
+		});
+
+		int pad = SBoxLayout.COMMON_PADDING;
+		JComponent renderingBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+
+		JComponent definedRenderingHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+		JLabel selectorLabel = new JLabel("UI Rendering:");
+		selectorLabel.setName("");
+		definedRenderingHBox.add(selectorLabel);
+		selector.setName("");
+		definedRenderingHBox.add(selector);
+		definedRenderingHBox.setToolTipText("<html>The rendering method used to draw the game client.</html>");
+
+		renderingBox.add(definedRenderingHBox);
+
+		return renderingBox;
 	}
 
 	/**
