@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2023-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -76,6 +75,7 @@ public enum UiRenderingMethod {
 
 		final String platformOs = System.getProperty("os.name").toLowerCase();
 		if (platformOs.startsWith("windows")) {
+			methods.add(DEFAULT);
 			methods.add(DIRECT_DRAW);
 			methods.add(DIRECT_DRAW_SCALE);
 			methods.add(WINDOWS_API);
