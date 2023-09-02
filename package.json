@@ -29,6 +29,6 @@
   "homepage": "https://arianne-project.org",
   "private": true,
   "dependencies": {
-    "typescript": "^4.5.3"
+    "typescript": "^5.2.0"
   }
 }

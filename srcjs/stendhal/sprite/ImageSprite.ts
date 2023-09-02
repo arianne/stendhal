@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ImageWithDimensions } from "data/ImageWithDimensions";
 import { EmptySprite } from "./EmptySprite";
 import { Sprite } from "./Sprite";
 
@@ -24,7 +25,7 @@ import { Sprite } from "./Sprite";
 export class ImageSprite implements Sprite {
 
     /** The image to be drawn for this sprite. */
-    private image: CanvasImageSource;
+    private image: CanvasImageSource & ImageWithDimensions;
 
     /**
      * The identifier reference.
@@ -39,7 +40,7 @@ export class ImageSprite implements Sprite {
      * @param reference
      *            The sprite reference, or null.
      */
-    public constructor (image: CanvasImageSource | Sprite, reference?: object) {
+    public constructor (image: CanvasImageSource & ImageWithDimensions | Sprite, reference?: object) {
         if (image instanceof Sprite) {
             this.image = ImageSprite.createCompatibleImage(image);
         } else {

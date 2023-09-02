@@ -21,6 +21,7 @@ import { EmojiSprite } from "../sprite/EmojiSprite";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 import { SoundManager } from "../ui/SoundManager";
+import { ImageWithDimensions } from "data/ImageWithDimensions";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -535,7 +536,7 @@ export class RPEntity extends ActiveEntity {
 	 * @param {CanvasRenderingContext2D} ctx
 	 * @param {Image} image
 	 */
-	drawSpriteImage(ctx: CanvasRenderingContext2D, image: CanvasImageSource) {
+	drawSpriteImage(ctx: CanvasRenderingContext2D, image: CanvasImageSource & ImageWithDimensions) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		if (image.height) { // image.complete is true on missing image files
