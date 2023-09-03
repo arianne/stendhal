@@ -233,12 +233,14 @@ public class StendhalFirstScreen extends JFrame {
 	}
 	
 	private JButton createTransparentButton() {
-		return new JButton() {
+		JButton button = new JButton() {
 			@Override
 			public void paint(Graphics g) {
 				super.paint(getWrapperGraphics(g, this));
 			}
 		};
+		button.setOpaque(false);
+		return button;
 	}
 
 	private Graphics getWrapperGraphics(Graphics g, JComponent component) {
