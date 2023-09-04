@@ -1,0 +1,96 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <condition property="doxygen.fix_urls" value="true">
+    <and>
+      <equals arg1="${python.present}" arg2="true"/>
+      <available file="buildtools/doxygen/fix_urls.py"/>
+    </and>
+  </condition>
+
+
+  <target name="javadocs" description="Generate HTML documentation for Java API with javadoc."
+      depends="clean_javadocs">
+    <condition property="include.marauroa" value="true">
+      <available file="${marauroa_src}" type="dir"/>
+    </condition>
+
+    <javadoc
+        defaultexcludes="yes"
+        destdir="${docs}"
+        author="true"
+        encoding="UTF-8"
+        version="true"
+        use="true"
+        windowtitle="Stendhal API Documentation Version: ${version}"
+        failonerror="yes"
+        additionalparam="-Xdoclint:-html">
+      <!-- include marauroa source if available -->
+      <fileset dir="${marauroa_src}" includes="**/*.java"
+          if:true="${include.marauroa}"/>
+      <fileset dir="${src}" includes="**/*.java"/>
+      <fileset dir="${testsrc}" includes="utilities/**/*.java"/>
+      <classpath>
+        <pathelement path="${marauroa_src}"
+            if:true="${include.marauroa}"/>
+        <pathelement path="${src}"/>
+        <pathelement path="${testsrc}"/>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${swinglayout_jar}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="${libdir}/ant.jar"/>
+        <pathelement path="${libdir}/jcurses.jar"/>
+        <pathelement path="${libdir}/pircbot.jar"/>
+        <pathelement path="${luaj_jar}"/>
+        <pathelement path="${jsonsimple_jar}"/>
+        <pathelement path="${hamcrest_jar}"/>
+        <pathelement path="${easymock_jar}"/>
+        <pathelement path="${easymockclassextension_jar}"/>
+        <!-- put marauroa/libs last because it may contain duplicate
+             libraries of a different version -->
+        <pathelement path="${marauroa_libs}/*"
+            if:true="${include.marauroa}"/>
+      </classpath>
+    </javadoc>
+  </target> <!-- javadocs -->
+
+
+  <target name="mkdocs" description="Generate HTML documentation for Lua API with MkDocs."
+      depends="clean_mkdocs">
+    <!-- Note: call "javadocs" first to include Java documentation -->
+
+    <echo unless:true="${python.present}"
+      message="Python unavailable, cannot run mkdocs"/>
+
+    <!--<antcall if:true="${python.present}" target="docs"/>-->
+    <exec if:true="${python.present}" executable="python" failonerror="true"
+        dir="./buildtools/mkdocs/">
+      <arg value="-u"/>
+      <arg value="build.py"/>
+    </exec>
+  </target> <!-- mkdocs -->
+
+
+  <target name="doxygen" description="Generate HTML documentation with Doxygen."
+      depends="clean_doxygen">
+    <exec executable="doxygen" failonerror="true">
+      <arg value="./buildtools/doxygen/Doxyfile"/>
+    </exec>
+
+    <!-- Doxygen 1.9.3 has some issues with tags files URLs -->
+    <exec if:set="doxygen.fix_urls" executable="python">
+      <arg value="./buildtools/doxygen/fix_urls.py"/>
+    </exec>
+  </target> <!-- doxygen -->
+
+
+  <target name="docs" description="Generate HTML documentation." depends="javadocs,mkdocs"/>
+
+</project>

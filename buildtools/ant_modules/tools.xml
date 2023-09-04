@@ -1,0 +1,145 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <target name="compile_stendhaltools" description="compiles the Stendhal build tools">
+    <mkdir dir="${build_stendhaltools}"/>
+
+    <javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
+      <include name="games/stendhal/tools/**/*.java"/>
+      <include name="games/stendhal/tools/*.java"/>
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="${jorbis_jar}"/>
+        <pathelement path="${swinglayout_jar}"/>
+        <pathelement path="${luaj_jar}"/>
+        <pathelement path="${jsonsimple_jar}"/>
+      </classpath>
+    </javac>
+  </target> <!-- compile_stendhaltools -->
+
+
+  <target name="postman" description="Builds postman bot">
+    <mkdir dir="${buildroot}/buildbot"/>
+    <javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="games/stendhal/bot/postman/*.java"/>
+      <include name="games/stendhal/bot/package-info.java"/>
+      <include name="games/stendhal/bot/shouter/*.java"/>
+      <include name="games/stendhal/bot/core/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="libs/pircbot.jar"/>
+      </classpath>
+
+    </javac>
+    <jar jarfile="${buildroot}/buildbot/postman.jar">
+      <fileset dir="${buildroot}/buildbot">
+        <include name="games/stendhal/bot/postman/*"/>
+
+        <include name="games/stendhal/bot/core/*"/>
+
+        <include name="games/stendhal/bot/shouter/*"/>
+      </fileset>
+      <manifest>
+        <attribute name="Main-Class" value="games.stendhal.bot.postman.PostmanMain"/>
+      </manifest>
+    </jar>
+    <!-- end build bot -->
+  </target> <!-- postman -->
+
+
+  <target name="signupdates" description="signs updates" depends="compile_stendhaltools,jardiff" unless="exclude.signing">
+    <taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
+      <classpath>
+        <pathelement path="."/>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+    </taskdef>
+
+    <updatesigner>
+      <fileset dir="${lib}">
+        <include name="*.jar"/>
+      </fileset>
+    </updatesigner>
+  </target> <!-- signupdates -->
+
+
+  <target name="jardiff" depends="client_build" unless="exclude.jardiff">
+    <echo>Creating update from ${version.old} to ${version}</echo>
+    <delete>
+      <fileset dir="${build-archive}">
+        <exclude name="*.zip"/>
+      </fileset>
+    </delete>
+    <unzip src="${build-archive}/stendhal-${version.old}.zip" dest="${build-archive}"/>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal"/>
+      <arg value="-creatediff"/>
+      <arg value="-output"/>
+      <arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar"/>
+      <arg value="${build-archive}/lib/stendhal.jar"/>
+      <arg value="${build}/lib/stendhal-${version}.jar"/>
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal"/>
+      <arg value="-creatediff"/>
+      <arg value="-output"/>
+      <arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar"/>
+      <arg value="${build-archive}/lib/stendhal-data.jar"/>
+      <arg value="${build}/lib/stendhal-data-${version}.jar"/>
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal"/>
+      <arg value="-creatediff"/>
+      <arg value="-output"/>
+      <arg value="${build}/lib/stendhal-music-data-diff-${version.old}-${version}.jar"/>
+      <arg value="${build-archive}/lib/stendhal-music-data.jar"/>
+      <arg value="${build}/lib/stendhal-music-data-${version}.jar"/>
+    </java>
+    <java jar="libs/jardiff.jar" fork="true">
+      <arg value="-nonminimal"/>
+      <arg value="-creatediff"/>
+      <arg value="-output"/>
+      <arg value="${build}/lib/stendhal-sound-data-diff-${version.old}-${version}.jar"/>
+      <arg value="${build-archive}/lib/stendhal-sound-data.jar"/>
+      <arg value="${build}/lib/stendhal-sound-data-${version}.jar"/>
+    </java>
+    <!-- TODO: maraurora.jar-->
+  </target> <!-- jardiff -->
+
+
+  <!-- USAGE: ant balance -Dcreature="<creature_name>" -->
+  <target name="balance" description="Runs enemy balancer" depends="compile_stendhaltools,server_build">
+    <java classname="games.stendhal.tools.BalanceRPGame">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="."/>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${testsrc}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${guava_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+      </classpath>
+      <arg line="${creature}"/>
+      <sysproperty key="showxp" value=""/>
+    </java>
+  </target> <!-- balance -->
+
+</project>

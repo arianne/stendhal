@@ -1,0 +1,78 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <target name="clean" description="Empties build directory">
+    <delete dir="${buildroot}"/>
+    <delete dir="${build_cobertura}"/>
+    <delete dir="${build_cobertura_report}"/>
+    <delete file="cobertura.ser"/>
+    <delete dir="android/app/build/"/>
+    <delete>
+      <fileset dir=".">
+        <include name="TEST-*.xml"/>
+      </fileset>
+    </delete>
+  </target>
+
+
+  <target name="clean_client_data">
+    <delete dir="${build_client_data}"/>
+    <delete dir="${build_client_music_data}"/>
+    <delete dir="${build_client_sound_data}"/>
+  </target>
+
+
+  <target name="cleanjs">
+    <delete dir="${buildroot}/js"/>
+    <delete dir="${buildroot}/ts"/>
+  </target>
+
+
+  <target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
+    <delete dir="${docs}"/>
+  </target>
+
+
+  <target name="clean_mkdocs" description="Delete MkDocs generated HTML documentation.">
+    <delete dir="${buildroot}/mkdocs/"/>
+  </target>
+
+
+  <target name="clean_doxygen" description="Delete Doxygen generated HTML documentation.">
+    <delete dir="${buildroot}/doxygen"/>
+  </target>
+
+
+  <target name="clean_whitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="src/"/>
+      <arg value="tests/"/>
+      <arg value="android/app/src/"/>
+      <arg value="java,xml,lua"/>
+    </java>
+
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="srcjs/"/>
+      <arg value="js,ts,css"/>
+    </java>
+
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="data/"/>
+      <arg value="tiled/"/>
+      <arg value="xml,xsd,lua,py"/>
+    </java>
+  </target> <!-- clean_whitespace -->
+
+  <target name="cleanwhitespace" depends="clean_whitespace" description="Alias for clean_whitespace"/>
+
+</project>

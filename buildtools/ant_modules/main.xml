@@ -1,0 +1,154 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <target name="init">
+    <mkdir dir="${lib}"/>
+
+    <!-- We update the version number -->
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String VERSION ?= ?&quot;.*&quot;;"
+      replace="String VERSION = &quot;${version}&quot;;"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
+      match="out.println\(&quot;server_version=.*&quot;\);"
+      replace="out.println(&quot;server_version=${version}&quot;);"
+      byline="true"/>
+    <replaceregexp file="runserver.bat"
+      match="STENDHAL_VERSION=.*"
+      replace="STENDHAL_VERSION=${version}"
+      byline="true"/>
+    <replaceregexp file="runserver.sh"
+      match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
+      replace="STENDHAL_VERSION=&quot;${version}&quot;"
+      byline="true"/>
+    <replaceregexp file="buildtools/doxygen/Doxyfile"
+      match="^PROJECT_NUMBER .*$"
+      replace="PROJECT_NUMBER         = ${version}"
+      byline="true"/>
+    <!-- Update location of resources -->
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="GAME_NAME=.*"
+      replace="GAME_NAME=${game_name}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="DEFAULT_SERVER=.*"
+      replace="DEFAULT_SERVER=${default_server}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_SERVER_FOLDER=.*"
+      replace="UPDATE_SERVER_FOLDER=${updates_server}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_SERVER_FOLDER_FALLBACK=.*"
+      replace="UPDATE_SERVER_FOLDER_FALLBACK=${updates_server_fallback}"
+      byline="true"/>
+    <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+      match="UPDATE_VERSION_CHECK=.*"
+      replace="UPDATE_VERSION_CHECK=${version_server}"
+      byline="true"/>
+
+
+    <replaceregexp file="stendhal.jnlp"
+      match="-0\..*\.jar&quot;"
+      replace="-${version}.jar&quot;"
+      byline="true"/>
+
+    <!-- pre release version -->
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String PRE_RELEASE_VERSION ?= .*;"
+      replace="String PRE_RELEASE_VERSION = null;"
+      byline="true"/>
+    <antcall target="internalUpdatePrereleaseVersion"/>
+  </target> <!-- init -->
+
+
+  <target name="checkxml" description="Verify XML files are well-formed">
+    <schemavalidate failonerror="yes" lenient="yes" warn="yes">
+      <schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
+      <fileset dir="${config_dir}/zones">
+          <include name="*.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/creatures.xsd"/>
+      <fileset dir="${config_dir}/creatures">
+        <include name="*.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/items.xsd"/>
+      <fileset dir="data/conf/items">
+        <include name="*.xml"/>
+        <exclude name="armors.xml"/>
+        <exclude name="arrows.xml"/>
+        <exclude name="axes.xml"/>
+        <exclude name="boots.xml"/>
+        <exclude name="cloaks.xml"/>
+        <exclude name="clubs.xml"/>
+        <exclude name="dummy_weapons.xml"/>
+        <exclude name="helmets.xml"/>
+        <exclude name="legs.xml"/>
+        <exclude name="meta.xml"/>
+        <exclude name="missiles.xml"/>
+        <exclude name="ranged.xml"/>
+        <exclude name="rings.xml"/>
+        <exclude name="shields.xml"/>
+        <exclude name="swords.xml"/>
+        <exclude name="whips.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/equipment.xsd"/>
+      <fileset dir="data/conf/items">
+        <include name="armors.xml"/>
+        <include name="arrows.xml"/>
+        <include name="boots.xml"/>
+        <include name="cloaks.xml"/>
+        <include name="dummy_weapons.xml"/>
+        <include name="helmets.xml"/>
+        <include name="legs.xml"/>
+        <include name="missiles.xml"/>
+        <include name="rings.xml"/>
+        <include name="shields.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/weapons.xsd"/>
+      <fileset dir="${config_dir}/items">
+        <include name="axes.xml"/>
+        <include name="clubs.xml"/>
+        <include name="ranged.xml"/>
+        <include name="swords.xml"/>
+        <include name="whips.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/groups.xsd"/>
+      <fileset dir="${config_dir}">
+        <filename name="zones.xml"/>
+        <filename name="items.xml"/>
+        <filename name="creatures.xml"/>
+        <filename name="shops.xml"/>
+      </fileset>
+    </schemavalidate>
+    <schemavalidate>
+      <schema namespace="stendhal" file="${config_dir}/shops.xsd"/>
+      <fileset dir="${config_dir}/shops">
+        <include name="*.xml"/>
+      </fileset>
+    </schemavalidate>
+  </target> <!-- checkxml -->
+
+
+  <target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE">
+    <tstamp prefix="date">
+      <format property="iso" pattern="yyyy-MM-dd"/>
+    </tstamp>
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+      match="String PRE_RELEASE_VERSION ?= .*;"
+      replace="String PRE_RELEASE_VERSION = &quot;PRE_RELEASE ${date.iso}&quot;;"
+      byline="true"/>
+  </target> <!-- internalUpdatePrereleaseVersion -->
+
+</project>

@@ -1,0 +1,168 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless" xmlns:jacoco="antlib:org.jacoco.ant">
+
+  <target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
+    <exec executable="curl">
+      <arg value="-q"/>
+      <arg value="-F"/>
+      <arg value="filename=testresults.xml"/>
+      <arg value="-F"/>
+      <arg value="file=@build/build_test_report/testresults-short.xml"/>
+      <arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.GITHUB_RUN_NUMBER}&amp;buildid=${env.GITHUB_RUN_ID}&amp;commit=${env.GITHUB_SHA}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.GITHUB_HEAD_REF}&amp;branch=${env.GITHUB_REF_NAME}"/>
+    </exec>
+    <fail message="Test errors detected, check test results." if="test.error"/>
+    <fail message="Test failure detected, check test results." if="test.failure"/>
+  </target> <!-- test -->
+
+
+  <target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
+    <mkdir dir="${build_tests}"/>
+
+    <copy todir="${build_tests}">
+      <fileset dir="tests">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+
+    <javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
+      <include name="**/*.java"/>
+
+      <compilerarg value="-encoding"/>
+      <compilerarg value="utf-8"/>
+
+      <compilerarg value="-Xlint:unchecked"/>
+
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+        <pathelement path="${build_stendhaltextclient}"/>
+        <pathelement path="${build_client}"/>
+        <pathelement path="${build_server}"/>
+        <pathelement path="${build_server_maps}"/>
+        <pathelement path="${build_server_script}"/>
+        <!--<pathelement path="${build_server_mods}"/>-->
+        <pathelement path="${build_postman}"/>
+        <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${log4j_jar}"/>
+        <pathelement path="${hamcrest_jar}"/>
+        <pathelement path="${junit_jar}"/>
+        <pathelement path="${groovy_jar}"/>
+        <pathelement path="${simple_jar}"/>
+        <pathelement path="${easymock_jar}"/>
+        <pathelement path="${easymockclassextension_jar}"/>
+        <pathelement path="${build_server_script}"/>
+        <pathelement path="${tiled_jar}"/>
+        <pathelement path="${guava_jar}"/>
+      </classpath>
+    </javac>
+  </target> <!-- compile_tests -->
+
+
+  <available property="server.ini" file="server.ini"/>
+  <target name="prepare_serverini_for_tests" unless="server.ini">
+    <echo file="server.ini">
+database_implementation=games.stendhal.server.core.engine.StendhalPlayerDatabase
+factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory
+database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter
+jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE
+jdbc_class=org.h2.Driver
+tcp_port=32160
+world=games.stendhal.server.core.engine.StendhalRPWorld
+ruleprocessor=games.stendhal.server.core.engine.StendhalRPRuleProcessor
+turn_length=300
+server_typeGame=stendhal
+server_name=stendhal Marauroa server
+server_version=1.17.5
+server_contact=https://sourceforge.net/tracker/?atid=514826&amp;group_id=66537&amp;func=browse
+n = 966117159215070350422008719727400433209081371975507132437556194069529307432746058120899703845731090424709994853484674454738958575201865208533043689325553646377
+e = 15
+d = 901709348600732327060541471745573737661809280510473323608385781131560686937229596225645929798090122419343070307904183075525081589946196209839163758401803422679
+    </echo>
+  </target> <!-- prepare_serverini_for_tests -->
+
+
+  <target name="run_tests" description="Run tests">
+    <mkdir dir="${build_tests_report}"/>
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+      <classpath path="buildtools/jacoco/jacocoant.jar"/>
+    </taskdef>
+    <jacoco:coverage destfile="${build_tests_report}/jacoco.exec" append="false" includes="games.stendhal.*">
+      <junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
+        <classpath>
+          <pathelement path="${build_tests}"/>
+          <pathelement path="${build_client}"/>
+          <pathelement path="${build_server}"/>
+          <pathelement path="${build_server_maps}"/>
+          <pathelement path="${build_stendhaltools}"/>
+          <pathelement path="${build_stendhaltextclient}"/>
+          <pathelement path="${build_server_script}"/>
+          <!--<pathelement path="${build_server_mods}"/>-->
+          <pathelement path="${build_postman}"/>
+          <pathelement path="${easymock_jar}"/>
+          <pathelement path="${easymockclassextension_jar}"/>
+          <pathelement path="${cglib_jar}"/>
+          <pathelement path="${marauroa_jar}"/>
+          <pathelement path="${hamcrest_jar}"/>
+          <pathelement path="${log4j_jar}"/>
+          <pathelement path="${junit_jar}"/>
+          <pathelement path="${groovy_jar}"/>
+          <pathelement path="${simple_jar}"/>
+          <pathelement path="${guava_jar}"/>
+          <pathelement path="${mysqldriver_jar}"/>
+          <pathelement path="${h2_jar}"/>
+          <pathelement path="${jorbis_jar}"/>
+          <pathelement path="${luaj_jar}"/>
+          <pathelement path="."/>
+          <pathelement path="data/conf"/>
+          <pathelement path="data/script"/>
+        </classpath>
+        <formatter type="xml"/>
+        <batchtest  todir="${build_tests_report}">
+          <fileset dir="tests">
+            <include name="**/*Test.java"/>
+            <include name="**/Test*.java"/>
+          </fileset>
+        </batchtest>
+      </junit>
+    </jacoco:coverage>
+      <jacoco:report>
+          <executiondata>
+              <file file="${build_tests_report}/jacoco.exec"/>
+          </executiondata>
+          <structure name="stendhal">
+              <classfiles>
+                <fileset dir="${build_client}"/>
+          <fileset dir="${build_server}"/>
+              </classfiles>
+              <sourcefiles encoding="UTF-8">
+                  <fileset dir="${src}"/>
+              </sourcefiles>
+          </structure>
+        <xml destfile="${build_tests_report}/jacoco.xml"/>
+      </jacoco:report>
+  </target> <!-- run_tests -->
+
+
+  <target name="report_test" description="Aggregate Testresults">
+    <mkdir dir="${build_tests_report}"/>
+    <junitreport todir="${build_tests_report}" tofile="testresults.xml">
+      <fileset dir="${build_tests_report}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${build_tests_report}"/>
+    </junitreport>
+    <copy file="${build_tests_report}/testresults.xml" tofile="${build_tests_report}/testresults-short.xml"/>
+    <replaceregexp file="${build_tests_report}/testresults-short.xml"
+      match="&lt;properties&gt;.*?&lt;/properties&gt;|&lt;system-out /&gt;|&lt;system-err /&gt;|^ *"
+      replace=""
+      flags="gsm"
+      byline="false"
+    />
+    <delete>
+      <fileset dir="${build_tests_report}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+    </delete>
+  </target> <!-- report_test -->
+
+</project>
