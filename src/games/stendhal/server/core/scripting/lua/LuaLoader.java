@@ -106,6 +106,8 @@ public class LuaLoader {
 					final String parentDirname = currentScript.getDirName().toString();
 					filepath = Paths.get(parentDirname, filepath).toString();
 				}
+				// for our purposes Java can handle Unix path node delimiters on Windows
+				filepath = filepath.replace("\\", "/");
 
 				// strip parent directory nodes from absolute path
 				final String pdelim = "/../";
