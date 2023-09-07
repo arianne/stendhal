@@ -40,10 +40,8 @@ import { DialogHandler } from "./util/DialogHandler";
 export class Client {
 
 	private initialized = false;
-	private loaded = false;
 	private errorCounter = 0;
-
-	private zoneFile?: any;
+	private unloading = false;
 
 	/** Singleton instance. */
 	private static instance: Client;
@@ -224,16 +222,18 @@ export class Client {
 	 * register marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers() {
-		marauroa.clientFramework.onDisconnect = function(reason: string, error: string) {
-			Chat.logH("error", "Disconnected: " + error);
+		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
+			if (!Client.instance.unloading) {
+				Chat.logH("error", "Disconnected from server." + Client.instance.unloading);
+			}
 		};
 
 		marauroa.clientFramework.onLoginRequired = function() {
 			window.location.href = "/index.php?id=content/account/login&url="
-				+ escape(window.location.pathname + window.location.hash);
+				+ encodeURI(window.location.pathname + window.location.hash);
 		};
 
-		marauroa.clientFramework.onLoginFailed = function(reason: string, text: string) {
+		marauroa.clientFramework.onLoginFailed = function(_reason: string, _text: string) {
 			alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
 			marauroa.clientFramework.close();
 			(document.getElementById("chatinput")! as HTMLInputElement).disabled = true;
@@ -298,7 +298,7 @@ export class Client {
 		if (document.getElementById("gamewindow")) {
 			// override perception listener
 			marauroa.perceptionListener = new PerceptionListener(marauroa.perceptionListener);
-			marauroa.perceptionListener.onPerceptionEnd = function(type: Int8Array, timestamp: number) {
+			marauroa.perceptionListener.onPerceptionEnd = function(_type: Int8Array, _timestamp: number) {
 				stendhal.zone.sortEntities();
 				(ui.get(UIComponentEnum.MiniMap) as MiniMapComponent).draw();
 				(ui.get(UIComponentEnum.BuddyList) as BuddyListComponent).update();
@@ -314,6 +314,10 @@ export class Client {
 				}
 			}
 		}
+	}
+
+	onBeforeUnload() {
+		Client.instance.unloading = true;
 	}
 
 	/**
@@ -334,6 +338,10 @@ export class Client {
 			}
 		});
 
+		window.addEventListener("beforeunload", () => {
+			this.onBeforeUnload();
+		})
+
 		document.getElementById("body")!.addEventListener("mouseenter", stendhal.main.onMouseEnter);
 
 		var gamewindow = document.getElementById("gamewindow")!;
@@ -349,7 +357,7 @@ export class Client {
 		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel);
 
 		var menubutton = document.getElementById("menubutton")!;
-		menubutton.addEventListener("click", (event) => {
+		menubutton.addEventListener("click", () => {
 			const dialogState = stendhal.config.dialogstates["menu"];
 			const menuContent = new ApplicationMenuDialog();
 			const menuFrame = ui.createSingletonFloatingWindow(
@@ -403,7 +411,6 @@ export class Client {
 		var deserializer = marauroa.Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
 		(ui.get(UIComponentEnum.ZoneInfo) as ZoneInfoComponent).zoneChange(zoneinfo);
-		this.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
 	}
