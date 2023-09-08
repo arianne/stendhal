@@ -48,12 +48,6 @@
       replace="UPDATE_VERSION_CHECK=${version_server}"
       byline="true"/>
 
-
-    <replaceregexp file="stendhal.jnlp"
-      match="-0\..*\.jar&quot;"
-      replace="-${version}.jar&quot;"
-      byline="true"/>
-
     <!-- pre release version -->
     <replaceregexp file="${src}/games/stendhal/common/Debug.java"
       match="String PRE_RELEASE_VERSION ?= .*;"
