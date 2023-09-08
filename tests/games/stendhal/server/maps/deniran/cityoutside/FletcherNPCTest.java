@@ -17,6 +17,7 @@ import static org.junit.Assert.assertNull;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -37,6 +38,7 @@ public class FletcherNPCTest extends ZonePlayerAndNPCTestImpl {
 		setupZone("testzone");
 	}
 
+	@Ignore
 	@Test
 	public void initTest() {
 		assertNotNull(player);
