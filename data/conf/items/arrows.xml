@@ -199,10 +199,12 @@
     </equipable>
   </item>
 
+  <!--
   <item name="poison wooden arrow">
     <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
     <description>You see a poison wooden arrow. The tip has been saturated with a poisonous compound.</description>
     <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+    <unattainable>true</unattainable>
     <attributes>
       <atk condition="!testing.combat" value="2"/>
       <ratk condition="testing.combat" value="2"/>
@@ -223,5 +225,6 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+  -->
 
 </items>

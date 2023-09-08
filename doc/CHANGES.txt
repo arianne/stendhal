@@ -24,10 +24,6 @@ Changelog
   - Kalavan City Gardens
   - Semos Plains N (more)
   - Semos Plains NE
-- new NPCs:
-  - Fletcher: soaks poison arrows
-- new items:
-  - poison wooden arrow
 
 
 1.43.3
