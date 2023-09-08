@@ -16,7 +16,6 @@
 	<classpathentry kind="lib" path="libs/libtiled.jar"/>
 	<classpathentry kind="lib" path="libs/log4j.jar" sourcepath="/log4j"/>
 	<classpathentry kind="lib" path="libs/mysql-connector-java-8.0.13.jar"/>
-	<classpathentry kind="lib" path="libs/simple.jar"/>
 	<classpathentry kind="lib" path="libs/swing-layout.jar"/>
 	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.12.jar"/>
@@ -24,7 +23,7 @@
 	<classpathentry kind="lib" path="libs/marauroa.jar" sourcepath="/marauroa"/>
 	<classpathentry kind="lib" path="libs/luaj-jse-3.0.1.jar" sourcepath="/luaj"/>
 	<classpathentry kind="lib" path="libs/jakarta.annotation-api-2.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/tomcat-embed-core-10.1.7.jar"/>
-	<classpathentry kind="lib" path="libs/tomcat-embed-websocket-10.1.7.jar"/>
+	<classpathentry kind="lib" path="libs/tomcat-embed-core-10.1.13.jar"/>
+	<classpathentry kind="lib" path="libs/tomcat-embed-websocket-10.1.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
