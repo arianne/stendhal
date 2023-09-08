@@ -33,7 +33,7 @@ public class ServerIniConfigurationTest extends TestCase {
             + "" + System.lineSeparator()
             + "# Database information. Edit to match your configuration." + System.lineSeparator()
             + "database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter" + System.lineSeparator()
-            + "jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE" + System.lineSeparator()
+            + "jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE" + System.lineSeparator()
             + "jdbc_class=org.h2.Driver" + System.lineSeparator()
             + "" + System.lineSeparator()
             + "# TCP port stendhald will use. " + System.lineSeparator()

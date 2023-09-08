@@ -64,7 +64,7 @@
 database_implementation=games.stendhal.server.core.engine.StendhalPlayerDatabase
 factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory
 database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter
-jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE
+jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE
 jdbc_class=org.h2.Driver
 tcp_port=32160
 world=games.stendhal.server.core.engine.StendhalRPWorld
