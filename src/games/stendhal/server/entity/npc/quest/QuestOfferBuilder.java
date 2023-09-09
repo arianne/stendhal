@@ -144,7 +144,8 @@ public class QuestOfferBuilder {
 
 	void build(SpeakerNPC npc, String questSlot,
 			ChatCondition questPreCondition,
-			ChatAction startQuestAction, ChatAction rejectQuestAction, ChatCondition questCompletedCondition,
+			ChatAction startQuestAction, ChatAction rejectQuestAction, ChatAction remindQuestAction,
+			ChatCondition questCompletedCondition,
 			int repeatableAfterMinutes) {
 
 		npc.add(ConversationStates.ATTENDING,
@@ -175,7 +176,7 @@ public class QuestOfferBuilder {
 					new NotCondition(questCompletedCondition)),
 				ConversationStates.ATTENDING,
 				remind,
-				null);
+				remindQuestAction);
 
 		if (repeatableAfterMinutes > 0) {
 
