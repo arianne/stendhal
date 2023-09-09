@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2022-2023 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@ package games.stendhal.server.entity.npc.quest;
 
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -23,6 +24,10 @@ import games.stendhal.server.entity.player.Player;
 public abstract class QuestTaskBuilder {
 
 	abstract void simulate(QuestSimulator simulator);
+
+	ChatCondition buildQuestPreCondition(@SuppressWarnings("unused") String questSlot) {
+		return new AlwaysTrueCondition();
+	}
 
 	abstract ChatAction buildStartQuestAction(String questSlot);
 

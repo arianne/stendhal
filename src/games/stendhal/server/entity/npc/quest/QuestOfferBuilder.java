@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
  * @author hendrik
  */
 public class QuestOfferBuilder {
+	private String respondToFailedPreCondition = "I am sorry, I don't have a task for your right now.";
 	private String respondToRequest = null;
 	private String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
 	private String respondToRepeatedRequest = null;
@@ -48,6 +49,10 @@ public class QuestOfferBuilder {
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
+	public QuestOfferBuilder respondToFailedPreCondition(String respondToFailedPreCondition) {
+		this.respondToFailedPreCondition = respondToFailedPreCondition;
+		return this;
+	}
 
 	public QuestOfferBuilder respondToRequest(String respondToRequest) {
 		this.respondToRequest = respondToRequest;
@@ -138,14 +143,26 @@ public class QuestOfferBuilder {
 
 
 	void build(SpeakerNPC npc, String questSlot,
-				ChatAction startQuestAction, ChatCondition questCompletedCondition,
-				int repeatableAfterMinutes) {
+			ChatCondition questPreCondition,
+			ChatAction startQuestAction, ChatCondition questCompletedCondition,
+			int repeatableAfterMinutes) {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotStartedCondition(questSlot),
+				new AndCondition(
+						new QuestNotStartedCondition(questSlot),
+						questPreCondition),
 				ConversationStates.QUEST_OFFERED,
 				respondToRequest,
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestNotStartedCondition(questSlot),
+						new NotCondition(questPreCondition)),
+				ConversationStates.QUEST_OFFERED,
+				respondToFailedPreCondition,
 				null);
 
 		LinkedList<String> triggers = new LinkedList<String>();
@@ -166,9 +183,20 @@ public class QuestOfferBuilder {
 					ConversationPhrases.QUEST_MESSAGES,
 					new AndCondition(
 						new QuestCompletedCondition(questSlot),
-						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes)),
+						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes),
+						questPreCondition),
 					ConversationStates.QUEST_OFFERED,
 					respondToRepeatedRequest,
+					null);
+			
+			npc.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					new AndCondition(
+						new QuestCompletedCondition(questSlot),
+						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes),
+						new NotCondition(questPreCondition)),
+					ConversationStates.QUEST_OFFERED,
+					respondToFailedPreCondition,
 					null);
 
 			npc.add(ConversationStates.ATTENDING,

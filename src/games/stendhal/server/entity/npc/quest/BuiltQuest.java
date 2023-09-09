@@ -90,12 +90,15 @@ public class BuiltQuest extends AbstractQuest {
 				questBuilder.info().getDescription(),
 				questBuilder.info().getRepeatableAfterMinutes() > 0);
 
+		ChatCondition questPreCondition = questBuilder.task().buildQuestPreCondition(questSlot);
 		ChatAction startQuestAction = questBuilder.task().buildStartQuestAction(questSlot);
 		ChatCondition questCompletedCondition = questBuilder.task().buildQuestCompletedCondition(questSlot);
 		ChatAction questCompleteAction = questBuilder.task().buildQuestCompleteAction(questSlot);
 
 		final SpeakerNPC npc = npcs.get(questBuilder.info().getQuestGiverNpc());
-		questBuilder.offer().build(npc, questSlot, startQuestAction, questCompletedCondition, questBuilder.info().getRepeatableAfterMinutes());
+		questBuilder.offer().build(
+				npc, questSlot, questPreCondition, startQuestAction,
+				questCompletedCondition, questBuilder.info().getRepeatableAfterMinutes());
 		questBuilder.complete().build(npc, questSlot, questCompletedCondition, questCompleteAction);
 	}
 
