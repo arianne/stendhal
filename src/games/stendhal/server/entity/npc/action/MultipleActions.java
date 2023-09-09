@@ -56,7 +56,9 @@ public class MultipleActions implements ChatAction {
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		for (final ChatAction action : actions) {
-			action.fire(player, sentence, npc);
+			if (action != null) {
+				action.fire(player, sentence, npc);
+			}
 		}
 	}
 

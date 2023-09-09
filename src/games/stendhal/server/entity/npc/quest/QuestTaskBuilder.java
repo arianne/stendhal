@@ -30,6 +30,10 @@ public abstract class QuestTaskBuilder {
 	}
 
 	abstract ChatAction buildStartQuestAction(String questSlot);
+	
+	ChatAction buildRejectQuestAction(@SuppressWarnings("unused") String questSlot) {
+		return null;
+	}
 
 	abstract ChatCondition buildQuestCompletedCondition(String questSlot);
 

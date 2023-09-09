@@ -144,7 +144,7 @@ public class QuestOfferBuilder {
 
 	void build(SpeakerNPC npc, String questSlot,
 			ChatCondition questPreCondition,
-			ChatAction startQuestAction, ChatCondition questCompletedCondition,
+			ChatAction startQuestAction, ChatAction rejectQuestAction, ChatCondition questCompletedCondition,
 			int repeatableAfterMinutes) {
 
 		npc.add(ConversationStates.ATTENDING,
@@ -236,7 +236,9 @@ public class QuestOfferBuilder {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				respondToReject,
-				new SetQuestAndModifyKarmaAction(questSlot, 0, "rejected", -1 * rejectionKarmaPenalty));
+				new MultipleActions(
+						new SetQuestAndModifyKarmaAction(questSlot, 0, "rejected", -1 * rejectionKarmaPenalty),
+						rejectQuestAction));
 
 		for (Map.Entry<List<String>, String> entry : additionalReplies.entrySet()) {
 			npc.add(
