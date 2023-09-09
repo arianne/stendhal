@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
@@ -41,6 +43,10 @@ public abstract class QuestTaskBuilder {
 
 	boolean isCompleted(Player player, String questSlot) {
 		return buildQuestCompletedCondition(questSlot).fire(player, null, null);
+	}
+
+	public List<String> calculateHistoryProgress(@SuppressWarnings("unused") Player player) {
+		return null;
 	}
 
 }
