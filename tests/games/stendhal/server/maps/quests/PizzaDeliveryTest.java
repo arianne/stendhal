@@ -32,6 +32,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.city.MakeupArtistNPC;
@@ -97,7 +98,7 @@ public class PizzaDeliveryTest {
 		// Taxman is required by HouseBuying
 		new HouseBuyingMain().createAthorNPC(zone);
 
-		final AbstractQuest quest = new PizzaDelivery();
+		final AbstractQuest quest = new BuiltQuest(new PizzaDelivery().story());
 		quest.addToWorld();
 
 

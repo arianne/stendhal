@@ -33,6 +33,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
 import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
@@ -143,7 +144,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		new EmotionCrystals().addToWorld();
 		// Haizen
 		new Maze().addToWorld();
-		new PizzaDelivery().addToWorld();
+		new BuiltQuest(new PizzaDelivery().story()).addToWorld();
 		// Ortiv Milquetoast
 		new MixtureForOrtiv().addToWorld();
 
