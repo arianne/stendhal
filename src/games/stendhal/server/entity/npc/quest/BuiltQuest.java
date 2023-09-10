@@ -104,8 +104,8 @@ public class BuiltQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get(questBuilder.info().getQuestGiverNpc());
 		questBuilder.offer().build(
 				npc, questSlot,
-				questPreCondition, startQuestAction, remindQuestAction,
-				rejectQuestAction,
+				questPreCondition, startQuestAction, rejectQuestAction,
+				remindQuestAction,
 				questCompletedCondition, questBuilder.info().getRepeatableAfterMinutes());
 		questBuilder.complete().build(npc, questSlot, questCompletedCondition, questCompleteAction);
 	}
