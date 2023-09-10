@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2022-2023 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,17 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-/**
- * defines a quest by telling a story
- *
- * @author hendrik
- */
-public interface QuestManuscript {
+public class BringItemQuestBuilder extends QuestBuilder<BringItemTask, QuestCompleteBuilder> {
 
-	/**
-	 * tells the story
-	 *
-	 * @return QuestBuilder
-	 */
-	public QuestBuilder<?, ?> story();
+	public BringItemQuestBuilder() {
+		super(new BringItemTask());
+		complete = new QuestCompleteBuilder();
+	}
+
 }

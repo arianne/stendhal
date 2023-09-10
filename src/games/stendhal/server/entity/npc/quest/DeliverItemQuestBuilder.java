@@ -11,22 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask> {
+public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask, DeliverItemQuestCompleteBuilder> {
 
 	public DeliverItemQuestBuilder() {
 		super(new DeliverItemTask());
 		complete = new DeliverItemQuestCompleteBuilder(task());
-	}
-
-
-	/**
-	 * defines how the NPC react after the player completes the quest
-	 *
-	 * @return QuestCompleteBuilder
-	 */
-	@Override
-	public DeliverItemQuestCompleteBuilder complete() {
-		return (DeliverItemQuestCompleteBuilder) complete;
 	}
 
 }

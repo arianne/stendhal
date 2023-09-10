@@ -12,7 +12,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.quest.DeliverItemQuestBuilder;
-import games.stendhal.server.entity.npc.quest.QuestBuilder;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
 
@@ -52,7 +51,7 @@ import games.stendhal.server.maps.Region;
 public class PizzaDelivery implements QuestManuscript {
 
 	@Override
-	public QuestBuilder<?> story() {
+	public DeliverItemQuestBuilder story() {
 		DeliverItemQuestBuilder quest = new DeliverItemQuestBuilder();
 
 
