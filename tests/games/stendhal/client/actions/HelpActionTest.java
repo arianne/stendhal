@@ -22,6 +22,7 @@ import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPAction;
 
 public class HelpActionTest {
@@ -44,6 +45,7 @@ public class HelpActionTest {
 				}
 			}
 		};
+		UserInterfaceTestHelper.initUserInterface();
 		final HelpAction action = new HelpAction();
 		assertTrue(action.execute(null, null));
 	}
