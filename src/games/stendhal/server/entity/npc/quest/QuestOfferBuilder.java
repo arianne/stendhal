@@ -178,7 +178,7 @@ public class QuestOfferBuilder {
 				remind,
 				remindQuestAction);
 
-		if (repeatableAfterMinutes > 0) {
+		if (repeatableAfterMinutes > -1) {
 
 			npc.add(ConversationStates.ATTENDING,
 					ConversationPhrases.QUEST_MESSAGES,

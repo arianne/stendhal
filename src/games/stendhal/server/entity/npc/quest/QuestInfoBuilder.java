@@ -20,7 +20,7 @@ public class QuestInfoBuilder {
 	private String name = "<unnamed>";
 	private String description = "";
 	private String internalName = null;
-	private int repeatableAfterMinutes = 0;
+	private int repeatableAfterMinutes = -1;
 	private int minLevel = 0;
 	private String region = "somewhere";
 	private String questGiverNpc = null;
@@ -46,7 +46,7 @@ public class QuestInfoBuilder {
 	}
 
 	public QuestInfoBuilder notRepeatable() {
-		this.repeatableAfterMinutes = 0;
+		this.repeatableAfterMinutes = -1;
 		return this;
 	}
 
