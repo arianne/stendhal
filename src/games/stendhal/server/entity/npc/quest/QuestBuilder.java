@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2022-2023 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,7 @@ public class QuestBuilder<T extends QuestTaskBuilder> {
 	private QuestHistoryBuilder history = new QuestHistoryBuilder();
 	private QuestOfferBuilder offer = new QuestOfferBuilder();
 	private T task = null;
-	private QuestCompleteBuilder complete = new QuestCompleteBuilder();
+	protected QuestCompleteBuilder complete = new QuestCompleteBuilder();
 
 	/**
 	 * creates a QuestBuilder
