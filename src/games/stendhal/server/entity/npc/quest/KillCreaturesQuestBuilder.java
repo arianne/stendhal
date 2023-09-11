@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-public class KillCreaturesQuestBuilder extends QuestBuilder<KillCreaturesTask, QuestCompleteBuilder> {
+public class KillCreaturesQuestBuilder extends QuestBuilder<KillCreaturesTask, SimpleQuestCompleteBuilder> {
 
 	public KillCreaturesQuestBuilder() {
 		super(new KillCreaturesTask());
-		complete = new QuestCompleteBuilder();
+		complete = new SimpleQuestCompleteBuilder();
 	}
 
 }

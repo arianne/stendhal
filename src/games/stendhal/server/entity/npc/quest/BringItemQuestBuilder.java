@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-public class BringItemQuestBuilder extends QuestBuilder<BringItemTask, QuestCompleteBuilder> {
+public class BringItemQuestBuilder extends QuestBuilder<BringItemTask, SimpleQuestCompleteBuilder> {
 
 	public BringItemQuestBuilder() {
 		super(new BringItemTask());
-		complete = new QuestCompleteBuilder();
+		complete = new SimpleQuestCompleteBuilder();
 	}
 
 }
