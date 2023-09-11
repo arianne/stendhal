@@ -91,8 +91,8 @@ public class PizzaDelivery implements QuestManuscript {
 			// Quite high because you can't do much senseful on top of the hill and must walk down again.
 			.tipOnFastDelivery(200)
 			.xpReward(300)
-			.respondToFastDelivery("Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!")
-			.respondToSlowDelivery("Brrr. This %s is no longer hot. Well, thanks for the effort anyway.")
+			.respondToFastDelivery("Thanks! I wonder how you managed to bring it up here so fast. Take these [tip] pieces of gold as a tip, I can't spend it up here anyway!")
+			.respondToSlowDelivery("Brrr. This [flavor] is no longer hot. Well, thanks for the effort anyway.")
 			.playerMinLevel(10);
 
 		quest.task().order()
@@ -105,7 +105,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(20)
 			.tipOnFastDelivery(300)
 			.xpReward(500)
-			.respondToFastDelivery("Wow, I never believed you would really deliver this half over the world! Here, take these %s bucks!")
+			.respondToFastDelivery("Wow, I never believed you would really deliver this half over the world! Here, take these [flavor] bucks!")
 			.respondToSlowDelivery("It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway.")
 			.playerMinLevel(20);
 
@@ -118,7 +118,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(7)
 			.tipOnFastDelivery(170)
 			.xpReward(300)
-			.respondToFastDelivery("Incredible! It's still hot! Here, buy something nice from these %d pieces of gold!")
+			.respondToFastDelivery("Incredible! It's still hot! Here, buy something nice from these [tip] pieces of gold!")
 			.respondToSlowDelivery("What a pity. It has become cold. Nevertheless, thank you!")
 			.playerMinLevel(20);
 
@@ -130,7 +130,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(7)
 			.tipOnFastDelivery(150)
 			.xpReward(200)
-			.respondToFastDelivery("Thanks a lot! You're a born pizza deliverer. You can have these %d pieces of gold as a tip!")
+			.respondToFastDelivery("Thanks a lot! You're a born pizza deliverer. You can have these [tip] pieces of gold as a tip!")
 			.respondToSlowDelivery("Bummer. Cold pizza.")
 			.playerMinLevel(15);
 
@@ -142,7 +142,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(4)
 			.tipOnFastDelivery(80)
 			.xpReward(150)
-			.respondToFastDelivery("Ah, my %s! And it's fresh out of the oven! Take these %d coins as a tip!")
+			.respondToFastDelivery("Ah, my [flavor]! And it's fresh out of the oven! Take these [tip] coins as a tip!")
 			.respondToSlowDelivery("I hope next time I order a pizza it's still hot.")
 			.playerMinLevel(10);
 
@@ -154,7 +154,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(2)
 			.tipOnFastDelivery(20)
 			.xpReward(50)
-			.respondToFastDelivery("Ah, you brought my %s! Very nice of you! Here, take %d coins as a tip!")
+			.respondToFastDelivery("Ah, you brought my [flavor]! Very nice of you! Here, take [tip] coins as a tip!")
 			.respondToSlowDelivery("It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner.")
 			.playerMinLevel(2);
 
@@ -166,7 +166,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(6)
 			.tipOnFastDelivery(140)
 			.xpReward(200)
-			.respondToFastDelivery("Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are %d pieces of gold.")
+			.respondToFastDelivery("Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are [tip] pieces of gold.")
 			.respondToSlowDelivery("Too bad... I will have to use an extra strong spell to get this pizza hot again.")
 			.playerMinLevel(5);
 
@@ -178,7 +178,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(4)
 			.tipOnFastDelivery(100)
 			.xpReward(200)
-			.respondToFastDelivery("Yay! My %s! Here, you can have %d pieces of gold as a tip!")
+			.respondToFastDelivery("Yay! My [flavor]! Here, you can have [tip] pieces of gold as a tip!")
 			.respondToSlowDelivery("Eek. I hate cold pizza. I think I'll feed it to the animals.")
 			.playerMinLevel(10);
 
@@ -192,7 +192,7 @@ public class PizzaDelivery implements QuestManuscript {
 			// else in the jail and need to walk out again.
 			.tipOnFastDelivery(25)
 			.xpReward(100)
-			.respondToFastDelivery("Ah, my %s! Here's your tip: %d pieces of gold.")
+			.respondToFastDelivery("Ah, my [flavor]! Here's your tip: [tip] pieces of gold.")
 			.respondToSlowDelivery("Finally! Why did that take so long?")
 			.playerMinLevel(2);
 
@@ -204,7 +204,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(1)
 			.tipOnFastDelivery(10)
 			.xpReward(25)
-			.respondToFastDelivery("Thank you! That was fast. Here, take %d pieces of gold as a tip!")
+			.respondToFastDelivery("Thank you! That was fast. Here, take [tip] pieces of gold as a tip!")
 			.respondToSlowDelivery("Too bad. It has become cold. Thank you anyway.")
 			.playerMinLevel(0);
 
@@ -216,7 +216,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(1)
 			.tipOnFastDelivery(10)
 			.xpReward(25)
-			.respondToFastDelivery("Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!")
+			.respondToFastDelivery("Thank you! It's nice to have a pizza service right around the corner. Here, you can have [tip] coins!")
 			.respondToSlowDelivery("I should have rather picked it up myself at the bakery, that would have been faster.")
 			.playerMinLevel(0);
 
@@ -231,7 +231,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(14)
 			.tipOnFastDelivery(250)
 			.xpReward(400)
-			.respondToFastDelivery("Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these %d pieces of gold as a tip!")
+			.respondToFastDelivery("Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these [tip] pieces of gold as a tip!")
 			.respondToSlowDelivery("Too bad. It is cold. And I had hoped to get something better than that galley food.")
 			.playerMinLevel(20);
 
@@ -244,7 +244,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(9)
 			.tipOnFastDelivery(170)
 			.xpReward(300)
-			.respondToFastDelivery("Yummy %s! Here, take %d moneys!")
+			.respondToFastDelivery("Yummy [flavor]! Here, take [tip] moneys!")
 			.respondToSlowDelivery("Grrr. Pizza cold. You walking slow like sheep.")
 			.playerMinLevel(15);
 
@@ -256,7 +256,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.minutesToDeliver(8)
 			.tipOnFastDelivery(160)
 			.xpReward(220)
-			.respondToFastDelivery("Ooooh, I loove fresh hot pizza, thanks. take this %d money...!")
+			.respondToFastDelivery("Ooooh, I loove fresh hot pizza, thanks. take this [tip] money...!")
 			.respondToSlowDelivery("Hmpf.. a cold pizza.. ok.. I will take it. But hurry up next time.")
 			.playerMinLevel(10);
 

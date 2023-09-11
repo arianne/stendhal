@@ -64,6 +64,9 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			if (player.isEquipped(deliverItemTask.getItemName())) {
 				final DeliverItemOrder data = deliverItemTask.getOrders().get(npc.getName());
+				Map<String, Object> params = new HashMap<>();
+				params.put("flavor", data.getFlavor());
+				params.put("tip", data.getTip());
 				for (final Item pizza : player.getAllEquipped(deliverItemTask.getItemName())) {
 					final String flavor = pizza.getInfoString();
 					if (data.getFlavor().equals(flavor)) {
@@ -72,20 +75,10 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 						// pizza.
 						if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
 							if (deliverItemTask.isDeliveryTooLate(player)) {
-								if (data.getMessageOnColdPizza().contains("%s")) {
-									npc.say(String.format(data.getMessageOnColdPizza(), data.getFlavor()));
-								} else {
-									npc.say(data.getMessageOnColdPizza());
-								}
+								npc.say(StringUtils.substitute(data.getRespondToSlowDelivery(), params));
 								player.addXP(data.getXp() / 2);
 							} else {
-								if (data.getMessageOnHotPizza().contains("%s")) {
-									npc.say(String.format(data.getMessageOnHotPizza(),
-											data.getFlavor(), data.getTip()));
-								} else {
-									npc.say(String.format(data.getMessageOnHotPizza(),
-											data.getTip()));
-								}
+								npc.say(StringUtils.substitute(data.getRespondToFastDelivery(), params));
 								final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 								money.setQuantity(data.getTip());
 								player.equipOrPutOnGround(money);
@@ -110,8 +103,6 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 					}
 				}
 				// The player has brought the pizza to the wrong NPC, or it's a plain pizza.
-				Map<String, String> params = new HashMap<>();
-				params.put("flavor", data.getFlavor());
 				npc.say(StringUtils.substitute(respondToItemForOtherNPC, params));
 
 			} else {

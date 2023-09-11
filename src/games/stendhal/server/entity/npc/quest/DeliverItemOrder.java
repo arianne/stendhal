@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
 /**
@@ -14,33 +25,33 @@ public class DeliverItemOrder {
 	private String npcDescription;
 	
 
-	/** The pizza style the customer likes. */
+	/** The style the customer likes. */
 	private String flavor;
 
-	/** The time until the pizza should be delivered. */
+	/** The time until the item should be delivered. */
 	private int expectedMinutes;
 
 	/** The money the player should get on fast delivery. */
 	private int tip;
 
 	/**
-	 * The experience the player should gain for delivery. When the pizza
-	 * has already become cold, the player will gain half of this amount.
+	 * The experience the player should gain for delivery. When the item
+	 * has already become old, the player will gain half of this amount.
 	 */
 	private int xp;
 
 	/**
 	 * The text that the customer should say upon quick delivery. It should
 	 * contain %d as a placeholder for the tip, and can optionally contain
-	 * %s as a placeholder for the pizza flavor.
+	 * %s as a placeholder for the item flavor.
 	 */
-	private String messageOnHotPizza;
+	private String respondToFastDelivery;
 
 	/**
 	 * The text that the customer should say upon quick delivery. It can
-	 * optionally contain %s as a placeholder for the pizza flavor.
+	 * optionally contain %s as a placeholder for the item flavor.
 	 */
-	private String messageOnColdPizza;
+	private String respondToSlowDelivery;
 
 	/**
 	 * The min level player who can get to this NPC
@@ -84,12 +95,12 @@ public class DeliverItemOrder {
 		return xp;
 	}
 
-	String getMessageOnHotPizza() {
-		return messageOnHotPizza;
+	String getRespondToFastDelivery() {
+		return respondToFastDelivery;
 	}
 
-	String getMessageOnColdPizza() {
-		return messageOnColdPizza;
+	String getRespondToSlowDelivery() {
+		return respondToSlowDelivery;
 	}
 
 	public DeliverItemOrder customerNpc(String npc) {
@@ -124,13 +135,13 @@ public class DeliverItemOrder {
 		return this;
 	}
 
-	public DeliverItemOrder respondToFastDelivery(String responseToFastDelivery) {
-		this.messageOnHotPizza = responseToFastDelivery;
+	public DeliverItemOrder respondToFastDelivery(String respondToFastDelivery) {
+		this.respondToFastDelivery = respondToFastDelivery;
 		return this;
 	}
 
-	public DeliverItemOrder respondToSlowDelivery(String responseToSlowDelivery) {
-		this.messageOnColdPizza = responseToSlowDelivery;
+	public DeliverItemOrder respondToSlowDelivery(String respondToSlowDelivery) {
+		this.respondToSlowDelivery = respondToSlowDelivery;
 		return this;
 	}
 
