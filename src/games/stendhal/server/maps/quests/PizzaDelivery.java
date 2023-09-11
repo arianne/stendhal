@@ -59,7 +59,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.name("Pizza Delivery")
 			.description("Leander's pizza business is doing so well that he now recruits delivery boys and girls.")
 			.internalName("pizza_delivery")
-			.repeatableAfterMinutes(0)  // TODO
+			.repeatableAfterMinutes(0)
 			.minLevel(0)
 			.region(Region.SEMOS_CITY)
 			.questGiverNpc("Leander");
@@ -76,7 +76,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToUnrepeatableRequest("Thank you very much for your help. I don't have any other orders at this time.")
 			.respondToAccept(null)
 			.respondToReject("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.")
-			.remind(null); // TODO: action
+			.remind(null);
 
 
 
@@ -260,15 +260,12 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToSlowDelivery("Hmpf.. a cold pizza.. ok.. I will take it. But hurry up next time.")
 			.playerMinLevel(10);
 
-/*
 		quest.complete()
-			.greet("Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?")
-			.respondToReject("Well then, I hope you find another one which you can give to me before I get robbed again.")
-			.respondToAccept("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.")
-			.rewardWith(new EquipItemAction("money", 80))
-			.rewardWith(new IncreaseXPAction(50))
-			.rewardWith(new IncreaseKarmaAction(10));
-*/
+			.respondToItemWithoutQuest("Eek! This pizza is all dirty! Did you find it on the ground?")
+			.respondToItemForOtherNPC("No, thanks. I like [flavor] better.")
+			.respondToMissingItem("A pizza? Where?")
+			.npcStatusEffect("pizza");
+
 		return quest;
 	}
 

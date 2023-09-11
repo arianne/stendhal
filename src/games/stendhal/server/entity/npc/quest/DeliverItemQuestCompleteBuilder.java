@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
@@ -27,23 +30,28 @@ import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 /**
  * defines how the NPC react after the player completes the quest
  *
  * @author hendrik
  */
-class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
+public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 
 	private static Logger logger = Logger.getLogger(DeliverItemQuestCompleteBuilder.class);
 
 	private DeliverItemTask deliverItemTask;
+	private String respondToItemWithoutQuest;
+	private String respondToItemForOtherNPC;
+	private String respondToMissingItem;
+	private String npcStatusEffect;
 
-	public DeliverItemQuestCompleteBuilder(DeliverItemTask deliverItemTask) {
+	DeliverItemQuestCompleteBuilder(DeliverItemTask deliverItemTask) {
 		this.deliverItemTask = deliverItemTask;
 	}
 
-	private static class HandOverItemAction implements ChatAction {
+	private class HandOverItemAction implements ChatAction {
 		private final DeliverItemTask deliverItemTask;
 		private final String questSlot;
 
@@ -54,9 +62,9 @@ class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-			if (player.isEquipped("pizza")) {
+			if (player.isEquipped(deliverItemTask.getItemName())) {
 				final DeliverItemOrder data = deliverItemTask.getOrders().get(npc.getName());
-				for (final Item pizza : player.getAllEquipped("pizza")) {
+				for (final Item pizza : player.getAllEquipped(deliverItemTask.getItemName())) {
 					final String flavor = pizza.getInfoString();
 					if (data.getFlavor().equals(flavor)) {
 						player.drop(pizza);
@@ -84,8 +92,10 @@ class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 								player.addXP(data.getXp());
 								player.addKarma(5);
 							}
-							new InflictStatusOnNPCAction("pizza").fire(player, null, npc);
-							player.setQuest(questSlot, "done");
+							if (npcStatusEffect != null) {
+								new InflictStatusOnNPCAction(npcStatusEffect).fire(player, null, npc);
+							}
+							player.setQuest(questSlot, 0, "done");
 							new SetQuestToTimeStampAction(questSlot, 1).fire(player, null, npc);
 							new IncrementQuestAction(questSlot, 2, 1).fire(player, null, npc);
 							deliverItemTask.putOffUniform(player);
@@ -93,18 +103,44 @@ class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 							// This should not happen: a player cannot pick up a pizza from the ground
 							// that did have a flavor, those are bound. If a pizza has flavor the player
 							// should only have got it from the quest.
-							npc.say("Eek! This pizza is all dirty! Did you find it on the ground?");
+							// But could be from a previous attempt to deliver.
+							npc.say(respondToItemWithoutQuest);
 						}
 						return;
 					}
 				}
 				// The player has brought the pizza to the wrong NPC, or it's a plain pizza.
-				npc.say("No, thanks. I like " + data.getFlavor() + " better.");
+				Map<String, String> params = new HashMap<>();
+				params.put("flavor", data.getFlavor());
+				npc.say(StringUtils.substitute(respondToItemForOtherNPC, params));
+
 			} else {
-				npc.say("A pizza? Where?");
+				npc.say(respondToMissingItem);
 			}
 		}
 	}
+
+
+	public DeliverItemQuestCompleteBuilder respondToItemWithoutQuest(String respondToItemWithoutQuest) {
+		this.respondToItemWithoutQuest = respondToItemWithoutQuest;
+		return this;
+	}
+
+	public DeliverItemQuestCompleteBuilder respondToItemForOtherNPC(String respondToItemForOtherNPC) {
+		this.respondToItemForOtherNPC = respondToItemForOtherNPC;
+		return this;
+	}
+
+	public DeliverItemQuestCompleteBuilder respondToMissingItem(String respondToMissingItem) {
+		this.respondToMissingItem = respondToMissingItem;
+		return this;
+	}
+
+	public DeliverItemQuestCompleteBuilder npcStatusEffect(String npcStatusEffect) {
+		this.npcStatusEffect = npcStatusEffect;
+		return this;
+	}
+
 
 	@Override
 	void simulate(String npc, QuestSimulator simulator) {
@@ -121,7 +157,7 @@ class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 				continue;
 			}
 
-			npc.add(ConversationStates.ATTENDING, "pizza", null,
+			npc.add(ConversationStates.ATTENDING, deliverItemTask.getItemName(), null,
 				ConversationStates.ATTENDING, null,
 				handOverItemAction);
 		}

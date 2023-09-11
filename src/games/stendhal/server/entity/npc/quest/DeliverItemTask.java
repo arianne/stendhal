@@ -230,4 +230,8 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	Map<String, DeliverItemOrder> getOrders() {
 		return this.orders;
 	}
+
+	String getItemName() {
+		return "pizza";
+	}
 }
