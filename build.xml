@@ -92,5 +92,6 @@
   <import file="${ant_modules}/docs.xml"/>
   <import file="${ant_modules}/testing.xml"/>
   <import file="${ant_modules}/tools.xml"/>
+  <import file="${ant_modules}/package.xml"/>
 
 </project>

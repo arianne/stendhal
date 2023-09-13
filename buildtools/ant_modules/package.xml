@@ -1,0 +1,135 @@
+<?xml version='1.0'?>
+
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <!-- To build executable package/installer, specific package type can be build only on it's native platform.
+    - First build client zip file using lowest supported Java version (JDK 8)
+    - Switch to newer JDK version which has included jpackage tool
+    - Follow jpackage error messages to install missing dependencies, like for example .NET runtime / wix on Windows
+  -->
+
+  <target name="msiPackage" description="Creates MSI installer package from current build">
+    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type app-image"/>
+      <arg line="--dest ${build}/package/msi-app-image"/>
+      <arg line="--input ${build}/package/client"/>
+      <arg line="--name stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--main-jar stendhal-starter.jar"/>
+      <arg line="--main-class games.stendhal.client.update.Starter"/>
+      <arg line="--icon buildtools/package/icon.ico"/>
+    </exec>
+    <delete dir="${build}/package/msi-app-image/stendhal/runtime"/>
+    <delete file="${build}/package/msi-app-image/stendhal/stendhal.exe"/>
+    <copy tofile="${build}/package/msi-app-image/stendhal/stendhal.exe" file="buildtools/package/stendhal.exe"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type msi"/>
+      <arg line="--dest ${build}"/>
+      <arg line="--app-image ${build}/package/msi-app-image/stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--about-url https://stendhalgame.org"/>
+      <arg line="--license-file LICENSE.txt"/>
+      <arg line="--description &quot;Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel.&quot;"/>
+      <arg line="--icon buildtools/package/icon-64x64.png"/>
+      <arg line="--win-menu"/>
+      <arg line="--win-shortcut"/>
+      <arg line="--win-shortcut-prompt"/>
+    </exec>
+  </target> <!-- msiPackage -->
+
+  <target name="dmgPackage" description="Creates DMG package from current build">
+    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type app-image"/>
+      <arg line="--dest ${build}/package/dmg-app-image"/>
+      <arg line="--input ${build}/package/client"/>
+      <arg line="--name stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--main-jar stendhal-starter.jar"/>
+      <arg line="--main-class games.stendhal.client.update.Starter"/>
+      <arg line="--icon buildtools/package/icon.icns"/>
+    </exec>
+    <delete dir="${build}/package/dmg-app-image/stendhal.app/Contents/runtime"/>
+    <delete file="${build}/package/dmg-app-image/stendhal.app/Contents/MacOS/stendhal"/>
+    <copy tofile="${build}/package/dmg-app-image/stendhal.app/Contents/MacOS/stendhal" file="buildtools/package/stendhal-macos"/>
+    <chmod file="${build}/package/dmg-app-image/stendhal.app/Contents/MacOS/stendhal" perm="+x"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type dmg"/>
+      <arg line="--dest ${build}"/>
+      <arg line="--app-image ${build}/package/dmg-app-image/stendhal.app"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--about-url https://stendhalgame.org"/>
+      <arg line="--license-file LICENSE.txt"/>
+      <arg line="--description &quot;Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel.&quot;"/>
+      <arg line="--icon buildtools/package/icon.icns"/>
+    </exec>
+  </target> <!-- dmgPackage -->
+
+  <target name="rpmPackage" description="Creates RPM package from current build">
+    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type app-image"/>
+      <arg line="--dest ${build}/package/rpm-app-image"/>
+      <arg line="--input ${build}/package/client"/>
+      <arg line="--name stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--main-jar stendhal-starter.jar"/>
+      <arg line="--main-class games.stendhal.client.update.Starter"/>
+      <arg line="--icon buildtools/package/icon-64x64.png"/>
+    </exec>
+    <delete dir="${build}/package/rpm-app-image/stendhal/lib/runtime"/>
+    <delete file="${build}/package/rpm-app-image/stendhal/lib/libapplauncher.so"/>
+    <delete file="${build}/package/rpm-app-image/stendhal/bin/stendhal"/>
+    <copy todir="${build}/package/rpm-app-image/stendhal/bin" file="buildtools/package/stendhal"/>
+    <chmod file="${build}/package/rpm-app-image/stendhal/bin/stendhal" perm="+x"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type rpm"/>
+      <arg line="--dest ${build}"/>
+      <arg line="--app-image ${build}/package/rpm-app-image/stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--about-url https://stendhalgame.org"/>
+      <arg line="--license-file LICENSE.txt"/>
+      <arg line="--description &quot;Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel.&quot;"/>
+      <arg line="--icon buildtools/package/icon-64x64.png"/>
+      <arg line="--linux-menu-group Game"/>
+      <arg line="--linux-package-deps jre-1.8.0"/>
+      <arg line="--linux-rpm-license-type GPLv2"/>
+      <arg line="--linux-shortcut"/>
+    </exec>
+  </target> <!-- rpmPackage -->
+
+  <target name="debPackage" description="Creates DEB package from current build">
+    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type app-image"/>
+      <arg line="--dest ${build}/package/deb-app-image"/>
+      <arg line="--input ${build}/package/client"/>
+      <arg line="--name stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--main-jar stendhal-starter.jar"/>
+      <arg line="--main-class games.stendhal.client.update.Starter"/>
+      <arg line="--icon buildtools/package/icon-64x64.png"/>
+    </exec>
+    <delete dir="${build}/package/deb-app-image/stendhal/lib/runtime"/>
+    <delete file="${build}/package/deb-app-image/stendhal/lib/libapplauncher.so"/>
+    <delete file="${build}/package/deb-app-image/stendhal/bin/stendhal"/>
+    <copy todir="${build}/package/deb-app-image/stendhal/bin" file="buildtools/package/stendhal"/>
+    <chmod file="${build}/package/deb-app-image/stendhal/bin/stendhal" perm="+x"/>
+    <exec executable="jpackage" dir="." failonerror="true">
+      <arg line="--type deb"/>
+      <arg line="--dest ${build}"/>
+      <arg line="--app-image ${build}/package/deb-app-image/stendhal"/>
+      <arg line="--app-version ${version}"/>
+      <arg line="--about-url https://stendhalgame.org"/>
+      <arg line="--license-file LICENSE.txt"/>
+      <arg line="--description &quot;Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel.&quot;"/>
+      <arg line="--icon buildtools/package/icon-64x64.png"/>
+      <arg line="--linux-menu-group Game"/>
+      <arg line="--linux-app-category Game"/>
+      <arg line="--linux-package-deps default-jre-1.8.0"/>
+      <arg line="--linux-shortcut"/>
+    </exec>
+  </target> <!-- debPackage -->
+
+</project>
