@@ -68,7 +68,13 @@ public class PizzaDelivery implements QuestManuscript {
 			.whenNpcWasMet("I met Leander, the baker of Semos.")
 			.whenQuestWasRejected("He asked me to deliver pizza but I rejected his request.")
 			.whenQuestWasAccepted("I agreed to help with pizza delivery")
-			.whenQuestWasCompleted("I delivered the last pizza Leander gave to me.");
+			.whenItemWasGiven("Leander gave me a [flavor] for [customerName].")
+			.whenToldAboutCustomer("Leander told me: \"[customerDescription]\"")
+			.whenInTime("If I hurry, I might still get there, with the pizza hot.")
+			.whenOutOfTime("The pizza has already gone cold.")
+			.whenQuestWasCompleted("I delivered the last pizza Leander gave to me.")
+			.whenQuestCanBeRepeated("But I'd bet, Leander has more orders.");
+;
 
 		quest.offer()
 			.respondToRequest("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?")
@@ -77,7 +83,6 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToAccept(null)
 			.respondToReject("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.")
 			.remind(null);
-
 
 
 		// Don't add Sally here, as it would conflict with Leander telling

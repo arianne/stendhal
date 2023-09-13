@@ -124,7 +124,7 @@ public class LuaQuestHelper {
 	 * @return
 	 *   New quest.
 	 */
-	public IQuest createManuscript(final QuestBuilder<?, ?> builder) {
+	public IQuest createManuscript(final QuestBuilder<?, ?, ?> builder) {
 		return new BuiltQuest(builder);
 	}
 
@@ -136,7 +136,7 @@ public class LuaQuestHelper {
 	 * @return
 	 *   New QuestBuilder.
 	 */
-	public QuestBuilder<?, ?> createBuilder(final String task) {
+	public QuestBuilder<?, ?, ?> createBuilder(final String task) {
 		if ("BringItemTask".equals(task)) {
 			return new BringItemQuestBuilder();
 		} else if ("KillCreaturesTask".equals(task)) {

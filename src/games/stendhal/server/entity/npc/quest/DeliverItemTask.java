@@ -29,9 +29,10 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.condition.AlwaysFalseCondition;
 import games.stendhal.server.entity.npc.condition.OutfitCompatibleWithClothesCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 
 public class DeliverItemTask extends QuestTaskBuilder {
@@ -40,27 +41,6 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	private static final String QUEST_SLOT = "pizza_delivery";
 
 	private Map<String, DeliverItemOrder> orders = new HashMap<>();
-
-	/*
-	@Override
-	public List<String> getHistory(final Player player) {
-		final String questState = player.getQuest(QUEST_SLOT);
-		res.add("I met Leander and agreed to help with pizza delivery.");
-		if (!"done".equals(questState)) {
-			final String[] questData = questState.split(";");
-			final String customerName = questData[0];
-			final CustomerData customerData = customerDB.get(customerName);
-			res.add("Leander gave me a " + customerData.flavor + " for " + customerName + ".");
-			res.add("Leander told me: \"" + customerData.npcDescription + "\"");
-			if (!isDeliveryTooLate(player)) {
-				res.add("If I hurry I might still get there with the pizza hot.");
-			} else {
-				res.add("The pizza has already gone cold.");
-			}
-		}
-		return res;
-	}
-*/
 
 
 	/**
@@ -214,12 +194,11 @@ public class DeliverItemTask extends QuestTaskBuilder {
 
 	@Override
 	ChatCondition buildQuestCompletedCondition(String questSlot) {
-		return new QuestCompletedCondition(questSlot);
+		return new AlwaysFalseCondition();
 	}
 
 	@Override
 	ChatAction buildQuestCompleteAction(String questSlot) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -234,4 +213,29 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	String getItemName() {
 		return "pizza";
 	}
+
+	@Override
+	public List<String> calculateHistoryProgress(QuestHistoryBuilder historyBuilder, Player player) {
+		DeliverItemQuestHistoryBuilder history = (DeliverItemQuestHistoryBuilder) historyBuilder;
+		List<String> res = new LinkedList<>();
+		final String questState = player.getQuest(QUEST_SLOT, 0);
+		if (!"done".equals(questState)) {
+			final String[] questData = questState.split(";");
+			final String customerName = questData[0];
+			final DeliverItemOrder customerData = orders.get(customerName);
+			Map<String, String> params = new HashMap<>();
+			params.put("flavor", customerData.getFlavor());
+			params.put("customerName", customerName);
+			params.put("customerDescription", customerData.getNpcDescription());
+			res.add(StringUtils.substitute(history.getWhenItemWasGiven(), params));
+			res.add(StringUtils.substitute(history.getWhenToldAboutCustomer(), params));
+			if (!isDeliveryTooLate(player)) {
+				res.add(StringUtils.substitute(history.getWhenInTime(), params));
+			} else {
+				res.add(StringUtils.substitute(history.getWhenOutOfTime(), params));
+			}
+		}
+		return res;
+	}
+
 }

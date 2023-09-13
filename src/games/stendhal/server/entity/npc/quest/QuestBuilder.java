@@ -17,13 +17,14 @@ package games.stendhal.server.entity.npc.quest;
  * @author hendrik
  * @param <T> QuestTaskBuilder
  */
-public class QuestBuilder<T extends QuestTaskBuilder, C extends QuestCompleteBuilder> {
+public class QuestBuilder<T extends QuestTaskBuilder, C extends QuestCompleteBuilder, H extends QuestHistoryBuilder> {
 
 	private QuestInfoBuilder info = new QuestInfoBuilder();
-	private QuestHistoryBuilder history = new QuestHistoryBuilder();
+	@SuppressWarnings("unchecked")
 	private QuestOfferBuilder offer = new QuestOfferBuilder();
 	private T task = null;
 	protected C complete;
+	protected H history = null;
 
 	/**
 	 * creates a QuestBuilder
@@ -48,7 +49,7 @@ public class QuestBuilder<T extends QuestTaskBuilder, C extends QuestCompleteBui
 	 *
 	 * @return QuestHistoryBuilder
 	 */
-	public QuestHistoryBuilder history() {
+	public H history() {
 		return history;
 	}
 

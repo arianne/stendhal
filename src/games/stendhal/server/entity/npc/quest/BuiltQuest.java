@@ -29,7 +29,7 @@ import games.stendhal.server.maps.quests.AbstractQuest;
  * @author hendrik
  */
 public class BuiltQuest extends AbstractQuest {
-	private QuestBuilder<?, ?> questBuilder;
+	private QuestBuilder<?, ?, ?> questBuilder;
 	private String questSlot = null;
 
 	/**
@@ -37,7 +37,7 @@ public class BuiltQuest extends AbstractQuest {
 	 *
 	 * @param questBuilder quest builder
 	 */
-	public BuiltQuest(QuestBuilder<?, ?> questBuilder) {
+	public BuiltQuest(QuestBuilder<?, ?, ?> questBuilder) {
 		this.questBuilder = questBuilder;
 		this.questSlot = questBuilder.info().getInternalName().toLowerCase();
 	}
@@ -57,12 +57,14 @@ public class BuiltQuest extends AbstractQuest {
 			return res;
 		}
 		res.add(history.getWhenQuestWasAccepted());
-		List<String> progress = questBuilder.task().calculateHistoryProgress(player);
+		List<String> progress = questBuilder.task().calculateHistoryProgress(history, player);
 		if (progress != null) {
 			res.addAll(progress);
 		}
 		if ("done".equals(questState) || ("start".equals(questState) && questBuilder.task().isCompleted(player, questSlot))) {
-			res.add(history.getWhenTaskWasCompleted());
+			if (history.getWhenTaskWasCompleted() != null) {
+				res.add(history.getWhenTaskWasCompleted());
+			}
 		}
 		if ("done".equals(questState)) {
 			res.add(history.getWhenQuestWasCompleted());
@@ -139,7 +141,7 @@ public class BuiltQuest extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return isCompleted(player)
-				&& questBuilder.info().getRepeatableAfterMinutes() > 0
+				&& questBuilder.info().getRepeatableAfterMinutes() > -1
 				&& new TimePassedCondition(questSlot, 1, questBuilder.info().getRepeatableAfterMinutes()).fire(player,null, null);
 	}
 }

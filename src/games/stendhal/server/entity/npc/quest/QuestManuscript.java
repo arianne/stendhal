@@ -23,5 +23,5 @@ public interface QuestManuscript {
 	 *
 	 * @return QuestBuilder
 	 */
-	public QuestBuilder<?, ?> story();
+	public QuestBuilder<?, ?, ?> story();
 }
