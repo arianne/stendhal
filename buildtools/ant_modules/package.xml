@@ -93,7 +93,7 @@
       <arg line="--description &quot;Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel.&quot;"/>
       <arg line="--icon buildtools/package/icon-64x64.png"/>
       <arg line="--linux-menu-group Game"/>
-      <arg line="--linux-package-deps jre-1.8.0"/>
+      <arg line="--linux-package-deps &quot;jre >= 1.8.0&quot;"/>
       <arg line="--linux-rpm-license-type GPLv2"/>
       <arg line="--linux-shortcut"/>
     </exec>
@@ -127,7 +127,7 @@
       <arg line="--icon buildtools/package/icon-64x64.png"/>
       <arg line="--linux-menu-group Game"/>
       <arg line="--linux-app-category Game"/>
-      <arg line="--linux-package-deps default-jre-1.8.0"/>
+      <arg line="--linux-package-deps &quot;default-jre (>= 1.8.0)&quot;"/>
       <arg line="--linux-shortcut"/>
     </exec>
   </target> <!-- debPackage -->
