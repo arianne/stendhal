@@ -1,0 +1,29 @@
+#!/bin/sh
+APP_NAME="Stendhal"
+REQUIRED_JAVA="8"
+VM_ARGS=""
+APP_JAR="stendhal-starter.jar"
+
+DIR=$(cd "$(dirname "$0")"; pwd)
+
+# Error message for NO JAVA dialog
+ERROR_TITLE="Cannot launch $APP_NAME"
+ERROR_MSG="$APP_NAME requires Java version $REQUIRED_JAVA or later to run."
+DOWNLOAD_URL="https://adoptium.net/download/"
+
+# Is Java installed?
+if type -p java; then
+    _java="java"
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]; then
+    _java="$JAVA_HOME/bin/java"
+else
+    osascript \
+    -e "set question to display dialog \"$ERROR_MSG\" with title \"$ERROR_TITLE\" buttons {\"Cancel\", \"Download\"} default button 2" \
+    -e "if button returned of question is equal to \"Download\" then open location \"$DOWNLOAD_URL\""
+    echo "$ERROR_TITLE"
+    echo "$ERROR_MSG"
+    exit 1
+fi
+
+cd $DIR/../app
+exec $_java $VM_ARGS -Dapple.laf.useScreenMenuBar=true -Dcom.apple.macos.use-file-dialog-packages=true -Xdock:name="$APP_NAME" -Xdock:icon="$DIR/../Resources/stendhal.icns" -jar "$APP_JAR" $*
