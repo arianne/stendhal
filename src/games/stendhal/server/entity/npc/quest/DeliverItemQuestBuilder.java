@@ -11,10 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask, DeliverItemQuestCompleteBuilder, DeliverItemQuestHistoryBuilder> {
+public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask, DeliverItemQuestOfferBuilder, DeliverItemQuestCompleteBuilder, DeliverItemQuestHistoryBuilder> {
 
 	public DeliverItemQuestBuilder() {
 		super(new DeliverItemTask());
+		offer = new DeliverItemQuestOfferBuilder();
 		complete = new DeliverItemQuestCompleteBuilder(task());
 		history = new DeliverItemQuestHistoryBuilder();
 	}

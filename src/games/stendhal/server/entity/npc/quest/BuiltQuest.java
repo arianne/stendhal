@@ -29,7 +29,7 @@ import games.stendhal.server.maps.quests.AbstractQuest;
  * @author hendrik
  */
 public class BuiltQuest extends AbstractQuest {
-	private QuestBuilder<?, ?, ?> questBuilder;
+	private QuestBuilder<?, ?, ?, ?> questBuilder;
 	private String questSlot = null;
 
 	/**
@@ -37,7 +37,7 @@ public class BuiltQuest extends AbstractQuest {
 	 *
 	 * @param questBuilder quest builder
 	 */
-	public BuiltQuest(QuestBuilder<?, ?, ?> questBuilder) {
+	public BuiltQuest(QuestBuilder<?, ?, ?, ?> questBuilder) {
 		this.questBuilder = questBuilder;
 		this.questSlot = questBuilder.info().getInternalName().toLowerCase();
 	}

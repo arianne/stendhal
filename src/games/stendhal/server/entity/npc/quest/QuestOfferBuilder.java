@@ -37,7 +37,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
  *
  * @author hendrik
  */
-public class QuestOfferBuilder {
+public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 	private String respondToFailedPreCondition = "I am sorry, I don't have a task for your right now.";
 	private String respondToRequest = null;
 	private String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
@@ -49,57 +49,67 @@ public class QuestOfferBuilder {
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
-	public QuestOfferBuilder respondToFailedPreCondition(String respondToFailedPreCondition) {
+	@SuppressWarnings("unchecked")
+	public T respondToFailedPreCondition(String respondToFailedPreCondition) {
 		this.respondToFailedPreCondition = respondToFailedPreCondition;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondToRequest(String respondToRequest) {
+	@SuppressWarnings("unchecked")
+	public T respondToRequest(String respondToRequest) {
 		this.respondToRequest = respondToRequest;
 		if (this.respondToRepeatedRequest == null) {
 			this.respondToRepeatedRequest = respondToRequest;
 		}
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondToUnrepeatableRequest(String respondToUnrepeatableRequest) {
+	@SuppressWarnings("unchecked")
+	public T respondToUnrepeatableRequest(String respondToUnrepeatableRequest) {
 		this.respondToUnrepeatableRequest = respondToUnrepeatableRequest;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondToRepeatedRequest(String respondToRepeatedRequest) {
+	@SuppressWarnings("unchecked")
+	public T respondToRepeatedRequest(String respondToRepeatedRequest) {
 		this.respondToRepeatedRequest = respondToRepeatedRequest;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondToAccept(String respondToAccept) {
+	@SuppressWarnings("unchecked")
+	public T respondToAccept(String respondToAccept) {
 		this.respondToAccept = respondToAccept;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondToReject(String respondToReject) {
+	@SuppressWarnings("unchecked")
+	public T respondToReject(String respondToReject) {
 		this.respondToReject = respondToReject;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder respondTo(String... respondTo) {
+	@SuppressWarnings("unchecked")
+	public T respondTo(String... respondTo) {
 		this.lastRespondTo = Arrays.asList(respondTo);
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder saying(String reply) {
+	@SuppressWarnings("unchecked")
+	public T saying(String reply) {
 		additionalReplies.put(lastRespondTo, reply);
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder remind(String remind) {
+	@SuppressWarnings("unchecked")
+	public T remind(String remind) {
 		this.remind = remind;
-		return this;
+		return (T) this;
 	}
 
-	public QuestOfferBuilder rejectionKarmaPenalty(double rejectionKarmaPenalty) {
+	@SuppressWarnings("unchecked")
+	public T rejectionKarmaPenalty(double rejectionKarmaPenalty) {
 		this.rejectionKarmaPenalty = rejectionKarmaPenalty;
-		return this;
+		return (T) this;
 	}
 
 	void simulateFirst(String npc, QuestSimulator simulator) {
