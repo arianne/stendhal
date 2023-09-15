@@ -116,21 +116,18 @@ public class DeliverItemTask extends QuestTaskBuilder {
 				final String name = Rand.rand(getAllowedCustomers(player));
 				final DeliverItemOrder data = orders.get(name);
 
+				Map<String, String> params = new HashMap<>();
+				params.put("flavor", data.getFlavor());
+				params.put("customerName", Grammar.quoteHash("#" + name));
+				params.put("time", Grammar.quantityplnoun(data.getExpectedMinutes(), "minute", "one"));
+
 				final Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
 				pizza.setInfoString(data.getFlavor());
-				pizza.setDescription("You see a " + data.getFlavor() + ".");
-				pizza.setBoundTo(name);
+				pizza.setDescription(StringUtils.substitute("You see a [flavor].", params));
+				pizza.setBoundTo(player.getName());
 
 				if (player.equipToInventoryOnly(pizza)) {
-					npc.say("You must bring this "
-						+ data.getFlavor()
-						+ " to "
-						+ Grammar.quoteHash("#" + name)
-						+ " within "
-						+ Grammar.quantityplnoun(data.getExpectedMinutes(), "minute", "one")
-						+ ". Say \"pizza\" so that "
-						+ name
-						+ " knows that I sent you. Oh, and please wear this uniform on your way and don't drop this " + data.getFlavor() + " on the ground! Our customers want it fresh.");
+					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
 					player.setOutfit(UNIFORM, true);
 					player.setQuest(QUEST_SLOT, 0, name);
 					new SetQuestToTimeStampAction(questSlot, 1).fire(player, null, npc);
@@ -162,13 +159,14 @@ public class DeliverItemTask extends QuestTaskBuilder {
 		return new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final String[] questData = player.getQuest(QUEST_SLOT)
-							.split(";");
-					final String customerName = questData[0];
+					final String customerName = player.getQuest(QUEST_SLOT, 0);
 					if (customerName.equals("rejected")) {
 						buildStartQuestAction(questSlot).fire(player, sentence, npc);
 						return;
 					}
+					Map<String, String> params = new HashMap<>();
+					params.put("customerName", Grammar.quoteHash("#" + customerName));
+
 					if (isDeliveryTooLate(player)) {
 						// If the player still carries any pizza due for an NPC,
 						// take it away because the baker is angry,
@@ -179,13 +177,10 @@ public class DeliverItemTask extends QuestTaskBuilder {
 								player.drop(pizza);
 							}
 						}
-						npc.say("I see you failed to deliver the pizza to "
-							+ customerName
-							+ " in time. Are you sure you will be more reliable this time?");
+						npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
 						npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 					} else {
-						npc.say("You still have to deliver a pizza to "
-								+ customerName + ", and hurry!");
+						npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 			}

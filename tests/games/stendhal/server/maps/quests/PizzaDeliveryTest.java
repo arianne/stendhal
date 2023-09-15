@@ -434,7 +434,7 @@ public class PizzaDeliveryTest {
 		en.step(player, "pizza");
 		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", getReply(npc1));
 		en.step(player, "task");
-		assertEquals("You still have to deliver a pizza to Cyk, and hurry!", getReply(npc1));
+		assertEquals("You still have to deliver a pizza to #Cyk, and hurry!", getReply(npc1));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc1));
 
@@ -491,7 +491,7 @@ public class PizzaDeliveryTest {
 		en.step(player, "hi");
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", getReply(leander));
 		en.step(player, "task");
-		assertEquals("I see you failed to deliver the pizza to Haizen in time. Are you sure you will be more reliable this time?", getReply(leander));
+		assertEquals("I see you failed to deliver the pizza to #Haizen in time. Are you sure you will be more reliable this time?", getReply(leander));
 		// Leander will take the pizza
 		List<Item> pizzas = player.getAllEquipped("pizza");
 		assertEquals(pizzas.size(), 1);
