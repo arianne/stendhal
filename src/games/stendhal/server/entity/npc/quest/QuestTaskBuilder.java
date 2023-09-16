@@ -25,6 +25,11 @@ import games.stendhal.server.entity.player.Player;
  */
 public abstract class QuestTaskBuilder {
 
+	// hide constructor
+	QuestTaskBuilder() {
+		super();
+	}
+
 	abstract void simulate(QuestSimulator simulator);
 
 	ChatCondition buildQuestPreCondition(@SuppressWarnings("unused") String questSlot) {

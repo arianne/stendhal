@@ -23,6 +23,10 @@ public class DeliverItemQuestHistoryBuilder extends QuestHistoryBuilder {
 	private String whenInTime;
 	private String whenOutOfTime;
 
+	// hide constructor
+	DeliverItemQuestHistoryBuilder() {
+		super();
+	}
 
 	@Override
 	public DeliverItemQuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {

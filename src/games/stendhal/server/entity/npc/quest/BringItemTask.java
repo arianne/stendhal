@@ -30,6 +30,11 @@ public class BringItemTask extends QuestTaskBuilder {
 	private Pair<String, Integer> requestItem;
 	private List<Pair<String, Integer>> alternativeItems = new LinkedList<>();
 
+	// hide constructor
+	BringItemTask() {
+		super();
+	}
+
 	/**
 	 * request an item from the player
 	 *

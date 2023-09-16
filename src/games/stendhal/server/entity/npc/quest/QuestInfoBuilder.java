@@ -25,6 +25,11 @@ public class QuestInfoBuilder {
 	private String region = "somewhere";
 	private String questGiverNpc = null;
 
+	// hide constructor
+	QuestInfoBuilder() {
+		super();
+	}
+
 	public QuestInfoBuilder name(String name) {
 		this.name = name;
 		return this;

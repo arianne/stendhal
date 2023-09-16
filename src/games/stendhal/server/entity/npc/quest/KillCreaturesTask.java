@@ -28,6 +28,11 @@ import marauroa.common.Pair;
 public class KillCreaturesTask extends QuestTaskBuilder {
 	private HashMap<String, Pair<Integer, Integer>> requestKill = new HashMap<>();
 
+	// hide constructor
+	KillCreaturesTask() {
+		super();
+	}
+
 	/**
 	 * request killing creatures
 	 *

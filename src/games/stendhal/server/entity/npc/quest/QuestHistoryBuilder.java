@@ -25,6 +25,11 @@ public class QuestHistoryBuilder {
 	private String whenQuestCanBeRepeated;
 	private String whenCompletionsShown;
 
+	// hide constructor
+	QuestHistoryBuilder() {
+		super();
+	}
+
 	public QuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {
 		this.whenNpcWasMet = whenNpcWasMet;
 		return this;

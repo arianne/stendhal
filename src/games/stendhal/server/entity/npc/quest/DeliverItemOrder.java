@@ -103,6 +103,11 @@ public class DeliverItemOrder {
 		return respondToSlowDelivery;
 	}
 
+	// hide constructor
+	DeliverItemOrder() {
+		super();
+	}
+
 	public DeliverItemOrder customerNpc(String npc) {
 		deliverItemTask.getOrders().remove(this.npc);
 		this.npc = npc;

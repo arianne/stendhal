@@ -36,12 +36,31 @@ import games.stendhal.server.util.StringUtils;
 
 
 public class DeliverItemTask extends QuestTaskBuilder {
+
 	private final static Outfit UNIFORM = new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null);
 
 	private static final String QUEST_SLOT = "pizza_delivery";
 
+	private Outfit outfit;
+	private String itemDescription;
+	private String itemName;
+	/*
+	private final static Outfit UNIFORM = new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null);
+				pizza.setDescription(StringUtils.substitute("You see a [flavor].", params));
+					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
+					npc.say("Come back when you have space to carry the pizza!");
+				putOffUniform(player);
+						npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
+						npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
+	}
+	*/
+
 	private Map<String, DeliverItemOrder> orders = new HashMap<>();
 
+	// hide constructor
+	DeliverItemTask() {
+		super();
+	}
 
 	/**
 	 * Get a list of customers appropriate for a player

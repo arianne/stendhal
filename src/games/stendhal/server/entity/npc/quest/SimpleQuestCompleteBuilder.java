@@ -38,6 +38,11 @@ public class SimpleQuestCompleteBuilder extends QuestCompleteBuilder {
 	private String respondToAccept = null;
 	private List<ChatAction> rewardWith = new LinkedList<>();
 
+	// hide constructor
+	SimpleQuestCompleteBuilder() {
+		super();
+	}
+
 	public SimpleQuestCompleteBuilder greet(String greet) {
 		this.greet = greet;
 		return this;

@@ -49,6 +49,11 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 	private List<String> lastRespondTo = null;
 	private Map<List<String>, String> additionalReplies = new HashMap<>();
 
+	// hide constructor
+	QuestOfferBuilder() {
+		super();
+	}
+
 	@SuppressWarnings("unchecked")
 	public T respondToFailedPreCondition(String respondToFailedPreCondition) {
 		this.respondToFailedPreCondition = respondToFailedPreCondition;

@@ -22,6 +22,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  */
 public abstract class QuestCompleteBuilder {
 
+	// hide constructor
+	QuestCompleteBuilder() {
+		super();
+	}
+
 	abstract void simulate(String npc, QuestSimulator simulator);
 
 	abstract void build(SpeakerNPC npc, String questSlot, ChatCondition questCompletedCondition, ChatAction questCompleteAction);
