@@ -74,7 +74,7 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 						// Check whether the player was supposed to deliver the
 						// pizza.
 						if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-							if (deliverItemTask.isDeliveryTooLate(player)) {
+							if (deliverItemTask.isDeliveryTooLate(player, questSlot)) {
 								npc.say(StringUtils.substitute(data.getRespondToSlowDelivery(), params));
 								player.addXP(data.getXp() / 2);
 							} else {

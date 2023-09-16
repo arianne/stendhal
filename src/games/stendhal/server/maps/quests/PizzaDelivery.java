@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.quest.DeliverItemQuestBuilder;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
@@ -84,6 +85,10 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToReject("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.")
 			.remind(null);
 
+		quest.task()
+			.itemName("pizza")
+			.itemDescription("You see a [flavor].")
+			.outfitUniform(new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null));
 
 		// Don't add Sally here, as it would conflict with Leander telling
 		// about his daughter.

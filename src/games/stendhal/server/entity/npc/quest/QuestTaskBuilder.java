@@ -50,9 +50,10 @@ public abstract class QuestTaskBuilder {
 		return buildQuestCompletedCondition(questSlot).fire(player, null, null);
 	}
 
-	public List<String> calculateHistoryProgress(
+	List<String> calculateHistoryProgress(
 			@SuppressWarnings("unused") QuestHistoryBuilder history,
-			@SuppressWarnings("unused") Player player) {
+			@SuppressWarnings("unused") Player player,
+			@SuppressWarnings("unused") String questSlot) {
 		return null;
 	}
 

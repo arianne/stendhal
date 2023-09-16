@@ -37,21 +37,15 @@ import games.stendhal.server.util.StringUtils;
 
 public class DeliverItemTask extends QuestTaskBuilder {
 
-	private final static Outfit UNIFORM = new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null);
-
-	private static final String QUEST_SLOT = "pizza_delivery";
-
 	private Outfit outfit;
 	private String itemDescription;
 	private String itemName;
 	/*
-	private final static Outfit UNIFORM = new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null);
-				pizza.setDescription(StringUtils.substitute("You see a [flavor].", params));
 					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
 					npc.say("Come back when you have space to carry the pizza!");
-				putOffUniform(player);
-						npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
-						npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
+
+					npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
+					npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
 	}
 	*/
 
@@ -60,6 +54,31 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	// hide constructor
 	DeliverItemTask() {
 		super();
+	}
+
+	public DeliverItemTask itemName(String itemName) {
+		this.itemName = itemName;
+		return this;
+	}
+
+	/**
+	 * The description of an item: You see a [flavor] for [customerName].
+	 *
+	 * @param itemDescription description of item
+	 * @return DeliverItemTask
+	 */
+	public DeliverItemTask itemDescription(String itemDescription) {
+		this.itemDescription = itemDescription;
+		return this;
+	}
+
+	public DeliverItemTask outfitUniform(Outfit outfit) {
+		this.outfit = outfit;
+		return this;
+	}
+
+	public DeliverItemOrder order() {
+		return new DeliverItemOrder(this);
 	}
 
 	/**
@@ -85,12 +104,14 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	 *
 	 * @param player
 	 *            The player.
+	 * @param questSlot
+	 *            Name of the quest slot
 	 * @return true if the player is too late. false if the player still has
 	 *         time, or if he doesn't have a delivery to do currently.
 	 */
-	boolean isDeliveryTooLate(final Player player) {
-		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] questData = player.getQuest(QUEST_SLOT).split(";");
+	boolean isDeliveryTooLate(final Player player, String questSlot) {
+		if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+			final String[] questData = player.getQuest(questSlot).split(";");
 			final String customerName = questData[0];
 			final DeliverItemOrder customerData = orders.get(customerName);
 			final long bakeTime = Long.parseLong(questData[1]);
@@ -107,7 +128,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	/** Takes away the player's uniform, if the he is wearing it.
 	 * @param player to remove uniform from*/
 	void putOffUniform(final Player player) {
-		if (UNIFORM.isPartOf(player.getOutfit())) {
+		if ((outfit != null) && outfit.isPartOf(player.getOutfit())) {
 			player.returnToOriginalOutfit();
 		}
 	}
@@ -142,13 +163,15 @@ public class DeliverItemTask extends QuestTaskBuilder {
 
 				final Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
 				pizza.setInfoString(data.getFlavor());
-				pizza.setDescription(StringUtils.substitute("You see a [flavor].", params));
+				pizza.setDescription(StringUtils.substitute(itemDescription, params));
 				pizza.setBoundTo(player.getName());
 
 				if (player.equipToInventoryOnly(pizza)) {
 					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
-					player.setOutfit(UNIFORM, true);
-					player.setQuest(QUEST_SLOT, 0, name);
+					if (outfit != null) {
+						player.setOutfit(outfit, true);
+					}
+					player.setQuest(questSlot, 0, name);
 					new SetQuestToTimeStampAction(questSlot, 1).fire(player, null, npc);
 				} else {
 					npc.say("Come back when you have space to carry the pizza!");
@@ -178,7 +201,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 		return new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final String customerName = player.getQuest(QUEST_SLOT, 0);
+					final String customerName = player.getQuest(questSlot, 0);
 					if (customerName.equals("rejected")) {
 						buildStartQuestAction(questSlot).fire(player, sentence, npc);
 						return;
@@ -186,7 +209,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 					Map<String, String> params = new HashMap<>();
 					params.put("customerName", Grammar.quoteHash("#" + customerName));
 
-					if (isDeliveryTooLate(player)) {
+					if (isDeliveryTooLate(player, questSlot)) {
 						// If the player still carries any pizza due for an NPC,
 						// take it away because the baker is angry,
 						// and because the player probably won't
@@ -216,23 +239,19 @@ public class DeliverItemTask extends QuestTaskBuilder {
 		return null;
 	}
 
-	public DeliverItemOrder order() {
-		return new DeliverItemOrder(this);
-	}
-
 	Map<String, DeliverItemOrder> getOrders() {
 		return this.orders;
 	}
 
 	String getItemName() {
-		return "pizza";
+		return itemName;
 	}
 
 	@Override
-	public List<String> calculateHistoryProgress(QuestHistoryBuilder historyBuilder, Player player) {
+	List<String> calculateHistoryProgress(QuestHistoryBuilder historyBuilder, Player player, String questSlot) {
 		DeliverItemQuestHistoryBuilder history = (DeliverItemQuestHistoryBuilder) historyBuilder;
 		List<String> res = new LinkedList<>();
-		final String questState = player.getQuest(QUEST_SLOT, 0);
+		final String questState = player.getQuest(questSlot, 0);
 		if (!"done".equals(questState)) {
 			final String[] questData = questState.split(";");
 			final String customerName = questData[0];
@@ -243,7 +262,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 			params.put("customerDescription", customerData.getNpcDescription());
 			res.add(StringUtils.substitute(history.getWhenItemWasGiven(), params));
 			res.add(StringUtils.substitute(history.getWhenToldAboutCustomer(), params));
-			if (!isDeliveryTooLate(player)) {
+			if (!isDeliveryTooLate(player, questSlot)) {
 				res.add(StringUtils.substitute(history.getWhenInTime(), params));
 			} else {
 				res.add(StringUtils.substitute(history.getWhenOutOfTime(), params));

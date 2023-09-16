@@ -57,7 +57,7 @@ public class BuiltQuest extends AbstractQuest {
 			return res;
 		}
 		res.add(history.getWhenQuestWasAccepted());
-		List<String> progress = questBuilder.task().calculateHistoryProgress(history, player);
+		List<String> progress = questBuilder.task().calculateHistoryProgress(history, player, questSlot);
 		if (progress != null) {
 			res.addAll(progress);
 		}
