@@ -270,7 +270,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 				LOGGER.error("Failed to construct use behavior.", e);
 			}
 		} else if (qName.equals("unattainable")) {
-			unattainable = Boolean.parseBoolean(text.trim());
+			unattainable = true;
 		}
 	}
 

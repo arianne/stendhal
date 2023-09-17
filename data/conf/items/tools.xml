@@ -7,7 +7,7 @@
     <type class="tool" subclass="foodmill" tileid="-1"/>
     <description>You see a food mill. It is the traditional tool to mill food.</description>
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
-    <unattainable>true</unattainable>
+    <unattainable/>
     <attributes>
       <menu value="Use|Use"/>
     </attributes>
@@ -191,7 +191,7 @@
     <type class="tool" subclass="shovel" tileid="-1"/>
     <description>You see a shovel, a tool for digging.</description>
     <implementation class-name="games.stendhal.server.entity.item.Shovel"/>
-    <unattainable>true</unattainable>
+    <unattainable/>
     <attributes>
       <menu value="Dig|Use"/>
       <use_sound value="shovel_dig"/>

@@ -358,7 +358,7 @@
     <type class="armor" subclass="mithril_armor" tileid="-1"/>
     <description>You see a suit of mithril armor. Its tightly woven links are truly amazing.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <unattainable>true</unattainable>
+    <unattainable/>
     <attributes>
       <def value="29"/>
       <min_level value="330"/>
