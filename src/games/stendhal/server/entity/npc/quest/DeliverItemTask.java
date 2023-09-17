@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AlwaysFalseCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.OutfitCompatibleWithClothesCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
@@ -177,7 +178,11 @@ public class DeliverItemTask extends QuestTaskBuilder {
 
 	@Override
 	ChatCondition buildQuestPreCondition(String questSlot) {
-		return new OutfitCompatibleWithClothesCondition();
+		if (outfit != null) {
+			return new OutfitCompatibleWithClothesCondition();
+		} else {
+			return new AlwaysTrueCondition();
+		}
 	}
 
 
