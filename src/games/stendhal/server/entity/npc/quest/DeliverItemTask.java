@@ -40,14 +40,6 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	private Outfit outfit;
 	private String itemDescription;
 	private String itemName;
-	/*
-					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
-					npc.say("Come back when you have space to carry the pizza!");
-
-					npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
-					npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
-	}
-	*/
 
 	private Map<String, DeliverItemOrder> orders = new HashMap<>();
 
@@ -133,7 +125,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 		}
 	}
 
-	private void prepareBaker() {
+	void prepareBaker() {
 		SpeakerNPC npc = NPCList.get().get("Leander");
 		for (final String name : orders.keySet()) {
 			final DeliverItemOrder data = orders.get(name);
@@ -149,7 +141,10 @@ public class DeliverItemTask extends QuestTaskBuilder {
 
 	@Override
 	ChatAction buildStartQuestAction(String questSlot) {
-		prepareBaker(); // TODO
+		throw new RuntimeException("not implemented");
+	}
+
+	ChatAction buildStartQuestAction(String questSlot, String respondToAccept, String respondIfInventoryIsFull) {
 		return new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -161,20 +156,20 @@ public class DeliverItemTask extends QuestTaskBuilder {
 				params.put("customerName", Grammar.quoteHash("#" + name));
 				params.put("time", Grammar.quantityplnoun(data.getExpectedMinutes(), "minute", "one"));
 
-				final Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
-				pizza.setInfoString(data.getFlavor());
-				pizza.setDescription(StringUtils.substitute(itemDescription, params));
-				pizza.setBoundTo(player.getName());
+				final Item item = SingletonRepository.getEntityManager().getItem(itemName);
+				item.setInfoString(data.getFlavor());
+				item.setDescription(StringUtils.substitute(itemDescription, params));
+				item.setBoundTo(player.getName());
 
-				if (player.equipToInventoryOnly(pizza)) {
-					npc.say(StringUtils.substitute("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.", params));
+				if (player.equipToInventoryOnly(item)) {
+					npc.say(StringUtils.substitute(respondToAccept, params));
 					if (outfit != null) {
 						player.setOutfit(outfit, true);
 					}
 					player.setQuest(questSlot, 0, name);
 					new SetQuestToTimeStampAction(questSlot, 1).fire(player, null, npc);
 				} else {
-					npc.say("Come back when you have space to carry the pizza!");
+					npc.say(respondIfInventoryIsFull);
 				}
 			}
 		};
@@ -196,8 +191,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 		};
 	}
 
-	@Override
-	ChatAction buildRemindQuestAction(String questSlot) {
+	ChatAction buildRemindQuestAction(String questSlot, String remind, String respondIfLastQuestFailed) {
 		return new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -219,10 +213,10 @@ public class DeliverItemTask extends QuestTaskBuilder {
 								player.drop(pizza);
 							}
 						}
-						npc.say(StringUtils.substitute("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?", params));
+						npc.say(StringUtils.substitute(respondIfLastQuestFailed, params));
 						npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 					} else {
-						npc.say(StringUtils.substitute("You still have to deliver a pizza to [customerName], and hurry!", params));
+						npc.say(StringUtils.substitute(remind, params));
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 			}

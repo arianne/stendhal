@@ -11,10 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.quest.DeliverItemQuestBuilder;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
+import games.stendhal.server.maps.semos.bakery.ChefNPC;
+import games.stendhal.server.util.QuestUtils;
+import games.stendhal.server.util.ResetSpeakerNPC;
 
 /**
  * QUEST: Pizza Delivery
@@ -65,6 +74,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.region(Region.SEMOS_CITY)
 			.questGiverNpc("Leander");
 
+
 		quest.history()
 			.whenNpcWasMet("I met Leander, the baker of Semos.")
 			.whenQuestWasRejected("He asked me to deliver pizza but I rejected his request.")
@@ -75,15 +85,18 @@ public class PizzaDelivery implements QuestManuscript {
 			.whenOutOfTime("The pizza has already gone cold.")
 			.whenQuestWasCompleted("I delivered the last pizza Leander gave to me.")
 			.whenQuestCanBeRepeated("But I'd bet, Leander has more orders.");
-;
+
 
 		quest.offer()
 			.respondToRequest("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?")
-			.respondToFailedPreCondition("Sorry, you can't wear our pizza delivery uniform looking like that. If you get changed, you can ask about the #task again.")
+			.respondIfUnableToWearUniform("Sorry, you can't wear our pizza delivery uniform looking like that. If you get changed, you can ask about the #task again.")
 			.respondToUnrepeatableRequest("Thank you very much for your help. I don't have any other orders at this time.")
-			.respondToAccept(null)
+			.respondToAccept("You must bring this [flavor] to [customerName] within [time]. Say \"pizza\" so that [customerName] knows that I sent you. Oh, and please wear this uniform on your way.")
 			.respondToReject("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.")
-			.remind(null);
+			.remind("You still have to deliver a pizza to [customerName], and hurry!")
+			.respondIfLastQuestFailed("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?")
+			.respondIfInventoryIsFull("Come back when you have space to carry the pizza!");
+
 
 		quest.task()
 			.itemName("pizza")
@@ -279,10 +292,9 @@ public class PizzaDelivery implements QuestManuscript {
 		return quest;
 	}
 
-	/*
-	@Override
+
 	public boolean removeFromWorld() {
-		boolean res = ResetSpeakerNPC.reload(new ChefNPC(), getNPCName())
+		boolean res = ResetSpeakerNPC.reload(new ChefNPC(), "Leander")
 			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(), "Balduin")
 			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.coast.FerryConveyerNPC(), "Eliza")
 			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.city.MakeupArtistNPC(), "Fidorea")
@@ -338,6 +350,5 @@ public class PizzaDelivery implements QuestManuscript {
 		}
 		return res;
 	}
-	*/
 
 }

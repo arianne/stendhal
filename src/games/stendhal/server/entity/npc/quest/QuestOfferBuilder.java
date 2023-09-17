@@ -38,26 +38,19 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
  * @author hendrik
  */
 public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
-	private String respondToFailedPreCondition = "I am sorry, I don't have a task for your right now.";
-	private String respondToRequest = null;
-	private String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
-	private String respondToRepeatedRequest = null;
-	private String respondToAccept = "Thank you";
-	private String respondToReject = "Ohh. Too bad";
-	private String remind = "Please keep your promise";
-	private double rejectionKarmaPenalty = 2.0;
-	private List<String> lastRespondTo = null;
-	private Map<List<String>, String> additionalReplies = new HashMap<>();
+	protected String respondToRequest = null;
+	protected String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
+	protected String respondToRepeatedRequest = null;
+	protected String respondToAccept = "Thank you";
+	protected String respondToReject = "Ohh. Too bad";
+	protected String remind = "Please keep your promise";
+	protected double rejectionKarmaPenalty = 2.0;
+	protected List<String> lastRespondTo = null;
+	protected Map<List<String>, String> additionalReplies = new HashMap<>();
 
 	// hide constructor
 	QuestOfferBuilder() {
 		super();
-	}
-
-	@SuppressWarnings("unchecked")
-	public T respondToFailedPreCondition(String respondToFailedPreCondition) {
-		this.respondToFailedPreCondition = respondToFailedPreCondition;
-		return (T) this;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -157,29 +150,18 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 	}
 
 
-	void build(SpeakerNPC npc, String questSlot,
-			ChatCondition questPreCondition,
-			ChatAction startQuestAction, ChatAction rejectQuestAction, ChatAction remindQuestAction,
-			ChatCondition questCompletedCondition,
-			int repeatableAfterMinutes) {
+	public void build(SpeakerNPC npc, String questSlot, QuestTaskBuilder task, ChatCondition questCompletedCondition, int repeatableAfterMinutes) {
+
+		ChatAction startQuestAction = task.buildStartQuestAction(questSlot);
+		ChatAction rejectQuestAction = task.buildRejectQuestAction(questSlot);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(
-						new QuestNotStartedCondition(questSlot),
-						questPreCondition),
+				new QuestNotStartedCondition(questSlot),
 				ConversationStates.QUEST_OFFERED,
 				respondToRequest,
 				null);
 
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(
-						new QuestNotStartedCondition(questSlot),
-						new NotCondition(questPreCondition)),
-				ConversationStates.QUEST_OFFERED,
-				respondToFailedPreCondition,
-				null);
 
 		LinkedList<String> triggers = new LinkedList<String>();
 		triggers.addAll(ConversationPhrases.FINISH_MESSAGES);
@@ -191,7 +173,7 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 					new NotCondition(questCompletedCondition)),
 				ConversationStates.ATTENDING,
 				remind,
-				remindQuestAction);
+				null);
 
 		if (repeatableAfterMinutes > -1) {
 
@@ -199,21 +181,11 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 					ConversationPhrases.QUEST_MESSAGES,
 					new AndCondition(
 						new QuestCompletedCondition(questSlot),
-						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes),
-						questPreCondition),
+						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes)),
 					ConversationStates.QUEST_OFFERED,
 					respondToRepeatedRequest,
 					null);
 			
-			npc.add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					new AndCondition(
-						new QuestCompletedCondition(questSlot),
-						new TimePassedCondition(questSlot, 1, repeatableAfterMinutes),
-						new NotCondition(questPreCondition)),
-					ConversationStates.QUEST_OFFERED,
-					respondToFailedPreCondition,
-					null);
 
 			npc.add(ConversationStates.ATTENDING,
 					ConversationPhrases.QUEST_MESSAGES,

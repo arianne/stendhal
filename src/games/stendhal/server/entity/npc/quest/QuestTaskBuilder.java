@@ -57,8 +57,4 @@ public abstract class QuestTaskBuilder {
 		return null;
 	}
 
-	ChatAction buildRemindQuestAction(@SuppressWarnings("unused") String questSlot) {
-		return null;
-	}
-
 }
