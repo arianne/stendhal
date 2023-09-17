@@ -67,12 +67,11 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 				Map<String, Object> params = new HashMap<>();
 				params.put("flavor", data.getFlavor());
 				params.put("tip", data.getTip());
-				for (final Item pizza : player.getAllEquipped(deliverItemTask.getItemName())) {
-					final String flavor = pizza.getInfoString();
+				for (final Item item : player.getAllEquipped(deliverItemTask.getItemName())) {
+					final String flavor = item.getInfoString();
 					if (data.getFlavor().equals(flavor)) {
-						player.drop(pizza);
-						// Check whether the player was supposed to deliver the
-						// pizza.
+						player.drop(item);
+						// Check whether the player was supposed to deliver this item.
 						if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
 							if (deliverItemTask.isDeliveryTooLate(player, questSlot)) {
 								npc.say(StringUtils.substitute(data.getRespondToSlowDelivery(), params));
@@ -93,16 +92,13 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 							new IncrementQuestAction(questSlot, 2, 1).fire(player, null, npc);
 							deliverItemTask.putOffUniform(player);
 						} else {
-							// This should not happen: a player cannot pick up a pizza from the ground
-							// that did have a flavor, those are bound. If a pizza has flavor the player
-							// should only have got it from the quest.
-							// But could be from a previous attempt to deliver.
+							// Item could be from a previous failed attempt to do this quest.
 							npc.say(respondToItemWithoutQuest);
 						}
 						return;
 					}
 				}
-				// The player has brought the pizza to the wrong NPC, or it's a plain pizza.
+				// The player has brought the item to the wrong NPC, or it's a plain item.
 				npc.say(StringUtils.substitute(respondToItemForOtherNPC, params));
 
 			} else {
@@ -144,7 +140,7 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 		for (final String name : deliverItemTask.getOrders().keySet()) {
 			final SpeakerNPC npc = NPCList.get().get(name);
 			if (npc == null) {
-				logger.error("NPC " + name + " is used in the Pizza Delivery quest but does not exist in game.", new Throwable());
+				logger.error("NPC " + name + " is used in the DeliveryItemQuest " + questSlot + " but they do not exist in game.", new Throwable());
 				continue;
 			}
 

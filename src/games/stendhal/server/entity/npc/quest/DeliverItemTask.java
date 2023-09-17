@@ -204,13 +204,13 @@ public class DeliverItemTask extends QuestTaskBuilder {
 					params.put("customerName", Grammar.quoteHash("#" + customerName));
 
 					if (isDeliveryTooLate(player, questSlot)) {
-						// If the player still carries any pizza due for an NPC,
-						// take it away because the baker is angry,
+						// If the player still carries any item due for a customer NPC,
+						// take it away because the quest giver NPC is angry,
 						// and because the player probably won't
 						// deliver it anymore anyway.
-						for (final Item pizza : player.getAllEquipped("pizza")) {
-							if (pizza.getInfoString()!=null) {
-								player.drop(pizza);
+						for (final Item item : player.getAllEquipped(itemName)) {
+							if (item.getInfoString() != null) {
+								player.drop(item);
 							}
 						}
 						npc.say(StringUtils.substitute(respondIfLastQuestFailed, params));
