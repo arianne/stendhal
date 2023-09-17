@@ -57,15 +57,15 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		Map<String, Integer> chunkSize = new HashMap<>();
 		Map<String, String> hints = new HashMap<>();
 
-		required.put("old scythe", 1);
+		required.put("old scythe", 2);
 		chunkSize.put("old scythe", 1);
 		hints.put("old scythe", "I am sure, that Xoderos in Semos will sell you an old scythe.");
 
-		required.put("axe", 1);
+		required.put("axe", 2);
 		chunkSize.put("axe", 1);
 		hints.put("axe", "I am sure, that Xoderos in Semos will sell you an axe.");
 
-		required.put("hammer", 1);
+		required.put("hammer", 2);
 		chunkSize.put("hammer", 1);
 		hints.put("hammer", "I am sure, that Xoderos in Semos will sell you a hammer.");
 
@@ -73,7 +73,7 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("knife", 1);
 		hints.put("knife", "I am sure, that Xin Blanca in Semos will sell you a knife.");
 
-		required.put("lamp", 5);
+		required.put("lamp", 10);
 		chunkSize.put("lamp", 1);
 		hints.put("lamp", "You can probably buy a lamp from Jimbo in Deniran.");
 
@@ -85,9 +85,17 @@ public class BuilderNPC implements LoadableContent, TurnListener {
 		chunkSize.put("beer", 5);
 		hints.put("beer", "You can probably find beer in any tavern.");
 
+		required.put("milk", 10);
+		chunkSize.put("milk", 5);
+		hints.put("milk", "I'd try to buy milk at a farm.");
+
 		required.put("rope", 5);
 		chunkSize.put("rope", 1);
 		hints.put("rope", "I am sure, Giles in Kirdneh can braid rope for you.");
+
+		required.put("empty sack", 6);
+		chunkSize.put("empty sack", 2);
+		hints.put("empty sack", "If I remember correctly, Karl in Ados Forest will sell you an empty sack.");
 
 		behaviour = new CollectingGroupQuestBehaviour(QUEST_SLOT, required, chunkSize, hints, progress);
 		behaviour.setProjectName("#Mine #Town #Revival #Weeks");
