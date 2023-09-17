@@ -136,8 +136,8 @@ public class DeliverItemTask extends QuestTaskBuilder {
 
 	@Override
 	void simulate(QuestSimulator simulator) {
-		// TODO Auto-generated method stub
-		
+		simulator.info("Player delivered [flavor] to [customerName] in time.");
+		simulator.info("");
 	}
 
 	@Override

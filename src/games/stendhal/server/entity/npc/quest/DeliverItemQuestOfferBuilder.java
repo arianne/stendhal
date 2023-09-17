@@ -158,7 +158,32 @@ public class DeliverItemQuestOfferBuilder extends QuestOfferBuilder<DeliverItemQ
 		}
 		
 		((DeliverItemTask) task).prepareBaker();
+	}
 
+	@Override
+	void simulateFirst(String npc, QuestSimulator simulator) {
+		simulator.info("Player is in a non-human form.");
+		simulator.info("");
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondIfUnableToWearUniform);
+		simulator.playerSays("bye");
+		simulator.info("");
+		simulator.info("Player becomes a human.");
+		simulator.info("");
+
+		super.simulateFirst(npc, simulator);
+
+		simulator.info("Time passes.");
+		simulator.info("");
+
+		simulator.playerSays("hi");
+		simulator.playerSays("quest");
+		simulator.npcSays(npc, respondIfLastQuestFailed);
+		simulator.playerSays("yes");
+		simulator.npcSays(npc, respondToAccept);
+		simulator.playerSays("bye");
+		simulator.info("");
 	}
 
 }
