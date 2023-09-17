@@ -24,8 +24,6 @@
       <element name="weight" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
       <element name="value" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
       <element name="preview" type="string" minOccurs="0" maxOccurs="1"/>
-      <!-- 1.43 deprecated: use item->attributes->damagetype -->
-      <element name="damage" type="Q1:damage" minOccurs="0"></element>
       <element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
       <element name="equipable" type="Q1:equipable"></element>
     </sequence>
@@ -76,12 +74,8 @@
       <element name="slot_size" type="Q1:attribute" minOccurs="0"/>
       <element name="menu" type="Q1:attribute" minOccurs="0"/>
       <element name="durability" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
-      <!-- 1.43 deprecated: use item->attributes->statusresist -->
-      <element name="status_resist" type="Q1:statusresist" minOccurs="0" maxOccurs="unbounded"/>
       <element name="itemset" type="Q1:attribute" minOccurs="0"/>
       <element name="use_sound" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
-      <!-- 1.43 deprecated: use item->unattainable -->
-      <element name="unattainable" type="boolean" minOccurs="0" maxOccurs="1"/>
     </sequence>
   </complexType>
 

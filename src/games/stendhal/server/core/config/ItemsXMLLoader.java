@@ -128,12 +128,6 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	public void startElement(final String namespaceURI, final String lName, final String qName,
 			final Attributes attrs) {
 
-		if (attributesTag && qName.equals("unattainable")) {
-			LOGGER.warn("\"item->attributes->unattainable\" is deprecated, use \"item->unattainable\"");
-			// "unattainable" is for website use to prevent listing item
-			return;
-		}
-
 		// allow items or item attributes to be disabled with system properties
 		boolean conditionMet = true;
 		String condition = attrs.getValue("condition");
@@ -183,10 +177,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 		} else if (attributesTag) {
 			if (qName.equals("damagetype")) {
 				damageType = attrs.getValue("value");
-			} else if (qName.equals("statusresist") || qName.equals("status_resist")) {
-				if (qName.equals("status_resist")) {
-					LOGGER.warn("\"item->attributes->status_resist\" is deprecated, use \"item->attributes->statusresist\"");
-				}
+			} else if (qName.equals("statusresist")) {
 				this.resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 				this.activeSlots = attrs.getValue("slots");
 			} else if (qName.equals("statusattack")) {
@@ -197,9 +188,6 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			} else {
 				attributes.put(qName, attrs.getValue("value"));
 			}
-		} else if (qName.equals("damage")) {
-			LOGGER.warn("\"item->damage\" is deprecated, use \"item->attributes->damagetype\"");
-			damageType = attrs.getValue("type");
 		} else if (qName.equals("susceptibility")) {
 			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 		} else if (qName.equals("behavior")) {
