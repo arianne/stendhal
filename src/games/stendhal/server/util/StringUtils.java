@@ -95,7 +95,7 @@ public class StringUtils {
      * @return string with substituted parameters
      */
     public static String substitute(String string, Map<String, ?> params)  {
-    	if (params == null) {
+    	if (params == null || string == null) {
     		return string;
     	}
         StringBuilder res = new StringBuilder();
