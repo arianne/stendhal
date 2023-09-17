@@ -85,6 +85,7 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 	 */
 	public void simulate() {
 		QuestSimulator simulator = new QuestSimulator();
+		setupSimulator(simulator);
 		info.simulate(simulator);
 		String npc = info.getQuestGiverNpc();
 		offer.simulateFirst(npc, simulator);
@@ -96,6 +97,10 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 			simulator.info("");
 			offer.simulateRepeat(npc, simulator);
 		}
+	}
+
+	protected void setupSimulator(@SuppressWarnings("unused") QuestSimulator simulator) {
+		// do nothing
 	}
 
 }

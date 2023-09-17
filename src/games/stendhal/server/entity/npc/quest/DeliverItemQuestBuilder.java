@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
+import java.util.Map;
+
+import games.stendhal.common.grammar.Grammar;
+
 public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask, DeliverItemQuestOfferBuilder, DeliverItemQuestCompleteBuilder, DeliverItemQuestHistoryBuilder> {
 
 	public DeliverItemQuestBuilder() {
@@ -18,6 +22,18 @@ public class DeliverItemQuestBuilder extends QuestBuilder<DeliverItemTask, Deliv
 		offer = new DeliverItemQuestOfferBuilder();
 		complete = new DeliverItemQuestCompleteBuilder(task());
 		history = new DeliverItemQuestHistoryBuilder();
+	}
+
+	@Override
+	protected void setupSimulator(QuestSimulator simulator) {
+		super.setupSimulator(simulator);
+		Map<String, DeliverItemOrder> orders = task().getOrders();
+		String name = orders.keySet().iterator().next();
+		DeliverItemOrder order = orders.get(name);
+
+		simulator.setParam("flavor", order.getFlavor());
+		simulator.setParam("customerName", Grammar.quoteHash("#" + name));
+		simulator.setParam("time", Grammar.quantityplnoun(order.getExpectedMinutes(), "minute", "one"));
 	}
 
 }

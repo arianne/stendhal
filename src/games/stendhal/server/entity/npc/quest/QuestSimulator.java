@@ -11,23 +11,33 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import games.stendhal.server.util.StringUtils;
+
 /**
  * simulates the quest
  *
  * @author hendrik
  */
 class QuestSimulator {
+	private Map<String, Object> params = new HashMap<>();
+
+	public void setParam(String key, String value) {
+		params.put(key, value);
+	}
 
 	public void playerSays(String text) {
-		System.out.println("Player: " + text);
+		System.out.println("Player: " + StringUtils.substitute(text, params));
 	}
 
 	public void npcSays(String name, String text) {
-		System.out.println(name + ": " + text);
+		System.out.println(name + ": " + StringUtils.substitute(text, params));
 	}
 
 	public void history(String text) {
-		System.out.println("History: " + text);
+		System.out.println("History: " + StringUtils.substitute(text, params));
 	}
 
 	public void info(String text) {
