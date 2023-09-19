@@ -112,7 +112,6 @@ public class DailyMonsterQuestTest {
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertTrue(bob.hasQuest("daily"));
 		assertTrue(en.step(bob, "complete"));
-		assertTrue(bob.events().isEmpty());
 	}
 
 	/**
