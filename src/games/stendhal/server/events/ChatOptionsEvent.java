@@ -58,26 +58,35 @@ public class ChatOptionsEvent extends RPEvent {
 			if (transition.getState() != currentState) {
 				continue;
 			}
-
-			for(Expression expr : transition.getTriggers()) {
-				if (transition.getCondition() != null) {
-					if (!transition.getCondition().fire(player, sentence, npc)) {
-						continue;
-					}
-				}
-
-				String trigger = expr.getNormalized();
-				String options = "";
-				if (trigger.equals("buy") || trigger.equals("sell") || trigger.equals("")) {
-					options = "params";
-				}
-				res.add(trigger + "|*|" + trigger + "|*|" + options);
-				break;
-			}
+			processTransition(npc, player, res, sentence, transition);
 		}
 
-
+		for (final Transition transition : transitions) {
+			if (transition.getState() != ConversationStates.ANY) {
+				continue;
+			}
+			processTransition(npc, player, res, sentence, transition);
+		}
 		return res;
+	}
+
+	private void processTransition(SpeakerNPC npc, Player player, List<String> res, Sentence sentence,
+			final Transition transition) {
+		for(Expression expr : transition.getTriggers()) {
+			if (transition.getCondition() != null) {
+				if (!transition.getCondition().fire(player, sentence, npc)) {
+					continue;
+				}
+			}
+
+			String trigger = expr.getNormalized();
+			String options = "";
+			if (trigger.equals("buy") || trigger.equals("sell") || trigger.equals("")) {
+				options = "params";
+			}
+			res.add(trigger + "|*|" + trigger + "|*|" + options);
+			break;
+		}
 	}
 
 	/**
