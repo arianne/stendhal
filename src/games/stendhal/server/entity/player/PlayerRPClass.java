@@ -40,6 +40,7 @@ public class PlayerRPClass {
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 //		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
+		player.addRPEvent(Events.CHAT_OPTIONS, Definition.PRIVATE);
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_ON, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_OUT, Definition.PRIVATE);

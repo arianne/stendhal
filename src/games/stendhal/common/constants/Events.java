@@ -62,4 +62,6 @@ public final class Events {
 	public static final String BESTIARY = Actions.BESTIARY;
 
 	public static final String OUTFIT_LIST = "show_outfit_list";
+
+	public static final String CHAT_OPTIONS = "chat_options";
 }

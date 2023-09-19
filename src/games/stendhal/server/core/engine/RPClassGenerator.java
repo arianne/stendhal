@@ -66,6 +66,7 @@ import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.BestiaryEvent;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
+import games.stendhal.server.events.ChatOptionsEvent;
 import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.GlobalVisualEffectEvent;
 import games.stendhal.server.events.GroupChangeEvent;
@@ -283,6 +284,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("healed")) {
 			HealedEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.CHAT_OPTIONS)) {
+			ChatOptionsEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass(Events.IMAGE)) {
 			ImageEffectEvent.generateRPClass();
