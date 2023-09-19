@@ -22,6 +22,7 @@ declare let stendhal: any;
  */
 export class Chat {
 
+	public static debugLogEnabled = false;
 	private static clog: ChatLogComponent;
 
 
@@ -86,5 +87,11 @@ export class Chat {
 	public static logH(type: string, message: string|string[]|HTMLElement,
 			orator?: string, profile?: string) {
 		Chat.log(type, message, orator, profile, true);
+	}
+
+	public static debug(message: string) {
+		if (Chat.debugLogEnabled) {
+			Chat.log("client", message);
+		}
 	}
 }

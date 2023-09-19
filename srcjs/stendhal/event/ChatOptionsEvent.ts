@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Chat } from "../util/Chat";
 import { RPEvent } from "./RPEvent";
 
 declare var marauroa: any
@@ -33,7 +34,9 @@ export class ChatOptionsEvent extends RPEvent {
 			message.push(option[1]);
 		}
 
-		console.log("Chat options for " + this['npc'] + ": " + message.join(", "));
+		let m = "Chat options for " + this['npc'] + ": " + message.join(", ");
+		console.log(m);
+		Chat.debug(m);
 	}
 
 };

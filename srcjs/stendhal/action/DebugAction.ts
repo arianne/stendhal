@@ -41,6 +41,8 @@ export class DebugAction extends SlashAction {
 			this.uiAction(params);
 		} else if (params[0] === "weather") {
 			this.debugWeather(params[1]);
+		} else if (params[0] === "log") {
+			Chat.debugLogEnabled = true;
 		}
 		return true;
 	}
@@ -48,6 +50,7 @@ export class DebugAction extends SlashAction {
 	showUsage() {
 		const usage = [
 			"Usage:",
+			"  /debug log",
 			"  /debug ui [pop]",
 			"  /debug weather [<name>]"
 		];
