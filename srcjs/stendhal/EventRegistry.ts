@@ -15,6 +15,7 @@ declare var stendhal: any;
 import { RPEntity } from "./entity/RPEntity";
 import { RPObject } from "./entity/RPObject";
 
+import { ChatOptionsEvent } from "./event/ChatOptionsEvent";
 import { ExamineEvent } from "./event/ExamineEvent";
 import { GroupChangeEvent } from "./event/GroupChangeEvent";
 import { GroupInviteEvent } from "./event/GroupInviteEvent";
@@ -65,6 +66,7 @@ export class EventRegistry {
 		}
 		this.initialized = true;
 
+		this.register("chat_options", new ChatOptionsEvent());
 		this.register("examine", new ExamineEvent());
 		this.register("group_change_event", new GroupChangeEvent());
 		this.register("group_invite_event", new GroupInviteEvent());
