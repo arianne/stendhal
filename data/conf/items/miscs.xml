@@ -368,7 +368,7 @@
 
   <item name="unicorn horn">
     <type class="misc" subclass="unicorn_horn" tileid="-1"/>
-    <description/>
+    <description>You see a spiral unicorn horn. It is highly valued by traders and used in the creation of magical items.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
