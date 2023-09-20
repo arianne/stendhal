@@ -65,7 +65,7 @@
 
   <item name="flour">
     <type class="resource" subclass="flour" tileid="-1"/>
-    <description/>
+    <description>You see a sack of flour. It can be used in recipes for pizzas and sandwiches.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
