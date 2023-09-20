@@ -167,8 +167,7 @@ shovel_dig.*              andersmmg; CC BY 3.0; https://freesound.org/s/516318/
 skeleton-laugh-01.*       Nanakisan; CC BY 3.0; https://freesound.org/people/Nanakisan/sounds/253524/
 sleep-1.ogg               Storyteller; GPL
 snake-[01-05].*           7h3_lark; CC0; https://freesound.org/people/7h3_lark/sounds/268580/
-snake-cobra-1.ogg         (removed)
-snake-cobra-2.ogg         (removed)
+snake-cobra-*.ogg         Florian Reichelt; CC0; https://freesound.org/s/423454/
 snap-branch-1.*           mrjingles; CC0; https://freesound.org/people/mrjingles/sounds/17184/
 sneeze-baby-1.ogg         Stephan; public domain; https://soundbible.com/23-Baby-Sneeze.html
 sneeze-male-01.*          Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/352177/
