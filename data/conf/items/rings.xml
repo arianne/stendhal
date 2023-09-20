@@ -190,7 +190,7 @@
 
   <item name="imperial ring">
     <type class="ring" subclass="imperial_ring" tileid="-1"/>
-    <description/>
+    <description>You see an imperial ring. It is imbued with the strength of a king.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="1"/>
@@ -210,7 +210,7 @@
 
   <item name="enhanced imperial ring">
     <type class="ring" subclass="imperial_ring_enhanced" tileid="-1"/>
-    <description/>
+    <description>You see an enhanced imperial ring. It eminates the auras of strength and defense.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="1"/>
