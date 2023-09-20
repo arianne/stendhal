@@ -43,7 +43,7 @@
 
   <creature name="tiny scarab">
     <type class="insect" subclass="scarab_tiny" tileid="insect.png:1"/>
-    <description></description>
+    <description>You see a tiny scarab. It is an insect familiar to desert ecologies that will eat almost anything, including dung. Its hard carapace provides protection from the sun and being crushed, so don't think a little stomp will stop it.</description>
     <attributes>
       <atk value="182"/>
       <def value="42"/>
