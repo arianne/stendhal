@@ -17,7 +17,7 @@
 
   <item name="summon scroll">
     <type class="scroll" subclass="summon" tileid="-1"/>
-    <description/>
+    <description>You see a summon scroll. It summons a creature to aid in your adventures.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>
     <attributes>
       <quantity value="1"/>
