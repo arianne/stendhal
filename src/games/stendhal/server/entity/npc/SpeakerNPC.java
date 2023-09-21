@@ -13,10 +13,13 @@ package games.stendhal.server.entity.npc;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -163,6 +166,11 @@ public class SpeakerNPC extends PassiveNPC {
 	 * currently not taking part in a conversation.
 	 */
 	private RPEntity attending;
+
+	/**
+	 * a set of blue words used since the start of the conversation
+	 */
+	private Set<String> learnedWordsInCurrentConversation = new HashSet<>();
 
 	/**
 	 * alternative image for website
@@ -332,6 +340,7 @@ public class SpeakerNPC extends PassiveNPC {
 				setSpeed(getBaseSpeed());
 			}
 			setIdea(null);
+			learnedWordsInCurrentConversation = new HashSet<>();
 		}
 
 		// set facing direction
@@ -483,6 +492,41 @@ public class SpeakerNPC extends PassiveNPC {
 	public void say(final String text) {
 		// turn towards player if necessary, then say it.
 		say(text, true);
+		learnWordsInCurrentConversation(text);
+	}
+
+	public boolean hasLearnedWordInCurrentConversation(String trigger) {
+		return learnedWordsInCurrentConversation.contains(trigger);
+	}
+
+	private void learnWordsInCurrentConversation(String text) {
+		int pos = 0;
+		pos = text.indexOf('#', pos);
+		loop:
+		while (pos > -1 && pos + 1 < text.length()) {
+			char next = text.charAt(pos + 1);
+			if (next == '#') {
+				pos = text.indexOf('#', pos + 2);
+				continue;
+			} else if (next == '\'') {
+				int end = text.indexOf('\'', pos + 2);
+				learnedWordsInCurrentConversation.add(text.substring(pos + 2, end).toLowerCase(Locale.ENGLISH));
+				pos = text.indexOf('#', end);
+				continue;
+			} else {
+				int i;
+				for (i = pos + 1; i < text.length(); i++) {
+					char endChar = text.charAt(i);
+					if (!Character.isJavaIdentifierPart(endChar)) {
+						learnedWordsInCurrentConversation.add(text.substring(pos + 1, i).toLowerCase(Locale.ENGLISH));
+						pos = text.indexOf('#', i);
+						continue loop;
+					}
+				}
+				learnedWordsInCurrentConversation.add(text.substring(pos + 1).toLowerCase(Locale.ENGLISH));
+				break;
+			}
+		}
 	}
 
 	protected void say(final String text, final boolean turnToPlayer) {

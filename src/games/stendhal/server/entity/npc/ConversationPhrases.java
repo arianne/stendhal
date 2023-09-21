@@ -18,6 +18,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.common.collect.ImmutableSet;
+
 /**
  * Common phrases used by players to interact with a SpeakerNPC.
  *
@@ -32,8 +34,8 @@ public class ConversationPhrases {
 	// do not use a mutable list here
 	public static final List<String> EMPTY = Arrays.asList(new String[0]);
 
-	public static final List<String> GREETING_MESSAGES = Arrays.asList("hi",
-			"hello", "hallo", "greetings", "hola", "👋");
+	public static final List<String> GREETING_MESSAGES = Arrays.asList(
+			"hello", "hallo", "hi", "greetings", "hola", "👋");
 
 	public static final List<String> JOB_MESSAGES = Arrays.asList("job", "work", "occupation", "🧹");
 
@@ -61,6 +63,9 @@ public class ConversationPhrases {
 			"farewell", "cya", "adios", "👋");
 
 	public static final List<String> PURCHASE_MESSAGES = Arrays.asList("buy", "purchase");
+
+	public static final ImmutableSet<String> KNOWN = ImmutableSet.of("hello", "help", "job", 
+			"task", "done", "another", "offer", "yes", "no", "bye", "buy", "sell");
 
 	/**
 	 * Combine a string collection (list) with additional strings.

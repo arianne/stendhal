@@ -11,15 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.TreeSet;
 
 import com.google.common.base.Joiner;
 
 import games.stendhal.common.constants.Events;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
@@ -37,7 +41,7 @@ public class ChatOptionsEvent extends RPEvent {
 		super(Events.CHAT_OPTIONS);
 		put(NPC, npc.getName());
 
-		List<String> chatOptions = buildChatOptions(npc, player, currentState);
+		Collection<String> chatOptions = buildChatOptions(npc, player, currentState);
 		put(OPTIONS, Joiner.on("|~|").join(chatOptions));
 	}
 
@@ -49,8 +53,8 @@ public class ChatOptionsEvent extends RPEvent {
 	 * @param currentState current state of the SpeakerNPC's state machine
 	 * @return list of chat options
 	 */
-	private List<String> buildChatOptions(SpeakerNPC npc, Player player, ConversationStates currentState) {
-		List<String> res = new LinkedList<>();
+	private TreeSet<String> buildChatOptions(SpeakerNPC npc, Player player, ConversationStates currentState) {
+		TreeSet<String> res = new TreeSet<>();
 		Sentence sentence = ConversationParser.parse("");
 
 		final List<Transition> transitions = npc.getTransitions();
@@ -61,16 +65,18 @@ public class ChatOptionsEvent extends RPEvent {
 			processTransition(npc, player, res, sentence, transition);
 		}
 
-		for (final Transition transition : transitions) {
-			if (transition.getState() != ConversationStates.ANY) {
-				continue;
+		if (currentState != ConversationStates.IDLE) {
+			for (final Transition transition : transitions) {
+				if (transition.getState() != ConversationStates.ANY) {
+					continue;
+				}
+				processTransition(npc, player, res, sentence, transition);
 			}
-			processTransition(npc, player, res, sentence, transition);
 		}
 		return res;
 	}
 
-	private void processTransition(SpeakerNPC npc, Player player, List<String> res, Sentence sentence,
+	private void processTransition(SpeakerNPC npc, Player player, TreeSet<String> res, Sentence sentence,
 			final Transition transition) {
 		for(Expression expr : transition.getTriggers()) {
 			if (transition.getCondition() != null) {
@@ -79,13 +85,17 @@ public class ChatOptionsEvent extends RPEvent {
 				}
 			}
 
-			String trigger = expr.getNormalized();
+			String trigger = expr.getNormalized().toLowerCase(Locale.ENGLISH);
 			String options = "";
 			if (trigger.equals("buy") || trigger.equals("sell") || trigger.equals("")) {
+				trigger = trigger + " ...";
 				options = "params";
 			}
-			res.add(trigger + "|*|" + trigger + "|*|" + options);
-			break;
+			if (ConversationPhrases.KNOWN.contains(trigger)
+					|| npc.hasLearnedWordInCurrentConversation(trigger)
+					|| npc.hasLearnedWordInCurrentConversation(Grammar.plural(trigger))) {
+				res.add(trigger + "|*|" + trigger + "|*|" + options);
+			}
 		}
 	}
 
