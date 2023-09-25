@@ -18,6 +18,7 @@
   <group uri="items/dummy_weapons.xml"/>
   <group uri="items/flowers.xml"/>
   <group uri="items/food.xml"/>
+  <group uri="items/furniture.xml"/>
   <group uri="items/helmets.xml"/>
   <group uri="items/herbs.xml"/>
   <group uri="items/jewellery.xml"/>
