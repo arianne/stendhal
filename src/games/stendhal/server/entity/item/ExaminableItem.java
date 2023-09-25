@@ -19,14 +19,16 @@ import games.stendhal.server.events.ExamineEvent;
 
 public class ExaminableItem extends StackableItem {
 
-	public ExaminableItem(StackableItem item) {
+	public ExaminableItem(ExaminableItem item) {
 		super(item);
 		put("menu", "Look closely|use");
 	}
 
 	public ExaminableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+		put("menu", "Look closely|use");
 	}
+
 
 	@Override
 	public boolean onUsed(RPEntity user) {
