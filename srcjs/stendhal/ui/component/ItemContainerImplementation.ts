@@ -108,10 +108,8 @@ export class ItemContainerImplementation {
 				this.dirty = this.dirty || o !== (e as any).dataItem;
 				const item = <Item> o;
 				let xOffset = 0;
-				let yOffset = 0;
-				if (item["name"] === "emerald ring" && item["amount"] == 0) {
-					yOffset = -32;
-				} else if (item.isAnimated()) {
+				let yOffset = (item["state"] || 0) * -32;
+				if (item.isAnimated()) {
 					item.stepAnimation();
 					xOffset = -(item.getXFrameIndex() * 32);
 				}

@@ -15,6 +15,7 @@ import java.util.Map;
 
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPObject;
 
 
 /**
@@ -23,6 +24,7 @@ import games.stendhal.server.entity.player.Player;
 public class RingOfLife extends Item {
 	public RingOfLife(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+		updateState();
 	}
 
 	/**
@@ -32,6 +34,7 @@ public class RingOfLife extends Item {
 	 */
 	public RingOfLife(final RingOfLife item) {
 		super(item);
+		updateState();
 	}
 
 	/**
@@ -40,6 +43,21 @@ public class RingOfLife extends Item {
 	public RingOfLife() {
 		super("emerald ring", "ring", "emerald-ring", null);
 		put("amount", 1);
+		updateState();
+	}
+	
+	private void updateState() {
+		if (isBroken()) {
+			put("state", 1);
+		} else {
+			put("state", 0);
+		}
+	}
+
+	@Override
+	public void fill(RPObject rpobject) {
+		super.fill(rpobject);
+		updateState();
 	}
 
 	/**
@@ -57,11 +75,13 @@ public class RingOfLife extends Item {
 	 */
 	public void damage() {
 		put("amount", 0);
+		put("state", 1);
 	}
 
 	@Override
 	public void repair() {
 		put("amount", 1);
+		put("state", 0);
 	}
 
 	/**

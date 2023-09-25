@@ -260,6 +260,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// marked scroll
 		entity.addAttribute("dest", Type.STRING, Definition.VOLATILE);
+
+		// state (e. g. broken)
+		entity.addAttribute("state", Type.INT);
 	}
 
 
