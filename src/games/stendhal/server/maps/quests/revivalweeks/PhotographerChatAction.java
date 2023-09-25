@@ -27,9 +27,11 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.sign.PopupImage;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -81,6 +83,16 @@ public class PhotographerChatAction implements ChatAction {
 		String url = generateUrl(outfit, i);
 		String caption = player.getName() + CAPTIONS[i];
 		addSign(player.getName(), url, "Picture", caption);
+
+		if (player.getAdminLevel() > 0) {
+			final Item item = SingletonRepository.getEntityManager().getItem("photo in wooden frame");
+			item.setInfoString(url + "\tPicture\t" + caption);
+			item.setState(i);
+			item.setPersistent(true);
+			item.setDescription("You see a §'photo in a wooden frame'. It shows " + caption + ".");
+			player.equipOrPutOnGround(item);
+		}
+
 		player.addEvent(new ExamineEvent(url, "Picture", caption));
 		player.notifyWorldAboutChanges();
 	}
