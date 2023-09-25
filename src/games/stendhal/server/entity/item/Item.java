@@ -451,6 +451,27 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * gets the state of this item
+	 *
+	 * @return state
+	 */
+	public int getState() {
+		if (!has("state")) {
+			return 0;
+		}
+		return getInt("state");
+	}
+
+	/**
+	 * sets the state of this item
+	 *
+	 * @param state state
+	 */
+	public void setState(int state) {
+		put("state", state);
+	}
+
+	/**
 	 * Checks if the item is of type <i>type</i> .
 	 *
 	 * @param clazz
@@ -1007,4 +1028,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		return false;
 	}
+
+
 }
