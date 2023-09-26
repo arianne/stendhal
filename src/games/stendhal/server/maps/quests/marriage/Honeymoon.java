@@ -114,8 +114,8 @@ class Honeymoon {
                                                                                                                   "invitation scroll");
                             invite2.setQuantity(1);
                             //
-							invite1.setInfoString("honeymoon," + partnerName);
-							invite2.setInfoString("honeymoon," + husband.getTitle());
+							invite1.setItemData("honeymoon," + partnerName);
+							invite2.setItemData("honeymoon," + husband.getTitle());
 							if (wife.equipToInventoryOnly(invite1) &&  husband.equipToInventoryOnly(invite2)) {
 								npc.say("Great choice! I will arrange that now.");
 								husband.setQuest(marriage.getQuestSlot(), "done");

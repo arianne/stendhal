@@ -26,7 +26,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -38,7 +38,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -93,7 +93,7 @@ public class WaterForXhiphin extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 7200;
 
 	/** How the water is marked as clean */
-	private static final String CLEAN_WATER_INFOSTRING = "clean";
+	private static final String CLEAN_WATER_ITEMDATA = "clean";
 
 
 	@Override
@@ -154,7 +154,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		final SpeakerNPC waterNPC = npcs.get("Stefan");
 
 		// player gets water checked
-		// mark infostring of item to show it's good
+		// mark itemdata of item to show it's good
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		// for now Stefan is just able to check one water at a time (even from a stack) and he always says it's fine and clean
 		// if you go to him with one checked and one unchecked he might just check the checked one again - depends what sits first in bag
@@ -163,7 +163,7 @@ public class WaterForXhiphin extends AbstractQuest {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item water = SingletonRepository.getEntityManager().getItem("water");
-				water.setInfoString(CLEAN_WATER_INFOSTRING);
+				water.setItemData(CLEAN_WATER_ITEMDATA);
 				water.setDescription("You see a bottle of fresh spring water. It's really tasty and fresh. Stefan checked it.");
 				// remember the description
 				water.setPersistent(true);
@@ -175,7 +175,7 @@ public class WaterForXhiphin extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("water"),
 					ConversationStates.ATTENDING,
 					"That water looks clean to me! It must be from a pure source.",
-					// take the item and give them a new one with an infostring or mark all?
+					// take the item and give them a new one with an itemdata or mark all?
 					new MultipleActions(actions));
 
 		// player asks about water but doesn't have it with them
@@ -195,7 +195,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		// Player has got water and it has been checked
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		// make sure we drop the checked water not any other water
-		reward.add(new DropInfostringItemAction("water", CLEAN_WATER_INFOSTRING));
+		reward.add(new DropItemdataItemAction("water", CLEAN_WATER_ITEMDATA));
 		reward.add(new EquipItemAction("potion", 3));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new IncrementQuestAction(QUEST_SLOT, 2, 1) );
@@ -208,7 +208,7 @@ public class WaterForXhiphin extends AbstractQuest {
 				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
-						new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING)),
+						new PlayerHasItemdataItemWithHimCondition("water", CLEAN_WATER_ITEMDATA)),
 				ConversationStates.ATTENDING,
 				"Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.",
 				new MultipleActions(reward));
@@ -229,7 +229,7 @@ public class WaterForXhiphin extends AbstractQuest {
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("water"),
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING))),
+						new NotCondition(new PlayerHasItemdataItemWithHimCondition("water", CLEAN_WATER_ITEMDATA))),
 				ConversationStates.ATTENDING,
 				"Hmm... it's not that I don't trust you, but I'm not sure that water is okay to drink. Could you go and ask #Stefan to #check it please?",
 				null);
@@ -267,10 +267,10 @@ public class WaterForXhiphin extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
 			res.add("I agreed to fetch some water to quench Xhiphin Zohos's thirst.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") && new NotCondition(new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING)).fire(player, null, null) || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") && new NotCondition(new PlayerHasItemdataItemWithHimCondition("water", CLEAN_WATER_ITEMDATA)).fire(player, null, null) || isCompleted(player)) {
 			res.add("I found a source of fresh water, but I can't be completely sure it's safe for Xhiphin to drink.");
 		}
-		if (new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING).fire(player, null, null) || isCompleted(player)) {
+		if (new PlayerHasItemdataItemWithHimCondition("water", CLEAN_WATER_ITEMDATA).fire(player, null, null) || isCompleted(player)) {
 			res.add("Stefan, the chef in Fado hotel, checked the water I collected and it is clean and safe to drink.");
 		}
 		// checked water was clean?

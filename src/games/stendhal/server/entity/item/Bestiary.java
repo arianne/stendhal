@@ -54,11 +54,11 @@ public class Bestiary extends OwnedItem {
 
 	@Override
 	public void setOwner(final String name) {
-		put("infostring", name);
+		put("itemdata", name);
 	}
 
 	@Override
 	public String getOwner() {
-		return get("infostring");
+		return get("itemdata");
 	}
 }

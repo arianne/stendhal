@@ -30,7 +30,7 @@ import games.stendhal.server.entity.player.Player;
  * for a specified time, after which it will teleport the player to given
  * location.
  * <p>
- * infostring attribute in items.xml:
+ * itemdata attribute in items.xml:
  * <p>
  * <code> 1_dreamscape 77 35 5400 0_semos_plains_s -1 -1 </code>
  * <p>
@@ -63,9 +63,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 		String returnZoneName = null;
 		int returnX = 0;
 		int returnY = 0;
-		final String infoString = getInfoString();
-		if (infoString != null) {
-			final StringTokenizer st = new StringTokenizer(infoString);
+		final String itemData = getItemData();
+		if (itemData != null) {
+			final StringTokenizer st = new StringTokenizer(itemData);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
 
@@ -82,7 +82,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 				returnY = Integer.parseInt(st.nextToken());
 			} else {
 				throw new IllegalArgumentException(
-						"the infostring attribute is malformed");
+						"the itemdata attribute is malformed");
 			}
 		}
 
@@ -173,9 +173,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 		int targetX = 0;
 		int targetY = 0;
 		int timeInTurns = 0;
-		final String infoString = getInfoString();
-		if (infoString != null) {
-			final StringTokenizer st = new StringTokenizer(infoString);
+		final String itemData = getItemData();
+		if (itemData != null) {
+			final StringTokenizer st = new StringTokenizer(itemData);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
 				targetX = Integer.parseInt(st.nextToken());
@@ -183,7 +183,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 				timeInTurns = Integer.parseInt(st.nextToken());
 			} else {
 				throw new IllegalArgumentException(
-						"the infostring attribute is malformed");
+						"the itemdata attribute is malformed");
 			}
 		}
 

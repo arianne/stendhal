@@ -171,7 +171,7 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Congratulations! Here is your daisies seed!", getReply(npc));
 		assertTrue(player.isEquipped("seed"));
 		Item seed = player.getFirstEquipped("seed");
-		assertEquals("daisies", seed.getInfoString());
+		assertEquals("daisies", seed.getItemData());
 
 		equipWithMoney(player, 100);
 		assertTrue(en.step(player, "buy five daisies seeds"));

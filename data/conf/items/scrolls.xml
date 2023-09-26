@@ -85,7 +85,7 @@
     <description>You see a home scroll, it will take you back to semos city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_semos_city 30 40"/>
+      <itemdata value="0_semos_city 30 40"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -107,7 +107,7 @@
     <description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_nalwor_city 40 60"/>
+      <itemdata value="0_nalwor_city 40 60"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -129,7 +129,7 @@
     <description>You see an ados city scroll, it will take you back to ados city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_ados_city_n 50 50"/>
+      <itemdata value="0_ados_city_n 50 50"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -151,7 +151,7 @@
     <description>You see a fado city scroll, it will take you back to fado city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_fado_city 40 30"/>
+      <itemdata value="0_fado_city 40 30"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -173,7 +173,7 @@
     <description>You see a kirdneh city scroll, it will take you back to kirdneh city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_kirdneh_city 63 85"/>
+      <itemdata value="0_kirdneh_city 63 85"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -195,7 +195,7 @@
     <description>You see a kalavan city scroll, it will take you back to kalavan city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_kalavan_city 64 17"/>
+      <itemdata value="0_kalavan_city 64 17"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -217,7 +217,7 @@
     <description>You see a deniran city scroll, it will take you back to deniran city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-      <infostring value="0_deniran_city 32 74"/>
+      <itemdata value="0_deniran_city 32 74"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -302,7 +302,7 @@
     <description>You see a small pile of rainbow beans. One says something odd.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.RainbowBeansScroll"/>
     <attributes>
-      <infostring value="1_dreamscape 77 35 5400 0_semos_plains_s -1 -1"/>
+      <itemdata value="1_dreamscape 77 35 5400 0_semos_plains_s -1 -1"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -323,7 +323,7 @@
     <description>You see a bright red balloon. You can use it to float high up into the clouds.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.BalloonScroll"/>
     <attributes>
-      <infostring value="7_kikareukin_clouds 31 12 10800 6_kikareukin_islands -1 -1"/>
+      <itemdata value="7_kikareukin_clouds 31 12 10800 6_kikareukin_islands -1 -1"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>
@@ -344,7 +344,7 @@
     <description>You see a strange looking piece of moss. It looks like it could have hallucinogenic properties.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.TwilightMossScroll"/>
     <attributes>
-      <infostring value="int_ados_twilight_zone 12 20 10800 int_ados_sewing_room -1 -1"/>
+      <itemdata value="int_ados_twilight_zone 12 20 10800 int_ados_sewing_room -1 -1"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>

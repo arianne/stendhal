@@ -231,7 +231,7 @@ class Marriage {
 		player.drop("wedding ring");
 		final Item ring = SingletonRepository.getEntityManager().getItem(
 				"wedding ring");
-		ring.setInfoString(partner.getName());
+		ring.setItemData(partner.getName());
 		ring.setBoundTo(player.getName());
 		player.equipOrPutOnGround(ring);
 	}

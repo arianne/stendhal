@@ -254,9 +254,9 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {
-								String infoString = getCreatureInfo(player, stateInfo.getCreatureName());
-								infoString += " If you want to hear about another creature, just tell me which.";
-								speakerNPC.say(infoString);
+								String itemData = getCreatureInfo(player, stateInfo.getCreatureName());
+								itemData += " If you want to hear about another creature, just tell me which.";
+								speakerNPC.say(itemData);
 								speakerNPC.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
 								speakerNPC.say("You don't have enough money with you.");

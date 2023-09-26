@@ -55,7 +55,7 @@ public class DoneAction implements ChatAction {
 		final Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
 		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
-		helmet.setInfoString(player.getName());
+		helmet.setItemData(player.getName());
 		helmet.setPersistent(true);
 		helmet.setDescription("This is " + player.getName()
 		        + "'s grand prize for Deathmatch winners. Wear it with pride.");

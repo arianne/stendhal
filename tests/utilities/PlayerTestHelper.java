@@ -223,7 +223,7 @@ public abstract class PlayerTestHelper {
 	public static boolean equipWithItem(final Player player, final String clazz, final String info) {
 		ItemTestHelper.generateRPClasses();
 		final Item item = SingletonRepository.getEntityManager().getItem(clazz);
-		item.setInfoString(info);
+		item.setItemData(info);
 
 		return player.equipToInventoryOnly(item);
 	}

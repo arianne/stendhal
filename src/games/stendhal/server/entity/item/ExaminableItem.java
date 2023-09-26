@@ -33,10 +33,10 @@ public class ExaminableItem extends StackableItem {
 	@Override
 	public boolean onUsed(RPEntity user) {
 
-		String[] infostring = getInfoString().split("\t");
-		String image = infostring[0];
-		String title = infostring[1];
-		String caption = infostring[2];
+		String[] itemdata = getItemData().split("\t");
+		String image = itemdata[0];
+		String title = itemdata[1];
+		String caption = itemdata[2];
 
 		user.addEvent(new ExamineEvent(image, title, caption));
 		user.notifyWorldAboutChanges();

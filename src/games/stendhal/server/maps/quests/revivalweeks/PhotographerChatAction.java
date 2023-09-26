@@ -86,7 +86,7 @@ public class PhotographerChatAction implements ChatAction {
 
 		if (player.getAdminLevel() > 0) {
 			final Item item = SingletonRepository.getEntityManager().getItem("photo in wooden frame");
-			item.setInfoString(url + "\tPicture\t" + caption);
+			item.setItemData(url + "\tPicture\t" + caption);
 			item.setState(i);
 			item.setPersistent(true);
 			item.setDescription("You see a §'photo in a wooden frame'. It shows " + caption + ".");

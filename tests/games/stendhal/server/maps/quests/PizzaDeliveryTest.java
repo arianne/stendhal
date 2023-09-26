@@ -143,7 +143,7 @@ public class PizzaDeliveryTest {
 
 		player.drop("pizza");
 		Item item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza del Mare");
+		item.setItemData("Pizza del Mare");
 		player.getSlot("bag").add(item);
 
 		final SpeakerNPC eliza = SingletonRepository.getNPCList().get("Eliza");
@@ -208,7 +208,7 @@ public class PizzaDeliveryTest {
 		// old pizza and add the correct new flavour of pizza
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Margherita");
+		item.setItemData("Pizza Margherita");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
@@ -265,7 +265,7 @@ public class PizzaDeliveryTest {
 		// old pizza and add the WRONG new flavour of pizza
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Margherita");
+		item.setItemData("Pizza Margherita");
 		player.getSlot("bag").add(item);
 
 		// on time
@@ -279,7 +279,7 @@ public class PizzaDeliveryTest {
 		// player find correct pizza
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Vegetale");
+		item.setItemData("Pizza Vegetale");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
@@ -306,7 +306,7 @@ public class PizzaDeliveryTest {
 		assertEquals("Bye.", getReply(npc1));
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Napoli");
+		item.setItemData("Pizza Napoli");
 		player.getSlot("bag").add(item);
 
 		npc1 = SingletonRepository.getNPCList().get("Fidorea");
@@ -360,7 +360,7 @@ public class PizzaDeliveryTest {
 
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Margherita");
+		item.setItemData("Pizza Margherita");
 		player.getSlot("bag").add(item);
 		npc1 = SingletonRepository.getNPCList().get("Jenny");
 		en = npc1.getEngine();
@@ -395,7 +395,7 @@ public class PizzaDeliveryTest {
 
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Vegetale");
+		item.setItemData("Pizza Vegetale");
 		player.getSlot("bag").add(item);
 		// be late
 		player.setQuest(questSlot, "Katinka;0");
@@ -426,7 +426,7 @@ public class PizzaDeliveryTest {
 		player.setQuest(questSlot, "Cyk;" + System.currentTimeMillis());
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Hawaii");
+		item.setItemData("Pizza Hawaii");
 		player.getSlot("bag").add(item);
 		// test ask leander for task again before completing last
 		en.step(player, "hi");
@@ -461,7 +461,7 @@ public class PizzaDeliveryTest {
 
 		player.drop("pizza");
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Diavolo");
+		item.setItemData("Pizza Diavolo");
 		player.getSlot("bag").add(item);
 
 		npc1 = SingletonRepository.getNPCList().get("Haizen");
@@ -482,7 +482,7 @@ public class PizzaDeliveryTest {
 		player.getSlot("bag").add(item);
 		// and then the pizza that belongs to Haizen
 		item = ItemTestHelper.createItem("pizza");
-		item.setInfoString("Pizza Diavolo");
+		item.setItemData("Pizza Diavolo");
 		player.getSlot("bag").add(item);
 		// Haizen allows 4 min delay. Set the time stamp 5min  to the past
 		player.setQuest(questSlot, "Haizen;" + (System.currentTimeMillis() - 1000 * 60 * 5));
@@ -495,7 +495,7 @@ public class PizzaDeliveryTest {
 		// Leander will take the pizza
 		List<Item> pizzas = player.getAllEquipped("pizza");
 		assertEquals(pizzas.size(), 1);
-		assertEquals(pizzas.get(0).getInfoString(), null);
+		assertEquals(pizzas.get(0).getItemData(), null);
 		// after this we should be like any other player wanting to deliver a pizza, phew
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		en.step(player, "bye");

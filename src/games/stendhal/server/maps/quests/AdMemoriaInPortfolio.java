@@ -272,7 +272,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 							new IncreaseXPAction(1000);
 
 							final Item mauveApple = SingletonRepository.getEntityManager().getItem("mauve apple");
-							mauveApple.setInfoString("A special mauve apple for Brosoklelo");
+							mauveApple.setItemData("A special mauve apple for Brosoklelo");
 							mauveApple.setDescription("You see a special mauve apple for Brosoklelo");
 							mauveApple.setBoundTo("Brosoklelo");
 

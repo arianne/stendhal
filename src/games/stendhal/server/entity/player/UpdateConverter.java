@@ -228,7 +228,7 @@ public abstract class UpdateConverter {
 						zoneName = "ados";
 					}
 					doorId = zoneName + " house " + Integer.toString(id);
-					// now set the infostring of the house key to doorId;number;
+					// now set the itemdata of the house key to doorId;number;
 					item = SingletonRepository.getEntityManager().getItem("house key");
 					((HouseKey) item).setup(doorId, number, null);
 				} catch (final NumberFormatException e) {
@@ -494,18 +494,18 @@ public abstract class UpdateConverter {
 			return;
 		}
 
-		String infostring = item.getInfoString();
+		String itemdata = item.getItemData();
 
-		// infostring is null in tests
-		if (infostring == null) {
+		// itemdata is null in tests
+		if (itemdata == null) {
 			return;
 		}
 
-		String[] location = infostring.split(" ");
+		String[] location = itemdata.split(" ");
 		String zone = ZONE_MAPPING.get(location[0]);
 		if (zone != null) {
-			infostring = zone + " " + location[1] + " " + location[2];
-			item.setInfoString(infostring);
+			itemdata = zone + " " + location[1] + " " + location[2];
+			item.setItemData(itemdata);
 		}
 	}
 

@@ -43,7 +43,7 @@ public class GateKey extends Item {
 		super(name, clazz, subclass, attributes);
 
 		// first slot is identifier, second slot is expiration timestamp
-		setInfoString("0;" + NEVER);
+		setItemData("0;" + NEVER);
 		setPersistent(true);
 	}
 
@@ -65,7 +65,7 @@ public class GateKey extends Item {
 	 * @param expirationTime time stamp
 	 */
 	public void setup(final String gateId, final long expirationTime) {
-		setInfoString(gateId + ";" + Long.toString(expirationTime));
+		setItemData(gateId + ";" + Long.toString(expirationTime));
 		chooseImage();
 	}
 
@@ -77,7 +77,7 @@ public class GateKey extends Item {
 	 * @return true if the identifiers match, false otherwise
 	 */
 	public boolean matches(final String gateId) {
-		final String[] info = getInfoString().split(";");
+		final String[] info = getItemData().split(";");
 		final long expirationTime = Long.parseLong(info[1]);
 
 		return info[0].equals(gateId) && expirationTime > System.currentTimeMillis();
@@ -88,7 +88,7 @@ public class GateKey extends Item {
 	 * time.
 	 */
 	private void chooseImage() {
-		final String[] info = getInfoString().split(";");
+		final String[] info = getItemData().split(";");
 
 		put("subclass", imageNames[Math.abs((info[0].hashCode() + info[1].hashCode())
 						% imageNames.length)]);

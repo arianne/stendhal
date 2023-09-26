@@ -50,7 +50,7 @@ public class Present extends Box {
 	 * @param type of item to be produced.
 	 */
 	public void setContent(final String type) {
-		setInfoString(type);
+		setItemData(type);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Present extends Box {
 	protected boolean useMe(final Player player) {
 		this.removeOne();
 
-		final String itemName = getInfoString();
+		final String itemName = getItemData();
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		player.sendPrivateText("Congratulations, you've got "
 				+ Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)) + "!");

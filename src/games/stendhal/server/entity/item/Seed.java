@@ -25,7 +25,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * A seed can be planted.
  * The plant action defines the behaviour (e.g. only plantable on fertile ground).
- * The infostring stores what it will grow.
+ * The itemdata stores what it will grow.
  */
 public class Seed extends StackableItem {
 
@@ -76,14 +76,14 @@ public class Seed extends StackableItem {
 				return false;
 			}
 
-			// the infostring of the seed stores what it should grow
-			final String infostring = this.getInfoString();
+			// the itemdata of the seed stores what it should grow
+			final String itemdata = this.getItemData();
 			FlowerGrower flowerGrower;
 			// choose the default flower grower if there is none set
-			if (infostring == null) {
+			if (itemdata == null) {
 				flowerGrower = new FlowerGrower();
 			} else {
-				flowerGrower = new FlowerGrower(this.getInfoString());
+				flowerGrower = new FlowerGrower(this.getItemData());
 			}
 			userZone.add(flowerGrower);
 			// add the FlowerGrower where the seed was on the ground
@@ -94,7 +94,7 @@ public class Seed extends StackableItem {
 			this.removeOne();
 			if (user instanceof Player) {
 				// XXX: should this increment only after flower grower has fully ripened?
-				((Player) user).incSownForItem(infostring, 1);
+				((Player) user).incSownForItem(itemdata, 1);
 			}
 			return true;
 		}
@@ -105,7 +105,7 @@ public class Seed extends StackableItem {
 
 	@Override
 	public String describe() {
-		final String flowerName = getInfoString();
+		final String flowerName = getItemData();
 
 		if (flowerName != null) {
 			return "You see a " + flowerName + " " + this.getName()

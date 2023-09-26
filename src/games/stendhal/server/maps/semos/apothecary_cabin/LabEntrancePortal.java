@@ -44,7 +44,7 @@ public class LabEntrancePortal implements ZoneConfigurator {
 					final Player player = (Player) user;
 
 					// can enter if Antivenom Ring quest has been started or player has note to apothecary item
-					if (player.getQuest("antivenom_ring") != null || player.isEquippedWithInfostring("note", "note to apothecary")) {
+					if (player.getQuest("antivenom_ring") != null || player.isEquippedWithItemdata("note", "note to apothecary")) {
 						return true;
 					}
 				}

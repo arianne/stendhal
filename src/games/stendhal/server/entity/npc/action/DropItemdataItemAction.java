@@ -24,53 +24,53 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Drops the specified item with the specified infostring
+ * Drops the specified item with the specified itemdata
  *
- * @see games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition
+ * @see games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition
  */
 @Dev(category=Category.ITEMS_OWNED, label="Item-")
-public class DropInfostringItemAction implements ChatAction {
-	private static Logger logger = Logger.getLogger(DropInfostringItemAction.class);
+public class DropItemdataItemAction implements ChatAction {
+	private static Logger logger = Logger.getLogger(DropItemdataItemAction.class);
 	private final String itemName;
-	private final String infostring;
+	private final String itemdata;
 	private final int amount;
 
 	/**
-	 * Creates a new DropInfostringItemAction.
+	 * Creates a new DropItemdataItemAction.
 	 *
 	 * @param itemName
 	 *            name of item
-	 * @param infostring
-	 *            infostring of the dropped item
+	 * @param itemdata
+	 *            itemdata of the dropped item
 	 */
-	public DropInfostringItemAction(final String itemName, final String infostring) {
+	public DropItemdataItemAction(final String itemName, final String itemdata) {
 		this.itemName = checkNotNull(itemName);
 		this.amount = 1;
-		this.infostring = checkNotNull(infostring);
+		this.itemdata = checkNotNull(itemdata);
 	}
 
 	/**
-	 * Creates a new DropInfostringItemAction.
+	 * Creates a new DropItemdataItemAction.
 	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
 	 *            amount of item
-	 * @param infostring
-	 *            infostring of the dropped item
+	 * @param itemdata
+	 *            itemdata of the dropped item
 	 */
 	@Dev
-	public DropInfostringItemAction(final String itemName, @Dev(defaultValue="1") final int amount, final String infostring) {
+	public DropItemdataItemAction(final String itemName, @Dev(defaultValue="1") final int amount, final String itemdata) {
 		this.itemName = checkNotNull(itemName);
 		this.amount = amount;
-		this.infostring = checkNotNull(infostring);
+		this.itemdata = checkNotNull(itemdata);
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		boolean res = false;
-		if (player.isEquippedWithInfostring(itemName, infostring, amount)) {
-			res = player.dropWithInfostring(itemName, infostring, amount);
+		if (player.isEquippedWithItemdata(itemName, itemdata, amount)) {
+			res = player.dropWithItemdata(itemName, itemdata, amount);
 		}
 
 		if (!res) {
@@ -81,23 +81,23 @@ public class DropInfostringItemAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "drop " + amount + " of item <" + itemName + "> with infostring <" + infostring + ">";
+		return "drop " + amount + " of item <" + itemName + "> with itemdata <" + itemdata + ">";
 	}
 
 	@Override
 	public int hashCode() {
-		return 5113 * (itemName.hashCode() + 5119 * (infostring.hashCode() + 5147 * amount));
+		return 5113 * (itemName.hashCode() + 5119 * (itemdata.hashCode() + 5147 * amount));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (!(obj instanceof DropInfostringItemAction)) {
+		if (!(obj instanceof DropItemdataItemAction)) {
 			return false;
 		}
-		DropInfostringItemAction other = (DropInfostringItemAction) obj;
+		DropItemdataItemAction other = (DropItemdataItemAction) obj;
 		return (amount == other.amount)
 			&& itemName.equals(other.itemName)
-			&& infostring.equals(other.infostring);
+			&& itemdata.equals(other.itemdata);
 	}
 
 }

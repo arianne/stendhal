@@ -218,7 +218,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 		Item item = player.getFirstEquipped("player's house key");
 		assertNotNull(item);
-		assertEquals("ados house 50;0;player", item.get("infostring"));
+		assertEquals("ados house 50;0;player", item.get("itemdata"));
 		assertFalse(item.isBound());
 
 		assertTrue(en.step(player, "no"));

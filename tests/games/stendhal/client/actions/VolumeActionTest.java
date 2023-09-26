@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,14 +17,21 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPAction;
 
 public class VolumeActionTest {
+
+	@Before
+	public void setup() throws Exception {
+		UserInterfaceTestHelper.initUserInterface();
+	}
 
 	@After
 	public void tearDown() throws Exception {

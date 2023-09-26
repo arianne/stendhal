@@ -34,7 +34,7 @@ local bride_name = "Emma"
 local minLevel = 50
 local karmaCompleteReward = 50
 
-local ring_infostring = "Ari's ring"
+local ring_itemdata = "Ari's ring"
 
 -- location where ring may be on Athor island
 local ring_locations = {
@@ -47,9 +47,9 @@ local ring_locations = {
 local questNotStartedCondition = conditions:create("QuestNotStartedCondition", {quest_slot})
 local questCompletedCondition = conditions:create("QuestCompletedCondition", {quest_slot})
 local questActiveCondition = conditions:create("QuestActiveCondition", {quest_slot})
-local hasRingCondition = conditions:create("PlayerHasInfostringItemWithHimCondition", {
+local hasRingCondition = conditions:create("PlayerHasItemdataItemWithHimCondition", {
 	"engagement ring",
-	ring_infostring,
+	ring_itemdata,
 })
 local hasKeyringCondition = conditions:create(function(player, sentence, npc)
 	return player:hasFeature("keyring")
@@ -284,7 +284,7 @@ local prepareBringStep = function()
 	local finishMessage = "Thank you so much! As a reward, I will give you this keyring."
 		.. " It is larger than the one you have."
 	local finishAction = {
-		actions:create("DropInfostringItemAction", {"engagement ring", ring_infostring}),
+		actions:create("DropItemdataItemAction", {"engagement ring", ring_itemdata}),
 		actions:create(rewardAction),
 	}
 
@@ -443,13 +443,13 @@ local loanMetalDetector = function(player, lender, detector, offer, bound_to, in
 		return
 	end
 
-	-- handle items with infostring & bound items
+	-- handle items with itemdata & bound items
 	local bound_to = traded:getBoundTo() or ""
-	local info_s = traded:getInfoString() or ""
+	local info_s = traded:getItemData() or ""
 
 	local slot_state = offer .. ";" .. bound_to .. ";" .. info_s
 
-	detector:setInfoString("Sawyer;" .. slot_state)
+	detector:setItemData("Sawyer;" .. slot_state)
 	detector:setBoundTo(player:getName())
 	detector:setUndroppableOnDeath(true)
 
@@ -542,7 +542,7 @@ local handleReturnRequest = function(player, sentence, lender)
 	end
 
 	local detector = player:getFirstEquipped("metal detector")
-	local detector_info = (detector:getInfoString() or ""):split(";")
+	local detector_info = (detector:getItemData() or ""):split(";")
 
 	-- Sawyer doesn't recognize the metal detector
 	if #detector_info == 0 or detector_info[1] ~= "Sawyer" then
@@ -569,7 +569,7 @@ local handleReturnRequest = function(player, sentence, lender)
 	end
 
 	if info_s ~= "" then
-		item:setInfoString(info_s)
+		item:setItemData(info_s)
 	end
 
 	player:drop(detector)
@@ -664,7 +664,7 @@ quest:setHistoryFunction(function(player)
 	if state == "done" then
 		table.insert(history, "I found Ari's ring. Now he is ready to wed with Emma.")
 	elseif state == "found_ring" then
-		if player:isEquippedWithInfostring("engagement ring", ring_infostring) then
+		if player:isEquippedWithItemdata("engagement ring", ring_itemdata) then
 			table.insert(history, "I have found Ari's ring and should bring it to him.")
 		else
 			table.insert(history, "I found Ari's ring, but I seem to have misplaced it."

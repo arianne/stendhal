@@ -226,7 +226,7 @@ local function createNPC()
 		-- take one scroll & mark it
 		player:drop(scroll)
 		local marked = entities:getItem("marked scroll")
-		marked:put("infostring", map .. " " .. x .. " " .. y)
+		marked:put("itemdata", map .. " " .. x .. " " .. y)
 		player:equipOrPutOnGround(marked)
 
 		npc:say("Here is your scroll for " .. map .. ". What else can I do for you?")

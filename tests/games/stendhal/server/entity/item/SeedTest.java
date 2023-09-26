@@ -145,7 +145,7 @@ public class SeedTest {
 
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
 		assertNotNull(seed);
-		seed.setInfoString("daisies");
+		seed.setItemData("daisies");
 		zone.add(seed);
 		seed.setPosition(1, 0);
 

@@ -33,7 +33,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -46,7 +46,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerOwnsItemIncludingBankCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -747,7 +747,7 @@ public class MealForGroongo extends AbstractQuest {
                             getRequiredDessertFancyName(
                                 player.getQuest(QUEST_SLOT, 4))) +
                         " for dessert.";
-                decentMeal.setInfoString("Decent Meal for Groongo");
+                decentMeal.setItemData("Decent Meal for Groongo");
                 decentMeal.setBoundTo(player.getName());
                 decentMeal.setDescription(
                     "You see a dome-covered decent meal which consists of " +
@@ -1717,7 +1717,7 @@ public class MealForGroongo extends AbstractQuest {
          * to bring his #thanks to Chef Stefan.
          */
         final List<ChatAction> normalEndQuestActions = new LinkedList<ChatAction>();
-        normalEndQuestActions.add(new DropInfostringItemAction("decent meal","Decent Meal for Groongo"));
+        normalEndQuestActions.add(new DropItemdataItemAction("decent meal","Decent Meal for Groongo"));
         normalEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
         normalEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 1, "incomplete"));
         normalEndQuestActions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 6));
@@ -1763,7 +1763,7 @@ public class MealForGroongo extends AbstractQuest {
                 new GreetingMatchesNameCondition(npc_customer.getName()),
                 new QuestActiveCondition(QUEST_SLOT),
                 new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
-                new PlayerHasInfostringItemWithHimCondition("decent meal", "Decent Meal for Groongo")),
+                new PlayerHasItemdataItemWithHimCondition("decent meal", "Decent Meal for Groongo")),
             ConversationStates.IDLE,
             null,
             new MultipleActions(normalEndQuestActions)

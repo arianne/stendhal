@@ -203,8 +203,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		// the fun for new players
 		entity.addAttribute("min_level", Type.INT, Definition.HIDDEN);
 
-		// To store addAttributeitional info with an item
+		// Used for compatibility with existing database objects, has been replaced by itemdata
 		entity.addAttribute("infostring", Type.STRING, Definition.HIDDEN);
+
+		// To store addAttributeitional info with an item
+		entity.addAttribute("itemdata", Type.VERY_LONG_STRING, Definition.HIDDEN);
 
 		// Some items have individual values
 		entity.addAttribute("persistent", Type.SHORT, Definition.HIDDEN);
@@ -559,14 +562,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
-	 * Get the item's infoString. The infoString contains context specific
+	 * Get the item's itemData. The itemData contains context specific
 	 * information that is used by the implementation.
 	 *
-	 * @return The infoString.
+	 * @return The itemData.
 	 */
-	public String getInfoString() {
-		if (has("infostring")) {
-			return get("infostring");
+	public String getItemData() {
+		if (has("itemdata")) {
+			return get("itemdata");
 		} else {
 			return null;
 		}
@@ -627,17 +630,17 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
-	 * Set the item's infostring. The infostring contains context specific
+	 * Set the item's itemdata. The itemdata contains context specific
 	 * information that is used by the implementation.
 	 *
-	 * @param infostring
-	 *            The item's infostring.
+	 * @param itemdata
+	 *            The item's itemdata.
 	 */
-	public void setInfoString(final String infostring) {
-		if (infostring != null) {
-			put("infostring", infostring);
-		} else if (has("infostring")) {
-			remove("infostring");
+	public void setItemData(final String itemdata) {
+		if (itemdata != null) {
+			put("itemdata", itemdata);
+		} else if (has("itemdata")) {
+			remove("itemdata");
 		}
 	}
 

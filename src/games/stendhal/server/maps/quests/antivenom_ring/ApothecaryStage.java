@@ -22,7 +22,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -35,7 +35,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -48,8 +48,8 @@ import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 public class ApothecaryStage extends AVRStage {
 	private final SpeakerNPC apothecary;
 
-	/* infostring that identifies note item */
-	private static final String NOTE_INFOSTRING = "note to apothecary";
+	/* itemdata that identifies note item */
+	private static final String NOTE_ITEMDATA = "note to apothecary";
 
 	/* items taken to apothecary to create antivenom */
 	private static final String MIX_ITEMS = "cobra venom=1;mandragora=2;kokuda=1;fairy cake=20";
@@ -89,7 +89,7 @@ public class ApothecaryStage extends AVRStage {
 		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING)),
+						new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", NOTE_ITEMDATA)),
 						new QuestNotStartedCondition(questName)),
 				ConversationStates.ATTENDING,
 				"I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.",
@@ -100,7 +100,7 @@ public class ApothecaryStage extends AVRStage {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
-						new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING),
+						new PlayerHasItemdataItemWithHimCondition("note", NOTE_ITEMDATA),
 						new QuestNotStartedCondition(questName)),
 				ConversationStates.QUEST_OFFERED,
 				"Oh, a message from Klaas. Is that for me?",
@@ -111,7 +111,7 @@ public class ApothecaryStage extends AVRStage {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
-						new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING),
+						new PlayerHasItemdataItemWithHimCondition("note", NOTE_ITEMDATA),
 						new QuestNotStartedCondition(questName)),
 				ConversationStates.QUEST_OFFERED,
 				"Oh, a message from Klaas. Is that for me?",
@@ -120,12 +120,12 @@ public class ApothecaryStage extends AVRStage {
 		// Player accepts quest
 		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
-				new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING),
+				new PlayerHasItemdataItemWithHimCondition("note", NOTE_ITEMDATA),
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
 						new SetQuestAction(questName, MIX_ITEMS),
-						new DropInfostringItemAction("note", NOTE_INFOSTRING),
+						new DropItemdataItemAction("note", NOTE_ITEMDATA),
 						new SayRequiredItemsFromCollectionAction(questName,
 								"Klaas has asked me to assist you. I can mix an antivenom that can be infused into a ring to increase its resistance to poison."
 								+ " I need you to bring me [items].  Do you have any of those with you?",
@@ -138,7 +138,7 @@ public class ApothecaryStage extends AVRStage {
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 					new NotCondition(new QuestInStateCondition(questName, "ringmaker")),
-					new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING))
+					new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", NOTE_ITEMDATA))
 				),
 				ConversationStates.ATTENDING,
 				"Okay then, I will need you too... wait, where did that note go?",

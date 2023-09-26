@@ -65,7 +65,7 @@ public class BlankPetScroll extends Scroll {
 		if (zone.isTeleportInAllowed(player.getX(), player.getY())) {
 			final Item summonPetScroll = SingletonRepository.getEntityManager().getItem(
 					"summon pet scroll");
-			summonPetScroll.setInfoString(petName);
+			summonPetScroll.setItemData(petName);
 			player.equipOrPutOnGround(summonPetScroll);
 
 			final Pet pet = player.getPet();
