@@ -2239,15 +2239,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param name
 	 * 		Name of item to remove.
-	 * @param infostring
+	 * @param itemdata
 	 * 		Required item info string to match.
 	 * @param amount
 	 * 		Number of items to remove from entity.
 	 * @return
 	 * 		<code>true</code> if dropping the item(s) was successful.
 	 */
-	public boolean dropWithInfostring(final String name, final String infostring, final int amount) {
-		return drop(item -> (name.equals(item.getName()) && infostring.equals(item.getInfoString())), amount);
+	public boolean dropWithItemdata(final String name, final String itemdata, final int amount) {
+		return drop(item -> (name.equals(item.getName()) && itemdata.equals(item.getItemData())), amount);
 	}
 
 	/**
@@ -2258,13 +2258,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param name
 	 * 		Name of item to remove.
-	 * @param infostring
+	 * @param itemdata
 	 * 		Required item info string to match.
 	 * @return
 	 * 		<code>true</code> if dropping the item(s) was successful.
 	 */
-	public boolean dropWithInfostring(final String name, final String infostring) {
-		return dropWithInfostring(name, infostring, 1);
+	public boolean dropWithItemdata(final String name, final String itemdata) {
+		return dropWithItemdata(name, itemdata, 1);
 	}
 
 	/**
@@ -2299,15 +2299,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param name
 	 * 		Name of item to check.
-	 * @param infostring
+	 * @param itemdata
 	 * 		Info string of item to check.
 	 * @param amount
 	 * 		Quantity of carried items to check.
 	 * @return
-	 * 		<code>true</code> if entity is carrying at least specified amount of items matching name & infostring.
+	 * 		<code>true</code> if entity is carrying at least specified amount of items matching name & itemdata.
 	 */
-	public boolean isEquippedWithInfostring(final String name, final String infostring, final int amount) {
-		return getAllEquippedWithInfostring(name, infostring).size() >= amount;
+	public boolean isEquippedWithItemdata(final String name, final String itemdata, final int amount) {
+		return getAllEquippedWithItemdata(name, itemdata).size() >= amount;
 	}
 
 	/**
@@ -2315,13 +2315,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param name
 	 * 		Name of item to check.
-	 * @param infostring
+	 * @param itemdata
 	 * 		Info string of item to check.
 	 * @return
-	 * 		<code>true</code> if entity is carrying at least one of items matching name & infostring.
+	 * 		<code>true</code> if entity is carrying at least one of items matching name & itemdata.
 	 */
-	public boolean isEquippedWithInfostring(final String name, final String infostring) {
-		return isEquippedWithInfostring(name, infostring, 1);
+	public boolean isEquippedWithItemdata(final String name, final String itemdata) {
+		return isEquippedWithItemdata(name, itemdata, 1);
 	}
 
 	/**
@@ -2385,14 +2385,14 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param name
 	 * 		Name of item to match.
-	 * @param infostring
+	 * @param itemdata
 	 * 		Info string of item to match.
 	 * @return
 	 * 		List<Item>
 	 */
-	public List<Item> getAllEquippedWithInfostring(String name, String infostring) {
+	public List<Item> getAllEquippedWithItemdata(String name, String itemdata) {
 		return getAllEquipped(item -> name.equals(item.getName())
-				&& infostring.equalsIgnoreCase(item.getInfoString()));
+				&& itemdata.equalsIgnoreCase(item.getItemData()));
 	}
 
 	/**

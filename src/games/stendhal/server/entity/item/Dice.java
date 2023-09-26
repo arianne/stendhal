@@ -52,22 +52,22 @@ public class Dice extends Item {
 
 	public void setCroupierNPC(final CroupierNPC croupierNPC) {
 		this.croupierNPC = croupierNPC;
-		setInfoString(croupierNPC.getName());
+		setItemData(croupierNPC.getName());
 	}
 
 	/**
 	 * When the player gets the dice, then disconnects and reconnects, the
 	 * CroupierNPC is lost. That's why we store the croupier's name in the
-	 * item's infostring. This method will read out that infostring and set the
+	 * item's itemdata. This method will read out that itemdata and set the
 	 * croupier to the NPC with that name.
 	 *
 	 * I tried to do this in the constructor, but somehow it didn't work: the
-	 * item somehow seems to not have an infostring while the constructor is
+	 * item somehow seems to not have an itemdata while the constructor is
 	 * running.
 	 */
 	private void updateCroupierNPC() {
 		if (croupierNPC == null) {
-			final String name = getInfoString();
+			final String name = getItemData();
 
 			if (name != null) {
 				croupierNPC = (CroupierNPC) SingletonRepository.getNPCList().get(name);

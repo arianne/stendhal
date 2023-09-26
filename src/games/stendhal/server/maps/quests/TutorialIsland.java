@@ -78,7 +78,7 @@ import marauroa.common.game.IRPZone;
  * - make sure new players are teleported directly to tutorial island &
  *   not to int_semos_guard_house or int_semos_town_hall
  * - give new players weapon & armor after tutorial is complete
- * - make sure any items given to player during tutorial have infostring
+ * - make sure any items given to player during tutorial have itemdata
  *   and are removed from player & ground when tutorial is finished
  * - handle player dieing in tutorial zone
  * - make visible in travel log

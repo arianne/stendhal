@@ -30,7 +30,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -47,7 +47,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -138,11 +138,11 @@ public class SadScientist extends AbstractQuest {
 			return res;
 		}
 		res.add("Vasi Elos asked me to speak to Mayor Sakhs to find out where Vera is.");
-		if ("find_vera".equals(questState) && !player.isEquippedWithInfostring("note", QUEST_SLOT)) {
+		if ("find_vera".equals(questState) && !player.isEquippedWithItemdata("note", QUEST_SLOT)) {
 			return res;
 		}
 		res.add("I have a note with some terrible news on it to give Vasi.");
-		if ("find_vera".equals(questState) && player.isEquippedWithInfostring("note", QUEST_SLOT)) {
+		if ("find_vera".equals(questState) && player.isEquippedWithItemdata("note", QUEST_SLOT)) {
 			return res;
 		}
 		res.add("Vasi Elos is so sad and angry that Vera is gone. I must kill his own brother and give him a goblet of blood.");
@@ -241,12 +241,12 @@ public class SadScientist extends AbstractQuest {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
 				new KilledForQuestCondition(QUEST_SLOT, 1),
-				new PlayerHasInfostringItemWithHimCondition("goblet", QUEST_SLOT)
+				new PlayerHasItemdataItemWithHimCondition("goblet", QUEST_SLOT)
 			);
 		ChatAction action = new MultipleActions(
 										new SetQuestAction(QUEST_SLOT, "decorating;"),
 										new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-										new DropInfostringItemAction("goblet", 1, QUEST_SLOT)
+										new DropItemdataItemAction("goblet", 1, QUEST_SLOT)
 										);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), condition),
@@ -270,7 +270,7 @@ public class SadScientist extends AbstractQuest {
 				new NotCondition(
 						new AndCondition(
 										new KilledForQuestCondition(QUEST_SLOT, 1),
-										new PlayerHasInfostringItemWithHimCondition("goblet", QUEST_SLOT)))
+										new PlayerHasItemdataItemWithHimCondition("goblet", QUEST_SLOT)))
 			);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition, ConversationStates.IDLE,
@@ -281,13 +281,13 @@ public class SadScientist extends AbstractQuest {
 	private void playerReturnsWithLetter(final SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
-				new PlayerHasInfostringItemWithHimCondition("note", QUEST_SLOT)
+				new PlayerHasItemdataItemWithHimCondition("note", QUEST_SLOT)
 			);
 
 		final ChatAction action = new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, 0, "kill_scientist"),
 					new StartRecordingKillsAction(QUEST_SLOT, 1, "Sergej Elos", 0, 1),
-					new DropInfostringItemAction("note", QUEST_SLOT)
+					new DropItemdataItemAction("note", QUEST_SLOT)
 				);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), condition),
@@ -313,7 +313,7 @@ public class SadScientist extends AbstractQuest {
 	private void playerReturnsWithoutLetter(final SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
-				new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", QUEST_SLOT))
+				new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", QUEST_SLOT))
 			);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
@@ -327,7 +327,7 @@ public class SadScientist extends AbstractQuest {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item item = SingletonRepository.getEntityManager().getItem("note");
-				item.setInfoString(QUEST_SLOT);
+				item.setItemData(QUEST_SLOT);
 				item.setDescription(LETTER_DESCRIPTION);
 				item.setBoundTo(player.getName());
 				player.equipOrPutOnGround(item);
@@ -342,7 +342,7 @@ public class SadScientist extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, "Vera",
 				new AndCondition(
 						new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", QUEST_SLOT))),
+						new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", QUEST_SLOT))),
 				ConversationStates.ATTENDING,
 				"What? How do you know her? Well it is a sad story. " +
 				mayor_response + " I kept this for her husband. A letter. " +
@@ -353,7 +353,7 @@ public class SadScientist extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, "Vera",
 				new AndCondition(
 						new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
-						new PlayerHasInfostringItemWithHimCondition("note", QUEST_SLOT)),
+						new PlayerHasItemdataItemWithHimCondition("note", QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				mayor_response + " Please deliver that letter to her husband. " +
 				"I think he is in Kalavan.",

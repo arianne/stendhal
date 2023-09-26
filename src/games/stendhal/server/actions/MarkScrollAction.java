@@ -50,8 +50,8 @@ public class MarkScrollAction implements ActionListener {
 					scroll.setDescription("You see a scroll marked by " + player.getName() + ". It says: \""+ description +"\". ");
 				}
 
-				// set infostring after description
-				scroll.setInfoString(zone.getName() + " " + x + " " + y);
+				// set itemdata after description
+				scroll.setItemData(zone.getName() + " " + x + " " + y);
 
 				player.equipOrPutOnGround(scroll);
 

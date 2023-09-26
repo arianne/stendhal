@@ -32,7 +32,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -43,7 +43,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerOwnsItemIncludingBankCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -155,7 +155,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				return false;
 			}
 
-			return corpse.getName().equals(item.getInfoString());
+			return corpse.getName().equals(item.getItemData());
 		}
 
 		@Override
@@ -176,7 +176,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 					// recreate the item and fill the corpse
 					final Item item = SingletonRepository.getEntityManager().getItem(
 							itemName);
-					item.setInfoString(corpse.getName());
+					item.setItemData(corpse.getName());
 					item.setDescription(description);
 					corpse.add(item);
 					corpse.notifyWorldAboutChanges();
@@ -217,7 +217,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final Item map = SingletonRepository.getEntityManager().getItem("map");
-			map.setInfoString(npc.getName());
+			map.setItemData(npc.getName());
 			map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
 			if (bind) {
 				map.setBoundTo(player.getName());
@@ -291,8 +291,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(2500));
-		actions.add(new DropInfostringItemAction("leather legs", SLD_TOM));
-		actions.add(new DropInfostringItemAction("scale armor", SLD_PETER));
+		actions.add(new DropItemdataItemAction("leather legs", SLD_TOM));
+		actions.add(new DropItemdataItemAction("scale armor", SLD_PETER));
 		actions.add(new IncreaseKarmaAction(15.0));
 		actions.add(new GiveMapAction(false));
 
@@ -300,9 +300,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(henry.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"),
-						new PlayerHasInfostringItemWithHimCondition("leather legs", SLD_TOM),
-						new PlayerHasInfostringItemWithHimCondition("note", SLD_CHARLES),
-						new PlayerHasInfostringItemWithHimCondition("scale armor", SLD_PETER)),
+						new PlayerHasItemdataItemWithHimCondition("leather legs", SLD_TOM),
+						new PlayerHasItemdataItemWithHimCondition("note", SLD_CHARLES),
+						new PlayerHasItemdataItemWithHimCondition("scale armor", SLD_PETER)),
 				ConversationStates.ATTENDING,
 				"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.",
 				new MultipleActions(actions));
@@ -313,9 +313,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new NotCondition(
 								new AndCondition(
-										new PlayerHasInfostringItemWithHimCondition("leather legs", SLD_TOM),
-										new PlayerHasInfostringItemWithHimCondition("note", SLD_CHARLES),
-										new PlayerHasInfostringItemWithHimCondition("scale armor", SLD_PETER)))),
+										new PlayerHasItemdataItemWithHimCondition("leather legs", SLD_TOM),
+										new PlayerHasItemdataItemWithHimCondition("note", SLD_CHARLES),
+										new PlayerHasItemdataItemWithHimCondition("scale armor", SLD_PETER)))),
 				ConversationStates.ATTENDING,
 				"You didn't prove that you have found them all!",
 				null);
@@ -420,14 +420,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(5000));
-		actions.add(new DropInfostringItemAction("map", SLD_HENRY));
+		actions.add(new DropItemdataItemAction("map", SLD_HENRY));
 		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 15.0));
 		actions.add(new EquipItemAction("mainio boots", 1, true));
 
 		james.add(ConversationStates.ATTENDING,
 				Arrays.asList("map", "henry"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
-								new PlayerHasInfostringItemWithHimCondition("map", SLD_HENRY)),
+								new PlayerHasItemdataItemWithHimCondition("map", SLD_HENRY)),
 				ConversationStates.ATTENDING,
 				"The map! Wonderful! Thank you. And here is your reward. I got these boots while on the #dreamscape.",
 				new MultipleActions(actions));
@@ -435,7 +435,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		james.add(ConversationStates.ATTENDING,
 				Arrays.asList("map", "henry"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
-								new NotCondition(new PlayerHasInfostringItemWithHimCondition("map", SLD_HENRY))),
+								new NotCondition(new PlayerHasItemdataItemWithHimCondition("map", SLD_HENRY))),
 				ConversationStates.ATTENDING,
 				"Well, where is the map?",
 				null);

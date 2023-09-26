@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS iteminfo (
   life_support       VARCHAR(64),
   implementation     VARCHAR(255),
   use_behavior       VARCHAR(255),
-  infostring         VARCHAR(1000),
+  itemdata         VARCHAR(1000),
   menu               VARCHAR(64),
   use_sound          VARCHAR(255),
   persistent         INT,

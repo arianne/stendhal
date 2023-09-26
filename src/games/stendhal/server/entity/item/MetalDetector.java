@@ -61,7 +61,7 @@ public class MetalDetector extends AreaUseItem {
 						try {
 							if (detectRing(player, x, y, Integer.parseInt(slot[0]), Integer.parseInt(slot[1]))) {
 								final Item ring = em.getItem("engagement ring");
-								ring.setInfoString(ring_quest_info);
+								ring.setItemData(ring_quest_info);
 								ring.setDescription("In eternal devotion to Emma.");
 								ring.setBoundTo(player.getName());
 

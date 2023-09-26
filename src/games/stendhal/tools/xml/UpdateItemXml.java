@@ -106,7 +106,7 @@ public class UpdateItemXml {
 				if (originalElement != null) {
 					originalElement.setAttribute("condition", "!stendhal.testserver");
 				}
-				List<String> order = Arrays.asList("infostring", "atk", "def", "ratk", "immunization", "amount", "frequency", "range", "quantity", "max_quantity", "regen", "rate", "lifesteal", "persistent", "min_level", "life_support", "slot_name", "undroppableondeath", "autobind", "slot_size", "menu", "durability", "status_resist", "itemset");
+				List<String> order = Arrays.asList("itemdata", "atk", "def", "ratk", "immunization", "amount", "frequency", "range", "quantity", "max_quantity", "regen", "rate", "lifesteal", "persistent", "min_level", "life_support", "slot_name", "undroppableondeath", "autobind", "slot_size", "menu", "durability", "status_resist", "itemset");
 				testserverElement = XMLUtil.createChildElement(XMLUtil.getElements(item, "attributes").get(0), attributeToModify, order);
 				testserverElement.setAttribute("value", newValue);
 				testserverElement.setAttribute("condition", "stendhal.testserver");

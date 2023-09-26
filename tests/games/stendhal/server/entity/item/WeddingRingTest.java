@@ -53,7 +53,7 @@ public class WeddingRingTest {
 	public void testDescribe() {
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 		assertThat(ring.describe(), is("You see a §'wedding ring'."));
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		assertThat(ring.describe(), is("You see a §'wedding ring'. Its engraving says: \"In eternal love to juliet\"."));
 	}
 
@@ -90,7 +90,7 @@ public class WeddingRingTest {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
 
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 		assertFalse(ring.onUsed(romeo));
 		assertEquals("juliet is not online.", romeo.events().get(0).get("text"));
@@ -107,7 +107,7 @@ public class WeddingRingTest {
 
 		PlayerTestHelper.registerPlayer(juliet);
 
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 		assertFalse(ring.onUsed(romeo));
 		assertEquals("juliet is not wearing the wedding ring.", romeo.events().get(0).get("text"));
@@ -123,7 +123,7 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet);
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
@@ -144,11 +144,11 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet);
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("paris");
+		ring2.setItemData("paris");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertFalse(ring.onUsed(romeo));
@@ -170,11 +170,11 @@ public class WeddingRingTest {
 		zone.disallowOut();
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertFalse(ring.onUsed(romeo));
@@ -198,11 +198,11 @@ public class WeddingRingTest {
 		zone.disallowIn();
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertFalse(ring.onUsed(romeo));
@@ -224,11 +224,11 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet, "moon");
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertFalse(ring.onUsed(romeo));
@@ -246,11 +246,11 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertTrue(ring.onUsed(romeo));
@@ -267,11 +267,11 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		assertTrue(ring.onUsed(romeo));
@@ -290,11 +290,11 @@ public class WeddingRingTest {
 		PlayerTestHelper.registerPlayer(juliet, "int_semos_guard_house");
 
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring.setInfoString("juliet");
+		ring.setItemData("juliet");
 		romeo.equip("finger", ring);
 
 		final WeddingRing ring2 = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		ring2.setInfoString("romeo");
+		ring2.setItemData("romeo");
 		juliet.equipToInventoryOnly(ring2);
 
 		ring.onUsed(romeo);
@@ -352,14 +352,14 @@ public class WeddingRingTest {
 
 		ring.setBoundTo("frodo");
 		ring2.setBoundTo("frodo");
-		ring2.setInfoString("galadriel");
+		ring2.setItemData("galadriel");
 		frodo.equip("bag", ring);
 		frodo.equip("bag", ring2);
 
 		assertNotNull(frodo.getAllEquipped("wedding ring"));
 		assertEquals("one should be destroyed", frodo.getAllEquipped("wedding ring").size(), 1);
 
-		ring3.setInfoString("frodo");
+		ring3.setItemData("frodo");
 		galadriel.equipToInventoryOnly(ring3);
 
 		assertFalse(((WeddingRing) frodo.getFirstEquipped("wedding ring")).onUsed(frodo));

@@ -556,7 +556,7 @@ public class AGrandfathersWishTest extends QuestHelper {
 		assertNotNull(holy_water);
 		assertEquals(1, holy_water.getQuantity());
 		assertEquals(player.getName(), holy_water.getBoundTo());
-		assertEquals("Niall Breland", holy_water.getInfoString());
+		assertEquals("Niall Breland", holy_water.getItemData());
 		assertEquals("A bottle of ashen holy water to cure Niall.", holy_water.getDescription());
 	}
 

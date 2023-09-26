@@ -29,7 +29,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Represents an teleport scroll that acts as an invitation to an event. The
- * programmatic event name is in the <code>infostring</code> attribute. As
+ * programmatic event name is in the <code>itemdata</code> attribute. As
  * they are by invitation, it ignores destination zone anti-teleport rules.
  */
 public class InvitationScroll extends TeleportScroll {
@@ -63,7 +63,7 @@ public class InvitationScroll extends TeleportScroll {
 	}
 
 	/**
-	 * Try to teleport to a marked scroll infostring style place.
+	 * Try to teleport to a marked scroll itemdata style place.
 	 *
 	 * @param where
 	 *            A location in the form of <em>zone x y</em>.
@@ -119,7 +119,7 @@ public class InvitationScroll extends TeleportScroll {
 	 */
 	@Override
 	protected boolean useTeleportScroll(final Player player) {
-		final String dest = getInfoString();
+		final String dest = getItemData();
 
 		if (dest == null) {
 			player.sendPrivateText("This invitation has not been filled in.");
@@ -185,7 +185,7 @@ public class InvitationScroll extends TeleportScroll {
 		if (hasDescription()) {
 			return getDescription();
 		} else {
-			final String dest = getInfoString();
+			final String dest = getItemData();
 			final String[] info = dest.split(",");
 			if (info.length == 2) {
 				// if this was set on creation in maps.quests.marriage.Engagement then both engaged players names could be added.

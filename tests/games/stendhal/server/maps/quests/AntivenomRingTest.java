@@ -65,7 +65,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private SpeakerNPC zoologist;
 	private SpeakerNPC ringmaker;
 	private Item note;
-	private final String infostring = "note to apothecary";
+	private final String itemdata = "note to apothecary";
 
 	private final String questName = "antivenom_ring";
 	private final String subquestName = questName + "_extract";
@@ -167,7 +167,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertNotNull(zoologist);
 		assertNotNull(ringmaker);
 		assertNotNull(note);
-		assertNull(note.getInfoString());
+		assertNull(note.getItemData());
 	}
 
 	private void testHintNPCs() {
@@ -273,7 +273,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private void testQuestNotActive() {
 		assertNull(player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
-		assertFalse(player.isEquippedWithInfostring("note", infostring));
+		assertFalse(player.isEquippedWithItemdata("note", itemdata));
 
 		// Zoey
 		Engine en = zoologist.getEngine();
@@ -317,7 +317,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.", getReply(apothecary));
 
 		// add appropriate info string to note
-		note.setInfoString(infostring);
+		note.setItemData(itemdata);
 
 		// request quest with note from Klaas
 		en.step(player, "quest");
@@ -371,7 +371,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Okay. I still need " + items_string, getReply(apothecary));
 
 		// make sure note was dropped
-		assertFalse(player.isEquippedWithInfostring("note", infostring));
+		assertFalse(player.isEquippedWithItemdata("note", itemdata));
 	}
 
 	private void testQuestActive() {

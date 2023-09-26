@@ -158,7 +158,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 				params.put("time", Grammar.quantityplnoun(data.getExpectedMinutes(), "minute", "one"));
 
 				final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-				item.setInfoString(data.getFlavor());
+				item.setItemData(data.getFlavor());
 				item.setDescription(StringUtils.substitute(itemDescription, params));
 				item.setBoundTo(player.getName());
 
@@ -214,7 +214,7 @@ public class DeliverItemTask extends QuestTaskBuilder {
 						// and because the player probably won't
 						// deliver it anymore anyway.
 						for (final Item item : player.getAllEquipped(itemName)) {
-							if (item.getInfoString() != null) {
+							if (item.getItemData() != null) {
 								player.drop(item);
 							}
 						}

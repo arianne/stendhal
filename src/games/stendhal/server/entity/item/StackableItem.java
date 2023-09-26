@@ -30,7 +30,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 
 	private static Logger logger = Logger.getLogger(StackableItem.class);
 
-	private static final String[] IMPORTANT_ATTRIBUTES = new String[] { "infostring",
+	private static final String[] IMPORTANT_ATTRIBUTES = new String[] { "itemdata",
 			"bound",
 			"persistent", "undroppableondeath", "amount", "frequency",
 			"regen", "atk", "range" };

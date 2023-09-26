@@ -39,7 +39,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerCanEquipItemCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -187,8 +187,8 @@ public class TrapsForKlaas extends AbstractQuest {
 				}
 
 				// player already has a note
-				// FIXME: PlayerOwnsItemIncludingBankCondition currently doesn't support infostring items
-				if (player.isEquippedWithInfostring("note", info_string)) {
+				// FIXME: PlayerOwnsItemIncludingBankCondition currently doesn't support itemdata items
+				if (player.isEquippedWithItemdata("note", info_string)) {
 					return false;
 				}
 
@@ -210,7 +210,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item note = SingletonRepository.getEntityManager().getItem("note");
-				note.setInfoString(info_string);
+				note.setItemData(info_string);
 				note.setDescription("You see a note written to an apothecary. It is a recommendation from Klaas.");
 				note.setBoundTo(player.getName());
 				player.equipOrPutOnGround(note);
@@ -282,7 +282,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestRegisteredCondition("antivenom_ring"),
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", info_string)),
+						new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", info_string)),
 						new PlayerCanEquipItemCondition("note"),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),
@@ -295,7 +295,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
-						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", info_string)),
+						new NotCondition(new PlayerHasItemdataItemWithHimCondition("note", info_string)),
 						new NotCondition(new PlayerCanEquipItemCondition("note")),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),

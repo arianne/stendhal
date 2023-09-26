@@ -93,7 +93,7 @@ public class SummonPetScroll extends Scroll {
 		}
 
 
-		String type = getInfoString();
+		String type = getItemData();
 		if (type == null) {
 			// default to cat, if no other type is specified
 			type = "cat";
@@ -128,10 +128,10 @@ public class SummonPetScroll extends Scroll {
 	public String describe() {
 		String text = super.describe();
 
-		final String infostring = getInfoString();
+		final String itemdata = getItemData();
 
-		if (infostring != null) {
-			text += " It will summon a " + infostring  + ".";
+		if (itemdata != null) {
+			text += " It will summon a " + itemdata  + ".";
 		}
 		return (text);
 	}

@@ -68,7 +68,7 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 				params.put("flavor", data.getFlavor());
 				params.put("tip", data.getTip());
 				for (final Item item : player.getAllEquipped(deliverItemTask.getItemName())) {
-					final String flavor = item.getInfoString();
+					final String flavor = item.getItemData();
 					if (data.getFlavor().equals(flavor)) {
 						player.drop(item);
 						// Check whether the player was supposed to deliver this item.

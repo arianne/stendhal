@@ -54,7 +54,7 @@
 
   <complexType name="attributes">
     <sequence>
-      <element name="infostring" type="Q1:attribute" minOccurs="0"/>
+      <element name="itemdata" type="Q1:attribute" minOccurs="0"/>
       <element name="atk" type="Q1:attribute" minOccurs="0"/>
       <element name="def" type="Q1:attribute" minOccurs="0"/>
       <element name="ratk" type="Q1:attribute" minOccurs="0"/>

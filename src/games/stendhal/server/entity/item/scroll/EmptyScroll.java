@@ -62,7 +62,7 @@ public class EmptyScroll extends Scroll {
 		if (zone.isTeleportInAllowed(player.getX(), player.getY())) {
 			final Item markedScroll = SingletonRepository.getEntityManager().getItem(
 					"marked scroll");
-			markedScroll.setInfoString(player.getID().getZoneID() + " "
+			markedScroll.setItemData(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());
 			player.equipOrPutOnGround(markedScroll);
 			return true;

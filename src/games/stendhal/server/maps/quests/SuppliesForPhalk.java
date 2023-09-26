@@ -27,7 +27,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.DropItemdataItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -37,7 +37,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -220,7 +220,7 @@ import games.stendhal.server.maps.Region;
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
-				cloak.setInfoString("Phalk");
+				cloak.setItemData("Phalk");
 				cloak.setDescription("You see a brand new dwarf cloak, with the name 'Phalk' sewn into the label by Wrvil.");
 				// remember the description
 				cloak.setPersistent(true);
@@ -262,7 +262,7 @@ import games.stendhal.server.maps.Region;
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
-					cloak.setInfoString("Phalk");
+					cloak.setItemData("Phalk");
 					cloak.setDescription("You see a brand new dwarf cloak, with the name 'Phalk' sewn into the label by Wrvil.");
 					// remember the description
 					cloak.setPersistent(true);
@@ -330,7 +330,7 @@ import games.stendhal.server.maps.Region;
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
-				armor.setInfoString("Phalk");
+				armor.setItemData("Phalk");
 				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed on it.");
 				// remember the description
 				armor.setPersistent(true);
@@ -370,7 +370,7 @@ import games.stendhal.server.maps.Region;
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
-				armor.setInfoString("Phalk");
+				armor.setItemData("Phalk");
 				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed on it.");
 				// remember the description
 				armor.setPersistent(true);
@@ -408,15 +408,15 @@ import games.stendhal.server.maps.Region;
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(4000));
-		actions.add(new DropInfostringItemAction("golden armor","Phalk"));
-		actions.add(new DropInfostringItemAction("dwarf cloak","Phalk"));
+		actions.add(new DropItemdataItemAction("golden armor","Phalk"));
+		actions.add(new DropItemdataItemAction("dwarf cloak","Phalk"));
 		actions.add(new SetQuestAction(QUEST_SLOT, "done"));
 		actions.add(new EquipItemAction("dwarvish armor", 1, true));
 
 		npc.add(ConversationStates.ATTENDING, "clothes",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),
-				new PlayerHasInfostringItemWithHimCondition("golden armor","Phalk"),
-				new PlayerHasInfostringItemWithHimCondition("dwarf cloak","Phalk")),
+				new PlayerHasItemdataItemWithHimCondition("golden armor","Phalk"),
+				new PlayerHasItemdataItemWithHimCondition("dwarf cloak","Phalk")),
 				ConversationStates.ATTENDING,
 				"Oh yeah! Thank you so much! Payment?? Erm... *cough* I will give you my old armor as a reward.",
 				new MultipleActions(actions));
@@ -425,8 +425,8 @@ import games.stendhal.server.maps.Region;
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),
 				new NotCondition(
 						new AndCondition(
-								new PlayerHasInfostringItemWithHimCondition("golden armor","Phalk"),
-								new PlayerHasInfostringItemWithHimCondition("dwarf cloak","Phalk")))),
+								new PlayerHasItemdataItemWithHimCondition("golden armor","Phalk"),
+								new PlayerHasItemdataItemWithHimCondition("dwarf cloak","Phalk")))),
 				ConversationStates.ATTENDING,
 				"Hm, I want the special golden #armor from Mrotho and the dwarf #cloak from Wrvil. Tell them my name and they will give you what they made me.",
 				null);

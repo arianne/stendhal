@@ -167,11 +167,11 @@ public class UseAction implements ActionListener {
 		if (object.has("name")) {
 			name = object.get("name");
 		}
-		String infostring = "";
-		if (object.has("infostring")) {
-			infostring = object.get("infostring");
+		String itemdata = "";
+		if (object.has("itemdata")) {
+			itemdata = object.get("itemdata");
 		}
 
-		new GameEvent(player.getName(), USE, name, infostring).raise();
+		new GameEvent(player.getName(), USE, name, itemdata).raise();
 	}
 }

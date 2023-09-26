@@ -134,7 +134,7 @@ public class MakeRings {
 						/*The ring is ready now. It was either forging ready for a wedding or
 						 * forging again because a married player lost theirs.
 						 * In each case we bind to the player. If player is engaged the rings get swapped at marriage ceremony
-						 * If this is a forgingagain we must set the infostring to spouse name so the ring works
+						 * If this is a forgingagain we must set the itemdata to spouse name so the ring works
 						 * We don't give them any XP if it is to replace a lost ring. (fools.)
 						 * If this is for an engaged player, npc gives a hitn about getting dressed for big day
 						 */
@@ -143,7 +143,7 @@ public class MakeRings {
 						weddingRing.setBoundTo(player.getName());
 						if (player.getQuest(marriage.getQuestSlot()).startsWith("forgingagain")) {
 							npc.say("I've finished making your replacement wedding ring. Do try to be more careful next time!");
-							weddingRing.setInfoString(player.getQuest(marriage.getSpouseQuestSlot()));
+							weddingRing.setItemData(player.getQuest(marriage.getSpouseQuestSlot()));
 							player.setQuest(marriage.getQuestSlot(), "done");
 						} else {
 							npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");

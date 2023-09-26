@@ -59,7 +59,7 @@ public class SeedSellerBehaviourTest {
 		sb.transactAgreedDeal(res, new EventRaiser(speakerNPC), bob);
 		final Item seed = bob.getFirstEquipped("seed");
 		assertNotNull(seed);
-		assertEquals("lilia", seed.getInfoString());
+		assertEquals("lilia", seed.getItemData());
 		assertEquals(90, ((Stackable<?>) bob.getFirstEquipped("money")).getQuantity());
 	}
 
@@ -74,11 +74,11 @@ public class SeedSellerBehaviourTest {
 		pricelist.put("daisies seed", 20);
 		Item item = sb.getAskedItem("lilia seed");
 		assertTrue(item instanceof Seed);
-		assertEquals("lilia", item.getInfoString());
+		assertEquals("lilia", item.getItemData());
 
 		item = sb.getAskedItem("daisies seed");
 		assertTrue(item instanceof Seed);
-		assertEquals("daisies", item.getInfoString());
+		assertEquals("daisies", item.getItemData());
 	}
 
 }

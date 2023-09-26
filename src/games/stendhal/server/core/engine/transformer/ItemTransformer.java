@@ -45,6 +45,12 @@ public class ItemTransformer {
 
 			item.setID(rpobject.getID());
 
+			// update infostring to itemdata
+			if (rpobject.has("infostring")) {
+				rpobject.put("itemdata", rpobject.get("infostring"));
+				rpobject.remove("infostring");
+			}
+
 			boolean autobind = item.has("autobind");
 			if (rpobject.has("persistent")
 					&& (rpobject.getInt("persistent") == 1)) {
@@ -85,7 +91,7 @@ public class ItemTransformer {
 
 			// make sure saved individual information is
 			// restored
-			final String[] individualAttributes = { "infostring",
+			final String[] individualAttributes = { "itemdata",
 					"description", "bound", "undroppableondeath",
 					"uses", "logid"};
 			for (final String attribute : individualAttributes) {

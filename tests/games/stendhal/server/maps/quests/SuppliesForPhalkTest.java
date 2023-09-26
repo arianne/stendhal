@@ -209,7 +209,7 @@ public class SuppliesForPhalkTest {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("clothes;none;armor"));
 		assertTrue(player.isEquipped("golden armor"));
-		// could also check the infostring and description. maybe just fire the infostring checking method?
+		// could also check the itemdata and description. maybe just fire the itemdata checking method?
 
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
@@ -278,7 +278,7 @@ public class SuppliesForPhalkTest {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("clothes;cloak;armor"));
 		assertTrue(player.isEquipped("dwarf cloak"));
-		// could also check the infostring and description. maybe just fire the infostring checking method?
+		// could also check the itemdata and description. maybe just fire the itemdata checking method?
 
 		en.step(player, "bye");
 		assertEquals("Bye, and please don't attack too many of my friends.", getReply(npc));
@@ -331,13 +331,13 @@ public class SuppliesForPhalkTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-		// the armor and cloak must be the special ones, we tested ones without infostring already.
+		// the armor and cloak must be the special ones, we tested ones without itemdata already.
 		Item armor = ItemTestHelper.createItem("golden armor", 1);
-		armor.setInfoString("Phalk");
+		armor.setItemData("Phalk");
 		player.getSlot("bag").add(armor);
 
 		Item cloak = ItemTestHelper.createItem("dwarf cloak", 1);
-		cloak.setInfoString("Phalk");
+		cloak.setItemData("Phalk");
 		player.getSlot("bag").add(cloak);
 
 		final int xp = player.getXP();

@@ -324,7 +324,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 		assertEquals("found_ring", player.getQuest(slot, 0));
 
 		// truly lost ring
-		player.dropWithInfostring("engagement ring", "Ari's ring");
+		player.dropWithItemdata("engagement ring", "Ari's ring");
 		assertFalse(player.isEquipped("engagement ring"));
 		en.step(player, "hi");
 		en.step(player, "lost");
@@ -384,7 +384,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 
 		final Item ring = player.getFirstEquipped("engagement ring");
 		assertEquals(player.getName(), ring.getBoundTo());
-		assertEquals("Ari's ring", ring.getInfoString());
+		assertEquals("Ari's ring", ring.getItemData());
 
 		// put player back in Fado City
 		gotoFado();
@@ -480,7 +480,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 		final String legsInfo = "foo bar";
 		final Item legs = entityMan.getItem("mithril legs");
 		legs.setBoundTo(player.getName());
-		legs.setInfoString(legsInfo);
+		legs.setItemData(legsInfo);
 
 		player.equip("bag", legs);
 		assertEquals(1, player.getAllEquipped("mithril legs").size());
@@ -512,7 +512,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 
 		assertFalse(player.isEquipped("mithril legs"));
 		assertEquals(1, player.getAllEquipped("metal detector").size());
-		// make sure bound & infostring data are stored in quest slot
+		// make sure bound & itemdata data are stored in quest slot
 		assertEquals("mithril legs", player.getQuest(pawnSlot, 0));
 		assertEquals(player.getName(), player.getQuest(pawnSlot, 1));
 		assertEquals(legsInfo, player.getQuest(pawnSlot, 2));
@@ -523,8 +523,8 @@ public class LostEngagementRingTest extends LuaTestHelper {
 		final MetalDetector detector = (MetalDetector) player.getFirstEquipped("metal detector");
 		assertNotNull(detector);
 		assertEquals(player.getName(), detector.getBoundTo());
-		// make sure bound & infostring data are stored in item infostring
-		final String[] dinfo = detector.getInfoString().split(";");
+		// make sure bound & itemdata data are stored in item itemdata
+		final String[] dinfo = detector.getItemData().split(";");
 		assertEquals(sawyer.getName(), dinfo[0]);
 		assertEquals("mithril legs", dinfo[1]);
 		assertEquals(player.getName(), dinfo[2]);
@@ -576,11 +576,11 @@ public class LostEngagementRingTest extends LuaTestHelper {
 		// check that metal detector was returned to shelf
 		checkMetalDetectorOnShelf();
 
-		// make sure returned item retains bound & infostring information
+		// make sure returned item retains bound & itemdata information
 		final Item returnedLegs = player.getFirstEquipped("mithril legs");
 		assertNotNull(returnedLegs);
 		assertEquals(player.getName(), returnedLegs.getBoundTo());
-		assertEquals(legsInfo, returnedLegs.getInfoString());
+		assertEquals(legsInfo, returnedLegs.getItemData());
 	}
 
 	/**

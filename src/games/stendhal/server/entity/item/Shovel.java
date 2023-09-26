@@ -62,7 +62,7 @@ public class Shovel extends AreaUseItem {
 
 							if (x == ringX && y == ringY) {
 								final Item ring = em.getItem("engagement ring");
-								ring.setInfoString(ring_quest_info);
+								ring.setItemData(ring_quest_info);
 								ring.setDescription("In eternal devotion to Emma.");
 								ring.setBoundTo(player.getName());
 
