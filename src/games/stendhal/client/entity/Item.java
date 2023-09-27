@@ -50,4 +50,28 @@ public class Item extends Entity {
 	public RPSlot getContent() {
 		return content;
 	}
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("state")) {
+			fireChange(PROP_STATE);
+		}
+	}
+
+	public int getState() {
+		if (rpObject.has("state")) {
+			return rpObject.getInt("state");
+		}
+		return 0;
+	}
 }

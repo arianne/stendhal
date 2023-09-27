@@ -27,6 +27,7 @@ import games.stendhal.client.gui.InternalWindow;
 import games.stendhal.client.gui.InternalWindow.CloseListener;
 import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.MathHelper;
@@ -75,16 +76,21 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 
 		/*
 		 * Items are always 1x1 (they need to fit in entity slots). Extra
-		 * columns are animation.
+		 * columns are animation, extra rows are different states
 		 */
 		final int width = sprite.getWidth();
+		final int yOffset = 32 * entity.getState();
+		store.getTile(sprite, 0, yOffset, IGameScreen.SIZE_UNIT_PIXELS,
+				IGameScreen.SIZE_UNIT_PIXELS);
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getAnimatedSprite(sprite, 100);
+			sprite = new AnimatedSprite(store.getTiles(sprite, 0, yOffset, 
+					width / IGameScreen.SIZE_UNIT_PIXELS, 
+					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS),
+					100, true);
 		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getTile(sprite, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
+			sprite = store.getTile(sprite, 0, yOffset, IGameScreen.SIZE_UNIT_PIXELS,
 					IGameScreen.SIZE_UNIT_PIXELS);
-			logger.warn("Multi-row item image for: " + getClassResourcePath());
 		}
 
 		setSprite(sprite);
@@ -125,7 +131,7 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 	void entityChanged(final Object property) {
 		super.entityChanged(property);
 
-		if (property == IEntity.PROP_CLASS) {
+		if (property == IEntity.PROP_CLASS || property == IEntity.PROP_STATE) {
 			representationChanged = true;
 		}
 	}
