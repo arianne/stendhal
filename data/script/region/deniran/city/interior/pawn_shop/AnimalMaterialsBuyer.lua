@@ -18,11 +18,16 @@ local buyerName = "Harley"
 
 
 local function initNPC()
-	buyer = entities:createSpeakerNPC(buyerName)
-	buyer:setOutfit("body=0,head=0,eyes=0,hair=11,dress=53")
-	buyer:setPosition(17, 21)
-	buyer:setDirection(Direction.UP)
-	buyer:setDescription("You see " .. buyerName .. ". He is employed at the pawn shop.")
+	buyer = entities:create({
+		type = "SpeakerNPC",
+		name = buyerName,
+		description = "You see " .. buyerName .. ". He is employed at the pawn shop.",
+		outfit = {
+			layers = "body=0,head=0,eyes=0,hair=11,dress=53"
+		},
+		pos = {17, 21},
+		dir = Direction.UP
+	})
 
 	-- dialogue
 	buyer:addGreeting()
@@ -37,7 +42,13 @@ end
 
 local function initShop()
 	-- shop sign
-	local sign = entities:createShopSign("buyanimalmaterials", "Animal Materials Barter", buyerName .. " buys the following items", false)
+	local sign = entities:create({
+		type = "ShopSign",
+		name = "buyanimalmaterials",
+		title = "Animal Materials Barter",
+		caption = buyerName .. " buys the following items",
+		seller = false
+	})
 	sign:setEntityClass("blackboard")
 	sign:setPosition(19, 20)
 

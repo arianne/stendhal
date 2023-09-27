@@ -19,12 +19,19 @@
 local zone_name = "0_semos_plains_n"
 
 if game:setZone(zone_name) then
-	local broker = entities:createSpeakerNPC("Emeric")
-	broker:setOutfit("body=0,head=0,eyes=0,hair=32,dress=13")
-	broker:setOutfitColor("eyes", 0x468499)
-	broker:setOutfitColor("dress", 0x065535)
-	broker:setPosition(60, 92)
-	broker:setIdleDirection(Direction.RIGHT)
+	local broker = entities:create({
+		type = "SpeakerNPC",
+		name = "Emeric",
+		outfit = {
+			layers = "body=0,head=0,eyes=0,hair=32,dress=13",
+			colors = {
+				eyes = 0x468499,
+				dress = 0x065535
+			}
+		},
+		pos = {60, 92},
+		idleDir = Direction.RIGHT
+	})
 
 	broker:addGreeting();
 	broker:addGoodbye();

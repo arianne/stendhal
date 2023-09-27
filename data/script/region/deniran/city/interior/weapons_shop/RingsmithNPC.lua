@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                    Copyright © 2020-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -60,19 +60,27 @@ local function getItemListString(includeFee)
 end
 
 if game:setZone(zone) then
-	ringsmith = entities:createSpeakerNPC("Raven")
-	ringsmith:setOutfit("body=1,head=0,eyes=24,dress=52,hair=13")
-	ringsmith:setOutfitColor("eyes", 0x1f6521)
-	ringsmith:setOutfitColor("hair", Color.RED)
-
-	-- path
-	local nodes = {
-		{24, 12},
-		{31, 12},
-		{31, 6},
-		{24, 6},
-	}
-	ringsmith:setPathAndPosition(entities:fixedPath(nodes, true))
+	ringsmith = entities:create({
+		type = "SpeakerNPC",
+		name = "Raven",
+		outfit = {
+			layers = "body=1,head=0,eyes=24,dress=52,hair=13",
+			colors = {
+				eyes = 0x1f6521,
+				hair = Color.RED
+			}
+		},
+		pos = {24, 12},
+		path = {
+			nodes = {
+				{24, 12},
+				{31, 12},
+				{31, 6},
+				{24, 6}
+			},
+			loop = true
+		}
+	})
 
 	-- dialogue
 	ringsmith:addGreeting()

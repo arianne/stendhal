@@ -25,7 +25,10 @@ logger:info("Loading example NPC created with Lua")
 if game:setZone("0_semos_city") then
 
   -- use helper object to create a new NPC
-  local lua = entities:createSpeakerNPC("Lua")
+  local lua = entities:create({
+    type = "SpeakerNPC",
+    name = "Lua"
+  })
   lua:setEntityClass("littlegirlnpc")
 
   local nodes = {

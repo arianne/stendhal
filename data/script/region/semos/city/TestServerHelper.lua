@@ -60,7 +60,10 @@ local function getMapListString()
 end
 
 local function createNPC()
-	npc = entities:createSpeakerNPC("Aida")
+	npc = entities:create({
+		type = "SpeakerNPC",
+		name = "Aida"
+	})
 	npc:setEntityClass("youngwitchnpc")
 	npc:setPosition(17, 42)
 	npc:setIdleDirection(Direction.DOWN)

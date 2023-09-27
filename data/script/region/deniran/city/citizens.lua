@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2021 - Arianne                        *
+ *                    Copyright © 2021-2023 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -132,12 +132,14 @@ for zone_name, entities_table in pairs(zones) do
 		logger:error("could not set zone: " .. zone_name)
 	else
 		for _, data in ipairs(entities_table) do
-			local citizen = entities:createSilentNPC()
-
 			if data.desc == nil then
 				data.desc = "You see a citizen of Deniran City."
 			end
-			citizen:setDescription(data.desc)
+
+			local citizen = entities:create({
+				type = "SilentNPC",
+				description = data.desc
+			})
 
 			if type(data.outfit) == "table" and data.outfit.layers ~= nil then
 				citizen:setOutfit(data.outfit.layers)
