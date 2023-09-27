@@ -22,10 +22,10 @@ if game:setZone(zone_name) then
 	fishy:setEntityClass("animal/fish_roach")
 	fishy:setDescription("You see a fish.")
 	fishy:setVisibility(50)
-	fishy:setPathAndPosition({
+	fishy:setPathAndPosition(entities:fixedPath({
 		{13,15}, {13,18},
 		{10,18}, {10,15},
-	}, true)
+	}, true))
 	fishy:setIgnoresCollision(true)
 	fishy:setBaseSpeed(0.1)
 

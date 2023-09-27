@@ -151,7 +151,7 @@ for zone_name, entities_table in pairs(zones) do
 			end
 
 			if type(data.path) == "table" and type(data.path.nodes) == "table" then
-				citizen:setPathAndPosition(data.path.nodes, true)
+				citizen:setPathAndPosition(entities:fixedPath(data.path.nodes, true))
 				if data.path.retrace then
 					citizen:setRetracePath()
 				end
