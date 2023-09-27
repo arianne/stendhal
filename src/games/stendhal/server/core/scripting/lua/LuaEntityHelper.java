@@ -430,8 +430,8 @@ public class LuaEntityHelper {
 	 * @see
 	 *   games.stendhal.server.entity.npc.SilentNPC
 	 */
-	private LuaSilentNPC buildSilentNPC(final LuaTable lt) {
-		final LuaSilentNPC npc = new LuaSilentNPC() {};
+	private SilentNPC buildSilentNPC(final LuaTable lt) {
+		final SilentNPC npc = new SilentNPC() {};
 		setNPCTraits(npc, lt);
 		return npc;
 	}
@@ -651,10 +651,10 @@ public class LuaEntityHelper {
 	 *   Use `LuaEntityHelper.create`.
 	 */
 	@Deprecated
-	public LuaSilentNPC createSilentNPC() {
+	public SilentNPC createSilentNPC() {
 		logger.deprecated("entities:createSilentNPC", "entities:create");
 
-		return new LuaSilentNPC();
+		return new SilentNPC();
 	}
 
 	/**
