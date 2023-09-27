@@ -102,7 +102,7 @@ public class LuaConditionHelper {
 		className = "games.stendhal.server.entity.npc.condition." + className;
 		Object[] objects = null;
 		if (args != null && !args.isnil()) {
-			objects = LuaArrayHelper.get().toArray(args);
+			objects = LuaArrayHelper.get().fromTable(args);
 		}
 
 		final boolean noArgs = objects == null || objects.length == 0;
