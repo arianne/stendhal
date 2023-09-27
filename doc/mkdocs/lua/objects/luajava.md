@@ -21,7 +21,7 @@ objects to Lua or create new Java object instances.
 ---
 # Examples
 
-Example of exposing a static object &amp;enums to Lua:
+Example of exposing a static object or enum to Lua:
 
 ```lua
 -- store a Java enum in a Lua global variable

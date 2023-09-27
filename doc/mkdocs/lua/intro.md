@@ -28,7 +28,7 @@ For more detailed information, see the [Lua reference manual](https://www.lua.or
 ## Comments
 
 Lua uses double dashes (`--`) for single line comments &amp; double dashes followed by double square
-brackets (`[[`) &amp; closed with double square brackets (`]]`) for multi-line comments:
+brackets (`--[[`) &amp; closed with double square brackets (`]]`) for multi-line comments:
 
 ```lua
 -- a single line comment
@@ -101,7 +101,8 @@ print(var) -- prints "Hello world!"
 A Lua table is a data type similar to a Java list or map. Tables can be indexed or use key=value
 pairs.
 
-_(<span style="color:red;">__IMPORTANT NOTE:__ Lua table indexes begin at 1, not 0</span>)_
+_(<span style="color:red;"><span style="font-weight:bold;">IMPORTANT NOTE:</span> Lua table indexes
+begin at 1, not 0</span>)_
 
 
 #### Creating Tables
@@ -318,7 +319,7 @@ game:setZone("0_semos_city")
 
 ### Create New Zone
 
-It is recommended to create new zones in the XML configurations in
+For creating a permanent zone it is recommended to use the XML configurations in
 [data/conf/zones](https://github.com/arianne/stendhal/blob/master/data/conf/zones).
 
 Currently creating new zones via Lua is not supported.
@@ -351,20 +352,25 @@ end
 
 ## Adding Entities
 
-### Signs
+Entities can be added to the game using the [entities] object.
 
-Signs can be created with [entities:createSign] and [entities:createShopSign]:
+
+### Adding Signs
+
+Signs can be created with the "Sign", "Reader", &amp; "ShopSign" types:
 
 ```lua
 local zone = "0_semos_city"
 if game:setZone(zone) then
     -- create the sign instance
-    local sign = entities:createSign()
-    sign:setEntityClass("signpost")
-    sign:setPosition(12, 55)
-    sign:setText("Meet Lua!")
+    local sign = entities:create({
+        type = "Sign",
+        class = "signpost",
+        pos = {12, 55},
+        text = "Meet Lua!"
+    })
 
-    -- Add it to the world
+    -- add to the world
     game:add(sign)
 else
     logger:error("Could not set zone: " .. zone)
@@ -372,34 +378,36 @@ end
 ```
 
 
-### NPCs
+### Adding NPCs
 
-Use the [entities:createSpeakerNPC] method to create an interactive NPC:
+Use the "SpeakerNPC" type to create an interactive NPC:
 
 ```lua
 local zone = "0_semos_city"
 if game:setZone(zone) then
-    -- Use helper object to create a new NPC
-    local npc = entities:createSpeakerNPC("Lua")
-    npc:setEntityClass("littlegirlnpc")
-    npc:setPosition(10, 55)
-    npc:setBaseSpeed(0.1)
-    npc:setCollisionAction(CollisionAction.STOP)
+    -- create the NPC instance
+    local npc = entities:create({
+        type = "SpeakerNPC",
+        name = "Lua",
+        class = "littlegirlnpc",
+        pos = {10, 55},
+        path = {
+            nodes = {
+                {10, 55},
+                {11, 55},
+                {11, 56},
+                {10, 56},
+            },
+            collisionAction = CollisionAction.STOP
+        },
+        speed = 0.1
+    })
 
-    local nodes = {
-        {10, 55},
-        {11, 55},
-        {11, 56},
-        {10, 56},
-    }
-
-    npc:setPath(nodes)
-
-    -- Dialogue
+    -- dialogue
     npc:addJob("Actually, I am jobless.")
     npc:addGoodbye();
 
-    -- Add to the world
+    -- add to the world
     game:add(npc)
 else
     logger:error("Could not set zone: " .. zone)
@@ -412,7 +420,11 @@ end
 A simple example of adding a chat transition can be done without any special functionality:
 
 ```lua
-local frank = entities:createSpeakerNPC("Frank")
+local frank = entities:create({
+    type = "SpeakerNPC",
+    name = "Frank"
+})
+
 frank:add(ConversationStates.IDLE,
     ConversationPhrases.GREETING_MESSAGES,
     nil,
@@ -424,7 +436,7 @@ frank:add(ConversationStates.IDLE,
 This simply adds a response to saying "hello" &amp; sets the NPC to attend to the player (equivalent
 of `frank:addGreeting("Hello")`).
 
-For more complicated behavior, we need to use some helper methods. If we want to check a condition
+For more advanced behavior, we need to use some helper methods. If we want to check a condition
 we use the [conditions:create] method. The first parameter is the string name of the [ChatCondition]
 we want to instantiate. The second parameter is a table that contains the values that should be
 passed to the ChatCondition constructor.
@@ -451,7 +463,7 @@ Example usage:
 local condition = conditions.notCondition(conditions:create("PlayerHasItemWithHimCondition", {"money"})
 ```
 
-To add a ChatAction, we use the [actions:create] method. Its usage is identical to
+To add a [ChatAction], we use the [actions:create] method. Its usage is identical to
 [conditions:create].
 
 Example:
@@ -465,7 +477,10 @@ frank:add(ConversationStates.IDLE,
     actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}))
 ```
 
-Lua tables can be used to add multiple conditions or actions:
+Lua tables can be used to add multiple conditions or actions (___NOTE:__ this only works for NPCs
+created from Lua or instances of [LuaSpeakerNPC]_):
+
+___FIXME:__ add global helper methods for managing [SpeakerNPC] instances not created in Lua_
 
 ```lua
 frank:add(ConversationStates.IDLE,
@@ -510,35 +525,29 @@ frank:add(ConversationStates.IDLE,
 
 The [merchants] object is used for adding merchant behavior (buying/selling) to an NPC.
 
+___FIXME:__ should use `ShopType` enum_
+
 Example of adding seller behavior to an NPC:
 
 ```lua
 if game:setZone("0_semos_city") then
-    local frank = entities.createSpeakerNPC("Frank")
+    local frank = entities.create({
+        type = "SpeakerNPC",
+        name = "Frank"
+    })
     merchants:addSeller(frank, merchants.shops:get("shopname"), true)
 
     game:add(frank)
 end
 ```
 
-To create a custom shop list, you can use a Lua table (there are multiple ways to add elements to a
-Lua table):
-
-Method 1:
+To create a custom shop list, you can use a Lua table:
 
 ```lua
 local priceList = {
     meat = 50,
-    ["ham"] = 70,
+    ham = 70,
 }
-```
-
-Method 2:
-
-```lua
-local priceList = {}
-priceList.meat = 50
-priceList["ham"] = 70
 ```
 
 The helper methods have special handling for underscore characters as well (the following are all
@@ -605,7 +614,8 @@ constructor, achieving the same functionality is quite simple.
 -- "entities:getItem" returns an instance of Item
 local bestiary = entities:getItem("bestiary")
 
--- in order to use the bestiary's "setOwner" method, we must convert it to an "OwnedItem" instance by calling its copy constructor
+-- in order to use the bestiary's "setOwner" method, we must convert it to an "OwnedItem" instance
+-- by calling its copy constructor
 bestiary = luajava.newInstance("games.stendhal.server.entity.item.OwnedItem", bestiary)
 bestiary:setOwner("Ted")
 ```
@@ -617,14 +627,14 @@ bestiary:setOwner("Ted")
 [conditions]: /reference/lua/objects/conditions/
 [conditions:create]: /reference/lua/objects/conditions/#conditionscreate
 [entities]: /reference/lua/objects/entities/
-[entities:createShopSign]: /reference/lua/objects/entities/#entitiescreateshopsign
-[entities:createSign]: /reference/lua/objects/entities/#entitiescreatesign
-[entities:createSpeakerNPC]: /reference/lua/objects/entities/#entitiescreatespeakernpc
 [game]: /reference/lua/objects/game/
 [game:setMusic]: http://stendhal.localhost/reference/lua/objects/game/#gamesetmusic
 [game:setZone]: http://stendhal.localhost/reference/lua/objects/game/#gamesetzone
+[LuaSpeakerNPC]: /reference/lua/objects/entities/#luaspeakernpc
 [merchants]: /reference/lua/objects/merchants/
 [properties]: /reference/lua/objects/properties/
 
+[ChatAction]: /reference/java/games/stendhal/server/entity/npc/ChatAction.html
 [ChatCondition]: /reference/java/games/stendhal/server/entity/npc/ChatCondition.html
 [NotCondition]: /reference/java/games/stendhal/server/entity/npc/condition/NotCondition.html
+[SpeakerNPC]: /reference/java/games/stendhal/server/entity/npc/SpeakerNPC.html

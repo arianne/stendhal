@@ -52,7 +52,7 @@ the [StendhalQuestSystem] class.
     - <span class="param">slotName:</span> _([string][LuaString])_ Quest slot identifier.
     - <span class="param">name:</span> _([string][LuaString])_ The reader friendly name that can be
       shown in travel log.
-    - <span class="param">desc:</span> _([string][LuaString]) Quest description.
+    - <span class="param">desc:</span> _([string][LuaString])_ Quest description.
 - Returns: _([LuaQuest])_ New quest instance.
 
 
