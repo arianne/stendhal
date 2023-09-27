@@ -27,10 +27,10 @@ export class ChatOptionsEvent extends RPEvent {
 			return;
 		}
 
-		let optionsList = this['options'].split("|~|");
+		let optionsList = this['options'].split("\t");
 		let message = [];
 		for (let optionListEntry of optionsList) {
-			let option = optionListEntry.split("|*|");
+			let option = optionListEntry.split("|~|");
 			message.push(option[1]);
 		}
 

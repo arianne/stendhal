@@ -77,7 +77,7 @@ public class ChatOptionsEvent extends RPEvent {
 		}
 
 		String serialize() {
-			return trigger + "|*|" + label + "|*|" + options;
+			return trigger + "|~|" + label + "|~|" + options;
 		}
 
 		@Override
@@ -103,7 +103,7 @@ public class ChatOptionsEvent extends RPEvent {
 		put(NPC, npc.getName());
 
 		TreeSet<ChatOption> chatOptions = buildChatOptions(npc, player, currentState);
-		put(OPTIONS, Joiner.on("|~|").join(Iterables.transform(chatOptions, new Function<ChatOption, String>() {
+		put(OPTIONS, Joiner.on("\t").join(Iterables.transform(chatOptions, new Function<ChatOption, String>() {
 
 			@Override
 			public String apply(ChatOption arg) {
