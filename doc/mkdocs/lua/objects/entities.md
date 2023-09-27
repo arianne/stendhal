@@ -127,6 +127,25 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 
 
 ---
+## entities:fixedPath
+<div class="function">
+    entities:fixedPath <span class="paramlist">(nodes, loop)</span>
+</div>
+
+- Creates a path for a [guided entity][GuidedEntity].
+- Parameters:
+    - <span class="param">nodes:</span> _([table][LuaTable])_ List of path coordinates.
+    - <span class="param">loop:</span> _([boolean][LuaBoolean])_ Whether the path should loop.
+- Returns: _([FixedPath])_ Entity path.
+- _new in Stendhal 1.44_
+- Usage example:
+
+        local npc = entities:createSilentNPC()
+        local nodes = entities:fixedPath({{13, 15}, {13, 18}}, true)
+        npc:setPathAndPosition(nodes)
+
+
+---
 ## entities:getItem
 <div class="function">
     entities:getItem <span class="paramlist">(name)</span>
@@ -160,7 +179,7 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 - Parameters:
     - <span class="param">name:</span> _([string][LuaString])_ Name of player.
 - Returns: _([Player])_ Logged in player or [`nil`][LuaNil].
-- Usage:
+- Usage example:
 
         local player = entities:getPlayer("foo")
 
@@ -473,6 +492,7 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 ---
 # LuaSilentNPC
 
+- ___DEPRECATED___
 - Inherits: [SilentNPC]
 
 
@@ -511,6 +531,8 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 [ConversationStates]: /reference/java/games/stendhal/server/entity/npc/ConversationStates.html
 [DefaultEntityManager]: /reference/java/games/stendhal/server/core/rule/defaultruleset/DefaultEntityManager.html
 [Entity]: /reference/java/games/stendhal/server/entity/Entity.html
+[FixedPath]: /reference/java/games/stendhal/server/core/pathfinder/FixedPath.html
+[GuidedEntity]: /reference/java/games/stendhal/server/entity/GuidedEntity.html
 [Item]: /reference/java/games/stendhal/server/entity/item/Item.html
 [LuaEntityHelper]: /reference/java/games/stendhal/server/core/scripting/lua/LuaEntityHelper.html
 [PassiveEntityRespawnPoint]: /reference/java/games/stendhal/server/entity/mapstuff/spawner/PassiveEntityRespawnPoint.html

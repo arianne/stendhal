@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
@@ -922,6 +923,29 @@ public class LuaEntityHelper {
 		return summonCreature(name, zoneName, x, y, summoner, raid);
 	}
 
+	/**
+	 * Creates a path for a guided entity.
+	 *
+	 * @param table
+	 *   List of path coordinates.
+	 * @param loop
+	 *   Whether the path should loop.
+	 * @return
+	 *   Instance of `games.stendhal.server.core.pathfinder.FixedPath`.
+	 */
+	public FixedPath fixedPath(final LuaTable table, final boolean loop) {
+		final List<Node> nodes = new LinkedList<>();
+		for (int idx = 1; idx <= table.length(); idx++) {
+			final LuaValue n = table.get(idx);
+			n.checktable();
+			if (n.length() != 2) {
+				throw new LuaError("Path index " + idx + " must be table of length 2, found " + n.length());
+			}
+			nodes.add(new Node(n.get(1).checkint(), n.get(2).checkint()));
+		}
+		return new FixedPath(nodes, loop);
+	}
+
 
 	/**
 	 * A special interface that overloads setPath & setPathAndPosition methods to accept a Lua table
@@ -1087,7 +1111,13 @@ public class LuaEntityHelper {
 	 *   Merge functionality into {@link games.stendhal.server.entity.npc.SilentNPC} & delete this
 	 *   class.
 	 */
+	@Deprecated
 	private class LuaSilentNPC extends SilentNPC implements LuaGuidedEntity {
+
+		public LuaSilentNPC() {
+			super();
+			logger.deprecated("LuaSilentNPC", "games.stendhal.server.entity.npc.SilentNPC");
+		}
 
 		@Override
 		public void setPath(LuaTable table, Boolean loop) {
