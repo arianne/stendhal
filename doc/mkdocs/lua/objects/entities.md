@@ -395,6 +395,8 @@ Includes: [Sign definition](#sign-definition-table)
 
 ## Outfit Table
 
+__TODO:__ `layers` &amp; `colors` data types should be the same
+
 | Key    | Type                     | Required | Description             |
 | -------| ------------------------ | -------- | ----------------------- |
 | layers | string                   | yes      | Entity's outfit.        |
