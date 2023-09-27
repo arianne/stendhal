@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2018 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2023 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -76,6 +76,15 @@ public class UserTest {
 			@Override
 			public SoundSystemFacade getSoundSystemFacade() {
 				return soundFacade;
+			}
+
+			@Override
+			public boolean isDebugEnabled() {
+				return false;
+			}
+
+			@Override
+			public void toggleDebugEnabled() {
 			}
 		});
 	}

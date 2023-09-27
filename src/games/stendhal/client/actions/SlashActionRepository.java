@@ -59,6 +59,7 @@ public class SlashActionRepository {
 		actions.put("commands", help);
 		actions.put("config", new ConfigAction());
 
+		actions.put("debug", new DebugAction());
 		actions.put("drop", new DropAction());
 
 		actions.put("cast", new CastSpellAction());

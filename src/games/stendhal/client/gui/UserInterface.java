@@ -77,4 +77,16 @@ public interface UserInterface {
 	 */
 	public SoundSystemFacade getSoundSystemFacade();
 
+	/**
+	 * are debug messages enabled?
+	 *
+	 * @return true, if debug messages are enabled; false otherwise
+	 */
+	public boolean isDebugEnabled();
+
+	/**
+	 * toggle debug messages
+	 */
+	public void toggleDebugEnabled();
+
 }

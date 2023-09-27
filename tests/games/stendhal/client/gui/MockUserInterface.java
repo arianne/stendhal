@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,5 +64,14 @@ public class MockUserInterface implements UserInterface {
 	public void addAchievementBox(String title, String description,
 			String category) {
 		// do nothing
+	}
+
+	@Override
+	public boolean isDebugEnabled() {
+		return false;
+	}
+
+	@Override
+	public void toggleDebugEnabled() {
 	}
 }

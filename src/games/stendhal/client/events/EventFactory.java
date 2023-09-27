@@ -68,6 +68,8 @@ class EventFactory {
 			event = new PrivateTextEvent();
 		} else if (name.equals(Events.ATTACK)) {
 			event = new AttackEvent();
+		} else if (name.equals(Events.CHAT_OPTIONS)) {
+			event = new ChatOptionsEvent();
 		} else if (name.equals(Events.TRADE_STATE_CHANGE)) {
 			event = new TradeStateChangeEvent();
 		} else if (name.equals(Events.GROUP_CHANGE)) {

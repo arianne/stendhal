@@ -77,6 +77,7 @@ public class j2DClient implements UserInterface {
 	private StendhalClient client;
 	private SoundSystemFacade soundSystemFacade;
 	private boolean gameRunning;
+	private boolean debugEnabled = false;
 
 	/**
 	 * Get the default UI.
@@ -439,5 +440,15 @@ public class j2DClient implements UserInterface {
 
 	public void switchToSpellState(RPObject spell) {
 		gui.switchToSpellState(spell);
+	}
+
+	@Override
+	public boolean isDebugEnabled() {
+		return debugEnabled;
+	}
+
+	@Override
+	public void toggleDebugEnabled() {
+		debugEnabled = !debugEnabled;
 	}
 }
