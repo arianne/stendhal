@@ -297,7 +297,17 @@ public class LuaEntityHelper {
 				l_outfitColors.checktable();
 
 				for (final LuaValue l_key: ((LuaTable) l_outfitColors).keys()) {
-					npc.setOutfitColor(l_key.checkjstring(), l_outfitColors.get(l_key).checkint());
+					l_key.checkjstring();
+					final LuaValue l_color = l_outfitColors.get(l_key);
+					if (l_color.isuserdata()) {
+					}
+					if (l_color.isint()) {
+						npc.setOutfitColor(l_key.tojstring(), l_color.toint());
+					} else if (l_color.isstring()) {
+						npc.setOutfitColor(l_key.tojstring(), l_color.tojstring());
+					} else {
+						npc.setOutfitColor(l_key.tojstring(), (java.awt.Color) l_color.checkuserdata(java.awt.Color.class));
+					}
 				}
 			}
 		}
