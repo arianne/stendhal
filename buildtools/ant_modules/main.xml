@@ -5,7 +5,7 @@
   <target name="init">
     <mkdir dir="${lib}"/>
 
-    <!-- We update the version number -->
+    <!-- update version -->
     <replaceregexp file="${src}/games/stendhal/common/Debug.java"
       match="String VERSION ?= ?&quot;.*&quot;;"
       replace="String VERSION = &quot;${version}&quot;;"
@@ -22,11 +22,16 @@
       match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
       replace="STENDHAL_VERSION=&quot;${version}&quot;"
       byline="true"/>
-    <replaceregexp file="buildtools/doxygen/Doxyfile"
+    <replaceregexp file="${buildtools}/mkdocs/mkdocs.yml"
+      match="^site_name: .*$"
+      replace="site_name: Stendhal ${version} Reference Documentation"
+      byline="true"/>
+    <replaceregexp file="${buildtools}/doxygen/Doxyfile"
       match="^PROJECT_NUMBER .*$"
       replace="PROJECT_NUMBER         = ${version}"
       byline="true"/>
-    <!-- Update location of resources -->
+
+    <!-- update location of resources -->
     <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
       match="GAME_NAME=.*"
       replace="GAME_NAME=${game_name}"
