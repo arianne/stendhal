@@ -23,67 +23,81 @@ Manages logging messages in Lua via the [org.apache.log4j.Logger][log4j.Logger] 
 ---
 ## logger:debug
 <div class="function">
-    logger:debug <span class="paramlist">(message)</span>
+    logger:debug <span class="paramlist">message</span>
 </div>
 
 - Logs a message at debug level.
 - Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+    - <span class="param">message</span>
+      <span class="datatype">[string][LuaString]</span>
+      Text in logged message.
 
 
 ---
 ## logger:deprecated
 <div class="function">
-    logger:deprecated <span class="paramlist">(old)</span>
+    logger:deprecated <span class="paramlist">old</span>
 </div>
 <div class="function">
-    logger:deprecated <span class="paramlist">(old, alt)</span>
+    logger:deprecated <span class="paramlist">old, alt</span>
 </div>
 
 - Logs a deprecation warning.
 - Parameters:
-    - <span class="param">old:</span> _([string][LuaString])_ The deprecated item.
-    - <span class="param">alt:</span> _([string][LuaString])_ Alternative to use.
+    - <span class="param">old</span>
+      <span class="datatype">[string][LuaString]</span>
+      The deprecated item.
+    - <span class="param">alt</span>
+      <span class="datatype">[string][LuaString]</span>
+      Alternative to use.
 
 
 ---
 ## logger:error
 <div class="function">
-    logger:error <span class="paramlist">(message)</span>
+    logger:error <span class="paramlist">message</span>
 </div>
 <div class="function">
-    logger:error <span class="paramlist">(message, throwable)</span>
+    logger:error <span class="paramlist">message, throwable</span>
 </div>
 <div class="function">
-    logger:error <span class="paramlist">(throwable)</span>
+    logger:error <span class="paramlist">throwable</span>
 </div>
 
 - Logs a message at error level &amp; optionally raises an exception.
 - Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
-    - <span class="param">throwable:</span> _([Throwable][java.lang.Throwable])_ Exception to raise.
+    - <span class="param">message</span>
+      <span class="datatype">[string][LuaString]</span>
+      Text in logged message.
+    - <span class="param">throwable</span>
+      <span class="datatype">[Throwable][java.lang.Throwable]</span>
+      Exception to raise.
 
 
 ---
 ## logger:info
 <div class="function">
-    logger:info <span class="paramlist">(message)</span>
+    logger:info <span class="paramlist">message</span>
 </div>
 
 - Logs a message at info level.
 - Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+    - <span class="param">message</span>
+      <span class="datatype">[string][LuaString]</span>
+      Text in logged message.
 
 
 ---
 ## logger:warn
 <div class="function">
-    logger:warn <span class="paramlist">(message)</span>
+    logger:warn <span class="paramlist">message</span>
 </div>
 
 - Logs a message at warning level.
 - Parameters:
-    - <span class="param">message:</span> _([string][LuaString])_ Text in logged message.
+    - <span class="param">message</span>
+      <span class="datatype">[string][LuaString]</span>
+      Text in logged message.
 
 
 ---

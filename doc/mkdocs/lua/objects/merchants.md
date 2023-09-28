@@ -37,60 +37,73 @@ Exposes merchant handling classes &amp; functions to Lua.
 ---
 ## merchants:add
 <div class="function">
-    merchants:add <span class="paramlist">(merchantType, npc, prices)</span>
+    merchants:add <span class="paramlist">merchantType, npc, prices</span>
 </div>
 <div class="function">
-    merchants:add <span class="paramlist">(merchantType, npc, prices, addOffer)</span>
+    merchants:add <span class="paramlist">merchantType, npc, prices, addOffer</span>
 </div>
 
 - Adds merchant behavior to a [SpeakerNPC].
 - Parameters:
-    - <span class="param">merchantType:</span> _([string][LuaString])_ If set to "buyer", will add
-      buyer behavior, otherwise will be "seller".
-    - <span class="param">npc:</span> _([SpeakerNPC])_ The NPC to add the behavior to.
-    - <span class="param">prices:</span> List of items &amp; their prices (can be instance of either
+    - <span class="param">merchantType</span>
+      <span class="datatype">[string][LuaString]</span>
+      If set to "buyer", will add buyer behavior, otherwise will be "seller".
+    - <span class="param">npc</span>
+      <span class="datatype">[SpeakerNPC]</span>
+      The NPC to add the behavior to.
+    - <span class="param">prices</span>
+      List of items &amp; their prices (can be instance of either
       [Map<String, Integer>][java.util.Map] or a [table][LuaTable]).
-    - <span class="param">addOffer:</span> _([bool][LuaBoolean])_ If `true`, will add default
-      replies for "offer" (default: `true`).
+    - <span class="param">addOffer</span>
+      <span class="datatype">[bool][LuaBoolean]</span>
+      If `true`, will add default replies for "offer" (default: `true`).
 - TODO:
     - Use [ShopType] for ___merchantType___ parameter.
-    - __FIXME:__ Lua table not working for "prices" parameter
+    - <span class="fixme">Lua table not working for "prices" parameter</span>
 
 
 ---
 ## merchants:addBuyer
 <div class="function">
-    merchants:addBuyer <span class="paramlist">(npc, prices)</span>
+    merchants:addBuyer <span class="paramlist">npc, prices</span>
 </div>
 <div class="function">
-    merchants:addBuyer <span class="paramlist">(npc, prices, addOffer)</span>
+    merchants:addBuyer <span class="paramlist">npc, prices, addOffer</span>
 </div>
 
 - Adds buyer behavior to a [SpeakerNPC].
 - Parameters:
-    - <span class="param">npc:</span> _([SpeakerNPC])_ The NPC to add the behavior to.
-    - <span class="param">prices:</span> List of items &amp; their prices (can be instance of either
+    - <span class="param">npc</span>
+      <span class="datatype">[SpeakerNPC]</span>
+      The NPC to add the behavior to.
+    - <span class="param">prices</span>
+      List of items &amp; their prices (can be instance of either
       [Map<String, Integer>][java.util.Map] or a [table][LuaTable]).
-    - <span class="param">addOffer:</span> _([bool][LuaBoolean])_ If `true`, will add default
-      replies for "offer" (default: `true`).
+    - <span class="param">addOffer</span>
+      <span class="datatype">[bool][LuaBoolean]</span>
+      If `true`, will add default replies for "offer" (default: `true`).
 
 
 ---
 ## merchants:addSeller
 <div class="function">
-    merchants:addSeller <span class="paramlist">(npc, prices)</span>
+    merchants:addSeller <span class="paramlist">npc, prices</span>
 </div>
 <div class="function">
-    merchants:addSeller <span class="paramlist">(npc, prices, addOffer)</span>
+    merchants:addSeller <span class="paramlist">npc, prices, addOffer</span>
 </div>
 
 - Adds seller behavior to a [SpeakerNPC].
 - Parameters:
-    - <span class="param">npc:</span> _([SpeakerNPC])_ The NPC to add the behavior to.
-    - <span class="param">prices:</span> List of items &amp; their prices (can be instance of either
+    - <span class="param">npc</span>
+      <span class="datatype">[SpeakerNPC]</span>
+      The NPC to add the behavior to.
+    - <span class="param">prices</span>
+      List of items &amp; their prices (can be instance of either
       [Map<String, Integer>][java.util.Map] or a [LuaTable]).
-    - <span class="param">addOffer:</span> _([bool][LuaBoolean])_ If `true`, will add default
-      replies for "offer" (default: `true`).
+    - <span class="param">addOffer</span>
+      <span class="datatype">[bool][LuaBoolean]</span>
+      If `true`, will add default replies for "offer" (default: `true`).
 
 
 ---

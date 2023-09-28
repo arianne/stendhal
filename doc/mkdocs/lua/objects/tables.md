@@ -24,56 +24,71 @@ The following methods have been added to the built-in Lua
 ---
 ## table.clean
 <div class="function">
-    table.clean <span class="paramlist">(tbl)</span>
+    table.clean <span class="paramlist">tbl</span>
 </div>
 
-- Removes [nil][LuaNil] values from a table.
+- Removes [`nil`][LuaNil] values from a table.
 - Parameters:
-    - <span class="param">tbl:</span> _([table][LuaTable])_ The table to be cleaned.
-- Returns: _([table][LuaTable])_
-    - Copy of ___tbl___ with `nil` values removed.
+    - <span class="param">tbl</span>
+      <span class="datatype">[table][LuaTable]</span>
+      The table to be cleaned.
+- Returns:
+  <span class="datatype">[table][LuaTable]</span>
+  Copy of ___tbl___ with `nil` values removed.
 
 
 ---
 ## table.concat
 <div class="function">
-    table.concat <span class="paramlist">(tbl1, tbl2)</span>
+    table.concat <span class="paramlist">tbl1, tbl2</span>
 </div>
 
 - Merges the contents of one table into another.
 - Parameters:
-    - <span class="param">tbl1:</span> _([table][LuaTable])_ The table receiving the new content.
-    - <span class="param">tbl2:</span> _([table][LuaTable])_ The table containing the content to be
-      copied.
+    - <span class="param">tbl1</span>
+      <span class="datatype">[table][LuaTable]</span>
+      The table receiving the new content.
+    - <span class="param">tbl2</span>
+      <span class="datatype">[table][LuaTable]</span>
+      The table containing the content to be copied.
 
 
 ---
 ## table.contains
 <div class="function">
-    table.contains <span class="paramlist">(table, o)</span>
+    table.contains <span class="paramlist">table, o</span>
 </div>
 
 - Checks if a table contains a value.
 - Parameters:
-    - <span class="param">table:</span> _([table][LuaTable])_ Table to be checked.
-    - <span class="param">obj:</span> _([Object][java.lang.Object])_ The object to check for.
-- Returns: _([bool][LuaBoolean])_
-    - `true` if ___obj___ is in ___table___.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table to be checked.
+    - <span class="param">obj</span>
+      <span class="datatype">[Object][java.lang.Object]</span>
+      The object to check for.
+- Returns:
+  <span class="datatype">[bool][LuaBoolean]</span>
+  `true` if ___obj___ is in ___table___.
 
 
 ---
 ## table.join
 <div class="function">
-    table.join <span class="paramlist">(table, delim)</span>
+    table.join <span class="paramlist">table, delim</span>
 </div>
 
 - Converts a list of strings into a string.
 - Parameters:
-    - <span class="param">table:</span> _([table][LuaTable])_ Table to be joined.
-    - <span class="param">delim:</span> _([string][LuaString])_ Character(s) to be used as
-      separator.
-- Returns: ([string][LuaString])
-    - The resulting string.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table to be joined.
+    - <span class="param">delim</span>
+      <span class="datatype">[string][LuaString]</span>
+      Character(s) to be used as separator.
+- Returns:
+  <span class="datatype">[string][LuaString]</span>
+  The resulting string.
 
 
 [java.lang.Object]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html

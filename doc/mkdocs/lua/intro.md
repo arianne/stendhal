@@ -101,8 +101,7 @@ print(var) -- prints "Hello world!"
 A Lua table is a data type similar to a Java list or map. Tables can be indexed or use key=value
 pairs.
 
-_(<span style="color:red;"><span style="font-weight:bold;">IMPORTANT NOTE:</span> Lua table indexes
-begin at 1, not 0</span>)_
+<span class="important">Lua table indexes befin at 1, not 0</span>
 
 
 #### Creating Tables
@@ -329,17 +328,20 @@ Currently creating new zones via Lua is not supported.
 
 Music can be added to zones with the [game:setMusic] function. It supports the following arguments:
 
-- <span class="param">filename:</span> Basename of the OGG audio file to use stored in
+- <span class="param">filename</span>
+  Basename of the OGG audio file to use stored in
   [data/music](https://github.com/arianne/stendhal/blob/master/data/music).
-- <span class="param">args:</span> A table of key=value integers.
+- <span class="param">args</span>
+  A table of key=value integers.
 - Valid keys:
-    - <span class="table-attr">volume:</span> Volume level (default: 100).
-    - <span class="table-attr">x:</span> The horizontal point for the source of the music (default:
-      1).
-    - <span class="table-attr">y:</span> The vertical point for the source of the music (default:
-      1).
-    - <span class="table-attr">radius:</span> The radial range at which the music can be heard
-      (default: 10000).
+    - <span class="table-attr">volume</span>
+      Volume level (default: 100).
+    - <span class="table-attr">x</span>
+      The horizontal point for the source of the music (default: 1).
+    - <span class="table-attr">y</span>
+      The vertical point for the source of the music (default: 1).
+    - <span class="table-attr">radius</span>
+      The radial range at which the music can be heard (default: 10000).
 
 Example:
 
@@ -477,10 +479,11 @@ frank:add(ConversationStates.IDLE,
     actions:create("NPCEmoteAction", {"looks greedily at your pouch of money.", false}))
 ```
 
-Lua tables can be used to add multiple conditions or actions (___NOTE:__ this only works for NPCs
-created from Lua or instances of [LuaSpeakerNPC]_):
+Lua tables can be used to add multiple conditions or actions (<span class="note">this only works for
+NPCs created from Lua or instances of [LuaSpeakerNPC]</span>):
 
-___FIXME:__ add global helper methods for managing [SpeakerNPC] instances not created in Lua_
+<span class="fixme">add global helper methods for managing [SpeakerNPC] instances not created in
+Lua</span>
 
 ```lua
 frank:add(ConversationStates.IDLE,
@@ -525,7 +528,7 @@ frank:add(ConversationStates.IDLE,
 
 The [merchants] object is used for adding merchant behavior (buying/selling) to an NPC.
 
-___FIXME:__ should use `ShopType` enum_
+<span class="fixme">should use `ShopType` enum</span>
 
 Example of adding seller behavior to an NPC:
 

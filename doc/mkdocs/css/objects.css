@@ -16,15 +16,68 @@
 }
 
 .param {
-  font-weight: bold;
-  font-style: italic;
-}
-
-.table-attr {
   color: darkblue;
 }
 
-.params, .table-attr {
+.datatype {
+  font-size: small;
+}
+
+.paramlist::before, .datatype::before {
+  content: "(";
+}
+
+.paramlist::after, .datatype::after {
+  content: ")";
+}
+
+.table-attr {
+  color: darkviolet;
+}
+
+.param, .params, .table-attr {
   font-weight: normal;
+  font-style: italic;
+}
+
+.param::after, .table-attr::after {
+  content: ":";
+}
+
+.param, .datatype, .table-attr, .params {
+  font-family: monospace;
+}
+
+.deprecated, .important, .fixme, .todo, .note {
+  font-style: italic;
+}
+
+.deprecated::before, .important::before, .fixme::before, .todo::before, .note::before {
+  font-weight: bold;
+  color: darkred;
+}
+
+.deprecated::before {
+  content: "DEPRECATED: ";
+}
+
+.important::before {
+  content: "IMPORTANT: ";
+}
+
+.fixme::before {
+  content: "FIXME: ";
+}
+
+.todo::before {
+  content: "TODO: ";
+}
+
+.note::before {
+  content: "NOTE: ";
+}
+
+.alias {
+  color: green;
   font-style: italic;
 }

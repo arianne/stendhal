@@ -25,54 +25,58 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
 ---
 ## arrays:fromTable
 <div class="function">
-    arrays:fromTable <span class="paramList">(table)</span>
+    arrays:fromTable <span class="paramlist">table</span>
 </div>
 
 - Converts an indexed [table][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
-    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
-      to new array.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table with contents to be transferred to new array.
 - Returns: New `Object[]` instance.
 
 
 ---
 ## arrays:toArray
 <div class="function">
-    arrays:toArray <span class="paramlist">(table)</span>
+    arrays:toArray <span class="paramlist">table</span>
 </div>
 
-- ___DEPRECATED:__ Use [arrays:fromTable](#arraysfromtable)._
+- <span class="deprecated">se [arrays:fromTable](#arraysfromtable).</span>
 - Converts an indexed [table][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
-    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
-      to new array.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table with contents to be transferred to new array.
 - Returns: New `Object[]` instance.
 
 
 ---
 ## arrays:toList
 <div class="function">
-    arrays:toList <span class="paramlist">(table)</span>
+    arrays:toList <span class="paramlist">table</span>
 </div>
 
 - Converts an indexed [table][LuaTable] to Java [`List`][java.util.List].
 - Parameters:
-    - <span class="param">table:</span> _([table][LuaTable])_ Table with contents to be transferred
-      to new list.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table with contents to be transferred to new list.
 - Returns: New `List` instance.
 - TODO:
-    - __FIXME:__ this should be in [tables]
+    - <span class="fixme">this should be in [tables]</span>
 
 
 ---
 ## arrays:toTable
 <div class="function">
-    arrays:toTable <span class="paramlist">(list)</span>
+    arrays:toTable <span class="paramlist">list</span>
 </div>
 
-- Converts a Java [array][java.util.Arrays] or [`List`][java.util.List] to Lua [table][LuaTable].
+- Converts a Java [array][java.util.Arrays] or [list][java.util.List] to Lua [table][LuaTable].
 - Parameters:
-    - <span class="param">list:</span> Java array or `List`.
+    - <span class="param">list</span>
+      Java array or `List`.
 - Returns: New table with contents of ___list___ added.
 
 
