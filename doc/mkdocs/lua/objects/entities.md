@@ -39,116 +39,137 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 ---
 ## entities:create
 <div class="function">
-    entities:create <span class="paramlist">(def)</span>
+    entities:create <span class="paramlist">def</span>
 </div>
 
 - Creates a new entity.
 - Parameters:
     - <span class="param">def</span>
-      _([table][LuaTable])_ Entity definition table (see
-      [Entity Definition Tables](#entity-definition-tables)).
-- Returns: _([Entity][Entity])_ New entity instance.
+      <span class="datatype">[table][LuaTable]</span>
+      Entity definition table (see [Entity Definition Tables](#entity-definition-tables)).
+- Returns:
+  <span class="datatype">[Entity][Entity]</span>
+  New entity instance.
 
 
 ---
 ## entities:createItemSpawner
 <div class="function">
-    entities:createItemSpawner <span class="paramlist">(name, meanTurns)</span>
+    entities:createItemSpawner <span class="paramlist">name, meanTurns</span>
 </div>
 <div class="function">
-    entities:createItemSpawner <span class="paramlist">(name, meanTurns, initOnAdded)</span>
+    entities:createItemSpawner <span class="paramlist">name, meanTurns, initOnAdded</span>
 </div>
 
 - Creates an item spawner.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of item to be spawned.
+      <span class="datatype">[string][LuaString]</span>
+      Name of item to be spawned.
     - <span class="param">meanTurns</span>
-      _([int][LuaInteger])_ Average number of turns for item
-      to respawn.
+      <span class="datatype">[int][LuaInteger]</span>
+      Average number of turns for item to respawn.
     - <span class="param">initOnAdded</span>
-      _([boolean][LuaBoolean])_ If `true` initializes
-      spawner when added to zone.
-- Returns: _([PassiveEntityRespawnPoint])_ New spawn point instance.
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      If `true` initializes spawner when added to zone.
+- Returns:
+  <span class="datatype">[PassiveEntityRespawnPoint]</span>
+  New spawn point instance.
 
 
 ---
 ## entities:createShopSign
 <div class="function">
-    entities:createShopSign <span class="paramlist">(name, title, caption, seller)</span>
+    entities:createShopSign <span class="paramlist">name, title, caption, seller</span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Creates a new [ShopSign] entity.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ The shop name.
+      <span class="datatype">[string][LuaString]</span>
+      The shop name.
     - <span class="param">title</span>
-      _([string][LuaString])_ The sign title.
+      <span class="datatype">[string][LuaString]</span>
+      The sign title.
     - <span class="param">caption</span>
-      _([string][LuaString])_ The caption above the table.
+      <span class="datatype">[string][LuaString]</span>
+      The caption above the table.
     - <span class="param">seller</span>
-      _([boolean][LuaBoolean])_ `true`, if this sign is for items
-      sold by an NPC (default: `true`).
-- Returns: _([ShopSign])_ New shop sign instance.
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      `true`, if this sign is for items sold by an NPC (default: `true`).
+- Returns:
+  <span class="datatype">[ShopSign]</span>
+  New shop sign instance.
 
 
 ---
 ## entities:createSign
 <div class="function">
-    entities:createSign <span class="paramlist">()</span>
+    entities:createSign <span class="paramlist"></span>
 </div>
 <div class="function">
-    entities:createSign <span class="paramlist">(visible)</span>
+    entities:createSign <span class="paramlist">visible</span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Creates a new sign.
 - Parameters:
     - <span class="param">visible</span>
-      _([boolean][LuaBoolean])_ If `false`, the sign will not
-      have a visual representation (default: `true`).
-- Returns: _([Sign]|[Reader])_ New sign or reader (visible=false).
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      If `false`, the sign will not have a visual representation (default: `true`).
+- Returns:
+  <span class="datatype">[Sign]|[Reader]</span>
+  New sign or reader (visible=false).
 
 
 ---
 ## entities:createSilentNPC
 <div class="function">
-    entities:createSilentNPC <span class="paramlist">()</span>
+    entities:createSilentNPC <span class="paramlist"></span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Creates a non-interactive NPC.
-- Returns: _([LuaSilentNPC](#luasilentnpc))_ New silent NPC instance.
+- Returns:
+  <span class="datatype">[LuaSilentNPC](#luasilentnpc)</span>
+  New silent NPC instance.
 
 
 ---
 ## entities:createSpeakerNPC
 <div class="function">
-    entities:createSpeakerNPC <span class="paramlist">(name)</span>
+    entities:createSpeakerNPC <span class="paramlist">name</span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Creates an interactive NPC.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of new NPC.
-- Returns: _([LuaSpeakerNPC](#luaspeakernpc))_ New speaker NPC instance.
+      <span class="datatype">[string][LuaString]</span>
+      Name of new NPC.
+- Returns:
+  <span class="datatype">[LuaSpeakerNPC](#luaspeakernpc)</span>
+  New speaker NPC instance.
 
 
 ---
 ## entities:fixedPath
 <div class="function">
-    entities:fixedPath <span class="paramlist">(nodes, loop)</span>
+    entities:fixedPath <span class="paramlist">nodes, loop</span>
 </div>
 
 - Creates a path for a [guided entity][GuidedEntity].
 - Parameters:
     - <span class="param">nodes</span>
-      _([table][LuaTable])_ List of path coordinates.
+      <span class="datatype">[table][LuaTable]</span>
+      List of path coordinates.
     - <span class="param">loop</span>
-      _([boolean][LuaBoolean])_ Whether the path should loop.
-- Returns: _([FixedPath])_ Entity path.
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      Whether the path should loop.
+- Returns:
+  <span class="datatype">[FixedPath]</span>
+  Entity path.
 - _new in Stendhal 1.44_
 - Usage example:
 
@@ -160,40 +181,49 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 ---
 ## entities:getItem
 <div class="function">
-    entities:getItem <span class="paramlist">(name)</span>
+    entities:getItem <span class="paramlist">name</span>
 </div>
 
 - Retrieves a registered Item.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of the item.
-- Returns: _([Item])_ Item instance or [`nil`][LuaNil] if ___name___ not registered.
+      <span class="datatype">[string][LuaString]</span>
+      Name of the item.
+- Returns:
+  <span class="datatype">[Item]</span>
+  Item instance or [`nil`][LuaNil] if ___name___ not registered.
 
 
 ---
 ## entities:getNPC
 <div class="function">
-    entities:getNPC <span class="paramlist">(name)</span>
+    entities:getNPC <span class="paramlist">name</span>
 </div>
 
 - Retrieves an existing NPC.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of NPC.
-- Returns: _([SpeakerNPC])_ NPC instance or [`nil`][LuaNil].
+      <span class="datatype">[string][LuaString]</span>
+      Name of NPC.
+- Returns:
+  <span class="datatype">[SpeakerNPC]</span>
+  NPC instance or [`nil`][LuaNil].
 
 
 ---
 ## entities:getPlayer
 <div class="function">
-    entities:getPlayer <span class="paramlist">(name)</span>
+    entities:getPlayer <span class="paramlist">name</span>
 </div>
 
 - Retrieves a logged in player.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of player.
-- Returns: _([Player])_ Logged in player or [`nil`][LuaNil].
+      <span class="datatype">[string][LuaString]</span>
+      Name of player.
+- Returns:
+  <span class="datatype">[Player]</span>
+  Logged in player or [`nil`][LuaNil].
 - Usage example:
 
         local player = entities:getPlayer("foo")
@@ -202,129 +232,150 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 ---
 ## entities:getStackableItem
 <div class="function">
-    entities:getStackableItem <span class="paramlist">(name)</span>
+    entities:getStackableItem <span class="paramlist">name</span>
 </div>
 
 - Retrieves a registered stackable item.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of the item.
-- Returns: _([StackableItem])_ Stackable item instance or [`nil`][LuaNil] if ___name___ not
-  registered.
+      <span class="datatype">[string][LuaString]</span>
+      Name of the item.
+- Returns:
+  <span class="datatype">[StackableItem]</span>
+  Stackable item instance or [`nil`][LuaNil] if ___name___ not registered.
 
 
 ---
 ## entities:setEntityPath
 <div class="function">
-    entities:setEntityPath <span class="paramlist">(entity, table, loop)</span>
+    entities:setEntityPath <span class="paramlist">entity, table, loop</span>
 </div>
 
-- ___DEPRECATED:__ Path can now be set by directly calling the NPC's `setPath` method._
+- <span class="deprecated">Path can now be set by directly calling the NPC's `setPath`
+  method.</span>
 - Sets a guided entity's path using a table.
 - Parameters:
-    - ___entity__ ([LuaGuidedEntity](#luaguidedentity))_ The entity whose path is being set.
-    - ___table__ ([table][LuaTable])_ Table with list of coordinates representing nodes.
-    - ___loop__ ([boolean][LuaBoolean])_ If `true` entity will restart path upon completion.
+    - <span class="param">entity</span>
+      <span class="datatype">[LuaGuidedEntity](#luaguidedentity)</span>
+      The entity whose path is being set.
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table with list of coordinates representing nodes.
+    - <span class="param">loop</span>
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      If `true` entity will restart path upon completion.
 
 
 ---
 ## entities:setPath
 <div class="function">
-    entities:setPath <span class="paramlist">(entity, table, loop)</span>
+    entities:setPath <span class="paramlist">entity, table, loop</span>
 </div>
 
-- ___DEPRECATED:__ Path can now be set by directly calling the NPC's `setPath` method._
+- <span class="deprecated">Path can now be set by directly calling the NPC's `setPath`
+  method.</span>
 - Helper method for setting an NPC's path.
 - Parameters:
     - <span class="param">entity</span>
-      _([RPEntity])_ Then entity whose path is being set.
+      <span class="datatype">[RPEntity]</span>
+      Then entity whose path is being set.
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table with list of coordinates
-      representing nodes.
+      <span class="datatype">[table][LuaTable]</span>
+      Table with list of coordinates representing nodes.
     - <span class="param">loop</span>
-      _([boolean][LuaBoolean])_ If `true` entity will restart path
-      upon completion.
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      If `true` entity will restart path upon completion.
 
 
 ---
 ## entities:setPathAndPosition
 <div class="function">
-    entities:setPathAndPosition <span class="paramlist">(entity, table, loop)</span>
+    entities:setPathAndPosition <span class="paramlist">entity, table, loop</span>
 </div>
 
-- ___DEPRECATED:__ Path can now be set by directly by calling the NPC's `setPath` method._
+- <span class="deprecated">Path can now be set by directly by calling the NPC's `setPath`
+  method.</span>
 - Helper function for setting an NPC's path &amp; starting position.
 - Parameters:
     - <span class="param">entity</span>
-      _([RPEntity])_ The entity whose path is being set.
+      <span class="datatype">[RPEntity]</span>
+      The entity whose path is being set.
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table with list of coordinates
-      representing nodes.
+      <span class="datatype">[table][LuaTable]</span>
+      Table with list of coordinates representing nodes.
     - <span class="param">loop</span>
-      _([boolean][LuaBoolean])_ If `true`, the entity's path should
-      loop.
+      <span class="datatype">[boolean][LuaBoolean]</span>
+      If `true`, the entity's path should loop.
 
 
 ---
 ## entities:setEntityTraits
 <div class="function">
-    entities:setEntityTraits <span class="paramlist">(entity, traits)</span>
+    entities:setEntityTraits <span class="paramlist">entity, traits</span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Adds attributes defined in [Entity].
 - Parameters:
     - <span class="param">entity</span>
-      _([Entity])_ The entity to whom attributes will be added.
+      <span class="datatype">[Entity]</span>
+      The entity to whom attributes will be added.
     - <span class="param">traits</span>
-      _([table][LuaTable])_ List of attributes.
+      <span class="datatype">[table][LuaTable]</span>
+      List of attributes.
 
 
 ---
 ## entities:setNPCTraits
 <div class="function">
-    entities:setNPCTraits <span class="paramlist">(npc, traits)</span>
+    entities:setNPCTraits <span class="paramlist">npc, traits</span>
 </div>
 
-- ___DEPRECATED:__ Use [entities:create](#entitiescreate)._
+- <span class="deprecated">Use [entities:create](#entitiescreate).</span>
 - Adds attributes defined in [PassiveNPC].
 - Parameters:
     - <span class="param">npc</span>
-      _([PassiveNPC])_ The entity to whom attributes will be added.
+      <span class="datatype">[PassiveNPC]</span>
+      The entity to whom attributes will be added.
     - <span class="param">traits</span>
-      _([table][LuaTable])_ table of attributes.
+      <span class="datatype">[table][LuaTable]</span>
+      table of attributes.
 
 
 ---
 ## entities:summonCreature
 <div class="function">
-    entities:summonCreature <span class="paramlist">(name, zone, x, y, summoner, raid)</span>
+    entities:summonCreature <span class="paramlist">name, zone, x, y, summoner, raid</span>
 </div>
 <div class="function">
-    entities:summonCreature <span class="paramlist">(def)</span>
+    entities:summonCreature <span class="paramlist">def</span>
 </div>
 
 - Summons a creature into the area.
 - Parameters:
     - <span class="param">name</span>
-      _([string][LuaString])_ Name of creature to be summoned.
+      <span class="datatype">[string][LuaString]</span>
+      Name of creature to be summoned.
     - <span class="param">zone</span>
-      _([string][LuaString])_ Name of zone where creature should be
-      summoned.
+      <span class="datatype">[string][LuaString]</span>
+      Name of zone where creature should be summoned.
     - <span class="param">x</span>
-      _([int][LuaInteger])_ Horizontal position of summon location.
+      <span class="datatype">[int][LuaInteger]</span>
+      Horizontal position of summon location.
     - <span class="param">y</span>
-      _([int][LuaInteger])_ Vertical position of summon location.
+      <span class="datatype">[int][LuaInteger]</span>
+      Vertical position of summon location.
     - <span class="param">summoner</span>
-      _([string][LuaString])_ Name of entity doing the
-      summoning.
+      <span class="datatype">[string][LuaString]</span>
+      Name of entity doing the summoning.
     - <span class="param">raid</span>
-      _([bool][LuaBoolean])_ Whether or not the creature should be
-      a [RaidCreature] instance.
+      <span class="datatype">[bool][LuaBoolean]</span>
+      Whether or not the creature should be a [RaidCreature] instance.
     - <span class="param">def</span>
-      _([table][LuaTable])_ Key-value table containing parameters
-      for summoning creature (see [Summon Creature Table](#summon-creature-table)).
-- Returns: _([int][LuaInteger])_
+      <span class="datatype">[table][LuaTable]</span>
+      Key-value table containing parameters for summoning creature (see
+      [Summon Creature Table](#summon-creature-table)).
+- Returns: <span class="datatype">[int][LuaInteger])</span>
     - 0 = success
     - 1 = creature not found
     - 2 = zone not found
@@ -483,61 +534,60 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 - Additional method to support passing Lua data types as parameters.
 - Parameters:
     - <span class="param">states</span>
-      The conversation state(s) the entity should be in to
-      trigger response. Can be [ConversationStates] enum value or [table][LuaTable] of
-      `ConversationStates`.
+      The conversation state(s) the entity should be in to trigger response. Can be
+      [ConversationStates] enum value or [table][LuaTable] of `ConversationStates`.
     - <span class="param">triggers</span>
-      [string][LuaString] or table of strings to trigger
-      response.
+      [string][LuaString] or table of strings to trigger response.
     - <span class="param">conditions</span>
-      Conditions to check for this response. Can be
-      [ChatCondition] instance, a table of `ChatCondition` instances, or a [function][LuaFunction].
+      Conditions to check for this response. Can be [ChatCondition] instance, a table of
+      `ChatCondition` instances, or a [function][LuaFunction].
     - <span class="param">nextState</span>
-      _([ConversationStates])_ Conversation state to set
-      entity to after response.
+      <span class="datatype">[ConversationStates]</span>
+      Conversation state to set entity to after response.
     - <span class="param">reply</span>
-      _([string][LuaString])_ The NPC's response or [nil][LuaNil].
+      <span class="datatype">[string][LuaString]</span>
+      The NPC's response or [nil][LuaNil].
     - <span class="param">actions</span>
-      Actions to execute. Can be [ChatAction] instance, a table
-      of `ChatAction` instances, or a function.
+      Actions to execute. Can be [ChatAction] instance, a table of `ChatAction` instances, or a
+      function.
 
 
 ---
 ## LuaSpeakerNPC:setPath
 <div class="function">
-    entities:setPath <span class="paramlist">(table, loop)</span>
+    entities:setPath <span class="paramlist">table, loop</span>
 </div>
 
 - Set a path for this entity to follow.
 - Parameters:
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table of coordinates to set as path.
-      Example: `{{35, 79}, {35, 89}, {40, 89}}`
+      <span class="datatype">[table][LuaTable]</span>
+      Table of coordinates to set as path. Example: `{{35, 79}, {35, 89}, {40, 89}}`
     - <span class="param">loop</span>
-      _([bool][LuaBoolean]) (optional)_ If `true`, entity should
-      loop around to restart path when reaching the end.
+      <span class="datatype">[bool][LuaBoolean]) (optional</span>
+      If `true`, entity should loop around to restart path when reaching the end.
 
 
 ---
 ## LuaSpeakerNPC:setPathAndPosition
 <div class="function">
-    entities:setPathAndPosition <span class="paramlist">(table, loop)</span>
+    entities:setPathAndPosition <span class="paramlist">table, loop</span>
 </div>
 
 - Set path &amp; starting position for entity. The starting position is the first node in the path.
 - Parameters:
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table of coordinates to set as path.
-      Example: `{{35, 79}, {35, 89}, {40, 89}}`
+      <span class="datatype">[table][LuaTable]</span>
+      Table of coordinates to set as path. Example: `{{35, 79}, {35, 89}, {40, 89}}`
     - <span class="param">loop</span>
-      _([bool][LuaBoolean]) (optional)_ If `true`, entity should
-      loop around to restart path when reaching the end.
+      <span class="datatype">[bool][LuaBoolean]) (optional</span>
+      If `true`, entity should loop around to restart path when reaching the end.
 
 
 ---
 # LuaSilentNPC
 
-- ___DEPRECATED___
+- <span class="deprecated"></span>
 - Inherits: [SilentNPC]
 
 
@@ -546,33 +596,33 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 ---
 ## LuaSilentNPC:setPath
 <div class="function">
-    entities:setPath <span class="paramlist">(table, loop)</span>
+    entities:setPath <span class="paramlist">table, loop</span>
 </div>
 
 - Set a path for this entity to follow.
 - Parameters:
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table of coordinates to set as path.
-      Example: `{{35, 79}, {35, 89}, {40, 89}}`
+      <span class="datatype">[table][LuaTable]</span>
+      Table of coordinates to set as path. Example: `{{35, 79}, {35, 89}, {40, 89}}`
     - <span class="param">loop</span>
-      _([bool][LuaBoolean]) (optional)_ If `true`, entity should
-      loop around to restart path when reaching the end.
+      <span class="datatype">[bool][LuaBoolean]) (optional</span>
+      If `true`, entity should loop around to restart path when reaching the end.
 
 
 ---
 ## LuaSilentNPC:setPathAndPosition
 <div class="function">
-    entities:setPathAndPosition <span class="paramlist">(table, loop)</span>
+    entities:setPathAndPosition <span class="paramlist">table, loop</span>
 </div>
 
 - Set path &amp; starting position for entity. The starting position is the first node in the path.
 - Parameters:
     - <span class="param">table</span>
-      _([table][LuaTable])_ Table of coordinates to set as path.
-      Example: `{{35, 79}, {35, 89}, {40, 89}}`
+      <span class="datatype">[table][LuaTable]</span>
+      Table of coordinates to set as path. Example: `{{35, 79}, {35, 89}, {40, 89}}`
     - <span class="param">loop</span>
-      _([bool][LuaBoolean]) (optional)_ If `true`, entity should
-      loop around to restart path when reaching the end.
+      <span class="datatype">[bool][LuaBoolean]) (optional</span>
+      If `true`, entity should loop around to restart path when reaching the end.
 
 
 [ChatAction]: /reference/java/games/stendhal/server/entity/npc/ChatAction.html
