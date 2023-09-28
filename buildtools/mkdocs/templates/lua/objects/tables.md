@@ -91,7 +91,22 @@ The following methods have been added to the built-in Lua
   The resulting string.
 
 
+---
+## table.toList
+<div class="function">
+    table.toList <span class="paramlist">table</span>
+</div>
+
+- Converts an indexed [table][LuaTable] to Java [`List`][java.util.List].
+- Parameters:
+    - <span class="param">table</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Table with contents to be transferred to new list.
+- Returns: New `List` instance.
+
+
 [java.lang.Object]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html
+[java.util.List]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html
 
 [LuaBoolean]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaBoolean.html
 [LuaNil]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaNil.html

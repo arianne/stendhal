@@ -18,6 +18,7 @@ import org.luaj.vm2.LuaBoolean;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
+import org.luaj.vm2.LuaUserdata;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
@@ -29,10 +30,10 @@ import games.stendhal.server.core.pathfinder.Node;
  */
 public class LuaTableHelper {
 
+	private static LuaLogger logger = LuaLogger.get();
+
 	/** The singleton instance. */
 	private static LuaTableHelper instance;
-
-	private static final LuaArrayHelper arrayHelper = LuaArrayHelper.get();
 
 
 	/**
@@ -74,7 +75,7 @@ public class LuaTableHelper {
 			 */
 			@Override
 			public LuaBoolean call(final LuaValue table, final LuaValue o) {
-				final List<Object> l = arrayHelper.toList((LuaTable) table);
+				final List<Object> l = LuaTableHelper.toList((LuaTable) table);
 				if (l.contains(o.touserdata())) {
 					return LuaBoolean.TRUE;
 				}
@@ -107,6 +108,14 @@ public class LuaTableHelper {
 				return (LuaString) CoerceJavaToLua.coerce(String.join(delim.checkjstring(), parts));
 			}
 		});
+
+		// add table.toList method
+		tableTable.set("toList", new LuaFunction() {
+			@Override
+			public LuaUserdata call(final LuaValue table) {
+				return new LuaUserdata(LuaTableHelper.toList(table.checktable()));
+			}
+		});
 	}
 
 	/**
@@ -133,5 +142,45 @@ public class LuaTableHelper {
 			nodes.add(pairToNode((LuaTable) lt.get(idx)));
 		}
 		return nodes;
+	}
+
+	/**
+	 * Converts a Lua table to Java list.
+	 *
+	 * @param table
+	 *   Table with contents to be transferred to new list.
+	 * @return
+	 *   New `List<Object>` instance.
+	 */
+	public static List<Object> toList(final LuaTable table) {
+		final List<Object> objectList = new LinkedList<>();
+
+		for (final LuaValue key: table.keys()) {
+			final LuaValue lv = table.get(key);
+
+			if (lv.isnil()) {
+				objectList.add(null);
+			} else if (lv.isnumber()) {
+				if (lv.isint()) {
+					objectList.add(lv.toint());
+				} else if (lv.islong()) {
+					objectList.add(lv.tolong());
+				} else {
+					objectList.add(lv.todouble());  // all other number types to double
+				}
+			} else if (lv.isboolean()) {
+				objectList.add(lv.toboolean());
+			} else if (lv.istable()) {
+				objectList.add(LuaTableHelper.toList(lv.checktable()));
+			} else if (lv.isuserdata()) {
+				objectList.add(lv.touserdata());
+			} else if (lv.isstring()) {
+				objectList.add(lv.tojstring());
+			} else {
+				logger.warn("Data type not added: " + lv.typename());
+			}
+		}
+
+		return objectList;
 	}
 }

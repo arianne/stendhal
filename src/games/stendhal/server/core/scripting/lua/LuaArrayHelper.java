@@ -12,11 +12,9 @@
 package games.stendhal.server.core.scripting.lua;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 
@@ -88,39 +86,14 @@ public class LuaArrayHelper {
 	 *   Table with contents to be transferred to new list.
 	 * @return
 	 *   New `List<Object>` instance.
-	 * @todo
-	 *   FIXME: this should be in `LuaTableHelper`
+	 * @deprecated
+	 *   Use `LuaTableHelper.toList`.
 	 */
 	public List<Object> toList(final LuaTable table) {
-		final List<Object> objectList = new LinkedList<>();
+		logger.deprecated(LuaArrayHelper.class.getName() + ".toList",
+				LuaTableHelper.class.getName() + ".toList");
 
-		for (final LuaValue key: table.keys()) {
-			final LuaValue lv = table.get(key);
-
-			if (lv.isnil()) {
-				objectList.add(null);
-			} else if (lv.isnumber()) {
-				if (lv.isint()) {
-					objectList.add(lv.toint());
-				} else if (lv.islong()) {
-					objectList.add(lv.tolong());
-				} else {
-					objectList.add(lv.todouble());  // all other number types to double
-				}
-			} else if (lv.isboolean()) {
-				objectList.add(lv.toboolean());
-			} else if (lv.istable()) {
-				objectList.add(toList(lv.checktable()));
-			} else if (lv.isuserdata()) {
-				objectList.add(lv.touserdata());
-			} else if (lv.isstring()) {
-				objectList.add(lv.tojstring());
-			} else {
-				logger.warn("Data type not added: " + lv.typename());
-			}
-		}
-
-		return objectList;
+		return LuaTableHelper.toList(table);
 	}
 
 	/**
@@ -132,7 +105,7 @@ public class LuaArrayHelper {
 	 *   New `Object[]` instance.
 	 */
 	public Object[] fromTable(final LuaTable table) {
-		return toList(table).toArray();
+		return LuaTableHelper.toList(table).toArray();
 	}
 
 	/**

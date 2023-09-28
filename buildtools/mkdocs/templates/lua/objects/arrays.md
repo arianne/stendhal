@@ -57,14 +57,13 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
     arrays:toList <span class="paramlist">table</span>
 </div>
 
+- <span class="deprecated">Use [table.toList].</span>
 - Converts an indexed [table][LuaTable] to Java [`List`][java.util.List].
 - Parameters:
     - <span class="param">table</span>
       <span class="datatype">[table][LuaTable]</span>
       Table with contents to be transferred to new list.
 - Returns: New `List` instance.
-- TODO:
-    - <span class="fixme">this should be in [tables]</span>
 
 
 ---
@@ -80,6 +79,7 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
 - Returns: New table with contents of ___list___ added.
 
 
+[table.toList]: /reference/lua/objects/tables/#tabletolist
 [tables]: /reference/lua/objects/tables/
 
 [java.lang.Object]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html

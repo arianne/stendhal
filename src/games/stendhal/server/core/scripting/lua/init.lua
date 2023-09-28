@@ -103,7 +103,7 @@ function string.rtrim(st)
 end
 
 
--- supplemental string method aliases
+-- supplemental string & table method aliases
 string.isnumber = string.isNumber
 string.isNumeric = string.isNumber
 string.isnumeric = string.isNumber
@@ -112,6 +112,7 @@ string.beginsWith = string.startsWith
 string.beginswith = string.startsWith
 string.endswith = string.endsWith
 string.valueof = string.valueOf
+table.tolist = table.toList
 
 
 return true
