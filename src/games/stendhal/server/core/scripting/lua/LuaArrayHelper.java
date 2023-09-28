@@ -89,6 +89,7 @@ public class LuaArrayHelper {
 	 * @deprecated
 	 *   Use `LuaTableHelper.toList`.
 	 */
+	@Deprecated
 	public List<Object> toList(final LuaTable table) {
 		logger.deprecated(LuaArrayHelper.class.getName() + ".toList",
 				LuaTableHelper.class.getName() + ".toList");
