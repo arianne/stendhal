@@ -373,9 +373,7 @@
       </fileset>
     </copy>
     <copy todir="${buildroot}/stendhal-server-${version}/doc">
-      <fileset dir="doc">
-        <exclude name="mkdocs/"/>
-      </fileset>
+      <fileset dir="doc"/>
       <fileset dir="." includes="LICENSE.txt"/>
     </copy>
 
@@ -590,9 +588,7 @@
       </fileset>
     </copy>
     <copy todir="${buildroot}/stendhal-${version}/doc">
-      <fileset dir="doc">
-        <exclude name="mkdocs/"/>
-      </fileset>
+      <fileset dir="doc"/>
       <fileset file="LICENSE.txt"/>
     </copy>
     <touch file="${buildroot}/stendhal-${version}/log/stendhal.txt"/>

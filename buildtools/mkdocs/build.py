@@ -14,7 +14,7 @@ dir_mkdocs = os.path.dirname(__file__)
 # Stendhal source root directory
 dir_root = os.path.normpath(os.path.join(dir_mkdocs, "../../"))
 # documentation templates root directory
-dir_templates = os.path.normpath(os.path.join(dir_root, "doc/mkdocs"))
+dir_templates = os.path.normpath(os.path.join(dir_mkdocs, "templates"))
 # build output directory
 dir_build = os.path.join(dir_root, "build")
 # documentation output directory
