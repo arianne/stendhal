@@ -11,15 +11,15 @@
  ***************************************************************************/
 package utilities;
 
-import com.google.common.collect.ImmutableList;
-
 import org.apache.log4j.Logger;
+
+import com.google.common.collect.ImmutableList;
 
 import games.stendhal.server.core.config.ShopGroupsXMLLoader.MerchantConfigurator;
 import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.npc.shop.ShopInventory;
-import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.npc.shop.ShopType;
+import games.stendhal.server.entity.npc.shop.ShopsList;
 
 
 public class ShopHelper {
