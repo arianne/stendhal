@@ -25,6 +25,15 @@ Changelog
   - Semos Plains N (more)
   - Semos Plains NE
 
+*java client*
+- rendering mode can be changed in setings
+
+*developers*
+- replaced infostring with itemdata to overcome limit to 255 characters
+- items support states (generalized from ring of life)
+- quest Manifest for deliver-item quests
+
+
 
 1.43.3
 
