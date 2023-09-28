@@ -131,7 +131,7 @@ public class PhotographerChatAction implements ChatAction {
 		}
 
 		PopupImage sign = new PopupImage(url, title, caption);
-		sign.setEntityClass("notice");
+		sign.setEntityClass("notice_sign");
 		positionSign(sign);
 		playerSigns.put(name, sign);
 	}

@@ -46,6 +46,7 @@ public class RentedSign extends Sign implements StorableEntity {
 	 */
 	public RentedSign(final Player renter, final String text) {
 		setRPClass(RPCLASS_NAME);
+		setEntityClass("notice_sign_text");
 		store();
 		put(RENTER, renter.getName());
 		put(TIMESTAMP, System.currentTimeMillis());
