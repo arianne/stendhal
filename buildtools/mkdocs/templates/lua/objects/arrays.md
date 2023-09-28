@@ -14,6 +14,9 @@ Object instance: `arrays`
 ---
 ## Description
 
+<span class="deprecated">Methods in this object will be replaced with
+[table object][tables] in future releases.</span>
+
 Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.util.List] &amp; Lua
 [tables][LuaTable].
 
@@ -34,6 +37,8 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
       <span class="datatype">[table][LuaTable]</span>
       Table with contents to be transferred to new array.
 - Returns: New `Object[]` instance.
+- <span class="todo"></span>
+    - _Replace with `table.toArray`._
 
 
 ---
@@ -42,7 +47,7 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
     arrays:toArray <span class="paramlist">table</span>
 </div>
 
-- <span class="deprecated">se [arrays:fromTable](#arraysfromtable).</span>
+- <span class="deprecated">Use [arrays:fromTable](#arraysfromtable).</span>
 - Converts an indexed [table][LuaTable] to Java [array][java.util.Arrays].
 - Parameters:
     - <span class="param">table</span>
@@ -77,6 +82,8 @@ Handles some conversion between Java [arrays][java.util.Arrays] or [lists][java.
     - <span class="param">list</span>
       Java array or `List`.
 - Returns: New table with contents of ___list___ added.
+- <span class="todo"></span>
+    - _Replace with `table.fromArray` &amp; `table.fromList`._
 
 
 [table.toList]: /reference/lua/objects/tables/#tabletolist
