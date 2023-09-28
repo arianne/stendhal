@@ -2,7 +2,7 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-  <target name="clean" description="Empties build directory">
+  <target name="clean" description="Delete all build files and directories.">
     <delete dir="${buildroot}"/>
     <delete dir="${build_cobertura}"/>
     <delete dir="${build_cobertura_report}"/>
@@ -16,14 +16,14 @@
   </target>
 
 
-  <target name="clean_client_data">
+  <target name="clean_client_data" description="Delete client data build files and directories.">
     <delete dir="${build_client_data}"/>
     <delete dir="${build_client_music_data}"/>
     <delete dir="${build_client_sound_data}"/>
   </target>
 
 
-  <target name="cleanjs">
+  <target name="cleanjs" description="Delete web client build files and directories.">
     <delete dir="${buildroot}/js"/>
     <delete dir="${buildroot}/ts"/>
   </target>
@@ -39,7 +39,8 @@
   </target>
 
 
-  <target name="clean_whitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+  <target name="clean_whitespace" description="Clean whitespace in source and other specified file types." depends="compile_stendhaltools">
+    <!-- process main Java source, config, & scripting files -->
     <java classname="games.stendhal.tools.CleanWhitespace">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
@@ -50,6 +51,7 @@
       <arg value="java,xml,lua"/>
     </java>
 
+    <!-- process web client source files -->
     <java classname="games.stendhal.tools.CleanWhitespace">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
@@ -58,6 +60,7 @@
       <arg value="js,ts,css"/>
     </java>
 
+    <!-- process config & scripting data files -->
     <java classname="games.stendhal.tools.CleanWhitespace">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
@@ -68,6 +71,7 @@
     </java>
   </target> <!-- clean_whitespace -->
 
-  <target name="cleanwhitespace" depends="clean_whitespace" description="Alias for clean_whitespace"/>
+
+  <target name="cleanwhitespace" depends="clean_whitespace" description="Alias of clean_whitespace."/>
 
 </project>

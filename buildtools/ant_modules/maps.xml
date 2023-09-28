@@ -2,7 +2,7 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-  <target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
+  <target name="rendermaps" description="Convert TMX maps to PNG images scaled 1:16." depends="compile_stendhaltools">
     <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
@@ -21,7 +21,7 @@
   </target> <!-- rendermaps -->
 
 
-  <target name="renderatlas" description="Generates the files for the Stendhal Atlas" depends="compile_stendhaltools">
+  <target name="renderatlas" description="Generate files for the Stendhal Atlas." depends="compile_stendhaltools">
     <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>
@@ -56,7 +56,7 @@
   </target> <!-- renderatlas -->
 
 
-  <target name="renderworldmap" description="Exports the world.tmx file to .png" depends="rendermaps">
+  <target name="renderworldmap" description="Export world.tmx map to PNG image." depends="rendermaps">
     <property name="pycmd" value="python3" if:true="${python3.present}"/>
     <property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
 
@@ -86,7 +86,7 @@
   </target> <!-- renderworldmap -->
 
 
-  <target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
+  <target name="updatemaps" description="Load and save TMX maps to fix tilesets changes." depends="compile_stendhaltools">
     <taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
       <classpath>
         <pathelement path="${build_stendhaltools}"/>

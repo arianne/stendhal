@@ -2,7 +2,10 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless" xmlns:jacoco="antlib:org.jacoco.ant">
 
-  <target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
+  <available property="server.ini" file="server.ini"/>
+
+
+  <target name="test" description="Compile and run all tests." depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
     <exec executable="curl">
       <arg value="-q"/>
       <arg value="-F"/>
@@ -16,7 +19,7 @@
   </target> <!-- test -->
 
 
-  <target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
+  <target name="compile_tests" description="Compile all tests." depends="server_build,client_build,compile_stendhaltools,compile_stendhaltextclient,postman">
     <mkdir dir="${build_tests}"/>
 
     <copy todir="${build_tests}">
@@ -58,8 +61,7 @@
   </target> <!-- compile_tests -->
 
 
-  <available property="server.ini" file="server.ini"/>
-  <target name="prepare_serverini_for_tests" unless="server.ini">
+  <target name="prepare_serverini_for_tests" unless="server.ini" description="Generate server.ini for testing.">
     <echo file="server.ini">
 database_implementation=games.stendhal.server.core.engine.StendhalPlayerDatabase
 factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory
@@ -81,7 +83,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
   </target> <!-- prepare_serverini_for_tests -->
 
 
-  <target name="run_tests" description="Run tests">
+  <target name="run_tests" description="Run all tests.">
     <mkdir dir="${build_tests_report}"/>
     <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
       <classpath path="buildtools/jacoco/jacocoant.jar"/>
@@ -143,7 +145,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
   </target> <!-- run_tests -->
 
 
-  <target name="report_test" description="Aggregate Testresults">
+  <target name="report_test" description="Aggregate test results.">
     <mkdir dir="${build_tests_report}"/>
     <junitreport todir="${build_tests_report}" tofile="testresults.xml">
       <fileset dir="${build_tests_report}">

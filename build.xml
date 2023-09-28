@@ -18,10 +18,6 @@
     <equals arg1="${os.win}" arg2="true"/>
   </condition>
 
-  <!-- check for some executables -->
-  <available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
-  <available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
-
   <property file="build.ant-private.properties"/>
   <property file="build.ant.properties"/>
 
@@ -82,6 +78,13 @@
   <tstamp>
     <format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss"/>
   </tstamp>
+
+  <!-- check for some executables -->
+  <available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
+  <available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
+
+
+  <!-- Ant sub-modules -->
 
   <import file="build-private.xml" optional="true"/>
 
