@@ -26,7 +26,7 @@ Changelog
   - Semos Plains NE
 
 *java client*
-- rendering mode can be changed in setings
+- rendering mode can be changed in settings
 
 *developers*
 - replaced infostring with itemdata to overcome limit to 255 characters
