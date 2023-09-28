@@ -42,12 +42,12 @@ dir_img = os.path.join(dir_stage, "img")
 os.makedirs(dir_img)
 shutil.copy(os.path.join(dir_mkdocs, "favicon.ico"), dir_img)
 
-# copy Java documentation if available
+# copy Java documentation files if available
 if os.path.isdir(dir_javadocs):
-  print("\nCopying javadocs to staging directory ...")
+  print("\nCopying Java HTML documentation to staging directory ...")
   shutil.copytree(dir_javadocs, os.path.join(dir_stage, "java"))
 else:
-  print("\nJavadocs directory not found, skipping ...")
+  print("\nJava HTML documentation directory not found, skipping ...")
 
 # change to MkDocs directory for execution
 os.chdir(dir_mkdocs)
