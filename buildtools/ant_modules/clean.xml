@@ -39,11 +39,6 @@
   </target>
 
 
-  <target name="clean_doxygen" description="Delete Doxygen generated HTML documentation.">
-    <delete dir="${buildroot}/doxygen"/>
-  </target>
-
-
   <target name="clean_whitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
     <java classname="games.stendhal.tools.CleanWhitespace">
       <classpath>

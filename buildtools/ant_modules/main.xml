@@ -26,10 +26,6 @@
       match="^site_name: .*$"
       replace="site_name: Stendhal ${version} Reference Documentation"
       byline="true"/>
-    <replaceregexp file="${buildtools}/doxygen/Doxyfile"
-      match="^PROJECT_NUMBER .*$"
-      replace="PROJECT_NUMBER         = ${version}"
-      byline="true"/>
 
     <!-- update location of resources -->
     <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
