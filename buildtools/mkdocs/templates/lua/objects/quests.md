@@ -858,12 +858,10 @@ local loadStep2 = function()
 end
 
 local myQuest = quests:create("my_quest", "My Quest")
-myQuest.init = function()
+myQuest:register(function()
     loadStep1()
     loadStep2()
-end
-
-quests:register(myQuest)
+end)
 ```
 
 Example of [CoalForHaunchy] quest manuscript converted to Lua:
