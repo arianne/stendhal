@@ -11,7 +11,9 @@ Changelog
 - fixed status effects inflicted by player weapons
 
 *world*
-- Adventure Island state is shown in travel log
+- quests now shown in travel log:
+  - Adventure Island
+  - Help Tomi
 - new achievements:
   - Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
   - Sowing Seeds of Joy: Sow 1000 of each type of sowable flower seed

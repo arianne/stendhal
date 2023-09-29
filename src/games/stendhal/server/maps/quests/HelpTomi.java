@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -100,6 +101,14 @@ public class HelpTomi extends AbstractQuest {
 
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("tomi");
+
+		// override greeting to set quest slot
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"help!",
+			new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// says quest or ice and doesn't have an ice sword and hasn't brought one before
 		npc.add(ConversationStates.ATTENDING,
