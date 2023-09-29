@@ -155,10 +155,15 @@ public class StendhalShopDAO extends CharacterDAO {
 		Integer shopId = shopIdMap.get(shopName);
 
 		for (MerchantConfigurator mc : shop.getMerchantConfigurators()) {
+			float priceFactor = 1;
+			if (mc.factor != null) {
+				priceFactor = mc.factor.floatValue();
+			}
+
 			stmt.setInt(1, 1);
 			stmt.setObject(2, npcIdMap.get(mc.npc));
 			stmt.setObject(3, shopId);
-			stmt.setObject(4, mc.factor);
+			stmt.setFloat(4, priceFactor);
 			stmt.addBatch();
 		}
 		stmt.executeBatch();
