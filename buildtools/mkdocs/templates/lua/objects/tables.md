@@ -56,12 +56,12 @@ The following methods have been added to the built-in Lua
 ---
 ## table.contains
 <div class="function">
-    table.contains <span class="paramlist">table, o</span>
+    table.contains <span class="paramlist">tbl, o</span>
 </div>
 
 - Checks if a table contains a value.
 - Parameters:
-    - <span class="param">table</span>
+    - <span class="param">tbl</span>
       <span class="datatype">[table][LuaTable]</span>
       Table to be checked.
     - <span class="param">obj</span>
@@ -75,12 +75,12 @@ The following methods have been added to the built-in Lua
 ---
 ## table.join
 <div class="function">
-    table.join <span class="paramlist">table, delim</span>
+    table.join <span class="paramlist">tbl, delim</span>
 </div>
 
 - Converts a list of strings into a string.
 - Parameters:
-    - <span class="param">table</span>
+    - <span class="param">tbl</span>
       <span class="datatype">[table][LuaTable]</span>
       Table to be joined.
     - <span class="param">delim</span>
@@ -94,15 +94,17 @@ The following methods have been added to the built-in Lua
 ---
 ## table.toList
 <div class="function">
-    table.toList <span class="paramlist">table</span>
+    table.toList <span class="paramlist">tbl</span>
 </div>
 
 - Converts an indexed [table][LuaTable] to Java [`List`][java.util.List].
 - Parameters:
-    - <span class="param">table</span>
+    - <span class="param">tbl</span>
       <span class="datatype">[table][LuaTable]</span>
       Table with contents to be transferred to new list.
 - Returns: New `List` instance.
+- Aliases:
+    - <span class="alias">table.tolist</span>
 
 
 [java.lang.Object]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html

@@ -56,23 +56,43 @@ local var2 = "Hello world!"
 
 ## Data Types
 
-Some common data types in Lua are _string_, _integer_, _boolean_, &amp; _table_. Type names do not
-need to be declared when setting variables.
+Some of the common data types are [`nil`][pil.nil], [`string`][pil.string], [`number`][pil.number],
+[`boolean`][pil.boolean], &amp; [`table`][pil.table]. Lua is a dynamically typed language, so
+declaring the type is not required when setting variables.
 
 Examples:
 
 ```lua
 -- string variable
-local var1 = "Hello world!"
+local var_s = "Hello world!"
 
--- integer variable
-local var2 = 11
+-- number variable
+local var_n = 11
+
+-- the number type also encompasses floating-point or double-precision values
+local var_f = 5.112
 
 -- boolean variable
-local var3 = true
+local var_b = true
 
 -- table variable
-local var4 = {}
+local var_t = {}
+```
+
+By default all variables are `nil`. This means that a variable can be accessed before it is declared
+without throwing an error.
+
+```lua
+-- print value of undeclared variable
+print(foo) -- output: nil
+
+-- print value of declared variable without value
+foo = nil
+print(foo) -- output: nil
+
+-- print value of declared variable with value
+foo = "bar"
+print(foo) -- output: bar
 ```
 
 
@@ -92,16 +112,16 @@ local var = "Hello"
 -- append another string
 var = var .. " world!"
 
-print(var) -- prints "Hello world!"
+print(var) -- output: "Hello world!"
 ```
 
 
 ### Tables
 
-A Lua table is a data type similar to a Java list or map. Tables can be indexed or use key=value
-pairs.
+A Lua [table][pil.table] is a data type similar to a Java list or map. Tables can be indexed or use
+key=value pairs.
 
-<span class="important">Lua table indexes befin at 1, not 0</span>
+<span class="important">Lua table indexes begin at 1, not 0</span>
 
 
 #### Creating Tables
@@ -143,21 +163,21 @@ Square brackets (`[]`) enclosing an index number are used to access values in in
 ```lua
 local mytable = {"foo", "bar"}
 
-print(mytable[1]) -- prints "foo"
-print(mytable[2]) -- prints "bar"
+print(mytable[1]) -- output: "foo"
+print(mytable[2]) -- output: "bar"
 ```
 
 In a key=value table, values can be accessed by either enclosing the key string in square brackets
-or concatenating the key member using a `.`:
+or concatenating the key member using a dot (.):
 
 ```lua
 local mytable = {foo="bar"}
 
 -- using square brackets
-print(mytable["foo"]) -- prints "bar"
+print(mytable["foo"]) -- output: "bar"
 
 -- using concatenated member
-print(mytable.foo) -- prints "bar"
+print(mytable.foo) -- output: "bar"
 ```
 
 
@@ -279,6 +299,23 @@ myTable.myFunction()
 ```
 
 
+### Userdata
+
+[`Userdata`][pil.userdata] is a special type that allows Java data to be stored in Lua variables.
+This allows access to Java objects &amp; methods. Userdata methods are accessed using a colon (:).
+One example is Stendhal's [grammar parser class][Grammar]. It is exposed to Lua as the `grammar`
+global variable.
+
+```lua
+print(type(grammar)) -- ouput: "userdata"
+print(grammar:itthem(5)) -- output: "them"
+```
+
+A dot (.) can be used just like accessing table values, but the userdata object itself must then be
+passed as the first argument. In other words `grammar:itthem(5)` is the same as
+`grammar.itthem(grammar, 5)`.
+
+
 ## Comparison Operators
 
 ### Logical Operators
@@ -309,7 +346,7 @@ myTable.myFunction()
 
 ### Setting Zone
 
-To set a zone to work with, use [game:setZone] object:
+To set a zone to work with, use the [game:setZone] method:
 
 ```lua
 game:setZone("0_semos_city")
@@ -326,22 +363,7 @@ Currently creating new zones via Lua is not supported.
 
 ### Add Zone Music
 
-Music can be added to zones with the [game:setMusic] function. It supports the following arguments:
-
-- <span class="param">filename</span>
-  Basename of the OGG audio file to use stored in
-  [data/music](https://github.com/arianne/stendhal/blob/master/data/music).
-- <span class="param">args</span>
-  A table of key=value integers.
-- Valid keys:
-    - <span class="table-attr">volume</span>
-      Volume level (default: 100).
-    - <span class="table-attr">x</span>
-      The horizontal point for the source of the music (default: 1).
-    - <span class="table-attr">y</span>
-      The vertical point for the source of the music (default: 1).
-    - <span class="table-attr">radius</span>
-      The radial range at which the music can be heard (default: 10000).
+Music can be added to zones with the [game:setMusic] method.
 
 Example:
 
@@ -611,7 +633,7 @@ end
 ### Typecasting
 
 Lua does not support typecasting (as far as I know), but if the class you want to cast to has a copy
-constructor, achieving the same functionality is quite simple.
+constructor, achieving the same functionality possible.
 
 ```lua
 -- "entities:getItem" returns an instance of Item
@@ -639,5 +661,15 @@ bestiary:setOwner("Ted")
 
 [ChatAction]: /reference/java/games/stendhal/server/entity/npc/ChatAction.html
 [ChatCondition]: /reference/java/games/stendhal/server/entity/npc/ChatCondition.html
+[Grammar]: /reference/java/games/stendhal/common/grammar/Grammar.html
 [NotCondition]: /reference/java/games/stendhal/server/entity/npc/condition/NotCondition.html
 [SpeakerNPC]: /reference/java/games/stendhal/server/entity/npc/SpeakerNPC.html
+
+[pil.nil]: https://www.lua.org/pil/2.1.html
+[pil.boolean]: https://www.lua.org/pil/2.2.html
+[pil.function]: https://www.lua.org/pil/2.6.html
+[pil.number]: https://www.lua.org/pil/2.3.html
+[pil.string]: https://www.lua.org/pil/2.4.html
+[pil.table]: https://www.lua.org/pil/2.5.html
+[pil.types]: https://www.lua.org/pil/2.html
+[pil.userdata]: https://www.lua.org/pil/2.7.html
