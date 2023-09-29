@@ -629,8 +629,8 @@ See: [LuaQuest]
     LuaQuest:register <span class="paramlist">func</span>
 </div>
 
-- Registers quest to be added to world at server startup. `LuaQuest.init` must be set before this is
-  called.
+- Registers quest to be added to world at server startup. If called without parameters
+`LuaQuest.init` must be set first.
 - Parameters:
     - <span class="param">func</span>
       <span class="datatype">[function][LuaFunction]</span>
