@@ -75,6 +75,9 @@ The following methods have been added to the built-in Lua
 ---
 ## table.join
 <div class="function">
+    table.join <span class="paramlist">tbl</span>
+</div>
+<div class="function">
     table.join <span class="paramlist">tbl, delim</span>
 </div>
 

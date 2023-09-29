@@ -107,6 +107,21 @@ public class LuaTableHelper {
 
 				return (LuaString) CoerceJavaToLua.coerce(String.join(delim.checkjstring(), parts));
 			}
+
+			/**
+			 * table.join
+			 *
+			 * Converts a list of strings into a string.
+			 *
+			 * @param table
+			 *   Table to be joined.
+			 * @return
+			 *   New `LuaString`.
+			 */
+			@Override
+			public LuaString call(final LuaValue table) {
+				return call(table, LuaValue.valueOf(""));
+			}
 		});
 
 		// add table.toList method
