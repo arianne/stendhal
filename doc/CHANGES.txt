@@ -5,11 +5,6 @@ Changelog
 
 1.44
 
-*bugfixes*
-- fixed Jimbo's shop sign
-- fixed Lobelia's path
-- fixed status effects inflicted by player weapons
-
 *world*
 - quests now shown in travel log:
   - Adventure Island
@@ -27,6 +22,9 @@ Changelog
   - Semos Plains N (more)
   - Semos Plains NE
 
+*website*
+- item page list sellers and buyers
+
 *java client*
 - rendering mode can be changed in settings
 
@@ -35,6 +33,10 @@ Changelog
 - items support states (generalized from ring of life)
 - quest Manifest for deliver-item quests
 
+*bugfixes*
+- fixed Jimbo's shop sign
+- fixed Lobelia's path
+- fixed status effects inflicted by player weapons
 
 
 1.43.3
