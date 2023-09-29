@@ -335,7 +335,7 @@ watermelon.png           RedQueen; OGA BY 3.0; Stendhal
 
 data/sprites/items/food/furniture
 
-photo_in_wooden_frame.png   Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/79120, "convert -resize 22X20" of stendhal-website/images/photos
+picture_in_wooden_frame.png   Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/79120, "convert -resize 22X20" of stendhal-website/images/photos
 
 data/sprites/items/grower/
 

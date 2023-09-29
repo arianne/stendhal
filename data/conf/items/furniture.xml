@@ -3,9 +3,9 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../items.xsd">
 
-  <item name="photo in wooden frame">
-    <type class="furniture" subclass="photo_in_wooden_frame"/>
-    <description>You see a photo in a wooden frame</description>
+  <item name="picture in wooden frame">
+    <type class="furniture" subclass="picture_in_wooden_frame"/>
+    <description>You see a picture in a wooden frame</description>
     <implementation class-name="games.stendhal.server.entity.item.ExaminableItem"/>
     <attributes>
       <quantity value="1"/>

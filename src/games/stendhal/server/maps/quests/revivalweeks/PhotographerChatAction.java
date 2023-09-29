@@ -85,10 +85,10 @@ public class PhotographerChatAction implements ChatAction {
 		addSign(player.getName(), url, "Picture", caption);
 
 		if (player.getAdminLevel() > 0) {
-			final Item item = SingletonRepository.getEntityManager().getItem("photo in wooden frame");
+			final Item item = SingletonRepository.getEntityManager().getItem("picture in wooden frame");
 			item.setItemData(url + "\tPicture\t" + caption);
 			item.setState(i);
-			item.setDescription("You see a §'photo in a wooden frame'. It shows " + caption + ".");
+			item.setDescription("You see a §'picture in a wooden frame'. It shows " + caption + ".");
 			player.equipOrPutOnGround(item);
 		}
 
