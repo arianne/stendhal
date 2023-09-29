@@ -23,7 +23,7 @@
 	<classpathentry kind="lib" path="libs/marauroa.jar" sourcepath="/marauroa"/>
 	<classpathentry kind="lib" path="libs/luaj-jse-3.0.1.jar" sourcepath="/luaj"/>
 	<classpathentry kind="lib" path="libs/jakarta.annotation-api-2.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/tomcat-embed-core-10.1.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/tomcat-embed-core-10.1.13.jar"/>
 	<classpathentry kind="lib" path="libs/tomcat-embed-websocket-10.1.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

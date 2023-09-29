@@ -16,6 +16,9 @@
     </not>
   </condition>
   -->
+  <condition property="exclude.webclientdist" value="true">
+    <isset property="exclude.webclient"/>
+  </condition>
 
   <!-- property to exclude Android webview client build -->
   <condition property="exclude.webview" value="true">
@@ -382,7 +385,7 @@
 
     <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
 
-    <antcall target="webclient_build" unless:set="exclude.webclient"/>
+    <antcall target="webclient_build" unless:set="exclude.webclientdist"/>
 
     <copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
     <mkdir dir="${buildroot}/stendhal-server-${version}/log"/>
@@ -391,10 +394,10 @@
       <zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
       <zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
       <!-- webclient files -->
-      <zipfileset dir="${build_client_data}" unless:set="exclude.webclient"/>
-      <zipfileset dir="${build_client_music_data}" unless:set="exclude.webclient"/>
-      <zipfileset dir="${build_client_sound_data}" unless:set="exclude.webclient"/>
-      <zipfileset dir="${build_webclient}" prefix="js" unless:set="exclude.webclient"/>
+      <zipfileset dir="${build_client_data}" unless:set="exclude.webclientdist"/>
+      <zipfileset dir="${build_client_music_data}" unless:set="exclude.webclientdist"/>
+      <zipfileset dir="${build_client_sound_data}" unless:set="exclude.webclientdist"/>
+      <zipfileset dir="${build_webclient}" prefix="js" unless:set="exclude.webclientdist"/>
     </zip>
     <delete dir="${buildroot}/stendhal-server-${version}"/>
     <delete dir="${build_webclient}"/>
