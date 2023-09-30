@@ -33,7 +33,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 	private static final String[] IMPORTANT_ATTRIBUTES = new String[] { "itemdata",
 			"bound",
 			"persistent", "undroppableondeath", "amount", "frequency",
-			"regen", "atk", "range" };
+			"regen", "atk", "range", "state" };
 
 	private static final String[] ATTRIBUTES_TO_COPY_ON_SPLIT = initializeAttributeNamesToCopy();
 
