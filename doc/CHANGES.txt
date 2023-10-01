@@ -6,12 +6,13 @@ Changelog
 1.44
 
 *world*
-- quests now shown in travel log:
-  - Adventure Island
-  - Help Tomi
 - new achievements:
   - Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
   - Sowing Seeds of Joy: Sow 1000 of each type of sowable flower seed
+- Kirla sells copies for her memory pictures
+- quests now shown in travel log:
+  - Adventure Island
+  - Help Tomi
 - chicken & mother hen drop eggs
 - seeds aren't wasted if attempting to plant where another flower is already growing
 - seeds are not wasted on infertile ground
