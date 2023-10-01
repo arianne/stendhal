@@ -2,6 +2,14 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
+    <delete dir="${docs}"/>
+  </target>
+
+  <target name="clean_mkdocs" description="Delete MkDocs generated HTML documentation.">
+    <delete dir="${buildroot}/mkdocs/"/>
+  </target>
+
   <target name="javadocs" description="Generate HTML documentation for Java API with javadoc." depends="clean_javadocs">
     <condition property="include.marauroa" value="true">
       <available file="${marauroa_src}" type="dir"/>

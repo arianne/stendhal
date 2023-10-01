@@ -2,6 +2,8 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <import file="tools.xml" />
+
   <target name="rendermaps" description="Convert TMX maps to PNG images scaled 1:16." depends="compile_stendhaltools">
     <taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
       <classpath>

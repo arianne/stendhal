@@ -2,6 +2,10 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <import file="clean.xml" />
+  <import file="main.xml" />
+  <import file="tools.xml" />
+
   <!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
   <condition property="executable.suffix" value=".cmd">
     <os family="windows"/>

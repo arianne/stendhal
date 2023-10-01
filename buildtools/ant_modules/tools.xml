@@ -2,6 +2,8 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <import file="dist.xml" />
+
   <target name="compile_stendhaltools" description="Compile Stendhal build tools.">
     <mkdir dir="${build_stendhaltools}"/>
 
@@ -25,6 +27,41 @@
       </classpath>
     </javac>
   </target> <!-- compile_stendhaltools -->
+
+  <target name="clean_whitespace" description="Clean whitespace in source and other specified file types." depends="compile_stendhaltools">
+    <!-- process main Java source, config, & scripting files -->
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="src/"/>
+      <arg value="tests/"/>
+      <arg value="android/app/src/"/>
+      <arg value="java,xml,lua"/>
+    </java>
+
+    <!-- process web client source files -->
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="srcjs/"/>
+      <arg value="js,ts,css"/>
+    </java>
+
+    <!-- process config & scripting data files -->
+    <java classname="games.stendhal.tools.CleanWhitespace">
+      <classpath>
+        <pathelement path="${build_stendhaltools}"/>
+      </classpath>
+      <arg value="data/"/>
+      <arg value="tiled/"/>
+      <arg value="xml,xsd,lua,py"/>
+    </java>
+  </target> <!-- clean_whitespace -->
+
+
+  <target name="cleanwhitespace" depends="clean_whitespace" description="Alias of clean_whitespace."/>
 
 
   <target name="postman" description="Build postman bot.">

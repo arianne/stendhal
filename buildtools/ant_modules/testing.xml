@@ -4,6 +4,8 @@
 
   <available property="server.ini" file="server.ini"/>
 
+  <import file="dist.xml" />
+  <import file="tools.xml" />
 
   <target name="test" description="Compile and run all tests." depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
     <exec executable="curl">
