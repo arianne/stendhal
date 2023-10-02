@@ -279,9 +279,15 @@ public final class stendhal {
 					System.setProperty("sun.java2d.noddraw", "true");
 					break;
 				}
-				case DIRECT_DRAW_SCALE: {
+				case DIRECT_DRAW: {
+					System.setProperty("sun.java2d.d3d", "false");
+					break;
+				}
+				case DDRAW_HWSCALE: {
+					System.setProperty("sun.java2d.d3d", "true");
+					System.setProperty("sun.java2d.ddforcevram", "true");
 					System.setProperty("sun.java2d.translaccel", "true");
-					System.setProperty("ddscale", "true");
+					System.setProperty("sun.java2d.ddscale", "true");
 					break;
 				}
 				case OPEN_GL: {
