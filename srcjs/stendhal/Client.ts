@@ -30,6 +30,7 @@ import { PlayerEquipmentComponent } from "./ui/component/PlayerEquipmentComponen
 import { ZoneInfoComponent } from "./ui/component/ZoneInfoComponent";
 
 import { ApplicationMenuDialog } from "./ui/dialog/ApplicationMenuDialog";
+import { ChooseCharacterDialog } from "./ui/dialog/ChooseCharacterDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
@@ -224,7 +225,7 @@ export class Client {
 	registerMarauroaEventHandlers() {
 		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
 			if (!Client.instance.unloading) {
-				Chat.logH("error", "Disconnected from server." + Client.instance.unloading);
+				Chat.logH("error", "Disconnected from server.");
 			}
 		};
 
@@ -241,33 +242,23 @@ export class Client {
 		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters: {[key: string]: RPObject}) {
-			let name = null;
 			if (window.location.hash) {
-				name = window.location.hash.substring(1);
+				let name = window.location.hash.substring(1);
 				stendhal.session.setCharName(name);
-			} else {
-				name = stendhal.session.getCharName();
-				if (name == null || typeof(name) === "undefined" || name === "") {
-					name = marauroa.util.first(characters)["a"]["name"];
-					var admin = 0;
-					for (var i in characters) {
-						if (characters.hasOwnProperty(i)) {
-							if (characters[i]["a"]["adminlevel"] > admin) {
-								admin = characters[i]["a"]["adminlevel"];
-								name = characters[i]["a"]["name"];
-							}
-						}
-					}
-					stendhal.session.setCharName(name);
-				}
 			}
-			marauroa.clientFramework.chooseCharacter(name);
-			var body = document.getElementById("body")!;
-			body.style.cursor = "auto";
-			Chat.log("client", "Loading world...");
 
-			// play login sound for this user
-			singletons.getSoundManager().playGlobalizedEffect("ui/login");
+			let name = stendhal.session.getCharName();
+			if (name) {
+				Client.get().chooseCharacter(name);
+				return;
+			}
+			let body = document.getElementById("body")!;
+			body.style.cursor = "auto";
+			document.getElementById("loginpopup")!.style.display = "none";
+			ui.createSingletonFloatingWindow(
+				"Choose Character",
+				new ChooseCharacterDialog(characters),
+				100, 50);
 		};
 
 		marauroa.clientFramework.onTransferREQ = function(items: any) {
@@ -308,12 +299,23 @@ export class Client {
 					this.loaded = true;
 					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
 					setTimeout(function() {
+						let body = document.getElementById("body")!;
+						body.style.cursor = "auto";
 						document.getElementById("client")!.style.display = "block";
 						document.getElementById("loginpopup")!.style.display = "none";
 					}, 300);
 				}
 			}
 		}
+	}
+
+	chooseCharacter(name: string) {
+		stendhal.session.setCharName(name);
+		marauroa.clientFramework.chooseCharacter(name);
+		Chat.log("client", "Loading world...");
+
+		// play login sound for this user
+		singletons.getSoundManager().playGlobalizedEffect("ui/login");
 	}
 
 	onBeforeUnload() {
