@@ -806,31 +806,16 @@
       <fileset dir="${srcjs}">
         <include name="stendhal.html"/>
         <include name="stendhal.css"/>
-        <include name="stendhal-compiled.js*"/>
+        <include name="stendhal-compiled.js"/>
         <include name="favicon.ico"/>
       </fileset>
-    </copy>
-    <copy todir="${build_webclient}/marauroa">
-      <fileset dir="${buildroot}/js"/>
-    </copy>
-    <copy todir="${build_webclient}/stendhal">
-      <fileset dir="${buildroot}/ts"/>
     </copy>
 
     <replaceregexp file="${build_webclient}/stendhal.html"
         match="data-tileset-path=&quot;/tileset&quot;"
         replace="data-tileset-path=&quot;/data/tileset&quot;"
         byline="false"/>
-    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
-        match="build/js/"
-        replace="js/marauroa/"
-        byline="true"
-        flags="g"/>
-    <replaceregexp file="${build_webclient}/stendhal-compiled.js.map"
-        match="build/ts/"
-        replace="js/stendhal/"
-        byline="true"
-        flags="g"/>
+
   </target> <!-- webclient_build -->
 
 
