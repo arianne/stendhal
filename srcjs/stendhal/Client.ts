@@ -31,6 +31,7 @@ import { ZoneInfoComponent } from "./ui/component/ZoneInfoComponent";
 
 import { ApplicationMenuDialog } from "./ui/dialog/ApplicationMenuDialog";
 import { ChooseCharacterDialog } from "./ui/dialog/ChooseCharacterDialog";
+import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
@@ -229,16 +230,29 @@ export class Client {
 			}
 		};
 
-		marauroa.clientFramework.onLoginRequired = function() {
-			window.location.href = "/index.php?id=content/account/login&url="
-				+ encodeURI(window.location.pathname + window.location.hash);
+		marauroa.clientFramework.onLoginRequired = function(config: Record<string, string>) {
+			if (config["client_login_url"]) {
+				Client.instance.unloading = true;
+				let currentUrl = encodeURI(window.location.pathname + window.location.hash);
+				let url = config["client_login_url"].replace("[url]", currentUrl);
+				window.location.href = url;
+				return;
+			}
+
+			let body = document.getElementById("body")!;
+			body.style.cursor = "auto";
+			document.getElementById("loginpopup")!.style.display = "none";
+			ui.createSingletonFloatingWindow(
+				"Login",
+				new LoginDialog(),
+				100, 50);
+
 		};
 
 		marauroa.clientFramework.onLoginFailed = function(_reason: string, _text: string) {
-			alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
-			marauroa.clientFramework.close();
-			(document.getElementById("chatinput")! as HTMLInputElement).disabled = true;
-			document.getElementById("chat")!.style.backgroundColor = "#AAA";
+			alert("Login failed. " + _text);
+			// TODO: Server closes the connection, so we need to open a new one
+			window.location.reload();
 		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters: {[key: string]: RPObject}) {
