@@ -19,8 +19,6 @@ export class ChooseCharacterDialog extends DialogContentComponent {
 
 	constructor(characters: any) {
 		super("choose-character-template");
-		// this.child("h3")!.textContent = caption;
-		// this.componentElement.querySelector("img")!.src = imageFilename;
 
 		for (var i in characters) {
 			if (characters.hasOwnProperty(i)) {
@@ -28,7 +26,7 @@ export class ChooseCharacterDialog extends DialogContentComponent {
 				let button = document.createElement("button");
 				button.innerText = name;
 				button.addEventListener("click", () => {
-					this.close();
+					this.componentElement.dispatchEvent(new Event("close"));
 					Client.get().chooseCharacter(name);
 				});
 				this.componentElement.append(button);
