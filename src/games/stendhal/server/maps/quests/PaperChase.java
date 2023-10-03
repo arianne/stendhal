@@ -95,7 +95,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private String getFameType() {
 		String questSlot = QuestUtils.evaluateQuestSlotName(QUEST_SLOT);
-		return questSlot.substring(questSlot.length() - 1);
+		return questSlot.substring(questSlot.length() - 2);
 
 	}
 
