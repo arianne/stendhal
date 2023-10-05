@@ -75,10 +75,13 @@
     </not>
   </condition>
 
+  <!-- time & date -->
   <tstamp>
-    <format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss"/>
     <format property="year" pattern="yyyy"/>
+    <format property="date" pattern="yyyy-MM-dd"/>
+    <format property="time" pattern="HH:mm:ss"/>
   </tstamp>
+  <property name="datetime" value="${date} ${time}"/>
 
   <!-- check for some executables -->
   <available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
