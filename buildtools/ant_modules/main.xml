@@ -49,6 +49,12 @@
       replace="UPDATE_VERSION_CHECK=${version_server}"
       byline="true"/>
 
+    <!-- date & timestamps -->
+    <replaceregexp file="${buildtools}/mkdocs/mkdocs.yml"
+      match="^copyright:.*"
+      replace="copyright: Copyright &#169; 2003-${year} Stendhal"
+      byline="true"/>
+
     <!-- pre release version -->
     <replaceregexp file="${src}/games/stendhal/common/Debug.java"
       match="String PRE_RELEASE_VERSION ?= .*;"
