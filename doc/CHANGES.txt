@@ -8,7 +8,7 @@ Changelog
 *world*
 - new achievements:
   - Fruit Salad: Harvest 3 of all fruit that grow in Faiumoni
-  - Sowing Seeds of Joy: Sow 1000 of each type of sowable flower seed
+  - Sowing Seeds: Sow 1000 of each type of sowable flower seed
 - Kirla sells copies for her memory pictures
 - quests now shown in travel log:
   - Adventure Island
