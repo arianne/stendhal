@@ -52,65 +52,52 @@ public class UnicornHornsForZelan implements QuestManuscript {
 	public BringItemQuestBuilder story() {
 		BringItemQuestBuilder quest = new BringItemQuestBuilder();
 
-		final String npcName = "Zelan";
-		final int quantity = 10;
-		final String itemName = "unicorn horn";
-		final String plItemName = itemName + "s";
-		final int rewardSoup = 3;
-		final int rewardMoney = 20000;
-
 		quest.info()
 			.name("Unicorn Horns for Zelan")
 			.internalName("unicorn_horns_for_zelan")
-			.description("Zelan needs help gathering " + plItemName + ".")
+			.description("Zelan needs help gathering unicorn horns.")
 			.region(Region.ATLANTIS)
-			.questGiverNpc(npcName)
+			.questGiverNpc("Zelan")
 			// 3 days
 			.repeatableAfterMinutes(60 * 24 * 3);
 
 		quest.history()
-			.whenNpcWasMet(npcName + " asked me to get " + quantity
-					+ " " + plItemName + ".")
-			.whenQuestWasRejected("I do not want to help " + npcName + ".")
+			.whenNpcWasMet("Zelan asked me to get 10 unicorn horns.")
+			.whenQuestWasRejected("I do not want to help Zelan.")
 			.whenQuestWasAccepted("I have agreed to help.")
-			.whenTaskWasCompleted("I found enough " + plItemName + ".")
-			.whenQuestWasCompleted(npcName + " is now able to make daggers.")
-			.whenQuestCanBeRepeated("I should ask " + npcName + " if he wants"
-					+ " more help.")
-			.whenCompletionsShown("I have helped " + npcName + " [count]"
-					+ " [time].");
+			.whenTaskWasCompleted("I found enough unicorn horns.")
+			.whenQuestWasCompleted("Zelan  is now able to make daggers.")
+			.whenQuestCanBeRepeated("I should ask Zelan if he wants more help.")
+			.whenCompletionsShown("I have helped Zelan [count] [time].");
 
 		quest.offer()
-			.respondToRequest("Hello! I'm in need of some " + plItemName
+			.respondToRequest("Hello! I'm in need of some unicorn horns"
 					+ " to make some daggers. It is really dangerous in the woods"
 					+ " surrounding Atlantis. If you are a brave sort I could"
-					+ " really use some help gathering " + plItemName + ". Will"
-					+ " you help me?")
+					+ " really use some help gathering unicorn horns."
+					+ " Will you help me?")
 			.respondToAccept("Great! Be careful out there lots of large"
 					+ " monsters, and those centaurs are really nasty.")
 			.respondToReject("Thats ok, I will find someone else to help me.")
 			.rejectionKarmaPenalty(10.0)
-			.remind("I asked you to bring me " + quantity + " " + plItemName
-					+ ".")
-			.respondToUnrepeatableRequest("Thanks, but I don't need any more"
-					+ " help yet.")
+			.remind("I asked you to bring me 10 unicorn horns.")
+			.respondToUnrepeatableRequest("Thanks, but I don't need any more help yet.")
 			.respondToRepeatedRequest("I want to make more daggers. I could"
-					+ " really use your help again. Would you gather more "
-					+ plItemName + " for me?");
+					+ " really use your help again. Would you gather more"
+					+ " unicorn horns for me?");
 
 		quest.task()
-			.requestItem(quantity, itemName);
+			.requestItem(10, "unicorn horn");
 
 		quest.complete()
-			.greet("Did you find the " + plItemName + "?")
-			.respondToReject("I asked you to bring me " + quantity + " "
-					+ plItemName + ".")
-			.respondToAccept("Thanks a bunch! As a reward I will give you "
-					+ rewardSoup + " soups and " + rewardMoney + " money.")
+			.greet("Did you find the unicorn horns?")
+			.respondToReject("I asked you to bring me 10 unicorn horns.")
+			.respondToAccept("Thanks a bunch! As a reward I will give you"
+					+ " 3 soups and 20000 money.")
 			.rewardWith(new IncreaseXPAction(50000))
 			.rewardWith(new IncreaseKarmaAction(30.0))
-			.rewardWith(new EquipItemAction("soup", rewardSoup))
-			.rewardWith(new EquipItemAction("money", rewardMoney));
+			.rewardWith(new EquipItemAction("soup", 3))
+			.rewardWith(new EquipItemAction("money", 20000));
 
 		return quest;
 	}
