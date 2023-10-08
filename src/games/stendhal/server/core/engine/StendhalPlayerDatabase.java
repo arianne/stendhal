@@ -245,6 +245,10 @@ public class StendhalPlayerDatabase {
 			transaction.execute("DROP TABLE shopinventoryinfo;", null);
 		}
 
+		// 1.45: hide NPC zone info from website
+		if (!transaction.doesColumnExist("npcs", "hidezone")) {
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (hidezone INTEGER);", null);
+		}
 	}
 
 
