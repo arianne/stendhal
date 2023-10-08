@@ -89,6 +89,8 @@ public class GhostNPC implements ZoneConfigurator {
 		ghost.initHP(30);
 		ghost.setBaseHP(100);
 		ghost.put("no_shadow", "");
+		// hide location from website
+		ghost.put("hidezone", "");
 		zone.add(ghost);
 	}
 }

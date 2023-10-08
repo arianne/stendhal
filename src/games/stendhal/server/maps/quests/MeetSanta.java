@@ -138,6 +138,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		santa.setEntityClass("santaclausnpc");
 		santa.initHP(100);
 		santa.setSounds(Arrays.asList("ho-ho-ho-1", "ho-ho-ho-2"));
+		// hide location from website
+		santa.put("hidezone", "");
 
 		// start in int_admin_playground
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");

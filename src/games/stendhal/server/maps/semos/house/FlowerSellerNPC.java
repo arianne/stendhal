@@ -53,6 +53,8 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		rose.setCollisionAction(CollisionAction.REVERSE);
 		rose.setDescription("You see Rose Leigh. She jumps from place to place with a basket filled with lovely rhosyds.");
 		rose.setSounds(new String[] {"npc/hum_happy"});
+		// hide location from website
+		rose.put("hidezone", "");
 
 		// start in int_semos_house
 		final StendhalRPZone	zone = SingletonRepository.getRPWorld().getZone("int_semos_house");

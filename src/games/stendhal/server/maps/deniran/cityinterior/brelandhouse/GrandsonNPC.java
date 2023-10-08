@@ -38,6 +38,8 @@ public class GrandsonNPC implements ZoneConfigurator {
 		niall.addGoodbye();
 
 		niall.setPosition(9, 7);
+		// hide location from website
+		niall.put("hidezone", "");
 
 		zone.add(niall);
 	}
