@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
-
 public class CrystalNPCBase extends SpeakerNPC {
 
 	public CrystalNPCBase(final String name) {
