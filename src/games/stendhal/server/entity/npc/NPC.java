@@ -92,8 +92,6 @@ public abstract class NPC extends DressedEntity {
 			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
 			npc.addAttribute("cloned", Type.STRING);
-			// for website to handle hiding zone information
-			npc.addAttribute("hidezone", Type.FLAG, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}

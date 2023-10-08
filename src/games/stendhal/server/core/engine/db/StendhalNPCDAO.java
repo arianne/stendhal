@@ -62,7 +62,7 @@ public class StendhalNPCDAO {
 		stmt.setString(14, npc.getJob());
 		stmt.setString(15, npc.getAlternativeImage());
 		stmt.setString(16, npc.get("cloned"));
-		stmt.setInt(17, npc.has("hidezone") ? 1 : 0);
+		stmt.setInt(17, npc.isLocationHidden() ? 1 : 0);
 		stmt.addBatch();
 	}
 
@@ -105,7 +105,7 @@ public class StendhalNPCDAO {
 		transaction.execute("UPDATE npcs SET active=0", null);
 		PreparedStatement stmt = transaction.prepareStatement("UPDATE npcs SET "
 				+ "active=?, name=?, title=?, class=?, outfit=?, outfit_layers=?, hp=?, base_hp=?, zone=?, x=?, y=?, "
-				+ "level=?, description=?, job=?, image=?, cloned=?, hidezone=? "
+				+ "level=?, description=?, job=?, image=?, cloned=?, hide_location=? "
 				+ "WHERE name=?", null);
 		Map<String, SpeakerNPC> unknown = new HashMap<>();
 		for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
@@ -124,7 +124,7 @@ public class StendhalNPCDAO {
 
 		stmt = transaction.prepareStatement("INSERT INTO npcs " +
 			"(active, name, title, class, outfit, outfit_layers, hp, base_hp, zone, x, y, " +
-			"level, description, job, image, cloned, hidezone) " +
+			"level, description, job, image, cloned, hide_location) " +
 			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
 		for (SpeakerNPC npc : unknown.values()) {

@@ -132,7 +132,7 @@ public class SevenCherubs extends AbstractQuest {
 			setPath(new FixedPath(nodes, true));
 
 			// hide location from website
-			put("hidezone", "");
+			hideLocation();
 		}
 
 		@Override

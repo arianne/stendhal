@@ -132,7 +132,7 @@ public class OldWomanNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		npc.setDescription("You see an elder woman. She looks a bit disorientated.");
 		// hide location from website
-		npc.put("hidezone", "");
+		npc.hideLocation();
 		zone.add(npc);
 	}
 }

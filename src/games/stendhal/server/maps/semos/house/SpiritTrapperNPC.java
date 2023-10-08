@@ -227,7 +227,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 		mizuno.setCollisionAction(CollisionAction.REVERSE);
 		mizuno.setDescription("You see Mizuno. Like a spirit he wanders the vacant haunts of Ados doing who knows what.");
 		// hide location from website
-		mizuno.put("hidezone", "");
+		mizuno.hideLocation();
 
 		// start in int_semos_house
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_semos_house");

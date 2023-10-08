@@ -190,6 +190,9 @@ public class SpeakerNPC extends PassiveNPC {
 
 	private LinkedHashMap<ChatCondition, Object> prioritizedGreetingTransitions;
 
+	/** Determines if location should be visible on website. */
+	private boolean showLocation = true;
+
 	/**
 	 * Creates a new SpeakerNPC.
 	 *
@@ -1133,5 +1136,22 @@ public class SpeakerNPC extends PassiveNPC {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Sets flag determining NPC location should not be visible.
+	 */
+	public void hideLocation() {
+		showLocation = false;
+	}
+
+	/**
+	 * Retrieves visibility of NPC's location.
+	 *
+	 * @return
+	 *   Whether or not location should be visible.
+	 */
+	public boolean isLocationHidden() {
+		return !showLocation;
 	}
 }

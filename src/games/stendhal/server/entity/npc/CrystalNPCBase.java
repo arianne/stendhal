@@ -17,7 +17,7 @@ public class CrystalNPCBase extends SpeakerNPC {
 		super(name);
 
 		// hide location from website
-		put("hidezone", "");
+		hideLocation();
 	}
 
 	@Override

@@ -108,7 +108,7 @@ public class AdminHelpNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.setEntityClass("beautifulgirlnpc");
 		// hide location from website
-		npc.put("hidezone", "");
+		npc.hideLocation();
 		zone.add(npc);
 	}
 

@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   description   VARCHAR(1000),
   job           VARCHAR(1000),
   cloned        VARCHAR(64),
-  hidezone      INTEGER DEFAULT 0,
+  hide_location INTEGER DEFAULT 0,
   PRIMARY KEY (id)
 );
 

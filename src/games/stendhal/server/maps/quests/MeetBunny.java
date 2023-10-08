@@ -105,7 +105,7 @@ public class MeetBunny extends AbstractQuest {
 		bunny.setPlayerChatTimeout(TIME_OUT);
 		bunny.setDescription("You see a friendly bunny carrying brightly coloured Easter baskets.");
 		// hide location from website
-		bunny.put("hidezone", "");
+		bunny.hideLocation();
 
 		// start in int_admin_playground
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");

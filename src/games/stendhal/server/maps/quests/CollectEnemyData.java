@@ -174,7 +174,7 @@ public class CollectEnemyData extends AbstractQuest {
 		teleporterBehaviour.setTeleportWarning("I must leave soon.");
 
 		// hide location from website
-		npc.put("hidezone", "");
+		npc.hideLocation();
 
 		// initialize Rengard with a zone so JUnit test does not fail
 		SingletonRepository.getRPWorld().getZone(zonesWhitelist[0]).add(npc);

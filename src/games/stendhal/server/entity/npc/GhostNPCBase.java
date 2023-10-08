@@ -41,7 +41,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 		// ghosts don't cast shadows
 		put("no_shadow", "");
 		// hide location from website
-		put("hidezone", "");
+		hideLocation();
 	}
 
 	@Override
