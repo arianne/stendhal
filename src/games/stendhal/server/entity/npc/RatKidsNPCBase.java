@@ -35,6 +35,9 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 
 	public RatKidsNPCBase(final String name) {
 		super(name);
+
+		// hide location from website
+		put("hidezone", "");
 	}
 
 	@Override
