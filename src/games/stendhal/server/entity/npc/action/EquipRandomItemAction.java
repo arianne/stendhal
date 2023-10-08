@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,12 +17,14 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 /**
  * Chooses and equips the specified item from a list
@@ -34,16 +35,7 @@ public class EquipRandomItemAction implements ChatAction {
 
 	private Map<String, Integer> items = new HashMap<String, Integer>();
 	private final boolean bind;
-
-	/**
-	 * Creates a new EquipRandomItemAction.
-	 *
-	 * @param items
-	 *           items and quantities
-	 */
-	public EquipRandomItemAction(final Map<String, Integer> items) {
-		this(items, false);
-	}
+	private String text;
 
 	/**
 	 * Creates a new EquipRandomItemAction.
@@ -52,21 +44,14 @@ public class EquipRandomItemAction implements ChatAction {
 	 *            items and quantities
 	 * @param bind
 	 *            bind to player
+	 * @param text
+	 *            text to say
 	 */
 	@Dev
-	public EquipRandomItemAction(final Map<String, Integer> items, final boolean bind) {
+	public EquipRandomItemAction(final Map<String, Integer> items, final boolean bind, String text) {
 		this.items = items;
 		this.bind = bind;
-	}
-
-	/**
-	 * Creates a new EquipRandomItemAction.
-	 *
-	 * @param itemlist
-	 *            items and quantities as a String item=q1;item2=q2
-	 */
-	public EquipRandomItemAction(final String itemlist) {
-		this(itemlist, false);
+		this.text = text;
 	}
 
 	/**
@@ -76,8 +61,10 @@ public class EquipRandomItemAction implements ChatAction {
 	 *            items and quantities as a String item=q1;item2=q2
 	 * @param bind
 	 *            bind to player
+	 * @param text
+	 *            text to say
 	 */
-	public EquipRandomItemAction(final String itemlist, final boolean bind) {
+	public EquipRandomItemAction(final String itemlist, final boolean bind, String text) {
 		String[] elements = itemlist.split(";");
 		if (elements.length == 1) {
 			logger.warn("Using random item function for one item? List: " + itemlist);
@@ -96,6 +83,7 @@ public class EquipRandomItemAction implements ChatAction {
 			items.put(itemname, amount);
 		}
 		this.bind = bind;
+		this.text = text;
 	}
 
 	@Override
@@ -103,6 +91,12 @@ public class EquipRandomItemAction implements ChatAction {
 		final String itemName = Rand.rand(items.keySet());
 		final Integer amount = items.get(itemName);
 		new EquipItemAction(itemName, amount, bind).fire(player, null, null);
+		if (text != null) {
+			Map<String, Object> params = new HashMap<>();
+			params.put("this_these", Grammar.thisthese(amount));
+			params.put("number_item", Grammar.quantityNumberStrNoun(amount, itemName));
+			npc.say(StringUtils.substitute(text, params));
+		}
 	}
 
 	@Override
