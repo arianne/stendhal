@@ -247,7 +247,7 @@ public class StendhalPlayerDatabase {
 
 		// 1.45: hide NPC location info from website
 		if (!transaction.doesColumnExist("npcs", "hide_location")) {
-			transaction.execute("ALTER TABLE npcs ADD COLUMN (hide_location INTEGER DEFAULT 0);", null);
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (hide_location TINYINT DEFAULT 0);", null);
 		}
 	}
 
