@@ -116,7 +116,9 @@ public class CollectingGroupQuestAdder {
 				} else if (percent < 75) {
 					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. We have barly reached the half way point. Perhaps you could help with some #tasks.");
 				} else if (percent < 90) {
-					npc.say("We are almost there. But still, there are still some #tasks left before the " + behaviour.getProjectName() + " can start.");
+					npc.say("There is still so much to do before the " + behaviour.getProjectName() + " can start. But at least we are significantly past the half way point. Perhaps you could help with some #tasks.");
+				} else {
+					npc.say("We are almost there. But still, there are some #tasks left before the " + behaviour.getProjectName() + " can start.");
 				}
 			}
 		});
