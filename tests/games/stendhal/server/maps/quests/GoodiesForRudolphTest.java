@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -69,7 +69,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty("stendhal.christmas", "");
 		QuestHelper.setUpBeforeClass();
 		setupZone(ZONE_SEMOS);
 	}
@@ -88,6 +87,9 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 		quest = new GoodiesForRudolph();
 		quest.addToWorld();
+		if (System.getProperty("stendhal.christmas") == null) {
+			((GoodiesForRudolph) quest).addStepsToWorld();
+		}
 
 		questSlot = quest.getSlotName();
 	}

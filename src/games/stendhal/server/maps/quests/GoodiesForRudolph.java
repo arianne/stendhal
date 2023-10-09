@@ -253,9 +253,16 @@ public class GoodiesForRudolph extends AbstractQuest {
 				false);
 
 		if (Occasion.CHRISTMAS) {
-			prepareRequestingStep();
-			prepareBringingStep();
+			addStepsToWorld();
 		}
+	}
+
+	/**
+	 * This can be called after `addToWorld` to force steps to be loaded if Christmas isn't active.
+	 */
+	public void addStepsToWorld() {
+		prepareRequestingStep();
+		prepareBringingStep();
 	}
 
 	@Override
