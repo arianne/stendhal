@@ -439,7 +439,7 @@ public class StendhalQuestSystem {
 	public List<String> getOpenQuests(Player player) {
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
-			if (quest.isStarted(player) && !quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+			if (quest.isStarted(player) && !quest.isCompleted(player) && quest.isVisibleOnQuestStatus(player)) {
 				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
@@ -456,7 +456,9 @@ public class StendhalQuestSystem {
 		Collection<IQuest> tmp = findCompletedQuests(player);
 		List<String> res = new ArrayList<String>(tmp.size());
 		for (IQuest quest : tmp) {
-			res.add(quest.getQuestInfo(player).getName());
+			if (quest.isVisibleOnQuestStatus(player)) {
+				res.add(quest.getQuestInfo(player).getName());
+			}
 		}
 		return res;
 	}
@@ -471,7 +473,7 @@ public class StendhalQuestSystem {
 		Collection<IQuest> tmp = findCompletedQuests(player);
 		List<String> res = new ArrayList<String>();
 		for (IQuest quest : tmp) {
-			if (quest.isRepeatable(player)) {
+			if (quest.isVisibleOnQuestStatus(player) && quest.isRepeatable(player)) {
 				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
@@ -487,7 +489,7 @@ public class StendhalQuestSystem {
 	private Collection<IQuest> findCompletedQuests(Player player) {
 		List<IQuest> res = new ArrayList<IQuest>();
 		for (IQuest quest : quests) {
-			if (quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+			if (quest.isCompleted(player) && quest.isVisibleOnQuestStatus(player)) {
 				res.add(quest);
 			}
 		}
@@ -676,7 +678,7 @@ public class StendhalQuestSystem {
 	public List<String> getIncompleteQuests(Player player, String region) {
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
-			if (region.equals(quest.getRegion()) && !quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+			if (region.equals(quest.getRegion()) && !quest.isCompleted(player) && quest.isVisibleOnQuestStatus(player)) {
 				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
@@ -696,7 +698,7 @@ public class StendhalQuestSystem {
         final int playerlevel = player.getLevel();
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
-			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus() && quest.getMinLevel()<playerlevel) {
+			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus(player) && quest.getMinLevel()<playerlevel) {
 				// don't add a name twice
 				if (!res.contains(quest.getNPCName())) {
 					res.add(quest.getNPCName());
@@ -723,7 +725,7 @@ public class StendhalQuestSystem {
         }
         final int playerlevel = player.getLevel();
 		for (final IQuest quest : quests) {
-			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus() && quest.getMinLevel()<playerlevel && name.equals(quest.getNPCName())) {
+			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus(player) && quest.getMinLevel()<playerlevel && name.equals(quest.getNPCName())) {
 				res.add(quest.getQuestInfo(player).getDescription());
 			}
 		}

@@ -122,11 +122,22 @@ public interface IQuest {
 	String getSlotName();
 
 	/**
-	 * Determines whether the quest should be shown in the Quest Status/Progress log
+	 * Denotes whether quest details should be included in travel log.
 	 *
-	 * @return true, if the quest is visible, false otherwise
+	 * @return
+	 *   `true` if details should be included.
 	 */
 	boolean isVisibleOnQuestStatus();
+
+	/**
+	 * Denotes whether quest details should be included in travel log.
+	 *
+	 * @param player
+	 *   Player for whom details are requested.
+	 * @return
+	 *   `true` if details should be included.
+	 */
+	boolean isVisibleOnQuestStatus(Player player);
 
 	/**
 	 * Returns the region where the quest adventure takes place (or begins), or null for global quests

@@ -115,9 +115,32 @@ public abstract class AbstractQuest implements IQuest {
 	@Override
 	public abstract String getName();
 
+	/**
+	 * Denotes whether quest details should be included in travel log.
+	 *
+	 * Override to create custom checks.
+	 *
+	 * @return
+	 *   `true` if details should be included.
+	 */
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return true;
+	}
+
+	/**
+	 * Denotes whether quest details should be included in travel log.
+	 *
+	 * Override to create custom checks.
+	 *
+	 * @param player
+	 *   Player for whom details are requested.
+	 * @return
+	 *   `true` if details should be included.
+	 */
+	@Override
+	public boolean isVisibleOnQuestStatus(final Player player) {
+		return isVisibleOnQuestStatus();
 	}
 
 	/**
