@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.common.constants.Occasion;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -109,6 +110,22 @@ public class GoodiesForRudolph extends AbstractQuest {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Details are added to travel log if Christmas is active or player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom details are requested.
+	 * @return
+	 *   `true` if Christmas is active or quest is completed.
+	 */
+	@Override
+	public boolean isVisibleOnQuestStatus(final Player player) {
+		if (Occasion.CHRISTMAS) {
+			return true;
+		}
+		return isCompleted(player);
 	}
 
 	private void prepareRequestingStep() {
@@ -234,8 +251,11 @@ public class GoodiesForRudolph extends AbstractQuest {
 				"Goodies for Rudolph",
 				"Rudolph, Santa's favorite reindeer, desperately wants some goodies.",
 				false);
-		prepareRequestingStep();
-		prepareBringingStep();
+
+		if (Occasion.CHRISTMAS) {
+			prepareRequestingStep();
+			prepareBringingStep();
+		}
 	}
 
 	@Override

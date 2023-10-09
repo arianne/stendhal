@@ -120,6 +120,7 @@ public class StendhalQuestSystem {
 		loadQuest(new FishSoup());
 		loadQuest(new FishSoupForHughie());
 		loadQuest(new FruitsForCoralia());
+		loadQuest(new GoodiesForRudolph());
 		loadQuest(new GuessKills());
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
@@ -197,9 +198,6 @@ public class StendhalQuestSystem {
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
-		if (Occasion.CHRISTMAS) {
-			loadQuest(new GoodiesForRudolph());
-		}
 		if (Occasion.EASTER) {
 			loadQuest(new EasterGiftsForChildren());
 		}
