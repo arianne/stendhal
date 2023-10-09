@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,6 +30,9 @@ public class Achievement {
 
 	/** base score for difficult achievements */
 	public static final int HARD_BASE_SCORE = 5;
+
+	/** base score for extreme achievement */
+	public static final int EXTREME_BASE_SCORE = 7;
 
 	private final String identifier;
 
