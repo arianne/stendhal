@@ -69,6 +69,7 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		System.setProperty("stendhal.christmas", "");
 		QuestHelper.setUpBeforeClass();
 		setupZone(ZONE_SEMOS);
 	}
