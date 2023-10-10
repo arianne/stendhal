@@ -101,7 +101,7 @@ public class KillBlordroughsAchievementFactoryTest extends ZonePlayerAndNPCTestI
 	private void testAchievement() {
 		assertNull(player.getQuest(QUEST_SLOT));
 
-		for (int idx = 0; idx < COUNT_SOLDIER; idx++) {
+		for (int idx = 0; idx < COUNT_DICTATOR; idx++) {
 			completeQuest();
 
 			if (idx >= COUNT_LACKEY - 1) {
