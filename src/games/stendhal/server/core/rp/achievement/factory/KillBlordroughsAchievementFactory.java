@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,6 +40,9 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 	public static final int COUNT_DICTATOR = 100;
 	public static final String ID_DICTATOR = "quest.special.kill_blordroughs.0100";
 
+	public static final int COUNT_CRUSHER = 250;
+	public static final String ID_CRUSHER = "quest.special.kill_blordroughs.0250";
+
 
 	@Override
 	protected Category getCategory() {
@@ -73,6 +76,12 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 			"Finish Kill Blordroughs quest 100 times",
 			Achievement.HARD_BASE_SCORE, true,
 			new CompletedCountCondition(COUNT_DICTATOR)));
+
+		achievements.add(createAchievement(
+			ID_CRUSHER, "Nation Crusher",
+			"Finish Kill Blordroughs quest 250 times",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new CompletedCountCondition(COUNT_CRUSHER)));
 
 		return achievements;
 	}

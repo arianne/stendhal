@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,6 +32,7 @@ public class SemosMonsterQuestAchievementFactory extends AbstractAchievementFact
 	public static final String ID_HERO = "quest.special.daily.0100";
 	public static final String ID_CHAMPION = "quest.special.daily.0250";
 	public static final String ID_VANQUISHER = "quest.special.daily.0500";
+	public static final String ID_RULER = "quest.special.daily.1000";
 
 
 	@Override
@@ -72,6 +73,12 @@ public class SemosMonsterQuestAchievementFactory extends AbstractAchievementFact
 			"Finish daily monster quest 500 times",
 			Achievement.HARD_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("daily", 2, 499)));
+
+		achievements.add(createAchievement(
+			ID_RULER, "Semos's Ruler",
+			"Finish daily monster quest 1,000 times",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("daily", 2, 999)));
 
 		return achievements;
 	}

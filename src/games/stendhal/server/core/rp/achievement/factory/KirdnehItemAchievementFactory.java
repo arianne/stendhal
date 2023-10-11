@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,6 +25,7 @@ public class KirdnehItemAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_DEDICATED = "quest.special.weekly_item.0025";
 	public static final String ID_SENIOR = "quest.special.weekly_item.0050";
 	public static final String ID_MASTER = "quest.special.weekly_item.0100";
+	public static final String ID_HYPERBOLIST = "quest.special.weekly_item.0250";
 
 
 	@Override
@@ -59,6 +60,12 @@ public class KirdnehItemAchievementFactory extends AbstractAchievementFactory {
 			"Finish weekly item quest 100 times",
 			Achievement.HARD_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("weekly_item", 2, 99)));
+
+		achievements.add(createAchievement(
+			ID_HYPERBOLIST, "Hyperbolist Historian",
+			"Finish weekly item quest 250 times",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("weekly_item", 2, 249)));
 
 		return achievements;
 	}

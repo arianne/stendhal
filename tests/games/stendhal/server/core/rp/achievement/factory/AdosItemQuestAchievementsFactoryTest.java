@@ -12,6 +12,7 @@
 package games.stendhal.server.core.rp.achievement.factory;
 
 import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_HOARDER;
+import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_LIFEBLOOD;
 import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_PROVIDER;
 import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_STOCKPILER;
 import static games.stendhal.server.core.rp.achievement.factory.AdosItemQuestAchievementsFactory.ID_SUPPLIER;
@@ -22,8 +23,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -54,8 +55,14 @@ public class AdosItemQuestAchievementsFactoryTest extends ZonePlayerAndNPCTestIm
 	private final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	private final List<String> idList = Arrays.asList(ID_SUPPORTER, ID_PROVIDER, ID_SUPPLIER,
-			ID_STOCKPILER, ID_HOARDER);
+	private final Map<String, Integer> idList = new LinkedHashMap<String, Integer>() {{
+		put(ID_SUPPORTER, 10);
+		put(ID_PROVIDER, 50);
+		put(ID_SUPPLIER, 100);
+		put(ID_STOCKPILER, 250);
+		put(ID_HOARDER, 500);
+		put(ID_LIFEBLOOD, 1000);
+	}};
 
 
 	@BeforeClass
@@ -91,13 +98,11 @@ public class AdosItemQuestAchievementsFactoryTest extends ZonePlayerAndNPCTestIm
 	public void init() {
 		assertNotNull(npc);
 		assertTrue(questSystem.isLoaded(questInstance));
-		resetPlayer();
 
-		doCycle(ID_SUPPORTER, 10);
-		doCycle(ID_PROVIDER, 50);
-		doCycle(ID_SUPPLIER, 100);
-		doCycle(ID_STOCKPILER, 250);
-		doCycle(ID_HOARDER, 500);
+		resetPlayer();
+		for (final Map.Entry<String, Integer> entry: idList.entrySet()) {
+			doCycle(entry.getKey(), entry.getValue());
+		}
 	}
 
 	/**
@@ -112,7 +117,7 @@ public class AdosItemQuestAchievementsFactoryTest extends ZonePlayerAndNPCTestIm
 		assertNull(player.getQuest(QUEST_SLOT));
 
 		AchievementTestHelper.init(player);
-		for (final String ID: idList) {
+		for (final String ID: idList.keySet()) {
 			assertFalse(achievementReached(ID));
 		}
 	}

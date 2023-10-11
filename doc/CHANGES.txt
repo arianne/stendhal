@@ -3,6 +3,17 @@ Changelog
 ---------
 
 
+1.45
+
+*world*
+- new achievements:
+  - Ados's Lifeblood: Finish daily item quest 1,000 times
+  - Commander in Chief: Finish Kill Enemy Army quest 250 times
+  - Hyperbolist Historian: Finish weekly item quest 250 times
+  - Nation Crusher: Finish Kill Bordroughs quest 250 times
+  - Semos's Ruler: Finish daily monster quest 1,000 times
+
+
 1.44
 
 *world*

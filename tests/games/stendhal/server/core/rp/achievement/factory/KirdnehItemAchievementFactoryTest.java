@@ -13,6 +13,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_ARCHAEOLOGIST;
 import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_DEDICATED;
+import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_HYPERBOLIST;
 import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_MASTER;
 import static games.stendhal.server.core.rp.achievement.factory.KirdnehItemAchievementFactory.ID_SENIOR;
 import static org.junit.Assert.assertEquals;
@@ -21,8 +22,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,8 +56,13 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 	private final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	private final List<String> idList = Arrays.asList(ID_ARCHAEOLOGIST, ID_DEDICATED, ID_SENIOR,
-			ID_MASTER);
+	private final Map<String, Integer> idList = new LinkedHashMap<String, Integer>() {{
+		put(ID_ARCHAEOLOGIST, 5);
+		put(ID_DEDICATED, 25);
+		put(ID_SENIOR, 50);
+		put(ID_MASTER, 100);
+		put(ID_HYPERBOLIST, 250);
+	}};
 
 
 	@BeforeClass
@@ -104,11 +110,9 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 		assertTrue(questSystem.isLoaded(questInstance));
 
 		resetPlayer();
-
-		doCycle(ID_ARCHAEOLOGIST, 5);
-		doCycle(ID_DEDICATED, 25);
-		doCycle(ID_SENIOR, 50);
-		doCycle(ID_MASTER, 100);
+		for (final Map.Entry<String, Integer> entry: idList.entrySet()) {
+			doCycle(entry.getKey(), entry.getValue());
+		}
 	}
 
 	/**
@@ -123,7 +127,7 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 		assertNull(player.getQuest(QUEST_SLOT));
 
 		AchievementTestHelper.init(player);
-		for (final String ID: idList) {
+		for (final String ID: idList.keySet()) {
 			assertFalse(achievementReached(ID));
 		}
 	}

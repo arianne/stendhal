@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,6 +31,7 @@ public class AdosItemQuestAchievementsFactory extends AbstractAchievementFactory
 	public static final String ID_SUPPLIER = "quest.special.daily_item.0100";
 	public static final String ID_STOCKPILER = "quest.special.daily_item.0250";
 	public static final String ID_HOARDER = "quest.special.daily_item.0500";
+	public static final String ID_LIFEBLOOD = "quest.special.daily_item.1000";
 
 
 	@Override
@@ -71,6 +72,12 @@ public class AdosItemQuestAchievementsFactory extends AbstractAchievementFactory
 			"Finish daily item quest 500 times",
 			Achievement.HARD_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 499)));
+
+		achievements.add(createAchievement(
+			ID_LIFEBLOOD, "Ados's Lifeblood",
+			"Finish daily item quest 1,000 times",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("daily_item", 2, 999)));
 
 		return achievements;
 	}

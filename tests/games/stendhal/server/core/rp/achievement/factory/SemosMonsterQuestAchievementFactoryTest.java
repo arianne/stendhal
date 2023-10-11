@@ -15,6 +15,7 @@ import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQues
 import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_GUARDIAN;
 import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_HERO;
 import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_PROTECTOR;
+import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_RULER;
 import static games.stendhal.server.core.rp.achievement.factory.SemosMonsterQuestAchievementFactory.ID_VANQUISHER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,8 +24,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,8 +60,14 @@ public class SemosMonsterQuestAchievementFactoryTest extends ZonePlayerAndNPCTes
 	private final String QUEST_SLOT = questInstance.getSlotName();
 	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
 
-	private final List<String> idList = Arrays.asList(ID_PROTECTOR, ID_GUARDIAN, ID_HERO,
-			ID_CHAMPION, ID_VANQUISHER);
+	private final Map<String, Integer> idList = new LinkedHashMap<String, Integer>() {{
+		put(ID_PROTECTOR, 10);
+		put(ID_GUARDIAN, 50);
+		put(ID_HERO, 100);
+		put(ID_CHAMPION, 250);
+		put(ID_VANQUISHER, 500);
+		put(ID_RULER, 1000);
+	}};
 
 	private static EntityManager em;
 
@@ -106,21 +113,15 @@ public class SemosMonsterQuestAchievementFactoryTest extends ZonePlayerAndNPCTes
 
 		// solo kills
 		resetPlayer();
-
-		doCycle(ID_PROTECTOR, 10, false);
-		doCycle(ID_GUARDIAN, 50, false);
-		doCycle(ID_HERO, 100, false);
-		doCycle(ID_CHAMPION, 250, false);
-		doCycle(ID_VANQUISHER, 500, false);
+		for (final Map.Entry<String, Integer> entry: idList.entrySet()) {
+			doCycle(entry.getKey(), entry.getValue(), false);
+		}
 
 		// shared kills
 		resetPlayer();
-
-		doCycle(ID_PROTECTOR, 10, true);
-		doCycle(ID_GUARDIAN, 50, true);
-		doCycle(ID_HERO, 100, true);
-		doCycle(ID_CHAMPION, 250, true);
-		doCycle(ID_VANQUISHER, 500, true);
+		for (final Map.Entry<String, Integer> entry: idList.entrySet()) {
+			doCycle(entry.getKey(), entry.getValue(), true);
+		}
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class SemosMonsterQuestAchievementFactoryTest extends ZonePlayerAndNPCTes
 		assertNull(player.getQuest(QUEST_SLOT));
 
 		AchievementTestHelper.init(player);
-		for (final String ID: idList) {
+		for (final String ID: idList.keySet()) {
 			assertFalse(achievementReached(ID));
 		}
 	}

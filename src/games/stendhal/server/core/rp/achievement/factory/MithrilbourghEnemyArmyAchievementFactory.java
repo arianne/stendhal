@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -59,6 +59,12 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 			"Finish Kill Enemy Army quest 100 times",
 			Achievement.HARD_BASE_SCORE, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 99)));
+
+		achievements.add(createAchievement(
+			"quest.special.kill_enemy_army.0250", "Commander in Chief",
+			"Finish Kill Enemy Army quest 250 times",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 249)));
 
 		return achievements;
 	}
