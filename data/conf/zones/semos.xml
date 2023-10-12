@@ -1440,19 +1440,19 @@ will never forget their sacrifices."
     <entity x="77" y="66">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">This ground has been fertilised so that flowers can grow here. Ask me (Jenny from the Mill) for seeds or bulbs! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
-      <attribute name="class">signpost</attribute>
+      <attribute name="class">notice_sign_text</attribute>
     </entity>
 
     <entity x="59" y="58">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">This ground has been fertilised so that flowers can grow here. Ask me (Jenny from the Mill) for seeds or bulbs! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
-      <attribute name="class">signpost</attribute>
+      <attribute name="class">notice_sign_text</attribute>
     </entity>
 
     <entity x="68" y="43">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">This ground has been fertilised so that flowers can grow here. Ask me (Jenny from the Mill) for seeds or bulbs! Note: the area is open so once your flower is ready, anyone can pick it. Thanks for planting the nice flower for all to enjoy.</attribute>
-      <attribute name="class">signpost</attribute>
+      <attribute name="class">notice_sign_text</attribute>
     </entity>
 
     <entity x="70" y="50">
@@ -1467,7 +1467,7 @@ It would be so beautiful if everyone plants as much flowers as he picked. Don't 
 If everybody would think so, we were on the way to a better world...
 
  - signed by S.</attribute>
-      <attribute name="class">signpost</attribute>
+      <attribute name="class">notice_sign_text</attribute>
     </entity>
 
     <entity x="82" y="63">
