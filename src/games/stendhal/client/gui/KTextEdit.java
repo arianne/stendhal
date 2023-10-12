@@ -63,6 +63,7 @@ import javax.swing.text.ViewFactory;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.ChatTextSink;
@@ -134,6 +135,8 @@ class KTextEdit extends JComponent {
 				} catch (BadLocationException exc) {
 					logger.error("Trying to extract link from invalid range", exc);
 				}
+				// return focus to chat text input
+				ClientSingletonRepository.getChatTextController().setFocus();
 			}
 		}
 	}

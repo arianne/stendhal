@@ -80,6 +80,16 @@ public class ChatTextController {
 		setCache(cache);
 	}
 
+	/**
+	 * Sets focus to chat input.
+	 *
+	 * @return
+	 *   `true` if focus change is likely to succeed.
+	 */
+	public boolean setFocus() {
+		return playerChatText.requestFocusInWindow();
+	}
+
 	public JTextComponent getPlayerChatText() {
 		return playerChatText;
 	}
