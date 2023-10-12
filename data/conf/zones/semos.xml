@@ -3470,8 +3470,8 @@ Mature sheep wanted: please speak to Sato
 North: Semos City
 South: Kirdneh City
 East: Nalwor City
-Southwest: Or'ril Castle and Fado City
-West: Deniran City
+West: Or'ril Castle and Deniran City
+Southwest: Fado City
       </attribute>
       <attribute name="class">signpost</attribute>
     </entity>
