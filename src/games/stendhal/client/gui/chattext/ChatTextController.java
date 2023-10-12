@@ -41,7 +41,27 @@ public class ChatTextController {
 	private final JTextField playerChatText = new JTextField("");
 
 	private ChatCache cache;
-	public ChatTextController() {
+
+	private static ChatTextController instance;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 *
+	 * @return
+	 *   `ChatTextController` instance.
+	 */
+	public static ChatTextController get() {
+		if (ChatTextController.instance == null) {
+			ChatTextController.instance = new ChatTextController();
+		}
+		return ChatTextController.instance;
+	}
+
+	/**
+	 * Private singleton constructor.
+	 */
+	private ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
 		Document doc = playerChatText.getDocument();
 		if (doc instanceof AbstractDocument) {

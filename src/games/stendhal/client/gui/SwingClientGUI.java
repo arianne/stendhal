@@ -94,7 +94,7 @@ class SwingClientGUI implements J2DClientGUI {
 	private final ContainerPanel containerPanel;
 	private final QuitDialog quitDialog;
 	private final UserContext userContext;
-	private final ChatTextController chatText = new ChatTextController();
+	private final ChatTextController chatText = ChatTextController.get();
 	private MapPanelController minimap;
 	private JSplitPane verticalSplit;
 	private final JFrame frame;

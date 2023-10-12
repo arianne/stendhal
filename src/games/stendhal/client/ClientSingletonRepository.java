@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.ScreenController;
 import games.stendhal.client.gui.UserInterface;
+import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sprite.EmojiStore;
 import games.stendhal.client.sprite.SpriteStore;
@@ -28,6 +29,16 @@ public class ClientSingletonRepository {
 
 	private static ClientFramework clientFramework;
 	private static UserInterface userInterface;
+
+	/**
+	 * Retrieves the chat input interface.
+	 *
+	 * @return
+	 *   `ChatTextController` singleton instance.
+	 */
+	public static ChatTextController getChatTextController() {
+		return ChatTextController.get();
+	}
 
 	/**
 	 * gets the ClientFramework
