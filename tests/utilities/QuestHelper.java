@@ -238,4 +238,21 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		}
 		return true;
 	}
+
+	/**
+	 * Retrieves a loaded quest instance.
+	 *
+	 * @param slot
+	 *   Quest string identifier.
+	 * @return
+	 *   Quest instance or `null` if not loaded.
+	 */
+	public static IQuest getQuestBySlot(final String slot) {
+		for (final IQuest q: getQuestResources()) {
+			if (q.getSlotName().equals(slot)) {
+				return q;
+			}
+		}
+		return null;
+	}
 }
