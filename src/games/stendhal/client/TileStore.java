@@ -334,8 +334,8 @@ class TileStore implements Tileset {
 	private static TilesetGroupAnimationMap loadAnimations(final Map<String, List<String>> def,
 			final String prefix) {
 		final Map<String, List<String>> animations = new HashMap<>();
-		for (final Map.Entry entry: def.entrySet()) {
-			animations.put((String) entry.getKey(), (List<String>) entry.getValue());
+		for (final Map.Entry<String, List<String>> entry: def.entrySet()) {
+			animations.put(entry.getKey(), entry.getValue());
 		}
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 		final List<String> lines = formatLines(animations, prefix);
@@ -373,8 +373,8 @@ class TileStore implements Tileset {
 				}
 
 				if (document.containsKey(id)) {
-					for (final Map.Entry entry: ((Map<String, List<String>>) document.get(id)).entrySet()) {
-						animations.put((String) entry.getKey(), (List<String>) entry.getValue());
+					for (final Map.Entry<String, List<String>> entry: ((Map<String, List<String>>) document.get(id)).entrySet()) {
+						animations.put(entry.getKey(), entry.getValue());
 					}
 				}
 			} catch (final IOException ex) {
@@ -400,8 +400,8 @@ class TileStore implements Tileset {
 	private static List<String> formatLines(final Map<String, List<String>> animations,
 			final String prefix) {
 		final List<String> lines = new LinkedList<>();
-		for (final Map.Entry entry: animations.entrySet()) {
-			for (final String val: (List<String>) entry.getValue()) {
+		for (final Map.Entry<String, List<String>> entry: animations.entrySet()) {
+			for (final String val: entry.getValue()) {
 				lines.add(prefix + entry.getKey() + ".png " + val);
 			}
 		}
