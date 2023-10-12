@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
@@ -41,6 +44,10 @@ public class PrepareOfferHandler {
 	private Item item;
 	private int price;
 	private int quantity;
+
+	/** Items that Harold will not accept. */
+	private static final List<String> items_blacklist = Arrays.asList("bulb", "seed");
+
 
 	public void add(SpeakerNPC npc) {
 		npc.add(ConversationStates.ATTENDING, "sell",
@@ -135,6 +142,9 @@ public class PrepareOfferHandler {
 
 					if (itemName.equals("money")) {
 						npc.say("Oh, offering money for money? That sounds rather fishy. I am sorry, I cannot do that");
+						return;
+					} else if (items_blacklist.contains(itemName)) {
+						npc.say("Sorry, that item has no market value and cannot be sold here.");
 						return;
 					} else if ((number > 1) && !(item instanceof StackableItem)) {
 						npc.say("Sorry, you can only put those for sale as individual items.");

@@ -92,6 +92,15 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "sell vampire cloak 100"));
 		assertEquals("Sorry, but I don't think you have any vampire cloaks.", getReply(npc));
 
+		// blacklisted items
+		PlayerTestHelper.equipWithItem(player, "seed");
+		PlayerTestHelper.equipWithItem(player, "bulb");
+
+		assertTrue(en.step(player, "sell seed 100"));
+		assertEquals("Sorry, that item has no market value and cannot be sold here.", getReply(npc));
+		assertTrue(en.step(player, "sell bulb 200"));
+		assertEquals("Sorry, that item has no market value and cannot be sold here.", getReply(npc));
+
 		assertTrue(en.step(player, "bye"));
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
