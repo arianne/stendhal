@@ -108,6 +108,7 @@ public class StendhalQuestSystem {
 		loadQuest(new DailyMonsterQuest());
 		loadQuest(new DiceGambling());
 		loadQuest(new DragonLair());
+		loadQuest(new EasterGiftsForChildren());
 		loadQuest(new EggsForMarianne());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
@@ -198,9 +199,6 @@ public class StendhalQuestSystem {
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
-		if (Occasion.EASTER) {
-			loadQuest(new EasterGiftsForChildren());
-		}
 		if (Occasion.MINETOWN) {
 			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 			loadQuest(new MineTownRevivalWeeks());
