@@ -37,16 +37,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.barracks.BuyerNPC;
 import games.stendhal.server.maps.quests.KillBlordroughs;
-import marauroa.server.game.db.DatabaseFactory;
 import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -76,10 +73,7 @@ public class KillBlordroughsAchievementFactoryTest extends ZonePlayerAndNPCTestI
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		new DatabaseFactory().initializeDatabase();
-		// initialize world
-		MockStendlRPWorld.get();
-		AchievementNotifier.get().initialize();
+		AchievementTestHelper.setUpBeforeClass();
 	}
 
 	@AfterClass
