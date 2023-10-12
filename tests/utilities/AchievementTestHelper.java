@@ -110,7 +110,7 @@ public abstract class AchievementTestHelper extends PlayerTestHelper {
 		setEnemyNames(new String[] {enemy});
 	}
 
-	private static void checkEnemyNames() {
+	public static void checkEnemyNames() {
 		for (final String eName: enemyNames) {
 			final Creature enemy = em.getCreature(eName);
 			assertNotNull(enemy);
