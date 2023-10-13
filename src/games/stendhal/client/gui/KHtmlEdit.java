@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -256,17 +256,17 @@ public class KHtmlEdit extends KTextEdit {
 		while (ch != CharacterIterator.DONE) {
 			if (ch == terminator) {
 				if (terminator == ' ') {
-    				/*
-    				 * Continued link (#abc #def)?
-    				 */
-    				ch = ci.next();
+						/*
+						 * Continued link (#abc #def)?
+						 */
+						ch = ci.next();
 
-    				if (ch == '#') {
-    					ch = ' ';
-    				} else {
-    					ci.previous();
-    					break;
-    				}
+						if (ch == '#') {
+							ch = ' ';
+						} else {
+							ci.previous();
+							break;
+						}
 				} else {
 					break;
 				}

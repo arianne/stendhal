@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,7 @@ import games.stendhal.common.ErrorDrain;
  * @author Martin Fuchs
  */
 public final class Expression {
-	/** Instance of an empty Expression. */
+    /** Instance of an empty Expression. */
     public static final Expression EMPTY_EXPRESSION = new Expression("", "");
 
     /** JOKER is a joker String used in pattern matches. */
@@ -155,10 +155,10 @@ public final class Expression {
         if (left != null) {
             if (right != null) {
                 if (left <= right) {
-                	// e.g. five hundred
+                    // e.g. five hundred
                     return left * right;
                 } else {
-                	// e.g. hundred fifty
+                    // e.g. hundred fifty
                     return left + right;
                 }
             } else {
@@ -179,9 +179,9 @@ public final class Expression {
         original = original + ' ' + next.getOriginal();
 
         if (newType.isName()) {
-        	setNormalized(original.toLowerCase());
+            setNormalized(original.toLowerCase());
         } else {
-        	setNormalized(normalized + ' ' + next.getNormalized());
+            setNormalized(normalized + ' ' + next.getNormalized());
         }
 
         setType(newType);
@@ -202,34 +202,34 @@ public final class Expression {
      * @return amount as integer value, default to 1.
      */
     public int getAmount() {
-		if (amount == null) {
-			return 1;
-		} else {
-			return amount.intValue();
-		}
-	}
+        if (amount == null) {
+            return 1;
+        } else {
+            return amount.intValue();
+        }
+    }
 
     /**
      * @return true if there is an explicit amount.
      */
     public boolean hasAmount() {
-		return amount != null;
-	}
-
-	/**
-	 * @return amount as long integer value, default to 1.
-	 */
-	public long getAmountLong() {
-		if (amount == null) {
-			return 1;
-		} else {
-			return amount;
-		}
-	}
+        return amount != null;
+    }
 
     /**
-	 * Set the break flag to define sentence part borders.
-	 */
+     * @return amount as long integer value, default to 1.
+     */
+    public long getAmountLong() {
+        if (amount == null) {
+            return 1;
+        } else {
+            return amount;
+        }
+    }
+
+    /**
+     * Set the break flag to define sentence part borders.
+     */
     public void setBreakFlag() {
         breakFlag = true;
     }
@@ -282,11 +282,11 @@ public final class Expression {
      * @return the main word of the expression.
      */
     public String getMainWord() {
-    	if (mainWord == null) {
-    		return "";
-    	} else {
-    		return mainWord;
-    	}
+        if (mainWord == null) {
+            return "";
+        } else {
+            return mainWord;
+        }
     }
 
     /**
@@ -318,18 +318,18 @@ public final class Expression {
      * @return string representation of Expression type
      */
     public String getTypeString() {
-		if (type == null) {
-			return "";
-		} else {
-			return type.getTypeString();
-		}
-	}
+        if (type == null) {
+            return "";
+        } else {
+            return type.getTypeString();
+        }
+    }
 
     /**
-	 * Determine if the Expression consists of verbs.
-	 *
-	 * @return false if not a verb or null, true otherwise
-	 */
+     * Determine if the Expression consists of verbs.
+     *
+     * @return false if not a verb or null, true otherwise
+     */
     public boolean isVerb() {
         return (type != null) && type.isVerb();
     }
@@ -402,9 +402,9 @@ public final class Expression {
      *
      * @return true dynamically created
      */
-	public boolean isDynamic() {
+    public boolean isDynamic() {
         return (type != null) && type.isDynamic();
-	}
+    }
 
     /**
      * Merge Expression type with another one while handling null values.
@@ -417,7 +417,7 @@ public final class Expression {
                 type = type.merge(otherType);
 
                 if (otherType.isNegated()) {
-                	negateStrings();
+                    negateStrings();
                 }
             }
         } else {
@@ -521,18 +521,18 @@ public final class Expression {
     }
 
     /**
-	 * Check if the Expression matches the given matching Expression.
-	 *
-	 * <p>
-	 * The matching object can contain explicit expressions, which are compared
-	 * after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in
-	 * upper case. This defines the joker matching algorithm for sentence
-	 * matching, which chooses automatically between word and type matching,
-	 * depending on which of word and word type string is given.
-	 *
-	 * @param other
-	 * @return true if this expression matches the other, false otherwise
-	 */
+     * Check if the Expression matches the given matching Expression.
+     *
+     * <p>
+     * The matching object can contain explicit expressions, which are compared
+     * after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in
+     * upper case. This defines the joker matching algorithm for sentence
+     * matching, which chooses automatically between word and type matching,
+     * depending on which of word and word type string is given.
+     *
+     * @param other
+     * @return true if this expression matches the other, false otherwise
+     */
     boolean sentenceMatchExpression(final Expression other) {
         final String matchString = other.getNormalized();
 
@@ -575,29 +575,29 @@ public final class Expression {
         }
     }
 
-	/**
-	 * Negate the expression.
-	 * This is used in SentenceImplementation to normalize sentences containing "don't" expressions.
-	 */
-	public void negate() {
-		type = getType().negate();
+    /**
+     * Negate the expression.
+     * This is used in SentenceImplementation to normalize sentences containing "don't" expressions.
+     */
+    public void negate() {
+        type = getType().negate();
 
-		negateStrings();
-	}
+        negateStrings();
+    }
 
-	/**
-	 * Negate original and normalized string, while leaving
-	 * type untouched.
-	 */
-	private void negateStrings() {
-		if (type.isNegated()) {
-			original = original + " not";
-			normalized = normalized + " not";
-		} else {
-			original = original.replaceFirst(" not", "");
-			normalized = normalized.replaceFirst(" not", "");
-		}
-	}
+    /**
+     * Negate original and normalized string, while leaving
+     * type untouched.
+     */
+    private void negateStrings() {
+        if (type.isNegated()) {
+            original = original + " not";
+            normalized = normalized + " not";
+        } else {
+            original = original.replaceFirst(" not", "");
+            normalized = normalized.replaceFirst(" not", "");
+        }
+    }
 
     /**
      * Check for equality of two Expression objects.

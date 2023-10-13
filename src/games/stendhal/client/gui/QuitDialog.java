@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -169,8 +169,7 @@ import games.stendhal.client.entity.User;
 		}
 
 		@Override
-		public Component getComponentBefore(Container container,
-                Component component) {
+		public Component getComponentBefore(Container container, Component component) {
 			/*
 			 * Jump to the actual last component instead of returning the
 			 * container itself when cycling backwards from the first component.

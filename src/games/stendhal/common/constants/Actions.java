@@ -125,8 +125,8 @@ public final class Actions {
 	public static final String CHAT = "chat";
 	public static final String EMOTE = "emote";
 	public static final String GROUP_MESSAGE = "group_message";
-    public static final String REPORT_ERROR = "report_error";
-    public static final String SUPPORT = "support";
+	public static final String REPORT_ERROR = "report_error";
+	public static final String SUPPORT = "support";
 	public static final String TELL = "tell";
 
 	//summon

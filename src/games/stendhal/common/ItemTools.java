@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,23 +19,22 @@ package games.stendhal.common;
  */
 public class ItemTools {
 
-	/**
+    /**
      * Replace underscores in the given String by spaces.
      * This is used to replace underscore characters in compound item and creature names
      * after loading data from the database.
      *
      * @param name name of item
      * @return transformed String if name contained an underscore,
-     * 			or unchanged String object
-     * 			or null if name was null
+     *   or unchanged String object or null if name was null
      */
     public static String itemNameToDisplayName(final String name) {
-    	if (name != null) {
-    		if (name.indexOf('_') != -1) {
-    			return name.replace('_', ' ');
-    		}
-    	}
-    	return name;
+        if (name != null) {
+            if (name.indexOf('_') != -1) {
+                return name.replace('_', ' ');
+            }
+        }
+        return name;
     }
 
 }
