@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -441,7 +442,10 @@ public class Herald extends ScriptImpl {
 			}
 		};
 		zone.assignRPObjectID(npc);
-		npc.setEntityClass("heraldnpc");
+		npc.setOutfit("body=0,head=0,eyes=26,hair=8,dress=977,hat=8");
+		npc.setOutfitColor("skin", SkinColor.LIGHT);
+		npc.setOutfitColor("hair", 0xe66e38);
+		npc.setOutfitColor("hat", 0x5b5b5b);
 		npc.setPosition(x, y);
 		npc.initHP(100);
 		npc.setDirection(Direction.LEFT);
