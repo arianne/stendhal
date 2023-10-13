@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.JAIL;
 import static games.stendhal.common.constants.Actions.MINUTES;
+import static games.stendhal.common.constants.Actions.REASON;
 import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.sql.SQLException;
@@ -67,8 +68,8 @@ public class JailAction extends AdministrationAction {
 
 		// extract reason
 		String reason = "";
-		if (action.has("reason")) {
-			reason = action.get("reason");
+		if (action.has(REASON)) {
+			reason = action.get(REASON);
 		}
 
 		SingletonRepository.getJail().imprison(target, player, minutes, reason);

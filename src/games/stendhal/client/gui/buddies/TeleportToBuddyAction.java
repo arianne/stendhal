@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
+
+import static games.stendhal.common.constants.Actions.TELEPORTTO;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,6 @@ class TeleportToBuddyAction implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		String remainder = buddyName;
 
-		SlashActionRepository.get("teleportto").execute(null, remainder);
+		SlashActionRepository.get(TELEPORTTO).execute(null, remainder);
 	}
 }

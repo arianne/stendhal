@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.SENTENCE;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.VALUE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -37,8 +41,8 @@ class SentenceAction implements SlashAction {
 		}
 		final RPAction add = new RPAction();
 
-		add.put("type", "sentence");
-		add.put("value", remainder);
+		add.put(TYPE, SENTENCE);
+		add.put(VALUE, remainder);
 
 		ClientSingletonRepository.getClientFramework().send(add);
 

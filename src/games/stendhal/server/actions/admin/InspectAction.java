@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.INSPECT;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -75,7 +76,7 @@ public class InspectAction extends AdministrationAction {
 
 			// st.append(target.toString());
 			// st.append("\n===========================\n");
-			st.append("\nID: " + action.get("target") + " in " + inspected.getZone().getName() + " at (" + + inspected.getX() + ", " + + inspected.getY()+")");
+			st.append("\nID: " + action.get(TARGET) + " in " + inspected.getZone().getName() + " at (" + + inspected.getX() + ", " + + inspected.getY()+")");
 			st.append("\nATK:    " + inspected.getAtk() + "("
 					+ inspected.getAtkXP() + ")");
 			st.append("\nRATK:  " + inspected.getRatk() + "("
@@ -192,7 +193,7 @@ public class InspectAction extends AdministrationAction {
 				st.append("\nConversation state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
 			}
 		} else {
-			st.append("Inspected entity has id " + action.get("target")
+			st.append("Inspected entity has id " + action.get(TARGET)
 					+ " and has attributes:\r\n");
 			st.append(target.toString());
 		}

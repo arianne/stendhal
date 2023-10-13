@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TELEPORT;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.X;
+import static games.stendhal.common.constants.Actions.Y;
+import static games.stendhal.common.constants.Actions.ZONE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,11 +41,11 @@ class TeleportAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction teleport = new RPAction();
 
-		teleport.put("type", "teleport");
-		teleport.put("target", params[0]);
-		teleport.put("zone", params[1]);
-		teleport.put("x", params[2]);
-		teleport.put("y", params[3]);
+		teleport.put(TYPE, TELEPORT);
+		teleport.put(TARGET, params[0]);
+		teleport.put(ZONE, params[1]);
+		teleport.put(X, params[2]);
+		teleport.put(Y, params[3]);
 
 		ClientSingletonRepository.getClientFramework().send(teleport);
 

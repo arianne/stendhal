@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ADDBUDDY;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -37,8 +41,8 @@ class AddBuddyAction implements SlashAction {
 		}
 		final RPAction add = new RPAction();
 
-		add.put("type", "addbuddy");
-		add.put("target", params[0]);
+		add.put(TYPE, ADDBUDDY);
+		add.put(TARGET, params[0]);
 
 		ClientSingletonRepository.getClientFramework().send(add);
 

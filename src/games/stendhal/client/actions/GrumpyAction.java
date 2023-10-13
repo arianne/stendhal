@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.GRUMPY;
+import static games.stendhal.common.constants.Actions.REASON;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,10 +38,10 @@ class GrumpyAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
 
-		action.put("type", "grumpy");
+		action.put(TYPE, GRUMPY);
 
 		if (remainder.length() != 0) {
-			action.put("reason", remainder);
+			action.put(REASON, remainder);
 		}
 
 		ClientSingletonRepository.getClientFramework().send(action);

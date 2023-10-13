@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.SUPPORT;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -68,8 +72,8 @@ class ClientInfoAction implements SlashAction {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(sb.toString(), NotificationType.CLIENT));
 
 		if (first) {
-			tell.put("type", "support");
-			tell.put("text", sb.toString());
+			tell.put(TYPE, SUPPORT);
+			tell.put(TEXT, sb.toString());
 			ClientSingletonRepository.getClientFramework().send(tell);
 			first = false;
 		}

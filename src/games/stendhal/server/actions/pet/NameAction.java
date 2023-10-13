@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,6 +10,9 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions.pet;
+
+import static games.stendhal.common.constants.Actions.NAME;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class NameAction implements ActionListener {
 	 */
 	public static void register() {
 		final NameAction name = new NameAction();
-		CommandCenter.register("name", name);
+		CommandCenter.register(NAME, name);
 	}
 
 	/**
@@ -40,7 +43,7 @@ public class NameAction implements ActionListener {
 	 */
 	@Override
 	public void onAction(final Player player, final RPAction action) {
-		String curName = action.get("target");
+		String curName = action.get(TARGET);
 		String newName = action.get("args");
 
 		if ((newName == null) || (newName.length() == 0)) {
@@ -84,7 +87,7 @@ public class NameAction implements ActionListener {
 								player.sendPrivateText("Congratulations, your " + curName + " is now called '"
 										+ newName + "'.");
 							}
-							new GameEvent(player.getName(), "name", animal.getRPClass().getName(), newName).raise();
+							new GameEvent(player.getName(), NAME, animal.getRPClass().getName(), newName).raise();
 						}
 					} else {
 						player.sendPrivateText("Please don't use empty names.");

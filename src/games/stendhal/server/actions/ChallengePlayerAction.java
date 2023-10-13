@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.common.constants.Actions.ACCEPT;
+import static games.stendhal.common.constants.Actions.ACTION;
+import static games.stendhal.common.constants.Actions.CHALLENGE;
+import static games.stendhal.common.constants.Actions.TARGET;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.events.TurnNotifier;
@@ -33,15 +38,15 @@ public class ChallengePlayerAction implements ActionListener {
 	 * registers the ChallengePlayerAction action
 	 */
 	public static void register() {
-		CommandCenter.register("challenge", new ChallengePlayerAction());
+		CommandCenter.register(CHALLENGE, new ChallengePlayerAction());
 	}
 
 	@Override
 	public void onAction(Player player, RPAction action) {
 
-		String target = action.get("target");
+		String target = action.get(TARGET);
 		Entity targetEntity = EntityHelper.entityFromTargetName(target, player);
-		String challengeAction = action.get("action");
+		String challengeAction = action.get(ACTION);
 
 		if (targetEntity == null) {
 			logger.debug(String.format("Unable to locate target %s for challenge action from player %s", target, player.getName()));
@@ -65,7 +70,7 @@ public class ChallengePlayerAction implements ActionListener {
 			return;
 		}
 
-		if("accept".equals(challengeAction)) {
+		if(ACCEPT.equals(challengeAction)) {
 			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeAcceptedTurnListener(targetPlayer, player));
 			return;
 		}

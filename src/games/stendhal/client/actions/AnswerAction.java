@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ANSWER;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -35,8 +39,8 @@ class AnswerAction implements SlashAction {
 		if (!remainder.isEmpty()) {
 			RPAction answer = new RPAction();
 
-			answer.put("type", "answer");
-			answer.put("text", remainder);
+			answer.put(TYPE, ANSWER);
+			answer.put(TEXT, remainder);
 
 			ClientSingletonRepository.getClientFramework().send(answer);
 			return true;

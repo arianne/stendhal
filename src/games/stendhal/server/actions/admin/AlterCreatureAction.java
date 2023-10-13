@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.ALTER;
 import static games.stendhal.common.constants.Actions.ALTERCREATURE;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
@@ -62,7 +63,7 @@ class AlterCreatureAction extends AdministrationAction {
 
 
 			final Creature creature = (Creature) changed;
-			new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
+			new GameEvent(player.getName(), ALTER, action.get(TARGET), stat).raise();
 
 			short newatk = parseShortError(parts[1], creature.getAtk(), "ATK", player);
 			short newdef = parseShortError(parts[2], creature.getDef(), "DEF", player);

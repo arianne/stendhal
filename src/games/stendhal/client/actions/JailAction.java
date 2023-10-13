@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,12 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.JAIL;
+import static games.stendhal.common.constants.Actions.MINUTES;
+import static games.stendhal.common.constants.Actions.REASON;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -41,10 +47,10 @@ class JailAction implements SlashAction {
 
 		final RPAction action = new RPAction();
 
-		action.put("type", "jail");
-		action.put("target", params[0]);
-		action.put("minutes", params[1]);
-		action.put("reason", remainder);
+		action.put(TYPE, JAIL);
+		action.put(TARGET, params[0]);
+		action.put(MINUTES, params[1]);
+		action.put(REASON, remainder);
 
 		ClientSingletonRepository.getClientFramework().send(action);
 

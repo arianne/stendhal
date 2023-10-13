@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,9 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.INVISIBLE;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,7 +37,7 @@ class InvisibleAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction invisible = new RPAction();
 
-		invisible.put("type", "invisible");
+		invisible.put(TYPE, INVISIBLE);
 
 		ClientSingletonRepository.getClientFramework().send(invisible);
 

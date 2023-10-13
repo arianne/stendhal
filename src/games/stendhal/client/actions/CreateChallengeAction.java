@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.ACTION;
+import static games.stendhal.common.constants.Actions.CHALLENGE;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
+
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
@@ -22,9 +27,9 @@ public class CreateChallengeAction implements SlashAction {
 			return false;
 		}
 		RPAction action = new RPAction();
-		action.put("type", "challenge");
-		action.put("action", "open");
-		action.put("target", params[0]);
+		action.put(TYPE, CHALLENGE);
+		action.put(ACTION, "open");
+		action.put(TARGET, params[0]);
 		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;

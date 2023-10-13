@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
@@ -33,14 +35,14 @@ public class InspectKillAction extends AdministrationAction {
 	@Override
 	protected void perform(final Player admin, final RPAction action) {
 
-		if (!action.has("target")) {
+		if (!action.has(TARGET)) {
 			admin.sendPrivateText("\"target\" parameter required: " + action);
 			return;
 		}
 
 		final Entity target = getTargetAnyZone(admin, action);
 		if (target == null) {
-			admin.sendPrivateText("Player \"" + action.get("target") + "\" not found: " + action);
+			admin.sendPrivateText("Player \"" + action.get(TARGET) + "\" not found: " + action);
 			return;
 		}
 
@@ -49,12 +51,12 @@ public class InspectKillAction extends AdministrationAction {
 			return;
 		}
 
-		if (!action.has("creature")) {
+		if (!action.has(CREATURE)) {
 			admin.sendPrivateText("\"creature\" parameter required: " + action);
 			return;
 		}
 
-		final String creature = Grammar.singular(action.get("creature"));
+		final String creature = Grammar.singular(action.get(CREATURE));
 		if (!SingletonRepository.getEntityManager().isCreature(creature)) {
 			admin.sendPrivateText("\"" + creature + "\" is not a valid creature name: " + action);
 			return;

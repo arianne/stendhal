@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.SUPPORT;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,8 +38,8 @@ class SupportAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction tell = new RPAction();
 
-		tell.put("type", "support");
-		tell.put("text", remainder);
+		tell.put(TYPE, SUPPORT);
+		tell.put(TEXT, remainder);
 
 		ClientSingletonRepository.getClientFramework().send(tell);
 

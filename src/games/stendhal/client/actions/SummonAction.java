@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,12 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.CREATURE;
+import static games.stendhal.common.constants.Actions.SUMMON;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.X;
+import static games.stendhal.common.constants.Actions.Y;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.User;
@@ -84,22 +90,22 @@ class SummonAction implements SlashAction {
 			x = null;
 		}
 
-		summon.put("type", "summon");
-		summon.put("creature", nameBuilder.toString());
+		summon.put(TYPE, SUMMON);
+		summon.put(CREATURE, nameBuilder.toString());
 		if (quantity != null) {
 			summon.put("quantity", quantity);
 		}
 
 		if (x != null) {
 			if (y != null) {
-    			summon.put("x", x);
-    			summon.put("y", y);
+    			summon.put(X, x);
+    			summon.put(Y, y);
     		} else {
     			return false;
 			}
 		} else {
-			summon.put("x", (int) User.get().getX());
-			summon.put("y", (int) User.get().getY());
+			summon.put(X, (int) User.get().getX());
+			summon.put(Y, (int) User.get().getY());
 		}
 
 		ClientSingletonRepository.getClientFramework().send(summon);

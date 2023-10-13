@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-1016 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
+
+import static games.stendhal.common.constants.Actions.ZONE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -92,7 +94,7 @@ public abstract class EquipmentAction implements ActionListener {
 
 	private boolean isValidAction(RPAction action, Player player) {
 		if (action != null) {
-			String actionZone = action.get("zone");
+			String actionZone = action.get(ZONE);
 			// Always accept actions without the zone. Old clients send those.
 			if (actionZone == null || actionZone.equals(player.getZone().getName())) {
 				return true;

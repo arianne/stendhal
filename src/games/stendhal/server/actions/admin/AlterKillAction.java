@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,8 @@
 package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.ALTERKILL;
+import static games.stendhal.common.constants.Actions.CREATURE;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.util.Arrays;
 
@@ -44,7 +46,7 @@ public class AlterKillAction extends AdministrationAction {
 
 		final Entity target = getTargetAnyZone(admin, action);
 		if (target == null) {
-			admin.sendPrivateText("Player \"" + action.get("target") + "\" not found: " + action);
+			admin.sendPrivateText("Player \"" + action.get(TARGET) + "\" not found: " + action);
 			return;
 		}
 		if (!(target instanceof Player)) {
@@ -67,7 +69,7 @@ public class AlterKillAction extends AdministrationAction {
 			return;
 		}
 
-		final String creatureOrig = action.get("creature");
+		final String creatureOrig = action.get(CREATURE);
 		final String creature = Grammar.singular(creatureOrig);
 		if (!SingletonRepository.getEntityManager().isCreature(creature)) {
 			admin.sendPrivateText("\"" + creatureOrig + "\" is not a valid creature name: " + action);

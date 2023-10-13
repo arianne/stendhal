@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.REMOVEBUDDY;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,8 +38,8 @@ class RemoveBuddyAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction remove = new RPAction();
 
-		remove.put("type", "removebuddy");
-		remove.put("target", params[0]);
+		remove.put(TYPE, REMOVEBUDDY);
+		remove.put(TARGET, params[0]);
 
 		ClientSingletonRepository.getClientFramework().send(remove);
 

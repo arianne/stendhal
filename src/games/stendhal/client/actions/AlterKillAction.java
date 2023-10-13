@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.ALTERKILL;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,12 +50,12 @@ public class AlterKillAction implements SlashAction {
 			}
 		}
 
-		action.put("type", ALTERKILL);
-		action.put("target", target);
+		action.put(TYPE, ALTERKILL);
+		action.put(TARGET, target);
 		action.put("killtype", killtype);
 		action.put("count", count);
 		if (creature != null) {
-			action.put("creature", creature);
+			action.put(CREATURE, creature);
 		}
 
 		ClientSingletonRepository.getClientFramework().send(action);

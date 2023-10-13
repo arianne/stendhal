@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.NEWLEVEL;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -37,11 +42,11 @@ class AdminLevelAction implements SlashAction {
 		}
 		final RPAction adminlevel = new RPAction();
 
-		adminlevel.put("type", "adminlevel");
-		adminlevel.put("target", params[0]);
+		adminlevel.put(TYPE, ADMINLEVEL);
+		adminlevel.put(TARGET, params[0]);
 
 		if ((params.length > 1) && (params[1] != null)) {
-			adminlevel.put("newlevel", params[1]);
+			adminlevel.put(NEWLEVEL, params[1]);
 		}
 
 		ClientSingletonRepository.getClientFramework().send(adminlevel);

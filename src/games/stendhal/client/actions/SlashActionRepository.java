@@ -12,14 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import static games.stendhal.common.constants.Actions.ALTERKILL;
-import static games.stendhal.common.constants.Actions.INSPECTKILL;
-import static games.stendhal.common.constants.Actions.INSPECTQUEST;
-import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
+
+import games.stendhal.common.constants.Actions;
+
 
 /**
  * Manages Slash Action Objects.
@@ -40,18 +38,18 @@ public class SlashActionRepository {
 		final GroupMessageAction groupMessage = new GroupMessageAction();
 
 		actions.put("/", new RemessageAction());
-		actions.put("add", new AddBuddyAction());
-		actions.put("adminlevel", new AdminLevelAction());
+		actions.put(Actions.ADD, new AddBuddyAction());
+		actions.put(Actions.ADMINLEVEL, new AdminLevelAction());
 		actions.put("adminnote", new AdminNoteAction());
-		actions.put("alter", new AlterAction());
-		actions.put("altercreature", new AlterCreatureAction());
-		actions.put(ALTERKILL, new AlterKillAction());
-		actions.put("alterquest", new AlterQuestAction());
-		actions.put("answer", new AnswerAction());
+		actions.put(Actions.ALTER, new AlterAction());
+		actions.put(Actions.ALTERCREATURE, new AlterCreatureAction());
+		actions.put(Actions.ALTERKILL, new AlterKillAction());
+		actions.put(Actions.ALTERQUEST, new AlterQuestAction());
+		actions.put(Actions.ANSWER, new AnswerAction());
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
-		actions.put("away", new AwayAction());
+		actions.put(Actions.AWAY, new AwayAction());
 
-		actions.put("ban", new BanAction());
+		actions.put(Actions.BAN, new BanAction());
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
@@ -64,23 +62,23 @@ public class SlashActionRepository {
 
 		actions.put("cast", new CastSpellAction());
 
-		actions.put("gag", new GagAction());
+		actions.put(Actions.GAG, new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("group", new GroupManagementAction(groupMessage));
 		actions.put("groupmessage", groupMessage);
-		actions.put("grumpy", new GrumpyAction());
+		actions.put(Actions.GRUMPY, new GrumpyAction());
 
 		actions.put("help", help);
 
-		actions.put("ignore", new IgnoreAction());
-		actions.put("inspect", new InspectAction());
-		actions.put(INSPECTKILL, new InspectKillAction());
-		actions.put(INSPECTQUEST, new InspectQuestAction());
-		actions.put("invisible", new InvisibleAction());
+		actions.put(Actions.IGNORE, new IgnoreAction());
+		actions.put(Actions.INSPECT, new InspectAction());
+		actions.put(Actions.INSPECTKILL, new InspectKillAction());
+		actions.put(Actions.INSPECTQUEST, new InspectQuestAction());
+		actions.put(Actions.INVISIBLE, new InvisibleAction());
 
-		actions.put("jail", new JailAction());
+		actions.put(Actions.JAIL, new JailAction());
 
-		actions.put("listproducers", new ListProducersAction());
+		actions.put(Actions.LISTPRODUCERS, new ListProducersAction());
 
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
@@ -96,7 +94,7 @@ public class SlashActionRepository {
 
 		actions.put("remove", new RemoveBuddyAction());
 
-		actions.put("sentence", new SentenceAction());
+		actions.put(Actions.SENTENCE, new SentenceAction());
 		actions.put("status", new SentenceAction()); // Alias for /sentence
 		actions.put("settings", new SettingsAction());
 
@@ -107,34 +105,34 @@ public class SlashActionRepository {
 		actions.put("storemessage", new StoreMessageAction());
 		actions.put("postmessage", new StoreMessageAction());
 
-		actions.put("summonat", new SummonAtAction());
-		actions.put("summon", new SummonAction());
-		actions.put("supportanswer", supporta);
+		actions.put(Actions.SUMMONAT, new SummonAtAction());
+		actions.put(Actions.SUMMON, new SummonAction());
+		actions.put(Actions.SUPPORTANSWER, supporta);
 		actions.put("supporta", supporta);
-		actions.put("support", new SupportAction());
+		actions.put(Actions.SUPPORT, new SupportAction());
 
 		actions.put("takescreenshot", new ScreenshotAction());
-		actions.put("teleport", new TeleportAction());
-		actions.put("teleportto", new TeleportToAction());
-		actions.put("tellall", new TellAllAction());
-		actions.put("tell", msg);
+		actions.put(Actions.TELEPORT, new TeleportAction());
+		actions.put(Actions.TELEPORTTO, new TeleportToAction());
+		actions.put(Actions.TELLALL, new TellAllAction());
+		actions.put(Actions.TELL, msg);
 
-		actions.put("where", new WhereAction());
-		actions.put("who", who);
+		actions.put(Actions.WHERE, new WhereAction());
+		actions.put(Actions.WHO, who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
-//		actions.put("wrap", new WrapAction());
+		//actions.put("wrap", new WrapAction());
 
-		/* Movement */
-		actions.put("walk", new AutoWalkAction());
-		actions.put("stopwalk", new AutoWalkStopAction());
+		// movement
+		actions.put(Actions.WALK, new AutoWalkAction());
+		actions.put(Actions.STOPWALK, new AutoWalkStopAction());
 		actions.put("movecont", new MoveContinuousAction());
 
 		// PvP challenge actions
-		actions.put("challenge", new CreateChallengeAction());
-		actions.put("accept", new AcceptChallengeAction());
+		actions.put(Actions.CHALLENGE, new CreateChallengeAction());
+		actions.put(Actions.ACCEPT, new AcceptChallengeAction());
 
 		// allows players to remove the detail layer manually
-		actions.put(REMOVEDETAIL, new RemoveDetailAction());
+		actions.put(Actions.REMOVEDETAIL, new RemoveDetailAction());
 
 		actions.put("emojilist", new EmojiListAction());
 	}

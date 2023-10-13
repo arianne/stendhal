@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,9 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions;
+
+import static games.stendhal.common.constants.Actions.ACTION;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import org.apache.log4j.Logger;
 
@@ -43,14 +46,14 @@ public class TradeAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		rewriteCommandLine(action);
-		String actionStr = action.get("action");
+		String actionStr = action.get(ACTION);
 		if (actionStr == null) {
 			logger.warn("missing action attribute in RPAction " + action);
 			return;
 		}
 
 		if (actionStr.equals("offer_trade")) {
-			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player);
+			Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 			if ((entity == null) || (!(entity instanceof Player))) {
 				return;
 			}
@@ -73,8 +76,8 @@ public class TradeAction implements ActionListener {
 	 */
 	private void rewriteCommandLine(RPAction action) {
 		if (action.has("args")) {
-			action.put("action", action.get("target"));
-			action.put("target", action.get("args"));
+			action.put(ACTION, action.get(TARGET));
+			action.put(TARGET, action.get("args"));
 		}
 	}
 

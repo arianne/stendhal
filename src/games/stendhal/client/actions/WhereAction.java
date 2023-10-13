@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WHERE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.StendhalClient;
@@ -41,8 +45,8 @@ class WhereAction implements SlashAction {
 			remainder = StendhalClient.get().getCharacter();
 		}
 
-		where.put("type", "where");
-		where.put("target", StringHelper.unquote(remainder));
+		where.put(TYPE, WHERE);
+		where.put(TARGET, StringHelper.unquote(remainder));
 
 		ClientSingletonRepository.getClientFramework().send(where);
 

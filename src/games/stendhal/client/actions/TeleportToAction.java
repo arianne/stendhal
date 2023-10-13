@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.TELEPORTTO;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
@@ -35,7 +37,7 @@ class TeleportToAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction teleport = new RPAction();
 
-		teleport.put("type", "teleportto");
+		teleport.put("type", TELEPORTTO);
 		teleport.put("target", StringHelper.unquote(remainder));
 
 		ClientSingletonRepository.getClientFramework().send(teleport);

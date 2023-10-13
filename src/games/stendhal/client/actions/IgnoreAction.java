@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.DURATION;
+import static games.stendhal.common.constants.Actions.IGNORE;
+import static games.stendhal.common.constants.Actions.LIST;
+import static games.stendhal.common.constants.Actions.REASON;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,13 +41,13 @@ class IgnoreAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
 
-		action.put("type", "ignore");
+		action.put(TYPE, IGNORE);
 		// because the max number of parameters is non zero, a String[2] is created when the command is parsed
 		// but if player only typed /ignore then even the first entry is null
 		if (params[0] == null) {
-			action.put("list", "1");
+			action.put(LIST, "1");
 		} else {
-			action.put("target", params[0]);
+			action.put(TARGET, params[0]);
 			String duration = params[1];
 			if (duration != null) {
 				/*
@@ -56,12 +63,12 @@ class IgnoreAction implements SlashAction {
 						return false;
 					}
 
-					action.put("duration", duration);
+					action.put(DURATION, duration);
 				}
 			}
 
 			if (remainder.length() != 0) {
-				action.put("reason", remainder);
+				action.put(REASON, remainder);
 			}
 		}
 		ClientSingletonRepository.getClientFramework().send(action);

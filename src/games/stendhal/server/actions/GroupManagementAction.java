@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions;
+
+import static games.stendhal.common.constants.Actions.ACTION;
 
 import org.apache.log4j.Logger;
 
@@ -49,7 +51,7 @@ public class GroupManagementAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 
 		// vaidate parameters
-		String actionStr = action.get("action");
+		String actionStr = action.get(ACTION);
 		String params = action.get("params");
 		if ((actionStr == null) || (params == null)) {
 			logger.warn("missing action attribute in RPAction " + action);

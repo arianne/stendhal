@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,6 +10,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
+
+import static games.stendhal.common.constants.Actions.BAN;
+import static games.stendhal.common.constants.Actions.REASON;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -40,11 +44,11 @@ public class BanAction extends AdministrationAction {
 
 	@Override
 	protected void perform(final Player player, final RPAction action) {
-		if (action.has("target")) {
-			String bannedName = action.get("target");
+		if (action.has(TARGET)) {
+			String bannedName = action.get(TARGET);
 			String reason = "";
-			if (action.has("reason")) {
-				reason = action.get("reason");
+			if (action.has(REASON)) {
+				reason = action.get(REASON);
 			}
 			int hours = 1;
 
@@ -83,7 +87,7 @@ public class BanAction extends AdministrationAction {
 
 				// logging
 				logger.info(sender + " has banned  account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
-				new GameEvent(sender, "ban",  bannedName, expireStr, reason).raise();
+				new GameEvent(sender, BAN,  bannedName, expireStr, reason).raise();
 
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 						sender + " banned account " + username + " (character: " + bannedName + ") until " + expireStr
@@ -116,6 +120,6 @@ public class BanAction extends AdministrationAction {
 	 * registers the ban action
 	 */
 	public static void register() {
-		CommandCenter.register("ban", new BanAction(), 1000);
+		CommandCenter.register(BAN, new BanAction(), 1000);
 	}
 }

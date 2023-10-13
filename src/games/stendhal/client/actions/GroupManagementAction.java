@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ACTION;
+import static games.stendhal.common.constants.Actions.MESSAGE;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -45,13 +49,13 @@ class GroupManagementAction implements SlashAction {
 
 		final RPAction action = new RPAction();
 
-		if (params[0].equals("message")) {
+		if (params[0].equals(MESSAGE)) {
 			groupMessageAction.execute(params, remainder);
 			return true;
 		}
 
-		action.put("type", "group_management");
-		action.put("action", params[0]);
+		action.put(TYPE, "group_management");
+		action.put(ACTION, params[0]);
 		action.put("params", remainder);
 
 		ClientSingletonRepository.getClientFramework().send(action);

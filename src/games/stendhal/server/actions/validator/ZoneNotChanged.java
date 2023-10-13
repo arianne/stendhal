@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Faiumoni                    *
+ *                   (C) Copyright 2003-2023 - Faiumoni                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import static games.stendhal.common.constants.Actions.ZONE;
+
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -21,7 +23,7 @@ import marauroa.common.game.RPAction;
 public class ZoneNotChanged implements ActionValidator {
 	@Override
 	public String validate(Player player, RPAction action, ActionData data) {
-		String actionZone = action.get("zone");
+		String actionZone = action.get(ZONE);
 		// Always accept actions without the zone. Old clients send those.
 		if (actionZone == null || actionZone.equals(player.getZone().getName())) {
 				return null;

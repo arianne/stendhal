@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.TELLALL;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -32,10 +36,10 @@ class TellAllAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		final RPAction tellall = new RPAction("tellall");
+		final RPAction tellall = new RPAction(TELLALL);
 
-		tellall.put("type", "tellall");
-		tellall.put("text", remainder);
+		tellall.put(TYPE, TELLALL);
+		tellall.put(TEXT, remainder);
 
 		ClientSingletonRepository.getClientFramework().send(tellall);
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.chat;
 
+import static games.stendhal.common.constants.Actions.CHAT;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
 
@@ -66,7 +67,7 @@ public class TellAction implements ActionListener {
 		}
 
 		receiver.setLastPrivateChatter(senderName);
-		new GameEvent(player.getName(), "chat", receiverName, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+		new GameEvent(player.getName(), CHAT, receiverName, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 	}
 
 }

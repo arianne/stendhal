@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,7 +53,7 @@ class CIDListAction extends AdministrationAction {
 				if (idList.containsKey(tid)) {
 					String group = idList.get(tid);
 					player.sendPrivateText("These players are on the same computer: " + group);
-					new GameEvent(player.getName(), "cidlist", playerName, group).raise();
+					new GameEvent(player.getName(), CIDLIST, playerName, group).raise();
 				}
 			}
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ALTER;
+import static games.stendhal.common.constants.Actions.MODE;
+import static games.stendhal.common.constants.Actions.STAT;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.VALUE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -37,11 +44,11 @@ class AlterAction implements SlashAction {
 		}
 		final RPAction alter = new RPAction();
 
-		alter.put("type", "alter");
-		alter.put("target", params[0]);
-		alter.put("stat", params[1]);
-		alter.put("mode", params[2]);
-		alter.put("value", remainder);
+		alter.put(TYPE, ALTER);
+		alter.put(TARGET, params[0]);
+		alter.put(STAT, params[1]);
+		alter.put(MODE, params[2]);
+		alter.put(VALUE, remainder);
 		ClientSingletonRepository.getClientFramework().send(alter);
 
 		return true;

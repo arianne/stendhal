@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.EMOTE;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -37,8 +40,8 @@ class EmoteAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction emote = new RPAction();
 
-		emote.put("type", "emote");
-		emote.put("text", remainder);
+		emote.put(TYPE, EMOTE);
+		emote.put(TEXT, remainder);
 
 		ClientSingletonRepository.getClientFramework().send(emote);
 

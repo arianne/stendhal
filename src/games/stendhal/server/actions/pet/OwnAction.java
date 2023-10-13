@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -146,6 +146,6 @@ public class OwnAction implements ActionListener {
 				player.setPet((Pet) animal);
 			}
 		}
-		new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getTitle()).raise();
+		new GameEvent(player.getName(), OWN, animal.getRPClass().getName(), animal.getTitle()).raise();
 	}
 }

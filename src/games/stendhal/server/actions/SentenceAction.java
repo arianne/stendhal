@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.actions;
+
 import static games.stendhal.common.constants.Actions.SENTENCE;
 import static games.stendhal.common.constants.Actions.VALUE;
 
@@ -50,7 +51,7 @@ public class SentenceAction implements ActionListener {
 			logger.error(e, e);
 		}
 
-		new GameEvent(player.getName(), "sentence", Integer.toString(sentence.length()), sentence).raise();
+		new GameEvent(player.getName(), SENTENCE, Integer.toString(sentence.length()), sentence).raise();
 		player.setSentence(sentence);
 		player.sendPrivateText("Your sentence was updated to: " + action.get(VALUE));
 	}

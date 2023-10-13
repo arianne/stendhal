@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.query;
 
+import static games.stendhal.common.constants.Actions.ITEM;
 import static games.stendhal.common.constants.Actions.PROGRESS_STATUS;
 
 import java.util.Arrays;
@@ -49,10 +50,10 @@ public class ProgressStatusQueryAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has("progress_type")) {
 			sendProgressTypes(player);
-		} else if (!action.has("item")) {
+		} else if (!action.has(ITEM)) {
 			sendItemList(player, action.get("progress_type"));
 		} else {
-			sendDetails(player, action.get("progress_type"), action.get("item"));
+			sendDetails(player, action.get("progress_type"), action.get(ITEM));
 		}
 
 		player.notifyWorldAboutChanges();

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TELL;
+import static games.stendhal.common.constants.Actions.TEXT;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -39,9 +44,9 @@ class MessageAction implements SlashAction {
 		if (!remainder.isEmpty()) {
 			RPAction tell = new RPAction();
 
-			tell.put("type", "tell");
-			tell.put("target", lastPlayerTell);
-			tell.put("text", remainder);
+			tell.put(TYPE, TELL);
+			tell.put(TARGET, lastPlayerTell);
+			tell.put(TEXT, remainder);
 
 			ClientSingletonRepository.getClientFramework().send(tell);
 			return true;

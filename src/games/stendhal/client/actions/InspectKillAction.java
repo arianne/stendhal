@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.TARGET;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -45,10 +48,10 @@ public class InspectKillAction implements SlashAction {
 			}
 		}
 
-		action.put("type", INSPECTKILL);
-		action.put("target", target);
+		action.put(TYPE, INSPECTKILL);
+		action.put(TARGET, target);
 		if (creature != null) {
-			action.put("creature", creature);
+			action.put(CREATURE, creature);
 		}
 
 		ClientSingletonRepository.getClientFramework().send(action);

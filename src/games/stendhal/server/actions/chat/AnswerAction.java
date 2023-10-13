@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TELL;
 import static games.stendhal.common.constants.Actions.TEXT;
 import static games.stendhal.common.constants.Actions.TYPE;
 
@@ -29,7 +30,7 @@ class AnswerAction implements ActionListener {
 		if (action.has(TEXT)) {
 			if (player.getLastPrivateChatter() != null) {
 				// convert the action to a /tell action
-				action.put(TYPE, "tell");
+				action.put(TYPE, TELL);
 				action.put(TARGET, player.getLastPrivateChatter());
 				new TellAction().onAction(player, action);
 			} else {

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.AMOUNT;
+import static games.stendhal.common.constants.Actions.ITEM;
+import static games.stendhal.common.constants.Actions.SLOT;
+import static games.stendhal.common.constants.Actions.SUMMONAT;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
@@ -36,9 +43,9 @@ class SummonAtAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction summon = new RPAction();
 
-		summon.put("type", "summonat");
-		summon.put("target", params[0]);
-		summon.put("slot", params[1]);
+		summon.put(TYPE, SUMMONAT);
+		summon.put(TARGET, params[0]);
+		summon.put(SLOT, params[1]);
 
 		int amount;
 		String itemName;
@@ -61,8 +68,8 @@ class SummonAtAction implements SlashAction {
 
 		final String singularName = Grammar.singular(itemName);
 
-		summon.put("amount", amount);
-		summon.put("item", singularName);
+		summon.put(AMOUNT, amount);
+		summon.put(ITEM, singularName);
 
 		ClientSingletonRepository.getClientFramework().send(summon);
 

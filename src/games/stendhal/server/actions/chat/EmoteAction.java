@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.chat;
 
+import static games.stendhal.common.constants.Actions.CHAT;
 import static games.stendhal.common.constants.Actions.TEXT;
 
 import games.stendhal.server.actions.ActionListener;
@@ -39,7 +40,7 @@ public class EmoteAction implements ActionListener {
 		final String text = "!me " + QuoteSpecials.quote(action.get(TEXT));
 		player.put("text", text);
 
-		new GameEvent(player.getName(), "chat", null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+		new GameEvent(player.getName(), CHAT, null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 
 		player.notifyWorldAboutChanges();
 		SingletonRepository.getRuleProcessor().removePlayerText(player);

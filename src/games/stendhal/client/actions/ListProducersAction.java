@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,9 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.LISTPRODUCERS;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -34,7 +37,7 @@ class ListProducersAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction listproducers = new RPAction();
 
-		listproducers.put("type", "listproducers");
+		listproducers.put(TYPE, LISTPRODUCERS);
 
 		ClientSingletonRepository.getClientFramework().send(listproducers);
 

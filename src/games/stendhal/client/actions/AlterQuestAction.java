@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.actions;
+
+import static games.stendhal.common.constants.Actions.ALTERQUEST;
+import static games.stendhal.common.constants.Actions.NAME;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
@@ -36,9 +41,9 @@ class AlterQuestAction implements SlashAction {
 			return false;
 		}
 		final RPAction action = new RPAction();
-		action.put("type", "alterquest");
-		action.put("target", params[0]);
-		action.put("name", params[1]);
+		action.put(TYPE, ALTERQUEST);
+		action.put(TARGET, params[0]);
+		action.put(NAME, params[1]);
 		if ((params.length > 2) && (params[2] != null)) {
 			action.put("state", params[2]);
 		}

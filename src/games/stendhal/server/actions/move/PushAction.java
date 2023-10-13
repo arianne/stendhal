@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -171,7 +171,7 @@ public class PushAction implements ActionListener {
 			}
 		}
 
-		new GameEvent(pusher.getName(), "push", pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
+		new GameEvent(pusher.getName(), PUSH, pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
 		pushed.setPosition(x, y);
 		pushed.notifyWorldAboutChanges();
 		pusher.onPush(pushed);

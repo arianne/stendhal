@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2015 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.chat;
 
+import static games.stendhal.common.constants.Actions.SUPPORT;
 import static games.stendhal.common.constants.Actions.TEXT;
 
 import java.util.HashMap;
@@ -76,7 +77,7 @@ public class AskForSupportAction  implements ActionListener {
 
 		String username = PlayerEntryContainer.getContainer().get(player).username;
 
-		new GameEvent(sender, "support", username, action.get(TEXT)).raise();
+		new GameEvent(sender, SUPPORT, username, action.get(TEXT)).raise();
 
 		String temp = sender + " (" + username + ")";
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(temp, message);
