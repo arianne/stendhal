@@ -56,7 +56,7 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Sell ...", 35);
 			SORT_INDEX.put("Bye", 9999);
 		}
-		
+
 		private String trigger;
 		private String label;
 		private String options = "";

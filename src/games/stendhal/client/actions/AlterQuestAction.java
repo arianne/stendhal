@@ -68,8 +68,6 @@ class AlterQuestAction implements SlashAction {
 	 */
 	@Override
 	public int getMinimumParameters() {
-
 		return 2;
 	}
-
 }

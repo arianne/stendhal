@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Enumeration of rendering methods.
- * 
+ *
  * @see <a href=
  *      "https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html">JavaSE
  *      8 2D Technology</a>
@@ -25,7 +25,7 @@ import java.util.List;
  *      <a href="https://openjdk.org/projects/wakefield/">Project WakeField</a>
  * @see MacOS Metal framework:
  *      <a href="https://openjdk.org/projects/lanai/">Project Lanai</a>
- * 
+ *
  */
 public enum UiRenderingMethod {
 

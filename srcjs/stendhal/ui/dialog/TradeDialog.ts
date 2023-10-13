@@ -65,7 +65,7 @@ export class TradeDialog extends DialogContentComponent {
 		(this.child("#trade-offer") as HTMLButtonElement).disabled = !(myState === "MAKING_OFFERS");
 		(this.child("#trade-accept") as HTMLButtonElement).disabled
 			= !(myState === "LOCKED" && (partnerState === "LOCKED" || partnerState === "DEAL_WAITING_FOR_OTHER_DEAL"));
-		
+
 		this.otherItemsComponent.setObject(partner ? partner : TradeDialog.empty);
 		this.myItemsComponent.setObject(me);
 		if (myState === "TRADE_COMPLETED") {
@@ -79,7 +79,7 @@ export class TradeDialog extends DialogContentComponent {
 	}
 
 	private createHtml() {
-		
+
 		this.child("#trade-partner-items")!.append(this.otherItemsComponent.componentElement);
 		this.child("#trade-my-items")!.append(this.myItemsComponent.componentElement);
 		this.child("#trade-accept")!.addEventListener("click", () => {
@@ -128,5 +128,5 @@ export class TradeDialog extends DialogContentComponent {
 		};
 		marauroa.clientFramework.sendAction(action);
 	}
-	
+
 }

@@ -84,8 +84,8 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 				IGameScreen.SIZE_UNIT_PIXELS);
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = new AnimatedSprite(store.getTiles(sprite, 0, yOffset, 
-					width / IGameScreen.SIZE_UNIT_PIXELS, 
+			sprite = new AnimatedSprite(store.getTiles(sprite, 0, yOffset,
+					width / IGameScreen.SIZE_UNIT_PIXELS,
 					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS),
 					100, true);
 		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {

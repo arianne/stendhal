@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Changes the global day time to specified phase. Intended for testing night
- * time map coloring. Calling with parameter "reset" restores the normal timed 
+ * time map coloring. Calling with parameter "reset" restores the normal timed
  * behavior.
  */
 public class ChangeDaytime extends ScriptImpl {
@@ -32,7 +32,7 @@ public class ChangeDaytime extends ScriptImpl {
 			usage(admin);
 			return;
 		}
-	
+
 		if (!setPhase(args.get(0))) {
 			usage(admin);
 		}

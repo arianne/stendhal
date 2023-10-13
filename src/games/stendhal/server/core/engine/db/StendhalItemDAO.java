@@ -190,7 +190,7 @@ public class StendhalItemDAO {
 		stmt.setString(27, item.getAttributes().get("persistent"));
 		stmt.setString(28, item.getAttributes().get("slot_name"));
 		stmt.setString(29, item.getAttributes().get("slot_size"));
-		
+
 		stmt.setString(30, item.getAttributes().get("undroppableondeath"));
 		stmt.setInt(31, MathHelper.parseIntDefault(item.getAttributes().get("autobind"), 0));
 		stmt.setString(32, item.getAttributes().get("max_quantity"));
@@ -285,4 +285,3 @@ public class StendhalItemDAO {
 		return transaction.queryAsMap("SELECT name, id FROM iteminfo", null);
 	}
 }
-

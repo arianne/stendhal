@@ -45,7 +45,7 @@ public class RingOfLife extends Item {
 		put("amount", 1);
 		updateState();
 	}
-	
+
 	private void updateState() {
 		if (isBroken()) {
 			setState(1);

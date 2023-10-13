@@ -57,7 +57,7 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 
 		public HandOverItemAction(DeliverItemTask deliverItemTask, String questSlot) {
 			this.deliverItemTask = deliverItemTask;
-			this.questSlot= questSlot; 
+			this.questSlot= questSlot;
 		}
 
 		@Override

@@ -185,7 +185,7 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 					ConversationStates.QUEST_OFFERED,
 					respondToRepeatedRequest,
 					null);
-			
+
 
 			npc.add(ConversationStates.ATTENDING,
 					ConversationPhrases.QUEST_MESSAGES,

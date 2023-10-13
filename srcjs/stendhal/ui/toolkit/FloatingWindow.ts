@@ -171,7 +171,7 @@ export class FloatingWindow extends Component {
 		const dialogArea = this.componentElement.getBoundingClientRect();
 		const clientArea = document.documentElement.getBoundingClientRect();
 
-		// clientArea.height is 0, if there are now child elements (e. g. on login / choose character dialogs) 
+		// clientArea.height is 0, if there are now child elements (e. g. on login / choose character dialogs)
 		let clientAreaHeight = clientArea.height;
 		if (clientAreaHeight == 0) {
 			clientAreaHeight = window.visualViewport?.height || 200;

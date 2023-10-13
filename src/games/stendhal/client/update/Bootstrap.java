@@ -282,7 +282,7 @@ public class Bootstrap {
 			Certificate[] certs = (Certificate[]) objects;
 			for (Certificate cert : certs) {
 				byte[] key = cert.getPublicKey().getEncoded();
-				// Security Note: Since SourceForge has added support for https, 
+				// Security Note: Since SourceForge has added support for https,
 				// we do not depend on verifying the signature anymore. But we need
 				// to tell an official and a self-build client apart in order not to
 				// add incompatible .jar files to the later and break it.

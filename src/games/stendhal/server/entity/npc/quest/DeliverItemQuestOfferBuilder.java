@@ -95,7 +95,7 @@ public class DeliverItemQuestOfferBuilder extends QuestOfferBuilder<DeliverItemQ
 					ConversationStates.QUEST_OFFERED,
 					respondToRepeatedRequest,
 					null);
-			
+
 			npc.add(ConversationStates.ATTENDING,
 					ConversationPhrases.QUEST_MESSAGES,
 					new AndCondition(
@@ -156,7 +156,7 @@ public class DeliverItemQuestOfferBuilder extends QuestOfferBuilder<DeliverItemQ
 					entry.getValue(),
 					null);
 		}
-		
+
 		((DeliverItemTask) task).prepareBaker();
 	}
 

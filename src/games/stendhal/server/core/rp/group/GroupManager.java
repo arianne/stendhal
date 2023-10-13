@@ -122,7 +122,7 @@ public class GroupManager implements TurnListener, LoginListener {
 		if (group != null) {
 			// TODO: Workaround because RPEvents might be lost in Perceptions for on objects added to zone in that turn
 			TurnNotifier.get().notifyInTurns(0, new TurnListener() {
-				
+
 				@Override
 				public void onTurnReached(int currentTurn) {
 					group.sendGroupChangeEvent(player);

@@ -128,7 +128,7 @@ public class ExtendedSummonAt extends ScriptImpl {
 			admin.sendPrivateText(NotificationType.ERROR, "The slot is full.");
 			return;
 		}
-		
+
 		new GameEvent(admin.getName(), SUMMONAT, changed.getName(), slotName, type, "logid: "+ action.get("logid")).raise();
 		item.put("logid", action.get("logid"));
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(admin.getName() + " summoned "

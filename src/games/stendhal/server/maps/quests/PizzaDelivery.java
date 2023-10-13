@@ -123,7 +123,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.customerDescription("Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair. Go South East to find Athor ferry.")
 			.itemDescription("Pizza Hawaii")
 			// You need about 6 min to Eliza, up to 12 min to wait for the
-			// ferry, 5 min for the crossing, and 0.5 min from the docks to 
+			// ferry, 5 min for the crossing, and 0.5 min from the docks to
 			// the beach, so you need a bit of luck for this one.
 			.minutesToDeliver(20)
 			.tipOnFastDelivery(300)

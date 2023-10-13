@@ -23,7 +23,7 @@ public class DeliverItemOrder {
 
 	/** A hint where to find the customer. */
 	private String npcDescription;
-	
+
 
 	/** The style the customer likes. */
 	private String flavor;
