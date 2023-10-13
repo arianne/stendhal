@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.ALTER;
 import static games.stendhal.common.constants.Actions.ALTERKILL;
 import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.TARGET;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -87,5 +89,9 @@ public class AlterKillAction extends AdministrationAction {
 		// Notify player of changes
 		player.sendPrivateText(NotificationType.SUPPORT, "Your " + killtype + " kill count for " + creature + " was changed to "
 				+ count + " by " + admin.getTitle());
+
+		// log event
+		new GameEvent(player.getName(), ALTER, "kill", action.get(TARGET), killtype, String.valueOf(count),
+				creature).raise();
 	}
 }

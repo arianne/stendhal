@@ -11,12 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.ALTER;
 import static games.stendhal.common.constants.Actions.ALTERQUEST;
 import static games.stendhal.common.constants.Actions.NAME;
 import static games.stendhal.common.constants.Actions.TARGET;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
@@ -33,20 +35,20 @@ class AlterQuestAction extends AdministrationAction {
 
 	@Override
 	protected void perform(final Player player, final RPAction action) {
+		final String questName = action.get(NAME);
+		// new state (or null to remove the quest)
+		final String newQuestState = action.get("state");
+
 		// find player
 		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final Player target = rules.getPlayer(action.get(TARGET));
 		if (target != null) {
 
 			// old state
-			final String questName = action.get(NAME);
 			String oldQuestState = null;
 			if (target.hasQuest(questName)) {
 				oldQuestState = target.getQuest(questName);
 			}
-
-			// new state (or null to remove the quest)
-			final String newQuestState = action.get("state");
 
 			// set the quest
 			target.setQuest(questName, newQuestState);
@@ -64,5 +66,8 @@ class AlterQuestAction extends AdministrationAction {
 			player.sendPrivateText(action.get(TARGET) + " is not logged in");
 		}
 
+		// log event
+		new GameEvent(player.getName(), ALTER, "quest", action.get(TARGET), questName,
+				String.valueOf(newQuestState)).raise();
 	}
 }
