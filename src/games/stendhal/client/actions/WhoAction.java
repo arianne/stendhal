@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import static games.stendhal.common.constants.Actions.WHO;
 import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WHO;
 
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;

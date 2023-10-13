@@ -13,8 +13,8 @@ package games.stendhal.client.actions;
 
 import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
-import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
 
 import java.util.LinkedList;
 import java.util.List;
