@@ -492,6 +492,8 @@ olive_oil.png            omero; CC BY-SA 3.0; Stendhal
 pelt.png                 Michael Williams (BizmasterStudios); CC BY 3.0; https://opengameart.org/node/77334
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
 seed.png                 Katie Russell (kymara), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
+seed_lilia.png           Katie Russell (kymara), Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
+seed_pansy.png           cookieeater, Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/183397
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         Glitch, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/210635
 teddy.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
