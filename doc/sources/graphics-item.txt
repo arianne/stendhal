@@ -477,7 +477,7 @@ data/sprites/items/misc/
 
 bat_entrails.png         Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
-bulb.png                 omero; CC BY-SA 3.0; Stendhal
+bulb.png                 omero, Kimmo Rundelin (kiheru); GPL 2.0 or newer; Stendhal
 canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
 cards.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
 decent_meal.png          omero; CC BY-SA 3.0; Stendhal
