@@ -442,7 +442,7 @@ export class SlashActionRepo {
 					"\t\tShow complete details of #player.",
 					"- /inspectkill <player> <creature>",
 					"\t\tShow creature kill counts of #player for #creature.",
-					"- /inspectquest <player> <quest_slot>",
+					"- /inspectquest <player> [<quest_slot>]",
 					"\t\tShow the state of quest for #player.",
 					"- /script <scriptname>",
 					"\t\tLoad (or reload) a script on the server. See #/gmhelp #script for details.",
@@ -613,13 +613,15 @@ export class SlashActionRepo {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 					"type": "inspectquest",
-					"target": params[0],
-					"quest_slot": params[1]
+					"target": params[0]
 			};
+			if (params.length > 1) {
+					action["quest_slot"] = params[1];
+			}
 			this.sendAction(action);
 			return true;
 		},
-		minParams: 2,
+		minParams: 1,
 		maxParams: 2
 	};
 

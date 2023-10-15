@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,8 @@
 package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.INSPECTQUEST;
+
+import java.util.Arrays;
 
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
@@ -34,17 +36,29 @@ public class InspectQuestAction extends AdministrationAction {
 		final Entity target = getTargetAnyZone(admin, action);
 
 		if (target == null) {
-			final String text = "Entity not found for action" + action;
+			final String text = "Entity not found for action: " + action;
 			admin.sendPrivateText(text);
 			return;
 		}
 
-		if (target instanceof Player && action.has("quest_slot")) {
+		if (target instanceof Player) {
 			final Player player = (Player) target;
-			final String questSlot = action.get("quest_slot");
-			final String questState = player.getQuest(questSlot);
+			if (action.has("quest_slot")) {
+				// get a specific quest
+				final String questSlot = action.get("quest_slot");
+				final String questState = player.getQuest(questSlot);
 
-			admin.sendPrivateText(questSlot + " (" + player.getName() + "): " + questState);
+				admin.sendPrivateText(questSlot + " (" + player.getName() + "): " + questState);
+			} else {
+				// get all quests
+				final StringBuilder sb = new StringBuilder("Quest states for player " + player.getName() + ":");
+				final String[] slots = player.getQuests().toArray(new String[0]);
+				Arrays.sort(slots);
+				for (final String questSlot: slots) {
+					sb.append("\n" + questSlot + ": " + player.getQuest(questSlot));
+				}
+				admin.sendPrivateText(sb.toString());
+			}
 		}
 	}
 }

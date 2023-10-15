@@ -54,7 +54,7 @@ class GMHelpAction implements SlashAction {
 				"\t\tShow complete details of #player.",
 				"- /inspectkill <player> <creature>",
 				"\t\tShow creature kill counts of #player for #creature.",
-				"- /inspectquest <player> <quest_slot>",
+				"- /inspectquest <player> [<quest_slot>]",
 				"\t\tShow the state of quest for #player.",
 				"- /script <scriptname>",
 				"\t\tLoad (or reload) a script on the server. See #/gmhelp #script for details.",

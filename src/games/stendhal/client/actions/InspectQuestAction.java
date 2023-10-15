@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,11 @@ public class InspectQuestAction implements SlashAction {
 
 		action.put("type", INSPECTQUEST);
 		action.put("target", params[0]);
-		action.put("quest_slot", params[1]);
+		// FIXME: Why does param[1] result as null when single parameter given?
+		//        Clue may be in `games.stendhal.client.scripting.SlashActionParser.parse`.
+		if (params.length > 1 && params[1] != null) {
+			action.put("quest_slot", params[1]);
+		}
 
 		ClientSingletonRepository.getClientFramework().send(action);
 
@@ -38,6 +42,6 @@ public class InspectQuestAction implements SlashAction {
 
 	@Override
 	public int getMinimumParameters() {
-		return 2;
+		return 1;
 	}
 }
