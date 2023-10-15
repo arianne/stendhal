@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,6 +74,23 @@ public class ItemLogger {
 				slotName));
 	}
 
+	/**
+	 * Log a summoned item.
+	 *
+	 * @param player
+	 *   Player summoning the item.
+	 * @param item
+	 *   Summoned item.
+	 * @param targetName
+	 *   Target zone or entity receiving the item.
+	 * @param targetLocation
+	 *   Name of slot or coordinates where item is summoned.
+	 */
+	public void summon(final RPEntity player, final Item item, final String targetName, final String targetLocation) {
+		addLogItemEventCommand(new LogSimpleItemEventCommand(item, player, "summon", item.getName(), getQuantity(item),
+				targetName, targetLocation));
+	}
+
 	public void dropQuest(final Player player, final Item item) {
 		addLogItemEventCommand(new LogSimpleItemEventCommand(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null));
 	}
@@ -145,6 +162,7 @@ public class ItemLogger {
 	ground-to-ground   zone         x         y       zone         x         y
 	use                old-quantity new-quantity
 	destroy            name         quantity          by admin / by quest / on login / timeout on ground
+	summon             name              quantity             target/zone              slot/coordinates
 	merge in           outliving_id      destroyed-quantity   outliving-quantity       merged-quantity
 	merged in          destroyed_id      outliving-quantity   destroyed-quantity       merged-quantity
 	split out          new_id            old-quantity         outliving-quantity       new-quantity

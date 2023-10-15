@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,6 +21,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
@@ -94,12 +95,16 @@ public class SummonAtAction extends AdministrationAction {
 			admin.sendPrivateText(NotificationType.ERROR, "The slot is full.");
 			return;
 		}
-		new GameEvent(admin.getName(), SUMMONAT, changed.getName(), slotName, type).raise();
 
 		// enable effects of slot activated items
 		if (item instanceof SlotActivatedItem) {
 			((SlotActivatedItem) item).onEquipped(changed, slotName);
 		}
+
+		// log events
+		final String changedName = changed.getName();
+		new GameEvent(admin.getName(), SUMMONAT, changedName, slotName, type).raise();
+		new ItemLogger().summon(admin, item, changedName, slotName);
 	}
 
 }

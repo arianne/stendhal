@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -31,6 +32,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.PurpleDragon;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
@@ -153,6 +155,9 @@ public class SummonAction extends AdministrationAction {
 
 							StendhalRPAction.placeat(zone, entityToBePlaced, x, y);
 							new GameEvent(player.getName(), SUMMON, type).raise();
+							if (entityToBePlaced instanceof Item) {
+								new ItemLogger().summon(player, (Item) entityToBePlaced, zone.getName(), x+","+y);
+							}
 							// We found what we are searching for.
 							searching = false;
 						}
