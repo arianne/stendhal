@@ -12,6 +12,7 @@ Changelog
   - Hyperbolist Historian: Finish weekly item quest 250 times
   - Nation Crusher: Finish Kill Bordroughs quest 250 times
   - Semos's Ruler: Finish daily monster quest 1,000 times
+- seeds & bulbs items have unique images
 
 
 1.44

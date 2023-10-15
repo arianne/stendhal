@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -112,6 +112,32 @@ public class Seed extends StackableItem {
                 + ". It can be planted anywhere, but it will only thrive on fertile ground.";
 		} else {
 			return "You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.";
+		}
+	}
+
+	/**
+	 * This is overridden so that sprite image can be updated whenever "imagedata" attribute is set.
+	 */
+	@Override
+	public void put(final String attribute, final String value) {
+		super.put(attribute, value);
+
+		if (!"itemdata".equals(attribute)) {
+			return;
+		}
+
+		// "seed" or "bulb"
+		final String seedClass = getName();
+		if ("bulb".equals(seedClass)) {
+			// zantedeschia image is default for bulb
+			if (!"zantedeschia".equals(value)) {
+				super.put("subclass", "bulb_" + value.replace(" ", "_"));
+			}
+		} else {
+			// daisies image is default for seed
+			if (!"daisies".equals(value)) {
+				super.put("subclass", "seed_" + value.replace(" ", "_"));
+			}
 		}
 	}
 }
