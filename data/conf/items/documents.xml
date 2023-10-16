@@ -22,7 +22,9 @@
   <item name="coupon">
     <type class="documents" subclass="coupon" tileid="-1"/>
     <description>You see a coupon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <!-- FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails -->
+    <!--<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>-->
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
     <weight value="0.01"/>

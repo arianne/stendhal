@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,7 +58,7 @@ public class EntityViewFactoryTest {
 
 		assertEquals(EntityViewFactory.getViewClass("area", null, null),  InvisibleEntity2DView.class);
 
-	    assertEquals(EntityViewFactory.getViewClass("item", "special", "mithril clasp"), Item2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "special", "mithril clasp"), Item2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", "crystal", null),  Item2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", null, null),  Item2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("npc", null, null), NPC2DView.class);
@@ -90,11 +90,13 @@ public class EntityViewFactoryTest {
 		assertEquals(EntityViewFactory.getViewClass("item", "missile", null),  StackableItem2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", "ammunition", null),  StackableItem2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", "container", null),  StackableItem2DView.class);
-        assertEquals(EntityViewFactory.getViewClass("item", "special", null),  StackableItem2DView.class);
+		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
+		//~ assertEquals(EntityViewFactory.getViewClass("item", "documents", "coupon"),  StackableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "special", null),  StackableItem2DView.class);
 
 
 		assertEquals(EntityViewFactory.getViewClass("item", "club", "wizard_staff"),  UseableItem2DView.class);
-        assertEquals(EntityViewFactory.getViewClass("item", "misc", "seed"), UseableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "misc", "seed"), UseableItem2DView.class);
 
 		assertEquals(EntityViewFactory.getViewClass("item", "scroll", null),  UseableItem2DView.class);
 

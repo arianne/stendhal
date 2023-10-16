@@ -13,7 +13,6 @@ Changelog
   - Nation Crusher: Finish Kill Bordroughs quest 250 times
   - Semos's Ruler: Finish daily monster quest 1,000 times
 - seeds & bulbs items have unique images
-- made coupon item stackable
 
 
 1.44

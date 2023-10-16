@@ -155,7 +155,8 @@ public final class EntityMap {
 		register("item", "jewellery", null, StackableItem.class);
 
 		register("item", "token", null, Item.class);
-		register("item", "documents", "coupon", StackableItem.class);
+		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
+		//~ register("item", "documents", "coupon", StackableItem.class);
 
 		register("portal", null, null, Portal.class);
 		register("house_portal", null, null, HousePortal.class);
