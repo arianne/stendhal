@@ -75,102 +75,91 @@ public final class EntityMap {
 	 * Fills EntityMap with initial values.
 	 */
 	private static void register() {
-		register("entity", null, null, Entity.class);
-
-		register("player", null, null, Player.class);
-
-		register("creature", "ent", null, BossCreature.class);
-		register("creature", null, null, Creature.class);
-
-		register("sheep", null, null, Sheep.class);
-
-		register("baby_dragon", null, null, Pet.class);
-		register("purple_dragon", null, null, Pet.class);
-		register("cat", null, null, Pet.class);
-		register("pet", null, null, Pet.class);
-
-		register("npc", null, null, NPC.class);
-		register("training_dummy", null, null, NPC.class);
-
-		register("plant_grower", null, null, PlantGrower.class);
-
-		register("flyover", null, null, FlyOverArea.class);
-		register("walkblocker", null, null, WalkBlocker.class);
-
-		register("growing_entity_spawner", "items/grower/carrot_grower", null,
-				CarrotGrower.class);
-		register("growing_entity_spawner", "items/grower/wood_grower", null,
-				CarrotGrower.class);
-		register("growing_entity_spawner", null, null, GrainField.class);
-
-		register("useable_entity", null, null, StatefulEntity.class);
-		// deprecated start
-		register("gold_source", null, null, StatefulEntity.class);
-		register("fish_source", null, null, StatefulEntity.class);
-		register("well_source", null, null, StatefulEntity.class);
-		// deprecated end
-
-		register("area", null, null, InvisibleEntity.class);
-		register("block", null, null, Block.class);
-
-		register("food", null, null, SheepFood.class);
-		register("chest", null, null, Chest.class);
-
-		register("corpse", null, null, Corpse.class);
-
-		register("blood", null, null, Blood.class);
-
-		register("blackboard", null, null, Sign.class);
-		register("sign", null, null, Sign.class);
-		register("rented_sign", null, null, Sign.class);
-		register("shop_sign", null, null, Sign.class);
-
+		// item
 		register("item", null, null, Item.class);
+		register("item", "ammunition", null, StackableItem.class);
 		register("item", "box", null, Box.class);
-		register("item", "ring", null, UseableRing.class);
-		register("item", "ring", "emerald-ring", BreakableRing.class);
-
+		register("item", "club", "wizard_staff", UseableItem.class);
+		register("item", "container", null, StackableItem.class);
+		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
+		//~ register("item", "documents", "coupon", StackableItem.class);
 		register("item", "drink", null, UseableItem.class);
 		register("item", "flower", null, StackableItem.class);
 		register("item", "food", null, UseableItem.class);
-		register("item", "tool", "foodmill", UseableItem.class);
-		register("item", "tool", "sugarmill", UseableItem.class);
-		register("item", "tool", "scrolleraser", UseableItem.class);
-		register("item", "tool", "rope", StackableItem.class);
 		register("item", "herb", null, StackableItem.class);
+		register("item", "jewellery", null, StackableItem.class);
 		register("item", "misc", null, StackableItem.class);
-		register("item", "money", null, StackableItem.class);
+		register("item", "misc", "bulb", UseableItem.class);
+		register("item", "misc", "seed", UseableItem.class);
 		register("item", "missile", null, StackableItem.class);
-		register("item", "ammunition", null, StackableItem.class);
-		register("item", "container", null, StackableItem.class);
+		register("item", "money", null, StackableItem.class);
+		register("item", "resource", null, StackableItem.class);
+		register("item", "ring", null, UseableRing.class);
+		register("item", "ring", "emerald-ring", BreakableRing.class);
+		register("item", "scroll", null, UseableItem.class);
 		register("item", "special", null, StackableItem.class);
 		register("item", "special", "mithril clasp", Item.class);
-		register("item", "club", "wizard_staff", UseableItem.class);
-		register("item", "misc", "seed", UseableItem.class);
-		register("item", "misc", "bulb", UseableItem.class);
-
-		register("item", "resource", null, StackableItem.class);
-
-		register("item", "scroll", null, UseableItem.class);
-		register("item", "jewellery", null, StackableItem.class);
-
 		register("item", "token", null, Item.class);
-		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
-		//~ register("item", "documents", "coupon", StackableItem.class);
+		register("item", "tool", "foodmill", UseableItem.class);
+		register("item", "tool", "rope", StackableItem.class);
+		register("item", "tool", "scrolleraser", UseableItem.class);
+		register("item", "tool", "sugarmill", UseableItem.class);
 
-		register("portal", null, null, Portal.class);
-		register("house_portal", null, null, HousePortal.class);
+		// grower
+		register("growing_entity_spawner", null, null, GrainField.class);
+		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower.class);
+		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower.class);
+		register("plant_grower", null, null, PlantGrower.class);
+
+		// sign
+		register("rented_sign", null, null, Sign.class);
+		register("shop_sign", null, null, Sign.class);
+		register("sign", null, null, Sign.class);
+
+		// portal & door
 		register("door", null, null, Door.class);
-		register("fire", null, null, Fire.class);
-
-		register("spell", null, null, Spell.class);
-
 		register("gate", null, null, Gate.class);
+		register("house_portal", null, null, HousePortal.class);
+		register("portal", null, null, Portal.class);
+
+		// NPC
+		register("baby_dragon", null, null, Pet.class);
+		register("cat", null, null, Pet.class);
+		register("npc", null, null, NPC.class);
+		register("pet", null, null, Pet.class);
+		register("purple_dragon", null, null, Pet.class);
+		register("sheep", null, null, Sheep.class);
+		register("training_dummy", null, null, NPC.class);
+
+		// creature
+		register("creature", null, null, Creature.class);
+		register("creature", "ent", null, BossCreature.class);
+
+		// misc
+		register("area", null, null, InvisibleEntity.class);
+		register("blackboard", null, null, Sign.class);
+		register("block", null, null, Block.class);
+		register("blood", null, null, Blood.class);
+		register("chest", null, null, Chest.class);
+		register("corpse", null, null, Corpse.class);
+		register("entity", null, null, Entity.class);
+		register("fire", null, null, Fire.class);
+		register("flyover", null, null, FlyOverArea.class);
+		register("food", null, null, SheepFood.class);
 		register("game_board", null, null, GameBoard.class);
+		register("looped_sound_source", null, null, LoopedSoundSource.class);
+		register("player", null, null, Player.class);
+		register("spell", null, null, Spell.class);
+		register("useable_entity", null, null, StatefulEntity.class);
+		register("walkblocker", null, null, WalkBlocker.class);
 		register("wall", null, null, Wall.class);
 		register("weather_entity", null, null, InvisibleEntity.class);
 
-		register("looped_sound_source", null, null, LoopedSoundSource.class);
+
+		// deprecated
+		register("fish_source", null, null, StatefulEntity.class);
+		register("gold_source", null, null, StatefulEntity.class);
+		register("well_source", null, null, StatefulEntity.class);
 	}
 
 	/**
