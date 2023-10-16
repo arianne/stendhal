@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -187,6 +187,7 @@ public class EntityViewFactory {
 		register("item", "ammunition", null, StackableItem2DView.class);
 		register("item", "container", null, StackableItem2DView.class);
 		register("item", "special", null, StackableItem2DView.class);
+		register("item", "documents", "coupon", StackableItem2DView.class);
 
 		register("item", "club", "wizard_staff", UseableItem2DView.class);
 		register("item", "misc", "seed", UseableItem2DView.class);
