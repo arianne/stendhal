@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,28 @@ public final class Triple<P, S, T> {
 	private final P prim;
 	private final S sec;
 	private final T third;
+
+
+	/**
+	 * Retrieves the first object.
+	 */
+	public P getFirst() {
+		return prim;
+	}
+
+	/**
+	 * Retrieves the second object.
+	 */
+	public S getSecond() {
+		return sec;
+	}
+
+	/**
+	 * Retrieves the third object.
+	 */
+	public T getThird() {
+		return third;
+	}
 
 	@Override
 	public int hashCode() {
