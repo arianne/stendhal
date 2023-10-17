@@ -121,6 +121,15 @@ public class EntityViewFactory {
 	}
 
 	/**
+	 * Retrieves a copy of the registered views.
+	 */
+	public static Map<Triple<String, String, String>, Class<? extends EntityView>> getViewMap() {
+		final Map<Triple<String, String, String>, Class<? extends EntityView>> tmp = new HashMap<>();
+		tmp.putAll(viewMap);
+		return tmp;
+	}
+
+	/**
 	 * Configure the view map.
 	 */
 	private static void configure() {
