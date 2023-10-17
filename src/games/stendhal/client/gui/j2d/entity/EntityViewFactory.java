@@ -50,9 +50,9 @@ public class EntityViewFactory {
 	 * Create an entity view from an entity.
 	 *
 	 * @param entity
-	 *            An entity.
-	 *
-	 * @return The corresponding view, or <code>null</code>.
+	 *   An entity.
+	 * @return
+	 *   The corresponding view or `null`.
 	 */
 	@SuppressWarnings("unchecked")
 	public static EntityView<IEntity> create(final IEntity entity) {
@@ -67,13 +67,18 @@ public class EntityViewFactory {
 			final String type = entity.getType();
 
 			// lookup class
-			String eclass = entity.getEntityClass();
-			String subClass = entity.getEntitySubclass();
-			final Class<? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
+			final String eclass = entity.getEntityClass();
+			final String ename = entity.getName();
+			Class<? extends EntityView> entityClass = getViewClass(type, eclass, ename);
 			if (entityClass == null) {
-				LOGGER.debug("No view for this entity. type: " + type + " class: " + eclass
-						+ " subclass: " + subClass);
-				return null;
+				// fallback to lookup via subclass instead of name
+				final String subClass = entity.getEntitySubclass();
+				entityClass = getViewClass(type, eclass, subClass);
+				if (entityClass == null) {
+					LOGGER.debug("No view for this entity. name: " + ename + ", type: " + type + ", class: " + eclass
+							+ ", subclass: " + subClass);
+					return null;
+				}
 			}
 
 			// hack to hide blood
@@ -97,18 +102,15 @@ public class EntityViewFactory {
 
 	/**
 	 * @param type
-	 *            the type of the entity to be created, such as Item, creature
+	 *   The entity's type such as item or creature.
 	 * @param eclass
-	 *            the subtype of type such as book, drink, food , ,
-	 *            small_animal, huge_animal
-	 * @param subClass
-	 *
+	 *   The entity's subtype such as book, drink, food, small_animal, huge_animal.
+	 * @param name
+	 *   Entity name or subclass.
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	static Class<? extends EntityView> getViewClass(final String type, final String eclass,
-			final String subClass) {
-		Class<? extends EntityView> result = viewMap.get(new Triple<String, String, String>(type,
-				eclass, subClass));
+	static Class<? extends EntityView> getViewClass(final String type, final String eclass, final String name) {
+		Class<? extends EntityView> result = viewMap.get(new Triple<String, String, String>(type, eclass, name));
 		if (result == null) {
 			result = viewMap.get(new Triple<String, String, String>(type, eclass, null));
 		}
@@ -145,16 +147,16 @@ public class EntityViewFactory {
 		register("item", "money", null, StackableItem2DView.class);
 		register("item", "resource", null, StackableItem2DView.class);
 		register("item", "ring", null, Ring2DView.class);
-		register("item", "ring", "emerald-ring", BreakableRing2DView.class);
+		register("item", "ring", "emerald ring", BreakableRing2DView.class);
 		register("item", "ring", "wedding", UseableRing2DView.class);
 		register("item", "scroll", null, UseableItem2DView.class);
 		register("item", "special", null, StackableItem2DView.class);
 		register("item", "special", "mithril clasp", Item2DView.class);
 		register("item", "tool", "foodmill", UseableItem2DView.class);
-		register("item", "tool", "metal_detector", UseableGenericItem2DView.class);
+		register("item", "tool", "metal detector", UseableGenericItem2DView.class);
 		register("item", "tool", "rope", StackableItem2DView.class);
-		register("item", "tool", "rotary_cutter", UseableGenericItem2DView.class);
-		register("item", "tool", "scrolleraser", UseableItem2DView.class);
+		register("item", "tool", "rotary cutter", UseableGenericItem2DView.class);
+		register("item", "tool", "scroll eraser", UseableItem2DView.class);
 		register("item", "tool", "sugarmill", UseableItem2DView.class);
 
 		// grower
@@ -212,16 +214,16 @@ public class EntityViewFactory {
 
 	/**
 	 * @param type
-	 *            the type of the entity to be created, such as Item, creature
+	 *   The entity's type such as item or creature.
 	 * @param eclass
-	 *            the subtype of type such as book, drink, food , ,
-	 *            small_animal, huge_animal
-	 * @param subClass
-	 * @param entityClazz
-	 *            the java class of the Entity
+	 *   The entity's subtype such as book, drink, food, small_animal, huge_animal.
+	 * @param name
+	 *   Entity name or subclass.
+	 * @param implementation
+	 *   The java class of the Entity.
 	 */
-	private static void register(final String type, final String eclass, final String subClass,
-			final Class<? extends EntityView> entityClazz) {
-		viewMap.put(new Triple<String, String, String>(type, eclass, subClass), entityClazz);
+	private static void register(final String type, final String eclass, final String name,
+			final Class<? extends EntityView> implementation) {
+		viewMap.put(new Triple<String, String, String>(type, eclass, name), implementation);
 	}
 }
