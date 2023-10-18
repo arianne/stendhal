@@ -61,7 +61,7 @@ public class BuiltQuest extends AbstractQuest {
 		if (progress != null) {
 			res.addAll(progress);
 		}
-		if ("done".equals(questState) || ("start".equals(questState) && questBuilder.task().isCompleted(player, questSlot))) {
+		if ("done".equals(questState) || questBuilder.task().isCompleted(player, questSlot)) {
 			if (history.getWhenTaskWasCompleted() != null) {
 				res.add(history.getWhenTaskWasCompleted());
 			}
@@ -133,8 +133,8 @@ public class BuiltQuest extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return isCompleted(player)
-				&& questBuilder.info().getRepeatableAfterMinutes() > -1
+		return questBuilder.info().getRepeatableAfterMinutes() > -1
+				&& isCompleted(player)
 				&& new TimePassedCondition(questSlot, 1, questBuilder.info().getRepeatableAfterMinutes()).fire(player,null, null);
 	}
 }
