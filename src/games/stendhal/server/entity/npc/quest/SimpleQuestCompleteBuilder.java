@@ -102,7 +102,7 @@ public class SimpleQuestCompleteBuilder extends QuestCompleteBuilder {
 		actions.add(new IncrementQuestAction(questSlot, 2, 1));
 		actions.addAll(rewardWith);
 
-		if (respondToAccept != null) {
+		if (respondToAccept != null || respondToReject != null) {
 			buildWithConfirmation(npc, mayCompleteCondition, actions);
 		} else {
 			buildWithoutConfirmation(npc, mayCompleteCondition, actions);
