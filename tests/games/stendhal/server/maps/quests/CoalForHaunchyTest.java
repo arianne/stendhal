@@ -126,6 +126,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		// get another 15 coals
 		PlayerTestHelper.equipWithStackableItem(player, "coal", 25);
 		haunchyEng.step(player, "hi");
+		haunchyEng.step(player, "yes");
 		assertTrue(getReply(haunchy).matches("Thank you! Take .* grilled steaks? from my grill!"));
 		assertTrue(player.isEquipped("grilled steak"));
 		assertEquals("done", player.getQuest(questSlot, 0));
