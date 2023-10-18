@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -193,8 +194,8 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 							new QuestCompletedCondition(questSlot),
 							new NotCondition(new TimePassedCondition(questSlot, 1, repeatableAfterMinutes))),
 					ConversationStates.ATTENDING,
-					respondToUnrepeatableRequest,
-					null);
+					null,
+					new SayTimeRemainingAction(questSlot, 1, repeatableAfterMinutes, respondToUnrepeatableRequest, true));
 
 		} else {
 
