@@ -57,7 +57,7 @@ blue_circle2.png          Juan?; ???; ??? (committed by kymara: 7ef5772)
 blue_green.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_green_2.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 caldron_sign.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/, https://github.com/crawl/tiles
-chests_banner.*           ???, Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); ??? (don't know who author of wooden board & Deniran emblem are); ???, Stendhal, https://opengameart.org/node/12210
+chests_banner.*           Kimmo Rundelin (kiheru), Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/12210, https://opengameart.org/node/79098
 chimney.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_big.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_brown_stacks.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors
