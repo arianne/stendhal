@@ -101,8 +101,8 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 			new PlayerProducedNumberOfItemsCondition(1000, "flour")));
 
 		achievements.add(createAchievement(
-			"production.sow.flowers.all", "Sowing Seeds",
-			"Sow 1000 of each type of sowable flower seed",
+			"production.sow.flowers.all", "Sowing Flowers",
+			"Sow 1000 of each type of sowable flower seed and bulb",
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new ChatCondition() {
 				@Override
