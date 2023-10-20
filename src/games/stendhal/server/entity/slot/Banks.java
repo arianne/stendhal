@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,6 +25,8 @@ public enum Banks {
 	DENIRAN("bank_deniran"),
 	/** bank in Fado. */
 	FADO("bank_fado"),
+	/** bank in Magic City */
+	MAGIC("bank_magic"),
 	/** bank in Nalwor. */
 	NALWOR("bank_nalwor"),
 	/** mini-bank in zaras house. */

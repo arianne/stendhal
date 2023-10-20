@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                (C) Copyright 2012-2023 - Faiumoni e. V.                 *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.script;
 
 import java.io.IOException;
@@ -44,7 +55,7 @@ public class DumpDeletionCandidates extends ScriptImpl {
 		StringBuilder items = new StringBuilder();
 			final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
 					"legs", "feet", "finger", "cloak", "keyring", "trade",
-					"bank", "bank_ados", "bank_deniran", "bank_fado", "bank_nalwor", "zaras_chest_ados"};
+					"bank", "bank_ados", "bank_deniran", "bank_fado", "bank_magic", "bank_nalwor", "zaras_chest_ados"};
 
 			for (final String slotName : slotsItems) {
 				final RPSlot slot = object.getSlot(slotName);
