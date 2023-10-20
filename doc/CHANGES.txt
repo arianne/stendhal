@@ -13,6 +13,7 @@ Changelog
   - Nation Crusher: Finish Kill Bordroughs quest 250 times
   - Semos's Ruler: Finish daily monster quest 1,000 times
 - seeds & bulbs items have unique images
+- added Magic City chest to wizard's bank
 
 
 1.44
