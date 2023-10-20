@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,7 +58,7 @@ public class DoneAction implements ChatAction {
 		helmet.setItemData(player.getName());
 		helmet.setPersistent(true);
 		helmet.setDescription("This is " + player.getName()
-		        + "'s grand prize for Deathmatch winners. Wear it with pride.");
+				+ "'s grand prize for Deathmatch winners. Wear it with pride.");
 		player.equipOrPutOnGround(helmet);
 		return helmet;
 	}
@@ -77,9 +77,9 @@ public class DoneAction implements ChatAction {
 	 * Tracks helping players & updates achievements related to helping with deathmatch.
 	 *
 	 * @param aided
-	 * 		The player who is being helped.
+	 *   The player who is being helped.
 	 * @param timestamp
-	 * 		Time the deathmatch was completed.
+	 *   Time the deathmatch was completed.
 	 */
 	private void updateHelpers(final Player aided, final long timestamp) {
 		for (final Player helper: deathmatchInfo.getArena().getPlayers()) {
@@ -111,9 +111,9 @@ public class DoneAction implements ChatAction {
 	 * Tracks soloing players & updates achievements related to deathmatch.
 	 *
 	 * @param soloer
-	 *     The player who started the deathmatch.
+	 *   The player who started the deathmatch.
 	 * @param timestamp
-	 *     Time the deathmatch was completed.
+	 *   Time the deathmatch was completed.
 	 */
 	private void updateSoloer(final Player soloer, final long timestamp) {
 		if (deathmatchInfo.wasAided()) {
@@ -150,7 +150,7 @@ public class DoneAction implements ChatAction {
 			if (defense > maxdefense) {
 				helmet.put("def", maxdefense);
 				raiser.say("I'm sorry to inform you, the maximum defense for your helmet at your current level is "
-				                + maxdefense);
+						+ maxdefense);
 			} else {
 				helmet.put("def", defense);
 				String message;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,8 +66,8 @@ public class AdosDeathmatch extends AbstractQuest {
 	private DeathmatchInfo deathmatchInfo;
 
 	public AdosDeathmatch() {
-	    // constructor for quest system
-	    logger.debug("little constructor for quest system", new Throwable());
+		// constructor for quest system
+		logger.debug("little constructor for quest system", new Throwable());
 	}
 
 	@Override
@@ -90,13 +90,12 @@ public class AdosDeathmatch extends AbstractQuest {
 	 * Shows the player the potential trophy.
 	 *
 	 * @param x
-	 *            x-position of helmet
+	 *   x-position of helmet
 	 * @param y
-	 *            y-position of helmet
+	 *   y-position of helmet
 	 */
 	public void createHelmet(final int x, final int y) {
-		final Item helmet = SingletonRepository.getEntityManager()
-				.getItem("trophy helmet");
+		final Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
 		helmet.setDescription("This is the grand prize for Deathmatch winners. The defense will increase by 1 for every deathmatch completed.");
 		helmet.setPosition(x, y);
 		zone.add(helmet, false);
@@ -124,22 +123,24 @@ public class AdosDeathmatch extends AbstractQuest {
 
 				// player is outside the fence. after 'hi' use ConversationStates.INFORMATION_1 only.
 				add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(name),
-								new NotCondition(new PlayerInAreaCondition(arena))),
-						ConversationStates.INFORMATION_1,
-						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join.",
-						null);
-				add(
-						ConversationStates.INFORMATION_1,
-						"Thonatus",
-						null,
-						ConversationStates.INFORMATION_1,
-						"Thonatus is the official #Deathmatch Recruitor. He is in the #swamp south west of Ados.",
-						null);
+					ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(
+							new GreetingMatchesNameCondition(name),
+							new NotCondition(new PlayerInAreaCondition(arena))),
+					ConversationStates.INFORMATION_1,
+					"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join.",
+					null);
 
-                add(
+				add(
+					ConversationStates.INFORMATION_1,
+					"Thonatus",
+					null,
+					ConversationStates.INFORMATION_1,
+					"Thonatus is the official #Deathmatch Recruitor. He is in the #swamp south west of Ados.",
+					null);
+
+				add(
 					ConversationStates.INFORMATION_1,
 					"swamp",
 					null,
@@ -156,66 +157,85 @@ public class AdosDeathmatch extends AbstractQuest {
 					"If you accept the #challenge from #Thonatus, you will arrive here. Strong enemies will surround you and you must kill them all to claim #victory.",
 					null);
 
-                add(
-                    ConversationStates.INFORMATION_1,
-                    "challenge",
-                    null,
-                    ConversationStates.INFORMATION_1,
-                    "Remember the name death in #Deathmatch. Do not accept the challenge unless you think you can defend well. And be sure to check that there is not any elite warrior already inside, battling strong beasts!",
-                    null);
+				add(
+					ConversationStates.INFORMATION_1,
+					"challenge",
+					null,
+					ConversationStates.INFORMATION_1,
+					"Remember the name death in #Deathmatch. Do not accept the challenge unless you think you can defend well. And be sure to check that there is not any elite warrior already inside, battling strong beasts!",
+					null);
 
 				add(
-                    ConversationStates.INFORMATION_1,
-                    "victory",
-                    null,
-                    ConversationStates.INFORMATION_1,
-                    "The prize is a helmet like the one you see displayed here. The defence it gives increases for every deathmatch round you successfully complete, up to a maximum dependent on your level.",
-                    null);
+					ConversationStates.INFORMATION_1,
+					"victory",
+					null,
+					ConversationStates.INFORMATION_1,
+					"The prize is a helmet like the one you see displayed here. The defence it gives increases for every deathmatch round you successfully complete, up to a maximum dependent on your level.",
+					null);
 
 				// player is inside
 				add(ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(name),
-								new PlayerInAreaCondition(arena)),
-						ConversationStates.ATTENDING,
-						"Welcome to Ados Deathmatch! Do you need #help?", null);
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(
+							new GreetingMatchesNameCondition(name),
+							new PlayerInAreaCondition(arena)),
+					ConversationStates.ATTENDING,
+					"Welcome to Ados Deathmatch! Do you need #help?", null);
+
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Deathmatch!");
 
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("everything", "appears", "deathmatch"),
-						ConversationStates.ATTENDING,
-						"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
-						null);
+					ConversationStates.ATTENDING,
+					Arrays.asList("everything", "appears", "deathmatch"),
+					ConversationStates.ATTENDING,
+					"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
+					null);
+
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("trophy", "helm", "helmet"),
-						ConversationStates.ATTENDING,
-						"If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.",
-						null);
+					ConversationStates.ATTENDING,
+					Arrays.asList("trophy", "helm", "helmet"),
+					ConversationStates.ATTENDING,
+					"If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.",
+					null);
 
 				// 'start' command will start spawning creatures
-				add(ConversationStates.ATTENDING, Arrays.asList("start", "go",
-						"fight"), null, ConversationStates.IDLE, null,
-						new StartAction(deathmatchInfo));
+				add(
+					ConversationStates.ATTENDING,
+					Arrays.asList("start", "go","fight"),
+					null,
+					ConversationStates.IDLE,
+					null,
+					new StartAction(deathmatchInfo));
 
 				// 'victory' command will scan, if all creatures are killed and
 				// reward the player
-				add(ConversationStates.ATTENDING, Arrays.asList("victory",
-						"done", "yay"), null, ConversationStates.ATTENDING,
-						null, new DoneAction(deathmatchInfo));
+				add(
+					ConversationStates.ATTENDING,
+					Arrays.asList("victory", "done", "yay"),
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new DoneAction(deathmatchInfo));
 
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays
-						.asList("leave", "home"), null,
-						ConversationStates.ATTENDING, null, new LeaveAction());
+				add(
+					ConversationStates.ATTENDING,
+					Arrays.asList("leave", "home"),
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new LeaveAction());
 
 				// 'bail' command will teleport the player out of it
-				add(ConversationStates.ANY, Arrays.asList("bail", "flee",
-						"run", "exit"), null, ConversationStates.ATTENDING,
-						null, new BailAction());
+				add(
+					ConversationStates.ANY,
+					Arrays.asList("bail", "flee", "run", "exit"),
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new BailAction());
 			}
 		};
 
@@ -242,77 +262,100 @@ public class AdosDeathmatch extends AbstractQuest {
 	private void recruiterInformation() {
 		final SpeakerNPC npc2 = npcs.get("Thonatus");
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status"),
-				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
-				 null,
-				 new ChatAction() {
-					 @Override
+		npc2.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("heroes", "who", "hero", "status"),
+			new NotCondition(new DeathMatchEmptyCondition()),
+			ConversationStates.ATTENDING,
+			null,
+			new ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					final List<Player> dmplayers = arena.getPlayers();
+					final List<String> dmplayernames = new LinkedList<String>();
+					for (Player dmplayer : dmplayers) {
+						dmplayernames.add(dmplayer.getName());
+					}
+					// List the players inside deathmatch
+					npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
+							+ Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
+				}
+			});
+
+		npc2.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("heroes", "who", "hero", "status"),
+			new DeathMatchEmptyCondition(),
+			ConversationStates.ATTENDING,
+			"Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.",
+			null);
+
+		npc2.add(
+			ConversationStates.ATTENDING,
+			"challenge",
+			new AndCondition(
+					new LevelGreaterThanCondition(19),
+					new DeathMatchEmptyCondition(),
+					new NotCondition(new PlayerHasPetOrSheepCondition())),
+			ConversationStates.IDLE,
+			null,
+			new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
+
+		npc2.add(
+			ConversationStates.ATTENDING,
+			"challenge",
+			new AndCondition(
+					new LevelGreaterThanCondition(19),
+					new NotCondition(new DeathMatchEmptyCondition()),
+					new NotCondition(new PlayerHasPetOrSheepCondition())),
+			ConversationStates.QUESTION_1, null,
+			new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						 final List<Player> dmplayers = arena.getPlayers();
-						 final List<String> dmplayernames = new LinkedList<String>();
-						 for (Player dmplayer : dmplayers) {
-							 dmplayernames.add(dmplayer.getName());
-						 }
-						 // List the players inside deathmatch
-						 npc.say("There are heroes battling right now in the deathmatch. If you want to go and join "
-								 + Grammar.enumerateCollection(dmplayernames) + ", then make the #challenge.");
-					 }
-				 });
+						final List<Player> dmplayers = arena.getPlayers();
+						final List<String> dmplayernames = new LinkedList<String>();
+						for (Player dmplayer : dmplayers) {
+							dmplayernames.add(dmplayer.getName());
+						}
+						// List the players inside deathmatch
+						npc.say("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join "
+								+ Grammar.enumerateCollection(dmplayernames) + "?");
+					}
+				});
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , new DeathMatchEmptyCondition(),
-				 ConversationStates.ATTENDING,
-				 "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
+		npc2.add(
+			ConversationStates.ATTENDING,
+			"challenge",
+			new AndCondition(
+					new LevelGreaterThanCondition(19),
+					new PlayerHasPetOrSheepCondition()),
+			ConversationStates.ATTENDING, "Sorry, but it would be too scary for your pet in there.",
+			null);
 
-		npc2.add(ConversationStates.ATTENDING, "challenge",
-				 new AndCondition(new LevelGreaterThanCondition(19),
-						  new DeathMatchEmptyCondition(),
-						  new NotCondition(new PlayerHasPetOrSheepCondition())),
-				 ConversationStates.IDLE, null,
-				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
+		npc2.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.IDLE,
+			null,
+			new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
+		npc2.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"That's a bit cowardly, but never mind. If there's anything else you want, just say.",
+			null);
 
-		npc2.add(ConversationStates.ATTENDING, "challenge",
-			 new AndCondition(new LevelGreaterThanCondition(19),
-					  new NotCondition(new DeathMatchEmptyCondition()),
-					  new NotCondition(new PlayerHasPetOrSheepCondition())),
-				 ConversationStates.QUESTION_1, null,
-				 new ChatAction() {
-					 @Override
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						 final List<Player> dmplayers = arena.getPlayers();
-						 final List<String> dmplayernames = new LinkedList<String>();
-						 for (Player dmplayer : dmplayers) {
-							 dmplayernames.add(dmplayer.getName());
-						 }
-						 // List the players inside deathmatch
-						 npc.say("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join "
-								 + Grammar.enumerateCollection(dmplayernames) + "?");
-					 }
-				 });
-
-		npc2.add(ConversationStates.ATTENDING, "challenge",
-			 new AndCondition(new LevelGreaterThanCondition(19),
-					  new PlayerHasPetOrSheepCondition()),
-			 ConversationStates.ATTENDING, "Sorry, but it would be too scary for your pet in there.",
-				 null);
-
-
-		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
-				 ConversationStates.IDLE, null,
-				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
-
-
-		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
-				 ConversationStates.ATTENDING, "That's a bit cowardly, but never mind. If there's anything else you want, just say.",
-				 null);
-
-		npc2.add(ConversationStates.ATTENDING, "challenge",
-				 new LevelLessThanCondition(20),
-				 ConversationStates.ATTENDING, "Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
-				 null);
+		npc2.add(
+			ConversationStates.ATTENDING,
+			"challenge",
+			new LevelLessThanCondition(20),
+			ConversationStates.ATTENDING,
+			"Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
+			null);
 	}
-
-
 
 	@Override
 	public void addToWorld() {
@@ -322,10 +365,12 @@ public class AdosDeathmatch extends AbstractQuest {
 				true);
 		recruiterInformation();
 	}
+
 	@Override
 	public String getName() {
 		return "AdosDeathmatch";
 	}
+
 	@Override
 	public int getMinLevel() {
 		return 20;

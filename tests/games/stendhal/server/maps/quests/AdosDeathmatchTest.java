@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,7 +36,7 @@ import utilities.PlayerTestHelper;
 
 public class AdosDeathmatchTest {
 
-        public static final StendhalRPZone ados_wall_n = new StendhalRPZone("0_ados_wall_n", 200, 200);
+	public static final StendhalRPZone ados_wall_n = new StendhalRPZone("0_ados_wall_n", 200, 200);
 	public static final StendhalRPZone zone = new StendhalRPZone("dmTestZone");
 
 	@BeforeClass
@@ -83,11 +83,11 @@ public class AdosDeathmatchTest {
 		assertEquals("Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", getReply(recruiter));
 
 
- 		dmPlayer.setLevel(19);
- 		en.step(dmPlayer, "challenge");
- 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
- 		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", getReply(recruiter));
- 		recruiter.remove("text");
+		dmPlayer.setLevel(19);
+		en.step(dmPlayer, "challenge");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", getReply(recruiter));
+		recruiter.remove("text");
 
 		en.step(dmPlayer, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
@@ -125,7 +125,6 @@ public class AdosDeathmatchTest {
 		assertEquals("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join dmPlayer?", getReply(recruiter));
 		en.step(joiner, "yes");
 		assertEquals(ados_wall_n, joiner.getZone());
-
 	}
 
 

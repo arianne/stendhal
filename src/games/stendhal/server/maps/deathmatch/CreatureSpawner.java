@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -91,15 +91,16 @@ public class CreatureSpawner  {
 	/**
 	 * Gives the daily quest creature to the player,
 	 * if he hasn't found it yet, to be nice to the player.
+	 *
 	 * @param player the player taking the Deathmatch
 	 * @param dmInfo the Deathmatch's Info
 	 */
 	void spawnDailyMonster(final Player player, final DeathmatchInfo dmInfo) {
 		String dailyInfo = player.getQuest("daily", 0);
 		if (dailyInfo != null) {
-		    if (dailyInfo.startsWith("done")) {
-		        return;
-		    }
+			if (dailyInfo.startsWith("done")) {
+				return;
+			}
 			boolean questDone = new KilledForQuestCondition("daily", 0).fire(player, null, null);
 			if (!questDone) {
 				final String[] dTokens = dailyInfo.split(",");
@@ -162,7 +163,7 @@ public class CreatureSpawner  {
 	 */
 	DeathMatchCreature spawnNewCreature(final Creature template, final Player player, final DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
-		        new ArenaCreature(template.getNewInstance(), deathmatchInfo.getArena().getShape()), deathmatchInfo);
+				new ArenaCreature(template.getNewInstance(), deathmatchInfo.getArena().getShape()), deathmatchInfo);
 
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -129,7 +129,7 @@ class DeathmatchEngine implements TurnListener {
 
 				// make the npc attend the player so they can say victory
 				raiser.say(player.getName() + ", you have completed this deathmatch and can now claim #victory.");
-			    raiser.setCurrentState(ConversationStates.ATTENDING);
+				raiser.setCurrentState(ConversationStates.ATTENDING);
 				raiser.setAttending(player);
 
 				// remove this ScriptAction since we're done
