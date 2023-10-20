@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -138,7 +138,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Deniran and Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
+		assertEquals("Semos, Nalwor, Fado and Magic City bank chests are to my right. The chests owned by Deniran and Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Deniran and Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
+		assertEquals("Semos, Nalwor, Fado and Magic City bank chests are to my right. The chests owned by Deniran and Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertTrue(player.hasQuest(QUEST_SLOT));
 

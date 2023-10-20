@@ -2433,6 +2433,21 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
       <attribute name="move.continuous"/>
     </portal>
 
+    <entity x="2" y="4">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_magic</parameter>
+      </implementation>
+    </entity>
+
     <entity x="2" y="8">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
