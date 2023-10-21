@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,6 +30,8 @@ import games.stendhal.server.util.Area;
 public class DeathmatchInfo {
 
 	private final DeathmatchArea arena;
+
+	private DeathmatchEngine dmEngine;
 
 	private final Spot entranceSpot;
 
@@ -86,8 +88,15 @@ public class DeathmatchInfo {
 
 		final DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
-		final DeathmatchEngine dmEngine = new DeathmatchEngine(player, this, raiser);
+		dmEngine = new DeathmatchEngine(player, this, raiser);
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, dmEngine);
+	}
+
+	/**
+	 * Retrieves the `DeathmatchEngine` instance.
+	 */
+	public DeathmatchEngine getEngine() {
+		return dmEngine;
 	}
 
 	/**

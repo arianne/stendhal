@@ -27,7 +27,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * this is the internal class which handles an active deathmatch session.
  */
-class DeathmatchEngine implements TurnListener {
+public class DeathmatchEngine implements TurnListener {
 	/** The amount of milliseconds to wait before bail takes effect. */
 	private static final long BAIL_DELAY = 600;
 

@@ -395,4 +395,11 @@ public class AdosDeathmatch extends AbstractQuest {
 	public String getNPCName() {
 		return "Thonatus";
 	}
+
+	/**
+	 * Retrieves the `DeathmatchInfo` instance.
+	 */
+	public DeathmatchInfo getDeathmatchInfo() {
+		return deathmatchInfo;
+	}
 }
