@@ -15,24 +15,12 @@ package games.stendhal.server.entity.npc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import utilities.PlayerTestHelper;
 
 public class NPCListTest {
-
-	/**
-	 * Tests for get.
-	 */
-	@Test
-	public final void testGet() {
-		final NPCList npclist = new NPCList() {
-		};
-		assertSame(npclist, SingletonRepository.getNPCList());
-	}
 
 	/**
 	 * Tests for addHas.

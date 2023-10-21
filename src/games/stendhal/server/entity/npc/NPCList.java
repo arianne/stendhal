@@ -47,7 +47,6 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	}
 
 	protected NPCList() {
-		instance = this;
 		contents = new HashMap<String, SpeakerNPC>();
 
 	}
