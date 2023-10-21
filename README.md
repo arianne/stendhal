@@ -11,7 +11,7 @@ Stendhal is a fully fledged multiplayer online adventures game (MORPG). It is co
 Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons.
 You will meet NPCs and acquire tasks and quests for valuable experience.
 
-Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters!
+Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your armor and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters!
 
 Stendhal is platform independent, and completely open source.
 
