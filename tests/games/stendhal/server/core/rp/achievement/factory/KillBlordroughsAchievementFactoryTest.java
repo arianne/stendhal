@@ -48,7 +48,6 @@ import utilities.AchievementTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
-
 public class KillBlordroughsAchievementFactoryTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final Logger logger = Logger.getLogger(KillBlordroughsAchievementFactoryTest.class);

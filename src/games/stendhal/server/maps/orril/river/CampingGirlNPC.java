@@ -45,7 +45,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//addGreeting();
+				addGreeting("Hi, how are you?");
 				addJob("Work? I'm just a little girl! I'm a scout, you know.");
 				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();

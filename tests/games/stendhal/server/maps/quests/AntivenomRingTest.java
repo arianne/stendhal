@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2019 - Arianne                          *
+ *                    (C) Copyright 2019-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -139,7 +139,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		new MakeRings(new MarriageQuestInfo()).addToWorld(); // marriage quest
 		new RingMaker().addToWorld();
 		// Klaas
-		new TrapsForKlaas().addToWorld();
+		new BuiltQuest(new TrapsForKlaas().story()).addToWorld();
 		// Julius
 		new EmotionCrystals().addToWorld();
 		// Haizen

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +19,6 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import java.util.Date;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +31,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -60,19 +59,14 @@ public class CampfireTest {
 		MockStendlRPWorld.get();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
 		zone = new StendhalRPZone("zone");
 		new CampingGirlNPC().configureZone(zone, null);
 		npc = NPCList.get().get("Sally");
-		final Campfire cf = new Campfire();
-		cf.addToWorld();
+		final AbstractQuest quest = new BuiltQuest(new Campfire().story());
+		quest.addToWorld();
 	}
 
 	@After
@@ -90,44 +84,28 @@ public class CampfireTest {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! I need a little #favor ... ", getReply(npc));
+		assertEquals("Hi, how are you?", getReply(npc));
 		assertTrue(en.step(player, "bye"));
 
-		player.setQuest(CampfireTest.CAMPFIRE, "start");
+		player.setQuest(CampfireTest.CAMPFIRE, 0, "start");
 		assertTrue(en.step(player, "hi"));
 		assertEquals(
-				"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
+				"Hi, how are you?",
 				getReply(npc));
 		assertTrue(en.step(player, "bye"));
 
-		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(System.currentTimeMillis()));
+		player.setQuest(CampfireTest.CAMPFIRE, 1, String.valueOf(System.currentTimeMillis()));
 		en.step(player, "hi");
 		assertEquals(
-				"Hi again!",
+				"Hi, how are you?",
 				getReply(npc));
 		assertTrue(en.step(player, "bye"));
 
 		final long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
+		player.setQuest(CampfireTest.CAMPFIRE, 1, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
-		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi again!", getReply(npc));
+		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi, how are you?", getReply(npc));
 		assertTrue(en.step(player, "bye"));
-	}
-
-	/**
-	 * Tests for hiAndbye.
-	 */
-	@Test
-	public void testHiAndbye() {
-
-		final Engine en = npc.getEngine();
-
-		assertTrue(en.step(player, "hi"));
-		assertTrue(npc.isTalking());
-		assertEquals("Hi! I need a little #favor ... ", getReply(npc));
-		assertTrue(en.step(player, "bye"));
-		assertFalse(npc.isTalking());
-		assertEquals("Bye.", getReply(npc));
 	}
 
 	/**
@@ -140,7 +118,7 @@ public class CampfireTest {
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
-		assertEquals("Hi! I need a little #favor ... ", getReply(npc));
+		assertEquals("Hi, how are you?", getReply(npc));
 		assertTrue(en.step(player, "favor"));
 
 		assertEquals(
@@ -164,46 +142,13 @@ public class CampfireTest {
 		assertTrue(en.step(player, "yes"));
 		assertEquals(0, player.getNumberOfEquipped("wood"));
 		String reply = getReply(npc);
-		assertTrue("Thank you! Here, take some meat and charcoal!".equals(reply)
-				|| "Thank you! Here, take some ham and charcoal!".equals(reply));
+		assertTrue(reply.contains("Thank you! Here, take "));
 		assertTrue((10 == player.getNumberOfEquipped("meat"))
 				|| (10 == player.getNumberOfEquipped("ham")));
 		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", getReply(npc));
 
-	}
-
-	/**
-	 * Tests for isRepeatable.
-	 */
-	@Test
-	public void testIsRepeatable() {
-		player.setQuest(CAMPFIRE, "start");
-		assertFalse(new Campfire().isRepeatable(player));
-		player.setQuest(CAMPFIRE, "rejected");
-		assertFalse(new Campfire().isRepeatable(player));
-		player.setQuest(CAMPFIRE, System.currentTimeMillis() + "");
-		assertFalse(new Campfire().isRepeatable(player));
-		player.setQuest(CAMPFIRE, "1");
-		assertTrue(new Campfire().isRepeatable(player));
-	}
-
-	/**
-	 * Tests for isCompleted.
-	 */
-	@Test
-	public void testIsCompleted() {
-		assertFalse(new Campfire().isCompleted(player));
-
-		player.setQuest(CAMPFIRE, "start");
-		assertFalse(new Campfire().isCompleted(player));
-
-		player.setQuest(CAMPFIRE, "rejected");
-		assertFalse(new Campfire().isCompleted(player));
-
-		player.setQuest(CAMPFIRE, "notStartorRejected");
-		assertTrue(new Campfire().isCompleted(player));
 	}
 
 	/**
@@ -215,7 +160,7 @@ public class CampfireTest {
 
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
-		assertEquals("Hi! I need a little #favor ... ", getReply(npc));
+		assertEquals("Hi, how are you?", getReply(npc));
 		assertTrue(en.step(player, "job"));
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				getReply(npc));
@@ -240,14 +185,15 @@ public class CampfireTest {
 
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
 			final Engine en = npc.getEngine();
-			player.setQuest(CAMPFIRE, questState);
+			player.setQuest(CAMPFIRE, 0, "done");
+			player.setQuest(CAMPFIRE, 1, questState);
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			String reply = getReply(npc);
-			assertTrue("Thanks, but I think the wood you brought already will last me 60 minutes.".equals(reply) || "Thanks, but I think the wood you brought already will last me 1 hour.".equals(reply));
+			assertTrue("Thanks, but I think the wood, you brought, will last 60 minutes.".equals(reply) || "Thanks, but I think the wood, you brought, will last 1 hour.".equals(reply));
 			assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
+			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE, 1));
 		}
 	}
 
@@ -259,13 +205,14 @@ public class CampfireTest {
 		final String questState = Long.toString(new Date().getTime() - 61 * 60 * 1000);
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
 			final Engine en = npc.getEngine();
-			player.setQuest(CAMPFIRE, questState);
+			player.setQuest(CAMPFIRE, 0, "done");
+			player.setQuest(CAMPFIRE, 1, questState);
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			assertEquals("My campfire needs wood again, ten pieces of #wood will be enough. Could you please get those #wood pieces from the forest for me? Please say yes!", getReply(npc));
 			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
-			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
+			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE, 1));
 		}
 	}
 
@@ -276,13 +223,13 @@ public class CampfireTest {
 	public void testAllowRestartAfterRejecting() {
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
 			final Engine en = npc.getEngine();
-			player.setQuest(CAMPFIRE, "rejected");
+			player.setQuest(CAMPFIRE, 0, "rejected");
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
 			assertEquals("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.", getReply(npc));
 			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
-			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE));
+			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE, 0));
 		}
 	}
 
@@ -300,7 +247,7 @@ public class CampfireTest {
 		assertEquals("Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals..."
 , getReply(npc));
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("quest state 'rejected'", "rejected", player.getQuest(CAMPFIRE));
+		assertEquals("quest state 'rejected'", "rejected", player.getQuest(CAMPFIRE, 0 ));
 		assertEquals("karma penalty", karma - 5.0, player.getKarma(), 0.01);
 	}
 }

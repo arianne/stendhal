@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -39,6 +40,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
  * @author hendrik
  */
 public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
+	protected String begOnGreeting = null;
 	protected String respondToRequest = null;
 	protected String respondToUnrepeatableRequest = "Thanks for your help. I have no new task for you.";
 	protected String respondToRepeatedRequest = null;
@@ -52,6 +54,12 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 	// hide constructor
 	QuestOfferBuilder() {
 		super();
+	}
+
+	@SuppressWarnings("unchecked")
+	public T begOnGreeting(String begOnGreeting) {
+		this.begOnGreeting = begOnGreeting;
+		return (T) this;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -113,7 +121,9 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 
 	void simulateFirst(String npc, QuestSimulator simulator) {
 		simulator.playerSays("hi");
-		simulator.playerSays("quest");
+		if (begOnGreeting == null) {
+			simulator.playerSays("quest");
+		}
 		simulator.npcSays(npc, respondToRequest);
 		simulator.playerSays("no");
 		simulator.npcSays(npc, respondToReject);
@@ -121,17 +131,21 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 		simulator.info("");
 
 		simulator.playerSays("hi");
-		simulator.playerSays("quest");
+		if (begOnGreeting == null) {
+			simulator.playerSays("quest");
+		}
 		simulator.npcSays(npc, respondToRequest);
 		simulator.playerSays("yes");
 		simulator.npcSays(npc, respondToAccept);
 		simulator.playerSays("bye");
 		simulator.info("");
 
-		simulator.playerSays("hi");
-		simulator.playerSays("quest");
-		simulator.npcSays(npc, remind);
-		simulator.info("");
+		if (begOnGreeting == null) {
+			simulator.playerSays("hi");
+			simulator.playerSays("quest");
+			simulator.npcSays(npc, remind);
+			simulator.info("");
+		}
 	}
 
 	void simulateNotRepeatable(String npc, QuestSimulator simulator) {
@@ -155,6 +169,21 @@ public class QuestOfferBuilder<T extends QuestOfferBuilder<T>> {
 
 		ChatAction startQuestAction = task.buildStartQuestAction(questSlot);
 		ChatAction rejectQuestAction = task.buildRejectQuestAction(questSlot);
+
+		if (begOnGreeting != null) {
+			npc.add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new OrCondition(
+							new QuestNotStartedCondition(questSlot),
+							new AndCondition(
+									new QuestActiveCondition(questSlot),
+									new NotCondition(questCompletedCondition)
+							)
+					),
+					ConversationStates.QUEST_OFFERED,
+					begOnGreeting,
+					null);
+		}
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,

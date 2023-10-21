@@ -63,7 +63,7 @@ public class PrincessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Huh, what are you doing here?");
+				addGreeting("Huh, what are you doing here?");
 				addReply("sorry", "Well, so you should be, sneaking up on me like that!");
 				addReply("look", "You had better not poke around, this is all mine!");
 				addReply("nothing", "Go away and do this somewhere else but not in my hut!");

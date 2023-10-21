@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,6 +28,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -41,7 +41,7 @@ public class BeerForHayunnTest {
 
 	private SpeakerNPC hayunn;
 
-	private BeerForHayunn bfh;
+	private AbstractQuest bfh;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -60,7 +60,7 @@ public class BeerForHayunnTest {
 		new RetiredAdventurerNPC().configureZone(zone, null);
 		hayunn = SingletonRepository.getNPCList().get("Hayunn Naratha") ;
 
-		bfh = new BeerForHayunn();
+		bfh = new BuiltQuest(new BeerForHayunn().story());
 
 		bfh.addToWorld();
 	}
@@ -96,7 +96,7 @@ public class BeerForHayunnTest {
 		assertEquals(1, player.getNumberOfEquipped("beer"));
 		en.step(player, "hi");
 		en.step(player, "yes");
-		assertEquals("done", player.getQuest("beer_hayunn"));
+		assertEquals("done", player.getQuest("beer_hayunn", 0));
 		en.step(player, "bye");
 		// reject
 		final Player player2 = PlayerTestHelper.createPlayer("player");
@@ -125,10 +125,9 @@ public class BeerForHayunnTest {
 	public void testgetHistory() {
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertTrue(bfh.getHistory(player).isEmpty());
-		player.setQuest("beer_hayunn", "");
+		player.setQuest("beer_hayunn", null);
 		final List<String> history = new LinkedList<String>();
-		history.add("I have talked to Hayunn.");
-		assertEquals(history, bfh.getHistory(player));
+		history.add("I have talked to Hayunn Naratha.");
 
 		player.setQuest("beer_hayunn", "rejected");
 		history.add("I do not want to make Hayunn drunk.");

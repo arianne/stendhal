@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
@@ -30,6 +29,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.city.GreeterNPC;
 import games.stendhal.server.maps.semos.tavern.TraderNPC;
@@ -76,7 +76,7 @@ public class HatForMonogenesTest {
 
 		quest = new MeetMonogenes();
 		quest.addToWorld();
-		quest = new HatForMonogenes();
+		quest = new BuiltQuest(new HatForMonogenes().story());
 		quest.addToWorld();
 
 	}
@@ -168,6 +168,10 @@ public class HatForMonogenesTest {
 
 		en.step(player, "hi");
 		assertEquals(
+				"Hi again, player. How can I #help you this time?",
+				getReply(npc));
+		en.step(player, "quest");
+		assertEquals(
 				"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
 				getReply(npc));
 		en.step(player, "bye");
@@ -199,7 +203,7 @@ public class HatForMonogenesTest {
 		assertEquals(history, quest.getHistory(player));
 
 		player.setQuest("hat_monogenes", "");
-		history.add("I have met Monogenes at the spring in Semos village");
+		history.add("I have met Monogenes at the spring in Semos village.");
 		history.add("I have to find a hat, something leather to keep his head warm.");
 		assertEquals(history, quest.getHistory(player));
 
