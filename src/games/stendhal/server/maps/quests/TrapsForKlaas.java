@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,10 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -25,27 +22,24 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.ConditionalAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerCanEquipItemCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemdataItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestRegisteredCondition;
-import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.quest.BringItemQuestBuilder;
+import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -75,207 +69,64 @@ import games.stendhal.server.maps.Region;
  * <li>Every 24 hours</li>
  * </ul>
  */
-public class TrapsForKlaas extends AbstractQuest {
-
-	public final int REQUIRED_TRAPS = 20;
-
-    // Time player must wait to repeat quest (1 day)
-    private static final int WAIT_TIME = 60 * 24;
-
-	private static final String QUEST_SLOT = "traps_for_klaas";
-	private static final String info_string = "note to apothecary";
-
+public class TrapsForKlaas implements QuestManuscript {
+	private final static String QUEST_SLOT = "traps_for_klaas";
 
 	@Override
-	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("I have talked to Klaas.");
-		final String questState = player.getQuest(QUEST_SLOT);
-		if ("rejected".equals(questState)) {
-			res.add("I do not care to deal with rodents.");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I promised to gather " + REQUIRED_TRAPS + " rodent traps and bring them to Klaas.");
-		}
-		if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
-			res.add("I gave the rodent traps to Klaas. I got some experience and antidotes.");
-		}
-		if (isRepeatable(player)) {
-		    res.add("I should check if Klaas needs my help again.");
-		}
-		return res;
-	}
+	public BringItemQuestBuilder story() {
+		BringItemQuestBuilder quest = new BringItemQuestBuilder();
 
-	private void prepareRequestingStep() {
-		final SpeakerNPC npc = npcs.get("Klaas");
+		quest.info()
+			.name("Traps for Klaas")
+			.description("Klaas, the cargo caretaker on the Athor ferry, is in need of some rodent traps.")
+			.internalName(QUEST_SLOT)
+			.repeatableAfterMinutes(24 * 60)
+			.minLevel(0)
+			.region(Region.ATHOR_ISLAND)
+			.questGiverNpc("Klaas");
 
-		// Player asks for quest
-		npc.add(ConversationStates.ATTENDING,
-		        ConversationPhrases.QUEST_MESSAGES,
-		        new AndCondition(
-		                new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-		                new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)
-		                ),
-		        ConversationStates.QUEST_OFFERED,
-		        "The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
-		        null);
+		quest.history()
+			.whenNpcWasMet("I have talked to Klaas on the ship to Athor.")
+			.whenQuestWasRejected("I do not care about dealing with rodents.")
+			.whenQuestWasAccepted("I promised to gather 20 rodent traps and bring them to Klaas.")
+			.whenTaskWasCompleted("I got enough traps.")
+			.whenQuestWasCompleted("I gave the rodent traps to Klaas. I got some experience and antidotes.")
+			.whenQuestCanBeRepeated("I should check if Klaas needs my help again.");
 
-        // Player requests quest before wait period ended
-        npc.add(ConversationStates.ATTENDING,
-                ConversationPhrases.QUEST_MESSAGES,
-                new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)),
-                ConversationStates.ATTENDING,
-                null,
-                new SayTimeRemainingAction(QUEST_SLOT, 1, WAIT_TIME, "Thanks for the traps. Now the food will be safe. But I may need your help again in"));
+		quest.offer()
+			.respondToRequest("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?")
+			.respondToUnrepeatableRequest("Thanks for the traps. Now the food will be safe. But I may need your help again soon.")
+			.respondToRepeatedRequest("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?")
+			.respondToAccept("Thanks, I need you to bring me bring me 20 #rodent #traps. Please hurry! We can't afford to lose anymore food.")
+			.respondToReject("Don't waste my time. I've got to protect the cargo.")
+			.rejectionKarmaPenalty(5.0)
+			.remind("I believe, I already asked you to get me 20 rodent traps.");
 
-		// Player asks for quest after already started
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"I believe I already asked you to get me " + REQUIRED_TRAPS + " rodent traps.",
-				null);
-
-		// Player accepts quest
+		final SpeakerNPC npc = NPCList.get().get("Klaas");
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Thanks, I need you to bring me bring me " + REQUIRED_TRAPS + " #rodent #traps. Please hurry! We can't afford to lose anymore food.",
-			new SetQuestAction(QUEST_SLOT, "start"));
-
-		// Player rejects quest
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			// Klaas walks away
-			ConversationStates.IDLE,
-			"Don't waste my time. I've got to protect the cargo.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
-
-		// Player asks about rodent traps
-		npc.add(
-			ConversationStates.ATTENDING,
-			Arrays.asList("rodent trap", "trap", "rodent traps", "traps"),
-			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
-			null);
-
-	}
-
-	private void prepareBringingStep() {
-		final SpeakerNPC npc = npcs.get("Klaas");
-
-		final ChatCondition giveNoteRewardCondition = new ChatCondition() {
-			private final String avrQuestSlot = "antivenom_ring";
-
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				if (!new QuestRegisteredCondition(avrQuestSlot).fire(player, sentence, npc)) {
-					return false;
-				}
-
-				// note has already been given to Jameson & Antivenom Ring quest has already been started or completed
-				if (player.getQuest(avrQuestSlot) != null) {
-					return false;
-				}
-
-				// player already has a note
-				// FIXME: PlayerOwnsItemIncludingBankCondition currently doesn't support itemdata items
-				if (player.isEquippedWithItemdata("note", info_string)) {
-					return false;
-				}
-
-				return true;
-			}
-		};
-
-		// Reward
-		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("rodent trap", 20));
-		reward.add(new EquipItemAction("greater antidote", 5));
-		reward.add(new IncreaseXPAction(1000));
-		reward.add(new IncreaseKarmaAction(10));
-        reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-        reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-
-        // action that gives player note to apothecary
-        final ChatAction equipNoteAction = new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				final Item note = SingletonRepository.getEntityManager().getItem("note");
-				note.setItemData(info_string);
-				note.setDescription("You see a note written to an apothecary. It is a recommendation from Klaas.");
-				note.setBoundTo(player.getName());
-				player.equipOrPutOnGround(note);
-			}
-        };
-
-		// Player has all 20 traps
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestActiveCondition(QUEST_SLOT),
-						new PlayerHasItemWithHimCondition("rodent trap")),
-				ConversationStates.QUEST_ITEM_BROUGHT,
-				"Did you bring any traps?",
+				ConversationStates.ATTENDING,
+				Arrays.asList("rodent trap", "trap", "rodent traps", "traps"),
+				new QuestActiveCondition("traps_for_klaas"),
+				ConversationStates.ATTENDING,
+				"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
 				null);
+		
 
-		// Player is not carrying any traps
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestActiveCondition(QUEST_SLOT),
-						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap"))),
-			ConversationStates.ATTENDING,
-			"I could really use those #traps. How can I help you?",
-			null);
+		quest.task()
+			.requestItem(20, "rodent trap");
 
-		// Player is not carrying 20 traps
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(new PlayerHasItemWithHimCondition("rodent trap"),
-						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
-				ConversationStates.ATTENDING,
-				"I'm sorry but I need 20 #rodent #traps",
-				null);
-
-		// brings traps & has already started/completed antivenom ring quest
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(
-						new NotCondition(giveNoteRewardCondition),
-						new PlayerHasItemWithHimCondition("rodent trap", 20)),
-				ConversationStates.ATTENDING,
-				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.",
-				new MultipleActions(reward));
-
-		// brings traps & has not started antivenom ring quest
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(
-						giveNoteRewardCondition,
-						new PlayerHasItemWithHimCondition("rodent trap", 20)),
-				ConversationStates.ATTENDING,
-				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
-				new MultipleActions(
-						new MultipleActions(reward),
-						equipNoteAction));
-
-        // Player says did not bring items
-        npc.add(
-            ConversationStates.QUEST_ITEM_BROUGHT,
-            ConversationPhrases.NO_MESSAGES,
-            null,
-            ConversationStates.ATTENDING,
-            "Please hurry! I just found another box of food that's been chewed through.",
-            null);
+		quest.complete()
+			.greet("Did you bring any traps?")
+			.respondToReject("Please hurry! I just found another box of food that's been chewed through.")
+			.respondToAccept("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.")
+			.rewardWith(new IncreaseXPAction(1000))
+			.rewardWith(new IncreaseKarmaAction(10))
+			.rewardWith(new EquipItemAction("greater antidote", 5))
+			.rewardWith(new ConditionalAction(
+					giveNoteRewardCondition, 
+					new MultipleActions(
+							equipNoteAction,
+							new SayTextAction("I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something."))));
 
 		// Player has lost note
 		npc.add(ConversationStates.IDLE,
@@ -291,6 +142,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				+ " Remember to ask around about an #apothecary.",
 				equipNoteAction);
 
+
 		// player lost note, but doesn't have room in inventory
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -302,52 +154,46 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"You lost the note? Well, I could write another one. But it doesn't look like you have room to carry it.",
 				null);
+
+		return quest;
 	}
 
-	@Override
-	public void addToWorld() {
-		fillQuestInfo(
-				"Traps for Klaas",
-				"Klaas, the cargo caretaker on the Athor ferry, is in need of some rodent traps.",
-				false);
-		prepareRequestingStep();
-		prepareBringingStep();
-	}
+	
+	// action that gives player note to apothecary
+	private static final String info_string = "note to apothecary";
+	final ChatAction equipNoteAction = new ChatAction() {
+		@Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			final Item note = SingletonRepository.getEntityManager().getItem("note");
+			note.setItemData(info_string);
+			note.setDescription("You see a note written to an apothecary. It is a recommendation from Klaas.");
+			note.setBoundTo(player.getName());
+			player.equipOrPutOnGround(note);
+		}
+	};
+	
+	final ChatCondition giveNoteRewardCondition = new ChatCondition() {
+		private final String avrQuestSlot = "antivenom_ring";
 
-	@Override
-	public String getSlotName() {
-		return QUEST_SLOT;
-	}
+		@Override
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+			if (!new QuestRegisteredCondition(avrQuestSlot).fire(player, sentence, npc)) {
+				return false;
+			}
 
-	@Override
-	public String getName() {
-		return "TrapsForKlaas";
-	}
+			// note has already been given to Jameson & Antivenom Ring quest has already been started or completed
+			if (player.getQuest(avrQuestSlot) != null) {
+				return false;
+			}
 
-	public String getTitle() {
+			// player already has a note
+			// FIXME: PlayerOwnsItemIncludingBankCondition currently doesn't support itemdata items
+			if (player.isEquippedWithItemdata("note", info_string)) {
+				return false;
+			}
 
-		return "TrapsForKlaas";
-	}
+			return true;
+		}
+	};
 
-	@Override
-	public int getMinLevel() {
-		return 0;
-	}
-
-	@Override
-	public String getRegion() {
-		return Region.ATHOR_ISLAND;
-	}
-
-	@Override
-	public String getNPCName() {
-		return "Klaas";
-	}
-
-	@Override
-	public boolean isRepeatable(final Player player) {
-		return new AndCondition(
-				new QuestCompletedCondition(QUEST_SLOT),
-				new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)).fire(player, null, null);
-	}
 }

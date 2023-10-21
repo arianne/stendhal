@@ -591,6 +591,26 @@ public abstract class UpdateConverter {
 				player.setQuest(questSlot, "start;;;" + player.getQuest(questSlot));
 			}
 		}
+
+		// 1.44: Amazon Princess
+		questSlot = "amazon_princess";
+		if (player.hasQuest(questSlot)) {
+			final String fsState = player.getQuest(questSlot, 0);
+			if (fsState.equals("drinking")) {
+				player.setQuest(questSlot, 0, "done");
+			}
+		}
+
+		// 1.44: Campfire and Eggs for marianne
+		for (String slot : Arrays.asList("campfire", "eggs_for_marianne")) {
+			if (player.hasQuest(slot)) {
+				final String fsState = player.getQuest(slot, 0);
+				if (!fsState.equals("start") && !fsState.equals("rejected")) {
+					player.setQuest(slot, 1, fsState);
+					player.setQuest(slot, 0, "done");
+				}
+			}
+		}
 	}
 
 

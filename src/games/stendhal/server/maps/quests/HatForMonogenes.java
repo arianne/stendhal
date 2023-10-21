@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
@@ -12,29 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.quest.BringItemQuestBuilder;
+import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.semos.city.GreeterNPC;
 import games.stendhal.server.util.ResetSpeakerNPC;
@@ -62,151 +43,55 @@ import games.stendhal.server.util.ResetSpeakerNPC;
  *
  * REPETITIONS: - None.
  */
-public class HatForMonogenes extends AbstractQuest {
-	private static final String QUEST_SLOT = "hat_monogenes";
-
+public class HatForMonogenes implements QuestManuscript {
 
 	@Override
-	public String getSlotName() {
-		return QUEST_SLOT;
-	}
-	@Override
-	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		if (player.hasQuest(QUEST_SLOT)) {
-			res.add("I have met Monogenes at the spring in Semos village");
-		}
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("I have to find a hat, something leather to keep his head warm.");
-		if (player.isQuestInState(QUEST_SLOT, "start")
-				&& player.isEquipped("leather helmet")
-				|| player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("I have found a hat.");
-		}
-		if (player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("I gave the hat to Monogenes to keep his bald head warm.");
-		}
-		return res;
-	}
+	public BringItemQuestBuilder story() {
+		BringItemQuestBuilder quest = new BringItemQuestBuilder();
 
-	private void createRequestingStep() {
-		final SpeakerNPC monogenes = npcs.get("Monogenes");
+		quest.info()
+			.name("Hat for Monogenes")
+			.description("Monogenes wants a hat to help him keep warm during the winter.")
+			.internalName("hat_monogenes")
+			.notRepeatable()
+			.minLevel(0)
+			.region(Region.SEMOS_CITY)
+			.questGiverNpc("Monogenes");
 
-		monogenes.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED,
-			"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
-			null);
+		quest.history()
+			.whenNpcWasMet("I have met Monogenes at the spring in Semos village.")
+			.whenQuestWasRejected("He asked me for a hat, but I don't want to help.")
+			.whenQuestWasAccepted("I have to find a hat, something leather to keep his head warm.")
+			.whenTaskWasCompleted("I have found a hat.")
+			.whenQuestWasCompleted("I gave the hat to Monogenes to keep his bald head warm.");
 
-		monogenes.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.",
-			null);
+		quest.offer()
+			.respondToRequest("Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...")
+			.respondToUnrepeatableRequest("Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.")
+			.respondToAccept("Thanks, my good friend. I'll be waiting here for your return!")
+			.respondToReject("You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*")
+			.rejectionKarmaPenalty(5.0)
+			.remind("Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...")
+			.respondTo("hat").saying("You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?");
 
-		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Thanks, my good friend. I'll be waiting here for your return!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+		quest.task()
+			.requestItem(1, "leather helmet");
 
-		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		quest.complete()
+			.greet("Hey! Is that leather hat for me?")
+			.respondToReject("I guess someone more fortunate will get his hat today... *sneeze*")
+			.respondToAccept("Bless you, my good friend! Now my head will stay nice and warm.")
+			.rewardWith(new IncreaseXPAction(50))
+			.rewardWith(new IncreaseKarmaAction(10));
 
-		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			"hat",
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
-			null);
+			return quest;
 	}
 
-	private void createBringingStep() {
-		final SpeakerNPC monogenes = npcs.get("Monogenes");
-
-		monogenes.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(monogenes.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"),
-					new PlayerHasItemWithHimCondition("leather helmet")),
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			"Hey! Is that leather hat for me?", null);
-
-		monogenes.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(monogenes.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"),
-					new NotCondition(new PlayerHasItemWithHimCondition("leather helmet"))),
-			ConversationStates.ATTENDING,
-			"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
-			null);
-
-		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("leather helmet"));
-		reward.add(new IncreaseXPAction(50));
-		reward.add(new IncreaseKarmaAction(10));
-		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-
-		// make sure the player isn't cheating by putting the
-		// helmet away and then saying "yes"
-		monogenes.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("leather helmet"),
-			ConversationStates.ATTENDING,
-			"Bless you, my good friend! Now my head will stay nice and warm.",
-			new MultipleActions(reward));
-
-		monogenes.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"I guess someone more fortunate will get his hat today... *sneeze*",
-			null);
-	}
-
-	@Override
-	public void addToWorld() {
-		fillQuestInfo(
-				"Hat for Monogenes",
-				"Monogenes wants a hat to help him keep warm during the winter.",
-				false);
-		createRequestingStep();
-		createBringingStep();
-	}
-
-	@Override
 	public boolean removeFromWorld() {
-		final boolean res = ResetSpeakerNPC.reload(new GreeterNPC(), getNPCName());
+		final boolean res = ResetSpeakerNPC.reload(new GreeterNPC(), "Monogenes");
 		// reload other quests associated with Monogenes
 		SingletonRepository.getStendhalQuestSystem().reloadQuestSlots("Monogenes");
 		return res;
 	}
 
-	@Override
-	public String getName() {
-		return "HatForMonogenes";
-	}
-
-	@Override
-	public String getRegion() {
-		return Region.SEMOS_CITY;
-	}
-	@Override
-	public String getNPCName() {
-		return "Monogenes";
-	}
 }

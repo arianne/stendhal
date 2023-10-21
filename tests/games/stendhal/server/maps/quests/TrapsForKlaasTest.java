@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2019 - Arianne                          *
+ *                    (C) Copyright 2019-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,6 +30,7 @@ import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
 import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
@@ -51,7 +52,7 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 
 	private SpeakerNPC klaas;
 
-	private TrapsForKlaas quest;
+	private AbstractQuest quest;
 	private AntivenomRing avrQuest;
 	private String questName;
 	private String avrQuestName;
@@ -91,7 +92,7 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 
 		klaas = getNPC(npcName);
 
-		quest = new TrapsForKlaas();
+		quest = new BuiltQuest(new TrapsForKlaas().story());
 		avrQuest = new AntivenomRing();
 		questName = quest.getSlotName();
 		avrQuestName = avrQuest.getSlotName();
@@ -130,7 +131,6 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 				"The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
 				getReply(klaas));
 		en.step(player, "no");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("Don't waste my time. I've got to protect the cargo.", getReply(klaas));
 		// player loses some karma
 		assertEquals(karma - 5.0, player.getKarma(), 0);
@@ -162,33 +162,14 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("I could really use those #traps. How can I help you?", getReply(klaas));
-		en.step(player, "bye");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-
-		// player does not have enough traps
-		PlayerTestHelper.equipWithStackableItem(player, "rodent trap", 19);
-		assertTrue(player.isEquipped("rodent trap"));
-		assertFalse(player.isEquipped("rodent trap", 20));
-
-		en.step(player, "hi");
-		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
-		assertEquals("Did you bring any traps?", getReply(klaas));
-		en.step(player, "no");
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Please hurry! I just found another box of food that's been chewed through.", getReply(klaas));
-		en.step(player, "bye");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		en.step(player, "hi");
-		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
-		en.step(player, "yes");
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("I'm sorry but I need 20 #rodent #traps", getReply(klaas));
+		assertEquals("Ahoy! Nice to see you in the cargo hold!", getReply(klaas));
+		en.step(player, "quest");
+		assertEquals("I believe, I already asked you to get me 20 rodent traps.", getReply(klaas));
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		// player has enough traps
-		PlayerTestHelper.equipWithStackableItem(player, "rodent trap", 1);
+		PlayerTestHelper.equipWithStackableItem(player, "rodent trap", 20);
 		assertTrue(player.isEquipped("rodent trap", 20));
 
 		en.step(player, "hi");
@@ -214,10 +195,10 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 		// player asks for quest before cooldown period is up
 		en.step(player, "quest");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertTrue(getReply(klaas).startsWith("Thanks for the traps. Now the food will be safe. But I may need your help again in"));
+		assertTrue(getReply(klaas).startsWith("Thanks for the traps. Now the food will be safe. But I may need your help again soon."));
 
 		// player asks for quest after cooldown period is up
-		player.setQuest(questName, "done;0");
+		player.setQuest(questName, 1, "0");
 		en.step(player, "quest");
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		assertEquals("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?", getReply(klaas));
@@ -250,8 +231,7 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
 		assertEquals("Did you bring any traps?", getReply(klaas));
 		en.step(player, "yes");
-		assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward."
-				+ " I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
+		assertEquals("I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				getReply(klaas));
 		assertEquals("done", player.getQuest(questName, 0));
 		assertFalse(player.isEquipped("rodent trap"));

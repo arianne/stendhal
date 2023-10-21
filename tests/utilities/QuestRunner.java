@@ -265,6 +265,7 @@ public class QuestRunner {
 		en.step(player, "bye");
 		en = ceryl.getEngine();
 		en.step(player, "hi");
+		en.step(player, "yes");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
 	}
