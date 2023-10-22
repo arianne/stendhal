@@ -35,6 +35,8 @@ import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
+import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
+
 import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
 
@@ -44,6 +46,7 @@ export class Client {
 	private initialized = false;
 	private errorCounter = 0;
 	private unloading = false;
+	public username?: string;
 
 	/** Singleton instance. */
 	private static instance: Client;
@@ -246,7 +249,16 @@ export class Client {
 				"Login",
 				new LoginDialog(),
 				100, 50);
+		};
+		
+		marauroa.clientFramework.onCreateAccountAck = function(username: string) {
+			// TODO: We should login automatically
+			alert("Account succesfully created, please login.");
+			window.location.reload();
+		};
 
+		marauroa.clientFramework.onCreateCharacterAck = function(charname: string, _template: any) {
+			// Client.get().chooseCharacter(charname);
 		};
 
 		marauroa.clientFramework.onLoginFailed = function(_reason: string, _text: string) {
@@ -256,6 +268,11 @@ export class Client {
 		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters: {[key: string]: RPObject}) {
+			SingletonFloatingWindow.closeAll();
+			if (!Object.keys(characters).length && this.username) {
+				marauroa.clientFramework.createCharacter(this.username, {});
+				return;
+			}
 			if (window.location.hash) {
 				let name = window.location.hash.substring(1);
 				stendhal.session.setCharName(name);

@@ -16,6 +16,7 @@ import { FloatingWindow } from "./FloatingWindow";
  * A popup or dialog window that will disappear if another SingletonFloatingWindow is opened
  */
 export class SingletonFloatingWindow extends FloatingWindow {
+
 	private static visiblePopup?: SingletonFloatingWindow;
 
 	/**
@@ -38,6 +39,12 @@ export class SingletonFloatingWindow extends FloatingWindow {
 		super.close();
 		if (SingletonFloatingWindow.visiblePopup === this) {
 			SingletonFloatingWindow.visiblePopup = undefined;
+		}
+	}
+
+	static closeAll() {
+		if (SingletonFloatingWindow.visiblePopup) {
+			SingletonFloatingWindow.visiblePopup.close();
 		}
 	}
 }

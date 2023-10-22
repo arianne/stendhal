@@ -103,11 +103,25 @@
 		<div></div>
 	</template>
 
+	<template id="createaccountdialog-template">
+		<div>
+			<form class="credential-dialog">
+			<label for="username">Username*:</label> <input id="username" minlength="6" maxlength="20" required><br>
+			<label for="password">Password*:</label> <input id="password" type="password" minlength="6" maxlength="50" required><br>
+			<label for="passwordrepeat">Repeat Password*:</label> <input id="passwordrepeat" type="password" minlength="6" maxlength="50" required><br>
+			<label for="password">Email:</label> <input id="email" type="email"><br>
+			<input type="submit" id="loginbutton" value="Create Account"> <a id="loginlink" href="#login">Login with existing account...</a>
+			</form>
+		</div>
+	</template>
+
 	<template id="logindialog-template">
 		<div>
-			<label for="username">Username:</label> <input id="username"><br>
-			<label for="password">Password:</label> <input id="password" type="password"><br>
-			<button id="loginbutton">Login</button>
+			<form class="credential-dialog">
+			<label for="username">Username*:</label> <input id="username" required><br>
+			<label for="password">Password*:</label> <input id="password" type="password" required><br>
+			<button id="loginbutton">Login</button> <a id="createlink" href="#create">Create new account...</a>
+			</form>
 		</div>
 	</template>
 

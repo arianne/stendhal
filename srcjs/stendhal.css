@@ -17,6 +17,19 @@ body {
   display: none;
 }
 
+input:invalid {
+  border: 2px dashed red;
+}
+
+.credential-dialog label {
+  min-width: 8em;
+  display: inline-block;
+}
+
+.credential-dialog a {
+  color: #FFF;
+}
+
 li.online {
   color: var(--text-color-online);
 }

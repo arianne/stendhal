@@ -9,38 +9,45 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Client } from "../../Client";
 import { ui } from "../UI";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
-import { CreateAccountDialog } from "./CreateAccountDialog";
+import { LoginDialog } from "./LoginDialog";
 
 declare var marauroa: any;
 
 /**
  * a dialog to enter username and password
  */
-export class LoginDialog extends DialogContentComponent {
+export class CreateAccountDialog extends DialogContentComponent {
 
 	constructor() {
-		super("logindialog-template");
-
-		this.child("button")!.addEventListener("click", (event: Event) => {
+		super("createaccountdialog-template");
+		this.child("input[type=submit]")!.addEventListener("click", (event: Event) => {
 			event.preventDefault();
 			let username = (this.child("#username") as HTMLInputElement).value;
 			let password = (this.child("#password") as HTMLInputElement).value;
-			Client.get().username = username;
-			marauroa.clientFramework.login(username, password);
-			this.close();
+			let passwordRepeat = (this.child("#passwordrepeat") as HTMLInputElement).value;
+			let email = (this.child("#email") as HTMLInputElement).value;
+			if (!username || !password || !passwordRepeat) {
+				alert("Please fill in all required fields.");
+				return;
+			}
+			if (password != passwordRepeat) {
+				alert("Password and password repetition do not match.");
+				return;
+			}
+			marauroa.clientFramework.createAccount(username, password, email);
 		});
 
 		this.child("a")!.addEventListener("click", (event: Event) => {
 			event.preventDefault();
 			this.close();
 			ui.createSingletonFloatingWindow(
-				"Create Account",
-				new CreateAccountDialog(),
+				"Login",
+				new LoginDialog(),
 				100, 50);
 		});
 	}
+
 
 }
