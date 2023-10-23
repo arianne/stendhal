@@ -1,5 +1,4 @@
 /* $Id$ */
-/* found on javaworld.com */
 package games.stendhal.common.filter;
 
 import java.lang.reflect.Constructor;
@@ -10,18 +9,12 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 /**
- * <p>
- * Title: CollectionFilter.
- * </p>
- * <p>
- * Description:
- * </p>
+ * Source: https://www.infoworld.com/article/2072996/filter-collections.html (originally found on javaworld.com)
  *
  * @author David Rappoport
  * @version 1.0
  * @param <T> generic type of collection elements
  */
-
 public class CollectionFilter<T> {
 	private static Logger logger = Logger.getLogger(CollectionFilter.class);
 

@@ -1,16 +1,15 @@
 /* $Id$ */
-/* found on javaworld.com */
 package games.stendhal.common.filter;
 
 /**
- * <p>Title: FilterCriteria</p>
- * <p>Description: A FilterCriteria is added to the CollectionFilter to filter
- * all the objects in the collection. </p>
+ * A `FilterCriteria` is added to the `CollectionFilter` to filter all the objects in the collection.
+ *
+ * Source: https://www.infoworld.com/article/2072996/filter-collections.html (originally found on javaworld.com)
+ *
  * @author David Rappoport
  * @version 1.0
  * @param <T> type of the item to check.
  */
-
 public interface FilterCriteria<T> {
 
     /**
