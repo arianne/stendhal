@@ -185,21 +185,21 @@ public abstract class UpdateConverter {
 	 */
 	public static String updateItemName(String name) {
 		if (name != null) {
-    		// handle renamed items
-    		int idx = ITEM_NAMES_OLD.indexOf(name);
-    		if (idx != -1) {
-    			name = ITEM_NAMES_NEW.get(idx);
-    		}
+			// handle renamed items
+			int idx = ITEM_NAMES_OLD.indexOf(name);
+			if (idx != -1) {
+				name = ITEM_NAMES_NEW.get(idx);
+			}
 
-    		// Remove underscore characters from old database item names - ConversationParser
-    		// is now capable to work with space separated item names.
-    		name = ItemTools.itemNameToDisplayName(name);
+			// Remove underscore characters from old database item names - ConversationParser
+			// is now capable to work with space separated item names.
+			name = ItemTools.itemNameToDisplayName(name);
 
-    		// rename some additional items to fix grammar in release 0.66
-    		idx = ITEM_NAMES_OLD_0_66.indexOf(name);
-    		if (idx != -1) {
-    			name = ITEM_NAMES_NEW_0_66.get(idx);
-    		}
+			// rename some additional items to fix grammar in release 0.66
+			idx = ITEM_NAMES_OLD_0_66.indexOf(name);
+			if (idx != -1) {
+				name = ITEM_NAMES_NEW_0_66.get(idx);
+			}
 		}
 
 		return name;
@@ -389,7 +389,7 @@ public abstract class UpdateConverter {
 			}
 			*/
 
-	    	// money pouch
+			// money pouch
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "pouch") != null) {
 				object.put("features", "pouch");
 			}
@@ -441,27 +441,27 @@ public abstract class UpdateConverter {
 		final RPObject kills = KeyedSlotUtil.getKeyedSlotObject(object, "!kills");
 
 		if (kills != null) {
-    		final RPObject newKills = new RPObject();
-    		for (final String attr : kills) {
-    			// skip "id" entries
-    			if (!attr.equals("id")) {
-        			String newAttr = attr;
-        			String value = kills.get(attr);
+			final RPObject newKills = new RPObject();
+			for (final String attr : kills) {
+				// skip "id" entries
+				if (!attr.equals("id")) {
+					String newAttr = attr;
+					String value = kills.get(attr);
 
-        			// Is it stored using the old recording system without an dot?
-        			if (attr.indexOf('.') < 0) {
-        				newAttr = updateItemName(newAttr);
-        				newAttr = value + "." + newAttr;
-        				value = "1";
-        			}
+					// Is it stored using the old recording system without an dot?
+					if (attr.indexOf('.') < 0) {
+						newAttr = updateItemName(newAttr);
+						newAttr = value + "." + newAttr;
+						value = "1";
+					}
 
-        			newKills.put(newAttr, value);
-    			}
-    		}
+					newKills.put(newAttr, value);
+				}
+			}
 
-    		final RPSlot slot = object.getSlot("!kills");
-    		slot.remove(kills.getID());
-    		slot.add(newKills);
+			final RPSlot slot = object.getSlot("!kills");
+			slot.remove(kills.getID());
+			slot.add(newKills);
 		}
 	}
 
@@ -470,21 +470,21 @@ public abstract class UpdateConverter {
 		final RPObject visited = KeyedSlotUtil.getKeyedSlotObject(object, "!visited");
 
 		if (visited != null) {
-    		final RPObject newVisited = new RPObject();
-    		for (final String attr : visited) {
-    			if (!attr.equals("id")) {
-        			String value = visited.get(attr);
-        			String newName = ZONE_MAPPING.get(attr);
-        			if (newName == null) {
-        				newName = attr;
-        			}
-        			newVisited.put(newName, value);
-    			}
-    		}
+			final RPObject newVisited = new RPObject();
+			for (final String attr : visited) {
+				if (!attr.equals("id")) {
+					String value = visited.get(attr);
+					String newName = ZONE_MAPPING.get(attr);
+					if (newName == null) {
+						newName = attr;
+					}
+					newVisited.put(newName, value);
+				}
+			}
 
-    		final RPSlot slot = object.getSlot("!visited");
-    		slot.remove(visited.getID());
-    		slot.add(newVisited);
+			final RPSlot slot = object.getSlot("!visited");
+			slot.remove(visited.getID());
+			slot.add(newVisited);
 		}
 	}
 
@@ -741,17 +741,19 @@ public abstract class UpdateConverter {
 	}
 
 	// FIXME: Remove?
-	 // update the name of a quest to the new spelling
-//	private static void renameQuestSlot(Player player, String oldName, String newName) {
-//		String questState = player.getQuest(oldName);
-//
-//		if (questState != null) {
-//			player.setQuest(newName, questState);
-//			player.removeQuest(oldName);
-//		}
-//	}
+	// update the name of a quest to the new spelling
+	/*
+	private static void renameQuestSlot(Player player, String oldName, String newName) {
+		String questState = player.getQuest(oldName);
 
-	 // update the name of a quest to the new spelling and accumulate the content
+		if (questState != null) {
+			player.setQuest(newName, questState);
+			player.removeQuest(oldName);
+		}
+	}
+	*/
+
+	// update the name of a quest to the new spelling and accumulate the content
 	private static void migrateSumTimedQuestSlot(final Player player, final String oldName, final String newName) {
 		final String oldState = player.getQuest(oldName);
 
@@ -765,25 +767,25 @@ public abstract class UpdateConverter {
 
 				if ((oldParts.length == 3) && (newParts.length == 3)) {
 					try {
-        				final int oldAmount = Integer.parseInt(oldParts[0]);
-        				int newAmount = Integer.parseInt(newParts[0]);
-        				final String oldItem = oldParts[1];
-        				final String newItem = newParts[1];
-        				final long oldTime = Long.parseLong(oldParts[2]);
-        				long newTime = Long.parseLong(newParts[2]);
+						final int oldAmount = Integer.parseInt(oldParts[0]);
+						int newAmount = Integer.parseInt(newParts[0]);
+						final String oldItem = oldParts[1];
+						final String newItem = newParts[1];
+						final long oldTime = Long.parseLong(oldParts[2]);
+						long newTime = Long.parseLong(newParts[2]);
 
-        				if (oldItem.equals(newItem)) {
-        					newAmount += oldAmount;
+						if (oldItem.equals(newItem)) {
+							newAmount += oldAmount;
 
-        					if (oldTime < newTime) {
-        						newTime = oldTime;
-        					}
+							if (oldTime < newTime) {
+								newTime = oldTime;
+							}
 
-        					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
-        				}
-        			} catch (final NumberFormatException e) {
-        				e.printStackTrace();
-        			}
+							questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
+						}
+					} catch (final NumberFormatException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 

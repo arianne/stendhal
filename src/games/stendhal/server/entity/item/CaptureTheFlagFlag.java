@@ -42,26 +42,26 @@ public class CaptureTheFlagFlag extends Item {
 
 	// this is the detail that you set for the outfit overlay
 	// (and then you have to set a color)
-	int     detailValue = 5;
+	int detailValue = 5;
 
 	String colorValue   = "0x00ff00";
 
-	// boolean droppable;
+	//boolean droppable;
 
 	public CaptureTheFlagFlag(final String name,
-							  final String clazz,
-							  final String subclass,
-							  final Map<String,String> attributes) {
+			final String clazz,
+			final String subclass,
+			final Map<String,String> attributes) {
 		super(name, clazz, subclass, attributes);
 
 		// XXX get a string, map to integer
 		// this.colorValue = NPCAttrUtils.getAttrInt("color", attributes, 3);
 		String colorStr = attributes.get("color");
 		if (colorStr != null) {
-		    this.colorValue = colorStr;
+			this.colorValue = colorStr;
 		}
 
-		// this.droppable = NPCAttrUtils.getAttr("droppable", attributes);
+		//this.droppable = NPCAttrUtils.getAttr("droppable", attributes);
 
 	}
 

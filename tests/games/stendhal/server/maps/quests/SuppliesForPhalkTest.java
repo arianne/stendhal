@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -107,7 +107,7 @@ public class SuppliesForPhalkTest {
 		en.step(player, "food");
 		assertEquals("Do you have 3 sandwiches, 3 bottles of beer and 3 glasses of wine?", getReply(npc));
 
-        // say no
+		// say no
 		en.step(player, "no");
 		assertEquals("Pff! Then go away! But be sure, you will not get a reward if you don't bring me the items!", getReply(npc));
 		en.step(player, "food");
@@ -171,10 +171,10 @@ public class SuppliesForPhalkTest {
 
 	}
 
-    @Test
+	@Test
 	public void testMrotho() {
 
-	    npc = SingletonRepository.getNPCList().get("Mrotho");
+		npc = SingletonRepository.getNPCList().get("Mrotho");
 		en = npc.getEngine();
 
 		player.setQuest(questSlot,"clothes;none;none");
@@ -238,12 +238,12 @@ public class SuppliesForPhalkTest {
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 
-    }
+	}
 
-    @Test
+	@Test
 	public void testWrvil() {
 
-	    npc = SingletonRepository.getNPCList().get("Wrvil");
+		npc = SingletonRepository.getNPCList().get("Wrvil");
 		en = npc.getEngine();
 
 		player.setQuest(questSlot,"clothes;none;armor");
@@ -284,7 +284,7 @@ public class SuppliesForPhalkTest {
 		assertEquals("Bye, and please don't attack too many of my friends.", getReply(npc));
 
 		// test for subsequent reply to 'Phalk'
-	    en.step(player, "hi");
+		en.step(player, "hi");
 		assertEquals("Welcome to the Kobold City of Wofol. I hope you come in peace.", getReply(npc));
 		npc.remove("text");
 
@@ -306,9 +306,9 @@ public class SuppliesForPhalkTest {
 
 		en.step(player, "bye");
 		assertEquals("Bye, and please don't attack too many of my friends.", getReply(npc));
-    }
+	}
 
-    @Test
+	@Test
 	public void testEndQuest() {
 
 		npc = SingletonRepository.getNPCList().get("Phalk");

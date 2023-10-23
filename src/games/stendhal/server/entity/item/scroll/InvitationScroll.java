@@ -126,7 +126,7 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-  		final String[] info = dest.split(",");
+		final String[] info = dest.split(",");
 		if (info.length < 2) {
 			player.sendPrivateText("This scroll is so old that it lost its magic.");
 			return false;
@@ -148,11 +148,13 @@ public class InvitationScroll extends TeleportScroll {
 			player.sendPrivateText("There does not seem be a marriage going on, at least " + playerName + " is not online at the moment.");
 			return false;
 		}
-		//TODO: either activate this by finding out how to put 'marriage' in here:
-		//	if (marriage.isMarried(playerName)) {
-		//	player.sendPrivateText("It looks like you missed the wedding, because " + playerName + " is already married.");
-		//	return false;
-	   	//}
+		// TODO: either activate this by finding out how to put 'marriage' in here:
+		/*
+		if (marriage.isMarried(playerName)) {
+			player.sendPrivateText("It looks like you missed the wedding, because " + playerName + " is already married.");
+			return false;
+		}
+		*/
 		// or use sth like (engagedPlayer.isInQuestState("marriage","just_married") || engagedPlayer.isInQuestState("marriage","done")) in the
 		// if statement.
 		return teleportTo(WEDDING_ZONE + " " + WEDDING_SPOT, player);

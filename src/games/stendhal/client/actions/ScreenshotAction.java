@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,13 +73,13 @@ class ScreenshotAction implements SlashAction {
 					Logger.getLogger(ScreenshotAction.class).error(e);
 				} catch (ExecutionException e) {
 					msg = "Failed to save screenshot to " + fileName + " : ";
-		            Throwable cause = e.getCause();
-		            Logger.getLogger(ScreenshotAction.class).error(e);
-		            if (cause != null) {
-		                msg = cause.getMessage();
-		            } else {
-		                msg = e.getMessage();
-		            }
+					Throwable cause = e.getCause();
+					Logger.getLogger(ScreenshotAction.class).error(e);
+					if (cause != null) {
+							msg = cause.getMessage();
+					} else {
+							msg = e.getMessage();
+					}
 				}
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}

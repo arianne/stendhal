@@ -23,11 +23,11 @@ public class InvasionPhaseTest extends TPPTestHelper {
 	@Test
 	public void testInvasionPhase() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
-        ThePiedPiper.switchToNextPhase();
+		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+		ThePiedPiper.switchToNextPhase();
 		//quest.phaseInactiveToInvasion();
-        en.step(player, "bye"); // in case if previous test was failed
-        en.step(player, "hi");
+		en.step(player, "bye"); // in case if previous test was failed
+		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("There " + Grammar.isare(TPPQuestHelperFunctions.getRatsCount()) +
@@ -44,8 +44,8 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("Ados isn't being invaded by rats right now. You can still "+
-							  "get a #reward for the last time you helped. You can ask for #details "+
-							  "if you want.", getReply(npc));
+				"get a #reward for the last time you helped. You can ask for #details "+
+				"if you want.", getReply(npc));
 		en.step(player, "details");
 
 		assertEquals("Well, from the last reward, you killed "+
@@ -66,10 +66,10 @@ public class InvasionPhaseTest extends TPPTestHelper {
 	public void testAccumulatingRewards() {
 		int tempReward = 0;
 		LinkedList<String> questHistory = new LinkedList<String>();
-        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
-        ThePiedPiper.switchToNextPhase();
+		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+		ThePiedPiper.switchToNextPhase();
 		//quest.phaseInactiveToInvasion();
-        // [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
+		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -78,11 +78,11 @@ public class InvasionPhaseTest extends TPPTestHelper {
 				" still about "+ TPPQuestHelperFunctions.getRatsCount() +" rats alive.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("Ados is being invaded by rats! I dont want to either reward you or "+
-				  "explain details to you now, until all rats are dead.", getReply(npc));
+				"explain details to you now, until all rats are dead.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("Ados is being invaded by rats! "+
-				  "I dont want to reward you now, "+
-  				  " until all rats are dead.", getReply(npc));
+				"I dont want to reward you now, "+
+				" until all rats are dead.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
@@ -93,8 +93,8 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("Ados isn't being invaded by rats right now. You can still "+
-							  "get a #reward for the last time you helped. You can ask for #details "+
-							  "if you want.", getReply(npc));
+				"get a #reward for the last time you helped. You can ask for #details "+
+				"if you want.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("Well, from the last reward, you killed "+
 				details()+
@@ -112,8 +112,8 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("Ados isn't being invaded by rats right now. You can still "+
-							  "get a #reward for the last time you helped. You can ask for #details "+
-							  "if you want.", getReply(npc));
+				"get a #reward for the last time you helped. You can ask for #details "+
+				"if you want.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("Well, from the last reward, you killed "+
 				details()+
@@ -129,7 +129,5 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
-
-
 
 }

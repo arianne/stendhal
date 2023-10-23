@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,32 +120,32 @@ public final class SentenceImplementation extends Sentence {
             boolean entryMissing = false;
 
             if (!wordFound) {
-            	WordEntry entry = wl.find(original);
+                WordEntry entry = wl.find(original);
 
-            	if (entry == null) {
-            		entryMissing = true;
-            	} else if (entry.getType() != null) {
-            		ExpressionType type = entry.getType();
+                if (entry == null) {
+                    entryMissing = true;
+                } else if (entry.getType() != null) {
+                    ExpressionType type = entry.getType();
 
-	                w.setType(type);
-	                wordFound = true;
+                    w.setType(type);
+                    wordFound = true;
 
-	                if (type.isNumeral()) {
-	                    // evaluate numeric expressions
-	                    w.setAmount(entry.getValue());
-	                    w.setNormalized(Integer.toString(w.getAmount()));
-	                } else if (type.isPlural()) {
-	                    // normalise to the singular form
-	                    // If getPlurSing() is null, there is no unique singular form, so use the original string.
-	                    if (entry.getPlurSing() != null) {
-	                        w.setNormalized(entry.getPlurSing());
-	                    } else {
-	                        w.setNormalized(original);
-	                    }
-	                } else {
-	                    w.setNormalized(entry.getNormalized());
-	                }
-	            }
+                    if (type.isNumeral()) {
+                        // evaluate numeric expressions
+                        w.setAmount(entry.getValue());
+                        w.setNormalized(Integer.toString(w.getAmount()));
+                    } else if (type.isPlural()) {
+                        // normalise to the singular form
+                        // If getPlurSing() is null, there is no unique singular form, so use the original string.
+                        if (entry.getPlurSing() != null) {
+                            w.setNormalized(entry.getPlurSing());
+                        } else {
+                            w.setNormalized(original);
+                        }
+                    } else {
+                        w.setNormalized(entry.getNormalized());
+                    }
+                }
             }
 
             if (!wordFound) {
@@ -173,12 +173,12 @@ public final class SentenceImplementation extends Sentence {
                         w.setType(verb.entry.getType());
                         wordFound = true;
                     } else if (!verb.isPast) { // avoid cases like "rounded"
-                    	w.setType(new ExpressionType(ExpressionType.VERB));
+                        w.setType(new ExpressionType(ExpressionType.VERB));
                         wordFound = true;
                     }
 
                     if (wordFound) {
-                    	w.setNormalized(verb.entry.getNormalized());
+                        w.setNormalized(verb.entry.getNormalized());
                     }
                 }
             }
@@ -188,7 +188,7 @@ public final class SentenceImplementation extends Sentence {
                 final WordEntry adjective = wl.normalizeAdjective(original);
 
                 if (adjective != null) {
-                	w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
+                    w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
                     w.setNormalized(adjective.getNormalized());
                     wordFound = true;
                 }
@@ -262,7 +262,7 @@ public final class SentenceImplementation extends Sentence {
             expressions.remove(verb1);
             sentenceType = SentenceType.QUESTION;
         } else if (matchesNormalized("you have OBJ for me")) {
-        	// the Sentence matches "do you have OBJ for me?"
+            // the Sentence matches "do you have OBJ for me?"
             // remove "you"
             expressions.remove(subject1);
             // remove "for"
@@ -273,7 +273,7 @@ public final class SentenceImplementation extends Sentence {
             verb1.setNormalized("buy");
             sentenceType = SentenceType.IMPERATIVE;
         } else if (isYouGiveMe(subject1, verb1, subject2)) {
-        	// the sentence matches "[you] give me(i)" -> "[I] buy"
+            // the sentence matches "[you] give me(i)" -> "[I] buy"
 
             // remove the subjects and replace the verb with "buy" as first word
             // remove "you"
@@ -388,15 +388,15 @@ public final class SentenceImplementation extends Sentence {
                     // Remove all verbs meaning "do" from the expression list,
                     // since they don't change the sentence meaning.
                     if (first.isNegated()) {
-                    	// If the question uses a "don't" expression and there is another verb in the
-                    	// sentence, negate this and drop the "don't".
-                    	if (getVerbCount() > 1) {
-                    		negate = true;
-                    		expressions.remove(first);
-                    	}
+                        // If the question uses a "don't" expression and there is another verb in the
+                        // sentence, negate this and drop the "don't".
+                        if (getVerbCount() > 1) {
+                            negate = true;
+                            expressions.remove(first);
+                        }
                     } else {
-						expressions.remove(first);
-					}
+                        expressions.remove(first);
+                    }
                 } else if (first.getNormalized().equals("it") && second.getNormalized().equals("is")
                         && ((third != null) && (third.getType() != null) && third.getType().isGerund())) {
                     // statement begins with "it is <VER-GER>"
@@ -411,12 +411,12 @@ public final class SentenceImplementation extends Sentence {
         }
 
         if (negate) {
-        	// negate the first verb if the sentence did contain a "don't" expression
-        	Expression firstVerb = getVerb(0);
+            // negate the first verb if the sentence did contain a "don't" expression
+            Expression firstVerb = getVerb(0);
 
-        	if (firstVerb != null) {
-        		firstVerb.negate();
-        	}
+            if (firstVerb != null) {
+                firstVerb.negate();
+            }
         }
 
         if ((type != SentenceType.UNDEFINED) && (sentenceType == SentenceType.UNDEFINED)) {
@@ -431,15 +431,15 @@ public final class SentenceImplementation extends Sentence {
      */
     void mergeWords() {
         // use WordList.compoundNames to merge compound names
-    	mergeCompoundNames();
+        mergeCompoundNames();
 
         // first merge three word expressions of the form "... of ..."
         mergeThreeWordExpressions();
 
         // now merge two word expressions from left to right
         if (mergeTwoWordExpressions() > 0) {
-	        // retry finding three word expressions
-	        mergeThreeWordExpressions();
+            // retry finding three word expressions
+            mergeThreeWordExpressions();
         }
     }
 
@@ -447,12 +447,12 @@ public final class SentenceImplementation extends Sentence {
      * Merge compound names.
      * @return number of merges performed
      */
-	public int mergeCompoundNames() {
-    	final WordList wl = WordList.getInstance();
+    public int mergeCompoundNames() {
+        final WordList wl = WordList.getInstance();
         int changes = 0;
 
         // loop until no more simplifications can be made
-    	boolean changed;
+        boolean changed;
         do {
             changed = false;
 
@@ -464,22 +464,22 @@ public final class SentenceImplementation extends Sentence {
                 if (compName != null) {
                     Expression first = expressions.get(idx);
 
-        			int wordsMatched = compName.size();
-        			for(int i=1; i<wordsMatched; ++i) {
-        				Expression next = expressions.get(idx+1);
+                    int wordsMatched = compName.size();
+                    for(int i=1; i<wordsMatched; ++i) {
+                        Expression next = expressions.get(idx+1);
 
-            			first.mergeName(next, compName.getType());
-            	        expressions.remove(next);
-        			}
+                        first.mergeName(next, compName.getType());
+                        expressions.remove(next);
+                    }
 
-        	        changed = true;
+                    changed = true;
                     break;
-    			}
+                }
 
-        		if (changed) {
-        			++changes;
-        			break;
-        		}
+                if (changed) {
+                    ++changes;
+                    break;
+                }
             }
         } while(changed);
 
@@ -513,7 +513,7 @@ public final class SentenceImplementation extends Sentence {
 
             if (it.hasNext()) {
                 Expression next = it.next();
-//				Expression prev = null;
+                //Expression prev = null;
 
                 // loop over all words of the sentence starting from left
                 while (it.hasNext()) {
@@ -544,11 +544,11 @@ public final class SentenceImplementation extends Sentence {
                     if ((curType != null) && (nextType != null)) {
                         // left-merge composite nouns and nouns with preceding adjectives or verbs
                         if (isCompoundNoun(curType, nextType, precedingVerb)) {
-                        	if (Grammar.mergeCompoundNoun(curr, next) == curr) {
-                        		expressions.remove(next);
-                        	} else {
-                        		expressions.remove(curr);
-                        	}
+                            if (Grammar.mergeCompoundNoun(curr, next) == curr) {
+                                expressions.remove(next);
+                            } else {
+                                expressions.remove(curr);
+                            }
                             changed = true;
                             break;
                         }
@@ -564,7 +564,7 @@ public final class SentenceImplementation extends Sentence {
                         else if (curType.isVerb() && nextType.isVerb()) {
                             // merge "do" and "don't" expressions with the following verb
                             if (curr.getNormalized().equals("do")) {
-                            	next.mergeSimple(curr);
+                                next.mergeSimple(curr);
                                 expressions.remove(curr);
                                 changed = true;
                                 break;
@@ -616,12 +616,12 @@ public final class SentenceImplementation extends Sentence {
                         }
                     }
 
-//                  prev = curr;
+                    //prev = curr;
                 }
             }
 
             if (changed) {
-            	++changes;
+                ++changes;
             }
         } while (changed);
 
@@ -726,7 +726,7 @@ public final class SentenceImplementation extends Sentence {
             }
 
             if (changed) {
-            	++changes;
+                ++changes;
             }
         } while (changed);
 

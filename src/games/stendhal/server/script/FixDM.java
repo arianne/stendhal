@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,8 +57,8 @@ public class FixDM extends ScriptImpl {
 				admin.sendPrivateText(target.getTitle() + " had a deathmatch state in " + oldQuestState + "  , i.e. a deathmatch was bailed or cancelled? You're going to need to fix his helmet manually, if you're sure it should be. The quest state has been fixed to #done.");
 				target.setQuest(questName, "done");
 				target.sendPrivateText("Admin " + admin.getTitle()
-								   + " changed your state of the quest '" + questName
-									   + "' from '" + oldQuestState + "' to 'done'. They need to fix your helmet, still.");
+						+ " changed your state of the quest '" + questName
+						+ "' from '" + oldQuestState + "' to 'done'. They need to fix your helmet, still.");
 				return;
 			} else {
 				String newQuestState = "victory;" + questpieces[1] + ";" + questpieces[2];
@@ -67,10 +67,10 @@ public class FixDM extends ScriptImpl {
 
 				// notify admin and altered player
 				target.sendPrivateText("Try claiming victory again now that " + admin.getTitle()
-									   + " has waved a magic wand.");
+						+ " has waved a magic wand.");
 				admin.sendPrivateText("Changed the state of quest '" + questName
-									  + "' from '" + oldQuestState + "' to '" + newQuestState
-									  + "'. Told " + target.getTitle() + " to claim victory again.");
+						+ "' from '" + oldQuestState + "' to '" + newQuestState
+						+ "'. Told " + target.getTitle() + " to claim victory again.");
 			}
 		} else {
 				admin.sendPrivateText(args.get(0) + " is not logged in");

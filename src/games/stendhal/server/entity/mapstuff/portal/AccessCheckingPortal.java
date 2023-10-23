@@ -65,35 +65,35 @@ public abstract class AccessCheckingPortal extends Portal {
         portalIDCounter += 1;
     }
 
-	/**
-	 * Creates an access checking portal.
-	 *
-	 * @param rejectMessage
-	 *            The message to given when rejected.
-	 */
-	public AccessCheckingPortal(final String rejectMessage) {
-		this.rejectedMessage = rejectMessage;
+    /**
+     * Creates an access checking portal.
+     *
+     * @param rejectMessage
+     *            The message to given when rejected.
+     */
+    public AccessCheckingPortal(final String rejectMessage) {
+            this.rejectedMessage = rejectMessage;
 
         portalID = portalIDCounter;
         portalIDCounter += 1;
-	}
+    }
 
-	/**
-	 *
-	 * @param object
-	 */
-	public AccessCheckingPortal(final RPObject object) {
-		super(object);
+    /**
+     *
+     * @param object
+     */
+    public AccessCheckingPortal(final RPObject object) {
+            super(object);
 
         portalID = portalIDCounter;
         portalIDCounter += 1;
-	}
+    }
 
-	/**
-	 *
-	 * @return
-	 *      Message when password is accepted.
-	 */
+    /**
+     *
+     * @return
+     *      Message when password is accepted.
+     */
     public String getPasswordAcceptedMessage() {
         return passwordAcceptedMessage;
     }
@@ -137,7 +137,7 @@ public abstract class AccessCheckingPortal extends Portal {
                 int dy = py - y;
 
                 if (Math.abs(dx)<listeningRadius && Math.abs(dy)<listeningRadius) { // check rectangular area
-//              if (dx*dx + dy*dy < range*range) { // optionally we could check a circular area
+                //if (dx*dx + dy*dy < range*range) { // optionally we could check a circular area
                     players.add(player);
                 }
             }
@@ -176,25 +176,25 @@ public abstract class AccessCheckingPortal extends Portal {
         return instantAction;
     }
 
-	/**
-	 * Determine if this portal can be used.
-	 *
-	 * @param user
-	 *            The user to be checked.
-	 *
-	 * @return <code>true</code> if the user can use the portal.
-	 */
-	protected abstract boolean isAllowed(RPEntity user);
+    /**
+     * Determine if this portal can be used.
+     *
+     * @param user
+     *            The user to be checked.
+     *
+     * @return <code>true</code> if the user can use the portal.
+     */
+    protected abstract boolean isAllowed(RPEntity user);
 
-	public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
-	    if (player.getUnlockedPortals().contains(portalID)) {
-	        return true;
-	    }
-	    return false;
-	}
+    public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
+        if (player.getUnlockedPortals().contains(portalID)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
-	public void logic() {
+    public void logic() {
         // Execute action for password portal if required password is set.
         if (requiredPassword != null) {
             List<Player> players = getNearbyPlayersThatHaveSpoken();
@@ -244,52 +244,52 @@ public abstract class AccessCheckingPortal extends Portal {
         return false;
     }
 
-	/**
-	 * Called when the user is rejected. This sends a rejection message to the
-	 * user if set.
-	 *
-	 * @param user
-	 *            The rejected user.
-	 */
-	protected void rejected(final RPEntity user) {
-		if (rejectedMessage != null) {
-			if (!rejectedMessage.trim().equals("")) {
-			  sendMessage(user, rejectedMessage);
-			}
+    /**
+     * Called when the user is rejected. This sends a rejection message to the
+     * user if set.
+     *
+     * @param user
+     *            The rejected user.
+     */
+    protected void rejected(final RPEntity user) {
+        if (rejectedMessage != null) {
+            if (!rejectedMessage.trim().equals("")) {
+                sendMessage(user, rejectedMessage);
+            }
 
-			if (rejectedAction != null) {
-				rejectedAction.fire((Player) user, null, null);
-			}
+            if (rejectedAction != null) {
+                rejectedAction.fire((Player) user, null, null);
+            }
 
-			if (forceStop) {
-				if (user instanceof Player) {
-					((Player) user).forceStop();
-				} else {
-					user.stop();
-				}
-			} else {
-				/*
-				 * Suppresses sprite bounce-back in the case of non-resistant portals
-				 */
-				if (getResistance() != 0) {
-					user.stop();
-					user.clearPath();
-				}
-			}
-		}
-	}
+            if (forceStop) {
+                if (user instanceof Player) {
+                    ((Player) user).forceStop();
+                } else {
+                    user.stop();
+                }
+            } else {
+                /*
+                 * Suppresses sprite bounce-back in the case of non-resistant portals
+                 */
+                if (getResistance() != 0) {
+                    user.stop();
+                    user.clearPath();
+                }
+            }
+        }
+    }
 
-	/**
-	 * Wrapper to send a message to a user, without getting lost.
-	 *
-	 * @param user
-	 *            The user to send to.
-	 * @param text
-	 *            The message to send.
-	 */
-	protected void sendMessage(final RPEntity user, final String text) {
-		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
-	}
+    /**
+     * Wrapper to send a message to a user, without getting lost.
+     *
+     * @param user
+     *            The user to send to.
+     * @param text
+     *            The message to send.
+     */
+    protected void sendMessage(final RPEntity user, final String text) {
+        SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
+    }
 
     /**
      *
@@ -298,19 +298,21 @@ public abstract class AccessCheckingPortal extends Portal {
      */
     public void setInstantAction(final boolean instant) {
         instantAction = instant;
-//      logger.info("\nSetting instant action to \"" + Boolean.toString(instant) + "\" for portal at "
-//              + getZone().getName() + " (" + Integer.toString(getX()) + "," + Integer.toString(getY()) + "\n");
+        /*
+        logger.info("\nSetting instant action to \"" + Boolean.toString(instant) + "\" for portal at "
+                + getZone().getName() + " (" + Integer.toString(getX()) + "," + Integer.toString(getY()) + "\n");
+        */
     }
 
-	/**
-	 * Set the password accepted message.
-	 *
-	 * @param message
-	 *            Optional message to be given when correct password used.
-	 */
-	public void setPasswordAcceptedMessage(final String message) {
-	    passwordAcceptedMessage = message;
-	}
+    /**
+     * Set the password accepted message.
+     *
+     * @param message
+     *            Optional message to be given when correct password used.
+     */
+    public void setPasswordAcceptedMessage(final String message) {
+        passwordAcceptedMessage = message;
+    }
 
     /**
      * Set the password rejected message.
@@ -323,90 +325,90 @@ public abstract class AccessCheckingPortal extends Portal {
     }
 
 
-	/**
-	 * Sets the radius at which the portal will "hear" speaking players.
-	 *
-	 * @param radius
-	 *         Distance at wich portal listens for players speaking.
-	 */
-	public void setListeningRadius(int radius) {
-	    if (radius <= 0) {
-	        radius = 1;
-	    }
-	    listeningRadius = radius;
-	}
+    /**
+     * Sets the radius at which the portal will "hear" speaking players.
+     *
+     * @param radius
+     *         Distance at wich portal listens for players speaking.
+     */
+    public void setListeningRadius(int radius) {
+        if (radius <= 0) {
+            radius = 1;
+        }
+        listeningRadius = radius;
+    }
 
-	/**
-	 * Set the rejection message.
-	 *
-	 * @param message The message to give when rejected.
-	 */
-	public void setRejectedMessage(final String message) {
-		rejectedMessage = message;
-	}
+    /**
+     * Set the rejection message.
+     *
+     * @param message The message to give when rejected.
+     */
+    public void setRejectedMessage(final String message) {
+        rejectedMessage = message;
+    }
 
-	/**
-	 *
-	 * @param password
-	 */
-	public void setRequiredPassword(final String password) {
-	    requiredPassword = password;
-	}
+    /**
+     *
+     * @param password
+     */
+    public void setRequiredPassword(final String password) {
+        requiredPassword = password;
+    }
 
-	/**
-	 * Initiates an action to take on rejection.
-	 *
-	 * @param rejectedAction
-	 * 		ChatAction to execute.
-	 */
-	public void setRejectedAction(ChatAction rejectedAction) {
-		this.rejectedAction = rejectedAction;
-	}
+    /**
+     * Initiates an action to take on rejection.
+     *
+     * @param rejectedAction
+     *              ChatAction to execute.
+     */
+    public void setRejectedAction(ChatAction rejectedAction) {
+        this.rejectedAction = rejectedAction;
+    }
 
-	/**
-	 * Sets flag to override continuous movement & force entity to stop.
-	 *
-	 * @param forceStop
-	 * 		If <code>true</code>, entity is forced to stop movement.
-	 */
-	public void setForceStop(final boolean forceStop) {
-		this.forceStop = forceStop;
-	}
+    /**
+     * Sets flag to override continuous movement & force entity to stop.
+     *
+     * @param forceStop
+     *              If <code>true</code>, entity is forced to stop movement.
+     */
+    public void setForceStop(final boolean forceStop) {
+        this.forceStop = forceStop;
+    }
 
-	/**
-	 * A turn listener that sends a user message. Once sendPrivateText() is
-	 * fixed (via a queue or something) to always work, this can go away.
-	 */
-	protected static class SendMessage implements TurnListener {
-		/**
-		 * The user to send to.
-		 */
-		private final RPEntity user;
-		private final String text;
+    /**
+     * A turn listener that sends a user message. Once sendPrivateText() is
+     * fixed (via a queue or something) to always work, this can go away.
+     */
+    protected static class SendMessage implements TurnListener {
+        /**
+         * The user to send to.
+         */
+        private final RPEntity user;
+        private final String text;
 
-		/**
-		 * Create a message sending turn listener.
-		 *
-		 * @param user
-		 *            The user to send to.
-		 * @param text
-		 *            Message to send
-		 */
-		public SendMessage(final RPEntity user, final String text) {
-			this.user = user;
-			this.text = text;
-		}
+        /**
+         * Create a message sending turn listener.
+         *
+         * @param user
+         *            The user to send to.
+         * @param text
+         *            Message to send
+         */
+        public SendMessage(final RPEntity user, final String text) {
+            this.user = user;
+            this.text = text;
+        }
 
-		/**
-		 * This method is called when the turn number is reached.
-		 *
-		 * @param currentTurn
-		 *            Current turn number.
-		 */
-		@Override
-		public void onTurnReached(final int currentTurn) {
-			user.sendPrivateText(this.text);
-			user.notifyWorldAboutChanges();
-		}
-	}
+        /**
+         * This method is called when the turn number is reached.
+         *
+         * @param currentTurn
+         *            Current turn number.
+         */
+        @Override
+        public void onTurnReached(final int currentTurn) {
+            user.sendPrivateText(this.text);
+            user.notifyWorldAboutChanges();
+        }
+    }
 }

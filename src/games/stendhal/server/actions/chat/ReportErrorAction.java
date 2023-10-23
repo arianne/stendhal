@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     (C) Copyright 2015 - Stendhal                       *
+ *                   (C) Copyright 2015-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,7 +25,7 @@ import marauroa.server.game.container.PlayerEntryContainer;
  * handles error reports
  */
 public class ReportErrorAction  implements ActionListener {
-    private final Logger logger = Logger.getLogger(ReportErrorAction.class);
+	private final Logger logger = Logger.getLogger(ReportErrorAction.class);
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
@@ -41,8 +41,8 @@ public class ReportErrorAction  implements ActionListener {
 		MDC.remove("context");
 
 		logger.error(player.getName() + " (" + username + "):"
-		  + System.getProperty("line.separator")
-		  + action.get(TEXT).replaceAll("\r\n", System.getProperty("line.separator")));
+			+ System.getProperty("line.separator")
+			+ action.get(TEXT).replaceAll("\r\n", System.getProperty("line.separator")));
 
 		MDC.put("context", context);
 	}

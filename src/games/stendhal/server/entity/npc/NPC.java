@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *						(C) Copyright 2003 - Marauroa					   *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
- *																		   *
- *	 This program is free software; you can redistribute it and/or modify  *
- *	 it under the terms of the GNU General Public License as published by  *
- *	 the Free Software Foundation; either version 2 of the License, or	   *
- *	 (at your option) any later version.								   *
- *																		   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
@@ -72,9 +72,9 @@ public abstract class NPC extends DressedEntity {
 	/**
 	 * Idling between path cycles
 	 */
-    protected int pauseTurns = 0;
-    public int pauseTurnsRemaining = 0;
-    protected Direction pauseDirection;
+	protected int pauseTurns = 0;
+	public int pauseTurnsRemaining = 0;
+	protected Direction pauseDirection;
 
 	/**
 	 * Possible sound events.
@@ -112,7 +112,7 @@ public abstract class NPC extends DressedEntity {
 	 * Set the NPC's idea/thought.
 	 *
 	 * @param idea
-	 *			  The idea mnemonic, or <code>null</code>.
+	 *   The idea mnemonic, or <code>null</code>.
 	 */
 	public void setIdea(final String idea) {
 		if (idea != null) {
@@ -187,13 +187,13 @@ public abstract class NPC extends DressedEntity {
 	 * is not asynchronous, so this thread is blocked until a path is found.
 	 *
 	 * @param destEntity
-	 *			  the destination entity
+	 *   the destination entity
 	 * @param min
-	 *			  minimum distance to the destination entity
+	 *   minimum distance to the destination entity
 	 * @param max
-	 *			  maximum distance to the destination entity
+	 *   maximum distance to the destination entity
 	 * @param maxPathRadius
-	 *			  the maximum radius in which a path is searched
+	 *   the maximum radius in which a path is searched
 	 */
 	public void setMovement(final Entity destEntity, final double min, final double max,
 			final double maxPathRadius) {
@@ -219,11 +219,11 @@ public abstract class NPC extends DressedEntity {
 	 * Set a random destination as a path.
 	 *
 	 * @param distance
-	 *			  The maximum axis distance to move.
+	 *   The maximum axis distance to move.
 	 * @param x
-	 *			  The origin X coordinate for placement.
+	 *   The origin X coordinate for placement.
 	 * @param y
-	 *			  The origin Y coordinate for placement.
+	 *   The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
 		setUsesRandomPath(true);
@@ -291,81 +291,81 @@ public abstract class NPC extends DressedEntity {
 	 * Checks if the NPC should remain stationary or begin walking
 	 */
 	public void checkPause() {
-        if (pauseTurnsRemaining == 0) {
-            if (hasPath()) {
-                setSpeed(getBaseSpeed());
-            }
+		if (pauseTurnsRemaining == 0) {
+			if (hasPath()) {
+				setSpeed(getBaseSpeed());
+			}
 
-            applyMovement();
-        } else {
-            if (!stopped()) {
-                stop();
-                if (pauseDirection != null) {
+			applyMovement();
+		} else {
+			if (!stopped()) {
+				stop();
+				if (pauseDirection != null) {
 					setDirection(pauseDirection);
 				}
-            }
+			}
 
-            pauseTurnsRemaining -= 1;
-        }
+			pauseTurnsRemaining -= 1;
+		}
 	}
 
 	@Override
 	public void logic() {
-	    if (atMovementRadius()) {
-	        onOutsideMovementRadius();
-	    }
+		if (atMovementRadius()) {
+			onOutsideMovementRadius();
+		}
 		if (!hasPath()) {
-		    if (logger.isDebugEnabled()) {
-		        String title = getTitle();
-		        String zone = getZone().getName();
-		        String coords = Integer.toString(getX()) + ", " + Integer.toString(getY());
-		        logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
-		    }
+			if (logger.isDebugEnabled()) {
+				String title = getTitle();
+				String zone = getZone().getName();
+				String coords = Integer.toString(getX()) + ", " + Integer.toString(getY());
+				logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
+			}
 		}
 
 		maybeMakeSound();
 		checkPause();
-        notifyWorldAboutChanges();
+		notifyWorldAboutChanges();
 	}
 
-    /**
-     * Give NPC a random path
-     */
-    public void moveRandomly() {
-        setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
-    }
+	/**
+	 * Give NPC a random path
+	 */
+	public void moveRandomly() {
+			setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+	}
 
-    @Override
-    public void onFinishedPath() {
-        super.onFinishedPath();
+	@Override
+	public void onFinishedPath() {
+		super.onFinishedPath();
 
-        if (usesRandomPath()) {
-            // FIXME: There is a pause when renewing path
-            moveRandomly();
-        }
+		if (usesRandomPath()) {
+			// FIXME: There is a pause when renewing path
+			moveRandomly();
+		}
 
-        pauseTurnsRemaining = pauseTurns;
-    }
+		pauseTurnsRemaining = pauseTurns;
+	}
 
-    /**
-     * Pause the entity when path is completed.
-     * Call setDirection() first to specify which
-     * way entity should face during pause.
-     *
-     * @param pause
-     *         Number of turns entity should stay paused
-     */
-    public void setPathCompletedPause(final int pause) {
-        //setPathCompletedPause(pause, getDirection());
-        this.pauseTurns = pause;
-    }
+	/**
+	 * Pause the entity when path is completed.
+	 * Call setDirection() first to specify which
+	 * way entity should face during pause.
+	 *
+	 * @param pause
+	 *         Number of turns entity should stay paused
+	 */
+	public void setPathCompletedPause(final int pause) {
+		//setPathCompletedPause(pause, getDirection());
+		this.pauseTurns = pause;
+	}
 
-    public void setPathCompletedPause(final int pause, final Direction dir) {
-        this.pauseTurns = pause;
-        this.pauseDirection = dir;
-    }
+	public void setPathCompletedPause(final int pause, final Direction dir) {
+		this.pauseTurns = pause;
+		this.pauseDirection = dir;
+	}
 
-    /**
+	/**
 	 * Generate a sound event with the probability of SOUND_PROBABILITY, if
 	 * the previous sound event happened long enough ago.
 	 */

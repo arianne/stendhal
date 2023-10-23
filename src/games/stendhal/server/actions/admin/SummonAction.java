@@ -118,10 +118,10 @@ public class SummonAction extends AdministrationAction {
 			return;
 		}
 
-        if ("block".equals(action.get(CREATURE))) {
-		    final Block block = new Block(true);
-		    block.setPosition(action.getInt(X), action.getInt(Y));
-		    player.getZone().add(block);
+		if ("block".equals(action.get(CREATURE))) {
+			final Block block = new Block(true);
+			block.setPosition(action.getInt(X), action.getInt(Y));
+			player.getZone().add(block);
 		}
 
 		try {

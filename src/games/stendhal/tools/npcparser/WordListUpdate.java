@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,17 +31,17 @@ import marauroa.common.io.UnicodeSupportingInputStreamReader;
 public final class WordListUpdate {
 
     public static void main(final String[] args) {
-//    	// initialise TransactionPool for DB access
-//		new DatabaseFactory().initializeDatabase();
+        // initialise TransactionPool for DB access
+        //new DatabaseFactory().initializeDatabase();
 
-		// load word list and perform the update
-		String msg = updateWordList(WordList.getInstance());
+        // load word list and perform the update
+        String msg = updateWordList(WordList.getInstance());
 
-		System.out.print(msg);
+        System.out.print(msg);
     }
 
     public static String updateWordList(final WordList wl) {
-		StringBuilder log = new StringBuilder();
+        StringBuilder log = new StringBuilder();
 
         try {
             // read in the current word list including comment lines
@@ -50,13 +50,13 @@ public final class WordListUpdate {
             final List<String> comments = new ArrayList<String>();
 
             try {
-	            wl.read(reader, comments);
+                wl.read(reader, comments);
             } finally {
-            	reader.close();
+                reader.close();
             }
 
             // update the hash value
-//			wl.calculateHash();
+            //wl.calculateHash();
 
             // see if we can find the word list source file in the file system
             String outputPath = "src/games/stendhal/common/parser/" + WordList.WORDS_FILENAME;
@@ -79,14 +79,14 @@ public final class WordListUpdate {
 
             log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
 
-//        	// initialise TransactionPool if not yet ready
-//    		new DatabaseFactory().initializeDatabase();
-//
-//    		// update database entries
-//          DBWordList.writeToDB(wl);
-//          log.append("The word list has been stored into the database.\n");
+            // initialise TransactionPool if not yet ready
+            //new DatabaseFactory().initializeDatabase();
+
+            // update database entries
+            //DBWordList.writeToDB(wl);
+            //log.append("The word list has been stored into the database.\n");
         } catch (final IOException e) {
-        	log.append("Exception: " + e.getMessage() + "\n");
+            log.append("Exception: " + e.getMessage() + "\n");
             e.printStackTrace();
         }
 

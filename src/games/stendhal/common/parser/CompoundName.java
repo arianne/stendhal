@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2010-2017 - Stendhal                    *
+ *                   (C) Copyright 2010-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author Martin Fuchs
  */
 public class CompoundName extends ArrayList<String> {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	private ExpressionType	type;
 
@@ -58,15 +58,15 @@ public class CompoundName extends ArrayList<String> {
 			Expression curr = expressions.get(idx);
 			String word = get(i);
 
-	        // compare the current word in a case insensitive way
-	        if (!curr.getOriginal().equalsIgnoreCase(word)) {
-	        	return false;
-	        }
+			// compare the current word in a case insensitive way
+			if (!curr.getOriginal().equalsIgnoreCase(word)) {
+				return false;
+			}
 
-	        // don't merge if the break flag is set in-between the compound name
-	        if (i<size()-1 && curr.getBreakFlag()) {
-	            return false;
-	        }
+			// don't merge if the break flag is set in-between the compound name
+			if (i<size()-1 && curr.getBreakFlag()) {
+					return false;
+			}
 		}
 
 		return true;

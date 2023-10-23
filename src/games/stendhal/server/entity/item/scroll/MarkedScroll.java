@@ -2,7 +2,7 @@
  * $Id$
  */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -100,9 +100,9 @@ public class MarkedScroll extends TeleportScroll {
 								+ "you cannot concentrate on it because you have never been there.");
 						return false;
 					} else {
-					        zone = temp;
-					        x = Integer.parseInt(st.nextToken());
-							y = Integer.parseInt(st.nextToken());
+						zone = temp;
+						x = Integer.parseInt(st.nextToken());
+						y = Integer.parseInt(st.nextToken());
 						if (!zone.isTeleportInAllowed(x, y)) {
 							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
 							return false;

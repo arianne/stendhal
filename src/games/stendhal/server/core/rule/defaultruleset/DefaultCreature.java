@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -326,8 +326,7 @@ public class DefaultCreature {
 	 * Set the damage types.
 	 *
 	 * @param type
-	 * @param rangedType if <code>null</code>, then melee type is used for both
-	 * 	attack modes
+	 * @param rangedType if <code>null</code>, then melee type is used for both attack modes
 	 */
 	public void setDamageTypes(Nature type, Nature rangedType) {
 		damageType = type;
@@ -432,14 +431,14 @@ public class DefaultCreature {
 	 * @param sound Name of sound
 	 */
 	public void setCreatureDeathSound(String sound) {
-	    this.deathSound = sound;
+		this.deathSound = sound;
 	}
 
 	/**
 	 * Set a looped sound effect for creature when moving
 	 *
 	 * @param sound
-	 * 				desired sound effect
+	 *   desired sound effect
 	 */
 	public void setCreatureMovementSound(String sound) {
 		this.movementSound = sound;
@@ -451,15 +450,15 @@ public class DefaultCreature {
 	 * @param probability
 	 */
 	public void setStatusAttack(final String name, final double probability) {
-	    statusAttack = name;
-	    statusAttackProbability = probability;
+		statusAttack = name;
+		statusAttackProbability = probability;
 	}
 
 	/**
 	 * Sets the style of shadow to use for this entity.
 	 *
 	 * @param style
-	 * 		Name of the style.
+	 *   Name of the style.
 	 */
 	public void setShadowStyle(final String style) {
 		shadowStyle = style;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	 * @param questname
 	 *            name of quest-slot to read the original age from
 	 * @param fametype
-	 * 			  the type in the hall of fame
+	 *            the type in the hall of fame
 	 */
 	public SetHallOfFameToAgeDiffAction(final String questname, String fametype) {
 		this.questname = checkNotNull(questname);
@@ -55,7 +55,7 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	 * @param index
 	 *            index of sub state containing the age at start of the quest
 	 * @param fametype
-	 * 			  the type in the hall of fame
+	 *            the type in the hall of fame
 	 */
 	public SetHallOfFameToAgeDiffAction(final String questname, final int index, String fametype) {
 		this.questname = checkNotNull(questname);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -60,13 +60,13 @@ public class GoToPosition implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-	    // are we at our destination?
+		// are we at our destination?
 		Node current = new Node(ent.getX(), ent.getY());
 		if(current.equals(position)) {
 			finish();
 		} else {
 			// do we need to walk?
-		    path = new FixedPath(Path.searchPath(ent, position.getX(), position.getY()),false);
+			path = new FixedPath(Path.searchPath(ent, position.getX(), position.getY()),false);
 			if(path.getNodeList().size()==0) {
 				finish();
 			} else {

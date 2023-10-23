@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -314,8 +314,8 @@ public class AlterActionTest {
 	@Test
 	public final void testIsParsableByInteger() {
 		AlterAction action = new AlterAction();
-		  Definition def = new Definition();
-    	 def.setType(BYTE);
+		Definition def = new Definition();
+		def.setType(BYTE);
 		assertTrue(action.isParsableByInteger(def));
 
 		def.setType(FLAG);

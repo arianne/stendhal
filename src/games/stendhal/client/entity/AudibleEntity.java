@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,23 +70,23 @@ abstract class AudibleEntity extends ActiveEntity {
 	}
 
 	private String getSoundFromCategory(String groupName) {
-	    ArrayList<String> soundNameList = mCategorys.get(groupName);
+		ArrayList<String> soundNameList = mCategorys.get(groupName);
 
-	    if ((soundNameList != null) && !soundNameList.isEmpty()) {
-	        return soundNameList.get(0);
-	    }
+		if ((soundNameList != null) && !soundNameList.isEmpty()) {
+			return soundNameList.get(0);
+		}
 
-	    return null;
+		return null;
 	}
 
 	private String getSoundFromCategory(String groupName, int index) {
-	    ArrayList<String> soundNameList = mCategorys.get(groupName);
+		ArrayList<String> soundNameList = mCategorys.get(groupName);
 
-	    if ((soundNameList != null) && !soundNameList.isEmpty()) {
-	        return soundNameList.get(index);
-	    }
+		if ((soundNameList != null) && !soundNameList.isEmpty()) {
+			return soundNameList.get(index);
+		}
 
-	    return null;
+		return null;
 	}
 
 	@Override
@@ -109,12 +109,12 @@ abstract class AudibleEntity extends ActiveEntity {
 	}
 
 	protected void playSoundFromCategory(String groupName, String categoryName) {
-	    SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
-	    group.play(getSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
+		group.play(getSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);
 	}
 
-    protected void playSoundFromCategory(String groupName, String categoryName, int index) {
-        SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
-        group.play(getSoundFromCategory(categoryName, index), 0, mAudibleArea, new Time(), false, true);
-    }
+	protected void playSoundFromCategory(String groupName, String categoryName, int index) {
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
+		group.play(getSoundFromCategory(categoryName, index), 0, mAudibleArea, new Time(), false, true);
+	}
 }

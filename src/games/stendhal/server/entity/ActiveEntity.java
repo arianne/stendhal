@@ -406,7 +406,7 @@ public abstract class ActiveEntity extends Entity {
 	 * 		Steps taken
 	 */
 	public int getStepsTaken() {
-	    return stepsTaken;
+		return stepsTaken;
 	}
 
 	/**

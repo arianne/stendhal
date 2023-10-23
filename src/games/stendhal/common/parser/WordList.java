@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -87,31 +87,31 @@ final public class WordList {
 
 		final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 
-        if (str != null) {
-    		try {
-    			final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
+		if (str != null) {
+			try {
+				final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
 
-    			try {
-    				read(reader, null);
-    			} catch (final IOException e) {
-    				logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
-    			} finally {
-    				try {
-    					reader.close();
-    				} catch (IOException e) {
-    					logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
-    				}
-    			}
+				try {
+					read(reader, null);
+				} catch (final IOException e) {
+					logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
+				} finally {
+					try {
+						reader.close();
+					} catch (IOException e) {
+						logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
+					}
+				}
 			} finally {
-    			try {
-    				str.close();
-    			} catch (IOException e) {
-    				logger.warn("exception on closing resource stream", e);
-    			}
-    		}
-        } else {
-            logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");
-        }
+				try {
+					str.close();
+				} catch (IOException e) {
+					logger.warn("exception on closing resource stream", e);
+				}
+			}
+		} else {
+			logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");
+		}
 	}
 
 	/**
@@ -160,7 +160,7 @@ final public class WordList {
 		}
 
 		// calculate the hash value from all word entries
-//		calculateHash();
+		//calculateHash();
 	}
 
 	/**
@@ -591,18 +591,18 @@ final public class WordList {
 	 * @return compound name or null
 	 */
 	public CompoundName searchCompoundName(AbstractList<Expression> expressions, int idx) {
-        Expression first = expressions.get(idx);
+		Expression first = expressions.get(idx);
 
-    	Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
+		Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
 
 		if (candidates != null) {
-	    	TreeSet<CompoundName> candidatesSortedFromLongestToShortest = new TreeSet<CompoundName>(new ArrayLengthDescSorter<CompoundName>());
-	    	candidatesSortedFromLongestToShortest.addAll(candidates);
-    		for (CompoundName compName : candidatesSortedFromLongestToShortest) {
-    			if (compName.matches(expressions, idx)) {
-    				return compName;
-    			}
-    		}
+			TreeSet<CompoundName> candidatesSortedFromLongestToShortest = new TreeSet<CompoundName>(new ArrayLengthDescSorter<CompoundName>());
+			candidatesSortedFromLongestToShortest.addAll(candidates);
+			for (CompoundName compName : candidatesSortedFromLongestToShortest) {
+				if (compName.matches(expressions, idx)) {
+					return compName;
+				}
+			}
 		}
 
 		return null;
@@ -714,9 +714,11 @@ final public class WordList {
 			newEntry.setType(new ExpressionType(VERB_DYNAMIC));
 
 			words.put(key, newEntry);
-//		} else if (!checkNameCompatibleLastType(entry, ExpressionType.VERB)) {
-//	 		logger.warn("verb name already registered with incompatible expression type: " +
-//			entry.getNormalizedWithTypeString());
+		/*
+		} else if (!checkNameCompatibleLastType(entry, ExpressionType.VERB)) {
+			logger.warn("verb name already registered with incompatible expression type: " +
+			entry.getNormalizedWithTypeString());
+		*/
 		}
 	}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2018 - Marauroa                   *
+ *                    (C) Copyright 2003-2023 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,8 +53,8 @@ public abstract class Entity extends RPObject implements Killer {
 
 	private int y;
 
-    // Initial coordinates
-    private Point origin;
+	// Initial coordinates
+	private Point origin;
 
 	/**
 	 * Amount of resistance this has with other entities (0-100).
@@ -637,10 +637,10 @@ public abstract class Entity extends RPObject implements Killer {
 		final int oldY = this.y;
 		boolean moved = false;
 
-        // Set the original position of the entity
-        if (origin == null) {
-            origin = new Point(x, y);
-        }
+		// Set the original position of the entity
+		if (origin == null) {
+			origin = new Point(x, y);
+		}
 
 		if (x != oldX) {
 			this.x = x;
@@ -666,7 +666,7 @@ public abstract class Entity extends RPObject implements Killer {
 	 * @return The initial position of the entity
 	 */
 	public final Point getOrigin() {
-	    return origin;
+		return origin;
 	}
 
 	/**

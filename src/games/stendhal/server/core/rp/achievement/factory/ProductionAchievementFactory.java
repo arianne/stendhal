@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,7 +48,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 
 		final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
-	    final List<String> foodlist = producerRegister.getProducedItemNames("food");
+		final List<String> foodlist = producerRegister.getProducedItemNames("food");
 		final String[] foods = foodlist.toArray(new String[foodlist.size()]);
 		// may wish to remove mega potion by hand?
 
@@ -67,7 +67,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 				new QuestStateStartsWithCondition("coal_for_haunchy","waiting;"))));
 
 
-	    final List<String> drinklist = producerRegister.getProducedItemNames("drink");
+		final List<String> drinklist = producerRegister.getProducedItemNames("drink");
 		final String[] drinks = drinklist.toArray(new String[drinklist.size()]);
 
 		// soups and koboldish torcibud are made using quest code so we add extra
@@ -84,7 +84,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 				new QuestCompletedCondition("koboldish_torcibud"))));
 
 
-	    final List<String> resourcelist = producerRegister.getProducedItemNames("resource");
+		final List<String> resourcelist = producerRegister.getProducedItemNames("resource");
 		final String[] resources = resourcelist.toArray(new String[resourcelist.size()]);
 
 		// at time of writing: gold bar, mithril bar, flour, iron

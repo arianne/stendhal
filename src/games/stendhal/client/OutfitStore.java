@@ -136,7 +136,7 @@ public class OutfitStore {
 		final List<String> lnames = new LinkedList<>();
 		lnames.addAll(LAYER_NAMES);
 
-	    // initialize outfit parts to 0 in case some haven't been specified
+		// initialize outfit parts to 0 in case some haven't been specified
 		for (String n: lnames) {
 			layer_map.put(n, 0);
 		}

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,12 +65,12 @@ public class EntityHelper {
 	 * names are searched in the list of players and NPCs.
 	 *
 	 * @param target
-	 *			  representation of the target
+	 *   representation of the target
 	 * @param player
-	 *			  to constraint for current zone and screen area
+	 *   to constraint for current zone and screen area
 	 * @return the entity associated either with name or id or
-	 *		   <code> null </code> if none was found or any of
-	 *		   the input parameters was <code> null </code>.
+	 *   <code> null </code> if none was found or any of
+	 *   the input parameters was <code> null </code>.
 	 */
 	public static Entity entityFromTargetName(final String target, final Entity player) {
 		if ((target == null) || (player == null)) {
@@ -112,12 +112,12 @@ public class EntityHelper {
 	 * names are searched in the list of players and NPCs.
 	 *
 	 * @param target
-	 *			  representation of the target
+	 *   representation of the target
 	 * @param player
-	 *			  to constraint for current zone and screen area
+	 *   to constraint for current zone and screen area
 	 * @return the entity associated either with name or id or
-	 *		   <code> null </code> if none was found or any of
-	 *		   the input parameters was <code> null </code>.
+	 *   <code> null </code> if none was found or any of
+	 *   the input parameters was <code> null </code>.
 	 */
 	public static Entity entityFromTargetNameAnyZone(final String target, final Entity player) {
 		if ((target == null) || (player == null)) {
@@ -213,52 +213,52 @@ public class EntityHelper {
 	 * @param action action
 	 * @return EntitySlot or <code>null</code> if the action was invalid
 	 */
-    public static EntitySlot getSlot(Player player, RPAction action) {
-        final StendhalRPZone zone = player.getZone();
+	public static EntitySlot getSlot(Player player, RPAction action) {
+		final StendhalRPZone zone = player.getZone();
 
-        if (action.has(ATTR_BASEITEM) && action.has(ATTR_BASEOBJECT) && action.has(ATTR_BASESLOT)) {
+		if (action.has(ATTR_BASEITEM) && action.has(ATTR_BASEOBJECT) && action.has(ATTR_BASESLOT)) {
 
-            final int baseObject = action.getInt(ATTR_BASEOBJECT);
+			final int baseObject = action.getInt(ATTR_BASEOBJECT);
 
-            final RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
-            if (!zone.has(baseobjectid)) {
-                return null;
-            }
+			final RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+			if (!zone.has(baseobjectid)) {
+				return null;
+			}
 
-            final RPObject base = zone.get(baseobjectid);
-            if (!(base instanceof Entity)) {
-                // Shouldn't really happen because everything is an entity
-                return null;
-            }
+			final RPObject base = zone.get(baseobjectid);
+			if (!(base instanceof Entity)) {
+				// Shouldn't really happen because everything is an entity
+				return null;
+			}
 
-            final Entity baseEntity = (Entity) base;
+			final Entity baseEntity = (Entity) base;
 
-            if (baseEntity.hasSlot(action.get(ATTR_BASESLOT))) {
-                final RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
-                if (!(slot instanceof EntitySlot)) {
-                    return null;
-                }
-                return (EntitySlot) slot;
-            }
+			if (baseEntity.hasSlot(action.get(ATTR_BASESLOT))) {
+				final RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
+				if (!(slot instanceof EntitySlot)) {
+					return null;
+				}
+				return (EntitySlot) slot;
+			}
 
-        } else if (action.has(TARGET)) {
+		} else if (action.has(TARGET)) {
 
-            String target = action.get(TARGET);
+			String target = action.get(TARGET);
 
-            if ((target.length() > 1) && (target.charAt(0) == '#')
-                    && Character.isDigit(target.charAt(1))) {
-                final int objectId = Integer.parseInt(target.substring(1));
+			if ((target.length() > 1) && (target.charAt(0) == '#')
+					&& Character.isDigit(target.charAt(1))) {
+				final int objectId = Integer.parseInt(target.substring(1));
 
-                Entity entity = entityFromZoneByID(objectId, zone);
-                if (entity instanceof Item) {
-                    return new GroundSlot(zone, entity);
-                } else {
-                    return null;
-                }
-            }
-        }
-        return null;
-    }
+				Entity entity = entityFromZoneByID(objectId, zone);
+				if (entity instanceof Item) {
+					return new GroundSlot(zone, entity);
+				} else {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get an entity from path. Does not do any access checks.

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -79,15 +79,15 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	 */
 	private void resultSetNext() {
 		try {
-	        hasNext = resultSet.next();
-        } catch (final SQLException e) {
-        	hasNext = false;
-        	logger.error(e, e);
-        }
-        if (!hasNext) {
-        	close();
-        }
-    }
+			hasNext = resultSet.next();
+		} catch (final SQLException e) {
+			hasNext = false;
+			logger.error(e, e);
+		}
+		if (!hasNext) {
+			close();
+		}
+	}
 
 	@Override
 	public T next() {
@@ -104,13 +104,13 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 			if (nextCalled) {
 				resultSet.previous();
 			}
-	        resultSet.deleteRow();
+			resultSet.deleteRow();
 			if (nextCalled) {
 				resultSet.next();
 			}
-        } catch (final SQLException e) {
-        	logger.error(e, e);
-        }
+		} catch (final SQLException e) {
+			logger.error(e, e);
+		}
 	}
 
 	/**
@@ -123,16 +123,16 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 		closed = true;
 		try {
 			resultSet.close();
-        } catch (final SQLException e) {
-        	logger.error(e, e);
-        }
+		} catch (final SQLException e) {
+			logger.error(e, e);
+		}
 		try {
 			if (statement != null) {
 				statement.close();
 			}
-        } catch (final SQLException e) {
-        	logger.error(e, e);
-        }
+		} catch (final SQLException e) {
+			logger.error(e, e);
+		}
 	}
 
 	@Override

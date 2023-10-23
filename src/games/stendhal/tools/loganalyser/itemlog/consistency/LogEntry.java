@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,69 +44,69 @@ public class LogEntry {
 	 */
 	public LogEntry(final String id, final String timestamp, final String itemid, final String source, final String event, final String param1, final String param2, final String param3, final String param4) {
 		this.id = id;
-	    this.timestamp = timestamp;
-	    this.itemid = itemid;
-	    this.source = source;
-	    this.event = event;
-	    this.param1 = param1;
-	    this.param2 = param2;
-	    this.param3 = param3;
-	    this.param4 = param4;
-    }
+		this.timestamp = timestamp;
+		this.itemid = itemid;
+		this.source = source;
+		this.event = event;
+		this.param1 = param1;
+		this.param2 = param2;
+		this.param3 = param3;
+		this.param4 = param4;
+	}
 
 	public String getItemid() {
 		return itemid;
 	}
 
-    public String getEvent() {
-    	return event;
-    }
+	public String getEvent() {
+		return event;
+	}
 
-    public String getParam1() {
-    	return param1;
-    }
+	public String getParam1() {
+		return param1;
+	}
 
-    public String getParam2() {
-    	return param2;
-    }
+	public String getParam2() {
+		return param2;
+	}
 
-    public String getParam3() {
-    	return param3;
-    }
+	public String getParam3() {
+		return param3;
+	}
 
-    public String getParam4() {
-    	return param4;
-    }
+	public String getParam4() {
+		return param4;
+	}
 
-    public String getSource() {
-    	return source;
-    }
+	public String getSource() {
+		return source;
+	}
 
-    public String getTimestamp() {
-    	return timestamp;
-    }
+	public String getTimestamp() {
+		return timestamp;
+	}
 
-    @Override
-    public String toString() {
-    	final StringBuilder sb = new StringBuilder();
-    	sb.append(timestamp);
-    	sb.append('\t');
-    	sb.append(itemid);
-    	sb.append('\t');
-    	sb.append(source);
-    	sb.append('\t');
-    	sb.append(event);
-    	sb.append('\t');
-    	sb.append(param1);
-    	sb.append('\t');
-    	sb.append(param2);
-    	sb.append('\t');
-    	sb.append(param3);
-    	sb.append('\t');
-    	sb.append(param4);
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(timestamp);
+		sb.append('\t');
+		sb.append(itemid);
+		sb.append('\t');
+		sb.append(source);
+		sb.append('\t');
+		sb.append(event);
+		sb.append('\t');
+		sb.append(param1);
+		sb.append('\t');
+		sb.append(param2);
+		sb.append('\t');
+		sb.append(param3);
+		sb.append('\t');
+		sb.append(param4);
 
-    	return sb.toString();
-    }
+		return sb.toString();
+	}
 
 	public String getId() {
 		return id;

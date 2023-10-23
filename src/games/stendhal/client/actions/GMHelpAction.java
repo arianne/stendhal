@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,7 @@ class GMHelpAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-	    List<String> lines;
+		List<String> lines;
 		if (params[0] == null) {
 			lines = Arrays.asList(
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",

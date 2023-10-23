@@ -94,7 +94,7 @@ public class Engine {
 	 * @param condition
 	 *            additional precondition
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -121,7 +121,7 @@ public class Engine {
 	 * @param condition
 	 *            additional precondition
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -151,7 +151,7 @@ public class Engine {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -183,7 +183,7 @@ public class Engine {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -217,7 +217,7 @@ public class Engine {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -240,12 +240,12 @@ public class Engine {
 	 * @param triggerStrings
 	 *            a list of inputs for this transition, must not be null
 	 * @param matcher
-	 *			  Expression matcher
+	 *            Expression matcher
 	 * @param condition
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -275,7 +275,7 @@ public class Engine {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -302,7 +302,7 @@ public class Engine {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -500,7 +500,7 @@ public class Engine {
 	 * to Transitions.matchesNormalizedWithCondition().
 	 */
 	private static class TransitionSet extends LinkedList<Transition> {
-        private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 
 		@Override
 		public boolean add(final Transition otherTrans) {

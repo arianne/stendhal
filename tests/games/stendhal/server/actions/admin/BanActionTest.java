@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,9 +120,9 @@ public class BanActionTest {
 				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 			// we do a character check now. Made the the character name and the account name the same
-	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
+			if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player, new Timestamp(new Date().getTime()));
-	    	}
+			}
 
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
 
@@ -235,9 +235,9 @@ public class BanActionTest {
 				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel", new Timestamp(new Date().getTime()));
 			}
 			// we do a character check now. Made the the character name and the account name the same
-	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
+			if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player, new Timestamp(new Date().getTime()));
-	    	}
+			}
 
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
 

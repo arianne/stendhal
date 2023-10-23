@@ -72,22 +72,22 @@ abstract class AccessCheckingPortalFactory implements
 		final boolean ignoreNoDestination = ctx.getBoolean("ignoreNoDestination", false);
 
 		if (instantAction) {
-		    portal.setInstantAction(instantAction);
+			portal.setInstantAction(instantAction);
 		}
 		if (passwordAcceptedMessage != null) {
-		    portal.setPasswordAcceptedMessage(passwordAcceptedMessage);
+			portal.setPasswordAcceptedMessage(passwordAcceptedMessage);
 		}
 		if (passwordRejectedMessage != null) {
-		    portal.setPasswordRejectedMessage(passwordRejectedMessage);
+			portal.setPasswordRejectedMessage(passwordRejectedMessage);
 		}
 		if (rejectedMessage != null) {
 			portal.setRejectedMessage(rejectedMessage);
 		}
 		if (requiredPassword != null) {
-		    portal.setRequiredPassword(requiredPassword);
+			portal.setRequiredPassword(requiredPassword);
 		}
 		if (listeningRadius > 0) {
-		    portal.setListeningRadius(listeningRadius);
+			portal.setListeningRadius(listeningRadius);
 		}
 		if (rejectedAction != null) {
 			portal.setRejectedAction(rejectedAction);
@@ -98,47 +98,47 @@ abstract class AccessCheckingPortalFactory implements
 		return portal;
 	}
 
-    /**
-     * Extract string value from a context.
-     *
-     * @param ctx
-     *            The configuration context.
-     * @param key
-     *            The key to search for.
-     * @return
-     *            The string value of the key, or <code>null</code> if none.
-     * @throws IllegalArgumentException
-     *             If the class attribute is missing.
-     */
-    protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
-        return ctx.getString(key, null);
-    }
+	/**
+	 * Extract string value from a context.
+	 *
+	 * @param ctx
+	 *            The configuration context.
+	 * @param key
+	 *            The key to search for.
+	 * @return
+	 *            The string value of the key, or <code>null</code> if none.
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
+	 */
+	protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
+		return ctx.getString(key, null);
+	}
 
-    /**
-     * Extract integer value from a context.
-     *
-     * @param ctx
-     *            The configuration context.
-     * @param key
-     *            The key to search for.
-     * @return
-     *            The integer value of the key, or <code>null</code> if none.
-     * @throws IllegalArgumentException
-     *             If the class attribute is missing.
-     */
-    protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
-        return ctx.getInt(key, -1);
-    }
+	/**
+	 * Extract integer value from a context.
+	 *
+	 * @param ctx
+	 *            The configuration context.
+	 * @param key
+	 *            The key to search for.
+	 * @return
+	 *            The integer value of the key, or <code>null</code> if none.
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
+	 */
+	protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
+		return ctx.getInt(key, -1);
+	}
 
-    /**
-     * Creates a new ChatAction from ConfigurableFactoryContext.
-     *
-     * @param ctx
-     * 		ConfigurableFactoryContext
-     * @return
-     * 		ChatAction instance
-     */
-    protected ChatAction getRejectedAction(final ConfigurableFactoryContext ctx) {
+	/**
+	 * Creates a new ChatAction from ConfigurableFactoryContext.
+	 *
+	 * @param ctx
+	 * 		ConfigurableFactoryContext
+	 * @return
+	 * 		ChatAction instance
+	 */
+	protected ChatAction getRejectedAction(final ConfigurableFactoryContext ctx) {
 		String value = ctx.getString("rejectedAction", null);
 		if (value == null) {
 			return null;
@@ -152,5 +152,5 @@ abstract class AccessCheckingPortalFactory implements
 		} catch (CompilationFailedException e) {
 			throw new IllegalArgumentException(e);
 		}
-    }
+	}
 }

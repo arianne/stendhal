@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -574,15 +574,15 @@ public final class StatsPanelController {
 			}
 
 			Object value = event.getNewValue();
-	        final StatusID ID = StatusID.getStatusID(event.getPropertyName());
-	        final boolean enabled = value != null;
-	        SwingUtilities.invokeLater(new Runnable() {
-	            @Override
-	            public void run() {
-	                panel.setStatus(ID, enabled);
-	            }
-	        });
-	    }
+			final StatusID ID = StatusID.getStatusID(event.getPropertyName());
+			final boolean enabled = value != null;
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					panel.setStatus(ID, enabled);
+				}
+			});
+		}
 	}
 
 	/**

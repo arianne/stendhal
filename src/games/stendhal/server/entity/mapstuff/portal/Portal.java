@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -185,7 +185,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	public void logic() {
-	    // Sub-classes can implement this
+		// Sub-classes can implement this
 	}
 
 	@Override

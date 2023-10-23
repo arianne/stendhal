@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2009-2015 - Stendhal                    *
+ *                   (C) Copyright 2009-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -389,17 +389,17 @@ public class Grammar {
 				// "teddy bear" -> "teddy"
 				(word1.getMainWord().equals("teddy") && word2.getMainWord().equals("bear"))) {
 
-		    // transform "ice cream" into the item name "icecream"
-		    if (word1.getMainWord().equals("ice")) {
-		    	word1.setNormalized("icecream");
-		    }
+			// transform "ice cream" into the item name "icecream"
+			if (word1.getMainWord().equals("ice")) {
+				word1.setNormalized("icecream");
+			}
 
-		    return word1;
-        } else {
-            word2.mergeLeft(word1, true);
+			return word1;
+		} else {
+			word2.mergeLeft(word1, true);
 
-            return word2;
-        }
+			return word2;
+		}
 	}
 
 	/**
@@ -1309,7 +1309,7 @@ public class Grammar {
 		} else {
 			return null;
 		}
-    }
+	}
 
 	/**
 	 * Check for words with ambiguity between noun and verb.

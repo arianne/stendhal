@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,10 +78,10 @@ public class PlayerDieer {
 		if (!(killer instanceof RaidCreature)) {
 			logger.debug("noraidcreature");
 			logger.debug("player karma is " + player.getKarma());
-   			double karma;
+			double karma;
 			if (player.isBadBoy()) {
-			    // don't allow PKers to use good karma to help against death penalty
-			    // if they had positive karma, this will return 0 (i.e. no change to the normal death penalty)
+				// don't allow PKers to use good karma to help against death penalty
+				// if they had positive karma, this will return 0 (i.e. no change to the normal death penalty)
 				karma = player.useKarma(-100.0, 0.0);
 			} else {
 				karma = player.useKarma(-100.0, 100.0);
@@ -104,13 +104,13 @@ public class PlayerDieer {
 			logger.debug("ringlist " + ringList);
 
 			if (ringList.isEmpty()) {
-			    // if player has positive karma, then they will lose between 0% and 10% skills - less than if karma was ignored
-			    // if player has negative karma, they lose between 10% and 20% skills - more than if karma was ignored
-			    penaltyFactor = 0.9 + (karma / 10.0);
-			    logger.debug("penaltyFactor: " + penaltyFactor);
+				// if player has positive karma, then they will lose between 0% and 10% skills - less than if karma was ignored
+				// if player has negative karma, they lose between 10% and 20% skills - more than if karma was ignored
+				penaltyFactor = 0.9 + (karma / 10.0);
+				logger.debug("penaltyFactor: " + penaltyFactor);
 			} else {
-			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored
-			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored
+				// if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored
+				// if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored
 				// Use up a random ring
 				Rand.rand(ringList).damage();
 				penaltyFactor = 0.99 + (karma / 100.0);

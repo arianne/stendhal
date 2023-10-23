@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -59,24 +59,24 @@ public class RentedSign extends Sign implements StorableEntity {
 	 * @param rpobject
 	 */
 	public RentedSign(final RPObject rpobject) {
-	    super(rpobject);
-	    store();
-    }
+		super(rpobject);
+		store();
+	}
 
 	/**
 	 * returns the owner.
 	 *
 	 * @return name of owner
 	 */
-    public String getRenter() {
-    	return get(RENTER);
-    }
+	public String getRenter() {
+		return get(RENTER);
+	}
 
-    /**
-     * Returns the timestamp when this entity was created.
-     *
-     * @return timestamp in milliseconds
-     */
+	/**
+	 * Returns the timestamp when this entity was created.
+	 *
+	 * @return timestamp in milliseconds
+	 */
 	public long getTimestamp() {
 		return (long) Float.parseFloat(get(TIMESTAMP));
 	}

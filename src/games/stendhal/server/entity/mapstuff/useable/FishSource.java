@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -174,8 +174,8 @@ public class FishSource extends PlayerActivityEntity {
 			player.incHarvestedForItem(itemName, 1);
 			player.sendPrivateText("You caught a fish.");
 		} else {
-		    // TODO: find a sound for failure
-            //this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			// TODO: find a sound for failure
+			//this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
 			this.notifyWorldAboutChanges();
 
 			player.sendPrivateText("You didn't get a fish.");
@@ -191,9 +191,9 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onStarted(final Player player) {
-	    // Play a nice fishing sound
-        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-        notifyWorldAboutChanges();
+		// Play a nice fishing sound
+		addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+		notifyWorldAboutChanges();
 
 		// some feedback is needed.
 		player.sendPrivateText("You have started fishing.");

@@ -262,14 +262,14 @@ public abstract class RPEntity extends CombatEntity {
 		return super.handlePortal(portal);
 	}
 
-    public static void generateRPClass() {
-        try {
-            stats = Statistics.getStatistics();
-            RPEntityRPClass.generateRPClass(ATTR_TITLE);
-        } catch (final SyntaxException e) {
-            logger.error("cannot generateRPClass", e);
-        }
-    }
+	public static void generateRPClass() {
+		try {
+			stats = Statistics.getStatistics();
+			RPEntityRPClass.generateRPClass(ATTR_TITLE);
+		} catch (final SyntaxException e) {
+			logger.error("cannot generateRPClass", e);
+		}
+	}
 
 	public RPEntity(final RPObject object) {
 		super(object);
@@ -529,7 +529,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @param defender
 	 *            The defender.
 	 * @param attackingWeaponsValue
-	 * 			  ATK-value of all attacking weapons/spells
+	 *            ATK-value of all attacking weapons/spells
 	 * @param damageType nature of damage
 	 * @param isRanged <code>true</code> if this is a ranged attack, otherwise
 	 * 	<code>false</code>
@@ -650,7 +650,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @param defender
 	 *            The defender.
 	 * @param attackingWeaponsValue
-	 * 			  ATK-value of all attacking weapons/spells
+	 *            ATK-value of all attacking weapons/spells
 	 * @param damageType nature of damage
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
@@ -1718,7 +1718,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *            The entity who caused the death
 	 */
 	public final void onDead(final Killer killer) {
-	    onDead(killer, true);
+		onDead(killer, true);
 	}
 
 	/**

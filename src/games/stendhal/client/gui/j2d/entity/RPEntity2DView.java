@@ -435,7 +435,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 *            The drawn entity height.
 	 */
 	private void drawCombat(final Graphics2D g2d, final int x,
-							  final int y, final int width, final int height) {
+			final int y, final int width, final int height) {
 		Rectangle2D wrect = entity.getArea();
 		final Rectangle srect = new Rectangle(
 				(int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -107,7 +107,7 @@ public class WeeklyItemQuestTest {
 		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
 		assertThat(getReply(npc), is(oneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.",
-				                            "The museum can only afford to send you to fetch an item once a week. Please check back in 1 week.")));
+				"The museum can only afford to send you to fetch an item once a week. Please check back in 1 week.")));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 

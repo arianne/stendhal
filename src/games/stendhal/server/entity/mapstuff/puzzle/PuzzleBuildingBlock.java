@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2016-2016 - Stendhal                    *
+ *                   (C) Copyright 2016-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -62,15 +62,15 @@ public class PuzzleBuildingBlock {
 					PuzzleEventDispatcher.get().parseExpression(this, expression));
 
 			Scanner sc = new Scanner(expression);
-		    Pattern pattern = Pattern.compile("\"[^\"]*\"|[A-Za-z0-9._]+");
-		    String token = sc.findInLine(pattern);
-		    while (token != null) {
-		    	if (token.charAt(0) != '"' && token.contains(".")) {
-		    		this.dependencies.add(token.substring(0, token.lastIndexOf('.')));
-		    	}
-		        token = sc.findInLine(pattern);
-		    }
-		    sc.close();
+			Pattern pattern = Pattern.compile("\"[^\"]*\"|[A-Za-z0-9._]+");
+			String token = sc.findInLine(pattern);
+			while (token != null) {
+				if (token.charAt(0) != '"' && token.contains(".")) {
+					this.dependencies.add(token.substring(0, token.lastIndexOf('.')));
+				}
+				token = sc.findInLine(pattern);
+			}
+			sc.close();
 		}
 	}
 

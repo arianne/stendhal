@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,8 +35,8 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	 * @param resultSet resultSet
 	 */
 	public LogEntryIterator(final ResultSet resultSet) {
-	    super(resultSet);
-    }
+		super(resultSet);
+	}
 
 	/**
 	 * Creates a new LogEntryIterator.
@@ -45,8 +45,8 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	 * @param resultSet resultSet
 	 */
 	public LogEntryIterator(final Statement statement, final ResultSet resultSet) {
-	    super(statement, resultSet);
-    }
+		super(statement, resultSet);
+	}
 
 	@Override
     protected LogEntry createObject() {
@@ -55,16 +55,16 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 				resultSet.getString("id"),
 				resultSet.getString("timedate"),
 				resultSet.getString("itemid"),
-	    		resultSet.getString("source"),
-	    		resultSet.getString("event"),
-	    		resultSet.getString("param1"),
-	    		resultSet.getString("param2"),
-	    		resultSet.getString("param3"),
-	    		resultSet.getString("param4"));
+				resultSet.getString("source"),
+				resultSet.getString("event"),
+				resultSet.getString("param1"),
+				resultSet.getString("param2"),
+				resultSet.getString("param3"),
+				resultSet.getString("param4"));
 		} catch (final SQLException e) {
 			logger.error(e, e);
 			return null;
 		}
-    }
+	}
 
 }

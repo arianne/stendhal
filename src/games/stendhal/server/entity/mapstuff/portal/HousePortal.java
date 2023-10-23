@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -97,7 +97,7 @@ public class HousePortal extends AccessCheckingPortal {
 		super.setIdentifier(idToObject(PORTAL_REFERENCE));
 		setRejectedMessage("The door is locked.");
 
-	   	store();
+		store();
 	}
 
 	/**

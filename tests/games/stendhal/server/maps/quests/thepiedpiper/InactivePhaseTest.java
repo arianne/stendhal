@@ -27,18 +27,17 @@ public class InactivePhaseTest extends TPPTestHelper {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("Ados isn't being invaded by rats right now. You can still "+
-							  "get a #reward for the last time you helped. You can ask for #details "+
-							  "if you want.", getReply(npc));
+				"get a #reward for the last time you helped. You can ask for #details "+
+				"if you want.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("You killed no rats during the #rats invasion. "+
-				  "To get a #reward you have to kill at least "+
-				  "one rat at that time.", getReply(npc));
+				"To get a #reward you have to kill at least "+
+				"one rat at that time.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		assertTrue(quest.getHistory(player).isEmpty());
 	}
-
 
 }

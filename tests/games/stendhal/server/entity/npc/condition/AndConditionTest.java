@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -96,12 +96,12 @@ public class AndConditionTest {
 	@Test
 	public void testEqualsthisandsingle() {
 		final String QUEST_SLOT = "quest";
-		final ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
-		   , new KilledCondition("dark elf archer", "dark elf captain", "thing"));
+		final ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+				new KilledCondition("dark elf archer", "dark elf captain", "thing"));
 
 		final ChatCondition instate = new QuestInStateCondition(QUEST_SLOT, "start");
-		  assertFalse(andcon.equals(instate));
-		  assertFalse(instate.equals(andcon));
+		assertFalse(andcon.equals(instate));
+		assertFalse(instate.equals(andcon));
 	}
 
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,7 +36,7 @@ public enum ZoneEventType {
 	VISIT_SEMOS_CAVES(
 			"The ground in this cave trembles from the footfalls of GIANTS! The weak should explore no further here. Turn around and run away!"),
 	VISIT_ADOS_CASTLE(
-			  "You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away.");
+			"You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away.");
 
 	private String message;
 

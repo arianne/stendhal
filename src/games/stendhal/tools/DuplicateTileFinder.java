@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2018 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2023 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,11 +99,11 @@ public class DuplicateTileFinder {
 		try {
 			Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
 				@Override
-			    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-			        throws IOException {
+				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+						throws IOException {
 					checkFile(file);
-			        return FileVisitResult.CONTINUE;
-			    }
+					return FileVisitResult.CONTINUE;
+				}
 			});
 		} catch (IOException e) {
 			e.printStackTrace();

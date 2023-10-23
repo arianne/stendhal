@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -219,9 +219,9 @@ public class PersonalChest extends Chest {
 	}
 
 	@Override
-    public String getDescriptionName(final boolean definite) {
-	    return Grammar.article_noun(bankName + " chest", definite);
-    }
+	public String getDescriptionName(final boolean definite) {
+		return Grammar.article_noun(bankName + " chest", definite);
+	}
 
 	/**
 	 * A listener for syncing the slot contents.

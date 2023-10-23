@@ -45,34 +45,34 @@ public class Herald extends ScriptImpl {
 
 	// TODO: there is ability of using list of herald names,
 	// it will add to game more fun.
-    public final String HeraldName = "Patrick";
+	public final String HeraldName = "Patrick";
 
-    // after some thinking, i decided to not implement here
+	// after some thinking, i decided to not implement here
 	// news records to file.
 	private final Logger logger = Logger.getLogger(Herald.class);
-    private final int REQUIRED_ADMINLEVEL_INFO = 100;
-    private final int REQUIRED_ADMINLEVEL_SET = 1000;
-    private final TurnNotifier turnNotifier = TurnNotifier.get();
+	private final int REQUIRED_ADMINLEVEL_INFO = 100;
+	private final int REQUIRED_ADMINLEVEL_SET = 1000;
+	private final TurnNotifier turnNotifier = TurnNotifier.get();
 
-    //private final String HaveNoTime = "Hi, I have to do my job, so I have no time to speak with you, sorry.";
-    private final String HiOldFriend = "Oh, you're here! Hi, my old friend, glad to see you.";
-    private final String TooScared = "Oh, you are crazy, sure. I can't help you, the Emperor will kill us both for that.";
-    private final String BadJoke = "Joke, yes? I like jokes, but not too much.";
-    private final String FeelBad = "Oh, I don't know what is wrong with me, I'm not feeling very well... sorry, I can't help you...";
-    private final String DontUnderstand = "Sorry, I don't understand you";
-    private final String InfoOnly = "Oh, I think I can trust you enough to tell you my current announcements list. ";
-    private final String WillHelp = "Sure, I will do for you all that you want."+
+	//private final String HaveNoTime = "Hi, I have to do my job, so I have no time to speak with you, sorry.";
+	private final String HiOldFriend = "Oh, you're here! Hi, my old friend, glad to see you.";
+	private final String TooScared = "Oh, you are crazy, sure. I can't help you, the Emperor will kill us both for that.";
+	private final String BadJoke = "Joke, yes? I like jokes, but not too much.";
+	private final String FeelBad = "Oh, I don't know what is wrong with me, I'm not feeling very well... sorry, I can't help you...";
+	private final String DontUnderstand = "Sorry, I don't understand you";
+	private final String InfoOnly = "Oh, I think I can trust you enough to tell you my current announcements list. ";
+	private final String WillHelp = "Sure, I will do for you all that you want."+
 									" Tell me '#speech <time interval (seconds)> <time limit (seconds)> <text to speech>'. " +
 									"If you want to remove one of my current announcements, "+
 									"tell me '#remove <number of speech>'. "+
 									"You can also ask me about current announcements, say '#info' for that.";
 
-    private final LinkedList<HeraldNews> heraldNews = new LinkedList<HeraldNews>();
+	private final LinkedList<HeraldNews> heraldNews = new LinkedList<HeraldNews>();
 
-    /**
-     * class for herald announcements.
-     */
-    private final static class HeraldNews {
+	/**
+	 * class for herald announcements.
+	 */
+	private final static class HeraldNews {
 
 		private final String news;
 		private final int interval;
@@ -195,8 +195,8 @@ public class Herald extends ScriptImpl {
 			}
 		} catch (IndexOutOfBoundsException ioobe) {
 			logger.error("workWithCounters: index is out of bounds: "+Integer.toString(index)+
-					     ", size "+Integer.toString(heraldNews.size())+
-					     ", id "+Integer.toString(id),ioobe);
+					", size "+Integer.toString(heraldNews.size())+
+					", id "+Integer.toString(id),ioobe);
 		}
 	}
 
@@ -229,13 +229,13 @@ public class Herald extends ScriptImpl {
 						// will add 1 to position numbers to show position 0 as 1.
 						logger.info("info: index "+Integer.toString(i));
 						try {
-						final int left = heraldNews.get(i).getLimit()/heraldNews.get(i).getInterval()-
-										 heraldNews.get(i).getCounter();
-						sb.append(" #"+Integer.toString(i+1)+". (left "+
-								  Integer.toString(left)+" times): "+
-								"#Every #"+Integer.toString(heraldNews.get(i).getInterval())+
-								" #seconds #to #"+Integer.toString(heraldNews.get(i).getLimit())+
-								" #seconds: \""+heraldNews.get(i).getNews()+"\"");
+							final int left = heraldNews.get(i).getLimit()/heraldNews.get(i).getInterval()-
+									heraldNews.get(i).getCounter();
+							sb.append(" #"+Integer.toString(i+1)+". (left "+
+									Integer.toString(left)+" times): "+
+									"#Every #"+Integer.toString(heraldNews.get(i).getInterval())+
+									" #seconds #to #"+Integer.toString(heraldNews.get(i).getLimit())+
+									" #seconds: \""+heraldNews.get(i).getNews()+"\"");
 						} catch (IndexOutOfBoundsException ioobe) {
 							logger.error("ReadNewsAction: size of heraldNews = "+
 									Integer.toString(newssize), ioobe);
@@ -305,7 +305,7 @@ public class Herald extends ScriptImpl {
 						try {
 							text = text.substring(starr[0].length()).trim().
 										substring(starr[1].length()).trim().
-								        substring(starr[2].length()).trim();
+										substring(starr[2].length()).trim();
 							final String out="Interval: "+Integer.toString(interval)+", limit: "+
 							Integer.toString(limit)+", text: \""+text+"\"";
 							npc.say("Ok, I have recorded it. "+out);
@@ -315,12 +315,12 @@ public class Herald extends ScriptImpl {
 							heraldNews.add(new HeraldNews(text, interval, limit, 0, tnl, heraldNews.size()));
 							turnNotifier.notifyInSeconds(interval,tnl);
 						} catch (IndexOutOfBoundsException ioobe) {
-						    	npc.say(FeelBad);
-						    	logger.error("WriteNewsAction: Error while parsing sentence "+sentence.toString(), ioobe);
+							npc.say(FeelBad);
+							logger.error("WriteNewsAction: Error while parsing sentence "+sentence.toString(), ioobe);
 						}
 					} catch (NumberFormatException nfe) {
-						 npc.say(DontUnderstand);
-						 logger.info("Error while parsing numbers. Interval and limit is: "+"("+starr[0]+"), ("+starr[1]+")");
+						npc.say(DontUnderstand);
+						logger.info("Error while parsing numbers. Interval and limit is: "+"("+starr[0]+"), ("+starr[1]+")");
 					}
 				}
 			}

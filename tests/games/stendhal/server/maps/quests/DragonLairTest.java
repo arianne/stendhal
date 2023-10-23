@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -105,7 +105,7 @@ public class DragonLairTest {
 		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
 		assertThat(getReply(npc), is(oneOf("I think they've had enough excitement for a while. Come back in 7 days.",
-										  "I think they've had enough excitement for a while. Come back in 1 week.")));
+				"I think they've had enough excitement for a while. Come back in 1 week.")));
 		en.step(player, "bye");
 		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 

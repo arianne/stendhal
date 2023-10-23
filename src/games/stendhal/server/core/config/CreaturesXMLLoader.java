@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -326,8 +326,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 				sounds.add(attrs.getValue("value"));
 			} else if (qName.equals("movement")) {
 				movementSound = attrs.getValue("value");
-            } else if (qName.equals("death")) {
-                deathSound = attrs.getValue("value");
+			} else if (qName.equals("death")) {
+					deathSound = attrs.getValue("value");
 			}
 		} else if (qName.equals("abilities")) {
 			abilities = true;
@@ -346,8 +346,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			Double value = Double.valueOf(attrs.getValue("value"));
 			susceptibilities.put(type, value);
 		} else if (abilities && qName.equals("statusattack")) {
-		    statusAttack = attrs.getValue("type");
-		    statusAttackProbability = Double.valueOf(attrs.getValue("value"));
+			statusAttack = attrs.getValue("type");
+			statusAttackProbability = Double.valueOf(attrs.getValue("value"));
 		}
 	}
 
@@ -392,7 +392,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setCreatureMovementSound(movementSound);
 
 			if (statusAttack != null) {
-			    creature.setStatusAttack(statusAttack, statusAttackProbability);
+				creature.setStatusAttack(statusAttack, statusAttackProbability);
 			}
 
 			list.add(creature);

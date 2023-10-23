@@ -27,8 +27,8 @@ public class DropActionTest extends ZoneAndPlayerTestImpl {
 	private static final String ZONE_NAME = "int_semos_tavern_0";
 
 	public DropActionTest() {
-	    super(ZONE_NAME);
-    }
+		super(ZONE_NAME);
+	}
 
 	/**
 	 * Initialise the world.

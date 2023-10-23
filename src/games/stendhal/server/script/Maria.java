@@ -136,11 +136,11 @@ public class Maria extends ScriptImpl {
 									new AndCondition(
 											new QuestInStateCondition(QUEST_SLOT, 0,"seen_naked"),
 											new TimePassedCondition(QUEST_SLOT,1,GRACE_PERIOD)),
-							        new QuestInStateCondition(QUEST_SLOT,"seen"),
-							        new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
-							        // done was an old state that was used when naked but then clothed,
-							        // but they should do learnt_manners too
-							        new QuestInStateCondition(QUEST_SLOT,"done"))),
+									new QuestInStateCondition(QUEST_SLOT,"seen"),
+									new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
+									// done was an old state that was used when naked but then clothed,
+									// but they should do learnt_manners too
+									new QuestInStateCondition(QUEST_SLOT,"done"))),
 					new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {

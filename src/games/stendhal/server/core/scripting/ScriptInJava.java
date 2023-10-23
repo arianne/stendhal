@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,8 +61,8 @@ public class ScriptInJava extends ScriptingSandbox {
 	 * @throws InstantiationException
 	 */
 	private void newInstance() throws MalformedURLException, ClassNotFoundException,
-	        NoSuchMethodException, IllegalAccessException, InvocationTargetException,
-	        InstantiationException {
+			NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+			InstantiationException {
 		// Create new class loader
 		// with current dir as CLASSPATH
 		final File file = new File("./data/script");

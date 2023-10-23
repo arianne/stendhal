@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -674,7 +674,7 @@ public class SpeakerNPC extends PassiveNPC {
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
 	 * @param secondary
-	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -821,10 +821,10 @@ public class SpeakerNPC extends PassiveNPC {
 
 	public void setCurrentState(final ConversationStates state) {
 		if (state == ConversationStates.ATTENDING) {
-        	setIdea("attending");
-        } else {
-        	setIdea("awaiting");
-        }
+			setIdea("attending");
+		} else {
+			setIdea("awaiting");
+		}
 		engine.setCurrentState(state);
 	}
 

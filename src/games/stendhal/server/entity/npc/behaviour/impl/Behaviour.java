@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -28,15 +28,15 @@ import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 public class Behaviour extends ItemParser {
 
 	public Behaviour() {
-    }
+	}
 
 	public Behaviour(final Set<String> itemNames) {
-	    super(itemNames);
-    }
+		super(itemNames);
+	}
 
 	public Behaviour(final String itemName) {
 		super(itemName);
-    }
+	}
 
 	/**
 	 * a chat condition that checks whether transactions are possible at all

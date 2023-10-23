@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -191,15 +191,15 @@ public class TextBoxFactory {
 		return splitFormatted(formattedString, width);
 	}
 
-	 /**
-	  * Draw a chat bubble.
-	  *
-	  * @param g2d
-	  * @param fillColor the bacground color of the bubble
-	  * @param outLineColor the color of the bubble outline
-	  * @param width width of the bubble body
-	  * @param height height of the bubble
-	  */
+	/**
+	 * Draw a chat bubble.
+	 *
+	 * @param g2d
+	 * @param fillColor the bacground color of the bubble
+	 * @param outLineColor the color of the bubble outline
+	 * @param width width of the bubble body
+	 * @param height height of the bubble
+	 */
 	private void drawBubble(final Graphics2D g2d, final Color fillColor,
 			final Color outLineColor, final int width, final int height) {
 		/*

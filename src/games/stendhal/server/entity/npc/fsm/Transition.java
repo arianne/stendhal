@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,7 +71,7 @@ public class Transition {
 	 * @param condition
 	 *            additional precondition
 	 * @param secondary
-	 *			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -104,7 +104,7 @@ public class Transition {
 	 * @param condition
 	 *            additional precondition
 	 * @param secondary
-	 *			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 *            flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -193,11 +193,11 @@ public class Transition {
 	public boolean matchesWildSimilar(final Sentence sentence) {
 		if (state == ConversationStates.ANY) {
 			for(Expression triggerExpr : triggers) {
-	            // If the trigger is an empty string, match any text.
-	            //TODO find a better way to handle unconditional matching; perform JokerMatch comparisons here, so that they can catch all not yet recognized text
-	            if (triggerExpr.getNormalized().length() == 0) {
-	                return true;
-	            }
+				// If the trigger is an empty string, match any text.
+				//TODO find a better way to handle unconditional matching; perform JokerMatch comparisons here, so that they can catch all not yet recognized text
+				if (triggerExpr.getNormalized().length() == 0) {
+					return true;
+				}
 
 				if (sentence.getTriggerExpression().matchesNormalizedSimilar(triggerExpr)) {
 					return true;
@@ -325,7 +325,7 @@ public class Transition {
 
 		// no match
 		return false;
-    }
+	}
 
 	/**
 	 * Checks for normalized match with the given state/trigger/condition combination.
@@ -346,7 +346,7 @@ public class Transition {
 
 		// no match
 		return false;
-    }
+	}
 
 	/**
 	 * Checks for labels equality

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,7 +74,7 @@ public class ItemGuardCreature extends Creature {
 	 * @param questSlot
 	 *            the quest slot for the active quest
 	 * @param questState
-	 * 			  the state of the quest to check on dead for
+	 *            the state of the quest to check on dead for
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState) {
 		this(copy, itemType, questSlot, questState, 0);
@@ -90,9 +90,9 @@ public class ItemGuardCreature extends Creature {
 	 * @param questSlot
 	 *            the quest slot for the active quest
 	 * @param questState
-	 * 			  the state of the quest to check on dead for
+	 *            the state of the quest to check on dead for
 	 * @param questIndex
-	 * 			  the index of the quest slot to look in
+	 *            the index of the quest slot to look in
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState, final int questIndex) {
 		this(copy, itemType, null, null, questSlot, questState, questIndex);
@@ -112,9 +112,9 @@ public class ItemGuardCreature extends Creature {
 	 * @param questSlot
 	 *            the quest slot for the active quest
 	 * @param questState
-	 * 			  the state of the quest to check on dead for
+	 *            the state of the quest to check on dead for
 	 * @param questIndex
-	 * 			  the index of the quest slot to look in
+	 *            the index of the quest slot to look in
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType, final String itemItemdata, final String itemDescr,
 			final String questSlot, final String questState, final int questIndex) {
@@ -131,9 +131,9 @@ public class ItemGuardCreature extends Creature {
 		final LinkedList<String> ll = new LinkedList<String>();
 		ll.add("Thou shall not obtain the " + itemType + "!");
 		// add to all states except death - in death player will get itemType.
-	    noises.put("idle", ll);
-	    noises.put("fight", ll);
-	    noises.put("follow", ll);
+		noises.put("idle", ll);
+		noises.put("fight", ll);
+		noises.put("follow", ll);
 
 		if (!SingletonRepository.getEntityManager().isItem(
 				itemType)) {

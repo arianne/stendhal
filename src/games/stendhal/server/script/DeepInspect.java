@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -168,17 +168,17 @@ public class DeepInspect extends ScriptImpl {
 			// Produced items
 			sb.append("Production:\n   ");
 			final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
-		    final List<String> produceList = new LinkedList<String>();
+			final List<String> produceList = new LinkedList<String>();
 
-		    for (String food : producerRegister.getProducedItemNames("food")) {
-		    	produceList.add(food);
-		    }
-		    for (String drink : producerRegister.getProducedItemNames("drink")) {
-		    	produceList.add(drink);
-		    }
-		    for (String resource : producerRegister.getProducedItemNames("resource")) {
-		    	produceList.add(resource);
-		    }
+			for (String food : producerRegister.getProducedItemNames("food")) {
+				produceList.add(food);
+			}
+			for (String drink : producerRegister.getProducedItemNames("drink")) {
+				produceList.add(drink);
+			}
+			for (String resource : producerRegister.getProducedItemNames("resource")) {
+				produceList.add(resource);
+			}
 
 			for (String product : produceList) {
 				int quant = player.getQuantityOfProducedItems(product);

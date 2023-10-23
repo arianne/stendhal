@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -228,12 +228,12 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		StackableItem playersMoney = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
 		final int expectedTradingFee = 1500;
-        Integer price = Integer.valueOf(expectedTradingFee);
+		Integer price = Integer.valueOf(expectedTradingFee);
 		playersMoney.setQuantity(price);
 
 		//player needs belt slot to equip keyring
 		if(!player.hasSlot("belt")) {
-		    player.addSlot(new PlayerSlot("belt"));
+			player.addSlot(new PlayerSlot("belt"));
 		}
 		assertThat(player.hasSlot("belt"), is(Boolean.TRUE));
 

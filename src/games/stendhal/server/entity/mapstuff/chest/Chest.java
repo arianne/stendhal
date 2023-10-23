@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -85,9 +85,9 @@ public class Chest extends Entity implements UseListener {
 	//
 
 	@Override
-    public String getDescriptionName(final boolean definite) {
-	    return Grammar.article_noun(CHEST_RPCLASS_NAME, definite);
-    }
+	public String getDescriptionName(final boolean definite) {
+		return Grammar.article_noun(CHEST_RPCLASS_NAME, definite);
+	}
 
 	@Override
 	public void update() {

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -186,7 +186,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 * @param cd
 	 *            The collision map.
 	 * @param pd
-	 *      	  The protection map.
+	 *            The protection map.
 	 * @param zone
 	 *            The zone name.
 	 * @param dangerLevel zone danger level

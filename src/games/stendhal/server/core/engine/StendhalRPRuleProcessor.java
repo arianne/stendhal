@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2020 - Marauroa                   *
+ *                    (C) Copyright 2003-2023 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -510,7 +510,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			if (object != null) {
 				id = object.get("#db_id");
 			} else {
-				 id = "<object is null>";
+				id = "<object is null>";
 			}
 			logger.error("There has been a severe problem loading player " + id, e);
 			return false;
@@ -534,17 +534,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					final URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
 					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    try {
-                        final BufferedReader br = new BufferedReader(
+					try {
+						final BufferedReader br = new BufferedReader(
 							new InputStreamReader(connection.getInputStream(), "UTF-8"));
-                        try {
-                            msg = br.readLine();
-                        } finally {
-                            br.close();
-                        }
-                    } finally {
-				        connection.disconnect();
-                    }
+						try {
+							msg = br.readLine();
+						} finally {
+							br.close();
+						}
+					} finally {
+						connection.disconnect();
+					}
 				}
 			}
 		} catch (final IOException e) {

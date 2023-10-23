@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,7 @@ public class SayRequiredItemAction implements ChatAction {
 	 * @param questname
 	 *            name of quest-slot to check
 	 * @param message
-	 * 		      message with substitution defined for item: [item], [#item], or [the item]
+	 *            message with substitution defined for item: [item], [#item], or [the item]
 	 */
 	public SayRequiredItemAction(final String questname, final String message) {
 		this.questname = checkNotNull(questname);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2019 - Arianne                          *
+ *                    (C) Copyright 2019-2023 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,18 +49,17 @@ public abstract class PassiveNPC extends NPC {
 	 */
 	public void reversePath() {
 		final EntityGuide guide = getGuide();
-	    if (!usesRandomPath() && guide.path.isLoop()) {
-	        List<Node> reverseNodes = guide.path.getNodeList();
+		if (!usesRandomPath() && guide.path.isLoop()) {
+			List<Node> reverseNodes = guide.path.getNodeList();
 
-	        // Sets the position for the reversed path
-	        int reversePosition = (guide.path.getNodeList().size() - 1) - guide.getPreviousPosition();
+			// Sets the position for the reversed path
+			int reversePosition = (guide.path.getNodeList().size() - 1) - guide.getPreviousPosition();
 
-	        Collections.reverse(reverseNodes);
-	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
-	        }
-	    else {
-	    	stop();
-	    }
+			Collections.reverse(reverseNodes);
+			setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
+		} else {
+			stop();
+		}
 	}
 
 	/**

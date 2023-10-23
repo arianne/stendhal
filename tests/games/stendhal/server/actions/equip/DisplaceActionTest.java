@@ -31,8 +31,8 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 	private static final String ZONE_NAME = "0_semos_city";
 
 	public DisplaceActionTest() {
-	    super(ZONE_NAME);
-    }
+		super(ZONE_NAME);
+	}
 
 	/**
 	 * Initialise the world.

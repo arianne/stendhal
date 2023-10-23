@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,23 +61,21 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 			// to hold the list of npcs for each region
 			List<String> npcs = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
 			String verb = "need";
-	        if (npcs.size()==1) {
-	        	verb = "needs";
-	        }
+			if (npcs.size()==1) {
+				verb = "needs";
+			}
 			if (npcs.size()>0) {
-	        	sb.append("In " + region + " ");
-	        	sb.append(Grammar.enumerateCollectionWithHash(npcs));
-	        	sb.append(" " + verb + " your help. ");
-	        } else {
-	        	finishedregions.add(region);
-	        }
+				sb.append("In " + region + " ");
+				sb.append(Grammar.enumerateCollectionWithHash(npcs));
+				sb.append(" " + verb + " your help. ");
+			} else {
+				finishedregions.add(region);
+			}
 		}
 		if (finishedregions.size() > 0) {
 			sb.append("There's no one in " + Grammar.enumerateCollection(finishedregions) + " who'd have a task you can handle, or that you haven't helped already.");
 		}
 		raiser.say(sb.toString().trim());
-
-
 	}
 
 	@Override

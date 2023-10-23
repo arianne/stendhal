@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -143,8 +143,8 @@ public class CoalSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-	        addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-	        notifyWorldAboutChanges();
+			addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			notifyWorldAboutChanges();
 
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
@@ -183,8 +183,8 @@ public class CoalSource extends PlayerActivityEntity {
 	@Override
 	protected void onStarted(final Player player) {
 		player.sendPrivateText("You have started to pick for coal.");
-        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-        notifyWorldAboutChanges();
+		addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+		notifyWorldAboutChanges();
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -377,10 +377,10 @@ public class Creature extends NPC {
 	 */
 	@Override
 	public final void setDeathSound(String sound) {
-	    if (deathSound == null) {
-	        deathSound = sound;
-	    }
-	    super.setDeathSound(deathSound);
+		if (deathSound == null) {
+			deathSound = sound;
+		}
+		super.setDeathSound(deathSound);
 	}
 
 	/**
@@ -388,7 +388,7 @@ public class Creature extends NPC {
 	 * @param sound sound effect file name
 	 */
 	public final void setMovementSound(String sound) {
-	    this.movementSound = sound;
+		this.movementSound = sound;
 	}
 
 	/**
@@ -409,7 +409,7 @@ public class Creature extends NPC {
 	 */
 	public void registerObjectsForNotification(final Observer observer) {
 		if(observer!=null) {
-			   registrator.setObserver(observer);
+			registrator.setObserver(observer);
 		}
 	}
 
@@ -421,7 +421,7 @@ public class Creature extends NPC {
 	public void registerObjectsForNotification(final List<Observer> observers) {
 		for(Observer observer : observers) {
 			if(observer!=null) {
-				   registrator.setObserver(observer);
+				registrator.setObserver(observer);
 			}
 		}
 	}
@@ -433,7 +433,7 @@ public class Creature extends NPC {
 	 */
 	public void unregisterObjectsForNotification(final Observer observer) {
 		if(observer!=null) {
-			   registrator.removeObserver(observer);
+			registrator.removeObserver(observer);
 		}
 	}
 
@@ -445,7 +445,7 @@ public class Creature extends NPC {
 	public void unregisterObjectsForNotification(final List<Observer> observers) {
 		for(Observer observer : observers) {
 			if(observer!=null) {
-				    registrator.removeObserver(observer);
+				registrator.removeObserver(observer);
 			}
 		}
 	}
@@ -454,8 +454,8 @@ public class Creature extends NPC {
 	 * Will notify observers when event will occurred (death).
 	 */
 	public void notifyRegisteredObjects() {
-	     registrator.setChanges();
-	     registrator.notifyObservers(circumstances);
+		registrator.setChanges();
+		registrator.notifyObservers(circumstances);
 	}
 
 	public boolean isSpawned() {
@@ -508,14 +508,14 @@ public class Creature extends NPC {
 
 			String statusAttackerProfiles = aiProfiles.get("status_attackers");
 			if (statusAttackerProfiles != null) {
-    			String[] statusAttackers = statusAttackerProfiles.split(";");
-    			int statusCount = statusAttackers.length;
-    			for (int index = 0; index < statusCount; index++) {
-    			    StatusAttacker statusAttacker = StatusAttackerFactory.get(statusAttackers[index]);
-    			    if (statusAttacker != null) {
-    			        this.addStatusAttacker(statusAttacker);
-    			    }
-    			}
+				String[] statusAttackers = statusAttackerProfiles.split(";");
+				int statusCount = statusAttackers.length;
+				for (int index = 0; index < statusCount; index++) {
+					StatusAttacker statusAttacker = StatusAttackerFactory.get(statusAttackers[index]);
+					if (statusAttacker != null) {
+						this.addStatusAttacker(statusAttacker);
+					}
+				}
 			}
 		}
 		idler = IdleBehaviourFactory.get(aiProfiles);
@@ -931,7 +931,7 @@ public class Creature extends NPC {
 					// this event duration usually is only one turn
 					this.makeNoiseChance(50, "target");
 				} else {
-				 	this.setIdle();
+					this.setIdle();
 					this.makeNoiseChance(100, "idle");
 				}
 			}
@@ -989,9 +989,9 @@ public class Creature extends NPC {
 	 * FIXME: doesn't play sound
 	 */
 	private void loopMovementSound() {
-	    movementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
-	    this.addEvent(movementSoundEvent);
-	    this.notifyWorldAboutChanges();
+		movementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
+		this.addEvent(movementSoundEvent);
+		this.notifyWorldAboutChanges();
 	}
 
 	/**

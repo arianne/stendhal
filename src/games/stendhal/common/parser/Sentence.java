@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -92,7 +92,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return Expression iterator
      */
     @Override
-	public Iterator<Expression> iterator() {
+    public Iterator<Expression> iterator() {
         return expressions.iterator();
     }
 
@@ -189,33 +189,33 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         }
 
         if (expressions.size() > 1) {
-	        // Test for a list of items
-			StringBuilder objects = new StringBuilder();
-			int simpleObjects = 0;
+            // Test for a list of items
+            StringBuilder objects = new StringBuilder();
+            int simpleObjects = 0;
 
-			for(Expression e : expressions) {
-				if (e.isObject() && e.getAmount()==1) {
-					if (simpleObjects > 0) {
-						objects.append(" and ");
-					}
+            for(Expression e : expressions) {
+                if (e.isObject() && e.getAmount()==1) {
+                    if (simpleObjects > 0) {
+                        objects.append(" and ");
+                    }
 
-					objects.append(e.getNormalized());
+                    objects.append(e.getNormalized());
 
-					++simpleObjects;
-				} else {
-					break;
-				}
-			}
+                    ++simpleObjects;
+                } else {
+                    break;
+                }
+            }
 
-			// If the sentence consists only of a list of single objects (amount=1),
-			// return it as "A and B and C and ..."
-			if (simpleObjects == expressions.size()) {
-				return new Expression(objects.toString(), ExpressionType.OBJECT);
-			}
+            // If the sentence consists only of a list of single objects (amount=1),
+            // return it as "A and B and C and ..."
+            if (simpleObjects == expressions.size()) {
+                return new Expression(objects.toString(), ExpressionType.OBJECT);
+            }
         }
 
         // otherwise just return the first expression
-    	return expressions.get(0);
+        return expressions.get(0);
     }
 
     /**
@@ -248,14 +248,14 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 //        } else {
 //            return null;
 //        }
-    	Expression verb = null;
+        Expression verb = null;
 
         for(final Expression w : expressions) {
             if (w.isVerb()) {
                 if (verb == null) {
-                	verb = w;
+                    verb = w;
                 } else {
-                	return null; // more than one verb present
+                    return null; // more than one verb present
                 }
             }
         }
@@ -279,9 +279,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         for(final Expression w : expressions) {
             if (w.isVerb()) {
                 if (verb == null) {
-                	verb = w.getNormalized();
+                    verb = w.getNormalized();
                 } else {
-                	return null; // more than one verb present
+                    return null; // more than one verb present
                 }
             }
         }
@@ -324,9 +324,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         for(final Expression w : expressions) {
             if (w.isSubject()) {
                 if (name == null) {
-                	name = w.getNormalized();
+                    name = w.getNormalized();
                 } else {
-                	return null; // more than one subject present
+                    return null; // more than one subject present
                 }
             }
         }
@@ -359,19 +359,21 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return normalized object name
      */
     public String getObjectName() {
-//        if (getObjectCount() == 1) {
-//            return getObject(0).getNormalized();
-//        } else {
-//            return null;
-//        }
+        /*
+        if (getObjectCount() == 1) {
+            return getObject(0).getNormalized();
+        } else {
+            return null;
+        }
+        */
         String name = null;
 
         for(final Expression w : expressions) {
             if (w.isObject()) {
                 if (name == null) {
-                	name = w.getNormalized();
+                    name = w.getNormalized();
                 } else {
-                	return null; // more than one object present
+                    return null; // more than one object present
                 }
             }
         }
@@ -433,19 +435,21 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return numeral
      */
     public Expression getNumeral() {
-//        if (getNumeralCount() == 1) {
-//            return getNumeral(0);
-//        } else {
-//            return null;
-//        }
-    	Expression num = null;
+        /*
+        if (getNumeralCount() == 1) {
+            return getNumeral(0);
+        } else {
+            return null;
+        }
+        */
+        Expression num = null;
 
         for(final Expression w : expressions) {
             if (w.isNumeral()) {
                 if (num == null) {
-                	num = w;
+                    num = w;
                 } else {
-                	return null; // more than one numeral present
+                    return null; // more than one numeral present
                 }
             }
         }
@@ -516,13 +520,13 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Return the expression matcher of the first expression.
      * @return expression matcher
      */
-	public ExpressionMatcher getMatcher() {
-		if (!expressions.isEmpty()) {
-			return expressions.get(0).getMatcher();
-		} else {
-			return null;
-		}
-	}
+    public ExpressionMatcher getMatcher() {
+        if (!expressions.isEmpty()) {
+            return expressions.get(0).getMatcher();
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Parse the sentence again, using the given conversation context.
@@ -531,11 +535,11 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return parsed Sentence
      */
     public Sentence parse(final ConversationContext ctx) {
-    	if (context.equals(ctx)) {
-    		return this;
-    	} else {
-    		return ConversationParser.parse(originalText, ctx);
-    	}
+        if (context.equals(ctx)) {
+            return this;
+        } else {
+            return ConversationParser.parse(originalText, ctx);
+        }
     }
 
     /**
@@ -544,7 +548,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return parsed for matching as source Sentence
      */
     public Sentence parseAsMatchingSource() {
-    	return parse(new ConvCtxForMatchingSource());
+        return parse(new ConvCtxForMatchingSource());
     }
 
     /**
@@ -650,7 +654,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @param other
      * @return difference String
      */
-	public String diffNormalized(final Sentence other) {
+    public String diffNormalized(final Sentence other) {
         final SentenceBuilder ret = new SentenceBuilder();
 
         // loop over all expressions and match them between both sides
@@ -842,15 +846,15 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             name = getUnknownTypeExpression(0);
 
             if (name != null) {
-            	if (!name.hasAmount()) {
+                if (!name.hasAmount()) {
                     Expression num = getNumeral(0);
 
                     if (num != null) {
-                    	name.setAmount(num.getAmount());
+                        name.setAmount(num.getAmount());
                     }
-            	}
+                }
 
-            	if (ret.search(name)) {
+                if (ret.search(name)) {
                     return ret;
                 }
             }

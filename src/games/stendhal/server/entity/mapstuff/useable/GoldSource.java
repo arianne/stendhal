@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -131,10 +131,10 @@ public class GoldSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isSuccessful(final Player player) {
 		final int random = Rand.roll1D100();
-        /*
-        * Use some karma to help decide if the outcome is successful
-		*/
-        return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
+		/*
+		 * Use some karma to help decide if the outcome is successful
+		 */
+		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
 	/**
@@ -151,9 +151,9 @@ public class GoldSource extends PlayerActivityEntity {
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
-			    player.equipOrPutOnGround(item);
-			    player.incMinedForItem(item.getName(), item.getQuantity());
-			    player.sendPrivateText("You found "
+				player.equipOrPutOnGround(item);
+				player.incMinedForItem(item.getName(), item.getQuantity());
+				player.sendPrivateText("You found "
 					+ Grammar.a_noun(item.getTitle()) + ".");
 			} else {
 				logger.error("could not find item: " + itemName);

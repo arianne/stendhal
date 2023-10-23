@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -63,7 +63,7 @@ public class ProducerRegisterTest {
 		requiredResources.put("mackerel", 1);
 		requiredResources.put("leek", 1);
 		final ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish pie",
-		        requiredResources, 5 * 60);
+				requiredResources, 5 * 60);
 
 		producerRegister.add("Linzo", behaviour);
 

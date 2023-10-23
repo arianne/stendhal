@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -104,8 +104,8 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
-        questHistory.add(killsnumb+" "+
+		questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
+		questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("I need help to defeat #enemy "+monstersType+
@@ -141,8 +141,8 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
-        questHistory.add(killsnumb+" "+
+		questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
+		questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("I need help to defeat #enemy "+monstersType+
@@ -152,8 +152,8 @@ public class KillEnemyArmyTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-        // kill 1 creature.
-        killed=1;
+		// kill 1 creature.
+		killed=1;
 		KillRandomMonsters(player, killed);
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
@@ -164,10 +164,10 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed "+
+		questHistory.add("Currently I have killed "+
 				killed+" "+
 				Grammar.plnoun(killed, monstersType));
-        questHistory.add((killsnumb-killed)+" "+
+		questHistory.add((killsnumb-killed)+" "+
 				Grammar.plnoun(killsnumb-killed, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "bye");
@@ -179,10 +179,10 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed "+
+		questHistory.add("Currently I have killed "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("I have killed enough creatures to get my reward now.");
+		questHistory.add("I have killed enough creatures to get my reward now.");
 		assertEquals(questHistory, quest.getHistory(player));
 
 		en.step(player, "hi");
@@ -192,19 +192,19 @@ public class KillEnemyArmyTest {
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
-        int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
-        int moneysdiff = moneys - tempmoneys;
-        assertEquals("Good work! Take these " + moneysdiff + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
-        assertEquals(tempxp, player.getXP()-100000);
-        assertTrue((moneysdiff>9999)&&(moneysdiff<60001));
-        assertTrue((moneysdiff-(moneysdiff/10000)*10000)==0);
-        assertEquals(tempkarma, player.getKarma()-5, 0.000001);
-        questHistory.clear();
-        questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
-        questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
+		int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
+		int moneysdiff = moneys - tempmoneys;
+		assertEquals("Good work! Take these " + moneysdiff + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
+		assertEquals(tempxp, player.getXP()-100000);
+		assertTrue((moneysdiff>9999)&&(moneysdiff<60001));
+		assertTrue((moneysdiff-(moneysdiff/10000)*10000)==0);
+		assertEquals(tempkarma, player.getKarma()-5, 0.000001);
+		questHistory.clear();
+		questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
+		questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
 		assertEquals(questHistory, quest.getHistory(player));
 
-        en.step(player, "bye");
+		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
 
@@ -229,8 +229,8 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed no " + Grammar.plnoun(0, monstersType));
-        questHistory.add(killsnumb+" "+
+		questHistory.add("Currently I have killed no " + Grammar.plnoun(0, monstersType));
+		questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));
 
@@ -246,10 +246,10 @@ public class KillEnemyArmyTest {
 		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("Currently I have killed "+
+		questHistory.add("Currently I have killed "+
 				killed+" "+
 				Grammar.plnoun(killed, monstersType));
-        questHistory.add("I have killed enough creatures to get my reward now.");
+		questHistory.add("I have killed enough creatures to get my reward now.");
 		assertEquals(questHistory, quest.getHistory(player));
 
 		en.step(player, "hi");
@@ -257,15 +257,15 @@ public class KillEnemyArmyTest {
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 
 		en.step(player, "quest");
-        int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
-        int moneysdiff = moneys - tempmoneys;
+		int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
+		int moneysdiff = moneys - tempmoneys;
 		assertEquals("Pretty good! You killed "+(killed-killsnumb)+
 				" extra " +	Grammar.plnoun(killed-killsnumb, "soldier")+
 				"! Take these " + moneysdiff + " coins, and remember, I may wish you to do this job again in one week!", getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-15.0, 0.000001);
 		questHistory.clear();
-        questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
-        questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
+		questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
+		questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
 		assertEquals(questHistory, quest.getHistory(player));
 
 		en.step(player, "bye");
@@ -282,7 +282,7 @@ public class KillEnemyArmyTest {
 		en.step(player, "quest");
 		String reply = getReply(npc);
 		assertTrue(reply.equals("You have to check again in 7 days.") ||
-				   reply.equals("You have to check again in 1 week."));
+				reply.equals("You have to check again in 1 week."));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}

@@ -59,7 +59,7 @@ public class CollectionFilter<T> {
 	 * @return a filtered copy of the input collection
 	 */
 	@SuppressWarnings("unchecked")
-    public Collection< ? extends T> filterCopy(final Collection< ? extends T> inputCollection) {
+		public Collection< ? extends T> filterCopy(final Collection< ? extends T> inputCollection) {
 
 		Collection<T> outputCollection = null;
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,7 +57,7 @@ public abstract class CreateRaid extends ScriptImpl {
 				for (int i = 0; i < entry.getValue(); i++) {
 					if(Rand.roll1D6()==1) {
 						sandbox.add(creature, x + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS),
-								              y + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS));
+								y + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS));
 					}
 				}
 			} else {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -176,7 +176,7 @@ public class CloakCollector2Test {
 		assertEquals("Ok. If you want help, just say.", getReply(npc));
 
 		/* Josephine does not know what to do with "bye" without CloakCollector,
-		   so do it manually. Jump over the greeting as it was already tested above */
+		 * so do it manually. Jump over the greeting as it was already tested above */
 		en.setCurrentState(ConversationStates.QUESTION_2);
 
 		en.stepTest(player, "yes");

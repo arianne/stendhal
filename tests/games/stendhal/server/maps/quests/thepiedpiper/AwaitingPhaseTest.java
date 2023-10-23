@@ -18,7 +18,7 @@ public class AwaitingPhaseTest extends TPPTestHelper {
 	@Test
 	public void testAwaitingPhase() {
 		LinkedList<String> questHistory = new LinkedList<String>();
-        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		ThePiedPiper.switchToNextPhase();
 		//quest.phaseInactiveToInvasion();
 		killRats(TPPQuestHelperFunctions.getRatsCount()/2);
@@ -35,7 +35,7 @@ public class AwaitingPhaseTest extends TPPTestHelper {
 	//	assertEquals("I called a rats exterminator. "+
 		assertEquals("Well, we tried to clean up the city. "+
 		"You can get a #reward for your help now, ask about #details "+
-		  "if you want to know more.",getReply(npc));
+				"if you want to know more.",getReply(npc));
 		en.step(player, "details");
 		assertEquals("Well, from the last reward, you killed "+
 				details()+
@@ -57,12 +57,12 @@ public class AwaitingPhaseTest extends TPPTestHelper {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("Ados isn't being invaded by rats right now. You can still "+
-				  "get a #reward for the last time you helped. You can ask for #details "+
-				  "if you want.", getReply(npc));
+				"get a #reward for the last time you helped. You can ask for #details "+
+				"if you want.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("You killed no rats during the #rats invasion. "+
-				  "To get a #reward you have to kill at least "+
-				  "one rat at that time.", getReply(npc));
+				"To get a #reward you have to kill at least "+
+				"one rat at that time.", getReply(npc));
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));

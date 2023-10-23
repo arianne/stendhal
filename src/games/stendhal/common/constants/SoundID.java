@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,10 +37,10 @@ public enum SoundID {
 	}
 
 	public static SoundID getById(final String id) {
-	    for(SoundID e : values()) {
-	        if(e.label.equals(id)) return e;
-	    }
+		for (SoundID e: values()) {
+			if (e.label.equals(id)) return e;
+		}
 
-	    return null;
+		return null;
 	}
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,7 +54,7 @@ public class PendingAchievementDAO {
 
 		MapOfMaps<String, String, Integer> map = new MapOfMaps<String, String, Integer>();
 		String query  = "SELECT identifier, param, cnt FROM pending_achievement " +
-		                "JOIN achievement on achievement_id = achievement.id " +
+						"JOIN achievement on achievement_id = achievement.id " +
 						"WHERE charname = '[charname]';";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("charname", charname);

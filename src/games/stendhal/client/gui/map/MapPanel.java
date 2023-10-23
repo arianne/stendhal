@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -256,7 +256,7 @@ class MapPanel extends JComponent {
 	 * @param cd
 	 *            The collision map.
 	 * @param pd
-	 *      	  The protection map.
+	 *            The protection map.
 	 */
 	void update(final CollisionDetection cd, final CollisionDetection pd) {
 		// calculate the size and scale of the map

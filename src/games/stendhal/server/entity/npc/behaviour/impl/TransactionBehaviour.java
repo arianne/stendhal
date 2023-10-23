@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,18 +21,18 @@ import games.stendhal.server.entity.player.Player;
 public abstract class TransactionBehaviour extends Behaviour {
 
 	public TransactionBehaviour(final String itemName) {
-	    super(itemName);
-    }
+		super(itemName);
+	}
 
 	public TransactionBehaviour(final Set<String> itemNames) {
-	    super(itemNames);
-    }
+		super(itemNames);
+	}
 
 	/**
 	 * Transacts the deal that is described in BehaviourResult.
 	 *
 	 * @param res
-	 * 			  result of the Behaviour parsing
+	 *            result of the Behaviour parsing
 	 * @param seller
 	 *            The NPC who sells/buys
 	 * @param player

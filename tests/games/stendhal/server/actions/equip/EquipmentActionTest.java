@@ -37,8 +37,8 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	private static final String ZONE_NAME = "0_semos_city";
 
 	public EquipmentActionTest() {
-	    super(ZONE_NAME);
-    }
+		super(ZONE_NAME);
+	}
 
 	/**
 	 * initialize the world.

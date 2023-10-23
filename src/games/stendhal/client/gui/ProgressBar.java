@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,7 +123,7 @@ public class ProgressBar extends JDialog {
 		timer.stop();
 		// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
 		try {
-		    this.dispose();
+			this.dispose();
 		} catch(NullPointerException npe) {
 			return;
 		}

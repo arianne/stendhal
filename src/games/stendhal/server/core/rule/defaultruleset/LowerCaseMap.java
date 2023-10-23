@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -67,10 +67,10 @@ public class LowerCaseMap<V> implements Map<String, V> {
 
 	@Override
 	public void putAll(final Map< ? extends String, ? extends V> m) {
-		   for (final Iterator< ? extends Map.Entry< ? extends String, ? extends V>> i = m.entrySet().iterator(); i.hasNext();) {
-			                 final Map.Entry< ? extends String, ? extends V> e = i.next();
-			                 put(e.getKey(), e.getValue());
-			              }
+		for (final Iterator< ? extends Map.Entry< ? extends String, ? extends V>> i = m.entrySet().iterator(); i.hasNext();) {
+			final Map.Entry< ? extends String, ? extends V> e = i.next();
+			put(e.getKey(), e.getValue());
+		}
 	}
 
 	@Override

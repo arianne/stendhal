@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -76,12 +76,12 @@ public class EntityGuide {
 	 *         Entity's last position
 	 */
 	public int getPreviousPosition() {
-	    int prevPos = pathPosition - 1;
-	    if (prevPos < 0) {
-	        prevPos = path.getNodeList().size() - 1;
-	    }
+		int prevPos = pathPosition - 1;
+		if (prevPos < 0) {
+			prevPos = path.getNodeList().size() - 1;
+		}
 
-	    return prevPos;
+		return prevPos;
 	}
 
 	/**

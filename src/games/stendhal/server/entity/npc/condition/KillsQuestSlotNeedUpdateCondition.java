@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,7 +49,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 	private final int questGroupIndex;
 	private final List<String> creatures;
 	private final boolean do_update;
-    private final Map<String, List<String>> allcreatures;
+	private final Map<String, List<String>> allcreatures;
 
 	/**
 	 * Creates a new KillsQuestSlotNeedUpdateCondition.
@@ -102,8 +102,8 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 			neededcreatures=creatures;
 		} else {
 			// taking from player's quest slot
-	        final String givenEnemies = player.getQuest(questSlot, questGroupIndex);
-	        neededcreatures=allcreatures.get(givenEnemies);
+			final String givenEnemies = player.getQuest(questSlot, questGroupIndex);
+			neededcreatures=allcreatures.get(givenEnemies);
 		};
 
 		final String temp = player.getQuest(questSlot, questIndex);
@@ -131,28 +131,27 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 		// check for creatures from list
 		for(String monster:neededcreatures) {
 			if(!mycreatures.contains(monster)) {
-			   if(do_update) {
-				   // adding creature name to user quest slot (tail)
-				   toadd=toadd+","+monster+",0,0,0,0";
-				   logger.debug("Will add <"+monster+
-						        "> to player <"+player.getName()+
-						        "> quest <"+questSlot+
-						        "> slot <"+Integer.toString(questIndex)+
-						        ">");
-			   }
-			   else {
-				   return true;
-			   }
+				if(do_update) {
+					// adding creature name to user quest slot (tail)
+					toadd=toadd+","+monster+",0,0,0,0";
+					logger.debug("Will add <"+monster+
+									"> to player <"+player.getName()+
+									"> quest <"+questSlot+
+									"> slot <"+Integer.toString(questIndex)+
+									">");
+				} else {
+					return true;
+				}
 			}
 		}
 
 		if(do_update && !toadd.isEmpty()) {
-		    // now adding whole string to player's quest slot
+			// now adding whole string to player's quest slot
 			String finalcreatures=temp+toadd;
 			logger.debug("new player <"+player.getName()+
-					     "> quest <"+questSlot+
-					     "> slot <"+Integer.toString(questIndex)+
-					     "> value: ("+finalcreatures+")");
+							"> quest <"+questSlot+
+							"> slot <"+Integer.toString(questIndex)+
+							"> value: ("+finalcreatures+")");
 			player.setQuest(questSlot, questIndex, finalcreatures);
 		}
 
@@ -179,6 +178,5 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 			&& (creatures.equals(other.creatures)
 			&& questSlot.equals(other.questSlot));
 	}
-
 
 }

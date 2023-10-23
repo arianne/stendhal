@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -79,38 +79,38 @@ public class SellerBehaviourTest {
 		final SpeakerNPC npc = new SpeakerNPC("npc");
 		npc.addGreeting("blabla");
 		new SellerAdder().addSeller(npc, sb);
-	    final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 
-	    npc.getEngine().step(player, "hi");
-	    npc.getEngine().step(player, "buy 1 potion");
+		npc.getEngine().step(player, "hi");
+		npc.getEngine().step(player, "buy 1 potion");
 		assertEquals("Sorry, I don't sell bottles of potion.", getReply(npc));
 
-	    npc.getEngine().step(player, "buy wine");
+		npc.getEngine().step(player, "buy wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
-	    npc.getEngine().step(player, "buy 1 glass of wine");
+		npc.getEngine().step(player, "buy 1 glass of wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
-	    npc.getEngine().step(player, "buy 1 bottle of wine");
+		npc.getEngine().step(player, "buy 1 bottle of wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
-	    npc.getEngine().step(player, "buy dagger");
+		npc.getEngine().step(player, "buy dagger");
 		assertEquals("A dagger will cost 200. Do you want to buy it?", getReply(npc));
-	    npc.getEngine().step(player, "yes");
+		npc.getEngine().step(player, "yes");
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
 
 		PlayerTestHelper.equipWithMoney(player, 200);
-	    npc.getEngine().step(player, "buy dagger");
+		npc.getEngine().step(player, "buy dagger");
 		assertEquals("A dagger will cost 200. Do you want to buy it?", getReply(npc));
-	    npc.getEngine().step(player, "yes");
+		npc.getEngine().step(player, "yes");
 		assertEquals("Congratulations! Here is your dagger!", getReply(npc));
 		assertTrue(player.isEquipped("dagger", 1));
 		assertEquals(0, player.getTotalNumberOf("money"));
 
 		PlayerTestHelper.equipWithMoney(player, 600);
-	    npc.getEngine().step(player, "buy three daggers");
+		npc.getEngine().step(player, "buy three daggers");
 		assertEquals("You can only buy one dagger at a time. A dagger will cost 200. Do you want to buy it?", getReply(npc));
-	    npc.getEngine().step(player, "yes");
+		npc.getEngine().step(player, "yes");
 		assertEquals("Congratulations! Here is your dagger!", getReply(npc));
 		assertNull(PlayerTestHelper.getPrivateReply(player));
 		assertEquals(2, player.getTotalNumberOf("dagger"));
@@ -129,24 +129,24 @@ public class SellerBehaviourTest {
 		final SpeakerNPC npc = new SpeakerNPC("npc");
 		npc.addGreeting("Hello!");
 		new SellerAdder().addSeller(npc, sb);
-	    final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = PlayerTestHelper.createPlayer("bob");
 
-	    npc.getEngine().step(player, "hi");
+		npc.getEngine().step(player, "hi");
 		assertEquals("Hello!", getReply(npc));
 
-	    npc.getEngine().step(player, "buy fado city scroll");
+		npc.getEngine().step(player, "buy fado city scroll");
 		assertEquals("A fado city scroll will cost 1000. Do you want to buy it?", getReply(npc));
-	    npc.getEngine().step(player, "no");
+		npc.getEngine().step(player, "no");
 
-	    npc.getEngine().step(player, "buy two empty scrolls");
+		npc.getEngine().step(player, "buy two empty scrolls");
 		assertEquals("2 empty scrolls will cost 6000. Do you want to buy them?", getReply(npc));
-	    npc.getEngine().step(player, "no");
+		npc.getEngine().step(player, "no");
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
-	    npc.getEngine().step(player, "buy scroll");
+		npc.getEngine().step(player, "buy scroll");
 		assertEquals("There is more than one scroll. Please specify which sort of scroll you want to buy.", getReply(npc));
 
-	    npc.getEngine().step(player, "buy anything-else");
+		npc.getEngine().step(player, "buy anything-else");
 		assertEquals("Sorry, I don't sell anything-elses.", getReply(npc));
 	}
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -103,10 +103,10 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
-        /*
-        * The player can fill an empty flask at the spring.
-        * Check they have it before they can start filling it up.
-		*/
+		/*
+		 * The player can fill an empty flask at the spring.
+		 * Check they have it before they can start filling it up.
+		 */
 		if (player.isEquipped("flask")) {
 			return true;
 		} else {
@@ -123,10 +123,10 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isSuccessful(final Player player) {
 		final int random = Rand.roll1D100();
-        /*
-        * Use some karma to help decide if the outcome is successful
-        * We want to use up quite a bit karma at once, so scale it after
-		*/
+		/*
+		 * Use some karma to help decide if the outcome is successful
+		 * We want to use up quite a bit karma at once, so scale it after
+		 */
 		double karma = player.useKarma(FINDING_PROBABILITY*10);
 
 		// if player karma is > 0 it will always return at least 20% of FINDING_PROBABILITY*10, or karma, whichever is smaller
@@ -154,17 +154,15 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			final String itemName = items[Rand.rand(items.length)];
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			int amount = 1;
-			if (itemName.equals("water"))
-					 {
+			if (itemName.equals("water")) {
 				/*
 				 * Bound powerful items.
 				 */
 				item.setBoundTo(player.getName());
-
 			}
 
-            this.addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-    		this.notifyWorldAboutChanges();
+			this.addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			this.notifyWorldAboutChanges();
 
 
 			player.equipOrPutOnGround(item);
@@ -172,8 +170,8 @@ public class WaterSpringSource extends PlayerActivityEntity {
 					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
 
 		} else {
-            this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-    		this.notifyWorldAboutChanges();
+			this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			this.notifyWorldAboutChanges();
 
 			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's broken.");
 		}
@@ -188,9 +186,9 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onStarted(final Player player) {
-	    // Play a nice sound effect
-        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-        notifyWorldAboutChanges();
+		// Play a nice sound effect
+		addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+		notifyWorldAboutChanges();
 
 		// remove flask from player as they try to fill it.
 		player.drop("flask");

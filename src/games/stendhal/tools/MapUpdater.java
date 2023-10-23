@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,8 +47,8 @@ public class MapUpdater extends Task {
 	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
 	/* mostly copied from dialog/TilesetManager.java, except that
-	   many things refuse to compile with the usual tiled.jar,
-	   so rewrote it to work with more primitive interfaces. */
+	 * many things refuse to compile with the usual tiled.jar,
+	 * so rewrote it to work with more primitive interfaces. */
 	private boolean isUsedTileset(final Map map, final TileSet tileset) {
 		for (final Iterator< ? > tiles = tileset.iterator(); tiles.hasNext();) {
 			final Tile tile = (Tile) tiles.next();

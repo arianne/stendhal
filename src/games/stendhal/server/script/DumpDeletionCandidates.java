@@ -35,7 +35,7 @@ public class DumpDeletionCandidates extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-	    admin.sendPrivateText("Important: You need to edit the script to define the highest RPObject number.");
+		admin.sendPrivateText("Important: You need to edit the script to define the highest RPObject number.");
 		for (int i = 1; i < 0; i++) {
 			RPObject object = null;
 			try {

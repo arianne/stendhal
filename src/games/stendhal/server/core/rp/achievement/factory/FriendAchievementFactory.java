@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -52,7 +52,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 	public Collection<Achievement> createAchievements() {
 		final LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 
-	    // TODO: add Pacifist achievement for not participating in pvp for 6 months or more (last_pvp_action_time)
+		// TODO: add Pacifist achievement for not participating in pvp for 6 months or more (last_pvp_action_time)
 
 		// Befriend Susi and complete quests for all children
 		achievements.add(createAchievement(
