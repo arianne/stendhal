@@ -15,6 +15,10 @@ Changelog
 - seeds & bulbs items have unique images
 - added Magic City chest to wizard's bank
 
+*bugfixes*
+
+- deathmatch cannot be restarted while active
+
 
 1.44
 
