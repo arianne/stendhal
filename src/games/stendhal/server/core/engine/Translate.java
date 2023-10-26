@@ -63,6 +63,13 @@ public class Translate {
 				int lidx = 0;
 				while (line != null) {
 					lidx++;
+
+					// ignore empty lines & comments
+					if (line.isBlank() || line.startsWith("#")) {
+						line = reader.readLine();
+						continue;
+					}
+
 					String[] tokens = line.split("=", 2);
 					if (tokens.length != 2) {
 						System.err.println("malformed line (" + lidx + ") in " + file_locale + ": " + line + "///" + Arrays.toString(tokens));
