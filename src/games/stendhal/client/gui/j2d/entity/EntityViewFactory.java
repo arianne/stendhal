@@ -135,35 +135,22 @@ public class EntityViewFactory {
 	private static void configure() {
 		// item
 		register("item", null, null, Item2DView.class);
-		register("item", "ammunition", null, StackableItem2DView.class);
 		register("item", "book", "bestiary", UseableGenericItem2DView.class);
 		register("item", "box", null, Box2DView.class);
 		register("item", "club", "wizard_staff", UseableItem2DView.class);
-		register("item", "container", null, StackableItem2DView.class);
-		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
-		//~ register("item", "documents", "coupon", StackableItem2DView.class);
 		register("item", "drink", null, UseableItem2DView.class);
-		register("item", "flower", null, StackableItem2DView.class);
 		register("item", "food", null, UseableItem2DView.class);
-		register("item", "herb", null, StackableItem2DView.class);
-		register("item", "jewellery", null, StackableItem2DView.class);
-		register("item", "misc", null, StackableItem2DView.class);
 		register("item", "misc", "bulb", UseableItem2DView.class);
 		register("item", "misc", "seed", UseableItem2DView.class);
 		register("item", "misc", "snowglobe", UseableGenericItem2DView.class);
 		register("item", "misc", "teddy", UseableGenericItem2DView.class);
-		register("item", "missile", null, StackableItem2DView.class);
-		register("item", "money", null, StackableItem2DView.class);
-		register("item", "resource", null, StackableItem2DView.class);
 		register("item", "ring", null, Ring2DView.class);
 		register("item", "ring", "emerald ring", BreakableRing2DView.class);
 		register("item", "ring", "wedding", UseableRing2DView.class);
 		register("item", "scroll", null, UseableItem2DView.class);
-		register("item", "special", null, StackableItem2DView.class);
 		register("item", "special", "mithril clasp", Item2DView.class);
 		register("item", "tool", "foodmill", UseableItem2DView.class);
 		register("item", "tool", "metal detector", UseableGenericItem2DView.class);
-		register("item", "tool", "rope", StackableItem2DView.class);
 		register("item", "tool", "rotary cutter", UseableGenericItem2DView.class);
 		register("item", "tool", "scroll eraser", UseableItem2DView.class);
 		register("item", "tool", "sugarmill", UseableItem2DView.class);

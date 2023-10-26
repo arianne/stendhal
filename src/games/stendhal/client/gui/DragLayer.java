@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,7 +30,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
+import games.stendhal.client.gui.j2d.entity.Item2DView;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -128,8 +128,8 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			 * Hide quantity until it can be made context sensitive to drag
 			 * modifiers.
 			 */
-			if (dragged instanceof StackableItem2DView) {
-				((StackableItem2DView) dragged).setShowQuantity(false);
+			if (dragged instanceof Item2DView) {
+				((Item2DView) dragged).setShowQuantity(false);
 			}
 
 			this.dragged = dragged;

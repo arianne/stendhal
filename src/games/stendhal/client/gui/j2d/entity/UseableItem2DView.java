@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
 /**
  * The 2D view of a useable item.
  */
-class UseableItem2DView extends StackableItem2DView<StackableItem> {
+class UseableItem2DView extends Item2DView<StackableItem> {
 
 	//
 	// Entity2DView

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,6 +44,7 @@ public class StackableItem extends Item {
 	 *
 	 * @return The number of items.
 	 */
+	@Override
 	public int getQuantity() {
 		return quantity;
 	}

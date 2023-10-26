@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,6 +49,15 @@ public class Item extends Entity {
 	 */
 	public RPSlot getContent() {
 		return content;
+	}
+
+	/**
+	 * Get the item quantity.
+	 *
+	 * @return The number of items.
+	 */
+	public int getQuantity() {
+		return 1;
 	}
 
 	/**

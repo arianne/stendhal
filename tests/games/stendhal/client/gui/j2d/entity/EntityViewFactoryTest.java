@@ -123,36 +123,23 @@ public class EntityViewFactoryTest {
 	public void testAll() {
 		// item
 		checkImplementation("item", null, null, Item2DView.class);
-		checkImplementation("item", "ammunition", null, StackableItem2DView.class);
 		checkImplementation("item", "book", "bestiary", UseableGenericItem2DView.class);
 		checkImplementation("item", "box", null, Box2DView.class);
 		checkImplementation("item", "club", "wizard_staff", UseableItem2DView.class);
-		checkImplementation("item", "container", null, StackableItem2DView.class);
 		//~ checkImplementation("item", "crystal", null, Item2DView.class);
-		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
-		//~ checkImplementation("item", "documents", "coupon", StackableItem2DView.class);
 		checkImplementation("item", "drink", null, UseableItem2DView.class);
-		checkImplementation("item", "flower", null, StackableItem2DView.class);
 		checkImplementation("item", "food", null, UseableItem2DView.class);
-		checkImplementation("item", "herb", null, StackableItem2DView.class);
-		checkImplementation("item", "jewellery", null, StackableItem2DView.class);
-		checkImplementation("item", "misc", null, StackableItem2DView.class);
 		checkImplementation("item", "misc", "bulb", UseableItem2DView.class);
 		checkImplementation("item", "misc", "seed", UseableItem2DView.class);
 		checkImplementation("item", "misc", "snowglobe", UseableGenericItem2DView.class);
 		checkImplementation("item", "misc", "teddy", UseableGenericItem2DView.class);
-		checkImplementation("item", "missile", null, StackableItem2DView.class);
-		checkImplementation("item", "money", null, StackableItem2DView.class);
-		checkImplementation("item", "resource", null, StackableItem2DView.class);
 		checkImplementation("item", "ring", null, Ring2DView.class);
 		checkImplementation("item", "ring", "emerald ring", BreakableRing2DView.class);
 		checkImplementation("item", "ring", "wedding", UseableRing2DView.class);
 		checkImplementation("item", "scroll", null, UseableItem2DView.class);
-		checkImplementation("item", "special", null, StackableItem2DView.class);
 		checkImplementation("item", "special", "mithril clasp", Item2DView.class);
 		checkImplementation("item", "tool", "foodmill", UseableItem2DView.class);
 		checkImplementation("item", "tool", "metal detector", UseableGenericItem2DView.class);
-		checkImplementation("item", "tool", "rope", StackableItem2DView.class);
 		checkImplementation("item", "tool", "rotary cutter", UseableGenericItem2DView.class);
 		checkImplementation("item", "tool", "scroll eraser", UseableItem2DView.class);
 		checkImplementation("item", "tool", "sugarmill", UseableItem2DView.class);
