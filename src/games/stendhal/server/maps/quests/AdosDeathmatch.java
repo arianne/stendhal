@@ -205,7 +205,7 @@ public class AdosDeathmatch extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					Arrays.asList("start", "go","fight"),
 					null,
-					ConversationStates.IDLE,
+					ConversationStates.ATTENDING,
 					null,
 					new StartAction(deathmatchInfo));
 

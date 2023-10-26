@@ -196,12 +196,64 @@ public class AdosDeathmatchTest {
 
 		assertNull(dmPlayer.getQuest(questSlot));
 
+		cycleRound(dmPlayer);
+
+		assertEquals(0, getActiveCreatures().size());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		en.step(dmPlayer, "leave");
+		assertEquals("I don't think you claimed your #victory yet.", getReply(assistant));
+		// player tries to start again before claiming victory
+		en.step(dmPlayer, "start");
+		assertEquals("I shall grant your request after you have claimed #victory for your current task.",
+				getReply(assistant));
+		en.step(dmPlayer, "victory");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+				"Here is your special trophy helmet. Keep it, as the defense will increase by 1 "
+						+ "for every deathmatch you complete. Now, tell me if you want to #leave.",
+				getReply(assistant));
+		assertEquals(1, dmPlayer.getNumberOfEquipped("trophy helmet"));
+		en.step(dmPlayer, "bye");
+
+		// check that player can restart
+		cycleRound(dmPlayer);
+
+		assertEquals(0, getActiveCreatures().size());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		en.step(dmPlayer, "leave");
+		assertEquals("I don't think you claimed your #victory yet.", getReply(assistant));
+		// player tries to start again before claiming victory
+		en.step(dmPlayer, "start");
+		assertEquals("I shall grant your request after you have claimed #victory for your current task.",
+				getReply(assistant));
+		en.step(dmPlayer, "victory");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+				"Your helmet has been magically strengthened to a defense of "
+						+ dmPlayer.getFirstEquipped("trophy helmet").getDefense()
+						+ ". Now, tell me if you want to #leave.",
+				getReply(assistant));
+		en.step(dmPlayer, "leave");
+
+		// invoke a turn so NPC stops attending player in different zone
+		nextTurn();
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		final StendhalRPZone playerZone = dmPlayer.getZone();
+		assertNotNull(playerZone);
+		assertEquals("0_semos_plains_n", playerZone.getName());
+	}
+
+	private void cycleRound(final Player dmPlayer) {
+		final SpeakerNPC assistant = SingletonRepository.getNPCList().get("Thanatos");
+		final Engine en = assistant.getEngine();
+
 		en.step(dmPlayer, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Welcome to Ados Deathmatch! Do you need #help?", getReply(assistant));
 		en.step(dmPlayer, "start");
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("Have fun!", getReply(assistant));
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		assertEquals(0, MathHelper.parseInt(dmPlayer.getQuest(questSlot, 3)));
 
@@ -218,6 +270,14 @@ public class AdosDeathmatchTest {
 		en.step(dmPlayer, "bye");
 
 		for (int idx = 1; idx <= 10; idx++) {
+			// player tries to start again before killing current creatures
+			en.step(dmPlayer, "hi");
+			en.step(dmPlayer, "start");
+			assertEquals("Take heed that you handle the current task at hand before taking on more enemies.",
+					getReply(assistant));
+			assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+			en.step(dmPlayer, "bye");
+
 			assertEquals(stateStart+idx, MathHelper.parseInt(dmPlayer.getQuest(questSlot, 1)));
 
 			List<DeathMatchCreature> activeCreatures = getActiveCreatures();
@@ -232,27 +292,6 @@ public class AdosDeathmatchTest {
 			// spawn next creature or end deathmatch
 			dmEngine.onTurnReached(idx);
 		}
-
-		assertEquals(0, getActiveCreatures().size());
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		en.step(dmPlayer, "leave");
-		assertEquals("I don't think you claimed your #victory yet.", getReply(assistant));
-		en.step(dmPlayer, "victory");
-		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals(
-				"Here is your special trophy helmet. Keep it, as the defense will increase by 1 "
-						+ "for every deathmatch you complete. Now, tell me if you want to #leave.",
-				getReply(assistant));
-		assertEquals(1, dmPlayer.getNumberOfEquipped("trophy helmet"));
-		en.step(dmPlayer, "leave");
-
-		// invoke a turn so NPC stops attending player in different zone
-		nextTurn();
-		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-
-		final StendhalRPZone playerZone = dmPlayer.getZone();
-		assertNotNull(playerZone);
-		assertEquals("0_semos_plains_n", playerZone.getName());
 	}
 
 	/***
