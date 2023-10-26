@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2011 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,7 +48,8 @@ public class Translate {
 	 */
 	private static void init(String language) {
 		try {
-			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".txt");
+			final String file_locale = "data/languages/" + language + ".txt";
+			InputStream is = Translate.class.getClassLoader().getResourceAsStream(file_locale);
 			if (is == null) {
 				logger.warn("data/language/" + language + ".txt does not exist on classpath)");
 				return;
@@ -59,10 +60,12 @@ public class Translate {
 			Map<String, String> map = new HashMap<String, String>();
 			try {
 				String line = reader.readLine();
+				int lidx = 0;
 				while (line != null) {
+					lidx++;
 					String[] tokens = line.split("=", 2);
 					if (tokens.length != 2) {
-						System.err.println(line + "///" + Arrays.toString(tokens));
+						System.err.println("malformed line (" + lidx + ") in " + file_locale + ": " + line + "///" + Arrays.toString(tokens));
 					} else {
 						map.put(tokens[0], tokens[1]);
 					}
