@@ -11,4 +11,14 @@
     </exec>
   </target>
 
+  <target name="locale_update" description="Update translation files from template.">
+    <echo unless:true="${python.present}" message="Python unavailable, cannot update translations"/>
+
+    <exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
+      <arg value="-u"/>
+      <arg value="locale_template.py"/>
+      <arg value="--update"/>
+    </exec>
+  </target>
+
 </project>

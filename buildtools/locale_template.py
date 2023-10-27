@@ -39,6 +39,16 @@ def exitWithError(err, msg):
 	printError(msg)
 	sys.exit(err)
 
+def escapeRegex(st):
+	return st.replace("*", "\\*")\
+			.replace("?", "\\?")\
+			.replace("+", "\\+")\
+			.replace("(", "\\(")\
+			.replace(")", "\\)")\
+			.replace("[", "\\[")\
+			.replace("]", "\\]")\
+			.replace("|", "\\|")
+
 
 # categories, names, & descriptions cache
 __cache = {
@@ -198,8 +208,101 @@ def buildTemplate():
 	exportTemplate()
 
 
+## Updates existing translations found in data/languages.
+def updateExisting():
+	if not os.path.isdir(dir_locale):
+		printWarning("directory '{}' not found, no translations available for updating".format(dir_locale))
+		return
+	if not os.path.isfile(file_template):
+		exitWithError(errno.ENOENT, "template '{}' not found, cannot update translations".format(file_template))
+
+	try:
+		fin = codecs.open(file_template, "r", "utf-8")
+		template = fin.read().replace("\r\n", "\n").replace("\r", "\n")
+		fin.close()
+	except PermissionError:
+		exitWithError(errno.EACCES, "cannot open '{}' for reading, permission denied".format(file_template))
+
+	locale_codes = []
+	for basename in os.listdir(dir_locale):
+		if not basename.endswith(".txt") or basename == "template.txt":
+			continue
+		locale_codes.append(basename[:-4])
+
+	if not locale_codes:
+		printWarning("no translations available for updating")
+		return
+
+	for code in locale_codes:
+		print("updating locale '{}'".format(code))
+
+		filepath = os.path.join(dir_locale, code + ".txt")
+		try:
+			fin = codecs.open(filepath, "r", "utf-8")
+			contents_old = fin.read().replace("\r\n", "\n").replace("\r", "\n")
+			fin.close()
+		except PermissionError:
+			exitWithError(errno.EACCES, "cannot open '{}' for reading, permission denied".format(filepath))
+
+		# make a copy of template
+		contents = template
+
+		header_language = None
+		header_translators = None
+		unused = []
+		lidx = 0
+		for line in contents_old.split("\n"):
+			lidx += 1
+
+			# check for headers
+			if not header_language and line.startswith("## Language:"):
+				header_language = re.sub("^## Language:", "", line).strip()
+				continue
+			if not header_translators and line.startswith("## Translators:"):
+				header_translators = re.sub("^## Translators:", "", line).strip()
+				continue
+
+			# ignore comments & empty lines
+			if not line.strip() or line.startswith("#"):
+				continue
+			if "=" not in line:
+				printWarning("malformed line ({}) in '{}'".format(lidx, filepath))
+				continue
+
+			key = escapeRegex(line.split("=", 1)[0]) + "="
+			if not re.search("^" + key, contents, re.M):
+				unused.append(line)
+				continue
+			contents = re.sub("^" + key + ".*$", line, contents, flags=re.M)
+
+		if header_language:
+			contents = re.sub("^## Language:.*$", "## Language: {}".format(header_language), contents, 1, re.M)
+		if header_translators:
+			contents = re.sub("^## Translators:.*$", "## Translators: {}".format(header_translators), contents, 1, re.M)
+
+		contents = contents.rstrip()
+
+		if unused:
+			contents += "\n\n\n# strings not found in template\n"
+			for line in unused:
+				contents += "\n" + line
+
+		try:
+			fout = codecs.open(filepath, "w", "utf-8")
+			fout.write(contents + "\n")
+			fout.close()
+		except PermissionError:
+			exitWithError(errno.EACCES, "cannot open '{}' for writing, permission denied".format(filepath))
+
+		print("exported to '{}'".format(filepath))
+
+
 if __name__ == "__main__":
 	# work from source root
 	os.chdir(dir_root)
 
-	buildTemplate()
+	args = sys.argv[1:]
+	if "--update" in args:
+		updateExisting()
+	else:
+		buildTemplate()
