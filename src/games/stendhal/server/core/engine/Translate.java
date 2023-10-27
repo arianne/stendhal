@@ -64,8 +64,9 @@ public class Translate {
 				while (line != null) {
 					lidx++;
 
-					// ignore empty lines & comments
-					if (line.isBlank() || line.startsWith("#")) {
+					// ignore empty lines & comments (because this code is executed during testing we cannot use `String.isBlank`
+					// from Java 11)
+					if ("".equals(line.replaceAll("\t| ", "")) || line.startsWith("#")) {
 						line = reader.readLine();
 						continue;
 					}
