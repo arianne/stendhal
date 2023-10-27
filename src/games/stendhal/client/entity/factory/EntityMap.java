@@ -81,8 +81,7 @@ public final class EntityMap {
 		register("item", "box", null, Box.class);
 		register("item", "club", "wizard_staff", UseableItem.class);
 		register("item", "container", null, StackableItem.class);
-		// FIXME: `games.stendhal.server.entity.item.ItemTest` copy constructor test fails
-		//~ register("item", "documents", "coupon", StackableItem.class);
+		register("item", "documents", "coupon", StackableItem.class);
 		register("item", "drink", null, UseableItem.class);
 		register("item", "flower", null, StackableItem.class);
 		register("item", "food", null, UseableItem.class);
