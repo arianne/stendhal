@@ -309,7 +309,10 @@
       </fileset>
     </copy>
     <copy todir="${build_server_xmlconf}/data/languages">
-      <fileset dir="data/languages"/>
+      <fileset dir="data/languages">
+        <exclude name="README.*"/>
+        <exclude name="template.txt"/>
+      </fileset>
     </copy>
 
     <jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>

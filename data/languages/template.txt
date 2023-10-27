@@ -1,0 +1,2848 @@
+
+##
+## Language: <name> (<code>)
+## Translators: <translator1>[, <translator2>...]
+##
+
+
+# items names and descriptions
+
+## armors
+
+barbarian armor=
+You see a suit of barbarian armor. It's dirty and smelly, but still, rather strong.=
+
+black armor=
+You see a suit of black armor. Does it put you in a dark mood?=
+
+blue armor=
+You see a suit of blue armor. The colour is stunning azure.=
+
+chain armor=
+You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.=
+
+chaos armor=
+You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.=
+
+dress=
+You see a dress, which provides practically no defence. It is barely worth picking up.=
+
+dwarvish armor=
+You see a dwarvish armor. It's made with ingenuity and skill.=
+
+elvish armor=
+You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.=
+
+enhanced chainmail=
+You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.=
+
+golden armor=
+You see a suit of golden armor. It's made from the best materials with great attention to detail.=
+
+golden chainmail=
+You see a valuable suit of golden chainmail. It is crafted from fine links of expensive metal.=
+
+ice armor=
+You see a suit of ice armor, to protect even the coldest of hearts.=
+
+iron scale armor=
+You see a suit of iron scale armor, whose rounded scales will protect you from many blows.=
+
+leather armor=
+You see a worn suit of leather armor. It will provide only minimal protection.=
+
+leather cuirass=
+You see a leather cuirass, well made but still able to be pierced by sharp swords.=
+
+leather scale armor=
+You see a suit of leather scale armor. The leather is toughened somehow for better protection.=
+
+magic plate armor=
+You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.=
+
+mainio armor=
+You see a strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.=
+
+mithril armor=
+You see a suit of mithril armor. Its tightly woven links are truly amazing.=
+
+pauldroned iron cuirass=
+You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.=
+
+pauldroned leather cuirass=
+You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.=
+
+plate armor=
+You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.=
+
+red armor=
+You see a suit of red armor. The colour is a striking crimson.=
+
+royal armor=
+You see a suit of royal armor. This armor is fit for a king.=
+
+scale armor=
+You see a suit of scale armor. It is not flexible like chain, but will be a better defense.=
+
+scuba gear=
+You see a scuba suit with a heavy helmet attached. It is dense enough to offer protection under the waves but of little use on land.=
+
+shadow armor=
+You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.=
+
+stone armor=
+You see a suit of stone armor. Swords will crumble if they try to pierce it.=
+
+studded armor=
+You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.=
+
+xeno armor=
+You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.=
+
+
+## arrows
+
+wooden arrow=
+You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.=
+
+steel arrow=
+You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.=
+
+golden arrow=
+You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.=
+
+fire arrow=
+You see a fire arrow. The tip burns brightly.=
+
+ice arrow=
+You see an ice arrow. It can deliver a bitter sting.=
+
+light arrow=
+You see a light arrow. It shines with a holy radiance.=
+
+dark arrow=
+You see a dark arrow. It's hard to describe.=
+
+power arrow=
+You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.=
+
+
+## axes
+
+axe=
+You see a rusty but heavy axe. What it lacks in sharpness it makes up for in weight.=
+
+bardiche=
+You see a rare and powerful bardiche.=
+
+battle axe=
+You see a battle axe. It is well crafted and sharp despite its age.=
+
+black halberd=
+You see a black halberd. It's immensely heavy so will make huge blows but you can only swing it at a very slow rate.=
+
+black scythe=
+You see a black scythe. Its attack is awesome for a farming tool.=
+
+chaos axe=
+You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.=
+
+durin axe=
+You see a durin axe, a great prize from the dwarves.=
+
+golden twoside axe=
+You see a golden twoside axe.  This axe is a rare find.=
+
+halberd=
+You see a rare halberd, with an axe's blade fused onto a shaft. It is both heavy and keen-edged.=
+
+hand axe=
+You see a hand axe, well worn from years of use but may prove useful.=
+
+magic twoside axe=
+You see a magic twoside axe. The nature of the magic isn't clear to you.=
+
+old scythe=
+You see an old scythe, it used to be a weapon of death. But now it is only a useful tool for farming.=
+
+scythe=
+You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.=
+
+sickle=
+You see a sickle, it is a useful tool for farming.=
+
+small axe=
+You see a small axe. It appears well made but you suspect it is too light to do much damage.=
+
+twoside axe=
+You see a well crafted twoside axe.=
+
+
+## books
+
+black book=
+You see the black book that Jynath kept out for so long.=
+
+blue book=
+You see a book with the words GEMS AND MINERALS on the front cover.=
+
+bestiary=
+You see a bestiary, containing information about enemies found in Faiumoni.=
+
+
+## boots
+
+black boots=
+You stub your toe on this pair of black boots. Perhaps they bring you bad luck?=
+
+blue boots=
+You see a pair of blue boots.=
+
+chain boots=
+You see a pair of chain boots, quite rusty but still strong.=
+
+chaos boots=
+You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.=
+
+elvish boots=
+You see a pair of elvish boots.=
+
+golden boots=
+You see a pair of golden boots. They will be heavy to wear but well worth their weight.=
+
+green thing boots=
+You see a pair of green thing boots. They're slimy inside, ewwww.=
+
+killer boots=
+You see a high heeled pair of killer boots. Are you brave enough to wear them?=
+
+leather boots=
+You see a simple pair of leather boots to give your feet some protection.=
+
+magic plate boots=
+
+mainio boots=
+You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.=
+
+mithril boots=
+You see a sparkling set of mithril boots.=
+
+red boots=
+You see a pair of red boots, the colour reminds you of fresh blood.=
+
+royal boots=
+You see a pair of royal boots.  They have magical properties=
+
+shadow boots=
+You see a pair of shadow boots. You can't fathom what they are made of.=
+
+steel boots=
+You see a pair of steel boots, fit for any soldier.=
+
+stone boots=
+You see a pair of stone boots.  They may be heavy, but they protect your feet well.=
+
+studded boots=
+You see a pair of worn studded boots with moderate protection for your feet.=
+
+xeno boots=
+You see a fine specimen of craftmanship, a pair of xeno boots.=
+
+
+## boxes
+
+present=
+You see a present. Open it.=
+
+basket=
+You see an easter basket. Look inside.=
+
+stocking=
+You see a christmas stocking. Look inside.=
+
+
+## cloaks
+
+black cloak=
+You see a black cloak. The last owner had black thoughts. Will you?=
+
+black dragon cloak=
+You see a torn section from an enormous black dragon cloak. You're very lucky: the piece is just the right size for a human to wear.=
+
+blue dragon cloak=
+You see a blue dragon cloak. The weave is tight and strong, though you wish the colour drew less attention.=
+
+blue elf cloak=
+You see a blue elf cloak. The material is thick and warm.=
+
+blue striped cloak=
+You see a fashionable blue striped cloak.=
+
+bone dragon cloak=
+You see a bone dragon cloak. It's incredibly old, like its last owner.=
+
+chaos cloak=
+You see a chaos cloak. The colours look like oil shimmering on a puddle.=
+
+cloak=
+You see a simple cloth cloak.=
+
+dwarf cloak=
+You see a dwarf cloak. Apparently this passes for fashion in some parts, but to you it looks more functional than fashionable.=
+
+elf cloak=
+You see a white elf cloak. It doesn't look very warm.=
+
+elvish cloak=
+You see an elvish cloak. The material is dark, but thick and warm.=
+
+golden cloak=
+You see a golden cloak. See how the light glistens off the gold, it is a prized possession.=
+
+green dragon cloak=
+You see a huge green dragon cloak. It's probably too big for you but, even dragging on the floor it will provide excellent protection.=
+
+lich cloak=
+You see a purple lich cloak. It's stained with blood - yours, from the previous undead owner, or perhaps the blood of his enemies...=
+
+magic cloak=
+You see a magic cloak.=
+
+mainio cloak=
+You see a mainio cloak. Its flashing colours are absurd! But you wear it because it's very well made.=
+
+mithril cloak=
+You see a mithril cloak. Its weave is so fine and its looks are breathtaking.=
+
+red cloak=
+You see a red cloak covered in polka dots. It's terribly snazzy.=
+
+red dragon cloak=
+You see a red dragon cloak. He didn't have one for a long time but finally caved in to peer pressure and got one.=
+
+royal cloak=
+You see a royal cloak.  It will protect you against mighty foes.=
+
+shadow cloak=
+You see a shadow cloak, in colours of the shadow armor.=
+
+stone cloak=
+You see a stone cloak. It's hard to tell how it was made, as the fibres look like narrow threads of mineral.=
+
+vampire cloak=
+You see a vibrant red vampire cloak. Wearing it sends a shiver down your spine.=
+
+xeno cloak=
+You see a xeno cloak. It's heavy and thick, giving you good protection.=
+
+
+## clubs
+
+chaos hammer=
+You see a chaos hammer. It is a fearsome weapon.=
+
+club=
+You see a wooden club. It won't kill much but is better than no weapon.=
+
+club of thorns=
+You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.=
+
+enhanced mace=
+You see an enhanced mace. The heavy attacking end makes it hard to balance.=
+
+flail=
+You see a flail. Swinging it in circles will tire you but it will be an effective weapon.=
+
+golden hammer=
+You see a valuable golden hammer. This golden weapon may be worth a lot to someone. It has a slow rate of attack.=
+
+golden mace=
+You see a shining golden mace. Despite looking ornamental, it is sharp enough to do some damage.=
+
+hammer=
+You see a common hammer. It is heavy enough that you should be able to bludgeon your enemies with it, but only slowly=
+
+ice war hammer=
+You see an ice war hammer. The last owner must have been huge to wield it.=
+
+mace=
+You see a mace, much neglected in years of use.=
+
+morning star=
+You see a morning star.  This is a very rare item indeed.=
+
+rod of the gm=
+You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=
+
+skull staff=
+You see a rare skull staff. It appears mystical but will work like any other staff.=
+
+staff=
+You see a staff. This is a seldom seen or used weapon.=
+
+ugmash=
+You see a huge ugmash. It can attack with a faster rate than many other clubs.=
+
+vulcano hammer=
+You see a vulcano hammer. It's said to be a weapon of a God, but attacks with a snail like pace.=
+
+war hammer=
+You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.=
+
+
+## containers
+
+keyring=
+You see a keyring.=
+
+empty sack=
+You see an empty sack. It will not stand up, unless you fill it first.=
+
+flask=
+You see a flask. It's good for storing medicine.=
+
+eared bottle=
+You see an eared bottle. It is empty, someone drank the contents.=
+
+slim bottle=
+You see a slim bottle. It is empty, someone drank the contents.=
+
+fat bottle=
+You see a fat bottle. It is empty, someone drank the contents.=
+
+empty goblet=
+You see an empty goblet.  You wonder what could it hold.=
+
+goblet=
+You see a goblet.  You look at its contents, and shiver at the blood inside.=
+
+vial=
+You see a vial used in chemestry.=
+
+
+## crystals
+
+red emotion crystal=
+You see a red emotion crystal. It feels hot to the touch.=
+
+purple emotion crystal=
+You see a purple emotion crystal. It feels cold to the touch.=
+
+yellow emotion crystal=
+You see a yellow emotion crystal. It energizes you.=
+
+pink emotion crystal=
+You see a pink emotion crystal. It almost feels soft.=
+
+blue emotion crystal=
+You see a blue emotion crystal. While holding it your worries seem to disappear.=
+
+
+## documents
+
+note=
+You see a note.=
+
+coupon=
+You see a coupon.=
+
+closed envelope=
+
+opened envelope=
+
+sealed envelope=
+
+unsealed envelope=
+
+assassins id=
+You see an assassin's ID. Perhaps this can be put to good use.=
+
+map=
+You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.=
+
+
+## drinks
+
+olive oil=
+You see a bottle of olive oil. Do not drink it pure, it will make you feel sick!=
+
+vinegar=
+You see a bottle of vinegar. Do not drink it pure, it will make you feel sick!=
+
+fierywater=
+You see a bottle of fierywater. Do not drink it pure, you would evaporate!=
+
+mild koboldish torcibud=
+You see a bottle of mild koboldish torcibud. It will help you recover when you're all bruised and battered.=
+
+strong koboldish torcibud=
+You see a bottle of strong koboldish torcibud. It will help you recover when you're all bruised and battered.=
+
+vsop koboldish torcibud=
+You see a bottle of VSOP koboldish torcibud, specially aged in oak casks wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.=
+
+apple juice=
+You see apple juice. On a hot summer day, it would taste great.=
+
+beer=
+You see a beer. On a hot summer day, it would taste great.=
+
+wine=
+You see a glass of red wine. It will quench your thirst.=
+
+water=
+You see a bottle of fresh spring water. It's really tasty and fresh.=
+
+pina colada=
+You see a pina colada. It looks delicious but tastes dangerously strong!=
+
+tea=
+You see a lovely cup of tea.=
+
+milk=
+You see a small bottle of fresh milk.=
+
+antidote=
+You see an antidote, to cure you of poison and protect you for a while.=
+
+greater antidote=
+You see a greater antidote, to cure you of poison and protect you for a long while.=
+
+mana=
+You see an bottle of mana, to increase your mana rapidly.=
+
+poison=
+You see a bottle of poison. Don't drink it!=
+
+greater poison=
+You see a greater poison. Don't drink it!=
+
+deadly poison=
+You see a deadly poison. Don't drink it!=
+
+disease poison=
+You see a disease poison.  Be careful, it's wicked.=
+
+mega poison=
+You see a mega poison. This is some wicked poison.=
+
+twilight elixir=
+You see a bottle of medicinal elixir.=
+
+minor potion=
+You see a minor potion. It's not much but may save you in a tight spot.=
+
+soup=
+You see a bowl of soup. Its contents fill you up.=
+
+fish soup=
+You see a bowl of fish soup. Its contents fill you up.=
+
+potion=
+You see a potion. Take it to battle and you may survive longer.=
+
+greater potion=
+You see a greater potion, invaluable in battle.=
+
+mega potion=
+You see a mega potion. It strengthens greatly.=
+
+love potion=
+You see a love potion. It looks powerful so take care to use it carefully!=
+
+sedative=
+You see a sedative. It's effects can protect you from a shocked state.=
+
+ashen holy water=
+A bottle of ashen holy water.=
+
+cobra venom=
+You see a vial filled with cobra venom. Even in this small amount, it could be deadly if ingested.=
+
+antivenom=
+You see a vial filled with antivenom.=
+
+
+## flowers
+
+rhosyd=
+You see a beautiful and rare rhosyd flower.=
+
+rose=
+You see a single red rose. It smells heavenly.=
+
+lilia=
+You see a lilia, a single precious bloom.=
+
+daisies=
+You see a bunch of daisies. They are cheap and cheerful!=
+
+pansy=
+You see a pansy, so colorful and beautiful.=
+
+zantedeschia=
+You see a zantedeschia, a delicate bloom with the sweetest fragrance.=
+
+
+## food
+
+apple=
+You see a nice shiny apple.=
+
+purple apple=
+You see a purple apple. It is loaded with memories=
+
+mauve apple=
+You see a mauve apple. It is loaded with memories=
+
+black apple=
+You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.=
+
+lemon=
+You see a lemon. Could be an ingredient for the right chef...=
+
+banana=
+You see a banana. Be careful of monkeys when you have them in your bag!=
+
+cherry=
+You see a cherry. Its tangy taste revives you a little.=
+
+coconut=
+You see a coconut. Luckily it's already cracked and you can drink from it.=
+
+corn=
+You see an ear of corn. It could be eaten raw, grilled or turned into flour... Your choice.=
+
+grapes=
+You see a bunch of grapes. They look quite juicy and tasty.=
+
+olive=
+You see a small ripe olive. It can be eaten or used to create olive oil.=
+
+pear=
+You see a pear. Its lovely smell convinces you of taking it.=
+
+pineapple=
+You see a tropical pineapple.=
+
+pomegranate=
+You see a pomegranate. If you eat it, you will be in great shape soon.=
+
+watermelon=
+You see a watermelon. It refreshes your throat during hot summer days.=
+
+artichoke=
+You see an artichoke. It can be an ingredient, or you can eat it.=
+
+broccoli=
+You see a bunch of broccoli.=
+
+carrot=
+You see a carrot. It can be an ingredient, or you can eat it.=
+
+cauliflower=
+You see a fresh head of cauliflower.=
+
+courgette=
+You see a courgette. It can be an ingredient, or you can eat it.=
+
+collard=
+You see a collard. It's rare and strangely magical.=
+
+garlic=
+You see some fresh garlic.=
+
+leek=
+You see a fresh leek.=
+
+onion=
+You see an onion.=
+
+salad=
+You see a salad.=
+
+spinach=
+You see spinach. It is enriched with vitamins.=
+
+tomato=
+You see a tomato, put it in a salad or eat it.=
+
+egg=
+You see an egg.=
+
+button mushroom=
+You see a button mushroom. It can be an ingredient, or you can eat it.=
+
+porcini=
+You see a porcini. It can be an ingredient, or you can eat it.=
+
+toadstool=
+You see a toadstool. Beware!=
+
+char=
+You see a char, with a fleshy pink belly.=
+
+cod=
+You see a cod.=
+
+smoked cod=
+You see a smoked cod.=
+
+mackerel=
+You see a mackerel.=
+
+perch=
+You see a perch.=
+
+roach=
+You see a roach.=
+
+clownfish=
+You see a striped clownfish.=
+
+red lionfish=
+You see a venomous coral reef red lionfish.=
+
+surgeonfish=
+You see a bright blue surgeonfish.=
+
+trout=
+You see a trout.=
+
+smoked trout=
+You see a smoked trout.=
+
+bread=
+You see a loaf of bread. It is freshly baked and ready to eat.=
+
+pie=
+You see a meat and vegetable pie.=
+
+apple pie=
+You see a delicious apple pie, made with only genuine ingredients.=
+
+cherry pie=
+You see a delicious cherry pie, made with only genuine ingredients.=
+
+fish pie=
+You see a fish and leek pie. It's not too stodgy so you can eat it faster than a meat pie.=
+
+crepes suzette=
+You see a crepes suzette topped with hot chocolate sauce.=
+
+sandwich=
+You see a ham and cheese sandwich.=
+
+smoked ham=
+You see a smoked ham.=
+
+sugar=
+You see a sack of raw sugar.=
+
+butter=
+You see some butter. It is an ingredient or can be eaten if you like.=
+
+honey=
+You see a jar of sticky sweet honey. It's the clear runny kind.=
+
+icecream=
+You see a wafer cone with vanilla ice cream and chocolate flakes.=
+
+licorice=
+You see some delicious licorice. Your mouth waters.=
+
+hotdog=
+You see what looks like a tasty hotdog on a bun.=
+
+cheeseydog=
+You see what looks like a tasty cheeseydog on a bun.=
+
+cheese sausage=
+You see what looks like a tasty cheese sausage.=
+
+sausage=
+You see what looks like a tasty sausage.=
+
+tuna sandwich=
+You see what looks like a tuna sandwich.=
+
+chocolate shake=
+You see a scrumptious chocolate shake. Absolutely NO calories.=
+
+vanilla shake=
+You see a yummy vanilla shake. Absolutely NO calories.=
+
+potato=
+You see a potato.=
+
+habanero pepper=
+You see a habanero pepper. Could be a very HOT ingredient for a decent meal...=
+
+pinto beans=
+You see a bunch of pinto beans. An ingredient a chef will surely appreciate...=
+
+cheese=
+You see some cheese. Eat it and see what happens.=
+
+chicken=
+You see a tasty leg of chicken.=
+
+chocolate bar=
+You see an absolutely yummy chocolate bar.=
+
+candycane=
+You see a delicious candy cane.=
+
+greenmint=
+You see a green mint.=
+
+gumdrops=
+You see a mix of gum drops.=
+
+lemondrop=
+You see a sweet and tangy lemon drop.=
+
+lollipop=
+You see a lollipop.=
+
+peppermint=
+You see a sweet, little peppermint.=
+
+taffy=
+You see some ooey gooey taffy.=
+
+fairy cake=
+You see a luscious fairy cake with icing and sprinkles on top.=
+
+ham=
+You see a juicy ham.=
+
+meat=
+You see a piece of meat.=
+
+smoked meat=
+You see a piece of smoked meat.=
+
+easter egg=
+You see a lovely chocolate easter egg. It's huge!=
+
+small easter egg=
+You see a small chocolate easter egg. Yummy!=
+
+grilled steak=
+You see a fresh grilled steak. It smells awesome and is really juicy.=
+
+pizza=
+You see a tasty pizza, and hope they put extra cheese on it.=
+
+
+## furniture
+
+picture in wooden frame=
+You see a picture in a wooden frame=
+
+
+## helmets
+
+leather helmet=
+You see a leather helmet, it seems more like a hat than a defensive item.=
+
+trophy helmet=
+You see a Trophy Helmet. Those who were brave and finished the death match, win this helmet.=
+
+robins hat=
+You see a robins hat. It's cute but that's about it.=
+
+studded helmet=
+You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.=
+
+elvish hat=
+You see an elvish hat. The elf craftmanship has made the leafy material stronger than one would think.=
+
+chain helmet=
+You see a solid chain helmet, it will be excellent protection for your head.=
+
+viking helmet=
+You see a viking helmet. The previous owner wore it to many battles.=
+
+aventail=
+You see an aventail. It's a clever design.=
+
+blue helmet=
+You see a brand new blue helmet.=
+
+red helmet=
+You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.=
+
+golden helmet=
+You see a heavy golden helmet. The thick metal should protect you against almost anything.=
+
+horned golden helmet=
+You see a horned golden helmet.=
+
+shadow helmet=
+You see a heavy shadow helmet. Instead of shining, it darkly gleams.=
+
+xeno helmet=
+You see a xeno helmet.=
+
+chaos helmet=
+You see a chaos helmet.=
+
+mainio helmet=
+You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.=
+
+magic chain helmet=
+You see a magic chain helmet.=
+
+liberty helmet=
+You see the liberty helmet. It's light and strong, you feel free wearing it.=
+
+black helmet=
+You see a black helmet.=
+
+mithril helmet=
+You see a mithril helmet.=
+
+royal helmet=
+You see a royal helmet.=
+
+
+## herbs
+
+arandula=
+You see an arandula. It has medicinal properties, if the right person uses it.=
+
+kokuda=
+You see a kokuda. It has medicinal properties, if the right person uses it.=
+
+kekik=
+You see a kekik. It is a herb which can have healing properties.=
+
+mandragora=
+You see a root of mandragora. It has medicinal properties, if the right person uses it.=
+
+sclaria=
+You see the herb sclaria. The smell is calming.=
+
+reindeer moss=
+You see reindeer moss, something that grows only around Semos. It is quite a delicacy to reindeer, but extremely bitter to humans.=
+
+
+## jewellery
+
+emerald=
+You see an emerald, a precious gemstone.=
+
+sapphire=
+You see a sapphire, a precious gemstone.=
+
+carbuncle=
+You see a carbuncle, a precious gemstone related to the garnet.=
+
+obsidian=
+You see a piece of obsidian, it's known as volcanic glass because it forms when lava cools rapidly. When used as a gemstone it may look jet black or silvery grey, depending on how it is cut.=
+
+amethyst=
+You see an amethyst, a precious gemstone.=
+
+diamond=
+You see a diamond, not just a beautiful gem but also the hardest naturally occurring material.=
+
+black pearl=
+You see a black pearl, so dark and shiny.=
+
+
+## keys
+
+dungeon silver key=
+You see a silver dungeon key. Use it only if you are brave.=
+
+lich gold key=
+You see a golden lich key. It will open the door to terrible things.=
+
+minotaur key=
+You see a fancy bronze key. It smells faintly of minotaur. Perhaps one dropped it?=
+
+nalwor bank key=
+You see a key to the customer room of Nalwor Bank.=
+
+kotoch prison key=
+You see an ancient copper key, enscribed with something in Orcish.=
+
+kanmararn prison key=
+You see a key which matches the locks in the Kanmararn prison.=
+
+sedah gate key=
+You see a key for the gate to the imperial city of Sedah.=
+
+pet sanctuary key=
+You see a key for the pet sanctuary in Ados.=
+
+house key=
+You should not see this description=
+
+gate key=
+You should not see this description=
+
+master key=
+
+small key=
+You see the key for Zara's row house in Ados.=
+
+
+## legs
+
+black legs=
+You see a pair of black legs.=
+
+blue legs=
+You see a pair of shiny new blue legs.=
+
+chain legs=
+You see a pair of well made chain legs. They should protect you against any attacks aimed low.=
+
+chaos legs=
+You see a pair of chaos legs. The strange colours confuse you.=
+
+dwarvish legs=
+You see a pair of dwarvish legs, designed by master craftsmen.=
+
+elvish legs=
+You see a pair of elvish legs.=
+
+golden legs=
+You see a pair of shining, strong golden legs.=
+
+jewelled legs=
+You see a beautiful pair of jewelled legs. A large red gem glints at you and they're encrusted all over with sapphires.=
+
+leather legs=
+You see a pair of leather legs. They look new but they're poor quality.=
+
+magic plate legs=
+
+mainio legs=
+You see a pair of odd looking mainio legs. They are somewhat startling but they give you good protection.=
+
+mithril legs=
+You see a pair of mithril legs. They will serve you well.=
+
+red legs=
+A pair of red legs are in your grasp.=
+
+royal legs=
+You see a pair of royal legs.=
+
+shadow legs=
+You see a pair of shadow legs. The weight of them is incredible.=
+
+stone legs=
+You see a pair of stone legs, heavy and durable.=
+
+studded legs=
+You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner... or his enemies.=
+
+xeno legs=
+You see a pair of xeno legs. They're very strong and look brand new.=
+
+
+## miscs
+
+decent meal=
+You see a decent meal for Groongo Rahnnt. Deliver it to him quickly!=
+
+bulb=
+You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.=
+
+seed=
+You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.=
+
+giant heart=
+You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.=
+
+dice=
+You see a set of dice. May lady luck be with you.=
+
+cards=
+You see a deck of cards. Shuffle them well, to get a winning hand.=
+
+teddy=
+You see a teddy bear. It's soft and cuddly, and children love them.=
+
+rodent trap=
+You see a rodent trap.=
+
+vampirette entrails=
+You see some vampirette entrails. These guts prove that a vampirette was slain.=
+
+bat entrails=
+You see some bat entrails, full of the blood of a living creature.=
+
+suntan cream=
+You see a tube of suntan cream and notice that the outside is slippery. A nice scent of coconut mixed with bannana wafts into the air from it.=
+
+marbles=
+You see some marbles. Boys will be boys.=
+
+canned tuna=
+You see what appears to be canned tuna. Too bad you don't have a can opener.=
+
+snowglobe=
+You see a snowglobe. It's so festive, it reminds you of Christmas!=
+
+bobbin=
+You see a bobbin for a sewing machine.=
+
+venom gland=
+You see the venom gland of a giant king cobra. It is filled with deadly toxin.=
+
+pelt=
+
+leather thread=
+You see a strand of sturdy leather thread.=
+
+unicorn horn=
+You see a spiral unicorn horn. It is highly valued by traders and used in the creation of magical items.=
+
+
+## missiles
+
+snowball=
+You see a snowball. You can throw it at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.=
+
+vomit=
+You see a pile of vomit. Gross!=
+
+shuriken=
+You see a shuriken. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.=
+
+fire shuriken=
+You see a fire shuriken. Throwing this flaming missile unleashes fiendish power.=
+
+wooden spear=
+You see a wooden spear. You can attack at a distance with this primitive weapon. Stand square on, not diagonally, for the best results.=
+
+
+## money
+
+money=
+
+
+## ranged
+
+wooden bow=
+You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.=
+
+longbow=
+You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.=
+
+composite bow=
+You see a composite bow. It's better strung than most bows, for excellent ranged attack.=
+
+crossbow=
+You see a crossbow. The attack is high but it has a very short range. What do you prefer?=
+
+hunter crossbow=
+You see a hunter crossbow. You must decide if the high attack is worth the short range it has.=
+
+mithril bow=
+You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.=
+
+
+## relics
+
+skull ring=
+You see a skull ring.=
+
+amulet=
+
+
+## resources
+
+wood=
+You see some wood, fallen from a nearby tree.=
+
+sugar cane=
+You see a sugar cane. You can grind it for raw sugar.=
+
+grain=
+You see a sheaf of grain.=
+
+flour=
+You see a sack of flour. It can be used in recipes for pizzas and sandwiches.=
+
+iron ore=
+
+coal=
+You see a black and shiny piece of stone coal. It stayed in the ground for million of years.=
+
+wool=
+You see wool. It was recently shorn.=
+
+yarn=
+You see a ball of yarn. It was spun with care.=
+
+cloth=
+You see a roll of cloth. It is of first-class quality.=
+
+gold nugget=
+You see a gold nugget. Its rich golden colour shines, and it may be useful.=
+
+mithril nugget=
+You see a mithril nugget. Its pale silvery color shines, and it may be useful.=
+
+iron=
+
+gold bar=
+You see a gold bar. It will make beautiful jewelry, or fetch a fine price.=
+
+mithril bar=
+You see a mithril bar. It can be made into excellent armor, or fetch a fine price.=
+
+golden egg=
+You see a valuable golden egg.=
+
+spotted egg=
+You see a spotted egg. They are said to be delicious.=
+
+silk gland=
+You see a silk gland from a giant spider. Its contents are extremely valuable.=
+
+silk thread=
+You see a spool of silk thread, spun from the glands of a giant spider.=
+
+oil=
+You see a small can of oil.=
+
+mithril thread=
+You see a spool of mithril thread, made from silk fused with mithril.=
+
+mithril fabric=
+You see a couple yards of mithril fabric. It's very sparkly!=
+
+horse hair=
+You see some horse hairs.=
+
+beeswax=
+You see a piece of beeswax.=
+
+candle=
+You see a candle in a candle stick.=
+
+charcoal=
+You see charcoal, a component of carbon steel.=
+
+
+## rings
+
+medicinal ring=
+You see a medicinal ring. It may protect you from being poisoned when worn on the finger.=
+
+antivenom ring=
+You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.=
+
+placid ring=
+You see a placid ring. It may reduce the effects of being shocked when worn on the finger.=
+
+insulated ring=
+You see an insulated ring that may protect from being shocked. It must be worn on the finger.=
+
+wedding ring=
+You see a golden wedding ring, a symbol of love.=
+
+engagement ring=
+You see a diamond engagement ring, a symbol of love (or a symbol of wealth?)=
+
+emerald ring=
+You see an emerald ring, known as ring of life. Wear it, and you risk less from death.=
+
+turtle shell ring=
+You see a turtle shell ring.=
+
+imperial ring=
+You see an imperial ring. It is imbued with the strength of a king.=
+
+enhanced imperial ring=
+You see an enhanced imperial ring. It eminates the auras of strength and defense.=
+
+
+## scrolls
+
+summon scroll=
+You see a summon scroll. It summons a creature to aid in your adventures.=
+
+summon pet scroll=
+
+blank pet scroll=
+
+home scroll=
+You see a home scroll, it will take you back to semos city.=
+
+nalwor city scroll=
+You see a nalwor city scroll, it will take you back to nalwor city.=
+
+ados city scroll=
+You see an ados city scroll, it will take you back to ados city.=
+
+fado city scroll=
+You see a fado city scroll, it will take you back to fado city.=
+
+kirdneh city scroll=
+You see a kirdneh city scroll, it will take you back to kirdneh city.=
+
+kalavan city scroll=
+You see a kalavan city scroll, it will take you back to kalavan city.=
+
+deniran city scroll=
+You see a deniran city scroll, it will take you back to deniran city.=
+
+marked scroll=
+
+invitation scroll=
+
+empty scroll=
+You see an empty scroll. If used correctly it will return you to where you marked it at.=
+
+rainbow beans=
+You see a small pile of rainbow beans. One says something odd.=
+
+balloon=
+You see a bright red balloon. You can use it to float high up into the clouds.=
+
+twilight moss=
+You see a strange looking piece of moss. It looks like it could have hallucinogenic properties.=
+
+
+## shields
+
+black shield=
+You see a black shield. Its darkness will surely protect you.=
+
+blue shield=
+You see a blue shield. It feels light in your hand but is strong enough for excellent protection.=
+
+buckler=
+You see a small buckler. It may protect you against swords and maces but against stronger weapons you do not trust it.=
+
+chaos shield=
+You see a chaos shield. Its charming appearance will fool your enemies.=
+
+crown shield=
+You see a mighty crown shield. It is in perfect condition.=
+
+elvish shield=
+You see an elvish shield. It looks like one big tree leaf!=
+
+enhanced lion shield=
+An enhanced lion shield glints at you. It will defend you well.=
+
+golden shield=
+You see a golden shield, could it be the ultimate in defence?=
+
+green dragon shield=
+You see a green dragon shield, scaly and strong.=
+
+lion shield=
+You see a valuable lion shield. It is heavy enough to defend you against strong attacks.=
+
+magic plate shield=
+You see a magic plate shield. It has a magical quality surrounding it.=
+
+mainio shield=
+You see a strange looking mainio shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.=
+
+mithril shield=
+You see a mithril shield. You will most surely be protected.=
+
+plate shield=
+You see a solid plate shield. It is in good condition, and might be worth a little.=
+
+red shield=
+You see a red shield. It is a stunning shade of scarlet.=
+
+royal shield=
+You see a royal shield. It has a magical quality surrounding it.=
+
+shadow shield=
+You see a shadow shield. Rather than reflecting light, it seems to absorb it.=
+
+skull shield=
+The face of a skull scowls at you from this fearsome skull shield.=
+
+studded shield=
+You see a studded shield. It's a little dented but seems robust enough.=
+
+unicorn shield=
+You see a unicorn shield. It's beautifully crafted and will give you excellent protection.=
+
+wooden shield=
+You see a wooden shield. It is made of cheap wood and heavily used. However, it still seems to offer you some kind of basic protection.=
+
+xeno shield=
+You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.=
+
+ice shield=
+
+
+## special
+
+lucky charm=
+You see a lucky charm. Some believe that it helps their karma in some way, but others think that is superstition.=
+
+mithril clasp=
+You see a clasp made from mithril, it would provide the fastening for a cloak.=
+
+mythical egg=
+You see a mythical egg, but you do not know what it is for.=
+
+magical eggshells=
+You see shards from a mythical egg. They have magical properties.=
+
+golden gm token=
+You see a golden gm token. Does it bring you pride?=
+
+silvery gm token=
+You see a silvery gm token. Does it bring you pride?=
+
+bronze gm token=
+You see a bronze gm token. Does it bring you pride?=
+
+
+## swords
+
+assassin dagger=
+You see an assassin dagger, easy to pull out and use when needed.=
+
+biting sword=
+The tip of this biting sword is chiseled to a lethal point. It will serve you well.=
+
+black sword=
+You see a black sword.  Its darkness will surely protect you.=
+
+broadsword=
+You see a mighty broadsword. Enemies will see their death.=
+
+buster=
+You see a buster, with its distinctive, oversized blade.=
+
+chaos dagger=
+You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.=
+
+chaos sword=
+You see a chaos sword. Wielding it allows to hurt your foes and to heal you at the same time.=
+
+claymore=
+This claymore is very hard to lift as it is so heavy. It will be a good weapon if you can swing it.=
+
+dagger=
+You see a dagger, it is little more than decorative but you can jab pretty fast with it.=
+
+dark dagger=
+You see a dark dagger. It's designed to be used with a fast motion.=
+
+demon fire sword=
+The demon fire sword, a horrible sword taken from hell's deepest dungeons.=
+
+demon sword=
+Demon skeletons return from hell with this demon sword.=
+
+drow sword=
+This is a genuine drow sword.=
+
+elvish sword=
+This is an elvish sword. It is finely crafted.=
+
+fire sword=
+Flames race along this fire sword as you wield it.=
+
+golden blade=
+You see the rare and precious golden blade. It can steal life from those you stab with it.=
+
+golden orc sword=
+You see a golden orc sword, with its heavy and deadly appearance it seems also valuable.=
+
+great sword=
+This rare great sword is heavy and of good craftsmanship. It can only attack incredibly slowly.=
+
+hell dagger=
+You see a hell dagger. Is the colour that of the burning fires of Hell?=
+
+ice sword=
+You see an ice sword, the blade is lethally cold to the touch, and you know it is one of the best weapons you'll find.=
+
+imperator sword=
+You see a an imperator sword, crafted from you know not what.=
+
+immortal sword=
+This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite craftsmanship.=
+
+katana=
+You see a valuable katana, with a lethal looking blade.=
+
+knife=
+You see a blunt knife which looks capable of little damage.=
+
+l hand sword=
+You see l hand sword. It must be used with right hand sword.=
+
+night dagger=
+You see a night dagger, to be used with stealth.=
+
+nihonto=
+You see a samurai's nihonto sword with a razor sharp blade.=
+
+obsidian knife=
+You see a knife whose blade is crafted to a lethal edge from the finest obsidian.=
+
+orc sword=
+You see an orc sword which has a heavy and deadly appearance.=
+
+orcish sword=
+This orcish sword is badly done and weighs a lot.=
+
+r hand sword=
+You see r hand sword. It must be used with a left hand sword.=
+
+royal dagger=
+You see the rare and precious royal dagger. It can steal life from those you stab with it.=
+
+scimitar=
+This scimitar catches the light as you look at it, it will be a powerful weapon.=
+
+short sword=
+You see a well kept short sword which will be easy to carry as you travel.=
+
+soul dagger=
+You see a soul dagger. It's so light and sharp that you can stab at a very fast rate.=
+
+sword=
+You see a sharp sword which might even be worth a little.=
+
+vampire sword=
+You see the vampire sword, which will suck life from those you attack with it.=
+
+xeno sword=
+You wield a xeno sword. Despite the great strength it is strangely light.=
+
+training sword=
+You see a wooden training sword not even useful for cutting butter. But it is light and easy to swing.=
+
+
+## tokens
+
+arrow game token=
+You see a token, that when placed in the right spot could point you in the right direction.=
+
+o board token=
+You see an O token.=
+
+x board token=
+You see an X token.=
+
+
+## tools
+
+food mill=
+You see a food mill. It is the traditional tool to mill food.=
+
+sugar mill=
+You see a sugar mill. You can obtain sugar if you grind canes with it.=
+
+scroll eraser=
+You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.=
+
+pestle and mortar=
+You see a pestle and mortar. This is the traditional tool to pound herbs, food and other substances.=
+
+gold pan=
+You see a gold pan. It is the traditional tool to prospect for gold.=
+
+fishing rod=
+You see a fishing rod. If you find a fishing spot you can catch fish with it.=
+
+lamp=
+You see a lamp.=
+
+magical scissors=
+You see a sparkling pair of magical scissors. Just think what they could cut!=
+
+magical needle=
+You see a magical needle with a very sharp point.=
+
+pick=
+You see a pick. It is a tool for excavating coal.=
+
+shovel=
+You see a shovel, a tool for digging.=
+
+leather needle=
+You see a heavy leather needle for working thick hide.=
+
+rotary cutter=
+You see a rotary cutter. It can be used to cut up pizza. But perhaps it can be used on other things as well.=
+
+metal detector=
+You may find buried treasures with this metal detector.=
+
+rope=
+You see a sturdy rope.=
+
+
+## whips
+
+venom whip=
+You see a venom whip. Its thong has been saturated with cobra venom.=
+
+
+# creatures names and descriptions
+
+## angel
+
+dark angel=
+You see a dark angel. He is an strong evil angel, and for now he is under cover of darkness.=
+
+dark archangel=
+You see a dark archangel. After she fell from heaven her soul became as dark as she is now.=
+
+fallen angel=
+You see a fallen angel. When he turned away from good, he fell down from heaven.=
+
+baby angel=
+You see a baby angel. Will it ever get a chance to grow up?=
+
+angel=
+You see an angel. With his flame sword he guards the way and doesn't let you pass.=
+
+archangel=
+You see an archangel. It is Heaven's most terrifying weapon, a fierce and absolute force of primordial creation.=
+
+
+## animal
+
+crab=
+You see a little crab that comes from the beach, be careful of its pincers.=
+
+deer=
+You see a defenseless deer, do not have fear of it.=
+You see a reindeer running freely, and wonder if he is one of Santa's special helpers.=
+
+bat=
+You see a bat, it will seek your blood, don't be distracted...=
+
+killer bat=
+You see a killer bat which will suck your blood!=
+
+giant bat=
+
+giant killer bat=
+
+piglet=
+You see a piglet, a bit dirty.=
+
+boar=
+You see a boar, they are pretty wild!=
+
+bull=
+You see a bull, run away!!!=
+
+cow=
+You see a cow, taste her delicious milk.=
+
+goat=
+You see a goat, which is wild and lives in the mountain.=
+
+ram=
+You see a ram, maybe you are able to shear it?=
+
+horse=
+You see a horse, don't slap it or it will run away!=
+
+white horse=
+You see a white horse, they love to stay with their brown friends.=
+
+monkey=
+You see a monkey, would you like to offer it a banana?=
+
+fox=
+You see a fox, it becomes extinct!=
+
+wolf=
+You see a wolf. It is wild and very hungry!=
+
+big bad wolf=
+You see a big bad wolf. It is really wild, hungry and really dangerous!=
+
+lion=
+You see a lion, dangerous and hungry...=
+
+tiger=
+You see a tiger, which likes deer and human meat.=
+
+elephant=
+You see an elephant, a huge animal with lots of ham and meat. Are you sure that you want to attack it?=
+
+bull elephant=
+You see an aggressive bull elephant.=
+
+musth elephant=
+You see a musth elephant. It is highly aggressive and unpredictable.=
+
+woolly mammoth=
+
+babybear=
+You see a babybear, isn't it sweet?=
+
+panda=
+You see a panda which comes from an exotic land.=
+
+bear=
+You see a bear. You are lucky and found it awake.=
+
+black bear=
+You see a strong black bear which hibernates in winter.=
+
+polar bear=
+
+
+## animal_aquatic
+
+kraken=
+From the depths of the sea rises a Kraken!=
+
+neo kraken=
+From the horrible darkness of the deep sea rises a giant NEO kraken!=
+
+shark=
+A shark! Best move cautiously.=
+
+
+## animal_fowl
+
+chick=
+You see a little chick, it doesn't like to be away from its mother.=
+
+chicken=
+You see a chicken, isn't it nice?=
+
+dodo=
+You see a dodo bird, aren't they supposed to be extinct?=
+
+mother hen=
+You see a mother hen, she will probably hurt you if you touch her sons.=
+
+penguin=
+You see a penguin, smart and silly.=
+
+pigeon=
+You see a pigeon, it loves the little seeds.=
+
+
+## beast
+
+young beholder=
+You see a young beholder. His huge eye will find you everywhere!=
+
+beholder=
+You see a beholder which can see you very well with his huge eye...=
+
+elder beholder=
+You see an elder beholder, his nasty eye will scare you.=
+
+gargoyle=
+You see a gargoyle, You should think that it is a statue, but no, it is alive!=
+
+elder gargoyle=
+You see an elder gargoyle, it is wise...=
+
+dark gargoyle=
+You see a dark gargoyle, do you feel the fear?=
+
+venom gargoyle=
+You see a venom gargoyle, a hideous and poisonous creature.=
+
+mimic=
+You see a mimic. Its content might be different from what you expect.=
+
+snarfkin=
+You see a snarfkin, the favourite pet of wizards. Be careful, its claws are poisonous!=
+
+googon=
+You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.=
+
+grobble monster=
+You see a grobble monster. You might find this under your bed, inside your closet, or within your darkest nightmares.=
+
+winged blurble=
+
+thing=
+You see a thing. It looks like a very mutated human and is so scary that you think it has to come from another world.=
+
+
+## chess
+
+chaos pawn=
+You see a pawn for a game of chess. He will drop nothing if you kill him.=
+
+chaos rook=
+You see a rook for a game of chess. He will drop nothing if you kill him.=
+
+chaos knight=
+You see a knight for a game of chess. He will drop nothing if you kill him.=
+
+chaos bishop=
+You see a bishop for a game of chess. He will not reward you if you kill him.=
+
+chaos king=
+You see a king of a game of chess. He will reward nothing if you kill him.=
+
+chaos queen=
+You see a queen piece for a game of chess. She will reward nothing if you kill her.=
+
+madaram pawn=
+You see a pawn for a game of chess. It will reward nothing if killed.=
+
+madaram rook=
+You see a rook for a game of chess. It will scarcely reward you to kill it.=
+
+madaram knight=
+You see a knight, a chess piece. He won't reward you if you kill him.=
+
+madaram bishop=
+You see a bishop for a game of chess. It will reward you nothing if you slay it.=
+
+madaram king=
+You see a king to play chess with, he will reward you nothing if you kill him.=
+
+madaram queen=
+You see a queen piece for a game of chess. She will reward nothing if you kill her.=
+
+
+## demon
+
+violet avenger=
+
+devil queen=
+
+demon=
+You see a demon. He personifies evil.=
+
+imperial demon servant=
+You see an imperial demon servant who carries out whims of his demon lords.=
+
+imperial demon lord=
+You see an imperial demon lord. He holds the rank of General among demons, and very few out rank it in hell.=
+
+balrog=
+You see a huge balrog. He is slow hitting, but terribly strong as he stands towering above you.=
+
+imp=
+You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!=
+
+winged blue imp=
+You see a winged blue imp. It's endowed with the power of evil. His trident is able to poison even the bravest warriors.=
+
+water demon=
+
+
+## dragon
+
+chaos green dragonrider=
+You see a chaos green dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back.=
+
+chaos red dragonrider=
+You see a chaos red dragonrider. He might look like a red dragon, but the sorcerer seated on his back guides him to give even more strength out.=
+
+green dragon=
+You see a green dragon. He looks very tall and strong.=
+
+bone dragon=
+You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.=
+
+blue dragon=
+You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!=
+
+red dragon=
+You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. Its red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.=
+
+black dragon=
+You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.=
+
+flying golden dragon=
+You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!=
+
+twin headed dragon=
+You see a twin headed dragon. The two heads are staring at you with their four eyes!=
+
+rysin dragon=
+
+
+## dwarf
+
+duergar=
+You see a duergar. It is a close relative to dwarves but with a diabolically tainted blood.=
+
+duergar axeman=
+
+elder duergar=
+
+duergar elite=
+
+duergar hero=
+
+duergar wizard=
+
+black duergar=
+
+duergar king=
+
+dwarf=
+You see a dwarf who works in the mine to find some iron for us.=
+
+dwarf guardian=
+You see a dwarf guardian who fights against the humans.=
+
+elder dwarf=
+You see an elder dwarf, a mighty warrior tired of fighting.=
+
+hero dwarf=
+You see a hero dwarf. He is an old dwarf warrior who became a hero for fighting in many dwarf wars and he is very famous for his strength and brutality.=
+
+leader dwarf=
+You see a leader dwarf. He is the most mighty dwarf of his tribe so he enjoys much popularity there.=
+
+giant dwarf=
+You see a giant dwarf. It is very hard for him to be a giant dwarf because some of the other dwarves don't really see him as one of them because of his height... But in his big heart he is a dwarf and in a battle he will fight against each enemy!=
+
+Dhohr Nuggetcutter=
+
+Lord Durin=
+You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.=
+
+mountain dwarf=
+You see a mountain dwarf. He likes earth, stones and rocks. Deep within the mountain, where no animal and no human has ever been, you can hear the sound of his pickaxe as he searches for gold and ore.=
+
+mountain dwarf guardian=
+You see a mountain dwarf guardian. He has to watch out for enemies and guards the mountain dwarfs while they are doing their work.=
+
+mountain elder dwarf=
+You see a mountain elder dwarf. For many years he worked deep in the mountain and found much gold and ore in his life. Soon he will be too old to do this work but at the moment he is still a strong dwarf.=
+
+mountain hero dwarf=
+You see a mountain hero dwarf. Many, many dwarves admire him! He was a member of a dwarvish group which discovered a very big gold deposit!=
+
+mountain leader dwarf=
+You see a mountain leader dwarf. He is responsible for the mountain dwarves and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!=
+
+
+## elemental
+
+air elemental=
+You see an air elemental and feel a fresh breeze past you.=
+
+djinn=
+You see a djinn. He isn't caught in a bottle or lamp so someone must have let him free and gave him the order to kill you.=
+
+nymph=
+You see a nymph. She loves nature very much! As you take a look at her she feels disturbed in sun-bathing and talking to the birds, perhaps she was best left alone.=
+
+earth elemental=
+You see an earth elemental. The earth is quaking as it moves over the surface.=
+
+fire elemental=
+You see a fire elemental and hardly can stand the heat.=
+
+legendary ice elemental=
+You see a Legendary Elemental of Ice...=
+
+ice elemental=
+You see an ice elemental and sense a shiver on your spine.=
+
+ice giant=
+You see an ice giant. His skin is covered with frozen hoarfrost and his breath feels like the cold north wind.=
+
+water elemental=
+You see a Water elemental which is made of water and various other liquids.=
+
+ent=
+You see an ent. First you think it is a tree but you will get a surprise when it starts to walk!=
+
+old ent=
+You see an old ent. It has seen many years passing by and survived a lot of storms. You can see that it is very old because it has already lost all of its leaves and most of its bark is broken...=
+
+entwife=
+You see an entwife. It is stronger than an ent and lives in a group in an ancient forest.=
+
+
+## elf
+
+albino elf swordsman=
+You see an albino elf swordsman who is a professional in using swords. He can attack you from behind in a blink of an eye.=
+
+albino elf archer=
+You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a distance of 100 meters.=
+
+albino elf magician=
+You see an albino elf magician. He knows all the secrets of magic. You'd be better to not let him unleash his full power!=
+
+albino elf queen=
+You see an albino elf queen. She is the matriarch of the albino elf race and she will do everything to protect it.=
+
+albino elf king=
+You see an albino elf king. He is the patriarch of albino elves and won countless of battles with his powerful albino elf army.=
+
+child dark elf=
+You see a child dark elf. You should know that dark elves are already quite strong and intelligent when they are children. Don't think you can fight him so easily!=
+
+dark elf archer=
+You see a dark elf archer. Dark elf archer's flawless aim can be fatal for those who dare to oppose them.=
+
+dark elf=
+
+dark elf elite archer=
+
+dark elf captain=
+
+dark elf knight=
+
+dark elf general=
+You see a Dark Elf General. It is commanding the evil troops of Nalwor Caves against intruders.=
+
+dark elf wizard=
+Dark elf wizards are very powerful and dangerous. They are specialised in dark magic.=
+
+dark elf viceroy=
+
+dark elf ranger=
+
+dark elf sacerdotist=
+
+dark elf admiral=
+
+dark elf master=
+You see a dark elf master. Beware of his high skills on magic and swordsmanship!=
+
+dark elf matronmother=
+Dusky and shrouded, this matriarch rules her clan with a soft touch and sharp fangs. An expert in venoms and poisons, you wouldn't ever want to turn your back on her.=
+
+elf=
+You see an elf which loves the forest and lives in peace.=
+
+militia elf=
+You see a militia elf which trains hard to beat you!=
+
+archer elf=
+You see an archer elf which can do much damage with its wooden arrows.=
+
+soldier elf=
+You see a soldier elf, a good partner of the militia elves.=
+
+mage elf=
+You see a mage elf. She can feel pure magic when she stands outside in the forest and just frees her mind.=
+
+commander elf=
+You see a busy commander elf. He has control over the army of elves.=
+
+archmage elf=
+You see an archmage elf. She is pretty.=
+
+elf sacerdotist=
+
+elf wizard=
+You see an elf wizard. He is a very wise elf who knows almost every kind of magic. He likes to use nature spells to make every plant and creature fertile, but he is also able to defend himself when he has to do.=
+
+elf bodyguard=
+
+
+## giant
+
+amazoness giant=
+You see an amazoness giant. She looks very beautiful but don't be deceived by that!=
+
+giant=
+You look up into the face of a huge giant. His physical proportions and extraordinary strength should give you goosebumps.=
+
+elder giant=
+You see an elder giant. For many years he lived alone and had to hide because he was hunted by humans! Now he is old and has decided not to hide any longer because he wants to see something else in his life.=
+
+master giant=
+You see a master giant with dark black eyes. His blood pumps loudly into his heart.=
+
+black giant=
+You see a tall black giant. His armor and sword will hit you hard. Be prepared!=
+
+imperial general giant=
+You see an imperial general giant. He lurks in caves with his comrades to take you down.=
+
+kasarkutominubat=
+You see kasarkutominubat, a creature not known to many, told it was a human champion long ago, now it resembles nothing but that, with a mask bearing thousands of souls on it and hands running with nothing but blood.=
+
+
+## gnome
+
+gnome=
+You see a gnome who lives in the mountains.=
+
+mage gnome=
+You see a mage gnome, she cleans the dirty mountain.=
+
+infantry gnome=
+You see an infantry gnome who will protect his little town against the humans!=
+
+cavalryman gnome=
+You see a cavalryman gnome who does long travels to search for gold.=
+
+giant gnome=
+
+giant gnomess=
+
+
+## goblin
+
+goblin=
+You see a goblin, it is an evil and mischievous creature.=
+
+veteran goblin=
+You see a veteran goblin, an old warrior...=
+
+soldier goblin=
+You see a soldier goblin, a young warrior.=
+
+
+## golem
+
+dwarf golem=
+You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarves created a golem out of this rock! From this day the dwarf golem lives together with them.=
+
+ice golem=
+You see an Ice golem. Ice Golems are elementals made out of ice. You should watch out for its icy fists or you might get hurt.=
+
+stone golem=
+You see a stone golem, it only exists to protect. What was it crafted for to protect, and what would one do if it lost its purpose?=
+
+wooden golem=
+You see a wooden golem. The scroll with ancient words in his head keeps it walking.=
+
+
+## human
+
+kalavan housewife=
+You see a kalavan housewife. She lives in Kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!=
+
+kalavan peasant=
+You see a kalavan peasant. He works in the fields around Kalavan city. As he heard there were strangers in the city he came to help the kalavan citizens in fighting the enemies!=
+
+kalavan wisewoman=
+You see a kalavan wisewoman. Normally she sits in her small room and does some handworking but now she wants to have some action!=
+
+kalavan citizen=
+You see a kalavan citizen. He lives in kalavan city and tries to protect it from invaders!=
+
+monk=
+You see a monk. Monks are very calm and peaceful. They live alone among themselves, but they don't want to be interrupted by anyone.=
+
+darkmonk=
+You see a Darkmonk. Darkmonks can control dark powers, and they will do anything to get you out of their way!=
+
+devil monk=
+You see a devil monk. He is a member of a devil cult which practises black rituals.=
+
+littlewitch=
+You see a little witch. These little girls are witches and that makes them very dangerous.=
+
+littlewizard=
+You see a little wizard. Although he is a child, he is already able to cast powerful spells.=
+
+
+## human_amazon
+
+amazoness archer=
+You see an amazoness archer. She handles her bow quite well and her arrows are very dangerous when she shoots them at you out of the forest!=
+
+amazoness archer commander=
+You see an amazoness archer commander. She is the leader of amazoness archers. Her bow skills are incredible and her arrows pierce everything.=
+
+amazoness bodyguard=
+You see an amazoness bodyguard who will guarantee the safety to the people of Amazon island.=
+
+amazoness coastguard=
+You see an amazoness coastguard. She protects the coasts of Amazon Island from intruders. She is not too happy to see you running in her island.=
+
+amazoness coastguard mistress=
+You see an amazoness coastguard mistress. Even if they are women, these blue haired mistresses should not be underestimated.=
+
+amazoness commander=
+You see an amazoness commander who is specialised in eliminating any strangers who dare to take a step to her island.=
+
+amazoness elite coastguard=
+You see an amazoness elite coastguard. When it is her shift to protect the island, you would just wish to have stayed at home.=
+
+amazoness hunter=
+You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn't like that you are in her hunting area!=
+
+amazoness vigilance=
+You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don't want her to hear you!=
+
+amazoness imperator=
+You see an amazoness imperator. She is the emperor of Amazon island and has ruled it for decades and won't let you get past her very easily.=
+
+
+## human_assassin
+
+bandit=
+You see a lean and mean bandit. He's out to get your life and purse!=
+
+disciple assassin=
+You see a disciple assassin. He is quite young but he has learned to fight and kill already.=
+
+apprentice assassin=
+You see an apprentice assassin. He has been taught some very awesome moves and methods, so he is already able to kill an enemy almost perfectly!=
+
+hunter=
+
+assassin=
+You see an assassin. He is very good at killing his victims silently without being seen by anyone.=
+
+ninja=
+Your keen eyes made you able to see this fast ninja. Prepare for a fight!=
+
+samurai=
+If this samurai failed to uphold his honor, he could only regain it by performing seppuku.=
+
+shadows assassin=
+You see a shadows assassin. He knows how to become one with the shadows and to move in the dark without being seen or making any sound.=
+
+master assassin=
+You see a master assassin. He is a master of assassination! He is able to kill an enemy without letting him know that he is already there!=
+
+
+## human_barbarian
+
+barbarian=
+
+barbarian wolf=
+
+barbarian elite=
+
+barbarian priest=
+
+barbarian chaman=
+
+barbarian leader=
+
+barbarian king=
+
+
+## human_blordrough
+
+blordrough quartermaster=
+You see a man who gave up his life as a puppet of the Blordrough army, all for the love of dragons. He is wonderfully happy.=
+
+blordrough corporal=
+You see a man who feels his past indicates how he should be treated now but desperately wishes to exercise his intelect in a game of chess.=
+
+blordrough storm trooper=
+You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni.  Now, his main concern is keeping his house clean and tidy.=
+
+blordrough soldier=
+You see a man who is fast and strong.=
+
+blordrough elite=
+You see a man who is aging, but he knows how to fight.=
+
+blordrough infantry=
+You see a man who has flaming red hair and red beady eyes.=
+
+blordrough captain=
+You see a seasoned warrior.=
+
+blordrough general=
+You see a lean, mean, fighting machine.=
+
+
+## human_cannibal
+
+cannibal woman=
+You see a cannibal woman. She wants to make a soup out of your bones!=
+
+cannibal=
+You see a cannibal. He hunts you for cooking and eating your fresh meat! It's useless to tell him that your flesh is not good, better fight him or run away!=
+
+elder cannibal=
+
+cannibal warrior=
+You see a cannibal warrior.=
+
+
+## human_chaos
+
+chaos soldier=
+You see a chaos soldier. Chaos soldiers are servants of the evil. Killing you is one of their evil plans.=
+
+chaos warrior=
+You see a chaos warrior. This chaotic creature is fighting with a big blade to slay his enemies.=
+
+chaos commander=
+You see a chaos commander who is working on an evil plan. You should take care of him before he fulfills his duty.=
+
+chaos sorcerer=
+You see a chaos sorcerer. Chaos sorcerers will cast some evil spells on you if you don't obey them.=
+
+chaos dragonrider=
+You see a chaos dragonrider. He is very well trained in dragon riding, but he can also fight well on the ground.=
+
+chaos lord=
+You see a chaos lord who is one of the strongest chaos creatures in Faiumoni. You should prepare well before attacking him.=
+
+chaos overlord=
+You see a chaos overlord. It is him who directs the creation of evil plans and gives orders to all chaotic creatures which exist.=
+
+
+## human_imperial
+
+imperial defender=
+You see an imperial defender. He and his comrades won't let you walk into their territory easily.=
+
+imperial veteran=
+You see an imperial veteran. He fought in many battles and wars. Now he is old, but over the years he always looked for a new enemy to fight against.=
+
+imperial archer=
+
+imperial priest=
+You see an imperial priest. The church has fallen out of favor with the citizens as of late, but this imperial priest still clings to the faith.=
+
+imperial elite guardian=
+You see an Imperial Elite Guardian. He is a very well trained guardian and he will protect his environment until the end.=
+
+imperial scientist=
+You see an imperial scientist. He is quite clever but also a little bit crazy and unfortunately he uses his intelligence for evil experiments.=
+
+imperial high priest=
+You see an imperial high priest who's troubled by the actions of the imperial science department. Be careful, he might take those frustrations out on you!=
+
+imperial archer leader=
+
+imperial elite archer=
+
+imperial leader=
+You see a well dressed imperial leader. Its troops will try to dash you.=
+
+imperial knight=
+
+imperial chief=
+
+imperial commander=
+
+imperial general=
+You see an imperial general with a huge scar above his eye. He is still strong, don't think that he will not see you!=
+
+emperor dalmung=
+You see emperor dalmung who stands before you. Once a powerful warlock trained by a mighty magician, but he disappeared decades ago. Now it seems he's in league with Ivan Abe!=
+
+
+## human_madaram
+
+madaram archer=
+
+madaram peasant=
+
+madaram trooper=
+
+madaram soldier=
+
+madaram healer=
+
+madaram axeman=
+
+madaram queen=
+
+madaram hero=
+
+madaram windwalker=
+
+madaram cavalry=
+
+madaram stalker=
+
+madaram buster blader=
+
+
+## human_mithrilbourgh
+
+mithrilbourgh soldier=
+
+mithrilbourgh archer=
+
+mithrilbourgh knight=
+
+mithrilbourgh elite archer=
+
+mithrilbourgh sergeant=
+
+mithrilbourgh lieutenant=
+
+mithrilbourgh colonel=
+
+mithrilbourgh wizard=
+
+mithrilbourgh general=
+You see a mithrilbourgh general. Some call him Hawkeyes. He cast his gaze over the city walls and saw you coming from miles away.=
+
+
+## human_risecia
+
+risecia thug=
+You see a risecia thug, stay away from him!=
+
+risecia archer=
+You see a risecia archer, just one of the warriors who wants to protect his chief.=
+
+risecia swordsman=
+You see a risecia swordsman, the blade of his sword will cut your head!=
+
+Chief Falatheen of the Risecia=
+You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors protect him against invaders.=
+
+
+## humanoid
+
+robot aruthon=
+
+dark aruthon=
+
+leprechaun=
+You see a leprechaun, you would be lucky if you found his treasure.=
+
+littlefairy=
+You see a little fairy, which is magical and nice.=
+
+clurichaun=
+You see a clurichaun. He is rich, but you don't know if you are able to find his gold!=
+
+brain ahouga=
+You see a brain ahouga, a very strange creature only living in your dreams!=
+
+blue mohiko=
+You see a blue mohiko. A brown alien with a large blue mohawk.=
+
+red roohako=
+You see a red roohako. It is coming for you in your deepest dreams.=
+
+
+## hybrid
+
+arachne=
+You see Arachne, a horrid half woman half spider. With so many legs she can hit you very fast, and her poisonous bite is fierce.=
+
+frogman=
+You see a frogman which lives in a lake which isn't very deep.=
+
+elite frogman=
+You see an elite frogman. His huge eyes let you shiver!=
+
+wizard frogman=
+You see a mighty wizard frogman. His wand and magical cloak show his wisdom and power.=
+
+minotaur=
+You see a minotaur. He escaped from his labyrinth and is very angry now!=
+
+minotaur king=
+You see a Minotaur King. He doesn't have to escape from his labyrinth to be very angry...=
+
+naga=
+You see a naga. She awaits unwary victims to whom she may give her deadly kiss.=
+
+high naga=
+
+armed naga=
+
+lamia=
+
+ratman=
+You see a ratman. He is a mutation that comes from old times.=
+
+ratwoman=
+You see a ratwoman. She is a mutation of women with the rats in the century XVIII.=
+
+archrat=
+You see an archrat. You will be distracted with its aura, be careful...=
+
+sheepman=
+
+armored sheepman=
+
+elder sheepman=
+
+elite sheepman=
+
+xenocium=
+
+
+## insect
+
+killer bee=
+You see a killer bee which will sting you to death!=
+
+tiny scarab=
+You see a tiny scarab. It is an insect familiar to desert ecologies that will eat almost anything, including dung. Its hard carapace provides protection from the sun and being crushed, so don't think a little stomp will stop it.=
+
+water scarab=
+
+
+## kobold
+
+kobold=
+You see a kobold. People say that it is a mythical spirit.=
+
+soldier kobold=
+You see a soldier kobold, he's protecting his king.=
+
+archer kobold=
+You see an archer kobold. It runs away from humans.=
+
+veteran kobold=
+You see a veteran kobold, it is mighty!=
+
+leader kobold=
+You see a leader kobold, one of the mighty warriors.=
+
+giant kobold=
+You see a giant kobold. Though generally playful it doesn't quite know its own strength. When it asks for a hug, it's best to decline that offer.=
+
+
+## mutant
+
+cat woman=
+You see a cat woman. She's agile, stealthy, fast and sharp, so stay focused and don't get cut!=
+
+dark mutant=
+
+glow monster=
+You see a glow monster. Its gleam in the dark sewers fightens you.=
+
+imperial experiment=
+You see an imperial experiment which mirrors the fate of many of science departments test subjects. Its skin glows and standing before it taxes your body.=
+
+imperial mutant=
+
+poison shroom=
+You see a toadstool... spitting poison at you?=
+
+werewolf=
+You see a werewolf. Normally he is a human but at fullmoon nights he turns into a dangerous beast! His poison seems to last forever.=
+
+
+## mythical_being
+
+mermaid=
+You see a mermaid. They perfer their own company and are not too happy to see you here.=
+
+emerald mermaid=
+You see an emerald mermaid.=
+
+amethyst mermaid=
+You see an amethyst mermaid.=
+
+ruby mermaid=
+You see a ruby mermaid.=
+
+sapphire mermaid=
+You see a sapphire mermaid.=
+
+unicorn=
+You see a rare unicorn. It is widely believed to be only a myth.=
+
+white unicorn=
+
+black unicorn=
+
+golden unicorn=
+
+pegasus=
+You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.=
+
+baby pegasus=
+
+bronze pegasus=
+
+ivory pegasus=
+
+ebony pegasus=
+
+centaur=
+You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.=
+
+solar centaur=
+
+glacier centaur=
+
+centaur king=
+
+
+## ogre
+
+ogre=
+You see an ogre, it is nude and rude!=
+
+elder ogre=
+You see an elder ogre, he's in the last moments of his life, take pity on him.=
+
+ogre soldier=
+You see an ogre soldier, smelling like it didn't have had a bath for years. Ewww.=
+
+superogre=
+You see a superogre which belongs to the family of very material creatures, the Ogres. Ever since this one happened upon a peculiar helmet and has been revered among its peers. Take care, it throws a mean punch!=
+
+
+## oni
+
+oni warrior=
+You see an oni warrior. His purple skin colour should not lull you into a false sense of security!=
+
+oni archer=
+You see an oni archer. His arrows will follow you everywhere for protecting his queen!=
+
+oni priest=
+You see a mysterious oni priest, uttering strange incantations.=
+
+oni king=
+You see the oni king. His power leads brave oni troops around his kingdom.=
+
+oni queen=
+You see the oni queen. She supports her husband and takes an eye onto their kingdom while he conquers new land and fights on battlefields.=
+
+
+## orc
+
+orc=
+You see an orc which is noisy and silly.=
+
+orc spearman=
+You see an orc spearman. Run away fast before a spear pierces you.=
+
+orc hunter=
+You see an orc hunter. It it seeking for you!=
+
+orc warrior=
+You see an orc warrior which doesn't like you searching in the mountain.=
+
+orc chief=
+You see an orc chief which is too busy to attend to you!=
+
+mountain orc=
+You see a mountain orc. Not very cunning but his robustness, stench and loudness could still overwhelm you!=
+
+mountain orc warrior=
+You see a mountain orc warrior. Not very cunning but you should not underestimate his robustness and stench!=
+
+mountain orc hunter=
+You see a mountain orc hunter. He's in search for raw meat... You could be his next lunch!=
+
+mountain orc chief=
+You see a mountain orc chief. He's proud, loud and reeks like a thousand orcs together...=
+
+golden orc=
+
+
+## reptile
+
+grass snake=
+You see a grass snake which is quite dangerous.=
+
+snake=
+You see a snake, it came from the forest to poison you!=
+
+cobra=
+
+king cobra=
+You see a king cobra. It is extremely venomous.=
+
+caiman=
+You see a caiman, which is hidden in the water.=
+
+crocodile=
+You see a crocodile, it arises from the deep waters in the rivers.=
+
+turtle=
+You see a turtle swimming quietly in the water. It doesn't want to be disturbed.=
+
+
+## rodent
+
+mouse=
+You see a small mouse that seems to be very hungry.=
+
+rat=
+You see a small rat that seems to be extremely hungry.=
+
+caverat=
+You see a caverat which is dirty and loves the dungeons.=
+
+venomrat=
+You see a venomrat, extremely poisonous.=
+
+zombie rat=
+You see a hungry zombie rat and it doesn't like to see you.=
+
+razorrat=
+You see a razorrat, its noise will make you crazy!=
+
+giantrat=
+You see a giant rat. It seems like it survived from an experiment which went wrong.=
+
+beaver=
+You see a beaver. It likes to build dams in the river.=
+
+
+## slime
+
+black slime=
+You see a black slime, with a sticky trail behind it.=
+
+brown slime=
+You see a brown slime, sticky and hungry.=
+
+green slime=
+You see a green slime, sticky and shiny.=
+
+twilight slime=
+You see a twilight slime, so strange and beautiful. Why is it coming towards you? Runnnnnnnnn!=
+
+
+## spider
+
+spider=
+You see a spider. It makes a giant spider web to trap you!=
+
+poisonous spider=
+You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!=
+
+giant spider=
+You see a giant spider. It has very long legs which are quite dangerous.=
+
+
+## troll
+
+cyclops=
+You see a cyclops. It just has one eye.=
+
+troll=
+You see a troll, be careful in his terrain.=
+
+red troll=
+You see a red troll, he's burning with anger.=
+
+cave troll=
+
+
+## undead
+
+ghost hound=
+As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!=
+
+death knight=
+You see a death knight. Some time ago he fought in tournaments where his only aim was to kill as many enemies as possible.=
+
+necrosophia=
+You see Necrosophia. She is a mighty beast, she will burn you with fire while you are disoriented by the rainbow beans.=
+
+green phantom=
+
+
+## undead_lich
+
+lich=
+You see a lich, a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.=
+
+dead lich=
+You see a dead lich with his huge green and heavy cloak. Although he is dead and bony, he'll seek revenge for his too early passing and will always return fast and ruthless!=
+
+high lich=
+The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.=
+
+
+## undead_mummy
+
+mummy=
+You see a mummy which usually sleeps in a coffin.=
+
+royal mummy=
+You see a royal mummy. You wonder what keeps this king's soul from finding peace.=
+
+
+## undead_skeleton
+
+skeleton=
+You see a skeleton which survives to get revenge.=
+
+tiny skelly=
+You see a tiny skelly. It is silly, little and evil, be careful with its poison...=
+
+warrior skeleton=
+You see a warrior skeleton, it's just a normal skeleton with a shield!=
+
+elder skeleton=
+You see the bones of an old man. He lived to a ripe old age, and is sure to know a thing or two that separates him from all the vengeful skeletons that died young.=
+
+demon skeleton=
+You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!=
+
+gashadokuro=
+A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.=
+
+fallen warrior=
+You see a fallen warrior. Once he fought in great battles but now he has fallen to the depths of hell only to come back up to get his revenge.=
+
+fallen priest=
+You see a fallen priest. He was once just a regular human priest, until the dark powers corrupted him and turned him to the dark side.=
+
+fallen high priest=
+You see a fallen high priest. It is manifested through the dark forces seized of this world.=
+
+
+## undead_specter
+
+ghost=
+You see a ghost, don't be afraid! It doesn't seem to be evil.=
+
+death=
+You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.=
+
+black death=
+You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.=
+
+golden death=
+You see the golden death. He came to take your soul away to pay for all your sins.=
+
+invisible man=
+You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!=
+
+incorporeal armor=
+You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.=
+
+
+## undead_vampire
+
+vampire bride=
+You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.=
+
+vampirette=
+You see a Vampirette. Beware of its sharp teeth! She wants to drink your blood and turn you into a vampire!=
+
+vampire lord=
+You see a vampire lord. Be careful, he is after your blood!=
+
+
+## undead_zombie
+
+bloody zombie=
+You see a bloody zombie. Can you see the drops of blood which fall from his body?=
+
+zombie=
+You see a zombie. It woke up just to take revenge, be silent.=
+
+headless monster=
+You see a headless monster, how can he hear that we come to him?=
+
+rotten zombie=
+You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.=

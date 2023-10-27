@@ -97,6 +97,7 @@
   <import file="${ant_modules}/dist.xml"/>
   <import file="${ant_modules}/maps.xml"/>
   <import file="${ant_modules}/docs.xml"/>
+  <import file="${ant_modules}/locale.xml"/>
   <import file="${ant_modules}/testing.xml"/>
   <import file="${ant_modules}/tools.xml"/>
 
