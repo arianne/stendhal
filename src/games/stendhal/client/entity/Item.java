@@ -22,6 +22,19 @@ public class Item extends Entity {
 	 */
 	private RPSlot content;
 
+	/** Quantity property. */
+	public static final Property PROP_QUANTITY = new Property();
+	/** The item quantity. */
+	private int quantity;
+
+
+	/**
+	 * Create an item.
+	 */
+	public Item() {
+		quantity = 0;
+	}
+
 	/**
 	 * Initialize this entity for an object.
 	 *
@@ -57,7 +70,7 @@ public class Item extends Entity {
 	 * @return The number of items.
 	 */
 	public int getQuantity() {
-		return 1;
+		return quantity;
 	}
 
 	/**
@@ -74,6 +87,10 @@ public class Item extends Entity {
 
 		if (changes.has("state")) {
 			fireChange(PROP_STATE);
+		}
+		if (changes.has("quantity")) {
+			quantity = changes.getInt("quantity");
+			fireChange(PROP_QUANTITY);
 		}
 	}
 

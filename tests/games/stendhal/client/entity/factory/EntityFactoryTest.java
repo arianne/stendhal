@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,7 +37,6 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
-import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.StatefulEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -271,6 +270,8 @@ public class EntityFactoryTest {
 
 	@Test
 	public final void stackableItem() {
+		// stackable items are now handled in the `Item` class
+
 		RPObject rp = new MockRPObject("item", "drink");
 
 		IEntity en = EntityFactory.createEntity(rp);
@@ -290,28 +291,28 @@ public class EntityFactoryTest {
 		rp = new MockRPObject("item", "herb");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 		rp = new MockRPObject("item", "misc");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 		rp = new MockRPObject("item", "money");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 		rp = new MockRPObject("item", "ammunition");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 		rp = new MockRPObject("item", "resource");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 		rp = new MockRPObject("item", "scroll");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -320,8 +321,8 @@ public class EntityFactoryTest {
 		rp = new MockRPObject("item", "jewellery");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now",
-				StackableItem.class, en.getClass());
+		assertEquals("we should have created a Item by now",
+				Item.class, en.getClass());
 
 	}
 

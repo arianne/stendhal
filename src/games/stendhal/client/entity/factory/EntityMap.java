@@ -48,7 +48,6 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.Spell;
-import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.StatefulEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
@@ -77,30 +76,18 @@ public final class EntityMap {
 	private static void register() {
 		// item
 		register("item", null, null, Item.class);
-		register("item", "ammunition", null, StackableItem.class);
 		register("item", "box", null, Box.class);
 		register("item", "club", "wizard_staff", UseableItem.class);
-		register("item", "container", null, StackableItem.class);
-		register("item", "documents", "coupon", StackableItem.class);
 		register("item", "drink", null, UseableItem.class);
-		register("item", "flower", null, StackableItem.class);
 		register("item", "food", null, UseableItem.class);
-		register("item", "herb", null, StackableItem.class);
-		register("item", "jewellery", null, StackableItem.class);
-		register("item", "misc", null, StackableItem.class);
 		register("item", "misc", "bulb", UseableItem.class);
 		register("item", "misc", "seed", UseableItem.class);
-		register("item", "missile", null, StackableItem.class);
-		register("item", "money", null, StackableItem.class);
-		register("item", "resource", null, StackableItem.class);
 		register("item", "ring", null, UseableRing.class);
 		register("item", "ring", "emerald-ring", BreakableRing.class);
 		register("item", "scroll", null, UseableItem.class);
-		register("item", "special", null, StackableItem.class);
 		register("item", "special", "mithril clasp", Item.class);
 		register("item", "token", null, Item.class);
 		register("item", "tool", "foodmill", UseableItem.class);
-		register("item", "tool", "rope", StackableItem.class);
 		register("item", "tool", "scrolleraser", UseableItem.class);
 		register("item", "tool", "sugarmill", UseableItem.class);
 

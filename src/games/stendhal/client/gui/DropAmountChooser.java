@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +33,7 @@ import javax.swing.text.PlainDocument;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 /**
@@ -45,7 +45,7 @@ class DropAmountChooser {
 	private static final int BORDER = 2;
 
 	/** Item to be dropped. */
-	private final StackableItem item;
+	private final Item item;
 	/** Target where the user is dropping the item. */
 	private final DropTarget target;
 	/** Drop location within the target component. */
@@ -63,7 +63,7 @@ class DropAmountChooser {
 	 * 	an amount greater than 0
 	 * @param point drop location
 	 */
-	DropAmountChooser(StackableItem item, DropTarget target, Point point) {
+	DropAmountChooser(Item item, DropTarget target, Point point) {
 		this.item = item;
 		this.target = target;
 		location = point;

@@ -25,7 +25,6 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.Item;
-import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.InternalWindow;
 import games.stendhal.client.gui.InternalWindow.CloseListener;
 import games.stendhal.client.gui.SlotWindow;
@@ -215,7 +214,7 @@ public class Item2DView<T extends Item> extends Entity2DView<T> {
 
 		if (property == IEntity.PROP_CLASS || property == IEntity.PROP_STATE) {
 			representationChanged = true;
-		} else if (property == StackableItem.PROP_QUANTITY) {
+		} else if (property == Item.PROP_QUANTITY) {
 			quantityChanged = true;
 		}
 	}

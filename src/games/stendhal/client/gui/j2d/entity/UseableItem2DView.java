@@ -15,7 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 import java.util.List;
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import marauroa.common.game.RPObject;
@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
 /**
  * The 2D view of a useable item.
  */
-class UseableItem2DView extends Item2DView<StackableItem> {
+class UseableItem2DView extends Item2DView<Item> {
 
 	//
 	// Entity2DView

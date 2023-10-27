@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,6 @@ package games.stendhal.client.entity;
 /**
  * This is a useable stackable item.
  */
-public class UseableItem extends StackableItem {
+public class UseableItem extends Item {
 
 }
