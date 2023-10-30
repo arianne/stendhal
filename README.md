@@ -6,7 +6,7 @@ Are you looking for adventure? Want to fight for riches?<br>
 Develop yourself and your social standing? Meet new people?<br>
 Do you want to be part of a brave new world?
 
-Stendhal is a fully fledged multiplayer online adventures game (MORPG). It is completely open source (client, server, everything).
+Stendhal is a fully fledged multiplayer online adventures game (MORPG). t is entirely open source, including the client, server, and everything else.
 
 Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons.
 You will meet NPCs and acquire tasks and quests for valuable experience.
@@ -43,7 +43,7 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 * [Building Android WebView Client](https://stendhalgame.org/wiki/BuildStendhalForAndroid#WebView_Client)
 
 
-## Legal
+## Legal Information
 The server and java client are free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** 2 or later as published by the Free Software Foundation.
 
 The web client is free software; you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** 3 or later as published by the Free Software Foundation.
@@ -53,4 +53,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008, arianne_rpg at users dot sourceforge dot net and others<br>
 Stendhal(c) is copyright of the Arianne Project, 2006-2023, arianne-general at lists dot sourceforge dot net
 
-Please have a look at the list of [contributors](https://github.com/arianne/stendhal/blob/master/doc/contributors.md#contributors).
+Please take a look at the list of our [contributors](https://github.com/arianne/stendhal/blob/master/doc/contributors.md#contributors).
