@@ -53,7 +53,8 @@
     <replaceregexp file="${buildtools}/mkdocs/mkdocs.yml"
       match="^copyright:.*"
       replace="copyright: Copyright &#169; 2003-${year} Stendhal"
-      byline="true"/>
+      byline="true"
+      encoding="UTF-8"/>
 
     <!-- pre release version -->
     <replaceregexp file="${src}/games/stendhal/common/Debug.java"
