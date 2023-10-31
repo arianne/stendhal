@@ -19,6 +19,7 @@ Changelog
 *bugfixes*
 
 - deathmatch cannot be restarted while active
+- fixed positioning of emojis in Java client
 
 
 1.44
