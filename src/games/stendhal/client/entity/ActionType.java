@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -220,7 +220,7 @@ public enum ActionType {
 	 */
 	public static ActionType getbyRep(final String representation) {
 		for (final ActionType at : ActionType.values()) {
-			if (at.actionRepresentation.equals(representation)) {
+			if (at.actionRepresentation.toLowerCase().equals(representation.toLowerCase())) {
 				return at;
 			}
 
