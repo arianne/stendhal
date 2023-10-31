@@ -8,8 +8,14 @@
     - Follow jpackage error messages to install missing dependencies, like for example .NET runtime / wix on Windows
   -->
 
-  <target name="msiPackage" description="Creates MSI installer package from current build">
+  <target name="stagePackage">
+    <delete dir="${build}/package/client"/>
     <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+    <delete file="${build}/package/client/stendhal-starter.exe"/>
+  </target>
+
+  <target name="msiPackage" description="Creates MSI installer package from current build" depends="stagePackage">
+    <delete dir="${build}/package/msi-app-image"/>
     <exec executable="jpackage" dir="." failonerror="true">
       <arg line="--type app-image"/>
       <arg line="--dest ${build}/package/msi-app-image"/>
@@ -38,8 +44,8 @@
     </exec>
   </target> <!-- msiPackage -->
 
-  <target name="dmgPackage" description="Creates DMG package from current build">
-    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+  <target name="dmgPackage" description="Creates DMG package from current build" depends="stagePackage">
+    <delete dir="${build}/package/dmg-app-image"/>
     <exec executable="jpackage" dir="." failonerror="true">
       <arg line="--type app-image"/>
       <arg line="--dest ${build}/package/dmg-app-image"/>
@@ -66,8 +72,8 @@
     </exec>
   </target> <!-- dmgPackage -->
 
-  <target name="rpmPackage" description="Creates RPM package from current build">
-    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+  <target name="rpmPackage" description="Creates RPM package from current build" depends="stagePackage">
+    <delete dir="${build}/package/rpm-app-image"/>
     <exec executable="jpackage" dir="." failonerror="true">
       <arg line="--type app-image"/>
       <arg line="--dest ${build}/package/rpm-app-image"/>
@@ -99,8 +105,8 @@
     </exec>
   </target> <!-- rpmPackage -->
 
-  <target name="debPackage" description="Creates DEB package from current build">
-    <unzip dest="${build}/package/client" src="${buildroot}/stendhal-${version}.zip"/>
+  <target name="debPackage" description="Creates DEB package from current build" depends="stagePackage">
+    <delete dir="${build}/package/deb-app-image"/>
     <exec executable="jpackage" dir="." failonerror="true">
       <arg line="--type app-image"/>
       <arg line="--dest ${build}/package/deb-app-image"/>
