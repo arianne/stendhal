@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.GameScreenSpriteHelper;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
@@ -137,8 +138,15 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	public void drawEmoji(final Graphics g) {
 		final int svx = GameScreenSpriteHelper.getScreenViewX();
 		final int svy = GameScreenSpriteHelper.getScreenViewY();
-		final int sx = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getX());
-		final int sy = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getY());
+		int sx;
+		int sy;
+		if (GameScreen.get().isScaled()) {
+			sx = GameScreenSpriteHelper.convertWorldXToScaledScreen(owner.getX());
+			sy = GameScreenSpriteHelper.convertWorldYToScaledScreen(owner.getY());
+		} else {
+			sx = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getX());
+			sy = GameScreenSpriteHelper.convertWorldToPixelUnits(owner.getY());
+		}
 		sprite.draw(g, sx - svx - 16, sy - svy - 32);
 	}
 
