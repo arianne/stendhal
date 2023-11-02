@@ -129,6 +129,7 @@
     <type class="ammunition" subclass="light_arrow" tileid="-1"/>
     <description>You see a light arrow. It shines with a holy radiance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+    <unattainable/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
@@ -154,6 +155,7 @@
     <type class="ammunition" subclass="dark_arrow" tileid="-1"/>
     <description>You see a dark arrow. It's hard to describe.</description>
     <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+    <unattainable/>
     <attributes>
       <atk condition="!testing.combat" value="6"/>
       <ratk condition="testing.combat" value="6"/>
