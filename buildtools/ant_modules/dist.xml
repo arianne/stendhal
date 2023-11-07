@@ -245,7 +245,6 @@
     <path id="serverclasspathlist">
       <fileset dir="libs">
         <include name="**/*.jar" />
-        <exclude name="**/marauroa-client-only.jar" />
       </fileset>
     </path>
 
@@ -381,9 +380,7 @@
     <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
     <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
     <copy todir="${buildroot}/stendhal-server-${version}/libs">
-      <fileset dir="libs">
-        <exclude name="marauroa-client-only.jar"/>
-      </fileset>
+      <fileset dir="libs"/>
     </copy>
     <copy todir="${buildroot}/stendhal-server-${version}/doc">
       <fileset dir="doc"/>
