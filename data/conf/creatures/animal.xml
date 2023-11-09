@@ -610,7 +610,8 @@
 
   <creature name="big bad wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-  <description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
+    <hidden/>
+    <description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
     <attributes>
       <atk value="46"/>
       <def value="9"/>
