@@ -129,6 +129,7 @@ public class EntityViewFactoryTest {
 		//~ checkImplementation("item", "crystal", null, Item2DView.class);
 		checkImplementation("item", "drink", null, UseableItem2DView.class);
 		checkImplementation("item", "food", null, UseableItem2DView.class);
+		checkImplementation("item", "furniture", "picture in wooden frame", UseableItem2DView.class);
 		checkImplementation("item", "misc", "bulb", UseableItem2DView.class);
 		checkImplementation("item", "misc", "seed", UseableItem2DView.class);
 		checkImplementation("item", "misc", "snowglobe", UseableGenericItem2DView.class);
