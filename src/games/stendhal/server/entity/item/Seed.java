@@ -95,7 +95,7 @@ public class Seed extends StackableItem {
 			this.removeOne();
 			if (user instanceof Player) {
 				// XXX: should this increment only after flower grower has fully ripened?
-				((Player) user).incSownForItem(itemdata, 1);
+				((Player) user).incSownForItem(flowerGrower.getItemName(), 1);
 			}
 			return true;
 		}
