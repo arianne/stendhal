@@ -83,6 +83,9 @@ export const ItemMap: {[index: string]: any} = {
 		["metal detector"]: {
 			cursor: "itemuse"
 		},
+		["picture in wooden frame"]: {
+			cursor: "itemuse"
+		},
 		["rotary cutter"]: {
 			cursor: "itemuse"
 		},
