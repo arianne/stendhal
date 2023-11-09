@@ -109,7 +109,7 @@ public class Seed extends StackableItem {
 
 		if (flowerName != null) {
 			return "You see a " + flowerName + " " + this.getName()
-                + ". It can be planted in fertile ground where it will thrive.";
+					+ ". It can be planted in fertile ground where it will thrive.";
 		} else {
 			return "You see a seed. It can be planted in fertile ground where it will thrive.";
 		}
