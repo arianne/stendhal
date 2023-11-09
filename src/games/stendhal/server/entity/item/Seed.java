@@ -84,7 +84,7 @@ public class Seed extends StackableItem {
 			if (itemdata == null) {
 				flowerGrower = new FlowerGrower();
 			} else {
-				flowerGrower = new FlowerGrower(this.getItemData());
+				flowerGrower = new FlowerGrower(itemdata);
 			}
 			userZone.add(flowerGrower);
 			// add the FlowerGrower where the seed was on the ground
