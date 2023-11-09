@@ -116,7 +116,7 @@ public class Seed extends StackableItem {
 	}
 
 	/**
-	 * This is overridden so that sprite image can be updated whenever "imagedata" attribute is set.
+	 * This is overridden so that sprite image can be updated whenever "itemdata" attribute is set.
 	 */
 	@Override
 	public void put(final String attribute, final String value) {
