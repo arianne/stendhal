@@ -109,9 +109,9 @@ public class Seed extends StackableItem {
 
 		if (flowerName != null) {
 			return "You see a " + flowerName + " " + this.getName()
-                + ". It can be planted anywhere, but it will only thrive on fertile ground.";
+                + ". It can be planted in fertile ground where it will thrive.";
 		} else {
-			return "You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.";
+			return "You see a seed. It can be planted in fertile ground where it will thrive.";
 		}
 	}
 
