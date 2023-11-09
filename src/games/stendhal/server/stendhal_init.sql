@@ -247,6 +247,7 @@ CREATE TABLE IF NOT EXISTS shopinventoryinfo (
   price         INT,
   iteminfo_id   INT,
   outfit        VARCHAR(1000),
+  trade_for     VARCHAR(1000),
   PRIMARY KEY (id)
 );
 

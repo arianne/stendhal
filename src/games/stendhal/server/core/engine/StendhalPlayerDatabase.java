@@ -249,6 +249,11 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("npcs", "hide_location")) {
 			transaction.execute("ALTER TABLE npcs ADD COLUMN (hide_location TINYINT DEFAULT 0);", null);
 		}
+
+		// 1.45: add trade for column to shopinventoryinfo
+		if (!transaction.doesColumnExist("shopinventoryinfo", "trade_for")) {
+			transaction.execute("ALTER TABLE shopinventoryinfo ADD COLUMN (trade_for VARCHAR(1000));", null);
+		}
 	}
 
 

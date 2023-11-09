@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.npc.shop.ShopInventory;
 import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
+import marauroa.common.Pair;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
@@ -39,7 +40,7 @@ public class StendhalShopDAO extends CharacterDAO {
 	private static Logger logger = Logger.getLogger(StendhalCreatureDAO.class);
 
 	/*
-	 * Shop name type ["buy", "sell", "outfit"]
+	 * Shop name type ["buy", "sell", "outfit", "trade"]
 	 *
 	 *
 	 * Item name price
@@ -122,12 +123,25 @@ public class StendhalShopDAO extends CharacterDAO {
 			} else if (shop instanceof OutfitShopInventory){
 				outfit = ((OutfitShopInventory) shop).get(name).first();
 			}
+			String tradeFor = null;
+			final List<Pair<String, Integer>> tradeList = shop.getTradeFor(name);
+			if (tradeList != null && tradeList.size() > 0) {
+				tradeFor = "";
+				for (final Pair<String, Integer> tradeItem: tradeList) {
+					if (!tradeFor.isEmpty()) {
+						tradeFor += ",";
+					}
+					tradeFor += tradeItem.first() + ":" + tradeItem.second();
+				}
+			}
+
 			stmt.setInt(1, 1);
 			stmt.setObject(2, shopId);
 			stmt.setString(3, name);
 			stmt.setObject(4, shop.getPrice(name));
 			stmt.setObject(5, itemId);
 			stmt.setObject(6, outfit);
+			stmt.setObject(7, tradeFor);
 			stmt.addBatch();
 		}
 	}
@@ -137,8 +151,8 @@ public class StendhalShopDAO extends CharacterDAO {
 
 		List<ShopInventory<?, ?>> shops = getShops();
 		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO shopinventoryinfo "
-				+ "(active, shopinfo_id, name, price, iteminfo_id, outfit) "
-				+ "VALUES (?, ?, ?, ?, ?, ?);", null);
+				+ "(active, shopinfo_id, name, price, iteminfo_id, outfit, trade_for) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?);", null);
 		Map<String, Integer> shopIdMap = getShopIdMap(transaction);
 		Map<String, Integer> itemInfoIdMap = DAORegister.get().get(StendhalItemDAO.class).getItemInfoIdMap(transaction);
 		for (ShopInventory<?, ?> shop : shops) {
@@ -189,6 +203,7 @@ public class StendhalShopDAO extends CharacterDAO {
 		List<ShopInventory<?, ?>> shops = new LinkedList<>();
 		shops.addAll(ShopsList.get().getContents(ShopType.ITEM_BUY).values());
 		shops.addAll(ShopsList.get().getContents(ShopType.ITEM_SELL).values());
+		shops.addAll(ShopsList.get().getContents(ShopType.TRADE).values());
 		shops.addAll(OutfitShopsList.get().getContents().values());
 		return shops;
 	}
