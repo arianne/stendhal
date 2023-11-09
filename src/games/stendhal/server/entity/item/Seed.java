@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
@@ -105,14 +106,14 @@ public class Seed extends StackableItem {
 
 	@Override
 	public String describe() {
-		final String flowerName = getItemData();
-
-		if (flowerName != null) {
-			return "You see a " + flowerName + " " + this.getName()
-					+ ". It can be planted in fertile ground where it will thrive.";
-		} else {
-			return "You see a seed. It can be planted in fertile ground where it will thrive.";
+		String seed_desc = getDescription();
+		final String flower_name = getItemData();
+		if (flower_name != null) {
+			final String seed_type = getName();
+			final String seed_name = flower_name + " " + seed_type;
+			seed_desc = seed_desc.replaceFirst(Grammar.a_noun(seed_type), Grammar.a_noun(seed_name));
 		}
+		return seed_desc;
 	}
 
 	/**
