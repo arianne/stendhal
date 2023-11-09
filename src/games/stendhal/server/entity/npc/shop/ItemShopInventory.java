@@ -35,4 +35,13 @@ public class ItemShopInventory extends ShopInventory<String, Integer> {
 	public Integer getPrice(final String name) {
 		return get(name);
 	}
+
+	@Override
+	public void addTradeFor(final String name, final String required, final int count) {
+		super.addTradeFor(name, required, count);
+		if (!containsKey(name)) {
+			// needed for database dump
+			put(name, 0);
+		}
+	}
 }

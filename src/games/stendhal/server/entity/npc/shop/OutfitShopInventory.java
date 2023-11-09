@@ -10,6 +10,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.shop;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.Outfit;
 import marauroa.common.Pair;
 
@@ -18,6 +20,10 @@ import marauroa.common.Pair;
  * Represents contents & prices of an outfit shop.
  */
 public class OutfitShopInventory extends ShopInventory<String, Pair<String, Integer>> {
+
+	private static final Logger logger = Logger.getLogger(OutfitShopInventory.class);
+
+
 	/**
 	 * creates an OutfitShopInventory
 	 *
@@ -101,5 +107,14 @@ public class OutfitShopInventory extends ShopInventory<String, Pair<String, Inte
 			return get(name).second();
 		}
 		return null;
+	}
+
+	@Override
+	public void addTradeFor(final String name, final String required, final int count) {
+		if (!containsKey(name)) {
+			logger.error("Unregistered outfit \"" + name + "\"");
+			return;
+		}
+		super.addTradeFor(name, required, count);
 	}
 }

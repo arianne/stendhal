@@ -92,12 +92,13 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 			for (final Map.Entry<String, ShopInventory> sentry: inventories.get(stype).entrySet()) {
 				final String id = sentry.getKey();
 				final ShopInventory inv = sentry.getValue();
-				if (ShopType.ITEM_SELL.equals(stype) || ShopType.ITEM_BUY.equals(stype)) {
+				if (ShopType.ITEM_SELL.equals(stype) || ShopType.ITEM_BUY.equals(stype) || ShopType.TRADE.equals(stype)) {
 					shops.add(id, stype, (ItemShopInventory) inv);
 				} else if (ShopType.OUTFIT.equals(stype)) {
 					oshops.add(id, (OutfitShopInventory) inv);
+				} else {
+					logger.debug("Unknown shop type for ID: " + id);
 				}
-				// TODO: support "trade" shops
 			}
 		}
 	}

@@ -13,10 +13,12 @@ package games.stendhal.server.entity.npc.shop;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
 
 import games.stendhal.server.core.config.ShopGroupsXMLLoader.MerchantConfigurator;
+import marauroa.common.Pair;
 
 /**
  * Represents contents & prices of a shop.
@@ -26,6 +28,9 @@ public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
 	private ShopType shopType;
 	private String name;
 	private List<MerchantConfigurator> merchantConfigurators = new LinkedList<>();
+
+	/** Items & quantities that can be traded. */
+	private Map<String, List<Pair<String, Integer>>> tradeFor;
 
 	public ShopInventory(ShopType shopType, String name) {
 		super();
@@ -57,4 +62,26 @@ public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
 		return name;
 	}
 
+	public Map<String, List<Pair<String, Integer>>> getTradeFor() {
+		return tradeFor;
+	}
+
+	public List<Pair<String, Integer>> getTradeFor(final String name) {
+		if (tradeFor == null || !tradeFor.containsKey(name)) {
+			return null;
+		}
+		return tradeFor.get(name);
+	}
+
+	public void addTradeFor(final String name, final String required, final int count) {
+		if (tradeFor == null) {
+			tradeFor = new LinkedHashMap<>();
+		}
+		List<Pair<String, Integer>> temp = getTradeFor(name);
+		if (temp == null) {
+			temp = new LinkedList<>();
+		}
+		temp.add(new Pair<>(required, count));
+		tradeFor.put(name, temp);
+	}
 }

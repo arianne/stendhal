@@ -68,6 +68,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 	private ShopType currentType;
 	private String currentName;
 	private ShopInventory currentInventory;
+	private String currentItem;
 
 	/** The singleton instance. */
 	private static ShopsXMLLoader instance;
@@ -149,23 +150,29 @@ public class ShopsXMLLoader extends DefaultHandler {
 				currentType = ShopType.fromString(tmp);
 			}
 			currentName = attrs.getValue("name");
-		} else if (qName.equals("item") && isItemShop()) {
+		} else if (qName.equals("item") && (isItemShop() || isTradeShop())) {
 			if (currentInventory == null) {
 				currentInventory = new ItemShopInventory(currentType, currentName);
 			}
-			final String iname = attrs.getValue("name");
-			final String iprice = attrs.getValue("price");
-			if (iprice == null) {
-				logger.error("Cannot add item \"" + iname + "\" to shop without price");
-			} else {
-				((ItemShopInventory) currentInventory).put(iname, Integer.parseInt(iprice));
+			currentItem = attrs.getValue("name");
+			if (isItemShop()) {
+				final String iprice = attrs.getValue("price");
+				if (iprice == null) {
+					logger.error("Cannot add item \"" + currentItem + "\" to shop without price");
+				} else {
+					((ItemShopInventory) currentInventory).put(currentItem, Integer.parseInt(iprice));
+				}
 			}
 		} else if (qName.equals("outfit") && isOutfitShop()) {
 			if (currentInventory == null) {
 				currentInventory = new OutfitShopInventory(currentType, currentName);
 			}
-			((OutfitShopInventory) currentInventory).put(attrs.getValue("name"), attrs.getValue("layers"),
+			currentItem = attrs.getValue("name");
+			((OutfitShopInventory) currentInventory).put(currentItem, attrs.getValue("layers"),
 					Integer.parseInt(attrs.getValue("price")));
+		} else if (qName.equals("for")) {
+			currentInventory.addTradeFor(currentItem, attrs.getValue("name"),
+					Integer.valueOf(attrs.getValue("count")));
 		} else if (qName.equals("merchant")) {
 			final MerchantConfigurator mc = new MerchantConfigurator();
 			mc.npc = attrs.getValue("name");
@@ -210,10 +217,15 @@ public class ShopsXMLLoader extends DefaultHandler {
 		currentType = null;
 		currentName = null;
 		currentInventory = null;
+		currentItem = null;
 	}
 
 	private boolean isItemShop() {
 		return ShopType.ITEM_SELL.equals(currentType) || ShopType.ITEM_BUY.equals(currentType);
+	}
+
+	private boolean isTradeShop() {
+		return ShopType.TRADE.equals(currentType);
 	}
 
 	private boolean isOutfitShop() {

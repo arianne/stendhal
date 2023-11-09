@@ -33,6 +33,7 @@ public final class ShopsList {
 
 	private final Map<String, ItemShopInventory> sellerContents;
 	private final Map<String, ItemShopInventory> buyerContents;
+	private final Map<String, ItemShopInventory> traderContents;
 
 	/** The singleton instance. */
 	private static ShopsList instance;
@@ -56,6 +57,7 @@ public final class ShopsList {
 	private ShopsList() {
 		sellerContents = new HashMap<String, ItemShopInventory>();
 		buyerContents = new HashMap<String, ItemShopInventory>();
+		traderContents = new HashMap<String, ItemShopInventory>();
 	}
 
 	/**
@@ -72,6 +74,8 @@ public final class ShopsList {
 			return sellerContents;
 		} else if (ShopType.ITEM_BUY.equals(stype)) {
 			return buyerContents;
+		} else if (ShopType.TRADE.equals(stype)) {
+			return traderContents;
 		}
 		return null;
 	}
@@ -112,12 +116,16 @@ public final class ShopsList {
 	 * @param name
 	 *     Shop name.
 	 * @param stype
-	 *     Seller or buyer shop.
+	 *     Seller, buyer, or trader shop.
 	 * @param inventory
 	 *     Item list with prices.
 	 */
 	public void add(final String name, final ShopType stype, final ItemShopInventory inventory) {
 		final Map<String, ItemShopInventory> selectedContents = getContents(stype);
+		if (selectedContents == null) {
+			logger.error("Unsupported shop type \"" + stype + "\"");
+			return;
+		}
 		if (selectedContents.containsKey(name)) {
 			selectedContents.get(name).putAll(inventory);
 		} else {
@@ -131,7 +139,7 @@ public final class ShopsList {
 	 * @param name
 	 *     Shop name.
 	 * @param stype
-	 *     Seller or buyer shop.
+	 *     Seller, buyer, or trader shop.
 	 * @param item
 	 *     Name of item to add.
 	 * @param price
