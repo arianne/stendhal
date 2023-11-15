@@ -25,6 +25,8 @@ public enum Banks {
 	DENIRAN("bank_deniran"),
 	/** bank in Fado. */
 	FADO("bank_fado"),
+	/** bank in Kirdneh. */
+	KIRDNEH("bank_kirdneh"),
 	/** bank in Magic City */
 	MAGIC("bank_magic"),
 	/** bank in Nalwor. */

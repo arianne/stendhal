@@ -14,6 +14,7 @@ Changelog
   - Semos's Ruler: Finish daily monster quest 1,000 times
 - seeds & bulbs items have unique images
 - added Magic City chest to wizard's bank
+- added Kirdneh City chests to Kirdneh, Fado, & wizard's banks
 - made coupon item stackable
 
 *bugfixes*

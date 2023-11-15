@@ -1778,13 +1778,42 @@
       <attribute name="text">Memo: contact main branch, Fado Bank, for staff training.</attribute>
       <attribute name="class">transparent</attribute>
     </entity>
+
+    <!-- chests -->
+
     <entity x="3" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_kirdneh</parameter>
+      </implementation>
+    </entity>
+    <entity x="2" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">4</parameter>
+      </implementation>
+    </entity>
+    <entity x="5" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_kirdneh</parameter>
+      </implementation>
+    </entity>
+    <entity x="5" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">4</parameter>
+      </implementation>
+    </entity>
+    <entity x="11" y="2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
         <parameter name="slot">bank_fado</parameter>
       </implementation>
     </entity>
-    <entity x="2" y="2">
+    <entity x="10" y="2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
         <parameter name="width">2</parameter>
