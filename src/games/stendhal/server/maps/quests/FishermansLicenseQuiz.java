@@ -137,7 +137,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				.getItem(getCurrentSpecies());
 		fishOnTable.setDescription("You see a fish.");
 
-		fishOnTable.setPosition(7, 4);		
+		fishOnTable.setPosition(7, 4);
 		zone.add(fishOnTable);
 	}
 
