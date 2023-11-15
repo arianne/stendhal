@@ -84,6 +84,7 @@ public class PlayerRPClass {
 		player.addRPSlot("bank_ados", 30, Definition.HIDDEN);
 		player.addRPSlot("bank_deniran", 30, Definition.HIDDEN);
 		player.addRPSlot("bank_fado", 30, Definition.HIDDEN);
+		player.addRPSlot("bank_kirdneh", 30, Definition.HIDDEN);
 		player.addRPSlot("bank_magic", 30, Definition.HIDDEN);
 		player.addRPSlot("bank_nalwor", 30, Definition.HIDDEN);
 		player.addRPSlot("zaras_chest_ados", 30, Definition.HIDDEN);

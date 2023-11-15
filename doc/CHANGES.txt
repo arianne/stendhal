@@ -15,6 +15,7 @@ Changelog
 - renamed "Sowing Seeds" achievement to "Mother Nature's Helper"
 - seeds & bulbs items have unique images
 - added Magic City chest to wizard's bank
+- added Kirdneh City chests to Kirdneh, Fado, & wizard's banks
 - made coupon item stackable
 - Alice Farmer includes grilled steak in the foods she lists
 

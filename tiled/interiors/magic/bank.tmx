@@ -36,11 +36,11 @@
  <tileset firstgid="124" name="chest" tilewidth="32" tileheight="32" tilecount="8" columns="4">
   <image source="../../tileset/item/chest/large.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="132" name="banners" tilewidth="32" tileheight="32" tilecount="7" columns="1">
-  <image source="../../tileset/building/decoration/chests_banner.png" width="32" height="224"/>
+ <tileset firstgid="132" name="chests_banner" tilewidth="32" tileheight="32" tilecount="8" columns="1">
+  <image source="../../tileset/building/decoration/chests_banner.png" width="32" height="256"/>
  </tileset>
- <tileset firstgid="139" name="chests_signpost" tilewidth="32" tileheight="32" tilecount="7" columns="1">
-  <image source="../../tileset/building/decoration/chests_signpost.png" width="32" height="224"/>
+ <tileset firstgid="140" name="chests_signpost" tilewidth="32" tileheight="32" tilecount="8" columns="1">
+  <image source="../../tileset/building/decoration/chests_signpost.png" width="32" height="256"/>
  </tileset>
  <layer id="1" name="0_floor" width="30" height="20">
   <data encoding="base64" compression="gzip">
@@ -49,7 +49,7 @@
  </layer>
  <layer id="2" name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAX0BA1A3AjEPUDcBMTNWNQUA3EJHlyKph7ZHJj55IAyIC7HgyvINJdWoIGBfL+OglFAa4Cej9HzLbVBFhBnMmDm4wqoeBaN7I0F4jg8OJ5G9iYQkE8dtZcqIJ2AfAaN7B0OAACP+/h0YAkAAA==
+   H4sIAAAAAAAAA2NgGAX0BA1A3AjEvUDcBMTNWNQUA3EJHlyKph5mzmQk88kBZUBcjgdXkGnuKBgFIxGg52P0fEttkAXEmQyY+bgCKp5FI3tjgTgOD46nkb0JBORTR+2lCkgnIJ9BI3uHAwAAtetO9mAJAAA=
   </data>
  </layer>
  <layer id="3" name="2_object" width="30" height="20">
@@ -59,7 +59,7 @@
  </layer>
  <layer id="4" name="3_roof" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGJmgBohroew6IK6ngpnI5iCbP9zBSPLrKBgFo2AUjIJRQAwAAMEsxgdgCQAA
+   H4sIAAAAAAAAA2NgGJmgBohroew6IK6ngpnI5iCbPwpGwSgYBaNgFIyCkQUAUHoclWAJAAA=
   </data>
  </layer>
  <layer id="5" name="objects" width="30" height="20">
@@ -69,7 +69,7 @@
  </layer>
  <layer id="6" name="collision" width="30" height="20" opacity="0.22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAytgYGAoGIGYXoAct5CqB1mMEv9SI9zoGc7E+Jva7hiodDZY0/NA2TsU4pcU9dTw30DlX1rYS4x+YsKfHLcOhL3EAHLsJeSOgbKXHEwtc+iJAdsBG0tgCQAA
+   H4sIAAAAAAAAAytgYGAoGIGYXoAct5Cqh1r+pYY5gzWc6WXPQNlLLzBY7B0K8UuK+qGcf2lhLzH6iQl/ctw6EPYSA8ixl5A7BspecjC1zKEnBgD8UfrSYAkAAA==
   </data>
  </layer>
  <layer id="7" name="protection" width="30" height="20" visible="0" opacity="0.2">
