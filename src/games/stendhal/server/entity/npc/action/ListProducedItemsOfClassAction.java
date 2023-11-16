@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,9 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
@@ -40,26 +42,46 @@ public class ListProducedItemsOfClassAction implements ChatAction {
 
 	private final String message;
 	private final String clazz;
+	private String[] extras;
 
 	/**
 	 * Creates a new ListProducedItemsOfClassAction
 	 *
 	 * @param clazz
-	 *            Item class to check
+	 *   Item class to check.
 	 * @param message
-	 *            message with substitution [items] or [#items] for the list of items
-	 *
+	 *   Message with substitution [items] or [#items] for the list of items.
 	 */
 	public ListProducedItemsOfClassAction(final String clazz, final String message) {
 		this.clazz = checkNotNull(clazz);
 		this.message = checkNotNull(message);
 	}
 
+	/**
+	 * Creates a new ListProducedItemsOfClassAction
+	 *
+	 * @param clazz
+	 *   Item class to check.
+	 * @param message
+	 *   Message with substitution [items] or [#items] for the list of items.
+	 * @param extras
+	 *   Additional items to be listed not included in production registry.
+	 */
+	public ListProducedItemsOfClassAction(final String clazz, final String message, final String... extras) {
+		this.clazz = checkNotNull(clazz);
+		this.message = checkNotNull(message);
+		this.extras = checkNotNull(extras);
+	}
+
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		Map<String, String> substitutes = new HashMap<String, String>();
-		substitutes.put("items", Grammar.enumerateCollection(producerRegister.getProducedItemNames(clazz)));
-		substitutes.put("#items", Grammar.enumerateCollectionWithHash(producerRegister.getProducedItemNames(clazz)));
+		final List<String> itemNames = producerRegister.getProducedItemNames(clazz);
+		if (extras != null) {
+			itemNames.addAll(Arrays.asList(extras));
+		}
+		substitutes.put("items", Grammar.enumerateCollection(itemNames));
+		substitutes.put("#items", Grammar.enumerateCollectionWithHash(itemNames));
 		raiser.say(StringUtils.substitute(message, substitutes));
 	}
 
@@ -70,6 +92,9 @@ public class ListProducedItemsOfClassAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
+		if (extras != null) {
+			return 5303 * (clazz.hashCode() + 5309 * message.hashCode() + 5315 * extras.hashCode());
+		}
 		return 5303 * (clazz.hashCode() + 5309 * message.hashCode());
 	}
 
@@ -80,7 +105,8 @@ public class ListProducedItemsOfClassAction implements ChatAction {
 		}
 		ListProducedItemsOfClassAction other = (ListProducedItemsOfClassAction) obj;
 		return clazz.equals(other.clazz)
-			&& message.equals(other.message);
+			&& message.equals(other.message)
+			&& extras == null ? other.extras == null : extras.equals(other.extras);
 	}
 
 }
