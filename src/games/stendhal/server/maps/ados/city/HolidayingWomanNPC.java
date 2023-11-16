@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,8 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 				addHelp("I walked around a bit and saw a nice looking tavern. Did you take a look inside already? It smells fantastic there!");
 				addOffer("I'm quite a #food expert, after all my travels on lovely holidays!");
 				addQuest("You could try all the #food available from cooks and chefs across the island. I can tell you what I've sampled on my travels.");
-				addReply("food", null, new ListProducedItemsOfClassAction("food","I think I've tasted everything, [#items]. I can tell you more about each foodstuff, if you like."));
+				addReply("food", null, new ListProducedItemsOfClassAction("food","I think I've tasted everything, [#items]. I can tell you more about each foodstuff, if you like.",
+						"grilled steak"));
 				add(
 						ConversationStates.ATTENDING,
 						"",
@@ -75,6 +76,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 						null,
 						new ListProducedItemDetailAction()
 					);
+				addReply("grilled steak", "Haunchy Meatoch makes grilled steaks. I hear that he likes to reward those who help him gather coal for his grill.");
 				addJob("Aaaah, I am on holiday here, only walking around.");
 				addGoodbye("Bye bye.");
 
