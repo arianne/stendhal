@@ -100,32 +100,32 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have any piece of cheese.", getReply(npc));
 
-		 // equip the player with enough cheese to be sold
+		// equip the player with enough cheese to be sold
 		assertFalse(player.isEquipped("cheese", 1));
 		assertTrue(equipWithStackableItem(player, "cheese", 3));
-        assertTrue(player.isEquipped("cheese", 3));
-        assertFalse(player.isEquipped("cheese", 4));
+		assertTrue(player.isEquipped("cheese", 3));
+		assertFalse(player.isEquipped("cheese", 4));
 
 		assertTrue(en.step(player, "sell cheese"));
 		assertEquals("A piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
 
-		 // ensure we currently don't have any money
+		// ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Thanks! Here is your money.", getReply(npc));
 
-		 // check if we got the promised money and the cheese is gone into Siandra's hands
+		// check if we got the promised money and the cheese is gone into Siandra's hands
 		assertTrue(player.isEquipped("money", 5));
-        assertTrue(player.isEquipped("cheese", 2));
-        assertFalse(player.isEquipped("cheese", 3));
+		assertTrue(player.isEquipped("cheese", 2));
+		assertFalse(player.isEquipped("cheese", 3));
 
-		 // test what happens when trying to sell nothing
+		// test what happens when trying to sell nothing
 		assertTrue(en.step(player, "sell 0 cheese"));
 		assertEquals("Sorry, how many pieces of cheese do you want to sell?!", getReply(npc));
 		assertFalse(en.step(player, "yes"));
 
-		 // test what happens when trying to sell even less than nothing
+		// test what happens when trying to sell even less than nothing
 		assertTrue(en.step(player, "sell -5 cheese"));
 		assertEquals("Sorry, I did not understand you. negative amount: -5", getReply(npc));
 		assertFalse(en.step(player, "yes"));
@@ -163,25 +163,25 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have that many porcini.", getReply(npc));
 
-		 // equip the player with enough porcini to be sold
+		// equip the player with enough porcini to be sold
 		assertFalse(player.isEquipped("porcini", 1));
 		assertTrue(equipWithStackableItem(player, "porcini", 3));
-        assertTrue(player.isEquipped("porcini", 3));
-        assertFalse(player.isEquipped("porcini", 4));
+		assertTrue(player.isEquipped("porcini", 3));
+		assertFalse(player.isEquipped("porcini", 4));
 
 		assertTrue(en.step(player, "sell porcino"));
 		assertEquals("A porcino is worth 30. Do you want to sell it?", getReply(npc));
 
-		 // ensure we currently don't have any money
+		// ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Thanks! Here is your money.", getReply(npc));
 
-		 // check if we got the promised money and the cheese is gone into Siandra's hands
+		// check if we got the promised money and the cheese is gone into Siandra's hands
 		assertTrue(player.isEquipped("money", 5));
-        assertTrue(player.isEquipped("porcini", 2));
-        assertFalse(player.isEquipped("porcini", 3));
+		assertTrue(player.isEquipped("porcini", 2));
+		assertFalse(player.isEquipped("porcini", 3));
 	}
 
 	/**
@@ -216,26 +216,26 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have that many plate shields.", getReply(npc));
 
-		 // equip the player with four plate shields to be sold
+		// equip the player with four plate shields to be sold
 		assertFalse(player.isEquipped("plate shield", 1));
 		assertTrue(equipWithItem(player, "plate shield"));
 		assertTrue(equipWithItem(player, "plate shield"));
 		assertTrue(equipWithItem(player, "plate shield"));
 		assertTrue(equipWithItem(player, "plate shield"));
-        assertTrue(player.isEquipped("plate shield", 4));
-        assertFalse(player.isEquipped("plate shield", 5));
+		assertTrue(player.isEquipped("plate shield", 4));
+		assertFalse(player.isEquipped("plate shield", 5));
 
 		assertTrue(en.step(player, "sell four plate shields"));
 		assertEquals("4 plate shields are worth 160. Do you want to sell them?", getReply(npc));
 
-		 // ensure we currently don't have any money
+		// ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Thanks! Here is your money.", getReply(npc));
 
-		 // check if we got the promised money and the cheese is gone into McPegleg's hands
+		// check if we got the promised money and the cheese is gone into McPegleg's hands
 		assertTrue(player.isEquipped("money", 5));
-        assertFalse(player.isEquipped("plate shield", 1));
+		assertFalse(player.isEquipped("plate shield", 1));
 	}
 }

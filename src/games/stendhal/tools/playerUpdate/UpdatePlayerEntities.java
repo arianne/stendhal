@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,22 +38,22 @@ import marauroa.server.game.db.DatabaseFactory;
 public class UpdatePlayerEntities {
 	private static Logger logger = Logger.getLogger(UpdatePlayerEntities.class);
 
-    /**
-     * Inits all RPClasses, has to be called before doing update. Split off due to testing issues.
-     */
+	/**
+	 * Inits all RPClasses, has to be called before doing update. Split off due to testing issues.
+	 */
 	public void initRPClasses() {
 		StendhalRPWorld.get();
 	}
 
 	private void loadAndUpdatePlayers(DBTransaction transaction) throws SQLException, IOException {
-    	final Iterator<RPObject> i = new CharacterIterator(transaction, true);
-    	while (i.hasNext()) {
-    		final RPObject next = i.next();
-    		System.out.println(next);
-    		final Player p = createPlayerFromRPO(next);
-    		savePlayer(transaction, p);
-    	}
-    }
+		final Iterator<RPObject> i = new CharacterIterator(transaction, true);
+		while (i.hasNext()) {
+			final RPObject next = i.next();
+			System.out.println(next);
+			final Player p = createPlayerFromRPO(next);
+			savePlayer(transaction, p);
+		}
+	}
 
 	Player createPlayerFromRPO(final RPObject next) {
 		UpdateConverter.updatePlayerRPObject(next);
@@ -67,7 +67,7 @@ public class UpdatePlayerEntities {
 				new Timestamp(new Date().getTime()));
 	}
 
-    private void doUpdate() {
+	private void doUpdate() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			this.loadAndUpdatePlayers(transaction);
@@ -81,7 +81,7 @@ public class UpdatePlayerEntities {
 	public static void main(final String[] args) {
 		new DatabaseFactory().initializeDatabase();
 		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
-        updatePlayerEntities.initRPClasses();
+		updatePlayerEntities.initRPClasses();
 		updatePlayerEntities.doUpdate();
-    }
+	}
 }

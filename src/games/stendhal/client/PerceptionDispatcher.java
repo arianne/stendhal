@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,7 +37,7 @@ class PerceptionDispatcher implements IPerceptionListener {
 	public boolean onClear() {
 		boolean returnValue = false;
 		for (final IPerceptionListener l : listenerList) {
-			 l.onClear();
+			l.onClear();
 
 		}
 		return returnValue;
@@ -47,7 +47,7 @@ class PerceptionDispatcher implements IPerceptionListener {
 	public boolean onDeleted(final RPObject object) {
 		boolean returnValue = false;
 		for (final IPerceptionListener l : listenerList) {
-			 l.onDeleted(object);
+			l.onDeleted(object);
 
 		}
 		return returnValue;

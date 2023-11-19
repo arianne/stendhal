@@ -106,8 +106,7 @@ public class FoodMillTest {
 	}
 
 	@Test
-	public void testFoodMill()
-	 throws Exception {
+	public void testFoodMill() throws Exception {
 		String name = "sugar mill";
 		String clazz = "";
 		String subclass = "";

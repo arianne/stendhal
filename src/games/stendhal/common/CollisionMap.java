@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,13 +37,13 @@ public class CollisionMap {
 
 	public CollisionMap(final LayerDefinition layer) {
 		this(layer.getWidth(), layer.getHeight());
-		 for (int x = 0; x < width; x++) {
-			 for (int y = 0; y < height; y++) {
-				 if (layer.getTileAt(x, y) != 0) {
-					 set(x, y);
-				 }
-			 }
-			 }
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (layer.getTileAt(x, y) != 0) {
+						set(x, y);
+					}
+				}
+			}
 	}
 
 	public int getWidth() {

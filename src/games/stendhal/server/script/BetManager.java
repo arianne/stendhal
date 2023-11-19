@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -210,18 +210,18 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				final Expression object2 = sentence.getObject(1);
 
 				if ((object1 != null) && (object2 != null) && (preposition != null)) {
-    				if (preposition.getNormalized().equals("on")) {
-        				betInfo.amount = object1.getAmount();
+					if (preposition.getNormalized().equals("on")) {
+						betInfo.amount = object1.getAmount();
 
-        				// cheese
-        				betInfo.itemName = object1.getNormalized();
-        				betInfo.target = object2.getNormalized();
-    				} else {
-    					errorMsg = "missing preposition 'on'";
-    				}
-    			} else {
-    				errorMsg = "missing bet parameters";
-    			}
+						// cheese
+						betInfo.itemName = object1.getNormalized();
+						betInfo.target = object2.getNormalized();
+					} else {
+						errorMsg = "missing preposition 'on'";
+					}
+				} else {
+					errorMsg = "missing bet parameters";
+				}
 			}
 
 			// wrong syntax

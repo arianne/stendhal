@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,61 +45,60 @@ final class KalavanHouseseller extends HouseSellerNPCBase {
 		// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
 
 		// player has not done required quest, hasn't got a house at all
-add(ConversationStates.ATTENDING,
-		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), new QuestNotCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
-		ConversationStates.ATTENDING,
-			"The cost of a new house is "
-		+ getCost()
-		+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find "
-		+ " north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.",
-			null);
-
-// player is not old enough but they have doen princess quest
-// (don't need to check if they have a house, they can't as they're not old enough)
-add(ConversationStates.ATTENDING,
-		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(
-							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT),
-							 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE))),
-		ConversationStates.ATTENDING,
-		"The cost of a new house is "
-		+ getCost()
-		+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least "
-		+ Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
-		null);
-
-// player is eligible to buy a house
 		add(ConversationStates.ATTENDING,
-		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
-						 new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
-							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
-		ConversationStates.QUEST_OFFERED,
-		"The cost of a new house is "
-		+ getCost()
-		+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
-		+ " money, every month. You can ask me which houses are #available. Or, if you have a specific house in mind, please tell me the number now.",
-		null);
+				Arrays.asList("cost", "house", "buy", "purchase"),
+				new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), new QuestNotCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"The cost of a new house is "
+						+ getCost()
+						+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find "
+						+ " north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.",
+				null);
 
-// handle house numbers 1 to 25
-addMatching(ConversationStates.QUEST_OFFERED,
-		// match for all numbers as trigger expression
-		ExpressionType.NUMERAL, new JokerExprMatcher(),
-		new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
-		ConversationStates.ATTENDING,
-		null,
-		new BuyHouseChatAction(getCost(), QUEST_SLOT));
+		// player is not old enough but they have doen princess quest
+		// (don't need to check if they have a house, they can't as they're not old enough)
+		add(ConversationStates.ATTENDING,
+				Arrays.asList("cost", "house", "buy", "purchase"),
+				new AndCondition(
+						new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT),
+						new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE))),
+				ConversationStates.ATTENDING,
+				"The cost of a new house is "
+						+ getCost()
+						+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least "
+						+ Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
+				null);
 
-addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #https://stendhalgame.org/wiki/StendhalHouses.");
-addReply("citizenship",
-			 "The royalty in Kalavan Castle decide that.");
+		// player is eligible to buy a house
+		add(ConversationStates.ATTENDING,
+				Arrays.asList("cost", "house", "buy", "purchase"),
+				new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
+						new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
+						new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
+				ConversationStates.QUEST_OFFERED,
+				"The cost of a new house is "
+						+ getCost()
+						+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
+						+ " money, every month. You can ask me which houses are #available. Or, if you have a specific house in mind, please tell me the number now.",
+				null);
+
+		// handle house numbers 1 to 25
+		addMatching(ConversationStates.QUEST_OFFERED,
+				// match for all numbers as trigger expression
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
+				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
+				ConversationStates.ATTENDING,
+				null,
+				new BuyHouseChatAction(getCost(), QUEST_SLOT));
+
+		addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #https://stendhalgame.org/wiki/StendhalHouses.");
+		addReply("citizenship", "The royalty in Kalavan Castle decide that.");
 
 
-setDescription("You see a smart looking man.");
-setEntityClass("estateagentnpc");
-setPosition(55, 94);
-initHP(100);
+		setDescription("You see a smart looking man.");
+		setEntityClass("estateagentnpc");
+		setPosition(55, 94);
+		initHP(100);
 
 	}
 

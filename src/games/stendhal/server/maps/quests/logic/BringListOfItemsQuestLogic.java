@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -113,7 +113,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player asks about quest.
 	 */
 	protected void tellAboutQuest() {
- 		final List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		final List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		final List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
 		if (additionalTrigger != null) {
 			questTrigger.addAll(additionalTrigger);
@@ -205,7 +205,7 @@ public class BringListOfItemsQuestLogic {
 	 * Player says he doesn't have required items with him.
 	 */
 	protected void playerDoesNotWantToGiveItems() {
-	    final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
 				@Override
@@ -246,62 +246,62 @@ public class BringListOfItemsQuestLogic {
 						List<String> missing = getListOfStillMissingItems(player, false);
 
 						if (missing.contains(itemName)) {
-						    if (!player.drop(itemName)) {
-        						raiser.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
-        						return;
-						    }
+							if (!player.drop(itemName)) {
+								raiser.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
+								return;
+							}
 
-						    // register item as done
-						    final String doneText = player.getQuest(concreteQuest.getSlotName());
-						    player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
+							// register item as done
+							final String doneText = player.getQuest(concreteQuest.getSlotName());
+							player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
 
-						    // check if the player has brought all items
-						    missing = getListOfStillMissingItems(player, false);
+							// check if the player has brought all items
+							missing = getListOfStillMissingItems(player, false);
 
-						    if (!missing.isEmpty()) {
-        						raiser.say(concreteQuest.respondToItemBrought());
-						    } else {
-        						concreteQuest.rewardPlayer(player);
-        						player.notifyWorldAboutChanges();
-        						raiser.say(concreteQuest.respondToLastItemBrought());
-        						player.setQuest(concreteQuest.getSlotName(), "done");
-        						raiser.setCurrentState(ConversationStates.ATTENDING);
-						    }
+							if (!missing.isEmpty()) {
+								raiser.say(concreteQuest.respondToItemBrought());
+							} else {
+								concreteQuest.rewardPlayer(player);
+								player.notifyWorldAboutChanges();
+								raiser.say(concreteQuest.respondToLastItemBrought());
+								player.setQuest(concreteQuest.getSlotName(), "done");
+								raiser.setCurrentState(ConversationStates.ATTENDING);
+							}
 						} else {
-						    raiser.say(concreteQuest.respondToOfferOfNotMissingItem());
+							raiser.say(concreteQuest.respondToOfferOfNotMissingItem());
 						}
 					}
 
-				    @Override
+					@Override
 					public String toString() {
-				    	return "accept or reject offered item";
-				    }
+						return "accept or reject offered item";
+					}
 				}
 			);
 		}
 	}
 
-    /**
-     * player tries to offer an unwanted item
-    */
-    protected void offerNotNeededItem() {
+	/**
+	 * player tries to offer an unwanted item
+	*/
+	protected void offerNotNeededItem() {
 	concreteQuest.getNPC().add(ConversationStates.QUESTION_1, "",
-				   new NotCondition(new TriggerInListCondition(concreteQuest.getNeededItems())),
-				   ConversationStates.QUESTION_1,
-				   concreteQuest.respondToOfferOfNotNeededItem(),
-				   null);
-    }
+			new NotCondition(new TriggerInListCondition(concreteQuest.getNeededItems())),
+			ConversationStates.QUESTION_1,
+			concreteQuest.respondToOfferOfNotNeededItem(),
+			null);
+	}
 
-    /**
-     * player tries to say bye
-    */
+	/**
+	 * player tries to say bye
+	*/
 		// allow to say goodbye while listening for items
-    protected void sayByeWhileInQuestion1() {
+	protected void sayByeWhileInQuestion1() {
 	concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES, null,
 		ConversationStates.IDLE, "Bye.", null);
-    }
+	}
 
-    /**
+	/**
 	 * Player returns while quest is still active.
 	 */
 	protected void welcomeKnownPlayer() {
@@ -349,7 +349,7 @@ public class BringListOfItemsQuestLogic {
 		playerWantsToGiveItems();
 		offerItem();
 
-	        offerNotNeededItem();
+			offerNotNeededItem();
 		sayByeWhileInQuestion1();
 		welcomePlayerAfterQuest();
 	}

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,11 +65,11 @@ public class JesterNPC implements ZoneConfigurator {
 				addJob("I'm the court jester, I can't stop for long! It's just not in my job description to stand and chat.");
 				addHelp("Shhh... I could tell you about these shady outlaws... they've taken over the castle while the King is away. I just keep quiet, me. Shhh...");
 				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.IDLE,
-				        "Nothing for me! Must keep juggling! Goodbye!", null);
+								"Nothing for me! Must keep juggling! Goodbye!", null);
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.IDLE,
-				        "Nothing for me! Must keep juggling! Goodbye!", null);
- 				addGoodbye("Bye!");
+								ConversationStates.IDLE,
+								"Nothing for me! Must keep juggling! Goodbye!", null);
+				addGoodbye("Bye!");
 			}
 		};
 		npc.setDescription("You see Huckle Rohn, the court jester.");

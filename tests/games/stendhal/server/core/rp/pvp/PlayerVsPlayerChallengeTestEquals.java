@@ -15,28 +15,28 @@ import org.junit.runners.Parameterized.Parameters;
 public class PlayerVsPlayerChallengeTestEquals {
 
 	@Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		Boolean.TRUE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("a", "b", true),
-        		Boolean.TRUE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("a", "c", false),
-        		Boolean.FALSE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("c", "b", false),
-        		Boolean.FALSE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-            		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
-            		Boolean.FALSE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
-                		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-                		Boolean.FALSE}
-        });
-    }
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] {
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				Boolean.TRUE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("a", "b", true),
+				Boolean.TRUE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("a", "c", false),
+				Boolean.FALSE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("c", "b", false),
+				Boolean.FALSE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+					PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
+					Boolean.FALSE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
+						PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+						Boolean.FALSE}
+		});
+	}
 
 	@Parameter(0)
 	public PlayerVsPlayerChallenge one;

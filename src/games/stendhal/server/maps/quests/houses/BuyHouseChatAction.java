@@ -63,8 +63,8 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
 				if (player.equipToInventoryOnly(key)) {
 					raiser.say("Congratulations, here is your key to " + doorId
-							   + "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
-							   + HouseChatAction.COST_OF_SPARE_KEY + " money?");
+							+ "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
+							+ HouseChatAction.COST_OF_SPARE_KEY + " money?");
 
 					player.drop("money", cost);
 					// remember what house they own
@@ -89,7 +89,7 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
 		} else {
 			raiser.say("Sorry, house " + itemName
-					   + " is sold, please ask for a list of #unsold houses, or give me the number of another house.");
+					+ " is sold, please ask for a list of #unsold houses, or give me the number of another house.");
 			raiser.setCurrentState(ConversationStates.QUEST_OFFERED);
 		}
 	}

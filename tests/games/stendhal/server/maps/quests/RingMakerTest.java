@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -67,8 +67,8 @@ public class RingMakerTest {
 	public static void tearDownAftereClass() {
 		MockStendlRPWorld.reset();
 
-		 npc = null;
-		 en = null;
+		npc = null;
+		en = null;
 	}
 
 	@Before

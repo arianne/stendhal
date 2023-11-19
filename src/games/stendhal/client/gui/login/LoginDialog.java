@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003 - 2015 Faiumoni e.V.                 *
+ *                  (C) Copyright 2003-2023 Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -149,7 +149,7 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(4, 4, 15, 4);
 		// column
 		c.gridx = 0;
-		 // row
+		// row
 		c.gridy = 0;
 		contentPane.add(l, c);
 
@@ -179,7 +179,7 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(4, 4, 4, 4);
 		// column
 		c.gridx = 0;
-		 // row
+		// row
 		c.gridy = 1;
 		contentPane.add(l, c);
 

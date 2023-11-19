@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -271,11 +271,11 @@ class GameKeyHandler implements KeyListener {
 		}
 
 		if (client.addDirection(direction, facing)) {
-    		// Movement prediction.
-    		User user = User.get();
-    		if (user != null) {
-    			user.predictMovement(direction, facing);
-    		}
+			// Movement prediction.
+			User user = User.get();
+			if (user != null) {
+				user.predictMovement(direction, facing);
+			}
 		}
 	}
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,9 +47,9 @@ public class SoundSystem extends Thread
 	{
 		final SourceDataLine mLine;                   // the line we will write the PCM data to
 		final AudioFormat    mFormat;
-        float[]              mAudioBuffer     = null; // the interleaved uniform PCM data
+		float[]              mAudioBuffer     = null; // the interleaved uniform PCM data
 		int                  mNumSamples      = 0;    //
-        byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
+		byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
 		int                  mPCMBufferSize   = 0;    //
 		int                  mNumBytesWritten = 0;    // number of bytes from "mPCMBuffer" we have written to "mLine"
 		int                  mNumBytesToWrite = 0;
@@ -64,11 +64,11 @@ public class SoundSystem extends Thread
 		}
 
 		boolean     isOpen              () { return mLine.isOpen();                    }
-        boolean     receivedData        () { return mNumSamples    > 0;                }
-        boolean     isConverted         () { return mPCMBufferSize > 0;                }
+		boolean     receivedData        () { return mNumSamples    > 0;                }
+		boolean     isConverted         () { return mPCMBufferSize > 0;                }
 		AudioFormat getAudioFormat      () { return mFormat;                           }
-//		float[]     getBuffer           () { return mAudioBuffer;                      }
-//		int         getNumSamples       () { return mNumSamples;                       }
+		//float[]     getBuffer           () { return mAudioBuffer;                      }
+		//int         getNumSamples       () { return mNumSamples;                       }
 		int         getNumChannels      () { return mFormat.getChannels();             }
 		int         getSampleRate       () { return (int)mFormat.getSampleRate();      }
 		int         getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8; }
@@ -109,19 +109,19 @@ public class SoundSystem extends Thread
 		}
 
 		void convert()
-        {
-            assert (mLine.getFormat().getSampleSizeInBits() % 8) == 0;
+		{
+			assert (mLine.getFormat().getSampleSizeInBits() % 8) == 0;
 
-            int numBytesPerSample = getNumBytesPerSample();
+			int numBytesPerSample = getNumBytesPerSample();
 			int numBytes          = numBytesPerSample * mNumSamples;
 
 			mPCMBuffer     = Field.expand(mPCMBuffer, numBytes, false);
-            mPCMBuffer     = Dsp.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
+			mPCMBuffer     = Dsp.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
 			mPCMBufferSize = numBytes;
-        }
+		}
 
 		boolean write(int numBytes)
-        {
+		{
 			int frameSize                 = getNumBytesPerSample() * getNumChannels();
 			int numRemainingBytesInBuffer = mPCMBufferSize - mNumBytesWritten;
 
@@ -141,14 +141,14 @@ public class SoundSystem extends Thread
 			}
 
 			return (mNumBytesToWrite >= frameSize);
-        }
+		}
 
 		@Override
-        protected void modify(float[] buffer, int frames, int channels, int rate)
-        {
-            if (buffer != null && frames > 0 && channels > 0 && rate > 0)
-            {
-                assert (frames * channels) <= buffer.length;
+		protected void modify(float[] buffer, int frames, int channels, int rate)
+		{
+			if (buffer != null && frames > 0 && channels > 0 && rate > 0)
+			{
+				assert (frames * channels) <= buffer.length;
 				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
 				setBuffer(buffer, (frames * getNumChannels()));
@@ -157,13 +157,13 @@ public class SoundSystem extends Thread
 
 				float ratio = (float)frames / (float)rate;
 				setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
-            }
+			}
 			else
 			{
 				setBuffer(null, 0);
 				//assert false: "could not convert sample rate";
 			}
-        }
+		}
 	}
 
 	private static class MixerOutput extends Output
@@ -231,11 +231,11 @@ public class SoundSystem extends Thread
 		}
 
 		@Override
-        protected void modify(float[] buffer, int frames, int channels, int rate)
-        {
-            if (buffer != null && frames > 0 && channels > 0 && rate > 0)
-            {
-                assert (frames * channels) <= buffer.length;
+		protected void modify(float[] buffer, int frames, int channels, int rate)
+		{
+			if (buffer != null && frames > 0 && channels > 0 && rate > 0)
+			{
+				assert (frames * channels) <= buffer.length;
 				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
 				setBuffer(buffer, (frames * getNumChannels()));
@@ -250,7 +250,7 @@ public class SoundSystem extends Thread
 				setBuffer(null, 0);
 				//assert false: "could not convert sample rate";
 			}
-        }
+		}
 	}
 
 	private final static int    STATE_EXITING = 0;
@@ -262,17 +262,17 @@ public class SoundSystem extends Thread
 	private final LinkedList<SystemOutput> mSystemOutputs         = new LinkedList<SystemOutput>();
 	private final LinkedList<MixerOutput>  mMixerOutputs          = new LinkedList<MixerOutput>();
 	private SystemOutput                   mMixSystemOutput       = null;
-    private Mixer                          mSystemMixer           = null;
-    private Time                           mBufferDuration        = null;
-    private final AtomicBoolean            mUseDynamicLoadScaling = new AtomicBoolean(false);
+	private Mixer                          mSystemMixer           = null;
+	private Time                           mBufferDuration        = null;
+	private final AtomicBoolean            mUseDynamicLoadScaling = new AtomicBoolean(false);
 	private final AtomicReference<Time>    mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
 	private final AtomicInteger            mTargetSystemState     = new AtomicInteger(0);
 	private int                            mCurrentSystemState    = 0;
 	private int                            mMaxNumLines           = 0;
 	private float[]                        mMixBuffer             = null;
 
-    public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
-    {
+	public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
+	{
 		if(audioFormat == null) {
 			throw new IllegalArgumentException("audioFormat argument must not be null");
 		}
@@ -291,10 +291,10 @@ public class SoundSystem extends Thread
 		}
 
 		init(mixer, audioFormat, bufferDuration, useMaxMixerLines);
-    }
+	}
 
-    public SoundSystem(SourceDataLine outputLine, Time bufferDuration)
-    {
+	public SoundSystem(SourceDataLine outputLine, Time bufferDuration)
+	{
 		if(outputLine == null) {
 			throw new IllegalArgumentException("outputLine argument must not be null");
 		}
@@ -304,29 +304,29 @@ public class SoundSystem extends Thread
 
 		logger.info("opening sound system with only manual mixing enabled");
 
-        mBufferDuration = bufferDuration;
+		mBufferDuration = bufferDuration;
 		mMaxNumLines    = 0;
 
-        if(!outputLine.isOpen())
-        {
-            try
-            {
-                outputLine.open();
-            }
-            catch(LineUnavailableException e)
-            {
+		if(!outputLine.isOpen())
+		{
+			try
+			{
+				outputLine.open();
+			}
+			catch(LineUnavailableException e)
+			{
 				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
 				return;
-            }
+			}
 			catch(SecurityException e)
 			{
 				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
 				return;
-            }
-        }
+			}
+		}
 
 		mMixSystemOutput = new SystemOutput(outputLine);
-    }
+	}
 
 	public void suspend(Time delay)
 	{
@@ -346,12 +346,12 @@ public class SoundSystem extends Thread
 
 		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
-        if(mSystemMixer != null && mSystemMixer.isLineSupported(info) && mSystemOutputs.size() < mMaxNumLines)
-        {
-            try
-            {
-                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
-                line.open();
+		if(mSystemMixer != null && mSystemMixer.isLineSupported(info) && mSystemOutputs.size() < mMaxNumLines)
+		{
+			try
+			{
+				SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+				line.open();
 
 				SystemOutput output = new SystemOutput(line);
 
@@ -362,9 +362,9 @@ public class SoundSystem extends Thread
 
 				logger.debug("opening a system output (using a system mixer device)");
 				return output;
-            }
-            catch(LineUnavailableException e) { }
-        }
+			}
+			catch(LineUnavailableException e) { }
+		}
 
 		if(mMixSystemOutput != null)
 		{
@@ -383,8 +383,8 @@ public class SoundSystem extends Thread
 		return new DummyOutput();
 	}
 
-    public void closeOutput(Output output)
-    {
+	public void closeOutput(Output output)
+	{
 		if(output != null)
 		{
 			output.disconnect();
@@ -412,10 +412,10 @@ public class SoundSystem extends Thread
 				}
 			}
 		}
-    }
+	}
 
-    public void closeAllOutputs()
-    {
+	public void closeAllOutputs()
+	{
 		logger.debug("closing all outputs excluding the output for manual mixing");
 
 		synchronized(mSystemOutputs)
@@ -431,17 +431,17 @@ public class SoundSystem extends Thread
 		{
 			mMixerOutputs.clear();
 		}
-    }
+	}
 
-    public void exit(Time delay)
-    {
+	public void exit(Time delay)
+	{
 		logger.info("stopping sound system");
 		changeSystemState(STATE_EXITING, delay);
-    }
+	}
 
-    @Override
-    public void run()
-    {
+	@Override
+	public void run()
+	{
 		class StateChanger
 		{
 			long    mSystemTime  = 0;
@@ -474,16 +474,16 @@ public class SoundSystem extends Thread
 			}
 		}
 
-        double       averageTimeToProcessSound = 0;//mBufferDuration.getInNanoSeconds();
-        double       multiplicator             = 0.995;
+		double       averageTimeToProcessSound = 0;//mBufferDuration.getInNanoSeconds();
+		double       multiplicator             = 0.995;
 		StateChanger stateChanger              = new StateChanger();
 
 		mCurrentSystemState = STATE_RUNNING;
 		mTargetSystemState.set(STATE_RUNNING);
 		mStateChangeDelay.set(ZERO_DURATION);
 
-        while(mCurrentSystemState != STATE_EXITING)
-        {
+		while(mCurrentSystemState != STATE_EXITING)
+		{
 			stateChanger.processStateChange();
 
 			switch(mCurrentSystemState)
@@ -513,11 +513,11 @@ public class SoundSystem extends Thread
 				suspendThread(50);
 				break;
 			}
-        }
+		}
 
-        closeAllOutputs();
+		closeAllOutputs();
 		closeOutput(mMixSystemOutput);
-    }
+	}
 
 	private void changeSystemState(int state, Time delay)
 	{
@@ -585,7 +585,7 @@ public class SoundSystem extends Thread
 				if(output.isOpen())
 				{
 					if(!output.receivedData())
-					 {
+					{
 						output.request(); // if we got no sound data we request it
 					}
 
@@ -614,8 +614,8 @@ public class SoundSystem extends Thread
 
 	private void init(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
 	{
-        mSystemMixer     = mixer;
-        mBufferDuration  = bufferDuration;
+		mSystemMixer     = mixer;
+		mBufferDuration  = bufferDuration;
 		mMixSystemOutput = null;
 
 		if(mSystemMixer != null)
@@ -623,16 +623,16 @@ public class SoundSystem extends Thread
 			DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
 			try
-            {
-                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
-                line.open();
+			{
+				SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+				line.open();
 
 				mMixSystemOutput = new SystemOutput(line);
 				mMaxNumLines     = mSystemMixer.getMaxLines(info);
 				mMaxNumLines     = (mMaxNumLines == AudioSystem.NOT_SPECIFIED) ? (Integer.MAX_VALUE) : (mMaxNumLines);
 				mMaxNumLines     = Math.min(useMaxMixerLines, (mMaxNumLines - 1));
-            }
-            catch(LineUnavailableException e)
+			}
+			catch(LineUnavailableException e)
 			{
 				logger.warn("cannot open output line of system mixer device: \"" + e + "\"");
 			}
@@ -646,24 +646,24 @@ public class SoundSystem extends Thread
 			}
 		}
 
-        if(mSystemMixer == null)
-        {
+		if(mSystemMixer == null)
+		{
 			logger.info("try to open a common output line");
 
-            DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
+			DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
-            try
-            {
-                SourceDataLine line = (SourceDataLine)AudioSystem.getLine(datalineInfo);
-                line.open();
+			try
+			{
+				SourceDataLine line = (SourceDataLine)AudioSystem.getLine(datalineInfo);
+				line.open();
 
 				mMixSystemOutput = new SystemOutput(line);
 				mMaxNumLines     = 0;
-            }
-            catch(LineUnavailableException e)
-            {
+			}
+			catch(LineUnavailableException e)
+			{
 				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
-            }
+			}
 			catch(IllegalArgumentException e)
 			{
 				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
@@ -672,60 +672,60 @@ public class SoundSystem extends Thread
 			{
 				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
 			}
-        }
+		}
 
 		if(mSystemMixer == null && mMixSystemOutput == null) {
 			mMaxNumLines = 0;
 		}
 	}
 
-    private void suspendThread(long nanos)
-    {
-        try
-        {
-            long millis = nanos / Time.Unit.MILLI.getNanos();
+	private void suspendThread(long nanos)
+	{
+		try
+		{
+			long millis = nanos / Time.Unit.MILLI.getNanos();
 
-            nanos %= Time.Unit.MILLI.getNanos();
+			nanos %= Time.Unit.MILLI.getNanos();
 
-            sleep(millis, (int)nanos);
-        }
-        catch(InterruptedException ex) { }
-    }
+			sleep(millis, (int)nanos);
+		}
+		catch(InterruptedException ex) { }
+	}
 
-    public static Mixer tryToFindMixer(AudioFormat audioFormat)
-    {
-        Mixer.Info[]        mixerInfos   = AudioSystem.getMixerInfo();
-        Mixer[]             mixers       = new Mixer[mixerInfos.length];
-        final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+	public static Mixer tryToFindMixer(AudioFormat audioFormat)
+	{
+		Mixer.Info[]        mixerInfos   = AudioSystem.getMixerInfo();
+		Mixer[]             mixers       = new Mixer[mixerInfos.length];
+		final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
 
-        if(mixers.length == 0) {
+		if(mixers.length == 0) {
 			return null;
 		}
 
-        for(int i=0; i<mixerInfos.length; ++i) {
+		for(int i=0; i<mixerInfos.length; ++i) {
 			mixers[i] = AudioSystem.getMixer(mixerInfos[i]);
 		}
 
-        Arrays.sort(mixers, new Comparator<Mixer>()
-        {
-            @Override
+		Arrays.sort(mixers, new Comparator<Mixer>()
+		{
+			@Override
 			public int compare(Mixer mixer1, Mixer mixer2)
-            {
-                int numLines1 = mixer1.getMaxLines(dataLineInfo);
-                int numLines2 = mixer2.getMaxLines(dataLineInfo);
+			{
+				int numLines1 = mixer1.getMaxLines(dataLineInfo);
+				int numLines2 = mixer2.getMaxLines(dataLineInfo);
 
-                if(numLines1 == AudioSystem.NOT_SPECIFIED || numLines1 > numLines2) {
+				if(numLines1 == AudioSystem.NOT_SPECIFIED || numLines1 > numLines2) {
 					return -1;
 				}
 
-                return 1;
-            }
-        });
+				return 1;
+			}
+		});
 
-        if(mixers[0].getMaxLines(dataLineInfo) == 0) {
+		if(mixers[0].getMaxLines(dataLineInfo) == 0) {
 			return null;
 		}
 
-        return mixers[0];
-    }
+		return mixers[0];
+	}
 }

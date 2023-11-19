@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -112,15 +112,15 @@ public class MakeRings {
 
 		// Here the behaviour is defined for if you make a wedding ring enquiry to Ognir and your
 		// ring is being made
-	 	npc.add(ConversationStates.ATTENDING,
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("wedding ring", "wedding"),
-		 		new QuestStateStartsWithCondition(marriage.getQuestSlot(), "forging"),
+				new QuestStateStartsWithCondition(marriage.getQuestSlot(), "forging"),
 				ConversationStates.IDLE,
-		 		null,
+				null,
 				new ChatAction() {
-	 				@Override
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-	 					final String[] tokens = player.getQuest(marriage.getQuestSlot()).split(";");
+						final String[] tokens = player.getQuest(marriage.getQuestSlot()).split(";");
 						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
 								- System.currentTimeMillis();

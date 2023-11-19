@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -108,10 +108,10 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				// in the middle of an active conversation.
 				class SpecialProducerBehaviour extends ProducerBehaviour {
 					SpecialProducerBehaviour(final String productionActivity,
-                        final String productName, final Map<String, Integer> requiredResourcesPerItem,
-											 final int productionTimePerItem) {
+							final String productName, final Map<String, Integer> requiredResourcesPerItem,
+							final int productionTimePerItem) {
 						super(QUEST_SLOT, productionActivity, productName,
-							  requiredResourcesPerItem, productionTimePerItem, false);
+								requiredResourcesPerItem, productionTimePerItem, false);
 					}
 
 					/**
@@ -184,8 +184,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 							player.equipOrPutOnGround(products);
 							npc.say("I'm done! Here you have "
-									+ Grammar.quantityplnoun(numberOfProductItems,
-															 getProductName(), "the") + ".");
+									+ Grammar.quantityplnoun(numberOfProductItems, getProductName(), "the") + ".");
 							player.setQuest(QUEST_SLOT, "done");
 							// give some XP as a little bonus for industrious workers
 							player.addXP(numberOfProductItems);
@@ -194,8 +193,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 					}
 				}
 
-				final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "bobbin",
-				        requiredResources, 10 * 60);
+				final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "bobbin", requiredResources, 10 * 60);
 
 				// we are not using producer adder at all here because that uses Conversations states IDLE and saying 'hi' heavily.
 				// we can't do that here because Pequod uses that all the time in his fishing quest. so player is going to have to #remind

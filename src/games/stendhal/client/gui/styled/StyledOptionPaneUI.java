@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -112,23 +112,23 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 
 	@Override
 	protected void addMessageComponents(Container container,
-		GridBagConstraints cons, Object msg, int maxll,
-		boolean internallyCreated) {
+			GridBagConstraints cons, Object msg, int maxll,
+			boolean internallyCreated) {
 		/*
 		 * A workaround to the well known flaw in JLabel that the text
 		 * can not be made selectable. Use a non editable JTextField
 		 * instead with the defaults of JLabel.
 		 */
-		 if (msg instanceof String) {
-			 JTextArea text = new JTextArea((String) msg);
-			 text.setEditable(false);
-			 text.setBorder(null);
-			 text.setOpaque(false);
-			 text.setForeground(style.getForeground());
-			 text.setFont(UIManager.getFont("Label.font"));
+		if (msg instanceof String) {
+			JTextArea text = new JTextArea((String) msg);
+			text.setEditable(false);
+			text.setBorder(null);
+			text.setOpaque(false);
+			text.setForeground(style.getForeground());
+			text.setFont(UIManager.getFont("Label.font"));
 
-			 msg = text;
-		 }
-		 super.addMessageComponents(container, cons, msg, maxll, internallyCreated);
+			msg = text;
+		}
+		super.addMessageComponents(container, cons, msg, maxll, internallyCreated);
 	}
 }

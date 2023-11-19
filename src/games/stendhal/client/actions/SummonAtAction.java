@@ -51,16 +51,16 @@ class SummonAtAction implements SlashAction {
 		String itemName;
 
 		// If there is a numeric expression, treat it as amount.
-		//TODO refactor with same code in DropAction.execute()
+		// TODO refactor with same code in DropAction.execute()
 		if (params[2].matches("[0-9].*")) {
-    		try {
-    			amount = Integer.parseInt(params[2]);
-    		} catch (final NumberFormatException ex) {
-    			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid amount: " + params[2]));
-    			return true;
-    		}
+			try {
+				amount = Integer.parseInt(params[2]);
+			} catch (final NumberFormatException ex) {
+				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid amount: " + params[2]));
+				return true;
+			}
 
-    		itemName = remainder;
+			itemName = remainder;
 		} else {
 			amount = 1;
 			itemName = (params[2] + " " + remainder).trim();

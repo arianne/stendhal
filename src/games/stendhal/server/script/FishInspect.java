@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -82,18 +82,18 @@ public class FishInspect extends ScriptImpl implements TurnListener {
 								} else if ("trout".equals(item.getName()) && (item.getQuantity() > 300)) {
 									caught = true;
 								} else if ("mackerel".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                   					caught = true;
-                                				} else if ("perch".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                					caught = true;
-                                				} else if ("roach".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                    					caught = true;
-                                				} else if ("surgeonfish".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                    					caught = true;
-                                				} else if ("clownfish".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                    					caught = true;
-                                				} else if ("char".equals(item.getName()) && (item.getQuantity() > 300)) {
-                                    					caught = true;
-                                				}
+									caught = true;
+								} else if ("perch".equals(item.getName()) && (item.getQuantity() > 300)) {
+									caught = true;
+								} else if ("roach".equals(item.getName()) && (item.getQuantity() > 300)) {
+									caught = true;
+								} else if ("surgeonfish".equals(item.getName()) && (item.getQuantity() > 300)) {
+									caught = true;
+								} else if ("clownfish".equals(item.getName()) && (item.getQuantity() > 300)) {
+									caught = true;
+								} else if ("char".equals(item.getName()) && (item.getQuantity() > 300)) {
+									caught = true;
+								}
 							}
 							sb.append("   " + object + "\n");
 						}

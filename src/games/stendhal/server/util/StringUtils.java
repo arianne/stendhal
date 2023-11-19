@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,65 +71,65 @@ public class StringUtils {
 		return sb.toString();
 	}
 
-    /**
-     * Replaces [variables] in a string
-     *
-     * @param string with [variables]
-     * @param params name1, value1, name2, value2, name3, value3
-     * @return string with substituted parameters
-     */
-    public static String substitute(String string, Object... params)  {
-    	Map<String, Object> map = new HashMap<String, Object>();
-    	for (int i = 0; i < params.length / 2; i++) {
-    		map.put(params[i*2].toString(), params[i*2+1]);
-    	}
-    	return substitute(string, map);
-    }
+	/**
+	 * Replaces [variables] in a string
+	 *
+	 * @param string with [variables]
+	 * @param params name1, value1, name2, value2, name3, value3
+	 * @return string with substituted parameters
+	 */
+	public static String substitute(String string, Object... params)  {
+		Map<String, Object> map = new HashMap<String, Object>();
+		for (int i = 0; i < params.length / 2; i++) {
+			map.put(params[i*2].toString(), params[i*2+1]);
+		}
+		return substitute(string, map);
+	}
 
 
-    /**
-     * Replaces [variables] in a string
-     *
-     * @param string with [variables]
-     * @param params replacement parameters
-     * @return string with substituted parameters
-     */
-    public static String substitute(String string, Map<String, ?> params)  {
-    	if (params == null || string == null) {
-    		return string;
-    	}
-        StringBuilder res = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(string, "[]", true);
-        String lastToken = "";
-        while (st.hasMoreTokens()) {
-            String token = st.nextToken();
-            if (lastToken.equals("[")) {
+	/**
+	 * Replaces [variables] in a string
+	 *
+	 * @param string with [variables]
+	 * @param params replacement parameters
+	 * @return string with substituted parameters
+	 */
+	public static String substitute(String string, Map<String, ?> params)  {
+		if (params == null || string == null) {
+			return string;
+		}
+		StringBuilder res = new StringBuilder();
+		StringTokenizer st = new StringTokenizer(string, "[]", true);
+		String lastToken = "";
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+			if (lastToken.equals("[")) {
 
-                Object temp = params.get(token);
-                if (temp != null) {
-                    token = temp.toString();
-                } else {
-                    token = "";
-                }
+				Object temp = params.get(token);
+				if (temp != null) {
+					token = temp.toString();
+				} else {
+					token = "";
+				}
 
-            }
-            lastToken = token.trim();
-            if (token.equals("[") || token.equals("]")) {
-                token = "";
-            }
-            res.append(token);
-        }
-        return res.toString();
-    }
+			}
+			lastToken = token.trim();
+			if (token.equals("[") || token.equals("]")) {
+				token = "";
+			}
+			res.append(token);
+		}
+		return res.toString();
+	}
 
-    /**
-     * Converts a string to title case. Example: "hello world" is converted to "Hello World"
-     *
-     * @param st
-     * 		String to be formatted.
-     * @return
-     * 		Title case formatted string.
-     */
+	/**
+	 * Converts a string to title case. Example: "hello world" is converted to "Hello World"
+	 *
+	 * @param st
+	 * 		String to be formatted.
+	 * @return
+	 * 		Title case formatted string.
+	 */
 	public static String titleize(final String st) {
 		final StringBuilder titleized = new StringBuilder();
 		boolean nextTitleCase = true;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,14 +39,14 @@ public class ServerShutdown extends ScriptImpl {
 
 		new Thread(
 			new Runnable() {
-    			@Override
+				@Override
 				public void run() {
-    				//marauroad.finish() is already called using a JRE shutdown hook, so we don't need
-    				// to call it here directly:
-    				//marauroad.getMarauroa().finish();
+					// marauroad.finish() is already called using a JRE shutdown hook, so we don't need
+					// to call it here directly:
+					//marauroad.getMarauroa().finish();
 
-    				System.exit(0);
-    			}
+					System.exit(0);
+				}
 			}, "Server Shutdown").start();
 	}
 

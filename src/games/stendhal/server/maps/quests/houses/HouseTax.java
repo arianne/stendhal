@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -182,7 +182,7 @@ class HouseTax implements TurnListener {
 	 */
 	private void confiscate(final HousePortal portal) {
 		notifyIfNeeded(portal.getOwner(), "You have neglected to pay your house taxes for too long. "
-					   + "Your house has been repossessed to cover the debt to the state.");
+				+ "Your house has been repossessed to cover the debt to the state.");
 		logger.info("repossessed " + portal.getDoorId() + ", which used to belong to " + portal.getOwner());
 		portal.changeLock();
 		portal.setOwner("");
@@ -216,17 +216,17 @@ class HouseTax implements TurnListener {
 		null);
 
 		taxman.add(ConversationStates.ATTENDING,
-				   Arrays.asList("pay", "payment"),
-				   new ChatCondition() {
-					   @Override
+				Arrays.asList("pay", "payment"),
+				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						   return getUnpaidTaxPeriods(player) <= 0;
-					   }
-				   },
-				   ConversationStates.ATTENDING,
-				   "According to my records you don't currently owe any tax. House owners will get notified by "
-				   + "myself through the postman as soon as they owe money.",
-				   null);
+						return getUnpaidTaxPeriods(player) <= 0;
+					}
+				},
+				ConversationStates.ATTENDING,
+				"According to my records you don't currently owe any tax. House owners will get notified by "
+						+ "myself through the postman as soon as they owe money.",
+				null);
 
 		taxman.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
@@ -260,11 +260,11 @@ class HouseTax implements TurnListener {
 			});
 
 		taxman.add(ConversationStates.QUESTION_1,
-				   ConversationPhrases.NO_MESSAGES,
-				   null,
-				   ConversationStates.ATTENDING,
-				   "Very well, but don't delay too long, as the interest on what you owe will increase.",
-				   null);
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Very well, but don't delay too long, as the interest on what you owe will increase.",
+				null);
 	}
 
 	/**

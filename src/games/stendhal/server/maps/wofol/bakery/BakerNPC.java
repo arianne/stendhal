@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -82,7 +82,7 @@ public class BakerNPC implements ZoneConfigurator {
 				// This isn't bad grammar. It's his tyle of speech! Do't correct pls.
 				addJob("I #make #pizza. I have learn from the great baker #Leander.");
 				addReply(Arrays.asList("button mushroom", "porcini"),
-				        "#Leander taught me mushroom grow in wood area. People like mushroom, I add more.");
+						"#Leander taught me mushroom grow in wood area. People like mushroom, I add more.");
 				addReply("flour", "Mill near Semos produce from grain.");
 				addReply("cheese", "Cheese? I know not.");
 				addReply("tomato", "This grow in glass houses.");
@@ -103,10 +103,10 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("ham", 1);
 
 				final ProducerBehaviour behaviour = new ProducerBehaviour("kroip_make_pizza", "make", "pizza",
-				        requiredResources, 5 * 60, true);
+						requiredResources, 5 * 60, true);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Welkom!");
+						"Welkom!");
 			}
 		};
 

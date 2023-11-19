@@ -70,7 +70,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC npc = getNPC("Javier X");
 		final Engine en = npc.getEngine();
 
-		 // Test trusted access to the bank.
+		// Test trusted access to the bank.
 		assertTrue(en.step(player, "hi Javier"));
 		assertEquals("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!",
 				getReply(npc));
@@ -81,7 +81,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 				getReply(npc));
 
 		player.setQuest(ZARA_QUEST_SLOT, "done");
-		 // Now we are welcome.
+		// Now we are welcome.
 		assertTrue(en.step(player, "hi Javier"));
 		assertEquals("Welcome to the Wizard's Bank, player.", getReply(npc));
 		assertTrue(npc.isTalking());
@@ -90,7 +90,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye.", getReply(npc));
 
-		 // set quest to "start"
+		// set quest to "start"
 		player.setQuest(QUEST_SLOT, "start");
 
 		assertTrue(en.step(player, "hi"));
@@ -101,7 +101,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye.", getReply(npc));
 
-		 // set quest to "done"
+		// set quest to "done"
 		player.setQuest(QUEST_SLOT, "done");
 
 		assertTrue(en.step(player, "hi"));
@@ -116,7 +116,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye.", getReply(npc));
 
-		 // Test second chest access
+		// Test second chest access
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome to the Wizard's Bank, player. Do you wish to pay to access your chest again?", getReply(npc));
 		assertTrue(npc.isTalking());
@@ -133,7 +133,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Welcome to the Wizard's Bank, player. Do you wish to pay to access your chest again?", getReply(npc));
 		assertTrue(npc.isTalking());
 
-		 // equip the player with enough money to pay the fee
+		// equip the player with enough money to pay the fee
 		assertTrue(equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "yes"));
@@ -146,13 +146,13 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testReplies() {
-		 // A named player name needed to create the name based hash code.
+		// A named player name needed to create the name based hash code.
 		final Player player = createPlayer("player1");
 
 		final SpeakerNPC npc = getNPC("Javier X");
 		final Engine en = npc.getEngine();
 
-		 // set requirements to access the bank
+		// set requirements to access the bank
 		player.setQuest(GRAFINDLE_QUEST_SLOT, "done");
 		player.setQuest(ZARA_QUEST_SLOT, "done");
 
@@ -189,14 +189,14 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testDoQuest() {
-		 // A named player name needed to create the name based hash code.
+		// A named player name needed to create the name based hash code.
 		final Player player = createPlayer("player2");
 		registerPlayer(player, ZONE_NAME);
 
 		final SpeakerNPC npc = getNPC("Javier X");
 		final Engine en = npc.getEngine();
 
-		 // set requirements to access the bank
+		// set requirements to access the bank
 		player.setQuest(GRAFINDLE_QUEST_SLOT, "done");
 		player.setQuest(ZARA_QUEST_SLOT, "done");
 
@@ -229,7 +229,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
-		 // equip the player with enough money to pay the fee
+		// equip the player with enough money to pay the fee
 		assertTrue(equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "fee"));

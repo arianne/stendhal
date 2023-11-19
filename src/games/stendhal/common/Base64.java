@@ -149,7 +149,7 @@ public class Base64 {
 					// excess at the bottom for next iteration.
 					shift -= 8;
 
-					out[index++] = 	(byte) ((accum >> shift) & 0xff);
+					out[index++] = (byte) ((accum >> shift) & 0xff);
 				}
 			}
 			// we will also have skipped processing a padding null byte ('=')

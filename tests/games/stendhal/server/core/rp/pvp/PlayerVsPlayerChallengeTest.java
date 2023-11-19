@@ -18,8 +18,8 @@ public class PlayerVsPlayerChallengeTest {
 
 		Player challengedPlayer = PlayerTestHelper.createPlayer(challenged);
 		PlayerVsPlayerChallenge challenge = new PlayerVsPlayerChallenge(opened,
-				 PlayerTestHelper.createPlayer(challenger),
-				 challengedPlayer);
+				PlayerTestHelper.createPlayer(challenger),
+				challengedPlayer);
 		if(accepted) {
 			challenge.accept(acceptTurn, challengedPlayer);
 		}

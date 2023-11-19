@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -141,33 +141,33 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		String quote = "";
 
 		switch(fisherman.charAt(0)) {
-        	case BULLY_FIRST_LETTER:
-        		quote = "Clownfish are always good for a laugh.";
-        		break;
-        	case JACKY_FIRST_LETTER:
-        		quote = "Don't mistake your trout for your old trout, she wouldn't taste so good.";
-        		break;
-        	case TOMMY_FIRST_LETTER:
-        		quote = "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.";
-        		break;
-        	case SODY_FIRST_LETTER:
-        		quote = "Devout Crustaceans believe in the One True Cod.";
-        		break;
-        	case HUMPREY_FIRST_LETTER:
-        		quote = "I don't understand why no-one buys my fish. The sign says 'Biggest Roaches in town'.";
-        		break;
-        	case MONTY_FIRST_LETTER:
-        		quote = "My parrot doesn't like to sit on a perch. He says it smells fishy.";
-        		break;
-        	case CHARBY_FIRST_LETTER:
-        		quote = "That fish restaurant really overcooks everything. It even advertises char fish.";
-        		break;
-        	case ALLY_FIRST_LETTER:
-        		quote = "Holy mackerel! These chips are tasty.";
-        		break;
-        	default:
-        		fail("unknown fisherman" + fisherman);
-        }
+			case BULLY_FIRST_LETTER:
+				quote = "Clownfish are always good for a laugh.";
+				break;
+			case JACKY_FIRST_LETTER:
+				quote = "Don't mistake your trout for your old trout, she wouldn't taste so good.";
+				break;
+			case TOMMY_FIRST_LETTER:
+				quote = "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.";
+				break;
+			case SODY_FIRST_LETTER:
+				quote = "Devout Crustaceans believe in the One True Cod.";
+				break;
+			case HUMPREY_FIRST_LETTER:
+				quote = "I don't understand why no-one buys my fish. The sign says 'Biggest Roaches in town'.";
+				break;
+			case MONTY_FIRST_LETTER:
+				quote = "My parrot doesn't like to sit on a perch. He says it smells fishy.";
+				break;
+			case CHARBY_FIRST_LETTER:
+				quote = "That fish restaurant really overcooks everything. It even advertises char fish.";
+				break;
+			case ALLY_FIRST_LETTER:
+				quote = "Holy mackerel! These chips are tasty.";
+				break;
+			default:
+				fail("unknown fisherman" + fisherman);
+		}
 
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));

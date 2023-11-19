@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,7 +93,7 @@ public class PlayerTransformerTest {
 
 		obje.addSlot(slot);
 		Item item = new Item("lich gold key","clazz","subclass",null);
-		 slot.add(item);
+		slot.add(item);
 
 		assertFalse(item.isBound());
 
@@ -117,7 +117,7 @@ public class PlayerTransformerTest {
 
 		Item item = new Item("marked scroll","clazz","subclass",null);
 		item.setBoundTo("bob");
-		 slot.add(item);
+		slot.add(item);
 		assertTrue(item.isBound());
 
 		RPObject transObj = new PlayerTransformer().transform(obje);

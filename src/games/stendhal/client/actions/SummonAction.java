@@ -62,25 +62,25 @@ class SummonAction implements SlashAction {
 
 			if (str != null) {
 				if (str.matches("[0-9].*")) {
-        			try {
-        				final Integer num = Integer.valueOf(str);
+					try {
+						final Integer num = Integer.valueOf(str);
 
-        				if (x == null) {
-        					x = num;
-        				} else if (y == null) {
-        					y = num;
-        				} else if (quantity == null) {
-        					quantity = num;
-        				} else {
-        					nameBuilder.append(str);
-        				}
-        			} catch (final NumberFormatException e) {
-        				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid number: " + str));
-        				return true;
-        			}
-    			} else {
-    				nameBuilder.append(str);
-    			}
+						if (x == null) {
+							x = num;
+						} else if (y == null) {
+							y = num;
+						} else if (quantity == null) {
+							quantity = num;
+						} else {
+							nameBuilder.append(str);
+						}
+					} catch (final NumberFormatException e) {
+						ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid number: " + str));
+						return true;
+					}
+				} else {
+					nameBuilder.append(str);
+				}
 			}
 		}
 
@@ -98,10 +98,10 @@ class SummonAction implements SlashAction {
 
 		if (x != null) {
 			if (y != null) {
-    			summon.put(X, x);
-    			summon.put(Y, y);
-    		} else {
-    			return false;
+				summon.put(X, x);
+				summon.put(Y, y);
+			} else {
+				return false;
 			}
 		} else {
 			summon.put(X, (int) User.get().getX());

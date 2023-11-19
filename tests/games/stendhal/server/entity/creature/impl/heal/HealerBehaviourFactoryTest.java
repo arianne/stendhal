@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,7 +26,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.RPClass.CreatureTestHelper;
 
 public class HealerBehaviourFactoryTest {
-	 boolean called;
+	boolean called;
 
 	/**
 	 * Tests for healNonHealer.

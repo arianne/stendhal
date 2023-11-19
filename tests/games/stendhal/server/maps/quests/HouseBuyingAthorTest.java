@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -144,7 +144,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "buy");
 		assertEquals("The cost of a new apartment is 100000 money.  Also, you must pay a monthly tax of 1000 money. If you have an apartment in mind, please tell me the number now. I will check availability. Athor Apartments are numbered 101 to 108.", getReply(npc));
 
-//		 add a portal to the maps so that there's something to check and sell
+		// add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();
 		destination.setIdentifier("dest");
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);

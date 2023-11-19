@@ -54,8 +54,8 @@ final class ResellHouseAction implements ChatAction {
 			// the player has sold the house. clear the slot
 			player.removeQuest(questSlot);
 			raiser.say("Thanks, here is your " + Integer.toString(refund)
-					   + " money owed, from the house value, minus any owed taxes. Now that you don't own a house "
-					   + "you would be free to buy another if you want to.");
+					+ " money owed, from the house value, minus any owed taxes. Now that you don't own a house "
+					+ "you would be free to buy another if you want to.");
 		} catch (final NumberFormatException e) {
 			logger.error("Invalid number in house slot", e);
 			raiser.say("Sorry, something bad happened. I'm terribly embarassed.");

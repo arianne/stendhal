@@ -42,13 +42,13 @@ final class ChangeLockAction extends HouseChatAction implements ChatAction {
 				if (player.equipToInventoryOnly(key)) {
 					player.drop("money", HouseChatAction.COST_OF_SPARE_KEY);
 					raiser.say("The locks have been changed for " + doorId + ", here is your new key. Do you want to buy a spare key, at a price of "
-							   + HouseChatAction.COST_OF_SPARE_KEY + " money?");
+							+ HouseChatAction.COST_OF_SPARE_KEY + " money?");
 					raiser.setCurrentState(ConversationStates.QUESTION_1);
 				} else {
 					// if the player doesn't have the space for the key, change the locks anyway as a security measure, but don't charge.
 					raiser.say("The locks have been changed for "
-							   + doorId + ", but you do not have space to carry the new key. I haven't charged you for this service. "
-							   + "If you want to go away and make space, come back and I will offer you the chance to buy a spare key. Goodbye.");
+							+ doorId + ", but you do not have space to carry the new key. I haven't charged you for this service. "
+							+ "If you want to go away and make space, come back and I will offer you the chance to buy a spare key. Goodbye.");
 					raiser.setCurrentState(ConversationStates.IDLE);
 				}
 			} catch (final NumberFormatException e) {

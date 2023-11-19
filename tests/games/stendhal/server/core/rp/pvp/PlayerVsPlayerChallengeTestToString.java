@@ -15,19 +15,19 @@ import org.junit.runners.Parameterized.Parameters;
 public class PlayerVsPlayerChallengeTestToString {
 
 	@Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                 { PlayerVsPlayerChallengeTest.createChallenge("challenger", "challenged", false),
-                	 "PlayerVsPlayerChallenge{challenger=challenger, challenged=challenged, accepted=false}" },
-                 { PlayerVsPlayerChallengeTest.createChallenge("challenger", "challenged", true),
-            	 "PlayerVsPlayerChallenge{challenger=challenger, challenged=challenged, accepted=true}" },
-                 { PlayerVsPlayerChallengeTest.createChallenge("bob", "barney", false),
-                	 "PlayerVsPlayerChallenge{challenger=bob, challenged=barney, accepted=false}" },
-                 { PlayerVsPlayerChallengeTest.createChallenge("bob", "barney", true),
-            	 "PlayerVsPlayerChallenge{challenger=bob, challenged=barney, accepted=true}" }
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] {
+				{ PlayerVsPlayerChallengeTest.createChallenge("challenger", "challenged", false),
+					"PlayerVsPlayerChallenge{challenger=challenger, challenged=challenged, accepted=false}" },
+				{ PlayerVsPlayerChallengeTest.createChallenge("challenger", "challenged", true),
+					"PlayerVsPlayerChallenge{challenger=challenger, challenged=challenged, accepted=true}" },
+				{ PlayerVsPlayerChallengeTest.createChallenge("bob", "barney", false),
+					"PlayerVsPlayerChallenge{challenger=bob, challenged=barney, accepted=false}" },
+				{ PlayerVsPlayerChallengeTest.createChallenge("bob", "barney", true),
+					"PlayerVsPlayerChallenge{challenger=bob, challenged=barney, accepted=true}" }
 
-           });
-    }
+		});
+	}
 
 	@Parameter(0)
 	public PlayerVsPlayerChallenge toTest;

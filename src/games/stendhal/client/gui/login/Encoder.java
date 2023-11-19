@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +33,7 @@ class Encoder {
 		try {
 			// create a BitSet based on the binary representation
 			final BitSet nameSet = createBitSet(str);
-			 // xor the BitSet with the key
+			// xor the BitSet with the key
 			nameSet.xor(key);
 
 			// turn the xor'd BitSet back into a String

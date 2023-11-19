@@ -16,16 +16,16 @@ import org.junit.runners.Parameterized.Parameters;
 public class PlayerVsPlayerChallengeTestHashCode {
 
 	@Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		Boolean.TRUE},
-        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
-        		PlayerVsPlayerChallengeTest.createChallenge("a", "b", true),
-        		Boolean.TRUE}
-        });
-    }
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] {
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				Boolean.TRUE},
+			{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+				PlayerVsPlayerChallengeTest.createChallenge("a", "b", true),
+				Boolean.TRUE}
+		});
+	}
 
 	@Parameter(0)
 	public PlayerVsPlayerChallenge one;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,7 +90,7 @@ public class MarriageQuestChain  {
 		}
 		res.add("I collected my ring from Ognir. He hinted we could get special outfits from Timothy and Tamara in Fado Hotel.");
 		if ("engaged_with_ring".equals(questState)) {
-	        res.add("Now I just have to make sure that " + getSpouseOrNickname(player) + " makes a ring, and then we can go to church together.");
+			res.add("Now I just have to make sure that " + getSpouseOrNickname(player) + " makes a ring, and then we can go to church together.");
 			return res;
 		}
 		res.add("I married " + getSpouseOrNickname(player) + " in a lovely ceremony in Fado Church.");

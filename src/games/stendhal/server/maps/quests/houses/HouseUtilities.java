@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,7 +48,7 @@ public class HouseUtilities {
 	 * clears the house cache
 	 */
 	public static void clearCache() {
-		 allHousePortals = null;
+		allHousePortals = null;
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class HouseUtilities {
 	// this will be ideal for a seller to list all unbought houses
 	// using Grammar.enumerateCollection
 	private static List<String> getUnboughtHouses() {
-	    final List<String> unbought = new LinkedList<String>();
+		final List<String> unbought = new LinkedList<String>();
 		final List<HousePortal> portals =  getHousePortals();
 		for (final HousePortal houseportal : portals) {
 			final String owner = houseportal.getOwner();

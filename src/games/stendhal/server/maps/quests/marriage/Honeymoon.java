@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,34 +50,34 @@ class Honeymoon {
 				new ChatAction() {
 						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                        final StendhalRPZone fadoHotel = npc.getZone();
-                        final Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
+						final StendhalRPZone fadoHotel = npc.getZone();
+						final Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
 
-                        Player husband;
-                        Player wife;
-                        String partnerName;
-                        husband = player;
-                        partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
-                        wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+						Player husband;
+						Player wife;
+						String partnerName;
+						husband = player;
+						partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
+						wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 
 						if (!(player.hasQuest(marriage.getQuestSlot())) || !("just_married".equals(player.getQuest(marriage.getQuestSlot())))) {
 							// person is not just married
 							npc.say("Sorry, our honeymoon suites are only available for just married customers.");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						} else if (wife == null) {
-							//wife is not online
-                            npc.say("Come back when " + partnerName + " is with you - you're meant to have your honeymoon together!");
-                            npc.setCurrentState(ConversationStates.IDLE);
-                        } else if (!(wife.hasQuest(marriage.getQuestSlot())
-                                     && wife.getQuest(marriage.getSpouseQuestSlot()).equals(husband.getName()))) {
-                        	//wife is not married to this husband
-                            npc.say("Oh dear, this is embarassing. You seem to be married, but " + partnerName + " is not married to you.");
-                            npc.setCurrentState(ConversationStates.ATTENDING);
-                        } else if (!hotelReception.contains(wife)) {
-                        	//  wife has not bothered to come to reception desk
-                            npc.say("Could you get " + partnerName + " to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.");
-                        }  else {
-                        	//wife and husband fulfill all conditions
+							// wife is not online
+							npc.say("Come back when " + partnerName + " is with you - you're meant to have your honeymoon together!");
+							npc.setCurrentState(ConversationStates.IDLE);
+						} else if (!(wife.hasQuest(marriage.getQuestSlot())
+									&& wife.getQuest(marriage.getSpouseQuestSlot()).equals(husband.getName()))) {
+							// wife is not married to this husband
+							npc.say("Oh dear, this is embarassing. You seem to be married, but " + partnerName + " is not married to you.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else if (!hotelReception.contains(wife)) {
+							// wife has not bothered to come to reception desk
+							npc.say("Could you get " + partnerName + " to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.");
+						}  else {
+							// wife and husband fulfill all conditions
 							npc.say("How lovely! Please read our catalogue here and tell me the room number that you would like.");
 						}
 					}
@@ -92,9 +92,8 @@ class Honeymoon {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
-                        final String room = Integer.toString(sentence.getNumeral().getAmount());
-                        final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
-                                                                                       "int_fado_lovers_room_" + room);
+						final String room = Integer.toString(sentence.getNumeral().getAmount());
+						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_fado_lovers_room_" + room);
 						if (zone.getPlayers().size() > 0) {
 							npc.say("Sorry, that room is currently occupied, would you give me your next choice please?");
 							npc.setCurrentState(ConversationStates.QUESTION_1);
@@ -105,15 +104,14 @@ class Honeymoon {
 							String partnerName;
 							husband = player;
 							partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
-							wife = SingletonRepository.getRuleProcessor().getPlayer(
-                                                                                partnerName);
+							wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 							final StackableItem invite1 = (StackableItem) SingletonRepository.getEntityManager().getItem(
-																												  "invitation scroll");
+									"invitation scroll");
 							invite1.setQuantity(1);
-                            final StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
-                                                                                                                  "invitation scroll");
-                            invite2.setQuantity(1);
-                            //
+							final StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
+									"invitation scroll");
+							invite2.setQuantity(1);
+							//
 							invite1.setItemData("honeymoon," + partnerName);
 							invite2.setItemData("honeymoon," + husband.getTitle());
 							if (wife.equipToInventoryOnly(invite1) &&  husband.equipToInventoryOnly(invite2)) {
@@ -124,7 +122,7 @@ class Honeymoon {
 								husband.teleport(zone, 6, 5, Direction.DOWN, player);
 								final String scrollmessage = "Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!";
 								wife.sendPrivateText(NotificationType.PRIVMSG, scrollmessage);
-                                husband.sendPrivateText(NotificationType.PRIVMSG, scrollmessage);
+								husband.sendPrivateText(NotificationType.PRIVMSG, scrollmessage);
 								wife.notifyWorldAboutChanges();
 								husband.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.IDLE);
@@ -136,14 +134,16 @@ class Honeymoon {
 				});
 
 		// player says something which isn't a room number
-//		npc.add(ConversationStates.QUESTION_1, "",
-//			new SpeakerNPC.ChatCondition() {
-//				@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-//					return !ROOMS.contains(text);
-//				}
-//			}, ConversationStates.QUESTION_1,
-//			"Sorry, that's not a room number we have available.", null
-//		);
+		/*
+		npc.add(ConversationStates.QUESTION_1, "",
+			new SpeakerNPC.ChatCondition() {
+				@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					return !ROOMS.contains(text);
+				}
+			}, ConversationStates.QUESTION_1,
+			"Sorry, that's not a room number we have available.", null
+		);
+		*/
 
 	}
 

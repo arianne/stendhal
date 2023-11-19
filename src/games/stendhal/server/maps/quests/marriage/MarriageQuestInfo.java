@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,8 +58,8 @@ public class MarriageQuestInfo {
 	 * @param player the player to check
 	 * @return true iff the player is engaged
 	 */
-    public boolean isEngaged(final Player player) {
-        return (player.hasQuest(QUEST_SLOT)
-        		&& (player.getQuest(QUEST_SLOT).startsWith("engaged") || player.getQuest(QUEST_SLOT).startsWith("forging;")));
-    }
+	public boolean isEngaged(final Player player) {
+		return (player.hasQuest(QUEST_SLOT)
+				&& (player.getQuest(QUEST_SLOT).startsWith("engaged") || player.getQuest(QUEST_SLOT).startsWith("forging;")));
+	}
 }

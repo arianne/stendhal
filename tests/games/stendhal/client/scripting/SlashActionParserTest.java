@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -145,7 +145,7 @@ public class SlashActionParserTest {
 		assertEquals("", cmd.getRemainder());
 
 
-		 cmd = SlashActionParser.parse("ban bob");
+		cmd = SlashActionParser.parse("ban bob");
 		assertTrue(cmd.hasError());
 		assertNotNull(cmd.getParams());
 		assertEquals(2, cmd.getParams().length);

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -97,7 +97,7 @@ public class BalanceRPGame {
 						+ preferred - rounds + 0.5));
 				}
 			} else {
-				newDef = 	Math.max(1, (int) (creature.getDef()
+				newDef = Math.max(1, (int) (creature.getDef()
 					+ 5 * stepSize * creature.getDef() + 0.5f));
 			}
 			// Don't change too fast

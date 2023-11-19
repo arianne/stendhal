@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,98 +57,98 @@ public class HandleTransitions extends ScriptImpl {
 		}
 
 		// npc
-        final String npc_name = args.get(0);
-        if(npc_name.equals("")) {
-        	admin.sendPrivateText("Empty NPC name isnot allowed.");
-        	return;
-        }
-    	SpeakerNPC npc=SingletonRepository.getNPCList().get(npc_name);
-    	if(npc==null) {
-    		admin.sendPrivateText("no such NPC in game ("+npc_name+").");
-    		return;
-    	}
+		final String npc_name = args.get(0);
+		if(npc_name.equals("")) {
+			admin.sendPrivateText("Empty NPC name isnot allowed.");
+			return;
+		}
+		SpeakerNPC npc=SingletonRepository.getNPCList().get(npc_name);
+		if(npc==null) {
+			admin.sendPrivateText("no such NPC in game ("+npc_name+").");
+			return;
+		}
 
-        // check command
-        String command = args.get(1);
-        if(!command.startsWith("-")) {
-        	admin.sendPrivateText("command should start with \"-\"");
-        	return;
-        } else {
-        	command = command.substring(1);
-        }
+		// check command
+		String command = args.get(1);
+		if(!command.startsWith("-")) {
+			admin.sendPrivateText("command should start with \"-\"");
+			return;
+		} else {
+			command = command.substring(1);
+		}
 
-        // fill arguments
-        List<String> arguments = new LinkedList<String>();
-        for(int i=2; i<args.size(); i++) {
-        	arguments.add(args.get(i));
-        }
+		// fill arguments
+		List<String> arguments = new LinkedList<String>();
+		for(int i=2; i<args.size(); i++) {
+			arguments.add(args.get(i));
+		}
 
-        // parse command
-        if(command.equals("add")) {
-        	if(arguments.size()<3) {
-        		usage(admin);
-        		return;
-        	}
-        	final String label=arguments.get(0);
-        	// TODO: split triggers
-        	final String trigger=arguments.get(1);
-        	final String text=arguments.get(2);
-        	if(label.equals("")) {
-        		admin.sendPrivateText("label should not be empty for "+command);
-        		return;
-        	}
-        	npc.add(ConversationStates.ANY, trigger, null, ConversationStates.ANY, text, null, label);
-        	admin.sendPrivateText("transition added.");
-        	return;
+		// parse command
+		if(command.equals("add")) {
+			if(arguments.size()<3) {
+				usage(admin);
+				return;
+			}
+			final String label=arguments.get(0);
+			// TODO: split triggers
+			final String trigger=arguments.get(1);
+			final String text=arguments.get(2);
+			if(label.equals("")) {
+				admin.sendPrivateText("label should not be empty for "+command);
+				return;
+			}
+			npc.add(ConversationStates.ANY, trigger, null, ConversationStates.ANY, text, null, label);
+			admin.sendPrivateText("transition added.");
+			return;
 
-        } else if(command.equals("del")) {
-        	if(arguments.size()<1) {
-        		usage(admin);
-        		return;
-        	}
-        	final String label=arguments.get(0);
-        	if(label.equals("")) {
-        		admin.sendPrivateText("label should not be empty for "+command);
-        		return;
-        	}
-        	if(npc.del(label)) {
-        		admin.sendPrivateText("transition deleted successfully.");
-        	} else {
-        		admin.sendPrivateText("failed to delete transition.");
-        	}
-        	return;
+		} else if(command.equals("del")) {
+			if(arguments.size()<1) {
+				usage(admin);
+				return;
+			}
+			final String label=arguments.get(0);
+			if(label.equals("")) {
+				admin.sendPrivateText("label should not be empty for "+command);
+				return;
+			}
+			if(npc.del(label)) {
+				admin.sendPrivateText("transition deleted successfully.");
+			} else {
+				admin.sendPrivateText("failed to delete transition.");
+			}
+			return;
 
-        } else if(command.equals("alter")) {
-        	if(arguments.size()<3) {
-        		usage(admin);
-        		return;
-        	}
-        	// first delete transition, then add
-        	final String label=arguments.get(0);
-        	// TODO: split triggers
-        	final String trigger=arguments.get(1);
-        	final String text=arguments.get(2);
-        	if(label.equals("")) {
-        		admin.sendPrivateText("label should not be empty for "+command);
-        		return;
-        	}
-        	npc.del(label);
-        	npc.add(ConversationStates.ANY, trigger, null, ConversationStates.ANY, text, null, label);
-        	return;
+		} else if(command.equals("alter")) {
+			if(arguments.size()<3) {
+				usage(admin);
+				return;
+			}
+			// first delete transition, then add
+			final String label=arguments.get(0);
+			// TODO: split triggers
+			final String trigger=arguments.get(1);
+			final String text=arguments.get(2);
+			if(label.equals("")) {
+				admin.sendPrivateText("label should not be empty for "+command);
+				return;
+			}
+			npc.del(label);
+			npc.add(ConversationStates.ANY, trigger, null, ConversationStates.ANY, text, null, label);
+			return;
 
-        } else if(command.equals("list")) {
-        	// no arguments here
-        	StringBuilder sb = new StringBuilder();
-        	List<Transition> tr = npc.getTransitions();
-        	for(Transition t: tr) {
-        		sb.append("Transition: ("+t.toString()+")\n");
-        	}
-    		admin.sendPrivateText(sb.toString());
-    		return;
+		} else if(command.equals("list")) {
+			// no arguments here
+			StringBuilder sb = new StringBuilder();
+			List<Transition> tr = npc.getTransitions();
+			for(Transition t: tr) {
+				sb.append("Transition: ("+t.toString()+")\n");
+			}
+			admin.sendPrivateText(sb.toString());
+			return;
 
-        } else {
-        	admin.sendPrivateText("unknown command ("+command+")");
-        	return;
-        }
+		} else {
+			admin.sendPrivateText("unknown command ("+command+")");
+			return;
+		}
 	}
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,13 +46,13 @@ public class NameBuilder {
 	 */
 	public void append(final String str) {
 		if ((str != null) && (str.length() > 0)) {
-    		if (first) {
-    			first = false;
-    		} else {
-    			buffer.append(separator);
-    		}
+			if (first) {
+				first = false;
+			} else {
+				buffer.append(separator);
+			}
 
-    		buffer.append(str);
+			buffer.append(str);
 		}
 	}
 

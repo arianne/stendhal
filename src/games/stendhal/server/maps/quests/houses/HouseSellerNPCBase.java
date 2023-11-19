@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,7 +48,7 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 	 * @param location
 	 *            where are the houses?
 	 * @param houseTax
-	 * 		      class which controls house tax, and confiscation of houses
+	 *            class which controls house tax, and confiscation of houses
 	*/
 	HouseSellerNPCBase(final String name, final String location, final HouseTax houseTax) {
 		super(name);
@@ -180,11 +180,10 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 			null,
 			new ListUnboughtHousesAction(location));
 
-		addReply(
-				 "buy",
-				 "You should really enquire the #cost before you ask to buy. And check our brochure, #https://stendhalgame.org/wiki/StendhalHouses.");
+		addReply("buy",
+				"You should really enquire the #cost before you ask to buy. And check our brochure, #https://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("really",
-				 "That's right, really, really, really. Really.");
+				"That's right, really, really, really. Really.");
 		addOffer("I sell houses, please look at #https://stendhalgame.org/wiki/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
 		addHelp("You may be eligible to buy a house if there are any #available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #https://stendhalgame.org/wiki/StendhalHouses for pictures inside the houses and more details.");
 		addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #https://stendhalgame.org/wiki/StendhalHouses.");
