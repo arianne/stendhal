@@ -25,7 +25,7 @@ public class KirdnehItemAchievementFactory extends AbstractAchievementFactory {
 	public static final String ID_DEDICATED = "quest.special.weekly_item.0025";
 	public static final String ID_SENIOR = "quest.special.weekly_item.0050";
 	public static final String ID_MASTER = "quest.special.weekly_item.0100";
-	public static final String ID_HYPERBOLIST = "quest.special.weekly_item.0250";
+	public static final String ID_HYPERBOLIST = "quest.special.weekly_item.0200";
 
 
 	@Override
@@ -63,9 +63,9 @@ public class KirdnehItemAchievementFactory extends AbstractAchievementFactory {
 
 		achievements.add(createAchievement(
 			ID_HYPERBOLIST, "Hyperbolist Historian",
-			"Finish weekly item quest 250 times",
+			"Finish weekly item quest 200 times",
 			Achievement.EXTREME_BASE_SCORE, true,
-			new QuestStateGreaterThanCondition("weekly_item", 2, 249)));
+			new QuestStateGreaterThanCondition("weekly_item", 2, 199)));
 
 		return achievements;
 	}

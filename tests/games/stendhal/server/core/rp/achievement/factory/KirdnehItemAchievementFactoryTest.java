@@ -25,6 +25,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,6 +50,8 @@ import utilities.ZonePlayerAndNPCTestImpl;
 
 public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl {
 
+	private static final Logger logger = Logger.getLogger(KirdnehItemAchievementFactoryTest.class);
+
 	private Player player;
 	private SpeakerNPC npc;
 
@@ -61,7 +64,7 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 		put(ID_DEDICATED, 25);
 		put(ID_SENIOR, 50);
 		put(ID_MASTER, 100);
-		put(ID_HYPERBOLIST, 250);
+		put(ID_HYPERBOLIST, 200);
 	}};
 
 
@@ -110,6 +113,7 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 		assertTrue(questSystem.isLoaded(questInstance));
 
 		resetPlayer();
+		testAchievementsActive();
 		for (final Map.Entry<String, Integer> entry: idList.entrySet()) {
 			doCycle(entry.getKey(), entry.getValue());
 		}
@@ -129,6 +133,14 @@ public class KirdnehItemAchievementFactoryTest extends ZonePlayerAndNPCTestImpl 
 		AchievementTestHelper.init(player);
 		for (final String ID: idList.keySet()) {
 			assertFalse(achievementReached(ID));
+		}
+	}
+
+	private void testAchievementsActive() {
+		for (final String id: idList.keySet()) {
+			final boolean active = AchievementTestHelper.achievementEnabled(id);
+			logger.debug("achievement " + id + " active: " + String.valueOf(active));
+			assertTrue(active);
 		}
 	}
 

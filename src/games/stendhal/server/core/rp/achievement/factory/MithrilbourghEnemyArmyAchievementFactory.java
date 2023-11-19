@@ -61,10 +61,10 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 99)));
 
 		achievements.add(createAchievement(
-			"quest.special.kill_enemy_army.0250", "Commander in Chief",
-			"Finish Kill Enemy Army quest 250 times",
+			"quest.special.kill_enemy_army.0200", "Commander in Chief",
+			"Finish Kill Enemy Army quest 200 times",
 			Achievement.EXTREME_BASE_SCORE, true,
-			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 249)));
+			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 199)));
 
 		return achievements;
 	}

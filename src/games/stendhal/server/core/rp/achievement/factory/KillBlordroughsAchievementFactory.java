@@ -40,8 +40,8 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 	public static final int COUNT_DICTATOR = 100;
 	public static final String ID_DICTATOR = "quest.special.kill_blordroughs.0100";
 
-	public static final int COUNT_CRUSHER = 250;
-	public static final String ID_CRUSHER = "quest.special.kill_blordroughs.0250";
+	public static final int COUNT_CRUSHER = 200;
+	public static final String ID_CRUSHER = "quest.special.kill_blordroughs.0200";
 
 
 	@Override
@@ -79,7 +79,7 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 
 		achievements.add(createAchievement(
 			ID_CRUSHER, "Nation Crusher",
-			"Finish Kill Blordroughs quest 250 times",
+			"Finish Kill Blordroughs quest 200 times",
 			Achievement.EXTREME_BASE_SCORE, true,
 			new CompletedCountCondition(COUNT_CRUSHER)));
 

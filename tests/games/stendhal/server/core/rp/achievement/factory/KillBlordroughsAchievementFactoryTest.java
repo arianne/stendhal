@@ -66,7 +66,7 @@ public class KillBlordroughsAchievementFactoryTest extends ZonePlayerAndNPCTestI
 		put(idPrefix + "0025", 25);
 		put(idPrefix + "0050", 50);
 		put(idPrefix + "0100", 100);
-		put(idPrefix + "0250", 250);
+		put(idPrefix + "0200", 200);
 	}};
 
 

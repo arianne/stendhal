@@ -8,9 +8,9 @@ Changelog
 *world*
 - new achievements:
   - Ados's Lifeblood: Finish daily item quest 1,000 times
-  - Commander in Chief: Finish Kill Enemy Army quest 250 times
-  - Hyperbolist Historian: Finish weekly item quest 250 times
-  - Nation Crusher: Finish Kill Bordroughs quest 250 times
+  - Commander in Chief: Finish Kill Enemy Army quest 200 times
+  - Hyperbolist Historian: Finish weekly item quest 200 times
+  - Nation Crusher: Finish Kill Bordroughs quest 200 times
   - Semos's Ruler: Finish daily monster quest 1,000 times
 - renamed "Sowing Seeds" achievement to "Mother Nature's Helper"
 - seeds & bulbs items have unique images
