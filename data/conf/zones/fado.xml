@@ -347,6 +347,10 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
       <attribute name="move.continuous"/>
     </portal>
 
+    <portal x="13" y="2" ref="stairs_up">
+      <destination zone="int_fado_bank_1" ref="stairs_down"/>
+    </portal>
+
     <entity x="2" y="8">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
@@ -366,6 +370,62 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
         <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_bank_1" file="interiors/fado/bank_1.tmx">
+    <!-- portals -->
+
+    <portal x="13" y="2" ref="stairs_down">
+      <destination zone="int_fado_bank" ref="stairs_up"/>
+    </portal>
+
+    <!-- chests -->
+
+    <entity x="2" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_kirdneh</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_kirdneh</parameter>
       </implementation>
     </entity>
 
@@ -391,7 +451,6 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
         <parameter name="height">2</parameter>
       </implementation>
     </entity>
-
   </zone>
 
   <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
