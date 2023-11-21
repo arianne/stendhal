@@ -15,7 +15,8 @@
 📖</span> <span title="graphics">
 🎨</span> <span title="maps">
 🗺</span> <span title="audio">
-🔊</span> </td>
+🔊</span> <span title="bug">
+🐛</span> </td>
  <td align="center" width="0%"><a href="https://www.openhub.net/accounts/20119"><img src="https://gravatar.com/avatar/89fbe05161b5c026734e850d1c79a2f7?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>bleutailfly</b></sub></a><br /><span title="maps">
 🗺</span> <span title="graphics">
 🎨</span> <span title="content">
