@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -213,7 +213,7 @@ public class WaterForXhiphin extends AbstractQuest {
 				"Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.",
 				new MultipleActions(reward));
 
-        // player returns with no water at all.
+		// player returns with no water at all.
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
@@ -223,7 +223,7 @@ public class WaterForXhiphin extends AbstractQuest {
 				"I'm waiting for you to bring me some drinking water, this sun is so hot.",
 				null);
 
-        // add the other possibilities
+		// add the other possibilities
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
@@ -274,12 +274,12 @@ public class WaterForXhiphin extends AbstractQuest {
 			res.add("Stefan, the chef in Fado hotel, checked the water I collected and it is clean and safe to drink.");
 		}
 		// checked water was clean?
-        if (isCompleted(player)) {
-            if (isRepeatable(player)) {
-                res.add("I took the water to Xhiphin Zohos a while ago.");
-            } else {
-                res.add("I took the water to Xhiphin Zohos recently and he gave me some potions.");
-            }
+		if (isCompleted(player)) {
+			if (isRepeatable(player)) {
+				res.add("I took the water to Xhiphin Zohos a while ago.");
+			} else {
+				res.add("I took the water to Xhiphin Zohos recently and he gave me some potions.");
+			}
 		}
 		return res;
 	}
@@ -297,7 +297,7 @@ public class WaterForXhiphin extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -183,8 +183,8 @@ public class GuessKills extends AbstractQuest {
 		final ChatCondition enoughTimePassed = new TimePassedCondition(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES);
 		final ChatCondition wrongAndNotBye = new AndCondition(new NotCondition(isNumber), new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)));
 		final ChatCondition questNotDone = new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "1"),
-													 new QuestInStateCondition(QUEST_SLOT, 0, "2"),
-													 new QuestInStateCondition(QUEST_SLOT, 0, "3"));
+				new QuestInStateCondition(QUEST_SLOT, 0, "2"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "3"));
 
 		//checks if guess is exact answer
 		final ChatCondition exact = new ChatCondition() {
@@ -221,8 +221,8 @@ public class GuessKills extends AbstractQuest {
 		};
 
 		final ConversationStates[] tries = {ConversationStates.QUESTION_1,
-	                                      ConversationStates.QUESTION_2,
-	                                      ConversationStates.QUESTION_3};
+				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_3};
 
 		//gets the creature from unfinished quest
 		final ChatAction getSavedCreature = new ChatAction() {
@@ -310,22 +310,22 @@ public class GuessKills extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new MultipleActions(
-	                new ChatAction() {
-	                    @Override
+					new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
-	                        do {
-	                            CREATURE = Rand.rand(POSSIBLE_CREATURES).getName();
-	                        } while(!player.hasKilled(CREATURE));
+							do {
+								CREATURE = Rand.rand(POSSIBLE_CREATURES).getName();
+							} while(!player.hasKilled(CREATURE));
 
-	                        // This can't be in a SetQuestAction because CREATURE is dynamic
-	                        player.setQuest(QUEST_SLOT, 2, CREATURE);
+							// This can't be in a SetQuestAction because CREATURE is dynamic
+							player.setQuest(QUEST_SLOT, 2, CREATURE);
 
-	                        npc.say("I've been counting how many creatures you have killed, now tell me, how many " +
-	                                Grammar.pluralCreature(CREATURE) + " do you think you've killed? You have three guesses and I'll accept " +
-	                                "guesses that are close to the correct answer.");
-	                    }
-	                },
-	                new SetQuestAction(QUEST_SLOT, 0, "1")));
+							npc.say("I've been counting how many creatures you have killed, now tell me, how many " +
+									Grammar.pluralCreature(CREATURE) + " do you think you've killed? You have three guesses and I'll accept " +
+									"guesses that are close to the correct answer.");
+						}
+					},
+					new SetQuestAction(QUEST_SLOT, 0, "1")));
 
 		//if quest rejected
 		npc.add(ConversationStates.QUEST_OFFERED,

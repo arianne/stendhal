@@ -60,7 +60,7 @@ import games.stendhal.server.maps.Region;
  * STEPS:
  * <ul><li> Balduin challenges you to be the ultimate weapons collector
  *     <li> Balduin asks you to complete each quest where you win a rare item
- *	   <li> Balduin asks you to bring him one extra rare item from a list
+ *     <li> Balduin asks you to bring him one extra rare item from a list
  *</ul>
  *
  * REWARD: <ul>
@@ -156,9 +156,9 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new OrCondition(new QuestNotCompletedCondition(CLUB_THORNS_QUEST_SLOT),
-							 new QuestNotCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT))),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new OrCondition(new QuestNotCompletedCondition(CLUB_THORNS_QUEST_SLOT),
+							new QuestNotCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT))),
 			ConversationStates.ATTENDING,
 			"There is still a quest in the Kotoch area which you have not completed. Explore thoroughly and you will be on your way to becoming the ultimate collector!",
 			null);
@@ -167,9 +167,9 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new OrCondition(new QuestNotCompletedCondition(MITHRIL_CLOAK_QUEST_SLOT),
-							 new QuestNotCompletedCondition(MITHRIL_SHIELD_QUEST_SLOT))),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new OrCondition(new QuestNotCompletedCondition(MITHRIL_CLOAK_QUEST_SLOT),
+							new QuestNotCompletedCondition(MITHRIL_SHIELD_QUEST_SLOT))),
 			ConversationStates.ATTENDING,
 			"You are missing a special mithril item which you can win if you help the right person, you cannot be an ultimate collector without it.",
 			null);
@@ -177,9 +177,9 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new OrCondition(new QuestNotCompletedCondition(OBSIDIAN_KNIFE_QUEST_SLOT),
-							 new QuestNotCompletedCondition(VAMPIRE_SWORD_QUEST_SLOT))),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new OrCondition(new QuestNotCompletedCondition(OBSIDIAN_KNIFE_QUEST_SLOT),
+							new QuestNotCompletedCondition(VAMPIRE_SWORD_QUEST_SLOT))),
 			ConversationStates.ATTENDING,
 			"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.",
 			null);
@@ -187,9 +187,9 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new OrCondition(new QuestNotCompletedCondition(CLOAKSCOLLECTOR2_QUEST_SLOT),
-							 new QuestNotCompletedCondition(CLOAKS_FOR_BARIO_QUEST_SLOT))),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new OrCondition(new QuestNotCompletedCondition(CLOAKSCOLLECTOR2_QUEST_SLOT),
+							new QuestNotCompletedCondition(CLOAKS_FOR_BARIO_QUEST_SLOT))),
 			ConversationStates.ATTENDING,
 			"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
 			null);
@@ -197,8 +197,8 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new QuestNotCompletedCondition(ELVISH_ARMOR_QUEST_SLOT)),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new QuestNotCompletedCondition(ELVISH_ARMOR_QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favour for him, you cannot be the ultimate collector.",
 			null);
@@ -206,8 +206,8 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"challenge",
 			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT),
-					 new QuestNotCompletedCondition(KANMARARN_QUEST_SLOT)),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new QuestNotCompletedCondition(KANMARARN_QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
 			null);
@@ -308,7 +308,7 @@ public class UltimateCollector extends AbstractQuest {
 	}
 
 	private void offerSteps() {
-  		final SpeakerNPC npc = npcs.get("Balduin");
+		final SpeakerNPC npc = npcs.get("Balduin");
 
 		// player returns after finishing the quest and says offer
 		npc.add(

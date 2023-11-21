@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -182,48 +182,48 @@ public class FindJefsMom extends AbstractQuest {
 	private void findMomStep() {
 		final SpeakerNPC amber = npcs.get("Amber");
 
-        // give the flower if it's at least 5 days since the player activated the quest the last time, and set the time slot again
+		// give the flower if it's at least 5 days since the player activated the quest the last time, and set the time slot again
 		amber.add(ConversationStates.ATTENDING, "Jef",
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0,"start"),
-							 new PlayerCanEquipItemCondition("zantedeschia")),
+					new PlayerCanEquipItemCondition("zantedeschia")),
 
 			ConversationStates.IDLE,
 			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love these flowers! Please give it to him and tell him that I'm #fine.",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true),
-                                new SetQuestAction(QUEST_SLOT, 0, "found_mom")));
+					new SetQuestAction(QUEST_SLOT, 0, "found_mom")));
 
 
 		// don't put the flower on the ground - if player has no space, tell them
 		amber.add(ConversationStates.ATTENDING, "Jef",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-								 new NotCondition(new PlayerCanEquipItemCondition("zantedeschia"))),
+						new NotCondition(new PlayerCanEquipItemCondition("zantedeschia"))),
 				ConversationStates.IDLE,
 				"Oh, I wanted to give you a flower for my son to show him that I'm fine, but as I see now, you don't have enough space for equipping it. Please return to me when you will have made some space in your bags!",
 				null);
 
-        // don't give the flower if the quest state isn't start
-	    amber.add(ConversationStates.ATTENDING, "Jef",
-		     	new AndCondition(new NotCondition(new QuestActiveCondition(QUEST_SLOT))),
-		    	ConversationStates.IDLE,
-		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
-		    	null);
+		// don't give the flower if the quest state isn't start
+		amber.add(ConversationStates.ATTENDING, "Jef",
+				new AndCondition(new NotCondition(new QuestActiveCondition(QUEST_SLOT))),
+				ConversationStates.IDLE,
+				"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
+				null);
 
-	    amber.add(ConversationStates.ATTENDING, "Jef",
-	    		new AndCondition(
-	    				new QuestInStateCondition(QUEST_SLOT, "found_mom"),
-	    				new PlayerHasItemWithHimCondition("zantedeschia")),
-	    		ConversationStates.IDLE,
-	    		"Please give that flower to my son and let him know that I am #fine.",
-	    		null);
+		amber.add(ConversationStates.ATTENDING, "Jef",
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "found_mom"),
+						new PlayerHasItemWithHimCondition("zantedeschia")),
+				ConversationStates.IDLE,
+				"Please give that flower to my son and let him know that I am #fine.",
+				null);
 
-	    // replace flower if lost
-	    amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zantedeschia"),
-	    		new AndCondition(
-	    				new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"),
-	    				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia"))),
-	    		ConversationStates.IDLE,
-	    		"Oh you lost the flower? I'm afraid I don't have anymore. Speak with Jenny, by the windmill. She may be able to help you.",
-	    		null);
+		// replace flower if lost
+		amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zantedeschia"),
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"),
+						new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia"))),
+				ConversationStates.IDLE,
+				"Oh you lost the flower? I'm afraid I don't have anymore. Speak with Jenny, by the windmill. She may be able to help you.",
+				null);
 
 	}
 
@@ -249,8 +249,8 @@ public class FindJefsMom extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"), new PlayerHasItemWithHimCondition("zantedeschia")),
 				ConversationStates.ATTENDING, null,
 				new MultipleActions(new DropItemAction("zantedeschia"),
-                                    new IncreaseXPAction(800),
-                                    new IncreaseKarmaAction(15),
+									new IncreaseXPAction(800),
+									new IncreaseKarmaAction(15),
 									addRandomNumberOfItemsAction,
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
 									new SetQuestToTimeStampAction(QUEST_SLOT,1),
@@ -277,11 +277,11 @@ public class FindJefsMom extends AbstractQuest {
 			return res;
 		}
 		res.add("I found Jef in Kirdneh city. He waits there for his mum.");
-        final String questStateFull = player.getQuest(QUEST_SLOT);
-        final String[] parts = questStateFull.split(";");
-        final String questState = parts[0];
+		final String questStateFull = player.getQuest(QUEST_SLOT);
+		final String[] parts = questStateFull.split(";");
+		final String questState = parts[0];
 
-        if ("rejected".equals(questState)) {
+		if ("rejected".equals(questState)) {
 			res.add("Finding his mum somewhere costs me too much time at the moment, that is why I rejected his request to find her.");
 		}
 		if ("start".equals(questState)) {
@@ -290,12 +290,12 @@ public class FindJefsMom extends AbstractQuest {
 		if ("found_mom".equals(questState)) {
 			res.add("I found Amber, Jef's mother, while she walked around somewhere in Fado forest. She gave me a flower for her son and told me, that I have to tell him that she is fine.");
 		}
-        if (isCompleted(player)) {
-            if (isRepeatable(player)) {
-                res.add("Its been a while since I checked on Jef's mother and should ask Jef, if he wants me to take a look after her again.");
-            } else {
-                res.add("I told Jef that his mother is fine. He wants to leave his mother alone for some time now.");
-            }
+		if (isCompleted(player)) {
+			if (isRepeatable(player)) {
+				res.add("Its been a while since I checked on Jef's mother and should ask Jef, if he wants me to take a look after her again.");
+			} else {
+				res.add("I told Jef that his mother is fine. He wants to leave his mother alone for some time now.");
+			}
 		}
 
 		return res;
@@ -311,7 +311,7 @@ public class FindJefsMom extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"done"),
-				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 
 	@Override

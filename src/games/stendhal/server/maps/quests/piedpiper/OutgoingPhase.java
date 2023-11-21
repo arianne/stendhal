@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,8 +50,8 @@ public class OutgoingPhase extends TPPQuest {
 				new TPPQuestInPhaseCondition(myphase),
 				ConversationStates.ATTENDING,
 				"The rats are gone. "+
-	    		"You can get a #reward for your help now, ask about #details "+
-				  "if you want to know more.",
+					"You can get a #reward for your help now, ask about #details "+
+					"if you want to know more.",
 				null);
 
 		// Player asking about details.

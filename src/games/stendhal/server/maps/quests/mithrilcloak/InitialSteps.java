@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -103,11 +103,11 @@ class InitialSteps {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new NotCondition(new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot())),
-								 new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_mithril_shield"),
-												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "fixed_machine"))
-								 ),
+						new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_mithril_shield"),
+								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "fixed_machine"))
+						),
 				ConversationStates.ATTENDING,
-								 "I don't have anything for you until you have proved yourself worthy of carrying mithril items, by getting the mithril shield.",
+				"I don't have anything for you until you have proved yourself worthy of carrying mithril items, by getting the mithril shield.",
 				null);
 
 
@@ -116,10 +116,10 @@ class InitialSteps {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
-								 new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
-								 new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_mithril_shield"),
-												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "fixed_machine"))
-								 ),
+						new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
+						new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_mithril_shield"),
+								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "fixed_machine"))
+				),
 				ConversationStates.QUEST_2_OFFERED,
 				"Congratulations, you completed the quest for the mithril shield! Now, I have another quest for you, do you want to hear it?",
 				null);
@@ -163,33 +163,33 @@ class InitialSteps {
 
 
 			// player doesn't have the item to fix machine yet
-		   npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				   ConversationPhrases.NO_MESSAGES,
-				   null,
-				   ConversationStates.ATTENDING,
-				   null,
-				   new SayRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
+			npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new SayRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
 
 			final String startMessage = "I will make you the most amazing cloak of mithril. "
 					+ "You just need to get me the fabric and any tools I need! First please bring me a couple yards of "
 					+ mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.";
 
-		   //offer cloak
-		   npc.add(ConversationStates.QUEST_2_OFFERED,
-				   ConversationPhrases.YES_MESSAGES,
-				   new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
-				   ConversationStates.ATTENDING,
-				   startMessage,
-				   new SetQuestAction(mithrilcloak.getQuestSlot(), "need_fabric"));
+			//offer cloak
+			npc.add(ConversationStates.QUEST_2_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
+					ConversationStates.ATTENDING,
+					startMessage,
+					new SetQuestAction(mithrilcloak.getQuestSlot(), "need_fabric"));
 
 
 			// player asks for quest but they haven't completed mithril shield quest
 			npc.add(ConversationStates.QUEST_2_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-								 new NotCondition(new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot())),
-								 new QuestStartedCondition(mithrilcloak.getShieldQuestSlot())
-								 ),
+						new NotCondition(new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot())),
+						new QuestStartedCondition(mithrilcloak.getShieldQuestSlot())
+						),
 				ConversationStates.ATTENDING,
 				"Oh, I see you are already on a quest to obtain a mithril shield. You see, I was going to offer you a mithril cloak. But you should finish that first. Come back when you've finished the mithril shield quest and we will speak again.",
 				new SetQuestAction(mithrilcloak.getQuestSlot(), "need_mithril_shield"));

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -159,10 +159,10 @@ public class SadScientist extends AbstractQuest {
 		}
 		res.add("The new legs, now black legs, darkened with blood and evil, are mine. " +
 				"But at what cost?");
-        if ("done".equals(questState)){
-        	return res;
+		if ("done".equals(questState)){
+			return res;
 		}
-        // if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
 		final List<String> debug = new ArrayList<String>();
 		debug.add("Quest state is: " + questState);
 		logger.error("History doesn't have a matching quest state for " + questState);

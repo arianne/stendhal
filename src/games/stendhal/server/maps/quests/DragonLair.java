@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -133,11 +133,11 @@ public class DragonLair extends AbstractQuest {
 			if ("rejected".equals(questState)) {
 				res.add("They look a bit scary to me.");
 				return res;
-            }
+			}
 
 			if (player.isQuestInState(QUEST_SLOT, 0, "start")) {
-                res.add("Wishman has unlocked the dragon lair.");
-                return res;
+				res.add("Wishman has unlocked the dragon lair.");
+				return res;
 			}
 
 			if (isRepeatable(player)) {
@@ -162,7 +162,7 @@ public class DragonLair extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,1,MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT,1,MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
 	}
 	@Override
 	public String getNPCName() {

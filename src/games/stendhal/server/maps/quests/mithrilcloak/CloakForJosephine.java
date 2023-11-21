@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -94,9 +94,9 @@ class CloakForJosephine {
 				ConversationStates.ATTENDING,
 				"Oh that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!",
 				new MultipleActions(
-									 new DropItemAction("blue striped cloak"),
-									 new SetQuestAction(mithrilcloak.getQuestSlot(), "gave_striped_cloak")
-									 )
+						new DropItemAction("blue striped cloak"),
+						new SetQuestAction(mithrilcloak.getQuestSlot(), "gave_striped_cloak")
+						)
 				);
 
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -79,7 +79,7 @@ public class ElvishArmor extends AbstractQuest implements
 		bringItems.addToWorld();
 	}
 
-  	@Override
+	@Override
 	public void addToWorld() {
 		fillQuestInfo(
 				"Elvish Armor",
@@ -224,7 +224,7 @@ public class ElvishArmor extends AbstractQuest implements
 
 
 	private void offerSteps() {
-  		final SpeakerNPC npc = npcs.get("Lupos");
+		final SpeakerNPC npc = npcs.get("Lupos");
 
 		// player returns after finishing the quest and says offer
 		npc.add(

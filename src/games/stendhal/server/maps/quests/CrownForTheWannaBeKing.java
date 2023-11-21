@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -145,8 +145,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null,
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
-								    new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I want my crown to be beautiful and shiny. I need [items]. " +
-								    		"Do you have some of those now with you?")));
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I want my crown to be beautiful and shiny. I need [items]. " +
+								"Do you have some of those now with you?")));
 
 
 		/* player is not willing to help */

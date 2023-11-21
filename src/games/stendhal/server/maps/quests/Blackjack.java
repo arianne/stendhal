@@ -40,7 +40,7 @@ import games.stendhal.server.entity.player.Player;
 
 public class Blackjack extends AbstractQuest {
 	// spades ♠
-	 private static final String SPADES = "\u2660";
+	private static final String SPADES = "\u2660";
 
 	// hearts ♥
 	private static final String HEARTS = "\u2665";
@@ -358,7 +358,7 @@ public class Blackjack extends AbstractQuest {
 				new BehaviourAction(new Behaviour(), "stake", "offer") {
 					@Override
 					public void fireSentenceError(Player player, Sentence sentence, EventRaiser npc) {
-			        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
+						npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
 					}
 
 					@Override

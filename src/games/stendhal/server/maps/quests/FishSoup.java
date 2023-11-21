@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023- Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -323,10 +323,9 @@ public class FishSoup extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
-			    @Override
-				public void fire(final Player player, final Sentence sentence,
-					   final EventRaiser npc) {
-			    	checkForAllIngredients(player, npc);
+				@Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					checkForAllIngredients(player, npc);
 			}
 		});
 
@@ -422,7 +421,7 @@ public class FishSoup extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override

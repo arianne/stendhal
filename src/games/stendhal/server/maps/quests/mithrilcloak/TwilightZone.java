@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,7 +81,7 @@ class TwilightZone {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
-                        final int required = (sentence.getNumeral().getAmount());
+						final int required = (sentence.getNumeral().getAmount());
 						if (player.drop("money" , required * MOSS_COST)) {
 							npc.say("Ok, here's your " + Integer.toString(required) + " pieces of twilight moss. Don't take too much at once.");
 							new EquipItemAction("twilight moss", required, true).fire(player, sentence, npc);
@@ -142,13 +142,13 @@ class TwilightZone {
 						new PlayerHasItemWithHimCondition("twilight elixir")),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"Is that elixir for me? If #yes I will take it immediately. You must return to see me again in my normal state.",
-				 null);
+				null);
 
 		npc2.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
-								 new PlayerHasItemWithHimCondition("twilight elixir")
-								 ),
+						new PlayerHasItemWithHimCondition("twilight elixir")
+						),
 				ConversationStates.IDLE,
 				"Thank you!",
 				new MultipleActions(
@@ -161,11 +161,11 @@ class TwilightZone {
 		npc2.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES,
 				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
-								 new PlayerHasItemWithHimCondition("twilight elixir")
-								 ),
+						new PlayerHasItemWithHimCondition("twilight elixir")
+						),
 				ConversationStates.IDLE,
 				"I'm getting sicker ...",
-				 null);
+				null);
 	}
 
 	public void addToWorld() {

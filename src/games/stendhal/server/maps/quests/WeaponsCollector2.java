@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -127,9 +127,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestCompletedCondition("weapons_collector"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
-			    ConversationStates.ATTENDING,
-			    "Greetings, old friend. If you are willing, I have another #quest for you.",
-			    null);
+				ConversationStates.ATTENDING,
+				"Greetings, old friend. If you are willing, I have another #quest for you.",
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -328,15 +328,15 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("chocolate bar") || isCompleted(player)) {
 			res.add("I found a tasty chocolate bar for Elisabeth.");
 		}
-        if ("mummy".equals(questState) || isCompleted(player)) {
-            res.add("I spoke to Carey, Elisabeth's mom and she agreed I could give a chocolate bar to her daughter.");
-        }
-        if (isCompleted(player)) {
-            if (isRepeatable(player)) {
-                res.add("I took some chocolate to Elisabeth, she gave me some flowers in return. Perhaps she'd like more chocolate now.");
-            } else {
-                res.add("Elisabeth is eating the chocolate bar I gave her, and she gave me some flowers in return.");
-            }
+		if ("mummy".equals(questState) || isCompleted(player)) {
+			res.add("I spoke to Carey, Elisabeth's mom and she agreed I could give a chocolate bar to her daughter.");
+		}
+		if (isCompleted(player)) {
+			if (isRepeatable(player)) {
+				res.add("I took some chocolate to Elisabeth, she gave me some flowers in return. Perhaps she'd like more chocolate now.");
+			} else {
+				res.add("Elisabeth is eating the chocolate bar I gave her, and she gave me some flowers in return.");
+			}
 		}
 		return res;
 	}
@@ -354,7 +354,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"eating;"),
-				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 
 	@Override

@@ -113,7 +113,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		toKill.put("Dhohr Nuggetcutter", new Pair<Integer, Integer>(0,1));
 		toKill.put("mountain dwarf", new Pair<Integer, Integer>(0,2));
 		toKill.put("mountain elder dwarf", new Pair<Integer, Integer>(0,2));
-		toKill.put("mountain hero dwarf", 	new Pair<Integer, Integer>(0,2));
+		toKill.put("mountain hero dwarf", new Pair<Integer, Integer>(0,2));
 		toKill.put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -171,7 +171,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							player.addKarma(25.0);
 							player.addXP(4000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
-		 			}
+					}
 				});
 	}
 
@@ -216,7 +216,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-				 new TimePassedCondition(QUEST_SLOT, 1, 2*MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, 2*MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
 	}
 
 	@Override

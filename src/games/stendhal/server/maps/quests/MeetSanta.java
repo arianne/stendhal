@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -86,15 +86,15 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestCompletedCondition(QUEST_SLOT),
-                                                        new PlayerIsAGoodBoyCondition(),
-                                                        new NotCondition(new NakedCondition())),
+														new PlayerIsAGoodBoyCondition(),
+														new NotCondition(new NakedCondition())),
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
-				    new ChatAction() {
-					    @Override
+					new ChatAction() {
+						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					    	addHat(player);
-					    }
+							addHat(player);
+						}
 					}
 				);
 
@@ -102,18 +102,18 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
-				        @Override
+						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						    addHat(player);
+							addHat(player);
 						}
-				    }
+					}
 				);
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestNotCompletedCondition(QUEST_SLOT),
-                                                        new PlayerIsAGoodBoyCondition(),
-                                                        new NotCondition(new NakedCondition())),
+														new PlayerIsAGoodBoyCondition(),
+														new NotCondition(new NakedCondition())),
 					ConversationStates.IDLE,
 					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",
 					new MultipleActions(reward));
@@ -121,7 +121,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-                                                        new NotCondition(new PlayerIsAGoodBoyCondition())),
+														new NotCondition(new PlayerIsAGoodBoyCondition())),
 					ConversationStates.IDLE,
 					"Ho ho ho! Looks like you haven't been a good this year! Only well behaved children get presents! Seasons greetings!",
 					null);

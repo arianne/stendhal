@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -63,13 +63,13 @@ import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
  *
  * REPETITIONS: <ul><li> once between a week and two weeks.</ul>
  */
- public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
+public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
 
 
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
-    private static TPP_Phase phase = INACTIVE;
+	private static TPP_Phase phase = INACTIVE;
 
 	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();
 
@@ -112,65 +112,65 @@ import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 			}
 	}
 
-    /**
-     *
-     * @param ph
-     * @return phase index
-     */
-    public static int getPhaseIndex(TPP_Phase ph) {
-    	for (int i=0; i<getPhases().size(); i++) {
-    		if(getPhases().get(i).getPhase().compareTo(ph)==0) {
-    			return i;
-    		}
-    	}
-    	// didnt found it!
-    	logger.warn("Using improper phase for quest ("+ph.name()+"). size: "+getPhases().size());
+	/**
+	 *
+	 * @param ph
+	 * @return phase index
+	 */
+	public static int getPhaseIndex(TPP_Phase ph) {
+		for (int i=0; i<getPhases().size(); i++) {
+			if(getPhases().get(i).getPhase().compareTo(ph)==0) {
+				return i;
+			}
+		}
+		// didnt found it!
+		logger.warn("Using improper phase for quest ("+ph.name()+"). size: "+getPhases().size());
 		return -1;
-    }
+	}
 
-    /**
-     * return next available quest phase
-     * @param ph -
-     * @return next phase
-     */
-    public static TPP_Phase getNextPhase(TPP_Phase ph) {
-    	int pos=getPhaseIndex(ph);
-    	if(pos!=getPhases().size()-1) {
-		   return getPhases().get(pos+1).getPhase();
-    	}
-    	return getDefaultPhaseClass().getPhase();
-    }
+	/**
+	 * return next available quest phase
+	 * @param ph -
+	 * @return next phase
+	 */
+	public static TPP_Phase getNextPhase(TPP_Phase ph) {
+		int pos=getPhaseIndex(ph);
+		if(pos!=getPhases().size()-1) {
+			return getPhases().get(pos+1).getPhase();
+		}
+		return getDefaultPhaseClass().getPhase();
+	}
 
-    /**
-     * return next instance of quest phases classes from list
-     * @param ph
-     * @return next phase class
-     */
-    public static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
+	/**
+	 * return next instance of quest phases classes from list
+	 * @param ph
+	 * @return next phase class
+	 */
+	public static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
 		return getPhases().get(getPhaseIndex(getNextPhase(ph)));
-    }
+	}
 
-    /**
-     * return instance of quest phases classes
-     * @param ph
-     * @return phase class
-     */
-    public static ITPPQuest getPhaseClass(TPP_Phase ph) {
-    	/*
-    	if(getPhaseIndex(ph)==-1) {
-    		return getDefaultPhaseClass();
-    	}
-    	*/
-    	return getPhases().get(getPhaseIndex(ph));
-    }
+	/**
+	 * return instance of quest phases classes
+	 * @param ph
+	 * @return phase class
+	 */
+	public static ITPPQuest getPhaseClass(TPP_Phase ph) {
+		/*
+		if(getPhaseIndex(ph)==-1) {
+			return getDefaultPhaseClass();
+		}
+		*/
+		return getPhases().get(getPhaseIndex(ph));
+	}
 
-    /**
-     * function return default phase class
-     * @return default phase class
-     */
-    public static ITPPQuest getDefaultPhaseClass() {
-    	return getPhases().get(getPhaseIndex(INACTIVE));
-    }
+	/**
+	 * function return default phase class
+	 * @return default phase class
+	 */
+	public static ITPPQuest getDefaultPhaseClass() {
+		return getPhases().get(getPhaseIndex(INACTIVE));
+	}
 
 	/**
 	 * switching quest to next available phase.
@@ -224,14 +224,14 @@ import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 				getDefaultPhaseClass().getMaxTimeOut());
 	}
 
- 	@Override
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
 
- 	@Override
- 	public List<String> getHistory(final Player player) {
- 		LinkedList<String> history = new LinkedList<String>();
+	@Override
+	public List<String> getHistory(final Player player) {
+		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
 		}
@@ -243,9 +243,9 @@ import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 			history.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		}
 		return history;
- 	}
+	}
 
- 	@Override
+	@Override
 	public String getName() {
 		return "ThePiedPiper";
 	}

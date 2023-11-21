@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -76,7 +76,7 @@ import marauroa.common.Pair;
  * REPETITIONS: <ul><li> once a week.</ul>
  */
 
- public class KillEnemyArmy extends AbstractQuest {
+public class KillEnemyArmy extends AbstractQuest {
 
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
@@ -128,116 +128,116 @@ import marauroa.common.Pair;
 
 		enemys.put("blordrough",
 				Arrays.asList("blordrough quartermaster",
-							  "blordrough corporal",
-							  "blordrough storm trooper",
-							  "blordrough soldier",
-							  "blordrough elite",
-							  "blordrough infantry",
-							  "blordrough captain",
-							  "blordrough general"));
+								"blordrough corporal",
+								"blordrough storm trooper",
+								"blordrough soldier",
+								"blordrough elite",
+								"blordrough infantry",
+								"blordrough captain",
+								"blordrough general"));
 		enemys.put("dark elf",
 				Arrays.asList("child dark elf",
-							  "dark elf archer",
-							  "dark elf",
-							  "dark elf elite archer",
-							  "dark elf captain",
-							  "dark elf knight",
-							  "dark elf general",
-							  "dark elf ranger",
-							  "dark elf wizard",
-							  "dark elf viceroy",
-							  "dark elf sacerdotist",
-							  "dark elf admiral",
-							  "dark elf master",
-							  "dark elf matronmother"));
+								"dark elf archer",
+								"dark elf",
+								"dark elf elite archer",
+								"dark elf captain",
+								"dark elf knight",
+								"dark elf general",
+								"dark elf ranger",
+								"dark elf wizard",
+								"dark elf viceroy",
+								"dark elf sacerdotist",
+								"dark elf admiral",
+								"dark elf master",
+								"dark elf matronmother"));
 		enemys.put("chaos",
 				Arrays.asList("chaos soldier",
-							  "chaos warrior",
-							  "chaos commander",
-							  "chaos sorcerer",
-							  "chaos dragonrider",
-							  "chaos lord",
-							  "chaos green dragonrider",
-							  "chaos overlord",
-							  "chaos red dragonrider"));
+								"chaos warrior",
+								"chaos commander",
+								"chaos sorcerer",
+								"chaos dragonrider",
+								"chaos lord",
+								"chaos green dragonrider",
+								"chaos overlord",
+								"chaos red dragonrider"));
 		enemys.put("mountain dwarf",
 				Arrays.asList("mountain dwarf",
-							  "mountain elder dwarf",
-							  "mountain dwarf guardian",
-							  "mountain hero dwarf",
-							  "mountain leader dwarf",
-							  "Dhohr Nuggetcutter",
-							  "giant dwarf",
-							  "dwarf golem"));
+								"mountain elder dwarf",
+								"mountain dwarf guardian",
+								"mountain hero dwarf",
+								"mountain leader dwarf",
+								"Dhohr Nuggetcutter",
+								"giant dwarf",
+								"dwarf golem"));
 		enemys.put("mountain orc",
 				Arrays.asList("mountain orc",
-							  "mountain orc warrior",
-							  "mountain orc hunter",
-							  "mountain orc chief"));
+								"mountain orc warrior",
+								"mountain orc hunter",
+								"mountain orc chief"));
 		enemys.put("imperial",
 				Arrays.asList("imperial defender",
-							  "imperial veteran",
-							  "imperial archer",
-							  "imperial priest",
-							  "imperial elite guardian",
-							  "imperial scientist",
-							  "imperial high priest",
-							  "imperial archer leader",
-							  "imperial elite archer",
-							  "imperial leader",
-							  "imperial chief",
-							  "imperial knight",
-							  "imperial commander",
-							  "imperial experiment",
-							  "imperial demon servant",
-							  "imperial mutant",
-							  "imperial general",
-							  "imperial demon lord",
-							  "emperor dalmung",
-							  "imperial general giant"));
+								"imperial veteran",
+								"imperial archer",
+								"imperial priest",
+								"imperial elite guardian",
+								"imperial scientist",
+								"imperial high priest",
+								"imperial archer leader",
+								"imperial elite archer",
+								"imperial leader",
+								"imperial chief",
+								"imperial knight",
+								"imperial commander",
+								"imperial experiment",
+								"imperial demon servant",
+								"imperial mutant",
+								"imperial general",
+								"imperial demon lord",
+								"emperor dalmung",
+								"imperial general giant"));
 		enemys.put("madaram",
 				Arrays.asList("madaram peasant",
-							  "madaram trooper",
-							  "madaram soldier",
-							  "madaram healer",
-							  "madaram axeman",
-							  "madaram queen",
-							  "madaram hero",
-							  "madaram cavalry",
-							  "madaram stalker",
-							  "madaram buster blader",
-							  "madaram archer",
-							  "madaram windwalker",
-							  "kasarkutominubat"));
+								"madaram trooper",
+								"madaram soldier",
+								"madaram healer",
+								"madaram axeman",
+								"madaram queen",
+								"madaram hero",
+								"madaram cavalry",
+								"madaram stalker",
+								"madaram buster blader",
+								"madaram archer",
+								"madaram windwalker",
+								"kasarkutominubat"));
 		/*
 		 * exclude amazoness ( because they dont want to leave their island? )
 		enemys.put("amazoness",
 				Arrays.asList("amazoness archer",
-						      "amazoness hunter",
-						      "amazoness coastguard",
-						      "amazoness archer commander",
-						      "amazoness elite coastguard",
-						      "amazoness bodyguard",
-						      "amazoness coastguard mistress",
-						      "amazoness commander",
-						      "amazoness vigilance",
-						      "amazoness imperator",
-						      "amazoness giant"));
+								"amazoness hunter",
+								"amazoness coastguard",
+								"amazoness archer commander",
+								"amazoness elite coastguard",
+								"amazoness bodyguard",
+								"amazoness coastguard mistress",
+								"amazoness commander",
+								"amazoness vigilance",
+								"amazoness imperator",
+								"amazoness giant"));
 		 */
 		enemys.put("oni",
 				Arrays.asList("oni warrior",
-							  "oni archer",
-							  "oni priest",
-							  "oni king",
-							  "oni queen"));
+								"oni archer",
+								"oni priest",
+								"oni king",
+								"oni queen"));
 		enemys.put("barbarian",
 				Arrays.asList("barbarian",
-						      "barbarian wolf",
-						      "barbarian elite",
-						      "barbarian priest",
-						      "barbarian chaman",
-						      "barbarian leader",
-						      "barbarian king"));
+								"barbarian wolf",
+								"barbarian elite",
+								"barbarian priest",
+								"barbarian chaman",
+								"barbarian leader",
+								"barbarian king"));
 	}
 
 	/**
@@ -391,11 +391,11 @@ import marauroa.common.Pair;
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				//final String monsters = player.getQuest(QUEST_SLOT, 1);
-			    Logger.getLogger(KillEnemyArmy.class).warn("Fixing malformed quest string of player <"+
-				                                            player.getName()+
-				                                            ">: ("+
-				                                            player.getQuest(QUEST_SLOT)+
-				                                            ")");
+				Logger.getLogger(KillEnemyArmy.class).warn("Fixing malformed quest string of player <"+
+															player.getName()+
+															">: ("+
+															player.getQuest(QUEST_SLOT)+
+															")");
 				npc.say("I am sorry, I did not pay attention. " +
 						"What I need now:");
 				new GiveQuestAction().fire(player, sentence, npc);
@@ -469,33 +469,33 @@ import marauroa.common.Pair;
 		for(int i=0; i<enemyForces.size(); i++) {
 			final String enemy = creatures.get(i);
 
-			  // player killed enough enemies.
-		      npc.add(ConversationStates.ATTENDING,
-		    		  ConversationPhrases.QUEST_FINISH_MESSAGES,
-		    		  new AndCondition(
-		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
-		    				  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())),
-		    		  ConversationStates.ATTENDING,
-		    		  null,
-		    		  new MultipleActions(
-		    				  new RewardPlayerAction(),
-		    				  new IncreaseXPAction(100000),
-		    				  new IncrementQuestAction(QUEST_SLOT,3,1),
-		    				  // empty the 2nd index as we use it later
-		    				  new SetQuestAction(QUEST_SLOT,2,""),
-		    				  new SetQuestToTimeStampAction(QUEST_SLOT,1),
-		    				  new SetQuestAction(QUEST_SLOT,0,"done")));
+				// player killed enough enemies.
+				npc.add(ConversationStates.ATTENDING,
+						ConversationPhrases.QUEST_FINISH_MESSAGES,
+						new AndCondition(
+								new QuestInStateCondition(QUEST_SLOT, 1, enemy),
+								new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())),
+						ConversationStates.ATTENDING,
+						null,
+						new MultipleActions(
+								new RewardPlayerAction(),
+								new IncreaseXPAction(100000),
+								new IncrementQuestAction(QUEST_SLOT,3,1),
+								// empty the 2nd index as we use it later
+								new SetQuestAction(QUEST_SLOT,2,""),
+								new SetQuestToTimeStampAction(QUEST_SLOT,1),
+								new SetQuestAction(QUEST_SLOT,0,"done")));
 
-		      // player killed not enough enemies.
-		      npc.add(ConversationStates.ATTENDING,
-		    		  ConversationPhrases.QUEST_FINISH_MESSAGES,
-		    		  new AndCondition(
-		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
-		    				  new NotCondition(
-		    						  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first()))),
-		    		  ConversationStates.ATTENDING,
-		    		  null,
-		    		  new ExplainAction());
+				// player killed not enough enemies.
+				npc.add(ConversationStates.ATTENDING,
+						ConversationPhrases.QUEST_FINISH_MESSAGES,
+						new AndCondition(
+								new QuestInStateCondition(QUEST_SLOT, 1, enemy),
+								new NotCondition(
+										new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first()))),
+						ConversationStates.ATTENDING,
+						null,
+						new ExplainAction());
 
 		}
 	}
@@ -536,24 +536,24 @@ import marauroa.common.Pair;
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
 
- 	@Override
- 	public List<String> getHistory(final Player player) {
- 		LinkedList<String> history = new LinkedList<String>();
+	@Override
+	public List<String> getHistory(final Player player) {
+		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
 		}
 
 		if(player.getQuest(QUEST_SLOT, 0).equals("start")) {
-	        final String givenEnemies = player.getQuest(QUEST_SLOT, 1);
-	        final int givenNumber = enemyForces.get(givenEnemies).first();
-	        // updating firstly
+			final String givenEnemies = player.getQuest(QUEST_SLOT, 1);
+			final int givenNumber = enemyForces.get(givenEnemies).first();
+			// updating firstly
 			if(new KillsQuestSlotNeedUpdateCondition(QUEST_SLOT, 2, enemys.get(givenEnemies), true).fire(player, null, null)) {
 				// still need update??
 			}
-	        final int killedNumber = getKilledCreaturesNumber(player);
+			final int killedNumber = getKilledCreaturesNumber(player);
 
 			history.add("Despot Halb Errvl asked me to kill "+
 					givenNumber+" "+
@@ -585,7 +585,7 @@ import marauroa.common.Pair;
 					+ Grammar.quantityplnoun(repetitions, "whole army") + " for Despot Halb Errvl.");
 		}
 		return history;
- 	}
+	}
 
 	@Override
 	public String getNPCName() {

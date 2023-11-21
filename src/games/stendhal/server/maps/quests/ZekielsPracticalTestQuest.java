@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,8 +123,8 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				"beeswax",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING,
-			    "I will summon magic candles for you, but I will need beeswax for that. Beekeepers usually sell beeswax.",
-			    null);
+				"I will summon magic candles for you, but I will need beeswax for that. Beekeepers usually sell beeswax.",
+				null);
 
 		// we should only answer to these ingredients questions if the candles stage is not yet done
 		npc.add(ConversationStates.ATTENDING,

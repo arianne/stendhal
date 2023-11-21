@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,8 +35,8 @@ public class InactivePhase extends TPPQuest {
 				new TPPQuestInPhaseCondition(myphase),
 				ConversationStates.ATTENDING,
 				"Ados isn't being invaded by rats right now. You can still "+
-				  "get a #reward for the last time you helped. You can ask for #details "+
-				  "if you want.",
+						"get a #reward for the last time you helped. You can ask for #details "+
+						"if you want.",
 				null);
 
 		// Player asking about details

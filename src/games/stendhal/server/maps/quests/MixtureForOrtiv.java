@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -150,7 +150,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new MultipleActions(new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
-							    new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh that would be wonderful, stranger! You might save my life! Please bring me [items].")));
+					new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh that would be wonderful, stranger! You might save my life! Please bring me [items].")));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,

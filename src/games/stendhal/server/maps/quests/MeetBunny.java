@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,8 +123,8 @@ public class MeetBunny extends AbstractQuest {
 				false);
 
 		if (System.getProperty("stendhal.easterbunny") != null) {
-		    createbunny();
-		    teleporterBehaviour = new ItemDroppingTeleporterBehaviour(bunny, null, "0", "*hop* *hop* *hop* Happy Easter!", true, "small easter egg");
+			createbunny();
+			teleporterBehaviour = new ItemDroppingTeleporterBehaviour(bunny, null, "0", "*hop* *hop* *hop* Happy Easter!", true, "small easter egg");
 		}
 	}
 

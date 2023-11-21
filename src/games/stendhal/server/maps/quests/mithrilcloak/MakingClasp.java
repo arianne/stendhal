@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,7 +83,7 @@ class MakingClasp {
 					if (player.isEquipped("mithril bar")) {
 						player.drop("mithril bar");
 							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in "
-									   + REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
+									+ REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
 							player.setQuest(mithrilcloak.getQuestSlot(), "forgingclasp;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
 						} else {
@@ -143,22 +143,22 @@ class MakingClasp {
 				ConversationStates.ATTENDING,
 				"Wow, Pedinghaus really outdid himself this time. It looks wonderful on your new cloak! Wear it with pride.",
 				new MultipleActions(
-									 new DropItemAction("mithril clasp"),
-									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "done", 10.0),
-									 new EquipItemAction("mithril cloak", 1, true),
-									 new IncreaseXPAction(1000)
-									 )
+						new DropItemAction("mithril clasp"),
+						new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "done", 10.0),
+						new EquipItemAction("mithril cloak", 1, true),
+						new IncreaseXPAction(1000)
+						)
 				);
 
 		// remind about getting clasp
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("clasp", "mithril clasp", "cloak", "mithril cloak", "task", "quest"),
 				new OrCondition(
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_clasp"),
-								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
-								new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_clasp"),
-												 new NotCondition(new PlayerHasItemWithHimCondition("mithril clasp")))
-								),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_clasp"),
+						new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
+						new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_clasp"),
+								new NotCondition(new PlayerHasItemWithHimCondition("mithril clasp")))
+						),
 				ConversationStates.ATTENDING,
 				"You haven't got the clasp from #Pedinghaus yet. As soon as I have that your cloak will be finished!",
 				null);

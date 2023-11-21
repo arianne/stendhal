@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,14 +66,14 @@ public class KillDarkElves extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_dark_elves";
 	protected final List<String> creatures =
 		Arrays.asList("dark elf captain",
-				      "dark elf general",
-				      "dark elf knight",
-				      "dark elf wizard",
-				      "dark elf sacerdotist",
-				      "dark elf viceroy",
-				      "dark elf matronmother",
-					  "dark elf elite archer",
-				      "dark elf archer");
+				"dark elf general",
+				"dark elf knight",
+				"dark elf wizard",
+				"dark elf sacerdotist",
+				"dark elf viceroy",
+				"dark elf matronmother",
+				"dark elf elite archer",
+				"dark elf archer");
 
 	@Override
 	public String getSlotName() {
@@ -268,7 +268,7 @@ public class KillDarkElves extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
- 		LinkedList<String> history = new LinkedList<String>();
+		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
 		}

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -237,7 +237,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(new QuestNotStartedCondition(QUEST_SLOT),
-							 new QuestNotInStateCondition(QUEST_SLOT,"map")),
+					new QuestNotInStateCondition(QUEST_SLOT,"map")),
 			ConversationStates.QUEST_OFFERED,
 			"Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?",
 			null);
@@ -245,7 +245,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestCompletedCondition(QUEST_SLOT),
-								 new QuestInStateCondition(QUEST_SLOT,"map")),
+						new QuestInStateCondition(QUEST_SLOT,"map")),
 				ConversationStates.ATTENDING,
 				"I'm so sad that most of my friends are dead.",
 				null);
@@ -275,7 +275,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
 			null);
 
-        henry.add(
+		henry.add(
 				ConversationStates.QUEST_OFFERED,
 				"treasure",
 				null,
@@ -450,8 +450,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thanks again for bringing me the map!", null);
 
-		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry",
-			 "group", "one"),
+		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry", "group", "one"),
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
 			"Thanks again for bringing me the map!", null);

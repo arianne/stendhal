@@ -167,7 +167,7 @@ public class BowsForOuchit extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"wood",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT,"wood"),
-								 new NotCondition (new PlayerHasItemWithHimCondition("wood",10))),
+						new NotCondition (new PlayerHasItemWithHimCondition("wood",10))),
 				ConversationStates.ATTENDING,
 				"Wood is a great item with many purposes. Of course you will " +
 				"find some pieces in a forest. Please remember to come back when you " +

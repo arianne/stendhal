@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -249,7 +249,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
 				ConversationStates.IDLE, "Goodbye.", new ChatAction() {
 
-		    // this should be put into a custom ChatAction for this quest when the quest is refactored
+			// this should be put into a custom ChatAction for this quest when the quest is refactored
 			@Override
 			public void fire(final Player player, final Sentence sentence,
 					final EventRaiser npc) {

@@ -196,9 +196,9 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestCompletedCondition(QUEST_SLOT)),
-					    ConversationStates.ATTENDING,
-					    null,
-					    new SayTextAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
 
 				// never started quest
 				add(ConversationStates.IDLE,
@@ -207,9 +207,9 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestNotStartedCondition(QUEST_SLOT)),
-					    ConversationStates.ATTENDING,
-					    null,
-					    new SayTextAction("Welcome to the Wizard's Bank, [name]."));
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Welcome to the Wizard's Bank, [name]."));
 
 				// currently in bank
 				add(ConversationStates.IDLE,
@@ -218,9 +218,9 @@ public class WizardBank extends AbstractQuest implements LoginListener,LogoutLis
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestActiveCondition(QUEST_SLOT)),
-					    ConversationStates.ATTENDING,
-					    null,
-					    new SayTextAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
 
 				// hasn't got access to all banks yet
 				add(ConversationStates.IDLE,

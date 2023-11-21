@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -126,7 +126,7 @@ public class DiceGambling extends AbstractQuest {
 		map.put(10, new Pair<String, String>("chain legs",
 				"I hope you have a use for these chain legs."));
 		map.put(11,	new Pair<String, String>("antidote",
-			   "This antidote will serve you well when you fight against poisonous creatures."));
+				"This antidote will serve you well when you fight against poisonous creatures."));
 		map.put(12, new Pair<String, String>("sandwich",
 				"You have won a tasty sandwich!"));
 		map.put(13, new Pair<String, String>("cheeseydog",

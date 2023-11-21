@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -95,13 +95,13 @@ public class FindGhosts extends AbstractQuest {
 		final String[] doneAndFound = npcDoneText.split(":");
 		final List<String> result = new LinkedList<String>();
 		if (doneAndFound.length > 1) {
-		    final String[] done = doneAndFound[1].split(";");
-		    final List<String> doneList = Arrays.asList(done);
-		    for (final String name : NEEDED_SPIRITS) {
+			final String[] done = doneAndFound[1].split(";");
+			final List<String> doneList = Arrays.asList(done);
+			for (final String name : NEEDED_SPIRITS) {
 				if (!doneList.contains(name)) {
-				    result.add(name);
+					result.add(name);
 				}
-		    }
+			}
 		}
 		return result;
 	}
@@ -184,8 +184,8 @@ public class FindGhosts extends AbstractQuest {
 						// so we have to be compatible with them
 						final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 						final String[] npcDoneText = npcQuestText.split(":");
-		    			final String lookingStr;
-		    			final String saidStr;
+						final String lookingStr;
+						final String saidStr;
 						if (npcDoneText.length > 1) {
 							lookingStr = npcDoneText[0];
 							saidStr = npcDoneText[1];

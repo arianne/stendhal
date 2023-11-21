@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,7 +89,7 @@ public class RingMaker extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
 			new AndCondition(new PlayerHasItemWithHimCondition("emerald ring"),
-					         new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
+					new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			null,
 			new ChatAction() {
@@ -112,7 +112,7 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("emerald ring")),
-				         new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
+						new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
 
 				ConversationStates.ATTENDING,
 				"It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."

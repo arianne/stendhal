@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -152,7 +152,7 @@ public class KillSpiders extends AbstractQuest {
 						} else {
 							raiser.say("Go down and kill the creatures, no time left.");
 						}
-		 			}
+					}
 				});
 
 		// support for new quests.
@@ -179,7 +179,7 @@ public class KillSpiders extends AbstractQuest {
 						} else {
 							raiser.say("Go down and kill the creatures, no time left.");
 						}
-		 			}
+					}
 				});
 	}
 
@@ -206,7 +206,7 @@ public class KillSpiders extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
- 		LinkedList<String> history = new LinkedList<String>();
+		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
 		}
@@ -266,7 +266,7 @@ public class KillSpiders extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed;"),
-				 new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
 	}
 
 	@Override

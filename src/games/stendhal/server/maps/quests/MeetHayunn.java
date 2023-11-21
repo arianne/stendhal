@@ -166,14 +166,14 @@ public class MeetHayunn extends AbstractQuest {
 			"Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes, the old man in this picture, he will give you a map. Here's 5 money to get you started. Bye bye!",
 			new MultipleActions(reward));
 
-	   	// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
+		// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
 		// 'little tip' is a pun as he gives some money, that is a tip, too.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "killed")),
 				ConversationStates.INFORMATION_1,
-		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you a little tip. Do you want it?",
+				"You ran off pretty fast after coming to tell me you killed that rat! I was about to give you a little tip. Do you want it?",
 				null);
 
 		// Player has returned to say hi again.

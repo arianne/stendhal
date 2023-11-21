@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,14 +83,14 @@ import games.stendhal.server.maps.Region;
  * </ul>
  */
 
- public class HelpMrsYeti extends AbstractQuest {
+public class HelpMrsYeti extends AbstractQuest {
 
- 	private static final String QUEST_SLOT = "mrsyeti";
+	private static final String QUEST_SLOT = "mrsyeti";
 	private static final int DELAY_IN_MINUTES = 60*24;
 
 	private static Logger logger = Logger.getLogger(HelpMrsYeti.class);
 
- 	@Override
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
@@ -127,17 +127,17 @@ import games.stendhal.server.maps.Region;
 	}
 
 	private void makePotion() {
-	// player needs to bring some items to make the potion:
-	// a 'magic' knife from a blacksmith
-	// 3 lilia flowers
-	// sclaria
-	// wine
-	// black pearl
-	final SpeakerNPC npc = npcs.get("Salva Mattori");
+		// player needs to bring some items to make the potion:
+		// a 'magic' knife from a blacksmith
+		// 3 lilia flowers
+		// sclaria
+		// wine
+		// black pearl
+		final SpeakerNPC npc = npcs.get("Salva Mattori");
 
-    	npc.add(ConversationStates.ATTENDING, "potion",
+		npc.add(ConversationStates.ATTENDING, "potion",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-			    ConversationStates.ATTENDING, "I will help you make this potion, Mrs. Yeti is an old friend of mine. But the blade on "
+				ConversationStates.ATTENDING, "I will help you make this potion, Mrs. Yeti is an old friend of mine. But the blade on "
 				+ "my magic knife has snapped yet again. I need another. I get mine from Hackim Easso of Semos City, will you go to him and "
 				+ "ask him to make another knife? Just say my name: #salva",
 				new SetQuestAction(QUEST_SLOT, "hackim"));
@@ -149,13 +149,13 @@ import games.stendhal.server.maps.Region;
 			"You need to go to Hackim Easso and ask him about a magic knife for #salva before I can help you.",
 			null);
 
-	    npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
+		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "knife"),
 				new PlayerHasItemWithHimCondition("knife")),
 				ConversationStates.ATTENDING, "Very good! Now I need the items to make the love #potion. I need 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl. Please bring them all together at once and then ask me to make the #potion.",
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, "potion"), new DropItemAction("knife")));
 
-	    npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
+		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "knife"),
 				new NotCondition(new PlayerHasItemWithHimCondition("knife"))),
 				ConversationStates.ATTENDING, "I see you have been to Hackim, but where is the magic knife?",
@@ -173,20 +173,20 @@ import games.stendhal.server.maps.Region;
 		// don't make player wait for potion - could add this in later if wanted
 		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","potion"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "potion"),
-								 new PlayerHasItemWithHimCondition("lilia",3),
-								 new PlayerHasItemWithHimCondition("kokuda"),
-								 new PlayerHasItemWithHimCondition("wine"),
-								 new PlayerHasItemWithHimCondition("black pearl")),
+						new PlayerHasItemWithHimCondition("lilia",3),
+						new PlayerHasItemWithHimCondition("kokuda"),
+						new PlayerHasItemWithHimCondition("wine"),
+						new PlayerHasItemWithHimCondition("black pearl")),
 				ConversationStates.ATTENDING, "I see you have all the items for the potion. *mutters magic words* And now, ta da! You have the love potion. Wish Mrs. Yeti good luck from me!",
 				new MultipleActions(potionactions));
 
 		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","potion"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "potion"),
-								 new NotCondition(
-												  new AndCondition(new PlayerHasItemWithHimCondition("lilia",3),
-																   new PlayerHasItemWithHimCondition("kokuda"),
-																   new PlayerHasItemWithHimCondition("wine"),
-																   new PlayerHasItemWithHimCondition("black pearl")))),
+						new NotCondition(
+								new AndCondition(new PlayerHasItemWithHimCondition("lilia",3),
+										new PlayerHasItemWithHimCondition("kokuda"),
+										new PlayerHasItemWithHimCondition("wine"),
+										new PlayerHasItemWithHimCondition("black pearl")))),
 				ConversationStates.ATTENDING, "I need 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl to make the love potion. Please bring them all together at once. Thanks!", null);
 
 
@@ -198,11 +198,11 @@ import games.stendhal.server.maps.Region;
 	final SpeakerNPC npc = npcs.get("Hackim Easso");
 		npc.add(ConversationStates.ATTENDING, "salva",
 				new QuestInStateCondition(QUEST_SLOT, "hackim"),
-			    ConversationStates.ATTENDING, "Salva needs another magic knife does she? Ok, I can help you but not while I am so hungry. "
+				ConversationStates.ATTENDING, "Salva needs another magic knife does she? Ok, I can help you but not while I am so hungry. "
 				+ "I need food! Bring me 5 #pies and I will help you!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "pies", 1.0));
 
-	    npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "pies"),
 				new PlayerHasItemWithHimCondition("pie",5)),
 				ConversationStates.ATTENDING, "Ah, thank you very much! Now I will tell you a little secret of mine. I am not a blacksmith, "
@@ -210,7 +210,7 @@ import games.stendhal.server.maps.Region;
 				+ "a plain knife like you could buy from Xin Blanca in Semos Tavern. I'll tell her I made it! Oh and thanks for the pies!!!",
 				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "knife", 1.0), new DropItemAction("pie",5)));
 
-	    npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "pies"),
 				new NotCondition(new PlayerHasItemWithHimCondition("pie",5))),
 				ConversationStates.ATTENDING, "Arlindo from Ados makes the best meat and vegetable pies. Please remember to bring me 5, I am hungry!",
@@ -221,11 +221,11 @@ import games.stendhal.server.maps.Region;
 	private void bringPotion() {
 	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
 		final String extraTrigger = "potion";
-	    List<String> questTrigger;
-	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		List<String> questTrigger;
+		questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
 
-	    final List<ChatAction> tookpotionactions = new LinkedList<ChatAction>();
+		final List<ChatAction> tookpotionactions = new LinkedList<ChatAction>();
 		tookpotionactions.add(new DropItemAction("love potion"));
 		tookpotionactions.add(new IncreaseKarmaAction(10.0));
 		tookpotionactions.add(new IncreaseXPAction(1000));
@@ -257,16 +257,16 @@ import games.stendhal.server.maps.Region;
 	private void bringDragon() {
 	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
 
-	    final String extraTrigger = "dragon";
-	    List<String> questTrigger;
-	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		final String extraTrigger = "dragon";
+		List<String> questTrigger;
+		questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
 
 		// easy to check if they have a pet or sheep at all
-	    npc.add(
+		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"),
-							 new NotCondition(new PlayerHasPetOrSheepCondition())),
+					new NotCondition(new PlayerHasPetOrSheepCondition())),
 			ConversationStates.ATTENDING,
 			"You can get a baby dragon only if you have a mythical egg. Those, you must get from Morgrin at the wizard school. "
 			+ "Then Terry in Semos caves will hatch it.",
@@ -276,13 +276,12 @@ import games.stendhal.server.maps.Region;
 		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"),
-							 new PlayerHasPetOrSheepCondition()),
+					new PlayerHasPetOrSheepCondition()),
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
 				@Override
-				public void fire(final Player player, final Sentence sentence,
-								 final EventRaiser npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if(!player.hasPet()){
 						npc.say("That's a cute sheep you have there, but I need a baby dragon for Mr. Yeti. Try Morgrin at the magic school.");
 						return;
@@ -309,16 +308,16 @@ import games.stendhal.server.maps.Region;
 
 	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
 
-	    final String extraTrigger = "reward";
-	    List<String> questTrigger;
-	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		final String extraTrigger = "reward";
+		List<String> questTrigger;
+		questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
 
-	    npc.add(
+		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"),
-							 // delay is in minutes, last parameter is argument of timestamp
-							 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES))),
+					// delay is in minutes, last parameter is argument of timestamp
+					new NotCondition(new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES))),
 			ConversationStates.ATTENDING,
 			null,
 			new SayTimeRemainingAction(QUEST_SLOT,1,DELAY_IN_MINUTES,"Hello I am still busy with that baby dragon stew for Mr. Yeti. You can get your reward in"));
@@ -327,8 +326,8 @@ import games.stendhal.server.maps.Region;
 		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"),
-							 // delay is in minutes, last parameter is argument of timestamp
-							 new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES)),
+					// delay is in minutes, last parameter is argument of timestamp
+					new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES)),
 			ConversationStates.ATTENDING,
 			"Thank you! To say thank you, I'd like to offer you the chance to always #buy #roach from me cheaply. I have so much of it and perhaps you have a use for it.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT,"done"), new IncreaseXPAction(1000)));

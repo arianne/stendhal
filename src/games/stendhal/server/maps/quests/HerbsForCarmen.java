@@ -275,9 +275,9 @@ public class HerbsForCarmen extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				null,
-			    ConversationStates.ATTENDING,
-			    "There's nothing I need right now, thank you.",
-			    null);
+				ConversationStates.ATTENDING,
+				"There's nothing I need right now, thank you.",
+				null);
 	}
 
 	@Override

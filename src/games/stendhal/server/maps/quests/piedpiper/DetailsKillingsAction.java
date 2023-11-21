@@ -11,8 +11,8 @@ public class DetailsKillingsAction implements ChatAction, ITPPQuestConstants {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 		if (TPPQuestHelperFunctions.calculateReward(player)==0) {
 			mayor.say("You killed no rats during the #rats invasion. "+
-					  "To get a #reward you have to kill at least "+
-					  "one rat at that time.");
+					"To get a #reward you have to kill at least "+
+					"one rat at that time.");
 			return;
 		}
 		final StringBuilder sb = new StringBuilder("Well, from the last reward, you killed ");

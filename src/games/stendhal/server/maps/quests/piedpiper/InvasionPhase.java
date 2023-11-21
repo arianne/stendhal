@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,9 +70,9 @@ public class InvasionPhase extends TPPQuest {
 				new TPPQuestInPhaseCondition(myphase),
 				ConversationStates.ATTENDING,
 				"Ados is being invaded by rats! "+
-				  "I dont want to either reward you or "+
-				  "explain details to you now,"+
-				  " until all rats are dead.",
+						"I dont want to either reward you or "+
+						"explain details to you now,"+
+						" until all rats are dead.",
 				null);
 
 		// Player asked about reward at invasion time.
@@ -82,8 +82,8 @@ public class InvasionPhase extends TPPQuest {
 				new TPPQuestInPhaseCondition(myphase),
 				ConversationStates.ATTENDING,
 				"Ados is being invaded by rats! "+
-				  "I dont want to reward you now, "+
-				  " until all rats are dead.",
+						"I dont want to reward you now, "+
+						" until all rats are dead.",
 				null);
 	}
 
@@ -190,7 +190,7 @@ public class InvasionPhase extends TPPQuest {
 			phaseToDefaultPhase(
 					new LinkedList<String>(Arrays.asList("pied piper")));
 		}
-    }
+	}
 
 	/**
 	 *  Rats are dead :-)
@@ -199,9 +199,9 @@ public class InvasionPhase extends TPPQuest {
 	@Override
 	public String getSwitchingToDefPhaseMessage() {
 		final String text = "Mayor Chalmers shouts: No #rats in Ados survived, "+
-				            "only those who always lived in the "+
-				            "haunted house. "+
-				            "Rat hunters are welcome to get their #reward.";
+				"only those who always lived in the "+
+				"haunted house. "+
+				"Rat hunters are welcome to get their #reward.";
 		return(text);
 	}
 
@@ -212,8 +212,8 @@ public class InvasionPhase extends TPPQuest {
 	public String getSwitchingToNextPhaseMessage() {
 		final String text =
 			"Mayor Chalmers shouts: Suddenly, #rats have captured the city, "+
-		  //"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
-		  //"Perhaps they have returned to the sewers. "+
+			//"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
+			//"Perhaps they have returned to the sewers. "+
 			"I now need to call the Pied Piper, a rat exterminator. "+
 			"Anyway, thanks to all who tried to clean up Ados, "+
 			" you are welcome to get your #reward.";
@@ -250,7 +250,7 @@ public class InvasionPhase extends TPPQuest {
 	 */
 	protected String ratsProblem() {
 		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
-			              " Anyone who will help to clean up the city, will be rewarded!";
+				" Anyone who will help to clean up the city, will be rewarded!";
 		return(text);
 	}
 
@@ -274,25 +274,25 @@ public class InvasionPhase extends TPPQuest {
 		super.phaseToNextPhase(nextPhase, comments);
 	}
 
-    /**
-     *  Implementation of Observer interface.
-     *  Update function will record the fact of rat's killing
-     *  in player's quest slot.
-     */
+	/**
+	 *  Implementation of Observer interface.
+	 *  Update function will record the fact of rat's killing
+	 *  in player's quest slot.
+	 */
 	class RatsObserver implements Observer {
 		@Override
 		public void update (Observable obj, Object arg) {
-	        if (arg instanceof CircumstancesOfDeath) {
-	    		final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;
-	        	if(RAT_ZONES.contains(circs.getZone().getName())) {
-	        	if(circs.getKiller() instanceof Player) {
-	        		final Player player = (Player) circs.getKiller();
-	        		killsRecorder(player, circs.getVictim());
-	        	}
-	        	notifyDead(circs.getVictim());
-	        	}
-	        }
-	    }
+			if (arg instanceof CircumstancesOfDeath) {
+				final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;
+				if(RAT_ZONES.contains(circs.getZone().getName())) {
+				if(circs.getKiller() instanceof Player) {
+					final Player player = (Player) circs.getKiller();
+					killsRecorder(player, circs.getVictim());
+				}
+				notifyDead(circs.getVictim());
+				}
+			}
+		}
 	}
 
 	/**
@@ -300,9 +300,9 @@ public class InvasionPhase extends TPPQuest {
 	 *  in player's quest slot.
 	 *
 	 *  @param player
-	 *  			- player which killed rat.
+	 *    - player which killed rat.
 	 *  @param victim
-	 *  			- rat object
+	 *    - rat object
 	 */
 	private void killsRecorder(Player player, final RPEntity victim) {
 
@@ -311,15 +311,15 @@ public class InvasionPhase extends TPPQuest {
 		if(i==-1) {
 			//no such creature in reward table, will not count it
 			logger.warn("Unknown creature killed: "+
-					    victim.getName());
+						victim.getName());
 			return;
 		}
 
 		if((player.getQuest(QUEST_SLOT)==null)||
-		   (player.getQuest(QUEST_SLOT).equals("done")||
-		   (player.getQuest(QUEST_SLOT).equals("")))){
+			(player.getQuest(QUEST_SLOT).equals("done")||
+			(player.getQuest(QUEST_SLOT).equals("")))){
 			// player just killed his first creature.
-		    player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
+			player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
 		}
 
 		// we using here and after "i+1" because player's quest index 0

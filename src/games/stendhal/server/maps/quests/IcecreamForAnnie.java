@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -310,15 +310,15 @@ public class IcecreamForAnnie extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("icecream") || isCompleted(player)) {
 			res.add("I found a tasty ice cream for Annie.");
 		}
-        if ("mummy".equals(questState) || isCompleted(player)) {
-            res.add("I spoke to Mrs Jones, she agreed I could give an ice cream to her daughter.");
-        }
-        if (isCompleted(player)) {
-            if (isRepeatable(player)) {
-                res.add("I took ice cream to Annie, she gave me a present. Perhaps she'd like another now.");
-            } else {
-                res.add("Annie is eating the ice cream I gave her, and she gave me a present in return.");
-            }
+		if ("mummy".equals(questState) || isCompleted(player)) {
+			res.add("I spoke to Mrs Jones, she agreed I could give an ice cream to her daughter.");
+		}
+		if (isCompleted(player)) {
+			if (isRepeatable(player)) {
+				res.add("I took ice cream to Annie, she gave me a present. Perhaps she'd like another now.");
+			} else {
+				res.add("Annie is eating the ice cream I gave her, and she gave me a present in return.");
+			}
 		}
 		return res;
 	}
@@ -337,7 +337,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"eating;"),
-				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 
 	@Override

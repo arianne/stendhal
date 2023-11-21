@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -72,12 +72,12 @@ import games.stendhal.server.maps.Region;
  * </ul>
  */
 
- public class JailedBarbarian extends AbstractQuest {
- 	private static final String QUEST_SLOT = "jailedbarb";
+public class JailedBarbarian extends AbstractQuest {
+	private static final String QUEST_SLOT = "jailedbarb";
 
 	private static Logger logger = Logger.getLogger(JailedBarbarian.class);
 
- 	@Override
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
@@ -115,7 +115,7 @@ import games.stendhal.server.maps.Region;
 	private void step2() {
 	final SpeakerNPC npc = npcs.get("Lorenz");
 
-	    final List<ChatAction> reward = new LinkedList<ChatAction>();
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("scythe"));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "capture"));

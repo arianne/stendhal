@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,7 +73,7 @@ class MakingFabric {
 	}
 
 	private void makeThreadStep() {
-    	final SpeakerNPC npc = npcs.get("Vincento Price");
+		final SpeakerNPC npc = npcs.get("Vincento Price");
 
 		npc.addReply("silk", "Keep this quiet, ok? I'll spin silk thread from the silk glands of a giant spider. Just ask me to #make it.");
 		npc.addReply("silk gland", "Like I said, they come from giant spiders.");
@@ -86,10 +86,10 @@ class MakingFabric {
 
 		class SpecialProducerBehaviour extends ProducerBehaviour {
 			SpecialProducerBehaviour(final String productionActivity,
-									 final String productName, final Map<String, Integer> requiredResourcesPerItem,
-									 final int productionTimePerItem) {
+					final String productName, final Map<String, Integer> requiredResourcesPerItem,
+					final int productionTimePerItem) {
 				super(mithrilcloak.getQuestSlot(), productionActivity, productName,
-					  requiredResourcesPerItem, productionTimePerItem, false);
+						requiredResourcesPerItem, productionTimePerItem, false);
 			}
 
 			/**
@@ -157,14 +157,14 @@ class MakingFabric {
 				} else {
 					npc.say("Oh, I gave your "
 							+ Grammar.quantityplnoun(numberOfProductItems,
-													 getProductName(), "") + " to my research student Boris Karlova. Go collect them from him.");
+										getProductName(), "") + " to my research student Boris Karlova. Go collect them from him.");
 					player.notifyWorldAboutChanges();
 				}
 			}
 		}
 
 		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "silk thread",
-																		 requiredResources, REQUIRED_MINUTES_THREAD * MathHelper.SECONDS_IN_ONE_MINUTE);
+				requiredResources, REQUIRED_MINUTES_THREAD * MathHelper.SECONDS_IN_ONE_MINUTE);
 
 		npc.add(ConversationStates.ATTENDING,
 				"make",
@@ -245,8 +245,8 @@ class MakingFabric {
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new NotCondition(
 							new OrCondition(
-									 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
-									 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")
+									new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
+									new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")
 							)
 					)),
 			ConversationStates.IDLE, "Ha ha he he woo hoo!!!",
@@ -275,7 +275,7 @@ class MakingFabric {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence,
-									 final EventRaiser npc) {
+							final EventRaiser npc) {
 						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[1]);
@@ -288,7 +288,7 @@ class MakingFabric {
 									+ Grammar.quantityplnoun(numberOfProductItems, "silk thread", "")
 									+ ". Price gets his students to do his dirty work for him.");
 							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
-																														  "silk thread");
+									"silk thread");
 
 							player.addXP(100);
 							products.setQuantity(numberOfProductItems);
@@ -337,7 +337,7 @@ class MakingFabric {
 						&& player.isEquipped("mithril nugget", 7)
 						&& player.isEquipped("balloon")) {
 						player.drop("silk thread", 40);
-					    player.drop("mithril nugget", 7);
+						player.drop("mithril nugget", 7);
 						player.drop("balloon");
 						final long timeNow = new Date().getTime();
 						player.setQuest(mithrilcloak.getQuestSlot(), "fusingthread;" + timeNow);
@@ -381,8 +381,8 @@ class MakingFabric {
 							// give some XP as a little bonus for industrious workers
 							player.addXP(100);
 							player.notifyWorldAboutChanges();
+						}
 					}
-				  }
 				}
 		);
 
@@ -398,10 +398,10 @@ class MakingFabric {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(
-								 new OrCondition(
-												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
-												 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;")
-												 )
+								new OrCondition(
+										new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
+										new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;")
+										)
 						)),
 				ConversationStates.ATTENDING, "Greetings. What an interesting place this is.",
 				null);
@@ -455,7 +455,7 @@ class MakingFabric {
 		// player returns having taking letter
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak",
-							  "mithril cloak", "pedinghaus", "regards", "forgiven", "task", "quest"),
+						"mithril cloak", "pedinghaus", "regards", "forgiven", "task", "quest"),
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
 				ConversationStates.SERVICE_OFFERED,
 				"Thank you so much for taking that letter! Now, do you have the 40 spools of mithril thread "
@@ -465,12 +465,12 @@ class MakingFabric {
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "pedinghaus", "task", "quest"),
 				new NotCondition(
-								 new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_mithril_thread"),
-												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_letter"),
-												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
-												 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "weavingfabric;")
-												 )
-								 ),
+						new OrCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_mithril_thread"),
+								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_letter"),
+								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
+								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "weavingfabric;")
+								)
+						),
 				ConversationStates.ATTENDING,
 				"I haven't got any quest for you now.", null);
 
@@ -490,7 +490,7 @@ class MakingFabric {
 
 							player.drop("mithril thread", 40);
 							npc.say("Lovely. In "
-									   + REQUIRED_HOURS_FABRIC + " hours your fabric will be ready.");
+									+ REQUIRED_HOURS_FABRIC + " hours your fabric will be ready.");
 							player.setQuest(mithrilcloak.getQuestSlot(), "weavingfabric;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
 						} else {
@@ -548,8 +548,8 @@ class MakingFabric {
 				ConversationStates.ATTENDING,
 				"*reads* ... *reads* ... Well, I must say, that is a weight off my mind. Thank you ever so much. Please convey my warmest regards to Whiggins. All is forgiven.",
 				new MultipleActions(
-									 new DropItemAction("sealed envelope"),
-									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "took_letter", 10.0)
+						new DropItemAction("sealed envelope"),
+						new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "took_letter", 10.0)
 				));
 	}
 
@@ -564,8 +564,8 @@ class MakingFabric {
 				ConversationStates.ATTENDING,
 				"Wow you got the " + mithrilcloak.getFabricName() + " , that took longer than I expected! Now, to cut it I need magical #scissors, if you would go get them from #Hogart. I will be waiting for you to return.",
 				new MultipleActions(
-									 new DropItemAction(mithrilcloak.getFabricName()),
-									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_scissors", 10.0)
+						new DropItemAction(mithrilcloak.getFabricName()),
+						new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_scissors", 10.0)
 				));
 
 		// remind about fabric. there are so many steps to getting fabric
@@ -573,17 +573,17 @@ class MakingFabric {
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("fabric", "mithril", "cloak", "mithril cloak", "task", "quest"),
 				new OrCondition(
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
-								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"),
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
-								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;"),
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_mithril_thread"),
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_letter"),
-								new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
-								new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_fabric"),
-												 new NotCondition(new PlayerHasItemWithHimCondition(mithrilcloak.getFabricName()))
-												)
-								 ),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
+						new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
+						new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;"),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_mithril_thread"),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_letter"),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "took_letter"),
+						new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_fabric"),
+								new NotCondition(new PlayerHasItemWithHimCondition(mithrilcloak.getFabricName()))
+						)
+				),
 				ConversationStates.ATTENDING,
 				"I'm still waiting for the " + mithrilcloak.getFabricName()
 				+ " so I can start work on your mithril cloak. You should ask #Kampusch about anything textile related.",

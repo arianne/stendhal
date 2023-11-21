@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,8 +90,8 @@ public class JailedDwarf extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ",
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, "done"),
-						 			 new IncreaseXPAction(2000),
-						 			 new IncreaseKarmaAction(20)));
+						new IncreaseXPAction(2000),
+						new IncreaseKarmaAction(20)));
 	}
 
 	@Override

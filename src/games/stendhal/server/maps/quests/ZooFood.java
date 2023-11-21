@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -121,7 +121,7 @@ public class ZooFood extends AbstractQuest {
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Katinka");
 
-        // Player has never done the zoo quest
+		// Player has never done the zoo quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestNotStartedCondition(QUEST_SLOT)),
@@ -130,7 +130,7 @@ public class ZooFood extends AbstractQuest {
 				null
 		);
 
-        // Player returns within one week of completing quest
+		// Player returns within one week of completing quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestCompletedCondition(QUEST_SLOT),
@@ -139,34 +139,34 @@ public class ZooFood extends AbstractQuest {
 				null
 		);
 
-        // Player returns and longer than a week has passed, ask to help again
+		// Player returns and longer than a week has passed, ask to help again
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
 				ConversationStates.QUEST_OFFERED, "Welcome back to the Ados Wildlife "
-                + "Refuge! Our animals are hungry again, can you bring some more food please?",
-                null);
+				+ "Refuge! Our animals are hungry again, can you bring some more food please?",
+				null);
 
 
-        // Player has never done the zoo quest, player asks what the task was
+		// Player has never done the zoo quest, player asks what the task was
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, "Our animals are hungry. We need " +
 						"more food to feed them. Can you help us?",
 				null);
 
-	    final Map<String,Integer> items = new HashMap<String, Integer>();
-	    items.put("apple",5);
-	    items.put("bread",3);
-	    items.put("button mushroom",5);
-	    items.put("carrot",5);
-	    items.put("cheese",10);
-	    items.put("cherry",5);
-	    items.put("egg",5);
+		final Map<String,Integer> items = new HashMap<String, Integer>();
+		items.put("apple",5);
+		items.put("bread",3);
+		items.put("button mushroom",5);
+		items.put("carrot",5);
+		items.put("cheese",10);
+		items.put("cherry",5);
+		items.put("egg",5);
 		items.put("grain",20);
-	    items.put("ham",10);
-	    items.put("honey",5);
+		items.put("ham",10);
+		items.put("honey",5);
 		items.put("meat",15);
 		items.put("porcini",5);
 		items.put("roach",3);
@@ -175,13 +175,13 @@ public class ZooFood extends AbstractQuest {
 
 
 
-        // Player has done quest before and agrees to help again
+		// Player has done quest before and agrees to help again
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING, null,
-                new MultipleActions(new SetQuestAction(QUEST_SLOT, "start;"),
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, "start;"),
 				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 1, items, "Oh, thank you! Please help us by"
-                + " bringing [item] as soon as you can."))
+				+ " bringing [item] as soon as you can."))
 		);
 
 
@@ -192,10 +192,10 @@ public class ZooFood extends AbstractQuest {
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0)
 		);
 
-        // Player returns within one week of completing quest
+		// Player returns within one week of completing quest
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 				ConversationStates.ATTENDING, null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, DELAY, "Thanks, we have enough food to feed the animals here for another"));
 
@@ -245,12 +245,12 @@ public class ZooFood extends AbstractQuest {
 			ConversationStates.ATTENDING, "Thank you! You have rescued our rare animals.",
 			new MultipleActions(actions));
 
-        npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-        		ConversationPhrases.YES_MESSAGES,
-        		new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)),
-        		ConversationStates.ATTENDING, null,
-        		new SayRequiredItemAction(QUEST_SLOT, 1, "*sigh* I SPECIFICALLY said that we need [item]!")
-        		);
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES,
+				new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)),
+				ConversationStates.ATTENDING, null,
+				new SayRequiredItemAction(QUEST_SLOT, 1, "*sigh* I SPECIFICALLY said that we need [item]!")
+				);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Well, hurry up! These rare animals are starving!",
@@ -297,9 +297,9 @@ public class ZooFood extends AbstractQuest {
 	}
 
 	@Override
-    public boolean isRepeatable(final Player player) {
+	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,1,DELAY)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT,1,DELAY)).fire(player, null, null);
 	}
 
 	@Override

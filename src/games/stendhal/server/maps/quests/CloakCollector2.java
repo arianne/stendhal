@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,13 +66,13 @@ import games.stendhal.server.maps.Region;
  */
 public class CloakCollector2 extends AbstractQuest {
 
-    private static final List<String> NEEDEDCLOAKS2 = Arrays.asList("red cloak", "shadow cloak", "xeno cloak",
-								       "elvish cloak", "chaos cloak", "mainio cloak",
-								       "golden cloak", "black dragon cloak");
-    private static final String OLD_QUEST = "cloaks_collector";
-    private static final String QUEST_SLOT = "cloaks_collector_2";
+	private static final List<String> NEEDEDCLOAKS2 = Arrays.asList("red cloak", "shadow cloak", "xeno cloak",
+				"elvish cloak", "chaos cloak", "mainio cloak",
+				"golden cloak", "black dragon cloak");
+	private static final String OLD_QUEST = "cloaks_collector";
+	private static final String QUEST_SLOT = "cloaks_collector_2";
 
-    @Override
+	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
@@ -359,7 +359,7 @@ public class CloakCollector2 extends AbstractQuest {
 				"Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(",
 				new MultipleActions(new EquipItemAction("killer boots", 1, true), new SetQuestAction(QUEST_SLOT, "done;rewarded")));
 
-		//		 player returns after finishing the quest and was rewarded
+		// player returns after finishing the quest and was rewarded
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
@@ -383,7 +383,7 @@ public class CloakCollector2 extends AbstractQuest {
 	private static void rewardPlayer(final Player player) {
 		player.addKarma(100.0);
 		player.addXP(100000);
-      	}
+	}
 
 	@Override
 	public String getName() {

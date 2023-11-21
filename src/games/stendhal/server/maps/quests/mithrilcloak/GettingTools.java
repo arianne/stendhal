@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,7 +123,7 @@ class GettingTools {
 							player.drop("mithril bar");
 							player.drop("magical eggshells", neededEggshells);
 							npc.say("Good. It will take me some time to make these, come back in "
-									   + REQUIRED_MINUTES_SCISSORS + " minutes to get your scissors.");
+									+ REQUIRED_MINUTES_SCISSORS + " minutes to get your scissors.");
 							player.addXP(100);
 							player.setQuest(mithrilcloak.getQuestSlot(), "makingscissors;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
@@ -198,7 +198,7 @@ class GettingTools {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
-                        final int required = (sentence.getNumeral().getAmount());
+						final int required = (sentence.getNumeral().getAmount());
 						if (player.drop("disease poison", required * REQUIRED_POISONS)) {
 							npc.say("Ok, here's your " + Integer.toString(required) + " eggshells. Enjoy!");
 							new EquipItemAction("magical eggshells", required, true).fire(player, sentence, npc);
@@ -216,7 +216,7 @@ class GettingTools {
 				"No problem. Anything else I can help with, just say.",
 				null);
 
- 	}
+	}
 
 	private void giveScissorsStep() {
 
@@ -229,10 +229,10 @@ class GettingTools {
 				ConversationStates.ATTENDING,
 				"You brought those magical scissors! Excellent! Now that I can cut the fabric I need a magical needle. You can buy one from a trader in the abandoned keep of Ados mountains, #Ritati Dragon something or other. Just go to him and ask for his 'specials'.",
 				new MultipleActions(
-									 new DropItemAction("magical scissors"),
-									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_needle;", 10.0),
-									 new IncreaseXPAction(100)
-									 )
+						new DropItemAction("magical scissors"),
+						new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_needle;", 10.0),
+						new IncreaseXPAction(100)
+						)
 				);
 
 		// remind about scissors
@@ -243,7 +243,7 @@ class GettingTools {
 								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_eggshells;"),
 								new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingscissors;"),
 								new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_scissors"),
-												 new NotCondition(new PlayerHasItemWithHimCondition("magical scissors")))
+										new NotCondition(new PlayerHasItemWithHimCondition("magical scissors")))
 								),
 				ConversationStates.ATTENDING,
 				"Ask #Hogart about #scissors, I'm sure he will remember the messages I've sent him!",
@@ -330,7 +330,7 @@ class GettingTools {
 										// stop looking through the joke list
 										npc.setCurrentState(ConversationStates.QUEST_ITEM_QUESTION);
 										return;
-									 }
+									}
 								}
 							}
 							if (ConversationPhrases.GOODBYE_MESSAGES.contains(sentence.getTriggerExpression().getNormalized())) {
@@ -418,7 +418,7 @@ class GettingTools {
 								saidjoke = Integer.parseInt(questslot[2]);
 								npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak,"
 										+ " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
-							 } else if (questslot.length > 1) {
+							} else if (questslot.length > 1) {
 								// it wasn't split with a needle number, only joke
 								// so this is the first time we brought a needle
 								saidjoke = Integer.parseInt(questslot[1]);
