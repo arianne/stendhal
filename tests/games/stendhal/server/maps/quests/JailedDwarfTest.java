@@ -12,48 +12,25 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.Matchers.oneOf;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.common.collect.ImmutableMap;
-
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.abandonedkeep.DwarfBuyerGuyNPC;
-import games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC;
-import games.stendhal.server.maps.fado.house.WomanNPC;
-import games.stendhal.server.maps.kalavan.castle.MadScientist1NPC;
-import games.stendhal.server.maps.kalavan.castle.MadScientist2NPC;
-import games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC;
-import games.stendhal.server.maps.semos.caves.BabyDragonSellerNPC;
 import games.stendhal.server.maps.semos.kanmararn.DwarfGuardNPC;
-import games.stendhal.server.maps.semos.library.HistorianGeographerNPC;
-import games.stendhal.server.maps.semos.pad.DealerNPC;
-import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
-import utilities.RPClass.BabyDragonTestHelper;
-import utilities.RPClass.ItemTestHelper;
 
 public class JailedDwarfTest extends ZonePlayerAndNPCTestImpl {
 
