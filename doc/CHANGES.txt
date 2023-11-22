@@ -14,6 +14,7 @@ Changelog
   - Semos's Ruler: Finish daily monster quest 1,000 times
 - renamed "Sowing Seeds" achievement to "Mother Nature's Helper"
 - seeds & bulbs items have unique images
+- new image for mandragora item
 - added Magic City chest to wizard's bank
 - added Kirdneh City chests to Kirdneh, Fado, & wizard's banks
 - made coupon item stackable
