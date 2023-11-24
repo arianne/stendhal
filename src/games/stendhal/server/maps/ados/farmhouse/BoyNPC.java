@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -72,6 +72,6 @@ public class BoyNPC implements ZoneConfigurator {
 		npc.setPosition(33, 6);
 		npc.initHP(100);
 		npc.setDescription("You see a little boy who looks as though he might be suffering from fever.");
-	    zone.add(npc);
+		zone.add(npc);
 	}
 }

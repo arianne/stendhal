@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,13 +64,13 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 						"cast", "mithril bar", requiredResources, 18 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.");
+						"Greetings. I sense you may be interested in mithril. If you desire me to #cast you a #'mithril bar', just say the word.");
 				addReply("wood",
-		        		"The wood is for the fire. I hope you collect yours from the forest, and not the barbaric practise of killing ents.");
+						"The wood is for the fire. I hope you collect yours from the forest, and not the barbaric practise of killing ents.");
 				addReply(Arrays.asList("mithril ore", "mithril nugget"),
-				        "Nowadays these rare nuggets are only likely to be found in the Ados mountains. I have no idea if that area is still civilised...");
+						"Nowadays these rare nuggets are only likely to be found in the Ados mountains. I have no idea if that area is still civilised...");
 				addReply(Arrays.asList("mithril bar", "mithril", "bar"),
-				        "Mithril is an incredibly valuable commodity, as it makes armor of astounding strength, yet remains featherlight. Guard any mithril stash you own with great care.");
+						"Mithril is an incredibly valuable commodity, as it makes armor of astounding strength, yet remains featherlight. Guard any mithril stash you own with great care.");
 			}
 		};
 

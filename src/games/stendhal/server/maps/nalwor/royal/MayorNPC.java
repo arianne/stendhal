@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,7 @@ public class MayorNPC implements ZoneConfigurator {
 				addJob("You dare ask, little human?!");
 				addHelp("Well, perhaps you can help me with a #problem I see brewing.");
 				add(ConversationStates.ATTENDING, "problem", null, ConversationStates.ATTENDING,
-				        "Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...", null);
+						"Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...", null);
 				addGoodbye("Farewell, human.");
 			}
 		};

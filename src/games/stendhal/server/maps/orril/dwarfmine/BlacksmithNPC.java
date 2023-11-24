@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,17 +64,17 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				addJob("I am a master blacksmith. I used to forge weapons in secret for the dwarves in the mine, but they have forgotten me and my #stories.");
 				addHelp("I could tell you a #story...");
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("story", "stories"),
-				        ConversationStates.ATTENDING,
-				        "I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("story", "stories"),
+						ConversationStates.ATTENDING,
+						"I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.",
+						null);
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("vampire"),
-				        ConversationStates.ATTENDING,
-				        "The husband had hired the help of a Vampire Lord! The Lady became his Vampire Bride and her maids became vampiresses. The Catacombs of North Semos are a deadly place now.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("vampire"),
+						ConversationStates.ATTENDING,
+						"The husband had hired the help of a Vampire Lord! The Lady became his Vampire Bride and her maids became vampiresses. The Catacombs of North Semos are a deadly place now.",
+						null);
 				addGoodbye("So long. I bet you won't sleep so well tonight.");
 				addReply("bobbin", "Bobbins? BOBBINS?! Do you think I am a female?! Pfff go find some other blacksmith I'm no bobbin maker.");
 

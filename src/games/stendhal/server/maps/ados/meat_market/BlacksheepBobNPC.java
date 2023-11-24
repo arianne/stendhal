@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,10 +70,10 @@ public class BlacksheepBobNPC implements ZoneConfigurator {
 			requiredResources.put("wine", Integer.valueOf(2));
 
 			final ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepbob_make_sausage", "make", "sausage",
-			        requiredResources, 2 * 60);
+					requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,
-			        "Hey there. Welcome to Blacksheep Meat Market. Can I #make you some sausage?");
+					"Hey there. Welcome to Blacksheep Meat Market. Can I #make you some sausage?");
 		}
 	};
 

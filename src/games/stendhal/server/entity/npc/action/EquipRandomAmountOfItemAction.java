@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,11 +48,11 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * If min > max, min is treated like max and vice versa
 	 *
 	 * @param item
-	 *           stackable item
+	 *   stackable item
 	 * @param min
-	 * 			 minimum quantity
+	 *   minimum quantity
 	 * @param max
-	 * 			 maximum quantity
+	 *   maximum quantity
 	 */
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max) {
 		this(item, min, max, 1, null, false);
@@ -83,13 +83,13 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * If min > max, min is treated like max and vice versa
 	 *
 	 * @param item
-	 *           stackable item
+	 *   stackable item
 	 * @param min
-	 * 			 lower bound
+	 *   lower bound
 	 * @param max
-	 * 			 upper bound
+	 *   upper bound
 	 * @param increment
-	 * 			 ie, only return numbers multiples of X
+	 *   ie, only return numbers multiples of X
 	 */
 	@Dev
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment) {
@@ -124,15 +124,15 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * If min > max, min is treated like max and vice versa
 	 *
 	 * @param item
-	 *           stackable item
+	 *   stackable item
 	 * @param min
-	 * 			 lower bound
+	 *   lower bound
 	 * @param max
-	 * 			 upper bound
+	 *   upper bound
 	 * @param increment
-	 * 			 ie, only return numbers multiples of X
+	 *   ie, only return numbers multiples of X
 	 * @param text
-	 * 			text to say
+	 *   text to say
 	 */
 	@Dev
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int increment, String text) {

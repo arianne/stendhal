@@ -77,14 +77,14 @@ public class LifeguardNPC implements ZoneConfigurator {
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Hallo!");
 
 				addReply(
-				        Arrays.asList("suntan", "cream", "suntan cream"),
-				        "David's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
+						Arrays.asList("suntan", "cream", "suntan cream"),
+						"David's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
 
 				addReply("arandula", "Arandula is a herb which is growing around Semos.");
 
 				addReply(
-				        "kokuda",
-				        "We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
+						"kokuda",
+						"We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
 
 				addReply("minor potion", "It's a small bottle full of potion. You can buy it at several places.");
 			}

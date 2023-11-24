@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,10 +55,10 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 						"Ave");
 				addGoodbye(
 						"Fortvna");
-                /**
-                 * When one has Ad Memoria In Portfolio quest active
-                 * Will Convert 1x purple apple into 1x mauve apple
-                 */
+				/**
+				 * When one has Ad Memoria In Portfolio quest active
+				 * Will Convert 1x purple apple into 1x mauve apple
+				 */
 				addHelp(
 					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
 					"Brosoklelo likes dueling magical duels... " + " " +
@@ -72,12 +72,12 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 					"I can turn a purple apple into a mauve apple. That is my job!"
 				);
 				addReply(
-                    "apple", //trigger
-                    "Apples may come in different colors!" + " " +
-                    "You would not think an apple can restore lost memory..." + " " +
-                    "Say you are were bestowed with a purple apple...",
-                    null
-	            );
+						"apple", //trigger
+						"Apples may come in different colors!" + " " +
+						"You would not think an apple can restore lost memory..." + " " +
+						"Say you are were bestowed with a purple apple...",
+						null
+						);
 
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest

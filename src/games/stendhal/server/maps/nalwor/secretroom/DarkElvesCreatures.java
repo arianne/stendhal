@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,8 +36,7 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 	// be sure to have synchronized creatures lists with DrowCreatures.class
 	private final List<String> creatures =
 		Arrays.asList("dark elf captain"
-				      ,"dark elf general"
-				     );
+				,"dark elf general");
 
 	/**
 	 * Configure a zone.

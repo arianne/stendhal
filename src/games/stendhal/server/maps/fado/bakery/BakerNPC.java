@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -91,7 +91,7 @@ public class BakerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I'm the local baker. My speciality is fish and leek pies. I pride myself in making them promptly.");
 				addReply(Arrays.asList("cod", "mackerel"),
-				        "You can catch cod in Ados. Mackerel may be caught at sea. Perhaps creatures which eat fish might drop them too.");
+						"You can catch cod in Ados. Mackerel may be caught at sea. Perhaps creatures which eat fish might drop them too.");
 				addReply("flour", "We get our supplies of flour from Semos");
 				addReply("leek", "We're lucky enough to have leeks growing right here in the Fado allotments.");
 				addHelp("Ask me to make you a fish and leek pie. They're not stodgy like meat pies so you can eat them a little quicker.");
@@ -106,10 +106,10 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("leek", 1);
 
 				final ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish pie",
-				        requiredResources, 5 * 60);
+						requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi there. Have you come to try my fish pies? I can #make one for you.");
+						"Hi there. Have you come to try my fish pies? I can #make one for you.");
 			}
 		};
 

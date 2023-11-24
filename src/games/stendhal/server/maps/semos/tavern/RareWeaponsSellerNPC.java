@@ -57,13 +57,13 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				addQuest("Perhaps if you find some #rare #armor or #weapon ...");
 				addGoodbye("I see you!");
 				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare", "rare armor"),
-				        ConversationStates.ATTENDING,
-				        "Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
+						ConversationStates.ATTENDING,
+						"Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
 				addOffer("Have a look at the blackboard on the wall to see my offers.");
 				add(ConversationStates.ATTENDING, Arrays.asList("eye", "leg", "wood", "patch"),
-				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
+						ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
 				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
-				        "That's none of your business!", null);
+						"That's none of your business!", null);
 			}
 
 			@Override

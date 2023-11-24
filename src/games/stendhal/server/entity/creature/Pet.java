@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Marauroa                    *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -345,9 +345,9 @@ public abstract class Pet extends DomesticAnimal {
 			moveRandomly();
 
 			hunger /= 2;
-			 if (owner != null) {
-				 owner.sendPrivateText("Your pet is starving!");
-			 }
+			if (owner != null) {
+				owner.sendPrivateText("Your pet is starving!");
+			}
 			LOGGER.debug("Pet starves");
 			if (weight > 0) {
 				setWeight(weight - 1);

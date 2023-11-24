@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,14 +45,14 @@ public class MadScientist1NPC implements ZoneConfigurator {
 			}
 
 			@Override
-			    protected void createDialog() {
+			protected void createDialog() {
 				addHelp("Ha ha ha ha!");
 				addOffer("I am only saying this because I can see you need it, but I will #make #40 spools of #silk thread for you.");
 				addQuest("Ha! You need 40 spools of #silk thread, I see! I can #make it. If I feel like it ...");
 				addJob("What does it look like?");
 				addGoodbye("Ta ta!");
 				// remaining behaviour defined in maps.quests.MithrilCloak
-	 	     }
+			}
 
 		};
 

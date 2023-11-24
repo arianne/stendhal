@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,7 @@ public class KittensNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 
-	    // Kitten walking around room
+		// kitten walking around room
 		final SilentNPC k1 = new Kitten();
 
 		List<Node> nodes = new LinkedList<Node>();
@@ -48,45 +48,45 @@ public class KittensNPC implements ZoneConfigurator {
 		nodes.add(new Node(12, 15));
 		nodes.add(new Node(12, 17));
 		nodes.add(new Node(20, 17));
-        nodes.add(new Node(20, 22));
-        nodes.add(new Node(3, 22));
+		nodes.add(new Node(20, 22));
+		nodes.add(new Node(3, 22));
 		k1.setPath(new FixedPath(nodes, true));
 
-        k1.setPosition(3, 15);
-        k1.setDescription("You see a kitten exploring.");
-        k1.setEntityClass("animal/kitten");
-        k1.setBaseSpeed(0.2);
-        k1.setSounds(Arrays.asList("kitten-meow-1", "kitten-meow-2", "kitten-meow-3"));
+		k1.setPosition(3, 15);
+		k1.setDescription("You see a kitten exploring.");
+		k1.setEntityClass("animal/kitten");
+		k1.setBaseSpeed(0.2);
+		k1.setSounds(Arrays.asList("kitten-meow-1", "kitten-meow-2", "kitten-meow-3"));
 		zone.add(k1);
 
 		// Kitten sitting in chair
-        final SilentNPC k2 = new Kitten();
+		final SilentNPC k2 = new Kitten();
 
-        k2.setPosition(20, 15);
-        k2.setDescription("You see a kitten relaxing.");
-        k2.setEntityClass("animal/kitten");
-        k2.setDirection(Direction.DOWN);
-        k2.setSounds(Arrays.asList("kitten-purr-1", "kitten-mew-1"));
-        zone.add(k2);
+		k2.setPosition(20, 15);
+		k2.setDescription("You see a kitten relaxing.");
+		k2.setEntityClass("animal/kitten");
+		k2.setDirection(Direction.DOWN);
+		k2.setSounds(Arrays.asList("kitten-purr-1", "kitten-mew-1"));
+		zone.add(k2);
 
-        // Active kitten
-        final SilentNPC k3 = new Kitten();
+		// Active kitten
+		final SilentNPC k3 = new Kitten();
 
-        nodes = new LinkedList<Node>();
-        nodes.add(new Node(6, 19));
-        nodes.add(new Node(10, 19));
-        nodes.add(new Node(10, 20));
-        nodes.add(new Node(7, 20));
-        nodes.add(new Node(7, 21));
-        nodes.add(new Node(6, 21));
-        k3.setPath(new FixedPath(nodes, true));
+		nodes = new LinkedList<Node>();
+		nodes.add(new Node(6, 19));
+		nodes.add(new Node(10, 19));
+		nodes.add(new Node(10, 20));
+		nodes.add(new Node(7, 20));
+		nodes.add(new Node(7, 21));
+		nodes.add(new Node(6, 21));
+		k3.setPath(new FixedPath(nodes, true));
 
-        k3.setPosition(6, 19);
-        k3.setDescription("You see an energetic kitten.");
-        k3.setEntityClass("animal/kitten");
-        k3.setBaseSpeed(0.8);
-        k3.setSounds(Arrays.asList("kitten-meow-1", "kitten-meow-2", "kitten-meow-3"));
-        zone.add(k3);
+		k3.setPosition(6, 19);
+		k3.setDescription("You see an energetic kitten.");
+		k3.setEntityClass("animal/kitten");
+		k3.setBaseSpeed(0.8);
+		k3.setSounds(Arrays.asList("kitten-meow-1", "kitten-meow-2", "kitten-meow-3"));
+		zone.add(k3);
 	}
 
 	/**

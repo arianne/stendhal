@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,11 +78,11 @@ public class KidsNPCs implements ZoneConfigurator {
 					// Anna is special because she has a quest
 					if (!getName().equals("Anna")) {
 						add(ConversationStates.IDLE,
-					        ConversationPhrases.GREETING_MESSAGES,
-					        new GreetingMatchesNameCondition(getName()), true,
-					        ConversationStates.IDLE,
-					        "Mummy said, we are not allowed to talk to strangers. Bye.",
-					        null);
+								ConversationPhrases.GREETING_MESSAGES,
+								new GreetingMatchesNameCondition(getName()), true,
+								ConversationStates.IDLE,
+								"Mummy said, we are not allowed to talk to strangers. Bye.",
+								null);
 					}
 
 					addGoodbye("Bye bye!");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,25 +65,25 @@ public class BoyNPC implements ZoneConfigurator {
 										return !player.isGhost();
 									}
 								}),
-				        ConversationStates.ATTENDING,
-				        null,
-				        new SayTextAction("Ssshh! Come here, [name]! I have a #task for you."));
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Ssshh! Come here, [name]! I have a #task for you."));
 
 				// this is the condition for any other case while the quest is active, not covered by the quest.
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new GreetingMatchesNameCondition(getName()), true,
-				        ConversationStates.ATTENDING,
-				        "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
-				        null);
+						ConversationStates.ATTENDING,
+						"*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
+						null);
 
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestCompletedCondition("introduce_players")),
-				        ConversationStates.ATTENDING,
-				        null,
-				        new SayTextAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
 
 				addGoodbye();
 			}

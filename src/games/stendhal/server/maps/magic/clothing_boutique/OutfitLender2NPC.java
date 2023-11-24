@@ -111,12 +111,12 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		final SpeakerNPC npc = new SpeakerNPC("Saskia") {
 			@Override
 			protected void createPath() {
-			    final List<Node> nodes = new LinkedList<Node>();
-			    nodes.add(new Node(5, 7));
-			    nodes.add(new Node(5, 20));
-			    nodes.add(new Node(9, 20));
-			    nodes.add(new Node(9, 7));
-			    setPath(new FixedPath(nodes, true));
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(5, 7));
+				nodes.add(new Node(5, 20));
+				nodes.add(new Node(9, 20));
+				nodes.add(new Node(9, 7));
+				setPath(new FixedPath(nodes, true));
 			}
 
 			final List<String> skinLayerOutfits = Arrays.asList("purple slime", "green slime", "red slime",
@@ -212,7 +212,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("black cat", (int) (N * 4500));
 				priceList.put("white cat", (int) (N * 4500));
 
-			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
+				addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
 				add(
 					ConversationStates.ATTENDING,

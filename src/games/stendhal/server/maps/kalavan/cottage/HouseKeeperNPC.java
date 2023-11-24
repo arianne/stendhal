@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -72,13 +72,13 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 						"brew", "tea", requiredResources, 3 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello, dear.");
+						"Hello, dear.");
 				addReply("milk",
-		        		"Well my dear, I expect you can get milk from a farm.");
+						"Well my dear, I expect you can get milk from a farm.");
 				addReply("honey",
-				        "Don't you know the beekeeper of Fado Forest?");
+						"Don't you know the beekeeper of Fado Forest?");
 				addReply("tea",
-				        "It's the very best drink of all. I sweeten mine with #honey. Just ask if you'd like a #brew.");
+						"It's the very best drink of all. I sweeten mine with #honey. Just ask if you'd like a #brew.");
 			}
 		};
 		npc.setDescription("You see old Granny Graham, shuffling around her kitchen and muttering to herself.");

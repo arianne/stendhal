@@ -39,7 +39,7 @@ public class CookNPC implements ZoneConfigurator  {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-		        // to the oven
+				// to the oven
 				nodes.add(new Node(27,28));
 				// to the table
 				nodes.add(new Node(27,31));

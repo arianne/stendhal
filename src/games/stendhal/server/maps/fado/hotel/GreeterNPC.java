@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				addHelp("When the building work on the hotel rooms is complete you will be able to #reserve one.");
 				//addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
 				addReply("reserve",
-				        "Sorry, but the hotel is still under construction and you can not reserve a room yet. You can #explore the rest.");
+						"Sorry, but the hotel is still under construction and you can not reserve a room yet. You can #explore the rest.");
 				addReply("explore", "I'm afraid there is not very much to see, yet. The hotel is still being finished.");
 				//addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye("Bye.");

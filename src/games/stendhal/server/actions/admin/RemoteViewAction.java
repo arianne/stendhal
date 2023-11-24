@@ -26,7 +26,7 @@ import marauroa.common.game.RPAction;
 public class RemoteViewAction extends AdministrationAction {
 
 	public static void register() {
-		 CommandCenter.register("remoteview", new RemoteViewAction(), 500);
+		CommandCenter.register("remoteview", new RemoteViewAction(), 500);
 
 	}
 
@@ -62,6 +62,6 @@ public class RemoteViewAction extends AdministrationAction {
 
 		targetPlayer.addEvent(new ViewChangeEvent(Integer.parseInt(x), Integer.parseInt(y)));
 		targetPlayer.notifyWorldAboutChanges();
-	 }
+	}
 
- }
+}

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -88,7 +88,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					new ChatAction() {
 						@Override
 						public void fire(final Player player, final Sentence sentence,
-										 final EventRaiser npc) {
+								final EventRaiser npc) {
 							Pet pet = player.getPet();
 							String petName = pet.getTitle();
 							// these numbers are hardcoded, they're the area in the pet sanctuary which is for pets. It has food spawners.

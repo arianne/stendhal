@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,9 +55,9 @@ public class BefuddledSorcerorNPC implements ZoneConfigurator {
 				addGoodbye(
 						"Fortvna");
 				addJob(
-                        "I like dueling in magical duels..." + " " +
-                        "Oh... My poor #memory..." + " " +
-                        "I am confused... Look, I have a purple apple!");
+						"I like dueling in magical duels... " +
+								"Oh... My poor #memory... " +
+						"I am confused... Look, I have a purple apple!");
 				addHelp(
 						"I can not help you with anything..." + " " +
 						"My #memory is nagging at me..." + " " +
@@ -67,22 +67,19 @@ public class BefuddledSorcerorNPC implements ZoneConfigurator {
 						"My #memory seems in disarray..." + " " +
 						"I can offer you a purple apple!");
 				addReply(
-	                    "Kirdneh",
-	                    "My #memory... A purple #apple... #Kirdneh... Ah, that is place!",
-	                    null
-	            );
+						"Kirdneh",
+						"My #memory... A purple #apple... #Kirdneh... Ah, that is place!",
+						null);
 				addReply(
-	                    "Vlamyklela",
-	                    "My #memory... A purple #apple... #Vlamyklela... Ah, beloved stepsister!",
-	                    null
-	            );
+						"Vlamyklela",
+						"My #memory... A purple #apple... #Vlamyklela... Ah, beloved stepsister!",
+						null);
 				addReply(
-	                    "apple",
-	                    "You would not think about an apple..." + " " +
-	                    "Unless you are bestowed a special kind of an apple!" + " " +
-	                    "My #memory... Vlamyklela... Kirdneh...",
-	                    null
-	            );
+						"apple",
+						"You would not think about an apple... " +
+								"Unless you are bestowed a special kind of an apple! " +
+								"My #memory... Vlamyklela... Kirdneh...",
+						null);
 
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest

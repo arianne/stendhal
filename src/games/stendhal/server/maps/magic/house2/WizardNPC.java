@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -45,14 +45,14 @@ public class WizardNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			    protected void createDialog() {
+			protected void createDialog() {
 				addGreeting("Welcome, warmly");
 				addHelp("If you need scrolls, Erodel Bmud sells a wide range.");
 				addOffer("I don't sell anything here.");
 				addJob("I keep this house nice and watch the fairies.");
 				addGoodbye("Till next time.");
 				// remaining behaviour defined in maps.quests.MithrilCloak
-	 	     }
+			}
 
 		};
 

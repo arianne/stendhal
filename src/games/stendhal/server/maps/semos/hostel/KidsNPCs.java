@@ -55,12 +55,12 @@ public class KidsNPCs implements ZoneConfigurator {
 				@Override
 				protected void createDialog() {
 					add(
-			     		ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new GreetingMatchesNameCondition(getName()), true,
-						ConversationStates.IDLE,
-						"ZZzzzz ... ",
-						null);
+							ConversationStates.IDLE,
+							ConversationPhrases.GREETING_MESSAGES,
+							new GreetingMatchesNameCondition(getName()), true,
+							ConversationStates.IDLE,
+							"ZZzzzz ... ",
+							null);
 				}
 			};
 			npc.setEntityClass(classes[i]);

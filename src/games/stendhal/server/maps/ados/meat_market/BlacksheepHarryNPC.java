@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -70,10 +70,10 @@ public class BlacksheepHarryNPC implements ZoneConfigurator {
 			requiredResources.put("marbles", Integer.valueOf(2));
 
 			final ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepharry_make_tuna", "make", "canned tuna",
-			        requiredResources, 2 * 60);
+					requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,
-			        "Welcome to Blacksheep Meat Market. Can I #make you some canned tuna?");
+					"Welcome to Blacksheep Meat Market. Can I #make you some canned tuna?");
 		}
 	};
 

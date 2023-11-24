@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,14 +31,14 @@ public class MinTotalCreaturesKilledCondition implements ChatCondition {
 	private final int total;
 
 	/**
-	 Default constructor (Defaults to at least 100 total kills)
-	*/
+	 * Default constructor (Defaults to at least 100 total kills)
+	 */
 	public MinTotalCreaturesKilledCondition() {
 		this(100);
 	}
 
 	/**
-	 Constructor
+	 * Constructor
 	 *
 	 * @param total The target number of kills required
 	 */
@@ -48,8 +48,8 @@ public class MinTotalCreaturesKilledCondition implements ChatCondition {
 	}
 
 	/**
-	 Does the checking for number of creatures killed
-	*
+	 * Does the checking for number of creatures killed
+	 *
 	 * @param player The player to check the kills for
 	 * @param sentence The sentence the player typed
 	 * @param npc The NPC the player is speaking to

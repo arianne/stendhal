@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,32 +66,32 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addJob("I am the librarian.");
 				addHelp("Just ask me to #explain something.");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
-				        new ChatAction() {
-					        @Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					        	String text = sentence.getOriginalText();
-						        // extract the title
-						        int pos = text.indexOf(" ");
-						        if (pos > -1) {
-							        String title = text.substring(pos + 1).trim();
+				new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						String text = sentence.getOriginalText();
+						// extract the title
+						int pos = text.indexOf(" ");
+						if (pos > -1) {
+							String title = text.substring(pos + 1).trim();
 
-							        final WikipediaAccess access = new WikipediaAccess(title);
-							        final Thread thread = new Thread(access, "WikipediaAccess");
-							        thread.setPriority(Thread.MIN_PRIORITY);
-							        thread.setDaemon(true);
-							        thread.start();
-							        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter((SpeakerNPC) npc.getEntity(), access));
-							        npc.say("Please wait, while I am looking it up in the book called #Wikipedia!");
-						        } else {
-								    npc.say("What do you want to be explained?");
-							        return;
-						        }
-					        }
-				        });
+							final WikipediaAccess access = new WikipediaAccess(title);
+							final Thread thread = new Thread(access, "WikipediaAccess");
+							thread.setPriority(Thread.MIN_PRIORITY);
+							thread.setDaemon(true);
+							thread.start();
+							SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter((SpeakerNPC) npc.getEntity(), access));
+							npc.say("Please wait, while I am looking it up in the book called #Wikipedia!");
+						} else {
+							npc.say("What do you want to be explained?");
+							return;
+						}
+					}
+				});
 				addReply("wikipedia",
 						"Wikipedia is an Internet based project to create a #free encyclopedia.");
 				addReply("free",
-				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License .");
+						"The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License .");
 				addGoodbye();
 			}
 		};

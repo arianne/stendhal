@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,7 +61,7 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-			    // sits still on stool
+				// sits still on stool
 				setPath(null);
 			}
 
@@ -70,20 +70,20 @@ public class HealerNPC implements ZoneConfigurator {
 				addGreeting("Gis' a kiss!");
 				addReply("drinks", null, new ListProducedItemsOfClassAction("drink","I like [#items]. *hic*"));
 				add(
-					ConversationStates.ATTENDING,
-					"",
-					new TriggerIsProducedItemOfClassCondition("drink"),
-					ConversationStates.ATTENDING,
-					null,
-					new ListProducedItemDetailAction()
-				);
+						ConversationStates.ATTENDING,
+						"",
+						new TriggerIsProducedItemOfClassCondition("drink"),
+						ConversationStates.ATTENDING,
+						null,
+						new ListProducedItemDetailAction()
+						);
 				addReply("kiss", "ew sloppy");
 				addReply(":*", "*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
 				addHealer(this, 250);
 				addHelp("Gimme money for #drinks. I heal, gis' cash.");
 				addQuest("Bah.");
- 				addGoodbye("pffff bye");
+				addGoodbye("pffff bye");
 			}
 		};
 
@@ -95,9 +95,9 @@ public class HealerNPC implements ZoneConfigurator {
 		zone.add(npc);
 	}
 
-    // Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
-    private void addHealer(final SpeakerNPC npc, final int cost) {
-	    final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
+	// Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
+	private void addHealer(final SpeakerNPC npc, final int cost) {
+		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING,
@@ -112,49 +112,51 @@ public class HealerNPC implements ZoneConfigurator {
 				null,
 				false,
 				ConversationStates.HEAL_OFFERED,
-		        null, new ChatAction() {
-			        @Override
+				null,
+				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			        	currentBehavRes = new ItemParserResult(true, "heal", 1, null);
-                        String badboymsg = "";
-			        	int cost = healerBehaviour.getCharge(currentBehavRes, player);
-			        	if (player.isBadBoy()) {
-			        		cost = cost * 2;
-			        		badboymsg = " Its more for nasty ones.";
-			        		currentBehavRes.setAmount(2);
-			        	}
+						currentBehavRes = new ItemParserResult(true, "heal", 1, null);
+						String badboymsg = "";
+						int cost = healerBehaviour.getCharge(currentBehavRes, player);
+						if (player.isBadBoy()) {
+							cost = cost * 2;
+							badboymsg = " Its more for nasty ones.";
+							currentBehavRes.setAmount(2);
+						}
 
 						if (cost != 0) {
-	                    	raiser.say("For " + cost + " cash, ok?" + badboymsg);
-	                    }
-			        }
-		        });
+							raiser.say("For " + cost + " cash, ok?" + badboymsg);
+						}
+					}
+				});
 
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-		        false,
-		        ConversationStates.IDLE,
-		        null, new ChatAction() {
-			        @Override
+				false,
+				ConversationStates.IDLE,
+				null,
+				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				        if (player.drop("money", healerBehaviour.getCharge(currentBehavRes, player))) {
-					        healerBehaviour.heal(player);
-					        raiser.say("All better now, everyone better. I love you, I do. Bye bye.");
-				        } else {
-					        raiser.say("Pff, no money, no heal. Bye.");
-				        }
+						if (player.drop("money", healerBehaviour.getCharge(currentBehavRes, player))) {
+							healerBehaviour.heal(player);
+							raiser.say("All better now, everyone better. I love you, I do. Bye bye.");
+						} else {
+							raiser.say("Pff, no money, no heal. Bye.");
+						}
 
 						currentBehavRes = null;
-			        }
-		        });
+					}
+				});
 
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
-		        false,
-		        ConversationStates.IDLE,
-		        "Bye then,", null);
+				false,
+				ConversationStates.IDLE,
+				"Bye then,", null);
 	}
 
 }

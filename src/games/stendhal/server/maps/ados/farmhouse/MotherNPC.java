@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,6 +65,6 @@ public class MotherNPC implements ZoneConfigurator {
 		npc.setPosition(30, 9);
 		npc.initHP(100);
 		npc.setDescription("You see Anastasia, looking worried.");
-	    zone.add(npc);
+		zone.add(npc);
 	}
 }

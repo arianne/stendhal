@@ -147,7 +147,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 			}
 		}
 
-		 // update the quest state if some items are handed over
+		// update the quest state if some items are handed over
 		if (result) {
 			// preserve slots preceding indexed position
 			questState = String.join(";", Arrays.copyOfRange(questState.split(";"), 0, position))

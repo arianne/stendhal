@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,7 +36,7 @@ public class IsNotOtherAccountNameValidator implements AccountParameterValidator
 	 *
 	 * @param charname
 	 *            value to validate
-     * @param username
+	 * @param username
 	 *             account username of character creator
 	 */
 	public IsNotOtherAccountNameValidator(final String charname, final String username) {
@@ -52,11 +52,11 @@ public class IsNotOtherAccountNameValidator implements AccountParameterValidator
 		try {
 			if(DAORegister.get().get(AccountDAO.class).hasPlayer(charname)) {
 				return Result.FAILED_PLAYER_EXISTS;
-			 }
+			}
 		} catch (SQLException e) {
 			logger.error("Error while trying to validate character name", e);
 			return Result.FAILED_EXCEPTION;
 		}
-		 return null;
+		return null;
 	}
 }

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -96,13 +96,13 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 						@Override
 						public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
-				        	final int amount = res.getAmount();
+							final int amount = res.getAmount();
 
-				        	if (sentence.getExpressions().size() == 1) {
-        						// player only said 'bribe'
-        						raiser.say("A bribe of no money is no bribe! Bribe me with some amount!");
-				        	} else {
-				        		if (amount < 300) {
+							if (sentence.getExpressions().size() == 1) {
+								// player only said 'bribe'
+								raiser.say("A bribe of no money is no bribe! Bribe me with some amount!");
+							} else {
+								if (amount < 300) {
 									// Less than 300 is not money for him
 									raiser.say("You think that amount will persuade me?! That's more than my job is worth!");
 								} else {
@@ -119,15 +119,15 @@ public class GateKeeperNPC implements ZoneConfigurator {
 									}
 								}
 							}
-			        	}
+						}
 
 						@Override
 						public void fireRequestError(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
 							if (res.getChosenItemName() == null) {
 								fireRequestOK(res, player, sentence, raiser);
-        			        } else {
-        						// This bit is just in case the player says 'bribe X potatoes', not money
-        						raiser.say("You can't bribe me with anything but money!");
+							} else {
+								// This bit is just in case the player says 'bribe X potatoes', not money
+								raiser.say("You can't bribe me with anything but money!");
 							}
 						}
 				});

@@ -86,10 +86,10 @@ public class GardenerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				class SpecialProducerBehaviour extends ProducerBehaviour {
 					SpecialProducerBehaviour(final String productionActivity,
-						final String productName, final Map<String, Integer> requiredResourcesPerItem,
-											 final int productionTimePerItem) {
+							final String productName, final Map<String, Integer> requiredResourcesPerItem,
+							final int productionTimePerItem) {
 						super(QUEST_SLOT, productionActivity, productName,
-							  requiredResourcesPerItem, productionTimePerItem, false);
+								requiredResourcesPerItem, productionTimePerItem, false);
 					}
 
 					@Override

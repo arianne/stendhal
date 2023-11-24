@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,7 +64,7 @@ public class SadScientistNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override
-		    protected void createDialog() {
+			protected void createDialog() {
 				addGoodbye("Go away!");
 				// remaining behaviour defined in maps.quests.SadScientist
 			}

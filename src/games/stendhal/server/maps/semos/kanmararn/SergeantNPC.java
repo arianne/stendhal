@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  */
 
 public class SergeantNPC implements ZoneConfigurator  {
-	  /**
+	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.

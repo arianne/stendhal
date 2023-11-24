@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -168,11 +168,11 @@ public class PrepareOfferHandler {
 						npc.say("Please empty your " + itemName + " first.");
 						return;
 					} else if (item instanceof RingOfLife) {
-					    // broken ring of life should not be sold via Harold
-					    if(((RingOfLife) item).isBroken()) {
-					        npc.say("Please repair your " + itemName + " before trying to sell it.");
-					        return;
-					    }
+						// broken ring of life should not be sold via Harold
+						if(((RingOfLife) item).isBroken()) {
+							npc.say("Please repair your " + itemName + " before trying to sell it.");
+							return;
+						}
 					}
 
 					// All looks ok so far. Ask confirmation from the player.

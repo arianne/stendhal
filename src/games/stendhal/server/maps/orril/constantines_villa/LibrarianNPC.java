@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,9 +46,9 @@ public class LibrarianNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(11, 17));
 				nodes.add(new Node(11, 7));
-                nodes.add(new Node(18, 7));
-                nodes.add(new Node(18, 17));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(18, 7));
+				nodes.add(new Node(18, 17));
+				setPath(new FixedPath(nodes, true));
 
 			}
 
@@ -62,7 +62,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addReply("help", "She was worried about her grandma last time I saw her. Maybe she has something in return for your help...");
 				addJob("I'm #Constantines librarian! Unfortunately I lost some books which are really precious ones... I hope he'll never learn about it!");
 				addReply(Arrays.asList("Constantine", "Constantines"),
-		        "He is my boss and the owner of this huge Villa, I haven't seen him for some time in here, seems like he is busy or on vacation...");
+						"He is my boss and the owner of this huge Villa, I haven't seen him for some time in here, seems like he is busy or on vacation...");
 				addReply("vacation", "Don't ask me where he is, I'm the last one who gets any information in here... And books are more important for me anyway.");
 				addOffer("Sorry, I have nothing to offer for you.");
 				addGoodbye("We read...ehm...see us again soon!");

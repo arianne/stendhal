@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,14 +38,14 @@ public class DrowCreatures implements ZoneConfigurator {
 	// at the beginning places there must be creatures from DarkElvesCreatures.class
 	private final List<String> creatures =
 		Arrays.asList("dark elf captain",
-				      "dark elf general",
-				      "dark elf knight",
-				      "dark elf wizard",
-				      "dark elf sacerdotist",
-				      "dark elf viceroy",
-				      "dark elf matronmother",
-					  "dark elf elite archer",
-				      "dark elf archer");
+				"dark elf general",
+				"dark elf knight",
+				"dark elf wizard",
+				"dark elf sacerdotist",
+				"dark elf viceroy",
+				"dark elf matronmother",
+				"dark elf elite archer",
+				"dark elf archer");
 
 	/**
 	 * Configure a zone.

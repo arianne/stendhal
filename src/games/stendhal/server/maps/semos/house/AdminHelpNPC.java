@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,37 +56,37 @@ public class AdminHelpNPC implements ZoneConfigurator {
 						ConversationStates.IDLE,
 						"Have fun!",
 						new TeleportAction("int_admin_playground", 20, 20, Direction.DOWN));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"semos",
 						null,
 						ConversationStates.ATTENDING,
 						null,
 						new SayNPCNamesForUnstartedQuestsAction(Region.SEMOS_CITY));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"nalwor",
 						null,
 						ConversationStates.ATTENDING,
 						null,
 						new SayNPCNamesForUnstartedQuestsAction(Region.NALWOR_CITY));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"ados",
 						null,
 						ConversationStates.ATTENDING,
 						null,
 						new SayNPCNamesForUnstartedQuestsAction(Region.ADOS_CITY));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(Region.SEMOS_CITY),
 						ConversationStates.ATTENDING,
 						null,
 						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.SEMOS_CITY));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(Region.NALWOR_CITY),
 						ConversationStates.ATTENDING,
 						null,
 						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.NALWOR_CITY));
-			    add(ConversationStates.ATTENDING,
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(Region.ADOS_CITY),
 						ConversationStates.ATTENDING,

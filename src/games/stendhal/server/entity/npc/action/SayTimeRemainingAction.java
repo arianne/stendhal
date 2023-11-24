@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -184,7 +184,7 @@ public class SayTimeRemainingAction implements ChatAction {
 	@Override
 	public String toString() {
 		return "SayTimeRemainingAction<" + questname + "[" + index + "],\"" + message + "\","
-				 + "\"," + delay + ">";
+				+ "\"," + delay + ">";
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,10 +71,10 @@ public class BlacksheepJoeNPC implements ZoneConfigurator {
 			requiredResources.put("cheese", Integer.valueOf(1));
 
 			final ProducerBehaviour behaviour = new ProducerBehaviour("blacksheepjoe_make_cheese_sausage", "make", "cheese sausage",
-			        requiredResources, 2 * 60);
+					requiredResources, 2 * 60);
 
 			new ProducerAdder().addProducer(this, behaviour,
-			        "Hi there. Welcome to Blacksheep Meat Market. Can I #make you some cheese sausages?");
+					"Hi there. Welcome to Blacksheep Meat Market. Can I #make you some cheese sausages?");
 		}
 	};
 

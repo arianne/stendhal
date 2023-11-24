@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -69,9 +69,9 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 				addGoodbye();
 
 				// A little trick to make NPC remember if it has met
-		        // player before and react accordingly
-		        // NPC_name quest doesn't exist anywhere else neither is
-		        // used for any other purpose
+				// player before and react accordingly
+				// NPC_name quest doesn't exist anywhere else neither is
+				// used for any other purpose
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
@@ -86,16 +86,16 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 				addQuest("I don't think there's really anything you could do for me right now. But thanks for asking!");
 
 				add(ConversationStates.ATTENDING, Arrays.asList("offer", "buy", "trade", "deal", "scroll", "scrolls", "home", "empty",
-				        "marked", "summon", "magic", "wizard", "sorcerer"), null, ConversationStates.ATTENDING,
-				        "I don't sell scrolls anymore... I had a big argument with my supplier, #Haizen.", null);
+						"marked", "summon", "magic", "wizard", "sorcerer"), null, ConversationStates.ATTENDING,
+						"I don't sell scrolls anymore... I had a big argument with my supplier, #Haizen.", null);
 
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("haizen", "haizen."),
-				        null,
-				        ConversationStates.ATTENDING,
-				        "Haizen? He's a wizard who lives in a small hut between Semos and Ados. I used to sell his scrolls here, but we had an argument... you'll have to go see him yourself, I'm afraid.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("haizen", "haizen."),
+						null,
+						ConversationStates.ATTENDING,
+						"Haizen? He's a wizard who lives in a small hut between Semos and Ados. I used to sell his scrolls here, but we had an argument... you'll have to go see him yourself, I'm afraid.",
+						null);
 			}
 		};
 

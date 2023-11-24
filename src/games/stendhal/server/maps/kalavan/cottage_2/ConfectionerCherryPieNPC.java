@@ -93,10 +93,10 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 				requiredResources.put("cherry", Integer.valueOf(2));
 
 				final ProducerBehaviour behaviour = new ProducerBehaviour("gertha_bake_cherrypie", "bake", "cherry pie",
-				        requiredResources, 15 * 60);
+						requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello! Did you come to taste one of my fabulous cherry pies? I could #bake one for you happily!");
+						"Hello! Did you come to taste one of my fabulous cherry pies? I could #bake one for you happily!");
 			}
 		};
 

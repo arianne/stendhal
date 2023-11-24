@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,11 +57,11 @@ public class SchoolMarmNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			    protected void createDialog() {
+			protected void createDialog() {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.IDLE, "What are you bothering me for. Can't you see I have my hands full! Now, lil johnnnny, I told you not to poke him in the eye!", null);
-	 	     }
+			}
 
 		};
 

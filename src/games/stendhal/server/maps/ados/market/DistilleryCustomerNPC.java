@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     (C) Copyright 2015 - Stendhal                       *
+ *                   (C) Copyright 2015-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,16 +55,16 @@ public class DistilleryCustomerNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("Uncle Dag", "Uncle", "Dag"),
 						"Uncle Dag is the man! Cheers!");
 				addReply("drink", "Fierywater... that's a strong one! Take care with that!");
-		        addReply("family", "My lovely #wife and my #daughter. They really are my two angels!");
-		        addReply("wife", "She is just an amazing person, I love her much! If I have got a new job soon, she will be more happy again, so tomorrow I try to get a job at the docks.");
-		        addReply("daughter", "My daughter is happy we moved from #Semos #City to Ados. She is in that age where she likes to go out at the weekend. Here she has more friends and there's just some more action going on, you know.");
-		        addReply(Arrays.asList("Semos City", "Semos", "City"),
-		        		"It was a nice place to live, but nothing exciting happens there. Here in Ados it is different, it's a huge city.");
-		        addReply("mine", "The Semos mine is quite old, there are places you better not go to. In the area near the entrance it's relatively safe but the #other #miners and I heard strange noises from the deeper tunnels... Many are blocked now, but nobody knows what is #haunting down there...");
-		        addReply(Arrays.asList("other miners", "other", "miners"),
-		        		"Oh, we were a lot of miners working in the mine, Barbarus, Pickins, Nathan... just to name a few. I don't know where all the others did go after leaving the mine, but I heard rumors about #Barbarus still collecting old tools and materials there to sell them.");
-		        addReply("Barbarus", "He may still be in the mine today. If that is true, he probably stays in the area near the entrance, as he knows how dangerous it is in the deeper tunnels... Maybe if you are able to find him, he could draw you a map of the mine because he knows the area quite well. Just in case you get lost...");
-		        addReply("haunting", "Some say there is a dragon living down in the mines, but others believe in some other strange appearances... I don't know what is true, but I'm not going to find it out!");
+				addReply("family", "My lovely #wife and my #daughter. They really are my two angels!");
+				addReply("wife", "She is just an amazing person, I love her much! If I have got a new job soon, she will be more happy again, so tomorrow I try to get a job at the docks.");
+				addReply("daughter", "My daughter is happy we moved from #Semos #City to Ados. She is in that age where she likes to go out at the weekend. Here she has more friends and there's just some more action going on, you know.");
+				addReply(Arrays.asList("Semos City", "Semos", "City"),
+						"It was a nice place to live, but nothing exciting happens there. Here in Ados it is different, it's a huge city.");
+				addReply("mine", "The Semos mine is quite old, there are places you better not go to. In the area near the entrance it's relatively safe but the #other #miners and I heard strange noises from the deeper tunnels... Many are blocked now, but nobody knows what is #haunting down there...");
+				addReply(Arrays.asList("other miners", "other", "miners"),
+						"Oh, we were a lot of miners working in the mine, Barbarus, Pickins, Nathan... just to name a few. I don't know where all the others did go after leaving the mine, but I heard rumors about #Barbarus still collecting old tools and materials there to sell them.");
+				addReply("Barbarus", "He may still be in the mine today. If that is true, he probably stays in the area near the entrance, as he knows how dangerous it is in the deeper tunnels... Maybe if you are able to find him, he could draw you a map of the mine because he knows the area quite well. Just in case you get lost...");
+				addReply("haunting", "Some say there is a dragon living down in the mines, but others believe in some other strange appearances... I don't know what is true, but I'm not going to find it out!");
 			}
 		};
 

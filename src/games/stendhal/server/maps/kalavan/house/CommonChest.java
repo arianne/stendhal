@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +33,7 @@ public class CommonChest implements ZoneConfigurator {
 	}
 
 	private void buildKalavanHouseAreaChest(final StendhalRPZone zone) {
-	    // load the stuff in the house with presents
+		// load the stuff in the house with presents
 		final Chest chest = new Chest();
 		chest.setPosition(22, 2);
 		chest.add(SingletonRepository.getEntityManager().getItem("wine"));

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -52,7 +52,7 @@ public class WizardNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			    protected void createDialog() {
+			protected void createDialog() {
 				addHelp("Sorry, I am not the curator of this museum, I am only looking around here like you.");
 				addOffer("I will teach you about #thread, and #fabric, and how wizards can fuse #mithril onto textiles.");
 				addJob("I'm a wizard, I specialise in magical textiles. I can tell you anything you want to know about #thread and #fabric.");
@@ -61,7 +61,7 @@ public class WizardNPC implements ZoneConfigurator {
 				addReply("mithril", "Should you need it, I can #fuse mithril nuggets and silk thread together. But I don't perform this magic for just anyone... Once you have the mithril thread, it can be woven into fabric by #Whiggins.");
 				addGoodbye("Farewell.");
 				// remaining behaviour defined in maps.quests.MithrilCloak
-	 	     }
+			}
 
 		};
 

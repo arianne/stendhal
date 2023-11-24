@@ -51,7 +51,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		let buttons = "";
 		for (var i = 0; i < dataItems.length; i++) {
 			buttons = buttons + "<button id=\"" + stendhal.ui.html.esc(dataItems[i])
-				 + "\" class=\"progressTypeButton\">"
+				+ "\" class=\"progressTypeButton\">"
 				+ stendhal.ui.html.esc(dataItems[i]) + "</button>";
 		}
 		this.child(".tavellogtabpanel")!.innerHTML = buttons;
@@ -152,7 +152,7 @@ export class TravelLogDialog extends DialogContentComponent {
 			let content = []
 			let html = stendhal.ui.html.esc(dataItems[i], ["em", "tally"]);
 			if (html.includes("<tally>") && html.includes("</tally>")) {
-				 content = stendhal.ui.html.formatTallyMarks(html);
+				content = stendhal.ui.html.formatTallyMarks(html);
 			} else {
 				content.push(html);
 			}

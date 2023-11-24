@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -84,7 +84,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				addQuest("If you are brave, you can try the Ados #deathmatch.");
 				addOffer("I'll tell you about the Ados #deathmatch.");
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
-				        "Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", null);
+						"Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", null);
 				// response to 'heroes' is defined in maps.quests.AdosDeathmatch
 				// because we need here to know about who is in the deathmatch. The teleport action is done there also.
 				addGoodbye("I hope you will enjoy the Ados Deathmatch!");

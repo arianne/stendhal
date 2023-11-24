@@ -1,6 +1,6 @@
 /*
  ***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2023 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,7 +89,7 @@ public class NecroStaff extends Item {
 			}
 		}
 
-		//		 create it
+		// create it
 		if (!possibleCreatures.isEmpty()) {
 			return new AttackableCreature(Rand.rand(possibleCreatures));
 		}

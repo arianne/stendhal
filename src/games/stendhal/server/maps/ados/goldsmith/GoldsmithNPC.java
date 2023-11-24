@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,15 +83,15 @@ public class GoldsmithNPC implements ZoneConfigurator {
 						"cast", "gold bar", requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!");
+						"Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!");
 				addReply("wood",
-		        		"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
+						"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
 				addReply(Arrays.asList("ore", "gold ore", "gold nugget"),
-				        "I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.");
+						"I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.");
 				addReply(Arrays.asList("gold bar", "gold", "bar"),
-				        "After I've casted the gold for you keep it safe. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
+						"After I've casted the gold for you keep it safe. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
 				addReply("gold pan",
-				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
+						"If you had a gold pan, you would be able to prospect for gold at certain places.");
 				addReply(Arrays.asList("oil", "can of oil", "buy oil"), "Oh, fishermen supply us with that.");
 			}
 		};

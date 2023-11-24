@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,7 +47,7 @@ public class DiverNPC implements ZoneConfigurator  {
 			public void createDialog() {
 				addGreeting("Hallo, my friend!");
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING, "No, thank you, I do not need help!", null);
+						ConversationStates.ATTENDING, "No, thank you, I do not need help!", null);
 				addJob("I am a diver, but I cannot see a single fish at the moment!");
 				addHelp("I like the swimsuits which you can get in the dressing rooms at the beach.");
 				addGoodbye("Bye!");

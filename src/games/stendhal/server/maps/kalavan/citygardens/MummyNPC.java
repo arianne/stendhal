@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,7 +46,7 @@ public class MummyNPC implements ZoneConfigurator {
 		final SpeakerNPC mummyNPC = new SpeakerNPC("Mrs Jones") {
 			@Override
 			protected void createPath() {
-			    // does not move
+				// does not move
 				setPath(null);
 			}
 			@Override

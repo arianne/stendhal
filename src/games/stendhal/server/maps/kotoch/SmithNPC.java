@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,12 +50,12 @@ public class SmithNPC implements ZoneConfigurator {
 				addJob("I used to forge weapons for the King of Faiumoni, but this was long ago, since now the way is blocked.");
 
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("special"),
-				        null,
-				        ConversationStates.ATTENDING,
-				        "Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("special"),
+						null,
+						ConversationStates.ATTENDING,
+						"Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest",
+						null);
 			}
 		};
 

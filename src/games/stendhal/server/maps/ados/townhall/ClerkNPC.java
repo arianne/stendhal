@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,9 +56,9 @@ public class ClerkNPC implements ZoneConfigurator {
 				nodes.add(new Node(25, 2));
 				nodes.add(new Node(24, 2));
 				nodes.add(new Node(24, 5));
-			       	nodes.add(new Node(21, 5));
-			       	nodes.add(new Node(21, 8));
-			       	nodes.add(new Node(23, 8));
+				nodes.add(new Node(21, 5));
+				nodes.add(new Node(21, 8));
+				nodes.add(new Node(23, 8));
 				setPath(new FixedPath(nodes, true));
 			}
 

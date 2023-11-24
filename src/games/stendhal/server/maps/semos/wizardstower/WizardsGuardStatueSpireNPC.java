@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -60,15 +60,15 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					addGoodbye("So long!");
 					addOffer("I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 					addReply(Arrays.asList("store", "storekeeper"),
-					        "I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
+							"I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 
 					addReply("special",
-					        "For now I can create #Demon #Fire #Swords, and #Enhanced #Lion #Shields. I could read in your mind, adventurer, but it is not allowed of me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
-	//				addReply("special",
-	//				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
+							"For now I can create #Demon #Fire #Swords, and #Enhanced #Lion #Shields. I could read in your mind, adventurer, but it is not allowed of me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
+					//addReply("special",
+							//"I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
 
 					addReply(Arrays.asList("wizard", "wizards"),
-					        "Seven wizards form the wizards circle. These are #Erastus, #Elana, #Ravashack, #Jaer, #Cassandra, #Silvanus and #Malleus");
+							"Seven wizards form the wizards circle. These are #Erastus, #Elana, #Ravashack, #Jaer, #Cassandra, #Silvanus and #Malleus");
 					addReply("erastus", "Erastus is the archmage of the wizards circle. He is the grandmaster of all magics and the wisest person that is known. He is the only one without a part in the practical test.");
 					addReply("elana", "Elana is the warmest and friendliest enchantress. She is the protectress of all living creatures and uses divine magic to save and heal them.");
 					addReply("ravashack", "Ravashack is a very mighty necromancer. He has studied the dark magic for ages. Ravashack is a mystery, using dark magic to gain the upper hand on his opponents, but fighting the evil liches, his arch enemies.");
@@ -81,8 +81,8 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					add(ConversationStates.ATTENDING,
 							Arrays.asList("enhanced lion shield", "shields", "shield"),
 							ConversationStates.INFORMATION_1,
-						    "I can turn a plate shield into an enhanced lion shield with iron, but I need eight pieces of iron and the shield to do that. Do you want an enhanced lion shield?",
-						    null);
+							"I can turn a plate shield into an enhanced lion shield with iron, but I need eight pieces of iron and the shield to do that. Do you want an enhanced lion shield?",
+							null);
 					add(ConversationStates.INFORMATION_1,
 							ConversationPhrases.YES_MESSAGES,
 							new AndCondition(
@@ -122,8 +122,8 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 						add(ConversationStates.ATTENDING,
 								Arrays.asList("demon fire sword", "swords", "sword"),
 								ConversationStates.INFORMATION_1,
-							    "I can craft for you a demon fire sword if you can procure a demon sword and a fire sword. Do you want a demon fire sword?",
-							    null);
+								"I can craft for you a demon fire sword if you can procure a demon sword and a fire sword. Do you want a demon fire sword?",
+								null);
 						add(ConversationStates.INFORMATION_1,
 								ConversationPhrases.YES_MESSAGES,
 								new AndCondition(
@@ -161,10 +161,10 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 
 	/**				// behavior on special item BLANK SCROLL
 					add(ConversationStates.ATTENDING,
-					    Arrays.asList("blank scroll", "scrolls"),
-					    ConversationStates.INFORMATION_1,
-					    "I will create a blank scroll for you, but I need eight pieces of wood for that. The blank scroll can be enchanted by wizards. Do you want a blank scroll?",
-					    null);
+						Arrays.asList("blank scroll", "scrolls"),
+						ConversationStates.INFORMATION_1,
+						"I will create a blank scroll for you, but I need eight pieces of wood for that. The blank scroll can be enchanted by wizards. Do you want a blank scroll?",
+						null);
 					add(ConversationStates.INFORMATION_1,
 						ConversationPhrases.YES_MESSAGES,
 						new NotCondition(new PlayerHasItemWithHimCondition("wood", 8)),
@@ -189,11 +189,11 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 
 					//behavior on special item RIFT CLOAK
 					add(ConversationStates.ATTENDING,
-					    Arrays.asList("rift cloak"),
-					    ConversationStates.INFORMATION_2,
-					    "I will create a rift cloak for you, but I have to fuse a carbuncle and a sapphire in the magic. The cloak is useless in battle and will protect you only one time, when entering a magical rift."+
-						" The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new rift cloak. Shall I create one for you?",
-					     null);
+						Arrays.asList("rift cloak"),
+						ConversationStates.INFORMATION_2,
+						"I will create a rift cloak for you, but I have to fuse a carbuncle and a sapphire in the magic. The cloak is useless in battle and will protect you only one time, when entering a magical rift."+
+								" The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new rift cloak. Shall I create one for you?",
+						null);
 					add(ConversationStates.INFORMATION_2,
 						ConversationPhrases.YES_MESSAGES,
 						new AndCondition(

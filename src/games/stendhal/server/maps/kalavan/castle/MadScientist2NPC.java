@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -60,7 +60,7 @@ public class MadScientist2NPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override
-		    protected void createDialog() {
+			protected void createDialog() {
 				// remaining behaviour defined in maps.quests.MithrilCloak
 			}
 		};

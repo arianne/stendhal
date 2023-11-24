@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,7 +50,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 		final SpeakerNPC npc = new SpeakerNPC("Terry") {
 			@Override
 			protected void createPath() {
-			      	final List<Node> nodes = new LinkedList<Node>();
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(66, 8));
 				nodes.add(new Node(69, 8));
 				nodes.add(new Node(69, 17));
@@ -69,59 +69,59 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addGreeting(null, new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					    if (player.hasQuest(QUEST_SLOT)) {
-						final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
-						final long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
-								      + delay) - System.currentTimeMillis();
-						if (timeRemaining > 0L) {
-						    raiser.say("The egg is still hatching, and will be for at least another "
+						if (player.hasQuest(QUEST_SLOT)) {
+							final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
+							final long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
+									+ delay) - System.currentTimeMillis();
+							if (timeRemaining > 0L) {
+								raiser.say("The egg is still hatching, and will be for at least another "
 										+ TimeUtil.timeUntil((int) (timeRemaining / 1000L))
 										+ ".");
 								return;
-					        }
+							}
 
-    						if (player.hasPet()) {
-    						    // we don't want him to give a dragon if player already has a pet
-    						    raiser.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
-    						    return;
-    						}
+							if (player.hasPet()) {
+								// we don't want him to give a dragon if player already has a pet
+								raiser.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
+								return;
+							}
 
 							raiser.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
-					       	final BabyDragon babydragon = new BabyDragon(player);
+							final BabyDragon babydragon = new BabyDragon(player);
 
-					       	babydragon.setPosition(raiser.getX(), raiser.getY() + 1);
+							babydragon.setPosition(raiser.getX(), raiser.getY() + 1);
 
-					       	player.setPet(babydragon);
-    						// clear the quest slot completely when it's not
-    						// being used to store egg hatching times
-					       	player.removeQuest(QUEST_SLOT);
-					       	player.notifyWorldAboutChanges();
-					    } else if (player.isEquipped("mythical egg")) {
-					    	raiser.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
-					    } else {
+							player.setPet(babydragon);
+							// clear the quest slot completely when it's not
+							// being used to store egg hatching times
+							player.removeQuest(QUEST_SLOT);
+							player.notifyWorldAboutChanges();
+						} else if (player.isEquipped("mythical egg")) {
+							raiser.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
+						} else {
 							raiser.say("Hi. I don't get so many visitors, down here.");
-					    }
+						}
 					}
 				});
-		        addReply("hatch", null, new ChatAction() {
+				addReply("hatch", null, new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					    if (player.hasPet()) {
-						// there's actually also a check for this when the egg is hatched,
-						// but we might as well warn player here that they wouldn't be allowed two.
+						if (player.hasPet()) {
+							// there's actually also a check for this when the egg is hatched,
+							// but we might as well warn player here that they wouldn't be allowed two.
 							raiser.say("You've already got a pet. If you get another they might fight ... or worse ...");
-					   } else {
-						if (player.isEquipped("mythical egg")) {
-						    player.drop("mythical egg");
-						    raiser.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
-						    player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
-						    player.notifyWorldAboutChanges();
 						} else {
-						    raiser.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
+							if (player.isEquipped("mythical egg")) {
+								player.drop("mythical egg");
+								raiser.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
+								player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
+								player.notifyWorldAboutChanges();
+							} else {
+								raiser.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
+							}
 						}
-					    }
 					}
-				    });
+				});
 				addJob("I breed baby dragons. You need an egg to get one #hatched.");
 				addQuest("If you can get a dragon egg, I will #hatch it for you.");
 				addHelp("I rear baby dragons. If you have an egg, I'll #hatch it. I can also tell you how to #travel with a pet and take #care of it. If you find any wild baby dragon, incidentally, you can make it your #own.");
@@ -132,7 +132,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addReply("travel",
 						"You'll need your baby dragon to be close by in order for it to follow you when you change zones; you can say #pet to call it if it's not paying attention. If you decide to abandon it, you can right-click on YOURSELF and select 'Leave Pet'.");
 				addReply("protect",
-					 "Other creatures can smell the strong scent of your baby dragon, and may attack it. It will fight back to defend itself but at times it will need help, or it will surely die.");
+						"Other creatures can smell the strong scent of your baby dragon, and may attack it. It will fight back to defend itself but at times it will need help, or it will surely die.");
 				addReply("own",
 						"Like all pets and sheep, if you find any wild or abandoned baby dragon, you can right-click on them and select 'Own' to tame them. It will start following you, and I can bet you it'll want #food pretty soon.");
 			}
@@ -146,7 +146,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
 		// Also put a dragon in the caves (people can't Own it as it is behind rocks)
 		final BabyDragon drag = new BabyDragon();
-                drag.setPosition(62, 8);
-                zone.add(drag);
+		drag.setPosition(62, 8);
+		zone.add(drag);
 	}
 }

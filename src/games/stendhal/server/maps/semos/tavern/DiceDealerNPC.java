@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,8 +49,8 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			addGreeting("Welcome to the #gambling table, where dreams can come true.");
 			addJob("I'm the only person in Semos who is licensed to offer gambling activities.");
 			addReply(
-			        "gambling",
-			        "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
+					"gambling",
+					"The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
 			addHelp("If you are looking for Ouchit: he's upstairs.");
 			addGoodbye();
 		}

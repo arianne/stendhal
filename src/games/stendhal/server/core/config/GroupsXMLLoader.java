@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,7 +120,7 @@ class GroupsXMLLoader extends DefaultHandler {
 	 */
 	@Override
 	public void startElement(final String namespaceURI, final String lName, final String qName, final Attributes attrs) {
-		 if (qName.equals("group")) {
+		if (qName.equals("group")) {
 			final String uriValue = attrs.getValue("uri");
 			if (uriValue == null) {
 				logger.warn("group without 'uri'");

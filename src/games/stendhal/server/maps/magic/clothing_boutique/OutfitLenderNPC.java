@@ -110,12 +110,12 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		npc = new SpeakerNPC("Liliana") {
 			@Override
 			protected void createPath() {
-			    final List<Node> nodes = new LinkedList<Node>();
-			    nodes.add(new Node(16, 5));
-			    nodes.add(new Node(16, 16));
-			    nodes.add(new Node(26, 16));
-			    nodes.add(new Node(26, 5));
-			    setPath(new FixedPath(nodes, true));
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(16, 5));
+				nodes.add(new Node(16, 16));
+				nodes.add(new Node(26, 16));
+				nodes.add(new Node(26, 5));
+				setPath(new FixedPath(nodes, true));
 			}
 
 			final List<String> skinLayerOutfits = Arrays.asList("horse", "girl horse", "alien");

@@ -128,13 +128,13 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			+ " personally for you...", "You jump to the pit to escape the"
 			+ " salesman." },
 		{ "Hell's teacher tells you: $NAME! I saw you! What do you think,"
-		    + " you are doing out here? Go home immedietaly! And I want you to"
-		    + " write 'I will complete my homework before playing online games'."
-		    + " A hundred times. In your best handwriting. Until Monday."
-		    + " Have it signed by your parents. When you are done, you will write"
-		    + " a thousand word essay on 'The hell is no place for the living'.",
-		    "The teacher turns around fetching a cane and you decide it's"
-		    + " better to start running to the pit."
+			+ " you are doing out here? Go home immedietaly! And I want you to"
+			+ " write 'I will complete my homework before playing online games'."
+			+ " A hundred times. In your best handwriting. Until Monday."
+			+ " Have it signed by your parents. When you are done, you will write"
+			+ " a thousand word essay on 'The hell is no place for the living'.",
+			"The teacher turns around fetching a cane and you decide it's"
+					+ " better to start running to the pit."
 		}
 	};
 	private static final String PIT_ZONE_NAME = "int_hell_pit";

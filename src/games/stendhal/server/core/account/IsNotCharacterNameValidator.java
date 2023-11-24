@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -34,7 +34,7 @@ public class IsNotCharacterNameValidator implements AccountParameterValidator {
 	/**
 	 * creates an IsNotCharacterNameValidator.
 	 *
-     * @param username
+	 * @param username
 	 *             account username of character creator
 	 */
 	public IsNotCharacterNameValidator(final String username) {
@@ -43,14 +43,14 @@ public class IsNotCharacterNameValidator implements AccountParameterValidator {
 
 	@Override
 	public Result validate() {
-		 try {
-			 if(DAORegister.get().get(CharacterDAO.class).getAccountName(username) != null) {
-				 return Result.FAILED_CHARACTER_EXISTS;
-			 }
+		try {
+			if(DAORegister.get().get(CharacterDAO.class).getAccountName(username) != null) {
+				return Result.FAILED_CHARACTER_EXISTS;
+			}
 		} catch (SQLException e) {
 			logger.error("Error while trying to validate username", e);
 			return Result.FAILED_EXCEPTION;
 		}
-		 return null;
+		return null;
 	}
 }

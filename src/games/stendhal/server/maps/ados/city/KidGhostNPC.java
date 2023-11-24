@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,45 +71,45 @@ public class KidGhostNPC implements ZoneConfigurator {
 			}
 
 			@Override
-		    protected void createDialog() {
-			    add(ConversationStates.IDLE,
-			    	ConversationPhrases.GREETING_MESSAGES,
-			    	new GreetingMatchesNameCondition(getName()), true,
-			    	ConversationStates.IDLE,
-			    	null,
-			    	new ChatAction() {
-			    		@Override
-						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-			    			if (!player.hasQuest("find_ghosts")) {
-			    				player.setQuest("find_ghosts", "looking:said");
-			    			}
-			    			final String npcQuestText = player.getQuest("find_ghosts");
-			    			final String[] npcDoneText = npcQuestText.split(":");
-			    			final String lookStr;
-							if (npcDoneText.length > 1) {
-								lookStr = npcDoneText[0];
-							} else {
-								lookStr = "";
+			protected void createDialog() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new GreetingMatchesNameCondition(getName()), true,
+						ConversationStates.IDLE,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								if (!player.hasQuest("find_ghosts")) {
+									player.setQuest("find_ghosts", "looking:said");
+								}
+								final String npcQuestText = player.getQuest("find_ghosts");
+								final String[] npcDoneText = npcQuestText.split(":");
+								final String lookStr;
+								if (npcDoneText.length > 1) {
+									lookStr = npcDoneText[0];
+								} else {
+									lookStr = "";
+								}
+								final String saidStr;
+								if (npcDoneText.length > 1) {
+									saidStr = npcDoneText[1];
+								} else {
+									saidStr = "";
+								}
+								final List<String> list = Arrays.asList(lookStr.split(";"));
+								if (list.contains(npc.getName()) || player.isQuestCompleted("find_ghosts")) {
+									npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
+								} else {
+									player.setQuest("find_ghosts", lookStr
+											+ ";" + npc.getName()
+											+ ":" + saidStr);
+									npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
+									player.addXP(100);
+									player.addKarma(10);
+								}
 							}
-			    			final String saidStr;
-							if (npcDoneText.length > 1) {
-								saidStr = npcDoneText[1];
-							} else {
-								saidStr = "";
-							}
-			    			final List<String> list = Arrays.asList(lookStr.split(";"));
-						    if (list.contains(npc.getName()) || player.isQuestCompleted("find_ghosts")) {
-							    npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
-							} else {
-							    player.setQuest("find_ghosts", lookStr
-									    + ";" + npc.getName()
-									    + ":" + saidStr);
-							    npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
-							    player.addXP(100);
-							    player.addKarma(10);
-							}
-						}
-					});
+						});
 			}
 		};
 

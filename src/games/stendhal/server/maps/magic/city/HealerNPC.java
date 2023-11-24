@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,13 +64,13 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Greetings. Can I #help you?");
+				addGreeting("Greetings. Can I #help you?");
 				addJob("I practise alchemy and have the ability to #heal others.");
 				new HealerAdder().addHealer(this, 500);
 				addReply("magical", "We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
 				addHelp("I have #magical powers to #heal your ailments.");
 				addQuest("I need nothing, thank you.");
- 				addGoodbye("Fare thee well.");
+				addGoodbye("Fare thee well.");
 			}
 		};
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,41 +54,41 @@ public class ElementalsNPCs implements ZoneConfigurator {
 				protected void createPath() {
 					final List<Node> nodes = new LinkedList<Node>();
 					nodes.add(new Node(115, 6));
-                    nodes.add(new Node(119, 6));
+					nodes.add(new Node(119, 6));
 					nodes.add(new Node(119, 5));
-                    nodes.add(new Node(122, 5));
-                    nodes.add(new Node(122, 6));
-                    nodes.add(new Node(125, 6));
-                    nodes.add(new Node(125, 10));
-                    nodes.add(new Node(124, 10));
-                    nodes.add(new Node(124, 12));
+					nodes.add(new Node(122, 5));
+					nodes.add(new Node(122, 6));
+					nodes.add(new Node(125, 6));
+					nodes.add(new Node(125, 10));
+					nodes.add(new Node(124, 10));
+					nodes.add(new Node(124, 12));
 					nodes.add(new Node(123, 12));
 					nodes.add(new Node(123, 15));
-                    nodes.add(new Node(124, 15));
+					nodes.add(new Node(124, 15));
 					nodes.add(new Node(124, 17));
-                    nodes.add(new Node(122, 17));
-                    nodes.add(new Node(122, 18));
-                    nodes.add(new Node(116, 18));
-                    nodes.add(new Node(116, 16));
-                    nodes.add(new Node(114, 16));
-                    nodes.add(new Node(114, 15));
-                    nodes.add(new Node(113, 15));
-                    nodes.add(new Node(113, 13));
-                    nodes.add(new Node(111, 13));
-                    nodes.add(new Node(111, 8));
-                    nodes.add(new Node(115, 8));
+					nodes.add(new Node(122, 17));
+					nodes.add(new Node(122, 18));
+					nodes.add(new Node(116, 18));
+					nodes.add(new Node(116, 16));
+					nodes.add(new Node(114, 16));
+					nodes.add(new Node(114, 15));
+					nodes.add(new Node(113, 15));
+					nodes.add(new Node(113, 13));
+					nodes.add(new Node(111, 13));
+					nodes.add(new Node(111, 8));
+					nodes.add(new Node(115, 8));
 					setPath(new FixedPath(nodes, true));
 				}
 
 				@Override
 				protected void createDialog() {
 					add(
-			     		ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new GreetingMatchesNameCondition(getName()), true,
-						ConversationStates.IDLE,
-						"Speak not to us, the harbingers of Hell!",
-						null);
+							ConversationStates.IDLE,
+							ConversationPhrases.GREETING_MESSAGES,
+							new GreetingMatchesNameCondition(getName()), true,
+							ConversationStates.IDLE,
+							"Speak not to us, the harbingers of Hell!",
+							null);
 
 				}
 			};

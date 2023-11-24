@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,7 +43,7 @@ public class MillerNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addJob("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.");
 				addReply("grain",
-				        "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
+						"There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
 				addHelp("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.");
 				addGoodbye();
 				addOffer("You can #plant my seeds to grow beautiful flowers.");

@@ -68,8 +68,8 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!");
 				addJob("I am a makeup artist.");
 				addReply(
-				        "dress",
-				        "I read stories that goblins wear a dress as a kind of armor! If you're scared of goblins, like me, maybe you can buy a dress somewhere. ");
+						"dress",
+						"I read stories that goblins wear a dress as a kind of armor! If you're scared of goblins, like me, maybe you can buy a dress somewhere. ");
 				//addReply("offer", "Normally I sell masks. But I ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
 				addGoodbye("Bye, come back soon.");
 

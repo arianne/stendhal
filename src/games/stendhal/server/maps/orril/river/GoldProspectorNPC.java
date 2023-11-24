@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,28 +47,28 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 				addGreeting("Howdy partner!");
 				addJob("Once I was a very successful gold prospector, but with the age came the backache, so I'm a pensioner now. However I can still give advice to rookies!");
 				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, null,
-				        ConversationStates.INFORMATION_1,
-				        "I can tell you the secrets of prospecting for gold, if you are interested. Are you?", null);
+						ConversationStates.INFORMATION_1,
+						"I can tell you the secrets of prospecting for gold, if you are interested. Are you?", null);
 
 				add(
-				        ConversationStates.INFORMATION_1,
-				        ConversationPhrases.YES_MESSAGES,
-				        null,
-				        ConversationStates.ATTENDING,
-				        "First you need a #gold #pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold resources. Just right-click and select Prospect on the light blue water where you see gold glittering. But don't give up too early, you need a lot of luck and patience.",
-				        null);
+						ConversationStates.INFORMATION_1,
+						ConversationPhrases.YES_MESSAGES,
+						null,
+						ConversationStates.ATTENDING,
+						"First you need a #gold #pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold resources. Just right-click and select Prospect on the light blue water where you see gold glittering. But don't give up too early, you need a lot of luck and patience.",
+						null);
 
 				add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "Oh, it doesn't matter, the less people know about the prospect secrets the better!", null);
+						ConversationStates.ATTENDING,
+						"Oh, it doesn't matter, the less people know about the prospect secrets the better!", null);
 
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "I don't have a task for you, I'm just here to help new prospectors.", null);
+						ConversationStates.ATTENDING,
+						"I don't have a task for you, I'm just here to help new prospectors.", null);
 
 				add(ConversationStates.ATTENDING, Arrays.asList("gold", "pan", "gold pan"), null,
-				        ConversationStates.ATTENDING,
-				        "I don't have a gold pan, but maybe you could ask a blacksmith to sell you one.", null);
+						ConversationStates.ATTENDING,
+						"I don't have a gold pan, but maybe you could ask a blacksmith to sell you one.", null);
 
 				addGoodbye("Seeya, get yer spurs on!");
 			}

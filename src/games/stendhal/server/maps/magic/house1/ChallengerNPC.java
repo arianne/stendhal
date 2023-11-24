@@ -104,7 +104,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 			} else {
 				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck up there.";
 			}
-		    // take the money
+			// take the money
 			player.drop("money", cost);
 			// talk to the player
 			player.sendPrivateText(message);

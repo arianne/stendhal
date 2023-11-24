@@ -68,8 +68,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//Behaviours.addHelp(this,
-				//				   "...");
+				//Behaviours.addHelp(this, "...");
 
 				add(ConversationStates.ATTENDING, "heal", null, ConversationStates.ATTENDING, null, new HealPetsAction());
 

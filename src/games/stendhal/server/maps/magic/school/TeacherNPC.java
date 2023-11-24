@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,11 +58,11 @@ public class TeacherNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			    protected void createDialog() {
+			protected void createDialog() {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.IDLE, "Sit down, shut up, and watch me!", null);
-	 	     }
+			}
 
 		};
 

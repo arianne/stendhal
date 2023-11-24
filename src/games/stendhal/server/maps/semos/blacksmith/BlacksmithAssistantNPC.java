@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,21 +49,21 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(5,2));
-                nodes.add(new Node(5,5));
-                nodes.add(new Node(10,5));
-                nodes.add(new Node(10,9));
-                nodes.add(new Node(7,9));
-                nodes.add(new Node(7,12));
-                nodes.add(new Node(3,12));
-                nodes.add(new Node(3,8));
-                nodes.add(new Node(9,8));
-                nodes.add(new Node(9,5));
-                nodes.add(new Node(12,5));
-                nodes.add(new Node(12,2));
-                nodes.add(new Node(15,2));
-                nodes.add(new Node(15,5));
-                nodes.add(new Node(5,5));
+				nodes.add(new Node(5,2));
+				nodes.add(new Node(5,5));
+				nodes.add(new Node(10,5));
+				nodes.add(new Node(10,9));
+				nodes.add(new Node(7,9));
+				nodes.add(new Node(7,12));
+				nodes.add(new Node(3,12));
+				nodes.add(new Node(3,8));
+				nodes.add(new Node(9,8));
+				nodes.add(new Node(9,5));
+				nodes.add(new Node(12,5));
+				nodes.add(new Node(12,2));
+				nodes.add(new Node(15,2));
+				nodes.add(new Node(15,5));
+				nodes.add(new Node(5,5));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -71,16 +71,16 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			public void createDialog() {
 
 				// A little trick to make NPC remember if it has met
-		        // player before and react accordingly
-		        // NPC_name quest doesn't exist anywhere else neither is
-		        // used for any other purpose
+				// player before and react accordingly
+				// NPC_name quest doesn't exist anywhere else neither is
+				// used for any other purpose
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition("meet_hackim")),
-				        ConversationStates.ATTENDING,
-				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
-				        new SetQuestAction("meet_hackim","start"));
+						ConversationStates.ATTENDING,
+						"Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
+						new SetQuestAction("meet_hackim","start"));
 
 				addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
 

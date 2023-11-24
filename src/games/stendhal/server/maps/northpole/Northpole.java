@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -113,13 +113,13 @@ public class Northpole extends StendhalRPZone {
 
 		@Override
 		public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
-								  final int newY) {
-				// ignore
+				final int newY) {
+			// ignore
 		}
 
 		@Override
 		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
-							 final int oldY) {
+				final int oldY) {
 			if (!(entity instanceof Player)) {
 				return;
 			}
@@ -128,10 +128,10 @@ public class Northpole extends StendhalRPZone {
 				// if they are relogging,
 				// they can enter back to the bank (not the default zone of PlayerRPClass).
 				// If they are scrolling out or walking out the portal it works as before.
-			    entity.put("zoneid", "int_magic_house1");
-			    // Use the correct position from the portal, so that the client
-			    // gets the right coordinates - otherwise they get
-			    // overwritten by these, and the client disagrees with the server.
+				entity.put("zoneid", "int_magic_house1");
+				// Use the correct position from the portal, so that the client
+				// gets the right coordinates - otherwise they get
+				// overwritten by these, and the client disagrees with the server.
 				entity.put("x", returnX);
 				entity.put("y", returnY);
 

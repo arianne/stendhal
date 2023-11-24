@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,25 +83,26 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				addQuest("The magic in this world has just begun and I am very busy to establish the sorceresses of #Frostshade at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addGoodbye("Bye!");
 
-/**				addReply(Arrays.asList("ice scroll", "ice scrolls"),
-*				        "I need a #blank #scroll for that. If you bring me one, I will #enchant it for you.");
-*				add(
-*				        ConversationStates.ATTENDING,
-*				        Arrays.asList("enchant"),
-*				        new PlayerHasItemWithHimCondition("blank scroll"),
-*				        ConversationStates.ATTENDING,
-*				        "I enchanted your blank scroll to an ice scroll. May it cool off your feets on your travels.",
-*				        new MultipleActions(
-*				        		new DropItemAction("blank scroll", 1),
-*				        		new EquipItemAction("ice scroll", 1, true),
-*				        		new IncreaseXPAction(250)));
-*				add(
-*				        ConversationStates.ATTENDING,
-*				        Arrays.asList("enchant"),
-*				    new NotCondition(new PlayerHasItemWithHimCondition("blank scroll")),
-*				        ConversationStates.ATTENDING,
-*					"You don't have a #blank #scroll that I could enchant.", null);
-*/
+				/*
+				addReply(Arrays.asList("ice scroll", "ice scrolls"),
+						"I need a #blank #scroll for that. If you bring me one, I will #enchant it for you.");
+				add(
+						ConversationStates.ATTENDING,
+						Arrays.asList("enchant"),
+						new PlayerHasItemWithHimCondition("blank scroll"),
+						ConversationStates.ATTENDING,
+						"I enchanted your blank scroll to an ice scroll. May it cool off your feets on your travels.",
+						new MultipleActions(
+								new DropItemAction("blank scroll", 1),
+								new EquipItemAction("ice scroll", 1, true),
+								new IncreaseXPAction(250)));
+				add(
+						ConversationStates.ATTENDING,
+						Arrays.asList("enchant"),
+						new NotCondition(new PlayerHasItemWithHimCondition("blank scroll")),
+						ConversationStates.ATTENDING,
+						"You don't have a #blank #scroll that I could enchant.", null);
+				*/
 
 			} //remaining behaviour defined in maps.quests.SorceressCassandraPlainQuest
 		};

@@ -388,9 +388,9 @@ public class ScriptRunner extends StendhalServerExtension implements
 			String script = cmd;
 
 			/*
-			 // parse args if there is a space
-			 int pos = cmd.indexOf(' ');
-			 if (pos > -1) {
+			// parse args if there is a space
+			int pos = cmd.indexOf(' ');
+			if (pos > -1) {
 				// Analyze the first word: mode or filename?
 				String temp = cmd.substring(0, pos);
 				cmd = cmd.substring(pos + 1);
@@ -407,7 +407,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 					}
 				}
 				script = temp;
-			 }
+			}
 			 */
 
 			// parts of script command.
@@ -427,12 +427,12 @@ public class ScriptRunner extends StendhalServerExtension implements
 				StringBuilder sb = new StringBuilder(cmd);
 				// concatenating script arguments
 				for (int i = scp + 1; i < parts.size(); i++) {
-					 sb.append(' ').append(parts.get(i));
+					sb.append(' ').append(parts.get(i));
 				}
 				cmd = sb.toString();
 				// for list mode we dont have script name
 				if ("list".equals(mode)) {
-					 cmd = script + " " + cmd;
+					cmd = script + " " + cmd;
 				}
 			}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,14 +81,14 @@ public class TelepathNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
-									@Override
-									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-										return player.isBadBoy() ;
-									}
-								}),
-				        ConversationStates.QUESTION_1,
-				        null,
-				        new SayTextAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
+							@Override
+							public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+								return player.isBadBoy() ;
+							}
+						}),
+						ConversationStates.QUESTION_1,
+						null,
+						new SayTextAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
 
 				// player has met io before and has not got a pk skull
 				add(ConversationStates.IDLE,
@@ -96,14 +96,14 @@ public class TelepathNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
-									@Override
-									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-										return !player.isBadBoy() ;
-									}
-								}),
-				        ConversationStates.ATTENDING,
-				        null,
-				        new SayTextAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
+							@Override
+							public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+								return !player.isBadBoy() ;
+							}
+						}),
+						ConversationStates.ATTENDING,
+						null,
+						new SayTextAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
 
 				// first meeting with player
 				add(ConversationStates.IDLE,
@@ -111,43 +111,43 @@ public class TelepathNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition("meet_io")),
 						ConversationStates.ATTENDING,
-				        null,
-				        new MultipleActions(
-				        		new SayTextAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
-				        		new SetQuestAction("meet_io", "start")));
+						null,
+						new MultipleActions(
+								new SayTextAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
+								new SetQuestAction("meet_io", "start")));
 
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new ChatAction() {
+						null, new ChatAction() {
 
-					        @Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						       	if ((player.getLastPVPActionTime() > System.currentTimeMillis()
-											- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
-									// player attacked another within the last two weeks
-									long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis()
-										+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-									raiser.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
-								} else if (player.getKarma() < 5) {
-									// player does not have much good karma
-									raiser.say("They say what goes around, comes around. A good thing will happen for you when you have good karma again. Which means you, in turn, must do a good deed for someone else. Come back when your karma is better.");
-								} else {
-									// player has fulfilled all requirements to be rehabilitated
-									raiser.say("Are you really sorry for what you did?");
-									raiser.setCurrentState(ConversationStates.QUESTION_2);
-								}
-							}
-					    }
-				);
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						if ((player.getLastPVPActionTime() > System.currentTimeMillis()
+								- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
+							// player attacked another within the last two weeks
+							long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis()
+									+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							raiser.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
+						} else if (player.getKarma() < 5) {
+							// player does not have much good karma
+							raiser.say("They say what goes around, comes around. A good thing will happen for you when you have good karma again. Which means you, in turn, must do a good deed for someone else. Come back when your karma is better.");
+						} else {
+							// player has fulfilled all requirements to be rehabilitated
+							raiser.say("Are you really sorry for what you did?");
+							raiser.setCurrentState(ConversationStates.QUESTION_2);
+						}
+					}
+				}
+						);
 				// player didn't want pk icon removed, offer other help
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "Fine! I can still #help you in other ways if you need it.", null);
 				// player satisfied the pk removal requirements and said yes they were sorry
 				add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
-				        "Good, I knew you were.", new ChatAction() {
+						"Good, I knew you were.", new ChatAction() {
 
-					        @Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-								player.rehabilitate();
-							} });
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						player.rehabilitate();
+					} });
 				// player said no they are not really sorry
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE, "I thought not! Good bye!", null);
 				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");
