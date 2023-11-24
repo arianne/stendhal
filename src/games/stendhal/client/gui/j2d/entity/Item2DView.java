@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
 import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
