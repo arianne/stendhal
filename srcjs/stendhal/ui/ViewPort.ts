@@ -20,6 +20,10 @@ import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
+import { DirectionPad } from "./joystick/DirectionPad";
+import { Joystick } from "./joystick/Joystick";
+import { JoystickBase } from "./joystick/JoystickBase";
+
 import { singletons } from "../SingletonRepo";
 
 import { AchievementBanner } from "../sprite/AchievementBanner";
@@ -50,6 +54,9 @@ export class ViewPort {
 	private notifSprites: TextBubble[] = [];
 	private emojiSprites: EmojiSprite[] = [];
 	private weatherRenderer = singletons.getWeatherRenderer();
+
+	/** On-screen joystick. */
+	private joystick: JoystickBase = new JoystickBase();
 
 	/** Singleton instance. */
 	private static instance: ViewPort;
@@ -102,6 +109,8 @@ export class ViewPort {
 					// draw a representation of a item "held" via touch input
 					stendhal.ui.touch.drawHeld(this.ctx);
 				}
+
+				this.joystick.draw(this.ctx);
 
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
@@ -543,5 +552,24 @@ export class ViewPort {
 		anchor.target = "_blank";
 		anchor.href = uri;
 		anchor.click();
+	}
+
+	/**
+	 * Updates the on-screen joystick.
+	 */
+	updateJoystick() {
+		// TODO: enable when joystick implementation completed
+		/*
+		switch(stendhal.config.get("ui.joystick")) {
+			case "joystick":
+				this.joystick = new Joystick();
+				break;
+			case "dpad":
+				this.joystick = new DirectionPad();
+				break;
+			default:
+				this.joystick = new JoystickBase();
+		}
+		*/
 	}
 }

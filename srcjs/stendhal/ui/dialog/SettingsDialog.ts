@@ -166,6 +166,23 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
+		const js_styles: {[index: string]: string} = {
+			"none": "none",
+			"joystick": "joystick",
+			"dpad": "direction pad",
+		};
+		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("ui.joystick"));
+		if (js_idx < 0) {
+			js_idx = 0;
+		}
+		const sel_joystick = this.createSelect("seljoystick", js_styles, js_idx);
+		sel_joystick.addEventListener("change", (e) => {
+			stendhal.config.set("ui.joystick", Object.keys(js_styles)[sel_joystick.selectedIndex]);
+			stendhal.ui.gamewindow.updateJoystick();
+		});
+		// TODO: enable when joystick implementation completed
+		sel_joystick.disabled = true;
+
 
 		/* *** buttons *** */
 

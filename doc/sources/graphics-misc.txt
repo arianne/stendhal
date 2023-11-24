@@ -46,6 +46,10 @@ StendhalSplash.jpg      Groundhug McHamster (h4mt4ro); GPL 2.0 or newer; Stendha
 trash.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tutorial_background.*   Svetlana Kushnariova (Cabbit), Nila122, Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/83626, https://opengameart.org/node/29293
 
+data/gui/joystick/
+
+*  Jordan Irwin (AntumDeluge); CC0; Stendhal
+
 data/sprites/
 
 baby_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

@@ -31,6 +31,7 @@ export class ConfigManager {
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",
 		"ui.stats.hpbar": "true",
+		"ui.joystick": "none",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",

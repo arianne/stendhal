@@ -154,6 +154,7 @@ export class Client {
 
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+			stendhal.ui.gamewindow.updateJoystick();
 		}
 
 		// attributes to set after connection made
@@ -250,7 +251,7 @@ export class Client {
 				new LoginDialog(),
 				100, 50);
 		};
-		
+
 		marauroa.clientFramework.onCreateAccountAck = function(username: string) {
 			// TODO: We should login automatically
 			alert("Account succesfully created, please login.");
