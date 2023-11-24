@@ -110,7 +110,7 @@ public class TrapsForKlaas implements QuestManuscript {
 				ConversationStates.ATTENDING,
 				"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
 				null);
-		
+
 
 		quest.task()
 			.requestItem(20, "rodent trap");
@@ -123,7 +123,7 @@ public class TrapsForKlaas implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(10))
 			.rewardWith(new EquipItemAction("greater antidote", 5))
 			.rewardWith(new ConditionalAction(
-					giveNoteRewardCondition, 
+					giveNoteRewardCondition,
 					new MultipleActions(
 							equipNoteAction,
 							new SayTextAction("I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something."))));
@@ -158,7 +158,7 @@ public class TrapsForKlaas implements QuestManuscript {
 		return quest;
 	}
 
-	
+
 	// action that gives player note to apothecary
 	private static final String info_string = "note to apothecary";
 	final ChatAction equipNoteAction = new ChatAction() {
@@ -171,7 +171,7 @@ public class TrapsForKlaas implements QuestManuscript {
 			player.equipOrPutOnGround(note);
 		}
 	};
-	
+
 	final ChatCondition giveNoteRewardCondition = new ChatCondition() {
 		private final String avrQuestSlot = "antivenom_ring";
 

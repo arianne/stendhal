@@ -58,7 +58,7 @@ public class PlinksToy implements QuestManuscript {
 			.whenQuestWasAccepted("Plink begged me to look for his teddy in a garden with lots of wolves.")
 			.whenTaskWasCompleted("I have found Plink's toy bear.")
 			.whenQuestWasCompleted("I gave the bear to Plink and he was extremly happy.");
-	
+
 		quest.offer()
 			.begOnGreeting("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?")
 			.respondToRequest("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?")
