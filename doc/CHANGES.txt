@@ -21,9 +21,12 @@ Changelog
 - Alice Farmer includes grilled steak in the foods she lists
 
 *bugfixes*
-
 - deathmatch cannot be restarted while active
 - fixed positioning of emojis in Java client
+- fixed media autoplay in Android client
+
+*clients*
+- webclient now has an optional on-screen joystick
 
 
 1.44
