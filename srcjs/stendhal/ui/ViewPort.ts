@@ -110,8 +110,6 @@ export class ViewPort {
 					stendhal.ui.touch.drawHeld(this.ctx);
 				}
 
-				this.joystick.draw(this.ctx);
-
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
@@ -560,6 +558,7 @@ export class ViewPort {
 	updateJoystick() {
 		// TODO: enable when joystick implementation completed
 		/*
+		this.joystick.onRemoved();
 		switch(stendhal.config.get("ui.joystick")) {
 			case "joystick":
 				this.joystick = new Joystick();

@@ -11,34 +11,80 @@
 
 import { JoystickBase } from "./JoystickBase";
 
-declare var stendhal: any;
-
 
 export class Joystick extends JoystickBase {
 
 	private outer: HTMLImageElement;
 	private inner: HTMLImageElement;
 
+	private radius = 0;
+
+
 	public constructor() {
 		super();
 
 		// TODO: make smaller joystick image
 		this.outer = new Image();
-		this.outer.src = this.getResource("joystick_outer");
 		this.inner = new Image();
+
+		for (const jimg of [this.outer, this.inner]) {
+			jimg.style.position = "absolute";
+
+			// add to DOM
+			document.body.appendChild(jimg);
+
+			// listen for mouse events
+			jimg.addEventListener("mousedown", (e) => {
+				this.onMouseDown(e);
+			});
+			jimg.addEventListener("mouseup", (e) => {
+				this.onMouseUp(e);
+			});
+
+			// update layout after all images have loaded
+			jimg.onload = () => {
+				if (this.outer.complete && this.inner.complete) {
+					this.onInit();
+					// remove listener
+					this.outer.onload = null;
+					this.inner.onload = null;
+				}
+			}
+		}
+
+		this.outer.src = this.getResource("joystick_outer");
 		this.inner.src = this.getResource("joystick_inner");
 	}
 
-	public override draw(ctx: CanvasRenderingContext2D) {
-		// wait for images to be loaded
-		if (this.outer.height == 0 || this.inner.height == 0) {
-			return;
+	private onInit() {
+		this.radius = Math.floor(this.outer.width / 2);
+		// set position of outer joystick
+		this.outer.style.left = (this.getCenterX() - this.radius) + "px";
+		this.outer.style.top = (this.getCenterY() - this.radius) + "px";
+		this.center();
+	}
+
+	private center() {
+		const rect = this.outer.getBoundingClientRect();
+		this.inner.style.left = (rect.left + this.radius - Math.floor(this.inner.width / 2)) + "px";
+		this.inner.style.top = (rect.top + this.radius - Math.floor(this.inner.height / 2)) + "px";
+	}
+
+	private onMouseDown(e: Event) {
+		this.inner.src = this.getResource("joystick_inner_active");
+	}
+
+	private onMouseUp(e: Event) {
+		this.inner.src = this.getResource("joystick_inner");
+		this.center();
+	}
+
+	public override onRemoved(): void {
+		// remove from DOM
+		for (const jimg of [this.outer, this.inner]) {
+			if (document.body.contains(jimg)) {
+				document.body.removeChild(jimg);
+			}
 		}
-
-		const draw_left = stendhal.ui.gamewindow.offsetX + this.centerX;
-		const draw_top = stendhal.ui.gamewindow.offsetY + ctx.canvas.height - this.centerX;
-
-		ctx.drawImage(this.outer, draw_left - (this.outer.width / 2), draw_top - (this.outer.height / 2));
-		ctx.drawImage(this.inner, draw_left - (this.inner.width / 2), draw_top - (this.inner.height / 2));
 	}
 }

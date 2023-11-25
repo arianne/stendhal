@@ -15,16 +15,31 @@
  */
 export class JoystickBase {
 
-	// measured from bottom left corner
-	protected readonly centerX = 120;
-	protected readonly centerY = 120;
-
-
-	public draw(ctx: CanvasRenderingContext2D) {
+	public onRemoved() {
 		// do nothing
 	}
 
 	protected getResource(res: string) {
 		return "data/gui/joystick/" + res + ".png";
+	}
+
+	protected getCenterX(): number {
+		// FIXME: may be better to use position relative to viewport after loaded
+		/*
+		const gamewindow = document.getElementById("gamewindow")!;
+		const rect = gamewindow.getBoundingClientRect();
+		return rect.left + 32;
+		*/
+		return 224;
+	}
+
+	protected getCenterY(): number {
+		// FIXME: may be better to use position relative to viewport after loaded
+		/*
+		const gamewindow = document.getElementById("gamewindow")!;
+		const rect = gamewindow.getBoundingClientRect();
+		return rect.top + 32;
+		*/
+		return 384;
 	}
 }

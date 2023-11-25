@@ -11,8 +11,6 @@
 
 import { JoystickBase } from "./JoystickBase";
 
-declare var stendhal: any;
-
 
 export class DirectionPad extends JoystickBase {
 
@@ -21,36 +19,98 @@ export class DirectionPad extends JoystickBase {
 	private left: HTMLImageElement;
 	private right: HTMLImageElement;
 
-	private readonly radius = 36;
+	private readonly radius = 70;
 
 
 	public constructor() {
 		super();
 
 		this.up = new Image();
-		this.up.src = this.getResource("dpad_arrow_up");
 		this.down = new Image();
-		this.down.src = this.getResource("dpad_arrow_down");
 		this.left = new Image();
-		this.left.src = this.getResource("dpad_arrow_left");
 		this.right = new Image();
+
+		const center_x = this.getCenterX();
+		const center_y = this.getCenterY();
+
+		// positioning
+		this.up.onload = () => {
+			this.up.style.left = (center_x - (this.up.width / 2)) + "px";
+			this.up.style.top = (center_y - this.radius) + "px";
+			// add to DOM
+			document.body.appendChild(this.up);
+			// remove listener
+			this.up.onload = null;
+		};
+		this.down.onload = () => {
+			this.down.style.left = (center_x - (this.down.width / 2)) + "px";
+			this.down.style.top = (center_y + this.radius - this.down.height) + "px";
+			// add to DOM
+			document.body.appendChild(this.down);
+			// remove listener
+			this.down.onload = null;
+		};
+		this.left.onload = () => {
+			this.left.style.left = (center_x - this.radius) + "px";
+			this.left.style.top = (center_y - (this.left.height / 2)) + "px";
+			// add to DOM
+			document.body.appendChild(this.left);
+			// remove listener
+			this.left.onload = null;
+		};
+		this.right.onload = () => {
+			this.right.style.left = (center_x + this.radius - this.right.width) + "px";
+			this.right.style.top = (center_y - (this.right.height / 2)) + "px";
+			// add to DOM
+			document.body.appendChild(this.right);
+			// remove listener
+			this.right.onload = null;
+		};
+
+		for (const dimg of [this.up, this.down, this.left, this.right]) {
+			dimg.style.position = "absolute";
+			dimg.addEventListener("mousedown", (e: Event) => {
+				this.onMouseDown(e);
+			});
+			dimg.addEventListener("mouseup", (e: Event) => {
+				this.onMouseUp(e);
+			});
+		}
+
+		this.onMouseUp();
+	}
+
+	private onMouseDown(e: Event) {
+		switch(e.target) {
+			case this.up:
+				this.up.src = this.getResource("dpad_arrow_up_active");
+				break;
+			case this.down:
+				this.down.src = this.getResource("dpad_arrow_down_active");
+				break;
+			case this.left:
+				this.left.src = this.getResource("dpad_arrow_left_active");
+				break;
+			case this.right:
+				this.right.src = this.getResource("dpad_arrow_right_active");
+				break;
+		}
+	}
+
+	private onMouseUp(e?: Event) {
+		// reset images
+		this.up.src = this.getResource("dpad_arrow_up");
+		this.down.src = this.getResource("dpad_arrow_down");
+		this.left.src = this.getResource("dpad_arrow_left");
 		this.right.src = this.getResource("dpad_arrow_right");
 	}
 
-	public override draw(ctx: CanvasRenderingContext2D) {
-		// wait for images to be loaded
-		for (const img of [this.up, this.down, this.left, this.right]) {
-			if (img.height == 0) {
-				return;
+	public override onRemoved() {
+		// remove from DOM
+		for (const dimg of [this.up, this.down, this.left, this.right]) {
+			if (document.body.contains(dimg)) {
+				document.body.removeChild(dimg);
 			}
 		}
-
-		const center_x = stendhal.ui.gamewindow.offsetX + this.centerX - this.radius;
-		const center_y = stendhal.ui.gamewindow.offsetY + ctx.canvas.height - this.centerX - this.radius;
-
-		ctx.drawImage(this.up, center_x, center_y - this.radius);
-		ctx.drawImage(this.down, center_x, center_y + this.radius + (this.down.height / 2))
-		ctx.drawImage(this.left, center_x - this.radius, center_y);
-		ctx.drawImage(this.right, center_x + this.radius + (this.right.width / 2), center_y);
 	}
 }

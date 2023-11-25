@@ -154,6 +154,7 @@ export class Client {
 
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+			// initialize on-screen joystick
 			stendhal.ui.gamewindow.updateJoystick();
 		}
 
