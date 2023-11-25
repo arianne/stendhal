@@ -69,6 +69,7 @@ export class DirectionPad extends JoystickBase {
 
 		for (const dimg of [this.up, this.down, this.left, this.right]) {
 			dimg.style.position = "absolute";
+			dimg.draggable = false;
 			dimg.addEventListener("mousedown", (e: Event) => {
 				this.onMouseDown(e);
 			});

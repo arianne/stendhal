@@ -29,6 +29,7 @@ export class Joystick extends JoystickBase {
 
 		for (const jimg of [this.outer, this.inner]) {
 			jimg.style.position = "absolute";
+			jimg.draggable = false;
 
 			// add to DOM
 			document.body.appendChild(jimg);
