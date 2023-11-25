@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                     Copyright © 2022-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -103,6 +103,9 @@ public class ClientView extends WebView {
 		viewSettings.setSupportZoom(false);
 		viewSettings.setBuiltInZoomControls(false);
 		viewSettings.setDisplayZoomControls(false);
+
+		// allow autoplay of music
+		viewSettings.setMediaPlaybackRequiresUserGesture(false);
 
 		if (debugEnabled()) {
 			// make WebView debuggable for debug builds
