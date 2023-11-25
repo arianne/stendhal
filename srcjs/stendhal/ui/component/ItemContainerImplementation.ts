@@ -271,9 +271,22 @@ export class ItemContainerImplementation {
 				return;
 			}
 
-			if (this.isRightClick(event) || stendhal.ui.touch.isLongTouch()) {
+			const long_touch = stendhal.ui.touch.isLongTouch();
+			if (this.isRightClick(event) || long_touch) {
+				const append = [];
+				if (evt instanceof TouchEvent && long_touch) {
+					// XXX: better way to pass instance to action function?
+					const tmp = this;
+					// action to "hold" item for moving or dropping using touch
+					append.push({
+						title: "Hold",
+						action: function(entity: any) {
+							tmp.onDragStart(evt);
+						}
+					});
+				}
 				stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
-					new ActionContextMenu((event.target as any).dataItem),
+					new ActionContextMenu((event.target as any).dataItem, append),
 					event.pageX - 50, event.pageY - 5));
 			} else if (!stendhal.ui.heldItem) {
 				if (!stendhal.config.getBoolean("action.item.doubleclick") || this.isDoubleClick(event)) {
@@ -303,12 +316,8 @@ export class ItemContainerImplementation {
 	private onTouchEnd(evt: TouchEvent) {
 		stendhal.ui.touch.onTouchEnd();
 		if (stendhal.ui.touch.isLongTouch() && !stendhal.ui.touch.held) {
-			// don't call this.onMouseUp
-			evt.preventDefault();
-
-			this.onDragStart(evt);
+			this.onMouseUp(evt);
 		} else if (stendhal.ui.touch.held) {
-			// don't call this.onMouseUp
 			evt.preventDefault();
 
 			this.onDrop(evt);

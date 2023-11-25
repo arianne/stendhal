@@ -20,10 +20,12 @@ declare var stendhal: any;
 export class ActionContextMenu extends Component {
 	private entity: any;
 	private actions!: any[];
+	private appendActions: any[];
 
-	constructor(entity: any) {
+	constructor(entity: any, append: any[] = []) {
 		super("contextmenu-template");
 		this.entity = entity;
+		this.appendActions = append;
 		this.gatherActions();
 
 		var content = "<div class=\"actionmenu\">";
@@ -78,6 +80,9 @@ export class ActionContextMenu extends Component {
 	private gatherActions(){
 		let actions: any[] = [];
 		this.entity.buildActions(actions);
+		for (const action of this.appendActions) {
+			actions.push(action);
+		}
 		if (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600) {
 			actions.push({
 				title: "(*) Inspect",
