@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
 				finish();
+				android.os.Process.killProcess(android.os.Process.myPid());
 			}
 		});
 

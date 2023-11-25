@@ -24,6 +24,7 @@ Changelog
 - deathmatch cannot be restarted while active
 - fixed positioning of emojis in Java client
 - fixed media autoplay in Android client
+- fixed closing Android client with "exit" menu button
 
 *clients*
 - webclient now has an optional on-screen joystick
