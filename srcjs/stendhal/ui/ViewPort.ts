@@ -556,19 +556,19 @@ export class ViewPort {
 	 * Updates the on-screen joystick.
 	 */
 	updateJoystick() {
-		// TODO: enable when joystick implementation completed
-		/*
 		this.joystick.onRemoved();
 		switch(stendhal.config.get("ui.joystick")) {
+			// TODO: enable when joystick implementation finished
+			/*
 			case "joystick":
 				this.joystick = new Joystick();
 				break;
+			*/
 			case "dpad":
 				this.joystick = new DirectionPad();
 				break;
 			default:
 				this.joystick = new JoystickBase();
 		}
-		*/
 	}
 }

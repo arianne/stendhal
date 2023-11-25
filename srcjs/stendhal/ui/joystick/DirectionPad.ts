@@ -11,6 +11,8 @@
 
 import { JoystickBase } from "./JoystickBase";
 
+declare var marauroa: any;
+
 
 export class DirectionPad extends JoystickBase {
 
@@ -83,19 +85,27 @@ export class DirectionPad extends JoystickBase {
 
 	private onMouseDown(e: Event) {
 		if (e instanceof MouseEvent && e.button == 0) {
+			let action: {[index: string]: string} = {type: "move"};
 			switch(e.target) {
 				case this.up:
 					this.up.src = this.getResource("dpad_arrow_up_active");
-					break;
-				case this.down:
-					this.down.src = this.getResource("dpad_arrow_down_active");
-					break;
-				case this.left:
-					this.left.src = this.getResource("dpad_arrow_left_active");
+					action.dir = "1";
 					break;
 				case this.right:
 					this.right.src = this.getResource("dpad_arrow_right_active");
+					action.dir = "2";
 					break;
+				case this.down:
+					this.down.src = this.getResource("dpad_arrow_down_active");
+					action.dir = "3";
+					break;
+				case this.left:
+					this.left.src = this.getResource("dpad_arrow_left_active");
+					action.dir = "4";
+					break;
+			}
+			if (typeof(action.dir) !== "undefined") {
+				marauroa.clientFramework.sendAction(action);
 			}
 		}
 	}
@@ -103,6 +113,7 @@ export class DirectionPad extends JoystickBase {
 	private onMouseUp(e: Event) {
 		if (e instanceof MouseEvent && e.button == 0) {
 			this.reset();
+			marauroa.clientFramework.sendAction({type: "stop"});
 		}
 	}
 
