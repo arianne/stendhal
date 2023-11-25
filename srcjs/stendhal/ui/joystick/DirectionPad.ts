@@ -78,27 +78,35 @@ export class DirectionPad extends JoystickBase {
 			});
 		}
 
-		this.onMouseUp();
+		this.reset();
 	}
 
 	private onMouseDown(e: Event) {
-		switch(e.target) {
-			case this.up:
-				this.up.src = this.getResource("dpad_arrow_up_active");
-				break;
-			case this.down:
-				this.down.src = this.getResource("dpad_arrow_down_active");
-				break;
-			case this.left:
-				this.left.src = this.getResource("dpad_arrow_left_active");
-				break;
-			case this.right:
-				this.right.src = this.getResource("dpad_arrow_right_active");
-				break;
+		if (e instanceof MouseEvent && e.button == 0) {
+			switch(e.target) {
+				case this.up:
+					this.up.src = this.getResource("dpad_arrow_up_active");
+					break;
+				case this.down:
+					this.down.src = this.getResource("dpad_arrow_down_active");
+					break;
+				case this.left:
+					this.left.src = this.getResource("dpad_arrow_left_active");
+					break;
+				case this.right:
+					this.right.src = this.getResource("dpad_arrow_right_active");
+					break;
+			}
 		}
 	}
 
-	private onMouseUp(e?: Event) {
+	private onMouseUp(e: Event) {
+		if (e instanceof MouseEvent && e.button == 0) {
+			this.reset();
+		}
+	}
+
+	public override reset() {
 		// reset images
 		this.up.src = this.getResource("dpad_arrow_up");
 		this.down.src = this.getResource("dpad_arrow_down");

@@ -15,6 +15,10 @@
  */
 export class JoystickBase {
 
+	public reset() {
+		// do nothing
+	}
+
 	public onRemoved() {
 		// do nothing
 	}

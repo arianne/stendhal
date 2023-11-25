@@ -62,22 +62,26 @@ export class Joystick extends JoystickBase {
 		// set position of outer joystick
 		this.outer.style.left = (this.getCenterX() - this.radius) + "px";
 		this.outer.style.top = (this.getCenterY() - this.radius) + "px";
-		this.center();
-	}
-
-	private center() {
-		const rect = this.outer.getBoundingClientRect();
-		this.inner.style.left = (rect.left + this.radius - Math.floor(this.inner.width / 2)) + "px";
-		this.inner.style.top = (rect.top + this.radius - Math.floor(this.inner.height / 2)) + "px";
+		this.reset();
 	}
 
 	private onMouseDown(e: Event) {
-		this.inner.src = this.getResource("joystick_inner_active");
+		if (e instanceof MouseEvent && e.button == 0) {
+			this.inner.src = this.getResource("joystick_inner_active");
+		}
 	}
 
 	private onMouseUp(e: Event) {
-		this.inner.src = this.getResource("joystick_inner");
-		this.center();
+		if (e instanceof MouseEvent && e.button == 0) {
+			this.inner.src = this.getResource("joystick_inner");
+			this.reset();
+		}
+	}
+
+	public override reset(): void {
+		const rect = this.outer.getBoundingClientRect();
+		this.inner.style.left = (rect.left + this.radius - Math.floor(this.inner.width / 2)) + "px";
+		this.inner.style.top = (rect.top + this.radius - Math.floor(this.inner.height / 2)) + "px";
 	}
 
 	public override onRemoved(): void {
