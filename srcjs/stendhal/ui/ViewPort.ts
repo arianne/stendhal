@@ -307,7 +307,10 @@ export class ViewPort {
 
 		const mHandle: any = {};
 
-		mHandle._onMouseDown = function(e: MouseEvent) {
+		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
+			if (e instanceof TouchEvent) {
+				stendhal.ui.touch.onTouchStart();
+			}
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
@@ -349,11 +352,20 @@ export class ViewPort {
 		}
 
 		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
+			if (e instanceof TouchEvent) {
+				stendhal.ui.touch.onTouchEnd();
+			}
 			var pos = stendhal.ui.html.extractPosition(e);
-			if (e instanceof MouseEvent && mHandle.isRightClick(e)) {
+			const long_touch = stendhal.ui.touch.isLongTouch();
+			if ((e instanceof MouseEvent && mHandle.isRightClick(e)
+					|| (e instanceof TouchEvent && long_touch))) {
 				if (entity != stendhal.zone.ground) {
+					const append: any[] = [];
+					if (long_touch) {
+						// TODO: add option for "hold" to allow splitting item stacks
+					}
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
-						new ActionContextMenu(entity), pos.pageX - 50, pos.pageY - 5));
+						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
 			} else {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
@@ -506,8 +518,10 @@ export class ViewPort {
 	}
 
 	onTouchEnd(e: TouchEvent) {
+		stendhal.ui.touch.onTouchEnd();
 		if (stendhal.ui.touch.held) {
 			// don't call this.onMouseUp
+			// FIXME: not preventing default action
 			e.preventDefault();
 
 			stendhal.ui.gamewindow.onDrop(e);
