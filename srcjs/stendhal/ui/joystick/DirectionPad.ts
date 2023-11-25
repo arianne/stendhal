@@ -75,16 +75,32 @@ export class DirectionPad extends JoystickBase {
 			dimg.addEventListener("mousedown", (e: Event) => {
 				this.onMouseDown(e);
 			});
+			dimg.addEventListener("touchstart", (e: Event) => {
+				this.onMouseDown(e);
+			})
 			dimg.addEventListener("mouseup", (e: Event) => {
 				this.onMouseUp(e);
 			});
+			dimg.addEventListener("touchend", (e: Event) => {
+				this.onMouseUp(e);
+			})
 		}
 
 		this.reset();
 	}
 
-	private onMouseDown(e: Event) {
+	private checkActionEvent(e: Event): boolean {
 		if (e instanceof MouseEvent && e.button == 0) {
+			return true;
+		}
+		if (e instanceof TouchEvent) {
+			return true;
+		}
+		return false;
+	}
+
+	private onMouseDown(e: Event) {
+		if (this.checkActionEvent(e)) {
 			let action: {[index: string]: string} = {type: "move"};
 			switch(e.target) {
 				case this.up:
@@ -111,7 +127,7 @@ export class DirectionPad extends JoystickBase {
 	}
 
 	private onMouseUp(e: Event) {
-		if (e instanceof MouseEvent && e.button == 0) {
+		if (this.checkActionEvent(e)) {
 			this.reset();
 			marauroa.clientFramework.sendAction({type: "stop"});
 		}
