@@ -25,6 +25,7 @@ Changelog
 - fixed positioning of emojis in Java client
 - fixed media autoplay in Android client
 - fixed closing Android client with "exit" menu button
+- fixed entity action context menus in web client using touch
 
 *clients*
 - webclient now has an optional on-screen joystick
