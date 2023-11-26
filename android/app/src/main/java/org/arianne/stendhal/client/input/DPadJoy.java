@@ -141,11 +141,11 @@ public class DPadJoy extends DPad {
 			pressedKeys = new ArrayList<>();
 
 			setBackgroundColor(android.graphics.Color.TRANSPARENT);
-			setImageResource(R.drawable.dpad_circle_outer);
+			setImageResource(R.drawable.joystick_outer);
 
 			innerButton = new InnerButton(ctx);
 			innerButton.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-			innerButton.setImageResource(R.drawable.dpad_circle_inner);
+			innerButton.setImageResource(R.drawable.joystick_inner);
 
 			setOnTouchListener(new View.OnTouchListener() {
 				@Override
@@ -156,7 +156,7 @@ public class DPadJoy extends DPad {
 
 					if (action == MotionEvent.ACTION_DOWN && !keyDown) {
 						keyDown = true;
-						innerButton.setImageResource(R.drawable.dpad_circle_inner_active);
+						innerButton.setImageResource(R.drawable.joystick_inner_active);
 						innerButton.setRelativeX(event.getX());
 						innerButton.setRelativeY(event.getY());
 
@@ -167,7 +167,7 @@ public class DPadJoy extends DPad {
 						}
 					} else if (action == MotionEvent.ACTION_UP && keyDown) {
 						keyDown = false;
-						innerButton.setImageResource(R.drawable.dpad_circle_inner);
+						innerButton.setImageResource(R.drawable.joystick_inner);
 						innerButton.centerOn((JoyPadButton) view);
 
 						clearPresses();

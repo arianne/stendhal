@@ -186,20 +186,20 @@ public class DPadArrows extends DPad {
 
 			switch (dir) {
 				case LEFT:
-					id = R.drawable.dpad_arrow_left;
-					id_active = R.drawable.dpad_arrow_left_active;
+					id = R.drawable.dpad_left;
+					id_active = R.drawable.dpad_left_active;
 					break;
 				case RIGHT:
-					id = R.drawable.dpad_arrow_right;
-					id_active = R.drawable.dpad_arrow_right_active;
+					id = R.drawable.dpad_right;
+					id_active = R.drawable.dpad_right_active;
 					break;
 				case UP:
-					id = R.drawable.dpad_arrow_up;
-					id_active = R.drawable.dpad_arrow_up_active;
+					id = R.drawable.dpad_up;
+					id_active = R.drawable.dpad_up_active;
 					break;
 				default:
-					id = R.drawable.dpad_arrow_down;
-					id_active = R.drawable.dpad_arrow_down_active;
+					id = R.drawable.dpad_down;
+					id_active = R.drawable.dpad_down_active;
 					break;
 			}
 

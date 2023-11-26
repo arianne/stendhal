@@ -104,19 +104,19 @@ export class DirectionPad extends JoystickBase {
 			let action: {[index: string]: string} = {type: "move"};
 			switch(e.target) {
 				case this.up:
-					this.up.src = this.getResource("dpad_arrow_up_active");
+					this.up.src = this.getResource("dpad_up_active");
 					action.dir = "1";
 					break;
 				case this.right:
-					this.right.src = this.getResource("dpad_arrow_right_active");
+					this.right.src = this.getResource("dpad_right_active");
 					action.dir = "2";
 					break;
 				case this.down:
-					this.down.src = this.getResource("dpad_arrow_down_active");
+					this.down.src = this.getResource("dpad_down_active");
 					action.dir = "3";
 					break;
 				case this.left:
-					this.left.src = this.getResource("dpad_arrow_left_active");
+					this.left.src = this.getResource("dpad_left_active");
 					action.dir = "4";
 					break;
 			}
@@ -135,10 +135,10 @@ export class DirectionPad extends JoystickBase {
 
 	public override reset() {
 		// reset images
-		this.up.src = this.getResource("dpad_arrow_up");
-		this.down.src = this.getResource("dpad_arrow_down");
-		this.left.src = this.getResource("dpad_arrow_left");
-		this.right.src = this.getResource("dpad_arrow_right");
+		this.up.src = this.getResource("dpad_up");
+		this.down.src = this.getResource("dpad_down");
+		this.left.src = this.getResource("dpad_left");
+		this.right.src = this.getResource("dpad_right");
 	}
 
 	public override onRemoved() {
