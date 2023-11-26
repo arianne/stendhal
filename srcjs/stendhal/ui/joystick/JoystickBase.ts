@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 
 /**
  * Joystick implementation that does nothing. Used when joystick should not be drawn on-screen.
@@ -24,7 +26,7 @@ export class JoystickBase {
 	}
 
 	protected getResource(res: string) {
-		return "data/gui/joystick/" + res + ".png";
+		return stendhal.paths.gui + "/joystick/" + res + ".png";
 	}
 
 	protected getCenterX(): number {
