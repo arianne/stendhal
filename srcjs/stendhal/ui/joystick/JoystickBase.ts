@@ -30,22 +30,10 @@ export class JoystickBase {
 	}
 
 	protected getCenterX(): number {
-		// FIXME: may be better to use position relative to viewport after loaded
-		/*
-		const gamewindow = document.getElementById("gamewindow")!;
-		const rect = gamewindow.getBoundingClientRect();
-		return rect.left + 32;
-		*/
-		return 224;
+		return stendhal.config.getInt("ui.joystick.center.x", 224);
 	}
 
 	protected getCenterY(): number {
-		// FIXME: may be better to use position relative to viewport after loaded
-		/*
-		const gamewindow = document.getElementById("gamewindow")!;
-		const rect = gamewindow.getBoundingClientRect();
-		return rect.top + 32;
-		*/
-		return 384;
+		return stendhal.config.getInt("ui.joystick.center.y", 384);
 	}
 }

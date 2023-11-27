@@ -32,6 +32,8 @@ export class ConfigManager {
 		"ui.font.tlog": "Black Chancery",
 		"ui.stats.hpbar": "true",
 		"ui.joystick": "none",
+		"ui.joystick.center.x": "224",
+		"ui.joystick.center.y": "384",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
