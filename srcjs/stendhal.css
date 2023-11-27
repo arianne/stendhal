@@ -329,13 +329,16 @@ div.logcolR {
 
 .popuptitleclose, .windowtitleclose {
   float: right;
+}
+
+.popuptitleclose {
   border: 1px solid #000000;
   height: 100%;
   width: 1.1em;
   text-align: center;
 }
 
-.popuptitleclose:hover, .windowtitleclose:hover {
+.popuptitleclose:hover {
   background-color: #ffffff2a;
 }
 
