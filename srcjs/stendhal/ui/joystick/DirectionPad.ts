@@ -21,7 +21,7 @@ export class DirectionPad extends JoystickBase {
 	private left: HTMLImageElement;
 	private right: HTMLImageElement;
 
-	private readonly radius = 70;
+	private readonly radius = 75;
 
 
 	public constructor() {
