@@ -24,6 +24,7 @@ declare var stendhal: any;
 
 export class SettingsDialog extends DialogContentComponent {
 
+	private storedStates: {[index: string]: string};
 	private initialStates: {[index: string]: string};
 	private btn_reload: HTMLButtonElement;
 
@@ -34,6 +35,11 @@ export class SettingsDialog extends DialogContentComponent {
 		// TODO: add option to reset defaults
 
 		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+
+		this.storedStates = {
+			"txtjoystickx": stendhal.config.get("ui.joystick.center.x"),
+			"txtjoysticky": stendhal.config.get("ui.joystick.center.y")
+		};
 
 		this.initialStates = {
 			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
@@ -168,6 +174,8 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
+		// on-screen joystick
+		const js_orienters: HTMLInputElement[] = [];
 		const js_styles: {[index: string]: string} = {
 			"none": "none",
 			"joystick": "joystick (disabled)",
@@ -181,7 +189,28 @@ export class SettingsDialog extends DialogContentComponent {
 		sel_joystick.addEventListener("change", (e) => {
 			stendhal.config.set("ui.joystick", Object.keys(js_styles)[sel_joystick.selectedIndex]);
 			stendhal.ui.gamewindow.updateJoystick();
+			for (const orienter of js_orienters) {
+				// TODO: enabled for "joystick" style after implementation complete
+				orienter.disabled = sel_joystick.selectedIndex < 2;
+			}
 		});
+
+		// joystck positioning
+		for (const orient of ["x", "y"]) {
+			const input_temp = this.createNumberInput("txtjoystick" + orient,
+					parseInt(this.storedStates["txtjoystick" + orient], 10),
+					"Joystick position on " + orient.toUpperCase() + " axis");
+			input_temp.addEventListener("input", (e) => {
+				// update configuration
+				stendhal.config.set("ui.joystick.center." + orient, input_temp.value);
+				// update on-screen joystick position
+				stendhal.ui.gamewindow.updateJoystick();
+			});
+			// disable if no joystick selected
+			// TODO: enabled for "joystick" style after implementation complete
+			input_temp.disabled = sel_joystick.selectedIndex < 2;
+			js_orienters.push(input_temp);
+		}
 
 
 		/* *** buttons *** */
@@ -374,6 +403,76 @@ export class SettingsDialog extends DialogContentComponent {
 		}
 
 		return this.createSelect(id, options, idx, tooltip);
+	}
+
+	/**
+	 * Creates a text input element.
+	 *
+	 * @param id
+	 *     Identifier of element to retrieve.
+	 * @param value
+	 *     Default content.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
+	 * @param type
+	 *     Input type.
+	 * @return
+	 *     HTMLInputElement
+	 */
+	private createTextInput(id: string, value: string="", tooltip?: string, type: string="text"): HTMLInputElement {
+		const input = <HTMLInputElement> this.child("input[type=" + type + "][id=" + id + "]")!;
+		input.style.setProperty("width", "9em");
+		input.parentElement!.style.setProperty("margin-right", "0");
+		input.parentElement!.style.setProperty("margin-left", "auto");
+		input.parentElement!.style.setProperty("padding-bottom", "5px");
+		input.value = value;
+		if (tooltip) {
+			input.title = tooltip;
+		}
+		return input;
+	}
+
+	/**
+	 * Creates a text input element that accepts only number values.
+	 *
+	 * @param id
+	 *     Identifier of element to retrieve.
+	 * @param value
+	 *     Default content.
+	 * @param tooltip
+	 *     Optional popup tooltip text.
+	 * @return
+	 *     HTMLInputElement
+	 */
+	private createNumberInput(id: string, value: number=0, tooltip?: string): HTMLInputElement {
+		const input = this.createTextInput(id, ""+value, tooltip, "number");
+
+		// FIXME: Should handle the following cases for keypresses:
+		//  - backspace:
+		//    - if all characters are selected value should be set to "0"
+		//    - if value contains 1 character & caret position is 1 then value should be set to "0"
+		//  - delete:
+		//    - if all characters are selected value should be set to "0"
+		//    - if value contains 1 character & caret position is 0 then value should be set to "0"
+
+		// allow numbers only
+		input.addEventListener("input", (e: Event) => {
+			const evt_value = Number((e as InputEvent).data);
+			const is_empty = input.value.replace(/ |\t/g, "") === "";
+			if (is_empty || Number.isNaN(evt_value)) {
+				// restore old value
+				input.value = this.storedStates[input.id];
+				// FIXME: doesn't work, how to prevent event listeners added after this?
+				e.stopPropagation();
+			} else {
+				// store the new value
+				this.storedStates[input.id] = input.value;
+			}
+			// clean up
+			input.value = ""+parseInt(input.value, 10);
+		});
+
+		return input;
 	}
 }
 
