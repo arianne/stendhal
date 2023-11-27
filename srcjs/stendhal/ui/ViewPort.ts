@@ -506,9 +506,10 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
+			const is_touch = e instanceof TouchEvent;
 			// if ctrl is pressed or is a touch event, we ask for the quantity
-			if (e.ctrlKey || e instanceof TouchEvent) {
-				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action), pos.pageX - 50, pos.pageY - 25);
+			if (e.ctrlKey || is_touch) {
+				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, is_touch), pos.pageX - 50, pos.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
