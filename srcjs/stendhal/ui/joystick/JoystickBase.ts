@@ -14,6 +14,8 @@ declare var stendhal: any;
 
 /**
  * Joystick implementation that does nothing. Used when joystick should not be drawn on-screen.
+ *
+ * FIXME: joysticks should be drawn under dialog windows
  */
 export class JoystickBase {
 

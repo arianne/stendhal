@@ -31,6 +31,8 @@ export class SettingsDialog extends DialogContentComponent {
 	constructor() {
 		super("settingsdialog-template");
 
+		// TODO: add option to reset defaults
+
 		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		this.initialStates = {
