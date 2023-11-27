@@ -36,6 +36,11 @@ export class DropQuantitySelectorDialog extends Component {
 			valueInput.select();
 			valueInput.focus();
 		});
+		valueInput.addEventListener("keydown", (event) => {
+			if (event.key === "Enter") {
+				this.onDrop(event);
+			}
+		});
 	}
 
 	private onDrop(event: Event) {
