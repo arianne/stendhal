@@ -37,6 +37,7 @@ export class ConfigManager {
 		"ui.window.chest": "160,370",
 		"ui.window.corpse": "160,370",
 		"ui.window.menu": "150,20",
+		"ui.window.outfit": "300,50",
 		"ui.window.settings": "20,20",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
@@ -126,7 +127,6 @@ export class ConfigManager {
 
 		// store window information for this session
 		// TODO: move this into "session" file
-		this.windowstates["outfit"] = {x: 300, y: 50};
 		this.windowstates["trade"] = {x: 200, y: 100};
 		this.windowstates["travellog"] = {x: 160, y: 50};
 		this.initialized = true;
