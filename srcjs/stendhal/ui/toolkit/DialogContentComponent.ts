@@ -29,16 +29,6 @@ export abstract class DialogContentComponent extends ThemedComponent {
 	}
 
 	/**
-	 * @deprecated
-	 */
-	public updateConfig(newX: number, newY: number) {
-		const cid = this.getConfigId();
-		if (stendhal.config.windowstates[cid]) {
-			stendhal.config.windowstates[cid] = {x: newX, y: newY};
-		}
-	}
-
-	/**
 	 * Sets the closable dialog frame.
 	 */
 	public setFrame(frame: FloatingWindow) {

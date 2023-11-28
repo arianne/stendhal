@@ -88,12 +88,6 @@ export class FloatingWindow extends Component {
 
 
 	public close() {
-		// store session position
-		const storepos = this.checkPos();
-		if (this.content instanceof DialogContentComponent) {
-			(<DialogContentComponent> this.content).updateConfig(storepos.x, storepos.y);
-		}
-
 		this.componentElement.remove();
 		this.contentComponent.onParentClose();
 		this.opened = false;
