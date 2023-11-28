@@ -1515,31 +1515,6 @@
 
   <!-- dropped -->
 
-<!-- disabled
-  <item name="tripe" condition="stendhal.testserver">
-    <type class="food" subclass="tripe" tileid="-1"/>
-    <description>You see tripe. A chef could consider it an ingredient... Some pet will like it too!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Food"/>
-    <attributes>
-      <amount value="20"/>
-      <frequency value="12"/>
-      <quantity value="1"/>
-      <regen value="3"/>
-      <menu value="Eat|Use"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
--->
-
   <item name="cheese">
     <type class="food" subclass="cheese" tileid="-1"/>
     <description>You see some cheese. Eat it and see what happens.</description>

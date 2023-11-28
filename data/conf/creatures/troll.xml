@@ -25,7 +25,6 @@
       <item value="studded boots" quantity="[1,1]" probability="0.5"/>
       <item value="enhanced mace" quantity="[1,1]" probability="1.0"/>
       <item value="studded shield" quantity="[1,1]" probability="0.5"/>
-      <!--<item value="tripe" quantity="[1,2]" probability="50.0"/>-->
     </drops>
     <equips>
     </equips>
@@ -134,7 +133,6 @@
     <corpse name="humanoid_2x2"/>
     <drops>
       <item value="meat" quantity="[1,5]" probability="10.5"/>
-      <!--<item value="tripe" quantity="[1,2]" probability="50.0"/>-->
       <item value="ugmash" quantity="[1,1]" probability="1.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="5.5"/>
       <item value="stone boots" quantity="[1,1]" probability="2.5"/>

@@ -497,7 +497,6 @@ seed_pansy.png           cookieeater, Kimmo Rundelin (kiheru); GPL 2.0 or newer;
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         Glitch, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/210635
 teddy.png                Daniel Herding (mort); GPL 2.0 or newer; Stendhal
-tripe.png                omero; CC BY-SA 3.0; Stendhal
 unicorn_horn.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 vampirette_entrails.png  Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 venom_gland.png          Jordan Irwin; OGA BY 3.0; Stendhal
