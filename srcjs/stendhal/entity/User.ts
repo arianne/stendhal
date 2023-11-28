@@ -86,7 +86,7 @@ export class User extends Player {
 			action: function(_entity: any) {
 				let outfitDialog = ui.get(UIComponentEnum.OutfitDialog);
 				if (!outfitDialog) {
-					const dstate = stendhal.config.dialogstates["outfit"];
+					const dstate = stendhal.config.windowstates["outfit"];
 					outfitDialog = new OutfitDialog();
 					new FloatingWindow("Choose outfit", outfitDialog, dstate.x, dstate.y);
 				}

@@ -34,7 +34,7 @@ export class ProgressStatusEvent extends RPEvent {
 		let travelLogDialog = ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog;
 		if (!this["progress_type"]) {
 			if (!travelLogDialog) {
-				const dstate = stendhal.config.dialogstates["travellog"];
+				const dstate = stendhal.config.windowstates["travellog"];
 				travelLogDialog = new TravelLogDialog(dataItems);
 				new FloatingWindow("Travel Log", travelLogDialog, dstate.x, dstate.y);
 			}

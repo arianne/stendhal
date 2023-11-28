@@ -90,7 +90,7 @@ export class ConfigManager {
 	} as {[name: string]: string};
 
 	private storage = window.localStorage;
-	private dialogstates: any = {};
+	private windowstates: any = {};
 	private initialized = false;
 
 	/** Singleton instance. */
@@ -122,13 +122,13 @@ export class ConfigManager {
 
 		// store window information for this session
 		// TODO: move this into "session" file
-		this.dialogstates["chest"] = {x: 160, y: 370};
-		this.dialogstates["corpse"] = {x: 160, y: 370};
-		this.dialogstates["menu"] = {x: 150, y: 20};
-		this.dialogstates["outfit"] = {x: 300, y: 50};
-		this.dialogstates["settings"] = {x: 20, y: 20};
-		this.dialogstates["trade"] = {x: 200, y: 100};
-		this.dialogstates["travellog"] = {x: 160, y: 50};
+		this.windowstates["chest"] = {x: 160, y: 370};
+		this.windowstates["corpse"] = {x: 160, y: 370};
+		this.windowstates["menu"] = {x: 150, y: 20};
+		this.windowstates["outfit"] = {x: 300, y: 50};
+		this.windowstates["settings"] = {x: 20, y: 20};
+		this.windowstates["trade"] = {x: 200, y: 100};
+		this.windowstates["travellog"] = {x: 160, y: 50};
 		this.initialized = true;
 	}
 
@@ -256,6 +256,45 @@ export class ConfigManager {
 	 */
 	clear() {
 		this.storage.clear();
+	}
+
+	/**
+	 * Sets attributes for a dialog window.
+	 *
+	 * TODO: move into session manager
+	 *
+	 * @param id
+	 *   Dialog identifier.
+	 * @param x
+	 *   Horizontal position.
+	 * @param y
+	 *   Vertical position.
+	 */
+	setWindowState(id: string, x: number, y: number) {
+		this.windowstates[id] = {x: x, y: y};
+		this.set("ui.window." + id, x + "," + y);
+	}
+
+	/**
+	 * Retrieves attributes for a dialog window.
+	 *
+	 * TODO: move into session manager
+	 *
+	 * @param id
+	 *   Dialog identifier.
+	 * @return
+	 *   Object containing X/Y positioning of dialog.
+	 */
+	getWindowState(id: string): {[index: string]: number} {
+		let state: {[index: string]: number} = {};
+		if (this.windowstates.hasOwnProperty(id)) {
+			state = this.windowstates[id];
+		} else {
+			const tmp: string[] = (this.get("ui.window." + id) || "0,0").split(",");
+			state.x = parseInt(tmp[0], 10);
+			state.y = parseInt(tmp[1], 10);
+		}
+		return state;
 	}
 
 	/**

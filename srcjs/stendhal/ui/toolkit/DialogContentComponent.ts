@@ -28,10 +28,13 @@ export abstract class DialogContentComponent extends ThemedComponent {
 		this.componentElement.classList.add("dialogcontents");
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public updateConfig(newX: number, newY: number) {
 		const cid = this.getConfigId();
-		if (stendhal.config.dialogstates[cid]) {
-			stendhal.config.dialogstates[cid] = {x: newX, y: newY};
+		if (stendhal.config.windowstates[cid]) {
+			stendhal.config.windowstates[cid] = {x: newX, y: newY};
 		}
 	}
 

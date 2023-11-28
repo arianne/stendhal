@@ -79,7 +79,7 @@ export class Corpse extends PopupInventory {
 				}
 			}
 
-			const dstate = stendhal.config.dialogstates["corpse"];
+			const dstate = stendhal.config.windowstates["corpse"];
 			const invComponent = new ItemInventoryComponent(this,
 					"content", content_row, content_col, true, undefined);
 			invComponent.setConfigId("corpse");

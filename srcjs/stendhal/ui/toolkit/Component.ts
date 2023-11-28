@@ -53,6 +53,7 @@ export abstract class Component {
 	 *
 	 * @param cid
 	 *     The string identifier.
+	 * @deprecated
 	 */
 	public setConfigId(cid: string) {
 		this.cid = cid;

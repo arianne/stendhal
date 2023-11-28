@@ -23,7 +23,7 @@ export class SettingsAction extends SlashAction {
 	readonly maxParams = 0;
 
 	execute(_type: string, _params: string[], _remainder: string): boolean {
-		const wstate = stendhal.config.dialogstates["settings"];
+		const wstate = stendhal.config.windowstates["settings"];
 		const offset = stendhal.ui.getPageOffset();
 
 		const content = new SettingsDialog();

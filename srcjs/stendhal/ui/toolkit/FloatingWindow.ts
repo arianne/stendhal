@@ -30,6 +30,9 @@ export class FloatingWindow extends Component {
 
 	private content: Component;
 
+	private windowId?: string;
+
+
 	constructor(title: string, protected contentComponent: Component, x: number, y: number) {
 		super("window-template");
 
@@ -163,7 +166,7 @@ export class FloatingWindow extends Component {
 		window.removeEventListener("touchend", this.onMouseUpDuringDragListener, true);
 	}
 
-	private checkPos() {
+	private checkPos(): any {
 		if (this.content) {
 			this.content.onMoved();
 		}
@@ -201,6 +204,13 @@ export class FloatingWindow extends Component {
 	}
 
 	public override onMoved() {
-		this.checkPos();
+		const pos = this.checkPos();
+		if (typeof(this.windowId) !== "undefined") {
+			stendhal.config.setWindowState(this.windowId, pos.x, pos.y);
+		}
+	}
+
+	public setId(id: string|undefined) {
+		this.windowId = id;
 	}
 }
