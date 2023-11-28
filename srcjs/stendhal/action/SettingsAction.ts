@@ -23,14 +23,14 @@ export class SettingsAction extends SlashAction {
 	readonly maxParams = 0;
 
 	execute(_type: string, _params: string[], _remainder: string): boolean {
-		const wstate = stendhal.config.getWindowState("settings");
+		const wstate = stendhal.config.getWindowState("menu");
 		const offset = stendhal.ui.getPageOffset();
 
 		const content = new SettingsDialog();
 		const dialog = ui.createSingletonFloatingWindow(
 			"Settings", content,
 			wstate.x - offset.x, wstate.y - offset.y);
-		dialog.setId("settings");
+		dialog.setId("menu");
 		content.setFrame(dialog);
 		return true;
 	}
