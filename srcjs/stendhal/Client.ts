@@ -394,10 +394,11 @@ export class Client {
 
 		var menubutton = document.getElementById("menubutton")!;
 		menubutton.addEventListener("click", () => {
-			const dialogState = stendhal.config.windowstates["menu"];
+			const dialogState = stendhal.config.getWindowState("menu");
 			const menuContent = new ApplicationMenuDialog();
 			const menuFrame = ui.createSingletonFloatingWindow(
 					"Menu", menuContent, dialogState.x, dialogState.y);
+			menuFrame.setId("menu");
 			menuContent.setFrame(menuFrame);
 		});
 
