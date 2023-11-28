@@ -34,6 +34,7 @@ export class ConfigManager {
 		"ui.joystick": "none",
 		"ui.joystick.center.x": "224",
 		"ui.joystick.center.y": "384",
+		"ui.window.corpse": "160,370",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
@@ -123,7 +124,6 @@ export class ConfigManager {
 		// store window information for this session
 		// TODO: move this into "session" file
 		this.windowstates["chest"] = {x: 160, y: 370};
-		this.windowstates["corpse"] = {x: 160, y: 370};
 		this.windowstates["menu"] = {x: 150, y: 20};
 		this.windowstates["outfit"] = {x: 300, y: 50};
 		this.windowstates["settings"] = {x: 20, y: 20};
