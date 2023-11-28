@@ -867,7 +867,7 @@ meals_3.*:              CC BY-SA 3.0
 pies.*                  Katie Russell (kymara), Jordan Irwin (AntumDeluge), glitch; GPL 2.0 or newer; Stendhal, https://openclipart.org/detail/209658, https://openclipart.org/detail/209646
 piglet.*                Daniel Eddeland (daneeklu), bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/98209, https://opengameart.org/node/11629
 rustic_meals.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal
+smoked_meatandfish.png  Kimmo Rundelin (kiheru), Dungeon Crawl Stone Soup, David E. Gervais, https://opengameart.org/node/6622, omero; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/12210
 steak.*                 Henrique Lazarini (7Soul1), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/39455
 torte.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
