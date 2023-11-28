@@ -32,9 +32,9 @@ export class TradeEvent extends RPEvent {
 		let dialog = ui.get(UIComponentEnum.TradeDialog) as TradeDialog;
 
 		if (this["user_trade_state"] !== "NO_ACTIVE_TRADE" && !dialog) {
-			const dstate = stendhal.config.windowstates["trade"];
+			const dstate = stendhal.config.getWindowState("trade");
 			dialog = new TradeDialog();
-			new FloatingWindow("Trade", dialog, dstate.x, dstate.y);
+			new FloatingWindow("Trade", dialog, dstate.x, dstate.y).setId("trade");
 		}
 
 		if (dialog) {

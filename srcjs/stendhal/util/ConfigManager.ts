@@ -39,6 +39,7 @@ export class ConfigManager {
 		"ui.window.menu": "150,20",
 		"ui.window.outfit": "300,50",
 		"ui.window.settings": "20,20",
+		"ui.window.trade": "200,100",
 		"ui.window.travellog": "160,50",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
@@ -120,15 +121,14 @@ export class ConfigManager {
 		// do nothing
 	}
 
+	/**
+	 * @deprecated
+	 */
 	init(args: any) {
 		if (this.initialized) {
 			console.warn("tried to re-initialize ConfigManager");
 			return;
 		}
-
-		// store window information for this session
-		// TODO: move this into "session" file
-		this.windowstates["trade"] = {x: 200, y: 100};
 		this.initialized = true;
 	}
 
