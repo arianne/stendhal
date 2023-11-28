@@ -274,7 +274,7 @@ export class ItemContainerImplementation {
 			const long_touch = stendhal.ui.touch.isLongTouch();
 			if (this.isRightClick(event) || long_touch) {
 				const append = [];
-				if (evt instanceof TouchEvent && long_touch) {
+				if (window['TouchEvent'] && evt instanceof TouchEvent && long_touch) {
 					// XXX: better way to pass instance to action function?
 					const tmp = this;
 					// action to "hold" item for moving or dropping using touch

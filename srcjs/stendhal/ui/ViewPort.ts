@@ -21,7 +21,6 @@ import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
 import { DirectionPad } from "./joystick/DirectionPad";
-import { Joystick } from "./joystick/Joystick";
 import { JoystickBase } from "./joystick/JoystickBase";
 
 import { singletons } from "../SingletonRepo";
@@ -308,7 +307,7 @@ export class ViewPort {
 		const mHandle: any = {};
 
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
-			if (e instanceof TouchEvent) {
+			if (window['TouchEvent'] && e instanceof TouchEvent) {
 				stendhal.ui.touch.onTouchStart();
 			}
 			var pos = stendhal.ui.html.extractPosition(e);
@@ -352,13 +351,13 @@ export class ViewPort {
 		}
 
 		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
-			if (e instanceof TouchEvent) {
+			if (window['TouchEvent'] && e instanceof TouchEvent) {
 				stendhal.ui.touch.onTouchEnd();
 			}
 			var pos = stendhal.ui.html.extractPosition(e);
 			const long_touch = stendhal.ui.touch.isLongTouch();
 			if ((e instanceof MouseEvent && mHandle.isRightClick(e)
-					|| (e instanceof TouchEvent && long_touch))) {
+					|| (window['TouchEvent'] && e instanceof TouchEvent && long_touch))) {
 				if (entity != stendhal.zone.ground) {
 					const append: any[] = [];
 					if (long_touch) {
@@ -506,7 +505,7 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
-			const is_touch = e instanceof TouchEvent;
+			const is_touch = window['TouchEvent'] && e instanceof TouchEvent;
 			// if ctrl is pressed or is a touch event, we ask for the quantity
 			if (e.ctrlKey || is_touch) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, is_touch), pos.pageX - 50, pos.pageY - 25);
