@@ -74,7 +74,7 @@ hand_axe.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.
 magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
 oldscythe.*                  David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-sickle.png                   omero; CC BY-SA 3.0; Stendhal
+sickle.png                   Pearson Scott Foresman, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://commons.wikimedia.org/wiki/File:Sickle_(PSF).png, https://openclipart.org/detail/263780
 small_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
 twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
