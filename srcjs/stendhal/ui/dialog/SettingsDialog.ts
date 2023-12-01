@@ -179,7 +179,7 @@ export class SettingsDialog extends DialogContentComponent {
 		const js_styles: {[index: string]: string} = {
 			"none": "none",
 			"joystick": "joystick (disabled)",
-			"dpad": "direction pad (experimental)",
+			"dpad": "direction pad",
 		};
 		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("ui.joystick"));
 		if (js_idx < 0) {
