@@ -388,11 +388,12 @@ export class RPEntity extends ActiveEntity {
 			var frame = Math.floor(Date.now() / delay) % nFrames;
 			ctx.drawImage(icon, frame * xdim, 0, xdim, ydim, x, y, xdim, ydim);
 		}
-		function drawAnimatedIcon(iconPath: string, delay: number, x: number, y: number) {
+		function drawAnimatedIcon(iconPath: string, delay: number, x: number, y: number, fWidth?: number) {
 			var icon = stendhal.data.sprites.get(iconPath);
-			var dim = icon.height;
-			var nFrames = icon.width / dim;
-			_drawAnimatedIcon(icon, delay, nFrames, dim, dim, x, y);
+			var dimH = icon.height;
+			var dimW = typeof(fWidth) !== "undefined" ? fWidth : dimH;
+			var nFrames = icon.width / dimW;
+			_drawAnimatedIcon(icon, delay, nFrames, dimW, dimH, x, y);
 		}
 		function drawAnimatedIconWithFrames(iconPath: string, nFrames: number, delay: number, x: number, y: number) {
 			var icon = stendhal.data.sprites.get(iconPath);
@@ -429,8 +430,15 @@ export class RPEntity extends ActiveEntity {
 		if (this.hasOwnProperty("last_player_kill_time")) {
 			drawAnimatedIconWithFrames(stendhal.paths.sprites + "/ideas/pk.png", 12, 300, x, y - this["drawHeight"]);
 		}
+		// status affects
 		if (this.hasOwnProperty("poisoned")) {
 			drawAnimatedIcon(stendhal.paths.sprites + "/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
+		}
+		if (this.hasOwnProperty("status_confuse")) {
+			drawAnimatedIcon(stendhal.paths.sprites + "/status/confuse.png", 200, x + 32 * this["width"] - 14, y - this["drawHeight"] + 16);
+		}
+		if (this.hasOwnProperty("status_shock")) {
+			drawAnimatedIcon(stendhal.paths.sprites + "/status/shock.png", 200, x + 32 * this["width"] - 25, y - 32, 38);
 		}
 		// NPC job icons
 		let nextX = x;
