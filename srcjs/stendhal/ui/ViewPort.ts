@@ -360,9 +360,11 @@ export class ViewPort {
 					|| (window['TouchEvent'] && e instanceof TouchEvent && long_touch))) {
 				if (entity != stendhal.zone.ground) {
 					const append: any[] = [];
+					/*
 					if (long_touch) {
 						// TODO: add option for "hold" to allow splitting item stacks
 					}
+					*/
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
