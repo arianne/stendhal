@@ -26,9 +26,12 @@ Changelog
 - fixed media autoplay in Android client
 - fixed closing Android client with "quit" menu button
 - fixed entity action context menus in web client using touch
+- fixed drawing "confused" & "shocked" statuses in webclient
+- fixed closing webclient dialog windows using touch event
 
 *clients*
 - webclient now has an optional on-screen joystick
+- added emoji map to webclient
 
 
 1.44
