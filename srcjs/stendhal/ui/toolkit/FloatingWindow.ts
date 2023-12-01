@@ -62,7 +62,12 @@ export class FloatingWindow extends Component {
 		titleBar.addEventListener("touchstart", (event) => {
 			this.onTouchStart(event as TouchEvent)
 		});
-		this.child(".windowtitleclose")!.addEventListener("click", (event) => {
+		const closeButton = this.child(".windowtitleclose")!;
+		closeButton.addEventListener("click", (event) => {
+			this.onClose(event);
+			FloatingWindow.soundManager.playGlobalizedEffect(this.closeSound);
+		});
+		closeButton.addEventListener("touchend", (event) => {
 			this.onClose(event);
 			FloatingWindow.soundManager.playGlobalizedEffect(this.closeSound);
 		});
