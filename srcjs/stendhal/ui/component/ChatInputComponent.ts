@@ -13,6 +13,8 @@ declare let marauroa: any;
 declare let stendhal: any;
 
 import { KeyHandler } from "../KeyHandler";
+import { ui } from "../UI";
+import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
 
@@ -41,6 +43,17 @@ export class ChatInputComponent extends Component {
 		// restore from previous session
 		this.history = config.getObject("chat.history") || [];
 		this.historyIndex = config.getInt("chat.history.index", 0);
+
+		// set image for emoji button
+		const btn_emoji = document.getElementById("emojis")!;
+		// clear default text & add emoji image
+		btn_emoji.innerText = "";
+		btn_emoji.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/smile.png").cloneNode());
+
+		// event to bring up emoji dialog
+		btn_emoji.addEventListener("click", (e) => {
+			this.buildEmojiMap();
+		});
 	}
 
 	public clear() {
@@ -114,4 +127,12 @@ export class ChatInputComponent extends Component {
 		this.clear();
 	}
 
+	private buildEmojiMap() {
+		const wstate = stendhal.config.getWindowState("emoji");
+		const content = new EmojiMapDialog();
+		const dialog = ui.createSingletonFloatingWindow("Emojis", content, wstate.x, wstate.y);
+		dialog.setId("emoji");
+		// needed in order to close dialog from within
+		content.setFrame(dialog);
+	}
 }

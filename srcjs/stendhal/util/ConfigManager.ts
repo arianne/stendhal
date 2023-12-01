@@ -36,6 +36,7 @@ export class ConfigManager {
 		"ui.joystick.center.y": "384",
 		"ui.window.chest": "160,370",
 		"ui.window.corpse": "160,370",
+		"ui.window.emoji": "20,20",
 		"ui.window.menu": "150,20",
 		"ui.window.outfit": "300,50",
 		"ui.window.settings": "20,20",

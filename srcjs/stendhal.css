@@ -577,6 +577,10 @@ div.logcolR {
   font-family: Tally;
 }
 
+.emojibutton {
+  margin: 2px;
+}
+
 @font-face {
   font-family: Amaranth;
   src: url("/data/font/Amaranth-Regular.ttf");

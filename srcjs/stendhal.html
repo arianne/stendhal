@@ -60,7 +60,10 @@
 			<div id="topPanel"></div>
 			<canvas id="gamewindow" width="640" height="480" tabindex="-1">Sorry, this page only works in modern web browsers.</canvas>
 			<div id="bottomPanel" class="mainColumn">
-				<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+				<div class="horizontalgroup">
+					<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+					<button id="emojis">emoji</button>
+				</div>
 				<div id="chat"></div>
 			</div>
 		</div>
@@ -390,6 +393,10 @@
 		<button type="button" id="setoutfitapply">Change Outfit</button></div>
 		</div>
 	</template> <!-- outfitdialog-template -->
+
+	<template id="emojimap-template">
+		<div></div>
+	</template>
 
 	<script type="text/javascript" src="stendhal-compiled.js"></script>
 </body>
