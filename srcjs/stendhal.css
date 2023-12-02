@@ -248,6 +248,11 @@ div.logcolR {
   overflow: auto;
 }
 
+.buttonColumn {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 #minimap {
   border: 1px solid black;
   float: left
@@ -577,7 +582,7 @@ div.logcolR {
   font-family: Tally;
 }
 
-.emojibutton {
+.menubutton, .emojibutton {
   margin: 2px;
 }
 

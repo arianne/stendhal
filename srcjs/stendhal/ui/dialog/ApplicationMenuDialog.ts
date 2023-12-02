@@ -103,9 +103,9 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 
 		var content = "";
 		for (var i = 0; i < this.actions.length; i++) {
-			content += "<div class=\"inlineblock\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(this.actions[i].title) + "</h4>"
+			content += "<div class=\"inlineblock buttonColumn\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(this.actions[i].title) + "</h4>"
 			for (var j = 0; j < this.actions[i].children.length; j++) {
-				content += "<button id=\"menubutton." + this.actions[i].children[j].action + "\">" + stendhal.ui.html.esc(this.actions[i].children[j].title) + "</button><br>";
+				content += "<button id=\"menubutton." + this.actions[i].children[j].action + "\" class=\"menubutton\">" + stendhal.ui.html.esc(this.actions[i].children[j].title) + "</button><br>";
 			}
 			content += "</div>";
 		}
