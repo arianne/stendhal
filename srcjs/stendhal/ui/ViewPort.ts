@@ -395,6 +395,9 @@ export class ViewPort {
 			e.target.removeEventListener("mousemove", mHandle.onDrag);
 			e.target.removeEventListener("touchend", mHandle.onMouseUp);
 			e.target.removeEventListener("touchmove", mHandle.onDrag);
+
+			// clean up item held via touch
+			stendhal.ui.touch.unsetHeldItem();
 		}
 
 		return mHandle._onMouseDown;

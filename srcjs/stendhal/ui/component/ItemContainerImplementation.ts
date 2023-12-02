@@ -302,6 +302,10 @@ export class ItemContainerImplementation {
 				}
 			}
 		}
+
+		// clean up item held via touch
+		stendhal.ui.touch.unsetHeldItem();
+
 		document.getElementById("gamewindow")!.focus();
 	}
 
