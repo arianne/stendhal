@@ -97,9 +97,9 @@ export class SettingsDialog extends DialogContentComponent {
 				});
 
 		// FIXME: open chest windows are not refreshed
-		this.createCheckBox("chk_chestqp", "action.chest.quickpickup",
-				"Click tranfers items from chests to player inventory",
-				"Click executes default action on items in chests");
+		this.createCheckBox("chk_chestqp", "action.inventory.quickpickup",
+				"Click tranfers items from chests and corpses to player inventory",
+				"Click executes default action on items in chests and corpses");
 
 		const chk_movecont = this.createCheckBox("chk_movecont", "input.movecont",
 				"Player will continue to walk after changing areas",

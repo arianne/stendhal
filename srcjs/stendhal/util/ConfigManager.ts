@@ -52,7 +52,7 @@ export class ConfigManager {
 		"input.movecont": "false",
 		//"input.doubleclick": "false",
 		"action.item.doubleclick": "false",
-		"action.chest.quickpickup": "true",
+		"action.inventory.quickpickup": "true",
 		"event.pvtmsg.sound": "ui/notify_up"
 	} as {[id: string]: string};
 

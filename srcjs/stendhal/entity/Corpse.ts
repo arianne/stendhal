@@ -80,7 +80,8 @@ export class Corpse extends PopupInventory {
 			}
 
 			const invComponent = new ItemInventoryComponent(this,
-					"content", content_row, content_col, true, undefined);
+					"content", content_row, content_col,
+					stendhal.config.getBoolean("action.inventory.quickpickup"), undefined);
 			// TODO: remove, deprecated
 			invComponent.setConfigId("corpse");
 

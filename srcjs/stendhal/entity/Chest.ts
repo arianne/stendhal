@@ -89,7 +89,7 @@ export class Chest extends PopupInventory {
 	openInventoryWindow() {
 		if (!this.inventory || !this.inventory.isOpen()) {
 			const invComponent = new ItemInventoryComponent(this,
-					"content", 5, 6, stendhal.config.getBoolean("action.chest.quickpickup"), undefined);
+					"content", 5, 6, stendhal.config.getBoolean("action.inventory.quickpickup"), undefined);
 			// TODO: remove, deprecated
 			invComponent.setConfigId("chest");
 
