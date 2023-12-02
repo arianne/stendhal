@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import java.util.Locale;
+
 import games.stendhal.client.StendhalClient;
 import games.stendhal.common.constants.Actions;
 import marauroa.common.game.Definition.DefinitionClass;
@@ -220,7 +222,7 @@ public enum ActionType {
 	 */
 	public static ActionType getbyRep(final String representation) {
 		for (final ActionType at : ActionType.values()) {
-			if (at.actionRepresentation.toLowerCase().equals(representation.toLowerCase())) {
+			if (at.actionRepresentation.toLowerCase(Locale.ENGLISH).equals(representation.toLowerCase(Locale.ENGLISH))) {
 				return at;
 			}
 
