@@ -307,7 +307,7 @@ export class ViewPort {
 		const mHandle: any = {};
 
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
-			if (window['TouchEvent'] && e instanceof TouchEvent) {
+			if (stendhal.ui.touch.isTouchEvent(e)) {
 				stendhal.ui.touch.onTouchStart();
 			}
 			var pos = stendhal.ui.html.extractPosition(e);
@@ -351,13 +351,13 @@ export class ViewPort {
 		}
 
 		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
-			if (window['TouchEvent'] && e instanceof TouchEvent) {
+			const is_touch = stendhal.ui.touch.isTouchEvent(e);
+			if (is_touch) {
 				stendhal.ui.touch.onTouchEnd();
 			}
 			var pos = stendhal.ui.html.extractPosition(e);
-			const long_touch = stendhal.ui.touch.isLongTouch();
-			if ((e instanceof MouseEvent && mHandle.isRightClick(e)
-					|| (window['TouchEvent'] && e instanceof TouchEvent && long_touch))) {
+			const long_touch = is_touch && stendhal.ui.touch.isLongTouch();
+			if ((e instanceof MouseEvent && mHandle.isRightClick(e)) || long_touch) {
 				if (entity != stendhal.zone.ground) {
 					const append: any[] = [];
 					/*

@@ -41,6 +41,13 @@ export class TouchHandler {
 	}
 
 	/**
+	 * Checks for touch event.
+	 */
+	public isTouchEvent(evt: Event) {
+		return window["TouchEvent"] && evt instanceof TouchEvent;
+	}
+
+	/**
 	 * Sets timestamp when touch applied.
 	 */
 	onTouchStart() {
@@ -57,9 +64,11 @@ export class TouchHandler {
 	/**
 	 * Checks if a touch event represents a long touch after release.
 	 */
-	isLongTouch(): boolean {
-		return (this.timestampTouchEnd - this.timestampTouchStart
-				> this.longTouchDuration);
+	isLongTouch(evt?: Event): boolean {
+		if (evt && !this.isTouchEvent(evt)) {
+			return false;
+		}
+		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
 	}
 
 	/**
