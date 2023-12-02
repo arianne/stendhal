@@ -1,124 +1,124 @@
 
 :root {
-  --text-color-online: #0a0;
-  --text-color-offline: #aaa;
-  --text-color: #FFF;
-  --text-color-inactive: #AAA;
-  --background-url: url(/data/gui/panelwood003.jpg)
-  overflow: hidden;
+	--text-color-online: #0a0;
+	--text-color-offline: #aaa;
+	--text-color: #FFF;
+	--text-color-inactive: #AAA;
+	--background-url: url(/data/gui/panelwood003.jpg)
+	overflow: hidden;
 }
 
 body {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
 
 input:invalid {
-  border: 2px dashed red;
+	border: 2px dashed red;
 }
 
 .credential-dialog label {
-  min-width: 8em;
-  display: inline-block;
+	min-width: 8em;
+	display: inline-block;
 }
 
 .credential-dialog a {
-  color: #FFF;
+	color: #FFF;
 }
 
 li.online {
-  color: var(--text-color-online);
+	color: var(--text-color-online);
 }
 
 li.offline {
-  color: var(--text-color-offline);
+	color: var(--text-color-offline);
 }
 
 ul.uniform {
-  list-style-position: outside;
-  margin-left: -23px;
+	list-style-position: outside;
+	margin-left: -23px;
 }
 
 #leftColumn .tabpanel {
-  flex: 1;
+	flex: 1;
 }
 
 .tabpanel {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .tabpanel-content {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-  border: 1px solid #000;
-  flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border: 1px solid #000;
+	flex: 1;
 }
 
 .tabpanel-tabs button {
-  background: var(--background-url);
-  color: var(--text-color-inactive);
-  border-top: 0;
+	background: var(--background-url);
+	color: var(--text-color-inactive);
+	border-top: 0;
 }
 
 .tabpanel-tabs button.active {
-  color: var(--text-color);
+	color: var(--text-color);
 }
 
 
 #buddyList {
-  width: 128px;
+	width: 128px;
 }
 
 #buddyList ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0.1em;
-  white-space: nowrap;
+	list-style-type: none;
+	margin: 0;
+	padding: 0.1em;
+	white-space: nowrap;
 }
 
 #menubutton {
-  width: 90px;
+	width: 90px;
 }
 
 #soundbutton {
-  width: 20%;
-  padding: 0;
+	width: 20%;
+	padding: 0;
 }
 
 div.itemSlot {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  border: 1px solid black;
-  background-color: #CCC;
-  float: left;
-  padding: 1px;
-  margin: 2px;
-  text-align: right;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 10px;
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+	border: 1px solid black;
+	background-color: #CCC;
+	float: left;
+	padding: 1px;
+	margin: 2px;
+	text-align: right;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 10px;
+	text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 div.quickPickup div.itemSlot {
-  cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
+	cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
 }
 
 .equipment {
-  position: relative;
-  height: 200px;
-  border: 1px solid black;
-  width: 124px;
+	position: relative;
+	height: 200px;
+	border: 1px solid black;
+	width: 124px;
 }
 #head0 { position: absolute; top: 0px; left: 40px }
 #lhand0 { position: absolute; top: 50px; left: 80px }
@@ -131,46 +131,46 @@ div.quickPickup div.itemSlot {
 #pouch0 { position: absolute; top: 160px; left: 40px }
 
 #chat {
-  height: 190px;
-  border: 1px solid #000;
-  padding: 0.5em;
-  overflow-y: scroll;
-  word-wrap: break-word;
-  display: block;
-  color: #000;
-  background-color: #FFF;
-  flex: 1;
+	height: 190px;
+	border: 1px solid #000;
+	padding: 0.5em;
+	overflow-y: scroll;
+	word-wrap: break-word;
+	display: block;
+	color: #000;
+	background-color: #FFF;
+	flex: 1;
 }
 
 #zoneinfo {
-  color: #FFF;
-  background-color: #000;
+	color: #FFF;
+	background-color: #000;
 }
 
 #stats {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  width: 128px;
-  float: left;
-  font-size: 0.8em;
-  white-space: pre;
-  padding: 0.1em;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	width: 128px;
+	float: left;
+	font-size: 0.8em;
+	white-space: pre;
+	padding: 0.1em;
 }
 
 .stattext {
 }
 
 .statbar {
-  outline: 1px solid #000000;
-  height: 8px;
-  margin-left: 2px;
-  margin-right: 5px;
-  margin-bottom: 3px;
+	outline: 1px solid #000000;
+	height: 8px;
+	margin-left: 2px;
+	margin-right: 5px;
+	margin-bottom: 3px;
 }
 
 #karmabar {
-  margin-top: 0.2em;
+	margin-top: 0.2em;
 }
 
 div.logerror { color: #F00 }
@@ -191,82 +191,82 @@ div.logtutorial { color: #ac00ac }
 div.logsupport { color: #ff7200 }
 
 span.logtimestamp {
-  font-size: 8pt;
-  color: gray;
+	font-size: 8pt;
+	color: gray;
 }
 
 span.logh {
-  color: #00F
+	color: #00F
 }
 
 span.logi {
-  text-decoration: underline
+	text-decoration: underline
 }
 
 div.logcolL {
-  float: left;
-  min-width: 2.5em;
-  height: 100%;
-  white-space: pre;
+	float: left;
+	min-width: 2.5em;
+	height: 100%;
+	white-space: pre;
 }
 
 div.logcolR {
-  height: 100%;
-  overflow-y: auto;
+	height: 100%;
+	overflow-y: auto;
 }
 
 .actionmenu {
 }
 
 .actionmenu button {
-  min-width: 5em;
-  width: 100%
+	min-width: 5em;
+	width: 100%
 }
 
 .mainColumn {
-  display: flex;
-  flex-direction: column;
-  height: 99vh;
-  height: 99dvh;
+	display: flex;
+	flex-direction: column;
+	height: 99vh;
+	height: 99dvh;
 }
 
 #leftColumn {
-  float: left;
-  width: 130px;
+	float: left;
+	width: 130px;
 }
 
 #middleColumn {
-  float: left;
-  width: 640px;
-  max-width: calc(100vw - 130px - 150px - 10px);
-  background-color: #000;
+	float: left;
+	width: 640px;
+	max-width: calc(100vw - 130px - 150px - 10px);
+	background-color: #000;
 }
 
 #rightColumn {
-  float: left;
-  width: 150px;
-  overflow: auto;
+	float: left;
+	width: 150px;
+	overflow: auto;
 }
 
 .buttonColumn {
-  margin-left: 2px;
-  margin-right: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 #minimap {
-  border: 1px solid black;
-  float: left
+	border: 1px solid black;
+	float: left
 }
 
 #skullsbackground {
-  background: #000;
+	background: #000;
 }
 
 #skulls {
-  height: 1em;
-  width: 0px;
-  margin: auto;
-  background: url(/data/gui/danger.png) repeat;
+	height: 1em;
+	width: 0px;
+	margin: auto;
+	background: url(/data/gui/danger.png) repeat;
 }
 
 .group-buttons {
@@ -274,23 +274,23 @@ div.logcolR {
 }
 
 #gamewindow {
-  display: block;
-  max-height: calc(100vh - 5em);
-  max-width: calc((100vh - 5em) * 640 / 480);
-  max-height: calc(100dvh - 5em);
-  max-width: calc((100dvh - 5em) * 640 / 480);
+	display: block;
+	max-height: calc(100vh - 5em);
+	max-width: calc((100vh - 5em) * 640 / 480);
+	max-height: calc(100dvh - 5em);
+	max-width: calc((100dvh - 5em) * 640 / 480);
 }
 
 
 #bottomPanel {
-  flex: 1;
-  height: auto;
-  overflow: hidden;
+	flex: 1;
+	height: auto;
+	overflow: hidden;
 }
 
 #equipmentborder {
-  float: left;
-  width: 130px
+	float: left;
+	width: 130px
 }
 
 #bag { border: 1px solid black; width: 120px; padding: 2px; float: left }
@@ -298,161 +298,161 @@ div.logcolR {
 #portfolio { border: 1px solid black; width: 80px; padding: 2px; float: left }
 
 #chatinput {
-  width: 98%
+	width: 98%
 }
 
 .inventorypopup {
-  border: 1px solid black;
-  background-color: #FFF;
-  padding: 2px;
-  float: left
+	border: 1px solid black;
+	background-color: #FFF;
+	padding: 2px;
+	float: left
 }
 
 .inventorypopup_2 {
-  width: 80px;
+	width: 80px;
 }
 
 .inventorypopup_3 {
-  width: 120px;
+	width: 120px;
 }
 
 .inventorypopup_5 {
-  width: 200px;
+	width: 200px;
 }
 
 .popupdiv, .windowdiv {
-  x-border: 1px solid #000;
-  background-color: #FFF;
-  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
+	x-border: 1px solid #000;
+	background-color: #FFF;
+	box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
 }
 
 .popuptitle, .windowtitlebar {
-  padding: 3px;
-  border-bottom: 1px solid #777;
-  border: 1px solid #000000;
+	padding: 3px;
+	border-bottom: 1px solid #777;
+	border: 1px solid #000000;
 }
 
 .popuptitleclose, .windowtitleclose {
-  float: right;
+	float: right;
 }
 
 .popuptitleclose {
-  border: 1px solid #000000;
-  height: 100%;
-  width: 1.1em;
-  text-align: center;
+	border: 1px solid #000000;
+	height: 100%;
+	width: 1.1em;
+	text-align: center;
 }
 
 .popuptitleclose:hover {
-  background-color: #ffffff2a;
+	background-color: #ffffff2a;
 }
 
 .quantityselectorvalue {
-  width: 4em;
+	width: 4em;
 }
 
 .unselectable {
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .background {
-  background: var(--background-url);
-  color: var(--text-color);
+	background: var(--background-url);
+	color: var(--text-color);
 }
 
 .inlineblock {
-  display: inline-block;
-  vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .menugroup {
-  color: #000;
-  background: #FFF;
-  text-align: center;
+	color: #000;
+	background: #FFF;
+	text-align: center;
 }
 
 .horizontalgroup {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .verticalgroup {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
 
 .stretchgroup {
-  align-items: stretch;
+	align-items: stretch;
 }
 
 .tradepopup {
-  width: 210px;
+	width: 210px;
 }
 
 #trade-partner-column {
-  float: left;
-  margin-right: 20px;
+	float: left;
+	margin-right: 20px;
 }
 
 .trade-column {
-  text-align:center;
+	text-align:center;
 }
 
 #trade-partner-status, #trade-my-status {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .trade-NO_ACTIVE_TRADE {
-  color: #AAA;
+	color: #AAA;
 }
 
 .trade-MAKING_OFFERS {
-  color: #AAA;
+	color: #AAA;
 }
 .trade-LOCKED {
-  color: #FFF;
+	color: #FFF;
 }
 .trade-DEAL_WAITING_FOR_OTHER_DEAL {
-  color: #0A0;
+	color: #0A0;
 }
 
 #trade-cancel {
-  display: block;
-  margin-left: auto;
+	display: block;
+	margin-left: auto;
 }
 
 .tavellogtabpanel {
 }
 
 .tlog_hlayout {
-  width: 40em;
-  height: 25em;
+	width: 40em;
+	height: 25em;
 }
 
 .tlog_rpane {
-  float: top;
-  height: 100%;
-  margin-left: 15em;
-  overflow-y: auto;
+	float: top;
+	height: 100%;
+	margin-left: 15em;
+	overflow-y: auto;
 }
 
 .travellogitems {
-  float: left;
-  width: 15em;
-  margin-top: 1em;
+	float: left;
+	width: 15em;
+	margin-top: 1em;
 }
 
 .travellogdetails {
-  float: left;
-  margin-top: 1em;
+	float: left;
+	margin-top: 1em;
 }
 
 .travellogdescription {
-  font-style: italic;
+	font-style: italic;
 }
 
 .imageviewer h3 {
@@ -484,41 +484,41 @@ div.logcolR {
 }
 
 .shopsign {
-  min-width: 35em;
-  max-width: 40em;
-  height: 23em;
-  overflow-y: auto;
+	min-width: 35em;
+	max-width: 40em;
+	height: 23em;
+	overflow-y: auto;
 }
 
 .shopcaption {
 }
 
 .shoplist {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
 }
 
 .shoprow {
-  width: 100%;
-  height: 3em;
+	width: 100%;
+	height: 3em;
 }
 
 .shopcol {
-  float: left;
-  border-style: solid;
-  border-width: 1px;
-  height: 100%;
+	float: left;
+	border-style: solid;
+	border-width: 1px;
+	height: 100%;
 }
 
 .shopcolr {
-  flex: 1;
+	flex: 1;
 }
 
 .bestiary {
-  min-width: 35em;
-  height: 23em;
-  overflow-y: scroll;
+	min-width: 35em;
+	height: 23em;
+	overflow-y: scroll;
 }
 
 .progressbar {
@@ -547,93 +547,93 @@ div.logcolR {
 }
 
 .dialogcontents {
-  padding: 9px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #000000;
+	padding: 9px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000000;
 }
 
 .dialogbuttons {
-  margin-left: auto;
-  margin-right: 0px;
+	margin-left: auto;
+	margin-right: 0px;
 }
 
 .checksetting {
-  margin-left: 0px;
-  margin-right: auto;
+	margin-left: 0px;
+	margin-right: auto;
 }
 
 .vgroupcol {
-  margin-bottom:auto;
-  margin-top:0px;
+	margin-bottom:auto;
+	margin-top:0px;
 }
 
 .vgroupcolr {
-  margin-bottom: auto;
-  margin-top: 0px;
-  padding-left: 15px;
+	margin-bottom: auto;
+	margin-top: 0px;
+	padding-left: 15px;
 }
 
 .btnleft {
-  margin-right: 5px;
+	margin-right: 5px;
 }
 
 .tally {
-  font-family: Tally;
+	font-family: Tally;
 }
 
 .menubutton, .emojibutton {
-  margin: 2px;
+	margin: 2px;
 }
 
 @font-face {
-  font-family: Amaranth;
-  src: url("/data/font/Amaranth-Regular.ttf");
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Regular.ttf");
 }
 @font-face {
-  font-family: Amaranth;
-  src: url("/data/font/Amaranth-Italic.ttf");
-  font-style: italic;
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Italic.ttf");
+	font-style: italic;
 }
 @font-face {
-  font-family: Amaranth;
-  src: url("/data/font/Amaranth-Bold.ttf");
-  font-weight: bold;
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Bold.ttf");
+	font-weight: bold;
 }
 @font-face {
-  font-family: Amaranth;
-  src: url("/data/font/Amaranth-BoldItalic.ttf");
-  font-style: italic;
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: Black Chancery;
-  src: url("/data/font/BlackChancery.ttf");
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-BoldItalic.ttf");
+	font-style: italic;
+	font-weight: bold;
 }
 
 @font-face {
-  font-family: Carlito;
-  src: url("/data/font/Carlito-Regular.ttf");
-}
-@font-face {
-  font-family: Carlito;
-  src: url("/data/font/Carlito-Italic.ttf");
-  font-style: italic;
-}
-@font-face {
-  font-family: Carlito;
-  src: url("/data/font/Carlito-Bold.ttf");
-  font-weight: bold;
-}
-@font-face {
-  font-family: Carlito;
-  src: url("/data/font/Carlito-BoldItalic.ttf");
-  font-style: italic;
-  font-weight: bold;
+	font-family: Black Chancery;
+	src: url("/data/font/BlackChancery.ttf");
 }
 
 @font-face {
-  font-family: Tally;
-  src: url("/data/font/Tally.ttf");
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Regular.ttf");
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Italic.ttf");
+	font-style: italic;
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Bold.ttf");
+	font-weight: bold;
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-BoldItalic.ttf");
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Tally;
+	src: url("/data/font/Tally.ttf");
 }
