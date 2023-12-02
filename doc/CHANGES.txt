@@ -28,7 +28,7 @@ Changelog
 - fixed entity action context menus in web client using touch
 - fixed drawing "confused" & "shocked" statuses in webclient
 - fixed closing web client dialog windows using touch event
-- fixed drag and drop corpses and items in web client gamewindow
+- fixed touch drag and drop corpses and items in web client gamewindow
 
 *clients*
 - webclient now has an optional on-screen joystick
