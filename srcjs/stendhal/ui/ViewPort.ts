@@ -377,6 +377,10 @@ export class ViewPort {
 		}
 
 		mHandle.onDrag = function(e: MouseEvent) {
+			if (stendhal.ui.touch.isTouchEvent(e)) {
+				stendhal.ui.gamewindow.onDragStart(e);
+			}
+
 			var pos = stendhal.ui.html.extractPosition(e);
 			var xDiff = startX - pos.offsetX;
 			var yDiff = startY - pos.offsetY;
@@ -531,6 +535,8 @@ export class ViewPort {
 
 			stendhal.ui.gamewindow.onDrop(e);
 			stendhal.ui.touch.unsetHeldItem();
+		} else {
+			stendhal.ui.gamewindow.onDrop(e);
 		}
 	}
 
