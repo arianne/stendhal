@@ -260,7 +260,9 @@ export class ItemContainerImplementation {
 		}
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
-			if (this.quickPickup) {
+			const long_touch = stendhal.ui.touch.isLongTouch();
+			const context_action = (evt instanceof MouseEvent && this.isRightClick(evt)) || long_touch;
+			if (this.quickPickup && !context_action) {
 				marauroa.clientFramework.sendAction({
 					type: "equip",
 					"source_path": (event.target as any).dataItem.getIdPath(),
@@ -271,7 +273,6 @@ export class ItemContainerImplementation {
 				return;
 			}
 
-			const long_touch = stendhal.ui.touch.isLongTouch();
 			if (this.isRightClick(event) || long_touch) {
 				const append = [];
 				if (window['TouchEvent'] && evt instanceof TouchEvent && long_touch) {
