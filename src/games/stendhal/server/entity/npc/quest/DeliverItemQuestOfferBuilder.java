@@ -125,10 +125,9 @@ public class DeliverItemQuestOfferBuilder extends QuestOfferBuilder<DeliverItemQ
 					null);
 		}
 
-		final List<ChatAction> start = new LinkedList<ChatAction>();
-		start.add(new SetQuestAction(questSlot, 0, "start"));
+		ChatAction startAction = new SetQuestAction(questSlot, 0, "start");
 		if (startQuestAction != null) {
-			start.add(startQuestAction);
+			startAction = startQuestAction;
 		}
 
 		npc.add(
@@ -137,7 +136,7 @@ public class DeliverItemQuestOfferBuilder extends QuestOfferBuilder<DeliverItemQ
 				null,
 				ConversationStates.ATTENDING,
 				null,
-				new MultipleActions(start));
+				startAction);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
