@@ -220,11 +220,15 @@ export class ItemContainerImplementation {
 
 			stendhal.ui.heldItem = undefined;
 
-			// if ctrl is pressed, we ask for the quantity
-			if (event instanceof DragEvent && event.ctrlKey) {
+			// if ctrl is pressed or using touch, we ask for the quantity
+			const is_touch = window["TouchEvent"] && event instanceof TouchEvent;
+			const split_action = (event instanceof DragEvent && event.ctrlKey)
+					|| is_touch;
+			if (split_action) {
+				const pos = stendhal.ui.html.extractPosition(event);
 				ui.createSingletonFloatingWindow("Quantity",
-					new DropQuantitySelectorDialog(action),
-					event.pageX - 50, event.pageY - 25);
+					new DropQuantitySelectorDialog(action, is_touch),
+					pos.pageX - 50, pos.pageY - 25);
 			} else {
 				marauroa.clientFramework.sendAction(action);
 			}
