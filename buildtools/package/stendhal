@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar /opt/stendhal/lib/app/stendhal-starter.jar $*
