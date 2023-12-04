@@ -15,7 +15,7 @@ import { RPEntity } from "../../entity/RPEntity";
 declare var stendhal: any;
 
 
-export class MeleeAttackSprite extends ActionSprite {
+export class BarehandAttackSprite extends ActionSprite {
 
 	private readonly dir: number;
 	private readonly image: HTMLImageElement;
@@ -33,12 +33,12 @@ export class MeleeAttackSprite extends ActionSprite {
 			return;
 		}
 
-		//~ const dtime = Date.now() - this.initTime;
-		//~ const frameIndex = Math.floor(Math.min(dtime / 60, 3));
-		const drawWidth = this.image.width;
-		const drawHeight = this.image.height;
-		var centerX = x + (entityWidth - drawWidth) / 2;
-		var centerY = y + (entityHeight - drawHeight) / 2;
+		const dtime = Date.now() - this.initTime;
+		const frameIndex = Math.floor(Math.min(dtime / 60, 3));
+		const drawWidth = this.image.width / 3;
+		const drawHeight = this.image.height / 4;
+		const centerX = x + (entityWidth - drawWidth) / 2;
+		const centerY = y + (entityHeight - drawHeight) / 2;
 
 		// offset sprite for facing direction
 		let sx, sy;
@@ -64,6 +64,7 @@ export class MeleeAttackSprite extends ActionSprite {
 				sy = centerY;
 		}
 
-		ctx.drawImage(this.image, 0, 0, drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
+		ctx.drawImage(this.image, frameIndex * drawWidth, (this.dir - 1) * drawHeight,
+				drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
 	}
 }

@@ -22,6 +22,7 @@ import { EmojiSprite } from "../sprite/EmojiSprite";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 
+import { BarehandAttackSprite } from "../sprite/action/BarehandAttackSprite";
 import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
 import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
@@ -771,17 +772,14 @@ export class RPEntity extends ActiveEntity {
 			if (weapon === "blade_strike" && nature == 0) {
 				weapon += "_cut";
 			}
-			let image: HTMLImageElement;
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
 			if (weapon.startsWith("blade_strike")) {
-				image = stendhal.data.sprites.get(imagePath);
+				this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
 			} else {
 				const entity_rot = 90 * (this["dir"] - 1);
 				// TODO: rotate left & right 45 degrees & offset to center on entity
-				image = stendhal.data.sprites.getRotated(imagePath, entity_rot);
+				this.attackSprite = new MeleeAttackSprite(this, stendhal.data.sprites.getRotated(imagePath, entity_rot));
 			}
-
-			this.attackSprite = new MeleeAttackSprite(this, image, weapon.startsWith("blade_strike"));
 		}
 	}
 
