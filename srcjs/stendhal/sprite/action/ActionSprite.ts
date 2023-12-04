@@ -9,17 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
-//~ import { RPEntity } from "../../entity/RPEntity";
-
 
 export abstract class ActionSprite {
 
-	//~ protected readonly entity: RPEntity;
 	protected readonly initTime: number;
 
 
 	constructor() {
-		//~ this.entity = entity;
 		this.initTime = Date.now();
 	}
 
