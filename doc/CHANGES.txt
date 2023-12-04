@@ -33,6 +33,7 @@ Changelog
 *clients*
 - webclient now has an optional on-screen joystick
 - added emoji map to webclient
+- webclient displays character name in title
 
 
 1.44
