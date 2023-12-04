@@ -29,6 +29,7 @@ Changelog
 - fixed drawing "confused" & "shocked" statuses in webclient
 - fixed closing web client dialog windows using touch event
 - fixed touch drag and drop corpses and items in web client gamewindow
+- weapon style attack sprites rotate with entity in web client
 
 *clients*
 - webclient now has an optional on-screen joystick
