@@ -836,19 +836,27 @@ export class RPEntity extends ActiveEntity {
 			if (weapon === "blade_strike" && nature == 0) {
 				weapon += "_cut";
 			}
+			let image: HTMLImageElement;
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
+			if (weapon.startsWith("blade_strike")) {
+				image = stendhal.data.sprites.get(imagePath);
+			} else {
+				const entity_rot = 90 * (this["dir"] - 1);
+				// TODO: rotate left & right 45 degrees & offset to center on entity
+				image = stendhal.data.sprites.getRotated(imagePath, entity_rot);
+			}
 
-			this.attackSprite = (function(imagePath, _ranged, dir) {
+			this.attackSprite = (function(image, _ranged, dir) {
 				return {
 					initTime: Date.now(),
-					image: stendhal.data.sprites.get(imagePath),
+					image: image,
 					frame: 0,
 					barehand: weapon.startsWith("blade_strike"),
 					expired: function() {
 						return Date.now() - this.initTime > 180;
 					},
 					draw: function(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number, entityHeight: number) {
-						if (!this.image.height) {
+						if (!this.image || !this.image.height) {
 							return;
 						}
 
@@ -918,7 +926,7 @@ export class RPEntity extends ActiveEntity {
 						}
 					}
 				};
-			})(imagePath, ranged, this["dir"]);
+			})(image, ranged, this["dir"]);
 		}
 	}
 
