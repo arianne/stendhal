@@ -82,6 +82,8 @@ export class SessionManager {
 	 */
 	setCharName(charname: string) {
 		this.charname = charname;
+		// display character name in browser title/tab
+		document.title = "Stendhal - " + this.charname;
 	}
 
 	/**
