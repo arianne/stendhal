@@ -16,10 +16,15 @@ import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { Color } from "../util/Color";
 import { Nature } from "../util/Nature";
+
 import { Floater } from "../sprite/Floater";
 import { EmojiSprite } from "../sprite/EmojiSprite";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
+
+import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
+import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
+
 import { SoundManager } from "../ui/SoundManager";
 import { ImageWithDimensions } from "data/ImageWithDimensions";
 
@@ -751,84 +756,9 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	onAttackPerformed(nature: number, ranged: boolean, weapon?: string) {
-		const tileW = stendhal.ui.gamewindow.targetTileWidth;
-		const tileH = stendhal.ui.gamewindow.targetTileHeight;
-
 		if (ranged) {
-			let color = Nature.VALUES[nature].color;
-			var tgt = this.getAttackTarget()!;
-			this.attackSprite = (function(color, targetX, targetY, dir) {
-				return {
-					initTime: Date.now(),
-					image: stendhal.data.sprites.get(stendhal.paths.sprites + "/combat/ranged.png"),
-					expired: function() {
-						return Date.now() - this.initTime > 180;
-					},
-					draw: function(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number, entityHeight: number) {
-						// FIXME: alignment with entity is not correct
-
-						var dtime = Date.now() - this.initTime;
-						// We can use fractional "frame" for the lines. Just
-						// draw the arrow where it should be at the moment.
-						var frame = Math.min(dtime / 60, 4);
-
-						var startX = x + entityWidth / 4;
-						var startY = y + entityHeight / 4;
-
-						var yLength = (targetY - startY) / 4;
-						var xLength = (targetX - startX) / 4;
-
-						startY += frame * yLength;
-						var endY = startY + yLength;
-						startX += frame * xLength;
-						var endX = startX + xLength;
-
-						ctx.strokeStyle = color;
-						ctx.lineWidth = 2;
-						ctx.moveTo(startX, startY);
-						ctx.lineTo(endX, endY);
-						ctx.stroke();
-
-						// draw bow
-						if (ranged && weapon === "ranged" && this.image.height) {
-							frame = Math.floor(Math.min(dtime / 60, 3));
-							const yRow = dir - 1;
-							const drawWidth = this.image.width / 3;
-							const drawHeight = this.image.height / 4;
-
-							const centerX = x + (entityWidth - drawWidth) / 2;
-							const centerY = y + (entityHeight - drawHeight) / 2;
-
-							// offset sprite for facing direction
-							let sx, sy;
-							switch (dir+"") {
-								case "1": // UP
-									sx = centerX + (tileW / 2);
-									sy = y - (tileH * 1.5);
-									break;
-								case "3": // DOWN
-									sx = centerX;
-									sy = y + entityHeight - drawHeight + (tileH / 2);
-									break;
-								case "4": // LEFT
-									sx = x - (tileW / 2);
-									sy = centerY - (tileH / 2);
-									break;
-								case "2": // RIGHT
-									sx = x + entityWidth - drawWidth + (tileW / 2);
-									sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
-									break;
-								default:
-									sx = centerX;
-									sy = centerY;
-							}
-
-							ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
-									drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
-						}
-					}
-				};
-			})(color, (tgt.x + tgt.width / 2) * 32, (tgt.y + tgt.height / 2) * 32, this["dir"]);
+			this.attackSprite = new RangedAttackSprite(this, this.getAttackTarget()!,
+					Nature.VALUES[nature].color, weapon);
 		} else {
 			if (typeof(weapon) === "undefined") {
 				weapon = "blade_strike";
@@ -846,68 +776,7 @@ export class RPEntity extends ActiveEntity {
 				image = stendhal.data.sprites.getRotated(imagePath, entity_rot);
 			}
 
-			this.attackSprite = (function(image, _ranged, dir) {
-				return {
-					initTime: Date.now(),
-					image: image,
-					frame: 0,
-					barehand: weapon.startsWith("blade_strike"),
-					expired: function() {
-						return Date.now() - this.initTime > 180;
-					},
-					draw: function(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number, entityHeight: number) {
-						if (!this.image || !this.image.height) {
-							return;
-						}
-
-						const dtime = Date.now() - this.initTime;
-						const frameIndex = Math.floor(Math.min(dtime / 60, 3));
-
-						let yRow, frame, drawWidth, drawHeight;
-						if (this.barehand) {
-							yRow = dir - 1;
-							frame = frameIndex;
-							drawWidth = this.image.width / 3;
-							drawHeight = this.image.height / 4;
-						} else {
-							yRow = 0;
-							frame = 0;
-							drawWidth = this.image.width;
-							drawHeight = this.image.height;
-						}
-
-						var centerX = x + (entityWidth - drawWidth) / 2;
-						var centerY = y + (entityHeight - drawHeight) / 2;
-
-						// offset sprite for facing direction
-						let sx, sy;
-						switch (dir+"") {
-							case "1": // UP
-								sx = centerX + (tileW / 2);
-								sy = y - (tileH * 1.5);
-								break;
-							case "3": // DOWN
-								sx = centerX;
-								sy = y + entityHeight - drawHeight + (tileH / 2);
-								break;
-							case "4": // LEFT
-								sx = x - (tileW / 2);
-								sy = centerY - (tileH / 2);
-								break;
-							case "2": // RIGHT
-								sx = x + entityWidth - drawWidth + (tileW / 2);
-								sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
-								break;
-							default:
-								sx = centerX;
-								sy = centerY;
-						}
-
-						ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
-								drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
-					}
-				};
-			})(image, ranged, this["dir"]);
+			this.attackSprite = new MeleeAttackSprite(this, image, weapon.startsWith("blade_strike"));
 		}
 	}
 
