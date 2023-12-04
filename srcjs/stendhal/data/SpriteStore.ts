@@ -126,6 +126,61 @@ export class SpriteStore {
 	}
 
 	/**
+	 * Rotates an image.
+	 *
+	 * @param img
+	 *   Image to be rotated.
+	 * @param angle
+	 *   Angle of rotation.
+	 */
+	private rotate(img: HTMLImageElement, angle: number) {
+		const canvas = <HTMLCanvasElement> document.getElementById("drawing-stage")!;
+		const ctx = canvas.getContext("2d")!;
+		// make sure working with blank canvas
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		canvas.width = img.width;
+		canvas.height = img.height;
+
+		ctx.translate(canvas.width / 2, canvas.height / 2);
+		ctx.rotate(angle * Math.PI / 180);
+		ctx.translate(-canvas.width / 2, -canvas.height / 2);
+		ctx.drawImage(img, 0, 0);
+
+		img.src = canvas.toDataURL("image/png");
+	}
+
+	/**
+	 * Retrieves a rotated image.
+	 *
+	 * @param filename
+	 *   Path to target image file.
+	 * @param angle
+	 *   Angle of rotation.
+	 * @return
+	 *   HTMLImageElement.
+	 */
+	getRotated(filename: string, angle: number): any {
+		if (angle == 0) {
+			return this.get(filename);
+		}
+		const id = filename + "-rot" + angle;
+		if (this.images[id]) {
+			return this.images[id];
+		}
+		const img = this.get(filename).cloneNode();
+		if (img.complete) {
+			this.rotate(img, angle);
+		} else {
+			img.onload = () => {
+				this.rotate(img, angle);
+				img.onload = undefined;
+			}
+		}
+		this.images[id] = img;
+		return img;
+	}
+
+	/**
 	 * Used when we only want an image if it was previously cached.
 	 *
 	 * @param filename
