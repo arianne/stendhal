@@ -862,7 +862,6 @@ export class RPEntity extends ActiveEntity {
 
 						const dtime = Date.now() - this.initTime;
 						const frameIndex = Math.floor(Math.min(dtime / 60, 3));
-						let rotation = 0;
 
 						let yRow, frame, drawWidth, drawHeight;
 						if (this.barehand) {
@@ -890,40 +889,22 @@ export class RPEntity extends ActiveEntity {
 							case "3": // DOWN
 								sx = centerX;
 								sy = y + entityHeight - drawHeight + (tileH / 2);
-								rotation = 180;
 								break;
 							case "4": // LEFT
 								sx = x - (tileW / 2);
 								sy = centerY - (tileH / 2);
-								rotation = -90;
 								break;
 							case "2": // RIGHT
 								sx = x + entityWidth - drawWidth + (tileW / 2);
 								sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
-								rotation = 90;
 								break;
 							default:
 								sx = centerX;
 								sy = centerY;
 						}
 
-						const rotated = !this.barehand && rotation != 0;
-						if (rotated) {
-							ctx.save();
-							// FIXME: rotate correctly for direction & frame
-							/*
-							ctx.translate(sx + (drawWidth / 2) - stendhal.ui.gamewindow.offsetX,
-									sy + (drawHeight / 2) - stendhal.ui.gamewindow.offsetY);
-							ctx.rotate(rotation * Math.PI / 180);
-							*/
-						}
-
 						ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
 								drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
-
-						if (rotated) {
-							ctx.restore();
-						}
 					}
 				};
 			})(image, ranged, this["dir"]);
