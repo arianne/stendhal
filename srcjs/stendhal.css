@@ -586,6 +586,10 @@ div.logcolR {
 	margin: 2px;
 }
 
+canvas#drawing-stage {
+	display: none;
+}
+
 @font-face {
 	font-family: Amaranth;
 	src: url("/data/font/Amaranth-Regular.ttf");
