@@ -756,6 +756,11 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	onAttackPerformed(nature: number, ranged: boolean, weapon?: string) {
+		if (!ranged && weapon === "ranged") {
+			// draw default melee sprite when next to target
+			weapon = undefined;
+		}
+
 		if (ranged) {
 			this.attackSprite = new RangedAttackSprite(this, this.getAttackTarget()!,
 					Nature.VALUES[nature].color, weapon);
