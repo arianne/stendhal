@@ -20,21 +20,25 @@ Changelog
 - made coupon item stackable
 - Alice Farmer includes grilled steak in the foods she lists
 
+*web client*
+- now has an optional on-screen joystick
+- added emoji map
+- displays character name in browser title/tab
+
 *bugfixes*
 - deathmatch cannot be restarted while active
-- fixed positioning of emojis in Java client
-- fixed media autoplay in Android client
-- fixed closing Android client with "quit" menu button
-- fixed entity action context menus in web client using touch
-- fixed drawing "confused" & "shocked" statuses in webclient
-- fixed closing web client dialog windows using touch event
-- fixed touch drag and drop corpses and items in web client gamewindow
-- weapon style attack sprites rotate with entity in web client
-
-*clients*
-- webclient now has an optional on-screen joystick
-- added emoji map to webclient
-- webclient displays character name in title
+- Java client:
+  - fixed positioning of emojis
+- Android client:
+  - fixed media autoplay
+  - fixed closing with "quit" menu button
+- web client:
+  - fixed entity action context menus using touch
+  - fixed drawing "confused" & "shocked" statuses
+  - fixed closing dialog windows using touch event
+  - fixed touch drag and drop corpses and items in viewport
+  - weapon style attack sprites rotate with entity
+  - draws melee sprite when using ranged weapon next to target
 
 
 1.44
