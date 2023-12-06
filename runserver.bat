@@ -29,15 +29,12 @@ for %%A in (%*) do (
 )
 
 if exist "%SERVER_JAR%" (
-	echo Executing server from .jar ...
-
-	java -Xmx400m %vm_args% -jar "%SERVER_JAR%" %app_args%
+	set LOCALCLASSPATH=.\%SERVER_JAR%;.\libs\*
 ) else (
-	echo Executing server from source root ...
-
 	set LOCALCLASSPATH=.;.\build\build_server;.\build\build_server_maps;.\build\build_server_script;.\build\build_server_xmlconf;.\libs\*;
-	java -Xmx400m -cp "%LOCALCLASSPATH%" %vm_args% games.stendhal.server.StendhalServer %app_args%
 )
+
+java -Xmx400m -cp "%LOCALCLASSPATH%" %vm_args% games.stendhal.server.StendhalServer %app_args%
 
 :end
 @pause
