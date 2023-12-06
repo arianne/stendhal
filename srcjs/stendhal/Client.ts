@@ -146,7 +146,7 @@ export class Client {
 
 		let port: number|null = null;
 		if (stendhal.session.isTestClient() && !stendhal.config.getBoolean("connection.testserver")) {
-			port = 8080;
+			port = 443;
 		}
 		marauroa.clientFramework.connect(null, port, Paths.ws.substring(1));
 
