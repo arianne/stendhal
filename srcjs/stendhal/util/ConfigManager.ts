@@ -53,7 +53,9 @@ export class ConfigManager {
 		//"input.doubleclick": "false",
 		"action.item.doubleclick": "false",
 		"action.inventory.quickpickup": "true",
-		"event.pvtmsg.sound": "ui/notify_up"
+		"event.pvtmsg.sound": "ui/notify_up",
+		// test client only
+		"connection.testserver": "true"
 	} as {[id: string]: string};
 
 	private themes = {

@@ -143,7 +143,12 @@ export class Client {
 
 		this.registerMarauroaEventHandlers();
 		this.registerBrowserEventHandlers();
-		marauroa.clientFramework.connect(null, null, Paths.ws.substring(1));
+
+		let port: number|null = null;
+		if (stendhal.session.isTestClient() && !stendhal.config.getBoolean("connection.testserver")) {
+			port = 8080;
+		}
+		marauroa.clientFramework.connect(null, port, Paths.ws.substring(1));
 
 		stendhal.ui.actionContextMenu = new DialogHandler();
 		stendhal.ui.globalInternalWindow = new DialogHandler();

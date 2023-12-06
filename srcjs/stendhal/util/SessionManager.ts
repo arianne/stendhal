@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 
 export class SessionManager {
 
@@ -94,5 +96,12 @@ export class SessionManager {
 	 */
 	getCharName(): string {
 		return this.charname || "";
+	}
+
+	/**
+	 * Detects if test client is being used based on data path.
+	 */
+	isTestClient(): boolean {
+		return stendhal.paths.data === "/testdata";
 	}
 }
