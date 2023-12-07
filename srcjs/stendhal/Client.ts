@@ -146,7 +146,7 @@ export class Client {
 
 		let ws = Paths.ws.substring(1);
 		if (stendhal.session.isTestClient() && !stendhal.config.getBoolean("connection.testserver")) {
-			ws = ws.replace(/s/, "t");
+			ws = ws.replace(/t/, "s");
 		}
 		marauroa.clientFramework.connect(null, null, ws);
 
