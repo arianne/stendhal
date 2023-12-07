@@ -15,9 +15,9 @@ for %%A in (%*) do (
 	set arg=%%A
 	if ["-D"] == ["!arg:~0,2!"] (
 		if [] == [!vm_args!] (
-			call set vm_args=!arg!
+			set vm_args=!arg!
 		) else (
-			call set vm_args=!vm_args! !arg!
+			set vm_args=!vm_args! !arg!
 		)
 	) else (
 		if [] == [!app_args!] (
