@@ -24,6 +24,7 @@ Changelog
 - now has an optional on-screen joystick
 - added emoji map
 - displays character name in browser title/tab
+- status panel displays status effects
 
 *bugfixes*
 - deathmatch cannot be restarted while active

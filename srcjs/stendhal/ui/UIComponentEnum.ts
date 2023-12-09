@@ -36,6 +36,7 @@ export class UIComponentEnum {
 	public static readonly ZoneInfo = 109;
 	public static readonly PlayerStats = 110;
 	public static readonly SocialPanel = 111;
+	public static readonly StatusesList = 112;
 
 
 	// Dialog

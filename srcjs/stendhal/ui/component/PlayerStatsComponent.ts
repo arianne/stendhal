@@ -9,8 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
+import { StatusesListComponent } from "./StatusesListComponent";
 import { StatBarComponent } from "./StatBarComponent";
 import { KarmaBarComponent } from "./KarmaBarComponent";
+
+import { ui } from "../UI";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Component } from "../toolkit/Component";
 
@@ -51,6 +55,9 @@ export class PlayerStatsComponent extends Component {
 			const exp = Math.floor((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
 			this.xp[i + 1] = exp;
 		}
+
+		const statuses = new StatusesListComponent();
+		ui.registerComponent(UIComponentEnum.StatusesList, statuses);
 
 		this.hpText = this.child("#hptext")!;
 		this.otherText = this.child("#otherstats")!;

@@ -590,6 +590,11 @@ canvas#drawing-stage {
 	display: none;
 }
 
+img.status-icon {
+	margin-left: 2px;
+	margin-top: 2px;
+}
+
 @font-face {
 	font-family: Amaranth;
 	src: url("/data/font/Amaranth-Regular.ttf");

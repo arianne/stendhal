@@ -24,6 +24,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { PlayerStatsComponent } from "../ui/component/PlayerStatsComponent";
+import { StatusesListComponent } from "../ui/component/StatusesListComponent";
 
 import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
@@ -69,6 +70,15 @@ export class User extends Player {
 			(ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent).update(key);
 			(ui.get(UIComponentEnum.Bag) as ItemInventoryComponent).update();
 			(ui.get(UIComponentEnum.Keyring) as ItemInventoryComponent).update();
+			(ui.get(UIComponentEnum.StatusesList) as StatusesListComponent).update(this);
+		});
+	}
+
+	override unset(key: string) {
+		super.unset(key);
+
+		queueMicrotask( () => {
+			(ui.get(UIComponentEnum.StatusesList) as StatusesListComponent).update(this);
 		});
 	}
 
