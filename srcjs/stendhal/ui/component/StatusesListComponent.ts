@@ -19,6 +19,7 @@ declare var stendhal: any;
 export class StatusesListComponent extends Component {
 
 	private static readonly iconPaths: {[index: string]: string} = {
+		"choking": "/ideas/choking.png",
 		"eating": "/ideas/eat.png"
 	};
 
@@ -33,7 +34,7 @@ export class StatusesListComponent extends Component {
 	public update(user: User) {
 		const changes: string[] = [];
 		for (const key of Object.keys(user)) {
-			if (key === "eating") {
+			if (Object.keys(StatusesListComponent.iconPaths).indexOf(key) !== -1) {
 				changes.push(key);
 			} else if (key === "poisoned") {
 				changes.push("poison");
@@ -56,7 +57,12 @@ export class StatusesListComponent extends Component {
 			// remove old icons
 			this.componentElement.removeChild(icon);
 		}
+		const choking = this.active.indexOf("choking") !== -1;
 		for (const id of this.active) {
+			if (id === "eating" && choking) {
+				// don't show "eating" & "choking" at the same time
+				continue;
+			}
 			let iconPath: string;
 			if (Object.keys(StatusesListComponent.iconPaths).indexOf(id) !== -1) {
 				iconPath = stendhal.paths.sprites + StatusesListComponent.iconPaths[id];
