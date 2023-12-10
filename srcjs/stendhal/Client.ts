@@ -147,6 +147,10 @@ export class Client {
 		let ws = Paths.ws.substring(1);
 		if (stendhal.session.isTestClient() && !stendhal.config.getBoolean("connection.testserver")) {
 			ws = ws.replace(/t/, "s");
+			// disclaimer for using the test client on the main server
+			Chat.log("warning", "WARNING: You are connecting to the production server with a development"
+					+ " build of the test client which may contain bugs or not function as intented. Proceeed"
+					+ " with caution.");
 		}
 		marauroa.clientFramework.connect(null, null, ws);
 
