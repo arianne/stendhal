@@ -374,6 +374,7 @@ export class Client {
 		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
 		// handles closing the context menu
+		// FIXME: does not work for "touchstart" as it prevents actions on the context menu
 		document.addEventListener("mousedown", function(e) {
 			if (stendhal.ui.actionContextMenu.isOpen()) {
 				stendhal.ui.actionContextMenu.close(true);
