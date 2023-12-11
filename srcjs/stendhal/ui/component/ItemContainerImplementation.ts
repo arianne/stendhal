@@ -177,7 +177,7 @@ export class ItemContainerImplementation {
 			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
 				event.dataTransfer.setDragImage(img, 0, 0);
-			} else if (event instanceof TouchEvent) {
+			} else if (stendhal.ui.touch.isTouchEvent(event)) {
 				stendhal.ui.touch.setHeldItem(img);
 			}
 		} else {
