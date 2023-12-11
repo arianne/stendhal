@@ -14,6 +14,8 @@ declare var stendhal: any;
 
 export class TouchHandler {
 
+	private touchEngaged = false;
+
 	private readonly longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
@@ -52,6 +54,7 @@ export class TouchHandler {
 	 */
 	onTouchStart() {
 		this.timestampTouchStart = +new Date();
+		this.touchEngaged = true;
 	}
 
 	/**
@@ -59,6 +62,14 @@ export class TouchHandler {
 	 */
 	onTouchEnd() {
 		this.timestampTouchEnd = +new Date();
+		this.touchEngaged = false;
+	}
+
+	/**
+	 * Can be used to detect if a mouse event was triggered by touch.
+	 */
+	isTouchEngaged() {
+		return this.touchEngaged;
 	}
 
 	/**
