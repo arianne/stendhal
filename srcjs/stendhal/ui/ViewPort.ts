@@ -516,7 +516,7 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
-			const touch_held = stendhal.ui.touchholdingItem();
+			const touch_held = stendhal.ui.touch.holdingItem();
 			// if ctrl is pressed or holding item from touch event, we ask for the quantity
 			if (e.ctrlKey || touch_held) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
