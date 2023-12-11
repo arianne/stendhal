@@ -68,7 +68,7 @@ export class TouchHandler {
 	/**
 	 * Can be used to detect if a mouse event was triggered by touch.
 	 */
-	isTouchEngaged() {
+	isTouchEngaged(): boolean {
 		return this.touchEngaged;
 	}
 
