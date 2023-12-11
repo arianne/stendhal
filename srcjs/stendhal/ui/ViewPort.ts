@@ -368,6 +368,8 @@ export class ViewPort {
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
+			} else if (stendhal.ui.touch.holdingItem()) {
+				stendhal.ui.gamewindow.onDrop(e);
 			} else {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
 			}
@@ -514,7 +516,7 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
-			const touch_held = typeof(stendhal.ui.touch.held) !== "undefined";
+			const touch_held = stendhal.ui.touchholdingItem();
 			// if ctrl is pressed or holding item from touch event, we ask for the quantity
 			if (e.ctrlKey || touch_held) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
@@ -524,20 +526,6 @@ export class ViewPort {
 		}
 		e.stopPropagation();
 		e.preventDefault();
-	}
-
-	onTouchEnd(e: TouchEvent) {
-		stendhal.ui.touch.onTouchEnd();
-		if (stendhal.ui.touch.held) {
-			// don't call this.onMouseUp
-			// FIXME: not preventing default action
-			e.preventDefault();
-
-			stendhal.ui.gamewindow.onDrop(e);
-			stendhal.ui.touch.unsetHeldItem();
-		} else {
-			stendhal.ui.gamewindow.onDrop(e);
-		}
 	}
 
 	onContentMenu(e: MouseEvent) {

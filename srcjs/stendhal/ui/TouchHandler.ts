@@ -104,6 +104,13 @@ export class TouchHandler {
 	}
 
 	/**
+	 * Checks if there is currently an item being held.
+	 */
+	holdingItem(): boolean {
+		return this.held != undefined && this.held != null;
+	}
+
+	/**
 	 * Draws representation of a held item.
 	 *
 	 * @param ctx
