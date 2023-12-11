@@ -171,7 +171,8 @@ export class ItemContainerImplementation {
 			stendhal.ui.heldItem = {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName,
-				slot: this.slot
+				slot: this.slot,
+				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
 			} as any;
 
 			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);

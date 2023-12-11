@@ -467,13 +467,15 @@ export class ViewPort {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
 			stendhal.ui.heldItem = {
 				path: draggedEntity.getIdPath(),
-				zone: marauroa.currentZoneName
+				zone: marauroa.currentZoneName,
+				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
 			stendhal.ui.heldItem = {
 				path: draggedEntity.getIdPath(),
-				zone: marauroa.currentZoneName
+				zone: marauroa.currentZoneName,
+				quantity: 1
 			}
 		} else {
 			e.preventDefault();
@@ -513,11 +515,12 @@ export class ViewPort {
 				action["baseitem"] = id;
 			}
 
+			const quantity = stendhal.ui.heldItem.quantity;
 			// item was dropped
 			stendhal.ui.heldItem = undefined;
 
-			const touch_held = stendhal.ui.touch.holdingItem();
-			// if ctrl is pressed or holding item from touch event, we ask for the quantity
+			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
+			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			if (e.ctrlKey || touch_held) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
 			} else {
