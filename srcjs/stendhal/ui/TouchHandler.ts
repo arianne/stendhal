@@ -21,6 +21,10 @@ export class TouchHandler {
 	private timestampTouchEnd = 0;
 	private held?: any;
 
+	// location when touch event began
+	private origin: {[index: string]: number}|undefined = undefined;
+	private readonly moveThreshold = 16;
+
 	/** Singleton instance. */
 	private static instance: TouchHandler;
 
@@ -52,9 +56,10 @@ export class TouchHandler {
 	/**
 	 * Sets timestamp when touch applied.
 	 */
-	onTouchStart() {
+	onTouchStart(x: number, y: number) {
 		this.timestampTouchStart = +new Date();
 		this.touchEngaged = true;
+		this.origin = {x: x, y: y};
 	}
 
 	/**
@@ -79,7 +84,15 @@ export class TouchHandler {
 		if (evt && !this.isTouchEvent(evt)) {
 			return false;
 		}
-		return (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+		const durationMatch = (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
+		let positionMatch = true;
+		if (evt && this.origin) {
+			const pos = stendhal.ui.html.extractPosition(evt);
+			// if position has moved too much it's not a long touch
+			positionMatch = (Math.abs(pos.pageX - this.origin.x) <= this.moveThreshold)
+					&& (Math.abs(pos.pageY - this.origin.y) <= this.moveThreshold);
+		}
+		return durationMatch && positionMatch;
 	}
 
 	/**
@@ -101,6 +114,10 @@ export class TouchHandler {
 	 */
 	unsetHeldItem() {
 		this.held = undefined;
+	}
+
+	unsetOrigin() {
+		this.origin = undefined;
 	}
 
 	/**

@@ -266,7 +266,7 @@ export class ItemContainerImplementation {
 		}
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
-			const long_touch = stendhal.ui.touch.isLongTouch();
+			const long_touch = stendhal.ui.touch.isLongTouch(evt);
 			const context_action = (evt instanceof MouseEvent && this.isRightClick(evt)) || long_touch;
 			if (this.quickPickup && !context_action) {
 				marauroa.clientFramework.sendAction({
@@ -321,12 +321,13 @@ export class ItemContainerImplementation {
 	}
 
 	private onTouchStart(evt: TouchEvent) {
-		stendhal.ui.touch.onTouchStart();
+		const pos = stendhal.ui.html.extractPosition(evt);
+		stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
 	}
 
 	private onTouchEnd(evt: TouchEvent) {
 		stendhal.ui.touch.onTouchEnd();
-		if (stendhal.ui.touch.isLongTouch() && !stendhal.ui.touch.held) {
+		if (stendhal.ui.touch.isLongTouch(evt) && !stendhal.ui.touch.held) {
 			this.onMouseUp(evt);
 		} else if (stendhal.ui.touch.held) {
 			evt.preventDefault();
@@ -334,6 +335,7 @@ export class ItemContainerImplementation {
 			this.onDrop(evt);
 			stendhal.ui.touch.unsetHeldItem();
 		}
+		stendhal.ui.touch.unsetOrigin();
 	}
 
 	/**
