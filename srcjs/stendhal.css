@@ -8,6 +8,11 @@
 	overflow: hidden;
 }
 
+/* disable pull down refresh in browsers that support it */
+html, body {
+	overscroll-behavior: none;
+}
+
 body {
 	padding: 0;
 	margin: 0;
