@@ -498,8 +498,8 @@ export class ViewPort {
 	}
 
 	onDrop(e: DragEvent) {
-		var pos = stendhal.ui.html.extractPosition(e);
 		if (stendhal.ui.heldItem) {
+			var pos = stendhal.ui.html.extractPosition(e);
 			var action = {
 				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
