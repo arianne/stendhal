@@ -215,7 +215,7 @@ export class SettingsDialog extends DialogContentComponent {
 					"Joystick position on " + orient.toUpperCase() + " axis");
 			input_temp.addEventListener("input", (e) => {
 				// update configuration
-				stendhal.config.set("ui.joystick.center." + orient, input_temp.value);
+				stendhal.config.set("ui.joystick.center." + orient, input_temp.value || 0);
 				// update on-screen joystick position
 				stendhal.ui.gamewindow.updateJoystick();
 			});
@@ -459,30 +459,18 @@ export class SettingsDialog extends DialogContentComponent {
 	 */
 	private createNumberInput(id: string, value: number=0, tooltip?: string): HTMLInputElement {
 		const input = this.createTextInput(id, ""+value, tooltip, "number");
-
-		// FIXME: Should handle the following cases for keypresses:
-		//  - backspace:
-		//    - if all characters are selected value should be set to "0"
-		//    - if value contains 1 character & caret position is 1 then value should be set to "0"
-		//  - delete:
-		//    - if all characters are selected value should be set to "0"
-		//    - if value contains 1 character & caret position is 0 then value should be set to "0"
-
-		// allow numbers only
+		// allow numbers & empty string only
 		input.addEventListener("input", (e: Event) => {
-			const evt_value = Number((e as InputEvent).data);
-			const is_empty = input.value.replace(/ |\t/g, "") === "";
-			if (is_empty || Number.isNaN(evt_value)) {
-				// restore old value
+			const new_char = (e as InputEvent).data;
+			const new_digit = Number(new_char);
+			if ((new_char != undefined && new_char.replace(/ |\t/g, "") === "") || Number.isNaN(new_digit)) {
+				// disallow whitespace & non-numeric characters
 				input.value = this.storedStates[input.id];
-				// FIXME: doesn't work, how to prevent event listeners added after this?
-				e.stopPropagation();
-			} else {
-				// store the new value
-				this.storedStates[input.id] = input.value;
+				return;
 			}
-			// clean up
-			input.value = ""+parseInt(input.value, 10);
+			// clean up leading 0s & whitespace
+			input.value = ""+parseInt(input.value.replace(/ |\t/g, ""), 10);
+			this.storedStates[input.id] = input.value;
 		});
 
 		return input;
