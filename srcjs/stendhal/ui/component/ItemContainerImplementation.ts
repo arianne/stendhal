@@ -285,6 +285,7 @@ export class ItemContainerImplementation {
 					// XXX: better way to pass instance to action function?
 					const tmp = this;
 					// action to "hold" item for moving or dropping using touch
+					// XXX: temporary workaround, should use drag-and-drop instead
 					append.push({
 						title: "Hold",
 						action: function(entity: any) {
