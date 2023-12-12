@@ -532,6 +532,19 @@ export class ViewPort {
 		e.preventDefault();
 	}
 
+	/**
+	 * This is a workaround until it's figured out how to make it work using the same methods as
+	 * mouse event.
+	 */
+	onTouchEnd(e: TouchEvent) {
+		stendhal.ui.touch.onTouchEnd();
+		stendhal.ui.gamewindow.onDrop(e);
+		if (stendhal.ui.touch.holdingItem()) {
+			stendhal.ui.touch.unsetHeldItem();
+			stendhal.ui.touch.unsetOrigin();
+		}
+	}
+
 	onContentMenu(e: MouseEvent) {
 		e.preventDefault();
 	}
