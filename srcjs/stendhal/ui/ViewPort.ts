@@ -309,6 +309,10 @@ export class ViewPort {
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.touch.isTouchEvent(e)) {
+				if (stendhal.ui.touch.holdingItem()) {
+					// prevent default viewport action when item is "held"
+					return;
+				}
 				stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
 			}
 			if (stendhal.ui.globalpopup) {
@@ -369,6 +373,7 @@ export class ViewPort {
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
 			} else if (stendhal.ui.touch.holdingItem()) {
+				// FIXME: this may be unnecessary
 				stendhal.ui.gamewindow.onDrop(e);
 			} else {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
