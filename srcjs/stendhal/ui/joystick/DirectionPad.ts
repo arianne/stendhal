@@ -142,6 +142,7 @@ export class DirectionPad extends JoystickBase {
 
 	private onMouseUp(e: Event) {
 		if (this.checkActionEvent(e)) {
+			// FIXME: if mouse is outside dpad area when button released does not disengage
 			this.reset();
 			marauroa.clientFramework.sendAction({type: "stop"});
 		}
