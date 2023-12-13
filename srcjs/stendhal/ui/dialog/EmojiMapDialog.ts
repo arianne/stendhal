@@ -11,7 +11,6 @@
 
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { singletons } from "../../SingletonRepo";
-import { Chat } from "../../util/Chat";
 
 declare var marauroa: any;
 declare var stendhal: any;
