@@ -402,6 +402,13 @@ export class Client {
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel);
 
+		// handle disengaging joystick when mouse button released outside joystick area
+		document.body.addEventListener("mouseup", (e: MouseEvent) => {
+			if (e.button == 0) {
+				stendhal.ui.gamewindow.joystick.reset();
+			}
+		});
+
 		var menubutton = document.getElementById("menubutton")!;
 		menubutton.addEventListener("click", () => {
 			const dialogState = stendhal.config.getWindowState("menu");

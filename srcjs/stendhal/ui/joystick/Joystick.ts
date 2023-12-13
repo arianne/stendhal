@@ -11,7 +11,6 @@
 
 import { JoystickBase } from "./JoystickBase";
 
-declare var marauroa: any;
 declare var stendhal: any;
 
 
@@ -20,10 +19,7 @@ export class Joystick extends JoystickBase {
 	private outer: HTMLImageElement;
 	private inner: HTMLImageElement;
 
-	private radius = 0;
 	private engaged = false;
-	// last executed direction
-	private direction = 0;
 
 	// number of pixels joystick can move before executing event
 	private static readonly play_threshold = 24;
@@ -48,11 +44,10 @@ export class Joystick extends JoystickBase {
 					this.onMouseDown(e);
 				});
 			}
-			for (const etype of ["mouseup", "touchend"]) {
-				jimg.addEventListener(etype, (e) => {
-					this.onMouseUp(e);
-				});
-			}
+			// note "mouseup" is handled globally in the body element (see Client.ts)
+			jimg.addEventListener("touchend", (e) => {
+				this.onMouseUp(e);
+			});
 
 			for (const etype of ["mousemove", "touchmove"]) {
 				// must be added to outer in case movement is too fast to be caught by inner
@@ -105,7 +100,6 @@ export class Joystick extends JoystickBase {
 		if (!this.checkActionEvent(e)) {
 			return;
 		}
-		// FIXME: if mouse is outside joystick area when button released does not disengage
 		this.reset();
 	}
 
@@ -130,15 +124,6 @@ export class Joystick extends JoystickBase {
 			dir = 3;
 		}
 		return dir;
-	}
-
-	private onDirectionChange(dir: number) {
-		this.direction = dir;
-		if (this.direction > 0 && this.direction < 5) {
-			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction});
-		} else {
-			marauroa.clientFramework.sendAction({type: "stop"});
-		}
 	}
 
 	/**
@@ -169,6 +154,7 @@ export class Joystick extends JoystickBase {
 			this.updateInner(rect.left + this.radius, rect.top + this.radius);
 		};
 		this.inner.src = this.getResource("joystick_inner");
+
 		if (this.direction != 0) {
 			// stop movement
 			this.onDirectionChange(0);

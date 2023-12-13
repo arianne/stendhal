@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
 declare var stendhal: any;
 
 
@@ -18,6 +19,11 @@ declare var stendhal: any;
  * FIXME: joysticks should be drawn under dialog windows
  */
 export class JoystickBase {
+
+	protected radius = 0;
+	// last executed direction
+	protected direction = 0;
+
 
 	public reset() {
 		// do nothing
@@ -47,5 +53,14 @@ export class JoystickBase {
 			return true;
 		}
 		return false;
+	}
+
+	protected onDirectionChange(dir: number) {
+		this.direction = dir;
+		if (this.direction > 0 && this.direction < 5) {
+			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction});
+		} else {
+			marauroa.clientFramework.sendAction({type: "stop"});
+		}
 	}
 }

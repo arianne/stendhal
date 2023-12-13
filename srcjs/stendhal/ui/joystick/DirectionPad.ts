@@ -11,8 +11,6 @@
 
 import { JoystickBase } from "./JoystickBase";
 
-declare var marauroa: any;
-
 
 export class DirectionPad extends JoystickBase {
 
@@ -20,8 +18,6 @@ export class DirectionPad extends JoystickBase {
 	private down: HTMLImageElement;
 	private left: HTMLImageElement;
 	private right: HTMLImageElement;
-
-	private radius = 0;
 
 
 	public constructor() {
@@ -89,9 +85,7 @@ export class DirectionPad extends JoystickBase {
 			dimg.addEventListener("touchstart", (e: Event) => {
 				this.onMouseDown(e);
 			})
-			dimg.addEventListener("mouseup", (e: Event) => {
-				this.onMouseUp(e);
-			});
+			// note "mouseup" is handled globally in the body element (see Client.ts)
 			dimg.addEventListener("touchend", (e: Event) => {
 				this.onMouseUp(e);
 			})
@@ -101,41 +95,42 @@ export class DirectionPad extends JoystickBase {
 	}
 
 	private onMouseDown(e: Event) {
-		if (this.checkActionEvent(e)) {
-			let action: {[index: string]: string} = {type: "move"};
-			switch(e.target) {
-				case this.up:
-					this.up.src = this.getResource("dpad_button_active");
-					action.dir = "1";
-					break;
-				case this.right:
-					this.right.src = this.getResource("dpad_button_active");
-					this.right.style["transform"] = "rotate(90deg)";
-					action.dir = "2";
-					break;
-				case this.down:
-					this.down.src = this.getResource("dpad_button_active");
-					this.down.style["transform"] = "rotate(180deg)";
-					action.dir = "3";
-					break;
-				case this.left:
-					this.left.src = this.getResource("dpad_button_active");
-					this.left.style["transform"] = "rotate(-90deg)";
-					action.dir = "4";
-					break;
-			}
-			if (typeof(action.dir) !== "undefined") {
-				marauroa.clientFramework.sendAction(action);
-			}
+		if (!this.checkActionEvent(e)) {
+			return;
+		}
+
+		let new_direction = 0;
+		switch(e.target) {
+			case this.up:
+				this.up.src = this.getResource("dpad_button_active");
+				new_direction = 1;
+				break;
+			case this.right:
+				this.right.src = this.getResource("dpad_button_active");
+				this.right.style["transform"] = "rotate(90deg)";
+				new_direction = 2;
+				break;
+			case this.down:
+				this.down.src = this.getResource("dpad_button_active");
+				this.down.style["transform"] = "rotate(180deg)";
+				new_direction = 3;
+				break;
+			case this.left:
+				this.left.src = this.getResource("dpad_button_active");
+				this.left.style["transform"] = "rotate(-90deg)";
+				new_direction = 4;
+				break;
+		}
+		if (new_direction != this.direction) {
+			this.onDirectionChange(new_direction);
 		}
 	}
 
 	private onMouseUp(e: Event) {
-		if (this.checkActionEvent(e)) {
-			// FIXME: if mouse is outside dpad area when button released does not disengage
-			this.reset();
-			marauroa.clientFramework.sendAction({type: "stop"});
+		if (!this.checkActionEvent(e)) {
+			return;
 		}
+		this.reset();
 	}
 
 	public override reset() {
@@ -147,6 +142,11 @@ export class DirectionPad extends JoystickBase {
 		this.left.style["transform"] = "rotate(-90deg)";
 		this.right.src = this.getResource("dpad_button");
 		this.right.style["transform"] = "rotate(90deg)";
+
+		if (this.direction != 0) {
+			// stop movement
+			this.onDirectionChange(0);
+		}
 	}
 
 	public override onRemoved() {
