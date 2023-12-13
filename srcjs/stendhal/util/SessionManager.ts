@@ -86,6 +86,8 @@ export class SessionManager {
 		this.charname = charname;
 		// display character name in browser title/tab
 		document.title = "Stendhal - " + this.charname;
+		// display in stats panel
+		document.getElementById("charname")!.innerText = this.charname;
 	}
 
 	/**

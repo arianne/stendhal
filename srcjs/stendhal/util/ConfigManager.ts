@@ -30,6 +30,7 @@ export class ConfigManager {
 		"ui.font.body": "Carlito",
 		"ui.font.chat": "Carlito",
 		"ui.font.tlog": "Black Chancery",
+		"ui.stats.charname": "true",
 		"ui.stats.hpbar": "true",
 		"ui.joystick": "none",
 		"ui.joystick.center.x": "224",

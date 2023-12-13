@@ -76,11 +76,18 @@ export class SettingsDialog extends DialogContentComponent {
 		this.createCheckBox("chk_speechcr", "gamescreen.speech.creature",
 				"Creature speech bubbles are enabled", "Creature speech bubbles are disabled");
 
+		const player_stats = ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent;
+
+		const chk_charname = this.createCheckBox("chk_charname", "ui.stats.charname",
+				undefined, undefined,
+				function() {
+					player_stats.enableCharName(chk_charname.checked);
+				})!;
+
 		const chk_hpbar = this.createCheckBox("chk_hpbar", "ui.stats.hpbar",
 				undefined, undefined,
 				function() {
-					(ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent)
-							.enableBar("hp", chk_hpbar.checked);
+					player_stats.enableBar("hp", chk_hpbar.checked);
 				})!;
 
 

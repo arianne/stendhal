@@ -23,6 +23,8 @@ import { singletons } from "../../SingletonRepo";
 import { Item } from "../../entity/Item";
 
 declare var marauroa: any;
+declare var stendhal: any;
+
 
 /**
  * displays the player stats
@@ -58,6 +60,8 @@ export class PlayerStatsComponent extends Component {
 
 		const statuses = new StatusesListComponent();
 		ui.registerComponent(UIComponentEnum.StatusesList, statuses);
+
+		this.enableCharName(stendhal.config.getBoolean("ui.stats.charname"));
 
 		this.hpText = this.child("#hptext")!;
 		this.otherText = this.child("#otherstats")!;
@@ -218,6 +222,18 @@ export class PlayerStatsComponent extends Component {
 			}
 		}
 		return mo;
+	}
+
+	/**
+	 * Sets visibility of character name in status panel.
+	 */
+	enableCharName(visible=true) {
+		const charname = document.getElementById("charname")! as HTMLDivElement;
+		if (visible) {
+			charname.style["display"] = "block";
+		} else {
+			charname.style["display"] = "none";
+		}
 	}
 
 	/**
