@@ -54,6 +54,7 @@ export class ConfigManager {
 		"action.item.doubleclick": "false",
 		"action.inventory.quickpickup": "true",
 		"event.pvtmsg.sound": "ui/notify_up",
+		"chat.keywords": "hello,goodbye,yes,no,help,job,offer,quest,done",
 		// test client only
 		"connection.testserver": "true"
 	} as {[id: string]: string};

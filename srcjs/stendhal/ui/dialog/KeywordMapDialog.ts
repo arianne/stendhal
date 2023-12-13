@@ -13,14 +13,10 @@ import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Chat } from "../../util/Chat";
 
 declare var marauroa: any;
+declare var stendhal: any;
 
 
 export class KeywordMapDialog extends DialogContentComponent {
-
-	// commonly used words
-	private static readonly keywords = [
-		"hello", "goodbye", "yes", "no", "help", "job", "offer", "quest", "done"
-	];
 
 	/* Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
 	 * serve as alternatives to "quest", may be highlighted in dialogue so keep those.
@@ -30,26 +26,36 @@ export class KeywordMapDialog extends DialogContentComponent {
 		"hi": "hello",
 	}
 
+
 	constructor() {
 		super("keywordmap-template");
 
 		// common chat options
-		this.addGroup("Common", KeywordMapDialog.keywords);
+		const common_options = [];
+		for (let opt of stendhal.config.get("chat.keywords").split(",")) {
+			opt = opt.trim();
+			if (opt) {
+				common_options.push(opt);
+			}
+		}
+		if (common_options.length > 0) {
+			this.addGroup("Common", common_options);
+		}
 
 		// attending NPC (note that options are parsed from most recent NPC if there are multiple attending)
-		const options = [];
+		const npc_options = [];
 		for (let opt of Chat.options) {
 			opt = opt.toLowerCase();
 			const original = KeywordMapDialog.aliases[opt];
 			if (original) {
 				opt = original;
 			}
-			if (KeywordMapDialog.keywords.indexOf(opt) == -1) {
-				options.push(opt);
+			if (common_options.indexOf(opt) == -1) {
+				npc_options.push(opt);
 			}
 		}
-		if (options.length > 0) {
-			this.addGroup(Chat.attending ? Chat.attending : "NPC", options);
+		if (npc_options.length > 0) {
+			this.addGroup(Chat.attending ? Chat.attending : "NPC", npc_options);
 		}
 	}
 

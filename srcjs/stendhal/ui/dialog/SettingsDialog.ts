@@ -187,6 +187,13 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
+		// common chat keyword options
+		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat.keywords"),
+				"Comma-separated list accessible from the keywords dialog");
+		txt_chatopts.addEventListener("change", (e) => {
+			stendhal.config.set("chat.keywords", txt_chatopts.value);
+		});
+
 		// on-screen joystick
 		const js_orienters: HTMLInputElement[] = [];
 		const js_styles: {[index: string]: string} = {
