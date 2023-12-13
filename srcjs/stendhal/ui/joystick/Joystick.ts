@@ -11,6 +11,9 @@
 
 import { JoystickBase } from "./JoystickBase";
 
+declare var marauroa: any;
+declare var stendhal: any;
+
 
 export class Joystick extends JoystickBase {
 
@@ -18,12 +21,17 @@ export class Joystick extends JoystickBase {
 	private inner: HTMLImageElement;
 
 	private radius = 0;
+	private engaged = false;
+	// last executed direction
+	private direction = 0;
+
+	// number of pixels joystick can move before executing event
+	private static readonly play_threshold = 24;
 
 
 	public constructor() {
 		super();
 
-		// TODO: make smaller joystick image
 		this.outer = new Image();
 		this.inner = new Image();
 
@@ -34,27 +42,37 @@ export class Joystick extends JoystickBase {
 			// add to DOM
 			document.body.appendChild(jimg);
 
-			// listen for mouse events
-			jimg.addEventListener("mousedown", (e) => {
-				this.onMouseDown(e);
-			});
-			jimg.addEventListener("mouseup", (e) => {
-				this.onMouseUp(e);
-			});
+			// listen for activation events
+			for (const etype of ["mousedown", "touchstart"]) {
+				jimg.addEventListener(etype, (e) => {
+					this.onMouseDown(e);
+				});
+			}
+			for (const etype of ["mouseup", "touchend"]) {
+				jimg.addEventListener(etype, (e) => {
+					this.onMouseUp(e);
+				});
+			}
 
-			// update layout after all images have loaded
-			jimg.onload = () => {
-				if (this.outer.complete && this.inner.complete) {
-					this.onInit();
-					// remove listener
-					this.outer.onload = null;
-					this.inner.onload = null;
-				}
+			for (const etype of ["mousemove", "touchmove"]) {
+				// must be added to outer in case movement is too fast to be caught by inner
+				jimg.addEventListener(etype, (e) => {
+					if (e.type === "mousemove" && !this.engaged) {
+						// prevent movement if mouse button not pressed
+						return;
+					}
+					this.onMouseDown(e);
+				});
 			}
 		}
 
+		// update layout after outer image has loaded
+		this.outer.onload = () => {
+			// remove listener
+			this.outer.onload = null;
+			this.onInit();
+		};
 		this.outer.src = this.getResource("joystick_outer");
-		this.inner.src = this.getResource("joystick_inner");
 	}
 
 	private onInit() {
@@ -66,22 +84,95 @@ export class Joystick extends JoystickBase {
 	}
 
 	private onMouseDown(e: Event) {
-		if (e instanceof MouseEvent && e.button == 0) {
-			this.inner.src = this.getResource("joystick_inner_active");
+		if (!this.checkActionEvent(e)) {
+			return;
+		}
+		this.engaged = true;
+		this.inner.src = this.getResource("joystick_inner_active");
+
+		const pos = stendhal.ui.html.extractPosition(e);
+
+		// update inner button position
+		this.updateInner(pos.pageX, pos.pageY);
+
+		const new_direction = this.getPressedDirection();
+		if (new_direction != this.direction) {
+			this.onDirectionChange(new_direction);
 		}
 	}
 
 	private onMouseUp(e: Event) {
-		if (e instanceof MouseEvent && e.button == 0) {
-			this.inner.src = this.getResource("joystick_inner");
-			this.reset();
+		if (!this.checkActionEvent(e)) {
+			return;
+		}
+		// FIXME: if mouse is outside joystick area when button released does not disengage
+		this.reset();
+	}
+
+	/**
+	 * Retrieves the interpreted direction of joystick's state.
+	 */
+	private getPressedDirection(): number {
+		let dir = 0;
+		// FIXME: need a smarter algorithm for detecting direction based on position of inner circle
+		//        relative to center of outer
+		const rect = this.inner.getBoundingClientRect();
+		const oCenterX = this.getCenterX(), oCenterY = this.getCenterY();
+		const iCenterX = rect.left + Math.floor(this.inner.width / 2);
+		const iCenterY = rect.top + Math.floor(this.inner.height / 2);
+		if (iCenterX < oCenterX - Joystick.play_threshold) {
+			dir = 4;
+		} else if (iCenterX > oCenterX + Joystick.play_threshold) {
+			dir = 2;
+		} else if (iCenterY < oCenterY - Joystick.play_threshold) {
+			dir = 1;
+		} else if (iCenterY > oCenterY + Joystick.play_threshold) {
+			dir = 3;
+		}
+		return dir;
+	}
+
+	private onDirectionChange(dir: number) {
+		this.direction = dir;
+		if (this.direction > 0 && this.direction < 5) {
+			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction});
+		} else {
+			marauroa.clientFramework.sendAction({type: "stop"});
+		}
+	}
+
+	/**
+	 * Updates position of inner button.
+	 */
+	private updateInner(x: number, y: number) {
+		// FIXME: need a smarter algorithm for detecting if center of inner circle is beyond radius
+		//        of outer
+		const bounds = this.outer.getBoundingClientRect();
+		const xdiff = Math.abs(x - (bounds.left + this.radius));
+		const ydiff = Math.abs(y - (bounds.top + this.radius));
+		// don't allow inner button to move beyond radius of outer
+		if (xdiff <= this.radius) {
+			this.inner.style.left = (x - Math.floor(this.inner.width / 2)) + "px";
+		}
+		if (ydiff <= this.radius) {
+			this.inner.style.top = (y - Math.floor(this.inner.height / 2)) + "px";
 		}
 	}
 
 	public override reset(): void {
-		const rect = this.outer.getBoundingClientRect();
-		this.inner.style.left = (rect.left + this.radius - Math.floor(this.inner.width / 2)) + "px";
-		this.inner.style.top = (rect.top + this.radius - Math.floor(this.inner.height / 2)) + "px";
+		this.engaged = false;
+		this.inner.onload = () => {
+			// remove listener
+			this.inner.onload = null;
+			// center inner joystick on outer
+			const rect = this.outer.getBoundingClientRect();
+			this.updateInner(rect.left + this.radius, rect.top + this.radius);
+		};
+		this.inner.src = this.getResource("joystick_inner");
+		if (this.direction != 0) {
+			// stop movement
+			this.onDirectionChange(0);
+		}
 	}
 
 	public override onRemoved(): void {

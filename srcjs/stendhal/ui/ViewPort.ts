@@ -21,6 +21,7 @@ import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
 import { DirectionPad } from "./joystick/DirectionPad";
+import { Joystick } from "./joystick/Joystick";
 import { JoystickBase } from "./joystick/JoystickBase";
 
 import { singletons } from "../SingletonRepo";
@@ -600,12 +601,9 @@ export class ViewPort {
 	updateJoystick() {
 		this.joystick.onRemoved();
 		switch(stendhal.config.get("ui.joystick")) {
-			// TODO: enable when joystick implementation finished
-			/*
 			case "joystick":
 				this.joystick = new Joystick();
 				break;
-			*/
 			case "dpad":
 				this.joystick = new DirectionPad();
 				break;

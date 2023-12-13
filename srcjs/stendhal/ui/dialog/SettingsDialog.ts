@@ -205,7 +205,7 @@ export class SettingsDialog extends DialogContentComponent {
 		const js_orienters: HTMLInputElement[] = [];
 		const js_styles: {[index: string]: string} = {
 			"none": "none",
-			"joystick": "joystick (disabled)",
+			"joystick": "joystick",
 			"dpad": "direction pad",
 		};
 		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("ui.joystick"));
@@ -217,8 +217,7 @@ export class SettingsDialog extends DialogContentComponent {
 			stendhal.config.set("ui.joystick", Object.keys(js_styles)[sel_joystick.selectedIndex]);
 			stendhal.ui.gamewindow.updateJoystick();
 			for (const orienter of js_orienters) {
-				// TODO: enabled for "joystick" style after implementation complete
-				orienter.disabled = sel_joystick.selectedIndex < 2;
+				orienter.disabled = sel_joystick.selectedIndex < 1;
 			}
 		});
 
@@ -234,8 +233,7 @@ export class SettingsDialog extends DialogContentComponent {
 				stendhal.ui.gamewindow.updateJoystick();
 			});
 			// disable if no joystick selected
-			// TODO: enabled for "joystick" style after implementation complete
-			input_temp.disabled = sel_joystick.selectedIndex < 2;
+			input_temp.disabled = sel_joystick.selectedIndex < 1;
 			js_orienters.push(input_temp);
 		}
 
