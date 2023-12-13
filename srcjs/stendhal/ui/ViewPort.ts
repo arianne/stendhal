@@ -44,6 +44,10 @@ export class ViewPort {
 	private offsetY = 0;
 	private timeStamp = Date.now();
 
+	// dimensions
+	private readonly width: number;
+	private readonly height: number;
+
 	private ctx: CanvasRenderingContext2D;
 	private readonly targetTileWidth = 32;
 	private readonly targetTileHeight = 32;
@@ -75,7 +79,10 @@ export class ViewPort {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		this.ctx = (document.getElementById("gamewindow")! as HTMLCanvasElement).getContext("2d")!;
+		const element = document.getElementById("gamewindow")! as HTMLCanvasElement;
+		this.ctx = element.getContext("2d")!;
+		this.width = element.width;
+		this.height = element.height;
 	}
 
 	draw() {

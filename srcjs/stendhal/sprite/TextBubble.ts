@@ -15,6 +15,7 @@ declare var stendhal: any;
 export abstract class TextBubble {
 
 	protected static readonly STANDARD_DUR = 5000;
+	protected static readonly adjustY = 15;
 
 	protected text: string;
 	protected timeStamp: number;
@@ -104,7 +105,7 @@ export abstract class TextBubble {
 		const pointX = evt.clientX - screenRect.x
 				+ stendhal.ui.gamewindow.offsetX;
 		const pointY = evt.clientY - screenRect.y
-				+ stendhal.ui.gamewindow.offsetY + 15;
+				+ stendhal.ui.gamewindow.offsetY + TextBubble.adjustY;
 
 		if (this.clipsPoint(pointX, pointY)) {
 			evt.stopPropagation();
