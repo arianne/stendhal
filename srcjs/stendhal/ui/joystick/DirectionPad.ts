@@ -100,16 +100,6 @@ export class DirectionPad extends JoystickBase {
 		this.reset();
 	}
 
-	private checkActionEvent(e: Event): boolean {
-		if (e instanceof MouseEvent && e.button == 0) {
-			return true;
-		}
-		if (e instanceof TouchEvent) {
-			return true;
-		}
-		return false;
-	}
-
 	private onMouseDown(e: Event) {
 		if (this.checkActionEvent(e)) {
 			let action: {[index: string]: string} = {type: "move"};

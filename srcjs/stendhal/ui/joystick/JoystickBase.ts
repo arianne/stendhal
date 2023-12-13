@@ -38,4 +38,14 @@ export class JoystickBase {
 	protected getCenterY(): number {
 		return stendhal.config.getInt("ui.joystick.center.y", 384);
 	}
+
+	protected checkActionEvent(e: Event): boolean {
+		if (e instanceof MouseEvent && e.button == 0) {
+			return true;
+		}
+		if (e instanceof TouchEvent) {
+			return true;
+		}
+		return false;
+	}
 }
