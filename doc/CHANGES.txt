@@ -21,10 +21,13 @@ Changelog
 - Alice Farmer includes grilled steak in the foods she lists
 
 *web client*
-- now has an optional on-screen joystick
+- added optional on-screen joystick
 - added emoji map
-- displays character name in browser title/tab
-- status panel displays status effects
+- added chat options keyword map
+- displays character name in browser title/tab & stats panel
+- displays status effects in stats panel
+- improved touch support
+- prevents pull-down refresh behavior in mobile browsers
 
 *bugfixes*
 - deathmatch cannot be restarted while active
@@ -37,7 +40,7 @@ Changelog
   - fixed entity action context menus using touch
   - fixed drawing "confused" & "shocked" statuses
   - fixed closing dialog windows using touch event
-  - fixed touch drag and drop corpses and items in viewport
+  - fixed touch drag and drop corpses and items from ground to ground
   - weapon style attack sprites rotate with entity
   - draws melee sprite when using ranged weapon next to target
 
