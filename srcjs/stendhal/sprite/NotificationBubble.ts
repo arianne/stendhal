@@ -91,8 +91,8 @@ export class NotificationBubble extends TextBubble {
 			this.height = lcount * lheight;
 		}
 		this.x = screenCenterX - (this.width / 2);
-		// FIXME: doesn't reach bottom of game window
-		this.y = screenBottom - this.height;
+		// Note: border is 1 pixel
+		this.y = screenBottom - this.height + TextBubble.adjustY - 1;
 
 		ctx.lineWidth = 2;
 		ctx.font = fontsize + "px sans-serif";
