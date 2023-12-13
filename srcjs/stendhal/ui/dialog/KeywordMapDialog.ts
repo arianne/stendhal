@@ -18,7 +18,7 @@ export class KeywordMapDialog extends DialogContentComponent {
 
 	// commonly used keywors
 	private static readonly keywords = [
-		"hi", "bye", "yes", "no", "help", "job", "offer", "quest"
+		"hi", "bye", "yes", "no", "help", "job", "offer", "quest", "done"
 	];
 
 	constructor() {
