@@ -21,17 +21,28 @@ export class DirectionPad extends JoystickBase {
 	private left: HTMLImageElement;
 	private right: HTMLImageElement;
 
-	private readonly radius = 75;
+	private radius = 0;
 
 
 	public constructor() {
 		super();
 
+		// create a temporary image to set radius
+		const tmp = new Image();
+		tmp.onload = () => {
+			// radius must be larger than button size as we cannot detect transparent pixels
+			this.radius = tmp.width * 1.25;
+			this.onInit();
+		};
+		tmp.src = this.getResource("dpad_button");
+
 		this.up = new Image();
 		this.down = new Image();
 		this.left = new Image();
 		this.right = new Image();
+	}
 
+	private onInit() {
 		const center_x = this.getCenterX();
 		const center_y = this.getCenterY();
 
@@ -104,19 +115,22 @@ export class DirectionPad extends JoystickBase {
 			let action: {[index: string]: string} = {type: "move"};
 			switch(e.target) {
 				case this.up:
-					this.up.src = this.getResource("dpad_up_active");
+					this.up.src = this.getResource("dpad_button_active");
 					action.dir = "1";
 					break;
 				case this.right:
-					this.right.src = this.getResource("dpad_right_active");
+					this.right.src = this.getResource("dpad_button_active");
+					this.right.style["transform"] = "rotate(90deg)";
 					action.dir = "2";
 					break;
 				case this.down:
-					this.down.src = this.getResource("dpad_down_active");
+					this.down.src = this.getResource("dpad_button_active");
+					this.down.style["transform"] = "rotate(180deg)";
 					action.dir = "3";
 					break;
 				case this.left:
-					this.left.src = this.getResource("dpad_left_active");
+					this.left.src = this.getResource("dpad_button_active");
+					this.left.style["transform"] = "rotate(-90deg)";
 					action.dir = "4";
 					break;
 			}
@@ -135,10 +149,13 @@ export class DirectionPad extends JoystickBase {
 
 	public override reset() {
 		// reset images
-		this.up.src = this.getResource("dpad_up");
-		this.down.src = this.getResource("dpad_down");
-		this.left.src = this.getResource("dpad_left");
-		this.right.src = this.getResource("dpad_right");
+		this.up.src = this.getResource("dpad_button");
+		this.down.src = this.getResource("dpad_button");
+		this.down.style["transform"] = "rotate(180deg)";
+		this.left.src = this.getResource("dpad_button");
+		this.left.style["transform"] = "rotate(-90deg)";
+		this.right.src = this.getResource("dpad_button");
+		this.right.style["transform"] = "rotate(90deg)";
 	}
 
 	public override onRemoved() {
