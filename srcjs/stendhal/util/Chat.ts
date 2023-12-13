@@ -25,6 +25,10 @@ export class Chat {
 	public static debugLogEnabled = false;
 	private static clog: ChatLogComponent;
 
+	// available actions from attending NPC
+	public static attending?: string;
+	public static options: string[] = [];
+
 
 	/**
 	 * Adds a line to the chat log.

@@ -34,6 +34,10 @@ export class ChatOptionsEvent extends RPEvent {
 			message.push(option[1]);
 		}
 
+		// update options to be included in keyword shortcuts dialog
+		Chat.attending = this['npc'];
+		Chat.options = message;
+
 		let m = "Chat options for " + this['npc'] + ": " + message.join(", ");
 		console.log(m);
 		Chat.debug(m);
