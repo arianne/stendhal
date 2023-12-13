@@ -221,10 +221,11 @@ export class ItemContainerImplementation {
 				action["zone"] = stendhal.ui.heldItem.zone;
 			}
 
+			const quantity = stendhal.ui.heldItem.quantity;
 			stendhal.ui.heldItem = undefined;
 
-			// if ctrl is pressed or holding item from touch event, we ask for the quantity
-			const touch_held = typeof(stendhal.ui.touch.held) !== "undefined";
+			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
+			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
 			const split_action = (event instanceof DragEvent && event.ctrlKey) || touch_held;
 			if (split_action) {
 				const pos = stendhal.ui.html.extractPosition(event);
