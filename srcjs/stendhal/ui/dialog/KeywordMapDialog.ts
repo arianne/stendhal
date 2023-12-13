@@ -10,43 +10,43 @@
  ***************************************************************************/
 
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
-import { singletons } from "../../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 
-export class EmojiMapDialog extends DialogContentComponent {
+export class KeywordMapDialog extends DialogContentComponent {
+
+	// commonly used keywors
+	private static readonly keywords = [
+		"hi", "bye", "yes", "no", "help", "job", "offer", "quest"
+	];
 
 	constructor() {
-		super("emojimap-template");
+		super("keywordmap-template");
 
-		const emojiStore = singletons.getEmojiStore();
-		let idx = 0;
 		let row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
-		for (const emoji of emojiStore.getEmojiList()) {
+		for (let idx = 0; idx < KeywordMapDialog.keywords.length; idx++) {
 			if (idx > 0 && idx % 13 == 0) {
 				// new row
 				row = document.createElement("div");
 				this.componentElement.appendChild(row);
 			}
+			const keyword = KeywordMapDialog.keywords[idx];
 			const button = document.createElement("button");
 			button.className = "shortcut-button";
-			button.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
+			button.innerText = keyword;
 			button.addEventListener("click", (evt) => {
-				this.onButtonPressed(emoji);
+				this.onButtonPressed(keyword);
 			});
-			//~ this.componentElement.appendChild(button);
 			row.appendChild(button);
-			idx++;
 		}
 	}
 
-	private onButtonPressed(emoji: string) {
+	private onButtonPressed(keyword: string) {
 		const action = {
 			"type": "chat",
-			"text": ":" + emoji + ":"
+			"text": keyword
 		} as any;
 		marauroa.clientFramework.sendAction(action);
 		this.close();

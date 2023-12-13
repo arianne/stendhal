@@ -587,7 +587,11 @@ div.logcolR {
 	font-family: Tally;
 }
 
-.menubutton, .emojibutton {
+.shortcut-launcher {
+	margin-left: 2px;
+}
+
+.menubutton, .shortcut-button {
 	margin: 2px;
 }
 

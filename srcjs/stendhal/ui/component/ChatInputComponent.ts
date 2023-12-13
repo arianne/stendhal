@@ -15,6 +15,7 @@ declare let stendhal: any;
 import { KeyHandler } from "../KeyHandler";
 import { ui } from "../UI";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
+import { KeywordMapDialog } from "../dialog/KeywordMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
 
@@ -44,15 +45,23 @@ export class ChatInputComponent extends Component {
 		this.history = config.getObject("chat.history") || [];
 		this.historyIndex = config.getInt("chat.history.index", 0);
 
-		// set image for emoji button
+		// ** emoji shortcuts ** //
+
 		const btn_emoji = document.getElementById("emojis")!;
 		// clear default text & add emoji image
 		btn_emoji.innerText = "";
+		// set image for emoji button
 		btn_emoji.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/smile.png").cloneNode());
-
 		// event to bring up emoji dialog
 		btn_emoji.addEventListener("click", (e) => {
 			this.buildEmojiMap();
+		});
+
+		// ** keyword shortcuts ** //
+		const btn_keyword = document.getElementById("keywords")!;
+		// event to bring up keywords dialog
+		btn_keyword.addEventListener("click", (e) => {
+			this.buildKeywordMap();
 		});
 	}
 
@@ -127,11 +136,20 @@ export class ChatInputComponent extends Component {
 		this.clear();
 	}
 
+	private buildKeywordMap() {
+		const wstate = stendhal.config.getWindowState("shortcuts");
+		const content = new KeywordMapDialog();
+		const dialog = ui.createSingletonFloatingWindow("Keywords", content, wstate.x, wstate.y);
+		dialog.setId("shortcuts");
+		// needed in order to close dialog from within
+		content.setFrame(dialog);
+	}
+
 	private buildEmojiMap() {
-		const wstate = stendhal.config.getWindowState("emoji");
+		const wstate = stendhal.config.getWindowState("shortcuts");
 		const content = new EmojiMapDialog();
 		const dialog = ui.createSingletonFloatingWindow("Emojis", content, wstate.x, wstate.y);
-		dialog.setId("emoji");
+		dialog.setId("shortcuts");
 		// needed in order to close dialog from within
 		content.setFrame(dialog);
 	}
