@@ -31,12 +31,13 @@ export class Joystick extends JoystickBase {
 		this.outer = new Image();
 		this.inner = new Image();
 
+		const container = document.getElementById("joystick-container")!;
 		for (const jimg of [this.outer, this.inner]) {
 			jimg.style.position = "absolute";
 			jimg.draggable = false;
 
 			// add to DOM
-			document.body.appendChild(jimg);
+			container.appendChild(jimg);
 
 			// listen for activation events
 			for (const etype of ["mousedown", "touchstart"]) {
@@ -163,9 +164,10 @@ export class Joystick extends JoystickBase {
 
 	public override onRemoved(): void {
 		// remove from DOM
+		const container = document.getElementById("joystick-container")!;
 		for (const jimg of [this.outer, this.inner]) {
-			if (document.body.contains(jimg)) {
-				document.body.removeChild(jimg);
+			if (container.contains(jimg)) {
+				container.removeChild(jimg);
 			}
 		}
 	}

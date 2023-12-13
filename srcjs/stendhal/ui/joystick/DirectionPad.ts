@@ -42,12 +42,14 @@ export class DirectionPad extends JoystickBase {
 		const center_x = this.getCenterX();
 		const center_y = this.getCenterY();
 
+		const container = document.getElementById("joystick-container")!;
+
 		// positioning
 		this.up.onload = () => {
 			this.up.style.left = (center_x - (this.up.width / 2)) + "px";
 			this.up.style.top = (center_y - this.radius) + "px";
 			// add to DOM
-			document.body.appendChild(this.up);
+			container.appendChild(this.up);
 			// remove listener
 			this.up.onload = null;
 		};
@@ -55,7 +57,7 @@ export class DirectionPad extends JoystickBase {
 			this.down.style.left = (center_x - (this.down.width / 2)) + "px";
 			this.down.style.top = (center_y + this.radius - this.down.height) + "px";
 			// add to DOM
-			document.body.appendChild(this.down);
+			container.appendChild(this.down);
 			// remove listener
 			this.down.onload = null;
 		};
@@ -63,7 +65,7 @@ export class DirectionPad extends JoystickBase {
 			this.left.style.left = (center_x - this.radius) + "px";
 			this.left.style.top = (center_y - (this.left.height / 2)) + "px";
 			// add to DOM
-			document.body.appendChild(this.left);
+			container.appendChild(this.left);
 			// remove listener
 			this.left.onload = null;
 		};
@@ -71,7 +73,7 @@ export class DirectionPad extends JoystickBase {
 			this.right.style.left = (center_x + this.radius - this.right.width) + "px";
 			this.right.style.top = (center_y - (this.right.height / 2)) + "px";
 			// add to DOM
-			document.body.appendChild(this.right);
+			container.appendChild(this.right);
 			// remove listener
 			this.right.onload = null;
 		};
@@ -151,9 +153,10 @@ export class DirectionPad extends JoystickBase {
 
 	public override onRemoved() {
 		// remove from DOM
+		const container = document.getElementById("joystick-container")!;
 		for (const dimg of [this.up, this.down, this.left, this.right]) {
-			if (document.body.contains(dimg)) {
-				document.body.removeChild(dimg);
+			if (container.contains(dimg)) {
+				container.removeChild(dimg);
 			}
 		}
 	}
