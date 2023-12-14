@@ -38,9 +38,6 @@ export class ChatOptionsDialog extends DialogContentComponent {
 				common_options.push(opt);
 			}
 		}
-		if (common_options.length > 0) {
-			this.addGroup("Common", common_options);
-		}
 
 		// attending NPC (note that options are parsed from most recent NPC if there are multiple attending)
 		const npc_options = [];
@@ -57,6 +54,10 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		}
 		if (npc_options.length > 0) {
 			this.addGroup(not_attending || !Chat.attending ? "NPC" : Chat.attending, npc_options);
+		}
+
+		if (common_options.length > 0) {
+			this.addGroup("Common", common_options);
 		}
 	}
 
