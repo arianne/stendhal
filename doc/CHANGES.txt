@@ -22,8 +22,8 @@ Changelog
 
 *web client*
 - added optional on-screen joystick
-- added emoji map
-- added chat options keyword map
+- added emoji map dialog
+- added chat options dialog
 - displays character name in browser title/tab & stats panel
 - displays status effects in stats panel
 - improved touch support
