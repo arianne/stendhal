@@ -31,11 +31,11 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		super("keywordmap-template");
 
 		// common chat options
-		const common_options = [];
-		for (let opt of stendhal.config.get("chat.keywords").split(",")) {
+		const custom_options = [];
+		for (let opt of stendhal.config.get("chat.custom_keywords").split(",")) {
 			opt = opt.trim();
 			if (opt) {
-				common_options.push(opt);
+				custom_options.push(opt);
 			}
 		}
 
@@ -48,23 +48,26 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			if (original) {
 				opt = original;
 			}
-			if (common_options.indexOf(opt) == -1) {
+			// don't add duplicates if already in custom options
+			if (custom_options.indexOf(opt) == -1) {
 				npc_options.push(opt);
 			}
 		}
 		if (npc_options.length > 0) {
-			this.addGroup(not_attending || !Chat.attending ? "NPC" : Chat.attending, npc_options);
+			this.addGroup(not_attending || !Chat.attending ? undefined : Chat.attending, npc_options);
 		}
 
-		if (common_options.length > 0) {
-			this.addGroup("Common", common_options);
+		if (custom_options.length > 0) {
+			this.addGroup("Custom", custom_options);
 		}
 	}
 
-	private addGroup(title: string, options: string[]) {
-		const titleElement = document.createElement("div");
-		titleElement.innerText = title;
-		this.componentElement.appendChild(titleElement);
+	private addGroup(title: string|undefined, options: string[]) {
+		if (title) {
+			const titleElement = document.createElement("div");
+			titleElement.innerText = title;
+			this.componentElement.appendChild(titleElement);
+		}
 
 		let row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
