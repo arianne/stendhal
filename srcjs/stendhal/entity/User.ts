@@ -148,6 +148,8 @@ export class User extends Player {
 	 * Actions when player leaves a zone.
 	 */
 	onExitZone() {
+		// speech bubbles & emojis from viewport
+		stendhal.ui.gamewindow.onExitZone();
 		// stop sounds & clear map sounds cache on zone change
 		const msgs: string[] = [];
 		if (!this.lssMan.removeAll()) {

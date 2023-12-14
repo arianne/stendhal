@@ -306,6 +306,19 @@ export class ViewPort {
 		return false;
 	}
 
+	onExitZone() {
+		// clear speech bubbles & emojis so they don't appear on the new map
+		for (const sgroup of [this.textSprites, this.emojiSprites]) {
+			for (let idx = sgroup.length-1; idx >= 0; idx--) {
+				const sprite = sgroup[idx];
+				sgroup.splice(idx, 1);
+				if (sprite instanceof SpeechBubble) {
+					sprite.onRemoved();
+				}
+			}
+		}
+	}
+
 	// Mouse click handling
 	onMouseDown = (function() {
 		var entity: any;
