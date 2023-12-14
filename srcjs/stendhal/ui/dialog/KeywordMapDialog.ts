@@ -43,6 +43,7 @@ export class KeywordMapDialog extends DialogContentComponent {
 		}
 
 		// attending NPC (note that options are parsed from most recent NPC if there are multiple attending)
+		// FIXME: don't show NPC specific options if no longer attending
 		const npc_options = [];
 		for (let opt of Chat.options) {
 			opt = opt.toLowerCase();
