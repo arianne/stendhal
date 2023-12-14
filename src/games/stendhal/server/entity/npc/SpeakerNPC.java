@@ -474,7 +474,11 @@ public class SpeakerNPC extends PassiveNPC {
 		}
 		onGoodbye(attending);
 		engine.setCurrentState(ConversationStates.IDLE);
+		final Player player = attending instanceof Player ? (Player) attending : null;
 		setAttending(null);
+		if (player != null) {
+			engine.addChatOptionsEvent(player);
+		}
 	}
 
 	public boolean inConversationRange() {

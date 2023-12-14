@@ -612,6 +612,10 @@ public class Engine {
 			trans.getAction().fire(player, sentence, new EventRaiser(speakerNPC));
 		}
 
+		addChatOptionsEvent(player);
+	}
+
+	public void addChatOptionsEvent(final Player player) {
 		player.addEvent(new ChatOptionsEvent(speakerNPC, player, currentState));
 		player.notifyWorldAboutChanges();
 		speakerNPC.notifyWorldAboutChanges();
