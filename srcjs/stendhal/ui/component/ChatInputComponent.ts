@@ -14,8 +14,8 @@ declare let stendhal: any;
 
 import { KeyHandler } from "../KeyHandler";
 import { ui } from "../UI";
+import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
-import { KeywordMapDialog } from "../dialog/KeywordMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
 
@@ -61,7 +61,7 @@ export class ChatInputComponent extends Component {
 		const btn_keyword = document.getElementById("keywords")!;
 		// event to bring up keywords dialog
 		btn_keyword.addEventListener("click", (e) => {
-			this.buildKeywordMap();
+			this.buildChatOptions();
 		});
 	}
 
@@ -136,10 +136,10 @@ export class ChatInputComponent extends Component {
 		this.clear();
 	}
 
-	private buildKeywordMap() {
+	private buildChatOptions() {
 		const wstate = stendhal.config.getWindowState("shortcuts");
-		const content = new KeywordMapDialog();
-		const dialog = ui.createSingletonFloatingWindow("Keywords", content, wstate.x, wstate.y);
+		const content = new ChatOptionsDialog();
+		const dialog = ui.createSingletonFloatingWindow("Chat Options", content, wstate.x, wstate.y);
 		dialog.setId("shortcuts");
 		// needed in order to close dialog from within
 		content.setFrame(dialog);

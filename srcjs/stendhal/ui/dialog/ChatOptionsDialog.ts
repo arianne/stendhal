@@ -16,7 +16,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 
-export class KeywordMapDialog extends DialogContentComponent {
+export class ChatOptionsDialog extends DialogContentComponent {
 
 	/* Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
 	 * serve as alternatives to "quest", may be highlighted in dialogue so keep those.
@@ -47,7 +47,7 @@ export class KeywordMapDialog extends DialogContentComponent {
 		const npc_options = [];
 		for (let opt of Chat.options) {
 			opt = opt.toLowerCase();
-			const original = KeywordMapDialog.aliases[opt];
+			const original = ChatOptionsDialog.aliases[opt];
 			if (original) {
 				opt = original;
 			}
