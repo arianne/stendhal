@@ -43,8 +43,8 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		}
 
 		// attending NPC (note that options are parsed from most recent NPC if there are multiple attending)
-		// FIXME: don't show NPC specific options if no longer attending
 		const npc_options = [];
+		const not_attending = Chat.options.length == 1 && Chat.options[0].toLowerCase() === "hello";
 		for (let opt of Chat.options) {
 			opt = opt.toLowerCase();
 			const original = ChatOptionsDialog.aliases[opt];
@@ -56,7 +56,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			}
 		}
 		if (npc_options.length > 0) {
-			this.addGroup(Chat.attending ? Chat.attending : "NPC", npc_options);
+			this.addGroup(not_attending || !Chat.attending ? "NPC" : Chat.attending, npc_options);
 		}
 	}
 
