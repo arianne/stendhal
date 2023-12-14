@@ -27,7 +27,8 @@ export class Chat {
 
 	// available actions from attending NPC
 	public static attending?: string;
-	public static options: string[] = [];
+	// initialize with "hello" since we won't have received a ChatOptionsEvent at startup
+	public static options: string[] = ["hello"];
 
 
 	/**
