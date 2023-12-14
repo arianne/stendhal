@@ -339,6 +339,7 @@ div.logcolR {
 
 .popuptitleclose, .windowtitleclose {
 	float: right;
+	margin-left: 4px;
 }
 
 .popuptitleclose {
