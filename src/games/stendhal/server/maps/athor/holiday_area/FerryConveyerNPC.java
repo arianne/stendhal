@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -117,6 +117,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						"You don't know what you're missing, landlubber!", null);
 
+				addKnownChatOptions("status", "board");
 			}
 
 			@Override

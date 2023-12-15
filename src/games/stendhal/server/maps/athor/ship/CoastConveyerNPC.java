@@ -132,6 +132,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						"Aye, matey!", null);
 
+				addKnownChatOptions("status", "disembark");
 			}
 		};
 
