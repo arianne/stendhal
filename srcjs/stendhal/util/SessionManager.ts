@@ -44,12 +44,17 @@ export class SessionManager {
 			console.warn("tried to re-initialize SessionManager");
 			return;
 		}
+		this.initialized = true;
 
 		const charname = args.get("char") || args.get("character") || args.get("name");
 		if (charname) {
 			this.setCharName(charname);
 		}
-		this.initialized = true;
+		// server selection (test client only)
+		const server = args.get("server");
+		if (server) {
+			stendhal.config.set("connection.testserver", server !== "main");
+		}
 	}
 
 	/**
