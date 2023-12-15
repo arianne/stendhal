@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ThemedComponent } from "../toolkit/ThemedComponent";
+import { Component } from "../toolkit/Component";
 import { ItemContainerImplementation } from "./ItemContainerImplementation";
 
 declare var stendhal: any;
@@ -17,7 +17,7 @@ declare var stendhal: any;
 /**
  * handles an item inventory
  */
-export class ItemInventoryComponent extends ThemedComponent {
+export class ItemInventoryComponent extends Component {
 
 	private static counter = 0;
 	protected itemContainerImplementation!: ItemContainerImplementation;
@@ -25,7 +25,7 @@ export class ItemInventoryComponent extends ThemedComponent {
 	private oldSizeX = 0;
 
 	constructor(object: any, private slot: string, sizeX: number, sizeY: number, quickPickup: boolean, defaultImage?: string) {
-		super("iteminventory-template");
+		super("iteminventory-template", true);
 
 		ItemInventoryComponent.counter++;
 		this.suffix = "-" + ItemInventoryComponent.counter + "-";

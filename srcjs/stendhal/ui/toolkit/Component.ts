@@ -18,7 +18,7 @@ export abstract class Component {
 	private defaultDisplay: string;
 
 
-	constructor(id: string) {
+	constructor(id: string, themable=false) {
 		let element = document.getElementById(id);
 		if (!element) {
 			throw new Error("Cannot create component because there is no HTML element with id " + id);
@@ -30,6 +30,9 @@ export abstract class Component {
 		}
 
 		this.componentElement = element;
+		if (themable) {
+			this.componentElement.classList.add("background");
+		}
 		this.defaultDisplay = element.style.display;
 		if (this.defaultDisplay === "none") {
 			this.defaultDisplay = "";

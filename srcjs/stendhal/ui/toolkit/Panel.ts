@@ -23,9 +23,10 @@ export class Panel extends Component {
 	 * creates a new panel
 	 *
 	 * @param id id of HTML element or template
+	 * @param themable
 	 */
-	constructor(id: string) {
-		super(id);
+	constructor(id: string, themable=false) {
+		super(id, themable);
 		this.containerElement = this.componentElement;
 	}
 
