@@ -106,6 +106,9 @@ public class DeathmatchInfo {
 	 * 		Name of player that helped with kill.
 	 */
 	public void addAidedKill(final String helper) {
+		if (helpers == null) {
+			helpers = new HashMap<>();
+		}
 		helpers.put(helper, getAidedKills(helper) + 1);
 	}
 
@@ -119,7 +122,7 @@ public class DeathmatchInfo {
 	 */
 	public int getAidedKills(final String helper) {
 		int aidedKills = 0;
-		if (helpers.containsKey(helper)) {
+		if (helpers != null && helpers.containsKey(helper)) {
 			aidedKills = helpers.get(helper);
 		}
 
@@ -130,6 +133,6 @@ public class DeathmatchInfo {
 	 * Checks if player was helped at all by another.
 	 */
 	public boolean wasAided() {
-		return helpers.size() > 0;
+		return helpers != null ? helpers.size() > 0 : false;
 	}
 }
