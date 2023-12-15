@@ -45,6 +45,13 @@ export class ChatInputComponent extends Component {
 		this.history = config.getObject("chat.history") || [];
 		this.historyIndex = config.getInt("chat.history.index", 0);
 
+		// ** keyword shortcuts ** //
+		const btn_keyword = document.getElementById("keywords")!;
+		// event to bring up keywords dialog
+		btn_keyword.addEventListener("click", (e) => {
+			this.buildChatOptions();
+		});
+
 		// ** emoji shortcuts ** //
 
 		const btn_emoji = document.getElementById("emojis")!;
@@ -55,13 +62,6 @@ export class ChatInputComponent extends Component {
 		// event to bring up emoji dialog
 		btn_emoji.addEventListener("click", (e) => {
 			this.buildEmojiMap();
-		});
-
-		// ** keyword shortcuts ** //
-		const btn_keyword = document.getElementById("keywords")!;
-		// event to bring up keywords dialog
-		btn_keyword.addEventListener("click", (e) => {
-			this.buildChatOptions();
 		});
 	}
 
