@@ -45,6 +45,8 @@ public class ConversationPhrases {
 	public static final List<String> QUEST_MESSAGES = Arrays.asList("task",
 			"quest", "favor", "favour", "❗️");
 
+	public static final List<String> BEGIN_MESSAGES = Arrays.asList("begin", "start", "go");
+
 	public static final List<String> FINISH_MESSAGES = Arrays.asList("done",
 			"finish", "complete", "‼️");
 
