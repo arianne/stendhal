@@ -309,4 +309,31 @@ export class Entity extends RPObject {
 	public isDraggable(): boolean {
 		return false;
 	}
+
+	/**
+	 * Checks if within vieport area.
+	 */
+	public inView(): boolean {
+		const view_rect: any = {};
+		view_rect.left = stendhal.ui.gamewindow.offsetX;
+		view_rect.right = view_rect.left + stendhal.ui.gamewindow.width;
+		view_rect.top = stendhal.ui.gamewindow.offsetY;
+		view_rect.bottom = view_rect.top + stendhal.ui.gamewindow.height;
+
+		const pixelX = this["x"] * stendhal.ui.gamewindow.targetTileWidth
+				+ Math.floor(stendhal.ui.gamewindow.targetTileWidth / 2);
+		const pixelY = this["y"] * stendhal.ui.gamewindow.targetTileHeight
+				+ Math.floor(stendhal.ui.gamewindow.targetTileHeight / 2);
+
+		const ent_rect: any = {};
+		// horizontal orientation is centered
+		ent_rect.left = pixelX - (this["drawWidth"] / 2);
+		ent_rect.right = pixelX + (this["drawWidth"] / 2);
+		// FIXME: vertical orientation should be offset using entity height & sprite height?
+		ent_rect.bottom = pixelY;
+		ent_rect.top = ent_rect.bottom - this["drawHeight"];
+
+		return ent_rect.right > view_rect.left && ent_rect.left < view_rect.right
+				&& ent_rect.bottom > view_rect.top && ent_rect.top < view_rect.bottom
+	}
 }

@@ -63,15 +63,21 @@ export class SpeechBubble extends TextBubble {
 	}
 
 	override getX(): number {
-		const x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
-		// keep on screen (border is 1 pixel)
-		const overdraw = x + this.width - (stendhal.ui.gamewindow.offsetX + stendhal.ui.gamewindow.width) + 1;
-		return overdraw > 0 ? x - overdraw : x;
+		let x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
+		if (this.entity.inView()) {
+			// keep on screen while entity is visible (border is 1 pixel)
+			const overdraw = x + this.width - (stendhal.ui.gamewindow.offsetX + stendhal.ui.gamewindow.width) + 1;
+			x = overdraw > 0 ? x - overdraw : x;
+		}
+		return x;
 	}
 
 	override getY(): number {
-		const y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1)) + this.offsetY - TextBubble.adjustY;
-		// keep on screen (border is 1 pixel)
-		return y < 1 ? 1 : y;
+		let y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1)) + this.offsetY - TextBubble.adjustY;
+		if (this.entity.inView()) {
+			// keep on screen while entity is visible (border is 1 pixel)
+			y = y < stendhal.ui.gamewindow.offsetY + 1 ? stendhal.ui.gamewindow.offsetY + 1 : y;
+		}
+		return y;
 	}
 }
