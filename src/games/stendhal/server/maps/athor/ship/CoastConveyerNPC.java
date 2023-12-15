@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,11 +74,11 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						null,
 						new ChatAction() {
-					@Override
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						npc.say(ferryState.toString());
-					}
-				});
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								npc.say(ferryState.toString());
+							}
+						});
 
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("disembark", "leave"),
@@ -86,51 +86,45 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						null,
 						new ChatAction() {
-					@Override
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						switch (ferryState) {
-						case ANCHORED_AT_MAINLAND:
-							npc.say("Do ye really want me to take ye to the mainland with me skiff?");
-							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-							break;
-						case ANCHORED_AT_ISLAND:
-							npc.say("Do ye really want me to take ye to the island with me skiff?");
-							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-							break;
-
-						default:
-							npc.say(ferryState.toString()
-									+ " Ye can only get off the boat when it's anchored near a harbor.");
-
-						}
-					}
-				});
-
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								switch (ferryState) {
+								case ANCHORED_AT_MAINLAND:
+									npc.say("Do ye really want me to take ye to the mainland with me skiff?");
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
+									break;
+								case ANCHORED_AT_ISLAND:
+									npc.say("Do ye really want me to take ye to the island with me skiff?");
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
+									break;
+								default:
+									npc.say(ferryState.toString()
+											+ " Ye can only get off the boat when it's anchored near a harbor.");
+								}
+							}
+						});
 
 				add(ConversationStates.SERVICE_OFFERED,
 						ConversationPhrases.YES_MESSAGES,
 						null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
-					@Override
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						switch (ferryState) {
-						case ANCHORED_AT_MAINLAND:
-							player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);
-							npc.setCurrentState(ConversationStates.IDLE);
-							break;
-						case ANCHORED_AT_ISLAND:
-							player.teleport(getIslandDockZone(), 16, 89, Direction.LEFT, null);
-							npc.setCurrentState(ConversationStates.IDLE);
-							break;
-
-						default:
-							npc.say("Too bad! The ship has already set sail.");
-
-						}
-
-					}
-				});
+							@Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								switch (ferryState) {
+								case ANCHORED_AT_MAINLAND:
+									player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);
+									npc.setCurrentState(ConversationStates.IDLE);
+									break;
+								case ANCHORED_AT_ISLAND:
+									player.teleport(getIslandDockZone(), 16, 89, Direction.LEFT, null);
+									npc.setCurrentState(ConversationStates.IDLE);
+									break;
+								default:
+									npc.say("Too bad! The ship has already set sail.");
+								}
+							}
+						});
 
 				add(ConversationStates.SERVICE_OFFERED,
 						ConversationPhrases.NO_MESSAGES,
@@ -138,33 +132,32 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						"Aye, matey!", null);
 
-			}};
-			new AthorFerry.FerryListener() {
+			}
+		};
 
-
-				@Override
-				public void onNewFerryState(final Status status) {
-					ferryState = status;
-					switch (status) {
-					case ANCHORED_AT_MAINLAND:
-						npc.say("Attention: The ferry has arrived at the mainland! You can now #disembark.");
-						break;
-					case ANCHORED_AT_ISLAND:
-						npc.say("Attention: The ferry has arrived at the island! You can now #disembark.");
-						break;
-					default:
-						npc.say("Attention: The ferry has set sail.");
-						break;
-					}
-
+		new AthorFerry.FerryListener() {
+			@Override
+			public void onNewFerryState(final Status status) {
+				ferryState = status;
+				switch (status) {
+				case ANCHORED_AT_MAINLAND:
+					npc.say("Attention: The ferry has arrived at the mainland! You can now #disembark.");
+					break;
+				case ANCHORED_AT_ISLAND:
+					npc.say("Attention: The ferry has arrived at the island! You can now #disembark.");
+					break;
+				default:
+					npc.say("Attention: The ferry has set sail.");
+					break;
 				}
-			};
+			}
+		};
 
-			npc.setPosition(29, 34);
-			npc.setEntityClass("pirate_sailor2npc");
-			npc.setDescription ("Jackie helps passangers to disembark to the coast. She is a real pirate girl!");
-			npc.setDirection(Direction.LEFT);
-			zone.add(npc);
+		npc.setPosition(29, 34);
+		npc.setEntityClass("pirate_sailor2npc");
+		npc.setDescription ("Jackie helps passangers to disembark to the coast. She is a real pirate girl!");
+		npc.setDirection(Direction.LEFT);
+		zone.add(npc);
 	}
 
 	private static StendhalRPZone getMainlandDocksZone() {
