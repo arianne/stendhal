@@ -193,6 +193,9 @@ public class SpeakerNPC extends PassiveNPC {
 	/** Determines if location should be visible on website. */
 	private boolean showLocation = true;
 
+	/** Keywords unique to this entity available in chat options. */
+	private List<String> knownChatOptions;
+
 	/**
 	 * Creates a new SpeakerNPC.
 	 *
@@ -205,6 +208,7 @@ public class SpeakerNPC extends PassiveNPC {
 		lastMessageTurn = 0;
 
 		setName(name);
+		knownChatOptions = new LinkedList<>();
 		createDialog();
 		createDefaultReplies();
 
@@ -1157,5 +1161,29 @@ public class SpeakerNPC extends PassiveNPC {
 	 */
 	public boolean isLocationHidden() {
 		return !showLocation;
+	}
+
+	/**
+	 * Adds to list of keywords available in chat options specific to this NPC.
+	 *
+	 * @param keywords
+	 *   Keyword(s) to be added.
+	 */
+	public void addKnownChatOptions(final String... keywords) {
+		for (final String keyword: keywords) {
+			if (!knownChatOptions.contains(keyword)) {
+				knownChatOptions.add(keyword);
+			}
+		}
+	}
+
+	/**
+	 * Retrievies list of keywords available in chat options specific to this NPC.
+	 *
+	 * @return
+	 *   List of keywords.
+	 */
+	public List<String> getKnownChatOptions() {
+		return knownChatOptions;
 	}
 }

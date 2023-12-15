@@ -156,6 +156,7 @@ public class ChatOptionsEvent extends RPEvent {
 			String trigger = expr.getNormalized().toLowerCase(Locale.ENGLISH);
 			ChatOption option = new ChatOption(trigger);
 			if (ConversationPhrases.KNOWN.contains(trigger)
+					|| npc.getKnownChatOptions().contains(trigger)
 					|| npc.hasLearnedWordInCurrentConversation(trigger)
 					|| npc.hasLearnedWordInCurrentConversation(Grammar.plural(trigger))) {
 				res.add(option);
