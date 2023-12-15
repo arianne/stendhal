@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -69,6 +69,8 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 						new MultipleActions(new PlaySoundAction("keys-1", true), new VaultChatAction()));
 
 				add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you more about the private banking vaults.", null);
+
+				addKnownChatOptions("vault");
 
 				// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert
 			}
