@@ -588,7 +588,7 @@ div.logcolR {
 	font-family: Tally;
 }
 
-.shortcut-launcher {
+#send-button, #keywords-button, #emojis-button {
 	margin-left: 2px;
 }
 

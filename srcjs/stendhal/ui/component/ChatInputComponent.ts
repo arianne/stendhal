@@ -45,16 +45,20 @@ export class ChatInputComponent extends Component {
 		this.history = config.getObject("chat.history") || [];
 		this.historyIndex = config.getInt("chat.history.index", 0);
 
+		const btn_send = document.getElementById("send-button")!;
+		btn_send.addEventListener("click", (e) => {
+			this.send();
+		});
+
 		// ** keyword shortcuts ** //
-		const btn_keyword = document.getElementById("keywords")!;
+		const btn_keyword = document.getElementById("keywords-button")!;
 		// event to bring up keywords dialog
 		btn_keyword.addEventListener("click", (e) => {
 			this.buildChatOptions();
 		});
 
 		// ** emoji shortcuts ** //
-
-		const btn_emoji = document.getElementById("emojis")!;
+		const btn_emoji = document.getElementById("emojis-button")!;
 		// clear default text & add emoji image
 		btn_emoji.innerText = "";
 		// set image for emoji button
