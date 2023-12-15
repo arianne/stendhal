@@ -241,6 +241,8 @@ public class AdosDeathmatch extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					null,
 					new BailAction());
+
+				addKnownChatOptions("leave", "start", "bail");
 			}
 		};
 
