@@ -22,6 +22,7 @@ import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -131,6 +132,8 @@ public class DeathmatchEngine implements TurnListener {
 				raiser.say(player.getName() + ", you have completed this deathmatch and can now claim #victory.");
 				raiser.setCurrentState(ConversationStates.ATTENDING);
 				raiser.setAttending(player);
+
+				((SpeakerNPC) raiser.getEntity()).getEngine().addChatOptionsEvent(player);
 
 				// remove this ScriptAction since we're done
 				keepRunning = false;
