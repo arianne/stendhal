@@ -53,6 +53,8 @@ export class SessionManager {
 		// server selection (test client only)
 		const server = args.get("server");
 		if (server) {
+			// TODO: Don't store connection & remove option from settings dialog. Note that Android
+			//       WebView client will need updated to set server connection in query string.
 			stendhal.config.set("connection.testserver", server !== "main");
 		}
 	}
