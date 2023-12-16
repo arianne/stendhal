@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 			client = (ClientView) findViewById(R.id.clientWebView);
 
 			// initialize d-pads
+			// TODO: remove on-screen joystick/dpad support after 1.45 release as it is now built
+			//       into the web client
 			final DPad arrowPad = DPadArrows.get();
 			final DPad joyPad = DPadJoy.get();
 
