@@ -412,10 +412,22 @@ public class ClientView extends WebView {
 			if (testing) {
 				replaceSuffix = "/client/";
 			}
-
+			// ensure website directs to configured client
 			url = url.replace(replaceSuffix, "/" + clientUrlSuffix + "/");
+			url = formatCharName(url);
 		}
 
+		return url;
+	}
+
+	/**
+	 * Extracts character name from URL fragment identifier & converts to query string.
+	 */
+	private String formatCharName(String url) {
+		final int idx = url.indexOf("#");
+		if (idx > -1) {
+			url = url.substring(0, idx) + "?char=" + url.substring(idx+1);
+		}
 		return url;
 	}
 
