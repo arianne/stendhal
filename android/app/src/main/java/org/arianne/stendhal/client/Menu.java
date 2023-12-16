@@ -171,18 +171,23 @@ public class Menu {
 				if (!(ClientView.getCurrentPageId() == PageId.WEBCLIENT)) {
 					server_ver = "not connected";
 				}
-
 				// FIXME: how to find server version if connected?
 
+				final ClientView client = ClientView.get();
 				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
-				builder.setMessage("WebView client version: "
-					+ BuildConfig.VERSION_NAME + "\nServer version: " + server_ver
-					+ "\n\nTitle Music:"
-					+ "\n- \"Treasure Hunter\": Tad Miller (TAD)"
-					+ "\n- \"Woodland Fantasy\": Matthew Pablo http://www.matthewpablo.com/"
-					+ "\n- \"Land of Fearless\": Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov"
-					+ "\n- \"Medieval: Rejoicing\": RandomMind"
-					+ "\n- \"Medieval: The Old Tower Inn\": RandomMind");
+				String msg = "WebView client version: " + BuildConfig.VERSION_NAME;
+				if (client.debugEnabled()) {
+					msg += "\nSelected client: " + client.getSelectedClient()
+							+ "\nSelected server: " + client.getSelectedServer();
+				}
+				msg += "\nServer version: " + server_ver
+						+ "\n\nTitle Music:"
+						+ "\n- \"Treasure Hunter\": Tad Miller (TAD)"
+						+ "\n- \"Woodland Fantasy\": Matthew Pablo http://www.matthewpablo.com/"
+						+ "\n- \"Land of Fearless\": Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov"
+						+ "\n- \"Medieval: Rejoicing\": RandomMind"
+						+ "\n- \"Medieval: The Old Tower Inn\": RandomMind";
+				builder.setMessage(msg);
 
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, final int id) {

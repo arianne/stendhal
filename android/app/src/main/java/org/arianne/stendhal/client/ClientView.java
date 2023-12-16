@@ -50,7 +50,8 @@ public class ClientView extends WebView {
 	private final String defaultServer = "https://stendhalgame.org/";
 	private String clientUrlSuffix = "client";
 
-	private boolean testing = false;
+	private boolean testClient = false;
+	private boolean testServer = false;
 	private Boolean debugging;
 	private static PageId currentPage;
 	// denotes previous touch was remapped to mouse event
@@ -278,10 +279,31 @@ public class ClientView extends WebView {
 		});
 	}
 
+	public String getSelectedClient() {
+		if (ClientView.onTitleScreen()) {
+			return "none";
+		}
+		return testClient ? "test" : "main";
+	}
+
+	public String getSelectedServer() {
+		if (ClientView.onTitleScreen()) {
+			return "none";
+		}
+		return testServer ? "test" : "main";
+	}
+
+	private void reset() {
+		testClient = false;
+		testServer = false;
+		clientUrlSuffix = "client";
+	}
+
 	/**
 	 * Shows initial title screen.
 	 */
 	public void loadTitleScreen() {
+		reset();
 		setSplashResource(R.drawable.splash);
 		loadUrl("about:blank");
 		Menu.get().show();
@@ -292,8 +314,8 @@ public class ClientView extends WebView {
 	 */
 	public void loadLogin() {
 		if (debugEnabled() && PreferencesActivity.getString("client_url").trim().equals("")) {
-			// debug builds support choosing between main & test server
-			selectServer();
+			// debug builds support choosing between main & test client/server
+			selectClient();
 		} else {
 			onSelectServer();
 		}
@@ -315,31 +337,58 @@ public class ClientView extends WebView {
 	}
 
 	/**
+	 * Opens a message dialog for user to choose between main & test clients.
+	 */
+	private void selectClient() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
+		builder.setMessage("Select client");
+
+		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				testClient = false;
+				clientUrlSuffix = "client";
+				// skip server confirmation as only test client has this option
+				onSelectServer();
+				dialog.cancel();
+			}
+		});
+
+		builder.setNegativeButton("Test", new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, final int id) {
+				testClient = true;
+				clientUrlSuffix = "testclient";
+				selectServer();
+				dialog.cancel();
+			}
+		});
+
+		builder.create().show();
+	}
+
+	/**
 	 * Opens a message dialog for user to choose between main & test servers.
 	 */
 	private void selectServer() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
-		builder.setMessage("Select a server");
+		builder.setMessage("Select server");
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
-				testing = false;
+				testServer = false;
 				dialog.cancel();
 				onSelectServer();
 			}
 		});
 
-		builder.setNegativeButton("Testing", new DialogInterface.OnClickListener() {
+		builder.setNegativeButton("Test", new DialogInterface.OnClickListener() {
 			public void onClick(final DialogInterface dialog, final int id) {
-				testing = true;
-				clientUrlSuffix = "testclient";
+				testServer = true;
 				dialog.cancel();
 				onSelectServer();
 			}
 		});
 
-		final AlertDialog selectServer = builder.create();
-		selectServer.show();
+		builder.create().show();
 	}
 
 	private void onSelectServer() {
@@ -355,7 +404,7 @@ public class ClientView extends WebView {
 			// initial page
 			loadUrl(defaultServer + "account/mycharacters.html");
 
-			if (testing) {
+			if (testServer) {
 				DebugLog.debug("Connecting to test server");
 			} else {
 				DebugLog.debug("Connecting to main server");
@@ -409,12 +458,16 @@ public class ClientView extends WebView {
 	private String checkClientUrl(String url) {
 		if (isClientUrl(url)) {
 			String replaceSuffix = "/testclient/";
-			if (testing) {
+			if (testClient) {
 				replaceSuffix = "/client/";
 			}
 			// ensure website directs to configured client
 			url = url.replace(replaceSuffix, "/" + clientUrlSuffix + "/");
 			url = formatCharName(url);
+			if (testClient && !testServer) {
+				// connect test client to main server
+				url += "&server=main";
+			}
 		}
 
 		return url;
@@ -503,7 +556,7 @@ public class ClientView extends WebView {
 	 * @return
 	 *     <code>true</code> if debug flag set.
 	 */
-	private boolean debugEnabled() {
+	public boolean debugEnabled() {
 		if (debugging != null) {
 			return debugging;
 		}
