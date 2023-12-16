@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                     Copyright © 2022-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -116,7 +116,7 @@ public class Menu {
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 
-				Notifier.get().showPrompt("Return to title screen?",
+				Notifier.showPrompt("Return to title screen?",
 					new Notifier.Action() {
 						protected void onCall() {
 							ClientView.get().loadTitleScreen();
@@ -135,7 +135,7 @@ public class Menu {
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 
-				Notifier.get().showPrompt("Reload page?",
+				Notifier.showPrompt("Reload page?",
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {

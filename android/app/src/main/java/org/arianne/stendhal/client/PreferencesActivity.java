@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                     Copyright © 2022-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -128,7 +128,7 @@ public class PreferencesActivity extends AppCompatActivity {
 		} catch (final NumberFormatException e) {
 			final String errMsg = "An error occurred: " + e.getMessage();
 			DebugLog.error(errMsg + "\n" + e.getStackTrace());
-			Notifier.get().showError(errMsg + "\n\nSee " + DebugLog.getLogsDir()
+			Notifier.showError(errMsg + "\n\nSee " + DebugLog.getLogsDir()
 				+ " for more information.");
 		}
 
@@ -168,7 +168,7 @@ public class PreferencesActivity extends AppCompatActivity {
 			if (reset != null) {
 				reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 					public boolean onPreferenceClick(final Preference pref) {
-						Notifier.get().showPrompt(getActivity(), "Restore prefrences defaults?",
+						Notifier.showPrompt(getActivity(), "Restore prefrences defaults?",
 							new Notifier.Action() {
 								protected void onCall() {
 									DebugLog.debug("restoring preferences default values");

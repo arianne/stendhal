@@ -359,7 +359,7 @@ public class ClientView extends WebView {
 			} else {
 				DebugLog.debug("Connecting to main server");
 
-				Notifier.get().showMessage("CAUTION: This software is in early development and not recommended"
+				Notifier.showMessage("CAUTION: This software is in early development and not recommended"
 					+ " for use on the main server. Proceed with caution.", false);
 			}
 		}

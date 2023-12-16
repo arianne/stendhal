@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                     Copyright © 2022-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 				DebugLog.error(ste.toString());
 			}
 			DebugLog.error("// -- //");
-			Notifier.get().showPrompt(
+			Notifier.showPrompt(
 				"An unhandled exception has occurred: " + e.getMessage()
 				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html",
 				new Notifier.Action() {

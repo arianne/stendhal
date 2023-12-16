@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                     Copyright © 2022-2023 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,38 +19,32 @@ import android.widget.Toast;
 
 public class Notifier {
 
-	private AlertDialog.Builder builder;
-
-	private static Notifier instance;
+	private static AlertDialog.Builder builder;
 
 
-	public static Notifier get() {
-		if (instance == null) {
-			instance = new Notifier();
-		}
-
-		return instance;
+	/**
+	 * Static methods only.
+	 */
+	private Notifier() {
+		// do nothing
 	}
 
-	private Notifier() {}
-
-	private void showDialog() {
+	private static void showDialog() {
 		if (builder != null) {
 			builder.create().show();
 		}
-
 		builder = null;
 	}
 
-	private void createDialog(final Context ctx) {
+	private static void createDialog(final Context ctx) {
 		builder = new AlertDialog.Builder(ctx);
 	}
 
-	private void createDialog() {
+	private static void createDialog() {
 		createDialog(MainActivity.get());
 	}
 
-	public void showMessage(final String msg, final boolean cancelable, final String title) {
+	public static void showMessage(final String msg, final boolean cancelable, final String title) {
 		createDialog();
 
 		builder.setCancelable(cancelable);
@@ -67,19 +61,19 @@ public class Notifier {
 		showDialog();
 	}
 
-	public void showMessage(final String msg, final boolean cancelable) {
+	public static void showMessage(final String msg, final boolean cancelable) {
 		showMessage(msg, cancelable, null);
 	}
 
-	public void showMessage(final String msg) {
+	public static void showMessage(final String msg) {
 		showMessage(msg, true, null);
 	}
 
-	public void showError(final String msg) {
+	public static void showError(final String msg) {
 		showMessage(msg, false, "Error");
 	}
 
-	public void showPrompt(final Context ctx, final String msg, final Action... actions) {
+	public static void showPrompt(final Context ctx, final String msg, final Action... actions) {
 		createDialog(ctx);
 
 		builder.setCancelable(false);
@@ -150,7 +144,7 @@ public class Notifier {
 		showDialog();
 	}
 
-	public void showPrompt(final String msg, final Action... actions) {
+	public static void showPrompt(final String msg, final Action... actions) {
 		showPrompt(MainActivity.get(), msg, actions);
 	}
 
