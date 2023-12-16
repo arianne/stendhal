@@ -145,7 +145,7 @@ export class Client {
 		this.registerBrowserEventHandlers();
 
 		let ws = Paths.ws.substring(1);
-		if (stendhal.session.isTestClient() && !stendhal.config.getBoolean("connection.testserver")) {
+		if (stendhal.session.isTestClient() && !stendhal.session.isServerDefault()) {
 			ws = ws.replace(/t/, "s");
 			// disclaimer for using the test client on the main server
 			Chat.log("warning", "WARNING: You are connecting to the production server with a development"

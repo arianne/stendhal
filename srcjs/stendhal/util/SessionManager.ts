@@ -17,6 +17,7 @@ export class SessionManager {
 	private storage = window.sessionStorage;
 	private charname?: string;
 	private initialized = false;
+	private server_default = true;
 
 	/** Singleton instance. */
 	private static instance: SessionManager;
@@ -50,12 +51,10 @@ export class SessionManager {
 		if (charname) {
 			this.setCharName(charname);
 		}
-		// server selection (test client only)
+		// server selection from query string (test client only)
 		const server = args.get("server");
-		if (server) {
-			// TODO: Don't store connection & remove option from settings dialog. Note that Android
-			//       WebView client will need updated to set server connection in query string.
-			stendhal.config.set("connection.testserver", server !== "main");
+		if (server && this.isTestClient()) {
+			this.server_default = server !== "main";
 		}
 	}
 
@@ -112,5 +111,18 @@ export class SessionManager {
 	 */
 	isTestClient(): boolean {
 		return stendhal.paths.data === "/testdata";
+	}
+
+	/**
+	 * Checks if the client should connect to its default server counterpart.
+	 *
+	 * Used for test client only.
+	 *
+	 * @return
+	 *   `true` is test client should connect to test server. `false` if it should connect to main
+	 *   server.
+	 */
+	isServerDefault(): boolean {
+		return this.server_default;
 	}
 }

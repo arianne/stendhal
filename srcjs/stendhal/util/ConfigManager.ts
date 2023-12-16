@@ -56,8 +56,6 @@ export class ConfigManager {
 		"action.inventory.quickpickup": "true",
 		"event.pvtmsg.sound": "ui/notify_up",
 		"chat.custom_keywords": "",
-		// test client only
-		"connection.testserver": "true"
 	} as {[id: string]: string};
 
 	private themes = {

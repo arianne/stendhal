@@ -43,7 +43,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.initialStates = {
 			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
-			"connection.testserver": stendhal.config.get("connection.testserver")
 		};
 
 
@@ -129,18 +128,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 
 		/* *** right panel *** */
-
-		const sel_server = this.createSelect("selserver", {"test": "test", "main": "main"},
-				stendhal.config.getBoolean("connection.testserver") ? 0 : 1,
-				"Select \"main\" to connect to main server with test client (requires page reload)");
-		sel_server.addEventListener("change", (e) => {
-			stendhal.config.set("connection.testserver", sel_server.selectedIndex == 0);
-			this.refresh();
-		});
-		// server selection is hidden unless test client is detected
-		if (stendhal.session.isTestClient()) {
-			sel_server.parentElement!.style["display"] = "block";
-		}
 
 		const themes = {} as {[index: string]: string};
 		for (const t of Object.keys(stendhal.config.themes.map)) {
