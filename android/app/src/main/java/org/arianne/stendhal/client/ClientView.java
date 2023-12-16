@@ -128,6 +128,7 @@ public class ClientView extends WebView {
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 				if (!isInternalUrl(url)) {
+					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
 					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 					return true;
