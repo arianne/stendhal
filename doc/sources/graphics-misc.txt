@@ -8,6 +8,7 @@ buddy.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge
 buddy_offline.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 buddy_online.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 chat.png                Katie Russell (kymara); GPL 2.0 or newer; Stendhal, https://sf.net/p/arianne/patches/433/
+click_indicator.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
 danger.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 forbidden.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 help.png                Groundhug McHampster (h4mt4r0); GPL 2.0 or newer; Stendhal

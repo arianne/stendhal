@@ -24,6 +24,7 @@ import { DirectionPad } from "./joystick/DirectionPad";
 import { Joystick } from "./joystick/Joystick";
 import { JoystickBase } from "./joystick/JoystickBase";
 
+import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
 
 import { AchievementBanner } from "../sprite/AchievementBanner";
@@ -569,6 +570,8 @@ export class ViewPort {
 			stendhal.ui.touch.unsetHeldItem();
 			stendhal.ui.touch.unsetOrigin();
 		}
+		// execute here because "touchend" event propagation is cancelled on the veiwport
+		Client.handleClickIndicator(e);
 	}
 
 	onContentMenu(e: MouseEvent) {

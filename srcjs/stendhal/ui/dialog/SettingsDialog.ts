@@ -126,6 +126,9 @@ export class SettingsDialog extends DialogContentComponent {
 				undefined, "ui/notify_up", "null");
 		chk_pvtsnd.checked = stendhal.config.get("event.pvtmsg.sound") === "ui/notify_up";
 
+		this.createCheckBox("chk_clickindicator", "input.click.indicator",
+				"Displaying clicks", "Not displaying clicks");
+
 
 		/* *** right panel *** */
 

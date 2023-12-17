@@ -50,6 +50,7 @@ export class ConfigManager {
 		"gamescreen.nonude": "false",
 		"gamescreen.shadows": "true",
 		"gamescreen.speech.creature": "true",
+		"input.click.indicator": "false",
 		"input.movecont": "false",
 		//"input.doubleclick": "false",
 		"action.item.doubleclick": "false",
