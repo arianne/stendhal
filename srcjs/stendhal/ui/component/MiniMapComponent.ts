@@ -206,6 +206,9 @@ export class MiniMapComponent extends Component {
 	}
 
 	onClick(event: MouseEvent) {
+		if (!stendhal.config.getBoolean("client.pathfinding")) {
+			return;
+		}
 		let pos = stendhal.ui.html.extractPosition(event);
 		let x = Math.floor((pos.canvasRelativeX + this.xOffset) / this.scale);
 		let y = Math.floor((pos.canvasRelativeY + this.yOffset) / this.scale);

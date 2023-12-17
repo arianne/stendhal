@@ -59,6 +59,9 @@ export class Ground {
 	}
 
 	onclick(x: number, y: number, dblclick: boolean) {
+		if (!stendhal.config.getBoolean("client.pathfinding")) {
+			return;
+		}
 		var gameX = x + stendhal.ui.gamewindow.offsetX;
 		var gameY = y + stendhal.ui.gamewindow.offsetY;
 		var action = {

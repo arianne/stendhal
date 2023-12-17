@@ -20,6 +20,7 @@ declare var stendhal: any;
 export class ConfigManager {
 
 	private readonly defaults = {
+		"client.pathfinding": "true",
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",
 		"ui.sound.ambient.volume": "100",

@@ -129,6 +129,9 @@ export class SettingsDialog extends DialogContentComponent {
 		this.createCheckBox("chk_clickindicator", "input.click.indicator",
 				"Displaying clicks", "Not displaying clicks");
 
+		this.createCheckBox("chk_pathfinding", "client.pathfinding",
+				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
+
 
 		/* *** right panel *** */
 
