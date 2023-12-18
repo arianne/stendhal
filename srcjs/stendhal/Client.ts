@@ -48,8 +48,6 @@ export class Client {
 	private unloading = false;
 	public username?: string;
 
-	private static click_indicator_id: number|undefined = undefined;
-
 	/** Singleton instance. */
 	private static instance: Client;
 
@@ -425,20 +423,6 @@ export class Client {
 		soundbutton.addEventListener("click", stendhal.main.toggleSound);
 		// update button state
 		this.onSoundToggled();
-
-		// click/touch indicator
-		// TODO:
-		//   - animate
-		//   - would work better if displayed upon mousedown/touchstart then position updated & timer
-		//     started upon release
-		const click_indicator = document.getElementById("click-indicator")! as HTMLImageElement;
-		click_indicator.onload = () => {
-			click_indicator.onload = null;
-			// FIXME: some event handlers cancel propagation
-			document.addEventListener("click", Client.handleClickIndicator);
-			document.addEventListener("touchend", Client.handleClickIndicator);
-		};
-		click_indicator.src = stendhal.paths.gui + "/click_indicator.png";
 	}
 
 	toggleSound() {
@@ -492,23 +476,5 @@ export class Client {
 	onMouseEnter(e: MouseEvent) {
 		// use Stendhal's built-in cursor for entire page
 		(e.target as HTMLElement).style.cursor = "url(" + stendhal.paths.sprites + "/cursor/normal.png) 1 3, auto";
-	}
-
-	static handleClickIndicator(e: Event) {
-		if (!stendhal.config.getBoolean("input.click.indicator")) {
-			return;
-		}
-		if (Client.click_indicator_id !== undefined) {
-			clearTimeout(Client.click_indicator_id);
-			Client.click_indicator_id = undefined;
-		}
-		const pos = stendhal.data.html.extractPosition(e);
-		const click_indicator = document.getElementById("click-indicator")! as HTMLImageElement;
-		click_indicator.style["left"] = (pos.pageX - (click_indicator.width / 2)) + "px";
-		click_indicator.style["top"] = (pos.pageY - (click_indicator.height / 2)) + "px";
-		click_indicator.style["display"] = "inline";
-		Client.click_indicator_id = setTimeout(function() {
-			click_indicator.style["display"] = "none";
-		}, 300);
 	}
 }

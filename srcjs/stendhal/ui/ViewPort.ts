@@ -570,8 +570,6 @@ export class ViewPort {
 			stendhal.ui.touch.unsetHeldItem();
 			stendhal.ui.touch.unsetOrigin();
 		}
-		// execute here because "touchend" event propagation is cancelled on the veiwport
-		Client.handleClickIndicator(e);
 	}
 
 	onContentMenu(e: MouseEvent) {
