@@ -8,6 +8,11 @@
 	overflow: hidden;
 }
 
+/* disable double-tap zoom in browsers that support it */
+html {
+	touch-action: manipulation;
+}
+
 /* disable pull down refresh in browsers that support it */
 html, body {
 	overscroll-behavior: none;
