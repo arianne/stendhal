@@ -122,7 +122,7 @@ public class MeetMonogenes extends AbstractQuest {
 				"That's right, like that! Now, I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
 
 		npc.addReply(
-			"buildings",
+			"building",
 			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, the #public #chest or the old #village.");
 
 		npc.add(
