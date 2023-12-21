@@ -163,8 +163,12 @@ export class FloatingWindow extends Component {
 		window.removeEventListener("mouseup", this.onMouseUpDuringDragListener, true);
 		window.removeEventListener("touchmove", this.onMouseMovedDuringDragListener, true);
 		window.removeEventListener("touchend", this.onMouseUpDuringDragListener, true);
+		this.onMoved();
 	}
 
+	/**
+	 * Keeps dialog window within browser page.
+	 */
 	private checkPos(): any {
 		if (this.content) {
 			this.content.onMoved();
