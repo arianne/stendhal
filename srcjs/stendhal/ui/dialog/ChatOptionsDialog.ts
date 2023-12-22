@@ -11,6 +11,7 @@
 
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Chat } from "../../util/Chat";
+import { singletons } from "../../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -89,11 +90,19 @@ export class ChatOptionsDialog extends DialogContentComponent {
 	}
 
 	private onButtonPressed(keyword: string) {
-		const action = {
-			"type": "chat",
-			"text": keyword
-		} as any;
-		marauroa.clientFramework.sendAction(action);
+		if (keyword.endsWith("...")) {
+			// add to chat input instead of sending text
+			while (keyword.endsWith(".")) {
+				keyword = keyword.substring(0, keyword.length-1);
+			}
+			singletons.getChatInput().setText(keyword);
+		} else {
+			const action = {
+				"type": "chat",
+				"text": keyword
+			} as any;
+			marauroa.clientFramework.sendAction(action);
+		}
 		this.close();
 	}
 }
