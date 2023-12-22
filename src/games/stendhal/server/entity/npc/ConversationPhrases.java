@@ -67,7 +67,7 @@ public class ConversationPhrases {
 	public static final List<String> PURCHASE_MESSAGES = Arrays.asList("buy", "purchase");
 
 	public static final ImmutableSet<String> KNOWN = ImmutableSet.of("hello", "help", "job",
-			"task", "done", "another", "offer", "yes", "no", "bye", "buy", "sell", "heal");
+			"task", "complete", "done", "another", "offer", "yes", "no", "bye", "buy", "sell", "heal");
 
 	/**
 	 * Combine a string collection (list) with additional strings.

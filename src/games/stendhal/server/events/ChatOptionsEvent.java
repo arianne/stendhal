@@ -47,8 +47,9 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Yes", 11);
 			SORT_INDEX.put("No", 12);
 			SORT_INDEX.put("Another", 21);
-			SORT_INDEX.put("Done", 22);
-			SORT_INDEX.put("Task", 23);
+			SORT_INDEX.put("Complete", 22);
+			SORT_INDEX.put("Done", 23);
+			SORT_INDEX.put("Task", 24);
 			SORT_INDEX.put("Help", 31);
 			SORT_INDEX.put("Job", 32);
 			SORT_INDEX.put("Offer", 33);
