@@ -338,6 +338,7 @@ public class SpeakerNPC extends PassiveNPC {
 	 *            the entity with whom the NPC should be talking.
 	 */
 	public void setAttending(final RPEntity rpentity) {
+		final RPEntity was_attending = attending;
 		attending = rpentity;
 		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (rpentity != null) {
@@ -348,6 +349,10 @@ public class SpeakerNPC extends PassiveNPC {
 			}
 			setIdea(null);
 			learnedWordsInCurrentConversation = new HashSet<>();
+			// send chat option event when NPC becomes "idle"
+			if (was_attending instanceof Player) {
+				engine.addChatOptionsEvent((Player) was_attending);
+			}
 		}
 
 		// set facing direction
@@ -478,11 +483,7 @@ public class SpeakerNPC extends PassiveNPC {
 		}
 		onGoodbye(attending);
 		engine.setCurrentState(ConversationStates.IDLE);
-		final Player player = attending instanceof Player ? (Player) attending : null;
 		setAttending(null);
-		if (player != null) {
-			engine.addChatOptionsEvent(player);
-		}
 	}
 
 	public boolean inConversationRange() {
