@@ -113,7 +113,7 @@ export class ChatInputComponent extends Component {
 		}
 	}
 
-	private remember(text: string) {
+	public remember(text: string) {
 		if (this.history.length > 100) {
 			this.history.shift();
 		}

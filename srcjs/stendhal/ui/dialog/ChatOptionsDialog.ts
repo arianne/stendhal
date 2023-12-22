@@ -102,6 +102,8 @@ export class ChatOptionsDialog extends DialogContentComponent {
 				"text": keyword
 			} as any;
 			marauroa.clientFramework.sendAction(action);
+			// add to chat history
+			singletons.getChatInput().remember(keyword);
 		}
 		this.close();
 	}
