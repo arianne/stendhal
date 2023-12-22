@@ -67,12 +67,24 @@ export class TravelLogDialog extends DialogContentComponent {
 		});
 	}
 
+	public updateTabs() {
+		document.querySelectorAll(".progressTypeButton").forEach((tab) => {
+			const element = document.getElementById(tab.id)! as HTMLElement;
+			if (element.id == this.currentProgressType) {
+				// highlight selected tab
+				element.style.setProperty("background-color", "#b3b3b3");
+			} else {
+				element.style.removeProperty("background-color");
+			}
+		});
+	}
 
 	private onProgressTypeButtonClick(event: Event) {
 		// clear details when changing category
 		this.refreshDetails();
 
 		this.currentProgressType = (event.target as HTMLElement).id;
+		this.updateTabs();
 		var action = {
 			"type":           "progressstatus",
 			"progress_type":  this.currentProgressType
