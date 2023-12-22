@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.condition.TransitionMayBeExecutedCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ChatOptionsEvent;
 
 public class ProducerAdder {
 	private static final Logger logger = Logger.getLogger(ProducerAdder.class);
@@ -72,6 +73,12 @@ public class ProducerAdder {
 		/* add to producer register */
 		producerRegister.add(npcName, behaviour);
 		npc.put("job_producer", "");
+
+		final String activity = behaviour.getProductionActivity();
+		// add to NPC's known chat options
+		npc.addKnownChatOptions(activity);
+		// add to known merchant/producer activities
+		ChatOptionsEvent.addMerchantActivity(activity);
 
 		/* The Player greets the NPC.
 		* The NPC is not currently producing for player (not started, is rejected, or is complete) */
