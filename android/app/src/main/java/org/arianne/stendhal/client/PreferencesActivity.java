@@ -21,9 +21,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.arianne.stendhal.client.input.DPad;
-import org.arianne.stendhal.client.input.DPadArrows;
-import org.arianne.stendhal.client.input.DPadJoy;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
 
@@ -164,6 +161,7 @@ public class PreferencesActivity extends AppCompatActivity {
 		private void initListeners() {
 			final PreferenceManager pm = getPreferenceManager();
 
+			// FIXME: should update playing music
 			final Preference reset = pm.findPreference("reset");
 			if (reset != null) {
 				reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -246,26 +244,6 @@ public class PreferencesActivity extends AppCompatActivity {
 
 		@Override
 		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
-			if (key.equals("show_dpad") || key.equals("dpad_joy")) {
-				// reset all d-pads states to hidden
-				DPadArrows.get().hide();
-				DPadJoy.get().hide();
-
-				if (getBoolean("dpad_joy", true)) {
-					DPad.setCurrentPad(DPadJoy.get());
-				} else {
-					DPad.setCurrentPad(DPadArrows.get());
-				}
-
-				// restore visible state
-				final DPad currentPad = DPad.getCurrentPad();
-				if (currentPad != null && ClientView.isGameActive() && getBoolean("show_dpad", false)) {
-					currentPad.show();
-					currentPad.onRefreshView();
-				}
-			} else if (key.equals("joypad_sensitivity")) {
-				DPadJoy.get().setSensitivity(getInt("joypad_sensitivity", 25));
-			}
 		}
 
 		@Override

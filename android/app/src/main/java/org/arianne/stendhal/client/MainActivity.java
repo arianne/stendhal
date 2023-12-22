@@ -19,10 +19,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import org.arianne.stendhal.client.input.DPad;
-import org.arianne.stendhal.client.input.DPadArrows;
-import org.arianne.stendhal.client.input.DPadJoy;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,21 +46,6 @@ public class MainActivity extends AppCompatActivity {
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			menu = new Menu(this);
 			client = (ClientView) findViewById(R.id.clientWebView);
-
-			// initialize d-pads
-			// TODO: remove on-screen joystick/dpad support after 1.45 release as it is now built
-			//       into the web client
-			final DPad arrowPad = DPadArrows.get();
-			final DPad joyPad = DPadJoy.get();
-
-			if (PreferencesActivity.getBoolean("dpad_joy", true)) {
-				DPad.setCurrentPad(joyPad);
-			} else {
-				DPad.setCurrentPad(arrowPad);
-			}
-
-			layout.addView(arrowPad.getLayout());
-			layout.addView(joyPad.getLayout());
 
 			client.loadTitleScreen();
 		} catch (final Exception e) {
@@ -122,24 +103,18 @@ public class MainActivity extends AppCompatActivity {
 		confirmQuit.show();
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		DPadArrows.get().onRefreshView();
-		DPadJoy.get().onRefreshView();
-	}
+	//~ @Override
+	//~ protected void onResume() {
+		//~ super.onResume();
+	//~ }
 
 	/**
 	 * Updates direction pad position when screen orientation changes.
 	 */
-	@Override
-	public void onConfigurationChanged(final Configuration config) {
-		super.onConfigurationChanged(config);
-
-		DPadArrows.get().onRefreshView();
-		DPadJoy.get().onRefreshView();
-	}
+	//~ @Override
+	//~ public void onConfigurationChanged(final Configuration config) {
+		//~ super.onConfigurationChanged(config);
+	//~ }
 
 	@Override
 	public void finish() {

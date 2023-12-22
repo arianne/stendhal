@@ -36,7 +36,6 @@ import android.widget.ImageView;
 
 import marauroa.common.Pair;
 
-import org.arianne.stendhal.client.input.DPad;
 import org.arianne.stendhal.client.js.JSInterface;
 import org.arianne.stendhal.client.sound.MusicPlayer;
 
@@ -162,16 +161,6 @@ public class ClientView extends WebView {
 					currentPage = PageId.OTHER;
 				}
 				Menu.get().updateButtons();
-
-				// only show d-pad on client screen
-				final DPad pad = DPad.getCurrentPad();
-				if (pad != null && PreferencesActivity.getBoolean("show_dpad", false)) {
-					if (isGameActive()) {
-						pad.show();
-					} else {
-						pad.hide();
-					}
-				}
 
 				DebugLog.debug("page id: " + currentPage);
 			}
