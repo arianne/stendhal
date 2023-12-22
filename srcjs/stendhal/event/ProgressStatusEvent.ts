@@ -38,12 +38,14 @@ export class ProgressStatusEvent extends RPEvent {
 				travelLogDialog = new TravelLogDialog(dataItems);
 				new FloatingWindow("Travel Log", travelLogDialog, dstate.x, dstate.y).setId("travellog");
 			}
+			travelLogDialog.updateTabs();
 			return;
 		}
 
 		if (!travelLogDialog) {
 			return;
 		}
+		travelLogDialog.updateTabs();
 
 		if (!this["item"]) {
 			if (progressType === "repeatable") {
