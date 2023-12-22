@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -59,6 +60,11 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Bye", 9999);
 		}
 
+		private static final List<String> merchant_activities = new ArrayList<String>() {{
+			add("buy");
+			add("sell");
+		}};
+
 		private String trigger;
 		private String label;
 		private String options = "";
@@ -69,7 +75,7 @@ public class ChatOptionsEvent extends RPEvent {
 			String label = Grammar.makeUpperCaseWord(trigger);
 			String options = "";
 
-			if (trigger.equals("buy") || trigger.equals("sell") || trigger.equals("")) {
+			if (merchant_activities.contains(trigger) || trigger.equals("")) {
 				label = label + " ...";
 				options = "params";
 			}
@@ -173,5 +179,16 @@ public class ChatOptionsEvent extends RPEvent {
 		final RPClass rpclass = new RPClass(Events.CHAT_OPTIONS);
 		rpclass.addAttribute(NPC, Type.STRING);
 		rpclass.addAttribute(OPTIONS, Type.VERY_LONG_STRING);
+	}
+
+	/**
+	 * Add a word or phrase to list of known merchant/producer activities.
+	 */
+	public static void addMerchantActivity(final String activity) {
+		if (ChatOption.merchant_activities.contains(activity)) {
+			return;
+		}
+		ChatOption.merchant_activities.add(activity);
+		// XXX: should it also be added to ChatOption.SORT_INDEX?
 	}
 }
