@@ -55,6 +55,7 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Offer", 33);
 			SORT_INDEX.put("Buy ...", 34);
 			SORT_INDEX.put("Sell ...", 35);
+			SORT_INDEX.put("Heal", 41);
 			SORT_INDEX.put("Bye", 9999);
 		}
 
