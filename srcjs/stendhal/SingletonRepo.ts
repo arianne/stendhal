@@ -27,6 +27,8 @@ import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 import { TileStore } from "./data/TileStore";
 
+import { ui } from "./ui/UI";
+import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { KeyHandler } from "./ui/KeyHandler";
@@ -34,6 +36,8 @@ import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
 import { TouchHandler } from "./ui/TouchHandler";
 import { ViewPort } from "./ui/ViewPort";
+
+import { ChatInputComponent } from "./ui/component/ChatInputComponent";
 
 
 export class SingletonRepo {
@@ -44,6 +48,10 @@ export class SingletonRepo {
 
 	static getCacheManager(): CacheManager {
 		return CacheManager.get();
+	}
+
+	static getChatInput(): ChatInputComponent {
+		return ui.get(UIComponentEnum.ChatInput) as ChatInputComponent;
 	}
 
 	static getClient(): Client {
