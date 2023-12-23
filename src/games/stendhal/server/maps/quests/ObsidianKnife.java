@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2023 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -255,7 +255,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// Player asks what supplies he needs, and a random choice of what he
 		// wants is made.
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				"supplies",
+				"supply",
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,

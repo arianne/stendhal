@@ -89,7 +89,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				addJob("I am a blacksmith. I was a mountain dwarf but I left that lot behind me. Good riddance, I say!");
 				addHelp("I've heard rumours of a fearsome creature living below these mines, and his small minions, evil imps. I wouldn't go down there even to look, if I were you. It's very dangerous.");
 				addOffer("#Wrvil is the one who runs a shop, not me. I still #make the occasional #bobbin if you need one, though.");
-				addReply("kobolds", "You know, those odd furry creatures. Don't get much conversation out of any except #Wrvil.");
+				addReply("kobold", "You know, those odd furry creatures. Don't get much conversation out of any except #Wrvil.");
 				addReply("Wrvil", "He runs a trading business not far from here. I used to make the odd item for him, but don't have any energy left.");
 				addGoodbye();
 
