@@ -51,6 +51,7 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Complete", 22);
 			SORT_INDEX.put("Done", 23);
 			SORT_INDEX.put("Task", 24);
+			SORT_INDEX.put("Challenge", 25);
 			SORT_INDEX.put("Help", 31);
 			SORT_INDEX.put("Job", 32);
 			SORT_INDEX.put("Offer", 33);
@@ -60,6 +61,7 @@ public class ChatOptionsEvent extends RPEvent {
 			SORT_INDEX.put("Bye", 9999);
 		}
 
+		// common triggers for merchants & producers
 		private static final List<String> merchant_activities = new ArrayList<String>() {{
 			add("buy");
 			add("sell");
