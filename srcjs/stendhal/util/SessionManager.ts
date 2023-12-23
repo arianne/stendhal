@@ -119,7 +119,7 @@ export class SessionManager {
 	 * Used for test client only.
 	 *
 	 * @return
-	 *   `true` is test client should connect to test server. `false` if it should connect to main
+	 *   `true` if test client should connect to test server. `false` if it should connect to main
 	 *   server.
 	 */
 	isServerDefault(): boolean {
