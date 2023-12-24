@@ -338,7 +338,7 @@ public class SpeakerNPC extends PassiveNPC {
 	 *            the entity with whom the NPC should be talking.
 	 */
 	public void setAttending(final RPEntity rpentity) {
-		final RPEntity was_attending = attending;
+		final RPEntity wasAttending = attending;
 		attending = rpentity;
 		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (rpentity != null) {
@@ -350,8 +350,8 @@ public class SpeakerNPC extends PassiveNPC {
 			setIdea(null);
 			learnedWordsInCurrentConversation = new HashSet<>();
 			// send chat option event when NPC becomes "idle"
-			if (was_attending instanceof Player) {
-				engine.addChatOptionsEvent((Player) was_attending);
+			if (wasAttending instanceof Player) {
+				engine.addChatOptionsEvent((Player) wasAttending);
 			}
 		}
 
