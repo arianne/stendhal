@@ -201,14 +201,11 @@ public class AdosDeathmatch extends AbstractQuest {
 					null);
 
 				// 'start' command will start spawning creatures
-				final List<String> start_messages = new ArrayList<>();
-				start_messages.add("fight");
-				for (final String command: ConversationPhrases.BEGIN_MESSAGES) {
-					start_messages.add(command);
-				}
+				final List<String> startMessages = new LinkedList<>(ConversationPhrases.BEGIN_MESSAGES);
+				startMessages.add("fight");
 				add(
 					ConversationStates.ATTENDING,
-					start_messages,
+					startMessages,
 					null,
 					ConversationStates.ATTENDING,
 					null,
