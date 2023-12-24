@@ -81,9 +81,9 @@ public class PlinksToy implements QuestManuscript {
 		step2();
 
 		quest.complete()
-			.greet("Ah, I see, you have enough coal to keep my BBQ on! Is it for me?")
-			.respondToReject("Well then, hopefully someone else will help me before my BBQ goes out.")
-			.respondToAccept("You found him! *hugs teddy* Thank you, thank you! *smile*")
+			.greet("You found my teddy! Please, please, may I have him back?")
+			.respondToReject("*snifff*")
+			.respondToAccept("*hugs teddy* Thank you, thank you! *smile*")
 			.rewardWith(new IncreaseXPAction(20))
 			.rewardWith(new IncreaseKarmaAction(10));
 
