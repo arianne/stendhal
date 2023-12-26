@@ -1,6 +1,6 @@
 #!/bin/sh
 
-STENDHAL_VERSION="1.44.5"
+STENDHAL_VERSION="1.45.5"
 SERVER_JAR="stendhal-server-${STENDHAL_VERSION}.jar"
 
 # change to server directory
