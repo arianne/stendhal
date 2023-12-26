@@ -11,3 +11,6 @@ neutralino.js
 # Neutralinojs related files
 .storage
 *.log
+extensions/binary/*.so
+extensions/binary/*.dll
+extensions/binary/neutralinojs-*
