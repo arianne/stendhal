@@ -14,3 +14,4 @@ neutralino.js
 extensions/binary/*.so
 extensions/binary/*.dll
 extensions/binary/neutralinojs-*
+resources/js/neutralino.d.ts
