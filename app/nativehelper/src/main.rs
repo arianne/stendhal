@@ -148,7 +148,7 @@ fn main() {
     let args = Cli::parse();
     let (tx, receive_loop) = connect(args.nl_port);
 
-    ::std::thread::sleep(::std::time::Duration::from_millis(5000));
+//    ::std::thread::sleep(::std::time::Duration::from_millis(5000));
     authenticate(tx, args.nl_token);
     
     println!("Waiting for websocket connection to be closed");
