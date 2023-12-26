@@ -14,6 +14,41 @@ buildscript {
 
 task clean(type: Delete) {
 	delete rootProject.buildDir
+	delete rootProject.file("deps")
+}
+
+task buildDeps {
+	doLast {
+		def winOS = System.properties["os.name"].toLowerCase(Locale.ENGLISH).startsWith("windows")
+
+		println "building Marauroa ..."
+
+		// check for Marauroa source
+		def marauroaDir = rootProject.file("deps/marauroa")
+		if (!marauroaDir.exists()) {
+			marauroaDir.mkdirs()
+		}
+		if (!file(marauroaDir.toString() + "/build.xml").exists()) {
+			// download Marauroa source
+			exec {
+				workingDir marauroaDir
+				commandLine "git", "clone", "--single-branch", "--branch=master", "https://github.com/arianne/marauroa.git", "./"
+			}
+		}
+
+		def marauroaJar = file(marauroaDir.toString() + "/build-archive/marauroa.jar")
+		if (!marauroaJar.exists()) {
+			def antCmd = "ant"
+			if (winOS) {
+				antCmd += ".bat"
+			}
+
+			exec {
+				workingDir marauroaDir
+				commandLine antCmd, "jar"
+			}
+		}
+	}
 }
 
 allprojects {
