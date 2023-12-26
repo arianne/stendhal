@@ -34,20 +34,53 @@ android {
 		minSdkVersion 21
 	}
 
+	/* keystore.properties file must include the following values:
+	 *   storeFile=<path-to-keystore-file>
+	 *   storePassword=<store-password>
+	 *   keyPassword=<key-password>
+	 *   keyAlias=<key-alias>
+	 */
+	def keystorePropertiesFile = rootProject.file("keystore.properties")
+	def keystoreProperties = new Properties()
+	if (keystorePropertiesFile.exists()) {
+		keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+	}
+
+	signingConfigs {
+		release {
+			if (keystorePropertiesFile.exists()) {
+				print "Using release signing key"
+				storeFile file(keystoreProperties["storeFile"])
+				storePassword keystoreProperties["storePassword"]
+				keyPassword keystoreProperties["keyPassword"]
+				keyAlias keystoreProperties["keyAlias"]
+			} else {
+				// default to debug key
+				print "Using debug signing key"
+				storeFile signingConfigs.debug.storeFile
+				storePassword signingConfigs.debug.storePassword
+				keyPassword signingConfigs.debug.keyPassword
+				keyAlias signingConfigs.debug.keyAlias
+			}
+		}
+	}
+
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.release
 		}
 
 		prerelease {
 			versionNameSuffix "-pre"
-			signingConfig signingConfigs.debug
+			signingConfig signingConfigs.release
 		}
 
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
+			signingConfig signingConfigs.release
 		}
 	}
 
