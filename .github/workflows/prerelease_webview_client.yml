@@ -39,7 +39,7 @@ jobs:
       - name: Build APKs
         run: >
           ant -noinput -buildfile build.xml dist_android_client
-          -Dgradle.params="--no-daemon -Pandroid.ver=${{ steps.ver.outputs.value }} assembleDebug assemblePrerelease"
+          -Dgradle.params="-Pandroid.ver=${{ steps.ver.outputs.value }} assembleDebug assemblePrerelease"
 
       - name: Publish
         uses: softprops/action-gh-release@v1
