@@ -53,8 +53,6 @@ public class ClientView extends WebView {
 	private boolean testServer = false;
 	private Boolean debugging;
 	private static PageId currentPage;
-	// denotes previous touch was remapped to mouse event
-	private boolean touchOverridden = false;
 
 
 	/**
@@ -113,7 +111,6 @@ public class ClientView extends WebView {
 		}
 
 		initWebViewClient();
-		initTouchHandler();
 		initJSInterface();
 		initDownloadHandler();
 	}
@@ -163,58 +160,6 @@ public class ClientView extends WebView {
 				Menu.get().updateButtons();
 
 				DebugLog.debug("page id: " + currentPage);
-			}
-		});
-	}
-
-	private void initTouchHandler() {
-		setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(final View view, final MotionEvent event) {
-				if (touchOverridden) {
-					// reset touch event state
-					touchOverridden = false;
-					return false;
-				}
-
-				final MotionEvent.PointerProperties[] props = {new MotionEvent.PointerProperties()};
-				event.getPointerProperties(0, props[0]);
-
-				if (isGameActive() && PreferencesActivity.getBoolean("map_touches", false)
-						&& (props[0].toolType == MotionEvent.TOOL_TYPE_FINGER
-							|| props[0].toolType == MotionEvent.TOOL_TYPE_STYLUS)) {
-					Integer action = event.getAction();
-
-					/*
-					switch (action) {
-						case MotionEvent.ACTION_DOWN:
-							action = MotionEvent.ACTION_BUTTON_PRESS;
-							break;
-						case MotionEvent.ACTION_UP:
-							action = MotionEvent.ACTION_BUTTON_RELEASE;
-							break;
-					}
-					*/
-
-					DebugLog.debug("mapping touch to mouse event");
-
-					props[0].toolType = MotionEvent.TOOL_TYPE_MOUSE;
-
-					final MotionEvent.PointerCoords[] coords = {new MotionEvent.PointerCoords()};
-					event.getPointerCoords(0, coords[0]);
-
-					touchOverridden = true;
-
-					view.dispatchTouchEvent(MotionEvent.obtain(event.getDownTime(),
-						event.getEventTime(), event.getAction(), event.getPointerCount(), props,
-						coords, event.getMetaState(), MotionEvent.BUTTON_PRIMARY,
-						event.getXPrecision(), event.getYPrecision(), event.getDeviceId(),
-						event.getEdgeFlags(), event.getSource(), event.getFlags()));
-
-					return true; // consume old event
-				}
-
-				return false;
 			}
 		});
 	}

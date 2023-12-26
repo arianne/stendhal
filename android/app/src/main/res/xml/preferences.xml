@@ -16,17 +16,6 @@
 
   </PreferenceCategory>
 
-  <PreferenceCategory android:title="Input">
-
-    <CheckBoxPreference
-      android:key="map_touches"
-      android:defaultValue="false"
-      android:title="Remap Touches (experimental)"
-      android:summary="Map touches to mouse click events."
-    />
-
-  </PreferenceCategory>
-
   <PreferenceCategory android:title="Audio">
 
     <CheckBoxPreference
