@@ -31,6 +31,6 @@ function onNoAuthToken(event) {
 Neutralino.init();
 Neutralino.events.on("steamAuthToken", onSteamAuthToken);
 Neutralino.events.on("noAuthToken", onNoAuthToken);
-Neutralino.extensions.dispatch('neutralinojs_steamworks', 'request_authentication');
+Neutralino.extensions.dispatch('nativehelper', 'request_authentication');
 console.log("init complete");
 

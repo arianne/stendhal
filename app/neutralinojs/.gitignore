@@ -13,5 +13,5 @@ neutralino.js
 *.log
 extensions/binary/*.so
 extensions/binary/*.dll
-extensions/binary/neutralinojs-*
+extensions/binary/nativehelper*
 resources/js/neutralino.d.ts

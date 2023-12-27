@@ -11,9 +11,9 @@
   "enableExtensions": true,
   "extensions": [
     {
-        "id": "neutralinojs_steamworks",
-        "commandLinux": "${NL_PATH}/extensions/binary/neutralinojs-steamworks",
-        "commandWindows": "${NL_PATH}/extensions/binary/neutralinojs-steamworks.exe"
+        "id": "nativehelper",
+        "commandLinux": "${NL_PATH}/extensions/binary/nativehelper",
+        "commandWindows": "${NL_PATH}/extensions/binary/nativehelper.exe"
     }
   ],
   "tokenSecurity": "one-time",
