@@ -1,8 +1,15 @@
 use clap::Parser;
 
 use std::sync::mpsc::Sender;
+use std::sync::mpsc::channel;
+use std::thread;
+use std::thread::JoinHandle;
+
 use steamworks::AuthSessionTicketResponse;
 use steamworks::Client;
+
+use websocket::client::ClientBuilder;
+use websocket::{Message, OwnedMessage};
 
 #[derive(Parser)]
 struct Cli {
@@ -18,21 +25,13 @@ struct Cli {
 }
 
 
-use std::sync::mpsc::channel;
-use std::thread;
-use std::thread::JoinHandle;
-
-use websocket::client::ClientBuilder;
-use websocket::{Message, OwnedMessage};
-
 
 fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
-    let connection = "ws://127.0.0.1:".to_owned() + &nl_port;
+    let connection = "ws://127.0.0.1:".to_owned() + &nl_port+ "?extensionId=neutralinojs_steamworks";
 	println!("Connecting to {}", connection);
 
 	let client = ClientBuilder::new(&connection)
 		.unwrap()
-		// .add_protocol("rust-websocket")
 		.connect_insecure()
 		.unwrap();
 
@@ -55,6 +54,7 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
 				OwnedMessage::Close(_) => {
 					let _ = sender.send_message(&message);
 					// If it's a close message, just send it and then return.
+					println!("Send Loop Close");
 					return;
 				}
 				_ => (),
@@ -84,10 +84,12 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
 			match message {
 				OwnedMessage::Close(_) => {
 					// Got a close message, so send a close message and return
+					println!("Receive Loop Close");
 					let _ = tx_1.send(OwnedMessage::Close(None));
 					return;
 				}
 				OwnedMessage::Ping(data) => {
+					println!("Receive Loop Ping");
 					match tx_1.send(OwnedMessage::Pong(data)) {
 						// Send a pong in response
 						Ok(()) => (),
@@ -97,13 +99,29 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
 						}
 					}
 				}
+				OwnedMessage::Binary(data) =>{
+					println!("Receive Loop Binary: {:?}", data);
+				}
+
 				// Say what we received
-				_ => println!("Receive Loop: {:?}", message),
+				OwnedMessage::Text(data) => {
+					println!("Receive Loop Text: {:?}", data);
+					let tx_2 = tx_1.clone();
+					handle_message(tx_2, data);
+				}
+				_ => println!("Receive Loop: {:?}", message)
 			}
 		}
 	});
-
+	
     return (tx, receive_loop);
+}
+
+fn handle_message(tx: Sender<OwnedMessage>, message: String) {
+	if message.contains("event\":\"request_authentication_session_ticket\"") {
+		let args = Cli::parse();
+		authenticate(tx, args.nl_token);
+	}
 }
 
 fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
@@ -146,12 +164,6 @@ fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
 
 fn main() {
     let args = Cli::parse();
-    let (tx, receive_loop) = connect(args.nl_port);
-
-//    ::std::thread::sleep(::std::time::Duration::from_millis(5000));
-    authenticate(tx, args.nl_token);
-    
-    println!("Waiting for websocket connection to be closed");
+    let (_tx, receive_loop) = connect(args.nl_port);
 	let _ = receive_loop.join();
-
 }
