@@ -1,32 +1,30 @@
-function showInfo() {
-    console.log(`
-        ${NL_APPID} is running on port ${NL_PORT}  inside ${NL_OS}
-        <br/><br/>
-        <span>server: v${NL_VERSION} . client: v${NL_CVERSION}</span>
-        `);
+const SERVER_ORIGIN = "https://stendhalgame.org";
+// const SERVER_ORIGIN = "http://localhost";
+const SERVER_PATH = "/account/login.html";
+
+const byteToHex = [];
+for (let n = 0; n <= 0xff; ++n) {
+	const hexOctet = n.toString(16).padStart(2, "0");
+	byteToHex.push(hexOctet);
 }
 
-
-function onWindowClose() {
-    Neutralino.app.exit();
+function hex(arrayBuffer) {
+	const buff = new Uint8Array(arrayBuffer);
+	const hexOctets = [];
+	for (let i = 0; i < buff.length; ++i) {
+		hexOctets.push(byteToHex[buff[i]]);
+	}
+	return hexOctets.join("");
 }
-
-Neutralino.init();
 
 function onSteamAuthToken(event) {
     console.log("onSteamAuthToken", event);
+    let ticketString = hex(event.detail);
+    window.location = SERVER_ORIGIN + SERVER_PATH + "?steam_auth_ticket=" + encodeURI(ticketString) + "&" + Date.now();
 }
 
-Neutralino.events.on("windowClose", onWindowClose);
+Neutralino.init();
 Neutralino.events.on("steamAuthToken", onSteamAuthToken);
+Neutralino.extensions.dispatch('neutralinojs_steamworks', 'request_authentication_session_ticket');
+console.log("init complete");
 
-showInfo();
-
-async function showStats() {
-    console.log("Show stats");
-    let stats = await Neutralino.extensions.getStats();
-    console.log('stats: ', stats);
-}
-
-
-showStats();
