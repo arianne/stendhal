@@ -10,4 +10,4 @@ edition = "2021"
 [dependencies]
 clap = {version = "4.0", features = ["derive"]}
 steamworks = "0.9.0"
-websocket = "0.24.0"
+websocket = "0.26.5"
