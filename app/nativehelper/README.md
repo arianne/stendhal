@@ -5,5 +5,3 @@
 
 cargo rustc --release -- -C link-arg=-Wl,-rpath,\$ORIGIN && cargo build --release --target x86_64-pc-windows-gnu
 
-cp target/release/neutralinojs-steamworks ../stendhal-neutralino/extensions/binary/
-cp target/x86_64-pc-windows-gnu/release/neutralinojs-steamworks.exe ../stendhal-neutralino/extensions/binary/

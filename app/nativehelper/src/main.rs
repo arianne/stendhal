@@ -27,7 +27,7 @@ struct Cli {
 
 
 fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
-    let connection = "ws://127.0.0.1:".to_owned() + &nl_port+ "?extensionId=neutralinojs_steamworks";
+    let connection = "ws://127.0.0.1:".to_owned() + &nl_port+ "?extensionId=nativehelper";
 	println!("Connecting to {}", connection);
 
 	let client = ClientBuilder::new(&connection)
