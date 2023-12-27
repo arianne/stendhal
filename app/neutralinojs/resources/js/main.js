@@ -23,8 +23,14 @@ function onSteamAuthToken(event) {
     window.location = SERVER_ORIGIN + SERVER_PATH + "?steam_auth_ticket=" + encodeURI(ticketString) + "&" + Date.now();
 }
 
+function onNoAuthToken(event) {
+    console.log("onNoAuthToken", event);
+    window.location = SERVER_ORIGIN + SERVER_PATH + "?" + Date.now();
+}
+
 Neutralino.init();
 Neutralino.events.on("steamAuthToken", onSteamAuthToken);
-Neutralino.extensions.dispatch('neutralinojs_steamworks', 'request_authentication_session_ticket');
+Neutralino.events.on("noAuthToken", onNoAuthToken);
+Neutralino.extensions.dispatch('neutralinojs_steamworks', 'request_authentication');
 console.log("init complete");
 
