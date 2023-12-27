@@ -118,7 +118,7 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
 }
 
 fn handle_message(tx: Sender<OwnedMessage>, message: String) {
-	if message.contains("event\":\"request_authentication_session_ticket\"") {
+	if message.contains("event\":\"request_authentication\"") {
 		let args = Cli::parse();
 		authenticate(tx, args.nl_token);
 	}
@@ -158,7 +158,24 @@ fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
                 ::std::thread::sleep(::std::time::Duration::from_millis(100));
             }
         },
-        Err(_) => println!("Steam not available"),
+        Err(_) => {
+			println!("Steam not available");
+			let message = OwnedMessage::Text(format!("\
+			{{\
+				\"id\": \"15fb0ffb-7b18-48d2-89a3-39b1ce4b2645\",\
+				\"method\": \"app.broadcast\",\
+				\"accessToken\": {:?},\
+				\"data\": {{\
+					\"event\": \"noAuthToken\"\
+				}}\
+			}}", &nl_token));
+			match tx.send(message) {
+				Ok(()) => (),
+				Err(e) => {
+					println!("Websocket send error: {:?}", e);
+				}
+			}
+		}
     }
 }
 
