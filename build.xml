@@ -92,6 +92,7 @@
 
   <import file="build-private.xml" optional="true"/>
 
+  <import file="${ant_modules}/apps.xml"/>
   <import file="${ant_modules}/main.xml"/>
   <import file="${ant_modules}/clean.xml"/>
   <import file="${ant_modules}/dist.xml"/>

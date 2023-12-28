@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+
+<project>
+
+	<target name="nativehelper">
+		<!--
+			To setup up the development environment on Linux:
+			curl https://sh.rustup.rs -sSf | sh
+			apt-get install mingw-w64
+			rustup target add x86_64-pc-windows-gnu
+		-->
+	
+		<exec executable="cargo" dir="app/nativehelper" failonerror="true">
+			<arg value="rustc" />
+			<arg value="--release" />
+			<arg value="--" />
+			<arg value="-C" />
+			<arg value="link-arg=-Wl,-rpath,\$ORIGIN" />
+		</exec>
+		<exec executable="cargo" dir="app/nativehelper" failonerror="true">
+			<arg value="rustc" />
+			<arg value="--release" />
+			<arg value="--target" />
+			<arg value="x86_64-pc-windows-gnu" />
+			<arg value="--" />
+			<arg value="-C" />
+			<arg value="link-arg=-Wl,-rpath,\$ORIGIN" />
+		</exec>
+		<copy todir="app/neutralinojs/extensions/binary/" flatten="true">
+			<fileset dir="app/nativehelper/target">
+				<include name="release/nativehelper*" />
+				<include name="release/build/*/out/*.dll" />
+				<include name="release/build/*/out/*.so" />
+				<include name="*/release/nativehelper.exe" />
+				<include name="*/release/build/*/out/*.dll" />
+				<include name="*/release/build/*/out/*.so" />
+				<exclude name="**/*.d" />
+			</fileset>
+		</copy>
+	</target>
+</project>
