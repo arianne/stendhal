@@ -15,16 +15,13 @@
 			<arg value="--release" />
 			<arg value="--" />
 			<arg value="-C" />
-			<arg value="link-arg=-Wl,-rpath,\$ORIGIN" />
+			<arg value="link-arg=-Wl,-rpath,$ORIGIN" />
 		</exec>
 		<exec executable="cargo" dir="app/nativehelper" failonerror="true">
 			<arg value="rustc" />
 			<arg value="--release" />
 			<arg value="--target" />
 			<arg value="x86_64-pc-windows-gnu" />
-			<arg value="--" />
-			<arg value="-C" />
-			<arg value="link-arg=-Wl,-rpath,\$ORIGIN" />
 		</exec>
 		<copy todir="app/neutralinojs/extensions/binary/" flatten="true">
 			<fileset dir="app/nativehelper/target">
@@ -37,5 +34,27 @@
 				<exclude name="**/*.d" />
 			</fileset>
 		</copy>
+		<chmod dir="app/neutralinojs/extensions/binary/" type="file" perm="ugo+rx">
+			<include name="nativehelper*" />
+		</chmod>
 	</target>
+
+
+	<available file="app/neutralinojs/bin/neutralino-linux_x64" property="neutralinojs.present"/>
+	<target name="prepare-neutralinojs" unless="neutralinojs.present">
+		<exec executable="neu" dir="app/neutralinojs" failonerror="true">
+			<arg value="update" />
+		</exec>
+	</target>
+	<target name="neutralinojs" depends="prepare-neutralinojs">
+		<exec executable="neu" dir="app/neutralinojs" failonerror="true">
+			<arg value="build" />
+		</exec>
+		<!-- Workaround for a data/gui/StendhalIcon.png being created -->
+		<delete dir="app/data" failonerror="false" />
+		<chmod dir="app/neutralinojs/dist/stendhal-client/" type="file" perm="ugo+rx">
+			<include name="*" />
+		</chmod>
+	</target>
+
 </project>

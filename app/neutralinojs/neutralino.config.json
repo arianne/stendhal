@@ -36,7 +36,7 @@
       "minHeight": 200,
       "fullScreen": false,
       "alwaysOnTop": false,
-      "icon": "/resources/icons/appIcon.png",
+      "icon": "../../data/gui/StendhalIcon.png",
       "borderless": false,
       "maximize": false,
       "hidden": false,
@@ -48,7 +48,7 @@
       "height": 700,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/resources/icons/appIcon.png",
+      "icon": "../../data/gui/StendhalIcon.png",
       "args": "--user-agent=\"Stendhal\"",
       "nativeBlockList": [
         "filesystem.*",
