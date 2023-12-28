@@ -34,11 +34,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import marauroa.common.Pair;
-
 import org.arianne.stendhal.client.js.JSInterface;
 import org.arianne.stendhal.client.sound.MusicPlayer;
-
 
 public class ClientView extends WebView {
 
@@ -199,13 +196,14 @@ public class ClientView extends WebView {
 					final String contentDisposition, final String mimetype,
 					final long contentLength) {
 
-				final Pair<Boolean, String> res = new DownloadHandler().download(url, mimetype);
-				if (res.first()) {
-					final String msg = "Downloaded file: " + res.second();
+				DownloadHandler handler = new DownloadHandler();
+				handler.download(url, mimetype);
+				if (handler.getResult()) {
+					final String msg = "Downloaded file: " + handler.getMessage();
 					DebugLog.debug(msg);
 					Notifier.toast(msg);
 				} else {
-					final String msg = res.second();
+					final String msg = handler.getMessage();
 					DebugLog.error(msg);
 					Notifier.toast("ERROR: " + msg);
 				}

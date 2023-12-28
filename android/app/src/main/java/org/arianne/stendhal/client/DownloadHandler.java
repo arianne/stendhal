@@ -18,30 +18,29 @@ import android.util.Base64;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import marauroa.common.Pair;
-
 
 /**
  * The main purpose of this class is to handle downloading screenshots
  * created by the web client page.
  */
 public class DownloadHandler {
+	private boolean result = false;
+	private String message = null;;
 
-	public Pair<Boolean, String> download(final String url, final String mimetype) {
-		final Pair<Boolean, String> res = new Pair<Boolean, String>(false, null);
+	public void download(final String url, final String mimetype) {
 
 		final Uri uri = Uri.parse(url);
 		final String scheme = uri.getScheme();
 		final String storageState = Environment.getExternalStorageState();
 
 		if (!ClientView.get().isGameActive()) {
-			res.setSecond("downloading from this page not supported");
+			this.message = "downloading from this page not supported";
 		} else if (!"data".equals(scheme)) {
-			res.setSecond("download type \"" + scheme + "\" not supported");
+			this.message = "download type \"" + scheme + "\" not supported";
 		} else if (!"image/png".equals(mimetype) || !url.startsWith("data:image/png;base64,")) {
-			res.setSecond("mimetype not supported: " + mimetype);
+			this.message = "mimetype not supported: " + mimetype;
 		} else if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
-			res.setSecond("storage not available for writing (state: " + storageState + ")");
+			this.message = "storage not available for writing (state: " + storageState + ")";
 		} else {
 			final File targetDir = new File(Environment.getExternalStorageDirectory()
 					+ "/Pictures/Screenshots");
@@ -63,7 +62,7 @@ public class DownloadHandler {
 				fos.write(data);
 				fos.close();
 
-				res.setFirst(true);
+				this.result = true;
 				msg = "saved screenshot to " + targetDir.getPath() + "/" + targetName;
 			} catch (final java.lang.NoClassDefFoundError e) {
 				msg = "an error occurred while decoding data (see debug log for more info)";
@@ -73,13 +72,19 @@ public class DownloadHandler {
 				stacktrace = stackTraceToString(e);
 			}
 
-			res.setSecond(msg);
+			this.message = msg;
 			if (stacktrace != null) {
 				DebugLog.error(stacktrace.toString());
 			}
 		}
+	}
 
-		return res;
+	public boolean getResult() {
+		return result;
+	}
+
+	public String getMessage() {
+		return message;
 	}
 
 	/**
