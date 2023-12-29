@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
   "applicationId": "stendhal_client",
   "version": "1.0.0",
-  "defaultMode": "chrome",
+  "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",
   "url": "/",
@@ -29,21 +29,18 @@
   ],
   "modes": {
     "window": {
+      "exitProcessOnClose": true,
+      "extendUserAgentWith": "Stendhal",
       "title": "Stendhal",
       "width": 930,
       "height": 700,
       "minWidth": 400,
       "minHeight": 200,
-      "fullScreen": false,
-      "alwaysOnTop": false,
       "icon": "../../data/gui/StendhalIcon.png",
-      "borderless": false,
-      "maximize": false,
-      "hidden": false,
-      "resizable": true,
-      "exitProcessOnClose": true
+      "resizable": true
     },
     "chrome": {
+      "exitProcessOnClose": true,
       "width": 930,
       "height": 700,
       "minWidth": 400,

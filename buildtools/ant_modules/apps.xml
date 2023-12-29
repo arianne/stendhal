@@ -52,8 +52,16 @@
 		</exec>
 		<!-- Workaround for a data/gui/StendhalIcon.png being created -->
 		<delete dir="app/data" failonerror="false" />
+		<delete failonerror="false">
+			<fileset dir="app/neutralinojs/dist/stendhal-client/">
+				<include name="*arm*" />
+				<include name="*mac*" />
+				<include name="*.log" />
+			</fileset>
+		</delete>
 		<chmod dir="app/neutralinojs/dist/stendhal-client/" type="file" perm="ugo+rx">
-			<include name="*" />
+			<include name="stendhal*" />
+			<include name="**/nativehelper*" />
 		</chmod>
 	</target>
 
