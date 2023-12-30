@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
   "applicationId": "stendhal_client",
-  "version": "1.0.0",
+  "version": "0.3.2",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",
@@ -18,13 +18,10 @@
   ],
   "tokenSecurity": "one-time",
   "logging": {
-    "enabled": true,
-    "writeToLogFile": true
+    "enabled": true
   },
   "nativeAllowList": [
     "app.*",
-    "os.*",
-    "debug.log",
     "extensions.*"
   ],
   "modes": {
@@ -36,7 +33,7 @@
       "height": 700,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "../../data/gui/StendhalIcon.png",
+      "icon": "resources/StendhalIcon.png",
       "resizable": true
     },
     "chrome": {
@@ -45,7 +42,7 @@
       "height": 700,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "../../data/gui/StendhalIcon.png",
+      "icon": "resources/StendhalIcon.png",
       "args": "--user-agent=\"Stendhal\"",
       "nativeBlockList": [
         "filesystem.*",

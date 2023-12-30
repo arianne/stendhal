@@ -55,8 +55,6 @@
 		<exec executable="neu" dir="app/neutralinojs" failonerror="true">
 			<arg value="build" />
 		</exec>
-		<!-- Workaround for a data/gui/StendhalIcon.png being created -->
-		<delete dir="app/data" failonerror="false" />
 		<delete failonerror="false">
 			<fileset dir="app/neutralinojs/dist/stendhal-client/">
 				<include name="*arm*" />
@@ -75,7 +73,7 @@
 			</fileset>
 		</copy>
 		-->
-		<copy file="app/neutralinojs/LICENSE.txt" tofile="app/neutralinojs/dist/LICENSE.txt">
+		<copy file="app/neutralinojs/LICENSE.txt" tofile="app/neutralinojs/dist/stendhal-client/LICENSE.txt">
 			<filterchain>
 				<concatfilter append="app/neutralinojs/extensions/binary/LICENSE.txt" />
 			</filterchain>
