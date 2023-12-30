@@ -7,9 +7,10 @@
 			To setup up the development environment on Linux:
 			curl https://sh.rustup.rs -sSf | sh
 			apt-get install mingw-w64
+			cargo install cargo-license
 			rustup target add x86_64-pc-windows-gnu
 		-->
-	
+
 		<exec executable="cargo" dir="app/nativehelper" failonerror="true">
 			<arg value="rustc" />
 			<arg value="--release" />
@@ -22,6 +23,10 @@
 			<arg value="--release" />
 			<arg value="--target" />
 			<arg value="x86_64-pc-windows-gnu" />
+		</exec>
+		<exec executable="cargo" dir="app/nativehelper" failonerror="true" output="app/neutralinojs/extensions/binary/LICENSE.txt">
+			<arg value="license" />
+			<arg value="-ad" />
 		</exec>
 		<copy todir="app/neutralinojs/extensions/binary/" flatten="true">
 			<fileset dir="app/nativehelper/target">
@@ -40,7 +45,7 @@
 	</target>
 
 
-	<available file="app/neutralinojs/bin/neutralino-linux_x64" property="neutralinojs.present"/>
+	<available file="app/neutralinojs/bin/neutralino-linux_x64" property="neutralinojs.present" />
 	<target name="prepare-neutralinojs" unless="neutralinojs.present">
 		<exec executable="neu" dir="app/neutralinojs" failonerror="true">
 			<arg value="update" />
@@ -63,6 +68,19 @@
 			<include name="stendhal*" />
 			<include name="**/nativehelper*" />
 		</chmod>
+		<!--
+		<copy todir="dist/stendhal-client" flatten="true">
+			<fileset dir="app/neutralinoks">
+				<include name="LICENSE.txt" />
+			</fileset>
+		</copy>
+		-->
+		<copy file="app/neutralinojs/LICENSE.txt" tofile="app/neutralinojs/dist/LICENSE.txt">
+			<filterchain>
+				<concatfilter append="app/neutralinojs/extensions/binary/LICENSE.txt" />
+			</filterchain>
+		</copy>
+
 	</target>
 
 </project>
