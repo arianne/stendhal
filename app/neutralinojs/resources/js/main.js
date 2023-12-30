@@ -18,14 +18,16 @@ function hex(arrayBuffer) {
 }
 
 function onSteamAuthToken(event) {
-    console.log("onSteamAuthToken");
-    let ticketString = hex(event.detail);
-    window.location = SERVER_ORIGIN + SERVER_PATH + "?steam_auth_ticket=" + encodeURI(ticketString) + "&" + Date.now();
+	console.log("onSteamAuthToken");
+	let ticketString = hex(event.detail);
+	document.querySelector("form").action = SERVER_ORIGIN + SERVER_PATH + "?" + Date.now();
+	document.querySelector("#steam_auth_ticket").value = ticketString;
+	document.querySelector("form").submit();
 }
 
-function onNoAuthToken(event) {
-    console.log("onNoAuthToken");
-    window.location = SERVER_ORIGIN + SERVER_PATH + "?" + Date.now();
+function onNoAuthToken(_event) {
+	console.log("onNoAuthToken");
+	window.location = SERVER_ORIGIN + SERVER_PATH + "?" + Date.now();
 }
 
 Neutralino.init();
