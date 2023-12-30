@@ -1,11 +1,19 @@
 [package]
+authors = ["Arianne Project"]
 name = "nativehelper"
-version = "0.3.1"
+documentation = "https://arianne-project.org/game/stendhal.html"
 edition = "2021"
+license = "LGPL-3"
+repository = "https://github.com/arianne/stendhal"
+version = "0.3.1"
+
 
 [profile.release]
-lto = true
 codegen-units = 1
+debug = false
+debug-assertions = false
+lto = true
+opt-level = "z"
 panic = 'abort'
 strip = true
 
