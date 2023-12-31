@@ -108,13 +108,4 @@ dependencies {
 	//testImplementation 'junit:junit:4.+'
 	//androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 	//androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-	// Note: F-Droid policy states that "binary dependencies have to be built from source or
-	//       installed from Debian repos": https://f-droid.org/en/docs/Inclusion_Policy/
-	def marauroaJar = rootProject.file("deps/marauroa/build-archive/marauroa.jar")
-	if (!marauroaJar.exists()) {
-		// pre-built Marauroa
-		marauroaJar = file("../../libs/marauroa.jar")
-	}
-	implementation files(marauroaJar)
 }
