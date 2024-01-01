@@ -72,11 +72,6 @@ android {
 			signingConfig signingConfigs.release
 		}
 
-		prerelease {
-			versionNameSuffix "-pre"
-			signingConfig signingConfigs.release
-		}
-
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
