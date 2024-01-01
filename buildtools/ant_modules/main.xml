@@ -50,6 +50,10 @@
       byline="true"/>
 
     <!-- date & timestamps -->
+    <replaceregexp file="README.md"
+      match="^Stendhal\(c\) is copyright of the Arianne Project, 2006-.*?,"
+      replace="Stendhal(c) is copyright of the Arianne Project, 2006-${year},"
+      byline="true"/>
     <replaceregexp file="${buildtools}/mkdocs/mkdocs.yml"
       match="^copyright:.*"
       replace="copyright: Copyright &#169; 2003-${year} Stendhal"
