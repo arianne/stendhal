@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2003-2023 - Arianne                     *
+ *                     Copyright © 2003-2024 - Arianne                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,6 +23,8 @@ declare var stendhal: any;
 
 
 export class SettingsDialog extends DialogContentComponent {
+
+	public static debugging = false;
 
 	private storedStates: {[index: string]: string};
 	private initialStates: {[index: string]: string};
@@ -126,8 +128,14 @@ export class SettingsDialog extends DialogContentComponent {
 				undefined, "ui/notify_up", "null");
 		chk_pvtsnd.checked = stendhal.config.get("event.pvtmsg.sound") === "ui/notify_up";
 
-		this.createCheckBox("chk_clickindicator", "input.click.indicator",
-				"Displaying clicks", "Not displaying clicks").disabled = true;
+		let tmp = this.createCheckBox("chk_clickindicator", "input.click.indicator",
+				"Displaying clicks", "Not displaying clicks");
+		if (!SettingsDialog.debugging) {
+			// disabled until fully functional
+			tmp.disabled = true;
+			tmp.style["display"] = "none";
+			tmp.parentElement!.style["display"] = "none";
+		}
 
 		this.createCheckBox("chk_pathfinding", "client.pathfinding",
 				"Pathfinding on ground enabled", "Pathfinding on ground disabled");

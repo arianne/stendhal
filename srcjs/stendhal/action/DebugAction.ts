@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022-2023 - Stendhal                    *
+ *                   (C) Copyright 2022-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,6 +13,7 @@ import { singletons } from "../SingletonRepo";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
+import { SettingsDialog } from "../ui/dialog/SettingsDialog";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { SlashAction } from "./SlashAction";
@@ -43,6 +44,8 @@ export class DebugAction extends SlashAction {
 			this.debugWeather(params[1]);
 		} else if (params[0] === "log") {
 			Chat.debugLogEnabled = true;
+		} else if (params[0] === "settings") {
+			SettingsDialog.debugging = !SettingsDialog.debugging;
 		}
 		return true;
 	}
@@ -52,7 +55,8 @@ export class DebugAction extends SlashAction {
 			"Usage:",
 			"  /debug log",
 			"  /debug ui [pop]",
-			"  /debug weather [<name>]"
+			"  /debug weather [<name>]",
+			"  /debug settings"
 		];
 		Chat.log("client", usage);
 	}
