@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2022-2023 - Stendhal                     *
+ *                    Copyright © 2022-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,6 +20,7 @@ declare var stendhal: any;
 export class ConfigManager {
 
 	private readonly defaults = {
+		"client.emojis.system": "false",
 		"client.pathfinding": "true",
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",

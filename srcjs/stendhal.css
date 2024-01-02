@@ -23,6 +23,17 @@ body {
 	margin: 0;
 }
 
+.emoji-text {
+	font-family:
+			"Noto Color Emoji",
+			"Twemoji Mozilla",
+			"Apple Color Emoji",
+			"Segoe UI Emoji",
+			"Segoe UI Symbol",
+			"EmojiOne Color",
+			"Android Emoji";
+}
+
 .hidden {
 	display: none;
 }

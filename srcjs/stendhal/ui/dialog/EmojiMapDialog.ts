@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,37 +18,99 @@ declare var stendhal: any;
 
 export class EmojiMapDialog extends DialogContentComponent {
 
+	private static readonly glyphs = [
+		"☺", "☻",
+		"🙂",
+		"🙃",
+		"😊",
+		"😉",
+		"😛",
+		"😜",
+		"😋",
+		"😀", "😃",
+		"☹",
+		"🙁",
+		"😢",
+		"🥲",
+		"😂",
+		"😕",
+		"🙄",
+		"😐",
+		"😑",
+		"😶",
+		"😲", "😮", "😯",
+		"😖", "😣",
+		"🤓",
+		"😎",
+		"😇", "👼",
+		"❤",
+		"💙",
+		"💚",
+		"💜",
+		"💛",
+		"💘",
+		"💔",
+		"💢",
+		"🗢", "👄", "💋",
+		"💧",
+		"♩", "𝅘𝅥",
+		"♪", "𝅘𝅥𝅮", "🎵",
+		"♬", "🎜",
+		"♫", "🎝",
+		"👍",
+		"👎",
+		"👋"
+	];
+	private readonly sysEmojis: boolean;
+
+
 	constructor() {
 		super("emojimap-template");
 
+		// Note: dialog must be re-constructed if setting changes
+		this.sysEmojis = stendhal.config.getBoolean("client.emojis.system");
+
 		const emojiStore = singletons.getEmojiStore();
+		let emojiList = EmojiMapDialog.glyphs;
+		if (!this.sysEmojis) {
+			emojiList = emojiStore.getEmojiList();
+		}
 		let idx = 0;
 		let row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
-		for (const emoji of emojiStore.getEmojiList()) {
+		for (const emoji of emojiList) {
 			if (idx > 0 && idx % 13 == 0) {
 				// new row
 				row = document.createElement("div");
 				this.componentElement.appendChild(row);
 			}
 			const button = document.createElement("button");
-			button.className = "shortcut-button";
-			button.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
+			button.classList.add("shortcut-button", "emoji-text");
+			if (!this.sysEmojis) {
+				button.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
+			} else {
+				button.innerText = emoji;
+			}
 			button.addEventListener("click", (evt) => {
 				this.onButtonPressed(emoji);
 			});
-			//~ this.componentElement.appendChild(button);
 			row.appendChild(button);
 			idx++;
 		}
 	}
 
 	private onButtonPressed(emoji: string) {
-		const action = {
-			"type": "chat",
-			"text": ":" + emoji + ":"
-		} as any;
-		marauroa.clientFramework.sendAction(action);
-		this.close();
+		if (!this.sysEmojis) {
+			const action = {
+				"type": "chat",
+				"text": ":" + emoji + ":"
+			} as any;
+			marauroa.clientFramework.sendAction(action);
+			this.close();
+			return;
+		}
+
+		// FIXME: should insert text at caret position
+		singletons.getChatInput().appendText(emoji);
 	}
 }

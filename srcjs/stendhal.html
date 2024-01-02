@@ -60,15 +60,17 @@
 
 		<div id="middleColumn" class="mainColumn">
 			<div id="topPanel"></div>
-			<canvas id="gamewindow" width="640" height="480" tabindex="-1">Sorry, this page only works in modern web browsers.</canvas>
+			<!-- FIXME: "gamewindow" and "chat" elements don't use fonts defined in "emoji-text" attribute, probably because
+			            font is overridden in class definitions -->
+			<canvas id="gamewindow" class="emoji-text" width="640" height="480" tabindex="-1">Sorry, this page only works in modern web browsers.</canvas>
 			<div id="bottomPanel" class="mainColumn">
 				<div class="horizontalgroup">
-					<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+					<input id="chatinput" class="emoji-text" type="text" name="chatinput" autocomplete="off" autofocus>
 					<button id="send-button">send</button>
 					<button id="keywords-button">Hi!</button>
-					<button id="emojis-button">emoji</button>
+					<button id="emojis-button" class="emoji-text">emoji</button>
 				</div>
-				<div id="chat"></div>
+				<div id="chat" class="emoji-text"></div>
 			</div>
 		</div>
 
@@ -254,6 +256,7 @@
 			<label class="checksetting"><input type="checkbox" id="chk_pvtsnd">Private message notifications</label>
 			<label class="checksetting"><input type="checkbox" id="chk_clickindicator">Display clicks/touches</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Click ground to move</label>
+			<label class="checksetting"><input type="checkbox" id="chk_sysemojis">System emojis</label>
 		</div>
 		<div id="settings_panel3" class="verticalgroup vgroupcolr">
 			<div>

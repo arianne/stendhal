@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -59,14 +59,29 @@ export class ChatInputComponent extends Component {
 
 		// ** emoji shortcuts ** //
 		const btn_emoji = document.getElementById("emojis-button")!;
-		// clear default text & add emoji image
-		btn_emoji.innerText = "";
-		// set image for emoji button
-		btn_emoji.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/smile.png").cloneNode());
 		// event to bring up emoji dialog
 		btn_emoji.addEventListener("click", (e) => {
 			this.buildEmojiMap();
 		});
+
+		this.refresh();
+	}
+
+	public override refresh() {
+		super.refresh();
+
+		const btn_emoji = document.getElementById("emojis-button")!;;
+		// remove any previous child elements
+		while (btn_emoji.lastChild != null) {
+			btn_emoji.removeChild(btn_emoji.lastChild)
+		}
+		// update button
+		if (stendhal.config.getBoolean("client.emojis.system")) {
+			btn_emoji.innerText = "☺";
+		} else {
+			// set image for emoji button
+			btn_emoji.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/emoji/smile.png").cloneNode());
+		}
 	}
 
 	public clear() {
@@ -76,6 +91,10 @@ export class ChatInputComponent extends Component {
 	public setText(text: string) {
 		this.inputElement.value = text;
 		this.inputElement.focus();
+	}
+
+	public appendText(text: string) {
+		this.setText(this.inputElement.value + text);
 	}
 
 	private fromHistory(i: number) {

@@ -17,6 +17,7 @@ import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { TravelLogDialog } from "./TravelLogDialog";
 import { UIComponentEnum } from "../UIComponentEnum";
+import { singletons } from "../../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -139,6 +140,18 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.createCheckBox("chk_pathfinding", "client.pathfinding",
 				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
+
+		const chk_sysemojis = this.createCheckBox("chk_sysemojis", "client.emojis.system",
+				"Using system emojis", "Using built-in emojis",
+				function() {
+					singletons.getChatInput().refresh();
+				});
+		if (!SettingsDialog.debugging) {
+			// disabled until fully functional
+			chk_sysemojis.disabled = true;
+			chk_sysemojis.style["display"] = "none"
+			chk_sysemojis.parentElement!.style["display"] = "none";
+		}
 
 
 		/* *** right panel *** */
