@@ -1,5 +1,8 @@
 use clap::Parser;
 
+use std::sync::Arc;
+use std::sync::atomic::AtomicBool;
+use std::sync::atomic::Ordering;
 use std::sync::mpsc::Sender;
 use std::sync::mpsc::channel;
 use std::thread;
@@ -127,11 +130,15 @@ fn handle_message(tx: Sender<OwnedMessage>, message: String) {
 fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
     match Client::init() {
         Ok((client, single)) => {
+			let called = Arc::new(AtomicBool::new(false));
+			let callback_called = called.clone();
+
             let (_ticket_handle, session_ticket): (steamworks::AuthTicket, Vec<u8>) = client.user().authentication_session_ticket();
             let _callback =
             client.register_callback(move |session_ticket_response: AuthSessionTicketResponse| {
                 //if session_ticket_response.ticket == ticket_handle {
                 println!("Ticket Response Result: {:?}", session_ticket_response.result);
+                callback_called.store(true, Ordering::Relaxed);
                 // println!("Ticket : {:?}", session_ticket_response.ticket);
                 // println!("Ticket Response: {:?}", session_ticket);
 
@@ -153,9 +160,12 @@ fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
                 }
 
             });
-            for _ in 0..50 {
+            for _ in 0..100 {
                 single.run_callbacks();
-                ::std::thread::sleep(::std::time::Duration::from_millis(100));
+                if called.load(Ordering::Relaxed) {
+                    return;
+                }
+                ::std::thread::sleep(::std::time::Duration::from_millis(50));
             }
         },
         Err(_) => {
