@@ -23,6 +23,11 @@ body {
 	margin: 0;
 }
 
+button,
+input {
+	font-size: 16px;
+}
+
 .emoji-text {
 	font-family:
 			"Noto Color Emoji",
