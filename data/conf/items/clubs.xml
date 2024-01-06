@@ -269,7 +269,7 @@
     <unattainable/>
     <attributes>
       <atk value="100"/>
-      <def value="100"/>
+      <def value="400"/>
       <min_level value="0"/>
       <rate value="2"/>
     </attributes>

@@ -1,6 +1,10 @@
 Changelog
 ---------
 ---------
+1.45
+*changes*
+- look and website now show the effective def attribute (the hidden factors have been made transparent)
+
 
 
 1.45

@@ -8,7 +8,7 @@
     <description>You see a black shield. Its darkness will surely protect you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="42"/>
+      <def value="168"/>
       <min_level value="200"/>
     </attributes>
     <weight value="34.0"/>
@@ -30,7 +30,7 @@
     <description>You see a blue shield. It feels light in your hand but is strong enough for excellent protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="30"/>
+      <def value="120"/>
       <min_level value="25"/>
     </attributes>
     <weight value="24.0"/>
@@ -50,7 +50,7 @@
     <description>You see a small buckler. It may protect you against swords and maces but against stronger weapons you do not trust it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="6"/>
+      <def value="24"/>
       <min_level value="0"/>
     </attributes>
     <weight value="12.0"/>
@@ -70,7 +70,7 @@
     <description>You see a chaos shield. Its charming appearance will fool your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="39"/>
+      <def value="156"/>
      <min_level value="60"/>
     </attributes>
     <weight value="34.0"/>
@@ -90,7 +90,7 @@
     <description>You see a mighty crown shield. It is in perfect condition.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="24"/>
+      <def value="96"/>
       <min_level value="15"/>
     </attributes>
     <weight value="24.0"/>
@@ -110,7 +110,7 @@
     <description>You see an elvish shield. It looks like one big tree leaf!</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="32"/>
+      <def value="128"/>
       <min_level value="30"/>
     </attributes>
     <weight value="34.0"/>
@@ -130,7 +130,7 @@
     <description>An enhanced lion shield glints at you. It will defend you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="20"/>
+      <def value="80"/>
       <min_level value="5"/>
     </attributes>
     <weight value="24.0"/>
@@ -150,7 +150,7 @@
     <description>You see a golden shield, could it be the ultimate in defence?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="34"/>
+      <def value="136"/>
       <min_level value="35"/>
     </attributes>
     <weight value="34.0"/>
@@ -170,7 +170,7 @@
     <description>You see a green dragon shield, scaly and strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="35"/>
+      <def value="140"/>
       <min_level value="40"/>
     </attributes>
     <weight value="14.0"/>
@@ -190,7 +190,7 @@
     <description>You see a valuable lion shield. It is heavy enough to defend you against strong attacks.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="16"/>
+      <def value="64"/>
       <min_level value="3"/>
     </attributes>
     <weight value="24.0"/>
@@ -210,7 +210,7 @@
     <description>You see a magic plate shield. It has a magical quality surrounding it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="40"/>
+      <def value="160"/>
       <min_level value="100"/>
     </attributes>
     <weight value="24.0"/>
@@ -234,7 +234,7 @@
     <description>You see a strange looking mainio shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="37"/>
+      <def value="148"/>
      <min_level value="50"/>
     </attributes>
     <weight value="34.0"/>
@@ -254,7 +254,7 @@
     <description>You see a mithril shield. You will most surely be protected.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="45"/>
+      <def value="180"/>
       <min_level value="330"/>
     </attributes>
     <weight value="30.0"/>
@@ -276,7 +276,7 @@
     <description>You see a solid plate shield. It is in good condition, and might be worth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="14"/>
+      <def value="56"/>
       <min_level value="2"/>
     </attributes>
     <weight value="24.0"/>
@@ -296,7 +296,7 @@
     <description>You see a red shield. It is a stunning shade of scarlet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="27"/>
+      <def value="108"/>
       <min_level value="20"/>
     </attributes>
     <weight value="24.0"/>
@@ -316,7 +316,7 @@
     <description>You see a royal shield. It has a magical quality surrounding it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="41"/>
+      <def value="164"/>
       <min_level value="150"/>
     </attributes>
     <weight value="24.0"/>
@@ -340,7 +340,7 @@
     <description>You see a shadow shield. Rather than reflecting light, it seems to absorb it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="36"/>
+      <def value="144"/>
       <min_level value="45"/>
     </attributes>
     <weight value="34.0"/>
@@ -362,7 +362,7 @@
     <description>The face of a skull scowls at you from this fearsome skull shield.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="22"/>
+      <def value="88"/>
       <min_level value="10"/>
     </attributes>
     <weight value="24.0"/>
@@ -382,7 +382,7 @@
     <description>You see a studded shield. It's a little dented but seems robust enough.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="12"/>
+      <def value="48"/>
       <min_level value="1"/>
     </attributes>
     <weight value="15.0"/>
@@ -402,7 +402,7 @@
     <description>You see a unicorn shield. It's beautifully crafted and will give you excellent protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="18"/>
+      <def value="72"/>
       <min_level value="4"/>
     </attributes>
     <weight value="24.0"/>
@@ -424,7 +424,7 @@
     <description>You see a wooden shield. It is made of cheap wood and heavily used. However, it still seems to offer you some kind of basic protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="10"/>
+      <def value="40"/>
       <min_level value="0"/>
     </attributes>
     <weight value="12.0"/>
@@ -444,7 +444,7 @@
     <description>You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <def value="41"/>
+      <def value="164"/>
       <min_level value="150"/>
     </attributes>
     <weight value="22.0"/>
@@ -464,7 +464,7 @@
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
-      <def value="40"/>
+      <def value="160"/>
       <min_level value="100"/>
       <statusresist slots="lhand;rhand;" type="poisoned" value="0.50"/>
     </attributes>
