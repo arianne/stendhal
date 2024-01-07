@@ -109,6 +109,16 @@ public class StendhalClient extends ClientFramework {
 
 	private JFrame splashScreen;
 
+	private int turnTime = 300;
+
+	private int tileWidth = 32;
+
+	private int tileHeight = 32;
+
+	private int gridWidth = 32;
+
+	private int gridHeight = 32;
+
 	/**
 	 * Get the client instance.
 	 *
@@ -432,7 +442,17 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onServerInfo(final String[] info) {
-		// ignore server response
+		for (String setting : info) {
+			if (setting.startsWith("stendhal_protocol")) {
+				String[] temp = setting.split(";");
+				turnTime = Integer.parseInt(temp[1]);
+				tileWidth = Integer.parseInt(temp[2]);
+				tileHeight = Integer.parseInt(temp[3]);
+				gridWidth  = Integer.parseInt(temp[4]);
+				gridHeight = Integer.parseInt(temp[5]);
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -892,4 +912,50 @@ public class StendhalClient extends ClientFramework {
 					+ " was not found in pressedStateKeys list");
 		}
 	}
+
+	/**
+	 * gets the server turn in in milliseconds
+	 *
+	 * @return time per turn
+	 */
+	int getTurnTime() {
+		return turnTime;
+	}
+
+	/**
+	 * number of pixels per server x coordinate
+	 *
+	 * @return size
+	 */
+	int getTileWidth() {
+		return tileWidth;
+	}
+
+	/**
+	 * number of pixels per server y coordinate
+	 *
+	 * @return size
+	 */
+	int getTileHeight() {
+		return tileHeight;
+	}
+
+	/**
+	 * x size in pixel of the server alignment grid
+	 *
+	 * @return size
+	 */
+	int getGridWidth() {
+		return gridWidth;
+	}
+
+	/**
+	 * y size in pixel of the server alignment grid
+	 *
+	 * @return size
+	 */
+	int getGridHeight() {
+		return gridHeight;
+	}
+
 }

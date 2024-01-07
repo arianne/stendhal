@@ -188,6 +188,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			} catch (final RuntimeException ep) {
 				logger.info("No server extensions configured in ini file.");
 			}
+			config.set("server_stendhal_protocol", "stendhal_protocol;" + config.get("turn_length") + ";32;32;32;32");
 
 			// Remove online info from database.
 			DAORegister.get().get(StendhalWebsiteDAO.class).clearOnlineStatus();
