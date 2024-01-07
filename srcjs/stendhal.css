@@ -10,7 +10,7 @@
 
 /* disable double-tap zoom in browsers that support it */
 html {
-	touch-action: manipulation;
+	touch-action: pan-x pan-y; /* manipulation does not work in Chrome */
 }
 
 /* disable pull down refresh in browsers that support it */
@@ -26,6 +26,7 @@ body {
 button,
 input {
 	font-size: 16px;
+	touch-action: pan-x pan-y;
 }
 
 .emoji-text {
@@ -353,9 +354,12 @@ div.logcolR {
 }
 
 .popuptitle, .windowtitlebar {
-	padding: 3px;
 	border-bottom: 1px solid #777;
 	border: 1px solid #000000;
+	overflow: hidden;
+}
+.windowtitle {
+	margin: 3px;
 }
 
 .popuptitleclose, .windowtitleclose {
