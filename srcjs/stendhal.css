@@ -30,6 +30,7 @@ input {
 }
 
 .emoji-text {
+/* a better solution might be to create our own emoji font
 	font-family:
 			"Noto Color Emoji",
 			"Twemoji Mozilla",
@@ -38,6 +39,7 @@ input {
 			"Segoe UI Symbol",
 			"EmojiOne Color",
 			"Android Emoji";
+*/
 }
 
 .hidden {
