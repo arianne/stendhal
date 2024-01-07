@@ -27,7 +27,7 @@ android {
 		versionCode 1
 		versionName "${appVer}"
 		setProperty("archivesBaseName", "${outputName}")
-		setProperty("buildDir", "${projectDir}/../../build/build_android_client")
+		setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32

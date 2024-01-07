@@ -851,11 +851,11 @@
     <condition property="gradlew.exec" value="cmd">
       <os family="windows"/>
     </condition>
-    <condition property="gradlew.script" value="/c &quot;${user.dir}/android/gradlew.bat&quot;">
+    <condition property="gradlew.script" value="/c &quot;${user.dir}/app/android/gradlew.bat&quot;">
       <os family="windows"/>
     </condition>
     <property name="gradlew.exec" value="sh"/>
-    <property name="gradlew.script" value="&quot;${user.dir}/android/gradlew&quot;"/>
+    <property name="gradlew.script" value="&quot;${user.dir}/app/android/gradlew&quot;"/>
 
     <echo
       if:set="exclude.webview"
@@ -889,7 +889,7 @@
     </condition>
 
     <exec unless:set="exclude.webview" failonerror="true"
-        executable="${gradlew.exec}" dir="android/">
+        executable="${gradlew.exec}" dir="app/android/">
       <arg line="${gradlew.script}"/>
       <arg if:set="gradle.params" line="${gradle.params}"/>
       <arg if:set="android.build_wout_rev" value="${android.build}"/>
