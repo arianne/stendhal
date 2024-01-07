@@ -54,7 +54,7 @@ export class ChatInputComponent extends Component {
 		const btn_keyword = document.getElementById("keywords-button")!;
 		// event to bring up keywords dialog
 		btn_keyword.addEventListener("click", (e) => {
-			this.buildChatOptions();
+			ChatOptionsDialog.createOptions();
 		});
 
 		// ** emoji shortcuts ** //
@@ -157,15 +157,6 @@ export class ChatInputComponent extends Component {
 			}
 		}
 		this.clear();
-	}
-
-	private buildChatOptions() {
-		const wstate = stendhal.config.getWindowState("shortcuts");
-		const content = new ChatOptionsDialog();
-		const dialog = ui.createSingletonFloatingWindow("Chat Options", content, wstate.x, wstate.y);
-		dialog.setId("shortcuts");
-		// needed in order to close dialog from within
-		content.setFrame(dialog);
 	}
 
 	private buildEmojiMap() {

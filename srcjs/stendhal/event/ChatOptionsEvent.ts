@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2023-2023 - Stendhal                    *
+ *                   (C) Copyright 2023-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Chat } from "../util/Chat";
+import { ChatOptionsDialog } from "../ui/dialog/ChatOptionsDialog";
 import { RPEvent } from "./RPEvent";
 
 declare var marauroa: any
@@ -41,6 +42,11 @@ export class ChatOptionsEvent extends RPEvent {
 		let m = "Chat options for " + this['npc'] + ": " + message.join(", ");
 		console.log(m);
 		Chat.debug(m);
+
+		// update chat options dialog if it is open
+		if (ChatOptionsDialog.isActive()) {
+			ChatOptionsDialog.createOptions();
+		}
 	}
 
 };

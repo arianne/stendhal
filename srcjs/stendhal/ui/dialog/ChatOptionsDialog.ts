@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "../UI";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Chat } from "../../util/Chat";
 import { singletons } from "../../SingletonRepo";
@@ -17,7 +18,12 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 
+/**
+ * TODO: support options from multiple attending NPCs if possible
+ */
 export class ChatOptionsDialog extends DialogContentComponent {
+
+	private static active = false;
 
 	/* Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
 	 * serve as alternatives to "quest", may be highlighted in dialogue so keep those.
@@ -28,7 +34,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 	}
 
 
-	constructor() {
+	private constructor() {
 		super("keywordmap-template");
 
 		// common chat options
@@ -107,5 +113,26 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		}
 		// XXX: should we close the dialog if NPC is no longer attending?
 		//~ this.close();
+	}
+
+	public static isActive(): boolean {
+		return ChatOptionsDialog.active;
+	}
+
+	/**
+	 * Parses options and creates dialog window.
+	 */
+	public static createOptions() {
+		const wstate = stendhal.config.getWindowState("shortcuts");
+		const content = new ChatOptionsDialog();
+		const dialog = ui.createSingletonFloatingWindow("Chat Options", content, wstate.x, wstate.y);
+		dialog.setId("shortcuts");
+		// needed in order to close dialog from within
+		content.setFrame(dialog);
+		ChatOptionsDialog.active = true;
+	}
+
+	public override onParentClose() {
+		ChatOptionsDialog.active = false;
 	}
 }
