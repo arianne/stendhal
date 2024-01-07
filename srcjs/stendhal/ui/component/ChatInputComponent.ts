@@ -133,6 +133,13 @@ export class ChatInputComponent extends Component {
 	}
 
 	public remember(text: string) {
+		// don't add duplicates of last remembered string
+		if (this.history.length > 0 && text === this.history[this.history.length-1]) {
+			this.historyIndex = this.history.length;
+			config.set("chat.history.index", this.historyIndex);
+			return;
+		}
+
 		if (this.history.length > 100) {
 			this.history.shift();
 		}
