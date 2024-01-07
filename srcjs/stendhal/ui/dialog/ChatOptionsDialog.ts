@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -105,6 +105,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			// add to chat history
 			singletons.getChatInput().remember(keyword);
 		}
-		this.close();
+		// XXX: should we close the dialog if NPC is no longer attending?
+		//~ this.close();
 	}
 }
