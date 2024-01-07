@@ -1,6 +1,19 @@
 <?xml version='1.0'?>
 
-<project>
+<project xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+	<!-- property to exclude Android webview client build -->
+	<condition property="exclude.webview" value="true">
+		<and>
+			<not>
+				<isset property="env.ANDROID_SDK_ROOT"/>
+			</not>
+			<not>
+				<available file="${user.dir}/android/local.properties"/>
+			</not>
+		</and>
+	</condition>
+
 
 	<target name="nativehelper">
 		<!--
@@ -80,5 +93,74 @@
 		</copy>
 
 	</target>
+
+
+	<!-- START: Android WebView client -->
+
+	<target name="build_android">
+		<condition property="gradlew.exec" value="cmd">
+			<os family="windows"/>
+		</condition>
+		<condition property="gradlew.script" value="/c &quot;${user.dir}/app/android/gradlew.bat&quot;">
+			<os family="windows"/>
+		</condition>
+		<property name="gradlew.exec" value="sh"/>
+		<property name="gradlew.script" value="&quot;${user.dir}/app/android/gradlew&quot;"/>
+
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>
+		<echo
+			unless:set="exclude.webview"
+			message="Building Android WebView client."/>
+		<echo
+			unless:set="exclude.webview"
+			message="Gradle command: ${gradlew.exec} ${gradlew.script}"/>
+
+		<property name="android.build" value="assembleDebug"/>
+
+		<condition property="android.build_wout_rev">
+			<and>
+				<not>
+					<isset property="android.rev"/>
+				</not>
+				<not>
+					<isset property="gradle.params"/>
+				</not>
+			</and>
+		</condition>
+		<condition property="android.build_w_rev">
+			<and>
+				<isset property="android.rev"/>
+				<not>
+					<isset property="gradle.params"/>
+				</not>
+			</and>
+		</condition>
+
+		<exec unless:set="exclude.webview" failonerror="true"
+				executable="${gradlew.exec}" dir="app/android/">
+			<arg line="${gradlew.script}"/>
+			<arg if:set="gradle.params" line="${gradle.params}"/>
+			<arg if:set="android.build_wout_rev" value="${android.build}"/>
+			<arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}"/>
+		</exec>
+	</target> <!-- client_android_build -->
+
+
+	<target name="android" description="Create Android client package for release and distribution.">
+		<echo
+			if:set="exclude.webview"
+			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>
+
+		<antcall unless:set="exclude.webview" target="build_android"/>
+		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
+			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
+				<include name="**/*.apk"/>
+			</fileset>
+		</copy>
+	</target> <!-- android -->
+
+	<!-- END: Android WebView client -->
 
 </project>

@@ -24,18 +24,6 @@
     <isset property="exclude.webclient"/>
   </condition>
 
-  <!-- property to exclude Android webview client build -->
-  <condition property="exclude.webview" value="true">
-    <and>
-      <not>
-        <isset property="env.ANDROID_SDK_ROOT"/>
-      </not>
-      <not>
-        <available file="${user.dir}/android/local.properties"/>
-      </not>
-    </and>
-  </condition>
-
 
   <target name="jar" depends="client_build,server_build" description="Build server and clients.">
     <!-- XXX: client & server builds are not exclusive to NetBeans, remove this output? -->
@@ -59,7 +47,7 @@
   <target name="dist" depends="clean,dist_binary,dist_source,signupdates" description="Create all packages for Stendhal release."/>
 
 
-  <target name="dist_binary" depends="clean,dist_server_binary,dist_client_binary,dist_client_starter,dist_webclient_binary,dist_client_android"
+  <target name="dist_binary" depends="clean,dist_server_binary,dist_client_binary,dist_client_starter,dist_webclient_binary"
       description="Create all binary packages for Stendhal release."/>
 
 
@@ -843,80 +831,5 @@
   </target> <!-- dist_webclient_binary -->
 
   <!-- END: web client -->
-
-
-  <!-- START: Android WebView client -->
-
-  <target name="client_android_build" description="Build WebView client for Android devices.">
-    <condition property="gradlew.exec" value="cmd">
-      <os family="windows"/>
-    </condition>
-    <condition property="gradlew.script" value="/c &quot;${user.dir}/app/android/gradlew.bat&quot;">
-      <os family="windows"/>
-    </condition>
-    <property name="gradlew.exec" value="sh"/>
-    <property name="gradlew.script" value="&quot;${user.dir}/app/android/gradlew&quot;"/>
-
-    <echo
-      if:set="exclude.webview"
-      message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>
-    <echo
-      unless:set="exclude.webview"
-      message="Building Android WebView client."/>
-    <echo
-      unless:set="exclude.webview"
-      message="Gradle command: ${gradlew.exec} ${gradlew.script}"/>
-
-    <property name="android.build" value="assembleDebug"/>
-
-    <condition property="android.build_wout_rev">
-      <and>
-        <not>
-          <isset property="android.rev"/>
-        </not>
-        <not>
-          <isset property="gradle.params"/>
-        </not>
-      </and>
-    </condition>
-    <condition property="android.build_w_rev">
-      <and>
-        <isset property="android.rev"/>
-        <not>
-          <isset property="gradle.params"/>
-        </not>
-      </and>
-    </condition>
-
-    <exec unless:set="exclude.webview" failonerror="true"
-        executable="${gradlew.exec}" dir="app/android/">
-      <arg line="${gradlew.script}"/>
-      <arg if:set="gradle.params" line="${gradle.params}"/>
-      <arg if:set="android.build_wout_rev" value="${android.build}"/>
-      <arg if:set="android.build_w_rev" line="-Pandroid.rev=${android.rev} ${android.build}"/>
-    </exec>
-  </target> <!-- client_android_build -->
-
-
-  <target name="build_android_client" depends="client_android_build" description="Alias of client_android_build."/>
-
-
-  <target name="dist_client_android" description="Create Android client package for release and distribution.">
-    <echo
-      if:set="exclude.webview"
-      message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>
-
-    <antcall unless:set="exclude.webview" target="client_android_build"/>
-    <copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
-      <fileset dir="${buildroot}/build_android_client/outputs/apk/">
-        <include name="**/*.apk"/>
-      </fileset>
-    </copy>
-  </target> <!-- dist_client_android -->
-
-
-  <target name="dist_android_client" depends="dist_client_android" description="Alias of dist_client_android."/>
-
-  <!-- END: Android WebView client -->
 
 </project>
