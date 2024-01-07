@@ -23,7 +23,7 @@ declare var stendhal: any;
  */
 export class ChatOptionsDialog extends DialogContentComponent {
 
-	private static active = false;
+	private static activeInstance?: ChatOptionsDialog;
 
 	/* Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
 	 * serve as alternatives to "quest", may be highlighted in dialogue so keep those.
@@ -48,7 +48,6 @@ export class ChatOptionsDialog extends DialogContentComponent {
 
 		// attending NPC (note that options are parsed from most recent NPC if there are multiple attending)
 		const npc_options = [];
-		const not_attending = Chat.options.length == 1 && Chat.options[0].toLowerCase() === "hello";
 		for (let opt of Chat.options) {
 			opt = opt.toLowerCase();
 			const original = ChatOptionsDialog.aliases[opt];
@@ -61,7 +60,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			}
 		}
 		if (npc_options.length > 0) {
-			this.addGroup(not_attending || !Chat.attending ? undefined : Chat.attending, npc_options);
+			this.addGroup(!Chat.attending ? undefined : Chat.attending, npc_options);
 		}
 
 		if (custom_options.length > 0) {
@@ -111,12 +110,6 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			// add to chat history
 			singletons.getChatInput().remember(keyword);
 		}
-		// XXX: should we close the dialog if NPC is no longer attending?
-		//~ this.close();
-	}
-
-	public static isActive(): boolean {
-		return ChatOptionsDialog.active;
 	}
 
 	/**
@@ -129,10 +122,20 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		dialog.setId("shortcuts");
 		// needed in order to close dialog from within
 		content.setFrame(dialog);
-		ChatOptionsDialog.active = true;
+		ChatOptionsDialog.activeInstance = content;
 	}
 
 	public override onParentClose() {
-		ChatOptionsDialog.active = false;
+		ChatOptionsDialog.activeInstance = undefined;
+	}
+
+	public static isActive(): boolean {
+		return typeof(ChatOptionsDialog.activeInstance) !== "undefined";
+	}
+
+	public static closeActiveInstance() {
+		if (ChatOptionsDialog.activeInstance) {
+			ChatOptionsDialog.activeInstance.close();
+		}
 	}
 }

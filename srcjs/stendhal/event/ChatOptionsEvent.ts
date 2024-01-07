@@ -39,13 +39,22 @@ export class ChatOptionsEvent extends RPEvent {
 		Chat.attending = this['npc'];
 		Chat.options = message;
 
+		if (Chat.options.length == 1 && Chat.options[0].toLowerCase() === "hello") {
+			// NPC is no longer attending to player
+			Chat.attending = undefined;
+		}
+
 		let m = "Chat options for " + this['npc'] + ": " + message.join(", ");
 		console.log(m);
 		Chat.debug(m);
 
 		// update chat options dialog if it is open
 		if (ChatOptionsDialog.isActive()) {
-			ChatOptionsDialog.createOptions();
+			if (Chat.attending) {
+				ChatOptionsDialog.createOptions();
+			} else {
+				ChatOptionsDialog.closeActiveInstance();
+			}
 		}
 	}
 
