@@ -85,6 +85,15 @@ android {
 		}
 	}
 
+	applicationVariants.all { variant ->
+		if (variant.name.equals("release")) {
+			variant.outputs.all {
+				// exclude "-release" suffix
+				outputFileName = "${outputName}.apk"
+			}
+		}
+	}
+
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
