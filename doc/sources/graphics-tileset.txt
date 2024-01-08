@@ -613,7 +613,7 @@ grey_skull.*              Angry Amish, Jordan Irwin (AntumDeluge); OGA BY 3.0; S
 oriental_tan_tile.png     bleutailfly; OGA BY 3.0; Stendhal
 purple_tile.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 raised_platform*          tigertoes; CC BY-SA 3.0; Stendhal
-soft_blue.png             (placeholder)
+soft_blue.png             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 tiles.*                   Kimmo Rundelin (kiheru), Viktor Hahn (Viktor.Hahn@web.de), compmend, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/82895, https://opengameart.org/node/100854
 
 tiled/tileset/ground/ladder/
