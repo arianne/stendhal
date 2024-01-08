@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2023 - Arianne                     *
+ *                     Copyright © 2022-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -182,11 +182,23 @@ public class Menu {
 				}
 				msg += "\nServer version: " + server_ver
 						+ "\n\nTitle Music:"
-						+ "\n- \"Treasure Hunter\": Tad Miller (TAD)"
-						+ "\n- \"Woodland Fantasy\": Matthew Pablo http://www.matthewpablo.com/"
-						+ "\n- \"Land of Fearless\": Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov"
-						+ "\n- \"Medieval: Rejoicing\": RandomMind"
-						+ "\n- \"Medieval: The Old Tower Inn\": RandomMind";
+						+ "\n\n- Treasure Hunter"
+						+ "\n  by Tad Miller (TAD)"
+						+ "\n  - opengameart.org/node/127124"
+						+ "\n\n- Woodland Fantasy"
+						+ "\n  by Matthew Pablo"
+						+ "\n  - matthewpablo.com"
+						+ "\n  - opengameart.org/node/31929"
+						+ "\n\n- Land of Fearless"
+						+ "\n  by Alexandr Zhelanov"
+						+ "\n  - soundcloud.com/alexandr-zhelanov"
+						+ "\n  - opengameart.org/node/79931"
+						+ "\n\n- Rejoicing"
+						+ "\n  by RandomMind"
+						+ "\n  - opengameart.org/node/100213"
+						+ "\n\n- The Old Tower Inn"
+						+ "\n  by RandomMind"
+						+ "\n  - opengameart.org/node/87510";
 				builder.setMessage(msg);
 
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
