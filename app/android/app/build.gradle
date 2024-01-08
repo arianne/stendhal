@@ -49,14 +49,14 @@ android {
 	signingConfigs {
 		release {
 			if (keystorePropertiesFile.exists()) {
-				print "Using release signing key"
+				println "Using release signing key"
 				storeFile file(keystoreProperties["storeFile"])
 				storePassword keystoreProperties["storePassword"]
 				keyPassword keystoreProperties["keyPassword"]
 				keyAlias keystoreProperties["keyAlias"]
 			} else {
 				// default to debug key
-				print "Using debug signing key"
+				println "Using debug signing key"
 				storeFile signingConfigs.debug.storeFile
 				storePassword signingConfigs.debug.storePassword
 				keyPassword signingConfigs.debug.keyPassword
@@ -86,11 +86,15 @@ android {
 	}
 
 	applicationVariants.all { variant ->
-		if (variant.name.equals("release")) {
-			variant.outputs.all {
+		variant.outputs.all {
+			def buildRoot = "../../../../"
+			if (variant.name.equals("release")) {
 				// exclude "-release" suffix
-				outputFileName = "${outputName}.apk"
+				outputFileName = new File("${buildRoot}", "${outputName}.apk")
+			} else {
+				outputFileName = new File("${buildRoot}", "${outputFileName}")
 			}
+			println "Exporting apk to '${outputFileName}'"
 		}
 	}
 

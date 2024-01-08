@@ -154,11 +154,6 @@
 			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>
 
 		<antcall unless:set="exclude.webview" target="build_android"/>
-		<copy unless:set="exclude.webview" todir="${buildroot}" flatten="true">
-			<fileset dir="${buildroot}/build_android_client/outputs/apk/">
-				<include name="**/*.apk"/>
-			</fileset>
-		</copy>
 	</target> <!-- android -->
 
 	<!-- END: Android WebView client -->
