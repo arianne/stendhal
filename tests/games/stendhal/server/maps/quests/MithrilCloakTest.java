@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -373,7 +373,7 @@ public class MithrilCloakTest {
 		player.setQuest(questSlot, "need_eggshells;4");
 		Item item = ItemTestHelper.createItem("mithril bar", 1);
 		player.getSlot("bag").add(item);
-		item = ItemTestHelper.createItem("iron", 1);
+		item = ItemTestHelper.createItem("iron bar", 1);
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2011 - Stendhal                      *
+ *                   (C) Copyright 2011-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,7 +64,6 @@ final class PrefixManager
 		register("piece of ", "pieces of ", "cheese");
 		register("piece of ", "pieces of ", "wood");
 		register("piece of ", "pieces of ", "paper");
-		register("piece of ", "pieces of ", "iron");
 		register("piece of ", "pieces of ", "chicken");
 		register("piece of ", "pieces of ", "coal");
 		register("piece of ", "pieces of ", "beeswax");

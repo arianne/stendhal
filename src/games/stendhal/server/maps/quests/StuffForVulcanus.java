@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,7 +81,9 @@ public class StuffForVulcanus extends AbstractQuest {
 	private final BringOrderedListOfItemsQuestLogic questLogic = new BringOrderedListOfItemsQuestLogic();
 
 	public StuffForVulcanus() {
-		itemCollector.require().item("iron").pieces(15).bySaying("I cannot #forge it without the missing %s.");
+		// FIXME: when singular says "without the missing an iron bar" but should be "without the missing iron bar"
+		//        see StuffForVulcanusTest:167
+		itemCollector.require().item("iron bar").pieces(15).bySaying("I cannot #forge it without the missing %s.");
 		itemCollector.require().item("wood").pieces(26).bySaying("How do you expect me to #forge it without missing %s for the fire?");
 		itemCollector.require().item("gold bar").pieces(12).bySaying("I must pay a bill to spirits in order to cast the enchantment over the sword. I need %s more.");
 		itemCollector.require().item("giant heart").pieces(6).bySaying("It is the base element of the enchantment. I need %s still.");
@@ -218,7 +220,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.ANY,
-				"iron",
+				Arrays.asList("iron", "iron bar"),
 				null,
 				ConversationStates.ATTENDING,
 				"Collect some iron ore from the mines which are rich in minerals.",

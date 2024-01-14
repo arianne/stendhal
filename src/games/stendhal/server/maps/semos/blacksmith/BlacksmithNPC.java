@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 /**
  * The blacksmith (original name: Xoderos). Brother of the goldsmith in Ados.
- * He refuses to sell weapons, but he casts iron for the player, and he sells
+ * He refuses to sell weapons, but he casts iron bars for the player, and he sells
  * tools.
  *
  * @author daniel
@@ -94,7 +94,7 @@ public class BlacksmithNPC implements ZoneConfigurator  {
 				requiredResources.put("iron ore", 1);
 
 				final ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron",
-						"cast", "iron", requiredResources, 5 * 60);
+						"cast", "iron bar", requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
 				"Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");

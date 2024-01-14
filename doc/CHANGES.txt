@@ -1,6 +1,13 @@
 Changelog
 ---------
 ---------
+
+1.46
+
+*world*
+- renamed "iron" item to "iron bar"
+
+
 1.45
 *changes*
 - look and website now show the effective def attribute (the hidden factors have been made transparent)

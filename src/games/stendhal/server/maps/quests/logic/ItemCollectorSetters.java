@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,7 +37,7 @@ public interface ItemCollectorSetters {
 	/**
 	 * Sets the message to describe an item to collect. Should contain a "%s"
 	 * where the count and name of the item are to be replaced. For example, the
-	 * message "I still need %s." may appear as "I still need 6 pieces of iron."
+	 * message "I still need %s." may appear as "I still need 6 pieces of wood."
 	 *
 	 * @param message
 	 *            a message to be said by the NPC when talking about the item to

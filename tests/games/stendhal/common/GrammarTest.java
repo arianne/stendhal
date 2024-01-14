@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -183,7 +183,7 @@ public class GrammarTest {
 		assertEquals("piece of cheese", Grammar.fullForm("Cheese"));
 		assertEquals("piece of wood", Grammar.fullForm("wood"));
 		assertEquals("piece of paper", Grammar.fullForm("paper"));
-		assertEquals("piece of iron", Grammar.fullForm("iron"));
+		assertEquals("iron bar", Grammar.fullForm("iron bar"));
 		assertEquals("nugget of iron ore", Grammar.fullForm("iron ore"));
 		assertEquals("sack of flour", Grammar.fullForm("flour"));
 		assertEquals("sheaf of grain", Grammar.fullForm("grain"));

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -116,10 +116,10 @@ class GettingTools {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					final int neededEggshells = Integer.valueOf(questslot[1]);
-					if (player.isEquipped("iron")
+					if (player.isEquipped("iron bar")
 						&& player.isEquipped("mithril bar")
 						&& player.isEquipped("magical eggshells", neededEggshells)) {
-							player.drop("iron");
+							player.drop("iron bar");
 							player.drop("mithril bar");
 							player.drop("magical eggshells", neededEggshells);
 							npc.say("Good. It will take me some time to make these, come back in "

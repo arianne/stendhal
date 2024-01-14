@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,12 +81,12 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					add(ConversationStates.ATTENDING,
 							Arrays.asList("enhanced lion shield", "shields", "shield"),
 							ConversationStates.INFORMATION_1,
-							"I can turn a plate shield into an enhanced lion shield with iron, but I need eight pieces of iron and the shield to do that. Do you want an enhanced lion shield?",
+							"I can turn a plate shield into an enhanced lion shield with iron, but I need eight iron bars and the shield to do that. Do you want an enhanced lion shield?",
 							null);
 					add(ConversationStates.INFORMATION_1,
 							ConversationPhrases.YES_MESSAGES,
 							new AndCondition(
-									new NotCondition(new PlayerHasItemWithHimCondition("iron", 8)),
+									new NotCondition(new PlayerHasItemWithHimCondition("iron bar", 8)),
 									new PlayerHasItemWithHimCondition("plate shield", 1)),
 							ConversationStates.ATTENDING,
 							"You don't have enough Iron, I will need 8 iron bars and a plate shield.",
@@ -95,19 +95,19 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 							ConversationPhrases.YES_MESSAGES,
 							new AndCondition(
 									new NotCondition(new PlayerHasItemWithHimCondition("plate shield", 1)),
-									new PlayerHasItemWithHimCondition("iron", 8)),
+									new PlayerHasItemWithHimCondition("iron bar", 8)),
 							ConversationStates.ATTENDING,
 							"You do not have a shield for me to enhance, I will need 8 iron bars and a plate shield.",
 							null);
 					add(ConversationStates.INFORMATION_1,
 							ConversationPhrases.YES_MESSAGES,
 							new AndCondition(
-									new PlayerHasItemWithHimCondition("iron", 8),
+									new PlayerHasItemWithHimCondition("iron bar", 8),
 									new PlayerHasItemWithHimCondition("plate shield", 1)),
 							ConversationStates.ATTENDING,
 							"There is your enhanced lion shield.",
 							new MultipleActions(
-								new DropItemAction("iron", 8),
+								new DropItemAction("iron bar", 8),
 								new DropItemAction("plate shield", 1),
 								new EquipItemAction("enhanced lion shield", 1, true),
 								new IncreaseXPAction(250)));

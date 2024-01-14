@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,7 +48,7 @@ import games.stendhal.server.maps.Region;
  *
  * STEPS:
  * <ul>
- * <li> Zekiel the guardian asks you to bring him 6 beeswax and 2 iron to make magic candles with. </li>
+ * <li> Zekiel the guardian asks you to bring him 6 beeswax and 2 iron bars to make magic candles with. </li>
  * <li> Bring the items to Zekiel. </li>
  * <li> You can start the practical test. </li>
  * <li> Zekiel informs you about the test and wizards. </li>
@@ -88,7 +88,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"First you need six magic candles. Bring me six pieces of #beeswax and two pieces of #iron, " +
+				"First you need six magic candles. Bring me six pieces of #beeswax and two #'iron bars', " +
 				"then I will summon the candles for you. After this you can start the practical test.",
 				new SetQuestAction(QUEST_SLOT,"start"));
 
@@ -128,7 +128,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 		// we should only answer to these ingredients questions if the candles stage is not yet done
 		npc.add(ConversationStates.ATTENDING,
-				"iron",
+				Arrays.asList("iron", "iron bar"),
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING,
 				"The candlestick needs to be made of iron. The blacksmith in Semos can help you.",
@@ -139,7 +139,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				"ingredients",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING,
-				"I will need six pieces of #beeswax and two pieces of #iron to summon the candles.",
+				"I will need six pieces of #beeswax and two #'iron bars' to summon the candles.",
 				null);
 	}
 
@@ -152,7 +152,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new NotCondition(new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
-					new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
+					new PlayerHasItemWithHimCondition("iron bar",REQUIRED_IRON)),
 			ConversationStates.ATTENDING,
 			"Greetings, I see you have the iron, but I still need six pieces of beeswax. Please come back when you " +
 			"have all #ingredients with you.",
@@ -163,10 +163,10 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new AndCondition(
 					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
-					new NotCondition(new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
+					new NotCondition(new PlayerHasItemWithHimCondition("iron bar",REQUIRED_IRON)),
 					new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
 			ConversationStates.ATTENDING,
-			"Greetings, I see you have the beeswax, but I still need two pieces of iron. Please come back when you " +
+			"Greetings, I see you have the beeswax, but I still need two iron bars. Please come back when you " +
 			"have all #ingredients with you.",
 			null);
 
@@ -175,7 +175,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new AndCondition(
 					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
-					new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON),
+					new PlayerHasItemWithHimCondition("iron bar",REQUIRED_IRON),
 					new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
 			ConversationStates.ATTENDING,
 			"Greetings, finally you have brought me all ingredients that I need to summon the magic candles. Now you " +
@@ -183,7 +183,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new MultipleActions(
 					new SetQuestAction(QUEST_SLOT,"candles_done"),
 					new DropItemAction("beeswax", 6),
-					new DropItemAction("iron", 2),
+					new DropItemAction("iron bar", 2),
 					new IncreaseXPAction(4000),
 					new IncreaseKarmaAction(10)));
 
@@ -358,7 +358,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		}
 		final String questState = player.getQuest(QUEST_SLOT);
 		history.add("I entered the Wizards Circle tower. Zekiel the guardian asked me for items to make magic candles.");
-		if (questState.equals("start") && player.isEquipped("beeswax", REQUIRED_BEESWAX) && player.isEquipped("iron", REQUIRED_IRON)
+		if (questState.equals("start") && player.isEquipped("beeswax", REQUIRED_BEESWAX) && player.isEquipped("iron bar", REQUIRED_IRON)
 				|| questState.equals("candles_done") || questState.endsWith("_step") || questState.equals("done")) {
 			history.add("I collected beeswax and iron for the magic candles which I will find on the next steps, if I pass each test.");
 		}

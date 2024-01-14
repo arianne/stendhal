@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -100,7 +100,7 @@ public class StuffForBaldemar extends AbstractQuest {
 				.bySaying("I need %s for the pieces and parts for your new shield.");
 		itemCollector.require().item("gold bar").pieces(10)
 				.bySaying("I need %s to melt down with the mithril and iron.");
-		itemCollector.require().item("iron").pieces(20).bySaying("I need %s to melt down with the mithril and gold.");
+		itemCollector.require().item("iron bar").pieces(20).bySaying("I need %s to melt down with the mithril and gold.");
 		itemCollector.require().item("black pearl").pieces(10)
 				.bySaying("I need %s to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
 		itemCollector.require().item("shuriken").pieces(20).bySaying(

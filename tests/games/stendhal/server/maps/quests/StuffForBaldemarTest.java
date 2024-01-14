@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,7 +99,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testAcceptQuest() {
-		String neededItems = "20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
+		String neededItems = "20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
 
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
@@ -119,7 +119,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 
 		assertEquals("I cannot #forge it without the missing 15 mithril bars. After all, this IS a mithril shield.", getReply(baldemar));
-		String neededItems = "15 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
+		String neededItems = "15 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
@@ -192,7 +192,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;1;0;0;0;0");
 		en.step(player, "hi");
-		assertEquals("I need 19 pieces of iron to melt down with the mithril and gold.", getReply(baldemar));
+		assertEquals("I need 19 iron bars to melt down with the mithril and gold.", getReply(baldemar));
 	}
 
 	@Test
@@ -299,7 +299,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 
 		PlayerTestHelper.equipWithItem(player, "magic plate shield");
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 10);
-		PlayerTestHelper.equipWithStackableItem(player, "iron", 20);
+		PlayerTestHelper.equipWithStackableItem(player, "iron bar", 20);
 		PlayerTestHelper.equipWithStackableItem(player, "black pearl", 10);
 		PlayerTestHelper.equipWithStackableItem(player, "shuriken", 20);
 		PlayerTestHelper.equipWithStackableItem(player, "marbles", 15);
@@ -317,7 +317,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
 		en.step(player, "forge");
 
-		assertEquals("I need 20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe.", getReply(baldemar));
+		assertEquals("I need 20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe.", getReply(baldemar));
 	}
 
 	@Test

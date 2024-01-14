@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -191,9 +191,9 @@ public class VampireSword extends AbstractQuest {
 					.and(questInState(QUEST_SLOT, "start"))
 					.and(playerCarriesItem("goblet"))
 					.and(playerHasKilled("vampire lord"))
-					.and(playerCarriesItem("iron", REQUIRED_IRON)))
+					.and(playerCarriesItem("iron bar", REQUIRED_IRON)))
 			.doing(dropItem("goblet"),
-					dropItem("iron", REQUIRED_IRON),
+					dropItem("iron bar", REQUIRED_IRON),
 					increaseKarma(5.0),
 					setQuest(QUEST_SLOT, "forging;"),
 					setQuestToTimestamp(QUEST_SLOT, SLOT_TIME_INDEX)));
@@ -207,7 +207,7 @@ public class VampireSword extends AbstractQuest {
 					.and(questInState(QUEST_SLOT, "start"))
 					.and(playerCarriesItem("goblet"))
 					.and(playerHasKilled("vampire lord"))
-					.unless(playerCarriesItem("iron", REQUIRED_IRON)))
+					.unless(playerCarriesItem("iron bar", REQUIRED_IRON)))
 			.changingStateTo(ConversationStates.QUEST_ITEM_BROUGHT));
 
 		// Player has only an empty goblet currently, remind to go to Catacombs

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -273,7 +273,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("grain",20);
 		items.put("gold bar",5);
 		items.put("gold nugget",10);
-		items.put("iron",5);
+		items.put("iron bar",5);
 		items.put("iron ore",10);
 		items.put("wood",10);
 

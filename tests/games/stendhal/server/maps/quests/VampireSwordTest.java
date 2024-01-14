@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -620,14 +620,14 @@ public class VampireSwordTest {
 			Item item = SingletonRepository.getEntityManager().getItem("goblet");
 			player.equipToInventoryOnly(item);
 
-			PlayerTestHelper.equipWithStackableItem(player, "iron", 10);
+			PlayerTestHelper.equipWithStackableItem(player, "iron bar", 10);
 
 			player.setSharedKill("vampire lord");
 
 			en.step(player, hello);
 			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", getReply(npc));
 			assertFalse("dwarf took the goblet", player.isEquipped("goblet"));
-			assertFalse("dwarf took the iron", player.isEquipped("iron"));
+			assertFalse("dwarf took the iron", player.isEquipped("iron bar"));
 			assertTrue("in forging state", player.getQuest(questSlot).startsWith("forging;"));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		}

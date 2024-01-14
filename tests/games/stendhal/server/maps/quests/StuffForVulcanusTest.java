@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -119,7 +119,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testAcceptQuest() {
-		String neededItems = "15 pieces of iron, 26 pieces of wood, 12 gold bars and 6 giant hearts";
+		String neededItems = "15 iron bars, 26 pieces of wood, 12 gold bars and 6 giant hearts";
 
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
@@ -137,12 +137,12 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;10;0;0;0");
 
 		en.step(player, "hi");
-		assertEquals("I cannot #forge it without the missing 5 pieces of iron.", getReply(vulcanus));
+		assertEquals("I cannot #forge it without the missing 5 iron bars.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 5 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
+		assertEquals("I will need 5 #'iron bars', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 
-		String neededItems = "5 pieces of iron, 26 pieces of wood, 12 gold bars and 6 giant hearts";
+		String neededItems = "5 iron bars, 26 pieces of wood, 12 gold bars and 6 giant hearts";
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
@@ -152,10 +152,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;13;0;0;0");
 
 		en.step(player, "hi");
-		assertEquals("I cannot #forge it without the missing 2 pieces of iron.", getReply(vulcanus));
+		assertEquals("I cannot #forge it without the missing 2 iron bars.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 2 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
+		assertEquals("I will need 2 #'iron bars', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -164,10 +164,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;14;0;0;0");
 
 		en.step(player, "hi");
-		assertEquals("I cannot #forge it without the missing a piece of iron.", getReply(vulcanus));
+		assertEquals("I cannot #forge it without the missing an iron bar.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need a #'piece of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
+		assertEquals("I will need an #'iron bar', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -177,10 +177,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 12);
 
 		en.step(player, "hi");
-		assertEquals("I cannot #forge it without the missing 5 pieces of iron.", getReply(vulcanus));
+		assertEquals("I cannot #forge it without the missing 5 iron bars.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 5 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
+		assertEquals("I will need 5 #'iron bars', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 
 		assertTrue(player.isEquipped("gold bar", 12));
 	}
@@ -190,7 +190,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;10;0;0;0");
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 12);
-		PlayerTestHelper.equipWithStackableItem(player, "iron", 10);
+		PlayerTestHelper.equipWithStackableItem(player, "iron bar", 10);
 
 		en.step(player, "hi");
 		assertEquals("How do you expect me to #forge it without missing 26 pieces of wood for the fire?", getReply(vulcanus));

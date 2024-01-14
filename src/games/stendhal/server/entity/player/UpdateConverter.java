@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,14 +46,14 @@ public abstract class UpdateConverter {
 			"chain_armor_+1", "scale_armor_+1", "chain_armor_+3",
 			"scale_armor_+2", "twoside_axe_+3", "elf_cloak_+2", "mace_+1",
 			"mace_+2", "hammer_+3", "chain_helmet_+2", "golden_helmet_+3",
-			"longbow_+1", "lion_shield_+1"
+			"longbow_+1", "lion_shield_+1", "iron"
 	);
 	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
 			"morning star", "leather scale armor", "pauldroned leather cuirass",
 			"enhanced chainmail", "iron scale armor", "golden chainmail",
 			"pauldroned iron cuirass", "golden twoside axe", "blue elf cloak", "enhanced mace",
 			"golden mace", "golden hammer", "aventail", "horned golden helmet",
-			"composite bow", "enhanced lion shield"
+			"composite bow", "enhanced lion shield", "iron bar"
 	);
 
 	private static final List<String> ITEM_NAMES_OLD_0_66 = Arrays.asList(
