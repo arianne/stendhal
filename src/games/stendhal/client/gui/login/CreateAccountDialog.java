@@ -214,7 +214,15 @@ public class CreateAccountDialog extends JDialog {
 		grid.add(showPWToggle);
 
 		// Warning label
-		JLabel logLabel = new JLabel("<html><body><p><font size=\"-2\">On login information which identifies your computer on <br>the internet will be logged to prevent abuse (like many <br>attempts to guess a password in order to hack an <br>account or creation of many accounts to cause trouble). <br>Furthermore all events and actions that happen within <br>the game-world (like solving quests, attacking monsters) <br>are logged. This information is used to analyse bugs and <br>in rare cases for abuse handling.</font></p></body></html>");
+		JLabel logLabel = new JLabel("<html><body><p><font size=\"-2\">On login, information which identifies your computer on the Internet<br>"
+				+ "will be logged to prevent abuse (like many attempts to guess a<br>"
+				+ "password or the creation of many accounts to cause trouble).</font></p>"
+				+ "<p><font size=\"-2\">Furthermore all events and actions that happen within the game-<br>"
+				+ "world (like solving quests, attacking monsters) are logged. This<br>"
+				+ "information is used to analyse bugs and in rare cases for abuse handling.</font></p>"
+				+ "<br>"
+				+ "<p><font size=\"-2\">Stendhal is a non-commercial spare time project. We do NOT use your<br>"
+				+ "data for advertisment. We do NOT make it available to third parties.</font></p></body></html>");
 		// Add a bit more empty space around it
 		logLabel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 		logLabel.setAlignmentX(CENTER_ALIGNMENT);
