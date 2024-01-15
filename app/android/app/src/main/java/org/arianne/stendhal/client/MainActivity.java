@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2023 - Arianne                     *
+ *                     Copyright © 2022-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package org.arianne.stendhal.client;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
 			// initialize debug logging mechanism
 			DebugLog.init(getExternalFilesDir(null), this);
+
+			updateOrientation();
 
 			setContentView(R.layout.activity_main);
 			layout = (ConstraintLayout) findViewById(R.id.content);
@@ -77,6 +80,28 @@ public class MainActivity extends AppCompatActivity {
 	 */
 	public void loadLogin() {
 		client.loadLogin();
+	}
+
+	/**
+	 * Sets screen orientation to user setting or locks in landscape or portrait.
+	 */
+	public void updateOrientation() {
+		final String value = PreferencesActivity.getString("orientation");
+		int orient = ActivityInfo.SCREEN_ORIENTATION_USER;
+		switch (value) {
+			case "landscape":
+				orient = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+				break;
+			case "portrait":
+				orient = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+				break;
+		}
+		// set orientation for main & sub activities
+		setRequestedOrientation(orient);
+		final PreferencesActivity preferencesActivity = PreferencesActivity.get();
+		if (preferencesActivity != null) {
+			preferencesActivity.setRequestedOrientation(orient);
+		}
 	}
 
 	/**

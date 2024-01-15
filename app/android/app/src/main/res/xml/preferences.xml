@@ -16,6 +16,19 @@
 
   </PreferenceCategory>
 
+  <PreferenceCategory android:title="User Interface">
+
+    <ListPreference
+      android:key="orientation"
+      android:defaultValue="user"
+      android:title="Orientation"
+      android:entries="@array/orientation"
+      android:entryValues="@array/orientationId"
+      android:summary="Set screen orientation"
+    />
+
+  </PreferenceCategory>
+
   <PreferenceCategory android:title="Audio">
 
     <CheckBoxPreference

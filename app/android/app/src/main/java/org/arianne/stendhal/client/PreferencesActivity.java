@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2023 - Arianne                     *
+ *                     Copyright © 2022-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,6 +37,9 @@ public class PreferencesActivity extends AppCompatActivity {
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		instance = this;
+
+		// use same orientation as main activity
+		setRequestedOrientation(MainActivity.get().getRequestedOrientation());
 
 		setContentView(R.layout.activity_preferences);
 
@@ -244,6 +247,10 @@ public class PreferencesActivity extends AppCompatActivity {
 
 		@Override
 		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
+			if ("orientation".equals(key)) {
+				DebugLog.debug("orientation set to \"" + PreferencesActivity.getString(key) + "\"");
+				MainActivity.get().updateOrientation();
+			}
 		}
 
 		@Override
