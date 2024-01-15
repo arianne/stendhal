@@ -184,6 +184,14 @@ public abstract class UpdateConverter {
 	 * @return the currentName of an Item
 	 */
 	public static String updateItemName(String name) {
+		// some quest slots use key=value pairs
+		String value = null;
+		if (name.contains("=")) {
+			final int idx_temp = name.indexOf("=");
+			value = name.substring(idx_temp+1);
+			name = name.substring(0, idx_temp);
+		}
+
 		if (name != null) {
 			// handle renamed items
 			int idx = ITEM_NAMES_OLD.indexOf(name);
@@ -200,6 +208,10 @@ public abstract class UpdateConverter {
 			if (idx != -1) {
 				name = ITEM_NAMES_NEW_0_66.get(idx);
 			}
+		}
+
+		if (value != null) {
+			name += "=" + value;
 		}
 
 		return name;
@@ -526,6 +538,7 @@ public abstract class UpdateConverter {
 		// From 0.66 to 0.67
 		// update quest slot content,
 		// replace "_" with " ", for item/creature names
+		// 1.46: handle key=value pairs in quest slot strings
 		for (final String questSlot : player.getQuests()) {
 
 			if (player.hasQuest(questSlot)) {
@@ -545,7 +558,13 @@ public abstract class UpdateConverter {
 
 					// check for valid item and creature names if the update converter changed the name
 					if (!newName.equals(oldName)) {
-						if (!entityMgr.isCreature(newName) && !entityMgr.isItem(newName)) {
+						// some quest slots use key=value pairs
+						String actualNewName = newName;
+						if (newName.contains("=")) {
+							actualNewName = newName.substring(0, newName.indexOf("="));
+						}
+
+						if (!entityMgr.isCreature(actualNewName) && !entityMgr.isItem(actualNewName)) {
 							newName = oldName;
 						}
 					}
