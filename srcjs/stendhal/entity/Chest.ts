@@ -17,6 +17,8 @@ import { PopupInventory } from "./PopupInventory";
 import { Chat } from "../util/Chat";
 import { Color } from "../util/Color";
 
+import { MenuItem } from "../action/MenuItem";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
@@ -66,25 +68,53 @@ export class Chest extends PopupInventory {
 		}
 	}
 
+	override buildActions(list: MenuItem[]) {
+		super.buildActions(list);
+
+		const that = this;
+		if (this.open) {
+			list.push({
+				title: "Inspect",
+				action: function(_entity: any) {
+					that.checkOpenInventoryWindow();
+				}
+			});
+		}
+		list.push({
+			title: that.open ? "Close" : "Open",
+			action: function(_entity: any) {
+				that.onUsed();
+			}
+		});
+	}
+
 	override isVisibleToAction(_filter: boolean) {
 		return true;
 	}
 
 	override onclick(_x: number, _y: number) {
 		if (marauroa.me.isNextTo(this)) {
-			// If we are next to the chest, open or close it.
-			var action = {
-				"type": "use",
-				"target": "#" + this["id"],
-				"zone": marauroa.currentZoneName
-			};
-			marauroa.clientFramework.sendAction(action);
+			// If we are next to the chest, open it.
+			if (!this.open) {
+				this.onUsed();
+			} else {
+				this.openInventoryWindow();
+			}
 		} else {
 			// We are far away, but if the chest is open, we can take a look
 			if (this.open) {
 				this.checkOpenInventoryWindow();
 			}
 		}
+	}
+
+	private onUsed() {
+		var action = {
+			"type": "use",
+			"target": "#" + this["id"],
+			"zone": marauroa.currentZoneName
+		};
+		marauroa.clientFramework.sendAction(action);
 	}
 
 	openInventoryWindow() {
