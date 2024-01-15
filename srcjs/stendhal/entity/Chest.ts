@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -14,6 +14,7 @@ import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 
 import { PopupInventory } from "./PopupInventory";
 
+import { Chat } from "../util/Chat";
 import { Color } from "../util/Color";
 
 declare var marauroa: any;
@@ -81,7 +82,7 @@ export class Chest extends PopupInventory {
 		} else {
 			// We are far away, but if the chest is open, we can take a look
 			if (this.open) {
-				this.openInventoryWindow();
+				this.checkOpenInventoryWindow();
 			}
 		}
 	}
@@ -97,6 +98,17 @@ export class Chest extends PopupInventory {
 			this.inventory = new FloatingWindow("Chest", invComponent,
 					dstate.x, dstate.y);
 			this.inventory.setId("chest");
+		}
+	}
+
+	/**
+	 * Opens inventory window if player is within range.
+	 */
+	private checkOpenInventoryWindow() {
+		if (this.canViewContents()) {
+			this.openInventoryWindow();
+		} else {
+			Chat.log("client", "The chest is too far away.");
 		}
 	}
 
