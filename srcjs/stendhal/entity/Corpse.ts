@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,6 +11,8 @@
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
+
+import { Chat } from "../util/Chat";
 
 import { PopupInventory } from "./PopupInventory";
 
@@ -92,6 +94,17 @@ export class Corpse extends PopupInventory {
 		}
 	}
 
+	/**
+	 * Opens inventory window if player is within range.
+	 */
+	private checkOpenCorpseInventory() {
+		if (this.canViewContents()) {
+			this.openCorpseInventory();
+		} else {
+			Chat.log("client", "The corpse is too far away.");
+		}
+	}
+
 	autoOpenIfDesired() {
 		if (!this.autoOpenedAlready) {
 			this.autoOpenedAlready = true;
@@ -100,7 +113,7 @@ export class Corpse extends PopupInventory {
 				// TODO: for unknown reason, /data/sprites/items/undefined/undefined.png is requested without this delay
 				var that = this;
 				window.setTimeout(function() {
-					that.openCorpseInventory();
+					that.checkOpenCorpseInventory();
 				}, 1);
 			}
 		}
@@ -111,7 +124,7 @@ export class Corpse extends PopupInventory {
 	}
 
 	override onclick(_x: number, _y: number) {
-		this.openCorpseInventory();
+		this.checkOpenCorpseInventory();
 	}
 
 	override getCursor(_x: number, _y: number) {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,26 +17,14 @@ declare var marauroa: any;
 
 export class PopupInventory extends Entity {
 
+	protected maxDistToView = 4;
+
+
 	override draw(ctx: CanvasRenderingContext2D) {
 		super.draw(ctx);
-		if (this.inventory && this.inventory.isOpen()) {
-			this.checkPlayerDistance(5);
-		}
-	}
-
-	/**
-	 * Closes floating window if player is not within range.
-	 *
-	 * @param distToClose
-	 *     If player is standing at least this distance away
-	 *     the window will be closed.
-	 */
-	private checkPlayerDistance(distToClose: number) {
-		if (marauroa.me) {
-			const dist = this.getDistanceTo(marauroa.me);
-			if (dist >= distToClose || dist < 0) {
-				this.closeInventoryWindow();
-			}
+		if (this.inventory && this.inventory.isOpen() && !this.canViewContents()) {
+			// player has moved too far away
+			this.closeInventoryWindow();
 		}
 	}
 
@@ -47,5 +35,15 @@ export class PopupInventory extends Entity {
 	override destroy(_parent: RPObject) {
 		this.closeInventoryWindow();
 		super.destroy(_parent);
+	}
+
+	/**
+	 * Checks if player is close enough to view contents.
+	 */
+	protected canViewContents(): boolean {
+		if (!marauroa.me) {
+			return false;
+		}
+		return this.getDistanceTo(marauroa.me) <= this.maxDistToView;
 	}
 }
