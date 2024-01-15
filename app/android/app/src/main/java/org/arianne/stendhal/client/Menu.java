@@ -178,7 +178,8 @@ public class Menu {
 				String msg = "WebView client version: " + BuildConfig.VERSION_NAME;
 				if (client.debugEnabled()) {
 					msg += "\nSelected client: " + client.getSelectedClient()
-							+ "\nSelected server: " + client.getSelectedServer();
+							+ "\nSelected server: " + client.getSelectedServer()
+							+ "\nLogs directory: " + DebugLog.getLogsDir();
 				}
 				msg += "\nServer version: " + server_ver
 						+ "\n\nTitle Music:"
