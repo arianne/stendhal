@@ -184,15 +184,15 @@ public abstract class UpdateConverter {
 	 * @return the currentName of an Item
 	 */
 	public static String updateItemName(String name) {
-		// some quest slots use key=value pairs
-		String value = null;
-		if (name.contains("=")) {
-			final int idx_temp = name.indexOf("=");
-			value = name.substring(idx_temp+1);
-			name = name.substring(0, idx_temp);
-		}
-
 		if (name != null) {
+			// some quest slots use key=value pairs
+			String value = null;
+			if (name.contains("=")) {
+				final int idx_temp = name.indexOf("=");
+				value = name.substring(idx_temp+1);
+				name = name.substring(0, idx_temp);
+			}
+
 			// handle renamed items
 			int idx = ITEM_NAMES_OLD.indexOf(name);
 			if (idx != -1) {
@@ -208,10 +208,10 @@ public abstract class UpdateConverter {
 			if (idx != -1) {
 				name = ITEM_NAMES_NEW_0_66.get(idx);
 			}
-		}
 
-		if (value != null) {
-			name += "=" + value;
+			if (value != null) {
+				name += "=" + value;
+			}
 		}
 
 		return name;
