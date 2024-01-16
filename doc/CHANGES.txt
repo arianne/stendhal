@@ -7,6 +7,9 @@ Changelog
 *world*
 - renamed "iron" item to "iron bar"
 
+*web client*
+- corpses optionally display an indicator when they contain items
+
 
 1.45
 *changes*

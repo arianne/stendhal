@@ -92,6 +92,9 @@ export class SettingsDialog extends DialogContentComponent {
 					player_stats.enableBar("hp", chk_hpbar.checked);
 				})!;
 
+		this.createCheckBox("chk_corpseindicator", "client.corpse.indicator",
+				"Indicator will be drawn when corpse contains items", "Disabled drawing indicator when corpse contains items");
+
 
 		/* *** center panel *** */
 

@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { CorpseIndicatorSprite } from "../sprite/CorpseIndicatorSprite";
+
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
@@ -25,6 +27,14 @@ export class Corpse extends PopupInventory {
 	override zIndex = 5500;
 	autoOpenedAlready = false;
 
+	private readonly indicator: CorpseIndicatorSprite;
+
+
+	constructor() {
+		super();
+		this.indicator = new CorpseIndicatorSprite();
+	}
+
 	override set(key: string, value: any) {
 		super.set(key, value);
 
@@ -35,6 +45,22 @@ export class Corpse extends PopupInventory {
 			this.sprite.filename = stendhal.paths.sprites + "/corpse/" + value + ".png";
 		} else if (!bloodEnabled && (key === "harmless_image")) {
 			this.sprite.filename = stendhal.paths.sprites + "/corpse/" + value + ".png";
+		}
+	}
+
+	override draw(ctx: CanvasRenderingContext2D) {
+		super.draw(ctx);
+
+		if (stendhal.config.getBoolean("client.corpse.indicator") && !this.isEmpty()) {
+			// FIXME: draw width & height should be based on sprite image dimensions
+			const dw = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
+			const dh = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
+			const centerX = this["x"] * stendhal.ui.gamewindow.targetTileWidth + Math.floor(stendhal.ui.gamewindow.targetTileWidth / 2);
+			const centerY = this["y"] * stendhal.ui.gamewindow.targetTileHeight + Math.floor(stendhal.ui.gamewindow.targetTileHeight / 2);
+			const dx = centerX; // + Math.floor(dw / 4);
+			const dy = centerY; // - Math.floor(dh / 4);
+			// FIXME: positioning is wrong
+			this.indicator.draw(ctx, dx, dy);
 		}
 	}
 
@@ -128,7 +154,7 @@ export class Corpse extends PopupInventory {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		if (!this["content"] || this["content"]._objects.length === 0) {
+		if (this.isEmpty()) {
 			return "url(" + stendhal.paths.sprites + "/cursor/emptybag.png) 1 3, auto";
 		}
 
@@ -145,5 +171,9 @@ export class Corpse extends PopupInventory {
 
 	public override isDraggable(): boolean {
 		return true;
+	}
+
+	private isEmpty() {
+		return !this["content"] || this["content"]._objects.length === 0;
 	}
 }
