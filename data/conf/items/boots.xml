@@ -64,7 +64,7 @@
 
   <item name="chaos boots">
     <type class="boots" subclass="chaos_boots" tileid="-1"/>
-    <description>You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.</description>
+    <description>You see a pair of chaos boots. Your steps are unsteady in them, but the extra defense they give is worth it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="11"/>

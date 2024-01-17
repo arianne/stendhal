@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -170,7 +170,7 @@ public class AdosDeathmatch extends AbstractQuest {
 					"victory",
 					null,
 					ConversationStates.INFORMATION_1,
-					"The prize is a helmet like the one you see displayed here. The defence it gives increases for every deathmatch round you successfully complete, up to a maximum dependent on your level.",
+					"The prize is a helmet like the one you see displayed here. The defense it gives increases for every deathmatch round you successfully complete, up to a maximum dependent on your level.",
 					null);
 
 				// player is inside

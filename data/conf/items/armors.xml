@@ -102,7 +102,7 @@
 
   <item name="dress">
     <type class="armor" subclass="dress" tileid="-1"/>
-    <description>You see a dress, which provides practically no defence. It is barely worth picking up.</description>
+    <description>You see a dress, which provides practically no defense. It is barely worth picking up.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="1"/>
@@ -140,7 +140,7 @@
 
   <item name="elvish armor">
     <type class="armor" subclass="elvish_armor" tileid="-1"/>
-    <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>
+    <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defense.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="28"/>

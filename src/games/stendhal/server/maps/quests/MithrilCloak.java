@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,7 +93,7 @@ public class MithrilCloak extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Mithril Cloak",
-				"A shiny and high defence cloak is available for those willing to complete a long list of tasks for the seamstress Ida.",
+				"A shiny and high defense cloak is available for those willing to complete a long list of tasks for the seamstress Ida.",
 				false);
 
 		// login notifier to teleport away players logging into the twilight zone.

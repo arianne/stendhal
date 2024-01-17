@@ -25,13 +25,13 @@ chaos armor=
 You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.=
 
 dress=
-You see a dress, which provides practically no defence. It is barely worth picking up.=
+You see a dress, which provides practically no defense. It is barely worth picking up.=
 
 dwarvish armor=
 You see a dwarvish armor. It's made with ingenuity and skill.=
 
 elvish armor=
-You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.=
+You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defense.=
 
 enhanced chainmail=
 You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.=
@@ -202,7 +202,7 @@ chain boots=
 You see a pair of chain boots, quite rusty but still strong.=
 
 chaos boots=
-You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.=
+You see a pair of chaos boots. Your steps are unsteady in them, but the extra defense they give is worth it.=
 
 elvish boots=
 You see a pair of elvish boots.=
@@ -1338,7 +1338,7 @@ enhanced lion shield=
 An enhanced lion shield glints at you. It will defend you well.=
 
 golden shield=
-You see a golden shield, could it be the ultimate in defence?=
+You see a golden shield, could it be the ultimate in defense?=
 
 green dragon shield=
 You see a green dragon shield, scaly and strong.=
