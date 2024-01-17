@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { JoystickBase } from "./JoystickBase";
+import { Direction } from "../../util/Direction";
 
 
 export class DirectionPad extends JoystickBase {
@@ -101,26 +102,26 @@ export class DirectionPad extends JoystickBase {
 			return;
 		}
 
-		let new_direction = 0;
+		let new_direction = Direction.STOP;
 		switch(e.target) {
 			case this.up:
 				this.up.src = this.getResource("dpad_button_active");
-				new_direction = 1;
+				new_direction = Direction.UP;
 				break;
 			case this.right:
 				this.right.src = this.getResource("dpad_button_active");
 				this.right.style["transform"] = "rotate(90deg)";
-				new_direction = 2;
+				new_direction = Direction.RIGHT;
 				break;
 			case this.down:
 				this.down.src = this.getResource("dpad_button_active");
 				this.down.style["transform"] = "rotate(180deg)";
-				new_direction = 3;
+				new_direction = Direction.DOWN;
 				break;
 			case this.left:
 				this.left.src = this.getResource("dpad_button_active");
 				this.left.style["transform"] = "rotate(-90deg)";
-				new_direction = 4;
+				new_direction = Direction.LEFT;
 				break;
 		}
 		if (new_direction != this.direction) {
@@ -145,9 +146,9 @@ export class DirectionPad extends JoystickBase {
 		this.right.src = this.getResource("dpad_button");
 		this.right.style["transform"] = "rotate(90deg)";
 
-		if (this.direction != 0) {
+		if (this.direction != Direction.STOP) {
 			// stop movement
-			this.onDirectionChange(0);
+			this.onDirectionChange(Direction.STOP);
 		}
 	}
 

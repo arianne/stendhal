@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,20 +9,20 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Direction } from "../../util/Direction";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
 
 /**
  * Joystick implementation that does nothing. Used when joystick should not be drawn on-screen.
- *
- * FIXME: joysticks should be drawn under dialog windows
  */
 export class JoystickBase {
 
 	protected radius = 0;
 	// last executed direction
-	protected direction = 0;
+	protected direction = Direction.STOP;
 
 
 	public reset() {
@@ -55,12 +55,12 @@ export class JoystickBase {
 		return false;
 	}
 
-	protected onDirectionChange(dir: number) {
+	protected onDirectionChange(dir: Direction) {
 		this.direction = dir;
-		if (this.direction > 0 && this.direction < 5) {
-			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction});
-		} else {
+		if (this.direction == Direction.STOP) {
 			marauroa.clientFramework.sendAction({type: "stop"});
+		} else {
+			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction.val});
 		}
 	}
 }

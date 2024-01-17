@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { JoystickBase } from "./JoystickBase";
+import { Direction } from "../../util/Direction";
 
 declare var stendhal: any;
 
@@ -107,8 +108,8 @@ export class Joystick extends JoystickBase {
 	/**
 	 * Retrieves the interpreted direction of joystick's state.
 	 */
-	private getPressedDirection(): number {
-		let dir = 0;
+	private getPressedDirection(): Direction {
+		let dir = Direction.STOP;
 		// FIXME: need a smarter algorithm for detecting direction based on position of inner circle
 		//        relative to center of outer
 		const rect = this.inner.getBoundingClientRect();
@@ -116,13 +117,13 @@ export class Joystick extends JoystickBase {
 		const iCenterX = rect.left + Math.floor(this.inner.width / 2);
 		const iCenterY = rect.top + Math.floor(this.inner.height / 2);
 		if (iCenterX < oCenterX - Joystick.play_threshold) {
-			dir = 4;
+			dir = Direction.LEFT;
 		} else if (iCenterX > oCenterX + Joystick.play_threshold) {
-			dir = 2;
+			dir = Direction.RIGHT;
 		} else if (iCenterY < oCenterY - Joystick.play_threshold) {
-			dir = 1;
+			dir = Direction.UP;
 		} else if (iCenterY > oCenterY + Joystick.play_threshold) {
-			dir = 3;
+			dir = Direction.DOWN;
 		}
 		return dir;
 	}
@@ -156,9 +157,9 @@ export class Joystick extends JoystickBase {
 		};
 		this.inner.src = this.getResource("joystick_inner");
 
-		if (this.direction != 0) {
+		if (this.direction != Direction.STOP) {
 			// stop movement
-			this.onDirectionChange(0);
+			this.onDirectionChange(Direction.STOP);
 		}
 	}
 
