@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,7 +56,7 @@ class Engagement {
 						} else if (player.isQuestCompleted(marriage.getQuestSlot())) {
 							raiser.say("I hope you are enjoying married life.");
 						} else {
-							raiser.say("Haven't you organised your wedding yet?");
+							raiser.say("Haven't you organized your wedding yet?");
 						}
 					}
 				});

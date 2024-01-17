@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,7 +57,7 @@ public class CuratorNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to Kirdneh Museum.");
-				addJob("I am the curator of this museum. That means I organise the displays and look for new #exhibits.");
+				addJob("I am the curator of this museum. That means I organize the displays and look for new #exhibits.");
 				addHelp("This is a place for rare artefacts and special #exhibits.");
 				addReply("exhibits","Perhaps you'd have a knack for finding rare items and would like to do a #task for me.");
 				// remaining behaviour defined in games.stendhal.server.maps.quests.WeeklyItemQuest
