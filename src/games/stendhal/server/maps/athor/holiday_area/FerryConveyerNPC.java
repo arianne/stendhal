@@ -129,32 +129,31 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 			@Override
 			protected void onGoodbye(final RPEntity player) {
 				setDirection(Direction.LEFT);
-			}};
+			}
+		};
 
-			new AthorFerry.FerryListener() {
-
-
-				@Override
-				public void onNewFerryState(final Status status) {
-					ferrystate = status;
-					switch (status) {
-					case ANCHORED_AT_ISLAND:
-						npc.say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
-						break;
-					case DRIVING_TO_MAINLAND:
-						npc.say("Attention: The ferry has taken off. You can no longer board it.");
-						break;
-					default:
-						break;
-					}
+		new AthorFerry.FerryListener() {
+			@Override
+			public void onNewFerryState(final Status status) {
+				ferrystate = status;
+				switch (status) {
+				case ANCHORED_AT_ISLAND:
+					npc.say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
+					break;
+				case DRIVING_TO_MAINLAND:
+					npc.say("Attention: The ferry has taken off. You can no longer board it.");
+					break;
+				default:
+					break;
 				}
-			};
+			}
+		};
 
-			npc.setPosition(16, 88);
-			npc.setEntityClass("woman_008_npc");
-			npc.setDescription ("You see Jessica. She takes passengers to the ship with her rowing boat.");
-			npc.setDirection(Direction.LEFT);
-			zone.add(npc);
+		npc.setPosition(16, 88);
+		npc.setEntityClass("woman_008_npc");
+		npc.setDescription ("You see Jessica. She takes passengers to the ship with her rowing boat.");
+		npc.setDirection(Direction.LEFT);
+		zone.add(npc);
 	}
 
 }
