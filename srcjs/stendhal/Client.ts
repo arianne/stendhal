@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,6 +34,8 @@ import { ChooseCharacterDialog } from "./ui/dialog/ChooseCharacterDialog";
 import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
+
+//~ import { QMButton as QuickMenu } from "./ui/quickmenu/QMButton";
 
 import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
@@ -110,6 +112,7 @@ export class Client {
 		stendhal.ui.touch = singletons.getTouchHandler();
 		stendhal.ui.soundMan = singletons.getSoundManager();
 		stendhal.ui.gamewindow = singletons.getViewPort();
+		//~ QuickMenu.init();
 	}
 
 	private initZone() {
