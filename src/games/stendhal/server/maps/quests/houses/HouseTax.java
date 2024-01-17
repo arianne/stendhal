@@ -203,6 +203,7 @@ class HouseTax implements TurnListener {
 
 	private void setupTaxman() {
 		final SpeakerNPC taxman = SingletonRepository.getNPCList().get("Mr Taxman");
+		taxman.addKnownChatOptions("pay");
 
 		taxman.addReply("tax", "All house owners must #pay taxes to the state.");
 
