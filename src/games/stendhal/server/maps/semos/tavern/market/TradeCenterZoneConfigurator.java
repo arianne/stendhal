@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.events.ChatOptionsEvent;
 import marauroa.common.game.RPObject;
 /**
  * adds a market to a zone
@@ -74,6 +75,11 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		speaker.setDescription("Harold is a friendly guy who is waiting for setting up some offers...");
 		// add icon denoting merchant
 		speaker.put("job_merchant", "");
+
+		// chat options
+		speaker.addKnownChatOptions("show");
+		ChatOptionsEvent.addMerchantActivity("show");
+
 		zone.add(speaker);
 	}
 
