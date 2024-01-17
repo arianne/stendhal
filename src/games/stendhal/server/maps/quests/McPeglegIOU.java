@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -27,6 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
 
 /**
@@ -81,6 +84,7 @@ public class McPeglegIOU extends AbstractQuest {
 					}
 					if (iouNote != null) {
 						raiser.say("Where did you get that from? Anyways, here is the money *sighs*");
+						raiser.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 						player.drop(iouNote);
 						final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 								"money");
