@@ -138,7 +138,7 @@ public class VampireSword extends AbstractQuest {
 			.changingStateTo(ConversationStates.IDLE)
 			.doing(setQuestAndModifyKarma(QUEST_SLOT, "rejected", -5.0)));
 
-		npc.addReply("catacombs", "The Catacombs of north Semos of the ancient #stories.");
+		npc.addReply(Arrays.asList("catacomb", "catacombs"), "The Catacombs of north Semos of the ancient #stories.");
 
 		npc.addReply("goblet", "Go fill it with the blood of the enemies you meet in the #Catacombs.");
 	}
