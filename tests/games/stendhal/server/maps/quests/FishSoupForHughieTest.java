@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -149,7 +149,7 @@ public class FishSoupForHughieTest {
 		en.step(player, "hi");
 		assertEquals("Hi, you've got fish soup, I see, is that for Hughie?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you! I will always be in your favour. I will feed it to Hughie when he wakes. Please take these potions, they did nothing for him.", getReply(npc));
+		assertEquals("Thank you! I will always be in your favor. I will feed it to Hughie when he wakes. Please take these potions, they did nothing for him.", getReply(npc));
 		// [17:37] kymara earns 200 experience points.
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));

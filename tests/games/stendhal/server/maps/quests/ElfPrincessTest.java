@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -77,7 +77,7 @@ public class ElfPrincessTest {
 		en.step(player, "help");
 		assertEquals("A persistent person could do a #task for me.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", getReply(npc));
+		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favorite flower, the Rhosyd?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh, never mind. Bye then.", getReply(npc));
 
@@ -86,7 +86,7 @@ public class ElfPrincessTest {
 		en.step(player, "hi");
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", getReply(npc));
+		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favorite flower, the Rhosyd?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "flower");

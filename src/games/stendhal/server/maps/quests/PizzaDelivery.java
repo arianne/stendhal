@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -260,7 +260,7 @@ public class PizzaDelivery implements QuestManuscript {
 
 		quest.task().order()
 			.customerNpc("Tor'Koom")
-			.customerDescription("Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favourite food. He lives at the 4th level below the ground. Be careful!")
+			.customerDescription("Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favorite food. He lives at the 4th level below the ground. Be careful!")
 			.itemDescription("Pizza Pecora")
 			// Tested by kymara:
 			// done in about 8 min, with lots of monsters getting in your way.

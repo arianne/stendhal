@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -126,7 +126,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addQuest("If you can get a dragon egg, I will #hatch it for you.");
 				addHelp("I rear baby dragons. If you have an egg, I'll #hatch it. I can also tell you how to #travel with a pet and take #care of it. If you find any wild baby dragon, incidentally, you can make it your #own.");
 				addGoodbye("Watch out for the giants on your way out!");
-				addReply("food", "Baby dragons feed on meat and ham. Their particular favourite is pizza, if you can get it.");
+				addReply("food", "Baby dragons feed on meat and ham. Their particular favorite is pizza, if you can get it.");
 				addReply("care",
 						"Baby dragons eat meat, ham and even pizza. Just place a piece on the ground and the dragon will run over to eat it. You can right-click on it and choose 'Look' at any time, to see its weight. They gain one unit of weight for every piece of food they eat.");
 				addReply("travel",

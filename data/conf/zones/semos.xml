@@ -1607,7 +1607,7 @@ Southeast: Farmhouse
     <entity x="17" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       <attribute name="text">KNOW HOW TO KILL CREATURES by Hayunn Naratha
-My personal favourite has always been to right-click and choose to ATTACK a creature. You can't go wrong with that!
+My personal favorite has always been to right-click and choose to ATTACK a creature. You can't go wrong with that!
 The sharper minded amongst you might prefer to click directly on the creature. It works too!
 </attribute>
       <attribute name="class">book_red</attribute>
@@ -2229,7 +2229,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
     <!-- START MINE TOWN WEEKS signs -->
     <entity x="53" y="3" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
+      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favorite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
@@ -2238,7 +2238,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <entity x="14" y="4" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
+      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favorite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
@@ -2247,7 +2247,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <entity x="16" y="48" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
+      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favorite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
@@ -2256,7 +2256,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <entity x="58" y="49" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
+      <attribute name="text">#Mine #Town #Revival #Weeks! Enjoy the #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favorite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>

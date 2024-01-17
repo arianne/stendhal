@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -238,7 +238,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("fish soup"),
-			ConversationStates.ATTENDING, "Thank you! I will always be in your favour. I will feed it to Hughie when he wakes. Please take these potions, they did nothing for him.",
+			ConversationStates.ATTENDING, "Thank you! I will always be in your favor. I will feed it to Hughie when he wakes. Please take these potions, they did nothing for him.",
 			new MultipleActions(reward));
 
 		//player said the fish soup was for her but has dropped it from his bag or hands

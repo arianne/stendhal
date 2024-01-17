@@ -896,7 +896,7 @@ itemBuilder:offer()
     :rejectionKarmaPenalty(10.0)
     :remind("Luckily my BBQ is still going. But please hurry up to bring me 25 coal as you promised.")
 
-entities:getNPC("Haunchy Meatoch"):addReply("coal", "Sometime you could do me a #favour ...")
+entities:getNPC("Haunchy Meatoch"):addReply("coal", "Sometime you could do me a #favor ...")
 
 itemBuilder:task()
     :requestItem(25, "coal")

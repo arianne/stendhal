@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -86,7 +86,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "yes");
 		assertEquals("Thank you! I'll be sure to give you a nice and tasty reward.", getReply(haunchy));
 		haunchyEng.step(player, "coal");
-		assertEquals("Sometime you could do me a #favour ...", getReply(haunchy));
+		assertEquals("Sometime you could do me a #favor ...", getReply(haunchy));
 		haunchyEng.step(player, "bye");
 		assertEquals("A nice day to you! Always keep your fire burning!", getReply(haunchy));
 
@@ -147,8 +147,8 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "hi");
 		assertEquals("Hey! Nice day for a BBQ!", getReply(haunchy));
 		haunchyEng.step(player, "coal");
-		assertEquals("Sometime you could do me a #favour ...", getReply(haunchy));
-		haunchyEng.step(player, "favour");
+		assertEquals("Sometime you could do me a #favor ...", getReply(haunchy));
+		haunchyEng.step(player, "favor");
 		assertEquals("The coal amount behind my counter is still high enough. I will not need more for some time.", getReply(haunchy));
 		haunchyEng.step(player, "offer");
 		assertEquals("I hope that my steaks will be ready soon. Please be a bit patient or have some other snacks first.", getReply(haunchy));

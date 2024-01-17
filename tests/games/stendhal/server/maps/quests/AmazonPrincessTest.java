@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -110,11 +110,11 @@ public class AmazonPrincessTest {
 		en.step(player, "hi");
 		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
+		assertEquals("I like these exotic drinks, I forget the name of my favorite one.", getReply(npc));
 		en.step(player, "help");
 		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "favor");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
+		assertEquals("I like these exotic drinks, I forget the name of my favorite one.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
@@ -125,7 +125,7 @@ public class AmazonPrincessTest {
 		en.step(player, "help");
 		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
+		assertEquals("I like these exotic drinks, I forget the name of my favorite one.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 

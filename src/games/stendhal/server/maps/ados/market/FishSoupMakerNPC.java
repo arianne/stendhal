@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,7 +61,7 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 				addHelp("I can cook a really tasty fish soup for you but if you are not into fish, I can suggest a good friend of mine to you, Old Mother Helena in Fado. She makes the best vegetable soup in the whole of Faiumoni!");
 
 				addQuest("I don't have any quests for you, but I can offer you some fresh made fish soup for your travels.");
-				addJob("I am a trained cook but specialized into soups. My most favourite soup is a fish soup but I also like normal ones...");
+				addJob("I am a trained cook but specialized into soups. My most favorite soup is a fish soup but I also like normal ones...");
 				addOffer("If you are really hungry or need some food for your travels, I can cook a really tasty fish soup for you after a selfmade receipe.");
 				addGoodbye("Have a nice stay and day on Ados market!");
 				addEmotionReply("cuddle", "cuddle");

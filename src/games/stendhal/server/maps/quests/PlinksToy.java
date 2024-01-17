@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -69,12 +69,12 @@ public class PlinksToy implements QuestManuscript {
 			.remind("I lost my teddy in the #park over east, where all those #wolves are hanging about.")
 			.respondTo("wolf", "wolves").saying("They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.")
 			.respondTo("park").saying("My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?")
-			.respondTo("teddy").saying("Teddy is my favourite toy! Please will you bring him back?");
+			.respondTo("teddy").saying("Teddy is my favorite toy! Please will you bring him back?");
 
 		final SpeakerNPC npc = NPCList.get().get("Plink");
 		npc.addReply(Arrays.asList("wolf", "wolves"), "They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.");
 		npc.addReply("park", "My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them!");
-		npc.addReply("teddy", "Teddy is my favourite toy! Please bring him back to me.");
+		npc.addReply("teddy", "Teddy is my favorite toy! Please bring him back to me.");
 
 		quest.task()
 			.requestItem(1, "teddy");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -76,7 +76,7 @@ public class AmazonPrincess implements QuestManuscript {
 			.respondToAccept("Thank you! If you have found some, I'll be sure to give you a nice reward.")
 			.respondToReject("Oh, never mind. Bye then.")
 			.rejectionKarmaPenalty(10.0)
-			.remind("I like these exotic drinks, I forget the name of my favourite one.");
+			.remind("I like these exotic drinks, I forget the name of my favorite one.");
 
 		// Get Drink Step : athor/cocktail_bar/BarmanNPC.java he serves drinks to all, not just those with the quest
 		quest.task()

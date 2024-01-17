@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -157,7 +157,7 @@ public class FishSoupTest {
 		en.step(player, "hi");
 		assertEquals("Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in 20 minutes.", getReply(npc));
 		en.step(player, "job");
-		assertEquals("I am a trained cook but specialized into soups. My most favourite soup is a fish soup but I also like normal ones...", getReply(npc));
+		assertEquals("I am a trained cook but specialized into soups. My most favorite soup is a fish soup but I also like normal ones...", getReply(npc));
 		en.step(player, "offer");
 		assertEquals("If you are really hungry or need some food for your travels, I can cook a really tasty fish soup for you after a selfmade receipe.", getReply(npc));
 		en.step(player, "bye");

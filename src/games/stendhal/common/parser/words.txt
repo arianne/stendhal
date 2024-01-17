@@ -475,7 +475,7 @@ fado	OBJ-NAM	fados
 faiumoni	OBJ	faiumonis
 fault	OBJ	faults
 favor	OBJ	favors
-favour	OBJ	favours
+favour	OBJ	=favor favours
 feature	OBJ	features
 fee	OBJ	fees
 ferry	OBJ	ferries

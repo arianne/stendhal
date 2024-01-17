@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -95,7 +95,7 @@ public class BuyerNPC implements ZoneConfigurator {
 						"Ah, that mighty piece was made in Deniran. I'm afraid I know little more about it.");
 				addReply(
 						"sewing machine",
-						"Oh you know that is my favourite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
+						"Oh you know that is my favorite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
 				addQuest("I have no favour to ask of you.");
 				addOffer("There is a list of prices for relics and magic items I would buy, over on that large book.");
 				addGoodbye("Bye.");

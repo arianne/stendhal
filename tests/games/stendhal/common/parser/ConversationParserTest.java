@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -252,7 +252,7 @@ public class ConversationParserTest {
 		assertEquals("do", sentence.getVerbString());
 		assertEquals("i", sentence.getSubject(1).getNormalized());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("favour", sentence.getObject(0).getNormalized());
+		assertEquals("favor", sentence.getObject(0).getNormalized());
 	}
 
 	/**

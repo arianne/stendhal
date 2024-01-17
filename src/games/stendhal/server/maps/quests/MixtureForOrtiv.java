@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -160,7 +160,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			"I thought you would maybe help me... But I was wrong, obviously... So wrong as with my students while I was a teacher...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
-		npc.addReply("apple", "Apples are the favourite food of assassins. I saw some apple trees on the east " +
+		npc.addReply("apple", "Apples are the favorite food of assassins. I saw some apple trees on the east " +
 				"of semos and near to Orril and Nalwor river.");
 
 			npc.addReply("flask", "I've heard of a young woman in Semos who sells them.");

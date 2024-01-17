@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -75,12 +75,12 @@ public class PlinksToyTest {
 		en.step(player, "hi");
 		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "teddy");
-		assertEquals("Teddy is my favourite toy! Please will you bring him back?", getReply(npc));
+		assertEquals("Teddy is my favorite toy! Please will you bring him back?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("*sniff* But... but... PLEASE! *cries*", getReply(npc));
 
 		en.step(player, "teddy bear");
-		assertEquals("Teddy is my favourite toy! Please bring him back to me.", getReply(npc));
+		assertEquals("Teddy is my favorite toy! Please bring him back to me.", getReply(npc));
 		en.step(player, "bye");
 
 		// -----------------------------------------------

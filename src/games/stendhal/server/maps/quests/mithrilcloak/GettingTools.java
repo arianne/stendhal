@@ -286,7 +286,7 @@ class GettingTools {
 				"joke",
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
 				ConversationStates.QUESTION_1,
-				"Ok, lets hear your joke then. and I hope it's from the book in Nalwor Library, that's my favourite. What joke did you choose?",
+				"Ok, lets hear your joke then. and I hope it's from the book in Nalwor Library, that's my favorite. What joke did you choose?",
 				null);
 
 		npc.add(ConversationStates.QUESTION_1, "", null,
@@ -317,9 +317,9 @@ class GettingTools {
 									} else {
 										player.setQuest(mithrilcloak.getQuestSlot(), "told_joke;" + Integer.toString(i));
 									}
-									// this might have been his favourite joke, which is determined randomly
+									// this might have been his favorite joke, which is determined randomly
 									if (Rand.randUniform(1, 8) == i) {
-										npc.say("That's the funniest joke I ever heard! I think it's my favourite of the moment. Here, have your needle for free... and then get out of here, You've been here far too long already.");
+										npc.say("That's the funniest joke I ever heard! I think it's my favorite of the moment. Here, have your needle for free... and then get out of here, You've been here far too long already.");
 										new EquipItemAction("magical needle", 1, true).fire(player, sentence, npc);
 										npc.setCurrentState(ConversationStates.IDLE);
 //										// stop looking through the joke list

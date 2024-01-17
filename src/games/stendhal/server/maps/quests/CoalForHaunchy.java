@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,7 +83,7 @@ public class CoalForHaunchy implements QuestManuscript {
 			.rejectionKarmaPenalty(10.0)
 			.remind("Luckily my BBQ is still going. But please hurry up to bring me 25 coal as you promised.");
 
-		NPCList.get().get("Haunchy Meatoch").addReply("coal", "Sometime you could do me a #favour ...");
+		NPCList.get().get("Haunchy Meatoch").addReply("coal", "Sometime you could do me a #favor ...");
 
 		quest.task()
 			.requestItem(25, "coal");

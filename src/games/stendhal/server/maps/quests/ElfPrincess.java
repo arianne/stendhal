@@ -106,7 +106,7 @@ public class ElfPrincess extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
 			ConversationStates.QUEST_OFFERED,
-			"Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?",
+			"Will you find the wandering flower seller, Rose Leigh, and get from her my favorite flower, the Rhosyd?",
 			null);
 
 		// shouldn't happen: is a repeatable quest

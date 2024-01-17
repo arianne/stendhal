@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -200,7 +200,7 @@ public class UltimateCollector extends AbstractQuest {
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new QuestNotCompletedCondition(ELVISH_ARMOR_QUEST_SLOT)),
 			ConversationStates.ATTENDING,
-			"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favour for him, you cannot be the ultimate collector.",
+			"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,

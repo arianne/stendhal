@@ -1765,7 +1765,7 @@ mimic=
 You see a mimic. Its content might be different from what you expect.=
 
 snarfkin=
-You see a snarfkin, the favourite pet of wizards. Be careful, its claws are poisonous!=
+You see a snarfkin, the favorite pet of wizards. Be careful, its claws are poisonous!=
 
 googon=
 You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.=
