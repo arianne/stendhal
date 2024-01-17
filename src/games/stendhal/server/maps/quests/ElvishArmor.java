@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -106,7 +106,7 @@ public class ElvishArmor extends AbstractQuest implements
 
 	@Override
 	public List<String> getAdditionalTriggerPhraseForQuest() {
-		return Arrays.asList("secrets");
+		return Arrays.asList("secret", "secrets");
 	}
 
 	@Override
