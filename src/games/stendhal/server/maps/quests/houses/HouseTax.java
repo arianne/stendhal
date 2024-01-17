@@ -21,6 +21,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.ChatMessage;
@@ -36,6 +38,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -240,6 +243,7 @@ class HouseTax implements TurnListener {
 						final int cost = getTaxDebt(periods);
 						if (player.isEquipped("money", cost)) {
 							player.drop("money", cost);
+							npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 							setTaxesPaid(player, periods);
 							StringBuilder msg = new StringBuilder();
 							msg.append("Thank you! You have paid your taxes of ");
