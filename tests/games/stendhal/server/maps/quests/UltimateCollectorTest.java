@@ -91,7 +91,7 @@ public class UltimateCollectorTest {
 		assertThat(getReply(npc) , is(oneOf("You are missing a special mithril item which you can win if you help the right person, you cannot be an ultimate collector without it.",
 				"There is still a quest in the Kotoch area which you have not completed. Explore thoroughly and you will be on your way to becoming the ultimate collector!",
 				"You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
-				"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+				"A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 				"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 				"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.")));
 		en.step(player, "bye");
@@ -108,7 +108,7 @@ public class UltimateCollectorTest {
 		assertThat(getReply(npc) , is(oneOf("You are missing a special mithril item which you can win if you help the right person, you cannot be an ultimate collector without it.",
 				"There is still a quest in the Kotoch area which you have not completed. Explore thoroughly and you will be on your way to becoming the ultimate collector!",
 				"You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
-				"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+				"A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 				"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 				"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.")));
 		en.step(player, "bye");
@@ -124,7 +124,7 @@ public class UltimateCollectorTest {
 		en.step(player, "challenge");
 		assertThat(getReply(npc) , is(oneOf("There is still a quest in the Kotoch area which you have not completed. Explore thoroughly and you will be on your way to becoming the ultimate collector!",
 				"You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
-				"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+				"A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 				"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 				"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.")));
 		en.step(player, "bye");
@@ -142,7 +142,7 @@ public class UltimateCollectorTest {
 		assertEquals("Greetings old friend. I have another collecting #challenge for you.", getReply(npc));
 		en.step(player, "challenge");
 		assertThat(getReply(npc) , is(oneOf("You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
-				"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+				"A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 				"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 				"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.")));
 		en.step(player, "bye");
@@ -157,7 +157,7 @@ public class UltimateCollectorTest {
 		en.step(player, "hi");
 		assertEquals("Greetings old friend. I have another collecting #challenge for you.", getReply(npc));
 		en.step(player, "challenge");
-		assertThat(getReply(npc) , is(oneOf("A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+		assertThat(getReply(npc) , is(oneOf("A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 				"Another collector of items still needs your help. You'd find him in Fado Forest, and until you have completed that favor for him, you cannot be the ultimate collector.",
 				"There is a dwarf blacksmith living alone deep underground who would forge a special weapon for you, you cannot be an ultimate collector without this.")));
 		en.step(player, "bye");

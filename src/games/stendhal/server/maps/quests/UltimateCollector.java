@@ -191,7 +191,7 @@ public class UltimateCollector extends AbstractQuest {
 					new OrCondition(new QuestNotCompletedCondition(CLOAKSCOLLECTOR2_QUEST_SLOT),
 							new QuestNotCompletedCondition(CLOAKS_FOR_BARIO_QUEST_SLOT))),
 			ConversationStates.ATTENDING,
-			"A special item will be yours if you collect many cloaks, whether to fulfil another's vanity or keep them warm, it's a task you must complete.",
+			"A special item will be yours if you collect many cloaks, whether to fulfill another's vanity or keep them warm, it's a task you must complete.",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
