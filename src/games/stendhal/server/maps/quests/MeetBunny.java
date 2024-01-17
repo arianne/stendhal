@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -103,7 +103,7 @@ public class MeetBunny extends AbstractQuest {
 		bunny.initHP(100);
 		// times out twice as fast as normal NPCs
 		bunny.setPlayerChatTimeout(TIME_OUT);
-		bunny.setDescription("You see a friendly bunny carrying brightly coloured Easter baskets.");
+		bunny.setDescription("You see a friendly bunny carrying brightly colored Easter baskets.");
 		// hide location from website
 		bunny.hideLocation();
 

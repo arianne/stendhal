@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,7 +55,7 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalpinknpc");
 		crystal.setPosition(99, 53);
 		crystal.initHP(100);
-		crystal.setDescription("You see a pink coloured crystal. It is strangely attractive.");
+		crystal.setDescription("You see a pink colored crystal. It is strangely attractive.");
 		crystal.setResistance(0);
 
 		zone.add(crystal);

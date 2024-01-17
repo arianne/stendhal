@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,7 +55,7 @@ public class RedCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalrednpc");
 		crystal.setPosition(44, 75);
 		crystal.initHP(100);
-		crystal.setDescription("You see a red coloured crystal. Looking at it makes you a little agitated.");
+		crystal.setDescription("You see a red colored crystal. Looking at it makes you a little agitated.");
 		crystal.setResistance(0);
 
 		zone.add(crystal);

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,7 +47,7 @@ import games.stendhal.server.maps.Region;
  * <p>
  * STEPS:
  * <ul>
- * <li> Josephine asks you to bring her a cloak in colours she didn't get already from you
+ * <li> Josephine asks you to bring her a cloak in colors she didn't get already from you
  * <li> You bring cloaks to Josephine
  * <li> Repeat until Josephine
  * received all cloaks. (Of course you can bring several cloaks at the same
@@ -184,13 +184,13 @@ public class CloakCollector2 extends AbstractQuest {
 					}
 				});
 
-		// player asks about an individual cloak. We used the trick before that all cloaks were named by colour
-		// (their subclass) - so she would tell them what colour it was. In this case it fails for elvish,
-		// xeno and shadow which are not named by colour. So, this time she'll say, e.g.
+		// player asks about an individual cloak. We used the trick before that all cloaks were named by color
+		// (their subclass) - so she would tell them what color it was. In this case it fails for elvish,
+		// xeno and shadow which are not named by color. So, this time she'll say, e.g.
 		// It's a shadow cloak, sorry if that's not much help, so will you find them all?
 		// rather than say for elf cloak she'd said 'It's a white cloak, so will you find them all?'
 		// it will still work for red (red_spotted is the subclass), black dragon (black),
-		// golden, mainio (primary coloured), chaos (multicoloured).
+		// golden, mainio (primary colored), chaos (multicolored).
 		for(final String itemName : NEEDEDCLOAKS2) {
 			npc.add(ConversationStates.QUEST_2_OFFERED,
 				itemName,

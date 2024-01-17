@@ -64,7 +64,7 @@
 
   <item name="chaos legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
-    <description>You see a pair of chaos legs. The strange colours confuse you.</description>
+    <description>You see a pair of chaos legs. The strange colors confuse you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="11"/>

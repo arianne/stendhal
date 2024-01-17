@@ -441,7 +441,7 @@
 
   <item name="xeno shield">
     <type class="shield" subclass="xeno_shield" tileid="-1"/>
-    <description>You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.</description>
+    <description>You see a lightweight but strong xeno shield, in the colors of the creature it was looted from.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="164"/>

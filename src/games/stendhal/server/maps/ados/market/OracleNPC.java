@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -67,7 +67,7 @@ public class OracleNPC implements ZoneConfigurator {
 				addOffer("*giggles* I don't sell anything. I can tell you about my #sisters or my #name, if you like.");
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
-						"My name, Calla, is a kind of lily which can have the same colour as my dress. It's so pretty.");
+						"My name, Calla, is a kind of lily which can have the same color as my dress. It's so pretty.");
 
 				// just to be nice :)
 				addEmotionReply("hugs", "hugs");

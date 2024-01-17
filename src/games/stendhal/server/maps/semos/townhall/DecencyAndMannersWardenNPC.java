@@ -43,9 +43,9 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance. I can tell you how to #colour your #outfit, too.");
-				addReply(Arrays.asList("outfit", "colour", "outfit colouring"),
-						"You can choose your favorite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!");
+				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance. I can tell you how to #color your #outfit, too.");
+				addReply(Arrays.asList("outfit", "color", "outfit coloring"),
+						"You can choose your favorite color for your outfit. Choose \'Set Outfit\' after right clicking on yourself and color your hair and dress as you want!");
 				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
 				addQuest("The only task I have for you is to behave nicely towards others.");
 				addGoodbye();

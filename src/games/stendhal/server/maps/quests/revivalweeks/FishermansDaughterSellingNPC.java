@@ -43,9 +43,9 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 			protected void createDialog() {
 				addGreeting("Hello, nice to meet you! Welcome at my small Mine Town market stand!");
 				addJob("I have been asked to work here and sell some tasty snacks and drinks during the Mine Town Revival weeks. An awesome chance to gain some cooking skills for my business which I'm working on at the moment!");
-				addHelp("You should go and enjoy the games and party around the Mine Town :) Hope you tested my favorite, the #outfit #colouring already, it's perfect for Halloween days and selfmade costumes :)");
-				addReply(Arrays.asList("outfit", "colouring", "outfit colouring"),
-					"It's just pefect for Semos Mine Town Revival weeks and Halloween! You can recolour your outfit by right clicking on yourself. Choose Set Outfit and then pick your favorite colour for hair and dress! It's awesome!");
+				addHelp("You should go and enjoy the games and party around the Mine Town :) Hope you tested my favorite, the #outfit #coloring already, it's perfect for Halloween days and selfmade costumes :)");
+				addReply(Arrays.asList("outfit", "coloring", "outfit coloring"),
+					"It's just pefect for Semos Mine Town Revival weeks and Halloween! You can recolor your outfit by right clicking on yourself. Choose Set Outfit and then pick your favorite color for hair and dress! It's awesome!");
 				addReply("susi", "Oh she is a lovely girl! I met her around here, she is so happy that she can celebrate with all of us again!");
 				addOffer("I sell some snacks and drinks during the Mine Town Weeks. Please take a look at the list close to the stand.");
 				addQuest("I heard that #Susi would love to make friends, she is inside of the house. Or you can ask Fidorea next to me about a little run.");

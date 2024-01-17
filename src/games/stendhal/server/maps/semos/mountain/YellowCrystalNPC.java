@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,7 +54,7 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalyellownpc");
 		crystal.setPosition(76, 16);
 		crystal.initHP(100);
-		crystal.setDescription("You see a yellow coloured crystal. What an energetic sight.");
+		crystal.setDescription("You see a yellow colored crystal. What an energetic sight.");
 		crystal.setResistance(0);
 
 		zone.add(crystal);

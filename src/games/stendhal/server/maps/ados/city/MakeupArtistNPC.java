@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,7 +90,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		npc.setDescription("You see a beautiful looking woman. Her name is Fidorea and she loooves colours.");
+		npc.setDescription("You see a beautiful looking woman. Her name is Fidorea and she loooves colors.");
 		zone.add(npc);
 	}
 }

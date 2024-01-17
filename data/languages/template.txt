@@ -16,13 +16,13 @@ black armor=
 You see a suit of black armor. Does it put you in a dark mood?=
 
 blue armor=
-You see a suit of blue armor. The colour is stunning azure.=
+You see a suit of blue armor. The color is stunning azure.=
 
 chain armor=
 You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.=
 
 chaos armor=
-You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.=
+You see a suit of chaos armor. The reflecting contrasting colors make no sense to you.=
 
 dress=
 You see a dress, which provides practically no defense. It is barely worth picking up.=
@@ -76,7 +76,7 @@ plate armor=
 You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.=
 
 red armor=
-You see a suit of red armor. The colour is a striking crimson.=
+You see a suit of red armor. The color is a striking crimson.=
 
 royal armor=
 You see a suit of royal armor. This armor is fit for a king.=
@@ -97,7 +97,7 @@ studded armor=
 You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.=
 
 xeno armor=
-You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.=
+You see a suit of xeno armor. The colors remind you of the xenocium hybrid creature.=
 
 
 ## arrows
@@ -145,7 +145,7 @@ black scythe=
 You see a black scythe. Its attack is awesome for a farming tool.=
 
 chaos axe=
-You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.=
+You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden colored, but thinking too long about it makes you confused.=
 
 durin axe=
 You see a durin axe, a great prize from the dwarves.=
@@ -228,7 +228,7 @@ mithril boots=
 You see a sparkling set of mithril boots.=
 
 red boots=
-You see a pair of red boots, the colour reminds you of fresh blood.=
+You see a pair of red boots, the color reminds you of fresh blood.=
 
 royal boots=
 You see a pair of royal boots.  They have magical properties=
@@ -270,7 +270,7 @@ black dragon cloak=
 You see a torn section from an enormous black dragon cloak. You're very lucky: the piece is just the right size for a human to wear.=
 
 blue dragon cloak=
-You see a blue dragon cloak. The weave is tight and strong, though you wish the colour drew less attention.=
+You see a blue dragon cloak. The weave is tight and strong, though you wish the color drew less attention.=
 
 blue elf cloak=
 You see a blue elf cloak. The material is thick and warm.=
@@ -282,7 +282,7 @@ bone dragon cloak=
 You see a bone dragon cloak. It's incredibly old, like its last owner.=
 
 chaos cloak=
-You see a chaos cloak. The colours look like oil shimmering on a puddle.=
+You see a chaos cloak. The colors look like oil shimmering on a puddle.=
 
 cloak=
 You see a simple cloth cloak.=
@@ -309,7 +309,7 @@ magic cloak=
 You see a magic cloak.=
 
 mainio cloak=
-You see a mainio cloak. Its flashing colours are absurd! But you wear it because it's very well made.=
+You see a mainio cloak. Its flashing colors are absurd! But you wear it because it's very well made.=
 
 mithril cloak=
 You see a mithril cloak. Its weave is so fine and its looks are breathtaking.=
@@ -324,7 +324,7 @@ royal cloak=
 You see a royal cloak.  It will protect you against mighty foes.=
 
 shadow cloak=
-You see a shadow cloak, in colours of the shadow armor.=
+You see a shadow cloak, in colors of the shadow armor.=
 
 stone cloak=
 You see a stone cloak. It's hard to tell how it was made, as the fibres look like narrow threads of mineral.=
@@ -1003,7 +1003,7 @@ chain legs=
 You see a pair of well made chain legs. They should protect you against any attacks aimed low.=
 
 chaos legs=
-You see a pair of chaos legs. The strange colours confuse you.=
+You see a pair of chaos legs. The strange colors confuse you.=
 
 dwarvish legs=
 You see a pair of dwarvish legs, designed by master craftsmen.=
@@ -1187,7 +1187,7 @@ cloth=
 You see a roll of cloth. It is of first-class quality.=
 
 gold nugget=
-You see a gold nugget. Its rich golden colour shines, and it may be useful.=
+You see a gold nugget. Its rich golden color shines, and it may be useful.=
 
 mithril nugget=
 You see a mithril nugget. Its pale silvery color shines, and it may be useful.=
@@ -1380,7 +1380,7 @@ wooden shield=
 You see a wooden shield. It is made of cheap wood and heavily used. However, it still seems to offer you some kind of basic protection.=
 
 xeno shield=
-You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.=
+You see a lightweight but strong xeno shield, in the colors of the creature it was looted from.=
 
 ice shield=
 
@@ -1466,7 +1466,7 @@ great sword=
 This rare great sword is heavy and of good craftsmanship. It can only attack incredibly slowly.=
 
 hell dagger=
-You see a hell dagger. Is the colour that of the burning fires of Hell?=
+You see a hell dagger. Is the color that of the burning fires of Hell?=
 
 ice sword=
 You see an ice sword, the blade is lethally cold to the touch, and you know it is one of the best weapons you'll find.=
@@ -2597,7 +2597,7 @@ You see a superogre which belongs to the family of very material creatures, the 
 ## oni
 
 oni warrior=
-You see an oni warrior. His purple skin colour should not lull you into a false sense of security!=
+You see an oni warrior. His purple skin color should not lull you into a false sense of security!=
 
 oni archer=
 You see an oni archer. His arrows will follow you everywhere for protecting his queen!=

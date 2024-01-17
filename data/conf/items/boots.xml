@@ -241,7 +241,7 @@
 
   <item name="red boots">
     <type class="boots" subclass="red_boots" tileid="-1"/>
-    <description>You see a pair of red boots, the colour reminds you of fresh blood.</description>
+    <description>You see a pair of red boots, the color reminds you of fresh blood.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="5"/>

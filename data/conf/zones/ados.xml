@@ -420,7 +420,7 @@
 
     <entity x="45" y="99">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">Formal arrangement of bulbs and foxgloves surrounding a special golden tree. These rare trees are sometimes believed to have mystical significance due to their striking golden colour.</attribute>
+      <attribute name="text">Formal arrangement of bulbs and foxgloves surrounding a special golden tree. These rare trees are sometimes believed to have mystical significance due to their striking golden color.</attribute>
     </entity>
 
     <entity x="48" y="110">

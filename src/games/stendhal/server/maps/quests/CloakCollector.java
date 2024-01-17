@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,7 +37,7 @@ import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
  * <p>
  * STEPS:
  * <ul>
- * <li> Josephine asks you to bring her a cloak in every colour available on
+ * <li> Josephine asks you to bring her a cloak in every color available on
  * the mainland
  * <li> You bring cloaks to Josephine
  * <li> Repeat until Josephine
@@ -83,7 +83,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		setupAbstractQuest();
 		fillQuestInfo(
 				"Cloaks Collector",
-				"Josephine wants cloaks in many colours.",
+				"Josephine wants cloaks in many colors.",
 				false);
 	}
 
@@ -176,7 +176,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public String respondToQuest() {
-		return "At the moment I'm obsessed with #cloaks! They come in so many colours. I want all the pretty ones!";
+		return "At the moment I'm obsessed with #cloaks! They come in so many colors. I want all the pretty ones!";
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public String respondToLastItemBrought() {
-		return "Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.";
+		return "Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the color.";
 	}
 
 	@Override

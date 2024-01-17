@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -55,7 +55,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalbluenpc");
 		crystal.setPosition(9, 8);
 		crystal.initHP(100);
-		crystal.setDescription("You see a blue coloured crystal. Somehow, your shoulders feel lighter.");
+		crystal.setDescription("You see a blue colored crystal. Somehow, your shoulders feel lighter.");
 		crystal.setResistance(0);
 
 		zone.add(crystal);
