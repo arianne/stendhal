@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -163,7 +163,7 @@ public class FindRatChildren extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
-				"children",
+				Arrays.asList("child", "children"),
 				null,
 				ConversationStates.QUEST_OFFERED,
 				"My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok?",
@@ -267,7 +267,7 @@ public class FindRatChildren extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.QUESTION_1,
-				"children",
+				Arrays.asList("child", "children"),
 				null,
 				ConversationStates.QUESTION_1,
 				"I wish to know that my children are ok. Please tell me who is ok.",
