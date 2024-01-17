@@ -187,6 +187,10 @@ div.quickPickup div.itemSlot {
 	padding: 0.1em;
 }
 
+#charname {
+	font-size: 1rem;
+}
+
 .stattext {
 }
 
