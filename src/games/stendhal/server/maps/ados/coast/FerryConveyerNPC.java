@@ -138,6 +138,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 				ferrystate = status;
 				switch (status) {
 				case ANCHORED_AT_MAINLAND:
+					npc.addEvent(new SoundEvent("ferry/arrive", SoundLayer.AMBIENT_SOUND));
 					npc.say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
 					break;
 				case DRIVING_TO_ISLAND:

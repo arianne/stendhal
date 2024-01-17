@@ -197,6 +197,10 @@ wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312
 wolf-howl-02.*            killyourpepe; CC0; https://freesound.org/people/killyourpepe/sounds/395192/
 yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
 
+data/sounds/ferry/
+
+arrive.*  Inchadney; CC BY 4.0; https://freesound.org/s/157284/
+
 data/sounds/npc/
 
 goodbye_female-01.*  shadoWisp; CC BY 3.0; https://freesound.org/people/shadoWisp/sounds/260931/
