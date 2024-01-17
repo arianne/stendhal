@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -210,10 +210,10 @@ class HouseTax implements TurnListener {
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return getUnpaidTaxPeriods(player) > 0;
 					}
-		},
-		ConversationStates.QUESTION_1,
-		"Do you want to pay your taxes now?",
-		null);
+				},
+				ConversationStates.QUESTION_1,
+				"Do you want to pay your taxes now?",
+				null);
 
 		taxman.add(ConversationStates.ATTENDING,
 				Arrays.asList("pay", "payment"),
