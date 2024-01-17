@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -26,6 +28,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
@@ -108,7 +111,10 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 								if (player.drop("money", AthorFerry.PRICE)) {
 									player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
-
+									// Note: player may not hear sound if only added to NPC, so we add to both player & NPC after teleport
+									final SoundEvent commerceSound = new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE);
+									player.addEvent(commerceSound);
+									npc.addEvent(commerceSound);
 								} else {
 									npc.say("Hey! You don't have enough money!");
 								}
