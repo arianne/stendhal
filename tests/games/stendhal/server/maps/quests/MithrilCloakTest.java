@@ -158,7 +158,7 @@ public class MithrilCloakTest {
 		en.step(player, "yes");
 		// say it's true that player has done mithril shield quest here.
 		assertEquals("done", player.getQuest(shieldQuestSlot));
-		assertEquals("Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?", getReply(npc));
+		assertEquals("Thank you so much! Listen, I must repay the favor, and I have a wonderful idea. Do you want to hear more?", getReply(npc));
 		// [22:05] jammyjam earns 100 experience points.
 		player.setQuest(questSlot, "fixed_machine");
 		en.step(player, "yes");

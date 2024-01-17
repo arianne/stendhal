@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,9 +73,9 @@ public class PrincessNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("good", "fine"), "Good! Can I help you?");
 				addReply("bad", "Oh dear ... Can I help you?");
 				addReply("well", "Wonderful! Can I help you?");
-				addJob("I am the princess of this kingdom. To become one of my citizens, speak to Barrett Holmes in the city. He may be able to sell you a house. But first, I have a #favour to ask of you...");
+				addJob("I am the princess of this kingdom. To become one of my citizens, speak to Barrett Holmes in the city. He may be able to sell you a house. But first, I have a #favor to ask of you...");
 				addHelp("Watch out for mad scientists. My father allowed them liberty to do some work in the basement and I am afraid things have got rather out of hand.");
-				addOffer("Sorry, but I do not have anything to offer you. You could do me a #favour, though...");
+				addOffer("Sorry, but I do not have anything to offer you. You could do me a #favor, though...");
 				addGoodbye("Goodbye, and good luck.");
 			}
 		};

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -84,7 +84,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addReply("key", "I'm open to bribery...");
 				addJob("I am the gatekeeper for the imperial city of Sedah. I am not supposed to let anyone pass, but perhaps you can make me an #offer.");
 				addHelp("You can't get into the imperial city of Sedah without a key.");
-				addQuest("The only favour I need is cold hard cash.");
+				addQuest("The only favor I need is cold hard cash.");
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
 
 				addReply("bribe", null,

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,7 +43,7 @@ public class ConversationPhrases {
 			"ayuda", "❓");
 
 	public static final List<String> QUEST_MESSAGES = Arrays.asList("task",
-			"quest", "favor", "favour", "❗️");
+			"quest", "favor", "❗️");
 
 	public static final List<String> BEGIN_MESSAGES = Arrays.asList("begin", "start", "go");
 

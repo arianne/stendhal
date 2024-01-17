@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,7 +74,7 @@ public class BoyNPC implements ZoneConfigurator {
 						ConversationPhrases.GREETING_MESSAGES,
 						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.ATTENDING,
-						"*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
+						"*sniff* *sniff* I still feel ill, please hurry with that #favor for me.",
 						null);
 
 				add(ConversationStates.IDLE,

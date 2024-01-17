@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -115,7 +115,7 @@ public class RingMaker extends AbstractQuest {
 						new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
 
 				ConversationStates.ATTENDING,
-				"It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."
+				"It is difficult to get the ring of life. Do a favor for a powerful elf in Nal'wor and you may receive one as a reward."
 				, null);
 
 		npc.add(ConversationStates.ATTENDING,

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -104,7 +104,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "help"));
 		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", getReply(npc));
+		assertEquals("It is difficult to get the ring of life. Do a favor for a powerful elf in Nal'wor and you may receive one as a reward.", getReply(npc));
 		assertTrue(en.step(player, "bye"));
 		// -----------------------------------------------
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
@@ -275,7 +275,7 @@ public class RingMakerTest {
 			//queststate may not start with forging
 		hasnoRingPlayer.setQuest(QUEST_SLOT, "doesnotstartwithforging");
 		assertTrue(engine.step(hasnoRingPlayer, "life"));
-		assertThat(getReply(testNpc), is("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."));
+		assertThat(getReply(testNpc), is("It is difficult to get the ring of life. Do a favor for a powerful elf in Nal'wor and you may receive one as a reward."));
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 
 		assertFalse(hasnoRingPlayer.isEquipped("emerald ring"));

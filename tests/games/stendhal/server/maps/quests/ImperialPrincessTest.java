@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,7 +71,7 @@ public class ImperialPrincessTest {
 	 */
 	@Test
 	public void testQuest() {
-		// try going to king cozart before favour is done for princess
+		// try going to king cozart before favor is done for princess
 		npc = SingletonRepository.getNPCList().get("King Cozart");
 		en = npc.getEngine();
 
@@ -88,8 +88,8 @@ public class ImperialPrincessTest {
 		en.step(player, "help");
 		assertEquals("Watch out for mad scientists. My father allowed them liberty to do some work in the basement and I am afraid things have got rather out of hand.", getReply(npc));
 		en.step(player, "offer");
-		assertEquals("Sorry, but I do not have anything to offer you. You could do me a #favour, though...", getReply(npc));
-		en.step(player, "favour");
+		assertEquals("Sorry, but I do not have anything to offer you. You could do me a #favor, though...", getReply(npc));
+		en.step(player, "favor");
 		assertEquals("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.", getReply(npc));
 		en.step(player, "herbs");
 		assertEquals("I need 7 arandula, 1 kokuda, 1 sclaria, 1 kekik, 28 potions and 14 antidotes. Will you get these items?", getReply(npc));

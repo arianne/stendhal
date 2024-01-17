@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -148,7 +148,7 @@ class InitialSteps {
 					ConversationPhrases.YES_MESSAGES,
 					new PlayerHasRecordedItemWithHimCondition(mithrilcloak.getQuestSlot(),1),
 					ConversationStates.QUEST_2_OFFERED,
-					"Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?",
+					"Thank you so much! Listen, I must repay the favor, and I have a wonderful idea. Do you want to hear more?",
 					new MultipleActions(new DropRecordedItemAction(mithrilcloak.getQuestSlot(),1),
 							new SetQuestAction(mithrilcloak.getQuestSlot(), "fixed_machine"),
 							new IncreaseXPAction(100)));

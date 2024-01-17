@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,7 +78,7 @@ public class NewsFromHackimTest {
 		enHackim.step(player, "hi");
 		assertEquals("Hi again, player. How can I #help you this time?", getReply(npcHackim));
 		enHackim.step(player, "task");
-		assertEquals("Pssst! C'mere... do me a favour and tell #Xin #Blanca that the new supply of weapons is ready, will you?", getReply(npcHackim));
+		assertEquals("Pssst! C'mere... do me a favor and tell #Xin #Blanca that the new supply of weapons is ready, will you?", getReply(npcHackim));
 		enHackim.step(player, "Xin");
 		assertEquals("You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes beer money to most of the people in Semos! So, will you do it?", getReply(npcHackim));
 		enHackim.step(player, "yes");

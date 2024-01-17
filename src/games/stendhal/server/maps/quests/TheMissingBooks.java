@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -117,7 +117,7 @@ public class TheMissingBooks extends AbstractQuest {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
-						npc.say("Hello and welcome to my little library! As I see, you must be a friend of Constantine, his guards didn't send you out again. I think, I can trust you. Maybe you can do me a little #favour!");
+						npc.say("Hello and welcome to my little library! As I see, you must be a friend of Constantine, his guards didn't send you out again. I think, I can trust you. Maybe you can do me a little #favor!");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 						final String startsentence = player.getQuest(QUEST_SLOT);
 						npc.say("Hello again! Did you find the book I am searching for? What is the rest of the sentence of " + startsentence + "?");

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -96,7 +96,7 @@ public class NewsFromHackim extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Pssst! C'mere... do me a favour and tell #Xin #Blanca that the new supply of weapons is ready, will you?",
+			"Pssst! C'mere... do me a favor and tell #Xin #Blanca that the new supply of weapons is ready, will you?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,

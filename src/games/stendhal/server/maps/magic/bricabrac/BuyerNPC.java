@@ -96,7 +96,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addReply(
 						"sewing machine",
 						"Oh you know that is my favorite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
-				addQuest("I have no favour to ask of you.");
+				addQuest("I have no favor to ask of you.");
 				addOffer("There is a list of prices for relics and magic items I would buy, over on that large book.");
 				addGoodbye("Bye.");
 			}
