@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SoundID;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
@@ -40,6 +42,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
 
 /**
@@ -166,6 +169,9 @@ public class RainbowBeans extends AbstractQuest {
 						new ChatAction() {
 							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								// play a sound to denote purchase
+								npc.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
+
 								if (player.hasQuest(QUEST_SLOT)) {
 									final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 									if (tokens.length == 4) {
