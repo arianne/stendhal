@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -100,6 +100,7 @@ public class ElfPrincess extends AbstractQuest {
 	}
 	private void offerQuestStep() {
 		final SpeakerNPC npc = npcs.get("Tywysoga");
+		npc.addKnownChatOptions("flower");
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
