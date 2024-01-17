@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -96,7 +96,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 				reply = messageTemplates.get(reply);
 				reply = String.format(reply, action.get(TARGET));
 			} else {
-				player.sendPrivateText(reply + " is not a recognised shortcut. Please check #/gmhelp #support for a list.");
+				player.sendPrivateText(reply + " is not a recognized shortcut. Please check #/gmhelp #support for a list.");
 				// send no support answer message if the shortcut wasn't understood
 				return;
 			}

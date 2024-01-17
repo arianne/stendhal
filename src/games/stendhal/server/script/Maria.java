@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -94,7 +94,7 @@ public class Maria extends ScriptImpl {
 				shop = args.get(0);
 			} else {
 				admin.sendPrivateText(args.get(0)
-						+ " not recognised as a shop name. Using default food&drinks");
+						+ " not recognized as a shop name. Using default food&drinks");
 			}
 		}
 		// If this script is executed by an admin, Maria will be placed next to him.

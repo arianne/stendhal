@@ -145,7 +145,7 @@ black scythe=
 You see a black scythe. Its attack is awesome for a farming tool.=
 
 chaos axe=
-You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden colored, but thinking too long about it makes you confused.=
+You see a chaos axe. The handle is some alloy you can't recognize and the blade is golden colored, but thinking too long about it makes you confused.=
 
 durin axe=
 You see a durin axe, a great prize from the dwarves.=

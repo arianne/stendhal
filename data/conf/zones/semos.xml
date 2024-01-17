@@ -1633,7 +1633,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
     <entity x="4" y="14">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description"/>
-      <attribute name="text">You see a strange kind of plate armor, made from some rare metal you do not recognise.</attribute>
+      <attribute name="text">You see a strange kind of plate armor, made from some rare metal you do not recognize.</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="width">1</attribute>
     </entity>

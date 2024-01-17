@@ -86,7 +86,7 @@ public class BuyerNPC implements ZoneConfigurator {
 						"Ah ha! These are flowers grown with elf magic. I bought them myself from a wonderful florist in Nalwor.");
 				addReply(
 						"clock",
-						"That grandfather clock is one of my more modern pieces. If you know Woody the Woodcutter, you may recognise the handiwork.");
+						"That grandfather clock is one of my more modern pieces. If you know Woody the Woodcutter, you may recognize the handiwork.");
 				addReply(
 						"tools",
 						"Those tools on the back wall are a true antique! They were used by the great grandfather of Xoderos of Semos, isn't that incredible!");

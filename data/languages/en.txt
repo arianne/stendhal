@@ -73,7 +73,7 @@ You see a black halberd. It's immensely heavy so will make huge blows but you ca
 black scythe=black scythe
 You see a black scythe. Its attack is awesome for a farming tool.=You see a black scythe. Its attack is awesome for a farming tool.
 chaos axe=chaos axe
-You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden colored, but thinking too long about it makes you confused.=You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden colored, but thinking too long about it makes you confused.
+You see a chaos axe. The handle is some alloy you can't recognize and the blade is golden colored, but thinking too long about it makes you confused.=You see a chaos axe. The handle is some alloy you can't recognize and the blade is golden colored, but thinking too long about it makes you confused.
 durin axe=durin axe
 You see a durin axe, a great prize from the dwarves.=You see a durin axe, a great prize from the dwarves.
 golden twoside axe=golden twoside axe
