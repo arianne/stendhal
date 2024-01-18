@@ -38,11 +38,11 @@ export class JoystickBase {
 	}
 
 	protected static getCenterX(): number {
-		return stendhal.config.getInt("ui.joystick.center.x", 224);
+		return stendhal.config.getInt("client.joystick.center.x", 224);
 	}
 
 	protected static getCenterY(): number {
-		return stendhal.config.getInt("ui.joystick.center.y", 384);
+		return stendhal.config.getInt("client.joystick.center.y", 384);
 	}
 
 	protected static checkActionEvent(e: Event): boolean {
