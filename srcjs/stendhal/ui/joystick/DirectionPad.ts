@@ -109,6 +109,7 @@ export class DirectionPad extends JoystickBase {
 	}
 
 	public override onRemoved() {
+		// FIXME: buttons not always removed from DOM
 		for (const button of this.buttons) {
 			button.remove();
 		}
