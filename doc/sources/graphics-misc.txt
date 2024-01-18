@@ -55,6 +55,7 @@ data/gui/quickmenu/
 
 joystick*  sagism; CC0; https://openclipart.org/detail/172636
 main*      Jordan Irwin (AntumDeluge); CC0; Stendhal
+menu*      Martin Owens (doctormo); CC0; https://openclipart.org/detail/3879
 sound*     mightyman; CC0; https://openclipart.org/detail/165992
 
 data/sprites/

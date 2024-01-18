@@ -11,6 +11,7 @@
 
 import { ButtonBase } from "./ButtonBase";
 import { JoystickButton } from "./JoystickButton";
+import { MenuButton } from "./MenuButton";
 import { SoundButton } from "./SoundButton";
 
 import { Paths } from "../../data/Paths";
@@ -44,6 +45,7 @@ export class QMButton {
 		btn_main.style["display"] = "block";
 
 		// sub-buttons
+		QMButton.buttonList.push(new MenuButton());
 		QMButton.buttonList.push(new SoundButton());
 		QMButton.buttonList.push(new JoystickButton());
 

@@ -114,10 +114,6 @@ ul.uniform {
 	white-space: nowrap;
 }
 
-#menubutton {
-	width: 90px;
-}
-
 div.itemSlot {
 	width: 32px;
 	height: 32px;
@@ -624,7 +620,7 @@ div.logcolR {
 	margin-left: 2px;
 }
 
-.menubutton, .shortcut-button {
+.shortcut-button {
 	margin: 2px;
 }
 

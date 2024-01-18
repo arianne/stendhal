@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg6636"
+   sodipodi:modified="true"
+   sodipodi:docname="menu.svg"
+   viewBox="0 0 48.000001 47.999998"
+   sodipodi:version="0.32"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="48"
+   height="48"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     guidetolerance="10"
+     pagecolor="#ffffff"
+     gridtolerance="10000"
+     inkscape:window-height="712"
+     width="80px"
+     inkscape:zoom="8"
+     objecttolerance="10"
+     height="80px"
+     borderopacity="1.0"
+     inkscape:current-layer="svg6636"
+     inkscape:cx="22.6875"
+     inkscape:cy="18.375"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-width="1366"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Menu Key</dc:title>
+        <dc:date>2006-12-26T00:00:00</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/3879</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>doctormo</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g1368">
+    <path
+       style="display:inline;fill:#ffffff;stroke:none;stroke-width:3.159;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 6.0359693,1.5796392 H 41.964032 V 46.42036 H 6.0359693 Z"
+       id="rect1018"
+       inkscape:label="background" />
+    <g
+       id="g1025"
+       style="display:inline">
+      <rect
+         id="rect3024"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:3.15928;stroke-linecap:round"
+         height="44.840721"
+         width="35.928062"
+         y="1.5796392"
+         x="6.0359693" />
+      <path
+         id="rect3028"
+         style="display:inline;fill:#000000;stroke-width:2.52198"
+         d="M 7.2465162,13.594331 V 23.969737 H 40.367618 V 13.594331 Z m 6.7841138,3.591293 h 19.552874 v 3.192821 H 14.03063 Z" />
+      <path
+         id="path3046"
+         sodipodi:nodetypes="cc"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:3.19232"
+         d="M 14.033152,39.583286 H 33.59107" />
+      <path
+         id="path3055"
+         sodipodi:nodetypes="cc"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:3.19232"
+         d="M 14.033152,29.177616 H 33.59107" />
+      <path
+         id="path3057"
+         sodipodi:nodetypes="cc"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:3.19232"
+         d="M 14.033152,8.3687982 H 33.59107" />
+    </g>
+  </g>
+</svg>

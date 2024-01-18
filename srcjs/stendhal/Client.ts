@@ -29,7 +29,6 @@ import { MiniMapComponent } from "./ui/component/MiniMapComponent";
 import { PlayerEquipmentComponent } from "./ui/component/PlayerEquipmentComponent";
 import { ZoneInfoComponent } from "./ui/component/ZoneInfoComponent";
 
-import { ApplicationMenuDialog } from "./ui/dialog/ApplicationMenuDialog";
 import { ChooseCharacterDialog } from "./ui/dialog/ChooseCharacterDialog";
 import { LoginDialog } from "./ui/dialog/LoginDialog";
 
@@ -412,16 +411,6 @@ export class Client {
 			if (e.button == 0) {
 				stendhal.ui.gamewindow.joystick.reset();
 			}
-		});
-
-		var menubutton = document.getElementById("menubutton")!;
-		menubutton.addEventListener("click", () => {
-			const dialogState = stendhal.config.getWindowState("menu");
-			const menuContent = new ApplicationMenuDialog();
-			const menuFrame = ui.createSingletonFloatingWindow(
-					"Menu", menuContent, dialogState.x, dialogState.y);
-			menuFrame.setId("menu");
-			menuContent.setFrame(menuFrame);
 		});
 
 		// click/touch indicator
