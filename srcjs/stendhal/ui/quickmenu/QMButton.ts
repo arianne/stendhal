@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { ButtonBase } from "./ButtonBase";
+import { JoystickButton } from "./JoystickButton";
 import { SoundButton } from "./SoundButton";
 
 import { Paths } from "../../data/Paths";
@@ -44,8 +45,10 @@ export class QMButton {
 
 		// sub-buttons
 		QMButton.buttonList.push(new SoundButton());
+		QMButton.buttonList.push(new JoystickButton());
 
 		// positioning
+		// FIXME: position is not consistent accross browsers/platforms
 		let pos_next = stendhal.ui.gamewindow.width - 24;
 		btn_main.style["left"] = pos_next + "px";
 		for (const btn of QMButton.buttonList) {

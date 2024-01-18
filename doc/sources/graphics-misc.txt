@@ -53,8 +53,9 @@ data/gui/joystick/
 
 data/gui/quickmenu/
 
-main*   Jordan Irwin (AntumDeluge); CC0; Stendhal
-sound*  mightyman; CC0; https://openclipart.org/detail/165992
+joystick*  sagism; CC0; https://openclipart.org/detail/172636
+main*      Jordan Irwin (AntumDeluge); CC0; Stendhal
+sound*     mightyman; CC0; https://openclipart.org/detail/165992
 
 data/sprites/
 
