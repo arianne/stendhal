@@ -62,6 +62,11 @@ export class ConfigManager {
 		"chat.custom_keywords": "",
 	} as {[id: string]: string};
 
+	/**
+	 * Old keys that should be replaced.
+	 */
+	private readonly deprecated = {} as {[old: string]: string};
+
 	private readonly themes = {
 		/**
 		 * Theme backgrounds indexed by ID.
@@ -105,6 +110,7 @@ export class ConfigManager {
 
 	private readonly storage = window.localStorage;
 	private readonly windowstates: any = {};
+	/** @deprecated */
 	private initialized = false;
 
 	/** Singleton instance. */
@@ -125,7 +131,16 @@ export class ConfigManager {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		// do nothing
+		// convert old keys
+		for (const keyOld in this.deprecated) {
+			const keyNew = this.deprecated[keyOld];
+			let valueOld = this.storage.getItem(keyOld);
+			if (typeof(this.storage.getItem(keyNew)) === "undefined" && typeof(valueOld) !== "undefined") {
+				this.storage.setItem(keyNew, valueOld!);
+			}
+			// clean up old key
+			this.storage.removeItem(keyOld);
+		}
 	}
 
 	/**
