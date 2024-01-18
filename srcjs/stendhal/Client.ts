@@ -35,7 +35,7 @@ import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
-//~ import { QMButton as QuickMenu } from "./ui/quickmenu/QMButton";
+import { QMButton as QuickMenu } from "./ui/quickmenu/QMButton";
 
 import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
@@ -112,7 +112,7 @@ export class Client {
 		stendhal.ui.touch = singletons.getTouchHandler();
 		stendhal.ui.soundMan = singletons.getSoundManager();
 		stendhal.ui.gamewindow = singletons.getViewPort();
-		//~ QuickMenu.init();
+		QuickMenu.init();
 	}
 
 	private initZone() {
