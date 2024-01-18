@@ -40,9 +40,10 @@ export class QMButton {
 		}
 		QMButton.initialized = true;
 
-		const btn_main = document.getElementById("qm-main")! as HTMLElement;
+		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
 		// ensure visible at startup
 		btn_main.style["display"] = "block";
+		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
 		// sub-buttons
 		QMButton.buttonList.push(new MenuButton());
@@ -72,8 +73,8 @@ export class QMButton {
 	}
 
 	private static update() {
-		const basename = QMButton.expanded ? "main-expanded" : "main";
-		(document.getElementById("qm-main")! as HTMLImageElement).src = Paths.gui + "/quickmenu/" + basename + ".png";
+		(document.getElementById("qm-main")! as HTMLImageElement).style["transform"] = "rotate("
+				+ (QMButton.expanded ? 90 : 0) + "deg)";
 		for (const btn of QMButton.buttonList) {
 			btn.setVisible(QMButton.expanded);
 		}
