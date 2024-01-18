@@ -424,11 +424,6 @@ export class Client {
 			menuContent.setFrame(menuFrame);
 		});
 
-		var soundbutton = document.getElementById("soundbutton")!;
-		soundbutton.addEventListener("click", stendhal.main.toggleSound);
-		// update button state
-		this.onSoundToggled();
-
 		// click/touch indicator
 		// TODO:
 		//   - animate
@@ -442,41 +437,6 @@ export class Client {
 			document.addEventListener("touchend", Client.handleClickIndicator);
 		};
 		click_indicator.src = stendhal.paths.gui + "/click_indicator.png";
-	}
-
-	toggleSound() {
-		stendhal.config.set("ui.sound", !stendhal.config.getBoolean("ui.sound"));
-		this.onSoundToggled();
-	}
-
-	onSoundToggled() {
-		const soundMan = singletons.getSoundManager();
-		var soundbutton = document.getElementById("soundbutton")!;
-		if (stendhal.config.getBoolean("ui.sound")) {
-			soundbutton.textContent = "🔊";
-
-			if (!soundMan.unmuteAll()) {
-				let errmsg = "Failed to unmute sounds:";
-				for (const snd of soundMan.getActive()) {
-					if (snd && snd.src && snd.muted) {
-						errmsg += "\n- " + snd.src;
-					}
-				}
-				console.warn(errmsg);
-			}
-		} else {
-			soundbutton.textContent = "🔇";
-
-			if (!soundMan.muteAll()) {
-				let errmsg = "Failed to mute sounds:";
-				for (const snd of soundMan.getActive()) {
-					if (snd && snd.src && !snd.muted) {
-						errmsg += "\n- " + snd.src;
-					}
-				}
-				console.warn(errmsg);
-			}
-		}
 	}
 
 	onDataMap(data: any) {
