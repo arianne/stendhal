@@ -62,7 +62,7 @@ export class ConfigManager {
 		"chat.custom_keywords": "",
 	} as {[id: string]: string};
 
-	private themes = {
+	private readonly themes = {
 		/**
 		 * Theme backgrounds indexed by ID.
 		 */
@@ -95,7 +95,7 @@ export class ConfigManager {
 		}
 	} as any;
 
-	private fonts = {
+	private readonly fonts = {
 		"sans-serif": "system default",
 		"serif": "system default (serif)",
 		"Amaranth": "",
@@ -103,8 +103,8 @@ export class ConfigManager {
 		"Carlito": ""
 	} as {[name: string]: string};
 
-	private storage = window.localStorage;
-	private windowstates: any = {};
+	private readonly storage = window.localStorage;
+	private readonly windowstates: any = {};
 	private initialized = false;
 
 	/** Singleton instance. */
