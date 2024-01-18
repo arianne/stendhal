@@ -69,23 +69,23 @@ export class Joystick extends JoystickBase {
 			this.outer.onload = null;
 			this.onInit();
 		};
-		this.outer.src = this.getResource("joystick_outer");
+		this.outer.src = Joystick.getResource("joystick_outer");
 	}
 
 	private onInit() {
 		this.radius = Math.floor(this.outer.width / 2);
 		// set position of outer joystick
-		this.outer.style.left = (this.getCenterX() - this.radius) + "px";
-		this.outer.style.top = (this.getCenterY() - this.radius) + "px";
+		this.outer.style.left = (Joystick.getCenterX() - this.radius) + "px";
+		this.outer.style.top = (Joystick.getCenterY() - this.radius) + "px";
 		this.reset();
 	}
 
 	private onMouseDown(e: Event) {
-		if (!this.checkActionEvent(e)) {
+		if (!Joystick.checkActionEvent(e)) {
 			return;
 		}
 		this.engaged = true;
-		this.inner.src = this.getResource("joystick_inner_active");
+		this.inner.src = Joystick.getResource("joystick_inner_active");
 
 		const pos = stendhal.ui.html.extractPosition(e);
 
@@ -99,7 +99,7 @@ export class Joystick extends JoystickBase {
 	}
 
 	private onMouseUp(e: Event) {
-		if (!this.checkActionEvent(e)) {
+		if (!Joystick.checkActionEvent(e)) {
 			return;
 		}
 		this.reset();
@@ -113,7 +113,7 @@ export class Joystick extends JoystickBase {
 		// FIXME: need a smarter algorithm for detecting direction based on position of inner circle
 		//        relative to center of outer
 		const rect = this.inner.getBoundingClientRect();
-		const oCenterX = this.getCenterX(), oCenterY = this.getCenterY();
+		const oCenterX = Joystick.getCenterX(), oCenterY = Joystick.getCenterY();
 		const iCenterX = rect.left + Math.floor(this.inner.width / 2);
 		const iCenterY = rect.top + Math.floor(this.inner.height / 2);
 		if (iCenterX < oCenterX - Joystick.play_threshold) {
@@ -155,7 +155,7 @@ export class Joystick extends JoystickBase {
 			const rect = this.outer.getBoundingClientRect();
 			this.updateInner(rect.left + this.radius, rect.top + this.radius);
 		};
-		this.inner.src = this.getResource("joystick_inner");
+		this.inner.src = Joystick.getResource("joystick_inner");
 
 		if (this.direction != Direction.STOP) {
 			// stop movement

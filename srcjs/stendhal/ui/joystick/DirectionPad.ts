@@ -15,14 +15,23 @@ import { Direction } from "../../util/Direction";
 
 export class DirectionPad extends JoystickBase {
 
-	private up: HTMLImageElement;
-	private down: HTMLImageElement;
-	private left: HTMLImageElement;
-	private right: HTMLImageElement;
+	private static instance?: DirectionPad;
 
+	private up: DPadButton;
+	private down: DPadButton;
+	private left: DPadButton;
+	private right: DPadButton;
+
+	private readonly buttons: DPadButton[];
+
+
+	public static get(): DirectionPad|undefined {
+		return DirectionPad.instance;
+	}
 
 	public constructor() {
 		super();
+		DirectionPad.instance = this;
 
 		// create a temporary image to set radius
 		const tmp = new Image();
@@ -31,120 +40,67 @@ export class DirectionPad extends JoystickBase {
 			this.radius = tmp.width * 1.25;
 			this.onInit();
 		};
-		tmp.src = this.getResource("dpad_button");
+		tmp.src = DirectionPad.getResource("dpad_button");
 
-		this.up = new Image();
-		this.down = new Image();
-		this.left = new Image();
-		this.right = new Image();
+		this.up = new DPadButton(Direction.UP);
+		this.down = new DPadButton(Direction.DOWN);
+		this.left = new DPadButton(Direction.LEFT);
+		this.right = new DPadButton(Direction.RIGHT);
+
+		this.buttons = [this.up, this.down, this.left, this.right];
 	}
 
 	private onInit() {
-		const center_x = this.getCenterX();
-		const center_y = this.getCenterY();
-
-		const container = document.getElementById("joystick-container")!;
-
-		// positioning
-		this.up.onload = () => {
-			this.up.style.left = (center_x - (this.up.width / 2)) + "px";
-			this.up.style.top = (center_y - this.radius) + "px";
-			// add to DOM
-			container.appendChild(this.up);
-			// remove listener
-			this.up.onload = null;
-		};
-		this.down.onload = () => {
-			this.down.style.left = (center_x - (this.down.width / 2)) + "px";
-			this.down.style.top = (center_y + this.radius - this.down.height) + "px";
-			// add to DOM
-			container.appendChild(this.down);
-			// remove listener
-			this.down.onload = null;
-		};
-		this.left.onload = () => {
-			this.left.style.left = (center_x - this.radius) + "px";
-			this.left.style.top = (center_y - (this.left.height / 2)) + "px";
-			// add to DOM
-			container.appendChild(this.left);
-			// remove listener
-			this.left.onload = null;
-		};
-		this.right.onload = () => {
-			this.right.style.left = (center_x + this.radius - this.right.width) + "px";
-			this.right.style.top = (center_y - (this.right.height / 2)) + "px";
-			// add to DOM
-			container.appendChild(this.right);
-			// remove listener
-			this.right.onload = null;
-		};
-
-		for (const dimg of [this.up, this.down, this.left, this.right]) {
-			dimg.style.position = "absolute";
-			dimg.draggable = false;
-			dimg.addEventListener("mousedown", (e: Event) => {
-				this.onMouseDown(e);
-			});
-			dimg.addEventListener("touchstart", (e: Event) => {
-				this.onMouseDown(e);
-			})
-			// note "mouseup" is handled globally in the body element (see Client.ts)
-			dimg.addEventListener("touchend", (e: Event) => {
-				this.onMouseUp(e);
-			})
+		const centerX = DirectionPad.getCenterX();
+		const centerY = DirectionPad.getCenterY();
+		for (const button of this.buttons) {
+			button.add(this.radius, centerX, centerY);
 		}
 
 		this.reset();
 	}
 
-	private onMouseDown(e: Event) {
-		if (!this.checkActionEvent(e)) {
+	public onMouseDown(e: Event) {
+		if (!DirectionPad.checkActionEvent(e)) {
 			return;
 		}
 
-		let new_direction = Direction.STOP;
-		switch(e.target) {
-			case this.up:
-				this.up.src = this.getResource("dpad_button_active");
-				new_direction = Direction.UP;
+		let button;
+		switch (e.target) {
+			case this.up.image:
+				button = this.up;
 				break;
-			case this.right:
-				this.right.src = this.getResource("dpad_button_active");
-				this.right.style["transform"] = "rotate(90deg)";
-				new_direction = Direction.RIGHT;
+			case this.right.image:
+				button = this.right;
 				break;
-			case this.down:
-				this.down.src = this.getResource("dpad_button_active");
-				this.down.style["transform"] = "rotate(180deg)";
-				new_direction = Direction.DOWN;
+			case this.down.image:
+				button = this.down;
 				break;
-			case this.left:
-				this.left.src = this.getResource("dpad_button_active");
-				this.left.style["transform"] = "rotate(-90deg)";
-				new_direction = Direction.LEFT;
+			case this.left.image:
+				button = this.left;
 				break;
 		}
-		if (new_direction != this.direction) {
-			this.onDirectionChange(new_direction);
+		let newDirection = Direction.STOP;
+		if (button) {
+			newDirection = button.direction;
+			button.engage();
+		}
+		if (newDirection != this.direction) {
+			this.onDirectionChange(newDirection);
 		}
 	}
 
-	private onMouseUp(e: Event) {
-		if (!this.checkActionEvent(e)) {
+	public onMouseUp(e: Event) {
+		if (!DirectionPad.checkActionEvent(e)) {
 			return;
 		}
 		this.reset();
 	}
 
 	public override reset() {
-		// reset images
-		this.up.src = this.getResource("dpad_button");
-		this.down.src = this.getResource("dpad_button");
-		this.down.style["transform"] = "rotate(180deg)";
-		this.left.src = this.getResource("dpad_button");
-		this.left.style["transform"] = "rotate(-90deg)";
-		this.right.src = this.getResource("dpad_button");
-		this.right.style["transform"] = "rotate(90deg)";
+		for (const button of this.buttons) {
+			button.disengage();
+		}
 
 		if (this.direction != Direction.STOP) {
 			// stop movement
@@ -153,12 +109,102 @@ export class DirectionPad extends JoystickBase {
 	}
 
 	public override onRemoved() {
-		// remove from DOM
+		for (const button of this.buttons) {
+			button.remove();
+		}
+		DirectionPad.instance = undefined;
+	}
+}
+
+
+class DPadButton {
+
+	public readonly direction: Direction;
+	public readonly image: HTMLImageElement;
+	private rotation?: number;
+
+
+	constructor(dir: Direction) {
+		this.direction = dir;
+		this.image = new Image();
+
+		switch (this.direction) {
+			case Direction.DOWN:
+				this.rotation = 180;
+				break;
+			case Direction.LEFT:
+				this.rotation = -90;
+				break;
+			case Direction.RIGHT:
+				this.rotation = 90;
+				break;
+		}
+	}
+
+	public add(radius: number, centerX: number, centerY: number) {
 		const container = document.getElementById("joystick-container")!;
-		for (const dimg of [this.up, this.down, this.left, this.right]) {
-			if (container.contains(dimg)) {
-				container.removeChild(dimg);
+
+		this.image.onload = () => {
+			// remove listener
+			this.image.onload = null;
+			// add to DOM
+			container.appendChild(this.image);
+			this.image.style.position = "absolute";
+			this.image.draggable = false;
+
+			// positioning
+			switch (this.direction) {
+				case Direction.UP:
+					this.image.style.left = (centerX - (this.image.width / 2)) + "px";
+					this.image.style.top = (centerY - radius) + "px";
+					break;
+				case Direction.DOWN:
+					this.image.style.left = (centerX - (this.image.width / 2)) + "px";
+					this.image.style.top = (centerY + radius - this.image.height) + "px";
+					break;
+				case Direction.LEFT:
+					this.image.style.left = (centerX - radius) + "px";
+					this.image.style.top = (centerY - (this.image.height / 2)) + "px";
+					break;
+				case Direction.RIGHT:
+					this.image.style.left = (centerX + radius - this.image.width) + "px";
+					this.image.style.top = (centerY - (this.image.height / 2)) + "px";
+					break;
 			}
+
+			this.image.addEventListener("mousedown", (e: Event) => {
+				DirectionPad.get()!.onMouseDown(e);
+			});
+			this.image.addEventListener("touchstart", (e: Event) => {
+				DirectionPad.get()!.onMouseDown(e);
+			})
+			// note "mouseup" is handled globally in the body element (see Client.ts)
+			this.image.addEventListener("touchend", (e: Event) => {
+				DirectionPad.get()!.onMouseUp(e);
+			})
+		};
+	}
+
+	public remove() {
+		const container = document.getElementById("joystick-container")!;
+		if (container.contains(this.image)) {
+			// remove from DOM
+			container.removeChild(this.image);
+		}
+	}
+
+	public engage() {
+		// update button image
+		this.image.src = DirectionPad.getResource("dpad_button_active");
+		if (this.rotation) {
+			this.image.style["transform"] = "rotate(" + this.rotation + "deg)";
+		}
+	}
+
+	public disengage() {
+		this.image.src = DirectionPad.getResource("dpad_button");
+		if (this.rotation) {
+			this.image.style["transform"] = "rotate(" + this.rotation + "deg)";
 		}
 	}
 }

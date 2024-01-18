@@ -33,19 +33,19 @@ export class JoystickBase {
 		// do nothing
 	}
 
-	protected getResource(res: string) {
+	public static getResource(res: string) {
 		return stendhal.paths.gui + "/joystick/" + res + ".png";
 	}
 
-	protected getCenterX(): number {
+	protected static getCenterX(): number {
 		return stendhal.config.getInt("ui.joystick.center.x", 224);
 	}
 
-	protected getCenterY(): number {
+	protected static getCenterY(): number {
 		return stendhal.config.getInt("ui.joystick.center.y", 384);
 	}
 
-	protected checkActionEvent(e: Event): boolean {
+	protected static checkActionEvent(e: Event): boolean {
 		if (e instanceof MouseEvent && e.button == 0) {
 			return true;
 		}
