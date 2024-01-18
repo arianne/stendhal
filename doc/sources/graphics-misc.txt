@@ -51,6 +51,11 @@ data/gui/joystick/
 
 *  Jordan Irwin (AntumDeluge); CC0; Stendhal
 
+data/gui/quickmenu/
+
+main*   Jordan Irwin (AntumDeluge); CC0; Stendhal
+sound*  mightyman; CC0; https://openclipart.org/detail/165992
+
 data/sprites/
 
 baby_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

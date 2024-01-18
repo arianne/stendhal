@@ -19,9 +19,6 @@ declare var stendhal: any;
  */
 export class SoundButton extends ButtonBase {
 
-	// TODO: create better sound image
-
-
 	constructor() {
 		super("sound");
 		this.setOnClick(() => {

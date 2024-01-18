@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg4348"
+   sodipodi:docname="sound-disabled.svg"
+   viewBox="0 0 47.999999 48.000002"
+   version="1.1"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="48"
+   height="48"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     fit-margin-left="0"
+     pagecolor="#ffffff"
+     fit-margin-top="0"
+     inkscape:window-maximized="1"
+     inkscape:zoom="1.979899"
+     inkscape:window-x="0"
+     inkscape:window-height="712"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="svg4348"
+     inkscape:cx="-67.932758"
+     inkscape:cy="1.5152288"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:pagecheckerboard="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Volume Level 0</dc:title>
+        <dc:date>2011-12-01T16:24:24</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/166010</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>mightyman</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>no sound</rdf:li>
+            <rdf:li>no_sound</rdf:li>
+            <rdf:li>nosound</rdf:li>
+            <rdf:li>sound</rdf:li>
+            <rdf:li>sound off</rdf:li>
+            <rdf:li>sound_off</rdf:li>
+            <rdf:li>soundoff</rdf:li>
+            <rdf:li>speaker</rdf:li>
+            <rdf:li>volume</rdf:li>
+            <rdf:li>volume 0</rdf:li>
+            <rdf:li>volume level</rdf:li>
+            <rdf:li>volume level 0</rdf:li>
+            <rdf:li>volume0</rdf:li>
+            <rdf:li>volume_0</rdf:li>
+            <rdf:li>volume_level</rdf:li>
+            <rdf:li>volume_level_0</rdf:li>
+            <rdf:li>volumelevel</rdf:li>
+            <rdf:li>volumelevel0</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g836">
+    <g
+       id="g3833"
+       style="display:inline;fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-opacity:0.94118"
+       inkscape:export-ydpi="26.790697"
+       inkscape:export-filename="C:\Documents and Settings\HP_Omistaja\Työpöytä\g27493.png"
+       transform="matrix(0.43736956,0,0,0.3481133,-63.110058,-118.63942)"
+       inkscape:export-xdpi="26.790697">
+      <path
+         id="path3835"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc"
+         style="fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-opacity:0.94118"
+         d="m 226.78,345.05 c 0,0 -16.7,10.216 -36.635,44.194 v 41.719 c 18.959,30.302 36.048,43.487 36.048,43.487 6.4602,0 7.0335,-129.4 0.58615,-129.4 z" />
+      <rect
+         id="rect3837"
+         style="fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.94118"
+         ry="1.8022"
+         height="41"
+         width="20.5"
+         y="389.25"
+         x="167" />
+    </g>
+    <path
+       id="path859"
+       style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:label="disabled"
+       d="M 46,0 0,46 v 2 H 2 L 48,2 V 0 Z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>
