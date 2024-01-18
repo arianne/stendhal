@@ -22,6 +22,10 @@ export class ConfigManager {
 	private readonly defaults = {
 		"client.corpse.indicator": "true",
 		"client.emojis.system": "false",
+		"client.joystick": "false",
+		"client.joystick.center.x": "224",
+		"client.joystick.center.y": "384",
+		"client.joystick.style": "joystick",
 		"client.pathfinding": "true",
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",
@@ -35,9 +39,6 @@ export class ConfigManager {
 		"ui.font.tlog": "Black Chancery",
 		"ui.stats.charname": "true",
 		"ui.stats.hpbar": "true",
-		"ui.joystick": "none",
-		"ui.joystick.center.x": "224",
-		"ui.joystick.center.y": "384",
 		"ui.window.chest": "160,370",
 		"ui.window.corpse": "160,370",
 		"ui.window.menu": "150,20",
@@ -65,7 +66,11 @@ export class ConfigManager {
 	/**
 	 * Old keys that should be replaced.
 	 */
-	private readonly deprecated = {} as {[old: string]: string};
+	private readonly deprecated = {
+		"ui.joystick": "client.joystick.style",
+		"ui.joystick.center.x": "client.joystick.center.x",
+		"ui.joystick.center.y": "client.joystick.center.y"
+	} as {[old: string]: string};
 
 	private readonly themes = {
 		/**
@@ -136,6 +141,13 @@ export class ConfigManager {
 			const keyNew = this.deprecated[keyOld];
 			let valueOld = this.storage.getItem(keyOld);
 			if (typeof(this.storage.getItem(keyNew)) === "undefined" && typeof(valueOld) !== "undefined") {
+				// special cases
+				if (keyOld === "ui.joystick") {
+					if (valueOld !== "none" && typeof(this.storage.getItem("client.joystick")) === "undefined") {
+						this.storage.setItem("client.joystick", "true");
+					}
+					valueOld = valueOld === "dpad" ? "dpad" : "joystick";
+				}
 				this.storage.setItem(keyNew, valueOld!);
 			}
 			// clean up old key

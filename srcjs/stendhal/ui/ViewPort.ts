@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -616,15 +616,10 @@ export class ViewPort {
 	 */
 	updateJoystick() {
 		this.joystick.onRemoved();
-		switch(stendhal.config.get("ui.joystick")) {
-			case "joystick":
-				this.joystick = new Joystick();
-				break;
-			case "dpad":
-				this.joystick = new DirectionPad();
-				break;
-			default:
-				this.joystick = new JoystickBase();
+		if (!stendhal.config.getBoolean("client.joystick")) {
+			this.joystick = new JoystickBase();
+			return;
 		}
+		this.joystick = stendhal.config.get("client.joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
 	}
 }

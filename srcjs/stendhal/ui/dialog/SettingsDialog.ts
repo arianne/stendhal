@@ -40,8 +40,8 @@ export class SettingsDialog extends DialogContentComponent {
 		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		this.storedStates = {
-			"txtjoystickx": stendhal.config.get("ui.joystick.center.x"),
-			"txtjoysticky": stendhal.config.get("ui.joystick.center.y")
+			"txtjoystickx": stendhal.config.get("client.joystick.center.x"),
+			"txtjoysticky": stendhal.config.get("client.joystick.center.y")
 		};
 
 		this.initialStates = {
@@ -219,39 +219,31 @@ export class SettingsDialog extends DialogContentComponent {
 		});
 
 		// on-screen joystick
-		const js_orienters: HTMLInputElement[] = [];
 		const js_styles: {[index: string]: string} = {
-			"none": "none",
 			"joystick": "joystick",
 			"dpad": "direction pad",
 		};
-		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("ui.joystick"));
+		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("client.joystick.style"));
 		if (js_idx < 0) {
 			js_idx = 0;
 		}
 		const sel_joystick = this.createSelect("seljoystick", js_styles, js_idx);
 		sel_joystick.addEventListener("change", (e) => {
-			stendhal.config.set("ui.joystick", Object.keys(js_styles)[sel_joystick.selectedIndex]);
+			stendhal.config.set("client.joystick.style", Object.keys(js_styles)[sel_joystick.selectedIndex]);
 			stendhal.ui.gamewindow.updateJoystick();
-			for (const orienter of js_orienters) {
-				orienter.disabled = sel_joystick.selectedIndex < 1;
-			}
 		});
 
 		// joystck positioning
-		for (const orient of ["x", "y"]) {
-			const input_temp = this.createNumberInput("txtjoystick" + orient,
-					parseInt(this.storedStates["txtjoystick" + orient], 10),
-					"Joystick position on " + orient.toUpperCase() + " axis");
-			input_temp.addEventListener("input", (e) => {
+		for (const o of ["x", "y"]) {
+			const orienter = this.createNumberInput("txtjoystick" + o,
+					parseInt(this.storedStates["txtjoystick" + o], 10),
+					"Joystick position on " + o.toUpperCase() + " axis");
+			orienter.addEventListener("input", (e) => {
 				// update configuration
-				stendhal.config.set("ui.joystick.center." + orient, input_temp.value || 0);
+				stendhal.config.set("client.joystick.center." + o, orienter.value || 0);
 				// update on-screen joystick position
 				stendhal.ui.gamewindow.updateJoystick();
 			});
-			// disable if no joystick selected
-			input_temp.disabled = sel_joystick.selectedIndex < 1;
-			js_orienters.push(input_temp);
 		}
 
 
