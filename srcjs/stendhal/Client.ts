@@ -112,6 +112,8 @@ export class Client {
 		stendhal.ui.soundMan = singletons.getSoundManager();
 		stendhal.ui.gamewindow = singletons.getViewPort();
 		QuickMenu.init();
+		// initialize on-screen joystick
+		stendhal.ui.gamewindow.updateJoystick();
 	}
 
 	private initZone() {
@@ -167,8 +169,6 @@ export class Client {
 
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-			// initialize on-screen joystick
-			stendhal.ui.gamewindow.updateJoystick();
 		}
 
 		// attributes to set after connection made
