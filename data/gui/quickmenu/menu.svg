@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2"
+   version="1.0"
+   viewBox="0 0 48 48"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="menu.svg"
+   width="48"
+   height="48"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="6.4390244"
+     inkscape:cx="32.147727"
+     inkscape:cy="41"
+     inkscape:window-width="1366"
+     inkscape:window-height="712"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <path
+     id="path58241"
+     style="fill:#ffffff;fill-opacity:1;stroke:#000001;stroke-width:1.17073;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:162;stroke-opacity:1"
+     d="m 23.999999,0.585365 c -1.603902,0 -3.166829,0.16811708 -4.682927,0.4756097 V 4.6829259 C 17.285853,5.1739893 15.383414,5.9617747 13.650731,7.0243893 L 11.086828,4.4634137 c -1.3112191,0.8699708 -2.5112191,1.8906147 -3.6234143,3 C 6.3570723,8.572565 5.332682,9.772565 4.4663406,11.08554 l 2.5580487,2.560976 C 5.9648771,15.383297 5.1746332,17.282809 4.6829259,19.316955 H 1.065365 c -0.3102439,1.513171 -0.48,3.07961 -0.48,4.682927 0,1.603317 0.1697561,3.169756 0.48,4.682927 h 3.6175609 c 0.4917073,2.034146 1.2819512,3.933658 2.3414634,5.671024 l -2.5580487,2.560976 c 0.8663414,1.31239 1.8907317,2.51239 2.9970731,3.621658 1.1121952,1.109269 2.3121952,2.130147 3.6234143,3 l 2.563903,-2.560975 c 1.732683,1.063024 3.635122,1.850341 5.666341,2.341463 v 3.622244 c 1.516098,0.307317 3.079025,0.475317 4.682927,0.475317 1.603902,0 3.172683,-0.168 4.682927,-0.475317 v -3.622244 c 2.037073,-0.491122 3.933658,-1.278439 5.672195,-2.341463 l 2.563902,2.560975 c 1.31122,-0.869853 2.51122,-1.890731 3.617561,-3 1.112195,-1.109268 2.130732,-2.309268 3.002927,-3.621658 l -2.563902,-2.560976 c 1.065366,-1.737366 1.849756,-3.636878 2.341463,-5.671024 h 3.623415 c 0.310244,-1.513171 0.474146,-3.07961 0.474146,-4.682927 0,-1.603317 -0.163902,-3.169756 -0.474146,-4.682927 H 43.317072 C 42.825365,17.282809 42.040975,15.383297 40.975609,13.646516 L 43.539511,11.08554 C 42.667316,9.772565 41.648779,8.572565 40.536584,7.4634137 c -1.106341,-1.1093853 -2.306341,-2.1300292 -3.617561,-3 L 34.355121,7.0243893 C 32.616584,5.9617747 30.719999,5.1739893 28.682926,4.6829259 V 1.0609747 C 27.172682,0.75348208 25.603901,0.585365 23.999999,0.585365 Z m 0,11.707317 c 6.462439,0 11.707317,5.244878 11.707317,11.707317 0,6.462439 -5.244878,11.707317 -11.707317,11.707317 -6.462439,0 -11.707317,-5.244878 -11.707317,-11.707317 0,-6.462439 5.244878,-11.707317 11.707317,-11.707317 z" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Cog, cogwheel, gear, Zahnrad</dc:title>
+        <dc:date>2009-12-21T20:11:31</dc:date>
+        <dc:description>cog made as an icon for http://freegamedev.net but not used</dc:description>
+        <dc:source>https://openclipart.org/detail/28703</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>qubodup</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>cartoon</rdf:li>
+            <rdf:li>cog</rdf:li>
+            <rdf:li>cogwheel</rdf:li>
+            <rdf:li>eisen</rdf:li>
+            <rdf:li>gear</rdf:li>
+            <rdf:li>graphic</rdf:li>
+            <rdf:li>grau</rdf:li>
+            <rdf:li>gray</rdf:li>
+            <rdf:li>grey</rdf:li>
+            <rdf:li>iron</rdf:li>
+            <rdf:li>mechanical</rdf:li>
+            <rdf:li>mechanik</rdf:li>
+            <rdf:li>mechanisch</rdf:li>
+            <rdf:li>mechanism</rdf:li>
+            <rdf:li>metal</rdf:li>
+            <rdf:li>outline</rdf:li>
+            <rdf:li>simple</rdf:li>
+            <rdf:li>svgz</rdf:li>
+            <rdf:li>unchecked</rdf:li>
+            <rdf:li>zahnrad</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
