@@ -21,6 +21,7 @@ export abstract class ButtonBase {
 		this.element = document.getElementById("qm-" + id)! as HTMLImageElement;
 		this.element.src = Paths.gui + "/quickmenu/" + id + ".png";
 		this.element.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
+		this.element.draggable = false;
 		// listen for click events
 		this.element.addEventListener("click", (evt: Event) => {
 			this.onClick(evt);

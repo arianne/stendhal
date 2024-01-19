@@ -46,6 +46,7 @@ export class QMButton {
 		btn_main.style["display"] = "block";
 		btn_main.src = Paths.gui + "/quickmenu/main.png";
 		btn_main.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
+		btn_main.draggable = false;
 
 		// sub-buttons
 		QMButton.buttonList.push(new MenuButton());
