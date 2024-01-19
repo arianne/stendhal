@@ -23,12 +23,13 @@ export class MenuButton extends ButtonBase {
 
 	constructor() {
 		super("menu");
-		this.setOnClick(() => {
-			const dialogState = stendhal.config.getWindowState("menu");
-			const menuContent = new ApplicationMenuDialog();
-			const menuFrame = ui.createSingletonFloatingWindow("Menu", menuContent, dialogState.x, dialogState.y);
-			menuFrame.setId("menu");
-			menuContent.setFrame(menuFrame);
-		});
+	}
+
+	protected override onClick(evt: Event) {
+		const dialogState = stendhal.config.getWindowState("menu");
+		const menuContent = new ApplicationMenuDialog();
+		const menuFrame = ui.createSingletonFloatingWindow("Menu", menuContent, dialogState.x, dialogState.y);
+		menuFrame.setId("menu");
+		menuContent.setFrame(menuFrame);
 	}
 }

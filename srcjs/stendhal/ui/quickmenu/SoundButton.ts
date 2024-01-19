@@ -22,9 +22,6 @@ export class SoundButton extends ButtonBase {
 
 	constructor() {
 		super("sound");
-		this.setOnClick(() => {
-			this.toggleSound();
-		});
 		this.update();
 	}
 
@@ -60,5 +57,9 @@ export class SoundButton extends ButtonBase {
 				console.warn(errmsg);
 			}
 		}
+	}
+
+	protected override onClick(evt: Event) {
+		this.toggleSound();
 	}
 }

@@ -15,12 +15,15 @@ import { Paths } from "../../data/Paths";
 export abstract class ButtonBase {
 
 	private element: HTMLImageElement;
-	private onClick?: EventListener;
 
 
 	protected constructor(id: string) {
 		this.element = document.getElementById("qm-" + id)! as HTMLImageElement;
 		this.element.src = Paths.gui + "/quickmenu/" + id + ".png";
+		// listen for click events
+		this.element.addEventListener("click", (evt: Event) => {
+			this.onClick(evt);
+		});
 	}
 
 	public setVisible(visible: boolean) {
@@ -35,17 +38,5 @@ export abstract class ButtonBase {
 		this.element.src = Paths.gui + "/quickmenu/" + basename + ".png";
 	}
 
-	protected setOnClick(eventListener: EventListener) {
-		this.unsetOnClick();
-		this.onClick = eventListener;
-		this.element.addEventListener("click", this.onClick);
-	}
-
-	private unsetOnClick() {
-		if (!this.onClick) {
-			return;
-		}
-		this.element.removeEventListener("click", this.onClick);
-		this.onClick = undefined;
-	}
+	protected abstract onClick(evt: Event): void;
 }

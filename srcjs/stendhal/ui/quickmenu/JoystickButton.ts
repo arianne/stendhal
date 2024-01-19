@@ -21,16 +21,17 @@ export class JoystickButton extends ButtonBase {
 
 	constructor() {
 		super("joystick");
-		this.setOnClick(() => {
-			const newState = !stendhal.config.getBoolean("client.joystick");
-			stendhal.config.set("client.joystick", newState);
-			stendhal.ui.gamewindow.updateJoystick();
-			this.update();
-		});
 		this.update();
 	}
 
 	private update() {
 		this.setImageBasename(stendhal.config.getBoolean("client.joystick") ? "joystick" : "joystick-disabled");
+	}
+
+	protected override onClick(evt: Event) {
+		const newState = !stendhal.config.getBoolean("client.joystick");
+		stendhal.config.set("client.joystick", newState);
+		stendhal.ui.gamewindow.updateJoystick();
+		this.update();
 	}
 }
