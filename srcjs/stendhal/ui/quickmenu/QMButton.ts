@@ -11,6 +11,7 @@
 
 import { ButtonBase } from "./ButtonBase";
 import { JoystickButton } from "./JoystickButton";
+import { LogButton } from "./LogButton";
 import { MenuButton } from "./MenuButton";
 import { SoundButton } from "./SoundButton";
 
@@ -47,6 +48,7 @@ export class QMButton {
 
 		// sub-buttons
 		QMButton.buttonList.push(new MenuButton());
+		QMButton.buttonList.push(new LogButton());
 		QMButton.buttonList.push(new SoundButton());
 		QMButton.buttonList.push(new JoystickButton());
 
