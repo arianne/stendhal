@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 		int orient = ActivityInfo.SCREEN_ORIENTATION_USER;
 		switch (value) {
 			case "landscape":
-				orient = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+				orient = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
 				break;
 			case "portrait":
 				orient = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
