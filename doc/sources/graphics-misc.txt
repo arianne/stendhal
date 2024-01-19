@@ -57,6 +57,7 @@ joystick*  sagism; CC0; https://openclipart.org/detail/172636
 main*      Jordan Irwin (AntumDeluge); CC0; Stendhal
 log*       Martin Owens (doctormo); CC0; https://openclipart.org/detail/3879
 menu*      qubodup; CC0; https://openclipart.org/detail/28703
+settings*  ben; CC0; https://openclipart.org/detail/192629
 sound*     mightyman; CC0; https://openclipart.org/detail/165992
 
 data/sprites/

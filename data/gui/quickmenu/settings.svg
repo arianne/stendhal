@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg27183"
+   sodipodi:docname="settings.svg"
+   viewBox="0 0 48 48"
+   version="1.1"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="48"
+   height="48"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title1582">Settings Icon</title>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="712"
+     inkscape:window-maximized="1"
+     inkscape:zoom="1.979899"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="svg27183"
+     inkscape:cx="-81.064741"
+     inkscape:cy="36.365491"
+     inkscape:window-width="1366"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:pagecheckerboard="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Settings Icon</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>ben</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>https://openclipart.org/detail/192629</dc:source>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="path3919"
+     sodipodi:nodetypes="sssscscccccccsscssssssscscccccccccccsscsscccsscscccsssscccssssscccccccccscccscscccccccssscscc"
+     style="fill:#ffffff;fill-opacity:1;stroke:#010000;stroke-width:1.90887;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     d="m 39.748921,46.739092 c 0.281141,-0.310659 0.255884,-0.342608 -2.281428,-2.883327 -2.168396,-2.171202 -2.565853,-2.640021 -2.565853,-3.026402 0,-0.382573 0.345388,-0.803458 2.11109,-2.572618 2.833462,-2.838724 2.433199,-2.868542 5.733577,0.427425 2.537538,2.53428 2.546808,2.541546 2.833463,2.224875 0.282218,-0.311861 0.273949,-0.369118 -0.451406,-3.118864 L 44.389479,34.989042 42.92296,33.499344 41.456415,32.009647 38.678579,31.360943 35.900744,30.712238 27.133748,21.972304 18.366754,13.232371 17.861452,11.124489 C 16.934687,7.2584207 17.108935,7.6189933 15.40986,6.0511672 L 13.893703,4.6521518 11.142427,3.8835483 C 8.4157084,3.1217357 8.3886467,3.1175762 8.0889631,3.4139021 7.7888537,3.7107042 7.8052912,3.7316273 10.355758,6.2982309 c 2.146621,2.160076 2.569109,2.6590644 2.569109,3.0341702 0,0.372399 -0.372799,0.8223509 -2.188014,2.6407729 -1.6501893,1.653146 -2.2825064,2.191899 -2.5726182,2.191899 -0.2922665,0 -0.9990535,-0.613699 -2.9457184,-2.557833 C 2.6546692,9.0466494 2.3206575,8.821636 2.0670789,9.4825936 2.0159403,9.6158927 2.3030167,10.99349 2.7050337,12.543825 l 0.7310179,2.81893 1.4786219,1.460982 1.4786724,1.460983 2.7948744,0.656296 2.7948737,0.656297 8.741938,8.771756 8.741938,8.771756 0.65096,2.795626 0.650959,2.795626 1.538635,1.418586 1.538584,1.418585 2.640773,0.731618 c 1.452462,0.402393 2.716446,0.73633 2.809156,0.742093 0.09253,0.0057 0.296201,-0.130886 0.452583,-0.303667 z M 11.081038,44.884236 c 0.899451,-0.416174 1.557626,-1.019625 6.60782,-6.058067 l 5.608792,-5.595763 -0.914059,-0.923707 -0.914085,-0.923706 -2.332821,2.302577 c -2.123844,2.096256 -2.381707,2.302576 -2.877814,2.302576 -0.40575,0 -0.626428,-0.103478 -0.863544,-0.404924 -0.668225,-0.849487 -0.505553,-1.13777 2.158223,-3.824472 l 2.136271,-2.154764 -0.961768,-0.94711 -0.961793,-0.94711 -2.414783,2.295033 c -2.603688,2.474544 -2.893098,2.632004 -3.607478,1.960873 -0.240524,-0.22595 -0.355711,-0.508485 -0.355711,-0.87249 0,-0.488163 0.214764,-0.754721 2.304581,-2.860273 L 15.9974,25.910987 15.073994,24.997203 14.150563,24.08342 8.6139355,29.613282 C 2.5661417,35.653558 2.326345,35.957 1.9818098,38.001913 c -0.2408495,1.430288 0.019289,2.499126 0.8895282,3.656841 0.7431697,0.98863 2.2431165,2.439289 3.1218703,3.019386 1.4124965,0.932277 3.348888,1.010831 5.0876027,0.206381 z m 17.827158,-26.415247 -5.302092,-5.203367 -0.732521,0.714956 -0.732471,0.714955 5.264757,5.266512 5.264758,5.266511 0.769755,-0.778024 0.769731,-0.778024 z m 6.418889,-3.960533 3.843016,-3.958779 1.823283,-0.5959845 1.823308,-0.5959836 1.605086,-2.3351764 c 0.882814,-1.2843536 1.628665,-2.405962 1.657506,-2.4924843 0.02884,-0.08651 -0.708341,-0.8643465 -1.638212,-1.7285174 l -1.690631,-1.5712085 -2.373062,1.7008788 -2.373062,1.7008799 -0.590622,1.6917335 -0.590647,1.6917326 -4.032949,4.0326979 -4.032948,4.032698 1.186281,1.193272 c 0.652463,0.656296 1.266088,1.193296 1.363635,1.193296 0.09755,0 1.906673,-1.781463 4.020169,-3.958779 z" />
+</svg>
