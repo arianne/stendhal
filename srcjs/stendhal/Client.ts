@@ -172,6 +172,7 @@ export class Client {
 		}
 
 		// attributes to set after connection made
+		// FIXME: this should be set after character is ready instead of trying to guess
 		if (stendhal.config.getBoolean("input.movecont")) {
 			const socket = marauroa.clientFramework.socket;
 			let tries = 0;
