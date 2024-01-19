@@ -27,14 +27,14 @@
      pagecolor="#ffffff"
      fit-margin-top="0"
      inkscape:window-maximized="1"
-     inkscape:zoom="1.979899"
+     inkscape:zoom="3.959798"
      inkscape:window-x="0"
      inkscape:window-height="712"
      showgrid="false"
      borderopacity="1.0"
-     inkscape:current-layer="svg4348"
-     inkscape:cx="-67.932758"
-     inkscape:cy="1.5152288"
+     inkscape:current-layer="g836"
+     inkscape:cx="16.667517"
+     inkscape:cy="15.657364"
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1366"
@@ -103,20 +103,20 @@
      id="g836">
     <g
        id="g3833"
-       style="display:inline;fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-opacity:0.94118"
+       style="display:inline;fill:#ffffff;stroke:#000000;stroke-width:5.12561;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-ydpi="26.790697"
        inkscape:export-filename="C:\Documents and Settings\HP_Omistaja\Työpöytä\g27493.png"
-       transform="matrix(0.43736956,0,0,0.3481133,-63.110058,-118.63942)"
+       transform="matrix(0.4233122,0,0,0.33692469,-60.729682,-114.05489)"
        inkscape:export-xdpi="26.790697">
       <path
          id="path3835"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccc"
-         style="fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-opacity:0.94118"
+         style="fill:#ffffff;stroke:#000000;stroke-width:5.12561;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 226.78,345.05 c 0,0 -16.7,10.216 -36.635,44.194 v 41.719 c 18.959,30.302 36.048,43.487 36.048,43.487 6.4602,0 7.0335,-129.4 0.58615,-129.4 z" />
       <rect
          id="rect3837"
-         style="fill:#ffffff;stroke:#000000;stroke-width:1.7843;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.94118"
+         style="fill:#ffffff;stroke:#000000;stroke-width:5.12561;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          ry="1.8022"
          height="41"
          width="20.5"
@@ -125,9 +125,9 @@
     </g>
     <path
        id="path859"
-       style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:1.92;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="disabled"
-       d="M 46,0 0,46 v 2 H 2 L 48,2 V 0 Z"
+       d="M 44,0.96 0.96,44 v 3.04 H 4 L 47.04,4 V 0.96 Z"
        sodipodi:nodetypes="ccccccc" />
   </g>
 </svg>

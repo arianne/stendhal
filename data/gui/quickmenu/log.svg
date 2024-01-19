@@ -4,7 +4,7 @@
 <svg
    id="svg6636"
    sodipodi:modified="true"
-   sodipodi:docname="menu.svg"
+   sodipodi:docname="log.svg"
    viewBox="0 0 48.000001 47.999998"
    sodipodi:version="0.32"
    version="1.0"
@@ -30,13 +30,13 @@
      gridtolerance="10000"
      inkscape:window-height="712"
      width="80px"
-     inkscape:zoom="8"
+     inkscape:zoom="2.8284271"
      objecttolerance="10"
      height="80px"
      borderopacity="1.0"
-     inkscape:current-layer="svg6636"
-     inkscape:cx="22.6875"
-     inkscape:cy="18.375"
+     inkscape:current-layer="g1368"
+     inkscape:cx="4.065864"
+     inkscape:cy="-5.6568542"
      inkscape:window-y="0"
      inkscape:window-x="0"
      inkscape:window-width="1366"
@@ -94,10 +94,11 @@
        inkscape:label="background" />
     <g
        id="g1025"
-       style="display:inline">
+       style="display:inline"
+       transform="matrix(1.0247494,0,0,1.0247494,-0.59398609,-0.59398536)">
       <rect
          id="rect3024"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:3.15928;stroke-linecap:round"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
          height="44.840721"
          width="35.928062"
          y="1.5796392"
@@ -105,7 +106,8 @@
       <path
          id="rect3028"
          style="display:inline;fill:#000000;stroke-width:2.52198"
-         d="M 7.2465162,13.594331 V 23.969737 H 40.367618 V 13.594331 Z m 6.7841138,3.591293 h 19.552874 v 3.192821 H 14.03063 Z" />
+         d="M 5.9821729,13.594331 V 23.969737 H 41.842454 V 13.594331 Z m 8.0484571,3.591293 h 19.552874 v 3.192821 H 14.03063 Z"
+         sodipodi:nodetypes="cccccccccc" />
       <path
          id="path3046"
          sodipodi:nodetypes="cc"
