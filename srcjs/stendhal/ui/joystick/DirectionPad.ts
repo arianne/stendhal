@@ -97,11 +97,29 @@ export class DirectionPad extends JoystickBase {
 		this.reset();
 	}
 
-	public override reset() {
+	public onDragWhileEngaged(button: DPadButton) {
+		if (!this.isEngaged()) {
+			return;
+		}
+		if (button.direction != this.direction) {
+			this.disengageAll();
+			button.engage();
+			this.onDirectionChange(button.direction);
+		}
+	}
+
+	public isEngaged(): boolean {
+		return this.direction != Direction.STOP;
+	}
+
+	private disengageAll() {
 		for (const button of this.buttons) {
 			button.disengage();
 		}
+	}
 
+	public override reset() {
+		this.disengageAll();
 		if (this.direction != Direction.STOP) {
 			// stop movement
 			this.onDirectionChange(Direction.STOP);
@@ -152,6 +170,8 @@ class DPadButton {
 			container.appendChild(this.image);
 			this.image.style.position = "absolute";
 			this.image.draggable = false;
+			// this is needed to make changing direction on touch-move work
+			this.image.style.touchAction = "none";
 
 			// positioning
 			switch (this.direction) {
@@ -173,16 +193,20 @@ class DPadButton {
 					break;
 			}
 
-			this.image.addEventListener("mousedown", (e: Event) => {
+			this.image.addEventListener("pointerdown", (e: PointerEvent) => {
+				if (e.target) {
+					// release pointer capture for touch events
+					(e.target as Element).releasePointerCapture(e.pointerId);
+				}
 				DirectionPad.get()!.onMouseDown(e);
 			});
-			this.image.addEventListener("touchstart", (e: Event) => {
-				DirectionPad.get()!.onMouseDown(e);
-			})
 			// note "mouseup" is handled globally in the body element (see Client.ts)
 			this.image.addEventListener("touchend", (e: Event) => {
 				DirectionPad.get()!.onMouseUp(e);
-			})
+			});
+			this.image.addEventListener("pointerenter", (e: Event) => {
+				DirectionPad.get()!.onDragWhileEngaged(this);
+			});
 		};
 	}
 
