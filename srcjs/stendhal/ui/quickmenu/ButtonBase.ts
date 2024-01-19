@@ -20,6 +20,7 @@ export abstract class ButtonBase {
 	protected constructor(id: string) {
 		this.element = document.getElementById("qm-" + id)! as HTMLImageElement;
 		this.element.src = Paths.gui + "/quickmenu/" + id + ".png";
+		this.element.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		// listen for click events
 		this.element.addEventListener("click", (evt: Event) => {
 			this.onClick(evt);

@@ -147,6 +147,7 @@ attack.png              Jordan Irwin (AntumDeluge); CC0; Stendhal
 bag.*                   zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 emptybag.png            zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 harvest.png             Jordan Irwin (AntumDeluge); CC0; Stendhal
+highlight.*             zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
 itemequip.*             zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
 itempickupfromslot.png  zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/ (copy of itemequip.png)
 itemuse.png             zoli111, Hendrik Brummermann, Katie Russell (kymara); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
