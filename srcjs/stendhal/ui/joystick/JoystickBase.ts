@@ -24,6 +24,8 @@ export class JoystickBase {
 	// last executed direction
 	protected direction = Direction.STOP;
 
+	private stopTimeoutId = 0;
+
 
 	public reset() {
 		// do nothing
@@ -60,7 +62,20 @@ export class JoystickBase {
 		if (this.direction == Direction.STOP) {
 			marauroa.clientFramework.sendAction({type: "stop"});
 		} else {
+			if (this.stopTimeoutId) {
+				clearTimeout(this.stopTimeoutId);
+				this.stopTimeoutId = 0;
+			}
 			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction.val});
 		}
+	}
+
+	protected queueStop() {
+		this.direction = Direction.STOP;
+		this.stopTimeoutId = setTimeout(() => {
+			// new direction not pressed before timeout expired
+			marauroa.clientFramework.sendAction({type: "stop"});
+			this.stopTimeoutId = 0;
+		}, 300);
 	}
 }

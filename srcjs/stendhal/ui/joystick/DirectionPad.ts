@@ -122,7 +122,7 @@ export class DirectionPad extends JoystickBase {
 		this.disengageAll();
 		if (this.direction != Direction.STOP) {
 			// stop movement
-			this.onDirectionChange(Direction.STOP);
+			this.queueStop();
 		}
 	}
 
