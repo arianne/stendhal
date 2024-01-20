@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,6 +26,9 @@ import { MiniMapComponent } from "../component/MiniMapComponent";
 import { ZoneInfoComponent } from "../component/ZoneInfoComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
+
+import { singletons } from "../../SingletonRepo";
+
 
 export class DesktopUserInterfaceFactory {
 
@@ -69,6 +72,10 @@ export class DesktopUserInterfaceFactory {
 
 		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());
 		this.add(bottomPanel, UIComponentEnum.ChatLog, new ChatLogComponent());
+
+		// initialize UI observer after elements have been created
+		// XXX: is there a better place to do this?
+		singletons.getUIUpdateObserver().init();
 	}
 
 	private add(panel: Panel, uiComponentEnum: UIComponentEnum, component: Component) {

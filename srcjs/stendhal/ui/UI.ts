@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -44,6 +44,18 @@ class UI {
 		const offsetY = window.pageYOffset || delem.scrollTop || body.scrollTop;
 
 		return {x: offsetX, y: offsetY};
+	}
+
+	/**
+	 * Instructions to execute when display initialized.
+	 */
+	public onDisplayReady() {
+	}
+
+	/**
+	 * Instructions to execute when display attributes are updated.
+	 */
+	public onDisplayUpdate() {
 	}
 }
 

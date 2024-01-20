@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,6 +35,7 @@ import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
 import { TouchHandler } from "./ui/TouchHandler";
+import { UIUpdateObserver } from "./ui/UIUpdateObserver";
 import { ViewPort } from "./ui/ViewPort";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
@@ -124,6 +125,10 @@ export class SingletonRepo {
 
 	static getTouchHandler(): TouchHandler {
 		return TouchHandler.get();
+	}
+
+	static getUIUpdateObserver(): UIUpdateObserver {
+		return UIUpdateObserver.get();
 	}
 
 	static getViewPort(): ViewPort {
