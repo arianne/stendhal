@@ -428,10 +428,14 @@ public class ClientView extends WebView {
 		final String domain = getDomain(url);
 		final String cs = checkCustomServer();
 
+		if (domain.startsWith(getDomain(defaultServer))) {
+			// always allow links from stendhalgame.org
+			return true;
+		}
 		if (cs != null) {
 			return domain.startsWith(getDomain(cs));
 		} else {
-			return domain.startsWith("stendhalgame.org") || domain.startsWith("localhost");
+			return domain.startsWith("localhost");
 		}
 	}
 
