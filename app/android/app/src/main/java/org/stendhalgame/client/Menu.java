@@ -106,6 +106,7 @@ public class Menu {
 
 		btn_connect = (Button) activity.findViewById(R.id.btn_connect);
 		btn_connect.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(final View v) {
 				activity.loadLogin();
 			}
@@ -113,17 +114,20 @@ public class Menu {
 
 		btn_title = (Button) activity.findViewById(R.id.btn_title);
 		btn_title.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 
 				Notifier.showPrompt("Return to title screen?",
 					new Notifier.Action() {
+						@Override
 						protected void onCall() {
 							ClientView.get().loadTitleScreen();
 							updateButtons();
 						}
 					},
 					new Notifier.Action() {
+						@Override
 						protected void onCall() {/* do nothing */}
 					}
 				);
@@ -132,6 +136,7 @@ public class Menu {
 
 		btn_reload = (Button) activity.findViewById(R.id.btn_reload);
 		btn_reload.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(final View v) {
 				nav.setVisibility(View.GONE);
 
@@ -153,6 +158,7 @@ public class Menu {
 
 		final Button btn_settings = (Button) activity.findViewById(R.id.btn_settings);
 		btn_settings.setOnClickListener(new ClickListener() {
+			@Override
 			public void onClick(final View v) {
 				super.onClick(v);
 
@@ -162,6 +168,7 @@ public class Menu {
 
 		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
 		btn_about.setOnClickListener(new ClickListener() {
+			@Override
 			public void onClick(final View v) {
 				super.onClick(v);
 
@@ -203,6 +210,7 @@ public class Menu {
 				builder.setMessage(msg);
 
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog, final int id) {
 						dialog.cancel();
 					}
@@ -214,6 +222,7 @@ public class Menu {
 
 		final Button btn_quit = (Button) activity.findViewById(R.id.btn_quit);
 		btn_quit.setOnClickListener(new ClickListener() {
+			@Override
 			public void onClick(final View v) {
 				super.onClick(v);
 				activity.onRequestQuit();
@@ -224,6 +233,7 @@ public class Menu {
 	}
 
 	private class ClickListener implements View.OnClickListener {
+		@Override
 		public void onClick(final View v) {
 			if (!ClientView.onTitleScreen()) {
 				nav.setVisibility(View.GONE);

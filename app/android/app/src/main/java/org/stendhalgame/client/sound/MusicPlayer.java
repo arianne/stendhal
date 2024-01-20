@@ -36,6 +36,7 @@ public class MusicPlayer {
 
 		mplayer = new MediaPlayer();
 		mplayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
 			public void onPrepared(final MediaPlayer mp) {
 				DebugLog.debug("starting music");
 				// FIXME: not working
@@ -44,6 +45,7 @@ public class MusicPlayer {
 			}
 		});
 		mplayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			@Override
 			public void onCompletion(final MediaPlayer mp) {
 				// free up resources & reset player to null
 				stopMusic();

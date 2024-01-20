@@ -53,6 +53,7 @@ public class Notifier {
 			builder.setTitle(title);
 		}
 		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				dialog.cancel();
 			}
@@ -92,6 +93,7 @@ public class Notifier {
 		}
 
 		builder.setPositiveButton(labelY, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				dialog.cancel();
 
@@ -111,6 +113,7 @@ public class Notifier {
 			}
 
 			builder.setNegativeButton(labelN, new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(final DialogInterface dialog, final int id) {
 					dialog.cancel();
 
@@ -131,6 +134,7 @@ public class Notifier {
 			}
 
 			builder.setNeutralButton(labelO, new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(final DialogInterface dialog, final int id) {
 					dialog.cancel();
 

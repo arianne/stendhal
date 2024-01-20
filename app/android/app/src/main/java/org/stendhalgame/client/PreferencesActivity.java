@@ -168,15 +168,18 @@ public class PreferencesActivity extends AppCompatActivity {
 			final Preference reset = pm.findPreference("reset");
 			if (reset != null) {
 				reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+					@Override
 					public boolean onPreferenceClick(final Preference pref) {
 						Notifier.showPrompt(getActivity(), "Restore prefrences defaults?",
 							new Notifier.Action() {
+								@Override
 								protected void onCall() {
 									DebugLog.debug("restoring preferences default values");
 									restoreDefaults();
 								}
 							},
 							new Notifier.Action() {
+								@Override
 								protected void onCall() {
 									// do nothing
 								}
@@ -192,6 +195,7 @@ public class PreferencesActivity extends AppCompatActivity {
 			final CheckBoxPreference title_music = (CheckBoxPreference) pm.findPreference("title_music");
 			if (title_music != null) {
 				title_music.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
 						if (ClientView.onTitleScreen()) {
@@ -218,6 +222,7 @@ public class PreferencesActivity extends AppCompatActivity {
 				}
 
 				song_list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
 						if (ClientView.onTitleScreen()) {
