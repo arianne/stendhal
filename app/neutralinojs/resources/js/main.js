@@ -42,6 +42,7 @@ async function timeoutExtensionConnection() {
 	if (!connected) {
 		console.log("timeoutExtensionConnection");
 		onNoAuthToken();
+		return;
 	}
 	setTimeout(() => timeoutExtensionAuthentication(), 10000);
 }
