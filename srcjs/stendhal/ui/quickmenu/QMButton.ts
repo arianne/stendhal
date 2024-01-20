@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2024 - Stendhal                       *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -45,7 +45,6 @@ export class QMButton {
 		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
 		// ensure visible at startup
 		btn_main.style["display"] = "block";
-		btn_main.src = Paths.gui + "/quickmenu/main.png";
 		btn_main.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		btn_main.draggable = false;
 
@@ -56,14 +55,12 @@ export class QMButton {
 		QMButton.buttonList.push(new SoundButton());
 		QMButton.buttonList.push(new JoystickButton());
 
-		// positioning
-		// FIXME: position is not consistent accross browsers/platforms
-		let pos_next = stendhal.ui.gamewindow.width - 24;
-		btn_main.style["left"] = pos_next + "px";
-		for (const btn of QMButton.buttonList) {
-			pos_next -= 48;
-			btn.setPosX(pos_next);
+		btn_main.onload = () => {
+			// remove listener
+			btn_main.onload = null;
+			this.refresh();
 		}
+		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
 		btn_main.addEventListener("click", function(e) {
 			QMButton.toggle();
@@ -71,6 +68,26 @@ export class QMButton {
 
 		// hide buttons by default
 		QMButton.update();
+	}
+
+	/**
+	 * Updates button positioning.
+	 *
+	 * FIXME:
+	 *   - need to set positioning according to updated viewport position &  dimensions
+	 */
+	public static refresh() {
+		// place buttons in upper-right corner of viewport
+		let x = stendhal.ui.gamewindow.width - 24;
+		const y = 0;
+		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
+		btn_main.style["left"] = x + "px";
+		btn_main.style["top"] = y + "px";
+		for (const btn of QMButton.buttonList) {
+			// all buttons should be same size
+			x -= btn_main.width;
+			btn.setPos(x, y);
+		}
 	}
 
 	private static toggle() {

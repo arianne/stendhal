@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2024 - Stendhal                       *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,8 +32,9 @@ export abstract class ButtonBase {
 		this.element.style["display"] = visible ? "block" : "none";
 	}
 
-	public setPosX(x: number) {
+	public setPos(x: number, y: number) {
 		this.element.style["left"] = x + "px";
+		this.element.style["top"] = y + "px";
 	}
 
 	protected setImageBasename(basename: string) {
