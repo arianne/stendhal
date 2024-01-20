@@ -6,105 +6,68 @@
    sodipodi:docname="joystick-disabled.svg"
    viewBox="0 0 47.999999 48"
    version="1.1"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    width="48"
    height="48"
    inkscape:label="foreground"
+   xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <defs
-     id="defs11" />
-  <sodipodi:namedview
+   xmlns:dc="http://purl.org/dc/elements/1.1/"><defs
+     id="defs11" /><sodipodi:namedview
      id="base"
      bordercolor="#666666"
      inkscape:pageshadow="2"
-     inkscape:window-y="0"
+     inkscape:window-y="-8"
      fit-margin-left="0"
      pagecolor="#ffffff"
      fit-margin-top="0"
      inkscape:window-maximized="1"
-     inkscape:zoom="5.6"
-     inkscape:window-x="0"
-     inkscape:window-height="712"
+     inkscape:zoom="11.2"
+     inkscape:window-x="-8"
+     inkscape:window-height="1025"
      showgrid="false"
      borderopacity="1.0"
-     inkscape:current-layer="g3405"
-     inkscape:cx="24.821429"
-     inkscape:cy="25.357143"
+     inkscape:current-layer="svg3043"
+     inkscape:cx="15.669643"
+     inkscape:cy="31.651786"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1366"
+     inkscape:window-width="1920"
      inkscape:pageopacity="0.0"
      inkscape:document-units="px"
-     inkscape:pagecheckerboard="0"
-     showguides="false" />
-  <metadata
-     id="metadata8">
-    <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <cc:license
-           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
-        <dc:publisher>
-          <cc:Agent
-             rdf:about="http://openclipart.org/">
-            <dc:title>Openclipart</dc:title>
-          </cc:Agent>
-        </dc:publisher>
-        <dc:title>gamepad</dc:title>
-        <dc:date>2012-10-07T08:36:44</dc:date>
-        <dc:description>retro gamepad</dc:description>
-        <dc:source>https://openclipart.org/detail/172636</dc:source>
-        <dc:creator>
-          <cc:Agent>
-            <dc:title>sagism</dc:title>
-          </cc:Agent>
-        </dc:creator>
-        <dc:subject>
-          <rdf:Bag>
-            <rdf:li>game</rdf:li>
-            <rdf:li>gamepad</rdf:li>
-            <rdf:li>retro</rdf:li>
-          </rdf:Bag>
-        </dc:subject>
-      </cc:Work>
-      <cc:License
-         rdf:about="http://creativecommons.org/licenses/publicdomain/">
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Reproduction" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Distribution" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-      </cc:License>
-    </rdf:RDF>
-  </metadata>
-  <g
-     id="g3405">
-    <path
-       style="display:inline;fill:#ffffff;stroke-width:0.230833"
-       d="M 4.2095129,12.211 C 1.876942,12.211 4.99e-4,14.08749 4.99e-4,16.420014 v 15.159972 c 0,2.332571 1.87649,4.209014 4.2090139,4.209014 H 43.790489 c 2.332569,0 4.209012,-1.87649 4.209012,-4.209014 V 16.420014 c 0,-2.332571 -1.87649,-4.209014 -4.209012,-4.209014 z"
-       id="path2677"
-       inkscape:label="background" />
-    <path
-       id="rect2985"
-       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.92001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:pagecheckerboard="true"
+     showguides="false"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" /><metadata
+     id="metadata8"><rdf:RDF><cc:Work><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" /><dc:publisher><cc:Agent
+             rdf:about="http://openclipart.org/"><dc:title>Openclipart</dc:title></cc:Agent></dc:publisher><dc:title>gamepad</dc:title><dc:date>2012-10-07T08:36:44</dc:date><dc:description>retro gamepad</dc:description><dc:source>https://openclipart.org/detail/172636</dc:source><dc:creator><cc:Agent><dc:title>sagism</dc:title></cc:Agent></dc:creator><dc:subject><rdf:Bag><rdf:li>game</rdf:li><rdf:li>gamepad</rdf:li><rdf:li>retro</rdf:li></rdf:Bag></dc:subject></cc:Work><cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/"><cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" /><cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" /><cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" /></cc:License></rdf:RDF></metadata><g
+     id="g1"
+     sodipodi:insensitive="true"><circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.71045"
+       id="path1"
+       cx="24"
+       cy="24"
+       r="16"
+       inkscape:label="background" /><path
+       id="rect2985-8"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:connector-curvature="0"
-       d="m 5.0010411,12.682505 c -2.2392788,0 -4.04067279,1.80144 -4.04067279,4.040673 v 14.553644 c 0,2.239279 1.80143909,4.040673 4.04067279,4.040673 H 42.998962 c 2.239277,0 4.04067,-1.801439 4.04067,-4.040673 V 16.723178 c 0,-2.239279 -1.801439,-4.040673 -4.04067,-4.040673 z m 23.0420699,2.426974 c 2.232407,0 4.040672,1.808375 4.040672,4.040672 0,2.232299 -1.808376,4.040673 -4.040672,4.040673 -2.232298,0 -4.040673,-1.808374 -4.040673,-4.040673 0,-2.232297 1.808375,-4.040672 4.040673,-4.040672 z m 11.317383,0 c 2.232408,0 4.040671,1.808375 4.040671,4.040672 0,2.232299 -1.808374,4.040673 -4.040671,4.040673 -2.232297,0 -4.040673,-1.808374 -4.040673,-4.040673 0,-2.232297 1.808376,-4.040672 4.040673,-4.040672 z M 9.4487934,15.91409 h 5.6588036 v 5.053168 h 5.053167 v 5.658802 h -5.053167 v 5.053168 H 9.4487934 V 26.62606 H 4.3956267 v -5.658802 h 5.0531667 z"
+       d="m 14.104758,18.1055 c -1.166286,0 -2.104507,0.938245 -2.104507,2.104507 v 7.579986 c 0,1.166286 0.938245,2.104507 2.104507,2.104507 h 19.790486 c 1.166285,0 2.104505,-0.938244 2.104505,-2.104507 v -7.579986 c 0,-1.166286 -0.938244,-2.104507 -2.104505,-2.104507 z m 12.001019,1.264043 c 1.162706,0 2.104506,0.941858 2.104506,2.104507 0,1.162649 -0.941858,2.104506 -2.104506,2.104506 -1.162649,0 -2.104507,-0.941857 -2.104507,-2.104506 0,-1.162649 0.941858,-2.104507 2.104507,-2.104507 z m 5.894442,0 c 1.162705,0 2.104506,0.941858 2.104506,2.104507 0,1.162649 -0.941858,2.104506 -2.104506,2.104506 -1.16265,0 -2.104507,-0.941857 -2.104507,-2.104506 0,-1.162649 0.941857,-2.104507 2.104507,-2.104507 z m -15.578935,0.419066 h 2.947279 v 2.631845 h 2.631844 v 2.947278 h -2.631844 v 2.631847 h -2.947279 v -2.631847 h -2.631845 v -2.947278 h 2.631845 z"
        sodipodi:nodetypes="sssssssssssssssssssccccccccccccc"
-       inkscape:label="icon" />
-    <path
+       inkscape:label="icon" /><path
        id="path859"
        style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:1.92;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="disabled"
-       d="M 44,0.96 0.96,44 v 3.04 H 4 L 47.04,4 V 0.96 Z"
-       sodipodi:nodetypes="ccccccc" />
-  </g>
-</svg>
+       d="M 36,8.96 8.96,36 v 3.04 H 12 L 39.04,12 V 8.96 Z"
+       sodipodi:nodetypes="ccccccc" /></g></svg>
