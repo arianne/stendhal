@@ -13,6 +13,9 @@ import { UIComponentEnum } from "./UIComponentEnum";
 import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
+declare var stendhal: any;
+
+
 class UI {
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
 
@@ -50,6 +53,8 @@ class UI {
 	 * Instructions to execute when display initialized.
 	 */
 	public onDisplayReady() {
+		// initialize on-screen joystick
+		stendhal.ui.gamewindow.updateJoystick();
 	}
 
 	/**

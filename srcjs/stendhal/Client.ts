@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2023-2024 - Stendhal                     *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -112,8 +112,6 @@ export class Client {
 		stendhal.ui.soundMan = singletons.getSoundManager();
 		stendhal.ui.gamewindow = singletons.getViewPort();
 		QuickMenu.init();
-		// initialize on-screen joystick
-		stendhal.ui.gamewindow.updateJoystick();
 	}
 
 	private initZone() {
