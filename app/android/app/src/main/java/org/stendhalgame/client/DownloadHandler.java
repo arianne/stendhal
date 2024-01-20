@@ -33,7 +33,7 @@ public class DownloadHandler {
 		final String scheme = uri.getScheme();
 		final String storageState = Environment.getExternalStorageState();
 
-		if (!ClientView.get().isGameActive()) {
+		if (!ClientView.isGameActive()) {
 			this.message = "downloading from this page not supported";
 		} else if (!"data".equals(scheme)) {
 			this.message = "download type \"" + scheme + "\" not supported";

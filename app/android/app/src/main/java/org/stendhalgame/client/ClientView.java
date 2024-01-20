@@ -171,7 +171,7 @@ public class ClientView extends WebView {
 		final boolean ret = super.dispatchKeyEvent(event);
 
 		// hide keyboard when "enter" pressed
-		if (isGameActive() && event.getAction() == KeyEvent.ACTION_UP
+		if (ClientView.isGameActive() && event.getAction() == KeyEvent.ACTION_UP
 				&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
 			((InputMethodManager) MainActivity.get()
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
