@@ -11,14 +11,14 @@
  ***************************************************************************/
 package org.stendhalgame.client.sound;
 
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.net.Uri;
-
 import java.io.IOException;
 
 import org.stendhalgame.client.DebugLog;
 import org.stendhalgame.client.MainActivity;
+
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 
 
 public class MusicPlayer {

@@ -11,12 +11,12 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Base64;
-
-import java.io.File;
-import java.io.FileOutputStream;
 
 
 /**

@@ -11,9 +11,6 @@
  ***************************************************************************/
 package org.stendhalgame.client.js;
 
-import android.webkit.JavascriptInterface;
-
-
 
 public class JSInterface {
 

@@ -11,6 +11,8 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
+import org.stendhalgame.client.sound.MusicPlayer;
+
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -20,8 +22,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.stendhalgame.client.sound.MusicPlayer;
 
 
 public class PreferencesActivity extends AppCompatActivity {
