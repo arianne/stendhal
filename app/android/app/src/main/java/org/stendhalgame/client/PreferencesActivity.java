@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2024 - Arianne                     *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.stendhalgame.client;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -21,7 +21,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.arianne.stendhal.client.sound.MusicPlayer;
+import org.stendhalgame.client.sound.MusicPlayer;
 
 
 public class PreferencesActivity extends AppCompatActivity {

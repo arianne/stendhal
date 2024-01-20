@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2023 - Arianne                     *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,24 +9,25 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.stendhalgame.client;
+
+import org.stendhalgame.client.js.JSInterface;
+import org.stendhalgame.client.sound.MusicPlayer;
 
 import android.app.AlertDialog;
-import android.content.pm.ApplicationInfo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputConnection;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -34,8 +35,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import org.arianne.stendhal.client.js.JSInterface;
-import org.arianne.stendhal.client.sound.MusicPlayer;
 
 public class ClientView extends WebView {
 
@@ -272,10 +271,11 @@ public class ClientView extends WebView {
 	 * Opens a message dialog for user to choose between main & test clients.
 	 */
 	private void selectClient() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
 		builder.setMessage("Select client");
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				testClient = false;
 				clientUrlSuffix = "client";
@@ -286,6 +286,7 @@ public class ClientView extends WebView {
 		});
 
 		builder.setNegativeButton("Test", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				testClient = true;
 				clientUrlSuffix = "testclient";
@@ -301,10 +302,11 @@ public class ClientView extends WebView {
 	 * Opens a message dialog for user to choose between main & test servers.
 	 */
 	private void selectServer() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
 		builder.setMessage("Select server");
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				testServer = false;
 				dialog.cancel();
@@ -313,6 +315,7 @@ public class ClientView extends WebView {
 		});
 
 		builder.setNegativeButton("Test", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				testServer = true;
 				dialog.cancel();

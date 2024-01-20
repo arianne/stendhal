@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,11 +9,29 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.stendhalgame.client.js;
+
+import android.webkit.JavascriptInterface;
 
 
-public enum PageId {
-	TITLE,
-	WEBCLIENT,
-	OTHER;
+
+public class JSInterface {
+
+	/** Singleton instance. */
+	private static JSInterface instance;
+
+
+	/**
+	 * Retrieves the singleton instance.
+	 */
+	public static JSInterface get() {
+		if (instance == null) {
+			instance = new JSInterface();
+		}
+		return instance;
+	}
+
+	private JSInterface() {
+		// singleton
+	}
 }

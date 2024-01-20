@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,12 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.util.Log;
-import androidx.appcompat.app.AppCompatActivity;
+package org.stendhalgame.client;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,6 +17,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.util.Log;
 
 
 /**
@@ -31,7 +30,7 @@ public class DebugLog {
 
 	private static File logsDir;
 
-	private static AppCompatActivity mainActivity;
+	private static MainActivity mainActivity;
 
 	public static enum DebugLevel {
 		INFO("INFO"),
@@ -61,7 +60,7 @@ public class DebugLog {
 		return instance;
 	}
 
-	public static void init(final File dir, final AppCompatActivity activity) {
+	public static void init(final File dir, final MainActivity activity) {
 		logsDir = new File(dir.getPath() + "/logs");
 		mainActivity = activity;
 
@@ -138,11 +137,12 @@ public class DebugLog {
 			level = DebugLevel.DEBUG;
 		}
 
-		final AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
 		builder.setTitle(level.label);
 		builder.setMessage(message);
 
 		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				dialog.cancel();
 			}

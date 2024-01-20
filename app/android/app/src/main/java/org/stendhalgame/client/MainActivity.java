@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022-2024 - Arianne                     *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,13 +9,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client;
+package org.stendhalgame.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
 			setContentView(R.layout.activity_main);
 			layout = (ConstraintLayout) findViewById(R.id.content);
-			menu = new Menu(this);
 			client = (ClientView) findViewById(R.id.clientWebView);
+			menu = new Menu(client.getContext());
 
 			client.loadTitleScreen();
 		} catch (final Exception e) {
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 				"An unhandled exception has occurred: " + e.getMessage()
 				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html",
 				new Notifier.Action() {
+					@Override
 					protected void onCall() {
 						finish();
 					}
@@ -108,10 +108,11 @@ public class MainActivity extends AppCompatActivity {
 	 * Opens a dialog confirm exiting activity.
 	 */
 	public void onRequestQuit() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(client.getContext());
 		builder.setMessage("Quit Stendhal?");
 
 		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				finish();
 				android.os.Process.killProcess(android.os.Process.myPid());
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(final DialogInterface dialog, final int id) {
 				dialog.cancel();
 			}

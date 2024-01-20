@@ -3,6 +3,5 @@ TODO:
 - create activity for about information
 - add credits to about information
 - switch to Log4j for logging (maybe)
-- write debugging logs to sub-directory in user's home instead of ~/Android/data/org.arianne.stendhal.client
-- change application ID from org.arianne.stendhal.client to org.stendhalgame.client
+- write debugging logs to sub-directory in user's home instead of ~/Android/data/org.stendhalgame.client
 - replace title_03 (Land of Fearless), title_04 (Rejoicing), & title_05 (The Old Tower Inn) music with non-looping versions or fix loops

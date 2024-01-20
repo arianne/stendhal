@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2022 - Arianne                          *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.arianne.stendhal.client.sound;
+package org.stendhalgame.client.sound;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -17,8 +17,8 @@ import android.net.Uri;
 
 import java.io.IOException;
 
-import org.arianne.stendhal.client.DebugLog;
-import org.arianne.stendhal.client.MainActivity;
+import org.stendhalgame.client.DebugLog;
+import org.stendhalgame.client.MainActivity;
 
 
 public class MusicPlayer {

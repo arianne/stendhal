@@ -21,7 +21,7 @@ android {
 	def outputName = "stendhal-webview-${appVer}"
 
 	defaultConfig {
-		applicationId "org.arianne.stendhal.client"
+		applicationId "org.stendhalgame.client"
 		minSdk 21
 		targetSdk 32
 		versionCode 1
