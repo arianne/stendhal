@@ -181,7 +181,7 @@ public class Menu {
 				// FIXME: how to find server version if connected?
 
 				final ClientView client = ClientView.get();
-				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) ctx);
+				final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
 				String msg = "WebView client version: " + BuildConfig.VERSION_NAME;
 				if (client.debugEnabled()) {
 					msg += "\nSelected client: " + client.getSelectedClient()
