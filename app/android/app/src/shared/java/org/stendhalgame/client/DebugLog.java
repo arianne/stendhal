@@ -13,8 +13,6 @@ package org.stendhalgame.client;
 
 import java.io.File;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 
 /**
  * Dummy class for release builds.
@@ -41,7 +39,7 @@ public class DebugLog {
 		return instance;
 	}
 
-	public static void init(final File dir, final AppCompatActivity activity) {
+	public static void init(final File dir, @SuppressWarnings("unused") final MainActivity activity) {
 		logsDir = new File(dir.getPath() + "/logs");
 	}
 
