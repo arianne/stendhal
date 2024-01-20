@@ -144,16 +144,16 @@ export class SettingsDialog extends DialogContentComponent {
 		this.createCheckBox("chk_pathfinding", "client.pathfinding",
 				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
 
-		const chk_sysemojis = this.createCheckBox("chk_sysemojis", "client.emojis.system",
-				"Using system emojis", "Using built-in emojis",
+		const chk_nativeemojis = this.createCheckBox("chk_nativeemojis", "client.emojis.native",
+				"Using native emojis", "Using built-in emojis",
 				function() {
 					singletons.getChatInput().refresh();
 				});
 		if (!SettingsDialog.debugging) {
 			// disabled until fully functional
-			chk_sysemojis.disabled = true;
-			chk_sysemojis.style["display"] = "none"
-			chk_sysemojis.parentElement!.style["display"] = "none";
+			chk_nativeemojis.disabled = true;
+			chk_nativeemojis.style["display"] = "none"
+			chk_nativeemojis.parentElement!.style["display"] = "none";
 		}
 
 

@@ -21,7 +21,7 @@ export class ConfigManager {
 
 	private readonly defaults = {
 		"client.corpse.indicator": "true",
-		"client.emojis.system": "false",
+		"client.emojis.native": "false",
 		"client.joystick": "false",
 		"client.joystick.center.x": "224",
 		"client.joystick.center.y": "384",
