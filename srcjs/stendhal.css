@@ -297,6 +297,7 @@ div.logcolR {
 	position: absolute;
 	display: none;
 	opacity: 0.5;
+	user-select: none;
 }
 
 .group-buttons {
