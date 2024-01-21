@@ -48,7 +48,13 @@
 
   </PreferenceCategory>
 
-  <PreferenceCategory android:title="Meta">
+  <PreferenceCategory android:title="Misc">
+
+    <Preference
+      android:key="clear_cache"
+      android:title="Clear Cache"
+      android:summary="Delete cached data."
+    />
 
     <Preference
       android:key="reset"

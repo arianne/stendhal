@@ -237,6 +237,36 @@ public class PreferencesActivity extends AppCompatActivity {
 					}
 				});
 			}
+
+			final Preference clear_cache = pm.findPreference("clear_cache");
+			if (clear_cache != null) {
+				clear_cache.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+					@Override
+					public boolean onPreferenceClick(final Preference pref) {
+						Notifier.showPrompt(getActivity(), "Delete cached data?",
+							new Notifier.Action() {
+								@Override
+								protected void onCall() {
+									DebugLog.debug("clearing cache");
+									final ClientView clientView = ClientView.get();
+									if (clientView != null) {
+										clientView.clearCache(true);
+									}
+								}
+							},
+							new Notifier.Action() {
+								@Override
+								protected void onCall() {
+									// do nothing
+								}
+							});
+
+						return true;
+					}
+				});
+			} else {
+				DebugLog.warn("preference \"clear_cache\" not found");
+			}
 		}
 
 		private void restoreDefaults() {
