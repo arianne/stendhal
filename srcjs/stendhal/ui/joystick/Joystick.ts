@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2023-2024 - Stendhal                     *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,6 +34,7 @@ export class Joystick extends JoystickBase {
 
 		const container = document.getElementById("joystick-container")!;
 		for (const jimg of [this.outer, this.inner]) {
+			jimg.classList.add("joystick-button");
 			jimg.style.position = "absolute";
 			jimg.draggable = false;
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2023-2024 - Stendhal                     *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -146,6 +146,7 @@ class DPadButton {
 	constructor(dir: Direction) {
 		this.direction = dir;
 		this.image = new Image();
+		this.image.classList.add("joystick-button");
 
 		switch (this.direction) {
 			case Direction.DOWN:
