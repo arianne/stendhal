@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                    Copyright © 2020-2023 - Arianne                      *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,6 +90,8 @@ if game:setZone(zone) then
 	local helpReply = "I can #forge a useful #ring if you bring me some materials."
 	ringsmith:addHelp(helpReply)
 	ringsmith:addOffer(helpReply)
+
+	entities:addKnownChatOptions(ringsmith, {"ring"});
 
 	local hasItemsCondition = {}
 	local startAction = {
