@@ -22,6 +22,8 @@ export class UIUpdateObserver {
 	private vpRectObserver?: MutationObserver;
 	private vpScaleObserver?: ResizeObserver;
 
+	private displayReady = false;
+
 	private static instance: UIUpdateObserver;
 
 
@@ -52,7 +54,10 @@ export class UIUpdateObserver {
 		}
 
 		const initialDisplay = this.getClientDisplay();
-		if (initialDisplay === "none") {
+		this.displayReady = initialDisplay !== "none";
+		if (this.displayReady) {
+			this.onClientDisplayUpdate();
+		} else {
 			this.startupObserver = new MutationObserver((mutations: MutationRecord[]) => {
 				// we're listening for only 1 style so list should only contain 1 element
 				const mutation = mutations[0];
@@ -61,6 +66,7 @@ export class UIUpdateObserver {
 					return;
 				}
 				if (this.isClientDisplayChanged(initialDisplay)) {
+					this.displayReady = true;
 					this.onClientDisplayUpdate();
 				}
 			});
@@ -122,6 +128,10 @@ export class UIUpdateObserver {
 	 * Called when an attribute of the viewport has changed.
 	 */
 	private onViewPortUpdate() {
+		if (!this.displayReady) {
+			console.debug("display readiness not detected");
+			return;
+		}
 		ui.onDisplayUpdate();
 	}
 }
