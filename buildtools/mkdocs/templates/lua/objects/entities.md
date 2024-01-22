@@ -37,6 +37,21 @@ For public methods that can be performed on [`Entity`][Entity] objects.
 
 
 ---
+## entities:addKnownChatOptions
+<div class="function">
+    entities:addKnownChatOptions <span class="paramlist">npc, keywords</span>
+</div>
+
+- Helper function as [SpeakerNPC.addKnownChatOptions] cannot seem to handle array of LuaString.
+- Parameters:
+    - <span class="param">npc</span>
+      <span class="datatype">[SpeakerNPC]</span>
+      NPC to which options should be added.
+    - <span class="param">keywords</span>
+      <span class="datatype">[table][LuaTable]</span>
+      Keyword(s) to be added.
+
+---
 ## entities:create
 <div class="function">
     entities:create <span class="paramlist">def</span>
@@ -644,6 +659,7 @@ This is simply the [entity manager][DefaultEntityManager] instance.
 [Sign]: /reference/java/games/stendhal/server/entity/mapstuff/sign/Sign.html
 [SilentNPC]: /reference/java/games/stendhal/server/entity/npc/SilentNPC.html
 [SpeakerNPC]: /reference/java/games/stendhal/server/entity/npc/SpeakerNPC.html
+[SpeakerNPC.addKnownChatOptions]: /reference/java/games/stendhal/server/entity/npc/SpeakerNPC.html#addKnownChatOptions(java.lang.String...)
 [StackableItem]: /reference/java/games/stendhal/server/entity/item/StackableItem.html
 
 [LuaBoolean]: http://luaj.org/luaj/3.0/api/org/luaj/vm2/LuaBoolean.html

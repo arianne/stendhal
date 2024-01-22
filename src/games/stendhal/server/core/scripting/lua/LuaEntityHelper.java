@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2022-2023 - Stendhal                     *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -954,6 +954,27 @@ public class LuaEntityHelper {
 			nodes.add(new Node(n.get(1).checkint(), n.get(2).checkint()));
 		}
 		return new FixedPath(nodes, loop);
+	}
+
+	/**
+	 * Helper function as SpeakerNPC.addKnownChatOptions cannot seem to handle array of LuaString.
+	 *
+	 * @param npc
+	 *   NPC to which options should be added.
+	 * @param keywords
+	 *   Keyword(s) to be added.
+	 */
+	public void addKnownChatOptions(final SpeakerNPC npc, final LuaTable keywords) {
+		final int count = keywords.length();
+		if (count < 1) {
+			logger.error("entities:addKnownChatOptions must declare at least one chat option");
+			return;
+		}
+		final String[] temp = new String[count];
+		for (int idx = 0; idx < count; idx++) {
+			temp[idx] = keywords.get(idx+1).checkjstring();
+		}
+		npc.addKnownChatOptions(temp);
 	}
 
 
