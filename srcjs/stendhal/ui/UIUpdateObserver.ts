@@ -83,6 +83,11 @@ export class UIUpdateObserver {
 			this.onViewPortUpdate();
 		});
 		this.vpScaleObserver.observe(document.getElementById("gamewindow")!);
+
+		// listen for changes to screen orientation
+		screen.orientation.addEventListener("change", (e) => {
+			this.onOrientationUpdate();
+		});
 	}
 
 	/**
@@ -128,6 +133,17 @@ export class UIUpdateObserver {
 	 * Called when an attribute of the viewport has changed.
 	 */
 	private onViewPortUpdate() {
+		if (!this.displayReady) {
+			console.debug("display readiness not detected");
+			return;
+		}
+		ui.onDisplayUpdate();
+	}
+
+	/**
+	 * Called when screen orientation changes.
+	 */
+	private onOrientationUpdate() {
 		if (!this.displayReady) {
 			console.debug("display readiness not detected");
 			return;
