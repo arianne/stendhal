@@ -18,7 +18,9 @@ import { ui } from "./UI";
 export class UIUpdateObserver {
 
 	private startupObserver?: MutationObserver;
-	private viewPortObserver?: MutationObserver;
+	// observers listening for changes to viewport
+	private vpRectObserver?: MutationObserver;
+	private vpScaleObserver?: ResizeObserver;
 
 	private static instance: UIUpdateObserver;
 
@@ -44,7 +46,7 @@ export class UIUpdateObserver {
 	 * Initializes observers for display state & changes to viewport attributes.
 	 */
 	public init() {
-		if (this.viewPortObserver) {
+		if (this.vpRectObserver) {
 			console.warn("cannot re-initialize UIUpdateObserver");
 			return;
 		}
@@ -66,11 +68,15 @@ export class UIUpdateObserver {
 					{attributes: true, attributeFilter: ["style"]});
 		}
 
-		this.viewPortObserver = new MutationObserver((mutations: MutationRecord[]) => {
+		this.vpRectObserver = new MutationObserver((mutations: MutationRecord[]) => {
 			this.onViewPortUpdate();
 		});
-		this.viewPortObserver.observe(document.getElementById("gamewindow")!,
+		this.vpRectObserver.observe(document.getElementById("gamewindow")!,
 				{attributes: true, attributeFilter: ["left", "right", "top", "bottom", "width", "height"]});
+		this.vpScaleObserver = new ResizeObserver((entries: ResizeObserverEntry[], observer: ResizeObserver) => {
+			this.onViewPortUpdate();
+		});
+		this.vpScaleObserver.observe(document.getElementById("gamewindow")!);
 	}
 
 	/**

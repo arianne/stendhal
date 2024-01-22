@@ -63,6 +63,7 @@ class UI {
 	 * Instructions to execute when display attributes are updated.
 	 */
 	public onDisplayUpdate() {
+		QuickMenu.refresh();
 	}
 }
 
