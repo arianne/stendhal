@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { UIComponentEnum } from "./UIComponentEnum";
+import { QMButton as QuickMenu } from "./quickmenu/QMButton";
 import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
@@ -55,6 +56,7 @@ class UI {
 	public onDisplayReady() {
 		// initialize on-screen joystick
 		stendhal.ui.gamewindow.updateJoystick();
+		QuickMenu.init();
 	}
 
 	/**

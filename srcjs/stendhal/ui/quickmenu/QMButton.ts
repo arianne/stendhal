@@ -18,8 +18,6 @@ import { SoundButton } from "./SoundButton";
 
 import { Paths } from "../../data/Paths";
 
-declare var stendhal: any;
-
 
 /**
  * Main button to show/hide quick menu buttons.
@@ -72,15 +70,13 @@ export class QMButton {
 
 	/**
 	 * Updates button positioning.
-	 *
-	 * FIXME:
-	 *   - need to set positioning according to updated viewport position &  dimensions
 	 */
 	public static refresh() {
 		// place buttons in upper-right corner of viewport
-		let x = stendhal.ui.gamewindow.width - 24;
-		const y = 0;
 		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
+		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
+		let x = rect.right - btn_main.width;
+		const y = 0;
 		btn_main.style["left"] = x + "px";
 		btn_main.style["top"] = y + "px";
 		for (const btn of QMButton.buttonList) {
