@@ -119,10 +119,6 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 	}
 
 	private onClick(event: Event) {
-		/* FIXME: session position is erases because "settings" button
-		 *        causes "close" to be called multiple times.
-		 */
-
 		var cmd = (event.target as HTMLInputElement).id?.substring(11);
 		if (cmd) {
 			singletons.getSlashActionRepo().execute("/" + cmd);
