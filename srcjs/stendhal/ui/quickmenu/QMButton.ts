@@ -76,13 +76,12 @@ export class QMButton {
 		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
 		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
 		let x = rect.right - btn_main.width;
-		const y = 0;
 		btn_main.style["left"] = x + "px";
-		btn_main.style["top"] = y + "px";
+		btn_main.style["top"] = rect.top + "px";
 		for (const btn of QMButton.buttonList) {
 			// all buttons should be same size
 			x -= btn_main.width;
-			btn.setPos(x, y);
+			btn.setPos(x, rect.top);
 		}
 	}
 
