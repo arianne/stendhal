@@ -321,6 +321,7 @@ div.logcolR {
 	height: auto;
 	overflow: hidden;
 	position: absolute;
+	opacity: 0.5;
 }
 
 #equipmentborder {
