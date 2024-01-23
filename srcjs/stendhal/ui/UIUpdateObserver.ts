@@ -17,8 +17,6 @@ import { ui } from "./UI";
  */
 export class UIUpdateObserver {
 
-	private startupObserver?: MutationObserver;
-	// observers listening for changes to viewport
 	private vpRectObserver?: MutationObserver;
 	private vpScaleObserver?: ResizeObserver;
 
@@ -51,25 +49,6 @@ export class UIUpdateObserver {
 			return;
 		}
 
-		const initialDisplay = this.getClientDisplay();
-		if (initialDisplay !== "none") {
-			this.onClientDisplayUpdate();
-		} else {
-			this.startupObserver = new MutationObserver((mutations: MutationRecord[]) => {
-				// we're listening for only 1 style so list should only contain 1 element
-				const mutation = mutations[0];
-				if (mutation.attributeName !== "style") {
-					console.warn("observer detected wrong attribute: " + mutation.attributeName);
-					return;
-				}
-				if (this.isClientDisplayChanged(initialDisplay)) {
-					this.onClientDisplayUpdate();
-				}
-			});
-			this.startupObserver.observe(document.getElementById("client")!,
-					{attributes: true, attributeFilter: ["style"]});
-		}
-
 		this.vpRectObserver = new MutationObserver((mutations: MutationRecord[]) => {
 			this.onViewPortUpdate();
 		});
@@ -97,10 +76,10 @@ export class UIUpdateObserver {
 	}
 
 	/**
-	 * Checks if the client's display has changed from its original state.
+	 * Checks if the client's display state has changed.
 	 *
 	 * @param oldDisplay
-	 *   The original display state of the client.
+	 *   The previous display state of the client.
 	 * @return
 	 *   `true` if new state is not "none".
 	 */
@@ -109,20 +88,9 @@ export class UIUpdateObserver {
 	}
 
 	/**
-	 * Called the first time the client's display state is changed (should be from "none" to "block").
-	 *
-	 * @param oldDisplay
-	 *   The display type when the client was first created.
-	 * @return
-	 *   `true` if the display has changed from "none".
+	 * Called when the client's "display" attribute changes.
 	 */
 	private onClientDisplayUpdate() {
-		// we shouldn't need to observe any further
-		if (this.startupObserver) {
-			this.startupObserver.disconnect();
-			this.startupObserver = undefined;
-		}
-		ui.onDisplayReady();
 	}
 
 	/**

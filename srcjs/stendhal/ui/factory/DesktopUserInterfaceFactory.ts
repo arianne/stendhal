@@ -72,10 +72,6 @@ export class DesktopUserInterfaceFactory {
 
 		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());
 		this.add(bottomPanel, UIComponentEnum.ChatLog, new ChatLogComponent());
-
-		// initialize UI observer after elements have been created
-		// XXX: is there a better place to do this?
-		singletons.getUIUpdateObserver().init();
 	}
 
 	private add(panel: Panel, uiComponentEnum: UIComponentEnum, component: Component) {

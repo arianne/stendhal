@@ -345,6 +345,10 @@ export class Client {
 						body.style.cursor = "auto";
 						document.getElementById("client")!.style.display = "block";
 						document.getElementById("loginpopup")!.style.display = "none";
+
+						// initialize observer after UI is ready
+						singletons.getUIUpdateObserver().init();
+						ui.onDisplayReady();
 					}, 300);
 				}
 			}
