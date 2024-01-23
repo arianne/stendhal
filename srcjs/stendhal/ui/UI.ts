@@ -18,7 +18,12 @@ declare var stendhal: any;
 
 
 class UI {
+
+	/** Attribute denoting readiness of display. */
+	private displayReady = false;
+
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
+
 
 	public createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
 		return new SingletonFloatingWindow(title, contentComponent, x, y);
@@ -51,9 +56,24 @@ class UI {
 	}
 
 	/**
+	 * Checks for attribute denoting display has been initialized.
+	 *
+	 * @return
+	 *   `true` if display is initialized and ready.
+	 */
+	public isDisplayReady(): boolean {
+		return this.displayReady;
+	}
+
+	/**
 	 * Instructions to execute when display initialized.
 	 */
 	public onDisplayReady() {
+		if (this.displayReady) {
+			console.warn("display state was previously set to \"ready\"");
+			return;
+		}
+		this.displayReady = true;
 		// initialize on-screen joystick
 		stendhal.ui.gamewindow.updateJoystick();
 		QuickMenu.init();
@@ -63,6 +83,10 @@ class UI {
 	 * Instructions to execute when display attributes are updated.
 	 */
 	public onDisplayUpdate() {
+		if (!this.displayReady) {
+			console.debug("display not in \"ready\" state");
+			return;
+		}
 		QuickMenu.refresh();
 	}
 }
