@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "../UI";
 import { Direction } from "../../util/Direction";
 
 declare var marauroa: any;
@@ -58,6 +59,10 @@ export class JoystickBase {
 	}
 
 	protected onDirectionChange(dir: Direction) {
+		if (!ui.isDisplayReady()) {
+			console.debug("not executing direction change before display is ready");
+			return;
+		}
 		this.direction = dir;
 		if (this.direction == Direction.STOP) {
 			marauroa.clientFramework.sendAction({type: "stop"});
