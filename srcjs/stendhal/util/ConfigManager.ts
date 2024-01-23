@@ -20,6 +20,7 @@ declare var stendhal: any;
 export class ConfigManager {
 
 	private readonly defaults = {
+		"client.chat.visible": "false",
 		"client.corpse.indicator": "true",
 		"client.emojis.native": "false",
 		"client.joystick": "false",

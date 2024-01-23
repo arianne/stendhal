@@ -67,7 +67,8 @@ export class DesktopUserInterfaceFactory {
 		// hide pouch by default
 
 		// emoji button causes spacing between elements so apply theme to container panel
-		let bottomPanel = new Panel("bottomPanel", true);
+		const bottomPanel = new Panel("bottomPanel", true);
+		bottomPanel.setVisible(singletons.getConfigManager().getBoolean("client.chat.visible"));
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
 
 		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());

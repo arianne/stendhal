@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg4224"
+   sodipodi:docname="chat-disabled.svg"
+   viewBox="0 0 47.999998 48.000001"
+   version="1.1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   width="48"
+   height="48"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title4525">Chat Icon</title>
+  <defs
+     id="defs4226" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="-8"
+     fit-margin-left="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="1025"
+     inkscape:window-maximized="1"
+     inkscape:zoom="7.9195959"
+     inkscape:window-x="-8"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g4531"
+     inkscape:cx="37.186241"
+     inkscape:cy="35.92355"
+     fit-margin-top="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Chat Icon</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>OpenClipart Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:source>https://openclipart.org/detail/171388</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>narrowhouse</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.18568235,0,0,0.18568235,-28.861574,-61.321612)"
+     id="g4531"
+     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:10.7623;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="g1"
+     sodipodi:insensitive="true">
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:14.5972"
+       id="path1"
+       cx="284.6882"
+       cy="459.50308"
+       r="86.168663"
+       inkscape:label="background" />
+    <g
+       id="g1"
+       inkscape:label="icon"
+       transform="matrix(0.50001697,0,0,0.50001697,142.33927,229.74374)">
+      <path
+         id="path3885"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:10.7623;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         d="m 247.46129,385.50015 c 41.43854,0.79153 74.69542,26.37148 74.69542,57.8047 0,31.93253 -34.32117,57.82756 -76.67446,57.82756 -11.76286,0 -22.91537,-1.98627 -32.87771,-5.55456 l -43.89212,17.74669 19.57373,-31.50697 c -12.11838,-10.22526 -19.50202,-23.7215 -19.50202,-38.5136 0,-31.93254 34.34482,-57.8047 76.69735,-57.8047 0.66178,0 1.32109,-0.0125 1.97889,0 z" />
+      <path
+         id="path3815"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:10.7623;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         d="m 321.81871,401.81416 c -41.43854,0.77998 -74.69542,25.98674 -74.69542,56.96138 0,31.46667 34.32117,56.98391 76.67446,56.98391 11.76286,0 22.91537,-1.95729 32.87771,-5.47352 l 43.89212,17.48778 -19.57373,-31.04732 c 12.11838,-10.07608 19.50202,-23.37542 19.50202,-37.95172 0,-31.46667 -34.34482,-56.96139 -76.69735,-56.96139 -0.66178,0 -1.32109,-0.0124 -1.97889,0 z" />
+    </g>
+    <path
+       id="path859"
+       style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:10.3402;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="disabled"
+       d="M 349.3147,378.50454 203.68966,524.12958 v 16.37205 H 220.0617 L 365.68674,394.87659 v -16.37205 z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>
