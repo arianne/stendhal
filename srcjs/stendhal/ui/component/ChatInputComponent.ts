@@ -115,10 +115,10 @@ export class ChatInputComponent extends Component {
 
 		if (event.shiftKey) {
 			// chat history
-			if (code === KeyHandler.keycode.up) {
+			if (code === KeyHandler.CODE_UP) {
 				event.preventDefault();
 				this.fromHistory(-1);
-			} else if (code === KeyHandler.keycode.down){
+			} else if (code === KeyHandler.CODE_DOWN){
 				event.preventDefault();
 				this.fromHistory(1);
 			}

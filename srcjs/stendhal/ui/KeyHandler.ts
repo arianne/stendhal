@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -12,15 +12,23 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
+import { Direction } from "../util/Direction";
+
 
 export class KeyHandler {
 
-	public static readonly keycode: {[key: string]: number} = {
-		left: 37,
-		up: 38,
-		right: 39,
-		down: 40
+	public static readonly CODE_LEFT = 37;
+	public static readonly CODE_UP = 38;
+	public static readonly CODE_RIGHT = 39;
+	public static readonly CODE_DOWN = 40;
+
+	public static readonly CODES: {[key: string]: number} = {
+		left: KeyHandler.CODE_LEFT,
+		up: KeyHandler.CODE_UP,
+		right: KeyHandler.CODE_RIGHT,
+		down: KeyHandler.CODE_DOWN
 	};
+
 	private static pressedKeys: number[] = [];
 
 
@@ -35,11 +43,10 @@ export class KeyHandler {
 	 * Checks if any direction key is currently pressed.
 	 *
 	 * @return
-	 *     <code>true</code> if direction keycode found in pressed
-	 *     keys list.
+	 *   `true` if direction keycode found in pressed keys list.
 	 */
 	private static isDirPressed(): boolean {
-		for (const dir of Object.keys(KeyHandler.keycode).map((key) => KeyHandler.keycode[key])) {
+		for (const dir of Object.keys(KeyHandler.CODES).map((key) => KeyHandler.CODES[key])) {
 			if (KeyHandler.pressedKeys.indexOf(dir) > -1) {
 				return true;
 			}
@@ -47,6 +54,14 @@ export class KeyHandler {
 		return false;
 	}
 
+	/**
+	 * Determines event type from event.
+	 *
+	 * @param event:
+	 *   Keyboard event.
+	 * @return
+	 *   String representation of event type or `null`.
+	 */
 	private static extractMoveOrFaceActionFromEvent(event: KeyboardEvent): string|null {
 		if (event.ctrlKey) {
 			return "face";
@@ -56,14 +71,28 @@ export class KeyHandler {
 		return "move";
 	}
 
-	private static extractDirectionFromKeyCode(code: number): number {
-		var dir = code - KeyHandler.keycode.left;
-		if (dir === 0) {
-			dir = 4;
+	/**
+	 * Converts keyboard code to `Direction`.
+	 *
+	 * @param code
+	 *   Code of pressed key.
+	 * @return
+	 *   Direction representation.
+	 */
+	private static extractDirectionFromKeyCode(code: number): Direction {
+		let dir = code - KeyHandler.CODE_LEFT;
+		if (dir < Direction.UP.val) {
+			dir = Direction.LEFT.val;
 		}
-		return dir;
+		return Direction.VALUES[dir];
 	}
 
+	/**
+	 * Action when a key is pressed.
+	 *
+	 * @param e
+	 *   Keyboard event.
+	 */
 	static onKeyDown(e?: KeyboardEvent) {
 		var event = e;
 		if (!event) {
@@ -74,7 +103,7 @@ export class KeyHandler {
 		}
 
 		var code = stendhal.ui.html.extractKeyCode(event);
-		if (code >= KeyHandler.keycode.left && code <= KeyHandler.keycode.down) {
+		if (code >= KeyHandler.CODE_LEFT && code <= KeyHandler.CODE_DOWN) {
 			// disable scrolling via arrow keys
 			const target: any = event.target;
 			if (target.tagName === "BODY" || target.tagName === "CANVAS") {
@@ -92,12 +121,12 @@ export class KeyHandler {
 				return;
 			}
 			var dir = KeyHandler.extractDirectionFromKeyCode(code);
-			var action = {"type": type, "dir": ""+dir};
+			var action = {"type": type, "dir": ""+dir.val};
 			marauroa.clientFramework.sendAction(action);
 
 			// stop walking if keypress in direction of current movement
 			if (marauroa.me && marauroa.me.autoWalkEnabled()) {
-				if (parseInt(marauroa.me["dir"], 10) === dir) {
+				if (parseInt(marauroa.me["dir"], 10) === dir.val) {
 					marauroa.clientFramework.sendAction({"type": "walk"});
 				}
 			}
@@ -112,6 +141,12 @@ export class KeyHandler {
 		}
 	}
 
+	/**
+	 * Action when a key is released.
+	 *
+	 * @param e
+	 *   Keyboard event.
+	 */
 	static onKeyUp(e?: KeyboardEvent) {
 		var event = e
 		if (!event) {
@@ -123,7 +158,7 @@ export class KeyHandler {
 
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		if (code >= KeyHandler.keycode.left && code <= KeyHandler.keycode.down) {
+		if (code >= KeyHandler.CODE_LEFT && code <= KeyHandler.CODE_DOWN) {
 			var i = KeyHandler.pressedKeys.indexOf(code);
 			if (i > -1) {
 				KeyHandler.pressedKeys.splice(i, 1);
@@ -143,7 +178,7 @@ export class KeyHandler {
 				}
 				var dir = KeyHandler.extractDirectionFromKeyCode(code);
 				action["type"] = type;
-				action["dir"] = ""+dir;
+				action["dir"] = ""+dir.val;
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
