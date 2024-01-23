@@ -43,7 +43,7 @@ public class ConversationPhrases {
 			"ayuda", "❓");
 
 	public static final List<String> QUEST_MESSAGES = Arrays.asList("task",
-			"quest", "favor", "favuor", "❗️");
+			"quest", "favor", "favour", "❗️");
 
 	public static final List<String> BEGIN_MESSAGES = Arrays.asList("begin", "start", "go");
 
