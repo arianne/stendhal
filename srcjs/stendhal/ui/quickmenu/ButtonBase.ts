@@ -26,6 +26,7 @@ export abstract class ButtonBase {
 		this.element.addEventListener("click", (evt: Event) => {
 			this.onClick(evt);
 		});
+		this.update();
 	}
 
 	public setVisible(visible: boolean) {
@@ -42,4 +43,8 @@ export abstract class ButtonBase {
 	}
 
 	protected abstract onClick(evt: Event): void;
+
+	public update() {
+		// implementing classes can override
+	}
 }

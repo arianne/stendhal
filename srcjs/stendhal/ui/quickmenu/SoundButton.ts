@@ -22,10 +22,12 @@ export class SoundButton extends ButtonBase {
 
 	constructor() {
 		super("sound");
-		this.update();
 	}
 
-	private update() {
+	/**
+	 * Updates button icon.
+	 */
+	public override update() {
 		this.setImageBasename(stendhal.config.getBoolean("ui.sound") ? "sound" : "sound-disabled");
 	}
 

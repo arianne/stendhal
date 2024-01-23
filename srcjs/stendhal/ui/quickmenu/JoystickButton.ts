@@ -21,10 +21,12 @@ export class JoystickButton extends ButtonBase {
 
 	constructor() {
 		super("joystick");
-		this.update();
 	}
 
-	private update() {
+	/**
+	 * Updates button icon.
+	 */
+	public override update() {
 		this.setImageBasename(stendhal.config.getBoolean("client.joystick") ? "joystick" : "joystick-disabled");
 	}
 
