@@ -19,7 +19,7 @@ export abstract class Component {
 	/** @deprecated */
 	public cid?: string;
 	/** Default display type when component is visible. */
-	private defaultDisplay: string;
+	private visibleDisplay: string;
 
 
 	constructor(id: string, themable=false) {
@@ -37,9 +37,10 @@ export abstract class Component {
 		if (themable) {
 			this.componentElement.classList.add("background");
 		}
-		this.defaultDisplay = element.style.display;
-		if (this.defaultDisplay === "none") {
-			this.defaultDisplay = "";
+		this.visibleDisplay = getComputedStyle(this.componentElement).getPropertyValue("display");
+		if (["", "none"].indexOf(this.visibleDisplay) > -1) {
+			// element is initially hidden so we need to set visible display value manually
+			this.visibleDisplay = "block";
 		}
 	}
 
@@ -91,7 +92,7 @@ export abstract class Component {
 	 *   `true` if the element is visible in the DOM.
 	 */
 	public isVisible(): boolean {
-		return this.componentElement.style.display !== "none";
+		return ["", "none"].indexOf(this.componentElement.style.display) < 0;
 	}
 
 	/**
@@ -101,11 +102,7 @@ export abstract class Component {
 	 *   `true` if the element should be visible.
 	 */
 	public setVisible(visible=true) {
-		if (visible) {
-			this.componentElement.style.display = this.defaultDisplay;
-		} else {
-			this.componentElement.style.display = "none";
-		}
+		this.componentElement.style.setProperty("display", visible ? this.visibleDisplay : "none");
 	}
 
 	/**
