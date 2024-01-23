@@ -14,6 +14,7 @@ import { EventRegistry } from "./EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
 import { ConfigManager } from "./util/ConfigManager";
+import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
 import { WeatherRenderer } from "./util/WeatherRenderer";
@@ -69,6 +70,10 @@ export class SingletonRepo {
 
 	static getEventRegistry(): EventRegistry {
 		return EventRegistry.get();
+	}
+
+	static getFacingHandler(): FacingHandler {
+		return FacingHandler.get();
 	}
 
 	static getGroupManager(): GroupManager {
