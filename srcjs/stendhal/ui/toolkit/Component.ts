@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -12,9 +12,13 @@
 
 export abstract class Component {
 
+	/** The `HTMLElement` associated with this component. */
 	readonly componentElement!: HTMLElement;
+	/** The parent `Component` of this one. Usually a floating window. */
 	public parentComponent?: Component;
+	/** @deprecated */
 	public cid?: string;
+	/** Default display type when component is visible. */
 	private defaultDisplay: string;
 
 
@@ -39,10 +43,16 @@ export abstract class Component {
 		}
 	}
 
+	/**
+	 * Called when parent `FloatingWindow` is closed.
+	 */
 	public onParentClose() {
 		// do nothing
 	};
 
+	/**
+	 * Called when parent `FloatingWindow` is moved.
+	 */
 	public onMoved() {
 		// do nothing
 	};
@@ -67,16 +77,29 @@ export abstract class Component {
 	 * an identifier is not set, an empty string is returned.
 	 *
 	 * @return
-	 *     String identifier.
+	 *   String identifier.
+	 * @deprecated
 	 */
 	public getConfigId(): string {
 		return this.cid || "";
 	}
 
+	/**
+	 * Checks if the element is in a visible state.
+	 *
+	 * @return
+	 *   `true` if the element is visible in the DOM.
+	 */
 	public isVisible(): boolean {
 		return this.componentElement.style.display !== "none";
 	}
 
+	/**
+	 * Sets the element's visibility.
+	 *
+	 * @param visible
+	 *   `true` if the element should be visible.
+	 */
 	public setVisible(visible=true) {
 		if (visible) {
 			this.componentElement.style.display = this.defaultDisplay;
@@ -85,11 +108,22 @@ export abstract class Component {
 		}
 	}
 
+	/**
+	 * Toggles the element's visibility.
+	 */
 	public toggleVisibility() {
 		this.setVisible(!this.isVisible());
 	}
 
-	protected child(selector: string) {
+	/**
+	 * Retrieves a child element.
+	 *
+	 * @param selector
+	 *   Child element's identification string.
+	 * @return
+	 *   `HTMLElement` or `undefined` if child not found.
+	 */
+	protected child(selector: string): HTMLElement|undefined {
 		return this.componentElement.querySelector(selector) as HTMLElement|undefined;
 	}
 }
