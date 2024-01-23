@@ -14,6 +14,7 @@ import { EventRegistry } from "./EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
 import { ConfigManager } from "./util/ConfigManager";
+import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
 import { WeatherRenderer } from "./util/WeatherRenderer";
 
@@ -31,7 +32,6 @@ import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
-import { KeyHandler } from "./ui/KeyHandler";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoundManager } from "./ui/SoundManager";
 import { TouchHandler } from "./ui/TouchHandler";

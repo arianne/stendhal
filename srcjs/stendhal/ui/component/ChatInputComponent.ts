@@ -12,12 +12,12 @@
 declare let marauroa: any;
 declare let stendhal: any;
 
-import { KeyHandler } from "../KeyHandler";
 import { ui } from "../UI";
 import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
+import { KeyHandler } from "../../util/KeyHandler";
 
 
 const config = singletons.getConfigManager();

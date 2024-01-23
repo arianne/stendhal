@@ -12,9 +12,12 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import { Direction } from "../util/Direction";
+import { Direction } from "./Direction";
 
 
+/**
+ * Class for managing direction presses using the keyboard.
+ */
 export class KeyHandler {
 
 	public static readonly CODE_LEFT = 37;
@@ -29,6 +32,7 @@ export class KeyHandler {
 		down: KeyHandler.CODE_DOWN
 	};
 
+	/** List of currently pressed direction keys. */
 	private static pressedKeys: number[] = [];
 
 
