@@ -47,6 +47,7 @@ export class ViewPort {
 	private timeStamp = Date.now();
 
 	// dimensions
+	// TODO: remove & use CSS style instead
 	private readonly width: number;
 	private readonly height: number;
 
@@ -62,6 +63,9 @@ export class ViewPort {
 
 	/** On-screen joystick. */
 	private joystick: JoystickBase = new JoystickBase();
+
+	/** Styles to be applied when chat panel is not floating. */
+	private readonly initialStyle: {[prop: string]: string};
 
 	/** Singleton instance. */
 	private static instance: ViewPort;
@@ -85,6 +89,15 @@ export class ViewPort {
 		this.ctx = element.getContext("2d")!;
 		this.width = element.width;
 		this.height = element.height;
+
+		this.initialStyle = {};
+		//~ const stylesheet = getComputedStyle(element);
+		// FIXME: how to get literal "calc()" instead of value of calc()?
+		//~ this.initialStyle["max-width"] = stylesheet.getPropertyValue("max-width");
+		//~ this.initialStyle["max-height"] = stylesheet.getPropertyValue("max-height");
+		// NOTE: this doesn't work if properties set in css
+		this.initialStyle["max-width"] = "calc((100dvh - 5em) * 640 / 480)";
+		this.initialStyle["max-height"] = "calc(100dvh - 5em)";
 	}
 
 	/**
@@ -631,5 +644,19 @@ export class ViewPort {
 			return;
 		}
 		this.joystick = stendhal.config.get("client.joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
+	}
+
+	/**
+	 * Updates viewport layout to compensate for chat panel style.
+	 */
+	public onChatPanelRefresh(floating: boolean) {
+		const element = this.getElement();
+		for (const prop of Object.keys(this.initialStyle)) {
+			if (floating) {
+				element.style.removeProperty(prop);
+			} else {
+				element.style.setProperty(prop, this.initialStyle[prop]);
+			}
+		}
 	}
 }

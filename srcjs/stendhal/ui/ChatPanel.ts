@@ -26,14 +26,16 @@ export class ChatPanel extends Panel {
 	/**
 	 * Updates chat panel to float or be positioned statically.
 	 *
-	 * @param float
+	 * FIXME: can no longer scroll chat log to end when not floating
+	 *
+	 * @param floating
 	 *   `true` if panel should float.
 	 */
-	public setFloating(float: boolean) {
-		singletons.getConfigManager().set("client.chat.float", float);
+	public setFloating(floating: boolean) {
+		singletons.getConfigManager().set("client.chat.float", floating);
 		let propPosition = "static";
 		let propOpacity = "1.0";
-		if (float) {
+		if (floating) {
 			propPosition = "absolute";
 			propOpacity = "0.5";
 		} else {
@@ -59,7 +61,8 @@ export class ChatPanel extends Panel {
 	 * Updates element using viewport attributes.
 	 */
 	public override refresh() {
-		if (this.isFloating()) {
+		const floating = this.isFloating();
+		if (floating) {
 			const rect = singletons.getViewPort().getElement().getBoundingClientRect();
 			const halfHeight = Math.abs(rect.height / 2);
 			this.componentElement.style["width"] = rect.width + "px";
@@ -71,6 +74,9 @@ export class ChatPanel extends Panel {
 				this.componentElement.style.removeProperty(prop);
 			}
 		}
+
+		// adapt viewport layout
+		singletons.getViewPort().onChatPanelRefresh(floating);
 	}
 
 	/**

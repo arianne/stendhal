@@ -309,10 +309,12 @@ div.logcolR {
 
 #gamewindow {
 	display: block;
+/*
 	max-height: calc(100vh - 5em);
 	max-width: calc((100vh - 5em) * 640 / 480);
 	max-height: calc(100dvh - 5em);
 	max-width: calc((100dvh - 5em) * 640 / 480);
+*/
 }
 
 
