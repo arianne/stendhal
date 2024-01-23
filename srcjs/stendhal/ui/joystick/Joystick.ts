@@ -85,8 +85,10 @@ export class Joystick extends JoystickBase {
 		if (!Joystick.checkActionEvent(e)) {
 			return;
 		}
-		this.engaged = true;
-		this.inner.src = Joystick.getResource("joystick_inner_active");
+		if (!this.engaged) {
+			this.engaged = true;
+			this.inner.src = Joystick.getResource("joystick_inner_active");
+		}
 
 		const pos = stendhal.ui.html.extractPosition(e);
 
