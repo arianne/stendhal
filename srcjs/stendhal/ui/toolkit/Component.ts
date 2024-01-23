@@ -123,4 +123,11 @@ export abstract class Component {
 	protected child(selector: string): HTMLElement|undefined {
 		return this.componentElement.querySelector(selector) as HTMLElement|undefined;
 	}
+
+	/**
+	 * Checks if the associated element currently has focus.
+	 */
+	public hasFocus(): boolean {
+		return document.activeElement == this.componentElement;
+	}
 }
