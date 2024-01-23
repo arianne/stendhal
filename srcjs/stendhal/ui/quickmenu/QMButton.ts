@@ -19,6 +19,9 @@ import { RotateRButton } from "./RotateRButton";
 import { SettingsButton } from "./SettingsButton";
 import { SoundButton } from "./SoundButton";
 
+import { ui } from "../UI";
+import { UIComponentEnum } from "../UIComponentEnum";
+
 import { Paths } from "../../data/Paths";
 
 
@@ -54,12 +57,16 @@ export class QMButton {
 		QMButton.buttonListX.push(new MenuButton());
 		QMButton.buttonListX.push(new SettingsButton());
 		QMButton.buttonListX.push(new LogButton());
-		QMButton.buttonListX.push(new ChatButton());
+		const chatButton = new ChatButton();
+		QMButton.buttonListX.push(chatButton);
 		QMButton.buttonListX.push(new SoundButton());
 		QMButton.buttonListX.push(new JoystickButton());
 		// vertical sub-buttons
 		QMButton.buttonListY.push(new RotateLButton());
 		QMButton.buttonListY.push(new RotateRButton());
+
+		// register component buttons
+		ui.registerComponent(UIComponentEnum.ChatButton, chatButton);
 
 		btn_main.onload = () => {
 			// remove listener

@@ -12,7 +12,9 @@
 declare let marauroa: any;
 declare let stendhal: any;
 
+import { ChatPanel } from "../ChatPanel";
 import { ui } from "../UI";
+import { UIComponentEnum } from "../UIComponentEnum";
 import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
@@ -164,6 +166,8 @@ export class ChatInputComponent extends Component {
 			}
 		}
 		this.clear();
+
+		(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onMessageSent();
 	}
 
 	private buildEmojiMap() {

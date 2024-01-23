@@ -95,6 +95,9 @@ export class SettingsDialog extends DialogContentComponent {
 		this.createCheckBox("chk_corpseindicator", "client.corpse.indicator",
 				"Indicator will be drawn when corpse contains items", "Disabled drawing indicator when corpse contains items");
 
+		this.createCheckBox("chk_hidechat", "client.chat.autohide",
+				"Chat panel will be hidden after sending text", "Chat panel will remain on-screen");
+
 
 		/* *** center panel *** */
 

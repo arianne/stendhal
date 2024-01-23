@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,9 +38,11 @@ export class UIComponentEnum {
 	public static readonly SocialPanel = 111;
 	public static readonly StatusesList = 112;
 
-
 	// Dialog
 	public static readonly TradeDialog = 201;
 	public static readonly TravelLogDialog = 202;
 	public static readonly OutfitDialog = 203;
+
+	// Quick menu
+	public static readonly ChatButton = 301;
 }

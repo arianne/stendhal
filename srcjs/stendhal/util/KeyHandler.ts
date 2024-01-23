@@ -13,6 +13,10 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { Direction } from "./Direction";
+import { singletons } from "../SingletonRepo";
+import { ChatPanel } from "../ui/ChatPanel";
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
 
 
 /**
@@ -20,12 +24,14 @@ import { Direction } from "./Direction";
  */
 export class KeyHandler {
 
+	public static readonly CODE_ENTER = 13;
+
 	public static readonly CODE_LEFT = 37;
 	public static readonly CODE_UP = 38;
 	public static readonly CODE_RIGHT = 39;
 	public static readonly CODE_DOWN = 40;
 
-	public static readonly CODES: {[key: string]: number} = {
+	public static readonly DIR_CODES: {[key: string]: number} = {
 		left: KeyHandler.CODE_LEFT,
 		up: KeyHandler.CODE_UP,
 		right: KeyHandler.CODE_RIGHT,
@@ -50,7 +56,7 @@ export class KeyHandler {
 	 *   `true` if direction keycode found in pressed keys list.
 	 */
 	private static isDirPressed(): boolean {
-		for (const dir of Object.keys(KeyHandler.CODES).map((key) => KeyHandler.CODES[key])) {
+		for (const dir of Object.keys(KeyHandler.DIR_CODES).map((key) => KeyHandler.DIR_CODES[key])) {
 			if (KeyHandler.pressedKeys.indexOf(dir) > -1) {
 				return true;
 			}
@@ -107,6 +113,13 @@ export class KeyHandler {
 		}
 
 		var code = stendhal.ui.html.extractKeyCode(event);
+
+		// handle toggling chat panel
+		if (code == KeyHandler.CODE_ENTER && !singletons.getChatInput().hasFocus()) {
+			(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onEnterPressed();
+			return;
+		}
+
 		if (code >= KeyHandler.CODE_LEFT && code <= KeyHandler.CODE_DOWN) {
 			// disable scrolling via arrow keys
 			const target: any = event.target;

@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "./UI";
+import { UIComponentEnum } from "./UIComponentEnum";
+import { ChatButton } from "./quickmenu/ChatButton";
 import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
 
@@ -17,8 +20,6 @@ export class ChatPanel extends Panel {
 
 	constructor() {
 		super("bottomPanel");
-		// hide until display is ready
-		this.setVisible(false);
 	}
 
 	/**
@@ -31,5 +32,32 @@ export class ChatPanel extends Panel {
 		this.componentElement.style["height"] = halfHeight + "px";
 		this.componentElement.style["left"] = rect.left + "px";
 		this.componentElement.style["top"] = (rect.top + halfHeight) + "px";
+	}
+
+	/**
+	 * Shows chat panel when enter key is pressed.
+	 */
+	public onEnterPressed() {
+		this.setVisible(!this.isVisible());
+	}
+
+	/**
+	 * Hides chat panel after sending message if auto-hiding enabled.
+	 */
+	public onMessageSent() {
+		if (this.isVisible() && singletons.getConfigManager().getBoolean("client.chat.autohide")) {
+			this.setVisible(false);
+		}
+	}
+
+	public override setVisible(visible=true) {
+		super.setVisible(visible);
+		// update config
+		singletons.getConfigManager().set("client.chat.visible", visible);
+		// update quick menu button
+		const chatButton = ui.get(UIComponentEnum.ChatButton);
+		if (chatButton) {
+			(chatButton as ChatButton).update();
+		}
 	}
 }
