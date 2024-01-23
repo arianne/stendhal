@@ -13,6 +13,8 @@ import { ButtonBase } from "./ButtonBase";
 import { JoystickButton } from "./JoystickButton";
 import { LogButton } from "./LogButton";
 import { MenuButton } from "./MenuButton";
+import { RotateLButton } from "./RotateLButton";
+import { RotateRButton } from "./RotateRButton";
 import { SettingsButton } from "./SettingsButton";
 import { SoundButton } from "./SoundButton";
 
@@ -26,7 +28,8 @@ export class QMButton {
 
 	private static initialized = false;
 	private static expanded = false;
-	private static readonly buttonList: ButtonBase[] = [];
+	private static readonly buttonListX: ButtonBase[] = [];
+	private static readonly buttonListY: ButtonBase[] = [];
 
 
 	private constructor() {
@@ -41,17 +44,20 @@ export class QMButton {
 		QMButton.initialized = true;
 
 		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
-		// ensure visible at startup
+		// ensure main button is visible at startup
 		btn_main.style["display"] = "block";
 		btn_main.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		btn_main.draggable = false;
 
-		// sub-buttons
-		QMButton.buttonList.push(new MenuButton());
-		QMButton.buttonList.push(new SettingsButton());
-		QMButton.buttonList.push(new LogButton());
-		QMButton.buttonList.push(new SoundButton());
-		QMButton.buttonList.push(new JoystickButton());
+		// horizontal sub-buttons
+		QMButton.buttonListX.push(new MenuButton());
+		QMButton.buttonListX.push(new SettingsButton());
+		QMButton.buttonListX.push(new LogButton());
+		QMButton.buttonListX.push(new SoundButton());
+		QMButton.buttonListX.push(new JoystickButton());
+		// vertical sub-buttons
+		QMButton.buttonListY.push(new RotateLButton());
+		QMButton.buttonListY.push(new RotateRButton());
 
 		btn_main.onload = () => {
 			// remove listener
@@ -75,13 +81,26 @@ export class QMButton {
 		// place buttons in upper-right corner of viewport
 		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
 		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
-		let x = rect.right - btn_main.width;
-		btn_main.style["left"] = x + "px";
-		btn_main.style["top"] = rect.top + "px";
-		for (const btn of QMButton.buttonList) {
+
+		let drawLeft = rect.right - btn_main.width;
+		let drawTop = rect.top;
+		// main button
+		btn_main.style["left"] = drawLeft + "px";
+		btn_main.style["top"] = drawTop + "px";
+
+		// horizontal buttons
+		for (const btn of QMButton.buttonListX) {
 			// all buttons should be same size
-			x -= btn_main.width;
-			btn.setPos(x, rect.top);
+			drawLeft -= btn_main.width;
+			btn.setPos(drawLeft, drawTop);
+		}
+
+		// vertical buttons
+		drawLeft = rect.right - btn_main.width
+		for (const btn of QMButton.buttonListY) {
+			// all buttons should be same size
+			drawTop += btn_main.height;
+			btn.setPos(drawLeft, drawTop);
 		}
 	}
 
@@ -93,7 +112,7 @@ export class QMButton {
 	private static update() {
 		(document.getElementById("qm-main")! as HTMLImageElement).style["transform"] = "rotate("
 				+ (QMButton.expanded ? 90 : 0) + "deg)";
-		for (const btn of QMButton.buttonList) {
+		for (const btn of [...QMButton.buttonListX, ...QMButton.buttonListY]) {
 			btn.setVisible(QMButton.expanded);
 		}
 	}

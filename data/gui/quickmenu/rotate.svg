@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="rotate.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title1">Rotate Icon</title>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2.1341967"
+     inkscape:cx="-101.44332"
+     inkscape:cy="-5.3884444"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1" />
+  <g
+     id="g1"
+     sodipodi:insensitive="true">
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.71714"
+       id="path1"
+       cx="6.3499999"
+       cy="6.3499999"
+       r="4.2333331"
+       inkscape:label="background" />
+    <g
+       id="g5425"
+       transform="matrix(0.01196405,-0.0154617,-0.0154617,-0.01196405,14.122128,22.30647)"
+       inkscape:label="icon"
+       style="fill:#ffffff;fill-opacity:1;stroke:none">
+      <path
+         id="path5412"
+         d="m 420,608.56 v 32.38 c 54.26,13.81 94.44,63.02 94.44,121.56 0,69.24 -56.2,125.44 -125.44,125.44 -64.85,0 -118.24,-49.31 -124.75,-112.44 h -31.69 c 6.63,80.58 74.16,144 156.44,144 86.66,0 157,-70.34 157,-157 0,-76.05 -54.17,-139.53 -126,-153.94 z"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none"
+         transform="translate(18.296,53.692)" />
+      <path
+         id="path5419"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none"
+         sodipodi:type="star"
+         sodipodi:sides="3"
+         sodipodi:r1="305.50287"
+         sodipodi:r2="152.75143"
+         sodipodi:arg1="0.68803259"
+         sodipodi:arg2="1.7352301"
+         transform="matrix(0.28454,-0.047819,0.047819,0.28454,112.85,763.08)"
+         inkscape:randomized="0"
+         sodipodi:cy="244.36218"
+         sodipodi:cx="510"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         d="M 746,438.36218 484.99554,395.05318 223.99107,351.74418 391.99999,147.36219 560.00893,-57.019817 653.00446,190.67118 Z" />
+    </g>
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:title>Rotate Icon</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>rg1024</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>https://openclipart.org/detail/20247</dc:source>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>arrow</rdf:li>
+            <rdf:li>arrows</rdf:li>
+            <rdf:li>direction</rdf:li>
+            <rdf:li>rotate</rdf:li>
+            <rdf:li>rotation</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>OpenClipart Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
