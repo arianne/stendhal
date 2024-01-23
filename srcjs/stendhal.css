@@ -320,6 +320,7 @@ div.logcolR {
 	flex: 1;
 	height: auto;
 	overflow: hidden;
+	position: absolute;
 }
 
 #equipmentborder {

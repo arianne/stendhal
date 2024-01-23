@@ -74,6 +74,10 @@ class UI {
 			return;
 		}
 		this.displayReady = true;
+
+		const chatPanel = this.get(UIComponentEnum.BottomPanel)!;
+		chatPanel.refresh();
+		chatPanel.setVisible(stendhal.config.getBoolean("client.chat.visible"));
 		// initialize on-screen joystick
 		stendhal.ui.gamewindow.updateJoystick();
 		QuickMenu.init();
@@ -87,6 +91,7 @@ class UI {
 			console.debug("display not in \"ready\" state");
 			return;
 		}
+		this.get(UIComponentEnum.BottomPanel)!.refresh();
 		QuickMenu.refresh();
 	}
 }

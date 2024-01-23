@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ChatPanel } from "../ChatPanel";
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ui } from "../UI";
 
@@ -66,9 +67,7 @@ export class DesktopUserInterfaceFactory {
 
 		// hide pouch by default
 
-		// emoji button causes spacing between elements so apply theme to container panel
-		const bottomPanel = new Panel("bottomPanel", true);
-		bottomPanel.setVisible(singletons.getConfigManager().getBoolean("client.chat.visible"));
+		const bottomPanel = new ChatPanel();
 		ui.registerComponent(UIComponentEnum.BottomPanel, bottomPanel);
 
 		this.add(bottomPanel, UIComponentEnum.ChatInput, new ChatInputComponent());
