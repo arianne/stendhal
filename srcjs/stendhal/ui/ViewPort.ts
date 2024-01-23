@@ -81,10 +81,20 @@ export class ViewPort {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		const element = document.getElementById("gamewindow")! as HTMLCanvasElement;
+		const element = this.getElement() as HTMLCanvasElement;
 		this.ctx = element.getContext("2d")!;
 		this.width = element.width;
 		this.height = element.height;
+	}
+
+	/**
+	 * Retrieves the viewport element.
+	 *
+	 * @return
+	 *   Viewport `HTMLElement`.
+	 */
+	public getElement(): HTMLElement {
+		return document.getElementById("gamewindow")!;
 	}
 
 	draw() {
@@ -442,7 +452,7 @@ export class ViewPort {
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
 		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 		var entity = stendhal.zone.entityAt(x, y);
-		document.getElementById("gamewindow")!.style.cursor = entity.getCursor(x, y);
+		this.getElement().style.cursor = entity.getCursor(x, y);
 	}
 
 	/**
