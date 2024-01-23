@@ -320,8 +320,6 @@ div.logcolR {
 	flex: 1;
 	height: auto;
 	overflow: hidden;
-	position: absolute;
-	opacity: 0.5;
 	display: none;
 }
 

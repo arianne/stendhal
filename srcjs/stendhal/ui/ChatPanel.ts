@@ -20,38 +20,80 @@ export class ChatPanel extends Panel {
 
 	constructor() {
 		super("bottomPanel");
+		this.setFloating(singletons.getConfigManager().getBoolean("client.chat.float"));
+	}
+
+	/**
+	 * Updates chat panel to float or be positioned statically.
+	 *
+	 * @param float
+	 *   `true` if panel should float.
+	 */
+	public setFloating(float: boolean) {
+		singletons.getConfigManager().set("client.chat.float", float);
+		let propPosition = "static";
+		let propOpacity = "1.0";
+		if (float) {
+			propPosition = "absolute";
+			propOpacity = "0.5";
+		} else {
+			// ensure visible when not floating
+			this.setVisible(true);
+		}
+		this.componentElement.style.setProperty("position", propPosition);
+		this.componentElement.style.setProperty("opacity", propOpacity);
+		this.refresh();
+	}
+
+	/**
+	 * Checks if panel is in floating state.
+	 *
+	 * @return
+	 *   `true` if "position" style property is set to "absolute".
+	 */
+	public isFloating(): boolean {
+		return getComputedStyle(this.componentElement).getPropertyValue("position") === "absolute";
 	}
 
 	/**
 	 * Updates element using viewport attributes.
 	 */
 	public override refresh() {
-		const rect = singletons.getViewPort().getElement().getBoundingClientRect();
-		const halfHeight = Math.abs(rect.height / 2);
-		this.componentElement.style["width"] = rect.width + "px";
-		this.componentElement.style["height"] = halfHeight + "px";
-		this.componentElement.style["left"] = rect.left + "px";
-		this.componentElement.style["top"] = (rect.top + halfHeight) + "px";
+		if (this.isFloating()) {
+			const rect = singletons.getViewPort().getElement().getBoundingClientRect();
+			const halfHeight = Math.abs(rect.height / 2);
+			this.componentElement.style["width"] = rect.width + "px";
+			this.componentElement.style["height"] = halfHeight + "px";
+			this.componentElement.style["left"] = rect.left + "px";
+			this.componentElement.style["top"] = (rect.top + halfHeight) + "px";
+		} else {
+			for (const prop of ["width", "height", "left", "top"]) {
+				this.componentElement.style.removeProperty(prop);
+			}
+		}
 	}
 
 	/**
 	 * Shows chat panel when enter key is pressed.
 	 */
 	public onEnterPressed() {
-		this.setVisible(!this.isVisible());
+		if (this.isFloating()) {
+			this.setVisible(!this.isVisible());
+		}
 	}
 
 	/**
 	 * Hides chat panel after sending message if auto-hiding enabled.
 	 */
 	public onMessageSent() {
-		if (this.isVisible() && singletons.getConfigManager().getBoolean("client.chat.autohide")) {
+		if (this.isFloating() && this.isVisible() && singletons.getConfigManager().getBoolean("client.chat.autohide")) {
 			this.setVisible(false);
 		}
 	}
 
 	public override setVisible(visible=true) {
 		super.setVisible(visible);
+		// FIXME: there may be a problem if panel is not floating & not visible when client starts
 		// update config
 		singletons.getConfigManager().set("client.chat.visible", visible);
 		// update quick menu button

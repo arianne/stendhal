@@ -21,6 +21,7 @@ export class ConfigManager {
 
 	private readonly defaults = {
 		"client.chat.autohide": "false",
+		"client.chat.float": "false",
 		"client.chat.visible": "false",
 		"client.corpse.indicator": "true",
 		"client.emojis.native": "false",

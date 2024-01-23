@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ChatPanel } from "../ChatPanel";
 import { ui } from "../UI";
 import { ChatLogComponent } from "../component/ChatLogComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
@@ -94,6 +95,12 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.createCheckBox("chk_corpseindicator", "client.corpse.indicator",
 				"Indicator will be drawn when corpse contains items", "Disabled drawing indicator when corpse contains items");
+
+		const chk_floatchat = this.createCheckBox("chk_floatchat", "client.chat.float",
+				undefined, undefined,
+				function() {
+					(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).setFloating(chk_floatchat.checked);
+				});
 
 		this.createCheckBox("chk_hidechat", "client.chat.autohide",
 				"Chat panel will be hidden after sending text", "Chat panel will remain on-screen");
