@@ -229,19 +229,11 @@ export class SettingsDialog extends DialogContentComponent {
 		});
 
 		// on-screen joystick
-		const js_styles: {[index: string]: string} = {
-			"joystick": "joystick",
-			"dpad": "direction pad",
-		};
-		let js_idx: number = Object.keys(js_styles).indexOf(stendhal.config.get("client.joystick.style"));
-		if (js_idx < 0) {
-			js_idx = 0;
-		}
-		const sel_joystick = this.createSelect("seljoystick", js_styles, js_idx);
-		sel_joystick.addEventListener("change", (e) => {
-			stendhal.config.set("client.joystick.style", Object.keys(js_styles)[sel_joystick.selectedIndex]);
-			stendhal.ui.gamewindow.updateJoystick();
-		});
+		const sel_joystick = this.createSelectFromConfig("seljoystick", "client.joystick.style",
+				undefined,
+				function(e: Event) {
+					stendhal.ui.gamewindow.updateJoystick();
+				});
 
 		// joystck positioning
 		for (const o of ["x", "y"]) {
@@ -388,65 +380,103 @@ export class SettingsDialog extends DialogContentComponent {
 	 * Creates a select element.
 	 *
 	 * @param id
-	 *     Identifier of element to retrieve.
-	 * @param options
-	 *     A {string: string} (identifier: visible text) object for available
-	 *     options.
+	 *   Identifier of element to retrieve.
+	 * @param opts
+	 *   A {string: string} (identifier: visible text) object for available options.
 	 * @param idx
-	 *     The index to set as selected on construction.
+	 *   The index to set as selected on construction.
 	 * @param tooltip
-	 *     Optional popup tooltip text.
+	 *   Optional popup tooltip text.
+	 * @param action
+	 *   Action to execute when state changed.
 	 * @return
-	 *     HTMLSelectElement.
+	 *   `HTMLSelectElement`.
 	 */
-	private createSelect(id: string, options: {[index: string]: string},
-			idx: number, tooltip?: string): HTMLSelectElement {
-
-		const sel = <HTMLSelectElement> this.child(
-			"select[id=" + id + "]")!;
+	private createSelect(id: string, opts: {[index: string]: string}, idx: number,
+			tooltip?: string, action?: Function): HTMLSelectElement {
+		if (Object.keys(opts).length == 0) {
+			console.warn("initializing empty values for selector ID \"" + id + "\"");
+		}
+		const sel = <HTMLSelectElement> this.child("select[id=" + id + "]")!;
+		// FIXME: these should be set in CSS
 		sel.style.setProperty("width", "9em");
 		sel.parentElement!.style.setProperty("margin-right", "0");
 		sel.parentElement!.style.setProperty("margin-left", "auto");
 		sel.parentElement!.style.setProperty("padding-bottom", "5px");
 
-		for (const key of Object.keys(options)) {
+		for (const key of Object.keys(opts)) {
+			if (!opts[key]) {
+				// use key as default value
+				opts[key] = key;
+			}
 			const opt = document.createElement("option");
 			opt.value = key;
-			opt.textContent = options[key];
+			opt.textContent = opts[key];
 			sel.appendChild(opt);
 		}
-		sel.selectedIndex = idx;
-
+		if (idx > -1 && idx < Object.keys(opts).length) {
+			sel.selectedIndex = idx;
+		}
 		if (tooltip) {
 			sel.title = tooltip;
 		}
-
+		if (action) {
+			sel.addEventListener("change", function(e: Event) {
+				action(e);
+			});
+		}
 		return sel;
+	}
+
+	/**
+	 * Creates a select element.
+	 *
+	 * @param id
+	 *   Identifier of element to retrieve.
+	 * @param cid
+	 *   Configuration key associated with element.
+	 * @param tooltip
+	 *   Optional popup tooltip text.
+	 * @param action
+	 *   Action to execute when state changed.
+	 * @return
+	 *   `HTMLSelectElement`.
+	 */
+	private createSelectFromConfig(id: string, ckey: string, tooltip?: string, action?: Function): HTMLSelectElement {
+		const cvalue = stendhal.config.get(ckey);
+		const opts = stendhal.config.getOpts(ckey);
+		let idx = Object.keys(opts).indexOf(cvalue);
+		if (typeof(cvalue) === "undefined" || idx < 0) {
+			console.error("invalid value \"" + cvalue + "\" for configuration key \"" + ckey + "\""
+					+ ". options are: " + Object.keys(opts).join(", "));
+		}
+		const actionTemp = function(e: Event) {
+			if (e.target) {
+				const select = e.target as HTMLSelectElement;
+				// update configuration value
+				stendhal.config.set(ckey, Object.keys(opts)[select.selectedIndex]);
+			}
+			if (action) {
+				action(e);
+			}
+		};
+		return this.createSelect(id, opts, idx, tooltip, actionTemp);
 	}
 
 	/**
 	 * Creates a select element for registered fonts.
 	 *
 	 * @param id
-	 *     Identifier of element to retrieve.
+	 *   Identifier of element to retrieve.
 	 * @param idx
-	 *     The index to set as selected on construction.
+	 *   The index to set as selected on construction.
 	 * @param tooltip
-	 *     Optional popup tooltip text.
+	 *   Optional popup tooltip text.
 	 * @return
-	 *     HTMLSelectElement.
+	 *   `HTMLSelectElement`.
 	 */
 	private createFontSelect(id: string, idx: number, tooltip?: string): HTMLSelectElement {
-		const options = {} as {[index: string]: string};
-		for (const key of Object.keys(stendhal.config.fonts)) {
-			let value = stendhal.config.fonts[key];
-			if (value === "") {
-				value = key;
-			}
-			options[key] = value;
-		}
-
-		return this.createSelect(id, options, idx, tooltip);
+		return this.createSelect(id, Object.assign({}, stendhal.config.fonts), idx, tooltip);
 	}
 
 	/**

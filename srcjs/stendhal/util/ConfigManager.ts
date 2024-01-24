@@ -67,6 +67,10 @@ export class ConfigManager {
 	};
 
 	private readonly opts: {[key: string]: {[id: string]: string}} = {
+		"client.joystick.style": {
+			"joystick": "",
+			"dpad": "direction pad"
+		}
 	};
 
 	/**
