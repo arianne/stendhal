@@ -465,7 +465,7 @@ export class ViewPort {
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
 		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 		var entity = stendhal.zone.entityAt(x, y);
-		this.getElement().style.cursor = entity.getCursor(x, y);
+		stendhal.ui.gamewindow.getElement().style.cursor = entity.getCursor(x, y);
 	}
 
 	/**
