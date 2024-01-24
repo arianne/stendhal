@@ -47,7 +47,7 @@ export class QMButton {
 		}
 		QMButton.initialized = true;
 
-		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
+		const btn_main = QMButton.getElement();
 		// ensure main button is visible at startup
 		btn_main.style["display"] = "block";
 		btn_main.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
@@ -90,7 +90,7 @@ export class QMButton {
 	 */
 	public static refresh() {
 		// place buttons in upper-right corner of viewport
-		const btn_main = document.getElementById("qm-main")! as HTMLImageElement;
+		const btn_main = QMButton.getElement();
 		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
 
 		let drawLeft = rect.right - btn_main.width;
@@ -121,10 +121,52 @@ export class QMButton {
 	}
 
 	private static update() {
-		(document.getElementById("qm-main")! as HTMLImageElement).style["transform"] = "rotate("
+		if (!QMButton.isVisible()) {
+			// menu is disabled so we don't need to update visibility of sub-buttons
+			return;
+		}
+		QMButton.getElement().style["transform"] = "rotate("
 				+ (QMButton.expanded ? 90 : 0) + "deg)";
 		for (const btn of [...QMButton.buttonListX, ...QMButton.buttonListY]) {
 			btn.setVisible(QMButton.expanded);
 		}
+	}
+
+	/**
+	 * Shows or hides quick menu.
+	 *
+	 * @param visible
+	 *   Whether quick menu should be shown.
+	 */
+	public static setVisible(visible=true) {
+		if (QMButton.isVisible() == visible) {
+			// menu is already in target state
+			return;
+		}
+		// reset to collapsed state
+		QMButton.expanded = false;
+		QMButton.update();
+		// hide main button
+		QMButton.getElement().style["display"] = visible ? "block" : "none";
+		if (visible) {
+			QMButton.refresh();
+		}
+	}
+
+	/**
+	 * Checks if menu in visible state.
+	 */
+	private static isVisible(): boolean {
+		return QMButton.getElement().style["display"] !== "none";
+	}
+
+	/**
+	 * Retrieves the main element associated with the quick menu.
+	 *
+	 * @return
+	 *   `HTMLImageElement`.
+	 */
+	private static getElement(): HTMLImageElement {
+		return document.getElementById("qm-main")! as HTMLImageElement;
 	}
 }

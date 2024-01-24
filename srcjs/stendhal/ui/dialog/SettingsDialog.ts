@@ -221,6 +221,12 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
+		this.createSelectFromConfig("selmenustyle", "client.menu.style",
+				undefined,
+				function(e: Event) {
+					ui.onMenuUpdate();
+				});
+
 		// common chat keyword options
 		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat.custom_keywords"),
 				"Comma-separated list accessible from the chat options dialog");

@@ -95,8 +95,9 @@ class UI {
 		stendhal.ui.gamewindow.updateJoystick();
 		QuickMenu.init();
 
-		// update sound buttons
+		// update menu buttons
 		this.onSoundUpdate();
+		this.onMenuUpdate();
 	}
 
 	/**
@@ -118,6 +119,22 @@ class UI {
 		(this.get(UIComponentEnum.QMSound)! as ButtonBase).update();
 		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("ui.sound")
 				? "🔊" : "🔇";
+	}
+
+	/**
+	 * Instructions to execute when menu style changes.
+	 */
+	public onMenuUpdate() {
+		switch (stendhal.config.get("client.menu.style")) {
+			case "traditional":
+				document.getElementById("menupanel")!.style["display"] = "";
+				QuickMenu.setVisible(false);
+				break;
+			case "floating":
+				document.getElementById("menupanel")!.style["display"] = "none";
+				QuickMenu.setVisible(true);
+				break;
+		}
 	}
 }
 

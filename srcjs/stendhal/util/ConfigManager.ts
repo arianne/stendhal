@@ -29,6 +29,7 @@ export class ConfigManager {
 		"client.joystick.center.x": "224",
 		"client.joystick.center.y": "384",
 		"client.joystick.style": "joystick",
+		"client.menu.style": "traditional",
 		"client.pathfinding": "true",
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",
@@ -70,6 +71,10 @@ export class ConfigManager {
 		"client.joystick.style": {
 			"joystick": "",
 			"dpad": "direction pad"
+		},
+		"client.menu.style": {
+			"traditional": "",
+			"floating": ""
 		}
 	};
 
