@@ -11,7 +11,6 @@
 
 import { ButtonBase } from "./ButtonBase";
 import { ui } from "../UI";
-import { ApplicationMenuDialog } from "../dialog/ApplicationMenuDialog";
 
 declare var stendhal: any;
 
@@ -26,10 +25,6 @@ export class MenuButton extends ButtonBase {
 	}
 
 	protected override onClick(evt: Event) {
-		const dialogState = stendhal.config.getWindowState("menu");
-		const menuContent = new ApplicationMenuDialog();
-		const menuFrame = ui.createSingletonFloatingWindow("Menu", menuContent, dialogState.x, dialogState.y);
-		menuFrame.setId("menu");
-		menuContent.setFrame(menuFrame);
+		ui.showApplicationMenu();
 	}
 }

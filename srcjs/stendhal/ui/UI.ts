@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { UIComponentEnum } from "./UIComponentEnum";
+import { ApplicationMenuDialog } from "./dialog/ApplicationMenuDialog";
 import { ButtonBase } from "./quickmenu/ButtonBase";
 import { QMButton as QuickMenu } from "./quickmenu/QMButton";
 import { Component } from "./toolkit/Component";
@@ -54,6 +55,17 @@ class UI {
 		const offsetY = window.pageYOffset || delem.scrollTop || body.scrollTop;
 
 		return {x: offsetX, y: offsetY};
+	}
+
+	/**
+	 * Creates and displays application menu window.
+	 */
+	public showApplicationMenu() {
+		const dialogState = stendhal.config.getWindowState("menu");
+		const menuContent = new ApplicationMenuDialog();
+		const menuFrame = ui.createSingletonFloatingWindow("Menu", menuContent, dialogState.x, dialogState.y);
+		menuFrame.setId("menu");
+		menuContent.setFrame(menuFrame);
 	}
 
 	/**
