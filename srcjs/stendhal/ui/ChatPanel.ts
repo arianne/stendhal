@@ -69,10 +69,14 @@ export class ChatPanel extends Panel {
 			this.componentElement.style["height"] = halfHeight + "px";
 			this.componentElement.style["left"] = rect.left + "px";
 			this.componentElement.style["top"] = (rect.top + halfHeight) + "px";
+			// remove theming when floating
+			this.componentElement.classList.remove("background");
 		} else {
 			for (const prop of ["width", "height", "left", "top"]) {
 				this.componentElement.style.removeProperty(prop);
 			}
+			// add theming when inline
+			this.componentElement.classList.add("background");
 		}
 
 		// adapt viewport layout
