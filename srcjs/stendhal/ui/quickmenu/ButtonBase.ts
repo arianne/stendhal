@@ -38,6 +38,9 @@ export abstract class ButtonBase extends Component {
 
 	protected abstract onClick(evt: Event): void;
 
+	/**
+	 * NOTE: maybe it would be better to use `Component.refresh`
+	 */
 	public update() {
 		// implementing classes can override
 	}
