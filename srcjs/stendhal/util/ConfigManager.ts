@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2022-2024 - Stendhal                     *
+ *                 Copyright © 2022-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,7 +19,7 @@ declare var stendhal: any;
 
 export class ConfigManager {
 
-	private readonly defaults = {
+	private readonly defaults: {[id: string]: string} = {
 		"client.chat.autohide": "false",
 		"client.chat.float": "false",
 		"client.chat.visible": "false",
@@ -64,16 +64,19 @@ export class ConfigManager {
 		"action.inventory.quickpickup": "true",
 		"event.pvtmsg.sound": "ui/notify_up",
 		"chat.custom_keywords": "",
-	} as {[id: string]: string};
+	};
+
+	private readonly opts: {[key: string]: {[id: string]: string}} = {
+	};
 
 	/**
 	 * Old keys that should be replaced.
 	 */
-	private readonly deprecated = {
+	private readonly deprecated: {[old: string]: string} = {
 		"ui.joystick": "client.joystick.style",
 		"ui.joystick.center.x": "client.joystick.center.x",
 		"ui.joystick.center.y": "client.joystick.center.y"
-	} as {[old: string]: string};
+	};
 
 	private readonly themes = {
 		/**
@@ -108,13 +111,13 @@ export class ConfigManager {
 		}
 	} as any;
 
-	private readonly fonts = {
+	private readonly fonts: {[name: string]: string} = {
 		"sans-serif": "system default",
 		"serif": "system default (serif)",
 		"Amaranth": "",
 		"Black Chancery": "",
 		"Carlito": ""
-	} as {[name: string]: string};
+	};
 
 	private readonly storage = window.localStorage;
 	private readonly windowstates: any = {};
@@ -276,6 +279,30 @@ export class ConfigManager {
 		if (typeof(value) === "object") {
 			return value;
 		}
+	}
+
+	/**
+	 * Retrieves a list of available options for a config id.
+	 *
+	 * @param key
+	 *   String identifier.
+	 * @return
+	 *   String enumeration.
+	 */
+	public getOpts(key: string): {[id: string]: string} {
+		return this.isOptsPairs(key) ? this.opts[key] : {};
+	}
+
+	/**
+	 * Checks if a key represents a set of configuration key=value pairs.
+	 *
+	 * @param key
+	 *   String identifier.
+	 * @return
+	 *   `true` if `key` has a value in `ConfigManager.opts`.
+	 */
+	private isOptsPairs(key: string): boolean {
+		return Object.keys(this.opts).indexOf(key) > -1;
 	}
 
 	/**
