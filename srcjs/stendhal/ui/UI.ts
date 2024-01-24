@@ -116,6 +116,8 @@ class UI {
 	 */
 	public onSoundUpdate() {
 		(this.get(UIComponentEnum.QMSound)! as ButtonBase).update();
+		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("ui.sound")
+				? "🔊" : "🔇";
 	}
 }
 

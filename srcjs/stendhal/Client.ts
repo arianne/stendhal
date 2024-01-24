@@ -107,8 +107,20 @@ export class Client {
 		stendhal.ui.equip = singletons.getInventory();
 		stendhal.ui.html = singletons.getHTMLManager();
 		stendhal.ui.touch = singletons.getTouchHandler();
-		stendhal.ui.soundMan = singletons.getSoundManager();
 		stendhal.ui.gamewindow = singletons.getViewPort();
+
+		// main menu
+		const menubutton = document.getElementById("menubutton")!;
+		menubutton.addEventListener("click", function(e: Event) {
+			ui.showApplicationMenu();
+		});
+
+		// sound system
+		stendhal.ui.soundMan = singletons.getSoundManager();
+		const soundButton = document.getElementById("soundbutton")!;
+		soundButton.addEventListener("click", function(e: Event) {
+			stendhal.ui.soundMan.toggleSound();
+		});
 	}
 
 	private initZone() {
