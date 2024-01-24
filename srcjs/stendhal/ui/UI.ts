@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { UIComponentEnum } from "./UIComponentEnum";
+import { ButtonBase } from "./quickmenu/ButtonBase";
 import { QMButton as QuickMenu } from "./quickmenu/QMButton";
 import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
@@ -81,6 +82,9 @@ class UI {
 		// initialize on-screen joystick
 		stendhal.ui.gamewindow.updateJoystick();
 		QuickMenu.init();
+
+		// update sound buttons
+		this.onSoundUpdate();
 	}
 
 	/**
@@ -93,6 +97,13 @@ class UI {
 		}
 		this.get(UIComponentEnum.BottomPanel)!.refresh();
 		QuickMenu.refresh();
+	}
+
+	/**
+	 * Instructions to execute when sound muted state changes.
+	 */
+	public onSoundUpdate() {
+		(this.get(UIComponentEnum.QMSound)! as ButtonBase).update();
 	}
 }
 

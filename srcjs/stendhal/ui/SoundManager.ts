@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "./UI";
 import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
@@ -579,6 +580,39 @@ export class SoundManager {
 			return 1;
 		}
 		return this.normVolume(vol);
+	}
+
+	/**
+	 * Toggles muted state of sound system.
+	 */
+	public toggleSound() {
+		const enabled = !stendhal.config.getBoolean("ui.sound");
+		stendhal.config.set("ui.sound", enabled);
+
+		if (enabled) {
+			if (!this.unmuteAll()) {
+				let errmsg = "Failed to unmute sounds:";
+				for (const snd of this.getActive()) {
+					if (snd && snd.src && snd.muted) {
+						errmsg += "\n- " + snd.src;
+					}
+				}
+				console.warn(errmsg);
+			}
+		} else {
+			if (!this.muteAll()) {
+				let errmsg = "Failed to mute sounds:";
+				for (const snd of this.getActive()) {
+					if (snd && snd.src && !snd.muted) {
+						errmsg += "\n- " + snd.src;
+					}
+				}
+				console.warn(errmsg);
+			}
+		}
+
+		// notify client
+		ui.onSoundUpdate();
 	}
 
 	/**

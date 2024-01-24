@@ -59,14 +59,16 @@ export class QMButton {
 		QMButton.buttonListX.push(new LogButton());
 		const chatButton = new ChatButton();
 		QMButton.buttonListX.push(chatButton);
-		QMButton.buttonListX.push(new SoundButton());
+		const soundButton = new SoundButton();
+		QMButton.buttonListX.push(soundButton);
 		QMButton.buttonListX.push(new JoystickButton());
 		// vertical sub-buttons
 		QMButton.buttonListY.push(new RotateLButton());
 		QMButton.buttonListY.push(new RotateRButton());
 
 		// register component buttons
-		ui.registerComponent(UIComponentEnum.ChatButton, chatButton);
+		ui.registerComponent(UIComponentEnum.QMChat, chatButton);
+		ui.registerComponent(UIComponentEnum.QMSound, soundButton);
 
 		btn_main.onload = () => {
 			// remove listener

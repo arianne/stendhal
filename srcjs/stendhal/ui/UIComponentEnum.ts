@@ -44,5 +44,6 @@ export class UIComponentEnum {
 	public static readonly OutfitDialog = 203;
 
 	// Quick menu
-	public static readonly ChatButton = 301;
+	public static readonly QMChat = 301;
+	public static readonly QMSound = 302;
 }

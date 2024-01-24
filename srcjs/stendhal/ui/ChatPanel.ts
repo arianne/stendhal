@@ -107,7 +107,7 @@ export class ChatPanel extends Panel {
 		// update config
 		singletons.getConfigManager().set("client.chat.visible", visible);
 		// update quick menu button
-		const chatButton = ui.get(UIComponentEnum.ChatButton);
+		const chatButton = ui.get(UIComponentEnum.QMChat);
 		if (chatButton) {
 			(chatButton as ChatButton).update();
 		}
