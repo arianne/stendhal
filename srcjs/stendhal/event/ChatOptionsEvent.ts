@@ -21,6 +21,7 @@ declare var marauroa: any
 export class ChatOptionsEvent extends RPEvent {
 
 	public npc!: string;
+	public title?: string;
 	public options!: string;
 
 	public execute(entity: any): void {
@@ -36,7 +37,7 @@ export class ChatOptionsEvent extends RPEvent {
 		}
 
 		// update options to be included in keyword shortcuts dialog
-		Chat.attending = this['npc'];
+		Chat.attending = this['title'] || this['npc'];
 		Chat.options = message;
 
 		if (Chat.options.length == 1 && Chat.options[0].toLowerCase() === "hello") {

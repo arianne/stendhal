@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2023-2023 - Stendhal                    *
+ *                   (C) Copyright 2023-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,6 +40,7 @@ import marauroa.common.game.RPEvent;
 public class ChatOptionsEvent extends RPEvent {
 
 	private static final String NPC = "npc";
+	private static final String TITLE = "title";
 	private static final String OPTIONS = "options";
 
 	private static class ChatOption implements Comparable<ChatOption> {
@@ -109,6 +110,10 @@ public class ChatOptionsEvent extends RPEvent {
 	public ChatOptionsEvent(SpeakerNPC npc, Player player, ConversationStates currentState) {
 		super(Events.CHAT_OPTIONS);
 		put(NPC, npc.getName());
+		final String title = npc.getTitle();
+		if (title != null) {
+			put(TITLE, title);
+		}
 
 		TreeSet<ChatOption> chatOptions = buildChatOptions(npc, player, currentState);
 		put(OPTIONS, Joiner.on("\t").join(Iterables.transform(chatOptions, new Function<ChatOption, String>() {
@@ -178,6 +183,7 @@ public class ChatOptionsEvent extends RPEvent {
 	public static void generateRPClass() {
 		final RPClass rpclass = new RPClass(Events.CHAT_OPTIONS);
 		rpclass.addAttribute(NPC, Type.STRING);
+		rpclass.addAttribute(TITLE, Type.STRING);
 		rpclass.addAttribute(OPTIONS, Type.VERY_LONG_STRING);
 	}
 
