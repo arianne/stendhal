@@ -11,7 +11,6 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
-import org.stendhalgame.client.js.JSInterface;
 import org.stendhalgame.client.sound.MusicPlayer;
 
 import android.app.AlertDialog;
@@ -107,7 +106,7 @@ public class ClientView extends WebView {
 		}
 
 		initWebViewClient();
-		initJSInterface();
+		initWebClientInfo();
 		initDownloadHandler();
 	}
 
@@ -181,8 +180,8 @@ public class ClientView extends WebView {
 		return ret;
 	}
 
-	private void initJSInterface() {
-		addJavascriptInterface(JSInterface.get(), "jsi");
+	private void initWebClientInfo() {
+		addJavascriptInterface(WebClientInfo.get(), "wci");
 	}
 
 	/**

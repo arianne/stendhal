@@ -9,26 +9,26 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.stendhalgame.client.js;
+package org.stendhalgame.client;
 
 
-public class JSInterface {
+public class WebClientInfo {
 
 	/** Singleton instance. */
-	private static JSInterface instance;
+	private static WebClientInfo instance;
 
 
 	/**
 	 * Retrieves the singleton instance.
 	 */
-	public static JSInterface get() {
-		if (instance == null) {
-			instance = new JSInterface();
+	public static WebClientInfo get() {
+		if (WebClientInfo.instance == null) {
+			WebClientInfo.instance = new WebClientInfo();
 		}
-		return instance;
+		return WebClientInfo.instance;
 	}
 
-	private JSInterface() {
+	private WebClientInfo() {
 		// singleton
 	}
 }
