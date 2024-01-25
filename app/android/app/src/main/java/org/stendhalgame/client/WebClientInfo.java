@@ -57,6 +57,8 @@ public class WebClientInfo {
 
 	/**
 	 * Parses build and version info from DOM.
+	 *
+	 * FIXME: overwrites page, need a way to do this in background
 	 */
 	public void onClientConnected() {
 		// Note: could not get info from stored value directly (stendhal.data.build.<key>) nor from

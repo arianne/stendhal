@@ -145,7 +145,7 @@ public class ClientView extends WebView {
 
 				if (isClientUrl(url)) {
 					currentPage = PageId.WEBCLIENT;
-					WebClientInfo.get().onClientConnected();
+					//~ WebClientInfo.get().onClientConnected();
 				} else if (url.equals("") || url.equals("about:blank")) {
 					currentPage = PageId.TITLE;
 					if (PreferencesActivity.getBoolean("title_music", true)) {
