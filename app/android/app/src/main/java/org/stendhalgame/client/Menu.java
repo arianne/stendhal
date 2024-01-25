@@ -174,22 +174,18 @@ public class Menu {
 
 				// TODO: create proper about activity
 
-				String server_ver = "unavailable";
-				if (!(ClientView.getCurrentPageId() == PageId.WEBCLIENT)) {
-					server_ver = "not connected";
-				}
-				// FIXME: how to find server version if connected?
-
 				final ClientView client = ClientView.get();
+				final WebClientInfo wci = WebClientInfo.get();
 				final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
-				String msg = "WebView client version: " + BuildConfig.VERSION_NAME;
+				String msg = "Android client version: " + BuildConfig.VERSION_NAME
+						+ "\nWeb client version: " + wci.getVersion()
+						+ "\nWeb client build: " + wci.getBuild();
 				if (client.debugEnabled()) {
-					msg += "\nSelected client: " + client.getSelectedClient()
-							+ "\nSelected server: " + client.getSelectedServer()
+					msg += "\nClient type: " + client.getSelectedClient()
+							+ "\nServer type: " + client.getSelectedServer()
 							+ "\nLogs directory: " + DebugLog.getLogsDir();
 				}
-				msg += "\nServer version: " + server_ver
-						+ "\n\nTitle Music:"
+				msg += "\n\nTitle Music:"
 						+ "\n\n- Treasure Hunter"
 						+ "\n  by Tad Miller (TAD)"
 						+ "\n  - opengameart.org/node/127124"

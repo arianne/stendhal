@@ -106,8 +106,9 @@ public class ClientView extends WebView {
 		}
 
 		initWebViewClient();
-		initWebClientInfo();
 		initDownloadHandler();
+		// initialize web client info JavaScript interface
+		WebClientInfo.get();
 	}
 
 	private void initWebViewClient() {
@@ -144,6 +145,7 @@ public class ClientView extends WebView {
 
 				if (isClientUrl(url)) {
 					currentPage = PageId.WEBCLIENT;
+					WebClientInfo.get().onClientConnected();
 				} else if (url.equals("") || url.equals("about:blank")) {
 					currentPage = PageId.TITLE;
 					if (PreferencesActivity.getBoolean("title_music", true)) {
@@ -178,10 +180,6 @@ public class ClientView extends WebView {
 		}
 
 		return ret;
-	}
-
-	private void initWebClientInfo() {
-		addJavascriptInterface(WebClientInfo.get(), "wci");
 	}
 
 	/**

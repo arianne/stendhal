@@ -11,8 +11,18 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
+import java.util.Arrays;
+import java.util.HashMap;
 
+import android.webkit.JavascriptInterface;
+
+
+/**
+ * Class for getting information from web client.
+ */
 public class WebClientInfo {
+
+	private HashMap<String, String> parsedInfo;
 
 	/** Singleton instance. */
 	private static WebClientInfo instance;
@@ -28,7 +38,54 @@ public class WebClientInfo {
 		return WebClientInfo.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
 	private WebClientInfo() {
-		// singleton
+		ClientView.get().addJavascriptInterface(this, "wci");
+		parsedInfo = new HashMap<>();
+	}
+
+	@JavascriptInterface
+	public String put(final String key, final String value) {
+		return parsedInfo.put(key, value);
+	}
+
+	public String get(final String key) {
+		return parsedInfo.containsKey(key) ? parsedInfo.get(key) : "";
+	}
+
+	/**
+	 * Parses build and version info from DOM.
+	 */
+	public void onClientConnected() {
+		// Note: could not get info from stored value directly (stendhal.data.build.<key>) nor from
+		//       attribute added to main element (document.documentElement.getAttribute("data-build-<key>"))
+		//       so info is parsed from element with ID "build-<key>"
+		for (final String key: Arrays.asList("build", "version")) {
+			ClientView.get().loadUrl("javascript:window.wci.put('" + key + "', document.getElementById('build-" + key + "').innerText);");
+		}
+	}
+
+	/**
+	 * Retrieves build string parsed from web client DOM.
+	 */
+	public String getBuild() {
+		if (!ClientView.isGameActive()) {
+			return "not connected";
+		}
+		final String info = get("build");
+		return "".equals(info) ? "not available" : info;
+	}
+
+	/**
+	 * Retrieves version string parsed from web client DOM.
+	 */
+	public String getVersion() {
+		if (!ClientView.isGameActive()) {
+			return "not connected";
+		}
+		final String info = get("version");
+		return "".equals(info) ? "not available" : info;
 	}
 }
