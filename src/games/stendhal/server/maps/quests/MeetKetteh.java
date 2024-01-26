@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -166,14 +166,14 @@ public class MeetKetteh extends AbstractQuest {
 				null);
 
 		// only allow quest completed if not naked
-		npc.add(ConversationStates.ATTENDING, "manners",
+		npc.add(ConversationStates.ATTENDING, "manner",
 				new NotCondition(new NakedCondition()),
 				ConversationStates.ATTENDING,
 				"If you happen to talk to any of the other citizens, you should always begin the conversation saying \"hi\". People here are quite predictable and will always enjoy talking about their \"job\", they will respond if you ask for \"help\" and if you want to do a \"task\" for them, just say it. If they look like the trading type, you can ask for their \"offers\". To end the conversation, just say \"bye\".",
 				new SetQuestAction(QUEST_SLOT, "learnt_manners"));
 
 		// not prompted to say this any more when naked, but just in case we don't want them to have an empty reply
-		npc.add(ConversationStates.ATTENDING, "manners",
+		npc.add(ConversationStates.ATTENDING, "manner",
 				new NakedCondition(),
 				ConversationStates.ATTENDING,
 				"Good manners starts with putting some clothes on! You can have the advanced lesson when you are fully dressed.",
