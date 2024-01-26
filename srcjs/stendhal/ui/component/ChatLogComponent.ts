@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,13 +22,26 @@ declare var stendhal: any;
  */
 export class ChatLogComponent extends Component {
 
+	/** Most recent state of chat log scrolling. */
+	private scrollStateBottom: boolean;
+	private scrollListener: EventListenerOrEventListenerObject;
+
+
 	constructor() {
 		super("chat");
 		this.refresh();
+		this.scrollStateBottom = this.isAtBottom();
 
 		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
 			this.onContextMenu(evt)
 		});
+
+		this.scrollListener = (evt: Event) => {
+			this.onScroll();
+		};
+		if (this.isVisible()) {
+			this.componentElement.addEventListener("scroll", this.scrollListener);
+		}
 	}
 
 
@@ -63,12 +76,12 @@ export class ChatLogComponent extends Component {
 
 
 	private add(row: HTMLDivElement) {
-		const chatElement = this.componentElement;
-		const isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) <= chatElement.scrollTop + 5;
-		chatElement.appendChild(row);
+		// check state before adding row
+		const wasAtBottom = this.isAtBottom();
+		this.componentElement.appendChild(row);
 
-		if (isAtBottom) {
-			chatElement.scrollTop = chatElement.scrollHeight;
+		if (wasAtBottom) {
+			this.scrollToBottom();
 		}
 	}
 
@@ -277,6 +290,61 @@ export class ChatLogComponent extends Component {
 
 	public clear() {
 		this.componentElement.innerHTML = "";
+	}
+
+	/**
+	 * Sets scrolled position.
+	 *
+	 * @param scroll
+	 *   New scrolled position.
+	 */
+	private setScroll(scroll: number) {
+		this.componentElement.scrollTop = scroll;
+	}
+
+	/**
+	 * Sets scrolled position to end of log.
+	 */
+	private scrollToBottom() {
+		this.setScroll(this.componentElement.scrollHeight);
+	}
+
+	/**
+	 * Checks if scrolled state represents end of log.
+	 *
+	 * @return
+	 *   `true` if recent state is less than 0 or scroll position is same as element height.
+	 */
+	private isAtBottom(): boolean {
+		return this.componentElement.scrollHeight - this.componentElement.clientHeight
+				<= this.componentElement.scrollTop + 5;
+	}
+
+	/**
+	 * Called when a scroll event occurs.
+	 */
+	private onScroll() {
+		// remember scrolled state
+		this.scrollStateBottom = this.isAtBottom();
+	}
+
+	/**
+	 * Called when chat panel is hidden.
+	 */
+	public onHide() {
+		// stop listening for scroll events when chat panel is hidden
+		this.componentElement.removeEventListener("scroll", this.scrollListener);
+	}
+
+	/**
+	 * Called when chat panel visibility is restored.
+	 */
+	public onUnhide() {
+		if (this.scrollStateBottom) {
+			this.scrollToBottom();
+		}
+		// don't listen for scroll events until AFTER scroll state has been updated
+		this.componentElement.addEventListener("scroll", this.scrollListener);
 	}
 
 

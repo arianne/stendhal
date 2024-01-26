@@ -11,6 +11,7 @@
 
 import { ui } from "./UI";
 import { UIComponentEnum } from "./UIComponentEnum";
+import { ChatLogComponent } from "./component/ChatLogComponent";
 import { ChatButton } from "./quickmenu/ChatButton";
 import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
@@ -102,14 +103,20 @@ export class ChatPanel extends Panel {
 	}
 
 	public override setVisible(visible=true) {
-		super.setVisible(visible);
 		// FIXME: there may be a problem if panel is not floating & not visible when client starts
+		const stateChanged = visible != this.isVisible();
+		super.setVisible(visible);
 		// update config
 		singletons.getConfigManager().set("client.chat.visible", visible);
 		// update quick menu button
 		const chatButton = ui.get(UIComponentEnum.QMChat);
 		if (chatButton) {
 			(chatButton as ChatButton).update();
+		}
+		// update chat log
+		const chatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+		if (stateChanged && chatLog) {
+			this.isVisible() ? chatLog.onUnhide() : chatLog.onHide();
 		}
 	}
 }
