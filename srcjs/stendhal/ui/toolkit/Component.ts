@@ -37,8 +37,9 @@ export abstract class Component {
 		if (themable) {
 			this.componentElement.classList.add("background");
 		}
-		this.visibleDisplay = getComputedStyle(this.componentElement).getPropertyValue("display");
-		if (["", "none"].indexOf(this.visibleDisplay) > -1) {
+		// store initial display property value
+		this.visibleDisplay = this.getDisplayProperty();
+		if (this.visibleDisplay === "none") {
 			// element is initially hidden so we need to set visible display value manually
 			this.visibleDisplay = "block";
 		}
@@ -86,13 +87,23 @@ export abstract class Component {
 	}
 
 	/**
+	 * Retrieves display type of element.
+	 *
+	 * @return
+	 *   Current display.
+	 */
+	private getDisplayProperty(): string {
+		return getComputedStyle(this.componentElement).getPropertyValue("display");
+	}
+
+	/**
 	 * Checks if the element is in a visible state.
 	 *
 	 * @return
 	 *   `true` if the element is visible in the DOM.
 	 */
 	public isVisible(): boolean {
-		return ["", "none"].indexOf(this.componentElement.style.display) < 0;
+		return this.getDisplayProperty() !== "none";
 	}
 
 	/**
