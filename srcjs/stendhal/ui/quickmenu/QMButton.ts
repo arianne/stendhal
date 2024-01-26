@@ -11,6 +11,7 @@
 
 import { ButtonBase } from "./ButtonBase";
 import { ChatButton } from "./ChatButton";
+import { ChatOptsButton } from "./ChatOptsButton";
 import { JoystickButton } from "./JoystickButton";
 import { LogButton } from "./LogButton";
 import { MenuButton } from "./MenuButton";
@@ -63,6 +64,7 @@ export class QMButton {
 		QMButton.buttonListX.push(soundButton);
 		QMButton.buttonListX.push(new JoystickButton());
 		// vertical sub-buttons
+		QMButton.buttonListY.push(new ChatOptsButton());
 		QMButton.buttonListY.push(new RotateLButton());
 		QMButton.buttonListY.push(new RotateRButton());
 

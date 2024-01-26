@@ -54,6 +54,7 @@ data/gui/joystick/
 data/gui/quickmenu/
 
 chat*      narrowhouse; CC0; https://openclipart.org/detail/171388
+chatopts*  Jordan Irwin (AntumDeluge); CC0; Stendhal
 joystick*  sagism; CC0; https://openclipart.org/detail/172636
 log*       Martin Owens (doctormo); CC0; https://openclipart.org/detail/3879
 main*      Jordan Irwin (AntumDeluge); CC0; Stendhal
