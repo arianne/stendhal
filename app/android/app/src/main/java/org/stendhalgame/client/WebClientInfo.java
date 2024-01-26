@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import android.webkit.JavascriptInterface;
+import android.webkit.ValueCallback;
 
 
 /**
@@ -42,11 +43,9 @@ public class WebClientInfo {
 	 * Hidden singleton constructor.
 	 */
 	private WebClientInfo() {
-		ClientView.get().addJavascriptInterface(this, "wci");
 		parsedInfo = new HashMap<>();
 	}
 
-	@JavascriptInterface
 	public String put(final String key, final String value) {
 		return parsedInfo.put(key, value);
 	}
@@ -57,15 +56,22 @@ public class WebClientInfo {
 
 	/**
 	 * Parses build and version info from DOM.
-	 *
-	 * FIXME: overwrites page, need a way to do this in background
 	 */
 	public void onClientConnected() {
-		// Note: could not get info from stored value directly (stendhal.data.build.<key>) nor from
-		//       attribute added to main element (document.documentElement.getAttribute("data-build-<key>"))
-		//       so info is parsed from element with ID "build-<key>"
+		final ClientView client = ClientView.get();
 		for (final String key: Arrays.asList("build", "version")) {
-			ClientView.get().loadUrl("javascript:window.wci.put('" + key + "', document.getElementById('build-" + key + "').innerText);");
+			final String script = "(function(){return document.documentElement.getAttribute(\"data-build-" + key +"\")})();";
+			ClientView.get().evaluateJavascript(script, new ValueCallback<String>() {
+				@Override
+				public void onReceiveValue(String html) {
+					// remove leading & trailing quotes
+					final int len = html.length();
+					if (len > 2) {
+						html = html.substring(1, html.length()-1);
+					}
+					put(key, html);
+				}
+			});
 		}
 	}
 

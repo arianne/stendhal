@@ -80,6 +80,10 @@ export class Client {
 		}
 		this.initialized = true;
 
+		// add version & build info to DOM for retrieval by browser
+		document.documentElement.setAttribute("data-build-version", stendhal.data.build.version);
+		document.documentElement.setAttribute("data-build-build", stendhal.data.build.build);
+
 		stendhal.paths = singletons.getPaths();
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
