@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,15 +10,26 @@
  ***************************************************************************/
 
 import { Entity } from "./Entity";
+import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 
 declare var stendhal: any;
 
 export class Sign extends Entity {
 	override zIndex = 5000;
 
+	private indicator?: ActivityIndicatorSprite;
+
+
 	constructor() {
 		super();
 		this["class"] = "default";
+	}
+
+	override set(key: string, value: object) {
+		super.set(key, value);
+		if (key === "activity-indicator") {
+			this.indicator = new ActivityIndicatorSprite();
+		}
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {
@@ -30,6 +41,9 @@ export class Sign extends Entity {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;
 			ctx.drawImage(image, localX, localY);
+			if (this.indicator && stendhal.config.getBoolean("client.activity-indicator")) {
+				this.indicator.draw(ctx, localX, localY, image.width);
+			}
 		}
 	}
 

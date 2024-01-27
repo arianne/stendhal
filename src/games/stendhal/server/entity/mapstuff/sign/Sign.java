@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                    (C) Copyright 2003-2010 - Stendhal                   *
+ *                    (C) Copyright 2003-2024 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -42,6 +42,7 @@ public class Sign extends Entity {
 			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING, Definition.HIDDEN);
 			sign.addAttribute(Actions.ACTION, Type.STRING);
 			sign.addAttribute("class", Type.STRING);
+			sign.addAttribute("activity-indicator", Type.FLAG, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}

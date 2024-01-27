@@ -93,8 +93,8 @@ export class SettingsDialog extends DialogContentComponent {
 					player_stats.enableBar("hp", chk_hpbar.checked);
 				})!;
 
-		this.createCheckBox("chk_corpseindicator", "client.corpse.indicator",
-				"Indicator will be drawn when corpse contains items", "Disabled drawing indicator when corpse contains items");
+		this.createCheckBox("chk_activityindicator", "client.activity-indicator",
+				"Indicator will be drawn", "Indicator will not be drawn");
 
 		const chk_floatchat = this.createCheckBox("chk_floatchat", "client.chat.float",
 				undefined, undefined,

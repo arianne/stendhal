@@ -20,10 +20,10 @@ declare var stendhal: any;
 export class ConfigManager {
 
 	private readonly defaults: {[id: string]: string} = {
+		"client.activity-indicator": "true",
 		"client.chat.autohide": "false",
 		"client.chat.float": "false",
 		"client.chat.visible": "false",
-		"client.corpse.indicator": "true",
 		"client.emojis.native": "false",
 		"client.joystick": "false",
 		"client.joystick.center.x": "224",

@@ -54,7 +54,7 @@ export class Corpse extends PopupInventory {
 		}
 		super.draw(ctx);
 
-		if (stendhal.config.getBoolean("client.corpse.indicator") && !this.isEmpty()) {
+		if (stendhal.config.getBoolean("client.activity-indicator") && !this.isEmpty()) {
 			const tileW = stendhal.ui.gamewindow.targetTileWidth;
 			const tileH = stendhal.ui.gamewindow.targetTileHeight;
 			if (this.sprite.width == undefined || this.sprite.height == undefined) {
