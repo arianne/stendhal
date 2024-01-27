@@ -337,7 +337,9 @@ export class ConfigManager {
 	 * Removes all data from storage.
 	 */
 	clear() {
-		this.storage.clear();
+		for (const key of Object.keys(this.defaults)) {
+			this.remove(key);
+		}
 	}
 
 	/**
