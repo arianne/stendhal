@@ -87,6 +87,15 @@ export class QuickMenu {
 		QuickMenu.update();
 	}
 
+	public static setButtonEnabled(id: number, enabled: boolean) {
+		const button = (ui.get(id) as QuickMenuButton);
+		if (button) {
+			button.enabled = enabled;
+			QuickMenu.refresh();
+			QuickMenu.update();
+		}
+	}
+
 	/**
 	 * Updates button positioning.
 	 */
@@ -103,6 +112,9 @@ export class QuickMenu {
 
 		// horizontal buttons
 		for (const btn of QuickMenu.buttonListX) {
+			if (!btn.enabled) {
+				continue;
+			}
 			// all buttons should be same size
 			drawLeft -= btn_main.width;
 			btn.setPos(drawLeft, drawTop);
@@ -111,6 +123,9 @@ export class QuickMenu {
 		// vertical buttons
 		drawLeft = rect.right - btn_main.width
 		for (const btn of QuickMenu.buttonListY) {
+			if (!btn.enabled) {
+				continue;
+			}
 			// all buttons should be same size
 			drawTop += btn_main.height;
 			btn.setPos(drawLeft, drawTop);
@@ -130,7 +145,7 @@ export class QuickMenu {
 		QuickMenu.getElement().style["transform"] = "rotate("
 				+ (QuickMenu.expanded ? 90 : 0) + "deg)";
 		for (const btn of [...QuickMenu.buttonListX, ...QuickMenu.buttonListY]) {
-			btn.setVisible(QuickMenu.expanded);
+			btn.setVisible(QuickMenu.expanded && btn.enabled);
 		}
 	}
 

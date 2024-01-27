@@ -15,6 +15,10 @@ import { Paths } from "../../data/Paths";
 
 export abstract class QuickMenuButton extends Component {
 
+	// won't be shown if disabled
+	public enabled = true;
+
+
 	protected constructor(id: string) {
 		super("qm-" + id);
 		(this.componentElement as HTMLImageElement).src = Paths.gui + "/quickmenu/" + id + ".png";

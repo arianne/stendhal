@@ -12,7 +12,8 @@
 import { ui } from "./UI";
 import { UIComponentEnum } from "./UIComponentEnum";
 import { ChatLogComponent } from "./component/ChatLogComponent";
-import { ChatButton } from "./quickmenu/ChatButton";
+import { QuickMenu } from "./quickmenu/QuickMenu";
+import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
 
@@ -80,6 +81,9 @@ export class ChatPanel extends Panel {
 			this.componentElement.classList.add("background");
 		}
 
+		// show or hide button to toggle chat panel visibility
+		QuickMenu.setButtonEnabled(UIComponentEnum.QMChat, floating);
+
 		// adapt viewport layout
 		singletons.getViewPort().onChatPanelRefresh(floating);
 	}
@@ -109,9 +113,9 @@ export class ChatPanel extends Panel {
 		// update config
 		singletons.getConfigManager().set("client.chat.visible", visible);
 		// update quick menu button
-		const chatButton = ui.get(UIComponentEnum.QMChat);
+		const chatButton = ui.get(UIComponentEnum.QMChat) as QuickMenuButton;
 		if (chatButton) {
-			(chatButton as ChatButton).update();
+			chatButton.update();
 		}
 		// update chat log
 		const chatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
