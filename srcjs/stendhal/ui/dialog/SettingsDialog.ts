@@ -142,29 +142,17 @@ export class SettingsDialog extends DialogContentComponent {
 				undefined, "ui/notify_up", "null");
 		chk_pvtsnd.checked = stendhal.config.get("event.pvtmsg.sound") === "ui/notify_up";
 
-		let tmp = this.createCheckBox("chk_clickindicator", "input.click.indicator",
+		this.createCheckBox("chk_clickindicator", "input.click.indicator",
 				"Displaying clicks", "Not displaying clicks");
-		if (!SettingsDialog.debugging) {
-			// disabled until fully functional
-			tmp.disabled = true;
-			tmp.style["display"] = "none";
-			tmp.parentElement!.style["display"] = "none";
-		}
 
 		this.createCheckBox("chk_pathfinding", "client.pathfinding",
 				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
 
-		const chk_nativeemojis = this.createCheckBox("chk_nativeemojis", "client.emojis.native",
+		this.createCheckBox("chk_nativeemojis", "client.emojis.native",
 				"Using native emojis", "Using built-in emojis",
 				function() {
 					singletons.getChatInput().refresh();
 				});
-		if (!SettingsDialog.debugging) {
-			// disabled until fully functional
-			chk_nativeemojis.disabled = true;
-			chk_nativeemojis.style["display"] = "none"
-			chk_nativeemojis.parentElement!.style["display"] = "none";
-		}
 
 
 		/* *** right panel *** */
@@ -305,12 +293,25 @@ export class SettingsDialog extends DialogContentComponent {
 	 *     HTMLInputElement.
 	 */
 	private createCheckBoxSkel(id: string, tooltip?: string): HTMLInputElement {
-		const checkbox = <HTMLInputElement> this.child(
-			"input[type=checkbox][id=" + id + "]")!;
+		const checkbox = <HTMLInputElement> this.child("input[type=checkbox][id=" + id + "]")!;
 		if (tooltip) {
 			checkbox.title = tooltip;
 		}
-
+		if (checkbox.classList.contains("experimental")) {
+			// add "experimental" denotation to label
+			const label = checkbox.parentElement!;
+			const text = document.createElement("span");
+			text.innerText = label.innerText + " (experimental)";
+			label.innerHTML = "";
+			label.appendChild(checkbox);
+			label.appendChild(text);
+			if (!SettingsDialog.debugging) {
+				// hide if settings debugging is not enabled
+				checkbox.disabled = true;
+				checkbox.style.setProperty("display", "none");
+				label.style.setProperty("display", "none");
+			}
+		}
 		return checkbox;
 	}
 
@@ -343,22 +344,25 @@ export class SettingsDialog extends DialogContentComponent {
 		const chk = this.createCheckBoxSkel(id)!;
 		chk.checked = stendhal.config.getBoolean(setid);
 		const tt = new CheckTooltip(ttpos, ttneg);
-		chk.parentElement!.title = tt.getValue(chk.checked);
-		chk.addEventListener("change", (e) => {
-			if (chk.checked && typeof(von) !== "undefined") {
-				stendhal.config.set(setid, von);
-			} else if (!chk.checked && typeof(voff) !== "undefined") {
-				stendhal.config.set(setid, voff);
-			} else {
-				stendhal.config.set(setid, chk.checked);
-			}
-			chk.parentElement!.title = tt.getValue(chk.checked);
-			if (action) {
-				action();
-			}
-			this.refresh();
-		});
-
+		if (chk.parentElement) {
+			chk.parentElement.title = tt.getValue(chk.checked);
+		}
+		if (!chk.disabled) {
+			chk.addEventListener("change", (e) => {
+				if (chk.checked && typeof(von) !== "undefined") {
+					stendhal.config.set(setid, von);
+				} else if (!chk.checked && typeof(voff) !== "undefined") {
+					stendhal.config.set(setid, voff);
+				} else {
+					stendhal.config.set(setid, chk.checked);
+				}
+				chk.parentElement!.title = tt.getValue(chk.checked);
+				if (action) {
+					action();
+				}
+				this.refresh();
+			});
+		}
 		return chk;
 	}
 
