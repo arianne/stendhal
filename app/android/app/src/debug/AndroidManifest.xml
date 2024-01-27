@@ -2,6 +2,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="org.stendhalgame.client">
-  <application android:usesCleartextTraffic="true">
+  <application>
   </application>
 </manifest>
