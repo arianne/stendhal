@@ -9,12 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
 import { ChatButton } from "./ChatButton";
 import { ChatOptsButton } from "./ChatOptsButton";
 import { JoystickButton } from "./JoystickButton";
 import { LogButton } from "./LogButton";
 import { MenuButton } from "./MenuButton";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { RotateLButton } from "./RotateLButton";
 import { RotateRButton } from "./RotateRButton";
 import { SettingsButton } from "./SettingsButton";
@@ -29,12 +29,12 @@ import { Paths } from "../../data/Paths";
 /**
  * Main button to show/hide quick menu buttons.
  */
-export class QMButton {
+export class QuickMenu {
 
 	private static initialized = false;
 	private static expanded = false;
-	private static readonly buttonListX: ButtonBase[] = [];
-	private static readonly buttonListY: ButtonBase[] = [];
+	private static readonly buttonListX: QuickMenuButton[] = [];
+	private static readonly buttonListY: QuickMenuButton[] = [];
 
 
 	private constructor() {
@@ -42,31 +42,31 @@ export class QMButton {
 	}
 
 	public static init() {
-		if (QMButton.initialized) {
+		if (QuickMenu.initialized) {
 			console.warn("WARNING: attempted to re-initialize quick menu buttons")
 			return;
 		}
-		QMButton.initialized = true;
+		QuickMenu.initialized = true;
 
-		const btn_main = QMButton.getElement();
+		const btn_main = QuickMenu.getElement();
 		// ensure main button is visible at startup
 		btn_main.style["display"] = "block";
 		btn_main.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		btn_main.draggable = false;
 
 		// horizontal sub-buttons
-		QMButton.buttonListX.push(new MenuButton());
-		QMButton.buttonListX.push(new SettingsButton());
-		QMButton.buttonListX.push(new LogButton());
+		QuickMenu.buttonListX.push(new MenuButton());
+		QuickMenu.buttonListX.push(new SettingsButton());
+		QuickMenu.buttonListX.push(new LogButton());
 		const chatButton = new ChatButton();
-		QMButton.buttonListX.push(chatButton);
+		QuickMenu.buttonListX.push(chatButton);
 		const soundButton = new SoundButton();
-		QMButton.buttonListX.push(soundButton);
-		QMButton.buttonListX.push(new JoystickButton());
+		QuickMenu.buttonListX.push(soundButton);
+		QuickMenu.buttonListX.push(new JoystickButton());
 		// vertical sub-buttons
-		QMButton.buttonListY.push(new ChatOptsButton());
-		QMButton.buttonListY.push(new RotateLButton());
-		QMButton.buttonListY.push(new RotateRButton());
+		QuickMenu.buttonListY.push(new ChatOptsButton());
+		QuickMenu.buttonListY.push(new RotateLButton());
+		QuickMenu.buttonListY.push(new RotateRButton());
 
 		// register component buttons
 		ui.registerComponent(UIComponentEnum.QMChat, chatButton);
@@ -80,11 +80,11 @@ export class QMButton {
 		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
 		btn_main.addEventListener("click", function(e) {
-			QMButton.toggle();
+			QuickMenu.toggle();
 		});
 
 		// hide buttons by default
-		QMButton.update();
+		QuickMenu.update();
 	}
 
 	/**
@@ -92,7 +92,7 @@ export class QMButton {
 	 */
 	public static refresh() {
 		// place buttons in upper-right corner of viewport
-		const btn_main = QMButton.getElement();
+		const btn_main = QuickMenu.getElement();
 		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
 
 		let drawLeft = rect.right - btn_main.width;
@@ -102,7 +102,7 @@ export class QMButton {
 		btn_main.style["top"] = drawTop + "px";
 
 		// horizontal buttons
-		for (const btn of QMButton.buttonListX) {
+		for (const btn of QuickMenu.buttonListX) {
 			// all buttons should be same size
 			drawLeft -= btn_main.width;
 			btn.setPos(drawLeft, drawTop);
@@ -110,7 +110,7 @@ export class QMButton {
 
 		// vertical buttons
 		drawLeft = rect.right - btn_main.width
-		for (const btn of QMButton.buttonListY) {
+		for (const btn of QuickMenu.buttonListY) {
 			// all buttons should be same size
 			drawTop += btn_main.height;
 			btn.setPos(drawLeft, drawTop);
@@ -118,19 +118,19 @@ export class QMButton {
 	}
 
 	private static toggle() {
-		QMButton.expanded = !QMButton.expanded;
-		QMButton.update();
+		QuickMenu.expanded = !QuickMenu.expanded;
+		QuickMenu.update();
 	}
 
 	private static update() {
-		if (!QMButton.isVisible()) {
+		if (!QuickMenu.isVisible()) {
 			// menu is disabled so we don't need to update visibility of sub-buttons
 			return;
 		}
-		QMButton.getElement().style["transform"] = "rotate("
-				+ (QMButton.expanded ? 90 : 0) + "deg)";
-		for (const btn of [...QMButton.buttonListX, ...QMButton.buttonListY]) {
-			btn.setVisible(QMButton.expanded);
+		QuickMenu.getElement().style["transform"] = "rotate("
+				+ (QuickMenu.expanded ? 90 : 0) + "deg)";
+		for (const btn of [...QuickMenu.buttonListX, ...QuickMenu.buttonListY]) {
+			btn.setVisible(QuickMenu.expanded);
 		}
 	}
 
@@ -141,17 +141,17 @@ export class QMButton {
 	 *   Whether quick menu should be shown.
 	 */
 	public static setVisible(visible=true) {
-		if (QMButton.isVisible() == visible) {
+		if (QuickMenu.isVisible() == visible) {
 			// menu is already in target state
 			return;
 		}
 		// reset to collapsed state
-		QMButton.expanded = false;
-		QMButton.update();
+		QuickMenu.expanded = false;
+		QuickMenu.update();
 		// hide main button
-		QMButton.getElement().style["display"] = visible ? "block" : "none";
+		QuickMenu.getElement().style["display"] = visible ? "block" : "none";
 		if (visible) {
-			QMButton.refresh();
+			QuickMenu.refresh();
 		}
 	}
 
@@ -159,7 +159,7 @@ export class QMButton {
 	 * Checks if menu in visible state.
 	 */
 	private static isVisible(): boolean {
-		return QMButton.getElement().style["display"] !== "none";
+		return QuickMenu.getElement().style["display"] !== "none";
 	}
 
 	/**

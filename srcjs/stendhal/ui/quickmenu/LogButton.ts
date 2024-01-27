@@ -9,12 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 
 declare var marauroa: any;
 
 
-export class LogButton extends ButtonBase {
+export class LogButton extends QuickMenuButton {
 
 	constructor() {
 		super("log");

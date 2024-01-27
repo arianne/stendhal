@@ -9,14 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 
 
 /**
  * Button to bring up chat options dialog.
  */
-export class ChatOptsButton extends ButtonBase {
+export class ChatOptsButton extends QuickMenuButton {
 
 	constructor() {
 		super("chatopts");

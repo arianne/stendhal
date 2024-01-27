@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 
 declare var stendhal: any;
 
@@ -17,7 +17,7 @@ declare var stendhal: any;
 /**
  * Button to toggle on-screen joystick.
  */
-export class JoystickButton extends ButtonBase {
+export class JoystickButton extends QuickMenuButton {
 
 	constructor() {
 		super("joystick");

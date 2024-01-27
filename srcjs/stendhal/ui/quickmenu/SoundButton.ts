@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { singletons } from "../../SingletonRepo";
 
 declare var stendhal: any;
@@ -18,7 +18,7 @@ declare var stendhal: any;
 /**
  * Button to toggle sound on/off.
  */
-export class SoundButton extends ButtonBase {
+export class SoundButton extends QuickMenuButton {
 
 	constructor() {
 		super("sound");

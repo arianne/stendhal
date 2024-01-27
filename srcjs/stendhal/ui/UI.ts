@@ -11,8 +11,8 @@
 
 import { UIComponentEnum } from "./UIComponentEnum";
 import { ApplicationMenuDialog } from "./dialog/ApplicationMenuDialog";
-import { ButtonBase } from "./quickmenu/ButtonBase";
-import { QMButton as QuickMenu } from "./quickmenu/QMButton";
+import { QuickMenu } from "./quickmenu/QuickMenu";
+import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
@@ -116,7 +116,7 @@ class UI {
 	 * Instructions to execute when sound muted state changes.
 	 */
 	public onSoundUpdate() {
-		(this.get(UIComponentEnum.QMSound)! as ButtonBase).update();
+		(this.get(UIComponentEnum.QMSound)! as QuickMenuButton).update();
 		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("ui.sound")
 				? "🔊" : "🔇";
 	}

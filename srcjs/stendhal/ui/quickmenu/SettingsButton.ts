@@ -9,11 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { singletons } from "../../SingletonRepo";
 
 
-export class SettingsButton extends ButtonBase {
+export class SettingsButton extends QuickMenuButton {
 
 	constructor() {
 		super("settings");

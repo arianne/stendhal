@@ -13,7 +13,7 @@ import { Component } from "../toolkit/Component";
 import { Paths } from "../../data/Paths";
 
 
-export abstract class ButtonBase extends Component {
+export abstract class QuickMenuButton extends Component {
 
 	protected constructor(id: string) {
 		super("qm-" + id);

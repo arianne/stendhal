@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { ui } from "../UI";
 
 declare var stendhal: any;
@@ -18,7 +18,7 @@ declare var stendhal: any;
 /**
  * Button to open the main application menu.
  */
-export class MenuButton extends ButtonBase {
+export class MenuButton extends QuickMenuButton {
 
 	constructor() {
 		super("menu");

@@ -9,11 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { FacingHandler } from "../../util/FacingHandler";
 
 
-export class RotateRButton extends ButtonBase {
+export class RotateRButton extends QuickMenuButton {
 
 	constructor() {
 		super("rotate-r");

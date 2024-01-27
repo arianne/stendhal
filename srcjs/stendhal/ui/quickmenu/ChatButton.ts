@@ -9,12 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ButtonBase } from "./ButtonBase";
+import { QuickMenuButton } from "./QuickMenuButton";
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
 
-export class ChatButton extends ButtonBase {
+export class ChatButton extends QuickMenuButton {
 
 	constructor() {
 		super("chat");
