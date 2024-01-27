@@ -91,6 +91,10 @@ export class ChatInputComponent extends Component {
 	}
 
 	public setText(text: string) {
+		const chatPanel = ui.get(UIComponentEnum.BottomPanel)!;
+		if (!chatPanel.isVisible()) {
+			chatPanel.setVisible(true);
+		}
 		this.inputElement.value = text;
 		this.inputElement.focus();
 	}
