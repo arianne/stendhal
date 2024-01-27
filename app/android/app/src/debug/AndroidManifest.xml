@@ -2,6 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="org.stendhalgame.client">
-  <application>
+  <!-- allow client url http://localhost:xxxx via Chrome forwarding to a local server -->
+  <application android:usesCleartextTraffic="true">
   </application>
 </manifest>
