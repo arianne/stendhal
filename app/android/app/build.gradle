@@ -18,7 +18,7 @@ android {
 		appVer += "-" + project["android.rev"]
 	}
 
-	def outputName = "stendhal-webview-${appVer}"
+	def outputName = "org.stendhalgame.client-${appVer}"
 
 	defaultConfig {
 		applicationId "org.stendhalgame.client"
