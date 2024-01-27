@@ -182,6 +182,13 @@ export class ConfigManager {
 	}
 
 	/**
+	 * Retrieves all available settings keys.
+	 */
+	public getKeys(): string[] {
+		return Object.keys(this.defaults);
+	}
+
+	/**
 	 * Stores a configuration setting.
 	 *
 	 * @param key
@@ -194,6 +201,7 @@ export class ConfigManager {
 			value = JSON.stringify(value);
 		}
 		this.storage.setItem(key, value);
+		stendhal.session.set(key, value);
 	}
 
 	/**
@@ -205,7 +213,7 @@ export class ConfigManager {
 	 *     Stored value identified by key or undefined if key not found.
 	 */
 	get(key: string): string|null|undefined {
-		const ret = this.storage.getItem(key) || this.defaults[key];
+		const ret = stendhal.session.get(key) || this.storage.getItem(key) || this.defaults[key];
 		// allow null to be a value
 		if (ret === "null") {
 			return null;
@@ -322,6 +330,7 @@ export class ConfigManager {
 	 */
 	remove(key: string) {
 		this.storage.removeItem(key);
+		stendhal.session.remove(key);
 	}
 
 	/**

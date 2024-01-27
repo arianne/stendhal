@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -14,10 +14,11 @@ declare var stendhal: any;
 
 export class SessionManager {
 
-	private storage = window.sessionStorage;
 	private charname?: string;
 	private initialized = false;
 	private server_default = true;
+
+	private states: {[id: string]: string} = {};
 
 	/** Singleton instance. */
 	private static instance: SessionManager;
@@ -56,22 +57,30 @@ export class SessionManager {
 		if (server && this.isTestClient()) {
 			this.server_default = server !== "main";
 		}
+
+		// store configuration in active memory
+		for (const id of stendhal.config.getKeys()) {
+			const value = window.localStorage.getItem(id);
+			if (value != null) {
+				this.states[id] = value;
+			}
+		}
 	}
 
 	/**
-	 * Retrieves a value from session storage.
+	 * Retrieves a value from session memory.
 	 *
 	 * @param key
 	 *     String identifier.
 	 * @return
 	 *     Value indexed by `key` or `null` if key does not exist.
 	 */
-	get(key: string): string|null {
-		return this.storage.getItem(key);
+	get(key: string): string|undefined {
+		return this.states[key];
 	}
 
 	/**
-	 * Stores a value in session storage.
+	 * Stores a value in session memory.
 	 *
 	 * @param key
 	 *     String identifier.
@@ -79,7 +88,31 @@ export class SessionManager {
 	 *     Value to be stored.
 	 */
 	set(key: string, value: any) {
-		this.storage.setItem(key, value);
+		value = this.toString(value);
+		if (value == undefined) {
+			this.remove(key);
+			return;
+		}
+		this.states[key] = value;
+	}
+
+	remove(key: string) {
+		delete this.states[key];
+	}
+
+	private toString(value: any): string|undefined {
+		if (value == null) {
+			return "null";
+		}
+		const vtype = typeof(value);
+		if (vtype === "undefined") {
+			return undefined;
+		} else if (vtype === "string") {
+			return value;
+		} else if (vtype === "object") {
+			return JSON.stringify(value);
+		}
+		return ""+value;
 	}
 
 	/**
