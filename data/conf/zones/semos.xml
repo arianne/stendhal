@@ -191,6 +191,7 @@
 
 Unfortunately I will not be able to visit Athor this year. I have run into a bit of bad luck. Perhaps when times get better we'll be able to chat once again.</attribute>
       <attribute name="class">transparent</attribute>
+      <attribute name="activity-indicator"/>
     </entity>
 
     <!-- Guitar -->
