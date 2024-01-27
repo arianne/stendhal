@@ -88,7 +88,6 @@ public class ClientView extends WebView {
 		viewSettings.setDomStorageEnabled(true);
 
 		// keep elements in position in portrait mode
-		viewSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);// <-- SINGLE_COLUMN deprecated
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
 
@@ -159,12 +158,6 @@ public class ClientView extends WebView {
 				DebugLog.debug("page id: " + currentPage);
 			}
 		});
-	}
-
-	@Override
-	public InputConnection onCreateInputConnection(final EditorInfo outAttrs) {
-		// allows capturing soft keyboard events
-		return new BaseInputConnection(this, false);
 	}
 
 	@Override
