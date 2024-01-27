@@ -49,18 +49,29 @@ export class Corpse extends PopupInventory {
 	}
 
 	override draw(ctx: CanvasRenderingContext2D) {
+		if (!this.sprite) {
+			return;
+		}
 		super.draw(ctx);
 
 		if (stendhal.config.getBoolean("client.corpse.indicator") && !this.isEmpty()) {
-			// FIXME: draw width & height should be based on sprite image dimensions
-			const dw = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
-			const dh = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
-			const centerX = this["x"] * stendhal.ui.gamewindow.targetTileWidth + Math.floor(stendhal.ui.gamewindow.targetTileWidth / 2);
-			const centerY = this["y"] * stendhal.ui.gamewindow.targetTileHeight + Math.floor(stendhal.ui.gamewindow.targetTileHeight / 2);
-			const dx = centerX; // + Math.floor(dw / 4);
-			const dy = centerY; // - Math.floor(dh / 4);
-			// FIXME: positioning is wrong
-			this.indicator.draw(ctx, dx, dy);
+			const tileW = stendhal.ui.gamewindow.targetTileWidth;
+			const tileH = stendhal.ui.gamewindow.targetTileHeight;
+			if (this.sprite.width == undefined || this.sprite.height == undefined) {
+				const image = stendhal.data.sprites.get(this.sprite.filename);
+				if (image.complete) {
+					this.sprite.width = image.width < tileW ? tileW : image.width;
+					this.sprite.height = image.height < tileH ? tileH : image.height;
+				}
+				return;
+			}
+
+			const offsetX = Math.floor((this["width"] * tileW - this.sprite.width) / 2);
+			const offsetY = Math.floor((this["height"] * tileH - this.sprite.height) / 2);
+			const dx = this["x"] * tileW + offsetX;
+			const dy = this["y"] * tileH + offsetY;
+
+			this.indicator.draw(ctx, dx, dy, this.sprite.width);
 		}
 	}
 

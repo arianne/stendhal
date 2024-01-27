@@ -24,7 +24,17 @@ export class ActivityIndicatorSprite {
 	private lastFrameUpdate = 0;
 
 
-	public draw(ctx: CanvasRenderingContext2D, dx: number, dy: number) {
+	/**
+	 * Draws an indicator.
+	 *
+	 * @param dx
+	 *   Pixel position where parent object is drawn on X axis.
+	 * @param dy
+	 *   Pixel position where parent object is drawn on Y axis.
+	 * @param width
+	 *   Pixel width of parent object.
+	 */
+	public draw(ctx: CanvasRenderingContext2D, dx: number, dy: number, width: number) {
 		if (!ActivityIndicatorSprite.img.complete) {
 			return;
 		}
@@ -44,11 +54,7 @@ export class ActivityIndicatorSprite {
 			this.lastFrameUpdate = cycleStart;
 		}
 
-		// adjust for center of image
-		//~ const halfDim = Math.floor(dim / 2);
-		//~ dx -= halfDim;
-		//~ dy -= halfDim;
-
-		ctx.drawImage(ActivityIndicatorSprite.img, dim * this.frameIdx, 0, dim, dim, dx, dy, dim, dim);
+		// draw in upper-right of target area
+		ctx.drawImage(ActivityIndicatorSprite.img, dim * this.frameIdx, 0, dim, dim, dx+width-dim, dy, dim, dim);
 	}
 }
