@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { CorpseIndicatorSprite } from "../sprite/CorpseIndicatorSprite";
+import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
@@ -27,12 +27,12 @@ export class Corpse extends PopupInventory {
 	override zIndex = 5500;
 	autoOpenedAlready = false;
 
-	private readonly indicator: CorpseIndicatorSprite;
+	private readonly indicator: ActivityIndicatorSprite;
 
 
 	constructor() {
 		super();
-		this.indicator = new CorpseIndicatorSprite();
+		this.indicator = new ActivityIndicatorSprite();
 	}
 
 	override set(key: string, value: any) {

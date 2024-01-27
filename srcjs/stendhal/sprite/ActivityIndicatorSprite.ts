@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2024 - Stendhal                       *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -15,17 +15,17 @@ declare var stendhal: any;
 
 
 /**
- * Indicates that a corpse is not empty. Useful for devices that don't have an attached mouse/pointer.
+ * Indicates that an object has an associated activity. Useful for devices that don't have an attached mouse/pointer.
  */
-export class CorpseIndicatorSprite {
+export class ActivityIndicatorSprite {
 
-	private static readonly img = stendhal.data.sprites.get(Paths.sprites + "/ideas/containing.png");
+	private static readonly img = stendhal.data.sprites.get(Paths.sprites + "/ideas/activity.png");
 	private frameIdx = 0;
 	private lastFrameUpdate = 0;
 
 
 	public draw(ctx: CanvasRenderingContext2D, dx: number, dy: number) {
-		if (!CorpseIndicatorSprite.img.complete) {
+		if (!ActivityIndicatorSprite.img.complete) {
 			return;
 		}
 
@@ -34,10 +34,11 @@ export class CorpseIndicatorSprite {
 			this.lastFrameUpdate = cycleStart;
 		}
 
-		const dim = CorpseIndicatorSprite.img.height;
+		// NOTE: indicator image should be square
+		const dim = ActivityIndicatorSprite.img.height;
 		if (cycleStart - this.lastFrameUpdate > 150) {
 			this.frameIdx++;
-			if ((this.frameIdx + 1) * dim >= CorpseIndicatorSprite.img.width) {
+			if ((this.frameIdx + 1) * dim >= ActivityIndicatorSprite.img.width) {
 				this.frameIdx = 0;
 			}
 			this.lastFrameUpdate = cycleStart;
@@ -48,6 +49,6 @@ export class CorpseIndicatorSprite {
 		//~ dx -= halfDim;
 		//~ dy -= halfDim;
 
-		ctx.drawImage(CorpseIndicatorSprite.img, dim * this.frameIdx, 0, dim, dim, dx, dy, dim, dim);
+		ctx.drawImage(ActivityIndicatorSprite.img, dim * this.frameIdx, 0, dim, dim, dx, dy, dim, dim);
 	}
 }
