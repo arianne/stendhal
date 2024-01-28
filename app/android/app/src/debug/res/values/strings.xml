@@ -3,5 +3,6 @@
 <resources>
 
 	<string name="app_name">Stendhal (debug)</string>
+	<string name="intent_url_scheme">stendhaldebug8gps5y99pu</string>
 
 </resources>

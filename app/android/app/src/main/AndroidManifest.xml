@@ -12,13 +12,14 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.Stendhal.FullScreen">
+
     <activity
       android:name=".MainActivity"
       android:exported="true"
       android:configChanges="orientation|screenSize|keyboardHidden">
+
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
@@ -33,6 +34,20 @@
         <action android:name="preferences" />
       </intent-filter>
     </activity>
+
+    <activity
+        android:name=".OpenAppByUrl"
+        android:exported="true">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="@string/intent_url_scheme"
+            android:host="callback" />
+      </intent-filter>
+    </activity>
+
   </application>
 
 </manifest>

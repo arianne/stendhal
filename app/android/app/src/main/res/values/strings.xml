@@ -3,5 +3,6 @@
 <resources>
 
 	<string name="app_name">Stendhal</string>
+	<string name="intent_url_scheme">stendhalprod8gps5y99pu</string>
 
 </resources>
