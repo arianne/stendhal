@@ -170,6 +170,10 @@ export class ChatInputComponent extends Component {
 			}
 		}
 		this.clear();
+		// romove focus to trigger hiding software keyboard
+		if (this.hasFocus()) {
+			this.inputElement.blur();
+		}
 
 		(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onMessageSent();
 	}
