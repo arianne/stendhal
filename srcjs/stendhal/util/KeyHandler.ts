@@ -24,7 +24,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
  */
 export class KeyHandler {
 
-	public static readonly DIR_CODES: {[key: string]: number} = {
+	private static readonly dirCodes: {[key: string]: number} = {
 		left: KeyCode.ARROW_LEFT,
 		up: KeyCode.ARROW_UP,
 		right: KeyCode.ARROW_RIGHT,
@@ -49,7 +49,7 @@ export class KeyHandler {
 	 *   `true` if direction keycode found in pressed keys list.
 	 */
 	private static isDirPressed(): boolean {
-		for (const dir of Object.keys(KeyHandler.DIR_CODES).map((key) => KeyHandler.DIR_CODES[key])) {
+		for (const dir of Object.keys(KeyHandler.dirCodes).map((key) => KeyHandler.dirCodes[key])) {
 			if (KeyHandler.pressedKeys.indexOf(dir) > -1) {
 				return true;
 			}
