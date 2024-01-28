@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 import { Direction } from "./Direction";
 import { KeyCode } from "./KeyCode";
@@ -106,7 +105,7 @@ export class KeyHandler {
 			return;
 		}
 
-		var code = stendhal.ui.html.extractKeyCode(event);
+		var code = KeyCode.extract(event);
 
 		// handle toggling chat panel
 		if (code == KeyCode.ENTER && !singletons.getChatInput().hasFocus()) {
@@ -167,7 +166,7 @@ export class KeyHandler {
 			return;
 		}
 
-		var code = stendhal.ui.html.extractKeyCode(event);
+		var code = KeyCode.extract(event);
 
 		if (code >= KeyCode.ARROW_LEFT && code <= KeyCode.ARROW_DOWN) {
 			var i = KeyHandler.pressedKeys.indexOf(code);

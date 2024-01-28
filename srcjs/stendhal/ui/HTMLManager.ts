@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -47,14 +47,6 @@ export class HTMLManager {
 		}
 
 		return msg;
-	}
-
-	extractKeyCode(e: KeyboardEvent): number {
-		if (e.which) {
-			return e.which;
-		} else {
-			return e.keyCode;
-		}
 	}
 
 	niceName(s: string): string {

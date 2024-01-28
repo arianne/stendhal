@@ -117,7 +117,7 @@ export class ChatInputComponent extends Component {
 	}
 
 	onKeyDown(event: KeyboardEvent) {
-		let code = stendhal.ui.html.extractKeyCode(event);
+		let code = KeyCode.extract(event);
 
 		if (event.shiftKey) {
 			// chat history

@@ -22,4 +22,21 @@ export class KeyCode {
 	public static readonly ARROW_DOWN = 40;
 
 	private constructor() {}
+
+
+	/**
+	 * Extracts key code from keyboard event.
+	 *
+	 * @param e
+	 *   Keyboard event.
+	 * @return
+	 *   Integer representation of key.
+	 */
+	public static extract(e: KeyboardEvent): number {
+		// NOTE: MDM states that both UIEvent.which & KeyboardEvent.keyCode are deprecated
+		if (e.which) {
+			return e.which;
+		}
+		return e.keyCode;
+	}
 }
