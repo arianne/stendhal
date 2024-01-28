@@ -21,6 +21,12 @@ export class KeyCode {
 	public static readonly ARROW_RIGHT = 39;
 	public static readonly ARROW_DOWN = 40;
 
+	// for direction control with asdw keys
+	public static readonly CHAR_A = 65; // left
+	public static readonly CHAR_W = 87; // up
+	public static readonly CHAR_D = 68; // right
+	public static readonly CHAR_S = 83; // down
+
 	private constructor() {}
 
 

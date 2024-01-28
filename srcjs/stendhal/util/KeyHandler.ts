@@ -31,8 +31,17 @@ export class KeyHandler {
 		down: KeyCode.ARROW_DOWN
 	};
 
+	private static readonly translations: {[key: string]: string} = {
+		[""+KeyCode.CHAR_A]: "left",
+		[""+KeyCode.CHAR_W]: "up",
+		[""+KeyCode.CHAR_D]: "right",
+		[""+KeyCode.CHAR_S]: "down"
+	};
+
 	/** List of currently pressed direction keys. */
 	private static pressedKeys: number[] = [];
+
+	private static asdwEnabled = false;
 
 
 	/**
@@ -91,6 +100,25 @@ export class KeyHandler {
 	}
 
 	/**
+	 * Translates asdw key code to standard direction.
+	 *
+	 * @param code
+	 *   Code of pressed key.
+	 * @return
+	 *   Translated code.
+	 */
+	private static translate(code: number): number {
+		if (KeyHandler.asdwEnabled) {
+			// FIXME: "up" (w) & "down" (s) not found in KeyHandler.dirCodes keys
+			const translated = KeyHandler.dirCodes[KeyHandler.translations[""+code]];
+			if (typeof(translated) !== "undefined") {
+				return translated;
+			}
+		}
+		return code;
+	}
+
+	/**
 	 * Action when a key is pressed.
 	 *
 	 * @param e
@@ -105,7 +133,7 @@ export class KeyHandler {
 			return;
 		}
 
-		var code = KeyCode.extract(event);
+		var code = KeyHandler.translate(KeyCode.extract(event));
 
 		// handle toggling chat panel
 		if (code == KeyCode.ENTER && !singletons.getChatInput().hasFocus()) {
@@ -166,7 +194,7 @@ export class KeyHandler {
 			return;
 		}
 
-		var code = KeyCode.extract(event);
+		var code = KeyHandler.translate(KeyCode.extract(event));
 
 		if (code >= KeyCode.ARROW_LEFT && code <= KeyCode.ARROW_DOWN) {
 			var i = KeyHandler.pressedKeys.indexOf(code);
