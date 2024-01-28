@@ -6,9 +6,9 @@ data/sprites/outfit/body/
 
 000*       (male)          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 001        (female busty)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-001-nonude (female busty)  Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+001-nonude (female busty)  Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge), nhnb; CC0; https://opengameart.org/node/84455
 002        (female)        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-002-nonude (female)        Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
+002-nonude (female)        Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge), nhnb; CC0; https://opengameart.org/node/84455
 97[8-9]    (cat)           Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
 98[0-1]    (colored body)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 984*       (child)         Svetland Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455

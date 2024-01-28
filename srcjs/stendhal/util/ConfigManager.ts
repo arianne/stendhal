@@ -55,7 +55,7 @@ export class ConfigManager {
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
 		"gamescreen.weather": "true",
-		"gamescreen.nonude": "false",
+		"gamescreen.nonude": "true",
 		"gamescreen.shadows": "true",
 		"gamescreen.speech.creature": "true",
 		"input.click.indicator": "false",
