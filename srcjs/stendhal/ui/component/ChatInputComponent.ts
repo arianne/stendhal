@@ -19,7 +19,7 @@ import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
-import { KeyHandler } from "../../util/KeyHandler";
+import { KeyCode } from "../../util/KeyCode";
 
 
 const config = singletons.getConfigManager();
@@ -121,10 +121,10 @@ export class ChatInputComponent extends Component {
 
 		if (event.shiftKey) {
 			// chat history
-			if (code === KeyHandler.CODE_UP) {
+			if (code === KeyCode.ARROW_UP) {
 				event.preventDefault();
 				this.fromHistory(-1);
-			} else if (code === KeyHandler.CODE_DOWN){
+			} else if (code === KeyCode.ARROW_DOWN){
 				event.preventDefault();
 				this.fromHistory(1);
 			}

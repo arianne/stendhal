@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { Direction } from "./Direction";
+import { KeyCode } from "./KeyCode";
 import { singletons } from "../SingletonRepo";
 import { ChatPanel } from "../ui/ChatPanel";
 import { ui } from "../ui/UI";
@@ -24,18 +25,11 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
  */
 export class KeyHandler {
 
-	public static readonly CODE_ENTER = 13;
-
-	public static readonly CODE_LEFT = 37;
-	public static readonly CODE_UP = 38;
-	public static readonly CODE_RIGHT = 39;
-	public static readonly CODE_DOWN = 40;
-
 	public static readonly DIR_CODES: {[key: string]: number} = {
-		left: KeyHandler.CODE_LEFT,
-		up: KeyHandler.CODE_UP,
-		right: KeyHandler.CODE_RIGHT,
-		down: KeyHandler.CODE_DOWN
+		left: KeyCode.ARROW_LEFT,
+		up: KeyCode.ARROW_UP,
+		right: KeyCode.ARROW_RIGHT,
+		down: KeyCode.ARROW_DOWN
 	};
 
 	/** List of currently pressed direction keys. */
@@ -90,7 +84,7 @@ export class KeyHandler {
 	 *   Direction representation.
 	 */
 	private static extractDirectionFromKeyCode(code: number): Direction {
-		let dir = code - KeyHandler.CODE_LEFT;
+		let dir = code - KeyCode.ARROW_LEFT;
 		if (dir < Direction.UP.val) {
 			dir = Direction.LEFT.val;
 		}
@@ -115,12 +109,12 @@ export class KeyHandler {
 		var code = stendhal.ui.html.extractKeyCode(event);
 
 		// handle toggling chat panel
-		if (code == KeyHandler.CODE_ENTER && !singletons.getChatInput().hasFocus()) {
+		if (code == KeyCode.ENTER && !singletons.getChatInput().hasFocus()) {
 			(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onEnterPressed();
 			return;
 		}
 
-		if (code >= KeyHandler.CODE_LEFT && code <= KeyHandler.CODE_DOWN) {
+		if (code >= KeyCode.ARROW_LEFT && code <= KeyCode.ARROW_DOWN) {
 			// disable scrolling via arrow keys
 			const target: any = event.target;
 			if (target.tagName === "BODY" || target.tagName === "CANVAS") {
@@ -175,7 +169,7 @@ export class KeyHandler {
 
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		if (code >= KeyHandler.CODE_LEFT && code <= KeyHandler.CODE_DOWN) {
+		if (code >= KeyCode.ARROW_LEFT && code <= KeyCode.ARROW_DOWN) {
 			var i = KeyHandler.pressedKeys.indexOf(code);
 			if (i > -1) {
 				KeyHandler.pressedKeys.splice(i, 1);
