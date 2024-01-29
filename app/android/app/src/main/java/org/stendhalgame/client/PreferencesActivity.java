@@ -119,16 +119,16 @@ public class PreferencesActivity extends AppCompatActivity {
 			// SharedPreferences.getInt is returning string
 			final Object obj = getSharedPreferences().getString(key, String.valueOf(defVal));
 			if (obj instanceof String) {
-				DebugLog.debug("PreferencesActivity.getInt: casting string return value to integer");
+				Logger.debug("PreferencesActivity.getInt: casting string return value to integer");
 				return Integer.parseInt((String) obj);
 			} else {
-				DebugLog.debug("PreferencesActivity.getInt return value is integer");
+				Logger.debug("PreferencesActivity.getInt return value is integer");
 				return (Integer) obj;
 			}
 		} catch (final NumberFormatException e) {
 			final String errMsg = "An error occurred: " + e.getMessage();
-			DebugLog.error(errMsg + "\n" + e.getStackTrace());
-			Notifier.showError(errMsg + "\n\nSee " + DebugLog.getLogsDir()
+			Logger.error(errMsg + "\n" + e.getStackTrace());
+			Notifier.showError(errMsg + "\n\nSee " + Logger.getLogsDir()
 				+ " for more information.");
 		}
 
@@ -137,14 +137,14 @@ public class PreferencesActivity extends AppCompatActivity {
 
 	@Override
 	public void finish() {
-		DebugLog.debug(PreferencesActivity.class.getName() + ".finish() called");
+		Logger.debug(PreferencesActivity.class.getName() + ".finish() called");
 
 		super.finish();
 	}
 
 	@Override
 	protected void onDestroy() {
-		DebugLog.debug(PreferencesActivity.class.getName() + ".onDestroy() called");
+		Logger.debug(PreferencesActivity.class.getName() + ".onDestroy() called");
 
 		super.onDestroy();
 	}
@@ -174,7 +174,7 @@ public class PreferencesActivity extends AppCompatActivity {
 							new Notifier.Action() {
 								@Override
 								protected void onCall() {
-									DebugLog.debug("restoring preferences default values");
+									Logger.debug("restoring preferences default values");
 									restoreDefaults();
 								}
 							},
@@ -189,7 +189,7 @@ public class PreferencesActivity extends AppCompatActivity {
 					}
 				});
 			} else {
-				DebugLog.warn("preference \"reset\" not found");
+				Logger.warn("preference \"reset\" not found");
 			}
 
 			final CheckBoxPreference title_music = (CheckBoxPreference) pm.findPreference("title_music");
@@ -226,7 +226,7 @@ public class PreferencesActivity extends AppCompatActivity {
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
 						if (ClientView.onTitleScreen()) {
-							DebugLog.debug("changing title music preference: " + (String) obj);
+							Logger.debug("changing title music preference: " + (String) obj);
 
 							if (title_music.isChecked()) {
 								ClientView.playTitleMusic((String) obj);
@@ -247,7 +247,7 @@ public class PreferencesActivity extends AppCompatActivity {
 							new Notifier.Action() {
 								@Override
 								protected void onCall() {
-									DebugLog.debug("clearing cache");
+									Logger.debug("clearing cache");
 									final ClientView clientView = ClientView.get();
 									if (clientView != null) {
 										clientView.clearCache(true);
@@ -265,7 +265,7 @@ public class PreferencesActivity extends AppCompatActivity {
 					}
 				});
 			} else {
-				DebugLog.warn("preference \"clear_cache\" not found");
+				Logger.warn("preference \"clear_cache\" not found");
 			}
 		}
 
@@ -283,7 +283,7 @@ public class PreferencesActivity extends AppCompatActivity {
 		@Override
 		public void onSharedPreferenceChanged(final SharedPreferences sp, final String key) {
 			if ("orientation".equals(key)) {
-				DebugLog.debug("orientation set to \"" + PreferencesActivity.getString(key) + "\"");
+				Logger.debug("orientation set to \"" + PreferencesActivity.getString(key) + "\"");
 				MainActivity.get().updateOrientation();
 			}
 		}

@@ -47,7 +47,7 @@ public class DownloadHandler {
 			// TODO: format output name using YYYYMMDD_HH.MM.SS.MS
 			final String targetName = "stendhal_" + System.currentTimeMillis() + ".png";
 
-			DebugLog.debug("Saving screenshot: " + targetDir.getPath()
+			Logger.debug("Saving screenshot: " + targetDir.getPath()
 					+ "/" + targetName + " (" + mimetype + ")");
 
 			String msg;
@@ -74,7 +74,7 @@ public class DownloadHandler {
 
 			this.message = msg;
 			if (stacktrace != null) {
-				DebugLog.error(stacktrace.toString());
+				Logger.error(stacktrace.toString());
 			}
 		}
 	}

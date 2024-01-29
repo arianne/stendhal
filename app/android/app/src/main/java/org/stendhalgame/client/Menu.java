@@ -56,7 +56,7 @@ public class Menu {
 
 		initButtonHandlers();
 
-		DebugLog.debug("menu initialized");
+		Logger.debug("menu initialized");
 	}
 
 	public Toolbar getInternal() {
@@ -187,7 +187,7 @@ public class Menu {
 				if (client.debugEnabled()) {
 					msg += "\nClient type: " + client.getSelectedClient()
 							+ "\nServer type: " + client.getSelectedServer()
-							+ "\nLogs directory: " + DebugLog.getLogsDir();
+							+ "\nLogs directory: " + Logger.getLogsDir();
 				}
 				msg += "\n\nTitle Music:"
 						+ "\n\n- Treasure Hunter"

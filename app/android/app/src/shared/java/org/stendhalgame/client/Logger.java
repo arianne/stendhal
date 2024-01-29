@@ -17,23 +17,23 @@ import java.io.File;
 /**
  * Dummy class for release builds.
  */
-public class DebugLog {
+public class Logger {
 
 	private static File logsDir;
 
-	public static enum DebugLevel {
+	public static enum LogLevel {
 		INFO,
 		WARN,
 		ERROR,
 		DEBUG
 	}
 
-	private static DebugLog instance;
+	private static Logger instance;
 
 
-	public static DebugLog get() {
+	public static Logger get() {
 		if (instance == null) {
-			instance = new DebugLog();
+			instance = new Logger();
 		}
 
 		return instance;
@@ -47,7 +47,7 @@ public class DebugLog {
 		// do nothing
 	}
 
-	public static void writeLine(final String text, final DebugLevel level) {
+	public static void writeLine(final String text, final LogLevel level) {
 		// do nothing
 	}
 
@@ -75,7 +75,7 @@ public class DebugLog {
 		// do nothing
 	}
 
-	public static void notify(final String message, final DebugLevel level) {
+	public static void notify(final String message, final LogLevel level) {
 		// do nothing
 	}
 

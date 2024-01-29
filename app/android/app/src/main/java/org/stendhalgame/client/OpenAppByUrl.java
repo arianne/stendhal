@@ -13,7 +13,7 @@ public class OpenAppByUrl extends Activity {
         Intent intent = getIntent();
         // String action = intent.getAction();
         Uri data = intent.getData();
-        DebugLog.debug("URL: " + data);
+        Logger.debug("URL: " + data);
 
      }
 

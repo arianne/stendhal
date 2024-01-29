@@ -26,13 +26,13 @@ import android.util.Log;
 /**
  * A class to output debugging information to logcat file.
  */
-public class DebugLog {
+public class Logger {
 
 	private static File logsDir;
 
 	private static MainActivity mainActivity;
 
-	public static enum DebugLevel {
+	public static enum LogLevel {
 		INFO("INFO"),
 		WARN("WARN"),
 		ERROR("ERROR"),
@@ -40,7 +40,7 @@ public class DebugLog {
 
 		private final String label;
 
-		private DebugLevel(final String label) {
+		private LogLevel(final String label) {
 			this.label = label;
 		}
 
@@ -49,12 +49,12 @@ public class DebugLog {
 		}
 	}
 
-	private static DebugLog instance;
+	private static Logger instance;
 
 
-	public static DebugLog get() {
+	public static Logger get() {
 		if (instance == null) {
-			instance = new DebugLog();
+			instance = new Logger();
 		}
 
 		return instance;
@@ -69,12 +69,12 @@ public class DebugLog {
 	}
 
 	public static void writeLine(final String text) {
-		writeLine(text, DebugLevel.DEBUG);
+		writeLine(text, LogLevel.DEBUG);
 	}
 
-	public static void writeLine(String text, final DebugLevel level) {
+	public static void writeLine(String text, final LogLevel level) {
 		if (logsDir == null) {
-			System.err.println("ERROR: DebugLog not initialized. Call DebugLog.init.");
+			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
 			return;
 		}
 
@@ -104,45 +104,45 @@ public class DebugLog {
 	}
 
 	public static void info(final String text) {
-		Log.i("DebugLog", text);
-		writeLine(text, DebugLevel.INFO);
+		Log.i("Logger", text);
+		writeLine(text, LogLevel.INFO);
 	}
 
 	public static void warn(final String text) {
-		Log.w("DebugLog", text);
-		writeLine(text, DebugLevel.WARN);
+		Log.w("Logger", text);
+		writeLine(text, LogLevel.WARN);
 	}
 
 	public static void error(final String text) {
-		Log.e("DebugLog", text);
-		writeLine(text, DebugLevel.ERROR);
+		Log.e("Logger", text);
+		writeLine(text, LogLevel.ERROR);
 	}
 
 	public static void debug(final String text) {
-		Log.d("DebugLog", text);
-		writeLine(text, DebugLevel.DEBUG);
+		Log.d("Logger", text);
+		writeLine(text, LogLevel.DEBUG);
 	}
 
 	public static void debug(final boolean notify, final String text) {
 		if (notify) {
-			DebugLog.notify(text, DebugLevel.DEBUG);
+			Logger.notify(text, LogLevel.DEBUG);
 			return;
 		}
-		DebugLog.debug(text);
+		Logger.debug(text);
 	}
 
 	public static void notify(final String message) {
-		notify(message, DebugLevel.INFO);
+		notify(message, LogLevel.INFO);
 	}
 
-	public static void notify(final String message, DebugLevel level) {
+	public static void notify(final String message, LogLevel level) {
 		if (mainActivity == null) {
-			System.err.println("ERROR: DebugLog not initialized. Call DebugLog.init.");
+			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
 			return;
 		}
 
 		if (level == null) {
-			level = DebugLevel.DEBUG;
+			level = LogLevel.DEBUG;
 		}
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());

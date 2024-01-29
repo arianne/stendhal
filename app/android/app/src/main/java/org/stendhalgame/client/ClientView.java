@@ -157,7 +157,7 @@ public class ClientView extends WebView {
 				}
 				Menu.get().updateButtons();
 
-				DebugLog.debug("page id: " + currentPage);
+				Logger.debug("page id: " + currentPage);
 			}
 		});
 	}
@@ -191,11 +191,11 @@ public class ClientView extends WebView {
 				handler.download(url, mimetype);
 				if (handler.getResult()) {
 					final String msg = "Downloaded file: " + handler.getMessage();
-					DebugLog.debug(msg);
+					Logger.debug(msg);
 					Notifier.toast(msg);
 				} else {
 					final String msg = handler.getMessage();
-					DebugLog.error(msg);
+					Logger.error(msg);
 					Notifier.toast("ERROR: " + msg);
 				}
 			}
@@ -250,7 +250,7 @@ public class ClientView extends WebView {
 
 	@Override
 	public void loadUrl(final String url) {
-		DebugLog.debug("loading URL: " + url);
+		Logger.debug("loading URL: " + url);
 		super.loadUrl(url);
 	}
 
@@ -360,13 +360,13 @@ public class ClientView extends WebView {
 		String initialPage = defaultServer + "account/mycharacters.html";
 		final String customPage = checkCustomServer();
 		if (customPage != null) {
-			DebugLog.debug("Connecing to custom page: " + customPage);
+			Logger.debug("Connecing to custom page: " + customPage);
 			initialPage = customPage;
 		} else {
 			if (testServer) {
-				DebugLog.debug("Connecting to test server");
+				Logger.debug("Connecting to test server");
 			} else {
-				DebugLog.debug("Connecting to main server");
+				Logger.debug("Connecting to main server");
 			}
 		}
 		final String queryString = "?build=" + AppInfo.getBuildType() + "&version=" + AppInfo.getBuildVersion() + "&state=" + generateStateId();
@@ -502,7 +502,7 @@ public class ClientView extends WebView {
 				break;
 		}
 
-		DebugLog.debug("playing music: " + musicId);
+		Logger.debug("playing music: " + musicId);
 
 		MusicPlayer.playMusic(id, true);
 	}

@@ -13,7 +13,7 @@ package org.stendhalgame.client.sound;
 
 import java.io.IOException;
 
-import org.stendhalgame.client.DebugLog;
+import org.stendhalgame.client.Logger;
 import org.stendhalgame.client.MainActivity;
 
 import android.content.Context;
@@ -28,17 +28,17 @@ public class MusicPlayer {
 
 	public static void playMusic(final Context ctx, final int id, final boolean loop) {
 		if (isPlaying()) {
-			DebugLog.debug("freeing up MusicPlayer instance to play new song");
+			Logger.debug("freeing up MusicPlayer instance to play new song");
 			stopMusic();
 		}
 
-		DebugLog.debug("starting music (loop: " + loop + ")");
+		Logger.debug("starting music (loop: " + loop + ")");
 
 		mplayer = new MediaPlayer();
 		mplayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 			@Override
 			public void onPrepared(final MediaPlayer mp) {
-				DebugLog.debug("starting music");
+				Logger.debug("starting music");
 				// FIXME: not working
 				//mplayer.setLooping(loop);
 				mplayer.start();
@@ -61,7 +61,7 @@ public class MusicPlayer {
 			mplayer.setDataSource(ctx, parseResourceUri(id));
 			mplayer.prepareAsync();
 		} catch (final IOException e) {
-			DebugLog.error("failed to load resource " + id + ":\n" + e.getStackTrace());
+			Logger.error("failed to load resource " + id + ":\n" + e.getStackTrace());
 		}
 	}
 
@@ -72,7 +72,7 @@ public class MusicPlayer {
 	public static void stopMusic() {
 		if (mplayer != null) {
 			if (mplayer.isPlaying()) {
-				DebugLog.debug("stopping music");
+				Logger.debug("stopping music");
 				mplayer.stop();
 			}
 			mplayer.release();

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 			instance = this;
 
 			// initialize debug logging mechanism
-			DebugLog.init(getExternalFilesDir(null), this);
+			Logger.init(getExternalFilesDir(null), this);
 
 			updateOrientation();
 
@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
 			client.loadTitleScreen();
 		} catch (final Exception e) {
 			e.printStackTrace();
-			DebugLog.error(e.toString());
-			DebugLog.error("// -- //");
+			Logger.error(e.toString());
+			Logger.error("// -- //");
 			for (final StackTraceElement ste: e.getStackTrace()) {
-				DebugLog.error(ste.toString());
+				Logger.error(ste.toString());
 			}
-			DebugLog.error("// -- //");
+			Logger.error("// -- //");
 			Notifier.showPrompt(
 				"An unhandled exception has occurred: " + e.getMessage()
 				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html",
@@ -145,14 +145,14 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	public void finish() {
-		DebugLog.debug(MainActivity.class.getName() + ".finish() called");
+		Logger.debug(MainActivity.class.getName() + ".finish() called");
 
 		super.finish();
 	}
 
 	@Override
 	protected void onDestroy() {
-		DebugLog.debug(MainActivity.class.getName() + ".onDestroy() called");
+		Logger.debug(MainActivity.class.getName() + ".onDestroy() called");
 
 		super.onDestroy();
 	}
