@@ -5,27 +5,14 @@ plugins {
 android {
 	compileSdk 32
 
-	def buildDate = new Date().format("yyyyMMdd")
-
-	def appVer
-	if (project.hasProperty("android.ver") && project["android.ver"]) {
-		appVer = project["android.ver"]
-	} else {
-		appVer = "${buildDate}"
-	}
-
-	if (project.hasProperty("android.rev") && project["android.rev"]) {
-		appVer += "-" + project["android.rev"]
-	}
-
-	def outputName = "org.stendhalgame.client-${appVer}"
+	def outputName = "org.stendhalgame.client-1045005"
 
 	defaultConfig {
 		applicationId "org.stendhalgame.client"
 		minSdk 21
 		targetSdk 32
 		versionCode 1
-		versionName "${appVer}"
+		versionName "1045005"
 		setProperty("archivesBaseName", "${outputName}")
 		setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
