@@ -124,7 +124,7 @@ public class DebugLog {
 	}
 
 	public static void notify(final String message) {
-		notify(message, DebugLevel.DEBUG);
+		notify(message, DebugLevel.INFO);
 	}
 
 	public static void notify(final String message, DebugLevel level) {
