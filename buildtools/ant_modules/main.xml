@@ -26,6 +26,14 @@
       match="^site_name: .*$"
       replace="site_name: Stendhal ${version} Reference Documentation"
       byline="true"/>
+    <replaceregexp file="app/android/app/build.gradle"
+      match="versionName .*$"
+      replace="versionName &quot;${version.android}&quot;"
+      byline="true"/>
+    <replaceregexp file="app/android/app/build.gradle"
+      match="def outputName = .*$"
+      replace="def outputName = &quot;org.stendhalgame.client-${version.android}&quot;"
+      byline="true"/>
 
     <!-- update location of resources -->
     <replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
