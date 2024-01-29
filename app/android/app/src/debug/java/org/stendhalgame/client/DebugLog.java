@@ -123,6 +123,14 @@ public class DebugLog {
 		writeLine(text, DebugLevel.DEBUG);
 	}
 
+	public static void debug(final boolean notify, final String text) {
+		if (notify) {
+			DebugLog.notify(text, DebugLevel.DEBUG);
+			return;
+		}
+		DebugLog.debug(text);
+	}
+
 	public static void notify(final String message) {
 		notify(message, DebugLevel.INFO);
 	}

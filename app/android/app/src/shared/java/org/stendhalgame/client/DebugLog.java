@@ -67,6 +67,10 @@ public class DebugLog {
 		// do nothing
 	}
 
+	public static void debug(final boolean notify, final String text) {
+		// do nothing
+	}
+
 	public static void notify(final String message) {
 		// do nothing
 	}
