@@ -28,8 +28,6 @@ export class ChatPanel extends Panel {
 	/**
 	 * Updates chat panel to float or be positioned statically.
 	 *
-	 * FIXME: can no longer scroll chat log to end when not floating
-	 *
 	 * @param floating
 	 *   `true` if panel should float.
 	 */
