@@ -177,8 +177,12 @@ public class Menu {
 				final ClientView client = ClientView.get();
 				final WebClientInfo wci = WebClientInfo.get();
 				final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
-				String msg = "Android client version: " + BuildConfig.VERSION_NAME
-						+ "\nWeb client version: " + wci.getVersion()
+				final String buildType = AppInfo.getBuildType();
+				String msg = "Android client version: " + AppInfo.getBuildVersion();
+				if (!"prod".equals(buildType)) {
+					msg += "\nAndroid client build: " + AppInfo.getBuildType();
+				}
+				msg += "\nWeb client version: " + wci.getVersion()
 						+ "\nWeb client build: " + wci.getBuild();
 				if (client.debugEnabled()) {
 					msg += "\nClient type: " + client.getSelectedClient()
