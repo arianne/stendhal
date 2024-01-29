@@ -132,8 +132,6 @@ public class ClientView extends WebView {
 
 			@Override
 			public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
-				DebugLog.debug("loading URL: " + url);
-
 				MusicPlayer.stopMusic();
 				super.onPageStarted(view, url, favicon);
 			}
@@ -218,6 +216,12 @@ public class ClientView extends WebView {
 		testClient = false;
 		testServer = false;
 		clientUrlSuffix = "client";
+	}
+
+	@Override
+	public void loadUrl(final String url) {
+		DebugLog.debug("loading URL: " + url);
+		super.loadUrl(url);
 	}
 
 	/**
@@ -316,26 +320,27 @@ public class ClientView extends WebView {
 		builder.create().show();
 	}
 
+	/**
+	 * Connects to server & loads initial page.
+	 */
 	private void onSelectServer() {
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
-		final String custom_page = checkCustomServer();
-		if (custom_page != null) {
-			DebugLog.debug("Connecing to custom page: " + custom_page);
-
-			loadUrl(custom_page);
+		String initialPage = defaultServer + "account/mycharacters.html";
+		final String customPage = checkCustomServer();
+		if (customPage != null) {
+			DebugLog.debug("Connecing to custom page: " + customPage);
+			initialPage = customPage;
 		} else {
-			// initial page
-			loadUrl(defaultServer + "account/mycharacters.html");
-
 			if (testServer) {
 				DebugLog.debug("Connecting to test server");
 			} else {
 				DebugLog.debug("Connecting to main server");
 			}
 		}
-
+		final String queryString = "?build=" + AppInfo.getBuildType() + "&version=" + AppInfo.getBuildVersion();
+		loadUrl(initialPage + queryString);
 		currentPage = PageId.OTHER;
 		// hide menu after exiting title screen
 		Menu.get().hide();
