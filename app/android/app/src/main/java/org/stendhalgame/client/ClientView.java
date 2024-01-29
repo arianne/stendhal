@@ -11,6 +11,8 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
+import java.util.Random;
+
 import org.stendhalgame.client.sound.MusicPlayer;
 
 import android.app.AlertDialog;
@@ -48,6 +50,8 @@ public class ClientView extends WebView {
 	private boolean testServer = false;
 	private Boolean debugging;
 	private static PageId currentPage;
+
+	private String stateId = "";
 
 
 	/**
@@ -216,6 +220,32 @@ public class ClientView extends WebView {
 		testClient = false;
 		testServer = false;
 		clientUrlSuffix = "client";
+		stateId = "";
+	}
+
+	/**
+	 * Generates a random string for identifying state.
+	 */
+	private String generateStateId() {
+		// ensure state is reset before generating
+		stateId = "";
+
+		// useable characters
+		String charList = "0123456789";
+		for (char c = 'A'; c <= 'Z'; c++) {
+			charList += c;
+		}
+		for (char c = 'a'; c <= 'z'; c++) {
+			charList += c;
+		}
+
+		// generate random state
+		final Random rand = new Random();
+		final int ccount = charList.length();
+		for (int idx = 0; idx <= 20 ; idx++) {
+				stateId += charList.charAt(rand.nextInt(ccount));
+		}
+		return stateId;
 	}
 
 	@Override
@@ -339,7 +369,7 @@ public class ClientView extends WebView {
 				DebugLog.debug("Connecting to main server");
 			}
 		}
-		final String queryString = "?build=" + AppInfo.getBuildType() + "&version=" + AppInfo.getBuildVersion();
+		final String queryString = "?build=" + AppInfo.getBuildType() + "&version=" + AppInfo.getBuildVersion() + "&state=" + generateStateId();
 		loadUrl(initialPage + queryString);
 		currentPage = PageId.OTHER;
 		// hide menu after exiting title screen
