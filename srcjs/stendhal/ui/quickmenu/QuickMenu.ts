@@ -55,15 +55,15 @@ export class QuickMenu {
 		btn_main.draggable = false;
 
 		// horizontal sub-buttons
-		QuickMenu.buttonListX.push(new MenuButton());
-		QuickMenu.buttonListX.push(new SettingsButton());
-		QuickMenu.buttonListX.push(new LogButton());
-		const chatButton = new ChatButton();
-		QuickMenu.buttonListX.push(chatButton);
+		QuickMenu.buttonListX.push(new JoystickButton());
 		const soundButton = new SoundButton();
 		QuickMenu.buttonListX.push(soundButton);
-		QuickMenu.buttonListX.push(new JoystickButton());
+		QuickMenu.buttonListX.push(new LogButton());
+		QuickMenu.buttonListX.push(new SettingsButton());
+		QuickMenu.buttonListX.push(new MenuButton());
 		// vertical sub-buttons
+		const chatButton = new ChatButton();
+		QuickMenu.buttonListY.push(chatButton);
 		QuickMenu.buttonListY.push(new ChatOptsButton());
 		QuickMenu.buttonListY.push(new RotateLButton());
 		QuickMenu.buttonListY.push(new RotateRButton());
