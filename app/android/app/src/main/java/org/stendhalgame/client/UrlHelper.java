@@ -16,6 +16,9 @@ import android.net.Uri;
 
 class UrlHelper {
 
+	private static final String defaultServer = "https://stendhalgame.org/";
+
+
 	private UrlHelper() {
 		// static methods only
 	}
@@ -32,5 +35,163 @@ class UrlHelper {
 			url = "http://" + url;
 		}
 		return Uri.parse(url);
+	}
+
+	/**
+	 * Retrieves the HTTP URL of the default server (stendhalgame.org).
+	 *
+	 * @return
+	 *   String URL.
+	 */
+	public static String getDefaultServer() {
+		return UrlHelper.defaultServer;
+	}
+
+	/**
+	 * Retrieves the URI of the default server (stendhalgame.org).
+	 *
+	 * @return
+	 *   `android.net.Uri` of default server.
+	 */
+	public static Uri getDefaultServerUri() {
+		return UrlHelper.toUri(UrlHelper.defaultServer);
+	}
+
+	/**
+	 * Retrieves the default host.
+	 *
+	 * @return
+	 *   Host portion of the default URI.
+	 */
+	public static String getDefaultHost() {
+		return UrlHelper.getDefaultServerUri().getHost();
+	}
+
+	/**
+	 * Removes protocol & "www" prefixes from a URL.
+	 *
+	 * FIXME: rename to "trimProtocol"
+	 *
+	 * @return
+	 *   Trimmed URL string.
+	 */
+	public static String stripHost(final String url) {
+		if (url == null) {
+			return "";
+		}
+		return url.replaceAll("^https://", "").replaceAll("^http://", "")
+			.replaceAll("^www\\.", "");
+	}
+
+	/**
+	 * Extracts character name from URL fragment identifier & converts to query string.
+	 *
+	 * @param url
+	 *   HTTP string to be formatted.
+	 * @return
+	 *   Formatted URL.
+	 */
+	public static String formatCharName(String url) {
+		final int idx = url.indexOf("#");
+		if (idx > -1) {
+			url = url.substring(0, idx) + "?char=" + url.substring(idx+1);
+		}
+		return url;
+	}
+
+	/**
+	 * Formats client URL for currently selected server.
+	 *
+	 * @param url
+	 *   URL to be checked.
+	 * @return
+	 *   URL to be loaded.
+	 */
+	public static String checkClientUrl(String url) {
+		if (UrlHelper.isClientUrl(url)) {
+			final ClientView client = ClientView.get();
+			final boolean testClient = client.isTestClient();
+			String replaceSuffix = "/testclient/";
+			if (testClient) {
+				replaceSuffix = "/client/";
+			}
+			// ensure website directs to configured client
+			url = url.replace(replaceSuffix, "/" + client.getClientUrlSuffix() + "/");
+			url = UrlHelper.formatCharName(url);
+			if (testClient && !client.isTestServer()) {
+				// connect test client to main server
+				url += "&server=main";
+			}
+		}
+		return url;
+	}
+
+	/**
+	 * Checks if a URL is a link to one of the web clients.
+	 *
+	 * @param url
+	 *   HTTP URL to be checked.
+	 * @return
+	 *   `true` if `url` links to "client" or "testclient".
+	 */
+	public static boolean isClientUrl(final String url) {
+		final String custom_client = PreferencesActivity.getString("client_url").trim();
+		if (!custom_client.equals("")) {
+			return url.contains(custom_client);
+		}
+		final String defaultHost = UrlHelper.stripHost(UrlHelper.getDefaultServerUri().getHost());
+		return url.contains(defaultHost + "/client/") || url.contains(defaultHost + "/testclient/");
+	}
+
+	/**
+	 * Checks if requested URL is whitelisted to be opened within WebView client.
+	 *
+	 * @param uri
+	 *   `android.net.Uri` to be checked.
+	 * @return
+	 *   `true` if URI is under default domain (stendhalgame.org) or localhost.
+	 */
+	public static boolean isInternalUri(final Uri uri) {
+		final String defaultHost = UrlHelper.stripHost(UrlHelper.getDefaultHost());
+		final String host = UrlHelper.stripHost(uri.getHost());
+		if (defaultHost.equals(host)) {
+			// always allow links from stendhalgame.org
+			return true;
+		}
+		final String cs = ClientView.get().checkCustomServer();
+		if (cs != null) {
+			return UrlHelper.stripHost(cs).equals(host);
+		}
+		return "localhost".equals(host);
+	}
+
+	/**
+	 * Checks if requested URL is whitelisted to be opened within WebView client.
+	 *
+	 * @param url
+	 *   HTTP URL string to be checked.
+	 * @return
+	 *   `true` if URL is under default domain (stendhalgame.org) or localhost.
+	 */
+	public static boolean isInternal(final String url) {
+		return UrlHelper.isInternalUri(UrlHelper.toUri(url));
+	}
+
+	/**
+	 * Checks if a URI represents a login page.
+	 *
+	 * @return
+	 *   `true` if URI path equals "/account/login.html" or `id` parameter of query string equals
+	 *   "content/account/login".
+	 */
+	public static boolean isLoginUri(final Uri uri) {
+		if ("/account/login.html".equals(uri.getPath())) {
+			return true;
+		}
+		final String id = uri.getQueryParameter("id");
+		if (id == null) {
+			return false;
+		}
+		return "content/account/login".equals(id);
 	}
 }

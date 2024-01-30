@@ -21,7 +21,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -43,7 +42,6 @@ public class ClientView extends WebView {
 
 	private ImageView splash;
 
-	private final String defaultServer = "https://stendhalgame.org/";
 	private String clientUrlSuffix = "client";
 
 	private boolean testClient = false;
@@ -123,14 +121,13 @@ public class ClientView extends WebView {
 			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				if (!isInternalUri(UrlHelper.toUri(url))) {
+				if (!UrlHelper.isInternal(url)) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
 					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, UrlHelper.toUri(url)));
 					return true;
 				}
-
-				view.loadUrl(checkClientUrl(url));
+				view.loadUrl(UrlHelper.checkClientUrl(url));
 				return false;
 			}
 
@@ -144,7 +141,7 @@ public class ClientView extends WebView {
 			public void onPageFinished(final WebView view, final String url) {
 				super.onPageFinished(view, url);
 
-				if (isClientUrl(url)) {
+				if (UrlHelper.isClientUrl(url)) {
 					currentPage = PageId.WEBCLIENT;
 					WebClientInfo.get().onClientConnected();
 				} else if (url.equals("") || url.equals("about:blank")) {
@@ -202,6 +199,20 @@ public class ClientView extends WebView {
 		});
 	}
 
+	/**
+	 * Determines if URL to load is test web client.
+	 */
+	public boolean isTestClient() {
+		return testClient;
+	}
+
+	/**
+	 * Determines if connection is to test server.
+	 */
+	public boolean isTestServer() {
+		return testServer;
+	}
+
 	public String getSelectedClient() {
 		if (ClientView.onTitleScreen()) {
 			return "none";
@@ -221,6 +232,16 @@ public class ClientView extends WebView {
 		testServer = false;
 		clientUrlSuffix = "client";
 		stateId = "";
+	}
+
+	/**
+	 * Retrieves client type string.
+	 *
+	 * @return
+	 *   Either "client" or "testclient".
+	 */
+	public String getClientUrlSuffix() {
+		return clientUrlSuffix;
 	}
 
 	/**
@@ -357,7 +378,7 @@ public class ClientView extends WebView {
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
-		String initialPage = defaultServer + "account/mycharacters.html";
+		String initialPage = UrlHelper.getDefaultServer() + "account/mycharacters.html";
 		final String customPage = checkCustomServer();
 		if (customPage != null) {
 			Logger.debug("Connecing to custom page: " + customPage);
@@ -376,7 +397,7 @@ public class ClientView extends WebView {
 		Menu.get().hide();
 	}
 
-	private String checkCustomServer() {
+	public String checkCustomServer() {
 		final String cs = PreferencesActivity.getString("client_url", "").trim();
 
 		if (cs.equals("")) {
@@ -384,135 +405,6 @@ public class ClientView extends WebView {
 		}
 
 		return cs;
-	}
-
-	/**
-	 * Checks if a URL is a link to one of the web clients.
-	 *
-	 * @param url
-	 *     URL to be checked.
-	 * @return
-	 *     <code>true</code> if url links to "client" or "testclient".
-	 */
-	private boolean isClientUrl(final String url) {
-		final String custom_client = PreferencesActivity.getString("client_url").trim();
-		if (!custom_client.equals("")) {
-			return url.contains(custom_client);
-		}
-
-		return url.contains("stendhalgame.org/client/")
-			|| url.contains("stendhalgame.org/testclient/");
-	}
-
-	/**
-	 * Formats client URL for currently selected server.
-	 *
-	 * @param url
-	 *     URL to be checked.
-	 * @return
-	 *     URL to be loaded.
-	 */
-	private String checkClientUrl(String url) {
-		if (isClientUrl(url)) {
-			String replaceSuffix = "/testclient/";
-			if (testClient) {
-				replaceSuffix = "/client/";
-			}
-			// ensure website directs to configured client
-			url = url.replace(replaceSuffix, "/" + clientUrlSuffix + "/");
-			url = formatCharName(url);
-			if (testClient && !testServer) {
-				// connect test client to main server
-				url += "&server=main";
-			}
-		}
-
-		return url;
-	}
-
-	/**
-	 * Extracts character name from URL fragment identifier & converts to query string.
-	 */
-	private String formatCharName(String url) {
-		final int idx = url.indexOf("#");
-		if (idx > -1) {
-			url = url.substring(0, idx) + "?char=" + url.substring(idx+1);
-		}
-		return url;
-	}
-
-	/**
-	 * Checks if requested URL is whitelisted to be opened within WebView client.
-	 *
-	 * @param uri
-	 *   `android.net.Uri` to be checked.
-	 * @return
-	 *   `true` if URI is under default domain (stendhalgame.org) or localhost.
-	 */
-	private boolean isInternalUri(final Uri uri) {
-		final String defaultHost = stripHost(UrlHelper.toUri(defaultServer).getHost());
-		final String host = stripHost(uri.getHost());
-		if (defaultHost.equals(host)) {
-			// always allow links from stendhalgame.org
-			return true;
-		}
-		final String cs = checkCustomServer();
-		if (cs != null) {
-			return stripHost(cs).equals(host);
-		}
-		return "localhost".equals(host);
-	}
-
-	/**
-	 * Retrieves the URI of the default server.
-	 *
-	 * @return
-	 *   `android.net.Uri` of default server (stendhalgame.org).
-	 */
-	private Uri getDefaultServerUri() {
-		return UrlHelper.toUri(defaultServer);
-	}
-
-	/**
-	 * Retrieves the default host.
-	 *
-	 * @return
-	 *   Host portion of the default URI.
-	 */
-	private String getDefaultHost() {
-		return getDefaultServerUri().getHost();
-	}
-
-	/**
-	 * Checks if a URI represents a login page.
-	 *
-	 * @return
-	 *   `true` if URI path equals "/account/login.html" or `id` parameter of query string equals
-	 *   "content/account/login".
-	 */
-	private boolean isLoginUri(final Uri uri) {
-		if ("/account/login.html".equals(uri.getPath())) {
-			return true;
-		}
-		final String id = uri.getQueryParameter("id");
-		if (id == null) {
-			return false;
-		}
-		return "content/account/login".equals(id);
-	}
-
-	/**
-	 * Removes protocol & "www" prefixes from a URL.
-	 *
-	 * @return
-	 *   Trimmed URL string.
-	 */
-	private String stripHost(final String url) {
-		if (url == null) {
-			return "";
-		}
-		return url.replaceAll("^https://", "").replaceAll("^http://", "")
-			.replaceAll("^www\\.", "");
 	}
 
 	public static boolean onTitleScreen() {
