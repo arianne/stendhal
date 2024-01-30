@@ -202,6 +202,28 @@ public class ClientView extends WebView {
 	}
 
 	/**
+	 * Verifies intent state & load URI.
+	 *
+	 * @param intent
+	 *   Called login intent with state verification.
+	 */
+	public void checkLoginIntent(final Intent intent) {
+		final Uri intentUri = intent.getData();
+		final String intentStateId = intentUri.getQueryParameter("state");
+		if (stateId == null || intentStateId == null || "".equals(stateId) || !stateId.equals(intentStateId)) {
+			final String err = "There was an error verifying login";
+			Logger.error(err + " (\"" + stateId + "\" == \"" + intentStateId + "\")");
+			Notifier.showMessage(err);
+			if (currentPage == null || PageId.TITLE.equals(previousPage)) {
+				// reload title
+				loadTitleScreen();
+			}
+			return;
+		}
+		loadUrl(intentUri.toString());
+	}
+
+	/**
 	 * Determines if URL to load is test web client.
 	 */
 	public boolean isTestClient() {
