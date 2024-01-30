@@ -49,6 +49,7 @@ public class ClientView extends WebView {
 	private boolean testServer = false;
 	private Boolean debugging;
 	private static PageId currentPage;
+	private PageId previousPage;
 
 	private String stateId = "";
 
@@ -143,15 +144,15 @@ public class ClientView extends WebView {
 				super.onPageFinished(view, url);
 
 				if (UrlHelper.isClientUrl(url)) {
-					currentPage = PageId.WEBCLIENT;
+					setPage(PageId.WEBCLIENT);
 					WebClientInfo.get().onClientConnected();
 				} else if (url.equals("") || url.equals("about:blank")) {
-					currentPage = PageId.TITLE;
+					setPage(PageId.TITLE);
 					if (PreferencesActivity.getBoolean("title_music", true)) {
 						playTitleMusic();
 					}
 				} else {
-					currentPage = PageId.OTHER;
+					setPage(PageId.OTHER);
 				}
 				Menu.get().updateButtons();
 
@@ -281,6 +282,7 @@ public class ClientView extends WebView {
 	 */
 	public void loadTitleScreen() {
 		reset();
+		setPage(PageId.TITLE);
 		setSplashResource(R.drawable.splash);
 		loadUrl("about:blank");
 		Menu.get().show();
@@ -397,7 +399,7 @@ public class ClientView extends WebView {
 		builder.appendQueryParameter("version", AppInfo.getBuildVersion());
 		builder.appendQueryParameter("state", generateStateId());
 		loadUrl(builder.toString());
-		currentPage = PageId.OTHER;
+		setPage(PageId.OTHER);
 		// hide menu after exiting title screen
 		Menu.get().hide();
 	}
@@ -452,6 +454,20 @@ public class ClientView extends WebView {
 
 	public static void playTitleMusic() {
 		playTitleMusic(null);
+	}
+
+	/**
+	 * Sets current page ID.
+	 *
+	 * @param newPage
+	 *   Page ID to be used.
+	 */
+	private void setPage(final PageId newPage) {
+		previousPage = ClientView.currentPage;
+		ClientView.currentPage = newPage;
+		if (previousPage == null) {
+			previousPage = ClientView.currentPage;
+		}
 	}
 
 	/**
