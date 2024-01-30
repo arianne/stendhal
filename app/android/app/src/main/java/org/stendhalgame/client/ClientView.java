@@ -123,10 +123,10 @@ public class ClientView extends WebView {
 			/* handle changing URLs */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				if (!isInternalUri(Uri.parse(url))) {
+				if (!isInternalUri(UrlHelper.toUri(url))) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
-					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, UrlHelper.toUri(url)));
 					return true;
 				}
 
@@ -450,7 +450,7 @@ public class ClientView extends WebView {
 	 *   `true` if URI is under default domain (stendhalgame.org) or localhost.
 	 */
 	private boolean isInternalUri(final Uri uri) {
-		final String defaultHost = stripHost(Uri.parse(defaultServer).getHost());
+		final String defaultHost = stripHost(UrlHelper.toUri(defaultServer).getHost());
 		final String host = stripHost(uri.getHost());
 		if (defaultHost.equals(host)) {
 			// always allow links from stendhalgame.org
@@ -470,7 +470,7 @@ public class ClientView extends WebView {
 	 *   `android.net.Uri` of default server (stendhalgame.org).
 	 */
 	private Uri getDefaultServerUri() {
-		return Uri.parse(defaultServer);
+		return UrlHelper.toUri(defaultServer);
 	}
 
 	/**
