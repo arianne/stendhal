@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -382,7 +383,8 @@ public class ClientView extends WebView {
 		final String customPage = checkCustomServer();
 		if (customPage != null) {
 			Logger.debug("Connecing to custom page: " + customPage);
-			initialPage = customPage;
+			// custom client URL may add character name fragement
+			initialPage = UrlHelper.formatCharName(customPage);
 		} else {
 			if (testServer) {
 				Logger.debug("Connecting to test server");
@@ -390,8 +392,11 @@ public class ClientView extends WebView {
 				Logger.debug("Connecting to main server");
 			}
 		}
-		final String queryString = "?build=" + AppInfo.getBuildType() + "&version=" + AppInfo.getBuildVersion() + "&state=" + generateStateId();
-		loadUrl(initialPage + queryString);
+		final Uri.Builder builder = UrlHelper.toUri(initialPage).buildUpon();
+		builder.appendQueryParameter("build", AppInfo.getBuildType());
+		builder.appendQueryParameter("version", AppInfo.getBuildVersion());
+		builder.appendQueryParameter("state", generateStateId());
+		loadUrl(builder.toString());
 		currentPage = PageId.OTHER;
 		// hide menu after exiting title screen
 		Menu.get().hide();
