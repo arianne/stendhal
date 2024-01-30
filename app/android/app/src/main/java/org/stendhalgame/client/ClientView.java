@@ -503,8 +503,14 @@ public class ClientView extends WebView {
 
 	/**
 	 * Removes protocol & "www" prefixes from a URL.
+	 *
+	 * @return
+	 *   Trimmed URL string.
 	 */
 	private String stripHost(final String url) {
+		if (url == null) {
+			return "";
+		}
 		return url.replaceAll("^https://", "").replaceAll("^http://", "")
 			.replaceAll("^www\\.", "");
 	}
