@@ -308,10 +308,6 @@ div.logcolR {
 	opacity: 0.5;
 }
 
-.qm-button, .joystick-button {
-	user-select: none;
-}
-
 .group-buttons {
 	text-align: right;
 }
@@ -400,7 +396,7 @@ div.logcolR {
 	width: 4em;
 }
 
-.unselectable {
+.unselectable, .qm-button, .joystick-button {
 	-ms-user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
