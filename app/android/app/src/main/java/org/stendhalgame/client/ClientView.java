@@ -450,18 +450,55 @@ public class ClientView extends WebView {
 	 *   `true` if URI is under default domain (stendhalgame.org) or localhost.
 	 */
 	private boolean isInternalUri(final Uri uri) {
-		final String url = stripHost(uri.toString());
-		final String cs = checkCustomServer();
-
-		if (url.startsWith(stripHost(defaultServer))) {
+		final String defaultHost = stripHost(Uri.parse(defaultServer).getHost());
+		final String host = stripHost(uri.getHost());
+		if (defaultHost.equals(host)) {
 			// always allow links from stendhalgame.org
 			return true;
 		}
+		final String cs = checkCustomServer();
 		if (cs != null) {
-			return url.startsWith(stripHost(cs));
-		} else {
-			return url.startsWith("localhost");
+			return stripHost(cs).equals(host);
 		}
+		return "localhost".equals(host);
+	}
+
+	/**
+	 * Retrieves the URI of the default server.
+	 *
+	 * @return
+	 *   `android.net.Uri` of default server (stendhalgame.org).
+	 */
+	private Uri getDefaultServerUri() {
+		return Uri.parse(defaultServer);
+	}
+
+	/**
+	 * Retrieves the default host.
+	 *
+	 * @return
+	 *   Host portion of the default URI.
+	 */
+	private String getDefaultHost() {
+		return getDefaultServerUri().getHost();
+	}
+
+	/**
+	 * Checks if a URI represents a login page.
+	 *
+	 * @return
+	 *   `true` if URI path equals "/account/login.html" or `id` parameter of query string equals
+	 *   "content/account/login".
+	 */
+	private boolean isLoginUri(final Uri uri) {
+		if ("/account/login.html".equals(uri.getPath())) {
+			return true;
+		}
+		final String id = uri.getQueryParameter("id");
+		if (id == null) {
+			return false;
+		}
+		return "content/account/login".equals(id);
 	}
 
 	/**
