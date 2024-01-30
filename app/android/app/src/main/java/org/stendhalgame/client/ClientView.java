@@ -449,22 +449,25 @@ public class ClientView extends WebView {
 	 * @return
 	 *     <code>true</code> if URL is under domain stendhalgame.org or localhost.
 	 */
-	private boolean isInternalUrl(final String url) {
-		final String domain = getDomain(url);
+	private boolean isInternalUrl(String url) {
+		url = stripHost(url);
 		final String cs = checkCustomServer();
 
-		if (domain.startsWith(getDomain(defaultServer))) {
+		if (url.startsWith(stripHost(defaultServer))) {
 			// always allow links from stendhalgame.org
 			return true;
 		}
 		if (cs != null) {
-			return domain.startsWith(getDomain(cs));
+			return url.startsWith(stripHost(cs));
 		} else {
-			return domain.startsWith("localhost");
+			return url.startsWith("localhost");
 		}
 	}
 
-	private String getDomain(final String url) {
+	/**
+	 * Removes protocol & "www" prefixes from a URL.
+	 */
+	private String stripHost(final String url) {
 		return url.replaceAll("^https://", "").replaceAll("^http://", "")
 			.replaceAll("^www\\.", "");
 	}
