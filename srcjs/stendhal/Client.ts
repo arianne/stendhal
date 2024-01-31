@@ -181,36 +181,6 @@ export class Client {
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
-
-		// attributes to set after connection made
-		// FIXME: this should be set after character is ready instead of trying to guess
-		if (stendhal.config.getBoolean("input.movecont")) {
-			const socket = marauroa.clientFramework.socket;
-			let tries = 0;
-
-			function checkConnection() {
-				setTimeout(function() {
-					tries++;
-					if (socket.readyState === WebSocket.OPEN) {
-						marauroa.clientFramework.sendAction({
-							"type": "move.continuous",
-							"move.continuous": ""
-						});
-						return;
-					}
-
-					if (tries > 5) {
-						console.warn("could not set \"move.continuous\" attribute,"
-								+ " gave up after " + tries + " tries");
-						return;
-					}
-
-					checkConnection();
-				}, 3000);
-			}
-
-			checkConnection();
-		}
 	}
 
 	devWarning() {

@@ -40,6 +40,7 @@ Changelog
 - doesn't attempt to open corpse/chest inventory windows when character not in range
 - fixed chat history duplicates
 - chat options dialog remains open until NPC is no longer attending or player closes
+- fixed continuous movement state not always updated at startup
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

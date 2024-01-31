@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -49,6 +49,7 @@ export class User extends Player {
 		queueMicrotask(() => {
 			this.onEnterZone();
 		});
+		ui.onUserReady();
 	}
 
 	override destroy(parent: any) {

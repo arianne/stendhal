@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
+declare var stendhal: any;
+
 import { UIComponentEnum } from "./UIComponentEnum";
 import { ApplicationMenuDialog } from "./dialog/ApplicationMenuDialog";
 import { QuickMenu } from "./quickmenu/QuickMenu";
@@ -16,13 +19,13 @@ import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Component } from "./toolkit/Component";
 import { SingletonFloatingWindow } from "./toolkit/SingletonFloatingWindow";
 
-declare var stendhal: any;
-
 
 class UI {
 
 	/** Attribute denoting readiness of display. */
 	private static displayReady = false;
+	/** Attribute denoting readiness of user. */
+	private static userReady = false;
 
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
 
@@ -134,6 +137,25 @@ class UI {
 				document.getElementById("menupanel")!.style["display"] = "none";
 				QuickMenu.setVisible(true);
 				break;
+		}
+	}
+
+	/**
+	 * Called when the initial `User` instance is constructed.
+	 */
+	public onUserReady() {
+		if (UI.userReady) {
+			// do not repeat instructions intended for call only when user is initially constructed
+			return;
+		}
+		UI.userReady = true;
+
+		// continuous movement server attribute is volatile so that initial state is managed by solely by client
+		if (stendhal.config.getBoolean("input.movecont")) {
+			marauroa.clientFramework.sendAction({
+				"type": "move.continuous",
+				"move.continuous": ""
+			});
 		}
 	}
 }
