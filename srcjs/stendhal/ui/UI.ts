@@ -22,7 +22,7 @@ declare var stendhal: any;
 class UI {
 
 	/** Attribute denoting readiness of display. */
-	private displayReady = false;
+	private static displayReady = false;
 
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
 
@@ -75,18 +75,18 @@ class UI {
 	 *   `true` if display is initialized and ready.
 	 */
 	public isDisplayReady(): boolean {
-		return this.displayReady;
+		return UI.displayReady;
 	}
 
 	/**
 	 * Instructions to execute when display initialized.
 	 */
 	public onDisplayReady() {
-		if (this.displayReady) {
+		if (UI.displayReady) {
 			console.warn("display state was previously set to \"ready\"");
 			return;
 		}
-		this.displayReady = true;
+		UI.displayReady = true;
 
 		const chatPanel = this.get(UIComponentEnum.BottomPanel)!;
 		chatPanel.refresh();
@@ -104,7 +104,7 @@ class UI {
 	 * Instructions to execute when display attributes are updated.
 	 */
 	public onDisplayUpdate() {
-		if (!this.displayReady) {
+		if (!UI.displayReady) {
 			console.debug("display not in \"ready\" state");
 			return;
 		}
