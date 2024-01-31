@@ -2,6 +2,8 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <!-- NOTE: these are not used by the project or system administrator for created releases and may be removed in the future -->
+
   <!-- To build executable package/installer, specific package type can be build only on it's native platform.
     - First build client zip file using lowest supported Java version (JDK 8)
     - Switch to newer JDK version which has included jpackage tool
