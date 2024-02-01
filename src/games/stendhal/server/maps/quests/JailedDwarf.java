@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,7 +99,7 @@ public class JailedDwarf extends AbstractQuest {
 		fillQuestInfo(
 				"Jailed Dwarf",
 				"Down in Kanmararn is an afraid dwarf locked in a cell waiting for visitors. He is supposed to be the guard, but duergars have raided the prison. He might need some armor to survive once out of it.",
-				true);
+				false);
 		step_1();
 	}
 
