@@ -635,10 +635,6 @@ div.logcolR {
 	margin: 2px;
 }
 
-canvas#drawing-stage {
-	display: none;
-}
-
 img.status-icon {
 	margin-left: 2px;
 	margin-top: 2px;
