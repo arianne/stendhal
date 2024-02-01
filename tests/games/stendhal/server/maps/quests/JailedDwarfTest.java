@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -58,7 +58,7 @@ public class JailedDwarfTest extends ZonePlayerAndNPCTestImpl {
 		loadQuest(this.quest = new JailedDwarf());
 
 		npc = getNPC(NPC_NAME);
-		en = npc.getEngine();		
+		en = npc.getEngine();
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class JailedDwarfTest extends ZonePlayerAndNPCTestImpl {
 	@Test
 	public void testGreetingStartsQuest() {
 
-		en.step(player, "hi");		
-		assertThat(getReply(npc), is("Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles."));		
+		en.step(player, "hi");
+		assertThat(getReply(npc), is("Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles."));
 		assertThat(player.getQuest(this.quest.getSlotName()), is("start"));
 		assertThat(en.getCurrentState(), is(ConversationStates.IDLE));
 	}
@@ -80,45 +80,45 @@ public class JailedDwarfTest extends ZonePlayerAndNPCTestImpl {
 	public void testGreetingWhenQuestCompleted() {
 
 		player.setQuest(this.quest.getSlotName(), "done");
-		
-		en.step(player, "hi");		
-		
-		assertThat(getReply(npc), is("Hi. As you see, I am still too nervous to leave ..."));		
+
+		en.step(player, "hi");
+
+		assertThat(getReply(npc), is("Hi. As you see, I am still too nervous to leave ..."));
 		assertThat(player.getQuest(this.quest.getSlotName()), is("done"));
 		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
 	}
-	
+
 	@Test
-	public void testQuestComplition() {		
-		
+	public void testQuestComplition() {
+
 		player.setQuest(this.quest.getSlotName(), "start");
-		
+
 		// quest started, greeting without a key
 		en.step(player, "hi");
 		assertThat(getReply(npc), startsWith("Help! The duergars have raided"));
 		assertThat(en.getCurrentState(), is(ConversationStates.IDLE));
-		
+
 		// quest completes when player has a key to unlock Hunel
 		player.equipToInventoryOnly(SingletonRepository.getEntityManager().getItem("kanmararn prison key"));
 
 		en.step(player, "hi");
-		
+
 		assertThat(getReply(npc), is("You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... "));
-		assertThat(player.getQuest(this.quest.getSlotName()), is("done"));		
+		assertThat(player.getQuest(this.quest.getSlotName()), is("done"));
 		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat(player.getXP(), is(2000));
 		assertGainKarma(20);
-	}	
-	
+	}
+
 	@Test
 	public void testQuestHistory() {
-		
+
 		assertThat(quest.getHistory(player), empty());
-		
+
 		player.setQuest(this.quest.getSlotName(), "start");
 		assertThat(quest.getHistory(player), contains("I need to get a key to unlock Hunel."));
-		
-		player.setQuest(this.quest.getSlotName(), "done");		
+
+		player.setQuest(this.quest.getSlotName(), "done");
 		assertThat(quest.getHistory(player), contains("I need to get a key to unlock Hunel.","I killed the Duergar King and got the key to unlock Hunel. But now he's too afraid to leave, wanting to buy more and more armor before he feels safe. Poor Hunel."));
 	}
 }
