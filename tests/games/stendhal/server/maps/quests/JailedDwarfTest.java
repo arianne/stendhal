@@ -55,7 +55,8 @@ public class JailedDwarfTest extends ZonePlayerAndNPCTestImpl {
 	@Before
 	public void setupBefore() {
 		// setupQuiz
-		loadQuest(this.quest = new JailedDwarf());
+		this.quest = new JailedDwarf();
+		loadQuest(this.quest);
 
 		npc = getNPC(NPC_NAME);
 		en = npc.getEngine();
