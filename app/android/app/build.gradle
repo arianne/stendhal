@@ -21,11 +21,13 @@ android {
 		minSdkVersion 21
 	}
 
-	/* keystore.properties file must include the following values:
+	/* A keystore.properties file can be placed in the root Android project directory and must
+	 * include the following values:
 	 *   storeFile=<path-to-keystore-file>
 	 *   storePassword=<store-password>
 	 *   keyPassword=<key-password>
 	 *   keyAlias=<key-alias>
+	 * The `storeFile` path value must use double backslashes (\\) on Windows.
 	 */
 	def keystorePropertiesFile = rootProject.file("keystore.properties")
 	def keystoreProperties = new Properties()
