@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
