@@ -32,14 +32,10 @@ export class Joystick extends JoystickBase {
 		this.outer = new Image();
 		this.inner = new Image();
 
-		const container = document.getElementById("joystick-container")!;
 		for (const jimg of [this.outer, this.inner]) {
 			jimg.classList.add("joystick-button");
 			jimg.style.position = "absolute";
 			jimg.draggable = false;
-
-			// add to DOM
-			container.appendChild(jimg);
 
 			// listen for activation events
 			for (const etype of ["mousedown", "touchstart"]) {
@@ -79,6 +75,11 @@ export class Joystick extends JoystickBase {
 		this.outer.style.left = (Joystick.getCenterX() - this.radius) + "px";
 		this.outer.style.top = (Joystick.getCenterY() - this.radius) + "px";
 		this.reset();
+
+		// add to DOM
+		const container = document.getElementById("joystick-container")!;
+		container.appendChild(this.outer);
+		container.appendChild(this.inner);
 	}
 
 	private onMouseDown(e: Event) {
