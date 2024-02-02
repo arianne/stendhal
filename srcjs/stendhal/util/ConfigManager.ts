@@ -181,7 +181,7 @@ export class ConfigManager {
 				if (this.storage.getItem(keyNew) == null && valueOld != null) {
 					// special cases
 					if (keyOld === "ui.joystick") {
-						if (valueOld !== "none" && typeof(this.storage.getItem("client.joystick")) === "undefined") {
+						if (valueOld !== "none" && this.storage.getItem("client.joystick") == null) {
 							this.storage.setItem("client.joystick", "true");
 						}
 						valueOld = valueOld === "dpad" ? "dpad" : "joystick";
