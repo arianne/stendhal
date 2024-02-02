@@ -6,15 +6,13 @@ android {
 	namespace "org.stendhalgame.client"
 	compileSdk 32
 
-	def outputName = "${namespace}-1045005"
-
 	defaultConfig {
 		applicationId namespace
 		minSdk 21
 		targetSdk 32
 		versionCode 1
 		versionName "1045005"
-		setProperty("archivesBaseName", "${outputName}")
+		setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
 		setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -80,7 +78,7 @@ android {
 			def buildRoot = "../../../../"
 			if (variant.name.equals("release")) {
 				// exclude "-release" suffix
-				outputFileName = new File("${buildRoot}", "${outputName}.apk")
+				outputFileName = new File("${buildRoot}", "${archivesBaseName}.apk")
 			} else {
 				outputFileName = new File("${buildRoot}", "${outputFileName}")
 			}
