@@ -161,7 +161,7 @@
 
 	<item name="empty goblet">
 		<type class="container" subclass="empty_goblet" tileid="-1"/>
-		<description>You see an empty goblet.  You wonder what could it hold.</description>
+		<description>You see an empty goblet. You wonder what could it hold.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 		</attributes>
@@ -177,7 +177,7 @@
 
 	<item name="goblet">
 		<type class="container" subclass="full_goblet" tileid="-1"/>
-		<description>You see a goblet.  You look at its contents, and shiver at the blood inside.</description>
+		<description>You see a goblet. You look at its contents, and shiver at the blood inside.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<attributes>
 			<quantity value="1"/>

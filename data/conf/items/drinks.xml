@@ -447,7 +447,7 @@
 
 	<item name="disease poison">
 		<type class="drink" subclass="disease_poison" tileid="-1"/>
-		<description>You see a disease poison.  Be careful, it's wicked.</description>
+		<description>You see a disease poison. Be careful, it's wicked.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<attributes>
 			<amount value="-2000"/>

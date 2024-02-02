@@ -395,7 +395,7 @@
 
 	<item name="royal cloak">
 		<type class="cloak" subclass="royal_cloak" tileid="-1"/>
-		<description>You see a royal cloak.  It will protect you against mighty foes.</description>
+		<description>You see a royal cloak. It will protect you against mighty foes.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="36"/>

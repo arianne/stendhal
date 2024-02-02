@@ -260,7 +260,7 @@
 
 	<item name="royal boots">
 		<type class="boots" subclass="royal_boots" tileid="-1"/>
-		<description>You see a pair of royal boots.  They have magical properties</description>
+		<description>You see a pair of royal boots. They have magical properties</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="16"/>
@@ -323,7 +323,7 @@
 
 	<item name="stone boots">
 		<type class="boots" subclass="stone_boots" tileid="-1"/>
-		<description>You see a pair of stone boots.  They may be heavy, but they protect your feet well.</description>
+		<description>You see a pair of stone boots. They may be heavy, but they protect your feet well.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>

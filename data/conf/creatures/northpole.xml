@@ -253,7 +253,7 @@
 	</creature>
 	<creature name="elf dorothy">
 		<type class="northpole" subclass="northpole_dorothy" tileid="northpole.png:2"/>
-		<description>You see a skater that is barely able too stay on her feet.  Nothing fancy.</description>
+		<description>You see a skater that is barely able too stay on her feet. Nothing fancy.</description>
 		<attributes>
 			<atk value="40"/>
 			<def value="20"/>

@@ -397,7 +397,7 @@
 
 	<item name="pauldroned leather cuirass">
 		<type class="armor" subclass="enhanced_leather_cuirass" tileid="-1"/>
-		<description>You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.</description>
+		<description>You see a pauldroned leather cuirass. It was crafted to withstand minor attacks.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>

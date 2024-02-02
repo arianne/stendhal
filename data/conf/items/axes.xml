@@ -155,7 +155,7 @@
 
 	<item name="golden twoside axe">
 		<type class="axe" subclass="golden_twosided_poleaxe" tileid="-1"/>
-		<description>You see a golden twoside axe.  This axe is a rare find.</description>
+		<description>You see a golden twoside axe. This axe is a rare find.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
 		<attributes>
 			<atk value="35"/>

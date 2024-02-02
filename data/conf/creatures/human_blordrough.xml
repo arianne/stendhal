@@ -78,7 +78,7 @@
 
 	<creature name="blordrough storm trooper">
 		<type class="human_blordrough" subclass="storm_trooper" tileid="human_armored.png:2"/>
-		<description>You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni.  Now, his main concern is keeping his house clean and tidy.</description>
+		<description>You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni. Now, his main concern is keeping his house clean and tidy.</description>
 		<attributes>
 			<atk value="921"/>
 			<def value="98"/>

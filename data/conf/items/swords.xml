@@ -47,7 +47,7 @@
 
 	<item name="black sword">
 		<type class="sword" subclass="black_sword" tileid="-1"/>
-		<description>You see a black sword.  Its darkness will surely protect you.</description>
+		<description>You see a black sword. Its darkness will surely protect you.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
 		<attributes>
 			<atk value="40"/>

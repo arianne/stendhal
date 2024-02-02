@@ -53,7 +53,7 @@
 
 	<item name="golden arrow">
 		<type class="ammunition" subclass="golden_arrow" tileid="-1"/>
-		<description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
+		<description>You see a golden arrow. With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
 		<attributes>
 			<atk condition="!testing.combat" value="4"/>
@@ -179,7 +179,7 @@
 
 	<item name="power arrow">
 		<type class="ammunition" subclass="power_arrow" tileid="-1"/>
-		<description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
+		<description>You see a power arrow. The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
 		<attributes>
 			<atk condition="!testing.combat" value="6"/>
