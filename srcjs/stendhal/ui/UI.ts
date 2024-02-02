@@ -120,7 +120,7 @@ class UI {
 	 */
 	public onSoundUpdate() {
 		(this.get(UIComponentEnum.QMSound)! as QuickMenuButton).update();
-		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("ui.sound")
+		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("client.sound")
 				? "🔊" : "🔇";
 	}
 

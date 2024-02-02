@@ -34,15 +34,15 @@ export class ConfigManager {
 		"client.joystick.style": "joystick",
 		"client.menu.style": "traditional",
 		"client.pathfinding": "true",
+		"client.sound": "false",
+		"client.sound.master.volume": "100",
+		"client.sound.ambient.volume": "100",
+		"client.sound.creature.volume": "100",
+		"client.sound.gui.volume": "100",
+		"client.sound.music.volume": "100",
+		"client.sound.sfx.volume": "100",
 		// represents most recently used client version
 		"client.version": document.documentElement.getAttribute("data-build-version") || "",
-		"ui.sound": "false",
-		"ui.sound.master.volume": "100",
-		"ui.sound.ambient.volume": "100",
-		"ui.sound.creature.volume": "100",
-		"ui.sound.gui.volume": "100",
-		"ui.sound.music.volume": "100",
-		"ui.sound.sfx.volume": "100",
 		"ui.stats.charname": "true",
 		"ui.stats.hpbar": "true",
 		"ui.window.chest": "160,370",
@@ -89,7 +89,14 @@ export class ConfigManager {
 		"ui.font.tlog": "client.font.travel_log",
 		"ui.joystick": "client.joystick.style",
 		"ui.joystick.center.x": "client.joystick.center.x",
-		"ui.joystick.center.y": "client.joystick.center.y"
+		"ui.joystick.center.y": "client.joystick.center.y",
+		"ui.sound": "client.sound",
+		"ui.sound.master.volume": "client.sound.master.volume",
+		"ui.sound.ambient.volume": "client.sound.ambient.volume",
+		"ui.sound.creature.volume": "client.sound.creature.volume",
+		"ui.sound.gui.volume": "client.sound.gui.volume",
+		"ui.sound.music.volume": "client.sound.music.volume",
+		"ui.sound.sfx.volume": "client.sound.sfx.volume"
 	};
 
 	private readonly themes = {

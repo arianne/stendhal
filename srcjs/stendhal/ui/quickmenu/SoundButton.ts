@@ -28,7 +28,7 @@ export class SoundButton extends QuickMenuButton {
 	 * Updates button icon.
 	 */
 	public override update() {
-		this.setImageBasename(stendhal.config.getBoolean("ui.sound") ? "sound" : "sound-disabled");
+		this.setImageBasename(stendhal.config.getBoolean("client.sound") ? "sound" : "sound-disabled");
 	}
 
 	protected override onClick(evt: Event) {

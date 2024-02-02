@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -712,7 +712,7 @@ export class SlashActionRepo {
 	"mute": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.main.toggleSound();
-			if (stendhal.config.getBoolean("ui.sound")) {
+			if (stendhal.config.getBoolean("client.sound")) {
 				Chat.log("info", "Sounds are now on.");
 			} else {
 				Chat.log("info", "Sounds are now off.");

@@ -158,7 +158,7 @@ export class SoundManager {
 	 */
 	private playEffect(soundname: string, layername: string, volume=1.0,
 			loop=false): any {
-		const muted = !stendhal.config.getBoolean("ui.sound");
+		const muted = !stendhal.config.getBoolean("client.sound");
 		if (muted && !loop) {
 			// don't add non-looping sounds when muted
 			return;
@@ -504,8 +504,8 @@ export class SoundManager {
 	 *     Volume level adjusted with "master" & associated layer.
 	 */
 	private getAdjustedVolume(layername: string, basevol: number): number {
-		let actualvol = basevol * stendhal.config.getFloat("ui.sound.master.volume");
-		const lvol = stendhal.config.getFloat("ui.sound." + layername + ".volume");
+		let actualvol = basevol * stendhal.config.getFloat("client.sound.master.volume");
+		const lvol = stendhal.config.getFloat("client.sound." + layername + ".volume");
 		if (typeof(lvol) !== "number") {
 			console.warn("cannot adjust volume for layer \"" + layername + "\"");
 			return actualvol;
@@ -538,12 +538,12 @@ export class SoundManager {
 	 *     <code>true</code> if volume level was set.
 	 */
 	setVolume(layername: string, vol: number): boolean {
-		const oldvol = stendhal.config.getFloat("ui.sound." + layername + ".volume");
+		const oldvol = stendhal.config.getFloat("client.sound." + layername + ".volume");
 		if (typeof(oldvol) === "undefined" || oldvol === "") {
 			return false;
 		}
 
-		stendhal.config.set("ui.sound." + layername + ".volume", this.normVolume(vol));
+		stendhal.config.set("client.sound." + layername + ".volume", this.normVolume(vol));
 
 		const layerset = layername === "master" ? this.layers : [layername];
 		for (const l of layerset) {
@@ -574,7 +574,7 @@ export class SoundManager {
 	 *     Current volume level of layer.
 	 */
 	getVolume(layername="master"): number {
-		let vol = stendhal.config.getFloat("ui.sound." + layername + ".volume");
+		let vol = stendhal.config.getFloat("client.sound." + layername + ".volume");
 		if (typeof(vol) === "undefined" || isNaN(vol) || !isFinite(vol)) {
 			console.warn("could not get volume for channel \"" + layername + "\"");
 			return 1;
@@ -586,8 +586,8 @@ export class SoundManager {
 	 * Toggles muted state of sound system.
 	 */
 	public toggleSound() {
-		const enabled = !stendhal.config.getBoolean("ui.sound");
-		stendhal.config.set("ui.sound", enabled);
+		const enabled = !stendhal.config.getBoolean("client.sound");
+		stendhal.config.set("client.sound", enabled);
 
 		if (enabled) {
 			if (!this.unmuteAll()) {
