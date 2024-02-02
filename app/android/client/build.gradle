@@ -6,10 +6,10 @@ android {
 	namespace "org.stendhalgame.client"
 	compileSdk 32
 
-	def outputName = "org.stendhalgame.client-1045005"
+	def outputName = "${namespace}-1045005"
 
 	defaultConfig {
-		applicationId "org.stendhalgame.client"
+		applicationId namespace
 		minSdk 21
 		targetSdk 32
 		versionCode 1
