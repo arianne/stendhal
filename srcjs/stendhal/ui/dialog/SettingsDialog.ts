@@ -228,6 +228,13 @@ export class SettingsDialog extends DialogContentComponent {
 				function(e: Event) {
 					stendhal.ui.gamewindow.updateJoystick();
 				});
+		const chk_joystick = this.createCheckBox("chk_joystick", "client.joystick",
+				undefined, undefined,
+				function(e: Event) {
+					sel_joystick.disabled = !chk_joystick.checked;
+					stendhal.ui.gamewindow.updateJoystick();
+				});
+		sel_joystick.disabled = !chk_joystick.checked;
 
 		// joystck positioning
 		for (const o of ["x", "y"]) {
