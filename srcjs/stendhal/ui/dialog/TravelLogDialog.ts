@@ -44,7 +44,7 @@ export class TravelLogDialog extends DialogContentComponent {
 	}
 
 	public override getConfigId(): string {
-		return "travellog";
+		return "travel_log";
 	}
 
 	private createHtml(dataItems: string[]) {

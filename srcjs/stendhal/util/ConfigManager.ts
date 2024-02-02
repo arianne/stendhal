@@ -43,16 +43,16 @@ export class ConfigManager {
 		"client.sound.sfx.volume": "100",
 		// represents most recently used client version
 		"client.version": document.documentElement.getAttribute("data-build-version") || "",
+		"client.window.chest": "160,370",
+		"client.window.corpse": "160,370",
+		"client.window.menu": "150,20",
+		"client.window.outfit": "300,50",
+		"client.window.settings": "20,20",
+		"client.window.shortcuts": "20,20",
+		"client.window.trade": "200,100",
+		"client.window.travel_log": "160,50",
 		"ui.stats.charname": "true",
 		"ui.stats.hpbar": "true",
-		"ui.window.chest": "160,370",
-		"ui.window.corpse": "160,370",
-		"ui.window.menu": "150,20",
-		"ui.window.outfit": "300,50",
-		"ui.window.settings": "20,20",
-		"ui.window.shortcuts": "20,20",
-		"ui.window.trade": "200,100",
-		"ui.window.travellog": "160,50",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
@@ -96,7 +96,15 @@ export class ConfigManager {
 		"ui.sound.creature.volume": "client.sound.creature.volume",
 		"ui.sound.gui.volume": "client.sound.gui.volume",
 		"ui.sound.music.volume": "client.sound.music.volume",
-		"ui.sound.sfx.volume": "client.sound.sfx.volume"
+		"ui.sound.sfx.volume": "client.sound.sfx.volume",
+		"ui.window.chest": "client.window.chest",
+		"ui.window.corpse": "client.window.corpse",
+		"ui.window.menu": "client.window.menu",
+		"ui.window.outfit": "client.window.outfit",
+		"ui.window.settings": "client.window.settings",
+		"ui.window.shortcuts": "client.window.shortcuts",
+		"ui.window.trade": "client.window.trade",
+		"ui.window.travellog": "client.window.travel_log"
 	};
 
 	private readonly themes = {
@@ -370,7 +378,7 @@ export class ConfigManager {
 	 */
 	setWindowState(id: string, x: number, y: number) {
 		this.windowstates[id] = {x: x, y: y};
-		this.set("ui.window." + id, x + "," + y);
+		this.set("client.window." + id, x + "," + y);
 	}
 
 	/**
@@ -388,7 +396,7 @@ export class ConfigManager {
 		if (this.windowstates.hasOwnProperty(id)) {
 			state = this.windowstates[id];
 		} else {
-			const tmp: string[] = (this.get("ui.window." + id) || "0,0").split(",");
+			const tmp: string[] = (this.get("client.window." + id) || "0,0").split(",");
 			state.x = parseInt(tmp[0], 10);
 			state.y = parseInt(tmp[1], 10);
 		}
