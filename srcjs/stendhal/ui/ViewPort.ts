@@ -623,8 +623,9 @@ export class ViewPort {
 			ts.ms = "0" + ts.ms;
 		}
 
-		const filename = "stendhal-" + ts.yyyy + "." + ts.mm + "."
-				+ ts.dd + "-" + ts.HH + "." + ts.MM + "."
+		// date/time stamp is formatted as yyyy-mm-dd_HH.MM.SS
+		const filename = "stendhal_" + ts.yyyy + "-" + ts.mm + "-"
+				+ ts.dd + "_" + ts.HH + "." + ts.MM + "."
 				+ ts.SS + ".png";
 
 		const anchor = document.createElement("a");
