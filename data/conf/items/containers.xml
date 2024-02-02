@@ -18,9 +18,9 @@
 		<value value="1"/>
 		<equipable>
 -->
-<!--  <slot name="content"/>  -->
-<!--  <slot name="bag"/> -->
-<!--  <slot name="trade"/> -->
+			<!-- <slot name="content"/> -->
+			<!-- <slot name="bag"/> -->
+			<!-- <slot name="trade"/> -->
 <!--
 			<slot name="ground"/>
 			<slot name="back"/>
@@ -41,9 +41,9 @@
 		<weight value="1.0"/>
 		<value value="1"/>
 		<equipable>
-<!-- <slot name="content"/>  -->
-<!-- <slot name="bag"/> -->
-<!-- <slot name="trade"/> -->
+			<!-- <slot name="content"/> -->
+			<!-- <slot name="bag"/> -->
+			<!-- <slot name="trade"/> -->
 			<slot name="ground"/>
 			<slot name="belt"/>
 		</equipable>

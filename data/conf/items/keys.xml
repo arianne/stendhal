@@ -197,7 +197,8 @@
 		</equipable>
 	</item>
 
-<!--  <item name="fado hotel key 001">
+<!--
+	<item name="fado hotel key 001">
 		<type class="key" subclass="hotel" tileid="-1"/>
 		<description>You see a key to room #001 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
@@ -331,7 +332,8 @@
 			<slot name="trade"/>
 			<slot name="keyring"/>
 		</equipable>
-	</item>-->
+	</item>
+	-->
 
 	<item name="small key">
 		<type class="key" subclass="common" tileid="-1"/>
