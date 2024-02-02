@@ -13,6 +13,8 @@ package org.stendhalgame.client;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.net.Uri;
 import android.os.Environment;
@@ -44,8 +46,8 @@ public class DownloadHandler {
 		} else {
 			final File targetDir = new File(Environment.getExternalStorageDirectory()
 					+ "/Pictures/Screenshots");
-			// TODO: format output name using YYYYMMDD_HH.MM.SS.MS
-			final String targetName = "stendhal_" + System.currentTimeMillis() + ".png";
+			final String targetName = "stendhal_"
+					+ new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date()) + ".png";
 
 			Logger.debug("Saving screenshot: " + targetDir.getPath()
 					+ "/" + targetName + " (" + mimetype + ")");
