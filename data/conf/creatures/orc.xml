@@ -1,380 +1,380 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd">
+		xsi:schemaLocation="stendhal ../creatures.xsd">
 
-  <!-- START: orc -->
+	<!-- START: orc -->
 
-  <creature name="orc">
-    <type class="orc" subclass="orc" tileid="orc.png:2"/>
-    <description>You see an orc which is noisy and silly.</description>
-    <attributes>
-      <atk value="136"/>
-      <def value="32"/>
-      <hp value="55"/>
-      <speed value="0.6"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="10"/>
-    <experience value="110"/>
-    <respawn value="1210"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,17]" probability="100.0"/>
-      <item value="chain armor" quantity="[1,1]" probability="3.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
-      <item value="chain boots" quantity="[1,1]" probability="0.5"/>
-      <item value="short sword" quantity="[1,1]" probability="10.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="orc">
+		<type class="orc" subclass="orc" tileid="orc.png:2"/>
+		<description>You see an orc which is noisy and silly.</description>
+		<attributes>
+			<atk value="136"/>
+			<def value="32"/>
+			<hp value="55"/>
+			<speed value="0.6"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="10"/>
+		<experience value="110"/>
+		<respawn value="1210"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[4,17]" probability="100.0"/>
+			<item value="chain armor" quantity="[1,1]" probability="3.0"/>
+			<item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
+			<item value="chain boots" quantity="[1,1]" probability="0.5"/>
+			<item value="short sword" quantity="[1,1]" probability="10.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="orc spearman">
-    <type class="orc" subclass="orc_spearman" tileid="orc.png:4"/>
-    <description>You see an orc spearman. Run away fast before a spear pierces you.</description>
-    <attributes>
-      <atk value="150"/>
-      <ratk value="150"/>
-      <def value="35"/>
-      <hp value="80"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="12"/>
-    <experience value="130"/>
-    <respawn value="1210"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="wooden spear" quantity="[5,20]" probability="40.0"/>
-      <item value="minor potion" quantity="[1,1]" probability="5.0"/>
-      <item value="golden orc sword" quantity="[1,1]" probability="0.004"/>
-    </drops>
-    <equips>
-      <slot name="lhand" item="wooden spear" quantity="10000"/>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="archer" params="5"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="orc spearman">
+		<type class="orc" subclass="orc_spearman" tileid="orc.png:4"/>
+		<description>You see an orc spearman. Run away fast before a spear pierces you.</description>
+		<attributes>
+			<atk value="150"/>
+			<ratk value="150"/>
+			<def value="35"/>
+			<hp value="80"/>
+			<speed value="0.8"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="12"/>
+		<experience value="130"/>
+		<respawn value="1210"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100.0"/>
+			<item value="wooden spear" quantity="[5,20]" probability="40.0"/>
+			<item value="minor potion" quantity="[1,1]" probability="5.0"/>
+			<item value="golden orc sword" quantity="[1,1]" probability="0.004"/>
+		</drops>
+		<equips>
+			<slot name="lhand" item="wooden spear" quantity="10000"/>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="archer" params="5"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="orc hunter">
-    <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
-    <description>You see an orc hunter. It it seeking for you!</description>
-    <attributes>
-      <atk value="165"/>
-      <def value="44"/>
-      <hp value="60"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="14"/>
-    <experience value="160"/>
-    <respawn value="1220"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="4.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="1.0"/>
-      <item value="golden mace" quantity="[1,1]" probability="8.0"/>
-      <item value="chain boots" quantity="[1,1]" probability="2.5"/>
-      <item value="claymore" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-    <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-    </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="orc hunter">
+		<type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
+		<description>You see an orc hunter. It it seeking for you!</description>
+		<attributes>
+			<atk value="165"/>
+			<def value="44"/>
+			<hp value="60"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="160"/>
+		<respawn value="1220"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100.0"/>
+			<item value="enhanced chainmail" quantity="[1,1]" probability="4.0"/>
+			<item value="scale armor" quantity="[1,1]" probability="1.0"/>
+			<item value="golden mace" quantity="[1,1]" probability="8.0"/>
+			<item value="chain boots" quantity="[1,1]" probability="2.5"/>
+			<item value="claymore" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+		<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+		</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="orc warrior">
-    <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
-    <description>You see an orc warrior which doesn't like you searching in the mountain.</description>
-    <attributes>
-      <atk value="166"/>
-      <def value="28"/>
-      <hp value="114"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="14"/>
-    <experience value="160"/>
-    <respawn value="1220"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[6,22]" probability="100.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="3.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="0.3"/>
-      <item value="chain boots" quantity="[1,1]" probability="2.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="1.3"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="orc warrior">
+		<type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
+		<description>You see an orc warrior which doesn't like you searching in the mountain.</description>
+		<attributes>
+			<atk value="166"/>
+			<def value="28"/>
+			<hp value="114"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="160"/>
+		<respawn value="1220"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[6,22]" probability="100.0"/>
+			<item value="enhanced chainmail" quantity="[1,1]" probability="3.0"/>
+			<item value="scale armor" quantity="[1,1]" probability="0.3"/>
+			<item value="chain boots" quantity="[1,1]" probability="2.0"/>
+			<item value="bardiche" quantity="[1,1]" probability="1.3"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="orc chief">
-    <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
-    <description>You see an orc chief which is too busy to attend to you!</description>
-    <attributes>
-      <atk value="200"/>
-      <def value="60"/>
-      <hp value="65"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="18"/>
-    <experience value="230"/>
-    <respawn value="1240"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,25]" probability="100.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="9.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="2.0"/>
-      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.2"/>
-      <item value="potion" quantity="[1,1]" probability="30.0"/>
-      <item value="steel boots" quantity="[1,1]" probability="0.5"/>
-      <item value="cloak" quantity="[1,1]" probability="10.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-      <profile name="attack weakest"/>
-    </ai>
-  </creature>
+	<creature name="orc chief">
+		<type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
+		<description>You see an orc chief which is too busy to attend to you!</description>
+		<attributes>
+			<atk value="200"/>
+			<def value="60"/>
+			<hp value="65"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="18"/>
+		<experience value="230"/>
+		<respawn value="1240"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[10,25]" probability="100.0"/>
+			<item value="scale armor" quantity="[1,1]" probability="9.0"/>
+			<item value="iron scale armor" quantity="[1,1]" probability="2.0"/>
+			<item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.2"/>
+			<item value="potion" quantity="[1,1]" probability="30.0"/>
+			<item value="steel boots" quantity="[1,1]" probability="0.5"/>
+			<item value="cloak" quantity="[1,1]" probability="10.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+			<profile name="attack weakest"/>
+		</ai>
+	</creature>
 
-  <!-- END: orc -->
+	<!-- END: orc -->
 
-  <!-- START: mountain orc -->
+	<!-- START: mountain orc -->
 
-  <creature name="mountain orc">
-    <type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:2"/>
-    <description>You see a mountain orc. Not very cunning but his robustness, stench and loudness could still overwhelm you!</description>
-    <attributes>
-      <atk value="352"/>
-      <def value="57"/>
-      <hp value="260"/>
-      <speed value="0.6"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="41"/>
-    <experience value="1090"/>
-    <respawn value="1640"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,17]" probability="100.0"/>
-      <item value="magic plate shield" quantity="[1,1]" probability="0.005"/>
-      <item value="stone armor" quantity="[1,1]" probability="0.01"/>
-      <item value="shadow boots" quantity="[1,1]" probability="0.025"/>
-      <item value="ugmash" quantity="[1,1]" probability="0.05"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="mountain orc">
+		<type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:2"/>
+		<description>You see a mountain orc. Not very cunning but his robustness, stench and loudness could still overwhelm you!</description>
+		<attributes>
+			<atk value="352"/>
+			<def value="57"/>
+			<hp value="260"/>
+			<speed value="0.6"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="41"/>
+		<experience value="1090"/>
+		<respawn value="1640"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[4,17]" probability="100.0"/>
+			<item value="magic plate shield" quantity="[1,1]" probability="0.005"/>
+			<item value="stone armor" quantity="[1,1]" probability="0.01"/>
+			<item value="shadow boots" quantity="[1,1]" probability="0.025"/>
+			<item value="ugmash" quantity="[1,1]" probability="0.05"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="mountain orc warrior">
-    <type class="orc" subclass="mountain_orc_warrior" tileid="mountain_orc.png:3"/>
-    <description>You see a mountain orc warrior. Not very cunning but you should not underestimate his robustness and stench!</description>
-    <attributes>
-      <atk value="377"/>
-      <def value="66"/>
-      <hp value="310"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="46"/>
-    <experience value="1430"/>
-    <respawn value="1650"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[6,22]" probability="100.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="0.25"/>
-      <item value="shadow boots" quantity="[1,1]" probability="0.1"/>
-      <item value="ugmash" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="mountain orc warrior">
+		<type class="orc" subclass="mountain_orc_warrior" tileid="mountain_orc.png:3"/>
+		<description>You see a mountain orc warrior. Not very cunning but you should not underestimate his robustness and stench!</description>
+		<attributes>
+			<atk value="377"/>
+			<def value="66"/>
+			<hp value="310"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="46"/>
+		<experience value="1430"/>
+		<respawn value="1650"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[6,22]" probability="100.0"/>
+			<item value="golden armor" quantity="[1,1]" probability="0.25"/>
+			<item value="shadow boots" quantity="[1,1]" probability="0.1"/>
+			<item value="ugmash" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="mountain orc hunter">
-    <type class="orc" subclass="mountain_orc_hunter" tileid="mountain_orc.png:1"/>
-    <description>You see a mountain orc hunter. He's in search for raw meat... You could be his next lunch!</description>
-    <attributes>
-      <atk value="411"/>
-      <def value="68"/>
-      <hp value="360"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="51"/>
-    <experience value="1830"/>
-    <respawn value="1690"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="barbarian armor" quantity="[1,1]" probability="5.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="0.5"/>
-      <item value="shadow boots" quantity="[1,1]" probability="1.5"/>
-      <item value="vulcano hammer" quantity="[1,1]" probability="0.0050"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="mountain orc hunter">
+		<type class="orc" subclass="mountain_orc_hunter" tileid="mountain_orc.png:1"/>
+		<description>You see a mountain orc hunter. He's in search for raw meat... You could be his next lunch!</description>
+		<attributes>
+			<atk value="411"/>
+			<def value="68"/>
+			<hp value="360"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="51"/>
+		<experience value="1830"/>
+		<respawn value="1690"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100.0"/>
+			<item value="barbarian armor" quantity="[1,1]" probability="5.0"/>
+			<item value="golden armor" quantity="[1,1]" probability="0.5"/>
+			<item value="shadow boots" quantity="[1,1]" probability="1.5"/>
+			<item value="vulcano hammer" quantity="[1,1]" probability="0.0050"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="mountain orc chief">
-    <type class="orc" subclass="mountain_orc_chief" tileid="mountain_orc.png:0"/>
-    <description>You see a mountain orc chief. He's proud, loud and reeks like a thousand orcs together...</description>
-    <attributes>
-      <atk value="474"/>
-      <def value="75"/>
-      <hp value="460"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="61"/>
-    <experience value="2870"/>
-    <respawn value="1830"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,65]" probability="100.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="1.5"/>
-      <item value="shadow armor" quantity="[1,1]" probability="0.15"/>
-      <item value="shadow boots" quantity="[1,1]" probability="1.5"/>
-      <item value="shadow cloak" quantity="[1,1]" probability="0.25"/>
-      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-      <profile name="attack weakest"/>
-    </ai>
-  </creature>
+	<creature name="mountain orc chief">
+		<type class="orc" subclass="mountain_orc_chief" tileid="mountain_orc.png:0"/>
+		<description>You see a mountain orc chief. He's proud, loud and reeks like a thousand orcs together...</description>
+		<attributes>
+			<atk value="474"/>
+			<def value="75"/>
+			<hp value="460"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="61"/>
+		<experience value="2870"/>
+		<respawn value="1830"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[10,65]" probability="100.0"/>
+			<item value="golden armor" quantity="[1,1]" probability="1.5"/>
+			<item value="shadow armor" quantity="[1,1]" probability="0.15"/>
+			<item value="shadow boots" quantity="[1,1]" probability="1.5"/>
+			<item value="shadow cloak" quantity="[1,1]" probability="0.25"/>
+			<item value="broadsword" quantity="[1,1]" probability="1.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+			<profile name="attack weakest"/>
+		</ai>
+	</creature>
 
-  <!-- END: mountain orc -->
+	<!-- END: mountain orc -->
 
 
-  <!-- START: rare orc -->
+	<!-- START: rare orc -->
 
-  <creature name="golden orc">
-    <type class="orc" subclass="golden_orc" tileid="orc.png:5"/>
-    <description></description>
-    <attributes>
-      <atk value="500"/>
-      <def value="110"/>
-      <hp value="650"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="99"/>
-    <experience value="10500"/>
-    <!-- once in 4 weeks (8064000 * 0.3 / 60 = 40320 min = 672 hr = 28 days) -->
-    <respawn value="8064000"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="golden orc sword" quantity="[1,1]" probability="25.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="orc-snarl-01"/>
-        <sound value="tiger-snarl-02"/>
-        <sound value="tiger-snarl-04"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-      <profile name="attack weakest"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
+	<creature name="golden orc">
+		<type class="orc" subclass="golden_orc" tileid="orc.png:5"/>
+		<description></description>
+		<attributes>
+			<atk value="500"/>
+			<def value="110"/>
+			<hp value="650"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="99"/>
+		<experience value="10500"/>
+		<!-- once in 4 weeks (8064000 * 0.3 / 60 = 40320 min = 672 hr = 28 days) -->
+		<respawn value="8064000"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="golden orc sword" quantity="[1,1]" probability="25.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="orc-snarl-01"/>
+				<sound value="tiger-snarl-02"/>
+				<sound value="tiger-snarl-04"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+			<profile name="attack weakest"/>
+			<profile name="rare"/>
+		</ai>
+	</creature>
 
-  <!-- END: rare orc -->
+	<!-- END: rare orc -->
 
 </creatures>

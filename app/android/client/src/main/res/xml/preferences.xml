@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <PreferenceCategory android:title="General">
+	<PreferenceCategory android:title="General">
 
-    <EditTextPreference
-      android:key="client_url"
-      android:inputType="text"
-      android:maxLines="1"
-      android:title="Client URL"
-      android:summary="Custom URL pointing to web client."
-      android:selectAllOnFocus="true"
-    />
+		<EditTextPreference
+			android:key="client_url"
+			android:inputType="text"
+			android:maxLines="1"
+			android:title="Client URL"
+			android:summary="Custom URL pointing to web client."
+			android:selectAllOnFocus="true"
+		/>
 
-  </PreferenceCategory>
+	</PreferenceCategory>
 
-  <PreferenceCategory android:title="User Interface">
+	<PreferenceCategory android:title="User Interface">
 
-    <ListPreference
-      android:key="orientation"
-      android:defaultValue="user"
-      android:title="Orientation"
-      android:entries="@array/orientation"
-      android:entryValues="@array/orientationId"
-      android:summary="Set screen orientation"
-    />
+		<ListPreference
+			android:key="orientation"
+			android:defaultValue="user"
+			android:title="Orientation"
+			android:entries="@array/orientation"
+			android:entryValues="@array/orientationId"
+			android:summary="Set screen orientation"
+		/>
 
-  </PreferenceCategory>
+	</PreferenceCategory>
 
-  <PreferenceCategory android:title="Audio">
+	<PreferenceCategory android:title="Audio">
 
-    <CheckBoxPreference
-      android:key="title_music"
-      android:defaultValue="true"
-      android:title="Title Music"
-      android:summary="Play title screen music."
-    />
+		<CheckBoxPreference
+			android:key="title_music"
+			android:defaultValue="true"
+			android:title="Title Music"
+			android:summary="Play title screen music."
+		/>
 
-    <ListPreference
-      android:key="song_list"
-      android:dependency="title_music"
-      android:title="Songs"
-      android:entries="@array/titleMusic"
-      android:entryValues="@array/titleMusicId"
-    />
+		<ListPreference
+			android:key="song_list"
+			android:dependency="title_music"
+			android:title="Songs"
+			android:entries="@array/titleMusic"
+			android:entryValues="@array/titleMusicId"
+		/>
 
-  </PreferenceCategory>
+	</PreferenceCategory>
 
-  <PreferenceCategory android:title="Misc">
+	<PreferenceCategory android:title="Misc">
 
-    <Preference
-      android:key="clear_cache"
-      android:title="Clear Cache"
-      android:summary="Delete cached data."
-    />
+		<Preference
+			android:key="clear_cache"
+			android:title="Clear Cache"
+			android:summary="Delete cached data."
+		/>
 
-    <Preference
-      android:key="reset"
-      android:title="Restore Defaults"
-      android:summary="Restore all preferences default values."
-    />
+		<Preference
+			android:key="reset"
+			android:title="Restore Defaults"
+			android:summary="Restore all preferences default values."
+		/>
 
-  </PreferenceCategory>
+	</PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,96 +1,96 @@
 <?xml version="1.0"?>
 
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
-    xmlns:tns="http://www.example.org/shops" elementFormDefault="qualified"
-    xmlns:Q2="stendhal">
+		xmlns:tns="http://www.example.org/shops" elementFormDefault="qualified"
+		xmlns:Q2="stendhal">
 
-  <element name="shops" type="Q2:ShopGroup"/>
+	<element name="shops" type="Q2:ShopGroup"/>
 
-  <complexType name="ShopGroup">
-    <sequence>
-      <element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-  </complexType>
+	<complexType name="ShopGroup">
+		<sequence>
+			<element name="shop" type="Q2:Shop" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
 
-  <complexType name="Shop">
-    <sequence>
-      <choice minOccurs="1" maxOccurs="1">
-        <sequence>
-          <element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
-        </sequence>
-        <sequence>
-          <element name="outfit" type="Q2:OutfitItem" minOccurs="1" maxOccurs="unbounded"/>
-        </sequence>
-      </choice>
-      <element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="type" type="Q2:ShopType" use="required"/>
-    <attribute name="condition" type="string" use="optional"/>
-  </complexType>
+	<complexType name="Shop">
+		<sequence>
+			<choice minOccurs="1" maxOccurs="1">
+				<sequence>
+					<element name="item" type="Q2:ShopItem" minOccurs="1" maxOccurs="unbounded"/>
+				</sequence>
+				<sequence>
+					<element name="outfit" type="Q2:OutfitItem" minOccurs="1" maxOccurs="unbounded"/>
+				</sequence>
+			</choice>
+			<element name="merchant" type="Q2:Merchant" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="Q2:ShopType" use="required"/>
+		<attribute name="condition" type="string" use="optional"/>
+	</complexType>
 
-  <simpleType name="ShopType">
-    <restriction base="string">
-      <enumeration value="buy"/>
-      <enumeration value="sell"/>
-      <enumeration value="trade"/>
-      <enumeration value="outfit"/>
-    </restriction>
-  </simpleType>
+	<simpleType name="ShopType">
+		<restriction base="string">
+			<enumeration value="buy"/>
+			<enumeration value="sell"/>
+			<enumeration value="trade"/>
+			<enumeration value="outfit"/>
+		</restriction>
+	</simpleType>
 
-  <complexType name="BaseItem">
-    <sequence>
-      <element name="for" type="Q2:TradeFor" minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="note" type="string" use="optional"/>
-  </complexType>
+	<complexType name="BaseItem">
+		<sequence>
+			<element name="for" type="Q2:TradeFor" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="note" type="string" use="optional"/>
+	</complexType>
 
-  <complexType name="ShopItem">
-    <complexContent>
-      <extension base="Q2:BaseItem">
-        <attribute name="price" type="int" use="optional"/>
-        <attribute name="pricemax" type="int" use="optional"/>
-      </extension>
-    </complexContent>
-  </complexType>
+	<complexType name="ShopItem">
+		<complexContent>
+			<extension base="Q2:BaseItem">
+				<attribute name="price" type="int" use="optional"/>
+				<attribute name="pricemax" type="int" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
 
-  <complexType name="OutfitItem">
-    <complexContent>
-      <extension base="Q2:BaseItem">
-        <attribute name="price" type="int" use="required"/>
-        <attribute name="layers" type="string" use="required"/>
-      </extension>
-    </complexContent>
-  </complexType>
+	<complexType name="OutfitItem">
+		<complexContent>
+			<extension base="Q2:BaseItem">
+				<attribute name="price" type="int" use="required"/>
+				<attribute name="layers" type="string" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
 
-  <!-- items required for purchase other than money -->
-  <complexType name="TradeFor">
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="count" type="string" use="required"/>
-  </complexType>
+	<!-- items required for purchase other than money -->
+	<complexType name="TradeFor">
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="count" type="string" use="required"/>
+	</complexType>
 
-  <!--
-    Merchant flags are a comma-separated string.
-    Valid merchant flags are:
-      * configure:  XML loader will configure NPC for shop at startup.
-      * noOffer:    Will not add default replies to "offer".
-      * returnable: Outfits can be returned to vendor.
-      * resetOrig:  Temporary outfits will be reset to original before updating.
-  -->
+	<!--
+		Merchant flags are a comma-separated string.
+		Valid merchant flags are:
+			* configure:  XML loader will configure NPC for shop at startup.
+			* noOffer:    Will not add default replies to "offer".
+			* returnable: Outfits can be returned to vendor.
+			* resetOrig:  Temporary outfits will be reset to original before updating.
+	-->
 
-  <complexType name="Merchant">
-    <attribute name="name" type="string" use="required"/>
-    <attribute name="flags" type="string" use="optional"/>
-    <!-- used by website only -->
-    <attribute name="note" type="string" use="optional"/>
-    <!-- defaults to "buy" if not set (outfits) -->
-    <attribute name="action" type="string" use="optional"/>
-    <!-- default is to never expire (outfits) -->
-    <attribute name="expires" type="int" use="optional"/>
-    <attribute name="wearOffMessage" type="string" use="optional"/>
-    <!-- adjusts prices of all items in shop for this merchant -->
-    <attribute name="factor" type="float" use="optional"/>
-  </complexType>
+	<complexType name="Merchant">
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="flags" type="string" use="optional"/>
+		<!-- used by website only -->
+		<attribute name="note" type="string" use="optional"/>
+		<!-- defaults to "buy" if not set (outfits) -->
+		<attribute name="action" type="string" use="optional"/>
+		<!-- default is to never expire (outfits) -->
+		<attribute name="expires" type="int" use="optional"/>
+		<attribute name="wearOffMessage" type="string" use="optional"/>
+		<!-- adjusts prices of all items in shop for this merchant -->
+		<attribute name="factor" type="float" use="optional"/>
+	</complexType>
 
 </schema>

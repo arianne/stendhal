@@ -1,603 +1,603 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd">
+		xsi:schemaLocation="stendhal ../creatures.xsd">
 
-  <!-- START: mermaid -->
+	<!-- START: mermaid -->
 
-  <creature name="mermaid">
-    <type class="mythical_being" subclass="mermaid" tileid="mythical_being.png:7"/>
-     <description>You see a mermaid. They perfer their own company and are not too happy to see you here.</description>
-    <attributes>
-      <atk value="547"/>
-      <def value="76"/>
-      <hp value="680"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="76"/>
-    <experience value="5140"/>
-    <respawn value="2570"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="greater antidote" quantity="[1,3]" probability="70.0"/>
-      <item value="greater potion" quantity="[1,2]" probability="35.0"/>
-       <item value="black pearl" quantity="[1,1]" probability="30"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="mermaid_song-01"/>
-        <sound value="mermaid_song-02"/>
-        <sound value="mermaid_song-03"/>
-        <sound value="mermaid_song-04"/>
-        <sound value="mermaid_song-05"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,30"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="mermaid">
+		<type class="mythical_being" subclass="mermaid" tileid="mythical_being.png:7"/>
+		 <description>You see a mermaid. They perfer their own company and are not too happy to see you here.</description>
+		<attributes>
+			<atk value="547"/>
+			<def value="76"/>
+			<hp value="680"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="76"/>
+		<experience value="5140"/>
+		<respawn value="2570"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="money" quantity="[10,50]" probability="100.0"/>
+			<item value="greater antidote" quantity="[1,3]" probability="70.0"/>
+			<item value="greater potion" quantity="[1,2]" probability="35.0"/>
+			 <item value="black pearl" quantity="[1,1]" probability="30"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="mermaid_song-01"/>
+				<sound value="mermaid_song-02"/>
+				<sound value="mermaid_song-03"/>
+				<sound value="mermaid_song-04"/>
+				<sound value="mermaid_song-05"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="heal" params="5,30"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="emerald mermaid">
-    <type class="mythical_being" subclass="emerald_mermaid" tileid="mythical_being.png:3"/>
-    <description>You see an emerald mermaid.</description>
-    <attributes>
-      <atk value="1120"/>
-      <def value="105"/>
-      <hp value="4333"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="215"/>
-    <experience value="90000"/>
-    <respawn value="28000"/>
-    <corpse name="humanoid_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[1,2]" probability="50.0"/>
-      <item value="emerald" quantity="[1,1]" probability="5.0"/>
-      <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="greater antidote" quantity="[1,2]" probability="0.10"/>
-      <item value="emerald ring" quantity="[1,1]" probability="0.01"/>
-      <item value="magic plate shield" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Leave this place."/>
-        <noise state="idle follow fight" value="I will place a curse on you."/>
-        <sound value="mermaid_song-01"/>
-        <sound value="mermaid_song-02"/>
-        <sound value="mermaid_song-03"/>
-        <sound value="mermaid_song-04"/>
-        <sound value="mermaid_song-05"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="emerald mermaid">
+		<type class="mythical_being" subclass="emerald_mermaid" tileid="mythical_being.png:3"/>
+		<description>You see an emerald mermaid.</description>
+		<attributes>
+			<atk value="1120"/>
+			<def value="105"/>
+			<hp value="4333"/>
+			<speed value="1.0"/>
+			<size value="2,2"/>
+		</attributes>
+		<level value="215"/>
+		<experience value="90000"/>
+		<respawn value="28000"/>
+		<corpse name="humanoid_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[1,2]" probability="50.0"/>
+			<item value="emerald" quantity="[1,1]" probability="5.0"/>
+			<item value="money" quantity="[200,2000]" probability="100.0"/>
+			<item value="greater antidote" quantity="[1,2]" probability="0.10"/>
+			<item value="emerald ring" quantity="[1,1]" probability="0.01"/>
+			<item value="magic plate shield" quantity="[1,1]" probability="1.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise state="idle follow fight" value="Leave this place."/>
+				<noise state="idle follow fight" value="I will place a curse on you."/>
+				<sound value="mermaid_song-01"/>
+				<sound value="mermaid_song-02"/>
+				<sound value="mermaid_song-03"/>
+				<sound value="mermaid_song-04"/>
+				<sound value="mermaid_song-05"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="amethyst mermaid">
-    <type class="mythical_being" subclass="amethyst_mermaid" tileid="mythical_being.png:4"/>
-    <description>You see an amethyst mermaid.</description>
-    <attributes>
-      <atk value="1120"/>
-      <def value="105"/>
-      <hp value="4333"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="215"/>
-    <experience value="90000"/>
-    <respawn value="28000"/>
-    <corpse name="humanoid_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[1,2]" probability="50.0"/>
-      <item value="amethyst" quantity="[1,1]" probability="5.0"/>
-      <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="greater antidote" quantity="[1,2]" probability="0.10"/>
-      <item value="shadow helmet" quantity="[1,1]" probability="2.0"/>
-      <item value="shadow legs" quantity="[1,1]" probability="1.0"/>
-      <item value="royal shield" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Leave our home."/>
-        <noise state="idle follow fight" value="I am here to destroy all humans."/>
-        <sound value="mermaid_song-01"/>
-        <sound value="mermaid_song-02"/>
-        <sound value="mermaid_song-03"/>
-        <sound value="mermaid_song-04"/>
-        <sound value="mermaid_song-05"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="amethyst mermaid">
+		<type class="mythical_being" subclass="amethyst_mermaid" tileid="mythical_being.png:4"/>
+		<description>You see an amethyst mermaid.</description>
+		<attributes>
+			<atk value="1120"/>
+			<def value="105"/>
+			<hp value="4333"/>
+			<speed value="1.0"/>
+			<size value="2,2"/>
+		</attributes>
+		<level value="215"/>
+		<experience value="90000"/>
+		<respawn value="28000"/>
+		<corpse name="humanoid_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[1,2]" probability="50.0"/>
+			<item value="amethyst" quantity="[1,1]" probability="5.0"/>
+			<item value="money" quantity="[200,2000]" probability="100.0"/>
+			<item value="greater antidote" quantity="[1,2]" probability="0.10"/>
+			<item value="shadow helmet" quantity="[1,1]" probability="2.0"/>
+			<item value="shadow legs" quantity="[1,1]" probability="1.0"/>
+			<item value="royal shield" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise state="idle follow fight" value="Leave our home."/>
+				<noise state="idle follow fight" value="I am here to destroy all humans."/>
+				<sound value="mermaid_song-01"/>
+				<sound value="mermaid_song-02"/>
+				<sound value="mermaid_song-03"/>
+				<sound value="mermaid_song-04"/>
+				<sound value="mermaid_song-05"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="ruby mermaid">
-    <type class="mythical_being" subclass="ruby_mermaid" tileid="mythical_being.png:5"/>
-    <description>You see a ruby mermaid.</description>
-    <attributes>
-      <atk value="1120"/>
-      <def value="105"/>
-      <hp value="4333"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="215"/>
-    <experience value="90000"/>
-    <respawn value="28000"/>
-    <corpse name="humanoid_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[1,2]" probability="50.0"/>
-      <item value="carbuncle" quantity="[1,1]" probability="5.0"/>
-      <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="greater antidote" quantity="[1,2]" probability="0.10"/>
-      <item value="hell dagger" quantity="[1,1]" probability="0.01"/>
-      <item value="fire sword" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Leave this place."/>
-        <noise state="idle follow fight" value="I will take you out."/>
-        <sound value="mermaid_song-01"/>
-        <sound value="mermaid_song-02"/>
-        <sound value="mermaid_song-03"/>
-        <sound value="mermaid_song-04"/>
-        <sound value="mermaid_song-05"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="ruby mermaid">
+		<type class="mythical_being" subclass="ruby_mermaid" tileid="mythical_being.png:5"/>
+		<description>You see a ruby mermaid.</description>
+		<attributes>
+			<atk value="1120"/>
+			<def value="105"/>
+			<hp value="4333"/>
+			<speed value="1.0"/>
+			<size value="2,2"/>
+		</attributes>
+		<level value="215"/>
+		<experience value="90000"/>
+		<respawn value="28000"/>
+		<corpse name="humanoid_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[1,2]" probability="50.0"/>
+			<item value="carbuncle" quantity="[1,1]" probability="5.0"/>
+			<item value="money" quantity="[200,2000]" probability="100.0"/>
+			<item value="greater antidote" quantity="[1,2]" probability="0.10"/>
+			<item value="hell dagger" quantity="[1,1]" probability="0.01"/>
+			<item value="fire sword" quantity="[1,1]" probability="1.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise state="idle follow fight" value="Leave this place."/>
+				<noise state="idle follow fight" value="I will take you out."/>
+				<sound value="mermaid_song-01"/>
+				<sound value="mermaid_song-02"/>
+				<sound value="mermaid_song-03"/>
+				<sound value="mermaid_song-04"/>
+				<sound value="mermaid_song-05"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="sapphire mermaid">
-    <type class="mythical_being" subclass="sapphire_mermaid" tileid="mythical_being.png:6"/>
-    <description>You see a sapphire mermaid.</description>
-    <attributes>
-      <atk value="1120"/>
-      <def value="105"/>
-      <hp value="4333"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="215"/>
-    <experience value="90000"/>
-    <respawn value="28000"/>
-    <corpse name="humanoid_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[1,2]" probability="50.0"/>
-      <item value="sapphire" quantity="[1,1]" probability="5.0"/>
-      <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="greater antidote" quantity="[1,2]" probability="0.10"/>
-      <item value="blue armor" quantity="[1,1]" probability="5.0"/>
-      <item value="ice armor" quantity="[1,1]" probability="0.01"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="You are DOOMED."/>
-        <noise state="idle follow fight" value="Do not challenge me."/>
-        <sound value="mermaid_song-01"/>
-        <sound value="mermaid_song-02"/>
-        <sound value="mermaid_song-03"/>
-        <sound value="mermaid_song-04"/>
-        <sound value="mermaid_song-05"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="sapphire mermaid">
+		<type class="mythical_being" subclass="sapphire_mermaid" tileid="mythical_being.png:6"/>
+		<description>You see a sapphire mermaid.</description>
+		<attributes>
+			<atk value="1120"/>
+			<def value="105"/>
+			<hp value="4333"/>
+			<speed value="1.0"/>
+			<size value="2,2"/>
+		</attributes>
+		<level value="215"/>
+		<experience value="90000"/>
+		<respawn value="28000"/>
+		<corpse name="humanoid_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[1,2]" probability="50.0"/>
+			<item value="sapphire" quantity="[1,1]" probability="5.0"/>
+			<item value="money" quantity="[200,2000]" probability="100.0"/>
+			<item value="greater antidote" quantity="[1,2]" probability="0.10"/>
+			<item value="blue armor" quantity="[1,1]" probability="5.0"/>
+			<item value="ice armor" quantity="[1,1]" probability="0.01"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise state="idle follow fight" value="You are DOOMED."/>
+				<noise state="idle follow fight" value="Do not challenge me."/>
+				<sound value="mermaid_song-01"/>
+				<sound value="mermaid_song-02"/>
+				<sound value="mermaid_song-03"/>
+				<sound value="mermaid_song-04"/>
+				<sound value="mermaid_song-05"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <!-- END: mermaid -->
+	<!-- END: mermaid -->
 
-  <!-- START: unicorn -->
+	<!-- START: unicorn -->
 
-  <creature name="unicorn">
-    <type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
-    <description>You see a rare unicorn. It is widely believed to be only a myth.</description>
-    <attributes>
-      <atk value="308"/>
-      <def value="108"/>
-      <hp value="200"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="48"/>
-    <experience value="2000"/>
-    <!-- once in 2 months -->
-    <respawn value="17280000"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
-      <item value="lucky charm" quantity="[1,1]" probability="80.0"/>
-      <item value="diamond" quantity="[1,1]" probability="20.0"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="patrolling"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
+	<creature name="unicorn">
+		<type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
+		<description>You see a rare unicorn. It is widely believed to be only a myth.</description>
+		<attributes>
+			<atk value="308"/>
+			<def value="108"/>
+			<hp value="200"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="48"/>
+		<experience value="2000"/>
+		<!-- once in 2 months -->
+		<respawn value="17280000"/>
+		<corpse name="animal"/>
+		<drops>
+			<item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
+			<item value="lucky charm" quantity="[1,1]" probability="80.0"/>
+			<item value="diamond" quantity="[1,1]" probability="20.0"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="patrolling"/>
+			<profile name="rare"/>
+		</ai>
+	</creature>
 
-  <creature name="white unicorn">
-    <type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:8"/>
-    <description></description>
-    <attributes>
-      <atk value="801"/>
-      <def value="206"/>
-      <hp value="2500"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="250"/>
-    <experience value="125000"/>
-    <respawn value="36000"/> <!-- 180 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="white unicorn">
+		<type class="mythical_being" subclass="unicorn_white" tileid="mythical_being.png:8"/>
+		<description></description>
+		<attributes>
+			<atk value="801"/>
+			<def value="206"/>
+			<hp value="2500"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="250"/>
+		<experience value="125000"/>
+		<respawn value="36000"/> <!-- 180 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal cloak" quantity="[1,1]" probability="0.5"/>
+			<item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="black unicorn">
-    <type class="mythical_being" subclass="unicorn_black" tileid="mythical_being.png:9"/>
-    <description></description>
-    <attributes>
-      <atk value="821"/>
-      <def value="221"/>
-      <hp value="2750"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="275"/>
-    <experience value="150000"/>
-    <respawn value="40000"/> <!-- 200 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
-      <item value="turtle shell ring" quantity="[1,1]" probability="0.5"/>
-      <item value="royal dagger" quantity="[1,1]" probability="0.1"/>
-      <item value="royal legs" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="black unicorn">
+		<type class="mythical_being" subclass="unicorn_black" tileid="mythical_being.png:9"/>
+		<description></description>
+		<attributes>
+			<atk value="821"/>
+			<def value="221"/>
+			<hp value="2750"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="275"/>
+		<experience value="150000"/>
+		<respawn value="40000"/> <!-- 200 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
+			<item value="turtle shell ring" quantity="[1,1]" probability="0.5"/>
+			<item value="royal dagger" quantity="[1,1]" probability="0.1"/>
+			<item value="royal legs" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="golden unicorn">
-    <type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:10"/>
-    <description></description>
-    <attributes>
-      <atk value="865"/>
-      <def value="263"/>
-      <hp value="3000"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="300"/>
-    <experience value="175000"/>
-    <respawn value="44000"/> <!-- 220 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
-      <item value="royal armor" quantity="[1,1]" probability="0.5"/>
-      <item value="royal shield" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="golden unicorn">
+		<type class="mythical_being" subclass="unicorn_gold" tileid="mythical_being.png:10"/>
+		<description></description>
+		<attributes>
+			<atk value="865"/>
+			<def value="263"/>
+			<hp value="3000"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="300"/>
+		<experience value="175000"/>
+		<respawn value="44000"/> <!-- 220 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="unicorn horn" quantity="[1,1]" probability="100.0"/>
+			<item value="royal armor" quantity="[1,1]" probability="0.5"/>
+			<item value="royal shield" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <!-- END: unicorn -->
+	<!-- END: unicorn -->
 
-  <!-- START: pegasus -->
+	<!-- START: pegasus -->
 
-  <creature name="pegasus">
-    <type class="mythical_being" subclass="pegasus" tileid="mythical_being.png:2"/>
-    <description>You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.</description>
-    <attributes>
-      <atk value="1590"/>
-      <def value="214"/>
-      <hp value="5000"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="340"/>
-    <experience value="500000"/>
-    <!-- once in 6 weeks -->
-    <respawn value="12096000"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="ice sword" quantity="[1,1]" probability="20.0"/>
-      <item value="apple" quantity="[10,30]" probability="80.0"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="heal" params="10,50"/>
-      <profile name="rare"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="pegasus">
+		<type class="mythical_being" subclass="pegasus" tileid="mythical_being.png:2"/>
+		<description>You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.</description>
+		<attributes>
+			<atk value="1590"/>
+			<def value="214"/>
+			<hp value="5000"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="340"/>
+		<experience value="500000"/>
+		<!-- once in 6 weeks -->
+		<respawn value="12096000"/>
+		<corpse name="animal"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="ice sword" quantity="[1,1]" probability="20.0"/>
+			<item value="apple" quantity="[10,30]" probability="80.0"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="heal" params="10,50"/>
+			<profile name="rare"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="baby pegasus">
-    <type class="mythical_being" subclass="pegasus_baby" tileid="mythical_being.png:11"/>
-    <description></description>
-    <attributes>
-      <atk value="427"/>
-      <def value="128"/>
-      <hp value="1000"/>
-      <speed value="0.9"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="126"/>
-    <experience value="20756"/>
-    <respawn value="7400"/> <!-- 37 minutes -->
-    <corpse name="animal"/>
-    <drops>
-     <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-     <item value="imperial ring" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="coward"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="baby pegasus">
+		<type class="mythical_being" subclass="pegasus_baby" tileid="mythical_being.png:11"/>
+		<description></description>
+		<attributes>
+			<atk value="427"/>
+			<def value="128"/>
+			<hp value="1000"/>
+			<speed value="0.9"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="126"/>
+		<experience value="20756"/>
+		<respawn value="7400"/> <!-- 37 minutes -->
+		<corpse name="animal"/>
+		<drops>
+		 <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+		 <item value="imperial ring" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="coward"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="bronze pegasus">
-    <type class="mythical_being" subclass="pegasus_bronze" tileid="mythical_being.png:12"/>
-    <description></description>
-    <attributes>
-      <atk value="870"/>
-      <def value="201"/>
-      <hp value="4800"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="280"/>
-    <experience value="151000"/>
-    <respawn value="50000"/> <!-- 250 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal armor" quantity="[1,1]" probability="0.5"/>
-      <item value="royal boots" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="bronze pegasus">
+		<type class="mythical_being" subclass="pegasus_bronze" tileid="mythical_being.png:12"/>
+		<description></description>
+		<attributes>
+			<atk value="870"/>
+			<def value="201"/>
+			<hp value="4800"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="280"/>
+		<experience value="151000"/>
+		<respawn value="50000"/> <!-- 250 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal armor" quantity="[1,1]" probability="0.5"/>
+			<item value="royal boots" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="ivory pegasus">
-    <type class="mythical_being" subclass="pegasus_ivory" tileid="mythical_being.png:13"/>
-    <description></description>
-    <attributes>
-      <atk value="895"/>
-      <def value="225"/>
-      <hp value="5000"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="285"/>
-    <experience value="158000"/>
-    <respawn value="52000"/> <!-- 260 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal dagger" quantity="[1,1]" probability="0.1"/>
-      <item value="royal legs" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="ivory pegasus">
+		<type class="mythical_being" subclass="pegasus_ivory" tileid="mythical_being.png:13"/>
+		<description></description>
+		<attributes>
+			<atk value="895"/>
+			<def value="225"/>
+			<hp value="5000"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="285"/>
+		<experience value="158000"/>
+		<respawn value="52000"/> <!-- 260 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal dagger" quantity="[1,1]" probability="0.1"/>
+			<item value="royal legs" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="ebony pegasus">
-    <type class="mythical_being" subclass="pegasus_ebony" tileid="mythical_being.png:14"/>
-    <description></description>
-    <attributes>
-      <atk value="1001"/>
-      <def value="259"/>
-      <hp value="5200"/>
-      <speed value="1.0"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="290"/>
-    <experience value="162000"/>
-    <respawn value="54000"/> <!-- 270 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal dagger" quantity="[1,1]" probability="0.1"/>
-      <item value="royal helmet" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="ebony pegasus">
+		<type class="mythical_being" subclass="pegasus_ebony" tileid="mythical_being.png:14"/>
+		<description></description>
+		<attributes>
+			<atk value="1001"/>
+			<def value="259"/>
+			<hp value="5200"/>
+			<speed value="1.0"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="290"/>
+		<experience value="162000"/>
+		<respawn value="54000"/> <!-- 270 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal dagger" quantity="[1,1]" probability="0.1"/>
+			<item value="royal helmet" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips/>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <!-- END: pegasus -->
+	<!-- END: pegasus -->
 
-  <!-- START: centaur -->
+	<!-- START: centaur -->
 
-  <creature name="centaur">
-    <type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
-    <description> You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.</description>
-    <attributes>
-      <atk value="449"/>
-      <def value="76"/>
-      <hp value="350"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="56"/>
-    <experience value="3000"/>
-    <!-- once in 2 weeks -->
-    <respawn value="4032000"/>
-    <!-- uh, should this one be an animal or humanoid? -->
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="greater potion" quantity="[1,4]" probability="30.0"/>
-      <item value="wooden spear" quantity="[20,40]" probability="30.0"/>
-      <item value="imperial ring" quantity="[1,1]" probability="20.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="patrolling"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
+	<creature name="centaur">
+		<type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
+		<description> You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.</description>
+		<attributes>
+			<atk value="449"/>
+			<def value="76"/>
+			<hp value="350"/>
+			<speed value="1.0"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="56"/>
+		<experience value="3000"/>
+		<!-- once in 2 weeks -->
+		<respawn value="4032000"/>
+		<!-- uh, should this one be an animal or humanoid? -->
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="greater potion" quantity="[1,4]" probability="30.0"/>
+			<item value="wooden spear" quantity="[20,40]" probability="30.0"/>
+			<item value="imperial ring" quantity="[1,1]" probability="20.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="brave"/>
+			<profile name="animal"/>
+			<profile name="patrolling"/>
+			<profile name="rare"/>
+		</ai>
+	</creature>
 
-  <creature name="solar centaur">
-    <type class="mythical_being" subclass="centaur_solar" tileid="mythical_being.png:15"/>
-    <description></description>
-    <attributes>
-      <atk value="893"/>
-      <ratk value="893"/>
-      <def value="124"/>
-      <hp value="3100"/>
-      <speed value="0.9"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="201"/>
-    <experience value="53001"/>
-    <respawn value="14000"/> <!-- 70 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="fire arrow" quantity="[3,22]" probability="36.0"/>
-    </drops>
-    <abilities>
-      <damage type="fire"/>
-      <susceptibility type="fire" value="0.8"/>
-      <susceptibility type="ice" value="1.2"/>
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="archer"/>
-    </ai>
-  </creature>
+	<creature name="solar centaur">
+		<type class="mythical_being" subclass="centaur_solar" tileid="mythical_being.png:15"/>
+		<description></description>
+		<attributes>
+			<atk value="893"/>
+			<ratk value="893"/>
+			<def value="124"/>
+			<hp value="3100"/>
+			<speed value="0.9"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="201"/>
+		<experience value="53001"/>
+		<respawn value="14000"/> <!-- 70 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal cloak" quantity="[1,1]" probability="0.5"/>
+			<item value="fire arrow" quantity="[3,22]" probability="36.0"/>
+		</drops>
+		<abilities>
+			<damage type="fire"/>
+			<susceptibility type="fire" value="0.8"/>
+			<susceptibility type="ice" value="1.2"/>
+		</abilities>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+			<profile name="archer"/>
+		</ai>
+	</creature>
 
-  <creature name="glacier centaur">
-    <type class="mythical_being" subclass="centaur_glacier" tileid="mythical_being.png:16"/>
-    <description></description>
-    <attributes>
-      <atk value="899"/>
-      <ratk value="899"/>
-      <def value="131"/>
-      <hp value="3400"/>
-      <speed value="0.9"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="206"/>
-    <experience value="55500"/>
-    <respawn value="15000"/> <!-- 75 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal boots" quantity="[1,1]" probability="0.5"/>
-      <item value="ice arrow" quantity="[3,22]" probability="36.0"/>
-    </drops>
-    <abilities>
-      <damage type="ice"/>
-      <susceptibility type="ice" value="0.8"/>
-      <susceptibility type="fire" value="1.2"/>
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="archer"/>
-    </ai>
-  </creature>
+	<creature name="glacier centaur">
+		<type class="mythical_being" subclass="centaur_glacier" tileid="mythical_being.png:16"/>
+		<description></description>
+		<attributes>
+			<atk value="899"/>
+			<ratk value="899"/>
+			<def value="131"/>
+			<hp value="3400"/>
+			<speed value="0.9"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="206"/>
+		<experience value="55500"/>
+		<respawn value="15000"/> <!-- 75 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal boots" quantity="[1,1]" probability="0.5"/>
+			<item value="ice arrow" quantity="[3,22]" probability="36.0"/>
+		</drops>
+		<abilities>
+			<damage type="ice"/>
+			<susceptibility type="ice" value="0.8"/>
+			<susceptibility type="fire" value="1.2"/>
+		</abilities>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+			<profile name="archer"/>
+		</ai>
+	</creature>
 
-  <creature name="centaur king">
-    <type class="mythical_being" subclass="centaur_king" tileid="mythical_being.png:17"/>
-    <description></description>
-    <attributes>
-      <atk value="920"/>
-      <ratk value="920"/>
-      <def value="150"/>
-      <hp value="4000"/>
-      <speed value="0.9"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="219"/>
-    <experience value="64000"/>
-    <respawn value="16000"/> <!-- 80 minutes -->
-    <corpse name="animal_2x2"/>
-    <drops>
-      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
-      <item value="royal boots" quantity="[1,1]" probability="0.5"/>
-      <item value="royal legs" quantity="[1,1]" probability="0.5"/>
-      <item value="power arrow" quantity="[3,22]" probability="36.0"/>
-    </drops>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="archer"/>
-    </ai>
-  </creature>
+	<creature name="centaur king">
+		<type class="mythical_being" subclass="centaur_king" tileid="mythical_being.png:17"/>
+		<description></description>
+		<attributes>
+			<atk value="920"/>
+			<ratk value="920"/>
+			<def value="150"/>
+			<hp value="4000"/>
+			<speed value="0.9"/>
+			<size value="3,2"/>
+		</attributes>
+		<level value="219"/>
+		<experience value="64000"/>
+		<respawn value="16000"/> <!-- 80 minutes -->
+		<corpse name="animal_2x2"/>
+		<drops>
+			<item value="greater potion" quantity="[2,4]" probability="30.0"/>
+			<item value="royal boots" quantity="[1,1]" probability="0.5"/>
+			<item value="royal legs" quantity="[1,1]" probability="0.5"/>
+			<item value="power arrow" quantity="[3,22]" probability="36.0"/>
+		</drops>
+		<ai>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+			<profile name="archer"/>
+		</ai>
+	</creature>
 
-  <!-- END: centaur -->
+	<!-- END: centaur -->
 
 </creatures>

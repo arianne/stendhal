@@ -2,23 +2,23 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-  <target name="locale_build_template" description="Creates a template for translating.">
-    <echo unless:true="${python.present}" message="Python unavailable, cannot build locale template"/>
+	<target name="locale_build_template" description="Creates a template for translating.">
+		<echo unless:true="${python.present}" message="Python unavailable, cannot build locale template"/>
 
-    <exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
-      <arg value="-u"/>
-      <arg value="locale_template.py"/>
-    </exec>
-  </target>
+		<exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
+			<arg value="-u"/>
+			<arg value="locale_template.py"/>
+		</exec>
+	</target>
 
-  <target name="locale_update" description="Update translation files from template.">
-    <echo unless:true="${python.present}" message="Python unavailable, cannot update translations"/>
+	<target name="locale_update" description="Update translation files from template.">
+		<echo unless:true="${python.present}" message="Python unavailable, cannot update translations"/>
 
-    <exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
-      <arg value="-u"/>
-      <arg value="locale_template.py"/>
-      <arg value="--update"/>
-    </exec>
-  </target>
+		<exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
+			<arg value="-u"/>
+			<arg value="locale_template.py"/>
+			<arg value="--update"/>
+		</exec>
+	</target>
 
 </project>

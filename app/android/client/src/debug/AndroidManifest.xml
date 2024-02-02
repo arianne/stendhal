@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-  <!-- allow client url http://localhost:xxxx via Chrome forwarding to a local server -->
-  <application android:usesCleartextTraffic="true">
-  </application>
+	<!-- allow client url http://localhost:xxxx via Chrome forwarding to a local server -->
+	<application android:usesCleartextTraffic="true">
+	</application>
 </manifest>

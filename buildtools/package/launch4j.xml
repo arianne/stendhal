@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch4jConfig>
-  <headerType>gui</headerType>
-  <jar>app/stendhal-starter.jar</jar>
-  <outfile>stendhal.exe</outfile>
-  <dontWrapJar>true</dontWrapJar>
-  <stayAlive>false</stayAlive>
-  <icon>icon.ico</icon>
-  <errTitle>Stendhal</errTitle>
-  <jre>
-    <path>%JAVA_HOME%;%PATH%</path>
-    <bundledJreAsFallback>true</bundledJreAsFallback>
-    <minVersion>1.8.0</minVersion>
-    <runtimeBits>64/32</runtimeBits>
-  </jre>
+	<headerType>gui</headerType>
+	<jar>app/stendhal-starter.jar</jar>
+	<outfile>stendhal.exe</outfile>
+	<dontWrapJar>true</dontWrapJar>
+	<stayAlive>false</stayAlive>
+	<icon>icon.ico</icon>
+	<errTitle>Stendhal</errTitle>
+	<jre>
+		<path>%JAVA_HOME%;%PATH%</path>
+		<bundledJreAsFallback>true</bundledJreAsFallback>
+		<minVersion>1.8.0</minVersion>
+		<runtimeBits>64/32</runtimeBits>
+	</jre>
 </launch4jConfig>

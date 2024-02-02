@@ -1,395 +1,395 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../weapons.xsd">
+		xsi:schemaLocation="stendhal ../weapons.xsd">
 
-  <item name="chaos hammer">
-    <type class="club" subclass="chaos_hammer" tileid="-1"/>
-    <description>You see a chaos hammer. It is a fearsome weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="42"/>
-      <lifesteal value="0.3"/>
-      <min_level value="80"/>
-      <rate value="8"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="463050"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="chaos hammer">
+		<type class="club" subclass="chaos_hammer" tileid="-1"/>
+		<description>You see a chaos hammer. It is a fearsome weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="42"/>
+			<lifesteal value="0.3"/>
+			<min_level value="80"/>
+			<rate value="8"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="463050"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="club">
-    <type class="club" subclass="club" tileid="-1"/>
-    <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="6"/>
-      <undroppableondeath value="1"/>
-      <min_level value="0"/>
-      <rate value="4"/>
-    </attributes>
-    <weight value="2.0"/>
-    <value value="2700"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="club">
+		<type class="club" subclass="club" tileid="-1"/>
+		<description>You see a wooden club. It won't kill much but is better than no weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="6"/>
+			<undroppableondeath value="1"/>
+			<min_level value="0"/>
+			<rate value="4"/>
+		</attributes>
+		<weight value="2.0"/>
+		<value value="2700"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="club of thorns">
-    <type class="club" subclass="club_of_thorns" tileid="-1"/>
-    <description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="48"/>
-      <lifesteal value="-0.1"/>
-      <min_level value="50"/>
-      <rate value="7"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="691200"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="club of thorns">
+		<type class="club" subclass="club_of_thorns" tileid="-1"/>
+		<description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="48"/>
+			<lifesteal value="-0.1"/>
+			<min_level value="50"/>
+			<rate value="7"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="691200"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="enhanced mace">
-    <type class="club" subclass="enhanced_mace" tileid="-1"/>
-    <description>You see an enhanced mace. The heavy attacking end makes it hard to balance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="19"/>
-      <min_level value="3"/>
-      <rate value="7"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="48992"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="enhanced mace">
+		<type class="club" subclass="enhanced_mace" tileid="-1"/>
+		<description>You see an enhanced mace. The heavy attacking end makes it hard to balance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="19"/>
+			<min_level value="3"/>
+			<rate value="7"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="48992"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="flail">
-    <type class="club" subclass="flail" tileid="-1"/>
-    <description>You see a flail. Swinging it in circles will tire you but it will be an effective weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="19"/>
-      <min_level value="3"/>
-      <rate value="7"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="48992"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="flail">
+		<type class="club" subclass="flail" tileid="-1"/>
+		<description>You see a flail. Swinging it in circles will tire you but it will be an effective weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="19"/>
+			<min_level value="3"/>
+			<rate value="7"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="48992"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="golden hammer">
-    <type class="club" subclass="golden_hammer" tileid="-1"/>
-    <description>You see a valuable golden hammer. This golden weapon may be worth a lot to someone. It has a slow rate of attack.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="36"/>
-      <min_level value="30"/>
-      <rate value="9"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="259200"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="golden hammer">
+		<type class="club" subclass="golden_hammer" tileid="-1"/>
+		<description>You see a valuable golden hammer. This golden weapon may be worth a lot to someone. It has a slow rate of attack.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="36"/>
+			<min_level value="30"/>
+			<rate value="9"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="259200"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="golden mace">
-    <type class="club" subclass="golden_mace" tileid="-1"/>
-    <description>You see a shining golden mace. Despite looking ornamental, it is sharp enough to do some damage.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="22"/>
-      <min_level value="5"/>
-      <rate value="8"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="66550"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="golden mace">
+		<type class="club" subclass="golden_mace" tileid="-1"/>
+		<description>You see a shining golden mace. Despite looking ornamental, it is sharp enough to do some damage.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="22"/>
+			<min_level value="5"/>
+			<rate value="8"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="66550"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="hammer">
-    <type class="club" subclass="hammer" tileid="-1"/>
-    <description>You see a common hammer. It is heavy enough that you should be able to bludgeon your enemies with it, but only slowly</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="31"/>
-      <min_level value="10"/>
-      <rate value="9"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="165505"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="hammer">
+		<type class="club" subclass="hammer" tileid="-1"/>
+		<description>You see a common hammer. It is heavy enough that you should be able to bludgeon your enemies with it, but only slowly</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="31"/>
+			<min_level value="10"/>
+			<rate value="9"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="165505"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="ice war hammer">
-    <type class="club" subclass="ice_grand_warhammer" tileid="-1"/>
-    <description>You see an ice war hammer. The last owner must have been huge to wield it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="45"/>
-      <min_level value="60"/>
-      <damagetype value="ice"/>
-      <rate value="10"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="455625"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="ice war hammer">
+		<type class="club" subclass="ice_grand_warhammer" tileid="-1"/>
+		<description>You see an ice war hammer. The last owner must have been huge to wield it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="45"/>
+			<min_level value="60"/>
+			<damagetype value="ice"/>
+			<rate value="10"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="455625"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="mace">
-    <type class="club" subclass="mace" tileid="-1"/>
-    <description>You see a mace, much neglected in years of use.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="16"/>
-      <min_level value="5"/>
-      <rate value="6"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="34133"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="mace">
+		<type class="club" subclass="mace" tileid="-1"/>
+		<description>You see a mace, much neglected in years of use.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="16"/>
+			<min_level value="5"/>
+			<rate value="6"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="34133"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="morning star">
-    <type class="club" subclass="golden_flail" tileid="-1"/>
-    <description>You see a morning star.  This is a very rare item indeed.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="25"/>
-      <min_level value="15"/>
-      <rate value="7"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="111607"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="morning star">
+		<type class="club" subclass="golden_flail" tileid="-1"/>
+		<description>You see a morning star.  This is a very rare item indeed.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="25"/>
+			<min_level value="15"/>
+			<rate value="7"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="111607"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
 <!-- disabled
-  <item name="necromancers staff" condition="stendhal.testserver">
-    <type class="club" subclass="wizard_staff" tileid="-1"/>
-    <description>You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.NecroStaff"/>
-    <attributes>
-      <atk value="8"/>
-      <menu value="Use|Use"/>
-      <min_level condition="stendhal.testserver" value="500"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="0.2"/>
-    <value value="8533"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="necromancers staff" condition="stendhal.testserver">
+		<type class="club" subclass="wizard_staff" tileid="-1"/>
+		<description>You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.NecroStaff"/>
+		<attributes>
+			<atk value="8"/>
+			<menu value="Use|Use"/>
+			<min_level condition="stendhal.testserver" value="500"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="0.2"/>
+		<value value="8533"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 -->
 
-  <item name="rod of the gm">
-    <type class="club" subclass="rod_of_the_gm" tileid="-1"/>
-    <description>You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <unattainable/>
-    <attributes>
-      <atk value="100"/>
-      <def value="400"/>
-      <min_level value="0"/>
-      <rate value="2"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="10000000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="rod of the gm">
+		<type class="club" subclass="rod_of_the_gm" tileid="-1"/>
+		<description>You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<unattainable/>
+		<attributes>
+			<atk value="100"/>
+			<def value="400"/>
+			<min_level value="0"/>
+			<rate value="2"/>
+		</attributes>
+		<weight value="0.01"/>
+		<value value="10000000"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="skull staff">
-    <type class="club" subclass="skull_staff" tileid="-1"/>
-    <description>You see a rare skull staff. It appears mystical but will work like any other staff.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="22"/>
-      <lifesteal value="0.05"/>
-      <min_level value="20"/>
-      <rate value="7"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="76057"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="skull staff">
+		<type class="club" subclass="skull_staff" tileid="-1"/>
+		<description>You see a rare skull staff. It appears mystical but will work like any other staff.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="22"/>
+			<lifesteal value="0.05"/>
+			<min_level value="20"/>
+			<rate value="7"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="76057"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="staff">
-    <type class="club" subclass="staff" tileid="-1"/>
-    <description>You see a staff. This is a seldom seen or used weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="9"/>
-      <min_level value="0"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="4.0"/>
-    <value value="7290"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="staff">
+		<type class="club" subclass="staff" tileid="-1"/>
+		<description>You see a staff. This is a seldom seen or used weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="9"/>
+			<min_level value="0"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="4.0"/>
+		<value value="7290"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="ugmash">
-    <type class="club" subclass="ugmash" tileid="-1"/>
-    <description>You see a huge ugmash. It can attack with a faster rate than many other clubs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="40"/>
-      <min_level value="180"/>
-      <rate value="6"/>
-    </attributes>
-    <weight value="2.0"/>
-    <value value="533333"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="ugmash">
+		<type class="club" subclass="ugmash" tileid="-1"/>
+		<description>You see a huge ugmash. It can attack with a faster rate than many other clubs.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="40"/>
+			<min_level value="180"/>
+			<rate value="6"/>
+		</attributes>
+		<weight value="2.0"/>
+		<value value="533333"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="vulcano hammer">
-    <type class="club" subclass="vulcano_hammer" tileid="-1"/>
-    <description>You see a vulcano hammer. It's said to be a weapon of a God, but attacks with a snail like pace.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="48"/>
-      <min_level value="90"/>
-      <damagetype value="fire"/>
-      <rate value="9"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="614400"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="vulcano hammer">
+		<type class="club" subclass="vulcano_hammer" tileid="-1"/>
+		<description>You see a vulcano hammer. It's said to be a weapon of a God, but attacks with a snail like pace.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="48"/>
+			<min_level value="90"/>
+			<damagetype value="fire"/>
+			<rate value="9"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="614400"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="war hammer">
-    <type class="club" subclass="grand_warhammer" tileid="-1"/>
-    <description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk value="38"/>
-      <min_level value="40"/>
-      <rate value="9"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="304844"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="war hammer">
+		<type class="club" subclass="grand_warhammer" tileid="-1"/>
+		<description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk value="38"/>
+			<min_level value="40"/>
+			<rate value="9"/>
+		</attributes>
+		<weight value="8.0"/>
+		<value value="304844"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
 </items>

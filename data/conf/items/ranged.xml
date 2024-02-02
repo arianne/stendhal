@@ -1,221 +1,221 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../weapons.xsd">
+		xsi:schemaLocation="stendhal ../weapons.xsd">
 
-  <item name="wooden bow">
-    <type class="ranged" subclass="wooden_bow" tileid="-1"/>
-    <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="12"/>
-      <ratk condition="testing.combat" value="12"/>
-      <range value="3"/>
-      <min_level value="0"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="17280"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="wooden bow">
+		<type class="ranged" subclass="wooden_bow" tileid="-1"/>
+		<description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="12"/>
+			<ratk condition="testing.combat" value="12"/>
+			<range value="3"/>
+			<min_level value="0"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="17280"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="longbow">
-    <type class="ranged" subclass="longbow" tileid="-1"/>
-    <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="14"/>
-      <ratk condition="testing.combat" value="14"/>
-      <range value="4"/>
-      <min_level value="5"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="27440"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="longbow">
+		<type class="ranged" subclass="longbow" tileid="-1"/>
+		<description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="14"/>
+			<ratk condition="testing.combat" value="14"/>
+			<range value="4"/>
+			<min_level value="5"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="27440"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="composite bow">
-    <type class="ranged" subclass="composite_bow" tileid="-1"/>
-    <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="15"/>
-      <ratk condition="testing.combat" value="15"/>
-      <range value="5"/>
-      <min_level value="10"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="33750"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="composite bow">
+		<type class="ranged" subclass="composite_bow" tileid="-1"/>
+		<description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="15"/>
+			<ratk condition="testing.combat" value="15"/>
+			<range value="5"/>
+			<min_level value="10"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="33750"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="crossbow">
-    <type class="ranged" subclass="crossbow" tileid="-1"/>
+	<item name="crossbow">
+		<type class="ranged" subclass="crossbow" tileid="-1"/>
  <description>You see a crossbow. The attack is high but it has a very short range. What do you prefer?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="17"/>
-      <ratk condition="testing.combat" value="17"/>
-      <range value="3"/>
-      <min_level value="20"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="3.0"/>
-    <value value="49130"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="17"/>
+			<ratk condition="testing.combat" value="17"/>
+			<range value="3"/>
+			<min_level value="20"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="3.0"/>
+		<value value="49130"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="hunter crossbow">
-    <type class="ranged" subclass="hunter_crossbow" tileid="-1"/>
+	<item name="hunter crossbow">
+		<type class="ranged" subclass="hunter_crossbow" tileid="-1"/>
  <description>You see a hunter crossbow. You must decide if the high attack is worth the short range it has.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="21"/>
-      <ratk condition="testing.combat" value="21"/>
-      <range value="4"/>
-      <min_level value="50"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="3.0"/>
-    <value value="92610"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="21"/>
+			<ratk condition="testing.combat" value="21"/>
+			<range value="4"/>
+			<min_level value="50"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="3.0"/>
+		<value value="92610"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="mithril bow">
-    <type class="ranged" subclass="mithril_bow" tileid="-1"/>
-   <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <attributes>
-      <atk condition="!testing.combat" value="28"/>
-      <ratk condition="testing.combat" value="28"/>
-      <range value="4"/>
-      <min_level value="300"/>
-      <rate value="5"/>
-    </attributes>
-    <weight value="3.0"/>
-    <value value="142610"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="mithril bow">
+		<type class="ranged" subclass="mithril_bow" tileid="-1"/>
+	 <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<attributes>
+			<atk condition="!testing.combat" value="28"/>
+			<ratk condition="testing.combat" value="28"/>
+			<range value="4"/>
+			<min_level value="300"/>
+			<rate value="5"/>
+		</attributes>
+		<weight value="3.0"/>
+		<value value="142610"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
 <!-- disabled
-  <item name="auto crossbow" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow" tileid="-1"/>
-    <description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
-    <attributes>
-      <atk value="0" condition="!testing.combat"/>
-      <ratk value="0" condition="testing.combat"/>
-      <range value="3"/>
-      <autobind value=""/>
-      <durability value="800"/>
-      <min_level value="20"/>
-      <rate value="1"/>
-    </attributes>
-    <weight value="0.5"/>
-    <value value="17280"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="auto crossbow" condition="stendhal.testserver">
+		<type class="ranged" subclass="auto_crossbow" tileid="-1"/>
+		<description>This auto crossbow allows for rapid fire. But its poor craftsmanship makes it feel as if it might break in your hands.</description>
+		<implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
+		<attributes>
+			<atk value="0" condition="!testing.combat"/>
+			<ratk value="0" condition="testing.combat"/>
+			<range value="3"/>
+			<autobind value=""/>
+			<durability value="800"/>
+			<min_level value="20"/>
+			<rate value="1"/>
+		</attributes>
+		<weight value="0.5"/>
+		<value value="17280"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="auto crossbow A" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow_a" tileid="-1"/>
-    <description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
-    <attributes>
-      <atk value="0" condition="!testing.combat"/>
-      <ratk value="0" condition="testing.combat"/>
-      <range value="3"/>
-      <autobind value=""/>
-      <durability value="1400"/>
-      <min_level value="20"/>
-      <rate value="1"/>
-    </attributes>
-    <weight value="0.5"/>
-    <value value="17280"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="auto crossbow A" condition="stendhal.testserver">
+		<type class="ranged" subclass="auto_crossbow_a" tileid="-1"/>
+		<description>This auto crossbow A allows for rapid fire. It's fairly sturdy, but not made for regular combat.</description>
+		<implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
+		<attributes>
+			<atk value="0" condition="!testing.combat"/>
+			<ratk value="0" condition="testing.combat"/>
+			<range value="3"/>
+			<autobind value=""/>
+			<durability value="1400"/>
+			<min_level value="20"/>
+			<rate value="1"/>
+		</attributes>
+		<weight value="0.5"/>
+		<value value="17280"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="auto crossbow A+" condition="stendhal.testserver">
-    <type class="ranged" subclass="auto_crossbow_aa" tileid="-1"/>
-    <description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
-    <implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
-    <attributes>
-      <atk value="0" condition="!testing.combat"/>
-      <ratk value="0" condition="testing.combat"/>
-      <range value="3"/>
-      <autobind value=""/>
-      <durability value="3600"/>
-      <min_level value="20"/>
-      <rate value="1"/>
-    </attributes>
-    <weight value="0.5"/>
-    <value value="17280"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="auto crossbow A+" condition="stendhal.testserver">
+		<type class="ranged" subclass="auto_crossbow_aa" tileid="-1"/>
+		<description>This auto crossbow A+ allows for rapid fire. It is made of a high grade of materials.</description>
+		<implementation class-name="games.stendhal.server.entity.item.BreakableWeapon"/>
+		<attributes>
+			<atk value="0" condition="!testing.combat"/>
+			<ratk value="0" condition="testing.combat"/>
+			<range value="3"/>
+			<autobind value=""/>
+			<durability value="3600"/>
+			<min_level value="20"/>
+			<rate value="1"/>
+		</attributes>
+		<weight value="0.5"/>
+		<value value="17280"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 -->
 
 </items>

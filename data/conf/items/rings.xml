@@ -1,233 +1,233 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../equipment.xsd">
+		xsi:schemaLocation="stendhal ../equipment.xsd">
 
-  <!-- START: Status Protection -->
+	<!-- START: Status Protection -->
 
-  <item name="medicinal ring">
-    <type class="ring" subclass="medicinal_ring" tileid="-1"/>
-    <description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
-    <attributes>
-      <min_level value="0"/>
-      <statusresist slots="finger;" type="poisoned" value="0.25"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="medicinal ring">
+		<type class="ring" subclass="medicinal_ring" tileid="-1"/>
+		<description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+		<attributes>
+			<min_level value="0"/>
+			<statusresist slots="finger;" type="poisoned" value="0.25"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="antivenom ring">
-    <type class="ring" subclass="antivenom_ring" tileid="-1"/>
-    <description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
-    <attributes>
-      <min_level value="0"/>
-      <statusresist slots="finger;" type="poisoned" value="0.5"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="antivenom ring">
+		<type class="ring" subclass="antivenom_ring" tileid="-1"/>
+		<description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+		<attributes>
+			<min_level value="0"/>
+			<statusresist slots="finger;" type="poisoned" value="0.5"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
 <!-- disabled
-  <item name="antitoxin ring" condition="stendhal.testserver">
-    <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-    <description>You see an antitoxin ring. It is highly resistant to poison when worn on the finger.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
-    <attributes>
-      <min_level value="0"/>
-      <statusresist slots="finger;" type="poisoned" value="0.75"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="antitoxin ring" condition="stendhal.testserver">
+		<type class="ring" subclass="antitoxin_ring" tileid="-1"/>
+		<description>You see an antitoxin ring. It is highly resistant to poison when worn on the finger.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+		<attributes>
+			<min_level value="0"/>
+			<statusresist slots="finger;" type="poisoned" value="0.75"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 -->
 
-  <item name="placid ring">
-    <type class="ring" subclass="placid_ring" tileid="-1"/>
-    <description>You see a placid ring. It may reduce the effects of being shocked when worn on the finger.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
-    <attributes>
-      <min_level value="0"/>
-      <statusresist slots="finger;" type="shocked" value="0.33"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="placid ring">
+		<type class="ring" subclass="placid_ring" tileid="-1"/>
+		<description>You see a placid ring. It may reduce the effects of being shocked when worn on the finger.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+		<attributes>
+			<min_level value="0"/>
+			<statusresist slots="finger;" type="shocked" value="0.33"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="insulated ring">
-    <type class="ring" subclass="insulated_ring" tileid="-1"/>
-    <description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
-    <attributes>
-      <min_level value="0"/>
-      <statusresist slots="finger;" type="shocked" value="0.66"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="insulated ring">
+		<type class="ring" subclass="insulated_ring" tileid="-1"/>
+		<description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+		<attributes>
+			<min_level value="0"/>
+			<statusresist slots="finger;" type="shocked" value="0.66"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <!-- END: Status Protection -->
+	<!-- END: Status Protection -->
 
-  <item name="wedding ring">
-    <type class="ring" subclass="wedding" tileid="-1"/>
-    <description>You see a golden wedding ring, a symbol of love.</description>
-    <implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>
-    <attributes>
-    <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="wedding ring">
+		<type class="ring" subclass="wedding" tileid="-1"/>
+		<description>You see a golden wedding ring, a symbol of love.</description>
+		<implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>
+		<attributes>
+		<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="engagement ring">
-    <type class="ring" subclass="engagement_ring" tileid="-1"/>
-    <description>You see a diamond engagement ring, a symbol of love (or a symbol of wealth?)</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="engagement ring">
+		<type class="ring" subclass="engagement_ring" tileid="-1"/>
+		<description>You see a diamond engagement ring, a symbol of love (or a symbol of wealth?)</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="emerald ring">
-    <type class="ring" subclass="emerald-ring" tileid="-1"/>
-    <description>You see an emerald ring, known as ring of life. Wear it, and you risk less from death.</description>
-    <implementation class-name="games.stendhal.server.entity.item.RingOfLife"/>
-    <attributes>
-      <amount value="1"/>
-      <persistent value="1"/>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="100000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="emerald ring">
+		<type class="ring" subclass="emerald-ring" tileid="-1"/>
+		<description>You see an emerald ring, known as ring of life. Wear it, and you risk less from death.</description>
+		<implementation class-name="games.stendhal.server.entity.item.RingOfLife"/>
+		<attributes>
+			<amount value="1"/>
+			<persistent value="1"/>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="100000"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="turtle shell ring">
-    <type class="ring" subclass="turtle_shell_ring" tileid="-1"/>
-    <description>You see a turtle shell ring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-      <def value="1"/>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="turtle shell ring">
+		<type class="ring" subclass="turtle_shell_ring" tileid="-1"/>
+		<description>You see a turtle shell ring.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="1"/>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="imperial ring">
-    <type class="ring" subclass="imperial_ring" tileid="-1"/>
-    <description>You see an imperial ring. It is imbued with the strength of a king.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-      <atk value="1"/>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="imperial ring">
+		<type class="ring" subclass="imperial_ring" tileid="-1"/>
+		<description>You see an imperial ring. It is imbued with the strength of a king.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="1"/>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="enhanced imperial ring">
-    <type class="ring" subclass="imperial_ring_enhanced" tileid="-1"/>
-    <description>You see an enhanced imperial ring. It eminates the auras of strength and defense.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-      <atk value="1"/>
-      <def value="1"/>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="1"/>
-    <preview>5</preview>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="enhanced imperial ring">
+		<type class="ring" subclass="imperial_ring_enhanced" tileid="-1"/>
+		<description>You see an enhanced imperial ring. It eminates the auras of strength and defense.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="1"/>
+			<def value="1"/>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="1"/>
+		<preview>5</preview>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
 </items>

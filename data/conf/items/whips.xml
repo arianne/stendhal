@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../weapons.xsd">
+		xsi:schemaLocation="stendhal ../weapons.xsd">
 
-  <item name="venom whip">
-    <type class="whip" subclass="venom_whip" tileid="-1"/>
-    <description>You see a venom whip. Its thong has been saturated with cobra venom.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Weapon"/>
-    <unattainable/>
-    <attributes>
-      <atk value="30"/>
-      <range value="1"/>
-      <min_level value="75"/>
-      <statusattack value="10,cobra venom"/>
-      <rate value="6"/>
-    </attributes>
-    <weight value="2.0"/>
-    <value value="17280"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="venom whip">
+		<type class="whip" subclass="venom_whip" tileid="-1"/>
+		<description>You see a venom whip. Its thong has been saturated with cobra venom.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Weapon"/>
+		<unattainable/>
+		<attributes>
+			<atk value="30"/>
+			<range value="1"/>
+			<min_level value="75"/>
+			<statusattack value="10,cobra venom"/>
+			<rate value="6"/>
+		</attributes>
+		<weight value="2.0"/>
+		<value value="17280"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
 </items>

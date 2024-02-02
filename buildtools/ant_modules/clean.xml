@@ -2,31 +2,31 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-  <target name="clean" description="Delete all build files and directories.">
-    <delete dir="${buildroot}"/>
-    <delete dir="${build_cobertura}"/>
-    <delete dir="${build_cobertura_report}"/>
-    <delete file="cobertura.ser"/>
-    <delete dir="android/app/build/"/>
-    <delete>
-      <fileset dir=".">
-        <include name="TEST-*.xml"/>
-      </fileset>
-    </delete>
-  </target>
+	<target name="clean" description="Delete all build files and directories.">
+		<delete dir="${buildroot}"/>
+		<delete dir="${build_cobertura}"/>
+		<delete dir="${build_cobertura_report}"/>
+		<delete file="cobertura.ser"/>
+		<delete dir="android/app/build/"/>
+		<delete>
+			<fileset dir=".">
+				<include name="TEST-*.xml"/>
+			</fileset>
+		</delete>
+	</target>
 
 
-  <target name="clean_client_data" description="Delete client data build files and directories.">
-    <delete dir="${build_client_data}"/>
-    <delete dir="${build_client_music_data}"/>
-    <delete dir="${build_client_sound_data}"/>
-  </target>
+	<target name="clean_client_data" description="Delete client data build files and directories.">
+		<delete dir="${build_client_data}"/>
+		<delete dir="${build_client_music_data}"/>
+		<delete dir="${build_client_sound_data}"/>
+	</target>
 
 
-  <target name="cleanjs" description="Delete web client build files and directories.">
-    <delete dir="${buildroot}/js"/>
-    <delete dir="${buildroot}/ts"/>
-  </target>
+	<target name="cleanjs" description="Delete web client build files and directories.">
+		<delete dir="${buildroot}/js"/>
+		<delete dir="${buildroot}/ts"/>
+	</target>
 
 
 </project>

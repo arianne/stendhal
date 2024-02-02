@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal groups.xsd">
+		xsi:schemaLocation="stendhal groups.xsd">
 
-  <group uri="shops/buy_items.xml"/>
-  <group uri="shops/sell_items.xml"/>
-  <group uri="shops/sell_outfits.xml"/>
-  <group uri="shops/trade_items.xml"/>
+	<group uri="shops/buy_items.xml"/>
+	<group uri="shops/sell_items.xml"/>
+	<group uri="shops/sell_outfits.xml"/>
+	<group uri="shops/trade_items.xml"/>
 
 </groups>

@@ -1,113 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <shops xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../shops.xsd">
+		xsi:schemaLocation="stendhal ../shops.xsd">
 
-  <!-- OUTFIT SELLERS/LENDERS -->
+	<!-- OUTFIT SELLERS/LENDERS -->
 
-  <!--
-    Merchant flags descriptions:
-      configure: merchant will be configured at startup with shop
-      noOffer: disable default replies to "offer"
-      removeDetailColor: do not preserve detail color when changing outfit
-      resetBeforeChange: remove temp outfit & restore original before change
-      confirmTemp: ask for confirmation if player is wearing temp outfit
-      confirmBalloon: confirmation if player is wearing balloon
-  -->
+	<!--
+		Merchant flags descriptions:
+			configure: merchant will be configured at startup with shop
+			noOffer: disable default replies to "offer"
+			removeDetailColor: do not preserve detail color when changing outfit
+			resetBeforeChange: remove temp outfit & restore original before change
+			confirmTemp: ask for confirmation if player is wearing temp outfit
+			confirmBalloon: confirmation if player is wearing balloon
+	-->
 
-  <shop name="deniran_accessories" type="outfit">
-    <outfit name="white balloon" layers="detail=2" price="50000"/>
-    <outfit name="black balloon" layers="detail=3" price="50000"/>
-    <outfit name="bone" layers="detail=4" price="100000"/>
-    <outfit name="umbrella" layers="detail=7" price="50000"/>
-    <outfit name="sword" layers="detail=8" price="250000"/>
-    <outfit name="knife" layers="detail=9" price="125000"/>
-    <outfit name="spear" layers="detail=10" price="150000"/>
-    <outfit name="bow" layers="detail=11" price="175000"/>
-    <outfit name="axe1" layers="detail=12" price="250000"/>
-    <outfit name="axe2" layers="detail=13" price="250000"/>
-    <outfit name="kite shield" layers="detail=14" price="225000"/>
-    <outfit name="shield" layers="detail=15" price="225000"/>
-    <merchant name="Gwen" flags="configure,noOffer,removeDetailColor,confirmTemp,confirmBalloon,resetBeforeChange"
-        note="do not expire"/>
-  </shop>
+	<shop name="deniran_accessories" type="outfit">
+		<outfit name="white balloon" layers="detail=2" price="50000"/>
+		<outfit name="black balloon" layers="detail=3" price="50000"/>
+		<outfit name="bone" layers="detail=4" price="100000"/>
+		<outfit name="umbrella" layers="detail=7" price="50000"/>
+		<outfit name="sword" layers="detail=8" price="250000"/>
+		<outfit name="knife" layers="detail=9" price="125000"/>
+		<outfit name="spear" layers="detail=10" price="150000"/>
+		<outfit name="bow" layers="detail=11" price="175000"/>
+		<outfit name="axe1" layers="detail=12" price="250000"/>
+		<outfit name="axe2" layers="detail=13" price="250000"/>
+		<outfit name="kite shield" layers="detail=14" price="225000"/>
+		<outfit name="shield" layers="detail=15" price="225000"/>
+		<merchant name="Gwen" flags="configure,noOffer,removeDetailColor,confirmTemp,confirmBalloon,resetBeforeChange"
+				note="do not expire"/>
+	</shop>
 
-  <!-- Pierre in Deniran Dress Shop -->
-  <shop name="deniranoutfits" type="outfit">
-    <outfit name="blue bear" layers="hat=993" price="2500"/>
-    <outfit name="brown bear" layers="hat=994" price="2500"/>
-    <outfit name="superstendhal" layers="dress=973,hat=992" price="5000"/>
-    <merchant name="Pierre"/>
-  </shop>
+	<!-- Pierre in Deniran Dress Shop -->
+	<shop name="deniranoutfits" type="outfit">
+		<outfit name="blue bear" layers="hat=993" price="2500"/>
+		<outfit name="brown bear" layers="hat=994" price="2500"/>
+		<outfit name="superstendhal" layers="dress=973,hat=992" price="5000"/>
+		<merchant name="Pierre"/>
+	</shop>
 
-  <!-- Liliana in Magic Clothing Boutique -->
-  <shop name="magicoutfitsliliana" type="outfit">
-    <outfit name="jumpsuit" layers="dress=983" price="500"/>
-    <outfit name="dungarees" layers="dress=984" price="500"/>
-    <outfit name="green dress" layers="dress=978" price="500"/>
-    <outfit name="gown" layers="dress=982" price="750"/>
-    <outfit name="orange" layers="dress=980" price="500"/>
-    <outfit name="bunny" layers="dress=981" price="800"/>
-    <outfit name="jester" layers="dress=976,hat=995" price="400"/>
-    <outfit name="horse" layers="body=997" price="1200"/>
-    <outfit name="girl horse" layers="body=996" price="1200"/>
-    <outfit name="alien" layers="body=995" price="1200"/>
-    <merchant name="Liliana"/>
-  </shop>
+	<!-- Liliana in Magic Clothing Boutique -->
+	<shop name="magicoutfitsliliana" type="outfit">
+		<outfit name="jumpsuit" layers="dress=983" price="500"/>
+		<outfit name="dungarees" layers="dress=984" price="500"/>
+		<outfit name="green dress" layers="dress=978" price="500"/>
+		<outfit name="gown" layers="dress=982" price="750"/>
+		<outfit name="orange" layers="dress=980" price="500"/>
+		<outfit name="bunny" layers="dress=981" price="800"/>
+		<outfit name="jester" layers="dress=976,hat=995" price="400"/>
+		<outfit name="horse" layers="body=997" price="1200"/>
+		<outfit name="girl horse" layers="body=996" price="1200"/>
+		<outfit name="alien" layers="body=995" price="1200"/>
+		<merchant name="Liliana"/>
+	</shop>
 
-  <!-- Saski in Magic Clothing Boutique -->
-  <shop name="magicoutfitssaski" type="outfit">
-    <outfit name="goblin face" layers="head=988" price="500"/>
-    <outfit name="thing face" layers="head=987" price="500"/>
-    <outfit name="purple slime" layers="body=993" price="3000"/>
-    <outfit name="green slime" layers="body=989" price="3000"/>
-    <outfit name="red slime" layers="body=988" price="3000"/>
-    <outfit name="blue slime" layers="body=991" price="3000"/>
-    <outfit name="gingerbread man" layers="body=992" price="1200"/>
-    <outfit name="white cat" layers="body=978" price="4500"/>
-    <outfit name="black cat" layers="body=979" price="4500"/>
-    <merchant name="Saskia"/>
-  </shop>
+	<!-- Saski in Magic Clothing Boutique -->
+	<shop name="magicoutfitssaski" type="outfit">
+		<outfit name="goblin face" layers="head=988" price="500"/>
+		<outfit name="thing face" layers="head=987" price="500"/>
+		<outfit name="purple slime" layers="body=993" price="3000"/>
+		<outfit name="green slime" layers="body=989" price="3000"/>
+		<outfit name="red slime" layers="body=988" price="3000"/>
+		<outfit name="blue slime" layers="body=991" price="3000"/>
+		<outfit name="gingerbread man" layers="body=992" price="1200"/>
+		<outfit name="white cat" layers="body=978" price="4500"/>
+		<outfit name="black cat" layers="body=979" price="4500"/>
+		<merchant name="Saskia"/>
+	</shop>
 
-  <!-- Fidorea in Ados City -->
-  <shop name="adosmasks" type="outfit">
-    <outfit name="babybear mask" layers="mask=994,hair=-1,hat=-1" price="20"/>
-    <outfit name="frog mask" layers="mask=995,hair=-1,hat=-1" price="20"/>
-    <outfit name="penguin mask" layers="mask=996,hair=-1,hat=-1" price="20"/>
-    <outfit name="monkey mask" layers="mask=997,hair=-1,hat=-1" price="20"/>
-    <outfit name="dog mask" layers="mask=998,hair=-1,hat=-1" price="20"/>
-    <outfit name="kobold mask" layers="mask=999,hair=-1,hat=-1" price="20"/>
-    <merchant name="Fidorea" note="selected mask is random"/>
-  </shop>
+	<!-- Fidorea in Ados City -->
+	<shop name="adosmasks" type="outfit">
+		<outfit name="babybear mask" layers="mask=994,hair=-1,hat=-1" price="20"/>
+		<outfit name="frog mask" layers="mask=995,hair=-1,hat=-1" price="20"/>
+		<outfit name="penguin mask" layers="mask=996,hair=-1,hat=-1" price="20"/>
+		<outfit name="monkey mask" layers="mask=997,hair=-1,hat=-1" price="20"/>
+		<outfit name="dog mask" layers="mask=998,hair=-1,hat=-1" price="20"/>
+		<outfit name="kobold mask" layers="mask=999,hair=-1,hat=-1" price="20"/>
+		<merchant name="Fidorea" note="selected mask is random"/>
+	</shop>
 
-  <!-- men's swim trunks on Athor Island -->
-  <shop name="athorswimtrunks" type="outfit">
-    <outfit name="black trunks" layers="dress=995" price="5"/>
-    <outfit name="blue trunks" layers="dress=996" price="5"/>
-    <outfit name="green trunks" layers="dress=997" price="5"/>
-    <outfit name="yellow trunks" layers="dress=998" price="5"/>
-    <merchant name="David" note="selected trunks is random"/>
-  </shop>
+	<!-- men's swim trunks on Athor Island -->
+	<shop name="athorswimtrunks" type="outfit">
+		<outfit name="black trunks" layers="dress=995" price="5"/>
+		<outfit name="blue trunks" layers="dress=996" price="5"/>
+		<outfit name="green trunks" layers="dress=997" price="5"/>
+		<outfit name="yellow trunks" layers="dress=998" price="5"/>
+		<merchant name="David" note="selected trunks is random"/>
+	</shop>
 
-  <!-- women's swimsuits on Athor Island -->
-  <shop name="athorswimsuits" type="outfit">
-    <outfit name="violet two-piece swimsuit" layers="dress=991" price="5"/>
-    <outfit name="blue two-piece swimsuit" layers="dress=992" price="5"/>
-    <outfit name="tan one-piece swimsuit" layers="dress=993" price="5"/>
-    <outfit name="red one-piece swimsuit" layers="dress=994" price="5"/>
-    <merchant name="Pam" note="selected swimsuit is random"/>
-  </shop>
+	<!-- women's swimsuits on Athor Island -->
+	<shop name="athorswimsuits" type="outfit">
+		<outfit name="violet two-piece swimsuit" layers="dress=991" price="5"/>
+		<outfit name="blue two-piece swimsuit" layers="dress=992" price="5"/>
+		<outfit name="tan one-piece swimsuit" layers="dress=993" price="5"/>
+		<outfit name="red one-piece swimsuit" layers="dress=994" price="5"/>
+		<merchant name="Pam" note="selected swimsuit is random"/>
+	</shop>
 
-  <!-- Tamara in Fado Hotel -->
-  <shop name="weddinggown" type="outfit">
-    <outfit name="gown" layers="dress=988,hat=991" price="100"/>
-    <merchant name="Tamara"/>
-  </shop>
+	<!-- Tamara in Fado Hotel -->
+	<shop name="weddinggown" type="outfit">
+		<outfit name="gown" layers="dress=988,hat=991" price="100"/>
+		<merchant name="Tamara"/>
+	</shop>
 
-  <!-- Timothy in Fado Hotel -->
-  <shop name="weddingsuit" type="outfit">
-    <outfit name="suit" layers="dress=987" price="50"/>
-    <merchant name="Timothy"/>
-  </shop>
+	<!-- Timothy in Fado Hotel -->
+	<shop name="weddingsuit" type="outfit">
+		<outfit name="suit" layers="dress=987" price="50"/>
+		<merchant name="Timothy"/>
+	</shop>
 
 </shops>

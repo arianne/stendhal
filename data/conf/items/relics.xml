@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../items.xsd">
+		xsi:schemaLocation="stendhal ../items.xsd">
 
-  <item name="skull ring">
-    <type class="relic" subclass="skull_ring" tileid="-1"/>
-    <description>You see a skull ring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="finger"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="skull ring">
+		<type class="relic" subclass="skull_ring" tileid="-1"/>
+		<description>You see a skull ring.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="finger"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
-  <item name="amulet">
-    <type class="relic" subclass="amulet" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="amulet">
+		<type class="relic" subclass="amulet" tileid="-1"/>
+		<description/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 
 <!-- disabled
-  <item name="ankh" condition="stendhal.testserver">
-    <type class="relic" subclass="ankh" tileid="-1"/>
-    <description>You see a mysterious ankh. You don't know what it is for.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
+	<item name="ankh" condition="stendhal.testserver">
+		<type class="relic" subclass="ankh" tileid="-1"/>
+		<description>You see a mysterious ankh. You don't know what it is for.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="keyring"/>
+		</equipable>
+	</item>
 -->
 
 </items>

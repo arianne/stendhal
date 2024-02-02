@@ -1,158 +1,158 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd">
+		xsi:schemaLocation="stendhal ../creatures.xsd">
 
-  <!-- START: cyclops -->
+	<!-- START: cyclops -->
 
-  <creature name="cyclops">
-    <type class="giant" subclass="cyclops" tileid="troll.png:3"/>
-    <description>You see a cyclops. It just has one eye.</description>
-    <attributes>
-      <atk value="125"/>
-      <def value="26"/>
-      <hp value="60"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="9"/>
-    <experience value="90"/>
-    <respawn value="1200"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="chain armor" quantity="[1,1]" probability="1.0"/>
-      <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
-      <item value="studded boots" quantity="[1,1]" probability="0.5"/>
-      <item value="enhanced mace" quantity="[1,1]" probability="1.0"/>
-      <item value="studded shield" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="cyclops-scream-01"/>
-        <sound value="cyclops-yell-01"/>
-        <sound value="cyclops-laugh-01"/>
-        <sound value="cyclops-laugh-02"/>
-        <sound value="cyclops-grunt-01"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="cyclops">
+		<type class="giant" subclass="cyclops" tileid="troll.png:3"/>
+		<description>You see a cyclops. It just has one eye.</description>
+		<attributes>
+			<atk value="125"/>
+			<def value="26"/>
+			<hp value="60"/>
+			<speed value="0.5"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="9"/>
+		<experience value="90"/>
+		<respawn value="1200"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="chain armor" quantity="[1,1]" probability="1.0"/>
+			<item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
+			<item value="studded boots" quantity="[1,1]" probability="0.5"/>
+			<item value="enhanced mace" quantity="[1,1]" probability="1.0"/>
+			<item value="studded shield" quantity="[1,1]" probability="0.5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="cyclops-scream-01"/>
+				<sound value="cyclops-yell-01"/>
+				<sound value="cyclops-laugh-01"/>
+				<sound value="cyclops-laugh-02"/>
+				<sound value="cyclops-grunt-01"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <!-- END: cyclops -->
+	<!-- END: cyclops -->
 
-  <!-- START: troll -->
+	<!-- START: troll -->
 
-  <creature name="troll">
-    <type class="troll" subclass="troll" tileid="troll.png:0"/>
-    <description>You see a troll, be careful in his terrain.</description>
-    <attributes>
-      <atk value="135"/>
-      <def value="34"/>
-      <hp value="60"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="10"/>
-    <experience value="110"/>
-    <respawn value="1210"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="chain armor" quantity="[1,1]" probability="3.0"/>
-      <item value="chain legs" quantity="[1,1]" probability="2.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
-      <item value="flail" quantity="[1,1]" probability="30.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="troll-growl-01"/>
-        <sound value="troll-growl-02"/>
-        <sound value="troll-growl-03"/>
-        <sound value="troll-growl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="troll">
+		<type class="troll" subclass="troll" tileid="troll.png:0"/>
+		<description>You see a troll, be careful in his terrain.</description>
+		<attributes>
+			<atk value="135"/>
+			<def value="34"/>
+			<hp value="60"/>
+			<speed value="0.5"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="10"/>
+		<experience value="110"/>
+		<respawn value="1210"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="chain armor" quantity="[1,1]" probability="3.0"/>
+			<item value="chain legs" quantity="[1,1]" probability="2.0"/>
+			<item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
+			<item value="flail" quantity="[1,1]" probability="30.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="troll-growl-01"/>
+				<sound value="troll-growl-02"/>
+				<sound value="troll-growl-03"/>
+				<sound value="troll-growl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="red troll">
-    <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
-    <description>You see a red troll, he's burning with anger.</description>
-    <attributes>
-      <atk value="190"/>
-      <def value="34"/>
-      <hp value="110"/>
-      <speed value="0.7"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="16"/>
-    <experience value="200"/>
-    <respawn value="1230"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="scale armor" quantity="[1,1]" probability="3.0"/>
-      <item value="chain legs" quantity="[1,1]" probability="4.0"/>
-      <item value="flail" quantity="[1,1]" probability="30.0"/>
-      <item value="ugmash" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="troll-growl-01"/>
-        <sound value="troll-growl-02"/>
-        <sound value="troll-growl-03"/>
-        <sound value="troll-growl-04"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="red troll">
+		<type class="troll" subclass="red_troll" tileid="troll.png:2"/>
+		<description>You see a red troll, he's burning with anger.</description>
+		<attributes>
+			<atk value="190"/>
+			<def value="34"/>
+			<hp value="110"/>
+			<speed value="0.7"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="16"/>
+		<experience value="200"/>
+		<respawn value="1230"/>
+		<corpse name="humanoid"/>
+		<drops>
+			<item value="scale armor" quantity="[1,1]" probability="3.0"/>
+			<item value="chain legs" quantity="[1,1]" probability="4.0"/>
+			<item value="flail" quantity="[1,1]" probability="30.0"/>
+			<item value="ugmash" quantity="[1,1]" probability="1.0"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<sound value="troll-growl-01"/>
+				<sound value="troll-growl-02"/>
+				<sound value="troll-growl-03"/>
+				<sound value="troll-growl-04"/>
+			</says>
+			<profile name="offensive"/>
+			<profile name="human"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <creature name="cave troll">
-    <type class="troll" subclass="cave_troll" tileid="troll.png:1"/>
-    <description></description>
-    <attributes>
-      <atk value="474"/>
-      <def value="45"/>
-      <hp value="1000"/>
-      <speed value="0.7"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="63"/>
-    <experience value="3100"/>
-    <respawn value="1870"/>
-    <corpse name="humanoid_2x2"/>
-    <drops>
-      <item value="meat" quantity="[1,5]" probability="10.5"/>
-      <item value="ugmash" quantity="[1,1]" probability="1.0"/>
-      <item value="barbarian armor" quantity="[1,1]" probability="5.5"/>
-      <item value="stone boots" quantity="[1,1]" probability="2.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Uggga yggga arghhhhh"/>
-        <noise state="idle follow fight" value="Ooggga UGGga arhhh"/>
-        <sound value="growl-large-3"/>
-        <sound value="grunt-large-1"/>
-        <sound value="grunt-large-2"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+	<creature name="cave troll">
+		<type class="troll" subclass="cave_troll" tileid="troll.png:1"/>
+		<description></description>
+		<attributes>
+			<atk value="474"/>
+			<def value="45"/>
+			<hp value="1000"/>
+			<speed value="0.7"/>
+			<size value="2,2"/>
+		</attributes>
+		<level value="63"/>
+		<experience value="3100"/>
+		<respawn value="1870"/>
+		<corpse name="humanoid_2x2"/>
+		<drops>
+			<item value="meat" quantity="[1,5]" probability="10.5"/>
+			<item value="ugmash" quantity="[1,1]" probability="1.0"/>
+			<item value="barbarian armor" quantity="[1,1]" probability="5.5"/>
+			<item value="stone boots" quantity="[1,1]" probability="2.5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise state="idle follow fight" value="Uggga yggga arghhhhh"/>
+				<noise state="idle follow fight" value="Ooggga UGGga arhhh"/>
+				<sound value="growl-large-3"/>
+				<sound value="grunt-large-1"/>
+				<sound value="grunt-large-2"/>
+			</says>
+			<profile name="brave"/>
+			<profile name="offensive"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
-  <!-- END: troll -->
+	<!-- END: troll -->
 
 </creatures>

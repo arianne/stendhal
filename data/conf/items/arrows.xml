@@ -1,232 +1,232 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../equipment.xsd">
+		xsi:schemaLocation="stendhal ../equipment.xsd">
 
-  <item name="wooden arrow">
-    <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
-    <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="1"/>
-      <ratk condition="testing.combat" value="1"/>
-      <range value="2"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="0"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="10"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="wooden arrow">
+		<type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
+		<description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="1"/>
+			<ratk condition="testing.combat" value="1"/>
+			<range value="2"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="0"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="10"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="steel arrow">
-    <type class="ammunition" subclass="steel_arrow" tileid="-1"/>
-    <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="3"/>
-      <ratk condition="testing.combat" value="3"/>
-      <range value="2"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="1"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="270"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="steel arrow">
+		<type class="ammunition" subclass="steel_arrow" tileid="-1"/>
+		<description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="3"/>
+			<ratk condition="testing.combat" value="3"/>
+			<range value="2"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="1"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="270"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="golden arrow">
-    <type class="ammunition" subclass="golden_arrow" tileid="-1"/>
-    <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="4"/>
-      <ratk condition="testing.combat" value="4"/>
-      <range value="3"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="5"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="640"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
+	<item name="golden arrow">
+		<type class="ammunition" subclass="golden_arrow" tileid="-1"/>
+		<description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="4"/>
+			<ratk condition="testing.combat" value="4"/>
+			<range value="3"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="5"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="640"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
 
-  <item name="fire arrow">
-    <type class="ammunition" subclass="fire_arrow" tileid="-1"/>
-    <description>You see a fire arrow. The tip burns brightly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="6"/>
-      <ratk condition="testing.combat" value="6"/>
-      <range value="4"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="20"/>
-      <damagetype value="fire"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="2160"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="fire arrow">
+		<type class="ammunition" subclass="fire_arrow" tileid="-1"/>
+		<description>You see a fire arrow. The tip burns brightly.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="6"/>
+			<ratk condition="testing.combat" value="6"/>
+			<range value="4"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="20"/>
+			<damagetype value="fire"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="2160"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="ice arrow">
-    <type class="ammunition" subclass="ice_arrow" tileid="-1"/>
-    <description>You see an ice arrow. It can deliver a bitter sting.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="6"/>
-      <ratk condition="testing.combat" value="6"/>
-      <range value="4"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="20"/>
-      <damagetype value="ice"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="2160"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="ice arrow">
+		<type class="ammunition" subclass="ice_arrow" tileid="-1"/>
+		<description>You see an ice arrow. It can deliver a bitter sting.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="6"/>
+			<ratk condition="testing.combat" value="6"/>
+			<range value="4"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="20"/>
+			<damagetype value="ice"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="2160"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="light arrow">
-    <type class="ammunition" subclass="light_arrow" tileid="-1"/>
-    <description>You see a light arrow. It shines with a holy radiance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <unattainable/>
-    <attributes>
-      <atk condition="!testing.combat" value="6"/>
-      <ratk condition="testing.combat" value="6"/>
-      <range value="4"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="20"/>
-      <damagetype value="light"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="2160"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="light arrow">
+		<type class="ammunition" subclass="light_arrow" tileid="-1"/>
+		<description>You see a light arrow. It shines with a holy radiance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<unattainable/>
+		<attributes>
+			<atk condition="!testing.combat" value="6"/>
+			<ratk condition="testing.combat" value="6"/>
+			<range value="4"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="20"/>
+			<damagetype value="light"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="2160"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="dark arrow">
-    <type class="ammunition" subclass="dark_arrow" tileid="-1"/>
-    <description>You see a dark arrow. It's hard to describe.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <unattainable/>
-    <attributes>
-      <atk condition="!testing.combat" value="6"/>
-      <ratk condition="testing.combat" value="6"/>
-      <range value="4"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="20"/>
-      <damagetype value="dark"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="2160"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="dark arrow">
+		<type class="ammunition" subclass="dark_arrow" tileid="-1"/>
+		<description>You see a dark arrow. It's hard to describe.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<unattainable/>
+		<attributes>
+			<atk condition="!testing.combat" value="6"/>
+			<ratk condition="testing.combat" value="6"/>
+			<range value="4"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="20"/>
+			<damagetype value="dark"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="2160"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <item name="power arrow">
-    <type class="ammunition" subclass="power_arrow" tileid="-1"/>
-    <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <attributes>
-      <atk condition="!testing.combat" value="6"/>
-      <ratk condition="testing.combat" value="6"/>
-      <range value="4"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="20"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="2160"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
+	<item name="power arrow">
+		<type class="ammunition" subclass="power_arrow" tileid="-1"/>
+		<description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<attributes>
+			<atk condition="!testing.combat" value="6"/>
+			<ratk condition="testing.combat" value="6"/>
+			<range value="4"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="20"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="2160"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
 
-  <!--
-  <item name="poison wooden arrow">
-    <type class="ammunition" subclass="poison_arrow" tileid="-1"/>
-    <description>You see a poison wooden arrow. The tip has been saturated with a poisonous compound.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Projectile"/>
-    <unattainable/>
-    <attributes>
-      <atk condition="!testing.combat" value="2"/>
-      <ratk condition="testing.combat" value="2"/>
-      <range value="2"/>
-      <quantity value="1"/>
-      <max_quantity value="2147483647"/>
-      <min_level value="0"/>
-      <statusattack value="5,poison"/>
-    </attributes>
-    <weight value="0.1"/>
-    <value value="50"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-  -->
+	<!--
+	<item name="poison wooden arrow">
+		<type class="ammunition" subclass="poison_arrow" tileid="-1"/>
+		<description>You see a poison wooden arrow. The tip has been saturated with a poisonous compound.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Projectile"/>
+		<unattainable/>
+		<attributes>
+			<atk condition="!testing.combat" value="2"/>
+			<ratk condition="testing.combat" value="2"/>
+			<range value="2"/>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+			<min_level value="0"/>
+			<statusattack value="5,poison"/>
+		</attributes>
+		<weight value="0.1"/>
+		<value value="50"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+		</equipable>
+	</item>
+	-->
 
 </items>

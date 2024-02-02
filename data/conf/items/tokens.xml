@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../items.xsd">
+		xsi:schemaLocation="stendhal ../items.xsd">
 
-  <item name="arrow game token">
-    <type class="token" subclass="darkyellow_round_token" tileid="-1"/>
-    <description>You see a token, that when placed in the right spot could point you in the right direction.</description>
-    <implementation class-name="games.stendhal.server.entity.item.token.Token"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-    </equipable>
-  </item>
+	<item name="arrow game token">
+		<type class="token" subclass="darkyellow_round_token" tileid="-1"/>
+		<description>You see a token, that when placed in the right spot could point you in the right direction.</description>
+		<implementation class-name="games.stendhal.server.entity.item.token.Token"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+		</equipable>
+	</item>
 
-  <item name="o board token">
-    <type class="token" subclass="red_o_token" tileid="-1"/>
-    <description>You see an O token.</description>
-    <implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-    </equipable>
-  </item>
+	<item name="o board token">
+		<type class="token" subclass="red_o_token" tileid="-1"/>
+		<description>You see an O token.</description>
+		<implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+		</equipable>
+	</item>
 
-  <item name="x board token">
-    <type class="token" subclass="blue_x_token" tileid="-1"/>
-    <description>You see an X token.</description>
-    <implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
-    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-    </equipable>
-  </item>
+	<item name="x board token">
+		<type class="token" subclass="blue_x_token" tileid="-1"/>
+		<description>You see an X token.</description>
+		<implementation class-name="games.stendhal.server.entity.item.token.BoardToken"/>
+		<attributes>
+		</attributes>
+		<weight value="1.0"/>
+		<value value="1"/>
+		<equipable>
+			<slot name="ground"/>
+		</equipable>
+	</item>
 
 </items>
