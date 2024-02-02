@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+	namespace "org.stendhalgame.client"
 	compileSdk 32
 
 	def outputName = "org.stendhalgame.client-1045005"
