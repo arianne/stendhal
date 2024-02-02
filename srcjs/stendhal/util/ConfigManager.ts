@@ -184,9 +184,10 @@ export class ConfigManager {
 						if (valueOld !== "none" && this.storage.getItem("client.joystick") == null) {
 							this.storage.setItem("client.joystick", "true");
 						}
-						valueOld = valueOld === "dpad" ? "dpad" : "joystick";
+						if (valueOld === "dpad") {
+							this.storage.setItem(keyNew, valueOld);
+						}
 					}
-					this.storage.setItem(keyNew, valueOld!);
 				}
 			}
 			// clean up old key
