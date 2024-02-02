@@ -81,13 +81,13 @@ export class SettingsDialog extends DialogContentComponent {
 
 		const player_stats = ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent;
 
-		const chk_charname = this.createCheckBox("chk_charname", "ui.stats.charname",
+		const chk_charname = this.createCheckBox("chk_charname", "client.stats_panel.charname",
 				undefined, undefined,
 				function() {
 					player_stats.enableCharName(chk_charname.checked);
 				})!;
 
-		const chk_hpbar = this.createCheckBox("chk_hpbar", "ui.stats.hpbar",
+		const chk_hpbar = this.createCheckBox("chk_hpbar", "client.stats_panel.hpbar",
 				undefined, undefined,
 				function() {
 					player_stats.enableBar("hp", chk_hpbar.checked);

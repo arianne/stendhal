@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -61,7 +61,7 @@ export class PlayerStatsComponent extends Component {
 		const statuses = new StatusesListComponent();
 		ui.registerComponent(UIComponentEnum.StatusesList, statuses);
 
-		this.enableCharName(stendhal.config.getBoolean("ui.stats.charname"));
+		this.enableCharName(stendhal.config.getBoolean("client.stats_panel.charname"));
 
 		this.hpText = this.child("#hptext")!;
 		this.otherText = this.child("#otherstats")!;
@@ -73,7 +73,7 @@ export class PlayerStatsComponent extends Component {
 		this.bars["hp"] = new StatBarComponent("hpbar");
 		// use config to determine if HP bar should be visible
 		this.enableBar("hp", singletons.getConfigManager()
-				.getBoolean("ui.stats.hpbar"));
+				.getBoolean("client.stats_panel.hpbar"));
 	}
 
 	update(key: string) {

@@ -41,6 +41,8 @@ export class ConfigManager {
 		"client.sound.gui.volume": "100",
 		"client.sound.music.volume": "100",
 		"client.sound.sfx.volume": "100",
+		"client.stats_panel.charname": "true",
+		"client.stats_panel.hpbar": "true",
 		// represents most recently used client version
 		"client.version": document.documentElement.getAttribute("data-build-version") || "",
 		"client.window.chest": "160,370",
@@ -51,8 +53,6 @@ export class ConfigManager {
 		"client.window.shortcuts": "20,20",
 		"client.window.trade": "200,100",
 		"client.window.travel_log": "160,50",
-		"ui.stats.charname": "true",
-		"ui.stats.hpbar": "true",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
@@ -97,6 +97,8 @@ export class ConfigManager {
 		"ui.sound.gui.volume": "client.sound.gui.volume",
 		"ui.sound.music.volume": "client.sound.music.volume",
 		"ui.sound.sfx.volume": "client.sound.sfx.volume",
+		"ui.stats.charname": "client.stats_panel.charname",
+		"ui.stats.hpbar": "client.stats_panel.hpbar",
 		"ui.window.chest": "client.window.chest",
 		"ui.window.corpse": "client.window.corpse",
 		"ui.window.menu": "client.window.menu",
