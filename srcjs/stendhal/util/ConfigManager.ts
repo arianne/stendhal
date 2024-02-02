@@ -158,7 +158,7 @@ export class ConfigManager {
 			const keyNew = this.deprecated[keyOld];
 			if (keyNew != null) {
 				let valueOld = this.storage.getItem(keyOld);
-				if (typeof(this.storage.getItem(keyNew)) === "undefined" && typeof(valueOld) !== "undefined") {
+				if (this.storage.getItem(keyNew) == null && valueOld != null) {
 					// special cases
 					if (keyOld === "ui.joystick") {
 						if (valueOld !== "none" && typeof(this.storage.getItem("client.joystick")) === "undefined") {
